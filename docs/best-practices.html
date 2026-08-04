@@ -341,7 +341,25 @@
   <p class="born">Learned here: the backfill covered 196 of 636 vectors and skipped every column the recruiter ranks against &mdash; running it as written would have made ranking worse than the all-hash state it was fixing.</p>
 </div>
 
+<div class="p" id="shelflife">
+  <h3><span class="n">28</span>A verified fact has a shelf life; bind the verdict to the version</h3>
+  <p class="why">Verification answers "does this match the source" at one moment, against one version. It does not answer "is the source still current" &mdash; a different question that nothing in the check touches. The failure is quiet by construction: the fact was <i>genuinely</i> verified, the evidence is real, the provenance is clean, and the answer is now wrong. Nothing throws, because nothing changed on our side. Something changed on theirs.</p>
+  <p class="lbl">Do</p><ul class="do">
+    <li><b>Store <i>when</i> and <i>against which version</i> a fact was verified, not merely that it was.</b> A verdict without those two fields cannot be aged, cannot be invalidated, and will be read years later as if it were fresh.</li>
+    <li><b>Let a new version invalidate the old verdict rather than inherit it.</b> When a source gains a version, every claim carried against the prior one reverts to unverified until re-checked. Inheriting is the whole bug: it converts "was true" into "is true" with no step where anyone decided that.</li>
+    <li><b>Separate the two claims in the data model and in the UI.</b> "Quote matches the cited passage" and "that passage is still operative" are different assertions with different evidence. A claim can be perfectly cited and out of date, and a reader who sees only the first will assume the second.</li>
+    <li><b>Re-verify on read when staleness costs more than the check.</b> Cheap re-checks against a stored source should not be cached at all; the caching is what creates the exposure.</li>
+    <li><b>Prefer the newest version as the source of truth for contact and routing data</b> &mdash; the fields most likely to drift are precisely the ones nobody re-reads.</li>
+  </ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Treating a verification result as a permanent property of a fact; showing a once-verified stale claim with the same confidence as a fresh one; citing the oldest document you found because it parsed cleanly.</li></ul>
+  <p class="born">Learned here, while finding real people to interview. A certificate of service in IURC Cause No. 45591 (July 2021) gave AES Indiana's counsel as <code>tnyhart@btlaw.com</code> &mdash; filing-verified, sworn, correct at the time. The 2026 filing in Cause No. 46394 gives <code>tnyhart@taftlaw.com</code>. Same person, same role, different firm; the firm changed and no document announced it. Both addresses were "verified against a public filing" and only one works. Had we written the first into an outreach log and moved on, the email would have bounced with a provenance note beside it saying the address was confirmed.</p>
+  <p class="born">Load-bearing for this product, not just for this repo: it is the argument for scoping every citation to a proceeding <i>version</i> (ADR-004, ADR-005) rather than to a proceeding. An analyst reading a claim cited to the draft, months after the final order landed, gets a correctly-cited answer to a question they are no longer asking.</p>
+</div>
+
 <h2>Changelog</h2>
+<div class="p">
+  <p class="meta">2026-08-03 — Added §28 (a verified fact has a shelf life: store when and against which version, let a new version invalidate rather than inherit the verdict, separate "matches the citation" from "still operative"). Born from an outreach log that recorded a 2021 filing-verified email address which a 2026 filing in the same docket family shows has since changed.</p>
+</div>
 <div class="p">
   <p class="meta">2026-08-01 — Added a "Degradation &amp; data migrations" area: §26 (a fallback must announce itself — routing and reporting agree, placeholder config is absent, an ambient credential never re-routes a subsystem, retry before concluding "misconfigured", expire the degraded decision) and §27 (a derived corpus migrates all at once — enumerate columns then ask which are READ, rebuild with the app's own builders, re-assert the mode on every batch, decide explicitly about learned state, prefer a model that emits the existing dimension). Both born from switching the embedding provider from a hash fallback that had been reporting itself as something else.</p>
 </div>

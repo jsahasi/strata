@@ -56,6 +56,91 @@
 <p><span class="lbl">Open.</span> Whether the buyer is regulatory affairs' own budget or sits inside a broader compliance or legal software line is unconfirmed. It changes who gets pitched and what the tool gets compared against, and it is exactly the kind of question a real conversation answers in five minutes and speculation does not.</p>
 </div>
 
+<h2>Outreach log</h2>
+
+<p>Who we have approached to test the claims in this document, and what came back. Attempts and
+outcomes live here; what an interview actually said lives in <code>docs/user-research.html</code>,
+which holds the interview table and the four hypotheses. Keeping the two apart stops them drifting
+into different versions of the same story.</p>
+
+<div class="crit"><strong>Standing rule.</strong> Update this table the same day anything moves —
+a message sent, a reply, a refusal, a call booked. A stale log is worse than none: it makes the
+validation look further along than it is, and this document's whole argument rests on being honest
+about which claims are confirmed and which are reasoning.</div>
+
+<h3>Contacted</h3>
+
+<table>
+<tr><th>#</th><th>Who</th><th>Role and company</th><th>Why this target</th><th>Channel</th><th>Status</th></tr>
+<tr>
+<td>1</td>
+<td>Chad A. Rogers</td>
+<td>Director, Regulatory Affairs Indiana — Indianapolis Power &amp; Light Company d/b/a AES Indiana. One Monument Circle, Indianapolis.</td>
+<td>ADR-001's user, fifteen years on. In regulatory affairs since 2013, Director since 2022; leads the team that develops and maintains AES Indiana's rates, rules and regulations, and oversees its regulatory and rate filings. Filed verified direct testimony in IURC Cause No. 46394 (April 2026) on the Monrovia project — generation, storage and transmission to serve Google as a large load customer. That is a live docket of the exact type the synthetic corpus models, at a multi-state utility, filed by the person who does the job.</td>
+<td>Email to <code>chad.rogers@aes.com</code> — <strong>inferred, not verified</strong>. See provenance below.</td>
+<td>Drafted 2026-08-03. Not yet sent.</td>
+</tr>
+</table>
+
+<h3>Where each address came from</h3>
+
+<p>Recording this because an address's source predicts whether the message arrives, and because a
+guessed address that bounces cannot be retried. Two tiers, and they are not close in quality.</p>
+
+<table>
+<tr><th>Address</th><th>Whose</th><th>Source</th><th>Confidence</th></tr>
+<tr><td><code>james.aycock@aes.com</code><br><code>shelby.leisz@aes.com</code></td><td>AES Indiana</td><td>Certificate of service, AES Indiana's verified petition in IURC Cause No. 46394, filed 22 April 2026.</td><td>Verified, and current.</td></tr>
+<tr><td><code>austin.baker@aes.com</code><br><code>kristi.figg@aes.com</code></td><td>AES Indiana</td><td>Certificate of service, IURC Cause No. 46258 (pending rate case), 2025-26 filings.</td><td>Verified.</td></tr>
+<tr><td><code>agray@oucc.in.gov</code><br><code>cadrake@oucc.in.gov</code><br><code>akashin@oucc.in.gov</code><br><code>thaas@oucc.in.gov</code><br><code>infomgt@oucc.in.gov</code></td><td>Indiana Office of Utility Consumer Counselor</td><td>Certificates of service in Cause Nos. 46394 and 46258.</td><td>Verified. Public-agency addresses, the most reliable class here.</td></tr>
+<tr><td><code>tnyhart@taftlaw.com</code><br><code>jpeabody@taftlaw.com</code></td><td>Teresa Morton Nyhart and Jeffrey M. Peabody — outside counsel for AES Indiana, Taft</td><td>Certificate of service, Cause No. 46394, April 2026. <strong>Supersedes</strong> the <code>@btlaw.com</code> addresses in the 2021 Cause No. 45591 petition.</td><td>Verified, and current. See the note below.</td></tr>
+<tr><td><code>jwashburn@citact.org</code><br><code>rkurtz@citact.org</code></td><td>Citizens Action Coalition of Indiana — intervenor in AES Indiana cases</td><td>Certificate of service, Cause No. 46258.</td><td>Verified.</td></tr>
+<tr>
+<td><code>chad.rogers@aes.com</code></td>
+<td>Chad A. Rogers, Director Regulatory Affairs Indiana, AES Indiana</td>
+<td><strong>Inferred, not found in any filing.</strong> His own testimony gives a business address and, across 53 pages, no email at all. But the pattern now rests on four addresses verified from certificates of service in his own dockets — <code>james.aycock@</code>, <code>shelby.leisz@</code>, <code>austin.baker@</code>, <code>kristi.figg@aes.com</code> — all <code>first.last@aes.com</code>. That is evidence from the filings themselves, not from the contact-data broker that also gets his first name wrong ("Charles" where the sworn filing says Chad).</td>
+<td><strong>Medium.</strong> Four independent same-domain confirmations, but still an inference. Send, and keep LinkedIn as the fallback if it bounces.</td>
+</tr>
+</table>
+
+<div class="note"><strong>The rule this follows.</strong> An address taken from a filing is a fact.
+An address assembled from a naming pattern is a guess wearing a fact's clothes — the same
+distinction ADR-003 draws between a verified citation and a plausible one, marked here so nobody
+later mistakes the second for the first.</div>
+
+<div class="crit"><strong>And a fact from a filing still expires.</strong> The first version of this
+table recorded <code>tnyhart@btlaw.com</code> as verified — which it was, in a certificate of service
+sworn in July 2021. By the April 2026 filing in Cause No. 46394 the same person at the same job is
+<code>tnyhart@taftlaw.com</code>: the firm changed and no document announced it. Both addresses were
+honestly "verified against a public filing"; only one works. Verification is a timestamp against a
+version, not a permanent property — written up as principle 28 in
+<code>docs/best-practices.html</code>, and it is the argument for scoping every citation in the
+product to a proceeding <em>version</em> rather than to a proceeding.</div>
+
+<h3>Shortlist, not yet approached</h3>
+
+<table>
+<tr><th>Who</th><th>Role and company</th><th>What they would settle</th></tr>
+<tr><td>Sharon Schroder</td><td>Managing Director, Regulatory Affairs — AES Indiana and AES Ohio. 26 years at AES, across state and FERC work.</td><td>The buyer question above, and H1. She runs the function across two states, which is the multi-state structure this document's beachhead argument rests on. Probably Rogers's manager, so approach one of them, not both at once.</td></tr>
+<tr><td>Lisa Kelso</td><td>VP, Customer Experience — AEP Ohio</td><td>Testified in PUCO 24-508-EL-ATA, the data centre tariff case. Adjacent to the user rather than on top of them, but she lived through the proceeding the corpus imitates.</td></tr>
+<tr><td>Kamran Ali</td><td>VP, Transmission Planning and Analysis — AEP</td><td>Same docket, same caveat.</td></tr>
+<tr><td>William Henley</td><td>VP, Regulatory and Government Affairs — AES Indiana</td><td>The buyer, one level above Schroder. Approach only after a conversation lower down has told us what the analyst's day actually looks like; going top-down first wastes the one question the buyer answers best.</td></tr>
+<tr><td>Jeffrey M. Reed</td><td>Indiana Office of Utility Consumer Counselor — <code>jreed@oucc.in.gov</code></td><td>H2 and H3, and the only name on this page whose address is verified rather than guessed. A public servant reading the same dockets under the same clock with a smaller budget. Not the buyer and never will be, but far more likely to reply within a day than anyone at the utility — which on this deadline is worth more than a perfect fit.</td></tr>
+</table>
+
+<p><span class="lbl">Where the rest come from.</span> Commission service lists name every participant
+in a proceeding with their contact details, filed as public record — a better source than a
+profile database, because filing in the docket proves someone does the work rather than merely
+holds the title. Worth mining: PUCO 24-508-EL-ATA (AEP Ohio data centre tariff), IURC Cause Nos.
+46394 and 46258 (AES Indiana large load, and its pending rate case), the North Carolina Utilities
+Commission's Duke large load tariff filing of June 2026, and the Georgia PSC's 2025 large-load
+hearings, which ran seventeen sworn witnesses.</p>
+
+<div class="crit"><strong>Where this leaves the document.</strong> Outreach has started. No
+interview has landed, so nothing in this MRD has yet been confirmed by a regulatory-affairs
+person, and every claim about buyer behaviour, willingness to pay or felt cost still stands as
+reasoning from public structure. The status note at the head of this document says the same thing
+and stays true until a row above reads "call held".</div>
+
 <h2>Incumbents and adjacent tools</h2>
 
 <p>Four categories already sit near this problem. Each does something real. None does the specific join Strata is built around: an exactly-cited change, in a specific proceeding, mapped to this company's own obligations and projects, with an action and a reviewer attached.</p>
