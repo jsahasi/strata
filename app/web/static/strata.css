@@ -2130,3 +2130,47 @@ a.tab:hover {
     scroll-behavior: auto !important;
   }
 }
+
+/* ------------------------------------------------------- tables on a phone --
+
+   Ten tables live across six templates and not one of them sat in a scroll
+   container, so a table wider than the viewport pushed the whole page sideways.
+   That is the symptom every reader recognises as "not built for a phone": the
+   masthead scrolls away from the content and nothing lines up again.
+
+   Fixed here rather than by wrapping ten tables in six templates, so a table
+   added tomorrow is covered without anybody remembering. The table itself
+   becomes the scrolling box: display:block gives it a block formatting context
+   that can overflow, while its rows and cells keep their table behaviour, so
+   column alignment survives.
+
+   width:max-content with min-width:100% is the pair that matters. max-content
+   lets the table keep its natural width and scroll; min-width stops a narrow
+   table shrinking to its content and floating in a half-empty row.
+
+   This is a real fix for a real defect and it is not a substitute for opening
+   the thing on a handset. Nothing here has been checked on a device.
+   ---------------------------------------------------------------------------- */
+
+@media (max-width: 62rem) {
+  table {
+    display: block;
+    width: max-content;
+    min-width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  /* A cell may wrap; the coordinate chip inside it still may not, because a
+     character range broken across two lines is unreadable as a coordinate. */
+  th, td { overflow-wrap: break-word; }
+}
+
+/* Long unbroken strings -- a 64-character chain digest, a version id, a quoted
+   fragment with no spaces -- are the other way a page grows wider than its
+   screen. Break them anywhere rather than let one token set the page width. */
+.digest, .hash, code, pre, .coord--long {
+  overflow-wrap: anywhere;
+}
