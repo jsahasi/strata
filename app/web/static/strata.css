@@ -1373,15 +1373,16 @@ a.tab:hover {
   font-weight: 700;
 }
 
-/* Where the work is, before anyone clicks. */
+/* Where the work is, before anyone clicks. ink-2 rather than ink-3: on the sunk
+   rail, ink-3 falls to 3.9:1 and this is a number someone reads, not a shade. */
 .tab__count {
   font: var(--t-micro) / 1.4 var(--face-data);
   font-variant-numeric: tabular-nums;
-  color: var(--ink-3);
+  color: var(--ink-2);
 }
 
 .tab--current .tab__count {
-  color: var(--ink-2);
+  color: var(--ink);
 }
 
 .tab__count--waiting {

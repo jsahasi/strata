@@ -30,16 +30,43 @@ escalation is keyed by a stable id and skipped when present. An escalation is
 never rewritten once created, because a person may have resolved it and the
 resolution is the part worth keeping.
 
-What is NOT loaded: the obligations, projects and documents in
-data/company_context.json. Nothing in app/state/models.py stores them yet --
-impact mapping is designed and not built (docs/.ai/state.json) -- and inventing
-a half-table here would make the gap harder to see, not smaller. The file is
-read for the company's name and id, which every row is scoped by.
+**The workspace is loaded from the same two files.** Projects, the changes
+attached to them, threads, plans, re-runs, knowledge, sources, findings,
+questions, the collective take, the deliverable and the steer directives are all
+built by the code below from data/manifest.json and data/company_context.json.
+Three rules keep that honest:
+
+*Nothing is invented.* Every docket number, section label, date, share and
+threshold in a seeded row is extracted from the manifest by the same rules that
+build the claim sentences. Every person, obligation, document and internal
+project comes from the company context. Where a row needs prose -- a thread
+turn, a take, a memo -- the sentence is written here, and the facts inside it
+are substituted from the corpus rather than typed.
+
+*Machine writes and human writes are attributed differently.* Ingesting,
+diffing and withholding a claim are decisions the system took, and they are
+signed `system:seed` or `system:pipeline`. Opening a project, attaching a
+change, issuing a steer and composing a take are decisions a person takes, and
+they carry the name of the owner the company context gives for that obligation.
+Those people are declared fictional in the data file. The distinction that
+matters in the log is machine against human, and it is kept.
+
+*Rows are backdated; audit entries never are.* A project created a month ago
+and a thread opened last week make the demo readable, so the seed writes those
+timestamps. It does not backdate an audit entry, because when the system decided
+something is the one thing the chain exists to answer.
+
+The obligations, projects and documents in data/company_context.json still have
+no tables of their own -- impact mapping is designed and not built
+(docs/.ai/state.json). They are read here as the source of names, owners and the
+obligation-to-change mapping, and the gap stays visible rather than being
+papered over with a half-table.
 """
 
 import json
 import re
 from dataclasses import dataclass
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from sqlalchemy.orm import Session
@@ -54,8 +81,52 @@ from app.state.claims import (
     verified_claims,
 )
 from app.state.db import get_engine, session_scope
-from app.state.models import Base, Change, Claim, Escalation, Proceeding
+from app.state.models import (
+    Base,
+    Change,
+    Claim,
+    CollectiveTake,
+    Deliverable,
+    Escalation,
+    Finding,
+    KnowledgeItem,
+    Proceeding,
+    Project,
+    ProjectChange,
+    Question,
+    ResearchThread,
+    ResearchTurn,
+    ScheduledRun,
+    Source,
+    SteerDirective,
+    WorkPlan,
+    WorkPlanStep,
+)
+from app.state.projects import (
+    add_knowledge,
+    add_step,
+    add_turn,
+    attach_change,
+    create_project,
+    create_work_plan,
+    knowledge_item_for_company,
+    open_thread,
+    project_for_company,
+    record_run,
+    schedule_run,
+    set_thread_status,
+    supersede_knowledge,
+)
 from app.state.queries import versions_for_company
+from app.state.review import (
+    KIND_EXTERNAL,
+    KIND_INTERNAL,
+    collective_take_for_project,
+    compose_take,
+    coverage_for_project,
+    issue_steer,
+    steer_directives_for_project,
+)
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
@@ -92,6 +163,37 @@ _RETENTION = re.compile(r"not less than [a-z]+ \(\d+\) years")
 
 
 @dataclass(frozen=True, slots=True)
+class WorkspaceReport:
+    """Row totals for the workspace, counted after the run rather than tallied.
+
+    Every field is a count of what is stored, so comparing two reports is a
+    complete idempotency check: a second seed that duplicated one thread turn
+    would move one number here and nothing else would notice.
+
+    take_included and take_withheld are the two counts on the current collective
+    take. They are listed beside the row totals on purpose -- a take that lost
+    its withheld count between runs is the failure this product exists to
+    prevent, and it should be visible in the same glance.
+    """
+
+    projects: int
+    attachments: int
+    threads: int
+    turns: int
+    work_plan_steps: int
+    scheduled_runs: int
+    knowledge_items: int
+    sources: int
+    findings: int
+    questions: int
+    collective_takes: int
+    deliverables: int
+    steer_directives: int
+    take_included: int
+    take_withheld: int
+
+
+@dataclass(frozen=True, slots=True)
 class SeedReport:
     """What is in the database after the run. Totals, not "rows I just wrote".
 
@@ -107,6 +209,7 @@ class SeedReport:
     claims: int
     escalations: int
     withheld: tuple[tuple[str, str], ...]
+    workspace: WorkspaceReport
 
 
 # ---------------------------------------------------------------------------
@@ -363,6 +466,1072 @@ def _escalate(session: Session, company_id: str, held: WithheldClaim) -> None:
     )
 
 
+# ---------------------------------------------------------------------------
+# The workspace: projects, threads, plans, re-runs, knowledge, review centre
+# ---------------------------------------------------------------------------
+
+
+# A project id is in a URL, so it is chosen rather than generated. The three
+# internal projects keep the ids company_context.json already gives them; the
+# docket project takes the docket number, which is the only other name in the
+# corpus guaranteed unique.
+PROJECT_PREFIX = "PRJ-"
+
+# company_context.json states a project's status in free text ("active,
+# reprioritized after v3") and PROJECT_STATUSES is closed, so the narrowing is
+# written here rather than guessed at read time. PRJ-2 is monitoring because
+# this docket's only bearing on it is one date, which has already moved and been
+# recorded: nothing on it waits for a person. The other two carry work in
+# flight.
+_CONTEXT_PROJECT_STATUS = {
+    "PRJ-1": "active",
+    "PRJ-2": "monitoring",
+    "PRJ-3": "active",
+}
+
+# A finding's headline says where and what kind. What actually moved is in the
+# claim behind it, and the claim only renders when its citation verifies. Two of
+# the findings below rest on claims that fail, so a headline built from a claim
+# sentence would put an unverifiable assertion on the page under a different
+# name (ADR-003).
+_FINDING_HEADLINES = {
+    "material": "Material change at {ref}",
+    "cosmetic": "Wording restated at {ref}",
+    "deadline": "Compliance date moved at {ref}",
+    "final-only": "New duty adopted at {ref}",
+    "restructure": "{ref} renumbered in the final order",
+}
+_FINDING_HEADLINE_FALLBACK = "Change at {ref}"
+
+# The reviewer's verdict, keyed on what the manifest says the change is. The
+# cosmetic one is rejected on purpose: the corpus built it as the false positive
+# a materiality step must not raise, and a review centre where nothing is ever
+# rejected shows nobody reading. The restructure stays open because a
+# renumbering is read slowly.
+_FINDING_STATUSES = {"cosmetic": "rejected", "restructure": "open"}
+_FINDING_STATUS_FALLBACK = "confirmed"
+
+# Sources a person would stand behind. A board memo summarises the record and is
+# not the record, so it is listed and not trusted -- and `trusted` still says
+# nothing about whether a quote taken from it verifies.
+_UNTRUSTED_DOCUMENT_TYPES = ("board_memo",)
+
+_NO_PARENS = re.compile(r"\s*\([^()]*\)")
+
+
+@dataclass(frozen=True, slots=True)
+class _Loaded:
+    """What the workspace loader needs from the corpus, gathered once.
+
+    Passed around rather than re-read, so every surface below is built from the
+    same rows the claims were built from. `anchors` maps a manifest change id to
+    the persisted Change its citation lands in -- the same anchor the claim got,
+    so a project, a plan step and a finding all point at one row.
+    """
+
+    company_id: str
+    docket: str
+    proceeding_id: str
+    manifest: dict
+    context: dict
+    anchors: dict[str, Change]
+    misquote_change: Change
+    ambiguous_change: Change
+    changes: tuple[Change, ...]
+    now: datetime
+
+
+def _absent(session: Session, model, row_id: str) -> bool:
+    """True when this id is not yet stored. The one idempotency guard here.
+
+    A primary-key lookup, deliberately unscoped. The question is whether the row
+    exists at all, not whether this company may read it: an id already taken has
+    to block the write rather than let a second row be created under one key.
+    """
+    return session.get(model, row_id) is None
+
+
+def _no_parens(text: str) -> str:
+    """Drop parenthetical asides. Corpus subjects carry one and cards do not."""
+    return _NO_PARENS.sub("", text).strip()
+
+
+def _jurisdiction(context: dict) -> str:
+    """The primary jurisdiction, without the note about which body regulates it."""
+    return context["company"]["jurisdictions"][0].split(" (")[0].strip()
+
+
+def _obligation_owners(context: dict) -> dict[str, str]:
+    return {row["id"]: row["owner_name"] for row in context["obligations"]}
+
+
+def _obligation_by_id(context: dict) -> dict[str, dict]:
+    return {row["id"]: row for row in context["obligations"]}
+
+
+def _project_owner(context: dict, obligation_ids: list[str]) -> str:
+    """Whoever holds most of a project's obligations. Ties go to the lowest id.
+
+    A rule rather than a list, so adding an obligation to the company context
+    moves the owner rather than leaving a name here that quietly disagrees with
+    it.
+    """
+    owners = _obligation_owners(context)
+    held: dict[str, int] = {}
+    first: dict[str, str] = {}
+    for obligation_id in sorted(obligation_ids):
+        name = owners[obligation_id]
+        held[name] = held.get(name, 0) + 1
+        first.setdefault(name, obligation_id)
+    return min(held, key=lambda name: (-held[name], first[name]))
+
+
+def _docket_owner(manifest: dict, context: dict) -> str:
+    """Who owns the obligation the material change lands on. The docket's owner."""
+    material = next(c for c in manifest["changes"] if c["type"] == "material")
+    return _obligation_owners(context)[material["maps_to_obligation_id"]]
+
+
+def _labelled(manifest: dict, change_id: str) -> dict:
+    return next(c for c in manifest["changes"] if c["id"] == change_id)
+
+
+def _obligations_of(change: dict) -> list[str]:
+    """Every obligation a labelled change bears on, primary one first."""
+    ids = [change["maps_to_obligation_id"]]
+    ids += change.get("also_related_obligation_ids", [])
+    return ids
+
+
+def _share_in(text: str) -> str:
+    return _first(_SHARE.findall(text), "a share", text)
+
+
+def _date_in(text: str) -> str:
+    return _first(_DATE.findall(text), "a compliance date", text)
+
+
+def _measure_in(text: str) -> str:
+    return _first(_MEASURE.findall(text), "a measure", text)
+
+
+def _document(context: dict, document_id: str) -> dict:
+    return next(d for d in context["documents"] if d["id"] == document_id)
+
+
+def _short_title(document: dict) -> str:
+    """A document's name without its subtitle, for the middle of a sentence.
+
+    The full title is what a Source row stores, because that is the record. A
+    sentence that carries it whole reads as a catalogue entry, so prose takes
+    the part before the colon and the record keeps all of it.
+    """
+    return document["title"].split(":")[0].strip()
+
+
+def _docket_project_id(docket: str) -> str:
+    return f"{PROJECT_PREFIX}{docket}"
+
+
+# ---------------------------------------------------------------------------
+# Projects and the changes attached to them
+# ---------------------------------------------------------------------------
+
+
+def _seed_projects(session: Session, loaded: _Loaded) -> str:
+    """Open the docket project and the three the company context already names.
+
+    The docket project is where the proceeding lives and every change from it
+    attaches. The other three are the company's own work, and this docket only
+    touches the parts of it that share an obligation -- which is the rule
+    _seed_attachments applies rather than a list somebody kept.
+    """
+    docket_project = _docket_project_id(loaded.docket)
+    subject = _no_parens(loaded.manifest["docket"]["subject"])
+    jurisdiction = _jurisdiction(loaded.context)
+
+    if project_for_company(session, loaded.company_id, docket_project) is None:
+        create_project(
+            session,
+            loaded.company_id,
+            project_id=docket_project,
+            name=subject,
+            docket_ref=loaded.docket,
+            jurisdiction=jurisdiction,
+            owner=_docket_owner(loaded.manifest, loaded.context),
+            status="active",
+            summary=(
+                f"{loaded.manifest['docket']['commission'].split(' -- ')[0]}, "
+                f"docket {loaded.docket}. Three versions ingested and diffed."
+            ),
+            created_at=loaded.now - timedelta(days=45),
+        )
+
+    for index, project in enumerate(loaded.context["projects"]):
+        if project_for_company(session, loaded.company_id, project["id"]) is not None:
+            continue
+        create_project(
+            session,
+            loaded.company_id,
+            project_id=project["id"],
+            name=project["name"],
+            # An internal programme tracks no docket of its own. NULL rather
+            # than this docket's number, which would read as the project being
+            # the proceeding.
+            docket_ref=None,
+            jurisdiction=jurisdiction,
+            owner=_project_owner(loaded.context, project["related_obligation_ids"]),
+            status=_CONTEXT_PROJECT_STATUS[project["id"]],
+            summary=project["description"],
+            created_at=loaded.now - timedelta(days=40 - index * 5),
+        )
+
+    return docket_project
+
+
+def _seed_attachments(session: Session, loaded: _Loaded, docket_project: str) -> None:
+    """Attach the corpus to the docket project, and the rest by obligation.
+
+    Every change the diff found attaches to the docket project, because that is
+    what the project is: the proceeding, tracked. An internal project gets a
+    change only where the change's obligation is one of the project's own, which
+    is the join company_context.json already describes -- so nothing here is a
+    choice somebody made and nobody wrote down.
+    """
+    owner = _docket_owner(loaded.manifest, loaded.context)
+    for change in sorted(loaded.changes, key=lambda row: row.id):
+        attach_change(session, loaded.company_id, docket_project, change.id, owner)
+
+    owners = _obligation_owners(loaded.context)
+    for project in loaded.context["projects"]:
+        held = set(project["related_obligation_ids"])
+        for labelled in loaded.manifest["changes"]:
+            touched = [o for o in _obligations_of(labelled) if o in held]
+            if not touched:
+                continue
+            attach_change(
+                session,
+                loaded.company_id,
+                project["id"],
+                loaded.anchors[labelled["id"]].id,
+                owners[touched[0]],
+            )
+
+
+# ---------------------------------------------------------------------------
+# Sources
+# ---------------------------------------------------------------------------
+
+
+def _seed_sources(session: Session, loaded: _Loaded, project_id: str) -> None:
+    """The three filed versions as external sources, the company's own as internal.
+
+    The split is what stops a synthesis resting entirely on the company writing
+    about itself and looking well sourced. An external source carries the
+    version id it was ingested as, which is what makes a claim on it citable at
+    an offset; an internal document carries none, and so cannot.
+    """
+    for index, version in enumerate(loaded.manifest["versions"]):
+        source_id = f"SRC-{version['id']}"
+        if not _absent(session, Source, source_id):
+            continue
+        session.add(
+            Source(
+                id=source_id,
+                company_id=loaded.company_id,
+                project_id=project_id,
+                kind=KIND_EXTERNAL,
+                label=version["label"],
+                locator=f"data/{version['file']}",
+                version_id=version["id"],
+                retrieved_at=loaded.now - timedelta(days=40 - index * 15),
+                trusted=True,
+            )
+        )
+
+    for document in loaded.context["documents"]:
+        source_id = f"SRC-{document['id']}"
+        if not _absent(session, Source, source_id):
+            continue
+        session.add(
+            Source(
+                id=source_id,
+                company_id=loaded.company_id,
+                project_id=project_id,
+                kind=KIND_INTERNAL,
+                label=document["title"],
+                locator=f"data/company_context.json#{document['id']}",
+                version_id=None,
+                retrieved_at=loaded.now - timedelta(days=45),
+                trusted=document["type"] not in _UNTRUSTED_DOCUMENT_TYPES,
+            )
+        )
+    session.flush()
+
+
+# ---------------------------------------------------------------------------
+# Findings
+# ---------------------------------------------------------------------------
+
+
+def _seed_findings(session: Session, loaded: _Loaded, project_id: str) -> None:
+    """One finding per labelled change, plus the three that cannot be asserted.
+
+    The last three are the point of the screen. Two name claims whose citations
+    fail -- the misquote and the unnumbered occurrence -- and one was raised by
+    a person from their own reading and names no claim at all. Coverage counts
+    all three as withheld, and the take composed afterwards has to say so.
+
+    Their headlines describe the trouble and never the content. A finding
+    resting on a failed citation must not smuggle the assertion onto the page in
+    a field the verifier does not read.
+    """
+    obligations = _obligation_by_id(loaded.context)
+
+    for index, labelled in enumerate(loaded.manifest["changes"]):
+        finding_id = f"FND-{labelled['id']}"
+        if not _absent(session, Finding, finding_id):
+            continue
+        obligation = obligations[labelled["maps_to_obligation_id"]]
+        template = _FINDING_HEADLINES.get(
+            labelled["type"], _FINDING_HEADLINE_FALLBACK
+        )
+        session.add(
+            Finding(
+                id=finding_id,
+                company_id=loaded.company_id,
+                project_id=project_id,
+                change_id=loaded.anchors[labelled["id"]].id,
+                claim_id=f"CLM-{labelled['id']}",
+                headline=template.format(ref=_section_ref(labelled["section"])),
+                detail=(
+                    f"Bears on {obligation['id']} ({obligation['owner_name']}): "
+                    f"{obligation['internal_wording']}"
+                ),
+                raised_by=obligation["owner_name"],
+                raised_at=loaded.now - timedelta(days=10 - index),
+                status=_FINDING_STATUSES.get(
+                    labelled["type"], _FINDING_STATUS_FALLBACK
+                ),
+            )
+        )
+
+    definition = _labelled(loaded.manifest, "CHG-2")
+    if _absent(session, Finding, "FND-MISQUOTE"):
+        session.add(
+            Finding(
+                id="FND-MISQUOTE",
+                company_id=loaded.company_id,
+                project_id=project_id,
+                change_id=loaded.misquote_change.id,
+                claim_id=CLAIM_MISQUOTE,
+                headline=(
+                    "Threshold restatement at "
+                    f"{_section_ref(definition['section'])} cites words the "
+                    "source does not carry"
+                ),
+                detail=(
+                    f"Escalated as ESC-{CLAIM_MISQUOTE}. The offsets are inside "
+                    "the document and the quote at them is not what the "
+                    "document says, so nothing is asserted from this finding."
+                ),
+                raised_by=ACTOR,
+                raised_at=loaded.now - timedelta(days=4),
+                status="open",
+            )
+        )
+
+    boilerplate = loaded.manifest["repeated_boilerplate"]
+    if _absent(session, Finding, "FND-AMBIGUOUS"):
+        repeats = sum(1 for o in boilerplate["occurrences"] if o["version"] == "v3")
+        session.add(
+            Finding(
+                id="FND-AMBIGUOUS",
+                company_id=loaded.company_id,
+                project_id=project_id,
+                change_id=loaded.ambiguous_change.id,
+                claim_id=CLAIM_AMBIGUOUS,
+                headline="Recordkeeping citation does not say which occurrence",
+                detail=(
+                    f"Escalated as ESC-{CLAIM_AMBIGUOUS}. The same sentence "
+                    f"appears {repeats} times in the final order, in three "
+                    "sections about three subjects. The citation names no "
+                    "occurrence, so it could mean any of them."
+                ),
+                raised_by=ACTOR,
+                raised_at=loaded.now - timedelta(days=3),
+                status="open",
+            )
+        )
+
+    retention = obligations["OBL-004"]
+    if _absent(session, Finding, "FND-OBL-004"):
+        session.add(
+            Finding(
+                id="FND-OBL-004",
+                company_id=loaded.company_id,
+                project_id=project_id,
+                change_id=None,
+                claim_id=None,
+                headline="Internal retention period may not match the docket",
+                detail=(
+                    f"{retention['internal_wording']} Raised from a reading, "
+                    "with no claim attached, so it counts against coverage "
+                    "rather than for it."
+                ),
+                raised_by=retention["owner_name"],
+                raised_at=loaded.now - timedelta(days=2),
+                status="open",
+            )
+        )
+    session.flush()
+
+
+# ---------------------------------------------------------------------------
+# Questions
+# ---------------------------------------------------------------------------
+
+
+def _seed_questions(session: Session, loaded: _Loaded, project_id: str) -> None:
+    """Three questions: one blocking and open, one answered, one merely open."""
+    owners = _obligation_owners(loaded.context)
+    allocation = _labelled(loaded.manifest, "CHG-1")
+    definition = _labelled(loaded.manifest, "CHG-2")
+    curtailment = _labelled(loaded.manifest, "CHG-4")
+
+    rows = [
+        (
+            "QST-COST-ALLOCATION",
+            (
+                "Does the reliability-benefit finding in "
+                f"{_section_ref(allocation['section'])} reach upgrades already "
+                "under construction?"
+            ),
+            owners[allocation["maps_to_obligation_id"]],
+            10,
+            True,
+            None,
+            None,
+            None,
+        ),
+        (
+            "QST-THRESHOLD",
+            (
+                "Does the restated definition move the "
+                f"{_measure_in(definition['after']['exact_text'])} screening "
+                "cutoff we use at intake?"
+            ),
+            _docket_owner(loaded.manifest, loaded.context),
+            9,
+            False,
+            "No. The threshold is the same in the revised rule and in the "
+            "final order. Only the wording around it moved.",
+            owners[definition["maps_to_obligation_id"]],
+            8,
+        ),
+        (
+            "QST-CURTAILMENT",
+            (
+                "Which tariff carries the curtailment compensation rate "
+                f"{_section_ref(curtailment['section'])} points at?"
+            ),
+            owners[curtailment["maps_to_obligation_id"]],
+            3,
+            False,
+            None,
+            None,
+            None,
+        ),
+    ]
+
+    for row_id, body, asked_by, asked_days, blocking, answer, by, days in rows:
+        if not _absent(session, Question, row_id):
+            continue
+        session.add(
+            Question(
+                id=row_id,
+                company_id=loaded.company_id,
+                project_id=project_id,
+                body=body,
+                asked_by=asked_by,
+                asked_at=loaded.now - timedelta(days=asked_days),
+                answered_at=None if days is None else loaded.now - timedelta(days=days),
+                answer=answer,
+                answered_by=by,
+                blocking=blocking,
+            )
+        )
+    session.flush()
+
+
+# ---------------------------------------------------------------------------
+# Research threads
+# ---------------------------------------------------------------------------
+
+
+def _seed_threads(session: Session, loaded: _Loaded, project_id: str) -> None:
+    """Three threads: one answered on a verified claim, one open, one parked.
+
+    The answered thread is the one worth reading. An analyst asks, the system
+    replies citing a claim whose citation verifies, and the analyst turns the
+    answer into work. The turn carries the claim id rather than the sentence, so
+    what renders beside it is re-verified at read time and not copied here.
+    """
+    owners = _obligation_owners(loaded.context)
+    allocation = _labelled(loaded.manifest, "CHG-1")
+    curtailment = _labelled(loaded.manifest, "CHG-4")
+    tariff = _document(loaded.context, "DOC-2")
+
+    if _absent(session, ResearchThread, "THR-COST-ALLOCATION"):
+        asker = owners[allocation["maps_to_obligation_id"]]
+        open_thread(
+            session,
+            loaded.company_id,
+            project_id,
+            thread_id="THR-COST-ALLOCATION",
+            question="Who bears the network upgrade cost under the revised rule?",
+            opened_by=asker,
+            opened_at=loaded.now - timedelta(days=6),
+        )
+        add_turn(
+            session,
+            loaded.company_id,
+            "THR-COST-ALLOCATION",
+            author_kind="analyst",
+            body=(
+                f"{_short_title(tariff)} still says the customer pays all of "
+                "it. Find what the revised rule now says."
+            ),
+            created_at=loaded.now - timedelta(days=6),
+        )
+        add_turn(
+            session,
+            loaded.company_id,
+            "THR-COST-ALLOCATION",
+            author_kind="system",
+            # The turn carries a claim id and no sentence copied from it. What
+            # renders beside this line is re-verified on the read that shows it.
+            body=(
+                f"{_section_ref(allocation['section'])} sets a floor on the "
+                "customer share and sends the rest to general rates, subject to "
+                "a reliability finding."
+            ),
+            claim_id=f"CLM-{allocation['id']}",
+            created_at=loaded.now - timedelta(days=5),
+        )
+        add_turn(
+            session,
+            loaded.company_id,
+            "THR-COST-ALLOCATION",
+            author_kind="analyst",
+            body=(
+                f"Then {_short_title(tariff)} is wrong from the effective date. "
+                "Raised as a finding and put on the plan."
+            ),
+            created_at=loaded.now - timedelta(days=4),
+        )
+        set_thread_status(session, loaded.company_id, "THR-COST-ALLOCATION", "answered")
+
+    if _absent(session, ResearchThread, "THR-CURTAILMENT-RATE"):
+        asker = owners[curtailment["maps_to_obligation_id"]]
+        open_thread(
+            session,
+            loaded.company_id,
+            project_id,
+            thread_id="THR-CURTAILMENT-RATE",
+            question="What do we pay a customer we curtail?",
+            opened_by=asker,
+            opened_at=loaded.now - timedelta(days=2),
+        )
+        add_turn(
+            session,
+            loaded.company_id,
+            "THR-CURTAILMENT-RATE",
+            author_kind="analyst",
+            body=(
+                f"{_section_ref(curtailment['section'])} points at a "
+                "Commission-approved curtailment tariff. I cannot find one on "
+                "file for us."
+            ),
+            created_at=loaded.now - timedelta(days=2),
+        )
+
+    if _absent(session, ResearchThread, "THR-RETENTION"):
+        retention = _obligation_by_id(loaded.context)["OBL-004"]
+        open_thread(
+            session,
+            loaded.company_id,
+            project_id,
+            thread_id="THR-RETENTION",
+            question="Does our study-file retention rule still cover the docket's?",
+            opened_by=retention["owner_name"],
+            opened_at=loaded.now - timedelta(days=7),
+        )
+        add_turn(
+            session,
+            loaded.company_id,
+            "THR-RETENTION",
+            author_kind="analyst",
+            body=(
+                "Parked until the recordkeeping citation says which occurrence "
+                "it means. Answering on the wrong one is worse than waiting."
+            ),
+            created_at=loaded.now - timedelta(days=7),
+        )
+        set_thread_status(session, loaded.company_id, "THR-RETENTION", "parked")
+
+
+# ---------------------------------------------------------------------------
+# The work plan
+# ---------------------------------------------------------------------------
+
+
+def _seed_plan(session: Session, loaded: _Loaded, project_id: str) -> None:
+    """One plan, five steps, four states, one of them blocked by a failed citation.
+
+    The blocked step is the one to look at. It is blocked because the claim
+    behind its change did not verify, which is a state the product can report
+    and a person can act on -- not a fifth colour meaning "we are not sure".
+    """
+    plan_id = f"PLAN-{loaded.docket}"
+    if not _absent(session, WorkPlan, plan_id):
+        return
+
+    owners = _obligation_owners(loaded.context)
+    allocation = _labelled(loaded.manifest, "CHG-1")
+    definition = _labelled(loaded.manifest, "CHG-2")
+    deadline = _labelled(loaded.manifest, "CHG-3")
+    curtailment = _labelled(loaded.manifest, "CHG-4")
+    tariff = _document(loaded.context, "DOC-2")
+    procedure = _document(loaded.context, "DOC-3")
+
+    create_work_plan(
+        session,
+        loaded.company_id,
+        project_id,
+        plan_id=plan_id,
+        title=f"Bring MEP into line with the final order in {loaded.docket}",
+        created_at=loaded.now - timedelta(days=20),
+        due_at=loaded.now + timedelta(days=40),
+    )
+
+    steps = [
+        (
+            "STEP-CHG-3",
+            "Move the updated load forecast in the compliance calendar to "
+            f"{_date_in(deadline['after']['exact_text'])}",
+            owners[deadline["maps_to_obligation_id"]],
+            "done",
+            loaded.anchors[deadline["id"]].id,
+            None,
+        ),
+        (
+            "STEP-CHG-1",
+            f"Refile {_short_title(tariff)} against the cost-causation method",
+            owners[allocation["maps_to_obligation_id"]],
+            "doing",
+            loaded.anchors[allocation["id"]].id,
+            30,
+        ),
+        (
+            "STEP-CHG-2",
+            f"Restate the intake screening cutoff in {_short_title(procedure)}",
+            owners[definition["maps_to_obligation_id"]],
+            "blocked",
+            loaded.anchors[definition["id"]].id,
+            21,
+        ),
+        (
+            "STEP-CHG-4",
+            "Write the curtailment notice and compensation process",
+            owners[curtailment["maps_to_obligation_id"]],
+            "todo",
+            loaded.anchors[curtailment["id"]].id,
+            60,
+        ),
+        (
+            "STEP-BOARD",
+            "Brief the board on the reliability findings in the final order",
+            _docket_owner(loaded.manifest, loaded.context),
+            "todo",
+            # No change behind it. Real work with no diff to point at, which is
+            # why WorkPlanStep.change_id is nullable.
+            None,
+            14,
+        ),
+    ]
+
+    for ordinal, (step_id, description, owner, state, change, due) in enumerate(
+        steps, start=1
+    ):
+        add_step(
+            session,
+            loaded.company_id,
+            plan_id,
+            step_id=step_id,
+            description=description,
+            owner=owner,
+            ordinal=ordinal,
+            state=state,
+            change_id=change,
+            due_at=None if due is None else loaded.now + timedelta(days=due),
+        )
+
+
+# ---------------------------------------------------------------------------
+# Scheduled re-runs
+# ---------------------------------------------------------------------------
+
+
+def _seed_runs(session: Session, loaded: _Loaded, docket_project: str) -> None:
+    """Four schedule states, because they must not render the same.
+
+    A daily run that fired and found nothing, an on-filing run that has never
+    fired, a weekly run somebody switched off, and a project with no schedule at
+    all. The first and the third look identical on a screen that shows only the
+    cadence, and the difference between them is whether anybody is watching.
+    """
+    if _absent(session, ScheduledRun, "RUN-DAILY"):
+        schedule_run(
+            session,
+            loaded.company_id,
+            docket_project,
+            run_id="RUN-DAILY",
+            cadence="daily",
+            next_run_at=loaded.now + timedelta(hours=18),
+            enabled=True,
+        )
+        record_run(
+            session,
+            loaded.company_id,
+            "RUN-DAILY",
+            ran_at=loaded.now - timedelta(hours=6),
+            # Written even though it found nothing. A schedule that reports only
+            # on the days it found something looks exactly like one that stopped.
+            result=f"No new version of {loaded.docket} on the commission's docket.",
+            next_run_at=loaded.now + timedelta(hours=18),
+        )
+
+    if _absent(session, ScheduledRun, "RUN-ON-FILING"):
+        schedule_run(
+            session,
+            loaded.company_id,
+            "PRJ-1",
+            run_id="RUN-ON-FILING",
+            cadence="on-filing",
+            next_run_at=loaded.now + timedelta(days=30),
+            enabled=True,
+        )
+
+    if _absent(session, ScheduledRun, "RUN-WEEKLY"):
+        schedule_run(
+            session,
+            loaded.company_id,
+            "PRJ-2",
+            run_id="RUN-WEEKLY",
+            cadence="weekly",
+            next_run_at=loaded.now + timedelta(days=7),
+            enabled=False,
+        )
+
+
+# ---------------------------------------------------------------------------
+# Knowledge
+# ---------------------------------------------------------------------------
+
+
+def _seed_knowledge(session: Session, loaded: _Loaded, project_id: str) -> None:
+    """Four items, one of them superseded, so the store visibly has history.
+
+    The superseded one is the flagship case in the corpus: MEP's own rule was
+    correct against the first version of the docket and wrong against the
+    second, without anybody editing it. Superseding writes a new row and leaves
+    the old body untouched, so what the company believed in the spring is still
+    readable in the autumn.
+    """
+    obligations = _obligation_by_id(loaded.context)
+    allocation = _labelled(loaded.manifest, "CHG-1")
+    definition = _labelled(loaded.manifest, "CHG-2")
+    curtailment = _labelled(loaded.manifest, "CHG-4")
+
+    collateral = obligations["OBL-001"]
+    if _absent(session, KnowledgeItem, "KN-MAPPING-COLLATERAL"):
+        add_knowledge(
+            session,
+            loaded.company_id,
+            item_id="KN-MAPPING-COLLATERAL",
+            project_id=project_id,
+            kind="mapping",
+            body=collateral["note_for_semantic_join"],
+            confirmed_by=collateral["owner_name"],
+            created_at=loaded.now - timedelta(days=25),
+        )
+
+    screening = obligations["OBL-003"]
+    if _absent(session, KnowledgeItem, "KN-DEFINITION-THRESHOLD"):
+        add_knowledge(
+            session,
+            loaded.company_id,
+            item_id="KN-DEFINITION-THRESHOLD",
+            project_id=project_id,
+            kind="definition",
+            body=(
+                "A Large Load Customer is a customer whose requested load "
+                f"reaches {_measure_in(definition['after']['exact_text'])}. The "
+                "wording moved between the notice and the revised rule; the "
+                "number did not."
+            ),
+            source_claim_id=f"CLM-{definition['id']}",
+            confirmed_by=screening["owner_name"],
+            created_at=loaded.now - timedelta(days=20),
+        )
+
+    if _absent(session, KnowledgeItem, "KN-PRECEDENT-FINAL-ONLY"):
+        add_knowledge(
+            session,
+            loaded.company_id,
+            item_id="KN-PRECEDENT-FINAL-ONLY",
+            # Company-wide. How this commission behaves is true everywhere, and
+            # copying it per project would give one fact several places to be
+            # wrong.
+            project_id=None,
+            kind="precedent",
+            body=(
+                "This commission adopts duties in a final order that no draft "
+                f"proposed. {_section_ref(curtailment['section'])} is one. Read "
+                "every final order against both drafts, not against the last."
+            ),
+            source_claim_id=f"CLM-{curtailment['id']}",
+            confirmed_by=_docket_owner(loaded.manifest, loaded.context),
+            created_at=loaded.now - timedelta(days=15),
+        )
+
+    cost = obligations["OBL-005"]
+    if _absent(session, KnowledgeItem, "KN-LESSON-COST-ALLOCATION"):
+        add_knowledge(
+            session,
+            loaded.company_id,
+            item_id="KN-LESSON-COST-ALLOCATION",
+            project_id=project_id,
+            kind="lesson",
+            body=cost["internal_wording"],
+            confirmed_by=cost["owner_name"],
+            created_at=loaded.now - timedelta(days=35),
+        )
+
+    stored = knowledge_item_for_company(
+        session, loaded.company_id, "KN-LESSON-COST-ALLOCATION"
+    )
+    if stored is not None and stored.superseded_by is None:
+        share = _share_in(allocation["after"]["exact_text"])
+        supersede_knowledge(
+            session,
+            loaded.company_id,
+            "KN-LESSON-COST-ALLOCATION",
+            (
+                "Network upgrade costs are shared, not charged wholly to the "
+                f"customer. The customer bears {share} and the Utility recovers "
+                "the rest from general ratepayers where the Commission finds a "
+                "reliability benefit."
+            ),
+            cost["owner_name"],
+        )
+
+
+# ---------------------------------------------------------------------------
+# Steer
+# ---------------------------------------------------------------------------
+
+
+def _seed_steer(session: Session, loaded: _Loaded, project_id: str) -> None:
+    """Two directives: one applied with a recorded effect, one still waiting.
+
+    Both are rows with an issuer and a time rather than a setting, so the
+    findings each produced can be reconciled with the instruction behind them.
+    The second has no effect recorded, and a blank effect means nobody has
+    written one down -- never that the directive did nothing.
+    """
+    existing = steer_directives_for_project(
+        session, loaded.company_id, project_id, include_revoked=True
+    )
+    if existing:
+        return
+
+    owners = _obligation_owners(loaded.context)
+    allocation = _labelled(loaded.manifest, "CHG-1")
+    curtailment = _labelled(loaded.manifest, "CHG-4")
+    tariff = _document(loaded.context, "DOC-2")
+
+    applied = issue_steer(
+        session,
+        loaded.company_id,
+        project_id,
+        (
+            "Check every cost allocation change in this docket against "
+            f"{_short_title(tariff)}."
+        ),
+        owners[allocation["maps_to_obligation_id"]],
+    )
+    applied.applied_at = applied.issued_at
+    applied.effect = (
+        f"Raised the {_section_ref(allocation['section'])} finding against the "
+        "filed tariff and put a refiling step on the plan."
+    )
+
+    issue_steer(
+        session,
+        loaded.company_id,
+        project_id,
+        (
+            "Watch for the Commission-approved curtailment tariff that "
+            f"{_section_ref(curtailment['section'])} points at."
+        ),
+        owners[curtailment["maps_to_obligation_id"]],
+    )
+    session.flush()
+
+
+# ---------------------------------------------------------------------------
+# The synthesis: one take, one deliverable, both carrying their coverage
+# ---------------------------------------------------------------------------
+
+
+def _seed_synthesis(session: Session, loaded: _Loaded, project_id: str) -> None:
+    """Compose the take and draft the memo, both against the same coverage.
+
+    This is the demo. The corpus contains two claims that fail verification and
+    one finding nobody has cited, so coverage reports three withheld out of
+    eight -- and compose_take() refuses to write a take that would round that to
+    zero. The deliverable carries the same two numbers, taken from the same
+    coverage, because the memo is the artefact that leaves the building and is
+    the last place a silent omission can still be caught.
+
+    The body states only what a verified claim supports. Nothing withheld is
+    described here, in any words.
+    """
+    allocation = _labelled(loaded.manifest, "CHG-1")
+    deadline = _labelled(loaded.manifest, "CHG-3")
+    curtailment = _labelled(loaded.manifest, "CHG-4")
+    tariff = _document(loaded.context, "DOC-2")
+    composer = _docket_owner(loaded.manifest, loaded.context)
+
+    share = _share_in(allocation["after"]["exact_text"])
+    due = _date_in(deadline["after"]["exact_text"])
+    new_section = _section_ref(curtailment["section"])
+
+    if collective_take_for_project(session, loaded.company_id, project_id) is None:
+        compose_take(
+            session,
+            loaded.company_id,
+            project_id,
+            (
+                "The revised rule ends full customer recovery of network "
+                f"upgrade costs. The customer bears {share} and the Utility "
+                "recovers the rest from general ratepayers where the Commission "
+                "finds a reliability benefit. The updated load forecast is due "
+                f"{due}. The final order adds {new_section}, a curtailment duty "
+                "with no draft-stage counterpart, and a payment duty running "
+                f"back to the customer. {_short_title(tariff)} states the old "
+                "allocation and is wrong from the effective date. What this "
+                "take could not verify is counted beside it, not folded into it."
+            ),
+            composer,
+        )
+
+    deliverable_id = f"DLV-{loaded.docket}"
+    if _absent(session, Deliverable, deliverable_id):
+        coverage = coverage_for_project(session, loaded.company_id, project_id)
+        session.add(
+            Deliverable(
+                id=deliverable_id,
+                company_id=loaded.company_id,
+                project_id=project_id,
+                title=f"Compliance memo: {loaded.docket}",
+                kind="memo",
+                state="in_review",
+                body=(
+                    f"For review. The final order in {loaded.docket} changes "
+                    "what MEP may recover and what it must do.\n\n"
+                    f"1. Network upgrade costs are shared. The customer bears "
+                    f"{share}; the rest is recoverable from general ratepayers "
+                    "where the Commission finds a reliability benefit.\n"
+                    f"2. The updated load forecast is due {due}.\n"
+                    f"3. {new_section} adds a curtailment duty and a payment "
+                    "duty. Neither draft proposed it.\n\n"
+                    f"{_short_title(tariff)} states the old allocation and has "
+                    "to be refiled."
+                ),
+                created_at=loaded.now - timedelta(days=1),
+                # Nobody has signed it. Empty is not approved, and the interface
+                # has to show which -- an unapproved draft that looks final is
+                # how a draft gets filed.
+                approved_by=None,
+                findings_included=coverage.findings_verified,
+                findings_withheld=coverage.findings_withheld,
+            )
+        )
+        session.flush()
+
+
+# ---------------------------------------------------------------------------
+# Counting what is there
+# ---------------------------------------------------------------------------
+
+
+def _count(session: Session, model, company_id: str) -> int:
+    return session.query(model).filter(model.company_id == company_id).count()
+
+
+def _count_workspace(
+    session: Session, company_id: str, project_id: str
+) -> WorkspaceReport:
+    take = collective_take_for_project(session, company_id, project_id)
+    return WorkspaceReport(
+        projects=_count(session, Project, company_id),
+        attachments=_count(session, ProjectChange, company_id),
+        threads=_count(session, ResearchThread, company_id),
+        turns=_count(session, ResearchTurn, company_id),
+        work_plan_steps=_count(session, WorkPlanStep, company_id),
+        scheduled_runs=_count(session, ScheduledRun, company_id),
+        # Includes superseded rows on purpose. The replacement is a row like any
+        # other, and a second seed that wrote a second replacement would show up
+        # here rather than hide behind a filter.
+        knowledge_items=_count(session, KnowledgeItem, company_id),
+        sources=_count(session, Source, company_id),
+        findings=_count(session, Finding, company_id),
+        questions=_count(session, Question, company_id),
+        # Counted as rows, not as "the current one". A second compose would
+        # supersede the first and leave take_included unchanged, so only the
+        # row count would show it.
+        collective_takes=_count(session, CollectiveTake, company_id),
+        deliverables=_count(session, Deliverable, company_id),
+        steer_directives=_count(session, SteerDirective, company_id),
+        take_included=0 if take is None else take.findings_included,
+        take_withheld=0 if take is None else take.findings_withheld,
+    )
+
+
+def _load_workspace(session: Session, loaded: _Loaded) -> WorkspaceReport:
+    """Build every workspace surface, in the order they depend on each other.
+
+    Sources, findings and questions come before the take, because the take
+    counts them. Everything else could run in any order and does not, so that
+    the audit chain a reviewer reads follows the same sequence every time.
+    """
+    docket_project = _seed_projects(session, loaded)
+    _seed_attachments(session, loaded, docket_project)
+    _seed_sources(session, loaded, docket_project)
+    _seed_findings(session, loaded, docket_project)
+    _seed_questions(session, loaded, docket_project)
+    _seed_threads(session, loaded, docket_project)
+    _seed_plan(session, loaded, docket_project)
+    _seed_runs(session, loaded, docket_project)
+    _seed_knowledge(session, loaded, docket_project)
+    _seed_steer(session, loaded, docket_project)
+    _seed_synthesis(session, loaded, docket_project)
+    return _count_workspace(session, loaded.company_id, docket_project)
+
+
 def ensure_tables(engine=None) -> None:
     """Create any missing tables. Never drops.
 
@@ -417,6 +1586,10 @@ def load(session: Session, *, data_dir: Path = DATA_DIR) -> SeedReport:
         previous = version["id"]
 
     touched: list[str] = []
+    # Kept so the workspace hangs off the same rows the claims do: a project
+    # attachment, a plan step and a finding all point at the change a claim's
+    # citation lands in, rather than at a second row that happens to be nearby.
+    anchors: dict[str, Change] = {}
 
     # One claim per labelled change, cited at the manifest's own offsets. These
     # verify, and the test suite asserts that they do -- if the corpus is edited
@@ -424,6 +1597,7 @@ def load(session: Session, *, data_dir: Path = DATA_DIR) -> SeedReport:
     for change in manifest["changes"]:
         after = change["after"]
         anchor = _anchor(rows, after["version"], after["start"], after["end"])
+        anchors[change["id"]] = anchor
         _add_claim(
             session,
             claim_id=f"CLM-{change['id']}",
@@ -445,6 +1619,7 @@ def load(session: Session, *, data_dir: Path = DATA_DIR) -> SeedReport:
     anchor = _anchor(
         rows, definition["version"], definition["start"], definition["end"]
     )
+    misquote_change = anchor
     _add_claim(
         session,
         claim_id=CLAIM_MISQUOTE,
@@ -475,6 +1650,7 @@ def load(session: Session, *, data_dir: Path = DATA_DIR) -> SeedReport:
     anchor = _anchor(
         rows, occurrence["version"], occurrence["start"], occurrence["end"]
     )
+    ambiguous_change = anchor
     _add_claim(
         session,
         claim_id=CLAIM_AMBIGUOUS,
@@ -508,6 +1684,27 @@ def load(session: Session, *, data_dir: Path = DATA_DIR) -> SeedReport:
             withheld.append((held.claim_id, held.reason_code))
 
     persisted = changes_for_proceeding(session, company_id, proceeding_id)
+
+    # The workspace is built last, from the rows above rather than from the
+    # files again. Every project attachment, plan step and finding points at a
+    # change a claim already anchored to, so the two halves of the seed cannot
+    # drift into describing different rows.
+    workspace = _load_workspace(
+        session,
+        _Loaded(
+            company_id=company_id,
+            docket=docket,
+            proceeding_id=proceeding_id,
+            manifest=manifest,
+            context=context,
+            anchors=anchors,
+            misquote_change=misquote_change,
+            ambiguous_change=ambiguous_change,
+            changes=tuple(persisted),
+            now=datetime.now(timezone.utc),
+        ),
+    )
+
     return SeedReport(
         company_id=company_id,
         company_name=company_name,
@@ -519,6 +1716,7 @@ def load(session: Session, *, data_dir: Path = DATA_DIR) -> SeedReport:
         ),
         escalations=len(escalations_for_company(session, company_id)),
         withheld=tuple(sorted(withheld)),
+        workspace=workspace,
     )
 
 
@@ -535,6 +1733,22 @@ def main() -> None:
     print(f"seed: {report.claims} claims, {report.escalations} escalated")
     for claim_id, reason_code in report.withheld:
         print(f"seed:   withheld {claim_id} -- {reason_code}")
+
+    workspace = report.workspace
+    print(
+        f"seed: {workspace.projects} projects, {workspace.attachments} changes "
+        f"attached, {workspace.threads} threads, {workspace.work_plan_steps} "
+        f"plan steps, {workspace.scheduled_runs} scheduled runs"
+    )
+    print(
+        f"seed: {workspace.sources} sources, {workspace.findings} findings, "
+        f"{workspace.questions} questions, {workspace.knowledge_items} "
+        f"knowledge items, {workspace.steer_directives} steer directives"
+    )
+    print(
+        f"seed: the collective take rests on {workspace.take_included} findings "
+        f"and states {workspace.take_withheld} it could not verify"
+    )
     print("seed: run it again and these numbers do not move.")
 
 

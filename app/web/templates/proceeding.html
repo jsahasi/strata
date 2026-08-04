@@ -1,0 +1,170 @@
+{#
+  proceeding.html — one docket: its versions in order, and the changes between
+  a chosen pair.
+
+  Context, from app/web/views/proceedings.py:
+    proceeding  dict(id, docket, commission, subject, url)
+    stops       list[VersionStop]   the version timeline, newest last
+    pairs       list[PairOption]    the pairs Strata actually diffed
+    selected    (from_id, to_id) | None
+    rows        list[ChangeRow]     the changes in the selected pair
+    unknown_pair bool               a pair was asked for that was never diffed
+
+  The pair list is built from stored changes, not from every combination of two
+  versions. Offering a pair nothing was diffed against would promise an answer
+  that was never computed.
+#}{% extends "base.html" %}
+
+{% block content %}
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>{{ proceeding.docket }}</h1>
+    <span class="coord">{{ stops | length }} version{{ '' if stops | length == 1 else 's' }}</span>
+  </div>
+  <p class="page-head__note">
+    {{ proceeding.commission }}. {{ proceeding.subject }}.
+  </p>
+</div>
+
+<div class="stack">
+
+  <section>
+    <h2>Version timeline</h2>
+    {% if stops %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Version</th>
+          <th scope="col">Filing</th>
+          <th scope="col">Status</th>
+          <th scope="col">Changes into it</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for stop in stops %}
+        <tr>
+          <td>
+            <span class="coord">{{ stop.id }}</span>
+            {% if stop.is_latest %}<span class="label">latest</span>{% endif %}
+          </td>
+          <td>{{ stop.label }}</td>
+          <td><span class="badge {{ stop.badge or '' }}">{{ stop.status }}</span></td>
+          <td>
+            {% if stop.arrivals %}
+            <span class="coord">{{ stop.arrivals }}</span>
+            {% else %}
+            <span class="coord">first version</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty empty--unloaded">
+      <p class="empty__title">No version of this docket is stored.</p>
+      <div class="empty__body">
+        <p>
+          The proceeding exists but nothing has been ingested against it, so
+          there is nothing to compare. Load the corpus with
+          <code>{{ seed_command }}</code>.
+        </p>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+  {% if pairs %}
+  <section>
+    <h2>What changed</h2>
+    <nav class="tabs" aria-label="Version pairs">
+      {% for pair in pairs %}
+      <a class="tab{% if pair.is_current %} tab--current{% endif %}"
+         href="{{ pair.url }}"
+         {% if pair.is_current %}aria-current="true"{% endif %}>{{ pair.label }}
+        <span class="tab__count">{{ pair.count }}</span>
+      </a>
+      {% endfor %}
+    </nav>
+
+    <div class="tabpanel">
+      {% if unknown_pair %}
+      <div class="empty empty--none">
+        <p class="empty__title">
+          Nothing was diffed between {{ requested[0] }} and {{ requested[1] }}.
+        </p>
+        <div class="empty__body">
+          <p>
+            That pair is not one Strata compared, so there is no answer to show
+            rather than an empty one. The pairs above are the comparisons that
+            were actually run.
+          </p>
+        </div>
+      </div>
+
+      {% elif rows %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Change</th>
+            <th scope="col">Type</th>
+            <th scope="col">Section</th>
+            <th scope="col">Status</th>
+            <th scope="col">Claims</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+          <tr>
+            <td><a href="{{ row.url }}">{{ row.id }}</a></td>
+            <td>{{ row.change_type }}</td>
+            <td>{{ row.section }}</td>
+            <td><span class="badge {{ row.badge or '' }}">{{ row.status }}</span></td>
+            <td>
+              {% if row.claims %}
+              <span class="coord">{{ row.claims }}</span>
+              {% if row.held %}
+              <a href="/review">{{ row.held }} held</a>
+              {% endif %}
+              {% else %}
+              <span class="coord">none</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      {% else %}
+      <div class="empty empty--none">
+        <p class="empty__title">
+          The diff between {{ selected[0] }} and {{ selected[1] }} found nothing.
+        </p>
+        <div class="empty__body">
+          <p>
+            This one Strata did check: both versions were ingested and compared,
+            and no passage moved between them.
+          </p>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  {% elif stops %}
+  <section>
+    <h2>What changed</h2>
+    <div class="empty empty--none">
+      <p class="empty__title">Nothing has been compared yet.</p>
+      <div class="empty__body">
+        <p>
+          One version is stored and there is no earlier one to diff it against.
+          A change appears here when a second version arrives.
+        </p>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+</div>
+{% endblock %}

@@ -11,6 +11,7 @@ from sqlalchemy import (
     String,
     Text,
     TypeDecorator,
+    text,
 )
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
@@ -80,6 +81,20 @@ class AuditEvent(Base):
     direct SQL statement, or by anyone who reaches the file -- which the guard
     cannot. Neither is sufficient alone; the chain is what survives a host
     compromise being discovered later.
+
+    ATTRIBUTION, AND WHY IT IS VERSIONED. The four actor columns below were
+    added after rows already existed. Their values are inside the hash for the
+    rows written since; they cannot be inside the hash for the rows written
+    before, because those hashes are the evidence and re-hashing them would
+    destroy the thing being kept. So each row states which scheme hashed it in
+    digest_version, and app/state/audit.py verifies each row under its own
+    scheme. Attribution is covered by the digest, not merely stored beside it:
+    a row whose actor_user_id is edited to name someone else breaks the chain.
+
+    WHAT THESE COLUMNS DO NOT PROVE. They record what the writing process
+    believed about the actor. They do not prove a person was at the keyboard,
+    and they do not survive an attacker who can rewrite the whole file and
+    recompute every hash forward from the row they touched.
     """
 
     __tablename__ = "audit_events"
@@ -89,6 +104,8 @@ class AuditEvent(Base):
     # Per-company, gapless from 1. A gap is a deletion.
     seq: Mapped[int] = mapped_column(Integer)
 
+    # The display string: an email, a service name. Human-readable, and not an
+    # identity -- two people can share a mailbox and a person can be renamed.
     actor: Mapped[str] = mapped_column(String(256))
     action: Mapped[str] = mapped_column(String(64))
     subject_type: Mapped[str] = mapped_column(String(64))
@@ -97,12 +114,55 @@ class AuditEvent(Base):
     # version_id:char_start:char_end, or empty where a decision cites nothing.
     citation: Mapped[str] = mapped_column(String(256), default="")
 
+    # The identity, as opposed to the label in `actor`. Nullable, because the
+    # pipeline and the model act with nobody behind them, and because a login
+    # attempt against an account that does not exist has no user to point at.
+    # NULL means "no person is claimed here", never "the person is unknown but
+    # there was one".
+    #
+    # Deliberately not a foreign key. A user row can be deleted; an audit row
+    # never can, and a cascade that nulled this column would be an UPDATE to a
+    # record that must not change -- it would break the hash of every row it
+    # touched. The id is copied in as a value, and a reader that cannot resolve
+    # it must say so rather than drop the attribution.
+    actor_user_id: Mapped[str | None] = mapped_column(
+        String(64), nullable=True, index=True
+    )
+
+    # user, system or model -- ACTOR_KINDS in app/state/audit.py. Stored rather
+    # than guessed from the actor string, for the same reason
+    # ResearchTurn.author_kind is: whether a person or a machine did this is the
+    # first question asked of any row, and it is not recoverable later from a
+    # name. NULL on rows written before attribution existed; NULL there means
+    # the scheme of the day did not record it, not that a machine acted.
+    actor_kind: Mapped[str | None] = mapped_column(String(16), nullable=True)
+
+    # The login session this happened under. Not a foreign key, for the reason
+    # given above: sessions are pruned, audit rows are not.
+    session_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
+
+    # Where the request came from. 45 characters holds an IPv6 address with an
+    # embedded IPv4 one. Stored exactly as the server saw it; a proxy in front
+    # of this makes it the proxy's address, and nothing here can tell.
+    ip: Mapped[str | None] = mapped_column(String(45), nullable=True)
+
     occurred_at: Mapped[datetime] = mapped_column(UtcDateTime)
     prev_hash: Mapped[str] = mapped_column(String(64), default="")
     entry_hash: Mapped[str] = mapped_column(String(64))
 
+    # Which scheme computed entry_hash. 1 is the original field set; 2 adds the
+    # four attribution columns. The default is 1 in the model and in the DDL on
+    # purpose: a row that arrives without stating its scheme is older than the
+    # scheme change, and reading it as the newer one would report tampering on
+    # an untouched record.
+    digest_version: Mapped[int] = mapped_column(
+        Integer, nullable=False, default=1, server_default=text("1")
+    )
+
 
 Index("ix_audit_company_seq", AuditEvent.company_id, AuditEvent.seq, unique=True)
+# "What did this person do here" -- scoped by company like every other read.
+Index("ix_audit_company_actor", AuditEvent.company_id, AuditEvent.actor_user_id)
 
 
 class Proceeding(Base):
@@ -800,4 +860,291 @@ Index(
     "ix_steer_company_project",
     SteerDirective.company_id,
     SteerDirective.project_id,
+)
+
+
+# ---------------------------------------------------------------------------
+# Identity and access
+#
+# docs/security.html names three roles -- analyst, obligation owner, admin --
+# and rests the whole approval design on segregation of duties: the analyst who
+# interprets a change is never the person who approves the action that follows.
+# That control is a data structure, not a paragraph. The tables below are where
+# it becomes one, so a reviewer can read the grid of who may do what instead of
+# taking the document's word for it.
+#
+# Four conventions run through this block.
+#
+# Secrets are never stored in a form that can be replayed. User rows hold a
+# scrypt hash and its salt, never a password. Session rows hold a SHA-256 of the
+# bearer token, never the token: an attacker who reads the whole table still
+# cannot present a valid session, which is the only property that makes a
+# database read less than a total compromise.
+#
+# History survives revocation. A revoked role grant keeps its row and gains a
+# revoked_at; a revoked session keeps its row and gains a reason. "Who could do
+# what, when" is the question asked after an incident, and a DELETE is what
+# makes it unanswerable.
+#
+# Cost parameters travel with the hash. kdf_params sits on the user row rather
+# than in a module constant, so raising the cost later re-hashes nobody: an old
+# hash still verifies under the parameters it was made with. A KDF pinned to a
+# global constant forces a choice between locking every existing user out and
+# never raising the cost, and the second is what actually happens.
+#
+# Two tables carry no company_id, on purpose, and the exception is narrow.
+# Permission and RolePermission hold vocabulary -- the codes the product knows
+# and the grid mapping them onto role names -- in the same sense as
+# PROJECT_STATUSES above. Neither holds a fact about a tenant, so scoping them
+# would attach a company to a definition rather than to data. Every path that
+# crosses from vocabulary into tenant space does so through Role, UserRole and
+# User, all three of which are scoped and all three of which are filtered on
+# the same company in app/state/identity.py.
+# ---------------------------------------------------------------------------
+
+
+USER_STATUSES = ("active", "suspended", "invited")
+
+ROLE_ANALYST = "analyst"
+ROLE_OBLIGATION_OWNER = "obligation_owner"
+ROLE_ADMIN = "admin"
+SYSTEM_ROLE_NAMES = (ROLE_ANALYST, ROLE_OBLIGATION_OWNER, ROLE_ADMIN)
+
+# Verb on noun, and stable. These strings end up in the audit log and in role
+# grants that outlive any one release, so renaming one is a migration rather
+# than a rename -- which is the reason they are listed here once and never
+# spelled inline at a call site.
+PERMISSION_CODES = (
+    "proceeding.read",
+    "change.read",
+    "claim.read",
+    "action.propose",
+    "action.approve",
+    "action.reject",
+    "escalation.resolve",
+    "steer.issue",
+    "project.create",
+    "knowledge.write",
+    "threshold.set",
+    "user.manage",
+    "audit.read",
+)
+
+
+class User(Base):
+    """A person who can hold a session, scoped to exactly one company.
+
+    One row per person per company. Someone who works for two tenants gets two
+    rows and two passwords, which is deliberate: a single identity spanning
+    tenants would make company_id a property of the session rather than of the
+    account, and every read in this codebase trusts that it is a property of
+    the row.
+
+    What this row does NOT protect against. It stores a scrypt hash, so reading
+    the table does not hand over passwords -- but a weak password is still a
+    weak password, and nothing here enforces length, rotation, or reuse against
+    a breach corpus. failed_attempts and locked_until give a login path
+    somewhere to record throttling; they are storage, not the throttle itself,
+    and a login path that never writes them leaves the columns permanently at
+    zero and NULL rather than failing loudly. There is no second factor.
+
+    email is stored already normalised -- trimmed and lower-cased by
+    create_user -- because the unique index below is the only thing standing
+    between one person and two accounts, and SQLite compares text
+    case-sensitively. Normalising at read time instead would mean the index
+    guarded a different string from the one anybody looks up.
+    """
+
+    __tablename__ = "users"
+
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    company_id: Mapped[str] = mapped_column(String(64), index=True)
+
+    # 320 is the longest address RFC 5321 permits. Stored normalised.
+    email: Mapped[str] = mapped_column(String(320))
+    display_name: Mapped[str] = mapped_column(String(256))
+
+    # Hex of the scrypt output and of the salt. Hex rather than raw bytes so
+    # the value compares exactly across drivers and platforms, the same reason
+    # Claim.confidence_bp is an integer.
+    password_hash: Mapped[str] = mapped_column(String(256))
+    password_salt: Mapped[str] = mapped_column(String(64))
+    # JSON: n, r, p, dklen. Per user, so the cost can be raised for new
+    # passwords without invalidating any hash already written.
+    kdf_params: Mapped[str] = mapped_column(Text)
+
+    # One of USER_STATUSES. invited means the row exists and the person has not
+    # accepted; suspended means the account is kept for the audit trail and must
+    # not authenticate. Neither is the same as absent, and a login path has to
+    # tell all three apart.
+    status: Mapped[str] = mapped_column(String(16))
+
+    created_at: Mapped[datetime] = mapped_column(UtcDateTime, default=_utcnow)
+    # NULL until the first successful login. Never logged in and logged in a
+    # year ago are different facts about an account, and a default of "now"
+    # would erase the difference on the day the row was written.
+    last_login_at: Mapped[datetime | None] = mapped_column(UtcDateTime, nullable=True)
+
+    failed_attempts: Mapped[int] = mapped_column(Integer, default=0)
+    locked_until: Mapped[datetime | None] = mapped_column(UtcDateTime, nullable=True)
+
+
+# One account per address per tenant. The same address in two companies is two
+# people as far as this schema is concerned, which is the point of the pair.
+Index("ix_users_company_email", User.company_id, User.email, unique=True)
+
+
+class Role(Base):
+    """A named bundle of permissions, either global or belonging to one tenant.
+
+    company_id NULL means a system role every tenant gets -- analyst,
+    obligation_owner, admin. A tenant that needs its own bundle writes a row
+    carrying its company_id, and app/state/identity.py resolves a name to the
+    tenant's own row first and the system row second.
+
+    What this does NOT protect against. The unique index below cannot stop two
+    system roles sharing a name: SQL treats NULLs as distinct in a unique
+    index, so (NULL, 'analyst') twice is legal to the database. Seeding is
+    idempotent by name in identity.py, which is where the guarantee actually
+    lives; the index catches the tenant-scoped half of the problem only.
+    """
+
+    __tablename__ = "roles"
+
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    # NULL means a system role, shared by every tenant.
+    company_id: Mapped[str | None] = mapped_column(String(64), nullable=True, index=True)
+
+    name: Mapped[str] = mapped_column(String(64))
+    description: Mapped[str] = mapped_column(Text, default="")
+
+
+Index("ix_roles_scope_name", Role.company_id, Role.name, unique=True)
+
+
+class Permission(Base):
+    """One thing the product can be asked to allow. Vocabulary, not tenant data.
+
+    A code is verb on noun -- action.approve, threshold.set -- and it is stable
+    across releases because role grants and audit entries both reference it by
+    string. There is no company_id here for the reason set out at the head of
+    this block: a permission code is a definition, and a definition scoped to a
+    tenant would have to be re-stated per tenant to mean the same thing.
+    """
+
+    __tablename__ = "permissions"
+
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    # One of PERMISSION_CODES.
+    code: Mapped[str] = mapped_column(String(64), unique=True)
+    description: Mapped[str] = mapped_column(Text, default="")
+
+
+class RolePermission(Base):
+    """Which codes a role carries. The segregation of duties control, as rows.
+
+    A composite natural key rather than a surrogate id, so granting the same
+    permission to the same role twice is a no-op the database refuses rather
+    than a duplicate row every later count has to de-duplicate.
+
+    The absence of a row is the control. The analyst role has no
+    action.approve, and that missing row is what stops the person who
+    interpreted a change from approving the action that follows from it. A
+    reviewer checking the security document's central claim reads this table.
+    """
+
+    __tablename__ = "role_permissions"
+
+    role_id: Mapped[str] = mapped_column(ForeignKey("roles.id"), primary_key=True)
+    permission_id: Mapped[str] = mapped_column(
+        ForeignKey("permissions.id"), primary_key=True
+    )
+
+
+class UserRole(Base):
+    """One grant of one role to one user, with who granted it and when.
+
+    Revoking sets revoked_at and deletes nothing. That is not tidiness: an
+    investigation asks what a person could do at the moment they did something,
+    and a schema that deletes grants can only answer what they can do now. The
+    same row therefore appears in the history of a permission the user no
+    longer holds, and every read that decides authorisation has to filter on
+    revoked_at rather than on the row's existence.
+
+    There is no unique index over (user_id, role_id). A grant, a revoke and a
+    re-grant are three legitimate rows for the same pair. Uniqueness applies
+    only to the active grant, which is enforced in identity.py::grant_role by
+    returning the existing active grant instead of writing a second one.
+
+    Who revoked a grant is not a column here; it is the actor on the audit
+    event that identity.py::revoke_role appends. One log, not two.
+    """
+
+    __tablename__ = "user_roles"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
+    role_id: Mapped[str] = mapped_column(ForeignKey("roles.id"), index=True)
+    company_id: Mapped[str] = mapped_column(String(64), index=True)
+
+    granted_by: Mapped[str] = mapped_column(String(256))
+    granted_at: Mapped[datetime] = mapped_column(UtcDateTime, default=_utcnow)
+    revoked_at: Mapped[datetime | None] = mapped_column(UtcDateTime, nullable=True)
+
+
+Index("ix_user_roles_company_user", UserRole.company_id, UserRole.user_id)
+
+
+class LoginSession(Base):
+    """A live session, stored as a hash of its token so the row cannot be replayed.
+
+    token_hash is SHA-256 of a token from secrets.token_urlsafe. A plain hash
+    is right here and would be wrong on User.password_hash, and the difference
+    is worth stating rather than looking like an inconsistency: a session token
+    is 256 bits this process generated at random, so there is no dictionary to
+    run against it and a slow KDF would only tax every authenticated request. A
+    password is short, human-chosen and often reused, so it needs a KDF that
+    makes guessing expensive.
+
+    What this does NOT protect against. Anyone holding the token itself holds
+    the session -- hashing protects the database, not the wire, and transport
+    security is what protects the wire. Nothing here binds a session to the ip
+    or user_agent it was created from; both are recorded so an incident can be
+    read afterwards, and treating a change in either as proof of theft breaks
+    legitimate users on mobile networks more often than it catches anybody.
+
+    expires_at is written at creation and never extended in place by the
+    design, so a stolen token has a fixed ceiling on its usefulness.
+    last_seen_at moves; the expiry does not.
+    """
+
+    __tablename__ = "login_sessions"
+
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
+    company_id: Mapped[str] = mapped_column(String(64), index=True)
+
+    # SHA-256 hex of the bearer token. The token itself is shown once, to the
+    # browser that created it, and is never stored anywhere.
+    token_hash: Mapped[str] = mapped_column(String(64), unique=True)
+
+    created_at: Mapped[datetime] = mapped_column(UtcDateTime, default=_utcnow)
+    expires_at: Mapped[datetime] = mapped_column(UtcDateTime)
+    last_seen_at: Mapped[datetime] = mapped_column(UtcDateTime, default=_utcnow)
+
+    # 45 characters is the longest an IPv6 address gets. Both fields are
+    # evidence for an investigation, never an authorisation input.
+    ip: Mapped[str] = mapped_column(String(45), default="")
+    user_agent: Mapped[str] = mapped_column(String(512), default="")
+
+    revoked_at: Mapped[datetime | None] = mapped_column(UtcDateTime, nullable=True)
+    # Plain words -- "user signed out", "password changed", "revoked by admin".
+    # A revoked session with no reason cannot be told apart from a bug.
+    revoked_reason: Mapped[str | None] = mapped_column(String(128), nullable=True)
+
+
+Index(
+    "ix_login_sessions_company_user",
+    LoginSession.company_id,
+    LoginSession.user_id,
 )

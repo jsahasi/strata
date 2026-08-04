@@ -1,0 +1,95 @@
+{#
+  proceedings.html — the front screen. One row per proceeding.
+
+  Context, from app/web/views/proceedings.py:
+    rows   list[ProceedingRow]
+    state  "ok" | "no-rows" | "no-tables"
+    tenant str, plus everything base.html reads.
+
+  The empty case is the part worth reading. A table with no rows in it says
+  "nothing has changed", and nothing has checked that. So when there is nothing
+  to show the screen names which of the two facts it found -- no tables, or
+  tables with no proceedings -- and gives the command that fixes it.
+#}{% extends "base.html" %}
+
+{% block content %}
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>Proceedings</h1>
+    {% if rows %}<span class="coord">{{ rows | length }} tracked</span>{% endif %}
+  </div>
+  <p class="page-head__note">
+    What {{ tenant }} tracks, and where something has moved. Open a docket to see
+    its versions and what changed between them.
+  </p>
+</div>
+
+{% if state == 'ok' %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Docket</th>
+      <th scope="col">Commission</th>
+      <th scope="col">Latest version</th>
+      <th scope="col">Status</th>
+      <th scope="col">Held for review</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr>
+      <td>
+        <a href="{{ row.url }}">{{ row.docket }}</a>
+        <p>{{ row.subject }}</p>
+      </td>
+      <td>{{ row.commission }}</td>
+      <td>
+        {% if row.latest_id %}
+        <span class="coord">{{ row.latest_id }}</span>
+        {{ row.latest_label }}
+        <p><span class="coord">{{ row.versions }} version{{ '' if row.versions == 1 else 's' }} stored</span></p>
+        {% else %}
+        <span class="coord">no version stored</span>
+        {% endif %}
+      </td>
+      <td>
+        {% if row.latest_status %}
+        <span class="badge {{ row.latest_badge or '' }}">{{ row.latest_status }}</span>
+        {% else %}
+        <span class="coord">unknown</span>
+        {% endif %}
+      </td>
+      <td>
+        {% if row.held %}
+        <a href="/review">{{ row.held }} held</a>
+        {% else %}
+        <span class="coord">none</span>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<div class="empty empty--unloaded">
+  <p class="empty__title">
+    {% if state == 'no-tables' %}
+    The database has no tables yet.
+    {% else %}
+    No proceeding is loaded for {{ tenant }}.
+    {% endif %}
+  </p>
+  <div class="empty__body">
+    <p>
+      This screen is not telling you that nothing has changed. It has not been
+      told anything: the corpus is not loaded, so there is nothing to compare.
+    </p>
+    <p>
+      Load the synthetic corpus with <code>{{ seed_command }}</code>, or
+      <code>{{ make_command }}</code>, then reload this page.
+    </p>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

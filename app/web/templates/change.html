@@ -1,0 +1,175 @@
+{#
+  change.html — one change, its two sides, and what the product will say.
+
+  The two claim lists are iterated separately and there is no test on a
+  "verified" flag anywhere below. A WithheldClaim has no statement field, so
+  this template could not render one if it tried; the withheld loop reaches for
+  the reason, the citation address, and the bytes the source really carries at
+  those offsets. That is ADR-003 held up by the shape of the data rather than by
+  the care of whoever edits this file next.
+
+  Two rules for anyone changing it.
+
+  1. Never add {{ claim.statement }} to the withheld loop. It will raise, and the
+     stylesheet also paints .claim--withheld .claim__statement as broken on
+     purpose, so a mistake is loud rather than quiet.
+  2. The source panels ship open, with aria-expanded="true" on their chips.
+     citation.js closes them on load. Render them hidden instead and a reader
+     with scripts blocked gets the claim and none of its evidence.
+#}
+{% extends "base.html" %}
+
+{% macro side_block(side, term, note) %}
+<div class="stack--tight">
+  <p>
+    <span class="label">{{ term }}</span>
+    {{ side.version_label }}
+    {%- if side.present %} <span class="coord">{{ side.version_id }} {{ side.start }}-{{ side.end }}</span>{% endif %}
+  </p>
+  {%- if side.present %}
+  <blockquote class="quote">{{ side.text }}</blockquote>
+  {%- else %}
+  <div class="empty empty--none">
+    <p class="empty__title">Nothing on this side</p>
+    <p class="empty__body">{{ note }}</p>
+  </div>
+  {%- endif %}
+</div>
+{% endmacro %}
+
+{% block content %}
+
+<div class="page-head">
+  <h1 class="page-head__title">
+    {{ heading }}
+    <span class="badge {{ status_badge }}">{{ status_word }}</span>
+  </h1>
+  <p class="page-head__note">
+    <span class="label">{{ change.change_type }}</span>
+    between the {{ before.version_label }} and the {{ after.version_label }},
+    in docket {{ docket }}.
+  </p>
+  <p class="page-head__note">
+    <span class="label">Materiality</span>
+    {%- if change.materiality %} {{ change.materiality }}
+    {%- else %} not assessed. This build makes no model call, so nothing has
+    judged how much this change matters.
+    {%- endif %}
+  </p>
+  <p class="coord">{{ change.id }}</p>
+</div>
+
+<section class="stack" aria-labelledby="what-changed">
+  <h2 id="what-changed">What changed</h2>
+
+  {{ side_block(before, "Before",
+     "The passage is new. Nothing in the " ~ before.version_label ~
+     " corresponds to it.") }}
+
+  {{ side_block(after, "After",
+     "The passage is gone. Nothing in the " ~ after.version_label ~
+     " corresponds to it.") }}
+
+  {%- if show_alignment %}
+  <div class="card stack--tight">
+    <p>
+      <span class="label">{{ alignment_label }}</span>
+      <span class="coord">{{ alignment_value }}</span>
+    </p>
+    <p>{{ alignment_note }}</p>
+  </div>
+  {%- endif %}
+</section>
+
+<hr>
+
+<section class="stack" aria-labelledby="claims">
+  <h2 id="claims">Claims</h2>
+  <p>{{ verified | length }} asserted, {{ withheld | length }} withheld.</p>
+
+  {%- if verified or withheld %}
+  <div class="{{ 'split' if verified else 'stack' }}">
+    <div class="stack">
+
+      {%- for item in verified %}
+      <article class="claim claim--verified" id="{{ claim_anchor(item.claim.claim_id) }}">
+        <header class="claim__head">
+          <span class="claim__state">Verified</span>
+          <span class="badge {{ status_badge }}">{{ status_word }}</span>
+        </header>
+        <p class="claim__statement">{{ item.claim.statement }}</p>
+        <blockquote class="quote">{{ item.claim.actual_text }}</blockquote>
+        <footer class="claim__foot">
+          <button class="citation-chip" type="button"
+                  aria-expanded="true" aria-controls="{{ item.panel_id }}">
+            <span class="citation-chip__ref">{{ item.reference }}</span>
+            <span class="citation-chip__coord">{{ item.coordinate }}</span>
+          </button>
+          <span class="claim__route">{{ item.claim.claim_id }}</span>
+        </footer>
+      </article>
+      {%- endfor %}
+
+      {%- for item in withheld %}
+      <article class="claim claim--withheld" id="{{ claim_anchor(item.claim.claim_id) }}">
+        <header class="claim__head">
+          <span class="claim__state">Withheld</span>
+        </header>
+        <div class="withheld">
+          <p class="withheld__label">No claim made</p>
+          <p class="withheld__reason">{{ item.claim.reason_text }}</p>
+        </div>
+        <dl class="mismatch">
+          <dt class="mismatch__term">What the source says</dt>
+          <dd class="mismatch__value">{{ item.source_reads }}</dd>
+          <dt class="mismatch__term">What the citation quoted</dt>
+          <dd class="mismatch__value">{{ item.claim.citation_quote }}</dd>
+        </dl>
+        <footer class="claim__foot">
+          <span class="label">{{ item.reference }}</span>
+          <span class="coord">{{ item.coordinate }}</span>
+          <span class="claim__route">
+            {{ item.claim.claim_id }} sent to the review queue as
+            {{ item.claim.reason_code }}.
+          </span>
+        </footer>
+      </article>
+      {%- endfor %}
+
+    </div>
+
+    {%- if verified %}
+    <aside class="split__aside stack" aria-label="Cited source">
+      {%- for item in verified %}
+      <section class="source-panel" id="{{ item.panel_id }}" tabindex="-1"
+               aria-label="Source for {{ item.claim.claim_id }}: {{ item.window.version_label }}, characters {{ item.claim.citation_start }} to {{ item.claim.citation_end }}">
+        <header class="source-panel__head">
+          <div>
+            <p class="source-panel__title">{{ item.window.version_label }}</p>
+            <p class="coord">{{ item.coordinate }}{% if item.window.partial %} · extract{% endif %}</p>
+          </div>
+          <button class="source-panel__close" type="button">Close</button>
+        </header>
+        <div class="source-panel__body">{{ item.window.before }}<mark class="source-mark">{{ item.window.marked }}</mark>{{ item.window.after }}</div>
+      </section>
+      {%- endfor %}
+    </aside>
+    {%- endif %}
+  </div>
+  {%- else %}
+  <div class="empty empty--none">
+    <p class="empty__title">No claim has been written about this change</p>
+    <p class="empty__body">
+      The diff found this change and stored it. Nothing has interpreted it yet,
+      so the product says nothing about what it means. Read that as an absence
+      of work, not as a finding that the change is unimportant.
+    </p>
+  </div>
+  {%- endif %}
+</section>
+
+{% endblock %}
+
+{% block foot %}
+<script src="/static/citation.js"></script>
+{% endblock %}

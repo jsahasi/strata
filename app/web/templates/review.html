@@ -1,0 +1,195 @@
+{#
+  review.html — the queue of everything the product refused to assert.
+
+  Context, from app/web/views/review.py:
+    waiting  tuple[QueueItem]  unresolved refusals
+    settled  tuple[QueueItem]  resolved ones, kept because the record is the point
+    state    "ok" | "no-rows" | "no-tables"
+    error    dict(title, body, escalation_id) | None
+
+  A QueueItem has no statement field. It is built from WithheldClaim, which does
+  not carry one and cannot be given one, so there is nothing on this page for a
+  template mistake to leak. What a row shows instead is the reason, the citation
+  address, what the claim quoted, and the bytes the source really holds there.
+
+  The source panel renders inside .source-panel__body, which is pre-wrap. Its
+  content is written with whitespace control so the template's own indentation
+  never lands in the quoted document.
+#}{% extends "base.html" %}
+
+{% block content %}
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>Review queue</h1>
+    <span class="coord">{{ waiting | length }} waiting</span>
+  </div>
+  <p class="page-head__note">
+    What Strata refused to assert, and why. Each item is here because its
+    citation did not verify against the stored source just now, not because
+    anyone doubted it.
+  </p>
+  <p class="page-head__note">
+    Resolving an item does not publish a claim. Approve records that the refusal
+    was right. Reject records that you dispute it, and needs a reason. Neither
+    makes an unverified citation verify, so the claim stays withheld either way.
+  </p>
+</div>
+
+{% if error %}
+<div class="empty empty--unloaded" role="alert">
+  <p class="empty__title">{{ error.title }}</p>
+  <div class="empty__body"><p>{{ error.body }}</p></div>
+</div>
+{% endif %}
+
+{% if state == 'no-tables' %}
+<div class="empty empty--unloaded">
+  <p class="empty__title">The database has no tables yet.</p>
+  <div class="empty__body">
+    <p>
+      Nothing is waiting because nothing has been checked. Load the corpus with
+      <code>{{ seed_command }}</code>, or <code>{{ make_command }}</code>, then
+      reload this page.
+    </p>
+  </div>
+</div>
+
+{% elif state == 'no-rows' %}
+<div class="empty empty--none">
+  <p class="empty__title">Nothing is held for review.</p>
+  <div class="empty__body">
+    <p>
+      No claim has been refused for {{ tenant }}. This one was checked: every
+      stored claim's citation verified against its source.
+    </p>
+  </div>
+</div>
+
+{% else %}
+
+{% if waiting %}
+<ul class="queue">
+  {% for item in waiting %}
+  <li class="queue__row">
+    <div>
+      <span class="queue__code">{{ item.reason_code }}</span>
+      <p class="queue__reason">{{ item.reason_text }}</p>
+      <p class="queue__meta">
+        {{ item.claim_id }} &middot; {{ item.citation }} &middot; section {{ item.section }}
+        {%- if item.change_url %} &middot; <a href="{{ item.change_url }}">{{ item.change_id }}</a>{% endif %}
+      </p>
+
+      {% if item.now_verifies %}
+      <p class="queue__reason">
+        This citation verifies on re-check now. The source was corrected after
+        the refusal was raised, so the claim is no longer withheld.
+      </p>
+      {% elif not item.claim_readable %}
+      <p class="queue__reason">
+        The claim behind this escalation cannot be read under this company's
+        scope. What follows is what the refusal recorded when it was raised.
+      </p>
+      {% endif %}
+
+      {% if item.quoted or item.source_readable %}
+      <dl class="mismatch">
+        <dt class="mismatch__term">Quoted by the claim</dt>
+        <dd class="mismatch__value">{{ item.quoted }}</dd>
+        <dt class="mismatch__term">The source at those offsets</dt>
+        <dd class="mismatch__value">
+          {%- if item.source_readable %}{{ item.source_marked }}
+          {%- else %}nothing could be read at {{ item.citation }}{% endif -%}
+        </dd>
+        {#
+          The two values above are identical when a quote is ambiguous: the
+          words do match. What is missing is which of the identical sentences
+          the claim relies on, so the count is what makes the refusal legible.
+        #}
+        {% if item.occurrences > 1 %}
+        <dt class="mismatch__term">Times it appears in {{ item.version_id }}</dt>
+        <dd class="mismatch__value">
+          {{ item.occurrences }}
+          {%- if item.occurrence_position %}, and this citation points at number
+          {{ item.occurrence_position }}. The claim did not say which one it means.
+          {%- else %}. This citation does not land on any of them.{% endif %}
+        </dd>
+        {% endif %}
+      </dl>
+      {% endif %}
+
+      {% if not item.claim_readable and item.detail %}
+      <dl class="mismatch">
+        <dt class="mismatch__term">Recorded when the refusal was raised</dt>
+        <dd class="mismatch__value">{{ item.detail }}</dd>
+      </dl>
+      {% endif %}
+
+      {% if item.source_readable %}
+      <section class="source-panel">
+        <header class="source-panel__head">
+          <p class="source-panel__title">{{ item.version_label or item.version_id }}</p>
+          <span class="coord">{{ item.citation }}</span>
+        </header>
+        <div class="source-panel__body">{% if item.lead_clipped %}[...] {% endif %}{{ item.source_lead }}<mark class="source-mark">{{ item.source_marked }}</mark>{{ item.source_tail }}{% if item.tail_clipped %} [...]{% endif %}</div>
+      </section>
+      {% endif %}
+    </div>
+
+    <form class="queue__actions" method="post" action="/review/{{ item.escalation_id }}/resolve">
+      <p>
+        <label class="label" for="who-{{ item.escalation_id }}">Your name</label><br>
+        <input id="who-{{ item.escalation_id }}" name="reviewer" type="text" size="16" autocomplete="off">
+      </p>
+      <p>
+        <label class="label" for="why-{{ item.escalation_id }}">Reason, required to reject</label><br>
+        <input id="why-{{ item.escalation_id }}" name="reason" type="text" size="16" autocomplete="off">
+      </p>
+      <button class="btn btn--primary" type="submit" name="decision" value="{{ decision_approve }}">Approve</button>
+      <button class="btn" type="submit" name="decision" value="{{ decision_reject }}">Reject</button>
+    </form>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<div class="empty empty--none">
+  <p class="empty__title">Nothing is waiting.</p>
+  <div class="empty__body">
+    <p>Every refusal raised for {{ tenant }} has been resolved. They are listed below.</p>
+  </div>
+</div>
+{% endif %}
+
+{% if settled %}
+<section class="stack">
+  <h2>Resolved</h2>
+  <p>
+    Resolved items stay here. The record of a refusal, and of who closed it, is
+    the part an auditor asks for. The claim itself is still withheld.
+  </p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Escalation</th>
+        <th scope="col">Claim</th>
+        <th scope="col">Reason</th>
+        <th scope="col">Resolved by</th>
+        <th scope="col">When</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in settled %}
+      <tr>
+        <td><span class="coord">{{ item.escalation_id }}</span></td>
+        <td><span class="coord">{{ item.claim_id }}</span></td>
+        <td>{{ item.reason_code }}</td>
+        <td><span class="coord">{{ item.resolved_by }}</span></td>
+        <td><span class="coord">{{ item.resolved_at }}</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+
+{% endif %}
+{% endblock %}

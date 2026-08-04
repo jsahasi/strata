@@ -34,7 +34,10 @@ from uuid import uuid4
 
 from sqlalchemy.orm import Session
 
-from app.state.audit import record_event
+# ACTION_STEER_ISSUED is imported, not restated. Two spellings of one action
+# code drift, and the row written under the wrong one is invisible to every
+# query for the right one.
+from app.state.audit import ACTION_STEER_ISSUED, record_event
 from app.state.claims import verified_claims
 from app.state.models import (
     Change,
@@ -53,7 +56,6 @@ from app.state.queries import _require_scope
 KIND_INTERNAL = "internal"
 KIND_EXTERNAL = "external"
 
-ACTION_STEER_ISSUED = "steer.issued"
 ACTION_STEER_REVOKED = "steer.revoked"
 ACTION_TAKE_COMPOSED = "take.composed"
 

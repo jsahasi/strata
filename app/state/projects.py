@@ -35,7 +35,11 @@ from datetime import datetime, timezone
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 
-from app.state.audit import record_event
+from app.state.audit import (
+    ACTION_KNOWLEDGE_SUPERSEDED,
+    ACTION_PROJECT_CREATED,
+    record_event,
+)
 
 # Imported, not copied. Same lookup, same tenant join, one place to audit.
 from app.state.claims import change_for_company
@@ -171,7 +175,7 @@ def create_project(
         session,
         company_id=company_id,
         actor=who,
-        action="project.created",
+        action=ACTION_PROJECT_CREATED,
         subject_type="project",
         subject_id=project.id,
         reason=f"opened {name} in {jurisdiction}, owner {owner}",
@@ -885,7 +889,7 @@ def supersede_knowledge(
         session,
         company_id=company_id,
         actor=who,
-        action="knowledge.superseded",
+        action=ACTION_KNOWLEDGE_SUPERSEDED,
         subject_type="knowledge_item",
         subject_id=item_id,
         reason=f"superseded by {replacement.id}",
