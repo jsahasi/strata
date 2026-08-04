@@ -1,0 +1,113 @@
+/* The first-visit walkthrough: a ring over a target, and a tip beside it.
+ *
+ * IT INVENTS NO SECOND VISUAL LANGUAGE. Every colour, face, size and step of
+ * space here is a custom property strata.css already defines. There is not one
+ * hex literal in this file, which is the only way a component added later stays
+ * in the same family when the palette moves.
+ *
+ * THE TIP CARRIES NO POSITION OF ITS OWN. No top, no left, no right, no bottom
+ * anywhere below. tour.js sets them from a target it has already found, so a
+ * tip with no target has nowhere to be drawn -- which is the failure mode of
+ * every walkthrough library: a box pinned to the corner of the viewport
+ * explaining something that is not on the screen. The rule is enforced by
+ * tests/test_tour.py, not by memory.
+ *
+ * MOTION IS OPT-IN. The one transition below sits inside a
+ * prefers-reduced-motion: no-preference block, so a reader who asked against
+ * movement, and a browser that says nothing either way, both get stillness. It
+ * is gated that way round rather than switched off under `reduce`, because the
+ * default should be the quiet one. strata.css also sweeps transitions globally
+ * under `reduce`; this file does not rely on that sweep being there.
+ *
+ * ABOVE THE ASSISTANT. clerk.css goes to z-index 60. The last stop points at
+ * the assistant's own button, so the ring has to sit over it.
+ */
+
+/* No veil over the page. A backdrop with a hole cut in it is a second thing to
+   keep in step with the target, and the hole is where every one of these leaks.
+   A ring and a halo say "this one" without hiding the screen the tour is
+   describing -- and the reader can still read the rest of it, which is the
+   point of pointing at something. pointer-events:none so the ring never eats a
+   click meant for the thing underneath. */
+.tour-ring {
+  position: fixed;
+  z-index: 80;
+  border: 2px solid var(--accent);
+  border-radius: var(--r);
+  box-shadow: 0 0 0 4px var(--accent-wash);
+  pointer-events: none;
+}
+
+.tour-tip {
+  position: fixed;
+  z-index: 81;
+  width: max-content;
+  max-width: min(26rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  padding: var(--s4);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--ink);
+  font: var(--t-ui) / var(--lh-ui) var(--face-ui);
+  box-shadow: 0 2px 10px var(--hatch);
+}
+
+.tour-tip__step {
+  margin-bottom: var(--s1);
+  font: var(--t-micro) / 1.5 var(--face-data);
+  color: var(--ink-3);
+  letter-spacing: 0;
+}
+
+.tour-tip__title {
+  margin-bottom: var(--s2);
+  font-size: var(--t-ui-lg);
+}
+
+.tour-tip__body {
+  max-width: var(--measure);
+  color: var(--ink-2);
+}
+
+.tour-tip__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  margin-top: var(--s4);
+}
+
+/* Dismiss sits apart from the two that move through the run, so the way out is
+   never the button a reader hits by aiming for Next. */
+.tour-tip__actions [data-tour-end] {
+  margin-left: auto;
+}
+
+.tour-tip__note {
+  margin-top: var(--s3);
+  padding-top: var(--s3);
+  border-top: 1px solid var(--rule);
+  font-size: var(--t-small);
+  color: var(--ink-3);
+}
+
+/* A handset. The tip stops trying to sit beside anything and takes the width it
+   is given; tour.js clamps it into the viewport either way. */
+@media (max-width: 34rem) {
+  .tour-tip {
+    width: calc(100vw - 2rem);
+    max-width: calc(100vw - 2rem);
+  }
+
+  .tour-tip__actions [data-tour-end] {
+    margin-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tour-ring {
+    transition: top 140ms ease, left 140ms ease, width 140ms ease,
+      height 140ms ease;
+  }
+}

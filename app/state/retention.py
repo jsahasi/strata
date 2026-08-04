@@ -467,6 +467,12 @@ SCHEDULE: tuple[Rule, ...] = (
         "be traced back, which is the whole point of storing it.",
     ),
     _customer_work(
+        "source_registrations",
+        "Where the company said its filings come from. This is live "
+        "configuration an administrator set, not a record that ages, and "
+        "deleting it would orphan every version that points at it.",
+    ),
+    _customer_work(
         "findings",
         "One thing the review centre would assert, and the claim behind it. It "
         "is the customer's output and often the input to a filing.",

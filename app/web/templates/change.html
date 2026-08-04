@@ -19,6 +19,47 @@
 #}
 {% extends "base.html" %}
 
+{% block head %}
+{#
+  These two rules belong in app/web/static/strata.css beside .claim__foot, and
+  they are here because that file was not mine to edit in the change that added
+  them. Both values are existing tokens, so both colour schemes and the print
+  block still apply. Whoever next opens strata.css should move them.
+#}
+<style>
+.claim__filing { margin-top: var(--s4); max-width: 62ch; }
+.claim__filing .claim__route { display: block; margin-top: var(--s1); }
+</style>
+{% endblock %}
+
+{#
+  The way out to the filing itself.
+
+  Every claim carries a SourceFiling from app/state/claims.py, and it always
+  says something: a link to the commission's own copy, or the sentence naming
+  which kind of absence this is -- a fixture that was never published, an
+  address the module refused, or a source it could not read at all. A blank
+  space would leave the reader unable to tell those apart.
+
+  THE WORDS AND THE URL BOTH COME FROM claims.py AND ARE NOT WRITTEN HERE. The
+  scheme is checked there, once, before this template sees it, so `filing.url`
+  is an http or https address or it is nothing. shared_claim.html renders the
+  same fields; if you change what is shown, change it there too.
+#}
+{% macro filing_block(filing) %}
+<p class="claim__filing">
+  <span class="label">Source</span>
+  {%- if filing.url %}
+  <a href="{{ filing.url }}" rel="noopener noreferrer" target="_blank">{{ filing.link_text }}</a>
+  {%- else %}
+  <span class="claim__route">{{ filing.note }}</span>
+  {%- endif %}
+  {%- if filing.detail %}
+  <span class="claim__route">{{ filing.detail }}</span>
+  {%- endif %}
+</p>
+{% endmacro %}
+
 {% macro side_block(side, term, note) %}
 <div class="stack--tight">
   <p>
@@ -107,6 +148,7 @@
           </button>
           <span class="claim__route">{{ item.claim.claim_id }}</span>
         </footer>
+        {{ filing_block(item.claim.filing) }}
       </article>
       {%- endfor %}
 
@@ -133,6 +175,12 @@
             {{ item.claim.reason_code }}.
           </span>
         </footer>
+        {#
+          The link matters more here than on a verified claim. The reader has
+          just been told the product will not make a statement; the next
+          question is what the filing itself says.
+        #}
+        {{ filing_block(item.claim.filing) }}
       </article>
       {%- endfor %}
 

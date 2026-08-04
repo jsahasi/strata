@@ -48,6 +48,7 @@ from app.web.views import (
     shares_admin,
     users_admin,
     invite_accept,
+    integrations,
     workflow,
 )
 
@@ -73,6 +74,8 @@ app.include_router(shares_admin.router)
 # password on. invite_accept carries the second unauthenticated route.
 app.include_router(users_admin.router)
 app.include_router(invite_accept.router)
+# Where the workspace says its filings come from. Admin only.
+app.include_router(integrations.router)
 # The approval route. Two routers, not one, because they answer two questions:
 # workflow.py serves GET /workflow to anybody signed in, and admin.py serves the
 # five /admin/workflows paths behind workflow.manage. Merging them would put the

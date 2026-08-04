@@ -38,6 +38,20 @@
   The two lists are iterated separately and there is no flag to branch on.
   WithheldClaim has no statement field and cannot be given one, so a mistake in
   this file cannot leak an assertion -- it can only fail to render.
+
+  THE ONE OUTBOUND LINK THIS PAGE CARRIES, and why it is not a hole in the rule
+  above. Every other link here points at /login, because a share is one artifact
+  and a reader must not walk from it into the workspace. The filing link points
+  the other way -- out, at the commission's own copy of the document -- and that
+  is the whole argument for this page: somebody outside the company, who cannot
+  sign in, is handed a claim and a way to check it against the source. It goes
+  nowhere in this product and it reveals nothing about it.
+
+  The address is checked in app/state/claims.py before it reaches here, so
+  `filing.url` is an http or https address or it is nothing, and it carries
+  rel="noopener noreferrer" as well. When there is no link the filing says which
+  kind of absence it is; a blank space would let a fixture and a broken address
+  look the same. change.html renders the same fields with the same words.
 #}<!doctype html>
 <html lang="en">
 <head>
@@ -67,9 +81,28 @@
   .share__cta { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid currentColor; }
   .share__cta p { margin: 0.6rem 0 0; font-size: 0.9rem; opacity: 0.8; }
   .share__panel { margin-top: 0.75rem; }
+  /* The way out to the commission's own copy. Given room here because on this
+     page it is the point: the reader cannot sign in, so the link is the only
+     thing they can check us against. */
+  .claim__filing { margin: 0.75rem 0 0; font-size: 0.9rem; }
+  .claim__filing .claim__route { display: block; margin-top: 0.2rem; opacity: 0.8; }
 </style>
 </head>
 <body>
+
+{% macro filing_block(filing) %}
+<p class="claim__filing">
+  <span class="label">Source</span>
+  {%- if filing.url %}
+  <a href="{{ filing.url }}" rel="noopener noreferrer" target="_blank">{{ filing.link_text }}</a>
+  {%- else %}
+  <span class="claim__route">{{ filing.note }}</span>
+  {%- endif %}
+  {%- if filing.detail %}
+  <span class="claim__route">{{ filing.detail }}</span>
+  {%- endif %}
+</p>
+{% endmacro %}
 
 <main class="share" id="main">
 
@@ -124,6 +157,7 @@
         </header>
         <div class="source-panel__body">{{ item.window.before }}<mark class="source-mark">{{ item.window.marked }}</mark>{{ item.window.after }}</div>
       </section>
+      {{ filing_block(item.claim.filing) }}
     </article>
     {%- endfor %}
 
@@ -146,6 +180,7 @@
         <span class="coord">{{ item.coordinate }}</span>
         <span class="claim__route">Refused as {{ item.claim.reason_code }}.</span>
       </footer>
+      {{ filing_block(item.claim.filing) }}
     </article>
     {%- endfor %}
 

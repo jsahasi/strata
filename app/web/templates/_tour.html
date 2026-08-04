@@ -1,0 +1,157 @@
+{#
+  _tour.html — the first-visit walkthrough. Included by base.html on every
+  screen, drawn by app/web/static/tour.js, styled by app/web/static/tour.css.
+
+  WHAT IT IS FOR, and it is one thing. A first-time reader has to reach the
+  behaviour that makes this product different from a summariser: a claim that
+  refuses to assert itself. Everything else here is the road to that stop. Four
+  stops lead to it and one follows it, and the copy is written so somebody who
+  reads only the tour has the argument.
+
+  THE STOPS ARE DATA, IN THIS FILE, NOT IN THE SCRIPT. tour.js holds the
+  behaviour and no words. Two reasons. The prose belongs beside the markup it
+  describes, where somebody editing a screen will see it; and a test can read
+  this table without a browser and check every selector against a page the
+  application really renders -- which is the one defect this feature has,
+  a tooltip pointing at something that is not there.
+
+  EACH STOP HAS VARIANTS, TRIED IN ORDER. A variant is a target and the words
+  that are true of that target. The first whose target is on the screen wins;
+  a stop with no target on this screen is skipped and the tour goes on. That is
+  why the withheld stop has three: on a change screen it points at the refused
+  claim itself, and everywhere else at the count of what was refused, so the
+  argument lands on every screen rather than only the lucky one.
+
+  "find" is a list of selectors, tried in order. "text" is optional and narrows
+  a match to an element whose text starts with it -- the nav has six links and
+  only one of them is Review.
+
+  IT NAMES NO ASSISTANT. app/chat/persona.py is the one home for what that
+  thing is called, and the dock does not learn the name until somebody opens
+  it. So the last stop points at the button and calls it what the button calls
+  itself.
+
+  IT SHIPS HIDDEN and tour.js reveals it -- the same rule the assistant dock
+  keeps and the citation viewer deliberately inverts. A citation panel holds
+  evidence that must survive a script that never ran, so it ships open. This is
+  a walkthrough: without script there is no walkthrough, and buttons rendered
+  anyway would be controls that lie. There is no noscript block, because
+  nothing is lost. Every screen the tour describes is reachable from the nav.
+
+  WHAT base.html HAS TO ADD (one line, and it is not this agent's file):
+    before </body>, AFTER the _clerk.html include:
+        {% include "_tour.html" %}
+  After, not before: both scripts are deferred and run in document order, and
+  the last stop points at a button clerk.js has not revealed yet.
+
+  ONE LINE, NOT TWO. The stylesheet is linked here rather than in the head of
+  base.html so the whole walkthrough arrives or none of it does. A feature that
+  needs two edits in somebody else's file is a feature that ships half wired,
+  which is the defect this repository keeps having. A stylesheet link in the
+  body is honoured by every browser, and nothing flashes: the tour ships hidden
+  and is not shown until script has both read the stops and found a target.
+#}
+<link rel="stylesheet" href="/static/tour.css">
+
+<div class="tour" data-tour hidden>
+
+  {# The ring is drawn over the target, never on it. Mutating a page element's
+     own style and restoring it afterwards is how these things leave a screen
+     changed; this leaves the page untouched. #}
+  <div class="tour-ring" data-tour-ring aria-hidden="true" hidden></div>
+
+  <div class="tour-tip" data-tour-tip hidden tabindex="-1"
+       role="dialog" aria-modal="false" aria-labelledby="tour-title">
+    <p class="tour-tip__step" data-tour-step></p>
+    <h2 class="tour-tip__title" id="tour-title" data-tour-title></h2>
+    <p class="tour-tip__body" data-tour-body></p>
+    <div class="tour-tip__actions">
+      <button class="btn" type="button" data-tour-back hidden>Back</button>
+      <button class="btn btn--primary" type="button" data-tour-next>Next</button>
+      <button class="btn" type="button" data-tour-end>Dismiss</button>
+    </div>
+    <p class="tour-tip__note">
+      Escape ends this. To see it again, add <code>?tour=1</code> to the address
+      of any screen.
+    </p>
+  </div>
+
+</div>
+
+<script type="application/json" data-tour-stops>
+[
+  {
+    "id": "board",
+    "variants": [
+      {
+        "find": [".card-grid"],
+        "title": "A project is one piece of regulatory work",
+        "body": "Each card is a rule, a docket, or an internal programme. It carries what has landed on it, what is waiting on a person, and when it was last checked. Everything else here hangs off one of these."
+      },
+      {
+        "find": [".coverage"],
+        "title": "What this project rests on",
+        "body": "This strip counts the findings behind the project and, beside them, the ones that could not be substantiated. It is drawn at every count, including zero. A page that showed only what it could prove would be flattering and useless."
+      }
+    ]
+  },
+  {
+    "id": "docket",
+    "variants": [
+      {
+        "find": ["[aria-label=\"Version pairs\"]"],
+        "title": "One docket, filed more than once",
+        "body": "A commission files a rule, then files it again. Every version is kept, and only the pairs actually compared are offered here, not every combination of two. A pair nobody ran would promise an answer that was never worked out."
+      },
+      {
+        "find": ["a[href^=\"/proceedings/\"]"],
+        "title": "One docket, filed more than once",
+        "body": "Behind that link is a proceeding: every version filed under it, in order, and the pairs that were compared. A change then becomes something you can point at rather than something somebody remembers."
+      }
+    ]
+  },
+  {
+    "id": "citation",
+    "variants": [
+      {
+        "find": [".citation-chip"],
+        "title": "A claim carries the citation behind it",
+        "body": "The chip names the version and the exact characters the sentence came from. Open it and the source text is already on the page. No request, no model, nothing left to fail between a claim and its proof."
+      }
+    ]
+  },
+  {
+    "id": "withheld",
+    "variants": [
+      {
+        "find": [".claim--withheld", ".withheld"],
+        "title": "This is the one that matters",
+        "body": "The quotation was checked against the source at the characters it named, and it was not there. So no statement was written. The reason sits where the sentence would have been, and no summary anywhere puts the sentence back. A tool that guesses here is worse than no tool."
+      },
+      {
+        "find": [".nav__count"],
+        "title": "This is the one that matters",
+        "body": "That number counts the claims this product refused to make. Each one failed its own citation check, so no statement was written and the reason took its place. Open a few and read them. Absence is the product working, not the product missing."
+      },
+      {
+        "find": ["a.nav__link"],
+        "text": "Review",
+        "title": "This is the one that matters",
+        "body": "Review holds every claim this product refused to make. Where a quotation cannot be found in the source at the characters it names, no statement is written at all and the reason takes its place. Absence is the product working, not the product missing."
+      }
+    ]
+  },
+  {
+    "id": "assistant",
+    "variants": [
+      {
+        "find": ["[data-clerk-open]"],
+        "title": "Ask it, and it counts what it left out",
+        "body": "The assistant answers from the record on these screens, names what it consulted, and prints how many claims it withheld from the answer it gave you. An answer that does not say what it left out is not an answer."
+      }
+    ]
+  }
+]
+</script>
+
+<script src="/static/tour.js" defer></script>

@@ -1,0 +1,436 @@
+/* Strata — the layer that sits on top of each page's own styles.
+ *
+ * WHY A FILE AND NOT SEVEN STYLE BLOCKS. Every page here carries its own inline
+ * <style>, written for that page and correct as it stands. Copying a glass
+ * layer into all seven would drift inside a week: one page would gain a token
+ * the others never got, and nobody would notice until a screenshot looked
+ * wrong. This file loads after the inline block on every page, so it wins where
+ * it needs to and leaves everything else exactly as it was. It adds; it does
+ * not restructure. docs/diagrams.css is the precedent.
+ *
+ * NOTHING IS FETCHED FROM ANOTHER HOST. No font service, no CDN, no library.
+ * The type stacks are the ones the operating system already has. privacy.html
+ * tells the reader this site loads nothing from anywhere else, and that
+ * sentence has to stay true.
+ *
+ * ------------------------------------------------------------------------
+ * GLASS ON THE CHROME. PAPER FOR THE RECORD.
+ *
+ * macOS has never applied vibrancy uniformly. Sidebars, toolbars and popovers
+ * are translucent; the document canvas is opaque. Blur behind body text costs
+ * legibility, and a document should feel like the thing itself rather than
+ * like the window around it. This product is read by people who read filings
+ * for a living, and a translucent tariff clause is a worse tariff clause.
+ *
+ *   GLASS — translucent, blurred, layered, spring motion:
+ *     the sticky header, the nav, the Sign in button and the other calls to
+ *     action, the credentials panel, the frame around the film.
+ *
+ *   PAPER — opaque, flat, still, no blur, no shadow past a hairline:
+ *     the hero's claim pair, body text on every legal page, the sub-processor
+ *     rows, the security stage rows.
+ *
+ * The identity underneath is unchanged: filing-stamp blue, the testimony line
+ * numbers down the left of each section, amber for withheld, a serif for body
+ * text. The glass sits on top of that. It does not replace it.
+ *
+ * One more rule, which is how the two registers stay legible as registers:
+ * GLASS IS ROUNDED (10px and up), PAPER IS SQUARE (2px and 3px, as it was).
+ * A reader should be able to tell chrome from record without reading a word.
+ * ------------------------------------------------------------------------ */
+
+
+/* ------------------------------------------------------------------ tokens */
+
+:root {
+  /* The blur and the saturation lift. Saturation is what stops translucent
+     white reading as dirty grey; macOS does the same thing. */
+  --glass-blur: 20px;
+  --glass-sat: 170%;
+
+  /* The veil over the sticky header. Mixed from --paper, so the page's own
+     palette carries through and a scheme change needs no second edit. */
+  --glass-veil: color-mix(in srgb, var(--paper) 72%, transparent);
+
+  /* Panels: the credentials block, the closing call to action, the film. */
+  --glass-panel: rgba(255, 255, 255, 0.60);
+  --glass-solid: #ffffff;             /* used when backdrop-filter is absent */
+
+  /* Actions. Still filing-stamp blue, thinned enough to layer. */
+  --glass-action: color-mix(in srgb, var(--stamp) 88%, transparent);
+  --glass-chip: color-mix(in srgb, var(--ink) 8%, transparent);
+
+  /* Edges. A bright hairline along the top reads as thickness; the border
+     reads as the pane's boundary. Both are needed or it looks like a tint. */
+  --glass-edge: rgba(255, 255, 255, 0.75);
+  --glass-hair: color-mix(in srgb, var(--ink) 13%, transparent);
+  --glass-shade:
+    0 1px 2px color-mix(in srgb, var(--ink) 7%, transparent),
+    0 14px 30px -20px color-mix(in srgb, var(--ink) 40%, transparent);
+
+  --glass-r: 10px;
+  --glass-r-lg: 14px;
+
+  /* Motion. The spring overshoots slightly on the way in and settles; the
+     ease is for anything that changes colour, which should not bounce. */
+  --spring: cubic-bezier(0.34, 1.28, 0.5, 1);
+  --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+  --dur-tap: 120ms;
+  --dur-lift: 240ms;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --glass-blur: 24px;
+    --glass-sat: 145%;
+    --glass-veil: color-mix(in srgb, var(--paper) 68%, transparent);
+    /* A cool white veil rather than a lighter grey: over near-black it is the
+       only mix that still reads as a pane of something rather than a box. */
+    --glass-panel: rgba(150, 168, 202, 0.13);
+    --glass-solid: #1a2029;
+    --glass-edge: rgba(255, 255, 255, 0.10);
+    --glass-hair: color-mix(in srgb, #ffffff 14%, transparent);
+    --glass-chip: color-mix(in srgb, #ffffff 10%, transparent);
+    --glass-shade:
+      0 1px 2px rgba(0, 0, 0, 0.5),
+      0 14px 30px -20px rgba(0, 0, 0, 0.8);
+  }
+}
+
+
+/* ------------------------------------------------------- glass: the header */
+
+/* The bar is chrome, so it is the one surface content is meant to slide
+   under. Everything in it is a label or a control; no body prose sits here. */
+header {
+  background: var(--glass-veil);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+}
+
+/* A macOS toolbar gains its separator once the document has moved under it.
+   This is the same behaviour, driven by scroll position rather than by script
+   -- there is no JavaScript on this site and this does not add any. If the
+   browser cannot do scroll-linked animation, the header simply keeps the
+   1px rule it already had; nothing is hidden and nothing is waiting. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    header {
+      animation: strata-toolbar linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 5rem;
+    }
+    @keyframes strata-toolbar {
+      from { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+      to   { box-shadow: var(--glass-shade); }
+    }
+  }
+}
+
+
+/* ---------------------------------------------------------- glass: the nav */
+
+/* The hover pill is a pseudo-element with a negative z-index, so it costs no
+   layout width. Padding on the link itself would widen the bar by about
+   1.5rem and drop the nav onto a second row somewhere in the 700s. */
+.navlink {
+  position: relative;
+  z-index: 0;
+  transition: color var(--dur-tap) var(--ease);
+}
+.navlink::before {
+  content: "";
+  position: absolute;
+  inset: -0.42rem -0.6rem;
+  z-index: -1;
+  border-radius: 7px;
+  background: transparent;
+  transition: background-color var(--dur-tap) var(--ease);
+}
+.navlink:hover::before,
+.navlink:focus-visible::before {
+  background: var(--glass-chip);
+}
+
+
+/* ------------------------------------------------------ glass: the actions */
+
+/* .signin is the Sign in button, Request access, and the closing call to
+   action. Translucent stamp blue over blur, lifting on a spring. */
+.signin {
+  background: var(--glass-action);
+  -webkit-backdrop-filter: blur(12px) saturate(var(--glass-sat));
+  backdrop-filter: blur(12px) saturate(var(--glass-sat));
+  border-radius: 7px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 1px 2px color-mix(in srgb, var(--ink) 22%, transparent);
+  transition:
+    transform var(--dur-lift) var(--spring),
+    box-shadow var(--dur-lift) var(--ease),
+    background-color var(--dur-tap) var(--ease);
+}
+.signin:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 10px 20px -10px color-mix(in srgb, var(--stamp) 70%, transparent);
+}
+.signin:active {
+  transform: translateY(0) scale(0.985);
+  transition-duration: var(--dur-tap);
+}
+
+/* Focus on glass is where focus rings usually die: an accent ring over an
+   accent-filled control disappears. Ink against the page always reads, in
+   both schemes -- --ink is near-black on paper and near-white in the dark --
+   and the paper halo guarantees a gap the ring can be seen across. */
+.signin:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px var(--paper);
+}
+
+/* The inline sheet rings anchors and buttons. Anything else focusable -- the
+   video's own controls, most obviously -- gets one here. */
+:focus-visible {
+  outline: 2px solid var(--stamp);
+  outline-offset: 3px;
+}
+
+
+/* ------------------------------------------------------- glass: the panels */
+
+.creds,
+.cta,
+.film__frame {
+  background: var(--glass-panel);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+  border: 1px solid var(--glass-hair);
+  box-shadow:
+    inset 0 1px 0 var(--glass-edge),
+    var(--glass-shade);
+}
+
+.creds {
+  padding: 1.15rem 1.2rem;
+  border-radius: var(--glass-r);
+}
+/* The table's own white header cells and white code chips vanish against a
+   white pane. Both become washes, which is what they were doing anyway. */
+.creds th {
+  background: var(--glass-chip);
+}
+.creds th,
+.creds td {
+  border-color: var(--glass-hair);
+}
+.creds code {
+  background: color-mix(in srgb, var(--stamp) 11%, transparent);
+}
+
+.cta {
+  border-radius: var(--glass-r);
+}
+
+/* The film's frame. The video keeps every attribute it had -- poster, both
+   sources, the transcript below -- and the frame is a wrapper around it, so
+   the transcript stays on paper where reading happens. */
+.film__frame {
+  padding: 0.55rem;
+  border-radius: var(--glass-r-lg);
+}
+.film__frame video {
+  border-radius: 8px;
+  border-color: var(--glass-hair);
+}
+@media (max-width: 40rem) {
+  .film__frame {
+    padding: 0.4rem;
+    border-radius: 10px;
+  }
+  .film__frame video {
+    border-radius: 6px;
+  }
+}
+
+
+/* ------------------------------------------------------------------- paper */
+
+/* Stated rather than assumed. These are the record: the claim pair, the
+   policy notes, the stage rows on security and sub-processors, every table on
+   a legal page. They stay opaque, square-cornered and still. If a glass rule
+   above ever widens its selector, this is the rule that catches it. */
+.rec,
+.note,
+.stage,
+.ph,
+.refuse,
+.srctext,
+main table,
+main th,
+main td {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.note,
+.ph,
+.rec {
+  box-shadow: none;
+}
+/* The credentials table is the one table inside a glass panel, and it is
+   there because the panel is chrome -- an invitation to sign in, not a
+   record. Undo the blanket rule above for it alone. */
+.creds table,
+.creds th,
+.creds td {
+  -webkit-backdrop-filter: inherit;
+  backdrop-filter: inherit;
+}
+
+
+/* --------------------------------------------------- the verified claim */
+
+/* Scoped to .pair, which exists only in the hero of index.html. The same .rec
+   class carries policy rows on the legal pages, and those must not move. */
+.pair .rec {
+  transition:
+    transform var(--dur-lift) var(--spring),
+    box-shadow var(--dur-lift) var(--ease),
+    border-left-color var(--dur-lift) var(--ease);
+}
+.pair .rec:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px -22px color-mix(in srgb, var(--stamp) 75%, transparent);
+}
+
+
+/* ===================================================================== *
+ *  THE WITHHELD CLAIM — the only surface on this site with no effects.
+ *
+ *  Everything around it can lift, blur, glow and settle on a spring. This
+ *  one does not. No blur, no motion, no transform, no hover, no shadow, no
+ *  transition. It sits flat and still while the page moves.
+ *
+ *  That inverts the usual hierarchy, where the most important thing gets the
+ *  most treatment. It gets none on purpose. The argument of the whole product
+ *  is that the record is not decorated: a claim either survives its citation
+ *  or it does not, and no part of the presentation should be able to soften
+ *  that. A withheld claim that shimmered would be arguing against itself.
+ *
+ *  WHY !important, WHICH IS OTHERWISE NOT USED HERE. This has to survive a
+ *  later author adding a global `* { transition: ... }` or an animation
+ *  sweep across the page. Those are written without !important, so this
+ *  subtree keeps its stillness whatever lands after it. The declarations
+ *  cover the pseudo-elements and the descendants too, because a spinning
+ *  ::after inside a still box is still motion.
+ * ===================================================================== */
+.pair .rec--held,
+.pair .rec--held:hover,
+.pair .rec--held:focus,
+.pair .rec--held:focus-within,
+.pair .rec--held::before,
+.pair .rec--held::after,
+.pair .rec--held *,
+.pair .rec--held *:hover,
+.pair .rec--held *:focus,
+.pair .rec--held *::before,
+.pair .rec--held *::after {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+  translate: none !important;
+  rotate: none !important;
+  scale: none !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  filter: none !important;
+  background-image: none !important;
+  opacity: 1 !important;
+  will-change: auto !important;
+}
+
+
+/* ------------------------------------- fallback where there is no vibrancy */
+
+/* Every glass surface needs to be legible with the property switched off, so
+   each one names a solid. Checked by disabling backdrop-filter in the
+   browser and looking, not by assuming. */
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  header {
+    background: var(--paper);
+  }
+  .signin {
+    background: var(--stamp);
+  }
+  .creds,
+  .cta,
+  .film__frame {
+    background: var(--glass-solid);
+  }
+  .creds th {
+    background: color-mix(in srgb, var(--ink) 6%, var(--glass-solid));
+  }
+}
+
+
+/* -------------------------------------------------------- reduced  motion */
+
+/* Reduce removes motion. It does not shorten it. Nothing on this site is
+   revealed by an animation, so nothing is left invisible when the animation
+   never runs -- every element is in its final state in the markup, and the
+   only animated properties are hover lifts and a scroll-linked shadow.
+   The inline sheet on each page already carries a rule like this one; it is
+   repeated here so the file is correct on its own. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  /* A transform with no transition is a jump, which is still motion. */
+  .signin:hover,
+  .signin:active,
+  .pair .rec:hover {
+    transform: none;
+  }
+}
+
+
+/* --------------------------------------------------- no sideways scrolling */
+
+/* Measured at 390px with scrollWidth against clientWidth, not by eye.
+   Two pages scrolled sideways before this file existed:
+     security.html      414px against 390
+     subprocessors.html 477px against 390
+   The cause on both is `.stage b { white-space: nowrap }`, meant for the row
+   label in the first grid column. The selector is a descendant one, so it
+   also catches the <b> that opens the row's sentence -- "Two things a buyer
+   should know about that machine." -- and holds the whole sentence on one
+   line. The label keeps its nowrap; the sentence gets it back. */
+.stage p b {
+  white-space: normal;
+}
+
+/* A grid track sized 1fr takes its automatic minimum from the item's
+   min-content, so one long unbreakable token -- app/web/templates/login.html
+   -- widens the page. Both halves of the fix are needed: the track has to be
+   allowed to be narrow, and the token has to be allowed to break. */
+.stage,
+.stage p {
+  min-width: 0;
+}
+/* Scoped to the stage rows, and deliberately not to `code` everywhere. Applied
+   globally it also shrinks the min-content of the credentials table, which
+   then breaks denise.okoro@mep.example across two lines at full width -- an
+   address a reader is meant to copy. That table sets width:max-content and
+   scrolls inside itself on a phone, so it never needed the help. */
+.stage code {
+  overflow-wrap: anywhere;
+}

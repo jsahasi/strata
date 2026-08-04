@@ -1,0 +1,548 @@
+{#
+  integrations.html — every place this workspace draws documents from, and the
+  refusal page for somebody who may not read it.
+
+  ONE TEMPLATE, THREE ANSWERS, following shares_admin.html: the registry, a
+  refusal from the write layer rendered above it, and the permission refusal
+  instead of it. The view sets `reason` only when it refused the reader.
+
+  THE POINT OF THIS SCREEN IS THE SENTENCE AT THE TOP OF IT. Nothing in this
+  build fetches on a schedule. Every row below is a registration and not a feed,
+  and the two columns that say so -- what an administrator wants, and what is
+  actually true of the source -- are rendered apart on purpose. A screen that
+  merged them would read like a live integration, which is the defect this
+  repository keeps finding.
+
+  Every claim-bearing sentence on the page comes from app/state/sources.py
+  through the context, so the screen and the module that decides cannot come to
+  disagree about what this product can do.
+
+  Context, from app/web/views/integrations.py:
+    reason        str | None   why this person was refused, from policy.py
+    refused       str          what to do about it
+    permission    str          the code that opens the screen
+    refusal       str          the write layer own words about the last click
+    note          str          what the last click did, from an allow-list
+    warning       str          what could not be read, and why it is not a zero
+    rows          list[SourceRow]
+    registry_readable bool      whether the table was read at all, so that an
+                                empty list is never rendered as a fact
+    kinds         list[dict]   the four kinds, each with its words
+    corpus        CorpusScan   what data/real says, read from the files
+    provenance    ProvenanceCounts | None
+    fetches_nothing never_scanned connection_test_refusal handshake_note
+    corpus_caveat provenance_gap form_not_refilled credential_prefix
+    matched_by_address points_at_registration
+    sources_url add_url corpus_url
+    plus everything base.html reads.
+#}{% extends "base.html" %}
+
+{% block head %}
+{#
+  These rules belong in app/web/static/integrations.css beside workflow.css and
+  clerk.css. They are here because adding a static file was outside this change,
+  which is the same concession shares_admin.html makes. Every value is an
+  existing token, so both colour schemes and the print block in strata.css still
+  apply, and NO WIDTH IS SET ANYWHERE: the narrow-screen rule in strata.css
+  scrolls the table on its own, and a fixed width here would undo it.
+#}
+<style>
+.registry-warn {
+  margin: var(--s5) 0;
+  padding-left: var(--s4);
+  border-left: 3px solid var(--alarm);
+  max-width: 62ch;
+}
+.registry-warn strong { color: var(--alarm-strong); }
+.registry-claim {
+  margin: var(--s5) 0;
+  padding-left: var(--s4);
+  border-left: 3px solid var(--rule-strong);
+  max-width: 62ch;
+}
+.registry-note { margin: var(--s5) 0; max-width: 62ch; }
+.source-group { margin-top: var(--s6); }
+.source-row--off > td:first-child { border-left: 3px solid var(--rule-strong); }
+.source-facts { margin: 0; padding: 0; list-style: none; }
+.source-facts li {
+  padding: var(--s2) 0;
+  border-top: 1px solid var(--rule);
+  font: var(--t-small) / 1.5 var(--face-ui);
+  color: var(--ink-2);
+}
+.verdict {
+  padding: 0.1em 0.45em;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-sm);
+  font: 700 var(--t-micro) / 1.4 var(--face-ui);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: var(--surface);
+}
+.verdict--refused {
+  border-color: var(--alarm);
+  background: var(--alarm-wash);
+  color: var(--alarm-strong);
+}
+.source-form { margin: var(--s3) 0 0; }
+.source-form label { display: block; margin-top: var(--s3); }
+.source-form input, .source-form select {
+  display: block;
+  width: 100%;
+  max-width: 44ch;
+  padding: var(--s2);
+  font: var(--t-small) / 1.4 var(--face-ui);
+}
+.source-actions { display: flex; flex-wrap: wrap; gap: var(--s3); }
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% if reason %}
+<div class="page-head">
+  <div class="page-head__title"><h1>Integrations</h1></div>
+</div>
+
+<div class="empty empty--none">
+  <p class="empty__title">You cannot open this screen.</p>
+  <div class="empty__body">
+    <p>{{ reason }}.</p>
+    <p>{{ refused }}</p>
+    {# Says nothing about what is registered. A refusal that leaked the list
+       would tell somebody who may not read the screen what is on it. #}
+    <p>
+      This is a refusal, not a blank page. The screen exists, and
+      <code>{{ permission }}</code> is what opens it.
+    </p>
+  </div>
+</div>
+
+{% else %}
+
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>Integrations</h1>
+    <span class="coord">{{ rows | length }} registered</span>
+  </div>
+  <p class="page-head__note">
+    Every place this workspace draws documents from, who registered it, and what
+    is true of it. This page is the answer to two questions a security review
+    asks: where does your data come from, and who can change that.
+  </p>
+</div>
+
+{# THE SENTENCE. It is the first thing on the page and it is not decoration:
+   a registry that reads like a set of live feeds when nothing polls them is
+   the failure this screen was built to make impossible. #}
+<div class="registry-claim">
+  <p><strong>{{ fetches_nothing }}</strong></p>
+  <p>
+    There is no crawler, no poller and no scheduler in this build. Every row
+    below is a registration: a record of where documents are said to come from,
+    which a person can read, audit and revoke. None of them is being read by
+    this product on any timetable, and each row says so for itself rather than
+    leaving you to infer it from a blank column.
+  </p>
+</div>
+
+<div class="registry-claim">
+  <p><strong>There is no connection test on this screen.</strong></p>
+  <p>{{ connection_test_refusal }}</p>
+  <p>{{ handshake_note }}</p>
+  <p>
+    What each row shows instead is a preflight: this product reads the address
+    you typed and says whether a fetcher would be permitted to reach it.
+    <span class="verdict">Would be allowed</span> means nothing here refuses
+    that address in advance. It does not mean the address answered, or exists,
+    or holds a filing. No socket was opened and no name was resolved, and a
+    name that passes can still resolve to an address inside this network --
+    which is why there is no fetch button behind it.
+  </p>
+  <p>
+    A source whose address would be refused can still be registered, and some
+    legitimate ones are: an internal document store is inside this network by
+    definition. The verdict is recorded beside the row rather than used to
+    block it, so whoever builds the first fetcher inherits the warning instead
+    of the assumption.
+  </p>
+</div>
+
+{% if warning %}
+<div class="registry-warn">
+  <p><strong>Something on this page could not be read.</strong></p>
+  <p>{{ warning }}</p>
+</div>
+{% endif %}
+
+{% if refusal %}
+<div class="registry-warn">
+  <p><strong>That was refused, and nothing was changed.</strong></p>
+  <p>{{ refusal }}</p>
+  <p>{{ form_not_refilled }}</p>
+</div>
+{% endif %}
+
+{% if note %}
+<p class="registry-note">{{ note }}</p>
+{% endif %}
+
+{# ------------------------------------------------------- what is registered #}
+
+{% if rows %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Source</th>
+      <th scope="col">Kind</th>
+      <th scope="col">Read from</th>
+      <th scope="col">Status — what is true</th>
+      <th scope="col">Switch — what is wanted</th>
+      <th scope="col">Documents</th>
+      <th scope="col">Registered</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr class="source-row{% if not row.enabled %} source-row--off{% endif %}">
+      <td>
+        {{ row.name }}
+        <p><span class="coord">{{ row.source_id }}</span></p>
+      </td>
+      <td>
+        {{ row.kind_words }}
+        <p><span class="coord">{{ row.kind }}</span></p>
+      </td>
+      <td>
+        {% if row.endpoints %}
+        {# The verdict is a chip on every endpoint. The REASON is printed only
+           where the answer is no, because that is where a person has something
+           to do about it -- and because the same paragraph repeated down a
+           column of ten rows stops being read, which is how a warning that
+           matters gets lost among nine that do not. What the chip means is
+           said once, above the table. The tense is conditional on both
+           answers: would be allowed, not allowed. Nothing was contacted. #}
+        <ul class="source-facts">
+          {% for place in row.endpoints %}
+          <li>
+            <span class="coord">{{ place.url }}</span>
+            <p>
+              <span class="verdict{% if not place.allowed %} verdict--refused{% endif %}">
+                {%- if place.allowed %}Would be allowed{% else %}Would be refused{% endif -%}
+              </span>
+              {%- if not place.allowed %} {{ place.reason }}{% endif %}
+            </p>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p class="withheld__reason">
+          This registration names nowhere to read from. Nothing can be said
+          about where its documents came from.
+        </p>
+        {% endif %}
+        {% if row.docket %}<p><span class="coord">docket {{ row.docket }}</span></p>{% endif %}
+        {% if row.corpus_dockets %}
+        <p><span class="coord">dockets {{ row.corpus_dockets | join(', ') }}</span></p>
+        {% endif %}
+      </td>
+      <td>
+        <span class="badge {{ row.status_badge }}">{{ row.status }}</span>
+        <p>{{ row.status_words }}</p>
+        {% if not row.fetchable %}
+        {# Read from FETCHABLE_SOURCE_KINDS, not written here. When a fetcher
+           lands for a kind, this line stops appearing on rows of that kind
+           without this template being edited. #}
+        <p class="withheld__reason">
+          no fetcher exists for this kind, so nothing has ever tried and nothing
+          will until one is built
+        </p>
+        {% endif %}
+        <p><span class="coord">{{ row.last_scanned }}</span></p>
+        {% if row.last_result %}<p>{{ row.last_result }}</p>{% endif %}
+      </td>
+      <td>
+        {# THE SECOND COLUMN, AND IT IS A DIFFERENT FACT FROM THE FIRST. What
+           the administrator wants of this source. It says nothing about
+           whether the source can be reached, and the two are never merged. #}
+        <span class="badge {% if row.enabled %}badge--active{% else %}badge--closed{% endif %}">
+          {%- if row.enabled %}Enabled{% else %}Disabled{% endif -%}
+        </span>
+        <div class="source-actions">
+          {% if row.enabled %}
+          <form method="post" action="{{ sources_url }}/{{ row.source_id }}/disable">
+            <button class="btn" type="submit">Disable</button>
+          </form>
+          {% else %}
+          <form method="post" action="{{ sources_url }}/{{ row.source_id }}/enable">
+            <button class="btn" type="submit">Enable</button>
+          </form>
+          {% endif %}
+          <form method="post" action="{{ sources_url }}/{{ row.source_id }}/remove">
+            <button class="btn" type="submit">Remove</button>
+          </form>
+        </div>
+        {% if row.credential_ref %}
+        <p>
+          <span class="label">Key</span>
+          <span class="coord">{{ row.credential_ref }}</span>
+        </p>
+        {# The NAME of an environment variable, and whether that variable is
+           set in this process. Never the value, never its length, never a
+           prefix of it -- the product does not hold it and so cannot show it
+           back, which is the point of storing a name. #}
+        <p class="withheld__reason">{{ row.credential_state }}</p>
+        {% endif %}
+      </td>
+      <td>
+        {# THREE NUMBERS, NEVER ONE. What the corpus holds, what this workspace
+           holds that came from the same address, and what actually points at
+           this row. The middle one is a derivation and says so where it is
+           printed; the last one is the only claim about this registration. #}
+        {% if row.documents_on_disk is not none %}
+        <p>{{ row.documents_on_disk }} on disk in data/real</p>
+        {% endif %}
+        {% if row.documents_here is none %}
+        <p class="withheld__reason">
+          how many documents here came from this source could not be read, so
+          there is no number to show
+        </p>
+        {% else %}
+        <p>{{ row.documents_by_address }} {{ matched_by_address }}</p>
+        <p>{{ row.documents_here }} {{ points_at_registration }}</p>
+        {% endif %}
+        {% if row.corpus_span %}
+        <p><span class="coord">filed {{ row.corpus_span }}</span></p>
+        {% endif %}
+        {% if row.corpus_origins %}
+        <p><span class="coord">{{ row.corpus_origins | join(', ') }}</span></p>
+        {% endif %}
+      </td>
+      <td>
+        {{ row.created_by }}
+        <p><span class="coord">{{ row.created_at }}</span></p>
+        <form class="source-form" method="post"
+              action="{{ sources_url }}/{{ row.source_id }}/edit">
+          <label>
+            <span class="label">Name</span>
+            <input type="text" name="name" value="{{ row.name }}">
+          </label>
+          <label>
+            <span class="label">Read from</span>
+            <input type="text" name="endpoint"
+                   value="{{ row.endpoints[0].url if row.endpoints else '' }}">
+          </label>
+          <label>
+            <span class="label">Docket</span>
+            <input type="text" name="docket" value="{{ row.docket }}">
+          </label>
+          {% if row.kind in ('rest_api', 'mcp_server') %}
+          <label>
+            <span class="label">Credential variable</span>
+            <input type="text" name="credential_ref" value="{{ row.credential_ref }}">
+          </label>
+          {% else %}
+          <input type="hidden" name="credential_ref" value="">
+          {% endif %}
+          <p><button class="btn" type="submit">Save</button></p>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p class="registry-note">{{ corpus_caveat }}</p>
+
+{% elif registry_readable %}
+{# ONLY WHEN THE TABLE WAS ACTUALLY READ. An unreadable registry rendering this
+   sentence would turn "this page could not look" into "there is nothing there",
+   which is the absence-presented-as-fact this screen refuses. #}
+<div class="empty empty--none">
+  <p class="empty__title">No source is registered for this company.</p>
+  <div class="empty__body">
+    <p>
+      That is the honest state of an empty registry and not a page that failed
+      to load. Nothing here has been told where to look for documents, and
+      nothing here would fetch them if it had been.
+    </p>
+  </div>
+</div>
+{% endif %}
+
+{# ------------------------------------------------------- the real corpus #}
+
+<section class="source-group">
+  <h2>Where the filings in this repository actually came from</h2>
+  {% if corpus.sources %}
+  <p class="page-head__note">
+    data/real holds {{ corpus.documents }} public filings from
+    {{ corpus.sources | length }} commissions. Each one has a provenance file
+    beside it naming the URL it was fetched from, the filer and the date it was
+    filed. Those files are read here rather than typed, so this list is what the
+    corpus says about itself.
+    {% if corpus_registered %}
+    {{ corpus_registered }} of them are registered above.
+    {% endif %}
+  </p>
+
+  {% if corpus.unreadable %}
+  <div class="registry-warn">
+    <p>
+      <strong>{{ corpus.unreadable | length }} provenance file(s) could not be
+      read.</strong>
+      Those filings are not counted below, because this product cannot state
+      where they came from:
+      <span class="coord">{{ corpus.unreadable | join(', ') }}</span>
+    </p>
+  </div>
+  {% endif %}
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Commission</th>
+        <th scope="col">Filings on disk</th>
+        <th scope="col">Fetched from</th>
+        <th scope="col">Dockets</th>
+        <th scope="col">Filed</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entry in corpus.sources %}
+      <tr>
+        <td>{{ entry.jurisdiction }}</td>
+        <td>{{ entry.documents }}</td>
+        <td><span class="coord">{{ entry.origins | join(', ') }}</span></td>
+        <td><span class="coord">{{ entry.dockets | join(', ') }}</span></td>
+        <td><span class="coord">{{ entry.earliest_filing }} to {{ entry.latest_filing }}</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <form method="post" action="{{ corpus_url }}">
+    <p>
+      <button class="btn btn--primary" type="submit">
+        Register these {{ corpus.sources | length }} commissions as public dockets
+      </button>
+    </p>
+    <p class="registry-note">
+      Pressing this registers one row per commission, each honest about not
+      being scanned. It is safe to press twice: a source already registered from
+      the corpus is left alone rather than duplicated. It fetches nothing.
+    </p>
+  </form>
+  {% else %}
+  <p class="page-head__note">
+    data/real holds no provenance files in this checkout, so there is nothing to
+    read and nothing to register. That is an absence this screen states rather
+    than an empty table it draws.
+  </p>
+  {% endif %}
+</section>
+
+{# --------------------------------------------- what this workspace can prove #}
+
+<section class="source-group">
+  <h2>How much of this workspace can say where it came from</h2>
+  <p class="page-head__note">{{ provenance_gap }}</p>
+  {% if provenance %}
+  <ul class="source-facts">
+    <li>{{ provenance.versions }} document version(s) in this company.</li>
+    <li>
+      {{ provenance.with_source_url }} name the URL they were fetched from.
+    </li>
+    <li>
+      {{ provenance.with_registration }} point at a source registered above.
+    </li>
+  </ul>
+  <p class="registry-note">
+    A version can carry a URL and no registration, and that is a normal row
+    rather than a broken one: the real filings in this repository were fetched
+    by hand before this registry existed. A version with neither is a synthetic
+    fixture, and there is nowhere to send you for it.
+  </p>
+  {% else %}
+  <p class="withheld__reason">
+    These counts could not be read from this database, so none are shown. An
+    unread number is not a zero.
+  </p>
+  {% endif %}
+</section>
+
+{# --------------------------------------------------------- register a source #}
+
+<section class="source-group">
+  <h2>Register a source</h2>
+  <p class="page-head__note">
+    Registering records where documents are said to come from. It does not
+    connect to anything, and this build has no code path that would.
+  </p>
+
+  <form class="source-form" method="post" action="{{ add_url }}">
+    <label>
+      <span class="label">Name</span>
+      <input type="text" name="name" required
+             placeholder="What this source is called here">
+    </label>
+    <label>
+      <span class="label">Kind</span>
+      <select name="kind">
+        {% for kind in kinds %}
+        <option value="{{ kind.code }}">{{ kind.words }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>
+      <span class="label">Read from</span>
+      <input type="text" name="endpoint"
+             placeholder="https://filings.example.gov/search">
+    </label>
+    <label>
+      <span class="label">Docket, if this source is one</span>
+      <input type="text" name="docket" placeholder="2025-00113">
+    </label>
+    <label>
+      <span class="label">Credential variable, for a REST API or an MCP server</span>
+      <input type="text" name="credential_ref"
+             placeholder="{{ credential_prefix }}ACME_KEY">
+    </label>
+    <p><button class="btn btn--primary" type="submit">Register</button></p>
+  </form>
+
+  <ul class="source-facts">
+    {% for kind in kinds %}
+    <li>
+      <strong>{{ kind.words }}</strong> —
+      {% if kind.fetchable %}
+      this build can fetch from this kind.
+      {% else %}
+      this build cannot fetch from this kind, so a row of it is a record and
+      never a feed.
+      {% endif %}
+      {% if kind.takes_credential %}
+      It may name a credential variable.
+      {% else %}
+      It takes no credential, and naming one is refused.
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+
+  <div class="registry-claim">
+    <p><strong>The key itself never goes in that box, and never comes back out.</strong></p>
+    <p>
+      That field takes the NAME of an environment variable, beginning
+      <span class="coord">{{ credential_prefix }}</span>, and the product stores
+      the name. It does not store the key, so there is nothing on this screen,
+      in a backup, or in a database read to hand over. Where a key is named
+      above, the registry shows the name and whether that variable is set in
+      this process, and nothing else about it.
+    </p>
+  </div>
+</section>
+
+{% endif %}
+{% endblock %}

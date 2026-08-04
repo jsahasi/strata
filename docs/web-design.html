@@ -20,6 +20,18 @@
   th { background:#f8fafc; }
   .diagram { overflow-x:auto; background:#0f172a; color:#e2e8f0; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0; }
   .diagram pre { font: 12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; margin:0; white-space:pre; }
+  /* Added 2026-08-04 with the glass revision. Token listings are copied
+     verbatim by two agents who cannot ask a question, so they get their own
+     block: selectable, scrollable, and never wrapped. */
+  .tok { overflow-x:auto; background:#0b1417; color:#e7eeef; border-radius:8px;
+         padding:1rem 1.2rem; margin:1rem 0; border:1px solid #1f3238; }
+  .tok pre { font: 12.5px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+             margin:0; white-space:pre; }
+  .tok .c { color:#7f9aa2; }
+  .rule2 { margin:3.5rem 0 0; border:0; border-top:3px double #cbd5e1; }
+  .sw { display:inline-block; width:1.1em; height:1.1em; vertical-align:-.15em;
+        border:1px solid #94a3b8; border-radius:2px; margin-right:.35em; }
+  .win { background:#ecfdf5; border:1px solid #6ee7b7; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
 </style>
 </head>
 <body>
@@ -197,6 +209,804 @@ still guaranteed.</p>
 <p><strong>Never cut:</strong> the citation viewer, the withheld-claim state, or the paired verified
 and corrupted demonstration. Those three are the submission's argument. Everything else on this page
 is in service of them.</p>
+
+<hr class="rule2">
+
+<h1 style="margin-top:2rem">Part two — glass on the chrome, paper for the record</h1>
+<p class="sub">The visual revision, written 2026-08-04, after looking at the built product at 1440
+and at 390 in both colour schemes. Everything above this line still stands; this part replaces only
+the four-line sketch in <em>Design system</em>, which said what the constraints were and not what to
+draw. Two agents build from the token listings below and cannot ask a question, so every value they
+need is written out in full rather than described.</p>
+
+<h2>What I looked at first</h2>
+
+<p>Screenshots of the running app, signed in as the analyst, before writing a line of this.
+<code>/projects</code>, <code>/changes/CHG-v1-v2-003</code>, <code>/review</code>,
+<code>/workflow</code> and <code>/proceedings</code>, each at 1440 and 390, plus the dark scheme, plus
+the citation panel open and the assistant dock open. Five things a diagram would not have told me:</p>
+
+<table>
+<tr><th>Measured</th><th>Why it governs a decision below</th></tr>
+<tr><td><span class="lbl">The change page wastes 416px.</span> With the source panel closed,
+<code>.split__aside</code> is 416px wide and 0px tall. The claim column gets 720px of a 1216px shell.
+Forty-one percent of the product's most important screen is empty.</td>
+<td>The source panel is <em>paper</em> and must stay side by side with the claim. So the fix is a
+collapsing track, not a floating overlay. See <em>The change page's dead column</em>.</td></tr>
+<tr><td><span class="lbl">The review page is 8,823px tall and its tab rail is at y=304.</span> One
+scroll and the reader has no masthead, no rail, no idea which of nine sections they are in.</td>
+<td>This is the one place translucency earns its cost rather than decorating. A sticky glass masthead
+and a sticky glass rail let the record run under the chrome instead of away from it.</td></tr>
+<tr><td><span class="lbl">The dock is a solid white rail that clips the page.</span> It appears with no
+motion and cuts a project card in half with a hairline.</td>
+<td>The single best glass candidate in the product, and the one that needs the sheet curve.</td></tr>
+<tr><td><span class="lbl">A count label wraps to three lines.</span> <code>.tally__label</code> at 11px
+uppercase, 0.09em tracking, in a 74px track, renders <em>WAITING / ON A / PERSON</em>, and
+<em>NEXT RE-</em> hyphen-broken. Visible in the first screenshot of the first screen.</td>
+<td>A typographic defect, not a layout one, and it belongs in the type section rather than being left
+for someone to notice later.</td></tr>
+<tr><td><span class="lbl">Dark <code>--surface</code> sits 4 points off dark <code>--bg</code>.</span>
+<code>#121b1f</code> against <code>#0c1316</code>.</td>
+<td>A translucent version of that surface would be invisible. Dark glass therefore needs its own tint,
+higher than surface, not an alpha applied to the existing one.</td></tr>
+</table>
+
+<div class="note"><span class="lbl">A constraint the brief did not mention, and it is load-bearing.</span>
+<code>tests/test_chat_surface.py::test_the_dock_borrows_the_apps_palette_rather_than_inventing_one</code>
+and its twin in <code>tests/test_tour.py</code> assert that <code>clerk.css</code> and
+<code>tour.css</code> contain <strong>no hex literal and no <code>rgba(</code> followed by a digit</strong>,
+outside comments. So a translucent value cannot be written in either file. Every alpha, every blur, every
+shadow below is declared once in <code>strata.css</code> as a custom property, and the other two sheets
+reference it with <code>var()</code> and nothing else. Break this and the suite goes red at 1256.</p>
+</div>
+
+<h2 id="colour">Colour</h2>
+
+<h3>What does not change, and must not</h3>
+
+<p>The palette carries meaning and the meaning is older than this revision. Nothing below renames or
+re-hues any of it.</p>
+
+<table>
+<tr><th>Token</th><th>Light</th><th>Dark</th><th>What it means</th></tr>
+<tr><td><code>--accent</code></td><td><span class="sw" style="background:#0d5c6b"></span><code>#0d5c6b</code></td>
+<td><span class="sw" style="background:#6ccddc"></span><code>#6ccddc</code></td>
+<td>The filing stamp. Anything a person can act on, and nothing else.</td></tr>
+<tr><td><code>--alarm</code></td><td><span class="sw" style="background:#8f3418"></span><code>#8f3418</code></td>
+<td><span class="sw" style="background:#ef9d80"></span><code>#ef9d80</code></td>
+<td>The withheld amber. Escalation, refusal, and the broken rule.</td></tr>
+<tr><td>the eight greys</td><td colspan="2"><code>--bg --surface --surface-sunk --rule --rule-strong
+--ink --ink-2 --ink-3</code></td><td>Structure. They are <code>--accent</code> desaturated, which is
+why the page reads as one family.</td></tr>
+<tr><td><code>--hatch</code></td><td colspan="2"><code>rgba(16,26,30,.16)</code> / <code>rgba(231,238,239,.18)</code></td>
+<td>The 135&deg; hatch in a withheld statement slot. Untouched.</td></tr>
+</table>
+
+<p><span class="lbl">One honest note on naming.</span> The repository calls <code>--accent</code> the
+filing-stamp blue and <code>--alarm</code> the withheld amber, and this document keeps both names
+because people say them out loud. Read off the screen, <code>#0d5c6b</code> is a deep petrol and
+<code>#8f3418</code> is a burnt sienna. The names are the team's; the hexes are the truth; neither
+moves.</p>
+
+<h3>Five new values, and what each is for</h3>
+
+<p>Two hues exist in this product and that is the argument on line 11 of the stylesheet. Every value
+below is achromatic or sits in the same cool-grey family the greys already occupy. <strong>No third
+hue is introduced.</strong></p>
+
+<table>
+<tr><th>Token</th><th>Light</th><th>Dark</th><th>What it is for, and why it could not be an existing value</th></tr>
+
+<tr><td><code>--paper</code></td>
+<td><span class="sw" style="background:#ffffff"></span><code>#ffffff</code></td>
+<td><span class="sw" style="background:#151e22"></span><code>#151e22</code></td>
+<td><strong>The record.</strong> The diff, the claim cards, the source extract, section text and tables
+of record move off <code>--surface</code> onto this. Today the masthead and a claim card are the same
+value, so the moment the masthead turns to glass the record has nothing to be. In light it is true
+white, because paper is the brightest thing on the screen and the chrome is a tinted pane in front of
+it — that is what macOS does with a document canvas against a vibrant sidebar. In dark it is one small
+step above <code>--surface</code>, deliberately small: the existing rule colours were chosen against
+<code>#121b1f</code> and a large move would make every card border vanish.</td></tr>
+
+<tr><td><code>--glass-tint</code></td>
+<td><span class="sw" style="background:#f7fafb"></span><code>#f7fafb</code></td>
+<td><span class="sw" style="background:#1a262b"></span><code>#1a262b</code></td>
+<td><strong>The material the panes are made of.</strong> Never used as a fill on its own — it exists so
+the three alphas below are three strengths of one material rather than three unrelated colours. Cooler
+than <code>--surface</code> in light by about four points of blue, which is what makes a pane read as
+frosted rather than as a slightly see-through card. In dark it is a genuine step above
+<code>--surface</code>, for the reason measured above.</td></tr>
+
+<tr><td><code>--glass-solid</code></td>
+<td><span class="sw" style="background:#f6f9fa"></span><code>#f6f9fa</code></td>
+<td><span class="sw" style="background:#182328"></span><code>#182328</code></td>
+<td><strong>The fallback every pane gets before any filter is considered.</strong> It is
+<code>--glass-tint</code> already composited over <code>--bg</code>, computed rather than guessed, so a
+browser with no <code>backdrop-filter</code> lands on the colour the filter would have produced instead
+of on the raw tint. <code>--ink-3</code> reads 4.55:1 against it in light and 4.60:1 in dark; every other
+ink is far above. This is the value that makes the "grey text on a grey rectangle" failure impossible
+rather than unlikely.</td></tr>
+
+<tr><td><code>--glass-edge</code></td>
+<td><span class="sw" style="background:#ffffff"></span><code>#ffffff</code></td>
+<td><span class="sw" style="background:#5c757e"></span><code>#5c757e</code></td>
+<td><strong>The one-pixel highlight along a pane's top edge.</strong> The cheapest signal that a surface
+is in front of something, and the one macOS never omits. Used at low alpha inside a shadow token, never
+as a fill. White in dark would read as a scratch, so dark takes a lifted grey.</td></tr>
+
+<tr><td><code>--glass-cast</code></td>
+<td><span class="sw" style="background:#04191f"></span><code>#04191f</code></td>
+<td><span class="sw" style="background:#000000"></span><code>#000000</code></td>
+<td><strong>The hue a cast shadow is made of.</strong> A blue-black rather than a neutral black in
+light, so a shadow belongs to the same cool family as the greys instead of muddying them. The app
+currently reaches for <code>--hatch</code> when it wants a shadow, which is an ink at 16% — right for a
+hairline, wrong at a 32px radius, where it goes brown.</td></tr>
+</table>
+
+<h3>The glass ladder: three levels, and the rule that sets them</h3>
+
+<p>Three, and no fourth. The rule that fixes the alphas is the opposite of the reflex:</p>
+
+<div class="note"><strong>The longer a surface lives and the more words it carries, the more opaque it
+is.</strong> The masthead holds two words per item and you look past it a thousand times, so it can be
+the most transparent thing on screen. A tour tip holds a paragraph you must read once and dismiss, so it
+is nearly solid. The reflex — small and fleeting means see-through — produces exactly the wrong
+legibility, and it is where most glass work fails.</div>
+
+<table>
+<tr><th></th><th>G1 &mdash; attached</th><th>G2 &mdash; floating</th><th>G3 &mdash; transient</th></tr>
+<tr><td><span class="lbl">Wears it</span></td>
+<td>the masthead; the review tab rail when stuck; the admin chrome bar</td>
+<td>the Clarke dock; the bug sheet; the share panel; any modal or sheet built later</td>
+<td>tour tips; toasts; suggestion pills</td></tr>
+<tr><td><span class="lbl">Behind it</span></td><td>the page, scrolling</td>
+<td>a whole screen the reader wants to keep their place in</td><td>anything, briefly</td></tr>
+<tr><td><span class="lbl">Alpha</span></td><td>0.72</td><td>0.86</td><td>0.92</td></tr>
+<tr><td><span class="lbl">Filter</span></td><td><code>blur(20px) saturate(180%)</code></td>
+<td><code>blur(30px) saturate(170%)</code></td><td><code>blur(14px) saturate(160%)</code></td></tr>
+<tr><td><span class="lbl">Radius</span></td><td>0 &mdash; it spans the viewport and has no corners</td>
+<td><code>--r-glass</code>, 10px</td><td><code>--r</code>, 3px</td></tr>
+<tr><td><span class="lbl">Depth</span></td><td><code>--edge</code> + <code>--shadow-1</code></td>
+<td><code>--edge</code> + <code>--shadow-2</code></td><td><code>--edge</code> + <code>--shadow-3</code></td></tr>
+<tr><td><span class="lbl">No filter</span></td><td colspan="3"><code>--glass-solid</code>, for all three.
+See the paragraph below.</td></tr>
+</table>
+
+<p><span class="lbl">The fallback collapses all three levels into one, and that is correct.</span>
+Composited over <code>--bg</code>, the three alphas land within one point of each other — there is no
+useful difference to preserve. Without the filter there is no <em>material</em> difference between the
+levels, only a difference in depth, and depth is carried by the shadow ladder and the edge highlight,
+neither of which needs <code>backdrop-filter</code> to exist. So a browser that drops the filter loses
+translucency and keeps the whole hierarchy. Do not invent three fallback greys to preserve a
+distinction that was never in the greys.</p>
+
+<p><span class="lbl">The shape every glass rule takes.</span> Solid first, unconditionally. Glass only
+inside <code>@supports</code>. Written the other way round — declare the alpha and hope — a browser
+without the filter renders the raw translucent value over whatever is behind it, which is the exact
+failure the brief forbids.</p>
+
+<div class="tok"><pre><span class="c">/* Solid for everyone, first and unconditionally. */</span>
+.masthead { background: var(--glass-solid); box-shadow: var(--edge), var(--shadow-1); }
+
+<span class="c">/* Glass only where the filter exists. A browser that ignores it never sees
+   the translucent value at all, so it cannot render grey on grey. */</span>
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .masthead {
+    background: var(--glass-1);
+    -webkit-backdrop-filter: var(--blur-1);
+    backdrop-filter: var(--blur-1);
+  }
+}</pre></div>
+
+<h3>The tokens, verbatim</h3>
+
+<p>Add to the existing <code>:root</code> block in <code>app/web/static/strata.css</code>, after
+<code>--focus</code>. Do not start a second block and do not start a second file.</p>
+
+<div class="tok"><pre>  <span class="c">/* ---- glass, paper, depth ------------------------------------------
+     Added 2026-08-04. The chrome is glass; the record is paper. A pane is
+     translucent because you look past it; a filing is opaque because you
+     read it. Every value here is achromatic or in the grey family, so the
+     two hues on line 11 are still the only two hues.
+     clerk.css and tour.css may write no hex and no rgba() of their own --
+     two tests enforce it -- so both consume these and nothing else. */</span>
+
+  --paper: #ffffff;          <span class="c">/* the record: diff, claims, source, tables */</span>
+  --glass-tint: #f7fafb;     <span class="c">/* the material the panes are made of  */</span>
+  --glass-solid: #f6f9fa;    <span class="c">/* the tint already composited over --bg */</span>
+  --glass-edge: #ffffff;     <span class="c">/* the 1px highlight that says "in front" */</span>
+  --glass-cast: #04191f;     <span class="c">/* shadows are blue-black, never neutral  */</span>
+
+  --glass-1: rgba(247, 250, 251, 0.72);   <span class="c">/* attached  */</span>
+  --glass-2: rgba(247, 250, 251, 0.86);   <span class="c">/* floating  */</span>
+  --glass-3: rgba(247, 250, 251, 0.92);   <span class="c">/* transient */</span>
+
+  --blur-1: blur(20px) saturate(180%);
+  --blur-2: blur(30px) saturate(170%);
+  --blur-3: blur(14px) saturate(160%);
+
+  --edge: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  --shadow-1: 0 1px 2px rgba(4, 25, 31, 0.07);
+  --shadow-2: 0 12px 32px rgba(4, 25, 31, 0.14), 0 2px 6px rgba(4, 25, 31, 0.08);
+  --shadow-3: 0 4px 14px rgba(4, 25, 31, 0.10);
+
+  <span class="c">/* The outer companion to the focus ring. It is an enhancement and may be
+     lost; the ring itself is an outline and never is. See "Focus" below. */</span>
+  --focus-halo: rgba(255, 255, 255, 0.90);
+
+  --r-glass: 10px;    <span class="c">/* a window has a radius; a form field does not */</span>
+  --stuck: 3.25rem;   <span class="c">/* condensed masthead. Sticky tops and anchors use it. */</span>
+
+  --ease-settle: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-offer: cubic-bezier(0.34, 1.42, 0.64, 1);</pre></div>
+
+<p>And in the existing <code>@media (prefers-color-scheme: dark)</code> block, after
+<code>--hatch</code>:</p>
+
+<div class="tok"><pre>    <span class="c">/* Dark glass is not light glass with a different alpha. --surface sits
+       four points off --bg here, so an alpha of it would be invisible; the
+       tint is its own value, above surface, and the filter adds a little
+       brightness because a blur of a dark page returns a dark page. */</span>
+    --paper: #151e22;
+    --glass-tint: #1a262b;
+    --glass-solid: #182328;
+    --glass-edge: #5c757e;
+    --glass-cast: #000000;
+
+    --glass-1: rgba(26, 38, 43, 0.72);
+    --glass-2: rgba(26, 38, 43, 0.86);
+    --glass-3: rgba(26, 38, 43, 0.92);
+
+    --blur-1: blur(20px) saturate(160%) brightness(1.08);
+    --blur-2: blur(30px) saturate(150%) brightness(1.06);
+    --blur-3: blur(14px) saturate(150%) brightness(1.05);
+
+    --edge: inset 0 1px 0 rgba(92, 117, 126, 0.35);
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.50);
+    --shadow-2: 0 12px 32px rgba(0, 0, 0, 0.60), 0 2px 6px rgba(0, 0, 0, 0.40);
+    --shadow-3: 0 4px 14px rgba(0, 0, 0, 0.45);
+
+    --focus-halo: rgba(4, 9, 11, 0.90);</pre></div>
+
+<p>And in the existing <code>@media print</code> token block, so the page that leaves the building has
+no glass on it at all:</p>
+
+<div class="tok"><pre>    --paper: #fff;
+    --glass-tint: #fff;
+    --glass-solid: #fff;
+    --glass-1: #fff;
+    --glass-2: #fff;
+    --glass-3: #fff;
+    --glass-edge: #fff;
+    --glass-cast: #fff;
+    --edge: none;
+    --shadow-1: none;
+    --shadow-2: none;
+    --shadow-3: none;
+    --blur-1: none;
+    --blur-2: none;
+    --blur-3: none;</pre></div>
+
+<h3>Which components take paper</h3>
+
+<p>Named, so nobody has to judge. Change <code>background: var(--surface)</code> to
+<code>background: var(--paper)</code> on exactly these, and on nothing else:</p>
+
+<div class="tok"><pre>.claim--verified   .source-panel   .source-panel__body   .quote (no fill; keep as is)
+.coverage__cell    .deliverable    .question   .steer    .project-card
+.run-schedule__cell    .card    .table (inherits from its container)</pre></div>
+
+<p>Everything that stays on <code>--surface</code> or <code>--surface-sunk</code> stays there:
+<code>.source-panel__head</code>, <code>.deliverable__head</code>, <code>.tabs</code>,
+<code>.clerk-turn--person</code>, and — this one matters —
+<code>.claim--withheld</code>, which keeps <code>--surface-sunk</code> and does not become paper,
+because the whole point of it is that it is not a record of anything.</p>
+
+<h2 id="type">Type</h2>
+
+<h3>What does not change</h3>
+
+<p>The three registers stay, and the rule behind them stays: <code>--face-doc</code> is the document
+speaking, <code>--face-ui</code> is Strata speaking, <code>--face-data</code> is a coordinate a machine
+can re-read. A reader must never mistake a quotation for the product's own words, and no glass surface
+gets to blur that line. All three are operating-system stacks and none of them moves. No file is
+fetched. <code>--measure</code> stays 66ch, <code>--lh-doc</code> stays 1.72, and every size in the
+scale keeps its value.</p>
+
+<h3>The scale, restated with the weight each role actually uses</h3>
+
+<table>
+<tr><th>Token</th><th>Size</th><th>Face</th><th>Weight</th><th>Tracking</th><th>Role</th></tr>
+<tr><td><code>--t-micro</code></td><td>11px</td><td>ui / data</td><td>600&ndash;700</td><td>0.09em</td>
+<td>uppercase labels, codes, coordinates, badges</td></tr>
+<tr><td><code>--t-small</code></td><td>13px</td><td>ui</td><td>500&ndash;600</td><td>0</td>
+<td>secondary interface text, buttons, tabs</td></tr>
+<tr><td><code>--t-ui</code></td><td>15px</td><td>ui</td><td>400</td><td>0</td>
+<td>interface base</td></tr>
+<tr><td><code>--t-ui-lg</code></td><td>17px</td><td>ui</td><td>600&ndash;650</td><td>&minus;0.008em</td>
+<td>section headings, card names, a directive</td></tr>
+<tr><td><code>--t-doc</code></td><td>18px</td><td>doc</td><td>400</td><td>0</td>
+<td>quoted source text, and only that</td></tr>
+<tr><td><code>--t-claim</code></td><td>19px</td><td>ui</td><td>500</td><td>&minus;0.006em</td>
+<td>a claim's statement &mdash; ui face on purpose, so a finding never wears the document's clothes</td></tr>
+<tr><td><code>--t-count</code></td><td>22px</td><td>data</td><td>700</td><td>&minus;0.01em</td>
+<td>a count read down a column of cards, tabular figures</td></tr>
+<tr><td><code>--t-h1</code></td><td>24px</td><td>ui</td><td>600</td><td>&minus;0.008em</td>
+<td>page title. The page does not shout.</td></tr>
+</table>
+
+<h3>Three changes, each with the screenshot that forced it</h3>
+
+<p><span class="lbl">1. A tracking value for labels in narrow tracks.</span> <code>--t-micro</code> at
+0.09em inside a 74px grid track renders <em>WAITING / ON A / PERSON</em> over three lines and breaks
+<em>NEXT RE-RUN</em> across a hyphen. Tracking is what makes an eleven-pixel uppercase label readable
+in a row and what makes it unreadable in a column. Add one token and one rule; invent no new size.</p>
+
+<div class="tok"><pre>  --track-label-tight: 0.04em;   <span class="c">/* the same label, in a narrow track */</span>
+
+.tally__label {
+  letter-spacing: var(--track-label-tight);
+  line-height: 1.35;
+  hyphens: none;                 <span class="c">/* "NEXT RE-/RUN" is not a word break */</span>
+}
+
+.project-card__counts {
+  grid-template-columns: repeat(auto-fit, minmax(5.5rem, 1fr));
+}</pre></div>
+
+<p><span class="lbl">2. A weight floor on glass.</span> A blurred backdrop lowers apparent contrast even
+when measured contrast holds, because the eye reads edges and a blur softens them. So: <strong>no text
+on a glass surface below 600 weight, and none below <code>--t-small</code>.</strong> That covers nav
+items, the wordmark, tab labels, dock chrome and pills, and it rules out the thing that would break it —
+body prose on glass. Do not reach for <code>-webkit-font-smoothing: antialiased</code> to compensate; on
+a Mac it thins the strokes, which is the opposite of what is wanted.</p>
+
+<p><span class="lbl">3. Long text never sits on glass, including inside the dock.</span> The Clarke dock
+is G2 glass at its head, its pills row and its ask row. The transcript between them is
+<code>--paper</code>, opaque, edge to edge. This is what Mail and Messages do — a vibrant sidebar, an
+opaque message list — and it is the difference between a translucent panel and an unreadable one. The
+same rule sends the source extract, the diff quotes and every table of record to paper.</p>
+
+<div class="crit"><strong>What does not happen to type, ever.</strong> Nothing resizes on scroll. The
+masthead condenses by collapsing its padding from <code>--s5</code> to <code>--s2</code>, and the
+wordmark and nav keep their exact size and weight through it. Type that shrinks as you scroll is the
+single most common tell of a templated modern site, it reflows text while a person is reading, and it
+buys nothing a padding change does not.</div>
+
+<h2 id="motion">Motion</h2>
+
+<h3>The one orchestrated moment: THE SETTLE</h3>
+
+<p>One sequence, on page load, three bands, 420ms end to end, and it never repeats. Nothing else in the
+product is choreographed.</p>
+
+<table>
+<tr><th>Band</th><th>What</th><th>Delay</th><th>Duration</th><th>Easing</th><th>From</th></tr>
+<tr><td>1</td><td>the masthead</td><td>0ms</td><td>260ms</td><td><code>--ease-settle</code></td>
+<td><code>opacity 0</code>, <code>translateY(-6px)</code></td></tr>
+<tr><td>2</td><td>the page head &mdash; title, note, rule</td><td>60ms</td><td>260ms</td>
+<td><code>--ease-settle</code></td><td><code>opacity 0</code>, <code>translateY(8px)</code></td></tr>
+<tr><td>3</td><td>the frame around the record &mdash; <code>h2</code>, <code>hr</code>,
+<code>.tabs</code>, section rules</td><td>120ms</td><td>300ms</td><td><code>--ease-settle</code></td>
+<td><code>opacity 0</code> only</td></tr>
+</table>
+
+<div class="note"><strong>The record itself is in band nothing.</strong> Claims, quotes, source extracts,
+tables and the diff are painted at full opacity in the first frame and never animate at load. The frame
+assembles around a document that was already there. That is the sequence saying what the product says:
+the filing is not something this software produced, and it should not appear to arrive.</div>
+
+<div class="tok"><pre>@keyframes settle-chrome { from { opacity: 0; transform: translateY(-6px); }
+                           to   { opacity: 1; transform: none; } }
+@keyframes settle-head   { from { opacity: 0; transform: translateY(8px); }
+                           to   { opacity: 1; transform: none; } }
+@keyframes settle-frame  { from { opacity: 0; } to { opacity: 1; } }
+
+.masthead  { animation: settle-chrome 260ms var(--ease-settle)   0ms both; }
+.page-head { animation: settle-head   260ms var(--ease-settle)  60ms both; }
+.main h2,
+.main hr,
+.main .tabs { animation: settle-frame 300ms var(--ease-settle) 120ms both; }</pre></div>
+
+<p><span class="lbl">Two traps in that listing.</span> First, <code>animation-fill-mode: both</code> ends
+at <code>transform: none</code>, so the masthead is left with no transform and its
+<code>position: sticky</code> survives; a lingering transform on a sticky element's <em>ancestor</em>
+would kill it, so do not move this animation up onto <code>body</code>. Second, band 3 selects the frame,
+not the containers. Selecting <code>.main .shell &gt; *</code> would fade a parent whose opacity
+composites onto every claim inside it, including a withheld one, and the signature would be gone without
+anyone editing a line that mentions it.</p>
+
+<h3>Three micro-interactions</h3>
+
+<p><span class="lbl">M1 &mdash; the chip opens the source.</span> The product's central interaction, so it
+is the most restrained.</p>
+<ul>
+<li>Chip fill: <code>background-color</code> and <code>color</code>, <strong>120ms ease</strong>. Already
+in the sheet. Unchanged.</li>
+<li>Source panel reveal: <code>opacity 0&rarr;1</code> and <code>translateX(6px)&rarr;0</code>,
+<strong>200ms <code>--ease-sheet</code></strong>. No scale, no overshoot. An overshoot on a panel showing
+the text of an order would be a small lie about how serious the thing is.</li>
+<li>The marked span inside it: <strong>no motion at all.</strong> It is already correct when it arrives.
+A highlight that animates in asks to be watched rather than read.</li>
+</ul>
+
+<p><span class="lbl">M2 &mdash; the dock arrives.</span> <code>transform: translateX(100%)&rarr;0</code>
+plus <code>opacity 0&rarr;1</code>, <strong>340ms <code>--ease-sheet</code></strong>. No scrim: the dock
+sits beside the page rather than over it, and a scrim would hide the screen it exists to answer questions
+about. No overshoot: a 26rem rail that overshoots shows a strip of nothing at the viewport edge.</p>
+
+<p><span class="lbl">M3 &mdash; the suggestion pills.</span> The one spring in the product.
+<code>opacity 0&rarr;1</code>, <code>translateY(6px)&rarr;0</code>, <code>scale(0.96)&rarr;1</code>,
+<strong>240ms <code>--ease-offer</code></strong>, which overshoots about four percent. Stagger
+<strong>40ms</strong> per pill, <strong>capped at four</strong> — a fifth pill arrives with the fourth. A
+stagger running past roughly 200ms stops reading as one gesture and starts reading as a queue. This is
+the only overshoot anywhere, and it is here because a suggestion is the only thing on screen that is an
+offer rather than a record. Nothing rests on it, so it may be light.</p>
+
+<p>Two ambient behaviours, written down so a third does not get invented:</p>
+<ul>
+<li><span class="lbl">A1</span> Project card hover: <code>translateY(-1px)</code> and
+<code>box-shadow: none &rarr; var(--shadow-3)</code>, <strong>160ms <code>--ease-settle</code></strong>.
+One pixel, not four.</li>
+<li><span class="lbl">A2</span> Buttons, tabs, chips, nav: <strong>120ms ease on colour only</strong>.
+Exactly what is there now. Do not add transform.</li>
+</ul>
+
+<h3>Arrivals animate. Departures do not.</h3>
+
+<p>Both the dock and the source panel are toggled with the <code>hidden</code> attribute, which
+<code>strata.css</code> forces to <code>display: none !important</code>. A <code>transition</code> cannot
+run out of <code>display: none</code>, but a CSS <code>animation</code> restarts every time an element
+becomes displayed — so both reveals above are animations, and neither needs a line of JavaScript
+changed. Closing is instant, and that is a decision rather than a limitation: a person closing a panel
+has already decided, and making them watch it leave is the commonest small rudeness in modern interface
+work.</p>
+
+<h3>What has no motion</h3>
+
+<ul>
+<li><strong>The withheld surface and everything in it.</strong> The signature. Specified in full below.</li>
+<li><strong>Every number.</strong> No count-up, ever. These counts are findings withheld and items waiting
+on a person; a number that animates from zero displays a false value for 800ms, and in a compliance tool
+that is not a flourish, it is a wrong reading on screen.</li>
+<li><strong>Anything triggered by scroll.</strong> No reveal-on-scroll, no parallax, no fade-in-on-enter.
+The record is not a slideshow, and a reader scrolling back up a diff must find it exactly as they left
+it.</li>
+<li><strong>The diff.</strong> Before and after are paper: no blur, no shadow past a hairline, no
+transition, no hover.</li>
+<li><strong>The source extract and its marked span.</strong></li>
+<li><strong>The type scale.</strong> Nothing resizes at any time.</li>
+</ul>
+
+<h3>Reduced motion removes motion. It does not shorten it.</h3>
+
+<div class="crit"><strong>The block at the foot of <code>strata.css</code> is wrong against this
+requirement today</strong> and must be replaced, not extended. It currently sets
+<code>animation-duration: 0.01ms</code> and <code>transition-duration: 0.01ms</code>, which shortens
+motion to the point of invisibility but leaves every animation and transition running — the events still
+fire, the compositor still works, and an element mid-animation at a repaint can still flash. Replace it
+with the block below.</div>
+
+<div class="tok"><pre>@media (prefers-reduced-motion: reduce) {
+  <span class="c">/* Removed, not shortened. A reader who asked for stillness gets the end
+     state directly: no keyframes run, no property transitions, and the one
+     smooth scroll in the source panel becomes a jump. */</span>
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}</pre></div>
+
+<p>With <code>animation: none</code> the fill mode goes too, so the three settle bands render at their
+natural state — full opacity, no transform — which is exactly the intended end state. Nothing needs a
+second declaration to undo them. <code>tour.js</code> already scrolls with
+<code>behavior: "instant"</code>, so no script defeats this.</p>
+
+<h2 id="signature">The signature</h2>
+
+<div class="note" style="background:#f8fafc;border-color:#cbd5e1">
+<strong>THE WITHHELD CLAIM IS THE ONLY SURFACE IN THE PRODUCT WITH NO EFFECTS AT ALL.</strong><br>
+No blur. No shadow. No transform. No transition. No animation. No hover. No cursor change.
+When a reader reaches a claim the system refused to assert, the interface goes flat and still.
+</div>
+
+<p>Three selectors carry it, because the refusal has three forms and they are one thing:
+<code>.claim--withheld</code> on a change page and on a shared claim, <code>.queue__row</code> in the
+escalation queue, and <code>.withheld</code> — the hatched slot — wherever it appears, including inside
+the assistant's replies and inside a blocked plan step.</p>
+
+<h3>Property by property, against everything else</h3>
+
+<table>
+<tr><th>Property</th><th>Every other surface</th><th>The withheld surface</th></tr>
+<tr><td><code>background</code></td><td><code>--paper</code> for the record, <code>--glass-1/2/3</code> for
+the chrome</td><td><code>--surface-sunk</code>. Unchanged from today. Not paper, because it is not a
+record of anything.</td></tr>
+<tr><td><code>backdrop-filter</code></td><td><code>--blur-1/2/3</code> on chrome</td>
+<td><code>none</code>, <strong>stated rather than left to inherit</strong>, so a future glass rule with a
+wider selector cannot reach it.</td></tr>
+<tr><td><code>box-shadow</code></td><td><code>--edge</code> plus <code>--shadow-1/2/3</code></td>
+<td><code>none</code>. It casts nothing and it is lit by nothing.</td></tr>
+<tr><td><code>transform</code></td><td><code>translateY(-1px)</code> on a card, <code>translateX</code> on
+a panel</td><td><code>none</code>, and no <code>will-change</code>. It is not promoted to its own layer,
+because it has nothing to composite.</td></tr>
+<tr><td><code>transition</code></td><td>120&ndash;160ms on colour, border, shadow</td>
+<td><code>none</code>, on every property, including the Approve and Reject buttons inside a queue row.
+Their hover state still appears — instantly.</td></tr>
+<tr><td><code>animation</code></td><td>the three settle bands; the dock; the pills</td>
+<td><code>none !important</code>. It takes no part in the page-load sequence and no band may select
+it.</td></tr>
+<tr><td><code>:hover</code></td><td>border, shadow, lift, fill</td><td><strong>no rule exists.</strong>
+Not a rule that changes nothing — no rule at all, so nothing can be added to one by accident.</td></tr>
+<tr><td><code>:active</code>, <code>:focus-within</code></td><td>as usual</td><td><strong>no rule
+exists.</strong></td></tr>
+<tr><td><code>cursor</code></td><td><code>pointer</code> where something happens</td>
+<td><code>default</code>. Nothing happens.</td></tr>
+<tr><td><code>filter</code>, <code>text-shadow</code>, <code>opacity</code></td><td>as needed</td>
+<td><code>none</code>, <code>none</code>, and <code>1</code> — never faded, never dimmed. A greyed-out
+assertion is still an assertion; the reader's eye completes it.</td></tr>
+<tr><td><code>:focus-visible</code></td><td><code>outline</code> 2px + <code>--focus-halo</code> box-shadow</td>
+<td><strong>the outline survives, in full.</strong> Only the halo is lost, because the halo is a
+box-shadow. See <em>Focus</em>.</td></tr>
+<tr><td><code>border-radius</code>, the broken amber rule, the 135&deg; hatch, the inset from the
+assertion axis, the quoted-against-source pair</td><td>&mdash;</td>
+<td><strong>all kept exactly as they are.</strong> Six structural differences, none of them colour, all
+of them already surviving a monochrome screenshot and the print block.</td></tr>
+</table>
+
+<div class="tok"><pre><span class="c">/* ------------------------------------------- the withheld surface --
+ *
+ * The only surface in this product with no effects at all, and the one
+ * place this design spends its boldness.
+ *
+ * Every other rule in this file adds something: a pane, a lift, a fill on
+ * hover, a 200ms reveal. This block subtracts, and it is placed LAST so
+ * that it wins against anything added above it later. A refusal is the one
+ * thing in a compliance tool that must not be softened by presentation, so
+ * the presentation stops.
+ *
+ * The argument, stated because a future editor will want to "fix" this:
+ * a claim either survives its citation or it does not. Decoration cannot
+ * change which, so decoration has no business on the surface that says so.
+ * A reviewer who moves a cursor across a change page and feels the
+ * interface go dead at exactly the claim the system declined to assert has
+ * understood the product without being told.
+ *
+ * WHAT THIS BLOCK MUST NOT TOUCH: outline. The focus ring is an outline and
+ * it survives here in full. Losing it would be an accessibility regression
+ * that no test in this repository catches.
+ */</span>
+.claim--withheld, .claim--withheld *,
+.queue__row,      .queue__row *,
+.withheld,        .withheld * {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+  text-shadow: none;
+  filter: none;
+  transform: none;
+  transition: none;
+  animation: none !important;
+  will-change: auto;
+}
+
+.claim--withheld, .queue__row, .withheld { cursor: default; }
+
+<span class="c">/* There is deliberately no :hover, :active or :focus-within rule for any
+   of the three. Do not add one that "does nothing" -- an empty rule is an
+   invitation, and the next person will fill it. */</span></pre></div>
+
+<h3>Why this encodes the product rather than decorating it</h3>
+
+<p>The usual hierarchy gives the most important thing the most treatment. This inverts it, and the
+inversion is the argument. Everything else on a Strata screen responds to a person: a card lifts, a chip
+fills, a panel slides, a pill springs, a masthead lets the page show through it. One surface does not.
+It does not respond to the cursor, it does not join the page-load sequence, it does not float, and it
+does not cast a shadow. It is the only place the interface has nothing to offer, which is precisely what
+the system is telling the reader: <em>we could not verify this, so we will not say it, and there is
+nothing here to make that easier to accept.</em></p>
+
+<p><span class="lbl">The test that keeps it the signature.</span> The withheld surface must be the
+stillest thing on any screen it appears on. If a second element ever competes — equally still and equally
+prominent — the second element gets motion, or it is cut. Nothing is added to the withheld surface to
+win the comparison.</p>
+
+<h2>Focus, and the ring that must not be lost</h2>
+
+<p>The focus ring is an <code>outline</code>, in every scheme, on every surface, glass included. The halo
+is an addition and may be lost without harm.</p>
+
+<div class="tok"><pre>:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+  <span class="c">/* The halo separates the ring from a busy or translucent backdrop. It is
+     a box-shadow, so the withheld surface drops it -- which is fine, because
+     that surface is opaque --surface-sunk and the ring already reads 6.1:1
+     against it in light and 10.6:1 in dark. Measured, not assumed. */</span>
+  box-shadow: 0 0 0 4px var(--focus-halo);
+}</pre></div>
+
+<p>Three rules for whoever builds this:</p>
+<ol>
+<li><strong>Never write <code>outline: none</code>.</strong> Not on a glass pane, not on a card, not to
+"clean up" a control. The existing <code>.tab:focus-visible { outline-offset: -2px }</code> stays, because
+the tab rail scrolls and an outset ring would be clipped at the first and last section.</li>
+<li><strong>Keep the ink-coloured ring on filled controls.</strong> <code>.btn--primary</code>,
+<code>.citation-chip</code> and <code>.skip</code> already switch <code>outline-color</code> to
+<code>--ink</code>, because an accent ring on an accent fill disappears. Any new filled control on glass
+joins that list.</li>
+<li><strong>Check the ring on G1, G2 and G3 before shipping, in both schemes.</strong> Tab to every
+control in the dock, the tour tip and the masthead. No test in this repository catches a lost ring.</li>
+</ol>
+
+<h2>Two layout consequences, both measured</h2>
+
+<h3>Sticky chrome needs an offset token, and three places must use it</h3>
+
+<p>Making the masthead sticky puts it over anything that scrolls beneath, including two things that are
+themselves positioned and one that is jumped to by anchor. All three break silently.</p>
+
+<div class="tok"><pre>.masthead { position: sticky; top: 0; z-index: 30; }
+
+<span class="c">/* The source panel already sticks. Without this it slides under the
+   masthead and the reader loses the top of the cited section. */</span>
+.split__aside { top: calc(var(--stuck) + var(--s4)); }
+
+<span class="c">/* Anchor targets. change.html gives every claim an id and links to it;
+   review.html jumps between sections. Without a scroll margin the anchor
+   lands behind the masthead and the reader sees the middle of the thing
+   they asked for. */</span>
+.claim, .tabpanel, .queue__row { scroll-margin-top: calc(var(--stuck) + var(--s4)); }</pre></div>
+
+<p>The review tab rail sticks below the masthead at <code>top: var(--stuck)</code> and takes G1 glass
+when it does. That page is 8,823px tall with nine sections; the rail is the only thing that tells a
+reader where they are, and today it leaves the screen 304px in.</p>
+
+<h3>The change page's dead column</h3>
+
+<p>Measured: 416px wide, 0px tall, on the screen the whole submission rests on. Collapse the track when
+no panel is open.</p>
+
+<div class="tok"><pre>.split:not(:has(.source-panel:not([hidden]))) {
+  grid-template-columns: minmax(0, 1fr);
+}</pre></div>
+
+<p><span class="lbl">The cost, stated rather than hidden.</span> Pressing the chip now reflows the grid
+in one frame. Do not transition <code>grid-template-columns</code> to smooth it — that animation is
+expensive, it janks, and it would drag the claim text sideways while someone is reading it. The panel's
+own 200ms fade covers the change. The alternative — floating the source panel over the claim as a G2
+pane — was rejected outright: the reader is comparing a quote against its source and the two must be
+visible at the same time, which is the entire reason the panel is beside the claim rather than in a
+modal. A browser without <code>:has()</code> keeps today's dead column and loses nothing else; the
+stylesheet already relies on <code>:has()</code> for the deliverable tripwire.</p>
+
+<h2>Where each rule goes</h2>
+
+<table>
+<tr><th>File</th><th>What it gains</th></tr>
+<tr><td><code>app/web/static/strata.css</code></td><td>Every token above; the paper reassignments; the
+settle keyframes; the glass rules for the masthead and the tab rail; the replaced reduced-motion block;
+the signature block, placed last in the file.</td></tr>
+<tr><td><code>app/web/static/clerk.css</code></td><td>G2 on the dock head, pills row and ask row; paper
+on the transcript; the dock-in animation; the inset and <code>--r-glass</code> above 40rem.
+<strong>No hex, no <code>rgba(</code>, <code>var()</code> only</strong> — a test enforces it.</td></tr>
+<tr><td><code>app/web/static/tour.css</code></td><td>G3 on the tip. Same prohibition, same test. The tip
+still carries no position of its own; <code>tour.js</code> sets those.</td></tr>
+<tr><td><code>app/web/static/workflow.css</code></td><td>Nothing, unless the editor's side panel becomes
+a sheet. The canvas is a diagram of a route, which is record, and record is paper.</td></tr>
+<tr><td>templates</td><td>Nothing required. The <code>&lt;style&gt;</code> block in
+<code>change.html</code> lines 29&ndash;32 says it belongs in <code>strata.css</code>; whoever opens that
+file should move it.</td></tr>
+</table>
+
+<h2>Critique of this plan, before it is handed on</h2>
+
+<p>The client has rejected templated work. So: what would a generic answer to "make it look Mac-like"
+produce, and does any part of this arrive at the same place? Six checks, and three of them changed
+something.</p>
+
+<table>
+<tr><th>The generic move</th><th>Where this plan lands</th></tr>
+
+<tr><td><span class="lbl">Frosted cards everywhere.</span></td>
+<td><strong>Rejected, and the direction was tightened.</strong> Glass sits on chrome only. The brief lists
+"project cards on hover" as glass and <strong>I am declining the <code>backdrop-filter</code> there</strong>:
+what sits behind a project card is flat <code>--bg</code>, and a blur of a flat colour is
+indistinguishable from a tint at roughly ten times the cost. The card gets <code>--shadow-3</code> and a
+one-pixel lift, which is the part of the effect that was doing the work.</td></tr>
+
+<tr><td><span class="lbl">A purple-to-blue mesh gradient behind everything.</span></td>
+<td><strong>Rejected twice over.</strong> No third hue: the five new values are white, two cool greys, a
+blue-black and a near-white, all inside the family the greys already occupy. And no gradient behind the
+page: a gradient changes the apparent colour of the paper as the reader scrolls, and for a product whose
+argument is exact quotation, a substrate that shifts under the text is a small continuous lie. The page
+floor stays flat <code>--bg</code>.</td></tr>
+
+<tr><td><span class="lbl">Spring-in-on-scroll, everywhere.</span></td>
+<td><strong>Rejected.</strong> One page-load sequence, three micro-interactions, one spring, and
+<em>zero</em> scroll-triggered motion. The strongest line in the plan is the one about numbers: a count
+that animates from zero shows a false value for 800ms, and these counts are findings withheld.</td></tr>
+
+<tr><td><span class="lbl">12&ndash;16px radius on every surface.</span></td>
+<td><strong>Changed after writing it.</strong> The first draft kept <code>--r</code> at 3px everywhere,
+which is right for a filing and wrong for a 26rem floating rail — it looked unfinished against the Mac
+reference. The resolution is a boundary rather than a global: <strong>only G2, the free-floating pane,
+takes <code>--r-glass</code> at 10px</strong>, because it is the only surface that is genuinely a window.
+G1 spans the viewport and has no corners. G3 and all paper keep 3px. macOS windows have a radius; macOS
+text fields do not.</td></tr>
+
+<tr><td><span class="lbl">Translucent panel, long text on top of it.</span></td>
+<td><strong>Changed after looking at the dock screenshot.</strong> The first draft made the whole dock
+G2. The transcript is the longest prose in the product and it would have been the least readable text on
+screen. Now the dock's head, pills and ask row are glass and <strong>the transcript is paper</strong> —
+a vibrant frame around an opaque list, which is what Mail and Messages do and which turns the legibility
+problem into a non-problem instead of a trade-off.</td></tr>
+
+<tr><td><span class="lbl">Fade the whole page in on load, staggered from below.</span></td>
+<td><strong>Changed, and this was the important one.</strong> The first draft made band 3 the record
+itself. Then the parent's opacity composites onto every child, so the withheld claim would have faded in
+with everything else and the signature would have been quietly gone — with no line in the diff mentioning
+it. Band 3 now selects the <em>frame</em>: headings, rules, the tab rail. The record never animates. And
+that turned out to say something truer than the first version: the frame assembles around a document that
+was already there.</td></tr>
+</table>
+
+<p><span class="lbl">One more thing the critique changed.</span> The first draft revealed the signature at
+page load — the withheld claim would be the only element already at full opacity while everything else
+faded in. That is a two-second trick a reviewer can easily miss. The signature is now revealed
+<strong>by use</strong>: move a cursor across a change page and every surface answers — the card lifts,
+the chip fills, the panel slides — until the cursor reaches the withheld claim and nothing happens at
+all. That is harder to miss and it survives a reader who arrives by anchor link, by back button, or with
+reduced motion switched on, none of which ever see a page-load sequence.</p>
+
+<h2>What I am not sure about</h2>
+
+<p>Four things, said here rather than discovered at the panel.</p>
+
+<ol>
+<li><strong>Dark glass may be too subtle to be worth the cost.</strong> <code>--glass-solid</code> at
+<code>#182328</code> against a <code>#0c1316</code> page is a real step, but a 20px blur of a dark, mostly
+empty page returns something close to a flat tint. If it reads as a plain panel on a real dark screen,
+the honest move is to drop <code>backdrop-filter</code> in dark entirely and keep the tint, the edge and
+the shadow. That would cost nothing visible and save a compositor pass. Nobody has looked at this on an
+actual display in dark yet.</li>
+<li><strong>The 41% dead column may want a better answer than collapsing.</strong> Collapsing removes the
+waste but leaves the claim column at 58ch inside a 76rem shell, so the screen is still mostly margin. A
+second version might put the change's own metadata — materiality, obligations touched, the reviewer — in
+that column permanently, so it is never empty and the grid never reflows. That is a product decision, not
+a CSS one, and it is out of scope here.</li>
+<li><strong>Reduced motion via <code>transition: none !important</code> is blunt.</strong> It removes
+colour transitions on hover as well as movement, which is more than the preference strictly asks for.
+It is the reading the brief requires — remove, do not shorten — and it is defensible, but a person who
+set the preference for vestibular reasons has also lost a 120ms colour fade that would not have troubled
+them.</li>
+<li><strong>Nothing here has been opened on a handset.</strong> The 390px screenshots come from a
+headless Chromium at a fixed viewport. A phone has a real backdrop-filter cost, a real address bar that
+resizes the viewport, and a real thumb. The same caveat already stands at the foot of
+<code>strata.css</code> and it still stands.</li>
+</ol>
+
+<h2>The checks before this is called done</h2>
+
+<ol>
+<li><code>.venv/bin/python -m pytest tests/ -q</code> is green at 1256. In particular
+<code>test_responsive.py</code>, <code>test_chat_surface.py</code> and <code>test_tour.py</code>, which
+guard fixed widths, the table scroll, the viewport tag and the no-hex rule in the two secondary sheets.</li>
+<li>Every glass rule has a solid declaration <em>outside</em> its <code>@supports</code> block. Grep for
+<code>backdrop-filter</code> and confirm each one has a sibling <code>background</code> above it.</li>
+<li>With <code>backdrop-filter</code> forced off in devtools, no text anywhere drops below 4.5:1.</li>
+<li>Tab through the masthead, the dock, the tour tip and a queue row in both schemes. Every stop shows a
+visible ring.</li>
+<li>With <code>prefers-reduced-motion: reduce</code>, nothing moves — not shortened, not faint, nothing.</li>
+<li>Print the change page. The withheld claim still reads as a refusal in black and white: broken rule,
+hatch, reason in the statement position, no claim text anywhere in the markup.</li>
+<li>Hover across the change page. Everything answers except one surface.</li>
+</ol>
 
 </body>
 </html>

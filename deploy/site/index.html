@@ -146,6 +146,7 @@ footer a{color:var(--muted)}
   .creds table{display:block;width:max-content;min-width:100%;max-width:100%;overflow-x:auto}
 }
 </style>
+<link rel="stylesheet" href="/site.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -205,6 +206,9 @@ footer a{color:var(--muted)}
     </div>
 
     <figure class="film">
+      <!-- The frame is glass; the transcript below it is paper. The wrapper
+           exists only to carry that frame, and touches nothing on the video. -->
+      <div class="film__frame">
       <video controls muted loop playsinline preload="metadata"
              poster="/strata-poster.jpg" width="1280" height="800"
              aria-describedby="film-transcript">
@@ -213,6 +217,7 @@ footer a{color:var(--muted)}
         <p>Your browser will not play this video.
         <a href="/strata-demo.mp4">Download it instead</a>, or read what it shows below.</p>
       </video>
+      </div>
       <figcaption id="film-transcript">
         <p><b>What it shows, for anyone who would rather read it.</b> The project board, with each
         line of work carrying its open questions and its next re-run. A proceeding holding three

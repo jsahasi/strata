@@ -34,6 +34,27 @@ class DocumentVersion(Base):
     source_text: Mapped[str] = mapped_column(Text)
     source_sha256: Mapped[str] = mapped_column(String(64))
 
+    # Where this text came from, when it is known. ALL FIVE PROVENANCE COLUMNS
+    # ARE NULLABLE AND THAT IS THE POINT: the synthetic corpus has no URL and
+    # must not be given a fabricated one, so a screen can tell "psc.ky.gov on
+    # this date" apart from "this is a fixture and there is nowhere to send
+    # you". The argument for each, and for filing_date being text, is in the
+    # SOURCE PROVENANCE block at the foot of this file.
+    #
+    # THE FIFTH, source_retrieved_at, IS ATTACHED AT THE FOOT OF THIS FILE AND
+    # NOT HERE. It needs UtcDateTime, which is defined below this class, and
+    # moving that definition up would reorder a file three other agents are
+    # writing to today. It is a real column on this table; look for it there.
+    source_url: Mapped[str | None] = mapped_column(String(1024), nullable=True)
+    filer: Mapped[str | None] = mapped_column(String(512), nullable=True)
+    # An ISO date exactly as the commission published it. Not a timestamp.
+    filing_date: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    # NOT named source_id: a `sources` table already exists and answers a
+    # different question. See the foot of this file.
+    source_registration_id: Mapped[str | None] = mapped_column(
+        ForeignKey("source_registrations.id"), nullable=True, index=True
+    )
+
 
 class Passage(Base):
     __tablename__ = "passages"
@@ -2708,3 +2729,394 @@ Index("ix_invitations_company_status", Invitation.company_id, Invitation.status)
 # than a literal True at every call site, which is what a half-migrated
 # corpus looks like and why section 27 exists.
 # ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
+# THE SOURCE REGISTRY: where filings would come from, and the honest admission
+# that nothing comes from anywhere yet
+#
+# An administrator registers a place the product could pull filings from. Four
+# kinds: a commission's public docket system, the company's own document store,
+# a customer system behind a key, and an MCP server.
+#
+# THE TABLE IS NOT CALLED Source AND THE CLASS IS NOT CALLED Source, BECAUSE
+# BOTH NAMES ARE TAKEN. `sources` already exists, six hundred lines up, and it
+# answers a different question: which document a finding's evidence was drawn
+# from, internal or external, with a version_id when it was ingested. That is
+# provenance for one piece of evidence. This is a standing registration of a
+# system. Reusing the name would have given one word two meanings in one
+# module, and SOURCE_KINDS -- ("internal", "external") -- would have sat two
+# imports away from a tuple of connector kinds, ready for whichever agent typed
+# it from memory. So the vocabulary here is spelt out at length on purpose:
+#
+#     Source                     evidence origin      SOURCE_KINDS
+#     SourceRegistration         a registered system  SOURCE_REGISTRATION_KINDS
+#
+# STATUS IS NOT enabled, AND THE WHOLE TABLE TURNS ON THE DIFFERENCE. enabled is
+# what the administrator wants: leave this source alone for now. status is what
+# is true: whether anything has ever reached it. A source can be enabled and
+# unreachable, disabled and connected, or -- today, always -- enabled and
+# NOT_IMPLEMENTED. Folding the two into one column would mean a registry that
+# renders every enabled row as if it were scanning, which is the exact lie this
+# codebase keeps catching.
+#
+# NOT_IMPLEMENTED IS THE HONEST VALUE AND TODAY IT IS THE ONLY CORRECT ONE FOR
+# EVERY KIND. NOTHING IN THIS PRODUCT FETCHES ANYTHING. ScheduledRun exists,
+# with cadences and a next_run_at, and there is no fetcher behind it. A row
+# saying "never_tried" would imply somebody could try; the truth is that no code
+# path exists to try with. FETCHABLE_SOURCE_KINDS below is that statement in a
+# form a screen can read, and it is EMPTY. When a fetcher lands, one tuple gains
+# one kind, and initial_status_for_kind starts returning never_tried for it. One
+# line to change, in one place, rather than a literal at every call site -- the
+# argument section 27 of docs/best-practices.html makes, and the same shape as
+# sharing_enabled() at the foot of the block above.
+#
+# A SECRET IS NOT STORED. IT IS REFERENCED BY NAME, AND THAT IS A DIFFERENT
+# DECISION FROM THE ONE LoginSession AND ShareLink MADE.
+#
+# Those two hash their tokens, and hashing is right there because the token
+# arrives from outside and the only operation performed on it is comparison: a
+# visitor presents a token, the product hashes it and looks for a match. It
+# never needs the original back.
+#
+# An API key for a customer's REST endpoint is the opposite. The product must
+# PRESENT it, outbound, in a header. A SHA-256 of it cannot be presented -- it
+# would authenticate nothing. So hashing here is not a stronger choice than
+# storing it, it is a useless one, and a column called api_key_hash on this
+# table would have been security theatre that broke the feature it guarded.
+#
+# The alternative to hashing is therefore not "store it in plaintext". It is
+# DO NOT HOLD IT AT ALL. credential_ref holds the NAME of an environment
+# variable or secret-manager entry -- "STRATA_SOURCE_ACME_KEY" -- and the
+# fetcher that does not yet exist will resolve that name at call time. The
+# database never contains the key, so a database read, a backup, a screenshot
+# of the admin registry and a support export all hand over nothing. Rotation
+# happens where secrets are rotated, not by editing a row here.
+#
+# WHAT THAT CONCEDES. Whoever can write this row can point it at any secret the
+# process can read, so credential_ref is a capability and not merely a label. It
+# is admin-gated for that reason. The write layer should also refuse a name that
+# is not on an allow-list of prefixes; nothing in the schema can express that,
+# and saying so beats implying it is covered.
+#
+# A SECRET NEVER GOES IN config EITHER, AND THAT IS ENFORCED RATHER THAN ASKED.
+# config is rendered to the admin registry screen. A key pasted into it would
+# round-trip to a browser and into whatever logs that page's responses. The
+# check constraint below is deliberately blunt: it refuses any config whose
+# serialised text contains one of CONFIG_FORBIDDEN_SUBSTRINGS, which will
+# occasionally refuse an innocent base_url containing the word "token". A loud
+# refusal on a rare legitimate config is a better failure than a quiet leak of a
+# live credential, and the write layer should check the same tuple first so the
+# person gets a sentence instead of an IntegrityError.
+#
+# THE PERMISSION. This registry is gated on user.manage, which admin already
+# holds and no other role does. THAT IS A REUSE AND IT IS NOT AN EXACT FIT:
+# PERMISSION_DESCRIPTIONS reads "Create users and grant or revoke their roles",
+# which does not describe registering a data source. The exact code is
+# source.manage, and it could not land here because a code in PERMISSION_CODES
+# that no role grants fails tests/test_identity.py, and the grid that grants it
+# lives in app/state/identity.py, which this change does not own. Adding half of
+# it would have turned the suite red for the three agents working beside this
+# file -- principle 27 again, a vocabulary half-migrated is worse than one not
+# migrated. SOURCE_REGISTRY_PERMISSION below is the single name to gate on, so
+# the day source.manage lands, one constant changes and no call site does. The
+# handoff naming the exact lines is in the report that accompanied this change.
+#
+# AUDIT. Registering, editing, enabling and disabling a source are all audited
+# writes, and app/state/audit.py has no ACTION_ constant that fits -- the
+# nearest is ACTION_THRESHOLD_CHANGED, which is a different setting. Four new
+# constants are needed there. This file does not own audit.py, so they are named
+# in the handoff rather than invented here under a second spelling.
+#
+# WHAT THIS SCHEMA DOES NOT ENFORCE. That two sources in one company have
+# distinct names; that config carries the keys a given kind actually needs
+# (a public_docket wants a docket and a base URL, an mcp_server wants an
+# endpoint, and one column cannot describe four shapes); that credential_ref
+# names something that exists. All are write-layer rules. The two the database
+# does enforce are the two that are expressible in columns: the kind is one of
+# four, and the status is one of four.
+# ---------------------------------------------------------------------------
+
+
+SOURCE_REGISTRATION_KIND_PUBLIC_DOCKET = "public_docket"
+SOURCE_REGISTRATION_KIND_INTERNAL_STORE = "internal_store"
+SOURCE_REGISTRATION_KIND_REST_API = "rest_api"
+SOURCE_REGISTRATION_KIND_MCP_SERVER = "mcp_server"
+
+# The four kinds, as the module tuple. NOT SOURCE_KINDS -- that name is taken
+# by the evidence table and means ("internal", "external").
+SOURCE_REGISTRATION_KINDS = (
+    SOURCE_REGISTRATION_KIND_PUBLIC_DOCKET,
+    SOURCE_REGISTRATION_KIND_INTERNAL_STORE,
+    SOURCE_REGISTRATION_KIND_REST_API,
+    SOURCE_REGISTRATION_KIND_MCP_SERVER,
+)
+
+# The product cannot fetch from this kind at all. Not a failure: a capability
+# that does not exist. Listed first because today it is every row.
+SOURCE_STATUS_NOT_IMPLEMENTED = "not_implemented"
+# Registered, fetchable in principle, and nothing has reached it yet.
+SOURCE_STATUS_NEVER_TRIED = "never_tried"
+# Something reached it and got an answer.
+SOURCE_STATUS_CONNECTED = "connected"
+# Something tried and could not. last_result says what happened, in words.
+SOURCE_STATUS_UNREACHABLE = "unreachable"
+
+SOURCE_STATUSES = (
+    SOURCE_STATUS_NOT_IMPLEMENTED,
+    SOURCE_STATUS_NEVER_TRIED,
+    SOURCE_STATUS_CONNECTED,
+    SOURCE_STATUS_UNREACHABLE,
+)
+
+# THE KINDS THE PRODUCT CAN ACTUALLY FETCH FROM. EMPTY, AND THAT IS ACCURATE.
+# No fetcher exists for any kind. A screen asks this tuple rather than assuming,
+# so the registry cannot render a row as if it were scanning. When the first
+# fetcher lands, add its kind here and nowhere else.
+FETCHABLE_SOURCE_KINDS: tuple[str, ...] = ()
+
+# One name to gate the registry on. Today it resolves to a permission that
+# exists and that only admin holds; see the block above for why it is not
+# source.manage yet, and why one constant is better than a literal at four call
+# sites when that changes.
+SOURCE_REGISTRY_PERMISSION = "user.manage"
+
+# Words that must never appear in a config blob, because config goes to a
+# screen. The check constraint below is built from this tuple so there is one
+# spelling, and the write layer should test the same tuple first to give a
+# person a sentence rather than a database error.
+CONFIG_FORBIDDEN_SUBSTRINGS = (
+    "api_key",
+    "apikey",
+    "password",
+    "passwd",
+    "secret",
+    "token",
+    "private_key",
+    "bearer",
+    "credential",
+)
+
+
+def initial_status_for_kind(kind: str) -> str:
+    """The status a newly registered source truthfully starts at.
+
+    Not a default on the column, and deliberately so. A column default is a
+    value a caller gets by never thinking about it, and the value here depends
+    on a fact about the product -- whether a fetcher exists for this kind --
+    that a default cannot consult. Today it consults FETCHABLE_SOURCE_KINDS,
+    finds it empty, and answers not_implemented for all four kinds.
+
+    This is the announcement in section 26's sense: the product is degrading to
+    "cannot fetch" and says so in the row, rather than writing never_tried and
+    letting a screen imply that a scan is pending.
+    """
+    if kind not in SOURCE_REGISTRATION_KINDS:
+        raise ValueError(
+            f"kind must be one of {', '.join(SOURCE_REGISTRATION_KINDS)}; "
+            f"got {kind!r}"
+        )
+    if kind not in FETCHABLE_SOURCE_KINDS:
+        return SOURCE_STATUS_NOT_IMPLEMENTED
+    return SOURCE_STATUS_NEVER_TRIED
+
+
+class SourceRegistration(Base):
+    """A place filings could come from, registered by an administrator.
+
+    A chosen string id -- SRC-0001 -- because the admin registry lists these
+    and links to them, the same choice ShareLink makes and for the same reason.
+
+    status AND enabled ARE TWO COLUMNS AND NEITHER IMPLIES THE OTHER. See the
+    block above. The pairing a reader should expect today on every row is
+    enabled=True with status=not_implemented, and a registry that cannot show
+    that pair honestly has not been built to the design.
+
+    last_scanned_at IS NULL UNTIL SOMETHING SCANS, which is never, so far. It is
+    never seeded with created_at. ScheduledRun.last_run_at makes the same choice
+    and states the reason: a source that has never been reached and one reached
+    an hour ago must not render alike, or a dead fetcher reads as a quiet week.
+    The interface says "never scanned" rather than leaving the field blank.
+
+    last_result IS PLAIN WORDS, not a code -- "the docket returned 403", "no
+    fetcher exists for this kind" -- following ScheduledRun.last_result. The
+    person reading it wants to know what happened and there is nothing to branch
+    on. A status code would need a lookup table that would then need to stay in
+    step with a vocabulary nobody owns.
+
+    THERE IS NO SECRET ON THIS ROW. credential_ref is the NAME of a credential,
+    never the credential. The long argument for that, and for why it differs
+    from LoginSession.token_hash, is in the block above.
+    """
+
+    __tablename__ = "source_registrations"
+
+    # SRC-0001. Appears in the admin registry's URLs. Not a secret.
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    company_id: Mapped[str] = mapped_column(String(64), index=True)
+
+    # What the administrator calls it. Shown in the registry.
+    name: Mapped[str] = mapped_column(String(256))
+
+    # One of SOURCE_REGISTRATION_KINDS. No default: which kind a source is
+    # decides what config means and what could ever fetch from it, and a caller
+    # that never chose must not be handed one by silence. Invitation.kind makes
+    # the same call.
+    kind: Mapped[str] = mapped_column(String(32))
+
+    # One of SOURCE_STATUSES. No default, for the same reason and one more:
+    # every default available here is a claim about reachability that the
+    # writer, not the column, has to be able to defend. Callers should take it
+    # from initial_status_for_kind().
+    status: Mapped[str] = mapped_column(String(32))
+
+    # How to reach it, per kind -- a docket number and a base URL, a store path,
+    # an endpoint. NEVER A CREDENTIAL; the constraint below refuses one. Empty
+    # by default, which is honest: nothing configured.
+    config: Mapped[dict] = mapped_column(JSON, default=dict)
+
+    # The NAME of an environment variable or secret-manager entry. NULL for the
+    # kinds that need no credential, and NULL is not a failure there. Never a
+    # key, a hash of a key, or anything a screen must redact.
+    credential_ref: Mapped[str | None] = mapped_column(String(128), nullable=True)
+
+    created_by_user_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
+    created_at: Mapped[datetime] = mapped_column(UtcDateTime, default=_utcnow)
+
+    # NULL until something scans. Never seeded with created_at. See above.
+    last_scanned_at: Mapped[datetime | None] = mapped_column(
+        UtcDateTime, nullable=True
+    )
+    # Plain words. NULL means nothing has happened, which is not the same as
+    # something happening and going fine.
+    last_result: Mapped[str | None] = mapped_column(String(256), nullable=True)
+
+    # What the administrator wants. Not what is true -- that is status.
+    enabled: Mapped[bool] = mapped_column(Boolean, default=True)
+
+    __table_args__ = (
+        CheckConstraint(
+            "kind IN ("
+            + ", ".join(f"'{name}'" for name in SOURCE_REGISTRATION_KINDS)
+            + ")",
+            name="ck_source_registrations_kind_is_known",
+        ),
+        CheckConstraint(
+            "status IN (" + ", ".join(f"'{name}'" for name in SOURCE_STATUSES) + ")",
+            name="ck_source_registrations_status_is_known",
+        ),
+        # The one rule about secrets that columns can carry. Blunt on purpose:
+        # see the block above for what it costs and why that price is right.
+        CheckConstraint(
+            " AND ".join(
+                f"config NOT LIKE '%{word}%'" for word in CONFIG_FORBIDDEN_SUBSTRINGS
+            ),
+            name="ck_source_registrations_config_holds_no_secret",
+        ),
+    )
+
+
+# The registry screen: one company, its sources, newest concern first. Kind is
+# in the key because the screen groups by it -- the four kinds fail in different
+# ways and an administrator reads them apart.
+Index(
+    "ix_source_registrations_company_kind",
+    SourceRegistration.company_id,
+    SourceRegistration.kind,
+)
+# "What is switched on here" -- the read a fetcher would start from, if one
+# existed. It does not. ScheduledRun carries the same pair for the same screen.
+Index(
+    "ix_source_registrations_company_enabled",
+    SourceRegistration.company_id,
+    SourceRegistration.enabled,
+)
+
+
+# ---------------------------------------------------------------------------
+# SOURCE PROVENANCE ON A VERSION: the five columns added to DocumentVersion at
+# the head of this file, argued for here rather than there
+#
+# The columns are at the top because SQLAlchemy requires them inside the class.
+# The reasoning is here because that class is four lines long and every other
+# design argument in this file sits beside the table it concerns.
+#
+# THE PROBLEM. data/real/ holds 102 filings, each with a provenance JSON naming
+# source_url, docket, document_title, filing_date, filer and retrieved_at, and
+# scripts/ingest_real.py reads that file for a display line and throws the rest
+# away. So a claim drawn from Kentucky 2025-00113 cannot link back to the
+# Commission's own copy of the PDF it came from, which is the single thing a
+# regulatory reader wants from a citation: not our text, theirs.
+#
+# NULLABLE IS THE POINT, NOT A CONCESSION. The synthetic corpus has no URL, no
+# filer and no filing date, because no commission published it. Giving those
+# rows a plausible-looking URL would be the product fabricating provenance,
+# which is the one failure this codebase exists to refuse. NULL lets a screen
+# tell two states apart and say which:
+#
+#     "Retrieved from psc.ky.gov on 2026-08-04"      -- source_url is set
+#     "Synthetic fixture. There is nowhere to send you."  -- source_url is NULL
+#
+# A screen that renders the second as a dead link, or omits the line entirely,
+# has turned an honest absence into a silent one.
+#
+# filing_date IS TEXT AND NOT A TIMESTAMP, WHICH LOOKS LIKE SLOPPINESS AND IS
+# NOT. The provenance files carry "2025-11-05" and "2025-04-17": a date, with no
+# time and no zone, because a commission stamps a filing with a day. UtcDateTime
+# is the only temporal type in this file and it demands an aware instant, so
+# storing filing_date through it would mean inventing a time of day and a zone
+# that nobody filed at, and then rendering that invention back to a lawyer. The
+# column holds the ISO date exactly as published. Sorting still works, because
+# ISO dates sort as text. source_retrieved_at, by contrast, IS a real instant --
+# "2026-08-04T16:46:09Z" -- and takes UtcDateTime like every other timestamp
+# here.
+#
+# THE FOREIGN KEY IS CALLED source_registration_id AND NOT source_id, AND THE
+# RENAME IS DELIBERATE. `sources` already exists. A column named source_id
+# pointing at source_registrations, in a schema that also has a sources table,
+# is a trap that would be read wrong by the first person in a hurry -- and it
+# would still resolve, still join, and still be wrong. The longer name cannot be
+# misread.
+#
+# It is NULLABLE for three separate reasons, and only the first is obvious: the
+# synthetic corpus came from no registered system; the 102 real filings were
+# pulled by hand with curl before any registry existed, so they have a URL and a
+# retrieval time and no registration to point at; and a registration can be
+# deleted while the text it produced must survive. A version with a source_url
+# and a NULL source_registration_id is therefore a normal, expected row -- "we
+# know where this came from, no registered system brought it" -- and not a
+# broken one.
+#
+# WHAT IS STILL MISSING, AND IT IS NOT SMALL. scripts/ingest_real.py does not
+# write any of these columns yet. The schema can now carry provenance and the
+# ingest still drops it, so every row in a freshly built database has five NULLs
+# and the screens will honestly report having nowhere to send you. That file is
+# not owned by this change; the handoff names it.
+# ---------------------------------------------------------------------------
+
+
+# The fifth provenance column, attached here rather than in the class body.
+#
+# UtcDateTime is defined below DocumentVersion, and DocumentVersion is the first
+# class in this file. A column needing that type cannot be written in that class
+# body without moving the type definition up, and this file is being appended to
+# by three other agents today -- reordering it would be the kind of edit that
+# quietly loses somebody's table. SQLAlchemy supports attaching a mapped column
+# to a declarative class after the class is built, and this is that.
+#
+# WHAT IT COSTS, stated rather than hidden: the Mapped[...] annotation is gone,
+# so a type checker sees `datetime | None` on the other four and nothing on this
+# one. The runtime behaviour is identical -- same type, same nullability, same
+# aware-UTC guarantee on write. WHOEVER NEXT MOVES UtcDateTime ABOVE
+# DocumentVersion should delete these three lines and put the column back in the
+# class body where it belongs:
+#
+#     source_retrieved_at: Mapped[datetime | None] = mapped_column(
+#         UtcDateTime, nullable=True
+#     )
+#
+# It takes UtcDateTime and not text because it is a real instant --
+# "2026-08-04T16:46:09Z" in the provenance files -- and a naive timestamp in a
+# provenance record is a defect for exactly the reason that type's docstring
+# gives. filing_date is text because a filing date is a day, not an instant.
+DocumentVersion.source_retrieved_at = mapped_column(UtcDateTime, nullable=True)
