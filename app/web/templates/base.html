@@ -43,7 +43,7 @@
 {% set review_url = nav_review_url | default('/review', true) %}
 {% set screens = [
   ('projects', 'Projects', projects_url, true, ''),
-  ('proceedings', 'Proceedings', '/', true, ''),
+  ('proceedings', 'Proceedings', '/proceedings', true, ''),
   ('proceeding', 'This proceeding', proceeding_url, proceeding_url is not none,
    'Open a proceeding to reach this screen'),
   ('change', 'This change', change_url, change_url is not none,

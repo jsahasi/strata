@@ -300,7 +300,7 @@ def _pair_counts(
     return [(key, counts[key]) for key in ordered]
 
 
-@router.get("/", response_class=HTMLResponse)
+@router.get("/proceedings", response_class=HTMLResponse)
 def proceedings_index(request: Request) -> HTMLResponse:
     """What this company tracks, and where something has moved."""
     company_id = current_company_id()

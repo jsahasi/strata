@@ -322,7 +322,7 @@ def _context(company_id: str, page: ReviewPage, error: dict | None = None) -> di
     return context
 
 
-@router.get("/review", response_class=HTMLResponse)
+@router.get("/escalations", response_class=HTMLResponse)
 def review_queue(request: Request) -> HTMLResponse:
     """Everything held back, with the reason in plain words and the source."""
     company_id = current_company_id()
@@ -335,7 +335,7 @@ def review_queue(request: Request) -> HTMLResponse:
     return templates.TemplateResponse(request, "review.html", _context(company_id, page))
 
 
-@router.post("/review/{escalation_id}/resolve")
+@router.post("/escalations/{escalation_id}/resolve")
 def resolve_escalation(
     request: Request,
     escalation_id: str,
@@ -412,7 +412,7 @@ def resolve_escalation(
         raise HTTPException(status_code=404, detail="no such escalation") from None
 
     # 303, so a reload of the review page does not repost the decision.
-    return RedirectResponse(url="/review", status_code=303)
+    return RedirectResponse(url="/escalations", status_code=303)
 
 
 def _target(session, company_id: str, escalation_id: str) -> Escalation | None:

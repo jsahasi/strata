@@ -135,7 +135,7 @@
       {% endif %}
     </div>
 
-    <form class="queue__actions" method="post" action="/review/{{ item.escalation_id }}/resolve">
+    <form class="queue__actions" method="post" action="/escalations/{{ item.escalation_id }}/resolve">
       <p>
         <label class="label" for="who-{{ item.escalation_id }}">Your name</label><br>
         <input id="who-{{ item.escalation_id }}" name="reviewer" type="text" size="16" autocomplete="off">

@@ -25,7 +25,15 @@ from app.state.models import (
     Proceeding,
 )
 from app.web import STATIC_DIR, STATIC_URL_PATH
-from app.web.views import changes, proceedings, review
+from app.web.deps import install_auth
+from app.web.views import (
+    auth,
+    changes,
+    proceedings,
+    projects,
+    review,
+    review_centre,
+)
 
 app = FastAPI(title="Strata", docs_url=None, redoc_url=None)
 
@@ -35,9 +43,19 @@ app.mount(STATIC_URL_PATH, StaticFiles(directory=STATIC_DIR), name="static")
 
 # Screens, in the order an analyst meets them. No prefixes: each router owns its
 # own paths, and a prefix here would put the URLs in two files.
+app.include_router(auth.router)
+app.include_router(projects.router)
 app.include_router(proceedings.router)
 app.include_router(changes.router)
 app.include_router(review.router)
+app.include_router(review_centre.router)
+
+# The session guard, in front of all of them. Installed here rather than
+# decorated onto each route, so a screen added next month is protected by
+# existing rather than by somebody remembering. It lets through /login,
+# /healthz and the stylesheet; everything else without a session goes to the
+# login page. app/web/deps.py holds the list and the reasoning.
+install_auth(app)
 
 # Counted, in this order, into the health body.
 _TABLES = {
