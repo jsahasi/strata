@@ -110,16 +110,17 @@ def diff(before: list[PassageRef], after: list[PassageRef]) -> list[Change]:
     return changes
 
 
-def passage_refs(session, version_id: str) -> list[PassageRef]:
-    """Read a version's passages out of the store, in document order."""
-    from app.state.models import Passage
+def passage_refs(session, version_id: str, *, company_id: str) -> list[PassageRef]:
+    """Read a version's passages, in document order, scoped to one company.
 
-    rows = (
-        session.query(Passage)
-        .filter_by(version_id=version_id)
-        .order_by(Passage.ordinal)
-        .all()
-    )
+    company_id is keyword-only and has no default, so a caller cannot omit it by
+    accident and cannot pass it positionally into the wrong slot. Every read goes
+    through app.state.queries, which is the one place tenant scoping is enforced
+    and therefore the one place worth auditing.
+    """
+    from app.state.queries import passages_for_company
+
+    rows = passages_for_company(session, company_id, version_id)
     return [
         PassageRef(version_id, row.char_start, row.char_end, row.text) for row in rows
     ]
