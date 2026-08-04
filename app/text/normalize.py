@@ -17,15 +17,52 @@ job is to preserve value. NFKC is now applied selectively:
               squared unit glyphs, and canonical composition, so a letter
               written as base plus combining accent equals the single
               character a word processor would have produced.
-  not folded  characters whose decomposition is tagged <super>, <sub> or
-              <fraction>. Those are the three tags where folding rewrites a
-              number: a superscript two is a footnote marker, not a digit of
-              the number beside it, and U+00BD is a half, not the three
-              characters 1, fraction slash and 2.
+  not folded  characters tagged <super>, <sub> or <fraction>, and any
+              character whose folding begins with a decimal digit. The tags
+              cover position against a number: a superscript two is a footnote
+              marker, not a digit of the number beside it, and U+00BD is a
+              half, not the three characters 1, fraction slash and 2. The
+              digit test covers the rest by what folding does, not by which
+              tag a character happens to carry.
+
+              The tag list alone was wrong, and said so in a sentence calling
+              those three "the three tags where folding rewrites a number". A
+              circled digit is a footnote and enumeration marker in exactly
+              the way a superscript is, but it is tagged <circle>, so "20" and
+              a circled one folded to "201". A sweep of the code space found
+              150 such characters the tags missed: 99 tagged <compat>, of
+              which U+2488 DIGIT ONE FULL STOP is the plainest, and 51 tagged
+              <circle>. Testing the folded digit catches all 150 without
+              touching the <compat> forms that carry no number, so U+3392
+              still folds to MHz.
+
+              One exception: a character that is itself a decimal digit
+              (category Nd). A full-width two and a mathematical bold two are
+              the digit two in another face, so folding keeps the value they
+              already carried and "２０ MW" still matches "20 MW". Protecting
+              them would send a styling difference to review, and would also
+              contradict the full-width folding listed above, since Unicode
+              calls both Nd. This is a judgement, not a proof: a bold digit
+              used as a marker beside a plain number would fold wrongly. I
+              have not seen one in a filing, and I do not know of a way to
+              tell the two uses apart from the characters alone.
+
+              The digit test guards the left edge only, where a marker sits.
+              Twelve <square> unit glyphs fold to something ending in a digit
+              -- U+33A0 to "cm2" -- so a number to their right could close up.
+              Those are the squared units folded on purpose, and "cm2" run
+              against a following number is not text a filing contains.
 
   deleted     the soft hyphen U+00AD, unconditionally.
   rewritten   a hyphen or dash immediately followed by a line break, with any
-              whitespace after it, becomes a bare hyphen.
+              whitespace after it, becomes a bare hyphen. A line break here is
+              any of LF, CR, line tabulation, form feed, next line, U+2028 and
+              U+2029 -- not just CR and LF, which is what the set held while
+              this paragraph already said "a line break". The form feed is the
+              one that mattered: pdftotext writes it at a page boundary, so a
+              word broken across a page is the hyphenated word a paginated
+              filing is likeliest to contain, and it was the one case that
+              failed.
 
 PDF REALITY. Extracted PDF text carries soft hyphens and hyphenated line
 breaks, and both defeat exact matching. The hyphen at a line break is kept, not
@@ -56,6 +93,7 @@ normalized document looks like.
 import re
 import unicodedata
 from dataclasses import dataclass
+from functools import lru_cache
 
 SOFT_HYPHEN = "\u00ad"  # written as an escape: the character itself is invisible
 
@@ -77,15 +115,53 @@ _VALUE_BEARING_TAGS = ("<super>", "<sub>", "<fraction>")
 # Classification by the same expression that used to do the collapsing, so the
 # set of characters treated as whitespace cannot drift from `\s+`.
 _ONE_SPACE = re.compile(r"\s")
-_LINE_BREAKS = "\r\n"
+
+# Every character that ends a line, not just the two an ASCII text file uses.
+# The form feed is the one that mattered: pdftotext writes it at a page break,
+# so it is the break a paginated filing is guaranteed to contain. Each of these
+# is also whitespace under _ONE_SPACE, which it must be -- the hyphen rule
+# consumes a break only when a hyphen precedes it, and every other position
+# falls through to the whitespace path. A test pins that both ways.
+# Written as escapes for the same reason as the soft hyphen: on the page these
+# characters are invisible, or would break the line they are written on.
+_LINE_BREAKS = (
+    "\n"        # line feed
+    "\r"        # carriage return
+    "\v"        # line tabulation U+000B
+    "\f"        # form feed U+000C, the page break
+    "\u0085"    # next line
+    "\u2028"    # line separator
+    "\u2029"    # paragraph separator
+)
 
 
 def _is_space(char: str) -> bool:
     return _ONE_SPACE.match(char) is not None
 
 
+# The answer depends only on the character and the Unicode tables, and a
+# document draws on a few hundred distinct characters, so it is worth keeping.
+# This runs on both sides of every citation comparison, over whole filings.
+@lru_cache(maxsize=4096)
 def _carries_value(char: str) -> bool:
-    return unicodedata.decomposition(char).startswith(_VALUE_BEARING_TAGS)
+    """True when folding this character would rewrite a number.
+
+    Two ways a character qualifies. It carries a tag whose whole point is
+    position against a number -- superscript, subscript, fraction. Or its
+    folding begins with a decimal digit, so the digit would close up against a
+    number to its left: "20" and a circled one are a quantity and a footnote
+    marker, and NFKC alone turns them into "201".
+
+    The exception is a character that is already a decimal digit. A full-width
+    two and a mathematical bold two are the digit two wearing another face, and
+    folding them keeps the value they carried, so they fold.
+    """
+    if unicodedata.decomposition(char).startswith(_VALUE_BEARING_TAGS):
+        return True
+    if unicodedata.category(char) == "Nd":
+        return False
+    folded = unicodedata.normalize("NFKC", char)
+    return bool(folded) and unicodedata.category(folded[0]) == "Nd"
 
 
 def _fold(chunk: str) -> str:

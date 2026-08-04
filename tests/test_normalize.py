@@ -1,4 +1,6 @@
-from app.text.normalize import normalize, normalized_projection
+import unicodedata
+
+from app.text.normalize import _LINE_BREAKS, normalize, normalized_projection
 
 
 def test_folds_smart_quotes_to_ascii():
@@ -58,6 +60,52 @@ def test_a_hyphen_against_a_line_break_loses_the_break_and_keeps_the_hyphen():
     assert normalize("cost‑\ncausation") == "cost-causation"
 
 
+def test_every_break_a_paginated_filing_can_carry_joins_the_word():
+    # Regression. The break set was "\r\n", narrower than the rule it served.
+    # The form feed is the gap that mattered: pdftotext writes U+000C at a page
+    # boundary, so a word hyphenated across a page came out "cost- causation"
+    # and no citation spanning a page break could verify.
+    for name, break_char in (
+        ("line feed", "\n"),
+        ("carriage return", "\r"),
+        ("CRLF", "\r\n"),
+        ("line tabulation", "\v"),
+        ("form feed", "\f"),
+        ("next line", "\x85"),
+        ("line separator", "\u2028"),
+        ("paragraph separator", "\u2029"),
+    ):
+        assert normalize(f"cost-{break_char}causation") == "cost-causation", name
+        # With the indent an extractor leaves on the far side of the break.
+        assert normalize(f"cost-{break_char}    causation") == "cost-causation", name
+        # And with every dash, since a PDF emits more than the ASCII one.
+        assert normalize(f"cost‑{break_char}causation") == "cost-causation", name
+
+
+def test_a_break_character_away_from_a_hyphen_is_still_only_whitespace():
+    # The other direction. A character added to the break set must keep
+    # collapsing to a single space when no hyphen precedes it, or closing the
+    # page-break hole would open a hole in word separation.
+    for break_char in ("\n", "\r", "\v", "\f", "\x85", "\u2028", "\u2029"):
+        assert normalize(f"cost{break_char}causation") == "cost causation"
+        assert normalize(f"cost{break_char}{break_char}  causation") == "cost causation"
+        # Leading and trailing breaks are stripped, like any other whitespace.
+        assert normalize(f"{break_char}shall allocate{break_char}") == "shall allocate"
+        # A dash held off the break by a space is punctuation between words and
+        # keeps its spacing. The rule fires only when the break touches it.
+        assert normalize(f"cost - {break_char}causation") == "cost - causation"
+        assert normalize(f"cost -{break_char}causation") == "cost -causation"
+
+
+def test_the_break_set_and_the_whitespace_set_cannot_disagree():
+    # The invariant behind the two tests above, stated once. Every character the
+    # hyphen rule consumes as a break must also be whitespace, because the
+    # hyphen rule fires only when a hyphen precedes it and the whitespace path
+    # has to handle every other position.
+    for break_char in _LINE_BREAKS:
+        assert normalize(f"a{break_char}b") == "a b", repr(break_char)
+
+
 def test_a_true_word_break_is_not_rejoined():
     # This is the guess the module refuses to make. "demon-" at a line end is
     # more likely a broken word than a hyphenated one, and acting on "more
@@ -100,8 +148,76 @@ def test_still_folds_the_compatibility_forms_that_carry_no_value():
     assert normalize("résume") == normalize("résume")       # composition
 
 
+def test_a_circled_digit_is_a_marker_not_a_digit_of_the_number_beside_it():
+    # Regression. The rule used to name three decomposition tags, so a marker
+    # carrying any other tag folded into the number it marked. A circled digit
+    # is a footnote and enumeration marker in exactly the way a superscript is.
+    assert normalize("20①") == "20①"
+    assert normalize("20①") != "201"
+    assert normalize("⒈ The Utility shall") == "⒈ The Utility shall"
+    assert normalize("20⒈") != "201."
+    # Every marker that would close up against the number to its left, whatever
+    # tag it carries: circled, followed by a full stop, and two digits wide.
+    for marker in ("①", "⒈", "⑳", "⓪"):
+        assert normalize(f"20{marker}") == f"20{marker}", repr(marker)
+    assert normalize("20⑳") != "2020"
+
+
+def test_a_marker_that_cannot_close_up_against_a_number_still_folds():
+    # The boundary of the rule above, stated so nobody widens it by reflex. A
+    # parenthesized digit folds, because the bracket stands between the digit
+    # and the number to its left: "20⑴" becomes "20(1)", which is the text a
+    # plain keyboard would have typed and no quantity has changed. The rule
+    # protects against a digit closing up against a number, not against every
+    # marker that happens to contain a digit.
+    assert normalize("20⑴") == "20(1)"
+    assert normalize("⒜ rates") == "(a) rates"
+    # A circled ideograph folds for the same reason: it is not a digit.
+    assert normalize("20㊀") == "20一"
+
+
+def test_no_character_folds_into_the_number_beside_it():
+    # The class, not the three characters that exposed it. Any character whose
+    # folding begins with a decimal digit would glue that digit onto a number
+    # to its left. The one sanctioned exception is a character that is itself a
+    # decimal digit, where folding preserves the value it already carried.
+    leaks = []
+    for code_point in range(0x110000):
+        char = chr(code_point)
+        folded = unicodedata.normalize("NFKC", char)
+        if folded == char or not folded:
+            continue
+        if unicodedata.category(folded[0]) != "Nd":
+            continue
+        if unicodedata.category(char) == "Nd":
+            continue
+        if normalize(f"20{char}") != f"20{char}":
+            leaks.append((hex(code_point), unicodedata.name(char, "?"), folded))
+    assert not leaks, f"{len(leaks)} characters fold into a preceding number: {leaks[:5]}"
+
+
+def test_a_digit_written_in_another_font_is_still_that_digit():
+    # The deliberate other half, pinned so it cannot drift either. Unicode
+    # calls these decimal digits (category Nd), and the module already folds
+    # the full-width ones by design. A mathematical bold digit is the same
+    # claim in another skin, so it folds too, and "𝟐𝟎 MW" matches "20 MW".
+    assert normalize("２０ ＭＷ") == "20 MW"
+    assert normalize("𝟐𝟎 MW") == "20 MW"
+    assert normalize("20𝟏") == "201"
+
+
+def test_the_forms_that_touch_no_number_still_fold():
+    # Guard against over-correction. Widening the protection by value rather
+    # than by tag has to leave the compatibility forms that carry no digit
+    # exactly where they were.
+    assert normalize("30 ㎒") == "30 MHz"      # CJK compatibility unit
+    assert normalize("30 ㎡") == "30 m2"        # squared unit
+    assert normalize("the ﬁrst oﬀer") == "the first offer"
+    assert normalize("№ 5") == "No 5"
+
+
 def test_the_protected_forms_survive_a_second_pass():
-    for text in ("20²", "H₂O", "2½ cents", "½"):
+    for text in ("20²", "H₂O", "2½ cents", "½", "20①", "⒈ The Utility"):
         assert normalize(normalize(text)) == normalize(text)
 
 
