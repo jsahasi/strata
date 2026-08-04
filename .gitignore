@@ -4,3 +4,9 @@ __pycache__/
 .pytest_cache/
 strata.db
 .DS_Store
+
+# Secrets. Never commit. This repo goes public with history intact (task T24),
+# so anything committed here cannot be taken back by a later deletion.
+.env
+.env.*
+!.env.example
