@@ -1,0 +1,19 @@
+{
+  "jurisdiction": "North Carolina Utilities Commission (NCUC)",
+  "docket": "E-7 Sub 1329",
+  "filer": "Duke Energy Carolinas, LLC; Duke Energy Progress, LLC; Public Staff - North Carolina Utilities Commission; CIGFUR II; CIGFUR III; Carolina Utility Customers Association, Inc.",
+  "source_url": "https://starw1.ncuc.gov/NCUC/ViewFile.aspx?Id=506e991b-4b54-477f-8f13-4515e4bc0022",
+  "source_detail_page": "https://starw1.ncuc.gov/NCUC/PSC/PSCDocumentDetailsPageNCUC.aspx?DocumentId=c7f913ce-f52c-40d7-9a8d-8eeeeaa35f3d&Class=Filing",
+  "ncuc_document_number": "F-E-20251024-054",
+  "ncuc_record_document_id": "c7f913ce-f52c-40d7-9a8d-8eeeeaa35f3d",
+  "ncuc_file_id": "506e991b-4b54-477f-8f13-4515e4bc0022",
+  "document_title": "Agreement and Stipulation of Partial Settlement",
+  "filing_date": "2025-10-24",
+  "how_obtained": "Downloaded the PDF from the NCUC STAR document handler https://starw1.ncuc.gov/NCUC/ViewFile.aspx?Id=<file-guid>, which is the link the commission's own document-detail page points at. starw1.ncuc.gov sits behind a Cloudflare managed challenge that refuses plain HTTP clients (403 for curl and for the plain fetch tool), so the session was driven with a real Chrome browser under Playwright, which passes the challenge normally; the PDF bytes were then read out of that same browser session. Converted the PDF to text with pdfminer.six extract_text(). The text is saved exactly as pdfminer emitted it - no reflow, no de-hyphenation, no ligature or soft-hyphen repair, form feeds, margin line numbers, column-split Q/A markers and OCR noise all left in place.",
+  "corpus_note": "Multi-party settlement cross-filed in Docket E-7 Sub 1329 and Docket E-2 Sub 1380. Useful because a stipulation states what the parties agreed to change, which is a diff expressed in prose.",
+  "sha256": "5cd6b4ab567835c57b081028d93240ed5e0676c4a5a7ed0a1ac1123f1d4d8f45",
+  "bytes": 11913,
+  "source_pdf_sha256": "b7cce066dd74350712f5982d673af3945cb3ce56026d2f42f11c00144751743a",
+  "source_pdf_bytes": 741932,
+  "retrieved_at": "2026-08-04T17:13:51Z"
+}

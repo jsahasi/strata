@@ -1,0 +1,549 @@
+ 
+ 
+BEFORE THE 
+INDIANA UTILITY REGULATORY COMMISSION 
+VERIFIED PETITION OF NORTHERN INDIANA PUBLIC 
+SERVICE COMPANY LLC FOR (1) APPROVAL OF AND A 
+CERTIFICATE OF PUBLIC CONVENIENCE AND NECESSITY 
+FOR A FEDERALLY MANDATED ASH POND COMPLIANCE 
+PROJECT; (2) AUTHORITY TO RECOVER FEDERALLY 
+MANDATED COSTS INCURRED IN CONNECTION WITH 
+THE AS POND COMPLIANCE PROJECT; (3) APPROVAL OF 
+THE 
+ESTIMATED 
+FEDERALLY 
+MANDATED 
+COSTS 
+ASSOCIATED WITH THE ASH POND COMPLIANCE 
+PROJECT; (4) AUTHORITY FOR THE TIMELY RECOVERY 
+OF 80% OF THE FEDERALLY MANDATED COSTS 
+THROUGH RIDER 887 – ADJUSTMENT OF FEDERALLY 
+MANDATED COSTS AND APPENDIX I – FEDERALLY 
+MANDATED 
+COST 
+ADJUSTMENT 
+FACTOR 
+(“FMCA 
+MECHANISM”); (5) AUTHORITY TO DEFER 20% OF THE 
+FEDERALLY MANDATED COSTS FOR RECOVERY IN 
+NIPSCO’S NEXT GENERAL RATE CASE; (6) APPROVAL OF 
+SPECIFIC RATEMAKING AND ACCOUNTING TREATMENT; 
+(7) 
+APPROVAL 
+TO 
+AMORTIZE 
+THE 
+ASH 
+POND 
+COMPLIANCE PROJECT COSTS THROUGH 2032; (8) 
+APPROVAL OF ONGOING REVIEW OF THE ASH POND 
+COMPLIANCE PROJECT; ALL PURSUANT TO IND. CODE § 
+8-1-8.4-1 ET SEQ., § 8-1-2-19, § 8-1-2-23, AND § 8-1-2-42; AND, 
+TO THE EXTENT NECESSARY, APPROVAL OF AN 
+ALTERNATIVE REGULATORY PLAN PURSUANT TO IND. 
+CODE § 8-1-2.5-6.   
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+ 
+ 
+CAUSE NO. 45700 
+INDIANA OFFICE OF UTILITY CONSUMER COUNSELOR’S 
+ (Corrected) PUBLIC’S EXHIBIT NO. 2 
+TESTIMONY OF OUCC WITNESS 
+BRIAN A. WRIGHT 
+ 
+ September 9, 2022 
+ 
+ 
+Respectfully submitted, 
+________________________________ 
+Lorraine Hitz 
+Attorney No. 18006-29 
+Deputy Consumer Counselor 
+FILED 
+September 9, 2022
+INDIANA UTILITY  
+REGULATORY COMMISSION 
+Cause No. 45700 
+(Corrected) Public’s Exhibit No. 2 
+Page 1 of 7 
+ 
+TESTIMONY OF OUCC WITNESS BRIAN A. WRIGHT 
+CAUSE NO. 45700 
+NORTHERN INDIANA PUBLIC SERVICE COMPANY 
+ 
+Q: 
+Please state your name and business address.   
+1 
+A: 
+My name is Brian A. Wright, and my business address is 115 W. Washington St., 
+2 
+Suite 1500 South, Indianapolis, IN, 46204. 
+3 
+Q: 
+By whom are you employed and in what capacity? 
+4 
+A: 
+I am employed as a Utility Analyst II in the Electric Division for the Indiana Office 
+5 
+of Utility Consumer Counselor (“OUCC”). A summary of my qualifications can be 
+6 
+found in Appendix A. 
+7 
+Q: 
+What is the purpose of your testimony in this proceeding? 
+8 
+A: 
+I discuss Northern Indiana Public Service Company LLC’s (“NIPSCO”) request to 
+9 
+obtain a Certificate of Public Necessity and Convenience for costs related to the 
+10 
+closure and remediation of ash impoundments at the Michigan City Generation 
+11 
+Station (“Michigan City”) as part of its Ash Pond Compliance Project.  
+12 
+ 
+ 
+I address the regulatory requirements and the Indiana Department of 
+13 
+Environmental Management’s (“IDEM”) investigation process that led to the 
+14 
+decision to close and remediate the impoundments, and NIPSCO’s evaluation of 
+15 
+the alternative closure methods for the ash impoundments, closure by removal 
+16 
+(“CBR”) and closure in place (“CIP”). I recommend the Indiana Utility Regulatory 
+17 
+Commission (“Commission”) approve NIPSCO’s choice of CBR. 
+18 
+ 
+ 
+My testimony also supports the testimony of OUCC Witnesses Cynthia 
+19 
+Armstrong and Kaleb Lantrip.   
+20 
+Q: 
+What did you do to prepare for your testimony? 
+21 
+Cause No. 45700 
+(Corrected) Public’s Exhibit No. 2 
+Page 2 of 7 
+ 
+A: 
+I reviewed the Verified Petition, Direct Testimony and Exhibits submitted by 
+1 
+NIPSCO in this Cause and toured NIPSCO’s Michigan City ash impoundments. I 
+2 
+also reviewed documents from IDEM relating to the Michigan City ash 
+3 
+impoundments, the federal regulations on coal combustion residuals (“CCR”), and 
+4 
+pending federal rulemakings on CCR.  
+5 
+Q:  
+To the extent you do not address a specific item or adjustment, does this mean 
+6 
+you agree with those portions of NIPSCO’s proposals?  
+7 
+A:  
+No. Excluding any specific adjustments, issues or amounts NIPSCO proposes does 
+8 
+not indicate my approval of those adjustments, issues, or amounts. Rather, the scope 
+9 
+of my testimony is limited to the specific items addressed herein. 
+10 
+Q:  
+What are the Resource Conservation and Recovery Act (“RCRA”) (42 U.S.C. 
+11 
+§ 82) regulatory requirements applicable to NIPSCO’s Michigan City ash 
+12 
+impoundments? 
+13 
+A: 
+NIPSCO is required by a RCRA-based Corrective Action Agreed Order (“Agreed 
+14 
+Order”) with IDEM to develop closure and post-closure plans for five 
+15 
+impoundments at Michigan City, Primary #2 Pond, Boiler Slag Pond, Primary #1 
+16 
+Pond, Secondary #1 Pond, and Secondary #2 Pond. An IDEM inspection on 
+17 
+October 12, 2011 resulted in the Agreed Order, which found multiple areas of 
+18 
+concern on the Michigan City site.1 As a result of the inspection, IDEM and 
+19 
+NIPSCO agreed to a process for evaluating the risk posed by solid waste 
+20 
+management units (“SWMU”) and areas of concern (“AOC”), and to take 
+21 
+corrective actions necessary to prevent or mitigate any migration or releases of 
+22 
+ 
+1 IDEM Draft RCRA Facility Assessment, April 9, 2012 (IDEM Virtual File Cabinet (VFC) Document No. 
+65581933). 
+Cause No. 45700 
+(Corrected) Public’s Exhibit No. 2 
+Page 3 of 7 
+ 
+hazardous constituents from the SWMUs and AOC. NIPSCO consented to the 
+1 
+Agreed Order as an alternative to a Notice of Violation.2 
+2 
+ 
+ 
+The Agreed Order required NIPSCO to develop a RCRA Facility 
+3 
+Investigation (“RFI”) Work Plan for Michigan City. IDEM required NIPSCO to 
+4 
+conduct soil and ground water investigations to determine the extent of all releases 
+5 
+of hazardous waste and/or hazardous constituents for the ash impoundments. 
+6 
+NIPSCO was also required to perform a RCRA Corrective Measures Study 
+7 
+(“CMS”) to develop and evaluate alternatives for corrective action to prevent or 
+8 
+mitigate release of hazardous constituents from the ash impoundments. Based on 
+9 
+the results of the RFI and CMS, NIPSCO would thereafter implement IDEM- 
+10 
+approved corrective measures. The result was an amended Agreed Order requiring 
+11 
+NIPSCO to develop closure and post-closure plans for the five ash impoundments.3 
+12 
+The final Agreed Order required removal of the CCR material in the impoundments 
+13 
+down to one foot below the slag layer underlining each pond. NIPSCO must also 
+14 
+meet post-closure requirements which include monitoring and maintaining the 
+15 
+closure area over a thirty-year period and maintaining the exterior sheet pile along 
+16 
+Lake Michigan.4 
+17 
+Q: 
+What are the applicable requirements of the federal CCR rule? 
+18 
+A: 
+The CCR Rule sets multiple requirements and standards that utilities must meet in 
+19 
+operating and managing their CCR disposal units. CCR includes any solid waste 
+20 
+ 
+2 IDEM v. NIPSCO, Cause No. H-13872, October 21, 2013 (IDEM VFC Document No. 69102798). 
+3 Turman Direct, p. 9, ll. 2-18. 
+4 IDEM Approval of CCR Closure/Post-Closure Plan, March 10, 2021 (IDEM VFC Document No. 
+83125009). 
+Cause No. 45700 
+(Corrected) Public’s Exhibit No. 2 
+Page 4 of 7 
+ 
+products left over from the combustion or use of coal as an energy source. This 
+1 
+includes fly ash, bottom ash, boiler slag, and products resulting from the flue gas 
+2 
+desulfurization process. Owners or operators of CCR units that were still open and 
+3 
+had not yet begun closure or had a closure plan in place as of October 19, 2015, the 
+4 
+effective date of the rule, are subject to the requirements. Requirements for weekly 
+5 
+and annual inspections, groundwater monitoring, vegetation management, 
+6 
+corrective action for leaking or leached units, plans for closure and post-closure 
+7 
+care, recordkeeping, and reporting certain data to the public through a dedicated 
+8 
+website apply to both types of units. However, surface impoundments that cannot 
+9 
+meet structural stability requirements, fail locational requirements, or demonstrate 
+10 
+they impact groundwater, will be forced to close.  
+ 
+11 
+ 
+ 
+Primary Settling Pond No. 2 and the Boiler Slag Pond are both subject to 
+12 
+the CCR rule since they were receiving waste as of October 19, 2015. The other 
+13 
+three impoundments are not subject to the rule since they were no longer receiving 
+14 
+waste at that time. 
+15 
+Q: 
+Are the ash pond closures necessary? 
+16 
+A: 
+Yes. The Agreed Order requires the closure of all five ponds. In addition, the federal 
+17 
+CCR rule requires closure of the Primary Settling Pond No. 2 and the Boiler Slag 
+18 
+Pond because the bottoms of these ponds do not meet the minimal required distance 
+19 
+from the ground water table, and also because the ground water monitoring has 
+20 
+demonstrated an impact to ground water from the impoundments. 
+21 
+Q: 
+Is the Ash Pond Compliance Project a federally mandated project? 
+22 
+Cause No. 45700 
+(Corrected) Public’s Exhibit No. 2 
+Page 5 of 7 
+ 
+A: 
+Yes. Closure of the five surface impoundments is required under the federal CCR 
+1 
+rule and the IDEM Agreed Order. The Agreed Order was created under IDEM’s 
+2 
+authority to implement RCRA corrective actions under Ind. Code art. 13-19 and 
+3 
+329 Ind. Admin. Code 3.1. The closure is also required by the standards of the 
+4 
+federal CCR rule. Based on Commission findings in similar causes, these 
+5 
+requirements constitute a federally mandated requirement under I.C. ch. 8-1-8.4. 
+6 
+Q: 
+Does the OUCC agree with the closure alternative NIPSCO selected? 
+7 
+A: 
+Yes. Based on the requirements of the federal CCR rule and the IDEM Agreed 
+8 
+Order, NIPSCO has two major options for closure of the five ash ponds: CIP and 
+9 
+CBR.  CIP would involve dewatering the ash ponds and installing an impermeable 
+10 
+cap over the ash impoundments. Under this approach, NIPSCO would incur post-
+11 
+closure costs from maintaining the cover and a groundwater monitoring. Due to the 
+12 
+shallow ground water table in the area (almost equal with the level of Lake 
+13 
+Michigan), this approach would pose a high risk of additional contamination from 
+14 
+CCR. As a result, NIPSCO would also need to install and maintain a slurry wall to 
+15 
+allow for pumping and treatment of any contaminated groundwater.5 NIPSCO 
+16 
+estimated the closure costs for the CIP alternative to be $37.2 million.6 
+17 
+CBR would involve excavating the CCR from the five ash ponds and 
+18 
+shipping the wastes to the regulated landfill located at the Schahfer Generating 
+19 
+Station. Clean fill would then be placed in the impoundments and properly graded. 
+20 
+The former impoundment areas and a ground water monitoring system would need 
+21 
+ 
+5 Turman Direct, p. 1, ll. 5-8. 
+6 Ridge Direct, Attachment 3-E.  
+Cause No. 45700 
+(Corrected) Public’s Exhibit No. 2 
+Page 6 of 7 
+ 
+to be maintained after closure. Since the CCR is being removed from the site and 
+1 
+placed in a lined landfill, this alternative poses a significantly lower risk of future 
+2 
+contamination and additional cleanup costs than CIP. The estimate for closure costs 
+3 
+under CBR is $26.1 million.7  
+4 
+I recommend the Commission approve NIPSCO’s CBR plan since this 
+5 
+alternative is less costly and poses less risk of future contamination and additional 
+6 
+cleanup being required.  
+7 
+Q: 
+Do NIPSCO’s cost estimates seem reasonable? 
+8 
+A: 
+Yes. NIPSCO used a Class 3 (Association for the Advancement of Cost 
+9 
+Engineering Cost Estimate Classification System) estimate to calculate closure 
+10 
+costs under the CBR and CIP scenarios. A cost estimate range of -10% to +30% 
+11 
+was provided for each scenario, which is typically used when preparing funding 
+12 
+requests. Once NIPSCO secured a contract with its contractor, Charah, LLC, for 
+13 
+the majority of the work, NIPSCO revised the cost estimate to $40,044,000 
+14 
+($36,112,000 in direct costs and $3,932,000 in indirect costs). This estimate is 
+15 
+classified as Class 2, which has an accuracy range of -5% to +20%.  
+16 
+Q: 
+Does this conclude your testimony? 
+17 
+A: 
+Yes.  
+ 
+18 
+ 
+7 Ridge Direct, Attachment 3-D. 
+Cause No. 45700 
+(Corrected) Public’s Exhibit No. 2 
+Page 7 of 7 
+ 
+APPENDIX A 
+Q: 
+Summarize your professional background and experience. 
+1 
+A: 
+I graduated from Beloit College in 1997 with a Bachelor of Arts degree in Biology. 
+2 
+I worked for nine years as a policy director with the Hoosier Environmental 
+3 
+Council. I actively worked on state and federal rulemakings in regard to coal 
+4 
+combustion residuals (CCR) and mercury emissions from power plants. I graduated 
+5 
+from Indiana University, Bloomington in May 2010 with a Master of Public Affairs 
+6 
+degree and a Master of Science degree in Environmental Science. During graduate 
+7 
+school, I was a consultant for EarthJustice and Citizens Coal Council and worked 
+8 
+to identify ground and surface water contamination at CCR disposal sites. I served 
+9 
+as a graduate assistant for a toxicology course offered at the School of Public and 
+10 
+Environmental Affairs. I worked for nine years as an environmental manager in the 
+11 
+Indiana Department of Environmental Management’s Office of Air Quality.  I have 
+12 
+been employed by the OUCC since January 2022.  
+13 
+Q: 
+Describe some of your duties at the OUCC. 
+14 
+A: 
+I review and analyze utilities’ requests and file recommendations on behalf of 
+15 
+consumers in utility proceedings.  Depending on the case at hand, my duties may 
+16 
+also include analyzing state and federal regulations, evaluating rate design and 
+17 
+tariffs, examining books and records, inspecting facilities, and preparing various 
+18 
+studies. Since my expertise lies in environmental science and policy, I assist in 
+19 
+many cases where environmental compliance is an issue.    
+20 
+Q: 
+Have you previously provided testimony to the Indiana Utility Regulatory 
+21 
+Commission (IURC)? 
+22 
+A: 
+Yes. 
+23 
+AFFIRMATION 
+ 
+I affirm, under the penalties for perjury, that the foregoing representations are true. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Brian A. Wright 
+ 
+Utility Analyst II 
+ 
+Indiana Office of Utility Consumer Counselor 
+ 
+Cause No. 45700 
+NIPSCO, LLC 
+ 
+Date:  September 9, 2022 
+ 
+2 
+ 
+ 
+CERTIFICATE OF SERVICE 
+ 
+This is to certify that a copy of OUCC (Corrected) Public’s Exhibit No. 2 Testimony of 
+OUCC Witness Brian A. Wright has been served upon the following parties of record in the 
+captioned proceeding by electronic serve on September 9, 2022. 
+ 
+Petitioner-NIPSCO 
+Robert Heidorn 
+Bryan Likins 
+Debi McCall 
+NIPSCO, LLC 
+rheidorn@nisource.com 
+blikins@nisource.com 
+demccall@nisource.com 
+ 
+Intervenor-IG 
+Todd A. Richardson 
+Joseph P. Rompala 
+LEWIS-KAPPES, P.C. 
+trichardson@lewis-kappes.com 
+jrompla@lewis-kappes.com 
+ 
+ 
+Intervenor-CAC 
+Jennifer A. Washburn 
+CITIZENS ACTION COALITION 
+jwashburn@citact.org 
+ 
+Copy to: 
+Reagan Kurtz 
+rkurtz@citact.org 
+ 
+ 
+ 
+ 
+__________________________________ 
+Lorraine Hitz 
+Deputy Consumer Counselor 
+ 
+ 
+ 
+ 
+INDIANA OFFICE OF UTILITY CONSUMER COUNSELOR 
+PNC Center 
+115 West Washington Street, Suite 1500 South 
+Indianapolis, Indiana 46204 
+317-232-2494   Main Office 
+317-232-2775   Lorraine’s Direct Line 
+317-232-5923   Facsimile 
+infomgt@oucc.in.gov    

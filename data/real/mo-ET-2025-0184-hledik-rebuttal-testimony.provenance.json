@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Missouri",
+  "commission": "Missouri Public Service Commission",
+  "docket": "ET-2025-0184",
+  "proceeding": "In the Matter of the Application of Union Electric Company d/b/a Ameren Missouri for Approval of New Modified Tariffs for Service to Large Load Customers",
+  "how_obtained": "Found the filing through the Missouri EFIS case search. The search form at /Case/Search posts with an ASP.NET antiforgery token, so I fetched that page with a cookie jar, read the token out of the HTML, and POSTed SubmissionNumber=ET-2025-0184 with IsIndividualFilingSearch=true. The JSON reply carries a results grid of /Case/FilingDisplay/<id> links; each of those pages lists its attachments as /Document/Display/<id>, which serves the PDF publicly with no login. Downloaded the PDF with curl and extracted text with PyMuPDF sorted-block extraction (page.get_text('text', sort=True)), pages joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://efis.psc.mo.gov/Document/Display/848397",
+  "efis_filing_url": "https://efis.psc.mo.gov/Case/FilingDisplay/628890",
+  "document_title": "Rebuttal Testimony of Ryan Hledik",
+  "filing_date": "2025-09-05",
+  "filer": "Evergy Metro, Inc. / Evergy Missouri Metro / Evergy Missouri West",
+  "witness": "Ryan Hledik (The Brattle Group)",
+  "document_type": "Rebuttal testimony with schedules",
+  "pages": 72,
+  "version_role": "standalone",
+  "notes": "This is the cross-jurisdiction comparison document. It sets Ameren's and Evergy's Missouri large-load proposals side by side in Tables 1, 2 and 3, and cites large-load constructs approved in other states as footnoted authority, including the NV Energy Clean Transition Tariff (Schedule CTT, Advice Letter No. 547-E) and the AEP Indiana Michigan Power large load tariff from Indiana Cause No. 46097. Full margin line numbers and Q/A markers survive extraction.",
+  "sha256": "9c15b03bc627ec77e821dd76d33480f5756849a81e70f0c092fd193b8ec087c9",
+  "bytes": 184810,
+  "retrieved_at": "2026-08-04T16:54:01Z",
+  "source_pdf_sha256": "2abd0b2cdb615e84be0d745f0f998705ed0b69f7af83dd3416ba62900671d715",
+  "source_pdf_bytes": 1751151
+}

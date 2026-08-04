@@ -1,0 +1,19 @@
+{
+  "jurisdiction": "North Carolina Utilities Commission (NCUC)",
+  "docket": "E-7 Sub 1329",
+  "filer": "Duke Energy Carolinas, LLC",
+  "source_url": "https://starw1.ncuc.gov/NCUC/ViewFile.aspx?Id=53a5cc49-94bc-4e55-a534-2ad1a534fde2",
+  "source_detail_page": "https://starw1.ncuc.gov/NCUC/PSC/PSCDocumentDetailsPageNCUC.aspx?DocumentId=4ce67d78-181f-469d-b209-3115dc721fa2&Class=Filing",
+  "ncuc_document_number": "F-E-20251120-080",
+  "ncuc_record_document_id": "4ce67d78-181f-469d-b209-3115dc721fa2",
+  "ncuc_file_id": "53a5cc49-94bc-4e55-a534-2ad1a534fde2",
+  "document_title": "DEC Direct Testimony & Exhibits of M. Abernathy, L. Bateman & R. Farmer, K. Bowman, J. Byrd, S. Caldwell, M. Callahan, J. Coyne, M. Culbreth, and B. Fogg",
+  "filing_date": "2025-11-20",
+  "how_obtained": "Downloaded the PDF from the NCUC STAR document handler https://starw1.ncuc.gov/NCUC/ViewFile.aspx?Id=<file-guid>, which is the link the commission's own document-detail page points at. starw1.ncuc.gov sits behind a Cloudflare managed challenge that refuses plain HTTP clients (403 for curl and for the plain fetch tool), so the session was driven with a real Chrome browser under Playwright, which passes the challenge normally; the PDF bytes were then read out of that same browser session. Converted the PDF to text with pdfminer.six extract_text(). The text is saved exactly as pdfminer emitted it - no reflow, no de-hyphenation, no ligature or soft-hyphen repair, form feeds, margin line numbers, column-split Q/A markers and OCR noise all left in place.",
+  "corpus_note": "The structural prize: 828 pages, nine witnesses' direct testimony with exhibits. 422 'Q.' and 439 'A.' markers, margin line numbers 1-25 per page, 828 form feeds and 836 exhibit references. pdfminer streams the margin line numbers and the Q./A. markers as their own column, separate from the body text - which is exactly the layout case a section-heading-only parser gets wrong.",
+  "sha256": "08e52ff4da27f33ae9167a5c26a5cbb4566ea9188e2ae68b11f0f3d0d996e210",
+  "bytes": 2027557,
+  "source_pdf_sha256": "a66ebf41ad2176ca3322e2c03e998175c0e502dfcad869b50239eb280df5e429",
+  "source_pdf_bytes": 24071472,
+  "retrieved_at": "2026-08-04T17:13:51Z"
+}

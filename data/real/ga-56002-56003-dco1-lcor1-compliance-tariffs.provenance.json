@@ -1,0 +1,15 @@
+{
+  "jurisdiction": "Georgia Public Service Commission (GA PSC)",
+  "docket": "56002",
+  "source_url": "https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/224109/105404",
+  "source_detail_page": "https://psc.ga.gov/search/facts-document/?documentId=224109",
+  "facts_document_id": 224109,
+  "facts_file_id": 105404,
+  "document_title": "DCO-1 and LCOR-1 Tariffs - compliance filing made under the 2025 IRP Order Adopting Stipulation (dockets 56002 and 56003)",
+  "filing_date": "2025-09-30",
+  "filer": "Georgia Power Company",
+  "how_obtained": "Fetched the GA PSC FACTS document-detail page /search/facts-document/?documentId=224109 to read its download link, then downloaded the ZIP 'dkt_56002_56003_dco-1_and_lcor-1_tariffs.zip' from the public API endpoint https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/224109/105404. Unzipped it and took only 'DKT 56002 & 56003 DCO-1 and LCOR-1 Tariffs.pdf'. Converted the PDF to text with pdfminer.six extract_text(). Saved exactly as pdfminer emitted it - no reflow, no de-hyphenation, no ligature or soft-hyphen repair; running heads, marginal line-number columns, dot leaders and form feeds all left in place.",
+  "sha256": "429337899546f592d59967cbee18c8ac94d54b09f9d1abcbca0575a8096d0397",
+  "bytes": 13894,
+  "retrieved_at": "2026-08-04T16:51:28Z"
+}

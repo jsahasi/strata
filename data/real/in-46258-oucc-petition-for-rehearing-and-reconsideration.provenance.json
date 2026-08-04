@@ -1,0 +1,15 @@
+{
+  "source_url": "https://www.in.gov/oucc/files/46258-OUCC-Petition-for-Rehearing-and-Reconsideration_07-07-2026.pdf",
+  "retrieved_at": "2026-08-04T16:54:02Z",
+  "sha256": "c82b9811b05b07f58c3344f84c3cf87627a1aab2572481e3bd459013502beb2f",
+  "sha256_source_pdf": "b2a86b242236ef10489abaef6b544ef6750b5e8550deed16d7aae7c7dac98a5f",
+  "jurisdiction": "Indiana (IURC)",
+  "docket": "46258",
+  "document_title": "Indiana Office of Utility Consumer Counselor's Petition for Rehearing and Reconsideration",
+  "filing_date": "2026-07-07",
+  "filer": "Indiana Office of Utility Consumer Counselor (OUCC)",
+  "source_pdf_bytes": 360508,
+  "text_bytes": 28157,
+  "pages": 16,
+  "how_obtained": "Fetched the PDF over HTTPS with curl (no login, no cookies; the IURC portal serves these documents anonymously). Converted to text with PyMuPDF page.get_text() using default settings, concatenating pages in order with no separator inserted and no other change: line breaks, spacing, hyphenation, running heads, margin line numbers and any OCR errors are left exactly as the extractor produced them."
+}

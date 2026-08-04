@@ -1,0 +1,15 @@
+{
+  "source_url": "https://iurc.portal.in.gov/_entity/sharepointdocumentlocation/11d83ae2-8c8e-f011-b4cc-001dd8084fd9/bb9c6bba-fd52-45ad-8e64-a444aef13c39?file=46258%20OUCC%20Public%20Exhibit%20No.%202%20Testimony%20of%20Mike%20Eckert%209.9.2025.pdf",
+  "retrieved_at": "2026-08-04T16:54:02Z",
+  "sha256": "1d80ea724a3d525e7df000f028d219146793ca869916677f64f7fb00e2d94c88",
+  "sha256_source_pdf": "2b14a67a7ab8e5f01b78a3c8206eec639ff8f0ca6c1af3149e3887252616dc28",
+  "jurisdiction": "Indiana (IURC)",
+  "docket": "46258",
+  "document_title": "OUCC Public Exhibit No. 2 - Testimony of OUCC Witness Michael D. Eckert",
+  "filing_date": "2025-09-09",
+  "filer": "Indiana Office of Utility Consumer Counselor (OUCC)",
+  "source_pdf_bytes": 3105563,
+  "text_bytes": 93207,
+  "pages": 60,
+  "how_obtained": "Fetched the PDF over HTTPS with curl (no login, no cookies; the IURC portal serves these documents anonymously). Converted to text with PyMuPDF page.get_text() using default settings, concatenating pages in order with no separator inserted and no other change: line breaks, spacing, hyphenation, running heads, margin line numbers and any OCR errors are left exactly as the extractor produced them."
+}

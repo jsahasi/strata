@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Kentucky",
+  "commission": "Kentucky Public Service Commission",
+  "docket": "2025-00113",
+  "proceeding": "Electronic Application of Kentucky Utilities Company for an Adjustment of its Electric Rates, and Approval of Certain Regulatory and Accounting Treatments",
+  "how_obtained": "Downloaded the PDF with curl from the Kentucky PSC public electronic case filing path (psc.ky.gov/pscecf/...), which serves case documents without a login. Extracted text with PyMuPDF using sorted-block extraction (page.get_text('text', sort=True)) so the margin line numbers stay on the same line as the testimony text they number. Pages are joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation was applied; the spacing, running heads and word-spacing artefacts are exactly what the extractor produced.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://psc.ky.gov/pscecf/2025-00113/lisom%40spilmanlaw.com/11052025034301/2025-00113_-_Direct_Testimony_-_Walmart_-_Perry_%28Errata_-_Redline%29.pdf",
+  "document_title": "Direct Testimony of Lisa V. Perry on Behalf of Walmart Inc. (Errata - Redline)",
+  "filing_date": "2025-11-05",
+  "filer": "Walmart Inc. (counsel: Spilman Thomas & Battle, PLLC)",
+  "witness": "Lisa V. Perry",
+  "document_type": "Corrected direct testimony, redline copy",
+  "pages": 37,
+  "version_role": "errata (redline against the original)",
+  "version_pair_with": "ky-2025-00113-perry-direct-testimony-errata-clean.txt",
+  "notes": "Redline copy. The struck word and its replacement both survive extraction as plain text ('intraclass interclass'), because PDF text extraction keeps struck-through characters. A diff tool that does not know this will read the redline as a document containing both words.",
+  "sha256": "dc1a2f24a05f45b11f40b4c1a54ac4bd9c787517e1dd9f0680a389ff054af10f",
+  "bytes": 81985,
+  "retrieved_at": "2026-08-04T16:46:09Z",
+  "source_pdf_sha256": "dd2b3b80fbb88e9eecbce6bf53e55ed0bc7c62e7fed02af327a25b8f89f6c6e0",
+  "source_pdf_bytes": 251553
+}

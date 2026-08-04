@@ -1,0 +1,19 @@
+{
+  "source_url": "https://www.scc.virginia.gov/DocketSearch/Home/Document/12/391140",
+  "retrieved_at": "2026-08-04T16:51:43Z",
+  "sha256": "2a1f01847620567c0f404cb1a1c7113682a0eca1d2f9244e594792db490d9423",
+  "jurisdiction": "US-VA (Virginia State Corporation Commission)",
+  "docket": "PUR-2026-00056",
+  "matter_no": 146917,
+  "scc_doc_id": "391140",
+  "document_title": "Final Order - 07/31/2026",
+  "filing_date": "2026-07-31",
+  "filer": "Virginia State Corporation Commission",
+  "content_type_served": "application/pdf",
+  "source_pdf_sha256": "1480ccf57ff10fd76dfe936bede2d6e32934e8a18ebefc81328cbcdecaff71e3",
+  "source_pdf_bytes": 5632703,
+  "saved_text_bytes": 31213,
+  "extraction_tool": "pypdf 6.14.2 page.extract_text()",
+  "note": "Final Order resolving Dominion's revised transmission-cost rate adjustment clause (Rider T1, Subsection A 4 / PJM transmission and FERC demand-response costs).",
+  "how_obtained": "Fetched the PDF from the Virginia SCC DocketSearch document handler (https://www.scc.virginia.gov/DocketSearch/Home/Document/12/<DocID>) with curl -L, following the site's 307 redirect to the lowercase /docketsearch/home/document/12/<DocID> path, which returned Content-Type application/pdf. The DocID was obtained from the DocketSearchAPI Breeze endpoint GetDocuments (?$filter=MATTER_NO eq <matter>) for this case. Converted the PDF to text with pypdf 6.14.2 using page.extract_text() concatenated per page with '===PAGE n===' separators. The text is saved exactly as pypdf produced it: not cleaned, not reflowed, not de-hyphenated; soft hyphens, ligature artefacts, transposed line-number/Q-A ordering and OCR-style noise are left intact."
+}

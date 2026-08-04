@@ -1,0 +1,762 @@
+                                                                           1407 W. North Temple, Suite 330
+                                                                                                       Salt Lake City, UT 84116
+
+
+February 10, 2026
+
+VIA ELECTRONIC FILING
+
+Utah Public Service Commission
+Heber M. Wells Building, 4th Floor
+160 East 300 South
+Salt Lake City, UT 84114
+
+Attention:    Gary Widerburg
+            Commission Administrator
+
+RE:   Docket No. 26-035-05 - In the Matter of the Application of Rocky
+      Mountain Power for Approval of Large-Load Service Contract Between PacifiCorp
+      and a Large-Load Customer
+      Rocky Mountain Power’s Application
+
+Pursuant to Utah Code § 54-26-301 and Utah Administrative Code R746-318-201, PacifiCorp
+d/b/a Rocky Mountain Power (“Rocky Mountain Power” or the “Company”) hereby submits this
+application (“Application”) requesting an order from the Public Service Commission of Utah
+(“Commission”) approving the large-load service contract between Rocky Mountain Power and a
+large load customer as that term is defined in Utah Code § 54-26-101.
+
+The Company’s Application is accompanied by the direct testimonies, exhibits and workpapers of
+Messrs. Craig M. Eller, Thomas R. Burns and Ramon J. Mitchell. The Company has identified
+confidential and highly confidential information throughout the filing. Confidential information is
+provided pursuant to the procedures set forth in R746-1-601 and 602. Highly confidential
+information is restricted to regulator access only pursuant to R746-318-103(2). The Company has
+uploaded the following unredacted highly confidential files to the Commission’s SFTP site:
+
+   •   Direct Testimony of Craig M. Eller HIGHLY CONFIDENTIAL
+        o  Exhibit RMP__(CME-1) – Large Load Service Contract HIGHLY
+          CONFIDENTIAL
+        o  Exhibit RMP__(CME-2) – System Impact Study HIGHLY CONFIDENTIAL
+        o  Exhibit RMP__(CME-3) – Large Load Construction Agreement HIGHLY
+          CONFIDENTIAL
+        o  Eller workpaper (1 excel file) HIGHLY CONFIDENTIAL
+   •   Direct Testimony of Thomas R. Burns HIGHLY CONFIDENTIAL
+        o  Burns workpapers (4 Excel files) HIGHLY CONFIDENTIAL
+   •   Direct Testimony of Ramon J. Mitchell HIGHLY CONFIDENTIAL
+
+The Company has also uploaded a confidential version of the files, where applicable, to the
+Commission’s SFTP site. In the confidential versions, highly confidential information is redactedUtah Public Service Commission
+February 10, 2026
+Page 2
+
+and confidential information is unredacted. The confidential version will be provided to a party that
+is granted intervention in this proceeding and executes a non-disclosure agreement.
+
+   •   Direct Testimony of Craig M. Eller CONFIDENTIAL
+   •   Direct Testimony of Thomas R. Burns CONFIDENTIAL
+   •   Direct Testimony of Ramon J. Mitchell CONFIDENTIAL
+
+The Company notes that Utah Code Ann. § 54-26-302(4) requires the Commission to issue an order
+within 60 days of filing. Given the compressed timeframe, the Company’s Application presents a
+proposed procedural schedule, which was developed in coordination with the Division of Public
+Utilities and Office of Consumer Services.
+
+Informal inquiries may be directed to Max Backlund at (801) 220-3121.
+
+Sincerely,
+
+
+Jana Saba
+Director, Regulatory Affairs                  CERTIFICATE OF SERVICE
+
+                            Docket No. 26-035-05
+
+I hereby certify that on February 10, 2026, a true and correct copy of the foregoing was
+served by electronic mail to the following:
+
+ Utah Office of Consumer Services
+ Michele Beck             mbeck@utah.gov
+                          ocs@utah.gov
+ Division of Public Utilities
+                            dpudatarequest@utah.gov
+ Assistant Attorney General
+ Patricia Schmid            pschmid@agutah.gov
+ Robert Moore             rmoore@agutah.gov
+ Patrick Grecu              pgrecu@agutah.gov
+ Rocky Mountain Power
+ Data Request Response      datarequest@pacificorp.com
+ Center
+ Jana Saba                  jana.saba@pacificorp.com
+                            utahdockets@pacificorp.com
+ Max Backlund             max.backlund@pacificorp.com
+ Katherine Smith            Katherine.smith@pacificorp.com
+ Tiffanie Ellis-Burke          Tiffanie.ellis-burke@pacificorp.com
+
+
+                                  _____________________________
+                                         Carrie Meyer
+                                    Manager, Discovery & Regulatory Operations
+
+
+
+
+
+                                    1Katherine T. Smith
+Tiffanie A. Ellis-Burke
+Rocky Mountain Power
+1407 W. North Temple, Suite 320
+Salt Lake City, Utah 84116
+Telephone: (435) 776-6980
+E-mail: katherine.smith@pacificorp.com
+
+Attorneys for Rocky Mountain Power
+
+        BEFORE THE PUBLIC SERVICE COMMISSION OF UTAH
+
+
+                                                                   )
+                                                                   )   Docket No. 26-035-05
+In the Matter of the Application of Rocky                                                                   )
+Mountain Power for Approval of Large-Load                                                                   )  APPLICATIONService Contract Between PacifiCorp and a Large-                                                                   )Load Customer                                                                   )
+                                                                   )
+                                                                   )
+
+
+       PacifiCorp d/b/a Rocky Mountain Power (“Rocky Mountain Power” or the “Company”)
+
+hereby submits  this  application (“Application”)  for an order from  the Public Service
+
+Commission of Utah (“Commission”) approving the large-load service contract (“Proposed
+
+LLSC”) between Rocky Mountain Power and a large-load customer (“Customer”). Customer
+
+is a large load customer as defined in Utah Code § 54-26-101, and the Company is making this
+
+Application pursuant to Utah Code § 54-26-301 and Utah Administrative Code R746-318-201.
+
+Pursuant to the Proposed LLSC, the Company will provide all of Customer’s electric service
+
+requirements, which exceed 100 megawatts (“MW”), and will be the exclusive provider of
+
+energy service to Customer’s facility in Utah.
+
+     As this Application and the supporting testimonies filed herewith demonstrate, the
+
+Proposed LLSC complies with the requirements of Utah Code Title 54 Chapter 26 (“Large Load
+
+Act”), and Utah Administrative Code R746-318 et seq. (“Large Load Rules”); Customer will
+
+
+APPLICATION OF ROCKY MOUNTAIN POWER                               1bear all just and reasonable incremental costs attributable to receiving electric service under the
+
+Proposed LLSC; and the Company’s existing ratepayers will not bear any costs that are justly
+
+and reasonably attributable to Customer. In fact, existing customers will benefit from the
+
+Proposed LLSC, as revenues from the agreement will be shared with retail customers through
+
+credits to be paid by Customer and applied to customer rates through the general rate case and
+
+Utah Energy Balancing Account.
+
+       In support of this Application, the Company states as follows:
+
+        1.     PacifiCorp is an Oregon corporation that provides electric service to customers
+
+in the states of Utah, Wyoming, and Idaho through its Rocky Mountain Power division. Rocky
+
+Mountain Power is a public utility in the state of Utah and is subject to the jurisdiction of the
+
+Commission with respect to its rates and service.
+
+        2.     Communications regarding this Application should be sent to:
+
+               Max Backlund
+                   Utah Regulatory Affairs Manager
+                 Rocky Mountain Power
+                  1407 W. North Temple, Suite 310
+                       Salt Lake City, UT 84116
+                     E-mail: max.backlund@pacificorp.com
+
+                     Katherine T. Smith
+                      Tiffanie A. Ellis-Burke
+                 Rocky Mountain Power
+                  1407 W. North Temple, Suite 320
+                       Salt Lake City, UT 84116
+                    Telephone: (435) 776-6980
+                     E-mail: katherine.smith@pacificorp.com
+                              tiffanie.ellis-burke@pacificorp.com
+
+
+In addition, the Company respectfully requests that all data requests regarding this matter be
+addressed to:
+
+     By e-mail (preferred):       datarequest@pacificorp.com
+
+
+APPLICATION OF ROCKY MOUNTAIN POWER                               2     By regular mail:            Data Request Response Center
+                                   PacifiCorp
+                              825 NE Multnomah St, Suite 2000
+                                     Portland, Oregon 97232
+
+       Informal inquiries related to this Application may be directed to Max Backlund, Utah
+
+Regulatory Affairs Manager, at (801) 220-3121.
+
+                                          I.   BACKGROUND
+
+        3.   A large load customer made a large-scale service request prior to May 7, 2025.
+
+The Company subsequently completed a system impact study and associated designated
+
+network load study to determine the necessary infrastructure, costs, and timeline to serve the
+
+request at the site.
+
+        4.    The Company determined it could serve the requested load, which exceeds 100
+
+MW, at the site.
+
+        5.    On January 20, 2026, the Company and Customer executed the Proposed
+
+LLSC, pursuant to which the Company will provide electric service to meet all of Customer’s
+
+projected electrical requirements at the site.
+
+        6.   A copy of the Proposed LLSC is being provided as Regulatory Access Only –
+
+Highly Confidential – Subject to Utah Public Service Commission Rule 746-318-103,
+
+RMP___(CME-1) to the Direct Testimony of Craig M. Eller.
+
+        7.    The  Proposed LLSC  satisfies  both  the  statutory  and  administrative
+
+requirements for large load contracts set forth under Utah Annotated Code §§ 54-26-101
+
+through  54-26-901  and  Utah  Administrative  Rules  R746-318,  Large  Scale  Electric
+
+Requirements, effective January 1, 2026.
+
+        8.     Consistent with Utah Code § 54-26-301(8), the Proposed LLSC is being filed
+
+for Commission approval within 15 business days of execution.
+
+
+APPLICATION OF ROCKY MOUNTAIN POWER                               3        9.    As demonstrated in this Application and supporting testimony, the Proposed
+
+LLSC satisfies this requirement.
+
+       10.   To support this Application and as evidence that the Proposed LLSC meets
+
+these  requirements,  the Company  is submitting  the following supporting  confidential
+
+testimonies:
+
+             •     Craig M. Eller, Senior Vice President, Business Development and
+                  Customer Experience for the Company, describes the Proposed LLSC
+                   and demonstrates that it satisfies the statutory requirements for large
+                     load contract;
+
+             •    Ramon J. Mitchell, Managing Director, Energy Supply Management
+                    Finance and Net Power Costs, describes the Company’s proposal for
+                     maintaining  separate  accounting  records   to  demonstrate   that
+                     incremental costs associated with this Application are directly assigned
+                       to the large load customer; and
+
+             •    Thomas  R.  Burns,  Vice  President,  Resource  Planning  and
+                      Acquisitions, demonstrates  that the Company’s resource  portfolio,
+                      factoring in the proposed load service and the additional resources and
+                   market purchases needed to provide that service, will be as reliable as
+                      the 2025 IRP preferred portfolio and that increased system costs will be
+                        less than revenues received from Customer during the term of the
+                   Proposed LLSC.
+
+       11.   As this Application and the attached testimony demonstrate, the terms of the
+
+Proposed LLSC  are  just and  reasonable,  consistent with  statutory and  administrative
+
+requirements for large load contracts and are expected to result in benefits to the Company’s
+
+existing ratepayers over the life of the agreement. Because the Proposed LLSC satisfies all
+
+statutory and regulatory requirements and presents a material benefit to Utah customers, the
+
+Company requests the Commission approve the Proposed LLSC.
+
+                                     II.   LEGAL STANDARD
+
+       12.    In March 2025, the Utah Legislature enacted Senate Bill 132 (“SB 132”), which
+
+created requirements for providing electrical service to large-scale electrical loads. SB 132 was
+
+
+APPLICATION OF ROCKY MOUNTAIN POWER                               4intended to address the Legislature’s policy objective of attracting new large load investments
+
+to the State of Utah and capturing economic benefits of such investments for Utah citizens. SB
+
+132, now the Large Load Act, was codified in Utah Code title 54 chapter 26 and took effect in
+
+May 2025.
+
+       13.   The Large Load Act provides a mechanism whereby large load customers can
+
+request service from Rocky Mountain Power, as a qualified electric utility, or a large-scale
+
+generation provider, and enter a “large load service contract.”1
+
+       14.   The Large Load Act also sets out requirements for large load service contracts
+
+that require transmission service, including that the large load customer shall bear all costs for
+
+interconnection and transmission-related  studies; interconnection upgrades, transmission
+
+upgrades, network upgrades, distribution system upgrades, or system upgrades; transmission
+
+service rates in the transmission provider’s open access transmission tariff (“OATT”); ancillary
+
+services; balancing services; and backup services. These costs must be borne by the customer
+
+to the fullest extent allowable under applicable federal law and regulations.2
+
+       15.   To ensure retail ratepayers do not bear costs attributable to the large load
+
+customer or for transmission upgrades appropriately allocated to the large load customer, the
+
+Large Load Act requires the Company to maintain separate accounting records and take
+
+reasonable measures to ensure costs are properly allocated.3
+
+       16.   Upon execution of a contract with a large load customer, Rocky Mountain
+
+Power must file an application to the Commission for review and approval of the contract
+
+within 15 business days of execution of the contract.4
+
+________________________
+1 Utah Code Ann. § 54-26-201.
+2 Utah Code § 54-26-503.
+3 Utah Code § 54-26-601.
+4 See Utah Code Ann. § 54-26-302; Utah Public Service Commission Rule 746-318-201(1) and (2).
+
+APPLICATION OF ROCKY MOUNTAIN POWER                               5       17.   An application for approval of a large load contract must (1) provide evidence
+
+that demonstrates the customer meets the statutory definition and all other requirements of a
+
+large load customer in the Large Load Act; (2) attach a copy of the large load contract,
+
+appropriately redacted consistent with the Large Load Rules; (3) provide a description of how
+
+the proposed use will impact the Company’s system; and (4) provide information describing
+
+the incremental costs necessary to serve the customer as described in Utah Public Service
+
+Commission Rule 746-318-201(4)(d).
+
+       18.   The Commission must approve the submitted application  if  it finds, by a
+
+preponderance of the evidence, that the contract complies with the regulatory and statutory
+
+requirements, that “the large load customer bears all just and reasonable incremental costs
+
+attributable to receiving the requested electric service,” and that the utility’s existing ratepayers
+
+will not “bear costs justly and reasonably attributable to providing electric service for the large
+
+load customer.”5
+
+       19.   The Proposed LLSC is a “large load contract” because the contract involves a
+
+request for new electric service with a cumulative demand of 100 MW or greater and the
+
+Proposed LLSC is with a qualified electric utility, the Company.6 Accordingly, the Company
+
+provides the following information and attached exhibit for the Commission’s review and
+
+approval.
+
+                           III.  SUMMARY OF PROPOSED LLSC
+
+       20.    Under  the Proposed LLSC,  the Company  has  agreed  to  provide  full-
+
+requirements retail service to Customer for an initial term and year-to-year thereafter until
+
+
+
+________________________
+5 Utah Code Ann. § 54-26-302(2); Utah Public Service Commission Rule 746-318-202.
+6 Utah Code Ann. § 54-26-101(12).
+
+APPLICATION OF ROCKY MOUNTAIN POWER                               6either party terminates the Proposed LLSC. The Company will be the exclusive service
+
+provider of electricity to Customer’s facility.
+
+       21.     If the Proposed LLSC is granted, the Company will provide Customer more
+
+than 100 MW of firm service.
+
+       22.   The Company will design, construct,  install, and operate certain service
+
+improvements for delivery to Customer, which the Company will own, lease, or contract for
+
+the duration of Proposed LLSC term. And the Company will procure the generation assets
+
+necessary to provide Customer’s requested service.
+
+       23.    Delivery facilities have been fully paid for and were completed on/before
+
+December 31, 2025. No network transmission upgrades are required to accommodate the load
+
+service.
+
+       24.   The Company will  initially procure sufficient generation through market
+
+purchases in the summers of 2026 and 2027. Thereafter, the Company will procure adequate
+
+resource capacity for the remainder of the Proposed LLSC. Company witness Mr. Burns
+
+discusses the Company’s modeling of these additional resources and the impacts on the
+
+reliability and cost effectiveness of the Company’s system with these proposed resources as
+
+compared to the 2025 IRP.
+
+       25.    Customer will pay the Company a monthly Reservation Charge, Energy
+
+Charges associated with usage, and applicable surcharges and taxes. Through this structure,
+
+Customer will reimburse the Company for all costs associated with providing electric power
+
+intended to meet Customer’s demand.
+
+       26.   The Reservation Charge is a fixed-cost charge to compensate the Company for
+
+the costs of its investments and service to Customer. The revenue from the Reservation Charge
+
+
+
+APPLICATION OF ROCKY MOUNTAIN POWER                               7will be removed from the Company’s revenue requirement and net power costs. In addition,
+
+the costs of the Customer load facilities, bridging market capacity purchases, incremental
+
+generation resources, and the Company’s return will be removed from revenue requirements
+
+to prevent any subsidization from existing customers. The Energy Charge will result in a
+
+benefit to existing customers, as described by Company witness Mr. Eller. The applicable
+
+surcharges and taxes are based on their established rates and will result in benefits to existing
+
+customers and Utah residents, as described by Company witness Mr. Eller.
+
+       27.   The Company’s other customers are expected to benefit from this transaction
+
+in several ways. First, all Company customers will benefit from the economic re-dispatch of
+
+the system. Second, Utah customers will benefit from Customer contributions to applicable
+
+surcharges and riders. Third, Utah residents and the state will benefit from state and local tax
+
+revenue through the contract term. The Company will share these benefits with its customers
+
+while taking the steps described herein to protect customers from the costs and risks of the
+
+transaction. Company witness Mr. Eller discusses these customer benefits in detail in his Direct
+
+Testimony.
+
+          IV.  IMPACT ON ROCKY MOUNTAIN POWER’S SYSTEM
+
+       28.   The impacts on the Company’s system were identified through a system impact
+
+study, which assessed the impact of then-planned load on the system.
+
+       29.   The system impact study identified the interconnection upgrades and direct
+
+assigned  all costs to the requesting customer. The system impact study and associated
+
+designated network load study found that no further transmission or distribution upgrades were
+
+required to provide service in excess of 100 MW to the site.
+
+
+
+
+
+APPLICATION OF ROCKY MOUNTAIN POWER                               8       30.   The Company will be using its Network Integration Transmission Service
+
+(“NITS”) to serve the Customer’s facilities, which will be designated as a network load. Any
+
+transmission voltage-related contribution from the Customer can be viewed as a pure cost
+
+offset to existing retail customers.
+
+       31.    There will be some shared facilities costs, of which Customer agrees to pay its
+
+proportionate share based on the full amount of its contracted demand.
+
+                 V.   LARGE LOAD INCREMENTAL COSTS
+
+       32.   By design the Proposed LLSC ensures that existing customers are either held
+
+harmless or will benefit from the Company’s service to Customer through the Reservation and
+
+Energy Charges, applicable surcharges and riders, and additional payment of incremental
+
+costs.
+
+       33.    In addition to the Reservation and Energy Charges, Customer will reimburse
+
+the Company for all incremental costs of serving Customer’s load.
+
+       34.   The Proposed LLSC presents several categories of incremental costs. They
+
+include incremental energy costs used by the Customer facilities, incremental interconnection
+
+costs used by the Customer facilities, and incremental capacity-related costs, including costs
+
+for offsetting peak demand, ancillary services, supplying reserves, resource adequacy, and
+
+resource sufficiency.
+
+       35.   The Company will use its point of metering at the Customer premises for billing
+
+of all firm power and energy to be delivered to the facilities, as well as surcharges and riders.
+
+       36.    Because the meter will be beyond the point of delivery, transformers and other
+
+losses occurring between the point of delivery and the meter will be computed and added to
+
+the meter readings to determine the demand and energy consumption.
+
+
+
+APPLICATION OF ROCKY MOUNTAIN POWER                               9   VI.  METHODOLOGY FOR EXCLUDING INCREMENTAL COSTS FROM
+                        RETAIL RATES
+
+       37.   The Company  has  developed  a methodology  for  maintaining  separate
+
+accounting records with sufficient detail to demonstrate that costs will be directly assigned to
+
+Customer. By applying this methodology, the Company will protect existing retail customers
+
+from subsidizing Customer’s energy, capacity and transmission costs. Company witness Mr.
+
+Mitchell discusses these accounting methodologies in detail in his Direct Testimony.
+
+       38.    Although the methodology for maintaining distinct accounting records differs
+
+slightly across the different types of incremental costs, generally the Company will track all
+
+charges at a granular level and will make all records available for audit and review by the
+
+Commission in its discretion.
+
+       39.    Additionally, the Company will make a credit toward the cost of service in each
+
+rate case equal to the amount of the Energy Charge to be applied to the total forecasted
+
+Customer energy charge against the forecasted net power costs. This credit will help offset the
+
+incremental costs associated with Customer’s energy usage, ensuring that these costs are
+
+removed from the net power cost calculation used to set rates for other customers. Similarly,
+
+in Utah Energy Balancing Account filings, the Company will apply a credit equal to the actual
+
+Customer invoiced energy charge against the actual net power costs. This will help ensure that
+
+the incremental costs related to meeting Customer’s load are excluded from the EBA recovery
+
+mechanism, so that other customers do not bear any portion of these costs.
+
+       40.   The Company will manage costs associated with capacity and related charges
+
+by procuring market energy initially but within two years will procure resources to increase
+
+overall system capacity so the Company can reliably serve all customers. The costs for these
+
+resources will be excluded from the cost of service and net power cost forecasts in general rate
+
+
+APPLICATION OF ROCKY MOUNTAIN POWER                              10cases and will not be included in the actual cost of service in the Utah Energy Balancing
+
+Account. This will help ensure that existing customers do not bear any portion of these
+
+incremental costs.
+
+       41.   The result of these practices will be a verifiable accounting of costs incurred
+
+because of the Proposed LLSC and a process that ensures Customer bears those costs. The
+
+credits will ultimately result in an overall cumulative benefit to existing retail customers.
+
+However, should payments be insufficient to cover the Company’s actual cost, existing
+
+customers will be held harmless, and any revenue shortage will remain excluded from the Utah
+
+Energy Balancing Account and General Rate Cases.
+
+               VII.  ADDITIONAL OBLIGATIONS OF CUSTOMER
+
+       42.    In addition to the requirements and payments discussed above, Customer is also
+
+obligated to comply with the Company’s tariffs, procedures, specifications, and requirements,
+
+and to provide certain assurances to shield the Company and its customers from financial and
+
+other risks.
+
+       43.    In particular, Customer agrees to indemnify, defend, and hold harmless the
+
+Company against claims, demands, suits, losses, costs, and damages. It also agrees to carry
+
+qualifying insurance coverage as outlined in the Proposed LLSC and provide certificates of
+
+insurance when the Company requires.
+
+       44.    Customer will meet the credit requirements or provide credit assurances as set
+
+forth in the Proposed LLSC, will bear the costs associated with such compliance, and must
+
+provide audited financial statements to the Company upon request.
+
+       45.    Customer agrees to take service only from the Company and to isolate itself
+
+from any newly installed connected or closed private generation systems. Customer also agrees
+
+it will notify the Company of its intent to increase its electric consumption or to make any
+
+APPLICATION OF ROCKY MOUNTAIN POWER                              11significant change in load characteristics or installations in a manner that would exceed the
+
+demand specific in the Proposed LLSC or that could impact the Company’s electric system.
+
+Customer agrees to provide the Company an opportunity to serve that new load. If the
+
+Company elects not to, or is unable to serve the customers’ new load, Customer may seek
+
+service from a connected or closed private generation system but must do so in a manner that
+
+is electrically isolated from the Company’s system and other facilities at or behind the meter.
+
+     VIII. COMPLIANCE WITH LARGE LOAD ADMINISTRATIVE RULES
+
+       46.   The Proposed LLSC complies with the Utah Administrative Rules R746-318,
+
+Large Scale Electric Requirements, effective January 1, 2026. The testimonies of Messrs. Eller,
+
+Mitchell, and Burns address the regulatory requirements, as follows:
+
+       47.   As required by R746-318-20(1), Mr. Eller’s testimony attaches a full and
+
+unredacted copy of the Proposed LLSC marked Regulator Access Only—Highly Confidential,
+
+as permitted by R746-318-103.
+
+    a) Mr. Eller’s testimony also includes evidence that Customer meets the Large-Scale
+
+        Electric Service Requirements, R746-318-201(4)(a); information describing the large
+
+       load incremental costs necessary for Customer to receive electric service, including
+
+       each category of costs set out in the rule, R746-318-201(4)(d); and information
+
+       regarding Customer’s transmission costs, R746-318-301(3).
+
+    b) Mr. Burns’ testimony provides a description of how the Proposed LLSC will impact
+
+       the Company’s system, R746-318-201(4)(c).
+
+    c) Mr. Mitchell’s testimony provides the Company’s methodology for maintaining
+
+       separate accounting records with sufficient detail to demonstrate that costs will be
+
+        directly assigned to the large load customer, R746-318-201(6), and the method by
+
+      which costs for the provision of electric service under the Proposed LLSC will be
+
+APPLICATION OF ROCKY MOUNTAIN POWER                              12       excluded from rates paid by retail customers, Utah Code § 54-26-602(4)(c) and R746-
+
+       318-201(7).
+
+                        IX.  PROCEDURAL SCHEDULE
+
+       48.    Utah Code Ann. § 54-26-302(4) requires the Commission to issue an order
+
+within 60 days of filing. Given the compressed timeframe, the Company developed a proposed
+
+procedural schedule in coordination with the Division of Public Utilities (“Division”) and
+
+Office of Consumer Services (“Office”). The Company proposes the Commission set a
+
+schedule as follows: Non-Applicant Direct Testimony due March 3, 2026; all-party rebuttal
+
+testimony due March 10, 2026; a hearing on March 17, 2026; and discovery turnaround of five
+
+calendar days. The Division and Office have given the Company permission to represent that
+
+they support this procedural schedule.
+
+                             X.   CONCLUSION
+
+       49.    Requirements of the Large Load Act and Large Load Rules are addressed in
+
+Direct Testimonies of Company witnesses Mr. Eller, Mr. Mitchell, and Mr. Burns.
+
+       50.   The prices, terms, and conditions of the Proposed LLSC are consistent with the
+
+Large Load Act.
+
+       51.   The Customer bears all just and reasonable, incremental costs attributable to
+
+receiving the requested electric service.
+
+       52.   The Proposed LLSC  satisfies  all  applicable requirements  for  large-load
+
+contracts under Large Load Act and Large Load Rules.
+
+       53.   Commission approval will serve the public interest by facilitating large load
+
+development and securing beneficial revenues for the Company’s retail customers, while
+
+ensuring that existing ratepayers share no portion of the incremental costs associated with the
+
+Proposed LLSC.
+
+APPLICATION OF ROCKY MOUNTAIN POWER                              13       54.   The Company seeks the Commission’s approval of the Proposed LLSC and
+
+respectfully requests the Commission adopt the proposed procedural schedule to facilitate the
+
+60-day timeframe set out in Utah Code Ann. § 54-26-302.
+
+WHEREFORE, the Company respectfully requests that the Commission issue an order:
+
+         a.  Issue a Scheduling Order that reflects the procedural schedule proposed herein;
+
+        b.  Issue an order within 60 days that includes a finding that the terms and conditions
+
+           of the Proposed LLSC to be just, reasonable, and in the public interest;
+
+         c.  Approving the Parties’ Proposed LLSC, as executed January 20, 2026; and
+
+        d.  Granting such other and further relief as the Commission may deem just and proper.
+
+
+
+
+    DATED this 10th day of February, 2026.
+                                           Respectfully submitted,
+                          ROCKY MOUNTAIN POWER
+
+
+                                    ______________________________
+                                         Katherine T. Smith
+                                    1407 West North Temple, Suite 320
+                                               Salt Lake City, Utah 84116
+                                        katherine.smith@pacificorp.com
+
+                                          Attorney for Rocky Mountain Power
+
+
+
+
+
+APPLICATION OF ROCKY MOUNTAIN POWER                              14

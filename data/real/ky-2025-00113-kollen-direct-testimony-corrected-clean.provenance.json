@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Kentucky",
+  "commission": "Kentucky Public Service Commission",
+  "docket": "2025-00113",
+  "proceeding": "Electronic Application of Kentucky Utilities Company for an Adjustment of its Electric Rates and Approval of Certain Regulatory and Accounting Treatments (filed jointly with Case No. 2025-00114, Louisville Gas & Electric Company)",
+  "how_obtained": "Downloaded the PDF with curl from the Kentucky PSC public electronic case filing path (psc.ky.gov/pscecf/...), which serves case documents without a login. Extracted text with PyMuPDF using sorted-block extraction (page.get_text('text', sort=True)) so margin line numbers stay on the line they number. Pages joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation. OCR noise in the scanned signature and notary blocks is left exactly as extracted.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09302025014043/25.09.30_KOLLEN_Direct_and_Exhibits_CORRECTED_Clean.pdf",
+  "document_title": "Corrected Joint Written Direct Testimony and Exhibits of Lane Kollen (Clean)",
+  "filing_date": "2025-09-30",
+  "filer": "Kentucky Office of the Attorney General, Office of Rate Intervention, jointly with Kentucky Industrial Utility Customers (KIUC)",
+  "witness": "Lane Kollen (J. Kennedy and Associates)",
+  "document_type": "Corrected direct testimony with exhibits, clean copy",
+  "pages": 378,
+  "version_role": "corrected reissue",
+  "version_pair_with": "ky-2025-00113-kollen-direct-testimony-original.txt",
+  "notes": "Same 378 pages as the original. The only substantive change is on page 95: 'Brown BESS' becomes 'Cane Run BESS'. That one change is buried in roughly 1,370 diff lines of pure re-layout noise (line rewrapping, whitespace, scanned-signature OCR jitter) which is precisely the hard case for a version comparison: separating a real amendment from re-rendering churn.",
+  "sha256": "f39fcd1498c12b62673c24011acf7ecf310cbb1d9ffe5bc476eafbeb5990ac84",
+  "bytes": 1025495,
+  "retrieved_at": "2026-08-04T16:47:36Z",
+  "source_pdf_sha256": "dcfb06aa6a75f9604510cce5bc8c595d2275a3a20e2a2176e77d2cd1db3f81de",
+  "source_pdf_bytes": 50098836
+}

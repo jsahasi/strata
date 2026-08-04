@@ -1,0 +1,15 @@
+{
+  "source_url": "https://iurc.portal.in.gov/_entity/sharepointdocumentlocation/507e9be1-5930-ed11-9daf-001dd8040275/bb9c6bba-fd52-45ad-8e64-a444aef13c39?file=45700_OUCC%20Corrected%20Publics%20Exhibit%20No%202%20_Testimony%20of%20OUCC%20Witness%20of%20Brian%20A%20Wright_09092022.pdf",
+  "retrieved_at": "2026-08-04T16:54:02Z",
+  "sha256": "af58a23f4bcda43677a1f8d783d0156f9078209745bc4c981d02dfac5538a32e",
+  "sha256_source_pdf": "9e995f1abb0002af995ef65b215518d8baf6b1c86d2bcdb7c660b78987823931",
+  "jurisdiction": "Indiana (IURC)",
+  "docket": "45700",
+  "document_title": "OUCC Corrected Public's Exhibit No. 2 - Testimony of OUCC Witness Brian A. Wright",
+  "filing_date": "2022-09-09",
+  "filer": "Indiana Office of Utility Consumer Counselor (OUCC)",
+  "source_pdf_bytes": 249274,
+  "text_bytes": 15227,
+  "pages": 10,
+  "how_obtained": "Fetched the PDF over HTTPS with curl (no login, no cookies; the IURC portal serves these documents anonymously). Converted to text with PyMuPDF page.get_text() using default settings, concatenating pages in order with no separator inserted and no other change: line breaks, spacing, hyphenation, running heads, margin line numbers and any OCR errors are left exactly as the extractor produced them."
+}

@@ -1,0 +1,15 @@
+{
+  "source_url": "https://iurc.portal.in.gov/_entity/sharepointdocumentlocation/fbe6c33a-528e-f011-b4cc-001dd80846ac/bb9c6bba-fd52-45ad-8e64-a444aef13c39?file=46258%20OUCC%20Public%20Exhibit%20No.%201%20Testimony%20of%20OUCC%20Witness%20Brian%20R.%20Latham_09-09-2025.pdf",
+  "retrieved_at": "2026-08-04T16:54:02Z",
+  "sha256": "bbfacb1c277896c60b069a16c7af4c00a3b3b343b4db4ed857536e4b16ed132d",
+  "sha256_source_pdf": "38894a51131de878a7527632637c1febbe24fb6a4aed9b961906604e978c29bf",
+  "jurisdiction": "Indiana (IURC)",
+  "docket": "46258",
+  "document_title": "OUCC Public Exhibit No. 1 - Testimony of OUCC Witness Brian R. Latham",
+  "filing_date": "2025-09-09",
+  "filer": "Indiana Office of Utility Consumer Counselor (OUCC)",
+  "source_pdf_bytes": 455561,
+  "text_bytes": 53565,
+  "pages": 34,
+  "how_obtained": "Fetched the PDF over HTTPS with curl (no login, no cookies; the IURC portal serves these documents anonymously). Converted to text with PyMuPDF page.get_text() using default settings, concatenating pages in order with no separator inserted and no other change: line breaks, spacing, hyphenation, running heads, margin line numbers and any OCR errors are left exactly as the extractor produced them."
+}

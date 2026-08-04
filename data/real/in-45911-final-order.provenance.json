@@ -1,0 +1,15 @@
+{
+  "source_url": "https://iurc.portal.in.gov/_entity/sharepointdocumentlocation/18b84341-27f8-ee11-904b-001dd80b8474/bb9c6bba-fd52-45ad-8e64-a444aef13c39?file=ord_45911_041724.pdf",
+  "retrieved_at": "2026-08-04T16:54:02Z",
+  "sha256": "b2d77f0ac81d9071462b8830e8c22d79b88711400c6b8bf42adfe0c2046c3006",
+  "sha256_source_pdf": "7de6c00dad511d8e98809ee42f9fe2119b5a52b71c1aadcb59ca0a13d66a9034",
+  "jurisdiction": "Indiana (IURC)",
+  "docket": "45911",
+  "document_title": "Order of the Commission (AES Indiana 2023 base rate case final order)",
+  "filing_date": "2024-04-17",
+  "filer": "Indiana Utility Regulatory Commission",
+  "source_pdf_bytes": 3833829,
+  "text_bytes": 383475,
+  "pages": 194,
+  "how_obtained": "Fetched the PDF over HTTPS with curl (no login, no cookies; the IURC portal serves these documents anonymously). Converted to text with PyMuPDF page.get_text() using default settings, concatenating pages in order with no separator inserted and no other change: line breaks, spacing, hyphenation, running heads, margin line numbers and any OCR errors are left exactly as the extractor produced them."
+}

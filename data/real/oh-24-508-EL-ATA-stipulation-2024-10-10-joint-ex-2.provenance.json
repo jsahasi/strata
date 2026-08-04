@@ -1,0 +1,23 @@
+{
+  "source_url": "https://www.supremecourt.ohio.gov/pdf_viewer/pdf_viewer.aspx?pdf=997942.pdf&subdirectory=2025-1458%5CDocketItems&source=DL_Clerk",
+  "retrieved_at": "2026-08-04T16:53:33Z",
+  "sha256": "bd3f197e804d64ddc58091f3b08ee23acfd96d696e494027cc1abadad667c919",
+  "jurisdiction": "Ohio",
+  "docket": "24-508-EL-ATA",
+  "document_title": "Joint Stipulation and Recommendation filed October 10, 2024 (Joint Ex. 2), with transmittal letter of counsel for Amazon Data Services, Inc.",
+  "filing_date": "2024-10-10",
+  "filer": "Amazon Data Services, Inc. and signatory parties",
+  "how_obtained": "Fetched the PDF over HTTPS from the Supreme Court of Ohio public docket document handler (pdf_viewer.aspx), then extracted the embedded text layer with PyMuPDF 1.26.5 page.get_text(\"text\"), concatenating pages in order. No cleaning, reflowing, de-hyphenation, encoding repair or page markers were applied; marginal line numbers, running heads, Q/A markers and blank image-only (redacted) pages appear exactly as the extractor produced them. This file is a page-range extract of a larger compiled PDF: only the pages listed in source_page_range were extracted, and their text is unmodified. Appendix pages APPX. 439-456 of the OMAEG appendix, Volume II. The competing stipulation, filed 13 days before Joint Ex. 1 on the same docket, which the Commission did not adopt.",
+  "source_pdf_sha256": "5b3dd5ee96c79b32bbb682591fbf811526170a472bb7ff34652ac831130ae617",
+  "source_pdf_bytes": 5874706,
+  "source_pdf_pages": 300,
+  "source_page_range_0indexed": [
+    145,
+    162
+  ],
+  "pages_extracted": 18,
+  "text_bytes": 27630,
+  "publisher": "Supreme Court of Ohio, Clerk of Court public docket (ECMS), case 2025-1458",
+  "access": "public record; no login, no paywall; redacted public versions only",
+  "extractor": "PyMuPDF 1.26.5 (MuPDF 1.26.10) page.get_text(\"text\")"
+}

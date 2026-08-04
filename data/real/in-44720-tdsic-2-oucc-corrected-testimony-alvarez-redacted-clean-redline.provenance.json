@@ -1,0 +1,15 @@
+{
+  "source_url": "https://iurc.portal.in.gov/_entity/sharepointdocumentlocation/cee863cd-cf68-e711-8106-1458d04e2f50/bb9c6bba-fd52-45ad-8e64-a444aef13c39?file=44720TDSIC2_OUCC%20Corrected%20Public%20Testimony%20Anthony%20A%20Alvarez_071417_Redacted_Clean_Redline.pdf",
+  "retrieved_at": "2026-08-04T16:54:02Z",
+  "sha256": "be01b9b21f8a017276886228441e9dfa1c9e16e029515a341b88b5e89b8e8dff",
+  "sha256_source_pdf": "e2ce32621a8896ee11c8343efc1960f08fb3dd0d833e8df6dc947180a42a96c3",
+  "jurisdiction": "Indiana (IURC)",
+  "docket": "44720 TDSIC-2",
+  "document_title": "OUCC Corrected Redacted Testimony of Anthony A. Alvarez (Public's Exhibit No. 2 Corrected; clean and redline)",
+  "filing_date": "2017-07-14",
+  "filer": "Indiana Office of Utility Consumer Counselor (OUCC)",
+  "source_pdf_bytes": 847860,
+  "text_bytes": 40664,
+  "pages": 24,
+  "how_obtained": "Fetched the PDF over HTTPS with curl (no login, no cookies; the IURC portal serves these documents anonymously). Converted to text with PyMuPDF page.get_text() using default settings, concatenating pages in order with no separator inserted and no other change: line breaks, spacing, hyphenation, running heads, margin line numbers and any OCR errors are left exactly as the extractor produced them."
+}

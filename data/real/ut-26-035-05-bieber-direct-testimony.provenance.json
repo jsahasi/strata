@@ -1,0 +1,22 @@
+{
+  "jurisdiction": "Utah",
+  "commission": "Public Service Commission of Utah",
+  "docket": "26-035-05",
+  "proceeding": "Application of Rocky Mountain Power for Approval of a Large-Load Service Contract between PacifiCorp and a Large-Load Customer",
+  "how_obtained": "Found the docket page on psc.utah.gov (a WordPress site: /<yyyy>/<mm>/<dd>/docket-no-<docket>/), read its raw HTML and pulled the pscdocs.utah.gov links out of it. Utah serves every document at a flat, guessable path: https://pscdocs.utah.gov/<utility>/<yy>docs/<docketdigits>/<docid><AbbreviatedTitle><m-d-yyyy>.pdf, with no login and no session. Downloaded with curl and extracted text with PyMuPDF sorted-block extraction (page.get_text('text', sort=True)), pages joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://pscdocs.utah.gov/electric/26docs/2603505/344135DirTstmnyJustinBieberUAE3-3-2026.pdf",
+  "document_title": "Direct Testimony of Justin Bieber on behalf of the Utah Association of Energy Users",
+  "filing_date": "2026-03-03",
+  "filer": "Utah Association of Energy Users",
+  "witness": "Justin Bieber",
+  "document_type": "Direct testimony",
+  "pages": 12,
+  "version_role": "standalone",
+  "notes": "Intervenor testimony from the large industrial customer group on the same contract.",
+  "sha256": "8243125f4376cabf4655af782e1c05bd13185d9279adcc21d1314cc26987c71e",
+  "bytes": 21281,
+  "retrieved_at": "2026-08-04T16:59:54Z",
+  "source_pdf_sha256": "982748553645719ab8b8aef73684f964d8a31a30c9a7859b09cddea3f18f68f7",
+  "source_pdf_bytes": 190171
+}

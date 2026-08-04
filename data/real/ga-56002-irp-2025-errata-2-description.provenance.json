@@ -1,0 +1,15 @@
+{
+  "jurisdiction": "Georgia Public Service Commission (GA PSC)",
+  "docket": "56002",
+  "source_url": "https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/221826/102953",
+  "source_detail_page": "https://psc.ga.gov/search/facts-document/?documentId=221826",
+  "facts_document_id": 221826,
+  "facts_file_id": 102953,
+  "document_title": "Second Errata to Georgia Power's 2025 IRP - description of corrections",
+  "filing_date": "2025-03-14",
+  "filer": "Georgia Power Company",
+  "how_obtained": "Fetched the GA PSC FACTS document-detail page /search/facts-document/?documentId=221826 to read its download link, then downloaded the ZIP 'dkt_56002_56003_2025_irp_errata_3-14-2025_pd.zip' from the public API endpoint https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/221826/102953. Unzipped it and took only 'Second 2025 IRP Errata 3-14-2025 Description.docx'. Converted that DOCX by reading word/document.xml out of the DOCX zip with Python zipfile + ElementTree, emitting one line per <w:p> paragraph, mapping <w:tab> to a tab and <w:br>/<w:cr> to a newline. No other cleanup - tabs, blank paragraphs and table cell order are exactly as stored in the file. Trade-secret members of the same archive were left alone.",
+  "sha256": "de5116991ffbefdfd205d13653235c8dbce5242b49b3626b8c12d23d22d33377",
+  "bytes": 2574,
+  "retrieved_at": "2026-08-04T16:58:18Z"
+}

@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Kentucky",
+  "commission": "Kentucky Public Service Commission",
+  "docket": "2025-00113",
+  "proceeding": "Electronic Application of Kentucky Utilities Company for an Adjustment of its Electric Rates and Approval of Certain Regulatory and Accounting Treatments",
+  "source_url": "https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09302025014043/25.09.30_KOLLEN_Direct_and_Exhibits_CORRECTED_Mark-up.pdf",
+  "document_title": "Corrected Joint Written Direct Testimony and Exhibits of Lane Kollen (Mark-up)",
+  "filing_date": "2025-09-30",
+  "filer": "Kentucky Office of the Attorney General, Office of Rate Intervention, jointly with Kentucky Industrial Utility Customers (KIUC)",
+  "witness": "Lane Kollen (J. Kennedy and Associates)",
+  "document_type": "Corrected direct testimony with exhibits, mark-up copy",
+  "pages": 378,
+  "version_role": "corrected reissue (mark-up rendering)",
+  "version_pair_with": "ky-2025-00113-kollen-direct-testimony-corrected-clean.txt",
+  "how_obtained": "Downloaded with curl from the Kentucky PSC public electronic case filing path (psc.ky.gov/pscecf/...). Extracted with PyMuPDF sorted-block extraction (page.get_text('text', sort=True)), pages joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "notes": "Keep this one as a trap. The Attorney General filed it as the CORRECTED Mark-up, and its cover letter says the corrections change 'Brown BESS' to 'Cane Run BESS' on page 95. But the extracted text of this file still reads 'Brown BESS' in both places on that page, matching the superseded original word for word, while the rest of the file matches the corrected clean copy's re-layout. Whatever the mark-up shows a human reader, the text a machine gets asserts the withdrawn fact. A citation verifier pointed at this file would confirm a quote saying 'Brown BESS' and be wrong about the record, with the filename telling it the document is corrected. I did not establish how the mark-up is rendered; the page carries no PDF annotation objects.",
+  "sha256": "0c50a6435262bbaa684af3bc4fc7011ad1b3539def85d355ed3c5ed42814590f",
+  "bytes": 1025485,
+  "retrieved_at": "2026-08-04T17:00:58Z",
+  "source_pdf_sha256": "21430671aeae6f11730df77c3ab3de41f6d1256a62287441bab5933bbcd88344",
+  "source_pdf_bytes": 50079625
+}

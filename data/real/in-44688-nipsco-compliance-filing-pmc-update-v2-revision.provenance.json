@@ -1,0 +1,15 @@
+{
+  "source_url": "https://iurc.portal.in.gov/_entity/sharepointdocumentlocation/00b0e4cd-8e1d-ed11-b83c-001dd803c12d/bb9c6bba-fd52-45ad-8e64-a444aef13c39?file=44688_NIPSCO_Revisions+to+Compliance+Filing+-+PMC+Update_08162022.pdf",
+  "retrieved_at": "2026-08-04T16:54:02Z",
+  "sha256": "01c724f9455daa8a1828e42e658bd320fa87fddd630b42fab16d5a1cc13d4bee",
+  "sha256_source_pdf": "c2ab559ecfd62a514f4e174879aa8f5505e400f3ded8946f7fc35e0016602f7c",
+  "jurisdiction": "Indiana (IURC)",
+  "docket": "44688",
+  "document_title": "Submission of Revision to Compliance Filing - Performance Metric Collaborative Update (REVISION of a version pair)",
+  "filing_date": "2022-08-16",
+  "filer": "Northern Indiana Public Service Company LLC (NIPSCO)",
+  "source_pdf_bytes": 388797,
+  "text_bytes": 9692,
+  "pages": 7,
+  "how_obtained": "Fetched the PDF over HTTPS with curl (no login, no cookies; the IURC portal serves these documents anonymously). Converted to text with PyMuPDF page.get_text() using default settings, concatenating pages in order with no separator inserted and no other change: line breaks, spacing, hyphenation, running heads, margin line numbers and any OCR errors are left exactly as the extractor produced them."
+}

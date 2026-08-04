@@ -1,0 +1,3326 @@
+                      Exhibit No.:
+                               Issue:  Large Load Tariff
+                         Witness:  Ryan Hledik
+               Type of Exhibit:  Rebuttal Testimony
+                Sponsoring Party:  Evegy Missouri Metro and Evergy Missouri West
+                     Case No.:  ET-2025-0184
+        Date Testimony Prepared:  September 5, 2025
+
+
+
+
+MISSOURI PUBLIC SERVICE COMMISSION
+
+       CASE NO.: ET-2025-0184
+
+
+
+
+       REBUTTAL TESTIMONY
+
+              OF
+
+         RYAN HLEDIK
+
+         ON BEHALF OF
+
+    EVERGY MISSOURI METRO and
+      EVERGY MISSOURI WEST
+
+
+
+             Kansas City, Missouri
+              September 5, 2025                    TABLE OF CONTENTS
+
+I. Introduction ........................................................................................................................... 1
+II. Review of Large Load Tariffs in Other Jurisdictions .......................................................... 4
+III. Review of Ameren’s and Evergy’s proposals ................................................................... 10
+IV. Conclusion ........................................................................................................................ 22
+
+
+
+
+
+                                                                                                                                      i                        REBUTTAL TESTIMONY
+
+                               OF
+
+                          RYAN HLEDIK
+
+                                 Case No. ET-2025-0184
+
+
+ 1                                                    I. INTRODUCTION
+
+ 2   Q.    Please state your name and business address.
+
+ 3   A.   My name is Ryan Hledik. I am a Principal of The Brattle Group. My business address is
+
+ 4         555 Mission Street, Suite 1500, San Francisco, CA 94105.
+
+ 5   Q.   On whose behalf are you submitting testimony?
+
+ 6   A.      I am submitting testimony on behalf of Evergy Metro, Inc. d/ b/a Evergy Missouri Metro
+
+ 7         and Evergy Missouri West, Inc. d/b/a Evergy Missouri West (together as “Evergy” or
+
+ 8         Company”).
+
+ 9   Q.   What are your qualifications as they pertain to this testimony?
+
+10   A.   My consulting practice focuses on regulatory, planning, and economic matters related to
+
+11          emerging energy technologies. My areas of expertise include retail rate design, distributed
+
+12           generation, load flexibility, electrification, energy efficiency, energy storage, and grid
+
+13          modernization.
+
+14                       I have led studies and authored papers, articles, and regulatory filings on rate design
+
+15           issues such as the design of rates for large load customers, the benefits of time-varying
+
+16            pricing, strategies for transitioning customers to innovative rate designs, the efficient
+
+17           pricing of electricity for customers with distributed generation, rate design practices for
+
+18           public electric vehicle (“EV”) charging, designing pilots to test innovative retail rate
+
+
+                                                                                  1 1           concepts, rate designs for promoting the efficient use of battery storage, and the energy
+
+ 2           efficiency impacts of inclining block rates.
+
+ 3           My clients have included electric and gas utilities, state and federal regulatory
+
+ 4          commissions, power developers, independent system operators, government agencies,
+
+ 5           industry trade associations, technology firms, research institutions, and law firms. I have
+
+ 6          published more than 30 articles on electricity matters, presented at industry events in 11
+
+ 7            countries, and given  lectures on  distributed  grid economics  at The University of
+
+ 8          Pennsylvania, Stanford University, and Yale University. I have served on the advisory
+
+ 9          boards of a demand flexibility startup and an energy storage trade association. My research
+
+10          has been cited by Forbes, National Geographic, The New York Times, NPR, and The
+
+11         Washington Post.
+
+12                       I received my M.S. in Management Science and Engineering from Stanford
+
+13           University, where I concentrated in Energy Economics and Policy. I received my B.S. in
+
+14          Applied Science from the University of Pennsylvania, with minors in Economics and
+
+15          Mathematics. More details regarding my professional background and education are
+
+16          included in my Statement of Qualifications, which is provided in Schedule RH-1.
+
+17   Q.   What is the purpose of your testimony?
+
+18   A.    The purpose of my testimony is to provide the Missouri Public Service Commission
+
+19         (“PSC” or “Commission”) with a comparison of Ameren’s and Evergy’s large load tariff
+
+20           proposals. I discuss similarities and differences between the two companies’ proposals
+
+21           within the broader context of other proposed large load tariffs in jurisdictions across the
+
+22          United States.
+
+
+
+
+                                                                                  2 1   Q.    Please summarize your testimony.
+
+ 2   A.    Based on my review of large load tariff proposals in other jurisdictions, I identify three
+
+ 3        common objectives of many of those proposals:
+
+ 4                      Attracting new large customers to the utilities’ service territories;
+
+ 5                      Mitigating the risk of stranded assets if the new large load customer does
+
+ 6                         not materialize as planned; and
+
+ 7                      Mitigating the risk of costs being shifted to other customers.
+
+ 8            Ideally, a large load tariff will accomplish all three of these objectives.
+
+ 9               Ameren’s and Evergy’s proposals are conceptually similar in that they both include
+
+10           several features to attract new large customers to Missouri. These features offer the
+
+11             flexibility to support new large load customers in meeting their corporate sustainability
+
+12           goals and to accommodate various options for adding capacity to the power system.
+
+13               Ameren’s and Evergy’s proposals are also conceptually similar by including
+
+14           several provisions that protect against stranded asset  risk. Those provisions include
+
+15            collateral requirements, minimum contract terms, a minimum  bill, and exit fees, for
+
+16          example.
+
+17               Ameren’s and Evergy’s proposals are designed to mitigate cost-shift risks from new
+
+18           large customers to existing customers, but their approaches differ in the degree to which
+
+19            this objective is addressed. While both proposals have rates that are based on embedded
+
+20            costs, Evergy’s proposal also includes a mechanism that addresses the additional costs
+
+21           associated with accelerated investment.
+
+22               While there are other nuanced differences between Ameren’s and Evergy’s
+
+23           proposals, in my opinion the key decision facing the Commission  is whether  it  is
+
+24          comfortable with a rate design that is strictly based on embedded costs (as proposed by
+                                                                                  3 1         Ameren) or if it prefers a rate design that has a foundation in embedded costs but also
+
+ 2           includes a provision to recover additional costs caused by the new large load customers (as
+
+ 3          proposed by Evergy).
+
+ 4   Q.   How is the remainder of your testimony organized?
+
+ 5   A.    The remainder of my testimony is organized as follows: Section II discusses takeaways
+
+ 6         from my review of large load tariff proposals in other jurisdictions. Section III provides a
+
+ 7          comparison of Ameren’s and Evergy’s proposed large load tariffs, and discusses the
+
+ 8           proposals within the broader context of my jurisdictional scan. Section IV concludes my
+
+ 9           testimony.
+
+10               II. REVIEW OF LARGE LOAD TARIFFS IN OTHER JURISDICTIONS
+
+11   Q.    Have you reviewed large load tariff proposals in other jurisdictions?
+
+12   A.     Yes, I have. While it is a very fast-moving area, my Brattle colleagues and I have been
+
+13           tracking large load  tariff proposals and  their regulatory  status in a variety of US
+
+14            jurisdictions. Figure 1 below summarizes the status of large load tariff proposals from
+
+15            select US utilities as of August 2025.
+
+
+
+
+
+                                                                                  4               Figure 1: Select Large Load Tariff and Regulatory Activity Across the US
+
+
+
+
+
+1   Q.    Have you observed any common themes in your review of those large load tariff
+
+2          proposals?
+
+3   A.     Yes, I have. At a high level, I have observed that the tariff proposals often are designed to
+
+4          accomplish three objectives. In no particular order, they are:
+
+5                      Attract new large customers to the service territory;
+
+6                      Mitigate the risk of stranded assets if the large customer does not materialize
+
+7                         as expected; and
+
+8                      Protect customers from a potential cost shift resulting from the addition of
+
+9                          the large load customers to the system.
+
+
+
+
+
+                                                                                 5 1   Q.     Let’s discuss each of those in more detail, starting with features designed to attract
+
+ 2          large load customers. Please explain why utilities would include features to attract
+
+ 3        new large customers to their service territories.
+
+ 4   A.    Evergy Witness Kevin Gunn describes the benefits of attracting new large load customers
+
+ 5            in his rebuttal testimony in this proceeding.1 Reasons to attract large load customers may
+
+ 6           include economic development, tax revenues, or a larger sales base over which to recover
+
+ 7           fixed costs.
+
+ 8                Large customers vary in their investment requirements, operational needs, and
+
+ 9           corporate objectives, all of which influence those customers’ decisions over where to locate
+
+10            their loads and which utilities to engage in this regard. Accordingly, utilities seeking to
+
+11             attract such customers would need to account for these factors when designing tariffs to
+
+12          ensure alignment with the customers’ priorities.
+
+13   Q.   Can you provide an example of a tariff proposal that is designed to attract large loads
+
+14           to the utility’s service territory?
+
+15   A.     Yes. NV Energy’s Clean Transition Tariff (“CTT”) is an example. The CTT, designed
+
+16           largely in response to Google’s request, is an advanced direct contracting arrangement that
+
+17          allows  large customers  to  finance  clean energy  projects  to meet  their  corporate
+
+18            sustainability goals. The arrangement is similar to a sleeved power purchase agreement
+
+19          (“PPA”). A customer receiving service under the new rate enters into a long-term Energy
+
+20          Supply Agreement (“ESA”) with NV Energy to purchase power from a new electricity
+
+21           resource that is chosen by the customer. The customer pays a fixed price (dollars per
+
+22         megawatt hour, or $/MWh), which is intended to cover the incremental cost of the selected
+
+
+
+
+          1   Rebuttal Testimony of Kevin Gunn, Docket No. ET-2025-0184, September 5, 2025.
+                                                                                  6 1           resource as determined through NV Energy’s Integrated Resource Plan (“IRP”) modeling.2
+
+ 2         The customer also pays the utility for any consumption in excess of electricity generation
+
+ 3         from the contracted resource. In return, the customer receives the clean energy attributes
+
+ 4           associated with the contracted resource.
+
+ 5              The CTT provides a novel avenue for sophisticated customers who are willing to
+
+ 6         pay a “green premium” to match their energy consumption with clean energy supply on an
+
+ 7          hourly  basis. My understanding  is  that the approach  is being considered in other
+
+ 8            jurisdictions, including Indiana and North Carolina.3
+
+ 9          NV Energy’s approach illustrates a strategy of attracting large loads without
+
+10          providing a price discount. Instead, the same objective can be accomplished by offering
+
+11              tariff features that are attractive to potential customers, such as facilitating the achievement
+
+12           of their corporate sustainability goals.
+
+13   Q.    Please describe the potential stranded asset risks associated with serving large load
+
+14          customers.
+
+15   A.     Stranded cost risks associated with serving new large customers arise when utilities procure
+
+16           resources or invest in infrastructure to meet the anticipated demand of these customers but
+
+17           are unable to recover those costs due to unforeseen changes in usage or customer behavior.
+
+18          For instance, large customers may downsize, relocate, or cease operations earlier than
+
+19           expected. If the utility has made substantial capital investments to serve that load (e.g.,
+
+
+
+
+
+          2  NV Energy Clean Transition Tariff, Schedule No. CTT, Advice Letter No. 547-E (Nevada Power Company)/
+          No. 674-E (Sierra Pacific Power Company), Docket Nos. 24-05022 and 24-05023, filed May 1, 2024, approved
+          on March 11, 2025.
+          3   Indiana Michigan Power Company, Stipulation and Settlement Agreement, Cause No. 46097, February 19, 2025,
+             p. 6; and Duke Energy, “Responding to growing demand, Duke Energy, Amazon, Google, Microsoft and Nucor
+           execute agreements to accelerate clean energy options,” May 29, 2024.
+                                                                                  7 1           transmission upgrades), and those assets are no longer fully utilized, the associated costs
+
+ 2        may become “stranded” and unrecoverable from the departing customer.
+
+ 3   Q.   Can you provide an example of a large load tariff proposal that is designed to mitigate
+
+ 4          the risk of stranded assets?
+
+ 5   A.     Yes. AEP Indiana Michigan (“I&M”)’s recently approved large load tariff provides an
+
+ 6         example of how rates can be designed to mitigate stranded asset risks. Approved earlier
+
+ 7            this year, the company’s revised Industrial Power tariff introduced several elements that
+
+ 8         impose restrictions on large load customers exiting the system and increased the penalties
+
+ 9            for doing so. For example, I&M’s rate includes a 12-year minimum contract term following
+
+10          an optional ramp period of up to five years, and customers who wish to terminate service
+
+11           before the term is over are subject to a termination fee equivalent to up to five years of
+
+12        minimum charges. For the duration of the contract, customers are subject to a minimum
+
+13         demand charge, which is set based on 80% of the contracted capacity. Industrial Power
+
+14          customers are also subject to a stringent collateral requirement, equivalent to 24 months of
+
+15           non-fuel charges; customers that meet specific liquidity and credit ratings can post smaller
+
+16            collateral amounts. Together, these provisions are designed to minimize the utility’s
+
+17           stranded cost risks.4
+
+18   Q.     Lastly, please explain the cost-shift risks that utilities may face when serving new
+
+19          large load customers.
+
+20   A.    Aside from the risk of stranded assets, there also is a risk that the cost of serving the new
+
+21          customer’s load will be higher than the revenue produced from the customer’s applicable
+
+22             rate. This is a complex issue, because whether or not it occurs depends on factors such as
+
+
+
+          4   Indiana Michigan Power Company, Submission of Tariff—Tariff I.P., Cause No. 46097, February 19, 2025, p.
+             6.
+                                                                                  8 1           the load profile of the customer, the regulatory precedent for setting the pricing in the large
+
+ 2          load tariff, the potential applicability of an economic development rider, whether the
+
+ 3             utility’s marginal costs are higher than its embedded costs, and the potential cost of
+
+ 4           accelerating investments to quickly serve the new large load. As a result, utilities take a
+
+ 5           variety of approaches to addressing this issue based on jurisdiction-specific ratemaking
+
+ 6            practices.
+
+ 7   Q.   Can you provide examples of the strategies that utilities have taken to protect existing
+
+ 8         customers from cost-shift risks when serving new large customers?
+
+ 9   A.   Many of the same mechanisms designed to alleviate the risk of stranded assets also protect
+
+10           existing customers from cost shifts. For example, I&M’s aforementioned large load tariff
+
+11           includes a minimum demand charge set at 80% of contracted capacity, which ensures that
+
+12           the utility recovers a substantial proportion of the estimated bill revenue even if actual
+
+13          usage falls short.
+
+14              As another example, PG&E’s recently proposed tariff for large, transmission-level
+
+15             retail customers would require such customers to pay up-front for all transmission facilities
+
+16         and upgrades needed to serve their load.5 Under this framework, the only transmission
+
+17          upgrade costs socialized across ratepayers are those that provide value to the broader
+
+18          customer base (e.g., transmission network upgrades). Any upgrades that provide value
+
+19           solely to the large load customer must be paid by that customer.
+
+
+
+
+
+          5    California Public Utilities Commission, Proposed Decision, Application 24-11-007, July 24, 2025.
+                                                                                  9 1                     III. REVIEW OF AMEREN’S AND EVERGY’S PROPOSALS
+
+ 2   Q.    Have you reviewed Ameren’s and Evergy’s large load tariff proposals?
+
+ 3   A.     Yes. I have reviewed Ameren’s proposed revisions to its Large Power Service tariff and
+
+ 4          Evergy’s proposed Large Load Power Service (“LLPS”) tariff.
+
+ 5   Q.     First, how do Ameren’s and Evergy’s large load tariff proposals compare in terms of
+
+ 6           their rate design structures?
+
+ 7   A.    The utilities’ proposed tariffs to serve large load customers have similar rate design
+
+ 8            structures. Both rate structures contain the same elements, which include:
+
+ 9                     Customer charge: assessed on a $/customer basis, the customer charge is
+
+10                       used to recover customer-specific costs such as metering, billing, and
+
+11                       customer support.
+
+12                     Energy charge: assessed on a $/kWh basis, the energy charge recovers
+
+13                          energy-related costs based on metered kWh consumed and varies by
+
+14                          season.6
+
+15                     Demand charge: assessed on $/kW-month of billing demand, the demand
+
+16                        charge recovers costs related to electricity production and varies by season.
+
+17                      Reactive demand charge: assessed on a $/kVar basis, the reactive charge
+
+18                         recovers costs associated with managing reactive demand caused by the
+
+19                        customer.
+
+20                There are some nuanced differences in the charges across the two proposals. For
+
+21          example, whereas Ameren proposes to recover all demand-related costs through a single
+
+22         demand charge, Evergy proposes to recover demand-related costs through two different
+
+
+
+          6   Evergy’s proposed energy charge has the same pricing level across seasons. Ameren’s proposed tariff also
+            includes an optional time-of-day variation.
+                                                                                 10 1           charges: (1) a “Grid Charge” to recover substation and transmission-related costs and (2) a
+
+ 2        “Demand Charge” to recover production-related costs. The utilities’ proposed methods to
+
+ 3         measure the billing demand for the demand charges are accordingly different.7
+
+ 4                Aside from these technical differences, the proposed charges are similar in structure
+
+ 5           across the two tariffs.
+
+ 6                Table 1 summarizes my comparison of the rate design elements in Ameren’s and
+
+ 7          Evergy’s proposals. A green circle indicates that the rate design element is common across
+
+ 8           the two proposals, and a yellow circle indicates that the rate design element is included in
+
+ 9          only one of the proposals.
+
+                                             Table 1:
+       Comparison of Rate Design Elements in Ameren’s and Evergy’s Large Load Tariff Proposals
+
+                          Ameren                                     Evergy
+                                (Large Power Service)                               (Large Load Power Service)
+                                                                Customer Charge                  Customer Charge
+                                                                     EMM: $1,181/month        ⬤  $412.66/month                 ⬤                                                                  EMW: $675/month
+                    Energy Charge: Flat (or TOU), Seasonal                                                                      Energy Charge: Flat, Seasonal
+                    Summer: $0.0406/kWh; Winter: $0.0371/kWh
+                                                                     EMM: $0.02988/kWh        ⬤  TOU: Peak & Off-Peak Pricing with Summer (June -     ⬤                                                                  EMW: $0.02881/kWh
+                       September) and Winter (October - May) Pricing in $/kWh
+                Demand Charge: Flat, Seasonal                 Demand Charge: Flat, Seasonal
+                    Summer: $23.90/kW-month                             EMM: Summer: $14/kW-month; Winter: $12/kW-month        ⬤                        ⬤                          Winter: $10.63/kW-month                             EMW: Summer: $10/kW-month; Winter: $8/kW-month
+                                                                          Grid Charge
+                                                                     EMM: $3.003/kW-month Substation Charge or $2.2/kW-
+                                                                         month Transmission Charge                                 ⬤                                                                  EMW: $4.811/kW-month Substation Charge or $4.75/kW-
+                                                                         month Transmission Charge
+                                                                          Reactive Charge                     Reactive Charge
+                                                                     EMM: $0.99294/kVar        ⬤  $0.4481/kVar                  ⬤                                                                  EMW: $0.46/kVar
+
+                      Rate design element is common across both proposals.       EMM: Evergy Missouri Metro        ⬤                      Rate design element is included in only one proposal.        EMW: Evergy Missouri West        ⬤10
+
+
+
+          7    Specifically, Ameren’s proposed definition for billing demand is based on the “highest demand established during
+          peak hours [10 AM to 10 PM] or 50% of the highest demand established during off-peak hours, whichever is
+            highest during the month, but in no event less than 5,000 kW.” See Direct Testimony of Steven M. Wills, Schedule
+        SMW-D1, Sheet No. 61.3 (“Wills Direct Testimony”). In comparison, Evergy proposes to measure “grid demand”
+             for the Grid Charge as the highest demand measured every 15 minutes in the last 12 months, and “billing demand”
+             for the Demand harge as the higher of the highest demand measured every 15 minutes or the minimum demand.
+          See Direct Testimony of Brad Lutz, Schedule BDL-1, p. 88, Case No. EO-2025-0154 (“Lutz Direct Testimony”).
+                                                                                 11 1   Q.   How do the average customer bills under Ameren’s and Evergy’s proposed large load
+
+ 2            tariffs compare?
+
+ 3   A.    To illustrate the implications of the proposed tariffs for customer bills, I calculated the
+
+ 4          average monthly bills for a large customer under each proposed tariff (see Table 2 below).
+
+ 5           In this illustrative calculation, I assumed a contracted capacity of 500 MW, actual usage of
+
+ 6         400 MW, and load factor of 70%. For simplicity, I assumed the customer has zero kVar.
+
+ 7               Under Ameren’s proposed rate, the customer would pay an average of $13.8 million
+
+ 8           per month, equivalent to an all-in rate of 6.8 cents/kWh. Under Evergy’s proposed rate, the
+
+ 9         same customer would pay $15.9 million, resulting in an all-in rate of 7.8 cents/kWh. The
+
+10           higher bill under Evergy’s proposed rate is in part due to revenue from the System Support
+
+11           Rider, which will be used to offset the accelerated generation costs otherwise expected to
+
+12          be borne by non-LLPS customer classes.8
+
+                                             Table 2:
+                     Comparison of Ameren’s and Evergy’s Monthly Bills and
+                   Average Pricing Levels for an Illustrative Large Load Customer
+
+             Ameren (Large Power Service)
+
+               Average Monthly Payment                                           $13,844,398
+                    All-in Rate ($/kWh)                                                  $0.06773
+
+                Evergy Missouri Metro (Large Load Power Service)
+
+               Average Monthly Payment                                           $15,891,320
+                    All-in Rate ($/kWh)                                                  $0.07775
+13
+14          Notes: Assumes customer has 500-MW contract capacity, 70% load factor, and 0 kVar reactive demand,
+15          served at transmission voltage. The average monthly bill is the total annual bill divided by 12. Both
+16           estimates include charges shown in Table 1 (plus the SSR for the Evergy bill) and assume that the customer
+17          does not receive an economic development rate discount. In the Evergy case, the customer is charged the
+18           transmission-level Grid Charge.
+
+
+
+
+
+          8   Lutz Direct Testimony, p. 33.
+                                                                                 12 1   Q.     Let’s return to the three large load rate design objectives that you identified in your
+
+ 2           jurisdiction scan. Please provide an overview of how Ameren’s and Evergy’s large
+
+ 3          load tariff proposals compare in this context.
+
+ 4   A.    Table 3 below provides an overview of the key features of each proposal. Ameren and
+
+ 5         Evergy share the goal of attracting new large customers (the first objective), though their
+
+ 6          approaches differ slightly, with Evergy offering options for customers to contribute
+
+ 7           capacity in addition to clean energy options. Both utilities rely on similar tariff mechanisms
+
+ 8            to mitigate stranded asset  risk (the second objective), though with some technical
+
+ 9           differences in their design. The most notable divergence across the two proposed tariffs
+
+10             lies in their treatment of cost-shift risks. Both proposals establish rates based on embedded
+
+11            costs, but Evergy's proposal includes an additional mechanism to recover additional costs
+
+12            arising from accelerated infrastructure investment.
+
+
+
+
+
+                                                                                 13              Table 3: Comparison of Key Features of Ameren’s and Evergy’s Proposals
+                                Ameren                                      Evergy
+        Category                   (Large Power Service)                             (Large Load Power Service)
+                          Optional Clean Energy Credit Riders               Optional Clean Energy Credit Riders
+                                          (1) Renewable Solutions Program - Large Load Customers             (1) Renewable Energy Rider (RENEW), (2) Green Solutions         ⬤   (RSP-LLC) and (2) Nuclear Energy Credits (NEC)    ⬤  Connections (GSR), and (3) Alternative Energy Credits (AEC)
+      Mechanisms to
+                         Clean Energy Choice Program                   Clean Energy Choice Rider         Attract New ⬤                  ⬤
+        Large Loads
+                         Clean Capacity Advancement Program         Demand Response & Local Generation Rider         ⬤                  ⬤
+                                                                 Customer Capacity Rider                            ⬤
+                     Minimum Contract Term                    Minimum Contract Term         ⬤  15 Years               ⬤  15 Years
+                     Minimum Monthly Bill                      Minimum Monthly Bill         ⬤  Based on 70% of contract demand        ⬤  Based on 80% of contract demand
+                                                                                  Collateral Requirements                             Collateral Requirements
+                                                                                                   Twenty-four (24) months multiplied by the minimum                           50% of minimum capacity commitments for full term.         ⬤                  ⬤  monthly bill
+      Mechanisms to      Capacity Reduction Restrictions                  Capacity Reduction Restrictions
+          Mitigate            One-time reduction up to 10% (after first five years of             One-time 20% reduction allowed; greater reductions         ⬤   contract term) upon payment of a Capacity Reduction Fee ⬤  allowed with payment of a Capacity Reduction Fee      Stranded Asset
+                          Termination Fees            Risk                                                         Termination Fees
+                           Minimum charges for 5 years or rest of contract term,                                                                            Minimum charges for 1 year or rest of contract term,         ⬤  whichever is less (in addition to any outstanding months ⬤  whichever is greater
+                                      of ramp period)
+                                                                                Early Termination Fee
+                                                                                                      Additional fee if customer seeks to terminate service with
+                                                                                                              less than 36 months' notice, equal to twice the minimum                            ⬤  monthly bill multipled by the difference between 36
+                                                                                       months and the requested number of months' notice.
+                           Interim Capacity Charge                          Interim Capacity Charge
+      Mechanisms to        Customer may be subject to additional demand charge for        Customer required to pay for procurement costs of       Mitigate Cost- ⬤   interim capacity (design unspecified)       ⬤   additional capacity until next general rate case
+           Shift Risk                                                                   System Support Rider                            ⬤
+                              Mechanisms shared across both Evergy's and Ameren's proposals        LEGEND:  ⬤
+                              Mechanisms unique to one proposal         ⬤
+
+1   Q.     Starting with the first objective, what features do Ameren’s and Evergy’s proposals
+
+2          include to attract large load customers to Missouri?
+
+3   A.    Ameren’s and Evergy’s proposals are quite similar in this regard: they both include several
+
+4           provisions that are designed to attract large load customers to Missouri without offering a
+
+5           price discount.
+
+6                 Evergy’s proposal offers service flexibility to customers via several different
+
+7          mechanisms. One of these features is the Customer Capacity Rider, under which a customer
+                                                                                14 1         would be credited for the transfer of resource capacity rights to Evergy, which Evergy
+
+ 2          could then utilize to meet  its capacity obligations. The proposed Demand Response
+
+ 3          Generation Rider would credit a customer providing demand response services. Both
+
+ 4         mechanisms could expedite the load interconnection process, one of the main priorities for
+
+ 5           large load customers.
+
+ 6             Many large load customers are also interested in receiving clean energy supply, and
+
+ 7          Evergy’s proposal includes four optional riders that address this priority. The Renewable
+
+ 8         Energy Program Rider (“RENEW”) and the Green Solution Connections Rider (“GSR”)
+
+ 9          both would offer customers the opportunity to purchase renewable energy attributes to
+
+10         comply with corporate emission inventories. The Alternative Energy Credits Rider would
+
+11          allow customers to purchase zero emission credits from Evergy’s Wolf Creek Nuclear
+
+12          Generating plant for similar purposes. The other offering is more complex. Evergy’s Clean
+
+13         Energy Choice Rider would provide customers with the option to pay the price premium
+
+14           of a new clean generation resource incremental to Evergy’s baseline IRP portfolio.
+
+15               Ameren’s proposal appears to include very similar provisions. While there is no
+
+16           equivalent  Customer  Capacity  Rider, Ameren  does  propose  the  Clean  Capacity
+
+17         Advancement Program, which would help fund energy storage projects designed to help
+
+18           large load customers integrate wind and solar resources.9 The proposed Renewable
+
+19           Solution Program – Large Load Customers and Nuclear Energy Credit  riders are
+
+20           functionally similar to Evergy’s RENEW and GSR riders.10 Lastly, Ameren offers a Clean
+
+21         Energy Choice Program that is equivalent to Evergy’s rider of the same name.11
+
+
+
+
+          9   Wills Direct Testimony, pp. 21–22.
+          10   Id., pp. 18–23.
+          11   Id., pp. 23–25.
+                                                                                 15 1   Q.   Do Ameren’s and Evergy’s proposals include provisions to mitigate the risk of
+
+ 2          stranded assets?
+
+ 3   A.     Yes. In this area as well, the proposals from both utilities include several features that
+
+ 4           protect against stranded asset risks. Both proposals include five common measures to
+
+ 5           mitigate risks of stranded assets:12,13
+
+ 6                      Contract term: both proposals include a service contract term of 15 years,
+
+ 7                         including a ramp period of no more than 5 years;
+
+ 8                    Minimum monthly bill: which, among other charges, includes a minimum
+
+ 9                    demand charge;
+
+10                      Collateral requirements: new large load customers must post collateral,
+
+11                      which is calculated based on contract capacity, and the exact amount can be
+
+12                        discounted or avoided with certain level of creditworthiness and liquidity;
+
+13                      Termination fee: customers must pay substantial fees if they wish to exit the
+
+14                          service contract early; and
+
+15                      Capacity reduction restrictions: customers can opt to reduce their capacity
+
+16                           obligations. Ameren allows up to a 10% reduction upon payment of a
+
+17                         capacity reduction fee, while Evergy allows for up to 20% reduction for no
+
+18                             fee, and greater for a capacity reduction fee.
+
+19                Table 2 above contains additional details of these tariff elements. These tariff
+
+20         mechanisms proposed by Ameren and Evergy are designed to protect customers from
+
+21            potential stranded cost risks, and they have been adopted by other utilities across the
+
+22          country for similar purposes.
+
+
+
+          12   Id., pp. 11–13.
+          13   Lutz Direct Testimony, pp. 19-20.
+                                                                                 16 1   Q.    Are there any differences in the ways in which Ameren and Evergy have proposed to
+
+ 2          address stranded asset risks?
+
+ 3   A.     Yes, there are some technical differences in Evergy’s and Ameren’s proposed collateral
+
+ 4          requirements and termination fees.
+
+ 5                There  are two key  differences between the companies’ proposed  collateral
+
+ 6           requirements. The first difference pertains to the baseline collateral amount. Evergy’s
+
+ 7          proposal requires customers to post collateral equal to 24 months of minimum charges,
+
+ 8          whereas Ameren’s proposal requires 50% of the minimum charge for the duration of the
+
+ 9            contract. The second difference pertains to the available options for reducing the collateral
+
+10           requirement. Evergy’s proposal exempts eligible customers from 50% of the collateral
+
+11           requirement, and the exemption amount cannot exceed $150 million; customers with lower
+
+12            credit ratings can avoid up to 40%, or $125 million, of their collateral amount if they meet
+
+13           the liquidity requirement.14 Under Ameren’s proposal, eligible customers can avoid the
+
+14            collateral requirement altogether.
+
+15                Regarding the exit fee provision, Ameren’s proposal requires customers to pay the
+
+16            lesser of the remaining contract term or the equivalent of five years of minimum charges
+
+17           (plus any remaining term of the load ramp period), while Evergy’s proposal is more
+
+18            stringent and requires customers to pay the greater of the remaining contract term or the
+
+19           equivalent of one year of minimum charges. In addition, Evergy’s proposal includes a
+
+20           clause that any outstanding interim capacity charges the company is unable to reassign to
+
+21          a different customer can be included in the exit fee. Ameren’s proposal does not appear to
+
+22           include a similar term. Further, Evergy’s proposal requires customers to provide 36 months
+
+
+
+
+          14   Ibid.
+                                                                                 17 1          advance notice of termination. Shorter notice requires payment of an additional early
+
+ 2           termination fee. Ameren’s proposal only requires 24 months and does not include an
+
+ 3           additional fee for early termination.15,16
+
+ 4   Q.     Lastly, do Ameren’s and Evergy’s proposals include provisions to protect customers
+
+ 5         from the risk of a cost shift?
+
+ 6   A.     This is the key area in which I consider the two companies’ approaches to be conceptually
+
+ 7            different.
+
+ 8              As I described previously, additional costs could be imposed on the system by a
+
+ 9        new large load customer but recovered from other customers if not sufficiently addressed
+
+10          through class cost-of-service study and rate design. Those additional costs could be due to
+
+11           the difference between the marginal and average cost of serving the customer (if rates are
+
+12            set based on embedded costs), and/or the cost of accelerated infrastructure investment
+
+13          needed to quickly scale and serve the new large load.17
+
+14              The pricing in both utilities’ tariff proposals is based on embedded costs, a choice
+
+15            that is consistent with prior ratemaking practices in Missouri and reflects a philosophy that
+
+16           the power system is a shared resource to be paid for consistently by all customers regardless
+
+17           of the specific time at which they enter the system. In this regard, both utilities’ proposed
+
+18            rates potentially could be exposed to the two cost-shift risks I described above  (i.e.,
+
+19          marginal costs exceeding embedded costs and the cost of accelerated investment).
+
+
+
+
+
+          15   Wills Direct Testimony, Schedule SMW-D1, Sheet No. 61.6.
+          16   Lutz Direct Testimony, pp. 18-19.
+          17   Additionally, a cost shift could be created through the provision of an economic development rider (EDR) to the
+         new large load customers. My understanding is that Ameren does not provide the EDR. Evergy does provide the
+       EDR but recovers its cost directly through the Cost Recovery Component of the System Support Rider, so both
+               utilities similarly mitigate this cost-shift risks.
+                                                                                 18 1                 Evergy’s proposal goes further to reduce the risk of a cost shift through the
+
+ 2           inclusion of a mechanism designed to recover some additional costs. That mechanism is
+
+ 3          included in the Acceleration Component of the System Support Rider (“SSR”), which
+
+ 4           recovers costs associated with the acceleration of resource investment needed to serve large
+
+ 5            loads.18 I understand Evergy is proposing, as part of the class cost-of-service study, to
+
+ 6            allocate revenue from the SSR to non-LLPS classes, thereby offsetting the accelerated
+
+ 7           generation costs expected to be borne by those customers classes.19
+
+ 8   Q.   How else do Ameren’s and Evergy’s proposals differ in their approach to protect
+
+ 9         customers from the risk of a cost shift?
+
+10   A.     In addition to the System Support Rider, Evergy’s proposal includes an optional Interim
+
+11          Capacity Charge  that  is  specifically  focused on  recovering  the  cost  of  capacity
+
+12          procurements needed to serve a new large load customer for the period between their
+
+13           interconnection and their full incorporation into Evergy’s IRP. This charge would pass the
+
+14           cost of these procurements directly through to the large load customer. While Ameren’s
+
+15          proposal leaves the option open for a similar interim capacity charge, it does not specify
+
+16            that such a charge would need to recover all of these procurement costs.20
+
+17              Ameren has concluded that to mitigate the risk of a cost shift in its proposal,
+
+18            persistent increases to the large customer rate exceeding 4% per year for the next 20 years
+
+19         would be needed.21 This equates to a cumulative increase of approximately 120% over that
+
+
+
+
+
+          18  The other component of the SSR, the Cost Recovery Component, charges customers the difference between their
+            estimated revenue before and after economic development discounts are applied.
+          19   Lutz Direct Testimony, p. 33.
+          20   Wills Direct Testimony, Schedule SMW-D1, Sheet No. 61.7.
+          21   Id., p. 35.
+                                                                                 19 1          20-year period (i.e., more than doubling the rate).22 Rates likely would need to be adjusted
+
+ 2           frequently to ensure this outcome.
+
+ 3   Q.    Taking a step back, how do Ameren’s and Evergy’s proposed tariffs compare to those
+
+ 4          that have been proposed and approved in other jurisdictions around the United
+
+ 5          States?
+
+ 6   A.    Both Evergy’s and Ameren’s proposed tariffs are broadly consistent with the approaches
+
+ 7          being used in large load tariffs across the United States (see the table in Schedule RH-2).
+
+ 8        From a national perspective, utilities increasingly are relying on tariffs as a tool to attract
+
+ 9        new large customers while addressing stranded cost and cost-shift risks. For instance, many
+
+10             utilities have introduced new clean energy procurement frameworks to attract customers
+
+11          with ambitious sustainability goals. These are similar to the options available under
+
+12         Ameren’s and Evergy’s proposals, where customers can pay a premium to cover the
+
+13           incremental cost of the next cheapest carbon-free energy resource identified through the
+
+14             utilities’ IRP process. Likewise, many  utilities are incorporating a common  set of
+
+15         mechanisms in their large load tariffs to mitigate stranded cost risks. These mechanisms
+
+16           include long-term contracts, minimum charges/minimum bills, early termination fees, and
+
+17            collateral requirements—elements that are included in both Ameren’s proposal and
+
+18          Evergy’s proposal.
+
+19   Q.    Are there outliers that you have seen in your review of large load tariffs?
+
+20   A.     Yes. While many of the large customer tariffs I have reviewed aim to balance the three
+
+21           objectives described in my Rebuttal Testimony, the Missouri PSC Staff’s proposal in
+
+
+
+
+
+          22  Assuming a 4% year over year growth rate, the rate 20 years from today would be 2.19 times the current rate.
+                                                                                 20 1          Evergy’s LLPS proceeding23 represents a departure from these emerging rate design
+
+ 2            practices. The table in Schedule RH-2 documents the key differences.
+
+ 3   Q.    In what ways is Staff’s proposal an outlier?
+
+ 4   A.    At a conceptual level, there are two important ways in which Staff’s proposal differs from
+
+ 5           proposals I have reviewed in other jurisdictions. First, Staff’s proposal does not provide
+
+ 6             flexibility  to  attract new large load customers  to Missouri.  Specifically,  Staff has
+
+ 7         recommended rejecting all of Evergy’s proposed options designed to enable new customers
+
+ 8            to choose clean energy resources or provide capacity through local generation or demand
+
+ 9           response.24
+
+10                Second, Staff’s proposal is more complex than proposals I have reviewed in other
+
+11            jurisdictions and includes elements that I have not observed elsewhere. For example,
+
+12            Staff’s proposal includes a four-season time-of-use energy charge with three pricing
+
+13           periods, several fixed cost adjustments, and two separate fees for variance between
+
+14           forecasted and actual demand that would require the customer and utility to update
+
+15            financial estimates on a monthly basis. I would expect this complexity, combined with a
+
+16           lack of flexibility, to make Staff’s proposal unattractive to large load customers relative to
+
+17          competing proposals in other jurisdictions.
+
+
+
+
+
+          23   Missouri Public Service Commission Staff, Missouri Public Service Commission Staff Recommendation, Case
+          No. Case No. EO-2025-0154 (“Missouri PSC Staff Proposal”).
+          24   Missouri PSC Staff Proposal, pp. 86 (Clean Energy Rider), 94 (Demand Response and Local Generation Rider),
+          99 (Customer Capacity Rider), 106 (Renewable Energy Program Rider), 107 (Green Solution Connection Rider),
+          109 (Alternative Energy Credit Rider).
+                                                                                 21 1                                     IV. CONCLUSION
+
+ 2   Q.   What should the Commission take away from your comparison of Ameren’s and
+
+ 3          Evergy’s large load tariff proposals?
+
+ 4   A.    While there are nuanced differences between the two proposals, at a conceptual level both
+
+ 5             tariffs  include  several  provisions  that  can  attract  large  loads  to  Missouri  while
+
+ 6          simultaneously protecting against stranded asset risk. Both proposals align favorably with
+
+ 7       my jurisdictional scan of large load tariff proposals in these two areas.
+
+ 8              The key conceptual difference between the two proposals  is their respective
+
+ 9          approach to mitigating the risk of a cost shift to other customers. By including a mechanism
+
+10          through which additional costs are recovered from large loads, Evergy’s proposal goes
+
+11            further toward mitigating this cost-shift risk.
+
+12              As I see it, the key decision facing the Commission is to determine whether, and to
+
+13         what extent, the proposed tariffs help to achieve Missouri’s energy and economic policy
+
+14            objectives. Both tariff proposals are intended to attract new large load customers while
+
+15           mitigating stranded cost and cost-shift risks. However, the two proposals strike the balance
+
+16         between these competing objectives somewhat differently, with Evergy’s approach placing
+
+17         more emphasis on protecting existing customers from cost-shift risks by incorporating
+
+18         mechanisms to recover additional costs caused by the new large loads.
+
+19   Q.    Does this conclude your Rebuttal Testimony?
+
+20   A.     Yes, it does.
+
+
+
+
+
+                                                                                 22             BEFORE THE PUBLIC SERVICE COMMISSION
+                   OF THE STATE OF MISSOURI
+
+ In the Matter of the Application of Union    )
+ Electric Company d/b/a Ameren Missouri    )     Docket No. ET-2025-0184
+ for Approval of New Modified Tariffs         )
+ for Service to Large Load Customers          )
+
+                     AFFIDAVIT OF RYAN HLEDIK
+
+ STATE OF OREGON                  )
+                                                   ) ss
+ COUNTY OF CLACKAMAS       )
+
+       Ryan Hledik, being first duly sworn on his oath, states:
+.-,            1.   My name is Ryan Hledik and I am a Principal of The Brattle Group.
+          2.     Attached hereto and made a part hereof for all purposes is my Rebuttal Testimony
+ on behalf of Evergy Missouri Metro and Evergy Missouri West consisting of   lw-e,v...,t--/ ·'+wu
+ ( 2 t,) pages, having been prepared in written form for introduction into evidence in the above­
+ captioned docket.
+          3.        I have knowledge of the matters set forth therein.  I hereby swear and affirm that
+ my answers contained in the attached testimony to the questions therein propounded, including
+ any attachments thereto, are true and accurate to the  bt?_st of my knowledge, information and
+ belief.
+
+
+                                   Ryan Hledik
+
+ Subscribed and sworn before me thisw day of September 2025.
+
+
+
+                                                          --·-                                 Notary Public
+
+                                                                                            OFFICIAL                                                                                  STAMP My commission expires:                                                                   G                                                                         KHALED              0 5 / Z                  O 6:f-                HESHAM                    (51//
+                                                                        NOTARY PUBLIC - OREGON
+                                                                            COMMISSION NO. 1035842
+                                                                                            MY COMMISSION EXPIRES APRIL 5, 2027                 Ryan M. Hledik
+
+                            PRINCIPAL
+
+
+        San Francisco               +1.415.217.1000          Ryan.Hledik@brattle.com
+
+Mr. Hledik specializes in regulatory and planning matters related to
+emerging energy technologies.
+
+
+He advises clients in matters related to energy storage, load flexibility, distributed generation,
+electrification, retail rate design, energy efficiency, and grid modernization. He has worked on
+behalf of utilities, energy companies, grid operators, public service commissions, and
+government and regulatory agencies across 35 states and nine countries.
+
+
+Mr. Hledik’s work has been cited in regulatory decisions establishing procurement targets for
+distributed energy resources, authorizing billions of dollars in smart metering investments, and
+approving the introduction of innovative rate designs. He is a recognized voice in debates on
+how to price electricity for customers with distributed generation. He has authored widely-cited
+studies on the economics of virtual power plants, Saudi Arabia’s first demand-side management
+(DSM) plan, the US Department of Energy’s A National Roadmap for Grid-Interactive Efficient
+Buildings, and the Federal Energy Regulatory Commission’s A National Assessment of Demand
+Response Potential and National Action Plan for Demand Response.
+
+
+He has published more than 30 articles on electricity matters, presented at industry events in
+11 countries, and given lectures on distributed grid economics at Penn, Stanford and Yale. His
+research on the “grid edge” has been cited by Forbes, National Geographic, The New York
+Times, NPR, and The Washington Post, and he has served on the advisory boards of a demand
+flexibility startup and an energy storage trade association.
+
+
+Mr. Hledik received his M.S. in Management Science and Engineering from Stanford University,
+where he concentrated in Energy Economics and Policy. He received his B.S. in Applied Science
+from the University of Pennsylvania, with minors in Economics and Mathematics. Prior to
+joining Brattle, Mr. Hledik was a research assistant with Stanford’s Energy Modeling Forum and
+a research analyst with Charles River Associates.
+
+
+
+
+
+                 Ryan Hledik                                                          brattle.com | 1 of 44
+                                                               Schedule RH-1
+                                                             Page 1 of 44AREAS OF EXPERTISE
+
+•  Innovative Retail Electricity Pricing
+
+•   Electrification
+
+•  Load Flexibility, Demand Response, and Energy Efficiency
+
+•  Energy Storage
+
+•  Grid Modernization
+
+•  Model Development
+
+
+EDUCATION
+
+•  Stanford University
+  MS in Management Science & Engineering
+
+•  University of Pennsylvania
+   BS in Applied Science
+
+
+PROFESSIONAL EXPERIENCE
+
+•  The Brattle Group (2006–Present)
+    Principal (2015–Present)
+   Senior Associate (2009–2014)
+    Associate (2006–2009)
+
+•  Stanford Energy Modeling Forum (2005)
+   Research Assistant
+
+•  Charles River Associates (2002–2005)
+   Research Analyst
+
+
+TESTIMONY AND REGULATORY FILINGS
+
+•  Before the Assembly Energy and Utilities Committee, “Ryan Hledik Oral Testimony
+   Regarding Senate Bill 541,” on behalf of Senator Josh Becker, July 16, 2025.
+
+•  Before the California Senate Energy, Utilities, and Communications Committee, “Ryan
+    Hledik Oral Testimony Regarding Senate Bill 541,” on behalf of Senator Josh Becker, April
+    21, 2025.
+
+
+
+                Ryan M. Hledik                                                       brattle.com | 2 of 44
+                                                               Schedule RH-1
+                                                             Page 2 of 44•  Before the New York Public Service Commission, “New York’s Grid Flexibility Potential,
+   Volume III: Supplemental Analysis,” report filed on behalf of the New York Department of
+    Public Service and NYSERDA, Case No. 24-E-0165, March 2025 (with A. Ramakrishnan, K.
+    Peters, S. Edelman, and A. Savage Brooks).
+
+•  Before the New York Public Service Commission, “New York’s Grid Flexibility Potential,
+   Volume II: Technical Appendix,” report filed on behalf of the New York Department of Public
+    Service and NYSERDA, Case No. 24-E-0165, January 2025 (with A. Ramakrishnan, K. Peters,
+    S. Edelman, and A. Savage Brooks).
+
+•  Before the New York Public Service Commission, “New York’s Grid Flexibility Potential,
+   Volume I: Summary Report,” report filed on behalf of the New York Department of Public
+    Service and NYSERDA, Case No. 24-E-0165, January 2025 (with A. Ramakrishnan, K. Peters,
+    S. Edelman, and A. Savage Brooks).
+
+•  Before the Kansas Corporation Commission, “Design Considerations for an Optimal
+   Commercial and Industrial TOU Rate in Evergy’s Kansas Central Territory,” report filed on
+    behalf of Evergy in Docket No. 25-EKCE-294-RTS, January 2025 (with L. Lam, A. Bigelow, and
+     J. Gonzalez).
+
+•  Before the British Columbia Utilities Commission, “Residential Rate Design in British
+   Columbia: Key Issues for Consideration,” report filed on behalf of BC Hydro in the
+   company’s 2024 Rate Design Application, June 27, 2024 (with S. Sergici).
+
+•  Before the Maryland Public Service Commission, rebuttal testimony filed on behalf of
+   Pepco, on the issue of a benefit-cost analysis of Pepco’s transportation electrification
+   programs, Case No. 9702, January 2024.
+
+•  Before the Maryland Public Service Commission, “An Assessment of Electrification Impacts
+   on the Maryland Electric Grid,” report filed on behalf of the Maryland Public Service
+   Commission in compliance with Sect. 10 of the Climate Solutions Now Act of 2022,
+   December 29, 2023 (with S. Sergici, A. Ramakrishnan, K. Peters, J. Hagerty, E. Snyder, J.
+    Olszewski, and H. Ethier).
+
+•  Before the Maryland Public Service Commission, “Fairmount Heights Microgrid BCA:
+   Supplemental Analysis,” report filed on behalf of Pepco in Case No. 9619, October 17, 2023
+    (with K. Viswanathan and J. Olszewski).
+
+•  Before the Maryland Public Service Commission, direct testimony filed on behalf of Pepco,
+   on the issue of a benefit-cost analysis of Pepco’s transportation electrification programs,
+   Case No. 9702, May 2023.
+
+
+
+
+                Ryan M. Hledik                                                       brattle.com | 3 of 44
+                                                               Schedule RH-1
+                                                             Page 3 of 44•  Before the Public Service Company of Colorado (PSCo), “Transportation Electrification Cost-
+    Benefit Analysis for Public Service Company of Colorado,” report filed on behalf of PSCo in
+   Proceeding No. 23A-0242E, May 2023 (with J. Hagerty, S. Sergici, E. Snyder, J. Olszewski, and
+     J. Grove).
+
+•  Before the Alberta Utilities Commission, “A Review of Maximum Investment Levels in
+    Alberta: Theory and Precedent,” report filed on behalf of ATCO in Proceeding 27658, March
+    24, 2023 (with A. Ramakrishnan).
+
+•  Before the British Public Utilities Commission, “A Review of BC Hydro’s Optional Residential
+   TOU Rate,” report filed on behalf of BC Hydro in the company’s Optional Residential Time-
+   of-Use Rate Application, February 21, 2023 (with S. Sergici).
+
+•  Before the Public Service Commission of the District of Columbia, direct testimony filed on
+    behalf of Pepco, on the issue of a benefit-cost analysis of Pepco’s Climate Solutions Plan
+   Phase I Application, Formal Case No. 1167, December 2022.
+
+•  Before the Missouri Public Service Commission, surrebuttal testimony filed on behalf of
+   Evergy Missouri (West and Metro), on the issue of a proposed subscription pricing program,
+   Case No. ER-2022-0130, August 2022.
+
+•  Before the Colorado Public Utilities Commission, “Xcel Energy Colorado Demand Response
+    Study: Opportunities in 2030,” report filed on behalf of Xcel Energy in Proceeding No. 22A-
+   0309EG, June 2022 (with A. Ramakrishnan, K. Peters, R. Nelson, and X. Bartone).
+
+•  Before the Missouri Public Service Commission, direct testimony filed on behalf of Evergy
+   Missouri (West and Metro), on the issue of a proposed subscription pricing program, Case
+   No. ER-2022-0130, January 2022.
+
+•  Before the Public Service Commission of the District of Columbia, “Pepco’s Climate
+    Solutions 5-Year Action Plan: Benefits and Costs,” report filed on behalf of Pepco in Formal
+   Case No. 1167, January 2022 (with S. Sergici, M. Hagerty, M. Witkin, J. Olszewski, and S.
+   Ganjam).
+
+•  Before the Public Service Commission of the District of Columbia, “An Assessment of
+    Electrification Impacts on the Pepco DC System,” report filed on behalf of Pepco in Formal
+   Case No. 1167, August 27, 2021 (with S. Sergici, M. Hagerty, and J. Olszewski).
+
+•  Before the Alberta Utilities Commission, “Modernizing Distribution Rate Design,” report
+    filed on behalf of ATCO in Distribution Inquiry – Combined Module (2 and 3), Proceeding ID
+   24116, March 13, 2020 (with A. Faruqui and L. Lam).
+
+
+
+
+
+                Ryan M. Hledik                                                       brattle.com | 4 of 44
+                                                               Schedule RH-1
+                                                             Page 4 of 44•  Before the Arizona Corporation Commission, “An Assessment of APS’s New Bill Comparison
+  Web Tool,” report filed on behalf of APS in Arizona Public Service Company’s (APS) Rate
+   Review and Examination, Docket No. E-01345A-19-0003, January 15, 2020 (with A. Faruqui
+   and C. Bourbonnais).
+
+•  Before the Nova Scotia Utility and Review Board, “An Assessment of Nova Scotia Power’s
+   Proposed Extra Large Industrial Active Demand Control Tariff,” expert report filed on behalf
+    of NS Power In the Matter of an Application by Nova Scotia Power Incorporated for Approval
+    of an Extra Large Industrial Active Demand Control (ELIADC) Tariff, Under Which Port
+   Hawkesbury Paper LP Will Take Electric Service From NS Power, Matter No. M09420,
+   September 26, 2019 (with A. Faruqui).
+
+•  Before the Public Utilities Commission of Nevada, direct testimony filed on behalf of Solar
+   Partners XI (“Arevia”), Joint Application of Nevada Power Company d/b/a NV Energy and
+    Sierra Pacific Power Company d/b/a NV Energy for approval of the third amendment to its
+   2018 Joint Integrated Resource Plan to update and modify the renewable portion of the
+   Supply-Side Plan and the Transmission Action Plan, Docket No. 19-06039, Aug 26, 2019.
+
+•  Before the Minnesota Public Utilities Commission, “The Potential for Load Flexibility in
+   Northern States Power’s Service Territory,” report filed on behalf of Xcel Energy in 2020-
+   2034 Upper Midwest Integrated Resource Plan, Docket No. E002/RP-19-368, June 2019
+    (with A. Faruqui, P. Donohoo-Vallett, and T. Lee).
+
+•  Before the New Mexico Public Regulation Commission, “The Value of Energy Storage to the
+  PNM System,” report filed on behalf of Public Service Company of New Mexico In the
+   matter of Public Service Company of New Mexico’s Consolidated Application for Approvals
+    for the Abandonment, Financing, and Resource Replacement for San Juan Generating
+    Station Pursuant to the Energy Transition Act, Case No. 19-00195-UT, August 4, 2019 (with J.
+    Pfeifenberger, J. Chang, P. Ruiz, and J. Cohen).
+
+•  Before the Public Utilities Commission of Nevada, “The Economic Potential for Energy
+   Storage in Nevada,” report filed on behalf of the Public Utilities Commission of Nevada and
+   the Nevada Governor’s Office of Energy, Investigation and Rulemaking to Implement Senate
+     Bill 204 (2017), Docket No. 17-07014, October 1, 2018 (with J. Chang, R. Lueken, J.
+    Pfeifenberger, J. Imon Pedtke, and J. Vollen).
+
+•  Before the Oregon Public Utilities Commission, “Demand Response Market Research:
+   Portland General Electric, 2016 to 2035,” report filed on behalf of Portland General Electric
+    In the Matter of Portland General Electric Company, 2016 Integrated Resource Plan, Docket
+   No. LC 66, November 15, 2016 (with A. Faruqui and L. Bressan).
+
+
+
+
+                Ryan M. Hledik                                                       brattle.com | 5 of 44
+                                                               Schedule RH-1
+                                                             Page 5 of 44•  Before the Oregon Public Utilities Commission, “An Assessment of PGE’s Demand Response
+    Potential,” report filed on behalf of Portland General Electric In the Matter of Portland
+   General Electric Company, 2013 Integrated Resource Plan, Docket No. LC 56, March 2014
+    (with A. Faruqui).
+
+•  Before the Federal Energy Regulatory Commission, Affidavit on Behalf of Comverge
+   Regarding PJM’s Proposed Tariff Revisions Regarding Demand Response Capacity Market
+    Participation Requirements. Docket No. ER13-2108-000, August 22, 2013 (with A. Faruqui).
+
+
+SELECTED CONSULTING EXPERIENCE
+
+INNOVATIVE RETAIL ELECTRICITY PRICING
+
+•   For the New Jersey BPU, leading the development of the state’s net energy metering
+   successor policy.
+
+•   For LBNL, contributed to a report on historical drivers of increases in U.S. retail
+    electricity rates.
+
+•   For a California investor-owned utility, conducted a jurisdictional scan of new tariff
+    offerings for data centers and provided research support to the utility’s executive
+    steering committee.
+
+•   For a midwestern utility, assessed large load rate offerings and emerging state policies
+   and regulations related to large loads, to contribute to the utility’s development of a
+   new rate for large load customers.
+
+•   For Evergy, designed the company’s proposed optional TOU rates for its C&I customers
+    in Kansas. Filed an expert report summarizing the proposal with the Kansas Corporation
+   Commission in January 2025.
+
+•   For a midwestern utility, contributed to the development of a new rate for large load
+   customers. Conducted a review of rate offerings for large loads in other U.S.
+    jurisdictions, assessed gaps in the utility’s existing rate offerings relative to its objectives
+    for the new rate, and assisted in the design of the new rate to address those gaps.
+
+•  With LBNL, developed a brief on the landscape of rate offerings for large load customers
+    across the U.S. Summarized the range of approaches being taken across key rate design
+    decisions.
+
+•  With LBNL, developed a dynamic, web-based guide to better achieve policy outcomes
+   with more deliberate retail electricity rate design.
+
+
+
+
+
+                Ryan M. Hledik                                                       brattle.com | 6 of 44
+                                                               Schedule RH-1
+                                                             Page 6 of 44•   For an eastern US utility, assessed the impact that various retail rate designs would have
+   on the economics of residential electric heating relative to gas heat.
+
+•   For a New Zealand distribution utility, developed a long-term vision for designing rates
+    that will facilitate demand flexibility and reduce required investment in distribution
+   system expansion.
+
+•   For Evergy, developed and evaluated alternatives to the company’s “hours use charge”
+    for large C&I customers. Filed an expert report summarizing the findings and
+   recommendations with the Kansas Corporation Commission.
+
+•   For Lawrence Berkeley National Lab, contributed to a report on rate design for a power
+   system with variable renewable energy resources.
+
+•   For Evergy, developed a proposal for a subscription pricing plan. The proposal included
+    innovative features to promote EE and clean energy adoption. Testified in support of the
+   plan before the Missouri PSC.
+
+•   For a large Midwestern utility, contributed to the development of the utility’s rate
+   modernization plan. The project involved developing and analyzing TOU rate design
+   proposals and developing a new proposal for a subscription pricing pilot.
+
+•   For Arizona Public Service, conducted a review of the utility’s online bill comparison
+    tool. Results summarizing Brattle’s assessment of the accuracy of the tool were filed
+   with the Arizona Corporation Commission (ACC).
+
+•   For a western utility, benchmarked the utility’s operating costs and services against a
+    relevant sample of comparison utilities in order to identify areas of relative strength as
+    well as growth opportunities.
+
+•   For IPL, contributed to a range of improvements to the company’s rate offerings and
+   supported the associated regulatory filing.
+
+•   For ATCO, produced an expert report on the precedent for “Maximum Incentive Levels”
+   through which large customers pay for a portion of the distribution infrastructure
+   developed specifically to serve their load.
+
+•   For Colorado Springs Utilities, provide a range of rate design support, including TOU rate
+   design and a review of the company’s offering for data center customers.
+
+•   For Nova Scotia Power, reviewed and assessed a load flexibility tariff that the utility
+   proposed for its largest customer. Co-authored an expert report summarizing the
+    findings, which was filed with the Nova Scotia Utility and Review Board.
+
+•   For a Midwestern utility, assessed the extent to which various distribution rate design
+   options were cost reflective and aligned with the utility’s underling cost of service.
+
+
+
+                Ryan M. Hledik                                                       brattle.com | 7 of 44
+                                                               Schedule RH-1
+                                                             Page 7 of 44•   For Abradee, the trade association for the Brazilian distribution utilities, developed two
+   whitepapers. The first paper addressed international stakeholder perspectives on
+   emerging distribution tariff designs. The second paper summarized opportunities and
+    risks associated with new utility services.
+
+•   For Vector, a distribution utility in New Zealand, evaluated the relative advantages and
+   disadvantages of a variety of new distribution tariff designs that the utility was
+    considering. Conducted analysis of customer bill impacts and estimated likely DR from
+   the new tariff offerings, in addition to establishing other rate evaluation metrics.
+
+•   For NorthWestern Energy, provided regulatory support for the utility’s proposal to
+   create a new rate class for customers with distributed generation and to introduce
+    three-part rates for those customers.
+
+•   For Arizona Public Service, provided regulatory support and analysis in a proceeding to
+   determine if the utility’s commission-approved rate increase had been appropriately
+   implemented.
+
+•   For Westar Energy, supported the utility’s proposal to create a separate rate class for
+    residential customers with distributed generation and to introduce a three-part rate for
+   those customers.
+
+•   For Idaho Power, supported the utility’s proposal to create a separate rate class for
+    residential customers with distributed generation. Included an analysis of the extent to
+   which behind-the-meter storage would impact the load shapes of customers with
+   rooftop solar and reduce their energy exports to the grid.
+
+•   For Commonwealth Edison, contributed to the development of a pilot that would test
+   customer acceptance of a prepayment metering program. Work involved identifying
+    pilot objectives, developing experimental design, and establishing appropriate sample
+    size.
+
+•   For Citizens Advice, the largest consumer organization in Great Britain, led a study on
+   the value of time-varying rates. The study included detailed power system modeling to
+    quantify the monetary value time-varying rates in terms of avoided system costs. The
+   study also included primary and secondary market research to identify the features of
+    time-varying rate offerings that are most appealing to customers. The final report
+   informed ongoing dialogue in Great Britain around how to best capture value from the
+    nation’s ongoing smart metering rollout.
+
+•   For the US Department of Energy (DOE), coauthored a whitepaper on methods for
+   unbundling and pricing distribution services in an environment of high distributed
+   energy resource (DER) market penetration. The report identified the various services
+
+
+
+
+                Ryan M. Hledik                                                       brattle.com | 8 of 44
+                                                               Schedule RH-1
+                                                             Page 8 of 44    that are provided by the utility to DER customers, the discrete services provided by DER
+   customers to the utility, and various frameworks for packaging and pricing these
+    services. The report included an assessment of the advantages and disadvantages of
+   each pricing framework from the perspective of both the utility and its customers.
+
+•   For a clean energy organization, developed a whitepaper on residential demand
+    charges, their impact on low-income customers, and the potential opportunities that
+   they would create for behind-the-meter energy storage.
+
+•   For the Edison Electric Institute (EEI), researched stakeholder perspectives on residential
+   demand charges. Conducted interviews with nine consumer advocates to better
+   understand their views on the advantages and disadvantages of demand charges
+    relative to other rate design options. Findings were summarized in a Public Utilities
+    Fortnightly article.
+
+•   For Georgia Power, developed a model to simulate likely customer response to demand
+   charges (e.g., load shifting and/or changes in overall consumption). The model
+   assumptions were based on a review of price elasticity studies as well as three pricing
+    pilots involving residential demand charges. Also surveyed utility experience with
+    residential demand charges and established a list of “lessons learned” from this
+   experience.
+
+•   For Westar Energy, assessed the extent to which a new three-part rate (with a fixed
+    charge, a demand charge, and a variable charge) would impact customer bills. Simulated
+   the impact on owners of distributed generation (DG) and assessed the extent to which
+    rate increases associated with sales reductions due to DG adoption would be reduced by
+    introducing the new rate. Estimated likely customer rate switching behavior that would
+    result from the introduction of the new options and the impact that this would have on
+    utility revenue.
+
+•   Assisted a large Southwestern US utility in establishing its vision for an ideal residential
+    rate. Established key principles for ratemaking and evaluated a comprehensive range of
+    rate designs against these principles, particularly as they related to fairness and equity
+    in an environment of rapidly growing solar PV adoption. Provided strategic
+   recommendations for transitioning to the ideal rate design.
+
+•   For a large Midwestern utility, assessed the bill impacts of a rollout of mandatory
+    residential demand charges. The assessment included a particular focus on the impacts
+   on low-income customers using estimates of household-level income data obtained
+   through a market data firm and validated with public data from the US Census.
+
+•   For Citizens Advice, led a study on distribution network tariff design. The report includes
+    insights from interviews with industry stakeholders, a survey of tariff reform activity in
+
+
+
+                Ryan M. Hledik                                                       brattle.com | 9 of 44
+                                                               Schedule RH-1
+                                                             Page 9 of 44   other countries, and detailed modeling of the distribution of bill impacts from the new
+    tariff designs for more than 14,000 British customers. The simulations accounted for
+    likely consumer response to the tariffs.
+
+•   For Xcel Energy, contributed to rebuttal testimony in support of the utility’s proposal to
+    eventually introduce three-part rates for residential customers. Addressed points in
+   intervenor testimony regarding the efficacy of residential demand charges.
+
+•   For a large Midwestern utility, simulated likely customer response to a three-part rate.
+   Developed three different approaches to estimating the impacts. Results were provided
+    in context of the utility’s rates proceeding.
+
+•   For Salt River Project (SRP), assessed the utility’s rate proposal for residential DG
+   customers. The proposal was a mandatory, revenue neutral three-part rate with a tiered
+   demand charge. Analysis culminated in the development of a whitepaper presented to
+   SRP’s Board. The rate proposal was approved by the Board.
+
+•   Assisted PGE in the design of a dynamic pricing pilot. Provided pilot design and
+    evaluation assistance to test a number of under-researched issues, such as the impact of
+   behavioral DR and differences in customer response when rates were offered on an opt-
+    in versus an opt-out basis.
+
+•   For more than 15 utilities and other organizations across North America, designed
+   dynamic pricing rates such as time-of-use (TOU), critical peak pricing (CPP), peak time
+   rebates (PTR), and real-time pricing (RTP). Simulated the likely impact of the rates on
+    utility load shapes and customer bills. Conducted cost-effectiveness analysis of offering
+   these rates to the mass market. These studies were conducted in Arizona, California,
+    Connecticut, the District of Columbia, Delaware, Florida, Hawaii, Idaho, Illinois, Kansas,
+   Maryland, Michigan, Missouri, New Jersey, North Carolina, Oregon, and Pennsylvania.
+    Several of the analyses served as input to AMI business cases. The analyses also
+   included a review of other demand-side options such as direct load control and EE.
+
+•   For the three California investor-owned utilities (IOUs), assessed the likely impact of
+    residential rate reform on consumption. Analyzed the extent to which rate design
+   changes (e.g., a reduction in the price differential between tiers of the inclining block
+    rate, the introduction of a monthly customer charge, or a reduction in the low-income
+    discount) would affect conservation. Drafted expert testimony submitted to the
+    California Public Utilities Commission.
+
+•   For a large Southwestern utility, benchmarked the utility’s projected retail rate against
+   those of other utilities. Reviewed utility resource plans to estimate each utility’s retail
+    rate trajectory. Compared the utilities across a variety of rate drivers, such as reserve
+   margin, fuel mix, load growth, load factor, renewables investment requirements, and
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 10 of 44
+                                                               Schedule RH-1
+                                                            Page 10 of 44   demand-side activities. Provided strategic recommendations for addressing these
+    drivers of future rate growth.
+
+•   For PacifiCorp, assessed the likely impacts of new rate designs on customer behavior.
+   Projected likely adoption of the new rate offerings based on a survey of enrollment
+    rates in other jurisdictions. Extrapolated the customer-level impacts to system-level
+   impacts. Analysis was a key element of the utility’s DSM potential study.
+
+•   For a large western utility, evaluated the degree to which the introductions of new
+    optional residential rate options would affect the utility’s revenue. Developed a model
+   to simulate customer switching behavior between the rate options. Provided strategic
+   advice for transitioning from the current rate offering to a new paradigm of rate choice.
+
+•   For the Regulatory Assistance Project (RAP), coauthored a whitepaper on issues and
+   emerging best practices in dynamic pricing rate design and deployment. The paper’s
+   audience was international regulators and rate analysts in regions exploring the
+    potential benefits of AMI and innovative retail pricing.
+
+•   For multiple US utilities, helped design pilot programs for testing the impact of dynamic
+    pricing rates and enabling technologies such as smart thermostats and in-home energy
+   information displays. Contributions to pilot design included designing and selecting the
+   appropriate treatments and providing general recommendations for ensuring the
+    statistical validity of the results.
+
+•   For China Light & Power, provided guidance on dynamic pricing pilot design. Also
+   evaluated the utility’s methodology for calculating customer baseline consumption
+   when determining rebate payments for a peak time rebate program.
+
+•   For the Ontario Energy Board (OEB), developed recommendations for improving the
+    effectiveness of the province’s mandatory residential TOU rate. Coauthored a
+   whitepaper benchmarking the rate’s design and deployment against best practices, and
+   provided suggestions for improving certain elements. Co-presented the findings at a
+   stakeholder workshop in Ontario.
+
+•   For Commonwealth Edison, contributed to the design of the first opt-out residential
+   dynamic pricing pilot. Reviewed rate designs and simulated expected bill impacts across
+   a representative sample of customers. Developed estimates of the potential value of an
+   opt-out deployment of peak time rebates.
+
+•   For the Demand Response Research Center (DRRC), coauthored a whitepaper on leading
+    issues in rate design. Developed a set of dynamic rates that were used in a workshop to
+   guide California decision makers through the process of designing dynamic rates.
+
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 11 of 44
+                                                               Schedule RH-1
+                                                            Page 11 of 44    Results were cited in a landmark ruling making dynamic pricing the default rate offering
+    in California.
+
+•   For Xcel Energy, contributed to expert testimony supporting a filing proposing new
+    inclining block rate (IBR) designs. The rates were designed to provide incentives for
+    Xcel’s customers to conserve energy. Developed a model for simulating customer
+   response to the new rate designs and the resulting impact on Xcel’s sales.
+
+•   For a large North American utility, developed estimates of the likely impact of moving
+   from an inclining block rate structure to a time-of-use rate structure. Simulated the
+   impact on overall energy consumption and peak demand under a range of rate design
+   and price elasticity scenarios.
+
+•   For a large Southeastern utility, assessed the costs of the utility’s green pricing program.
+   Benchmarked the costs against those of similar programs offered by other utilities.
+   Analyzed differences across programs and provided an assessment of the utility’s costs,
+   which was presented to the regulatory commission.
+
+ELECTRIFICATION
+
+•   For a DERMS company, assessing the potential value of various EV managed charging
+    strategies based on results of the company’s field tests.
+
+•   For Pepco, conducting an assessment of the potential impacts of system-wide
+    electrification on the cost of expanding and operating the company’s distribution
+   system. The study considers the extent to which DERs and flexibility can avoid those
+    costs.
+
+•   For the Beneficial Electrification League, preparing a report on the impacts of
+    electrification adoption over the past decade. The report focuses on improvements in
+    affordability, quality of service, reliability, and environmental outcomes.
+
+•   For ev.energy, supported the development of an EV managed charging playbook.
+
+•   For Pepco, supported development of the company’s comments on an electrification
+    benefit-cost analysis (BCA) framework proposed by the DC PSC.
+
+•   For Pepco, produced a report on the cost-effectiveness of the company’s proposed 2024
+    electrification programs.
+
+•   For the Maryland PSC, conducted a statewide assessment of the power system impacts
+    of the achieving the state’s electrification goals. The study included consideration of the
+    role of demand flexibility in mitigating the impacts, and involved extensive stakeholder
+   engagement.
+
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 12 of 44
+                                                               Schedule RH-1
+                                                            Page 12 of 44•   For Efficiency Maine, provided input to the organization’s benefit-cost analysis
+   framework.
+
+•   For Xcel Energy, conducted a benefit-cost analysis of the company’s proposed
+    transportation electrification projects. The study was filed with the Colorado PSC.
+
+•   For the Beneficial Electrification League, produced a report analyzing the societal costs
+    of key water heating technologies across various home configurations to determine the
+   most cost-effective and applicable options.
+
+•   For Pepco, assessed the benefits and costs of the company’s Climate Solutions Plan. The
+   Plan consisted of 62 demand-side initiatives, including large energy efficiency, building
+    electrification, and transportation electrification portfolios. The analysis quantified the
+   energy system and environmental benefits of the programs and evaluated the target
+    scale of the impact of the programs. Led a series of stakeholder workshops on the study
+    findings and methodology. The final report filed with the Washington, DC Public Service
+   Commission. Testimony based on the report was subsequently filed.
+
+•   For Pepco, led the development of a study to analyze the peak demand impacts of
+    achieving Washington, DC’s decarbonization goals through electrification. The study
+   included analysis of a portfolio of advanced energy efficiency and load flexibility
+   measures to mitigate peak demand growth, and concluded that the projected peak
+   demand growth rates would remain within the historical range experienced by the
+     utility.
+
+•   For a West Coast utility, estimated the change in energy use attributable to adopters of
+   new technologies, including electric heating, electric vehicles, and rooftop solar PV. The
+    analysis contributed to the utility’s broader assessment of the energy affordability of
+   technology adoption.
+
+•   For Pepco, conducted a benefit-cost analysis of the transportation electrification
+   programs in the company’s 2023 multi-year rate plan.
+
+•   For an East Coast utility, part of a team that analyzed how various retail rate designs
+   would impact the economics of heat pump ownership. Constructed customer load
+    profiles and assessed bill impacts.
+
+•   For a car manufacturer, assessed market opportunities for enabling EV managed
+   charging and vehicle-to-grid. Surveyed market participants, estimated revenue
+    potential, and conducted strategic market entry assessment.
+
+•  With the Smart Electric Power Alliance (SEPA), coauthored a paper on time-varying rates
+    for home electric vehicle (EV) charging. The report was based on a survey of current
+    utility rate offerings and identified practices related to high enrollment in the rates.
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 13 of 44
+                                                               Schedule RH-1
+                                                            Page 13 of 44•   For the Electric Power Research Institute (EPRI), developed a survey and associated
+    discrete choice modeling experiment to better understand drivers of EV adoption. The
+   survey results were used to develop EV adoption models and resulting forecasts for
+    several electric utilities.
+
+•   For the Edison Electric Institute (EEI), developed a whitepaper to assess options and
+   experience with rate design for fast-charging infrastructure to support adoption of
+    electric vehicles. The whitepaper, “Facilitating Electric Vehicle Fast Charging
+   Deployment,” was published in October 2018.
+
+•   For EPRI, developed a framework for evaluating the cost-effectiveness of new
+    electrification initiatives. The framework built upon cost-effectiveness tests used to
+   evaluate demand-side management (DSM) programs. The report was published in
+   August 2019.
+
+LOAD FLEXIBILITY, DEMAND RESPONSE & ENERGY EFFICIENCY
+
+•   For a hyperscaler, developing proposals to expand demand response offerings in two
+    U.S. ISO/RTOs. The proposals include recommendations for new market products to
+   improve the utilization and uptake of demand response, and analysis of the potential
+   impact of the proposals.
+
+•   For a Midwestern utility, conducting an assessment of demand response and energy
+    efficiency potential as input to the company’s 2026 IRP.
+
+•   For the IESO, analyzing opportunities for increasing the value of the Peak Perks smart
+   thermostat program. The engagement includes consideration of other forms of demand
+    flexibility as well.
+
+•   For Xcel Energy, conducting a detailed assessment of achievable demand flexibility
+    potential in the company’s Colorado and Minnesota service territories. The assessment
+    includes primary market research, development of demand flexibility supply curves, and
+    analysis of behavioral and technical limitations on demand flexibility potential.
+
+•   For a hyperscaler, conducting assessments of the system capacity that could be created
+   from new investments in energy efficiency and demand response through a partnership
+   between data center developers and utilities.
+
+•   For Sunrun and Tesla, conducted a study on the benefits and costs of California’s
+   Demand Side Grid Support (DSGS) program. The study included an assessment of the
+   impacts of a test event that produced more than 500 MW of capacity from residential
+    batteries in California.
+
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 14 of 44
+                                                               Schedule RH-1
+                                                            Page 14 of 44•   For Beyond Fossil Fuels, preparing a report on sources of clean flexibility and their value
+   to the European power system.
+
+•   For Clean Energy Canada, conducting a study on the value of demand flexibility to the
+   Canadian power system. The analysis focuses in particular on the distribution system
+   value of demand flexibility.
+
+•   For the NY Department of Public Service and NYSERDA, led the development of an
+   assessment of New York’s grid flexibility potential. The three-volume report analyzed
+   statewide potential for customer-sited flexibility, identified barriers and potential
+    solutions through extensive stakeholder engagement, and discussed additional
+    considerations for disadvantaged communities and emerging sources of flexibility.
+
+•   For the Alliance to Save Energy, conducted a study to quantify the cost savings from
+   coordinating heat pump sizing with building envelope efficiency improvements, as well
+   as the distribution value associated with improvements in demand-side efficiency and
+     flexibility.
+
+•   For a residential multi-family housing developer, assessed market opportunities for
+    incorporating VPPs into new housing developments.
+
+•   For the U.S. DOE, contributed to the development of the 2023 VPP commercial liftoff
+   report and its subsequent 2025 update.
+
+•   For a large Texas retail energy provider, analyzed the potential increase in residential
+   VPP deployment that could result from improving the design of transmission charges in
+   ERCOT.
+
+•   For ENOWA, developed a roadmap for incorporating demand flexibility into the plans
+    for NEOM, a carbon-free city being developed in northwestern Saudi Arabia. The
+   roadmap included an assessment of the value of various strategies for flexibility
+   deployment, an implementation plan, and commentary on supporting strategies that
+   would enable the plans.
+
+•   For LBNL, led a study to identify strategies for maximizing enrollment in VPP programs.
+   The findings were based on interviews with utilities and aggregators leading the most
+    successful VPP and demand response programs in the U.S.
+
+•   For Google, produced a report comparing the cost of developing capacity from a virtual
+   power plant to the cost of conventional resources such as gas peakers and utility-scale
+    batteries. The study included hourly modeling of the performance of the VPP.
+
+•   For the Maryland PSC, contributed to an assessment of the potential for demand-side
+    initiatives to reduce statewide GHG emissions, with a focus on the impact of load
+    shifting.
+
+
+                Ryan M. Hledik                                                      brattle.com | 15 of 44
+                                                               Schedule RH-1
+                                                            Page 15 of 44•   For LBNL, contributed to a study on opportunities for state energy regulators to improve
+   the integration of DERs into wholesale markets.
+
+•   For a southwestern U.S. utility, conducted a strategic assessment of various utility-led
+   DER business models and developed a high-level implementation plan for pursuing the
+   most attractive opportunities.
+
+•   For a Mid-Atlantic utility, assessed the total addressable market for a variety of DER
+   investment and development opportunities, including distributed storage, EV managed
+    charging, HVAC load control, and smart water heating.
+
+•   For GridLab, produced a report on the achievable market potential for VPP deployment
+    in California.
+
+•   For Pepco, conducted the demand response portion of the company’s 2023 DSM
+    potential study in its Washington, DC jurisdiction.
+
+•   For Xcel Colorado, assessed the cost-effective potential for new load flexibility programs
+    in 2030. The study included benchmarking Xcel Colorado’s existing demand response
+    portfolio, assessing the seasonal need for new load flexibility programs and quantifying
+   the potential benefits and costs of the expanded portfolio.
+
+•   For a private equity firm, assessed the revenue potential of a meter data disaggregation
+    firm, with a focus on the market value of innovative behavioral energy efficiency and
+   demand response programs that would be enabled by providing customers with real-
+    time, appliance-level usage information.
+
+•  With Lawrence Berkeley National Lab (LBNL), developed a whitepaper on emerging
+   models for making load flexibility a win-win for both utilities and consumers.
+
+•   For a building equipment manufacturer, provided an overview of market opportunities
+    for developing a demand response business.
+
+•   For the Alliance to Save Energy, developed the content for an interactive website
+   designed to provide a variety of industry stakeholders with information about the value
+    of load flexibility.
+
+•   For a large Canadian utility, served as an advisor on the utility’s load flexibility
+   assumptions in its integrated resource plan.
+
+•   For Oracle, assessed the potential for “consumer action pathways” to play a key role in
+   reducing national carbon emissions. The customer action pathway consisted of energy
+    efficiency, electrification, rooftop solar PV, and load flexibility.
+
+•   For PGE, participated in a team developing the utility’s 2021 DER potential study. The
+   study informed PGE’s integrated resource plan and distribution resource plan.
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 16 of 44
+                                                               Schedule RH-1
+                                                            Page 16 of 44•   For a utility in the Upper Midwest, conducted a load flexibility study to inform the
+    strategic development of the utility’s demand-side resources.
+
+•   For an East Coast IOU, conducted analysis to forecast how the utility’s load would
+    increase if aggressive decarbonization goals were met through electrification, and to
+   determine the extent to which energy efficiency and load flexibility measures could
+    mitigate that load growth, highlighting the key role that load flexibility would play in
+    facilitating the decarbonization transition.
+
+•   For a DER software developer, estimated the potential market value of residential load
+    flexibility offerings across five utilities. The analysis highlighted that the load flexibility
+   value proposition varied significantly depending on system and market conditions. The
+    final report was a key input to the company’s load flexibility business case. Subsequent
+   work involved conducting a workshop for the company’s staff on valuing load flexibility.
+
+•   For an investment firm considering an investment in a demand response aggregator,
+   provided an outlook on DR market opportunities and an overview of the current state of
+   DR in the US.
+
+•   For the US Department of Energy, developed a national roadmap for grid-interactive
+    efficient buildings (GEBs). The engagement involved modeling the national potential for
+   GEBs, research and stakeholder engagement to identify barriers to GEB deployment, as
+    well as opportunities for overcoming the barriers. The release of the roadmap was
+   announced by the Secretary of Energy in May 2021.
+
+•   For the US Department of Energy, led a study to assess the relative benefits of energy
+    efficiency, load flexibility, and electrification technologies for buildings under a variety
+    of decarbonization scenarios. The study included analysis of more than 80 demand-side
+   measures for 25 regions across the US, and included evaluation of the cost-effectiveness
+    of the measures.
+
+•   For LBNL, led a study to assess the extent to which various policy and technology
+   developments could increase cost-effective energy efficiency deployment potential. The
+   study involved simulation of a representative Southeastern US utility using Brattle’s
+   resource planning model, GridSIM.
+
+•   For an Asian utility deploying its first demand response programs, provided research on
+   current practices by utilities and third-party aggregators with DR offerings in ISO and
+   non-ISO markets. The research was used as input to the utility’s DR strategy
+   development initiative.
+
+•   For a natural gas distribution utility, assessed the market potential for demand response
+   programs. The first-of-its-kind study assessed opportunities to utilize demand response
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 17 of 44
+                                                               Schedule RH-1
+                                                            Page 17 of 44   as an alternative to developing gas distribution infrastructure. The study served as input
+   to the utility’s resource planning process.
+
+•   For Xcel Energy, led a study to assess opportunities for load flexibility in its Northern
+    States Power service territory. The study looked beyond conventional DR options to
+   evaluate the potential for emerging programs (e.g., EV charging control, behavioral DR)
+   while considering new value streams (e.g., ancillary services, off-peak load building,
+   around-the-clock load flexibility). The study utilized Brattle’s LoadFlex model and was
+   based on a detailed survey of DR programs and pilot projects deployed around the US.
+   The study was filed with the Minnesota PUC and results used as inputs to Xcel Energy’s
+    integrated resource plan in the Upper Midwest.
+
+•   For EPRI, conducted a study to explore methods for incorporating DERs into integrated
+   resource planning. A unique feature of this study was the use of Brattle’s capacity
+   expansion model, GridSIM, to quantitatively illustrate the implications of various DER
+   modeling techniques. In the first phases of the engagement, assessed the implications
+    of different approaches to modeling EE and DR, such as the advantages and
+   disadvantages of modeling these resources on the “supply side” versus the “demand
+    side” of the model. The project focused on electric vehicles (EVs) and rooftop solar, and
+   included a review of techniques for forecasting adoption of these technologies, as well
+   as modeling the resource impacts of growth in EV adoption.
+
+•   For Xcel Energy, conducted a first-of-its-kind study to assess the extent to which
+    “organic conservation” (also known as naturally occurring energy efficiency) was
+    affecting electricity sales. Surveyed industry contacts about trends in organic
+    conservation. Conducted a quantitative assessment of the impact of organic
+   conservation for three end-use case studies using data from the US Energy Information
+   Administration and Xcel Energy.
+
+•   Contributed to a study for the Texas Clean Energy Coalition to determine role of DR, EE,
+   and combined heat and power in future energy scenarios in Texas. Developed a feasible
+    portfolio of EE and DR measures, including costs and performance characteristics. The
+   programs were then fed into a suite of resource planning models to determine the
+   impacts of EE and DR on ERCOT prices and system operations. The final report was
+    highly publicized and presented to stakeholders and policymakers throughout the state.
+
+•   For EnerNOC, developed a whitepaper on valuing DR in international markets. Provided
+    guidelines for quantifying the value of DR and presented three international case studies
+   to illustrate how those calculations vary across markets.
+
+•   For a large power developer, assessed the energy efficiency aspects of the US
+   Environmental Protection Agency’s (EPA’s) Clean Air Act, section 111(d). Specifically,
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 18 of 44
+                                                               Schedule RH-1
+                                                            Page 18 of 44   analyzed the extent to which the energy efficiency targets that were established in the
+   proposed policy were reasonable and achievable, and whether the EPA had represented
+   energy efficiency correctly in its modeling scenarios.
+
+•   For the Kingdom of Saudi Arabia’s energy regulator (ECRA), worked with a team of
+    consultants to develop the nation’s first demand-side management (DSM) plan.
+    Participated in an introductory workshop with key stakeholders and conducted a series
+    of in-country interviews to gather information. Coauthored a study on the potential
+   impacts and cost-effectiveness of a full range of DSM measures in Saudi Arabia. Worked
+   with the team to develop policy recommendations and a ten-year plan for rolling out
+  DSM measures across the country.
+
+•   For a national team of energy stakeholders in the Kingdom of Saudi Arabia, assessed the
+    potential for broader adoption of combined heat and power (CHP). Developed a model
+   to predict CHP potential by industry and technology type for a range of policy scenarios.
+   Assessed barriers to adoption.
+
+•   For the Federal Energy Regulatory Commission (FERC), managed a team of contractors
+    that developed the National Action Plan for DR. The report defined a blueprint for
+   maximizing the amount of cost-effective DR that could be achieved in the US. Led the
+   development of a model that could be used to quantify the potential impacts and
+    benefits of a variety of DR and smart grid portfolios. Results were filed with US Congress
+    in June 2010.
+
+•   For the FERC, developed a state-by-state assessment of the potential for DR. The
+    analysis used a bottom-up approach to quantify economic and achievable potentials
+    individually for each of the 50 states and to characterize the existing level of DR in each
+    state. Additionally, created a survey for and analysis of existing literature on DR barriers
+    at the wholesale and retail levels, as well as policy options for addressing these barriers.
+    Results were filed with US Congress in June 2009 in a report titled A National
+   Assessment of Demand Response Potential. Coauthored the document and managed its
+   development across a team of subcontractors.
+
+•   For the California Energy Commission (CEC), coauthored two whitepapers on DR and the
+    potential for the CEC to exercise its load management authority to further increase DR
+    efforts in the state. The whitepapers were the impetus for two CEC-sponsored
+   workshops involving the California utilities, regulators, consumer advocates, and other
+    stakeholders. The whitepapers contributed to the CEC’s 2007 Integrated Energy Policy
+   Report and resulted in a formal proceeding on the CEC’s load management authority.
+
+•   For one of California’s investor-owned utilities, developed recommendations for a
+   forward-looking demand response strategy. Conducted a series of interviews with
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 19 of 44
+                                                               Schedule RH-1
+                                                            Page 19 of 44    internal stakeholders and helped to lead two workshops to create a common
+   understanding across the company regarding the value proposition of demand
+   response, and ways in which it could be used to address key challenges facing the utility.
+
+•  Served as the lead architect of the Demand Response Impact and Value Estimation
+   (DRIVE) model for assessing the hourly system impacts of portfolios of smart grid
+   programs over a 20-year forecast horizon. The model simulated hourly system dispatch
+    for 13 regions of the United States, both before and after a user-specified deployment
+    of smart grid programs.
+
+•   For the LBNL, updated the assumptions in the FERC’s 2009 A National Assessment of
+   Demand Response Potential to reflect more recent industry developments. The results
+    of that update were used as inputs to the Western Electricity Coordinating Council’s
+   (WECC’s) transmission planning activities.
+
+•   For Portland General Electric, developed a bottom-up assessment of the peak demand
+   reductions that could be achieved through and expanded offering of DR programs.
+    Tailored the analysis to the specific market conditions unique to the Pacific Northwest
+   and PGE’s service territory. Reviewed studies on the ability of DR to integrate renewable
+   energy resources into the grid. The study was first conducted in 2009 and then updated
+    in 2012 and again in 2015. The 2015 update included a number of emerging DR options,
+   such as bring-your-own-thermostat, behavioral DR, electric vehicle load control, and
+   smart water heating programs.
+
+•   For Xcel Energy’s Colorado and Minnesota service territories, conducted a bottom-up
+   assessment of the potential impacts of DR programs. In Colorado, the study included an
+   assessment of the cost-effectiveness of the DR options and results were filed with the
+   Colorado PUC. In Minnesota, the study included the development of DR supply curves,
+   which were inputs to Xcel Energy’s integrated resource planning process.
+
+•   For the Midwest Independent System Operator (MISO), Bonneville Power
+   Administration (BPA), and one of the largest power generation companies in the US,
+   developed regional forecasts of the potential impacts of DR and EE programs. Forecasts
+   included a bottom-up assessment of existing demand response programs and a detailed
+    projection of the achievable potential peak savings for each of these programs. The
+    studies also included an assessment of the costs associated with the peak savings. The
+    forecasts were used as inputs to the ISO's full-scale transmission expansion modeling
+    effort and to enhance the market modeling efforts of BPA and the power generation
+   company.
+
+•   For a large southern utility, assessed policies, standards, and rules/regulations
+   addressing the development and implementation of energy efficiency programs and
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 20 of 44
+                                                               Schedule RH-1
+                                                            Page 20 of 44   renewable energy resources by utilities. Analysis included an assessment of the pros and
+   cons of various energy efficiency incentive mechanisms such as the Save-a-Watt model
+   and California’s shared savings model. Assessed the political influence and collaboration
+    potential of the utility’s stakeholders as part of the strategy formulation process.
+
+•   For a large Independent System Operator (ISO), coauthored a whitepaper assessing the
+    status of the region’s achievement of its DR potential. The paper included an
+   assessment of the barriers to achieving the DR potential, followed by policy and market
+   design recommendations for addressing the barriers. The results were presented at the
+    ISO’s annual board meeting.
+
+•   For a large ISO, coauthored a whitepaper summarizing the current state of third-party
+   access to smart meter data. The paper reviewed existing policies in states that had
+   already explored this issue, and drew parallels to other industries that dealt with similar
+   problems.
+
+•   For Comverge, developed an estimate of the potential benefits of offering an expanded
+    residential direct load control program in the ComEd service territory. The assessment
+   included quantification of avoided resource costs and a qualitative description of
+    additional potential benefits, such as improved reliability and emissions reductions.
+
+ENERGY STORAGE
+
+•   For a potential investor in a pumped storage hydro facility in California, estimated the
+     facility’s market revenue potential.
+
+•   For a large battery developer and an investor in power generation, conducted a study to
+    assess the role of storage as on-site generation for data centers. Conducted a
+    quantitative comparative analysis of serving data centers from various portfolios of on-
+    site resources.
+
+•   For a battery storage company and a renewable energy developer, analyzed the role
+    that behind-the-meter storage could play in serving data center load. Developed a
+   model to determine the cost-minimizing mix of on-site gas, solar, and storage resources
+    that could serve the data center off-grid until interconnection was available. Assessed
+   business models for monetizing the market value of those on-site resources after the
+   data center connected to the power grid.
+
+•   For Sunrun, developed a summary of the structure of incentives in residential battery
+   VPP programs being offered across the U.S. Presented the findings at an Illinois
+   Commerce Commission stakeholder meeting.
+
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 21 of 44
+                                                               Schedule RH-1
+                                                            Page 21 of 44•   For the developer of a pumped storage hydro facility in California, conducted an
+   assessment and produced a report summarizing the value of the facility to the California
+   power system.
+
+•   For Energy Consumers Australia, produced a report on the benefits of community
+    storage. The study included a comparative analysis of community storage relative to
+   behind-the-meter batteries and utility-scale deployments, and an assessment of the
+    barriers to maximizing the value of community storage.
+
+•   For a large Southeastern utility, assessed two proposed battery projects. The study
+   included identification and analysis of additional value streams not considered by the
+     utility, and analysis of battery cycling strategies to optimize revenue while accounting
+    for degradation effects.
+
+•   For a private investor, assessed the revenue potential for new storage assets in ERCOT.
+   The analysis included estimation of the revenue impact associated with delayed market
+   entry of competing assets as well as the risks associated with overbuilding of storage.
+
+•   For a large international energy company, evaluated the revenue potential of an
+   investment in three US battery storage developers. The company ultimately made large
+   investments in two of the three companies.
+
+•   For a large US power developer, summarized drivers of battery cost trends.
+
+•   For a large US renewables developer, assisted the company in its entry into the utility-
+    scale storage business by evaluating storage and solar-plus-storage revenue potential in
+    various organized wholesale markets in the US.
+
+•   For a large Southeastern utility, led a study to assess long-term opportunities for
+   deploying storage to meet a large legislative requirement. The study focused on
+    opportunities for emerging long-duration storage technologies.
+
+•   For Arevia, the developer of a large solar-plus-storage project in Nevada, provided
+    regulatory testimony on the costs and benefits of the proposed project. The project,
+   which was the largest solar-plus-storage project in the United States, was approved by
+   the Public Utilities Commission of Nevada in December 2019.
+
+•  Served on the Energy Storage Association’s Technical Advisory Council. Responsibilities
+   included technical advice, providing input to the organization’s research agenda, and
+   developing whitepapers on emerging issues in the storage industry.
+
+•   For the Energy Storage Association (ESA), organized and led a two-day seminar on
+   emerging industry practices for incorporating energy storage into utility resource
+    planning. Developed content and program, focused on issues such as storage costs and
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 22 of 44
+                                                               Schedule RH-1
+                                                            Page 22 of 44    benefits, modeling and valuation techniques, the current state of energy storage in
+    utility IRPs, and the interface between bulk system and distribution resource planning.
+
+•   For the Public Service Company of New Mexico (PNM), led analysis of the value that
+   new energy storage developments could provide to the utility’s system. The analysis
+   focused specifically on the benefits of standalone, utility-scale battery storage
+   deployments. Results were summarized in a report titled, “The Value of Energy Storage
+   to the PNM System,” which was attached to a regulatory filing by PNM in June 2019.
+
+•   For the Public Utilities Commission of Nevada and the Nevada Governor’s Office of
+   Energy, led a study to estimate the statewide potential for cost-effective energy storage
+   deployment. The analysis involved detailed modeling of the western US power system
+   and included an assessment of both utility scale and behind-the-meter storage. Results
+   were published in a report titled, “The Economic Potential for Energy Storage in
+   Nevada.” The study contributed to a regulatory proceeding to establish an energy
+   storage procurement target for the state.
+
+•   For Dominion Energy, provided an assessment of the opportunities available for
+   deploying energy storage pilots. The analysis began with a screening analysis to identify
+   most attractive pilot options based on net economic benefits as well as other practical
+    considerations such as implementation time, technical feasibility, consistency with state
+    policies, and repeatability. Based on the findings of the screening analysis, a detailed
+   assessment of specific solar-plus-storage and standalone storage projects estimated the
+    benefits and costs of each project under a range of market price scenarios, technology
+    configurations, and operational strategies. The proposed pilots were approved by the
+    Virginia State Corporation Commission (SCC).
+
+•   For a large solar and storage developer, provided due diligence support for a potential
+   investment in a solar-plus-storage facility in California. The analysis estimated revenue
+    potential for the project under a range of price forecasts, technology configurations, and
+    battery dispatch scenarios.
+
+•   For an international investor in power assets, analyzed the revenue opportunities and
+    risks for standalone storage projects in California, Ontario (Canada), and New York. In
+    addition to detailed revenue forecasts, the analysis included a review of wholesale
+   market participation opportunities, state policies and incentives, and trends in market
+   fundamentals.
+
+•   For an energy storage developer, provided an outlook of revenue opportunities in
+    Ontario, Canada. The analysis included an assessment of near-term revenue potential
+   and commentary on the likely impact of regulatory and market developments on that
+    potential.
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 23 of 44
+                                                               Schedule RH-1
+                                                            Page 23 of 44•   For a large Midwestern utility, contributed to the development of a model that
+   forecasted behind-the-meter storage adoption and its impact on utility revenues and
+    costs, electricity rates, system peak demand, and other key metrics.
+
+•   For a battery technology manufacturer, reviewed the impacts that PJM rule changes for
+    participation in the frequency regulation market had on the battery’s performance.
+
+•   For EOS, a battery storage developer, assessed the “stacked value” of a battery in the
+    California market. The valuation included an assessment of market prices and was based
+   on realistic modeling of the battery’s ability to simultaneously capture multiple value
+   streams. The study also assessed barriers to capturing this value, and recommendations
+   regarding retail tariff design features that could address the barriers.
+
+•   For an environmental advocacy group (NRDC) and consortium of utilities (NRECA),
+   estimated the costs and benefits of using controllable hot water heaters as “thermal
+    batteries.” Evaluated several control strategies, including daily energy arbitrage, peak
+    shaving, and fast-response controllers capable of providing ancillary services. The study
+   was covered by The Washington Post and in industry trade press.
+
+•   For a battery manufacturer, assessed the potential benefits that could be realized by
+   deploying their technology in PJM and NYISO. Developed a dispatch model to simulate
+   the technology’s optimal operation in wholesale energy and ancillary services markets.
+   Also quantified the value of avoided generation capacity and transmission and
+    distribution capacity costs, as well as the reliability value of deploying the battery
+   behind the meter. Assessed the ability of various stakeholders (ratepayers, utilities,
+    third parties) to capture the value.
+
+GRID MODERNIZATION
+
+•   For a California utility, provided strategic and analytical support for the company’s
+    proactive grid planning initiative, to reduce distribution system bottlenecks and increase
+   the speed of interconnection for new customers. The work involved distribution system
+   modeling and comprehensively quantifying the potential benefits and costs of the
+    proactive grid buildout strategy.
+
+•   For Pepco, assessed the potential future value of microgrid deployments in Maryland.
+
+•   For the Brazilian distribution utilities, contributed to an assessment of the potential
+   country-wide benefits and costs of smart grid investment.
+
+•   For Enchanted Rock, a developer of microgrids, assessed the economic, resilience, and
+  GHG impacts of a variety of microgrid options, including natural gas, renewable natural
+    gas, and solar-plus-storage, as well as “hybrid” microgrids that combined these options.
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 24 of 44
+                                                               Schedule RH-1
+                                                            Page 24 of 44•   For Entergy, provided regulatory support for the company’s proposal to roll out smart
+   meters. Support included analysis of the EE and DR benefits enabled by the rollout.
+
+•   For a large British energy supplier, assessed the national smart metering program.
+    Identified risks that emerged since the program’s inception. Developed
+   recommendations for plausible paths forward to mitigate the risks and increase the
+    likelihood of the program’s success. Research involved a review of the government’s
+   smart metering Impact Assessment (IA), including modifications to the IA based on
+    alternative future smart metering adoption and TOU uptake scenarios.
+
+•   For the US Department of Energy (DOE), served as a member of a technical advisory
+   group to review the activities of recipients of federal stimulus funding for consumer
+   behavior studies. Reviewed smart grid pilot designs and provided guidance to improve
+    their likelihood of success. Participated in meetings with the utilities on behalf of the
+   DOE to monitor progress.
+
+•  Served as lead architect of Brattle’s iGrid model for assessing the costs and benefits of
+   smart grid deployment strategies over a long-term (i.e., 50-year) forecast horizon. The
+   model was used to evaluate seven distinct smart grid programs and technologies (e.g.,
+   dynamic pricing, energy storage, plug-in hybrid electric vehicles) against seven key
+   metrics of value (e.g., avoided resource costs, improved reliability).
+
+•  Supported an expert witness in litigation regarding a contractual dispute between two
+   smart grid companies. Assessed the likely market size for a new smart grid product using
+   top-down and bottom-up modeling approaches. Drafted expert testimony.
+
+•   For the five Vietnamese distribution utilities, developed a 10-year roadmap for smart
+    grid deployment across the country. The project began with a series of in-country
+   stakeholder interviews and an initial assessment of the state of the Vietnamese grid.
+    This information was used to develop preliminary recommendations for smart grid
+   investment, which was presented and discussed during a one-day workshop with
+    industry stakeholders. Feedback was incorporated into a final report titled Vietnam’s 10-
+   year Smart Grid Roadmap. The project was funded by the World Bank.
+
+•   For a firm investing in emerging energy technologies, developed an overview of key
+   smart grid market developments. Topics included new non-traditional entrants to the
+    utilities space, factors driving the decline in utility sales growth, and emerging regulatory
+    constructs that could lead to new investment opportunities.
+
+•   For Pepco Holdings, established a universal list of metrics through which to track the
+   impact of their smart grid rollout. Reviewed existing metric reporting requirements and
+   proposed additional metrics that would be useful to report in future regulatory
+   proceedings.
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 25 of 44
+                                                               Schedule RH-1
+                                                            Page 25 of 44•   For a smart grid technology startup, provided strategic advice on how to design a smart
+    grid pilot that would best demonstrate the value of their products. Authored a
+   whitepaper summarizing key recommendations and assisted the company in effectively
+    articulating the full value proposition of their integrated approach to home energy
+   management.
+
+•   For Oak Ridge National Lab (ORNL) and the Electric Power Research Institute (EPRI),
+   contributed to a report for evaluating the cost-effectiveness of smart grid investments.
+   The report was published under the title Methodological Approach for Estimating the
+    Benefits and Costs of Smart Grid Demonstration Projects.
+
+•   For the Connecticut Department of Energy and Environmental Protection (DEEP),
+   contributed to the state’s annual Integrated Resource Plan (IRP). Developed a chapter
+   on emerging technologies (such as AMI, energy storage, and advanced waste-to-energy)
+   and their potential future role in the state’s mix of energy resources.
+
+OTHER ENGAGEMENTS
+
+•   For a Western utility, supported the development of a presentation to the utility’s Board
+    of Directors on key trends at each point in the electricity industry value chain.
+
+•   For a large Canadian utility, developed long-run projections of marginal energy and
+    capacity prices under a variety of scenarios (which were defined by different
+   assumptions about fuel prices, demand, carbon prices, etc.). To help explain trends in
+   the prices, these forecasts were accompanied by scenario-specific detail about capacity
+    additions and retirements, emissions, unit dispatch, and other outputs.
+
+•  Developed energy and capacity price forecasts under a range of market conditions to
+    assist a large investor-owned utility in developing a strategy related to the decision to
+    potentially retire a nuclear generating facility.
+
+•  Worked with an independent system operator (ISO) to integrate DR into its resource
+   adequacy requirements. Reviewed existing utility DR programs to identify those that
+   would meet resource adequacy criteria. Developed a forecast of the potential for new
+   demand response for the ISO’s planning purposes.
+
+•   For a large transmission company, contributed to analysis using Brattle’s Regional
+   Capacity Model (RECAP) model to assess the value that new transmission lines would
+   have from the perspective of bringing more renewables into the power market. The
+   model quantified the impact of an increased market penetration of wind generation on
+   system costs.
+
+•   For projects with multiple utilities, developed wholesale electricity price forecasts for
+    regions across the US using commercially licensed linear optimization models. Model
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 26 of 44
+                                                               Schedule RH-1
+                                                            Page 26 of 44    forecasts were driven by assumptions about the outlook of fossil fuel prices and regional
+    electricity demand levels, among other variables. Forecasts were developed using
+    multiple data sources to create a range of price forecasts encompassing the varying
+   assumptions established in the industry. Researched the inputs, set up and calibrated
+   the model, and analyzed the resulting forecasts.
+
+•   For power marketers in California during the Western Energy Crisis, analyzed historical
+   hourly California electricity bid data to quantify the potential economic impacts of the
+   bidding strategies on regional electricity markets. Analysis included bids into the ISO’s
+   day ahead and real-time energy markets and ancillary services markets, as well as the
+    California PX markets.
+
+•   For the New York Department of Public Service (DPS), contributed to a model that
+   would illustrate the impact of the state’s Renewing the Energy Vision (REV) policy on
+    utility financials. The analysis included pricing structures for customers with distributed
+   energy resources (DERs) as key inputs. The model could be used to assess the impacts of
+   a range of DER market penetration scenarios on utilities, rates, and bills.
+
+•  Lead developer of the Regional Capacity Model (RECAP), an optimization model for
+    forecasting the mix of generating capacity necessary to meet US electricity demand. The
+   model closely calibrated to Annual Energy Outlook forecasts and was used in a
+   whitepaper for the Edison Electric Institute to quantify the amount of generation and
+   transmission capital investment that could be avoided through demand-side
+   management.
+
+•  Worked with a team to develop a linear optimization model for forecasting the
+   economic impact of various emission control policies. The model was used to provide
+    strategic emissions compliance advice to large electric utilities and for forecasting
+    generator-specific environmental decisions.
+
+•  Created a tool for determining the optimal dispatch of energy storage technologies
+    against given price series (energy and ancillary service markets), subject to the device’s
+    specific operating constraints. The tool was used to develop an economic valuation of a
+   pumped storage plant in New England and to assess the potential value of a large-scale
+    battery for a technology manufacturer.
+
+•  Developed a general equilibrium model for forecasting trends in international natural
+   gas markets. The model was used in a study on the potential impacts of liquefied natural
+   gas (LNG) adoption in the US.
+
+•   Participated as a research assistant with Stanford University's Energy Modeling Forum
+   (EMF). Presented an overview of participating models for an EMF study on issues in
+    international natural gas markets.
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 27 of 44
+                                                               Schedule RH-1
+                                                            Page 27 of 44•   For an infrastructure investment fund, provided due diligence support on potential fuel
+    cell project investments in New York. Analysis included a forecast of potential project
+   revenues and an assessment of regulatory risks facing the project.
+
+•   For the National Rural Electric Cooperative Association (NRECA) and the Natural
+   Resources Defense Council (NRDC), assessed the costs and benefits of rooftop versus
+   community solar in the context of zero net energy building policy. The study considered
+    different solar PV configurations and market scenarios.
+
+•   For a foreign investor, assessed the likely future value of an investment in a new gas-
+    fired combined cycle power plant in western Pennsylvania. Projected gas, energy, and
+    capacity prices under a range of plausible scenarios. Simulated the dispatch of the unit
+    against these hourly price series to estimate potential earnings. Benchmarked the
+    results against the performance of comparable units in the region.
+
+•   For one of the largest electricity consumers in the US, conducted due diligence on the
+    potential purchase of a large gas-fired combined cycle plan. Determined how a purchase
+    of the plant would affect the firm’s energy portfolio. Used the Electric Power research
+    Institute’s Energy Book System (EBS) to estimate the plant’s energy value given
+    uncertainty in future electricity and fuel prices. Researched capacity and ancillary
+    services markets to assess the plant’s potential for providing additional value in those
+    areas. Investigated California LMP studies to determine whether the plant would have a
+    price advantage or disadvantage due to transmission constraints when California
+    transitioned to the MRTU market structure. Supplemented the LMP analysis with
+   independent forecasts of nodal market prices in California using a large-scale production
+    cost model. Analyzed the plant’s historical operations using publicly available data to
+   determine how it was dispatched against market prices and to identify any additional
+    synergistic benefits that might be achieved if the firm were to own the plant.
+
+•  Conducted a detailed audit of the Federal Energy Regulatory Commission’s (FERC)
+   merger filing between Duke Energy and Progress Energy, which created the largest
+   regulated utility in the US. Updated data in the market power assessment and estimated
+   Herfindahl-Hirschman Indices (HHI). Explored new mitigation strategies that would
+    alleviate screen failures that arose from the update.
+
+•   For several large electric utility mergers, aided electric utilities and their counsel in FERC
+    regulatory filings. Performed analyses to measure the impacts on market concentration
+    of proposed mergers between large electric utilities in the US. Utilized a proprietary
+    linear optimization model to calculate market shares before and after the mergers and
+   suggested divestitures that would minimize the potential impacts of the mergers.
+
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 28 of 44
+                                                               Schedule RH-1
+                                                            Page 28 of 44ARTICLES & PUBLICATIONS
+
+•   “Efficiency and Flexibility: Keys to Affordable Electrification,” with Sanem Sergici, Akhilesh
+   Ramakrishnan, and J. Michael Hagerty, Electrification and the Future of Decentralized
+    Electricity Supply, edited by Feredidoon Sioshansi, Elsevier, p. 197-213 (2025).
+
+•  “Demand-side solutions in the US building sector could achieve deep emissions reductions
+   and avoid over $100 billion in power sector costs,” with Jared Langevin, Aven Satre-Meloy,
+   Andrew J. Satchwell, Julia Olszewski, Kate Peters, and Handi Chandra-Putra, One Earth,
+   Volume 6, Issue 8 (August 18, 2023).
+
+•   “Virtual Power Plants: Resource Adequacy without Interconnection Delays,” with Kala
+   Viswanathan and Kate Peters, Utility Dive Op-Ed (August 17, 2023).
+
+•  “Load Flexibility: Market Potential and Opportunities in the United States,” with Tony Lee,
+    Variable Generation, Flexible Demand, edited by Feredidoon Sioshansi, Academic Press, p.
+   195-210 (2021).
+
+•  “Avoiding Blackouts in California Through Load Flexibility,” with Ahmad Faruqui, Utility Dive
+   Op-Ed (September 14, 2020).
+
+•  “A New Paradigm for Utilities: Electrification of the Transportation and Heating Sectors,”
+   with Ahmad Faruqui, Jurgen Weiss, J. Michael Hagerty, and Long Lam, American Bar
+    Association’s Energy Infrastructure, Siting and Reliability Newsletter (November 13, 2019).
+
+•  “Emerging Landscape of Residential Rates for EVs: Creative Design Ahead,” with John
+   Higham and Ahmad Faruqui, Public Utilities Fortnightly (May 2019).
+
+•  “Two Paths for Advancing the Smart Metering Programme,” Utility Week (December 2018).
+
+•  “Status of Residential Time-of-Use Rates in the US: Progress Comes Slowly,” with Cody
+   Warner and Ahmad Faruqui, Public Utilities Fortnightly (November 2018).
+
+•  “Storage-Oriented Rate Design: Stacked Benefits or the Next Death Spiral?” with Jake
+   Zahniser-Word and Jesse Cohen, The Electricity Journal (October 2018).
+
+•  “Nothing Worth Having Comes Easy: Capturing the Stacked Benefits of Energy Storage,”
+   RTO Insider (December 19, 2017).
+
+•  “The Electrification Accelerator: Understanding the Implications of Autonomous Vehicles for
+    Electric Utilities,” with Jurgen Weiss, Roger Lueken, Tony Lee, and Will Gorman, The
+    Electricity Journal (December 2017).
+
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 29 of 44
+                                                               Schedule RH-1
+                                                            Page 29 of 44•  “The Distributional Impacts of Demand Charges,” with Gus Greenstein, The Electricity
+    Journal (July 2016).
+
+•  “Competing Perspectives on Demand Charges,” with Ahmad Faruqui, Public Utilities
+    Fortnightly (September 2016).
+
+•  “Trends and Emerging Opportunities in Demand Response,” with Lucas Bressan and Ahmad
+    Faruqui, Recursos Energeticos Distribuidos (May 2016).
+
+•  “Understanding the UK’s Potential for Demand Response,” with Jurgen Weiss and Serena
+   Hesmondhalgh, Utility Week (December 12, 2015).
+
+•  “The Emergence of Organic Conservation,” with Ahmad Faruqui and Wade Davis, The
+    Electricity Journal (June 2015).
+
+•  “The Paradox of Inclining Block Rates,” with Ahmad Faruqui and Wade Davis, Public Utilities
+    Fortnightly (April 2015).
+
+•  “Rediscovering Residential Demand Charges,” The Electricity Journal (August/September
+   2014).
+
+•   “Smart by Default,” with Ahmad Faruqui and Neil Lessem, Public Utilities Fortnightly
+   (August 2014).
+
+•   “Analytical Frameworks to Incorporate Demand Response in Long-Term Resource Planning,”
+   with Andy Satchwell, Utilities Policy (March 2014).
+
+•  “Benchmarking Your Rate Case,” with Ahmad Faruqui, Public Utilities Fortnightly (July 2013).
+
+•   “Drivers of Demand Response Adoption: Past, Present, and Future,” with Kelly Smith, Public
+    Utilities Fortnightly (January 2012).
+
+•  “Smart Pricing, Smart Charging,” with Ahmad Faruqui, Armando Levy, and Alan Madian,
+    Public Utilities Fortnightly (October 2011).
+
+•  “The Energy Efficiency Imperative,” with Ahmad Faruqui, Middle East Economic Survey
+   (September 2011).
+
+•  “Unlocking the €53 Billion Savings from Smart Meters in the EU: How increasing the
+   adoption of dynamic tariffs could make or break the EU’s smart grid investment,” with
+   Ahmad Faruqui and Dan Harris, Energy Policy (October 2010).
+
+•  “Rethinking Prices,” with Ahmad Faruqui and Sanem Sergici, Public Utilities Fortnightly
+   (January 2010).
+
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 30 of 44
+                                                               Schedule RH-1
+                                                            Page 30 of 44•  “Fostering Economic Demand Response in the Midwest ISO,” with Ahmad Faruqui, Attila
+    Hajos, and Sam Newell, Energy Journal, Special Issue on Demand Response Resources
+   (October 2009).
+
+•   “Piloting the Smart Grid,” with Ahmad Faruqui and Sanem Sergici, The Electricity Journal
+   (August 2009).
+
+•  “Smart Grid Strategy: Quantifying Benefits,” with Ahmad Faruqui and Peter Fox-Penner,
+    Public Utilities Fortnightly (July 2009).
+
+•  “How Green is the Smart Grid?” The Electricity Journal (April 2009).
+
+•  “The Power of Dynamic Pricing,” with Ahmad Faruqui and John Tsoukalis, The Electricity
+    Journal (April 2009).
+
+•   “Transitioning to Dynamic Pricing,” with Ahmad Faruqui, Public Utilities Fortnightly (March
+   2009).
+
+•  “The Power of Five Percent,” with Ahmad Faruqui, Samuel A. Newell, and Johannes P.
+    Pfeifenberger, The Electricity Journal (October 2007).
+
+
+SELECTED WHITEPAPERS AND REPORTS
+
+•  “The Demand Side Grid Support Program: An Assessment of Scale and Value,” with Kate
+   Peters and Purvaansh Lohiya, prepared for Sunrun and Tesla (August 2025).
+
+•  “Optimizing Grid Infrastructure and Proactive Planning to Support Load Growth and Public
+    Policy Goals,” with Johannes Pfeifenberger, Long Lam, Kailin Graham, and Natalie Northrup,
+   prepared for Clean Air Task Force (July 2025).
+
+•   “Affordability, Rates, and Clean Capital Efficiency: A Path for the Power Industry’s Turbulent
+   Next Decade,” with Peter Fox-Penner, Shannon Paulson, and Xander Bartone, Brattle
+   whitepaper (May 2025).
+
+•  “State regulatory opportunities to advance distributed energy resources aggregations in
+   wholesale markets,” with Sydney Forrester, Adam Bigelow, Natalie Mims Frick, Kala
+   Viswanathan, prepared for Berkeley Lab (January 2025).
+
+•   “Electricity Rate Designs for Large Loads: Evolving Practices and Opportunities” with Andrew
+    Satchwell, Natalie Mims Frick, Peter Cappers, Sanem Sergici, Goksin Kaylak, Glenda Oskar,
+   prepared for Berkeley Lab (January 2025).
+
+•  “Deliberate Design: Creating Electricity Rates with Purpose,” with Sanem Sergici, Sai Shetty,
+   Peter Cappers, prepared for Berkey Lab (January 2025).
+
+
+                Ryan M. Hledik                                                      brattle.com | 31 of 44
+                                                               Schedule RH-1
+                                                            Page 31 of 44•   “Distributed Energy, Utility Scale: 30 Proven Strategies to Increase VPP Enrollment,” with
+   Akhilesh Ramakrishnan, Serena Patel, Andrew Satchwell, prepared for Berkeley Lab
+   (December 2024).
+
+•   “California’s Virtual Power Potential: How Five Consumer Technologies Could Improve the
+    State’s Energy Affordability,” with Kate Peters and Sophie Edelman, prepared for GridLab
+    (April 2024).
+
+•   “Incentivizing Behind-the-Meter Storage: A Jurisdictional Review,” prepared for Sunrun
+   (December 2023).
+
+•  “Unlocking the Value of Community Scale Storage for Consumers,” with Toby Brown,
+    Averlie Wang, and Adam Bigelow, prepared for Energy Consumers Australia (November
+   2023).
+
+•  “Water Heating Economics in a Dynamic Energy Landscape,” with Long Lam, Shreeansh
+   Agrawal, and Rich Hasselman, prepared for the Beneficial Electrification League (May 2023).
+
+•  “Real Reliability: The Value of Virtual Power,” with Kate Peters, prepared for Google (May
+   2023).
+
+•  “Making Grid-interactive Efficient Buildings a ‘Win’ for Both Customers and Utilities,” with
+   Andrew Satchwell, prepared for 2022 ACEEE Summer Study on Energy Efficiency in Buildings
+   proceedings (August 2022).
+
+•  “Valuing Residential Energy Efficiency: Analysis for a Prototypical Southeastern Utility,” with
+   Andrew Satchwell, Oleksandr Kuzura, Oluwatobi Adekanye, and Chioke B Harris, prepared
+    for Lawrence Berkeley National Lab (July 2022).
+
+•  “The Customer Action Pathway to National Decarbonization,” with Sanem Sergici, Michael
+   Hagerty, Ahmad Faruqui, and Kate Peters, prepared for Oracle (September 2021).
+
+•  “A National Roadmap for Grid-Interactive Efficient Buildings,” with Lawrence Berkeley
+   National Lab, Energy Solutions, and Wedgemere Group, prepared for the US Department of
+   Energy (May 2021).
+
+•  “Decarbonized Resilience: Assessing Alternatives to Diesel Backup Power,” with Peter Fox-
+   Penner, Roger Lueken, Tony Lee, and Jesse Cohen, prepared for Enchanted Rock, LLC (June
+   2020).
+
+•   “FixedBill+: Making Rate Design Innovation Work for Consumers, Electricity Providers, and
+   the Environment,” with Peter Fox-Penner and Andy Lubershane, The Brattle Group and
+   Energy Impact Partners Working Paper (June 2020).
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 32 of 44
+                                                               Schedule RH-1
+                                                            Page 32 of 44•   “Identifying Likely Electric Vehicle Adopters,” with Dan McFadden, Kenneth Train, Armando
+    Levy, Jurgen Weiss, and Nicole Irwin, prepared for the Electric Power Research Institute
+   (December 2019).
+
+•   “Solar-Plus-Storage: The Future Market for Hybrid Resources,” with Roger Lueken, Judy
+   Chang, Hannes Pfeifenberger, Jesse Cohen, and John Imon Pedtke (December 2019).
+
+•   “Residential Electric Vehicle Rates That Work,” with Erika H. Myers, Jacob Hargrave, Richard
+    Farinas, and Lauren Burke, prepared for the Smart Electric Power Alliance (November 2019).
+
+•  “The Total Value Test: A Framework for Evaluating the Cost-Effectiveness of Efficient
+    Electrification,” with Ahmad Faruqui, Michael Hagerty, and John Higham, prepared for the
+    Electric Power Research Institute (August 2019).
+
+•  “The National Potential for Load Flexibility: Value and Market Potential Through 2030,” with
+   Ahmad Faruqui, Tony Lee, and John Higham, The Brattle Group Report (June 2019).
+
+•  “Two Paths for Advancing Great Britain’s Smart Metering Programme,” with Pinar Bagci
+   and Saurab Chhachhi, The Brattle Group Whitepaper (December 2018).
+
+•   “Facilitating Electric Vehicle Fast Charging Deployment,” with Jurgen Weiss, prepared for
+   the Edison Electric Institute (October 2018).
+
+•  “Stacked Benefits: Comprehensively Valuing Battery Storage in California,” with Roger
+   Lueken, Colin McIntyre, and Heidi Bishop, prepared for EOS Energy Storage (September
+   2017).
+
+•  “The Value of TOU Tariffs in Great Britain: Insights for Decision-makers,” with Will Gorman
+   and Nicole Irwin, prepared for Citizens Advice (July 2017).
+
+•  “Beyond Zero Net Energy? Alternative Approaches to Enhance Consumer and
+   Environmental Outcomes,” prepared for the National Rural Electric Cooperative Association
+   (NRECA) and the Natural Resources Defense Council (NRDC) (June 2018).
+
+•   “Electrification: Emerging Opportunities for Utility Growth,” with Jurgen Weiss, Michael
+   Hagerty, and Will Gorman, The Brattle Group Whitepaper (January 2017).
+
+•   “Distribution System Pricing with Distributed Energy Resources,” with Jim Lazar, prepared
+    for Lawrence Berkeley National Laboratory’s Future Electric Utility Regulation series (May
+   2016).
+
+•  “The Tariff Transition: Considerations for Domestic Distribution Tariff Redesign in Great
+    Britain,” with Ahmad Faruqui, Jürgen Weiss, Toby Brown, and Nicole Irwin, prepared for
+    Citizens Advice (April 2016).
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 33 of 44
+                                                               Schedule RH-1
+                                                            Page 33 of 44•  “The Hidden Battery: Opportunities in Electric Water Heating,” with Judy Chang and Roger
+   Lueken, prepared for the National Rural Electric Cooperative Association (NRECA), the
+   Natural Resources Defense Council (NRDC), and the Peak Load Management Alliance
+   (PLMA) (January 2016).
+
+•  “An Evaluation of SRP’s Electric Rate Proposal for Residential Customers with Distributed
+   Generation,” with Ahmad Faruqui, prepared for Salt River Project (January 5, 2015).
+
+•  “Valuing Demand Response: International Best Practices, Case Studies, and Applications,”
+   prepared for EnerNOC (January 2015).
+
+•  “Exploring Natural Gas and Renewables in ERCOT, Part III: The Role of Demand Response,
+   Energy Efficiency, and Combined Heat & Power,” prepared for The Texas Clean Energy
+    Coalition (May 29, 2014).
+
+•  “Demand Response Market Potential in Xcel Energy’s Northern States Power Service
+    Territory,” with YouGov America, prepared for Xcel Energy (April 2014).
+
+•  “Incorporating Demand Response Into Western Interconnection Transmission Planning,”
+   with Andy Satchwell, Glen Barbose, Ahmad Faruqui, and Charles Goldman, Lawrence
+   Berkeley National Lab Report, (July 2013).
+
+•  “Estimating Xcel Energy’s Public Service Company of Colorado Territory Demand Response
+   Market Potential,” with YouGov America, prepared for Xcel Energy (June 2013).
+
+•   “Time-Varying and Dynamic Rate Design,” with Ahmad Faruqui and Jenny Palmer, prepared
+    for the Regulatory Assistance Project (July 2012).
+
+•  “Vietnam’s 10-year Smart Grid Roadmap,” prepared for Northern Power Corporation and
+   The World Bank (December 2011).
+
+•  “Bringing Demand Side Management to the Kingdom of Saudi Arabia,” with Global Energy
+   Partners and PacWest Consulting Partners, prepared for ECRA (May 2011).
+
+•  “National Action Plan on Demand Response,” with GMMB, Customer Performance Group,
+   and Definitive Insights, prepared for the Federal Energy Regulatory Commission (June
+   2010).
+
+•  “A National Assessment of Demand Response Potential,” with Freeman, Sullivan & Co. and
+   Global Energy Partners, prepared for the Federal Energy Regulatory Commission (June
+   2009).
+
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 34 of 44
+                                                               Schedule RH-1
+                                                            Page 34 of 44•  “Assessment of Achievable Potential from Energy Efficiency and Demand Response
+   Programs in the U.S.,” with Global Energy Partners, prepared for the Electric Power
+   Research Institute (January 2009).
+
+•  “Transforming America’s Power Industry: The Investment Challenge,” prepared for the
+   Edison Electric Institute (November 2008).
+
+•  “Rethinking Rate Design: A Survey of Leading Issues Facing California’s Utilities and
+    Regulators,” prepared for the Demand Response Research Center, Lawrence Berkeley
+   National Laboratory (August 2007).
+
+•   “California’s Next Generation of Load Management Standards,” prepared for the California
+   Energy Commission (May 2007).
+
+•  “The State of Demand Response in California,” prepared for the California Energy
+   Commission (April 2007).
+
+
+PRESENTATIONS & SPEAKING ENGAGEMENTS
+
+•  “Energy Efficiency and Consumer Affordability: Reducing Costs for Families and Businesses,”
+    Alliance to Save Energy webinar (July 16, 2025).
+
+•   “Distributed Batteries: Why Stick Them Behind the Meter?” IEA EU4Energy Policy Forum,
+   Copenhagen, Denmark (June 11, 2025).
+
+•   “Affordability and Resilience Through a Decentralized Power Grid” IEA “Empowering
+   Ukraine” Workshop, Copenhagen, Denmark (June 10, 2025).
+
+•  “Gaps, Barriers, and Solutions to Demand Response Participation in Wholesale Markets,”
+   ESIG webinar (April 22, 2025).
+
+•  “An Incomplete and Oversimplified History of Demand Flexibility, in 10 Mins (and Where
+   We’re Headed),” Uplight CustomerConnect 2025, Denver, CO (May 21, 2025).
+
+•  “Grid Edge Innovation: Driving VPP and DR Growth and Enrollment,” Virtual Peaker webinar
+   (December 12, 2024).
+
+•  “Data Center Demand: Problem or Opportunity?” presentation at Peak Load Management
+    Alliance 50th Conference, Brooklyn, NY (November 11, 2024).
+
+•  “New York’s Grid of the Future: Background and Initial Insights” presentation at Peak Load
+   Management Alliance 50th Conference, Brooklyn, NY (November 11, 2024).
+
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 35 of 44
+                                                               Schedule RH-1
+                                                            Page 35 of 44•  “Real Reliability: The Value of Virtual Power,” presentation at Alberta Market Surveillance
+   Administrator Fall Economics Symposium, Calgary, Alberta, CA (October 30, 2024).
+
+•  “How Virtual Power Plants Could Strengthen the Electrical Grid,” interview for Energy Policy
+  Now podcast (air date October 22, 2024).
+
+•  “Real Reliability: The Value of Virtual Power,” seminar for University of Pennsylvania
+   Kleinman Center for Energy Policy, Philadelphia, PA (October 15, 2024).
+
+•  “Shaping the Future of Home Energy Management,” panel at Sidewalk Infrastructure
+   Partners Unlocking the Power of Residential VPPs Summit, Mountain View, CA (June 4,
+   2024).
+
+•  “Big Savings for California Power Grid from Virtual Power Plants,” interview for Energi Talks
+   podcast (air date April 11, 2024).
+
+•  “Winter is Coming: The Growing Need for Year-round Demand Flexibility,” presentation at
+   Peak Load Management Alliance 49th Conference, Portland, OR (May 8, 2024).
+
+•  “Unlocking the Value of Community Scale Storage for Consumers,” Energy Consumers
+    Australia webinar (April 12, 2024).
+
+•  “Real Reliability: The Value of Virtual Power,” ESIG 2024 Spring Technical Workshop,
+   Tucson, AZ (March 26, 2024).
+
+•  “New Approaches to Address the Growing Use of Electricity in Buildings, and How to Protect
+   Power System Reliability and Affordability,” interview for United States Energy Association
+   Power Sector podcast (air date December 6, 2023).
+
+•  “Real Reliability: The Value of Virtual Power,” lecture for Yale Energy Systems Analysis
+    course, New Haven, CT (November 29, 2023).
+
+•   “Flexibility and Distributed Generation,” fireside chat at Energy Impact Partners Customer
+    Solutions Executive Roundtable, New York, NY (November 28, 2023).
+
+•  “Rediscovering Efficiency: Value for a Decarbonizing Power Grid,” presentation at California
+    Efficiency + Demand Management Council Annual Meeting, Oakland, CA (November 8,
+   2023).
+
+•  “Real Reliability: The Value of Virtual Power,” lecture in Stanford Energy Seminar series,
+    Stanford, CA (November 6, 2023).
+
+•   “Virtual Power Plants,” interview for Living on Earth podcast (air date November 3, 2023).
+
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 36 of 44
+                                                               Schedule RH-1
+                                                            Page 36 of 44•  “Subscription Pricing Plus: Rate Design Innovation for Consumers, Providers, and the
+   Environment,” presentation at GridFWD 2023, Skamania, WA (October 18, 2023).
+
+•  “Real Reliability: The Value of Virtual Power,” presentation at E Source Forum 2023, Denver,
+   CO (September 22, 2023).
+
+•  “Real Reliability: The Value of Virtual Power,” presentation at PNUCC System Planning
+   Committee meeting (September 15, 2023).
+
+•  “Can Virtual Power Plants Replace Peaker Plants?” presentation at Clean Energy Group
+   webinar (August 3, 2023).
+
+•  “Real Reliability: The Value of Virtual Power,” presentation at MISO DER Task Force meeting
+    (July 27, 2023).
+
+•  “Real Reliability: The Value of Virtual Power,” presentation at Washington UTC resource
+   adequacy meeting (July 24, 2023).
+
+•  “Real Reliability: The Value of Virtual Power,” presentation at SEPA Virtual Power Plant
+   webinar (July 24, 2023).
+
+•  “Real Reliability: The Value of Virtual Power,” presentation at RMI/VP3 webinar (June 22,
+   2023).
+
+•  “Real Reliability: The Value of Virtual Power,” presentation at NARUC-NASEO Financial
+   Toolbox Webinar (June 21, 2023).
+
+•  “Real Reliability: The Value of Virtual Power,” presentation at Uplight Customer Connect,
+   Denver, CO (May 23, 2023).
+
+•   “Virtual Power, Real Reliability: The Economics of Virtual Power Plants,” presentation at 47th
+   PLMA Conference, Memphis, TN (May 9, 2023).
+
+•  “Water Heating Economics in a Dynamic Energy Landscape,” presentation at BEL Electric
+   Water Heating Summit (May 4, 2023).
+
+•  “Yoga for the Decarbonized Power Grid,” presentation at 2022 NARUC Annual Meeting,
+  New Orleans, LA (November 15, 2022).
+
+•  “The National Potential for Load Flexibility,” presentation at Connecticut DEEP Technical
+   Session on Active Demand Response (November 3, 2022).
+
+•  “Making Grid-interactive Efficient Buildings a ‘Win’ for Both Customers and Utilities,” 2022
+   ACEEE Summer Study on Energy Efficiency in Buildings (August 22, 2022).
+
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 37 of 44
+                                                               Schedule RH-1
+                                                            Page 37 of 44•   “Achieving Reliable Decarbonization: The Role of Energy Efficiency and Load Flexibility,”
+   PLMA Dialogue (August 11, 2022).
+
+•   “Achieving the ‘Other’ Washington’s Decarbonization Goals with Energy Efficiency and Load
+    Flexibility,” Efficiency Exchange 2022 (April 15).
+
+•  “The Energy Future Is Smart: Grid-Interactive Efficient Buildings,” panel at Los Angeles
+    Better Buildings Challenge (LABBC) webinar (July 29, 2021).
+
+•  “A National Roadmap for Grid-Interactive Efficient Buildings,” presentation at Grid
+   Forward’s “Building the Decarbonized Grid” Summit (June 9, 2021).
+
+•   “Flexibility: The New Grid Zeitgeist,” panel at Microgrid 2020 Global Conference (November
+    18, 2020).
+
+•  “How Pricing is Playing a Greater Role in Grid Transitions,” panel at Peak Load Management
+    Alliance (PLMA) 2020 Fall Conference (November 10, 2020).
+
+•  “The National Potential for Load Flexibility,” Rocky Mountain Utility Exchange, Keynote
+   Session (September 30, 2020).
+
+•  “Load Flexibility: Yoga for the Power Grid,” SEPA Virtual Grid Evolution Summit (August 12,
+   2020).
+
+•  “The Potential for Load Flexibility,” Washington Utilities and Transportation Commission
+   Workshop on Demand Response Potential and Target Setting (June 8, 2020).
+
+•  “The National Potential for Load Flexibility,” 2020 ASHRAE Virtual Conference (June 5,
+   2020).
+
+•   “Electric Vehicle Managed Charging: Considerations for an Emerging Opportunity,” NARUC
+   EV Working Group Meeting (April 28, 2020).
+
+•  “The National Potential for Load Flexibility,” panel at NARUC 2020 Winter Policy Summit,
+   Washington, DC (February 20, 2020).
+
+•   Participant, “Demand Flexibility and Control,” panel at North America Smart Energy Week,
+    Salt Lake City, Utah (September 24, 2019).
+
+•   Participant, “Load Flexibility Potential in US by 2030,” PLMA Dialogue with Rich Barone,
+   (September 5, 2019).
+
+•   Participant, “Transportation Electrification: Smart Strategies to Manage New Electric Vehicle
+   Loads,” panel at the SEPA Grid Evolution Summit, Washington, DC (July 29, 2019).
+
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 38 of 44
+                                                               Schedule RH-1
+                                                            Page 38 of 44•  “The Potential for Load Flexibility in Northern States Power’s Service Territory,” Peak Load
+   Management Alliance (PLMA) 2019 Spring Conference, Minneapolis, MN (May 14, 2019).
+
+•   “Incorporating DERs into Resource Planning: Energy Efficiency,” with Sanem Sergici and DL
+   Oates, EPRI Winter 2019 Advisors Meeting, Tucson, Arizona (February 26, 2019).
+
+•  “Determining Optimal Storage Deployment Levels: Insights from Nevada,” with Roger
+   Lueken, Energy Storage Association Webinar (December 11, 2018).
+
+•  “Behind-the-Meter Storage: Stacked Benefits or the Next Death Spiral?” EEI Strategic Issues
+   Roundtable, Pittsburgh, PA (October 12, 2018).
+
+•  “The Value of TOU Tariffs in Great Britain,” Citizens Advice Public Workshop, London, UK
+    (July 10, 2017).
+
+•  “The Hidden Battery,” 3rd Annual Ancillary Services and DR Management Forum, Frankfurt,
+   Germany (May 11, 2017).
+
+•  “The Hidden Battery,” Smart Energy Summit, Brussels, Belgium (April 6, 2017).
+
+•   “Distribution System Pricing With Distributed Energy Resources,” Lawrence Berkeley
+   National Lab Future Electric Utility Regulation Series Webinar (May 31, 2016).
+
+•  “The Emergence of Residential Demand Charges,” 2016 EEI Rate Analysts Meeting,
+    Baltimore, MD (May 23, 2016).
+
+•   “Electricity Pricing for the Consumer of the Future,” International Congress of Energy
+   Science and Industry, Energi@21, Poznan, Poland (May 11, 2016).
+
+•  “Community Storage Initiative and Hidden Battery Report,” PLMA Dialogue with Keith
+   Dennis (March 24, 2016).
+
+•  “A Path Forward for Residential Demand Charges,” 2015 NASUCA Annual Meeting, Austin,
+   TX (November 10, 2015).
+
+•  “The National Landscape of Residential Rate Reform,” 2015 SNL Utility Regulation
+   Conference, Washington, DC (December 10, 2015).
+
+•  “The Top 10 Questions about Residential Demand Charges,” EUCI Residential Demand
+   Charges Symposium, Los Angeles, CA (August 31, 2015).
+
+•   “Residential Rate Design: Emerging Issues,” EEI WebTalks webinar (August 27, 2015).
+
+•  “The Top 10 Questions about Residential Demand Charges,” EUCI Residential Demand
+   Charges Symposium, Denver, CO (May 14, 2015).
+
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 39 of 44
+                                                               Schedule RH-1
+                                                            Page 39 of 44•   “Rolling out Residential Demand Charges,” EUCI Residential Demand Charges Symposium
+   Pre-Conference Workshop, Denver, CO (May 13, 2015).
+
+•   “Residential Demand Charges: An Emerging Opportunity in Rate Design,” EUCI webcast
+   (December 16, 2014).
+
+•   “Residential Demand Charges: A Rate Design Revolution?” Center for Research in Regulated
+    Industries 27th Annual Western Conference, Monterey, CA (June 26, 2014).
+
+•   “Rediscovering Residential Demand Charges,” 2014 EEI Rate and Regulatory Analysts
+   Meeting, San Francisco, CA (May 20, 2014).
+
+•  “The New Direction of Home Energy Management,” 2014 Comverge Utility Conference,
+  New Orleans, LA (May 7, 2014).
+
+•   “Surviving Sub-One Percent Growth,” 2014 Institute for Regulatory Policy Studies
+   Conference, Springfield, IL (April 16, 2014).
+
+•   Panelist, Wharton Energy Conference, Smart Grid Panel, Philadelphia, PA (November 8,
+   2013).
+
+•  “The Smart Grid and the Future of Demand Response,” presented at Energy Central webinar
+    titled “Integrated Demand Response - How Utilities Leverage Data for Intelligent Decisions”
+   (September 18, 2013).
+
+•   “Analytical Frameworks to Incorporate Demand Response in Long-term Resource Planning,”
+   with Andy Satchwell, CRRI Western Conference (June 21, 2013).
+
+•  “The Future of Rate Design,” EEI Rate Analysts Meeting, Orlando, Florida (May 21, 2013).
+
+•  “Demand Response: Lessons Learned from Across the Border,” presented at the CAMPUT
+   Energy Regulation Course, Kingston, Ontario (August 1, 2012).
+
+•  “The Current State of US Demand Response,” presented as moderator at Energy Bar
+    Association Annual Event, Washington, DC (April 26, 2012).
+
+•  “Vietnam’s 10-year Smart Grid Roadmap,” presented at World Bank stakeholder workshop
+    in Hanoi (December 8, 2011).
+
+•   “Bringing DSM to the Kingdom of Saudi Arabia,” presented at AESP webinar (October 13,
+   2011).
+
+•  “Dynamic Pricing Pilots: Past, Present, and Future,” presented at EEI Rate Analysts Meeting
+   (May 17, 2011).
+
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 40 of 44
+                                                               Schedule RH-1
+                                                            Page 40 of 44•   “Inclining Block Rates – Are They a Good or Bad Thing?” presented at EEI webinar (August 5,
+   2010).
+
+•  “Do Customers Respond to Dynamic Pricing?” presented at the Brookings Institution
+   Behavior Insights for Smart Grid Policy Workshop, Washington, DC (July 28, 2010).
+
+•   “Innovative Pricing for a Smarter Grid,” presented at TechConnect 2010 (June 24, 2010).
+
+•  “The Geography of Demand Response,” presented at the 2010 Southern California Edison
+   Demand Response Forum (June 3, 2010).
+
+•   “Fairness and Equity in Dynamic Pricing,” presented at the 2010 EEI Rate Analysts Meeting
+   (May 18, 2010).
+
+•  “A National Assessment of Demand Response Potential,” presented at an AESP webinar
+   (October 15, 2009).
+
+•  “A National Assessment of Demand Response Potential,” presented at the ALCA 2009 Fall
+   Meeting, Los Angeles, CA (October 8, 2009).
+
+•  “How Green is the Smart Grid?” presented at an EUCI webinar (July 23, 2009).
+
+•   “Sizing up the Smart Grid,” presented at the ConnectivityWeek GridWise Expo, San Jose, CA
+   (June 11, 2009).
+
+•   “Integrating Dynamic Pricing and Inclining Block Rates,” presented at the Stanford Energy &
+   Feedback Workshop, Palo Alto, CA (September 5, 2008).
+
+•   “Evaluating Alternative Dynamic Pricing Designs,” presented at the CRRI 21st Annual
+   Western Conference, Monterey, CA (June 19, 2008).
+
+•  “The Coming Wave of Price-Based Demand Response,” presented at the ConnectivityWeek
+   DR Expo, San Jose, CA (May 22, 2008).
+
+
+PRESS MENTIONS
+
+•   California’s biggest virtual power plant may get a funding reprieve,” Jeff St. John, Canary
+   Media (August 21, 2025).
+
+•  “New York could reach 8.5 GW of grid flexibility in 2040 zero-emissions scenario: Brattle
+   Group,” Brian Martucci, Utility Dive (February 5, 2025).
+
+•   “EPRI, Kraken advance DER interoperability standards to boost virtual power plant
+   deployment,” Herman Trabish, Utility Dive (November 27, 2024).
+
+•  “US to add 217 GW of distributed energy resource capacity through 2028, Wood Mackenzie
+    projects,” Brian Martucci, Utility Dive (July 3, 2024).
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 41 of 44
+                                                               Schedule RH-1
+                                                            Page 41 of 44•  “VPPs could boost utilities’ credit profiles, but it’s ‘premature’ to consider impact:
+   Morningstar DBRS,” Brian Martucci, Utility Dive (May 6, 2024).
+
+•   “Tackling 3 key issues can help scale virtual power plants and spur a wave of benefits,
+    analysts say,” Herman Trabish, Utility Dive (April 17, 2024).
+
+•   “Virtual power plant adoption could save California ratepayers $550M annually: Brattle
+    report,” Brian Martucci, Utility Dive (April 15, 2024).
+
+•   “California weighs virtual power plant mandate; 7.7 GW of potential seen by 2035,” Garrett
+    Hering, S&P Global Market Intelligence (April 12, 2024).
+
+•   “Virtual power plants poised to grab California market share – study,” Brian Dabbs,
+   POLITICO’S E&E News (April 11, 2024).
+
+•  “Report highlights the power of VPPs,” Katie Fehrenbacher, Axios Pro (April 11, 2024).
+
+•  “A new era of price-based demand response emerges, but utilities and regulators need
+   proof of its potential,” Herman Trabish, Utility Dive (March 27, 2024).
+
+•  “The opportunities and challenges of VPPs,” Katie Fehrenbacher, Axios Pro (December 20,
+   2023).
+
+•  “Why efficient buildings are key to decarbonizing the power grid,” Jeff St. John, Canary
+   Media (August 22, 2023).
+
+•  “You and your neighbors, a virtual power plant? Growing effort is money-saving and climate
+    friendly,” Tom Kertscher, PolitiFact (August 8, 2023).
+
+•  “Clean Energy Group urges utilities to replace peaker plants,” James Downing, RTO Insider
+   (August 3, 2023).
+
+•  “Momentum builds for virtual power plants as alternatives to gas, battery peakers,” Garrett
+    Herring, S&P Global Market Intelligence (May 10, 2023).
+
+•  “VPPs provide same resource adequacy as gas peakers, large batteries at up to 60% less
+    cost: study,” Patrick Cooley, Utility Dive (May 5, 2023).
+
+•  “Demand Response: A win-win solution to climate and energy price crises,” Joe Lo, Climate
+   Change News (October 5, 2022).
+
+•   “NextEra’s ‘game changing’ Real Zero emissions goal spurs questions about hydrogen,
+   demand-side management,” Herman Trabish, Utility Dive (August 3, 2022).
+
+•  “The Big Picture on Emerging Technologies: Virtual Power Plants Advance in California,”
+   Herman Trabish, California Current (February 14, 2022).
+
+•   “State of the Electric Utility 2021: Despite sharp drop, cost remains key obstacle to more
+    storage, some say,” Kavya Balaraman, Utility Dive (April 1, 2021).
+
+•   “Solar panels and batteries on your home could help prevent the next grid disaster,”
+   Alejandra Borunda, National Geographic (February 25, 2021).
+
+•  “2021 Outlook: The DER boom continues, driving a 'reimagining' of the distribution system,”
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 42 of 44
+                                                               Schedule RH-1
+                                                            Page 42 of 44   Herman Trabish, Utility Dive (January 12, 2021).
+
+•  “Two barriers to utility and customer savings with flexible loads and how regulators can
+    help,” Herman Trabish, Utility Dive (January 6, 2021).
+
+•   “California Considers Landmark Appliance Rule to Ease Grid Demand,” Emily C. Dooley,
+   Bloomberg Law (October 23, 2020).
+
+•  “Demand Response Failed California 20 Years Ago; the State's Recent Outages may have
+   Redeemed it,” Herman Trabish, Utility Dive (September 28, 2020).
+
+•  “Smart Meters Giving Missouri Customers Incentive to Save Energy During Peaks,” Karen
+   Uhlenhuth, Energy News Network (September 28, 2020).
+
+•   “Tesla Promises Cars that Connect to the Grid, even if Elon Musk Doesn’t Really Want Them
+    to,” Justine Calma, The Verge (September 23, 2020).
+
+•   “Virtual Power Plants are Coming to California Apartment Buildings,” Justine Calma, The
+   Verge (August 27, 2020).
+
+•  “Momentum Grows for Piloting Netflix-like Fixed Subscription Rates, but not Everyone's on
+   Board,” Herman Trabish, Utility Dive (July 7, 2020).
+
+•   “Battery Energy Storage is Getting Cheaper, but How Much Deployment is too Much?”
+   Herman Trabish, Utility Dive (June 30, 2020).
+
+•   “Tesla's Ex-storage Chief on Trump, Musk and the 'Holy Grail’,” David Iaconangelo, E&E
+   News (May 15, 2020).
+
+•   “Calif. Inks Largest U.S. Battery Purchase in History,” David Iaconangelo, E&E News (May 5,
+   2020).
+
+•   “Biding One’s Utility Time,” Chuck Ross, Electrical Contractor Magazine (March 2020).
+
+•  “Want Cheaper Electricity? Xcel Energy Wants to Help – if You’re Willing to do Your Laundry
+    at 2 a.m.,” Mark Jaffe, Colorado Sun (February 20, 2020).
+
+•  “Time-of-Use Electricity Rates May Hit Vulnerable Groups Harder, Study Finds,” Maria
+    Gallucci, IEEE Spectrum (December 16, 2019).
+
+•   “EV-specific rates are the gateway to direct load management, SEPA report finds,” Robert
+   Walton, Utility Dive (November 14, 2019).
+
+•  “A Utah Housing Development is Just the Start of Sonnen’s US Solar Ambitions,” Wolfgang
+    Kerler, The Verge (August 28, 2019).
+
+•  “Renewables' Variability Sends Wary Utilities from Traditional DR to DER and Load
+    Flexibility,” Herman K. Trabish, Utility Dive (August 14, 2019).
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 43 of 44
+                                                               Schedule RH-1
+                                                            Page 43 of 44•   “Using Electricity at Different Times of Day Could Save Us Millions of Dollars,” David
+    Roberts, Vox (August 7, 2019).
+
+•   “Rise of Net Zero Energy Homes Could Boost Utility-Led Community Solar,” Herman K.
+    Trabish, Utility Dive (July 19, 2018).
+
+•   “Stacking Energy Storage Values to Make Batteries More Profitable: Brattle Report,”
+   MicroGrid Knowledge, September 18, 2017).
+
+•   “Brattle: Regulatory Barriers Prevent Stacking of Battery Benefits,” Peter Maloney, Utility
+   Dive (September 13, 2017).
+
+•   “Batteries Hold Value in Various Applications: Study,” MW Daily (September 12, 2017).
+
+•   “Utilities in hot water: Realizing the benefits of grid-integrated water heaters,” Herman K.
+    Trabish, Utility Dive (June 20, 2017).
+
+•  “ComEd jumps on the demand charge train with new Illinois proposal,” Peter Maloney,
+    Utility Dive (May 9, 2016).
+
+•  “Your home water heater may soon double as a battery,” Chris Mooney, The Washington
+   Post (February 24, 2016).
+
+•  “Move over, fixed fees—utilities see demand charges as revenue cure,” Kari Lydersen,
+   Midwest Energy News (December 2, 2015).
+
+•   “Using Telecom Tech, eCurv Looks to Lower Energy Bills, Raise Money,” Thomas Miller,
+   Xconomy (May 4, 2015).
+
+•  “Questions swirl around possible rates under a Boulder utility,” Erica Meltzer, Daily Camera
+   (January 31, 2015).
+
+•   “After SONGS: Forecasting the fate of demand response in California,” Lisa Weinzimer,
+    Utility Dive (March 21, 2014).
+
+•  “A National ‘Smart Grid’ Remains a Vision with Many Gaps,” Peter Behr, The New York
+   Times (October 22, 2009).
+
+
+
+
+
+                Ryan M. Hledik                                                      brattle.com | 44 of 44
+                                                               Schedule RH-1
+                                                            Page 44 of 44 1                 LARGE LOAD TARIFF COMPARISON
+
+ 2   The table below compares Ameren’s and Evergy’s large load tariff proposals to prominent large
+ 3   load tariffs that have been adopted and/or proposed by United States investor-owned utilities in
+ 4   2025. AEP Ohio’s Data Center Tariff,1 AEP I&M’s Industrial Power Tariff2 and NV Energy’s
+ 5   Clean Transition Tariff3 were each approved by their respective commissions earlier this year and
+ 6    are included in the comparison to represent emerging trends in approved large load tariffs across
+ 7    the country. Dominion proposed the new GS-5 tariff for large loads in April 2025, and while it has
+ 8    not yet been approved, it was included in this review due to the scale of large load development in
+ 9   Dominion’s service territory.4 Finally, the Missouri PSC Staff’s proposal in Evergy’s LLPS
+10   proceeding is included given its direct jurisdictional relevance.5
+11          This comparison is structured around the three large load tariff objectives described
+12   throughout my testimony. Each horizontal panel of the table corresponds to one of these objectives.
+13   Within each panel, the rows represent tariff elements featured in one or more of the reviewed
+14     tariffs. I have marked the tariffs that include each element with a circle that is color-coded based
+15   on the prevalence of the given tariff element across the broader large load tariff landscape
+16    (including in jurisdictions not covered in the table). Green circles indicate that a tariff contains an
+17   element that I have observed in other tariffs offered in Missouri or by Evergy (besides the newly
+18   proposed large load tariffs). For example, Evergy offers a Renewable Energy Program Rider in
+19   Kansas, so tariffs with optional clean energy credit riders are coded as green. Gray circles indicate
+20    that while an element does not have precedent in other Missouri or Evergy tariffs, there are other
+21    jurisdictions where I have observed similar features. Finally, red circles indicate that I have not
+22   observed a given element in any other jurisdiction.
+
+
+          1   Ohio Power Company, AEP Ohio Tariff Book, Schedule DCT, Sheet No. 223.
+          2   Indiana Michigan Power Company, AEP Indiana Michigan Tariff Book, Tariff I.P. (Industrial Power), Sheet No.
+            21.
+          3  NV Energy Clean Transition Tariff, Schedule No. CTT, Advice Letter No. 547-E (Nevada Power Company)/
+          No. 674-E (Sierra Pacific Power Company), Docket Nos. 24-05022 and 24-05023, filed May 1, 2024, approved
+          on March 11, 2025.
+          4    Direct Testimony of Timothy P. Stuller, Case No. PUR-2025-00058, filed March 31, 2025.
+          5   Missouri Public Service Commission Staff Recommendation, Evergy Missouri Metro / Evergy Missouri West,
+          Case No. Case No. EO-2025-0154.
+
+
+                                                                    Schedule RH-2
+                                                                  Page 1 of 3                      Comparison of Ameren’s and Evergy's Tariffs within the Broader Large Load Tariff Landscape
+                                                                                                      Indiana  NV Energy         MO Staff                                                         Ameren     Evergy   Ohio Power                     Dominion
+                                                                                                  Michigan       (Clean                                                                                                       (Large Power     (Large Load     (Data Center                                    (Schedule   Recomm-
+                                                                                                                                                                           (Industrial       Transition                                                                                                         Service)    Power Service)        Tariff)                                                                                                                                                                           GS-5)     endation                                                                                                                          Power Tariff)         Tariff)Rate Features
+Mechanisms to Attract New Large Loads
+  Optional Clean Energy Credit Riders                                             ⬤      ⬤             ⬤             ⬤
+  Mechanism(s) for Customer to Pay for Incremental Clean Generation                                             ⬤      ⬤                    ⬤
+ Demand Response or Local Generation Program Eligibility                                                    ⬤      ⬤      ⬤
+  Mechanism(s) for Customer to be Credited for Resource Capacity Rights                                                    ⬤                    ⬤
+  Other Mechanisms for Customer to Financially Support Clean Technologies                                             ⬤
+Mechanisms to Mitigate Stranded Asset Risk
+ Minimum Monthly Bill                                             ⬤      ⬤      ⬤      ⬤             ⬤
+ Minimum Contract Term                                             ⬤      ⬤      ⬤      ⬤      ⬤      ⬤      ⬤
+  Termination Fees                                             ⬤      ⬤      ⬤      ⬤      ⬤      ⬤      ⬤
+  Collateral Requirements                                             ⬤      ⬤      ⬤      ⬤             ⬤      ⬤
+  Capacity Reduction Restrictions                                             ⬤      ⬤             ⬤             ⬤
+  Charge(s) for Differences between Initial Capacity Requirements and Capacity
+   Requirements in Annual IRP Update                                                                      ⬤
+  Charge(s) for Differences between Monthly Projected Peak Demand and
+   Actual Peak Demand                                                                            ⬤
+Mechanisms to Mitigate Cost-Shift Risk*
+ Customer Unable to Reduce Total Charges through Economic Development Discounts**                             NA                      NA                                             ⬤      ⬤             ⬤             ⬤      ⬤
+  Interim Capacity Charge for Near-Term Capacity Needs                                             ⬤      ⬤                                  ⬤
+  Recovery of Accelerated Infrastructure Investment Costs                                                    ⬤
+  Recovery of Incremental Cost of Generation Capacity                                                            ⬤             ⬤             ⬤
+  Charge(s) to Recover Additional Fixed Costs                                                                          ⬤             ⬤
+  Charge(s) to Recover Costs from RTO Capacity Shortfall Penalties                                                                                        ⬤
+  Charge(s) to Recover Additional Real-Time Energy and Ancillary Service Costs
+   due to Customers' Differences in Day-Ahead Load Forecasts and Actual Load                                                   ⬤
+  Additional Charge(s) to Offset Economic Development Discounts***                                                                                        ⬤
+           has precedent in other Missouri or Evergy tariffs ⬤Feature
+           has no precedent in other Missouri or Evergy tariffs, but has precedent in another jurisdiction ⬤Feature
+           has no precedent ⬤Feature
+Notes:
+RTO = Regional Transmission Organization
+* This panel refers to mechanisms beyond those to mitigate stranded asset risk.
+** NA indicates that economic development discounts are not available in a given jurisdiction.
+*** This features refers to additional charges not captured in the previous economic development discount exclusion rate feature.
+
+
+                                                                                               Schedule RH-2
+                                                                                           Page 2 of 3Sources for table:
+   •  Wills Direct Testimony, Schedule SMW-D1, p. 13, Case No. ET-2025-0184
+   •   Direct Testimony of Brad Lutz, p. 33, Case No. EO-2025-0154
+   •  Ohio Power Company, AEP Ohio Tariff Book, Schedule DCT, Sheet No. 223
+   •  Indiana Michigan Power Company, AEP Indiana Michigan Tariff Book, Tariff I.P.
+        (Industrial Power), Sheet No. 21
+   • NV Energy Clean Transition Tariff, Schedule No. CTT, Advice Letter No. 547-E
+      (Nevada Power Company)/No. 674-E (Sierra Pacific Power Company), Docket Nos. 24-
+      05022 and 24-05023, filed May 1, 2024, approved on March 11, 2025.
+   •   Direct Testimony of Timothy P. Stuller, Case No. PUR-2025-00058, filed March 31,
+      2025
+   •  Missouri Public Service Commission Staff Recommendation, Evergy Missouri Metro /
+      Evergy Missouri West, Case No. Case No. EO-2025-0154.
+
+
+
+
+
+                                                               Schedule RH-2
+                                                             Page 3 of 3

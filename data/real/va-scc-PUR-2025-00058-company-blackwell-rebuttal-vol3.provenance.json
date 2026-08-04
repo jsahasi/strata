@@ -1,0 +1,19 @@
+{
+  "source_url": "https://www.scc.virginia.gov/DocketSearch/Home/Document/12/382686",
+  "retrieved_at": "2026-08-04T16:51:43Z",
+  "sha256": "922eb520f54e2eda7f91092bc1ee0f96400e9debcd79143ff8e5732da64e7088",
+  "jurisdiction": "US-VA (Virginia State Corporation Commission)",
+  "docket": "PUR-2025-00058",
+  "matter_no": 146025,
+  "scc_doc_id": "382686",
+  "document_title": "Public Version - Volume 3 - Rebuttal Testimony of Stan Blackwell",
+  "filing_date": "2025-08-13",
+  "filer": "Virginia Electric and Power Company (witness Stan Blackwell)",
+  "content_type_served": "application/pdf",
+  "source_pdf_sha256": "9cb2b941976da073cd6ed52be564f5c34fa2ea4ca8c74d4f5b8071d98a287093",
+  "source_pdf_bytes": 2014339,
+  "saved_text_bytes": 63444,
+  "extraction_tool": "pypdf 6.14.2 page.extract_text()",
+  "note": "Version-pair B, rebuttal half. Same witness as the errata-corrected direct testimony, giving a direct -> errata -> rebuttal arc for one position.",
+  "how_obtained": "Fetched the PDF from the Virginia SCC DocketSearch document handler (https://www.scc.virginia.gov/DocketSearch/Home/Document/12/<DocID>) with curl -L, following the site's 307 redirect to the lowercase /docketsearch/home/document/12/<DocID> path, which returned Content-Type application/pdf. The DocID was obtained from the DocketSearchAPI Breeze endpoint GetDocuments (?$filter=MATTER_NO eq <matter>) for this case. Converted the PDF to text with pypdf 6.14.2 using page.extract_text() concatenated per page with '===PAGE n===' separators. The text is saved exactly as pypdf produced it: not cleaned, not reflowed, not de-hyphenated; soft hyphens, ligature artefacts, transposed line-number/Q-A ordering and OCR-style noise are left intact."
+}

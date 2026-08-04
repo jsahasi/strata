@@ -1,0 +1,15 @@
+{
+  "jurisdiction": "Georgia Public Service Commission (GA PSC)",
+  "docket": "56002",
+  "source_url": "https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/222831/104026",
+  "source_detail_page": "https://psc.ga.gov/search/facts-document/?documentId=222831",
+  "facts_document_id": 222831,
+  "facts_file_id": 104026,
+  "document_title": "Errata to the Direct Testimony of Chelsea Hotaling on behalf of Georgia Interfaith Power & Light and Southface Energy Institute - Public Disclosure version",
+  "filing_date": "2025-05-29",
+  "filer": "Georgia Interfaith Power & Light and Southface Energy Institute (filed by Southern Environmental Law Center)",
+  "how_obtained": "Fetched the GA PSC FACTS document-detail page /search/facts-document/?documentId=222831 to read its download link, then downloaded the PDF '2025_05_29_56002_56003_gipl-sf_hotaling_errata_pd.pdf' from the public API endpoint https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/222831/104026. This is the public-disclosure version - the trade-secret version named in the cover letter was NOT retrieved. Converted the PDF to text with pdfminer.six extract_text(). Saved exactly as pdfminer emitted it - no reflow, no de-hyphenation, no ligature or soft-hyphen repair; running heads, marginal line-number columns, dot leaders and form feeds all left in place.",
+  "sha256": "32500851a081b24939f668049471158dfb420ea13e2ac7ea4d34046373e91061",
+  "bytes": 11031,
+  "retrieved_at": "2026-08-04T16:51:28Z"
+}

@@ -1,0 +1,1482 @@
+                                            FILED
+                                       December 3, 2025
+                                                  Missouri Public
+                                              Service Commission
+
+Exhibit No. 1
+
+
+
+
+
+                             Ameren – Exhibit 1
+                           Ajay K. Arora Testimony
+                                                  Direct
+                            Case No. ET-2025-0184                                               Exhibit No.:
+                                                         Issue(s):  Large Load Customer Rate Plan
+                                                 Witness:  Ajay K. Arora
+                                   Type of Exhibit:  Direct Testimony
+                                       Sponsoring Party:  Union Electric Company
+                                                       File No.:  ET-2025-0184
+                               Date Testimony Prepared:  May 14, 2025
+
+
+
+MISSOURI PUBLIC SERVICE COMMISSION
+
+
+         FILE NO. ET-2025-0184
+
+
+        DIRECT TESTIMONY
+
+              OF
+
+          AJAY K. ARORA
+
+             ON
+
+           BEHALF OF
+
+     UNION ELECTRIC COMPANY
+
+        D/B/A AMEREN MISSOURI
+
+
+
+
+
+                          St. Louis, Missouri
+                     May, 2025                     TABLE OF CONTENTS
+
+I. INTRODUCTION & EXECUTIVE SUMMARY ...................................................................... 1
+
+II. OVERVIEW OF THE LARGE CUSTOMER LOAD LANDSCAPE NATIONALLY AND IN
+
+MISSOURI ..................................................................................................................................... 5
+
+III. AMEREN MISSOURI'S LARGE LOAD RATE PLAN - BACKGROUND .......................... 8
+
+IV. AMEREN MISSOURI'S LARGE LOAD RATE PLAN – SPECIFICS .............................. 14
+
+V.  DISCUSSION OF THE KEY LARGE LOAD RATE PLAN PRINCIPLES ....................... 18
+
+
+
+
+
+                                                                      i                          DIRECT TESTIMONY
+
+                               OF
+
+                            AJAY K. ARORA
+
+                             FILE NO. ET-2025-0184
+
+ 1                                I. INTRODUCTION & EXECUTIVE SUMMARY
+
+ 2         Q.     Please state your name and business address.
+
+ 3         A.    Ajay K. Arora, Union  Electric Company d/b/a Ameren Missouri ("Ameren
+
+ 4   Missouri" or "Company"), One Ameren Plaza, 1901 Chouteau Avenue, St. Louis, Missouri 63103.
+
+ 5         Q.   By whom and in what capacity are you employed?
+
+ 6         A.      I am a Senior Vice President and the Chief Development Officer for Ameren
+
+ 7    Missouri.
+
+ 8         Q.    Please describe your education, experience, and employment history.
+
+ 9         A.      I received my Bachelor of Science Degree in Chemical Engineering from Panjab
+
+10    University (India) in May 1992. I received my Master of Business Administration degree from
+
+11   Tulane University in May 1998. I joined a former Ameren Corporation subsidiary, Ameren Energy,
+
+12    in June 1998 and held trading and structuring positions in Ameren Energy before supervising the
+
+13   group that priced structured energy products for former Ameren Corporation subsidiary Ameren
+
+14   Energy Marketing Company’s wholesale and retail customers from 2002 to 2004. From 2004 to
+
+15   2007, I was responsible for the analytical group supporting Ameren Missouri’s transition into the
+
+16   Midwest Independent Transmission System Operator, Inc. ("MISO"), including reviewing specific
+
+17   market design issues in MISO.1 In 2007, I led the Ameren Missouri Regional Transmission
+
+18   Organization cost-benefit study that was filed with the Missouri Public Service Commission
+
+
+
+         1 MISO is now known as the Midcontinent Independent System Operator, Inc.
+
+                                            1      Direct Testimony of
+     Ajay K. Arora
+
+ 1   ("Commission") in File No. EO-2008-0134, and I assumed responsibility for the Quantitative
+
+ 2    Analysis, Integrated Resource Planning, Load Analysis, and Operations Analysis groups. In
+
+ 3   January 2008, as part of my role as Director of Corporate Planning,  I assumed additional
+
+ 4    responsibility for the Asset and Trading Optimization group supporting Ameren Missouri. In
+
+ 5   November 2011, I assumed additional responsibilities for the corporate Project Management
+
+ 6   Oversight and Market Risk Management groups. These groups oversee large utility capital projects
+
+ 7   and commodity  risk management.  In November 2014,  I assumed  responsibility  for  the
+
+ 8   Environmental Services department as Vice President of Environmental Services and Generation
+
+ 9   Resource Planning. The Environmental Services department develops environmental policy and
+
+10   provides environmental compliance support, which includes the areas of energy  delivery,
+
+11    generation, and transmission. In March 2018, I assumed leadership responsibility for Ameren
+
+12    Missouri's entire non-nuclear generation operations and energy management function as Vice
+
+13    President of Power Operations and Energy Management.  I assumed the position as Chief
+
+14   Renewable Development Officer in late 2020 and was promoted to Senior Vice-President and
+
+15   Chief Renewable Development Officer in 2022.  In late 2024, I was named Chief Development
+
+16    Officer and assumed responsibility for the planning and development of the Company's entire
+
+17    supply-side portfolio, including both dispatchable and intermittent resources.
+
+18         Q.    Have you previously testified in a proceeding at the Missouri Public Service
+
+19   Commission (“Commission”)?
+
+20         A.     Yes, I have offered testimony before this Commission on multiple occasions, most
+
+21    recently in File Nos. EA-2023-0286, EA-2022-0245, EA-2022-0244, EA-2019-0181, EA-2018-
+
+22   0202.
+
+
+                                            2      Direct Testimony of
+     Ajay K. Arora
+
+ 1         Q.    Are there other witnesses testifying in support of the Company’s Application
+
+ 2    for Approval of Ameren Missouri's Large Load Rate Plan?
+
+ 3         A.     Yes, in addition to my testimony, there are three additional witnesses who are also
+
+ 4   providing direct testimony in conjunction with the Company's filing in this docket:
+
+ 5          •  Company witness Robert Dixon, Sr. Director, Economic, Community and
+
+ 6             Business Development, will outline the economic development rationale for
+
+ 7              pursuing new service and expanding service to Large Load Customers.
+
+ 8          •  Company witness Steven Wills, Senior Director, Regulatory Affairs, will
+
+ 9              provide the details on the proposed changes and additions to the Company's
+
+10                  tariffs to  reflect new terms and conditions to implement the Company's
+
+11             proposed Large Load Rate Plan. Mr. Wills' Direct Testimony also presents the
+
+12                results of a robust risk analysis that demonstrates that the proposed Large Load
+
+13             Rate Plan is reasonably designed to ensure that Large Load Customers will pay
+
+14                their fair share of the costs incurred to serve them.
+
+15          •  Company witness Matt Michels, Director, Corporate Analysis, will describe
+
+16          how the Company has incorporated anticipated load growth in the Company's
+
+17               Integrated Resource Planning ("IRP")  process, as  reflected  in  the 2025
+
+18               Preferred Resource Plan ("PRP") submitted to the Commission in February of
+
+19                 this year in File No. EO-2025-0235, and addresses the Company's capacity
+
+20               position with service to Large Load Customers.
+
+
+
+
+
+                                            3      Direct Testimony of
+     Ajay K. Arora
+
+ 1         Q.   What is the purpose of your Direct Testimony in this proceeding?
+
+ 2         A.    The purpose of my Direct Testimony is to support the Company's request for
+
+ 3   approval of new tariff terms and conditions to apply to Large Load Customers,2 that is, customers
+
+ 4   with a peak demand of 100,000 kilovolts ("kV") served at a voltage of 115 kV or higher.
+
+ 5    Specifically, I provide an overview of the national and market trends driving new large load across
+
+ 6    the country, highlight the important impact of these trends on the State of Missouri, and discuss
+
+ 7   how Ameren Missouri is responding to these trends through its IRP process and the development
+
+ 8    of the Large Load Rate Plan for which we seek approval in this case. I will also summarize the
+
+ 9   proposed tariff terms and the benefits they will provide for existing customers, and to the State.
+
+10         Q.    Please summarize your key points.
+
+11         A.    The key points I address in my testimony include the following:
+
+12             •  Like the rest of the country, we expect to add significant new loads arising
+
+13               from Large Load Customers in the near- to intermediate-term (i.e., starting
+
+14                  as soon as 2026 and continuing thereafter for at least a decade).
+
+15             •  Such customers are entitled to service from us just like any other person or
+
+16                 firm that chooses to locate in our service territory.
+
+17             •  The uniqueness of these customers, including the sheer magnitude of their
+
+18                   loads, calls for unique service terms and conditions, which is why we are
+
+19                 proposing the Large Load Rate Plan.
+
+20             •  Under the terms and conditions reflected in the Large Load Rate Plan, these
+
+21              new loads are expected to generate substantial economic development
+
+
+
+         2 I will refer to these terms and conditions as the "Large Load Rate Plan."
+                                           4      Direct Testimony of
+     Ajay K. Arora
+
+ 1                    activity  in  the Ameren Missouri  service  territory,  benefiting  all our
+
+ 2                 customers and the State generally.
+
+ 3             •  The Large Load Rate Plan is designed to attract these loads and deliver those
+
+ 4                   benefits through rates and terms designed to ensure that Large Load
+
+ 5                Customers pay their fair share of the costs incurred to serve them, through
+
+ 6                   reliance on our robust IRP process and the Commission's continuing
+
+ 7                 ratemaking authority, and on the Commission's ongoing authority under the
+
+ 8                proposed Plan to approve such large load additions over time.
+
+ 9             •  The Large Load Rate Plan's terms promote revenue certainty from the Large
+
+10               Load Customers, which in turn allows Ameren Missouri to accelerate
+
+11                  dispatchable generation  additions which help  increase  reliability and
+
+12                   resiliency for all customers. The potential for additional revenues from the
+
+13                proposed clean energy programs also supports accelerated integration of
+
+14                renewable energy resources, providing fuel-free resources for all customers.
+
+15                           II. OVERVIEW OF THE LARGE CUSTOMER LOAD
+16               LANDSCAPE NATIONALLY AND IN MISSOURI
+
+17       Q.    Why did the Company make this filing?
+18        A.     The reason for this filing is the significant growth in electric demand driven by the
+
+19   emergence of large-scale, energy-intensive customers – particularly those in the data center
+
+20    services and advanced manufacturing sectors. The continued increase in demand for data cloud
+
+21    services, continued digitization covering more and more aspects of business and daily lives, along
+
+22   with the rapid evolution of generative artificial intelligence ("AI") technologies, has led to a surge
+
+
+
+                                            5      Direct Testimony of
+     Ajay K. Arora
+
+ 1    in demand for high performance computing infrastructure, which requires vast amounts of
+
+ 2    electricity to support intensive computational workloads and 24/7 operations.
+
+ 3          According to a 2025 report from Goldman Sachs,  data center electricity demand in the
+
+ 4   United States is expected to grow at a compound annual growth rate ("CAGR") of approximately
+
+ 5  17% through 2030, potentially adding almost 40 gigawatts ("GW") of new load by the end of the
+
+ 6    decade.3 Similarly, the International Energy Agency projects that global data centers could more
+
+ 7   than double between 2022 and 20264, and international consulting firm McKinsey & Company
+
+ 8    estimates that such demand could more than triple by 20305, , projecting a potential increase in
+
+ 9    data center demand up to 170 GW globally by 2030.
+
+10         Q.    Are Large Load Customers seeking to locate operations in Ameren Missouri's
+
+11    service territory?
+
+12         A.     Yes, as Company witness Robert Dixon discusses in greater detail, the Company
+
+13   has already executed construction agreements for completion of transmission-level infrastructure
+
+14   necessary to serve approximately 2.3 GW of new Large Load Customer load within its service
+
+15    territory starting as early as 2026.  Moreover, while those customers have not amended those
+
+16    construction agreements or signed new ones to cover additional load beyond the 2.3 GW, several
+
+17    of the customers who make up the 2.3 GW for which we have signed construction agreements
+
+18   have already requested that we study adding an additional 1.7 GW of load from them.  Also, we
+
+19   have  already  received  additional  transmission  study  requests  (covering  an  additional
+
+20   approximately 11 GW of potential new load) from other potential customers (in addition to the 2.3
+
+
+
+
+         3 Goldman Sachs Research, Data Center Growth, 2025.
+         4 International Energy Agency, Electricity 2024: Analysis and Forecast to 2026, IEA, 2024.
+         5 McKinsey & Company, Investing in the rising data center economy and impact of AI, 2025.
+                                            6      Direct Testimony of
+     Ajay K. Arora
+
+ 1   and 1.7 GW referenced earlier) looking to locate in our service territory. And as Mr. Dixon's Direct
+
+ 2   Testimony discusses, there is a significant pipeline of additional Large Load Customer additions
+
+ 3   beyond the approximately 15 GW of load I just discussed.
+
+ 4         Q.    Please elaborate on the pipeline of Large Load Customers expressing interest
+
+ 5    in locating in Ameren Missouri ’s service territory.
+
+ 6         A.    As noted, beyond the approximately 2.3 GW for which construction agreements are
+
+ 7    in place, we are seeing significant interest in new or expanded operations from potential new and
+
+ 8    existing customers given our competitive power rates, timely access to generation through our
+
+ 9    robust  IRP  process,  access  to  suitable  construction  sites  with  available  transmission
+
+10    interconnection, and the availability of affordable land within our service territory. While the
+
+11    interest is from a variety of sectors, data centers account for over 50% of the expected demand in
+
+12    the Company's overall development pipeline (which exceeds 30 GW) as shown in Figure 3 from
+
+13   Mr. Dixon's Direct Testimony
+
+14         Q.    Are other jurisdictions experiencing similar interest from large customers
+
+15   seeking to locate in their states?
+
+16         A.     Yes, numerous jurisdictions across the United States are experiencing significant
+
+17    interest from large customers, particularly in the data center sector. While Northern Virginia,
+
+18    Dallas, Texas, California (with key markets in Ashburn and Silicon Valley), and Chicago have
+
+19    historically been the most established hubs for these kinds of investments,6 the growth in demand
+
+20    for data services is creating many other expansion markets across the United States, Missouri has
+
+21   a clear opportunity to be one of them. In fact, in the last couple of years, data center companies
+
+
+
+         6 USA Data Centers
+                                            7      Direct Testimony of
+     Ajay K. Arora
+
+ 1   have announced significant investments, to the tune of billions of dollars, in states such as Ohio,
+
+ 2    Indiana, Mississippi, Louisiana, Wisconsin, and Arizona, to name just a few. Large data center
+
+ 3   customers have traditionally preferred to expand into locations where they already have significant
+
+ 4    operations. As a result of this inherent preference, to attract the several billions of dollars of
+
+ 5   economic development investment, which we are already seeing in other states in the central
+
+ 6   United States as noted above, a utility and state would want to offer compelling and fair energy
+
+ 7   supply tariffs and solutions to these customers. The interest in locating in our state, and in Ameren
+
+ 8    Missouri's service territory specifically, presents Missouri and Ameren Missouri with a huge, once-
+
+ 9    in-a-lifetime opportunity to  attract these kinds of beneficial loads and the  vital economic
+
+10   development and infrastructure investments they will spur to our region, which can be done in a
+
+11   manner that meets the important needs of new customers while also being fair to all customers.
+
+12             III. AMEREN MISSOURI'S LARGE LOAD RATE PLAN - BACKGROUND
+
+13         Q.   What were the key drivers behind the design of the Large Load Rate Plan?
+
+14         A.    There are two primary drivers. First, we have an obligation to serve those who
+
+15    desire to locate in our service territory.  This includes individuals and businesses of any kind.
+
+16   Given the uniqueness of these Large Load Customers, it made sense to develop tariff terms tailored
+
+17    to the needs and characteristics of these kinds of customers while ensuring reliability and fair rates
+
+18    for all customers.  Second, these kinds of loads present significant economic development
+
+19    opportunities and benefits for Ameren Missouri's service territory and for the State of Missouri
+
+20    overall. The new terms and conditions of service reflected in the Plan will aid us in capturing
+
+21    those benefits.
+
+
+
+
+                                            8      Direct Testimony of
+     Ajay K. Arora
+
+ 1         Q.    The obligation to serve is inherent in Missouri's utility regulatory structure,
+
+ 2   but would you please address the opportunities and benefits you referenced above?
+
+ 3         A.     Yes. These Large Load Customers present an opportunity for the state because of
+
+ 4    the benefits they can provide.  These benefits include support for critical electric generation,
+
+ 5    transmission, and local infrastructure that will enhance reliability for all customers and significant
+
+ 6    additional annual electric sales over which to spread the Company's fixed costs of service.
+
+ 7   Moreover, as Company witness Dixon discusses in his Direct Testimony, such loads are expected
+
+ 8    to provide myriad economic development benefits, including thousands of construction jobs over
+
+ 9    several years and hundreds of permanent operational and maintenance jobs, as well as incremental
+
+10    tax revenues and the attraction of complementary business and supply chain partners, thereby
+
+11    further expanding employment opportunities across multiple industries. As Mr. Dixon also
+
+12    discusses, even when tax incentives that are offered to attract new projects, such as those in
+
+13    Missouri, many of the customers who would qualify as Large Load Customers under the
+
+14   Company's Large Load Rate Plan will contribute significantly to local property tax bases and state
+
+15   revenue over time, with those contributions in turn supporting public services and local community
+
+16    infrastructure, as well as enhancing important services like police, fire and schools. As discussed
+
+17   by Mr. Dixon in his Direct Testimony, the hundreds of permanent employees these load additions
+
+18   would bring are expected to spur economic growth through consumer spending at local businesses
+
+19    like restaurants, entertainment establishments and shops thereby vitalizing local economies.
+
+20         Q.    Does the state recognize such benefits?
+
+21         A.     Yes, I believe they do, as evidenced by the Department of Economic Development's
+
+22   engagement in efforts to attract such loads and by existing state programs that are specifically
+
+23   designed to attract customers who would qualify under the Company's filing as Large Load
+
+                                            9      Direct Testimony of
+     Ajay K. Arora
+
+ 1   Customers. Company witness Dixon's Direct Testimony discusses these state efforts in more
+
+ 2    detail.
+
+ 3         Q.    Recognizing the potential benefits these kinds of customers can bring, could
+
+ 4   you please discuss the factors that most influence whether such customers choose to locate in
+
+ 5   a certain area?
+
+ 6         A.     Yes. While Mr. Dixon also provides direct testimony on these issues, I want to focus
+
+ 7   on some things we have learned through the Company's meaningful engagement with prospective
+
+ 8   Large Load Customers and that we have learned by staying abreast of what is happening across
+
+ 9    the country when it comes to these kinds of loads. These learnings are important because they
+
+10   have allowed us to gain an understanding of the terms, conditions, and factors relating to their
+
+11    electric service that are important to both attract these kinds of customers and to reliably serve
+
+12   them while being fair both to them and existing customers.
+
+13         Q.   What do those efforts reveal about some of the important factors these kinds
+
+14    of customers consider when deciding whether to locate to a new area such as the Ameren
+
+15   Missouri service territory?
+
+16         A.    These efforts reveal there are several factors that determine whether Large Load
+
+17   Customers would consider establishing or expanding operations in a given location.  First, given
+
+18    the rapid changes going on in the data center industry in particular, such customers focus on the
+
+19   speed by which their new facilities can be reliably interconnected to the existing electric system,
+
+20   which turns on the availability of reliable transmission and generation capacity and the ability of
+
+21    the utility to meet their schedule for additional power as they ramp up to their full, permanent load.
+
+22   Moreover, such prospective customers are looking for a good utility partner that, in addition to
+
+23   meeting their basic service needs, can also provide offerings that support their clean energy goals
+
+                                           10      Direct Testimony of
+     Ajay K. Arora
+
+ 1   and expansion of their operations in the future. They need flexible service terms that will allow
+
+ 2   them to adjust to changing business conditions and that will reflect fair rates and other terms of
+
+ 3    service given their load characteristics and their needs. Aside from service characteristics, they
+
+ 4    also consider the availability of suitable building sites, the availability of a skilled construction
+
+ 5   workforce (and ultimately qualified permanent labor), and the availability of other infrastructure
+
+ 6    like fiber optic communications and water.  The availability of state incentives can also be
+
+ 7   important to this consideration.
+
+ 8           In summary, what we have learned is that,
+
+ 9                •     These  customers  are  unique  and  present  both  benefits  and
+
+10                         challenges arising from providing service to them;
+
+11                •      Their size is unprecedented and with proper planning and terms of
+
+12                           service, their loads are expected to bring the significant benefits
+
+13                         discussed earlier;
+
+14                •        It is appropriate to develop service terms and conditions that are
+
+15                           specific to these loads, both to meet their needs (and thus attract
+
+16                       them) and to also ensure fairness to all customers; and
+
+17                •     They have many options in terms of where they could locate,
+
+18                     meaning that states and their utilities need to offer competitive terms
+
+19                      and conditions of service vis-à-vis their opportunities to locate
+
+20                         elsewhere.
+
+
+
+
+
+                                             11      Direct Testimony of
+     Ajay K. Arora
+
+ 1         Q.   What  are  some  of  the  challenges  regulated  utilities  are  facing  in
+
+ 2   interconnecting these kinds of customers?
+
+ 3         A.    The main challenge that utilities face in connecting Large Load Customers to their
+
+ 4   system is building enough generation in a timely manner to provide capacity and energy to reliably
+
+ 5    serve all customers while meeting the timelines for ramping up to full demand that the new
+
+ 6   customers desire. In addition, construction of local transmission infrastructure in a timely manner
+
+ 7    to connect the new customers to the electric system is another key challenge for utilities. Also,
+
+ 8   notwithstanding the obligation to serve all customers that would like to connect to their systems,
+
+ 9    utilities are mindful of the need for these new customers to pay their fair share of costs and of the
+
+10   importance of maintaining just and reasonable rates for all customers.
+
+11         Q.    You have discussed the nationwide trends and new load expectations being
+
+12   created by these kinds of customers, the strong interest by such customers in Ameren
+
+13   Missouri's service territory, the benefits they can bring, their needs, and some challenges
+
+14    utilities face. Taking all of those items together, are there some key principles that underpin
+
+15   the proposed Large Load Rate Plan?
+
+16         A.     Yes, there are four key principles underpinning the Large Load Rate Plan, as
+
+17    follows:
+
+18                    1. The Plan should reflect a competitive offering vis-à-vis service options
+
+19                       for these kinds of customers that are available across the country, and it
+
+20                    should be flexible and provide various energy supply choices, so that
+
+21                      these kinds of customers can be attracted to the state and the utility’s
+
+22                      service territory given that they have choices to locate elsewhere;
+
+
+                                           12      Direct Testimony of
+     Ajay K. Arora
+
+ 1                    2. The Plan should reflect terms that, while meeting these new customers'
+
+ 2                    needs and allowing them to be attracted to the Company's service
+
+ 3                          territory, also provide fair and reasonable assurance that these customers
+
+ 4                       will pay their fair share;
+
+ 5                    3. The Plan should be underpinned by an appropriate  risk analysis
+
+ 6                   grounded in the Company's robust IRP process and the Commission's
+
+ 7                      established ratemaking framework in order to provide a sound basis for
+
+ 8                    concluding that these kinds of customers will pay their fair share. At
+
+ 9                      the same time,  it must recognize the right these customers have to
+
+10                      receive electric service if they choose to locate in the Company's service
+
+11                         territory; and
+
+12                    4. The Plan should be supported by a reliable, balanced, and affordable
+
+13                     generation portfolio that benefits both the Large Load customers and
+
+14                       existing customers.
+
+15         Q.    Does Ameren Missouri’s Large Load Rate Plan reflect the four key principles
+
+16   addressed above, while also addressing the challenges that utilities face in connecting these
+
+17   new large load customers?
+
+18         A.     Yes, it does. I discuss the specifics of how the Plan addresses these items in Section
+
+19  V below. Before I proceed with that discussion, I want to first address some of the specific Plan
+
+20    terms.
+
+
+
+
+
+                                           13      Direct Testimony of
+     Ajay K. Arora
+
+ 1           IV.  AMEREN MISSOURI'S LARGE LOAD RATE PLAN – SPECIFICS
+
+ 2         Q.    Please describe the Ameren Missouri Large Load Rate Plan and its key
+
+ 3   elements.
+
+ 4         A.    As outlined in Company witness Wills' Direct Testimony, Ameren Missouri is
+
+ 5    creating a new subclass within its existing 11(M) classification to apply to customers with an actual
+
+ 6    or expected demand greater than or equal to 100 MW, and that requires such customers to take
+
+ 7    service at transmission voltages, i.e., at service voltages of 115 kV or greater.
+
+ 8         The Large Load Customers that fall within this new sub class would be subject to additional
+
+ 9   terms and conditions. Those additional terms and conditions build on an already established and
+
+10    successful ratemaking framework, in order to provide assurance of an adequate long-term revenue
+
+11    stream, to support accelerating the investment in generating assets the Company had in most cases
+
+12    previously planned to add  later and that will be needed  earlier to serve these customers.
+
+13    Specifically, Large Load Customers will be required to enter into an Electric Service Agreement
+
+14   ("ESA”) with the Company with the following key terms, which must be approved by the
+
+15   Commission:
+
+16            •  Large Load Customers must contractually commit to a term of service of at least
+
+17            15 years. The term will be broken down into a ramp period and a full load
+
+18               period. The ramp period may be selected by the customer and may extend for
+
+19            up to 5 years. The full load period will commence immediately upon conclusion
+
+20              of the ramp period and will extend for an additional 12 years. 
+
+21            •  Large Load Customers must commit to a minimum level of demand charges to
+
+22             be reflected on their monthly bill for the term of their ESA that is equal to 70%
+
+
+                                           14      Direct Testimony of
+     Ajay K. Arora
+
+ 1              of the contracted capacity reflected in their ESA.7 The applicable contract
+
+ 2              capacity will be spelled out for the customer's ramp period in the ESA and there
+
+ 3                shall be a maximum contracted capacity agreed between the customer and the
+
+ 4            Company.
+
+ 5            •  Large Load Customers must either meet certain credit ratings, or else post
+
+ 6                collateral significant security in the form of cash, a suitable letter of credit, or a
+
+ 7              guaranty from a creditworthy affiliate.
+
+ 8            •  Large Load Customers may terminate their ESA but only effective 24 months
+
+ 9                after they have given written notice to the Company, and if they do so they will
+
+10             be subject to substantial termination payments. The termination payments must
+
+11              cover their minimum demand obligations for the remainder of the ramp period
+
+12                   (if termination incurs during the ramp period) plus their minimum demand
+
+13              charge obligations post-the ramp period for the lesser of five years or the then
+
+14             remaining term of their ESA (if less than five years), plus their clean energy
+
+15            program commitments (discussed further below) over the same period.
+
+16            •  Large Load Customers have the ability to participate in four new programs that
+
+17               are specifically designed to assist them in meeting their clean or carbon-free
+
+18             energy goals.
+
+
+
+
+
+         7 Large Load Customers can reduce the contract capacity by 10% one time but must pay a capacity reduction fee to
+      do so.
+                                           15      Direct Testimony of
+     Ajay K. Arora
+
+ 1         Q.  Please elaborate on the last item, the four new programs designed to assist Large
+
+ 2   Load Customers in meeting their clean or carbon-free energy goals.
+
+ 3         A.  As Mr. Dixon's Direct Testimony discusses, such goals are very important to these
+
+ 4   kinds of customers and can be an important driver of their location decisions. Consequently, the
+
+ 5   Company is proposing four new program offerings as part of its Large Load Rate Plan directed
+
+ 6   toward supporting these customers' clean or carbon-free energy goals, as follows:
+
+ 7                    •  Renewable Solutions Program – Large Load Customers (Rider
+
+ 8                RSP-LLC):  Building on Ameren  Missouri's  existing Renewable
+
+ 9                     Solutions Program (Rider RSP), this new program allows customers the
+
+10                     option to subscribe to wind and/or solar generation resources that are a
+
+11                       part of the company's preferred resource plan. The customer pays a pre-
+
+12                    determined charge for this subscription and receives a monthly energy
+
+13                        credit based upon the production of the program resource(s) over the
+
+14                    term of the customer's ESA. In return, the Company will either transfer
+
+15                       to  customer  or  retire,  on  the  enrolled  customer's  behalf,  the
+
+16                    environmental  attributes  or  renewable  energy  credits  ("RECs")
+
+17                      associated with their subscription. Ameren Missouri and the enrolled
+
+18                    customer will enter into an RSP-LLC participation agreement outlining
+
+19                      the specific terms of participation.
+
+20                    •  Nuclear Energy Credit Program (Rider NEC): This program
+
+21                     provides  enrolled  customers  access  to,  and  ownership  of  the
+
+22                    environmental attributes reflected in nuclear energy credits ("NECs")
+
+23                      associated with Company-owned existing and new nuclear generation.
+
+                                           16      Direct Testimony of
+     Ajay K. Arora
+
+ 1                 The enrolled customer pays a dollar per megawatt hour rate applicable
+
+ 2                       to the number of NECs the customer wishes to acquire over a specified
+
+ 3                   program term. Ameren Missouri and the enrolled customer will enter
+
+ 4                       into an NEC participation agreement outlining the specific terms of
+
+ 5                        participation.
+
+ 6                    •  Clean  Capacity Advancement Program  (Rider CCAP):  This
+
+ 7                   program allows enrolled customers the ability to support and access a
+
+ 8                      capacity product that enables the storage of carbon-free (clean) energy.
+
+ 9                 The customer will determine how much capacity they want to support
+
+10                   and will pay a monthly charge per kilowatt of capacity supported over
+
+11                      the term of their ESA. Ameren Missouri and the enrolled customer will
+
+12                       enter into a CCAP participation agreement outlining the specific terms
+
+13                      of participation.
+
+14                    •  Clean Energy Choice Program (Rider CEC): This program provides
+
+15                    customers with the  ability to influence the Company's generation
+
+16                     resource portfolio by requesting and paying for new clean energy
+
+17                     resources to be deployed in place of or in addition to resources selected
+
+18                       in Ameren Missouri's PRP. The Company would validate and ensure the
+
+19                     requested customer changes meet the Company's obligation to provide
+
+20                      safe and reliable service. If implemented based on terms agreed to by
+
+21                 Ameren Missouri and the enrolled customer, and subject to Commission
+
+22                      approval, the enrolled customer shall cover costs associated with its
+
+23                       specific request for clean resources and be entitled to the clean energy
+
+                                           17      Direct Testimony of
+     Ajay K. Arora
+
+ 1                        attributes  associated  with  the new  clean  resources  being  paid
+
+ 2                          for. Ameren Missouri and the enrolled customer will enter into a CEC
+
+ 3                       participation agreement outlining the specific terms of participation.
+
+ 4           All of the participation agreements under these programs must be approved by the
+
+ 5   Commission.
+
+ 6         Q.   How are program revenues treated?
+
+ 7         A.    For three of the four programs (RSP-LLC, NEC, CCAP) Large Load Customers
+
+ 8    will pay a charge for the premium service reflected in the program(s) in which they are
+
+ 9    participating, which will offset the general revenue requirement of all customers as compensation
+
+10    for the large load customer's receipt of the attributes and benefits associated with these energy
+
+11   supply resource choices, which will be included in rates and provide energy and capacity for all of
+
+12   our customers.8  For the fourth program (CEC) participating customers will cover the costs of
+
+13    resources that would not have been implemented under the Company's PRP pursuant to a
+
+14   Commission-approved participation agreement.
+
+15         V.    DISCUSSION OF THE KEY LARGE LOAD RATE PLAN PRINCIPLES
+
+16         Q.     Earlier you listed the key principles that underpin the Plan.  Please discuss
+
+17        how the Plan reflects the first principle.
+
+18         A.    The Plan reflects the first principle related to creating a competitive tariff offering
+
+19    to attract large load investment by addressing the factors that are most important to Large Load
+
+20   Customers seeking to locate in a specific utility service territory. These factors are timely
+
+
+
+
+         8 Company witness Wills' Direct Testimony proposes a tracker to ensure that such revenues offset the general
+       revenue requirement for all customers. The tracker would also apply to termination and capacity reduction
+       payments.
+                                           18      Direct Testimony of
+     Ajay K. Arora
+
+ 1    availability of generation and transmission interconnection, as well as reasonable flexibility in
+
+ 2   choosing ramp-up schedules. By creating revenue certainty from minimum term requirements,
+
+ 3   minimum demand payments, and termination payments, the Plan allows Ameren Missouri to
+
+ 4    invest in accelerating dispatchable and renewable generation that is built in a timely manner
+
+ 5    starting as early as 2027 and scaling up to meet the desired ramp up schedules of Large Load
+
+ 6   Customers.9 In addition, based on feedback from prospective Large Load Customers, the minimum
+
+ 7   demand levels are set at a reasonable level to allow new Large Load Customers the flexibility to
+
+ 8   grow their power demand in response to evolving demand for the services that they in turn provide
+
+ 9    to their own customers.
+
+10      Q.        Please address the second principle relating to the key terms of the Plan.
+
+11      A.      The Large Load Rate Plan has five key terms that reasonably ensure that Large Load
+
+12   Customers pay their fair share, some of which I described above, as follows:
+
+13                    1. A minimum term of at least 15 years (up to 17 years);
+
+14                    2. A minimum monthly demand payment for 70% of the contracted capacity; 10
+
+15                    3.  Termination notice and termination payment requirements;
+
+16                    4.  Financial security requirements to ensure payment of their obligations; and
+
+17                    5.  Additional revenue opportunities through several clean energy supply options.
+
+18         The first three of those terms are accounted for in the risk analysis that I will discuss in
+
+19    greater detail below. The fourth term is self-evident, that is, it provides strong assurance that these
+
+
+
+
+         9 There is also a much smaller acceleration of some renewable generation that would otherwise be built at a later
+       time.
+         10 As noted, Large Load Customers can reduce their contracted capacity one time after year 5 of their term by up to
+     10% but must pay a pro-rata termination payment to do so.
+
+                                           19      Direct Testimony of
+     Ajay K. Arora
+
+ 1   customers must actually meet their obligations. And the last term is a key feature needed to meet
+
+ 2    the Large Load Customers' needs and can provide even more revenues and therefore benefits for
+
+ 3     all customers due to the addition of these loads.
+
+ 4         Q.    Please address the third principle, the need for an appropriate risk analysis
+
+ 5   designed to ensure that these customers pay their fair share.
+
+ 6         A.     All load additions must be served by the Company's electric service infrastructure,
+
+ 7   and as the service provider, we have an obligation to provide the resources needed to provide the
+
+ 8    service.  Every utility’s generation mix is different and the Company's robust IRP process,
+
+ 9   performed on an ongoing basis with various filings and proceedings under the Commission's
+
+10    resource planning rule, provides a strong analytical framework for how to best meet those needs.
+
+11   The Commission's established ratemaking process in turn provides a sound basis for the
+
+12   Commission to then ultimately decide how the costs we must incur to meet our service obligations
+
+13   should be fairly allocated among various classes of customers.  Given those processes, we
+
+14   developed a robust risk analysis which Company witness Steven Wills discusses in detail in his
+
+15    Direct Testimony. The purpose of the risk analysis is to provide the Commission with sound
+
+16   information across a variety of future scenarios – based on the Large Load Rate Plan's terms -- to
+
+17   allow the Commission to conclude that Large Load Customers are reasonably expected to pay their
+
+18    fair share and will not cause unjust and unreasonable costs to be imposed on other customers
+
+19    consistent with sound ratemaking principles in general, and ultimately consistent with SB 4, signed
+
+20   by the Governor earlier this year.
+
+21         Q.   Would you please summarize the basics of the analysis?
+
+22         A.     Yes. As Mr. Wills' Direct Testimony describes in greater detail, the risk analysis
+
+23    reflects a comparison of revenue requirements with and without significant Large Load Customer
+
+                                           20      Direct Testimony of
+     Ajay K. Arora
+
+ 1    additions. For the purposes of this risk analysis, we compared two cases (1) the first case with
+
+ 2    significant Large Load Customer additions, where we add 2.0 GW of new Large Customer Load
+
+ 3   over the next roughly five - seven years (by 2032), that then tapers down to 500MW by 2039 and
+
+ 4    (2) the second case where we do not add any new load that would qualify as Large Customer
+
+ 5    Load.11 The first case recognizes the 2.3 GW of already signed construction agreements that the
+
+ 6   Company has with customers and therefore assumes we would accelerate certain generation
+
+ 7    investments, primarily dispatchable generation that were previously planned to be built later, to
+
+ 8    serve all customers. It should be noted, however, that we ultimately plan to make these investments
+
+ 9   anyway and with respect to some of them, we believe we should be making them regardless of any
+
+10    significant Large Load Customer additions in order to ensure resource adequacy and reliability for
+
+11     all customers, as we will address in greater detail in certificate of convenience and necessity
+
+12   ("CCN") filings we plan to make in the near-term. Regardless, for purposes of the risk analysis
+
+13   we have assumed acceleration of resources premised on an expectation that we will have
+
+14   approximately 2 GW of new load from Large Load Customers (starting next year and ramping up
+
+15    to those levels by 2032). We then determined the incremental revenues required for this case
+
+16   wherein we accelerate generation to serve 2 GW of new Large Load Customers. Then we
+
+17    calculated the additional total annual revenues expected from these Large Load Customers over
+
+18    the term of their agreements based on several scenarios for future customer rate increases. The
+
+19    difference in these revenue requirements indicates whether the new Large Load Customers are
+
+20   expected to pay their fair share of costs. We then examined scenarios, in the very unlikely case,
+
+21   where the new loads either fully terminate their agreements, or reduce load pursuant to the tariff
+
+
+
+         11 The 2 GW case is a reasonable proxy for adding the roughly 2.3 GW of potential loads for which we have signed
+       construction agreements, as I referenced earlier.
+                                           21      Direct Testimony of
+     Ajay K. Arora
+
+ 1    provisions, leading to significant termination payments to cover stranded costs.  We also
+
+ 2   considered what ongoing resource planning steps we would take as we move through time in such
+
+ 3    scenarios (such as deferring certain additions or changing the future mix to avoid future costs) in
+
+ 4    light of the Large Load Rate Plan's proposed terms. The aggregate difference in revenue
+
+ 5   requirements (from incremental annual revenues from the large load customers and termination
+
+ 6   payments in case of a termination scenario) between the two cases results in a comprehensive table
+
+ 7    described in the testimony of Company witness Steven Wills that confirms that the Large Load
+
+ 8   customers are reasonably expected to pay their fair share of costs. This risk analysis described in
+
+ 9    detail by Mr. Wills provides a robust analytical framework to determine whether each Large Load
+
+10   Customer separately and as a sub-class are expected to pay their fair share of costs.
+
+11         Q.    You referenced that the analysis recognized that depending on actual loads
+
+12    certain investments could be deferred. Can you please elaborate on how such steps figured
+
+13    into the analysis?
+
+14         A.     Yes. As outlined in detail by Company witness Michels' Direct Testimony, our 2025
+
+15    Preferred Resource Plan assumed both the 1.5 GW and 2 GW of Large Load Customer loads and
+
+16   then reflected plans for the timing of various resources based on those assumptions. As Mr.
+
+17    Michels' Direct Testimony also discusses, and as I alluded to earlier, not all of the investments we
+
+18   have assumed in the risk analysis are actually "accelerated" because of adding these large loads
+
+19   because some of these investments we plan to do anyway in the near-term for the benefit of all
+
+20   customers, especially given the acute need for more dispatchable generation now based on market
+
+21   circumstances in MISO and the need to ensure we have substantial flexibility in the timing of
+
+22   replacement generation for future coal plant retirements. But regardless of the need to add some
+
+23    additional dispatchable capacity now, there certainly would be opportunities to defer other planned
+
+                                           22      Direct Testimony of
+     Ajay K. Arora
+
+ 1    additions as we move through time if the Large Load Customers terminate their ESAs or reduce
+
+ 2    their loads to lower than planned levels. We accounted for these likely deferrals (which would
+
+ 3    mitigate the impact of load terminations/lower loads) in the analysis. Specifically, for the purposes
+
+ 4    of the risk analysis we recognized that we have the ability to defer 600 MW of simple cycle gas-
+
+ 5    fired generation in 2037 and 600 MW of combined cycle gas-fired generation in 2037 and up to a
+
+ 6    total of 1,400 MW of battery energy storage projects that, due to their modular nature and shorter
+
+ 7    lead time for deployment, are planned to be built in 100 MW to 200 MW increments annually over
+
+ 8   a decade and therefore can be more easily deferred.
+
+ 9         Q.    Please summarize what the analysis shows.
+
+10         A.    The risk analysis shows that the Commission can reasonably conclude that the
+
+11   Large Load Rate Plan will mean that these customers will pay their fair share of costs. And since
+
+12    the Commission always retains the authority, as Mr. Wills explains, to approve or not approve
+
+13   ESAs for Large Load Customers – the Commission can not only conclude that customers bringing
+
+14    the initial roughly 2 GW of Large Load Customer load additions already reflected in the analysis
+
+15    will pay their fair share, but can rely on future iterations of such an analysis when there are more
+
+16    material additions of Large Load Customers as we move through time.
+
+17         Q.    You noted earlier that the term and termination payment provisions, and the
+
+18   minimum load obligation, were all accounted for in the risk analysis. Please elaborate.
+
+19         A.    Under the Large Load Rate Plan, each Large Load Customer must sign an ESA
+
+20   (which must be approved by the Commission), and each ESA has a term equal to their "ramp
+
+21    period" plus 12 years, so a 16-year term for a Large Load Customer with a 4-year ramp period
+
+22   (which is typical). While a Large Load Customer can terminate the ESA's term, as earlier noted
+
+23   they must give 2 years' notice, and the termination doesn't take effect until that 2-year period is
+
+                                           23      Direct Testimony of
+     Ajay K. Arora
+
+ 1    over, plus they owe a termination payment equal to all demand charges times their minimum load
+
+ 2    obligation calculated over the remainder of the ramp period plus the lesser of (1) the remaining
+
+ 3    term, or (2) five years. For example, a Large Load Customer with a minimum demand of 500 MW
+
+ 4   with a 16-year ESA term who provides notice in year 8 could terminate after 10 years but would
+
+ 5   then also owe a termination payment for another 5 years, which is at current rates a termination
+
+ 6   payment of almost $300 million.12 In the extremely unlikely scenario that the termination notice
+
+ 7    is given within the ramp period established in the customer's ESA, the Large Load Customer must
+
+ 8     still give 2 years' notice, and the termination doesn't take effect until that 2-year period is over.
+
+ 9    plus, they then also owe a termination payment equal to all demand charges times their minimum
+
+10   load obligation calculated over the remaining term of the ramp period plus an additional five years.
+
+11         While it is unlikely that a Large Load Customer is going to make a huge investment and
+
+12   then leave the system or substantially reduce their load, these provisions provide significant
+
+13    protection against "stranded costs" that in theory could otherwise exist. That, coupled with our
+
+14    ability to continue to plan on an ongoing basis and to defer certain future generation investments
+
+15    in case these loads are materially less than we had assumed in the risk analysis underpins the
+
+16   conclusion that these customers are expected to pay their fair share of costs.
+
+
+
+
+
+         12 The payment would be reduced if Ameren Missouri could sell capacity it had acquired from MISO into the market
+       or bilaterally – in which case that cost is avoided -- or if Ameren Missouri could "backfill" the terminating
+       customers load with other large load (in whole or in part) - -in which case substitute revenues will be received.
+                                           24      Direct Testimony of
+     Ajay K. Arora
+
+ 1         Q.     Earlier you indicated that both the risk analysis results and the Commission's
+
+ 2   ongoing approval authority over Large Load Customer ESAs provide reasonable assurance
+
+ 3   that Large Load Customers will pay their fair share. Could you please elaborate on the role
+
+ 4    of the Commission's ongoing ratemaking authority?
+
+ 5         A.    The traditional ratemaking framework that include a full cost of service study and
+
+ 6    allocation during regular rate case filings have historically proven to be fully effective in
+
+ 7    addressing the proper allocation of costs to all customers. As such, over the long term, Ameren
+
+ 8   Missouri fully expects that this process will fairly allocate costs to all existing and new customers.
+
+ 9   As indicated in the risk analysis presented by Mr. Wills in his Direct Testimony, the revenue
+
+10    certainty  (reflected  in  the minimum  term, minimum demand payment  obligations, and
+
+11    termination/termination payment provisions) that new Large Load Customers with up to 2 GW of
+
+12   new demand in aggregate are providing, provides reasonable assurance that adequate revenue will
+
+13   be available to cover short-term acceleration of generation investments required to serve all
+
+14   customers. And the likelihood that these kinds of customers, with aggressive clean energy goals
+
+15   they take very seriously, will sign up for the additional programs the Large Load Rate Plan offers,
+
+16   and thereby provide even more revenues, provides further assurance that all customer rates will be
+
+17    just and reasonable.
+
+18         The Commission's authority to approve all Large Load customer ESAs along with the
+
+19    expectation that the filing for such approval will include a risk analysis similar to the comparative
+
+20    analysis of revenue requirements that the Company has conducted, which uses an analytical
+
+21   framework that is anchored in well-established IRP analyses and rate making principles, provides
+
+22    the Commission the assurance that there is a well-documented process to for it to determine that
+
+23     all new Large Load Customers in the future are paying their fair share of costs.
+
+                                           25      Direct Testimony of
+     Ajay K. Arora
+
+ 1         Q.    Please address the last principle, the need to serve all customers, including
+
+ 2   Large Load Customers, from a reliable, balanced, and affordable generation portfolio.
+
+ 3          A.    The Large Load Tariff Rate Plan's five key terms, as demonstrated by the risk
+
+ 4    analysis, provide reasonable assurance that the significant revenues from these customers supports
+
+ 5    the Company's investment in accelerating new dispatchable generation, and new renewable
+
+ 6    generation, all of which is needed and will serve all customers in a reliable and resilient manner.
+
+ 7   To be clear, our plan is for dispatchable resources, including nuclear, to provide at least 70% of the
+
+ 8   energy our customers need, with renewables to provide up to the remaining approximately 30%.
+
+ 9   Both types of generation are important, and the investment in renewable generation and battery
+
+10   energy storage generation is important to new Large Load customers and as such also provides
+
+11    additional opportunities for customers, and especially these Large Load Customers, to provide yet
+
+12   more revenues to contribute to more affordable rates for all customers.
+
+13         Q.   How?
+
+14         A.    As Company witness Dixon discusses in his Direct Testimony, these kinds of
+
+15   customers have clean or carbon free energy goals. This means that part of the means of attracting
+
+16   them to our service territory is to enable them to meet those goals. The Large Load Tariff Rate
+
+17   Plan does this by offering three premium clean or carbon free programs (Rider RSP-LLC, Rider
+
+18   NEC, Rider CCAP) through which Large Load Customers can obtain environmental attributes
+
+19   through the production or storage of carbon free energy along with other benefits to help them
+
+20   meet their goals while the generation that produces those attributes/benefits continues to provide
+
+21   needed energy and capacity for all of our customers.  This is a win-win for the Large Load
+
+22   Customers and all customers because the Large Load Customers' needs are met, all customers
+
+
+                                           26      Direct Testimony of
+     Ajay K. Arora
+
+ 1    benefit from the additional revenues generated, and as noted, all customers are served by the
+
+ 2    resources.
+
+ 3         Q.    You referenced three offerings above, but the Plan has four riders.  Please
+
+ 4   explain why you didn't mention the fourth in your above discussion.
+
+ 5         A.    The three programs (Rider RSP-LLC, Rider NEC, Rider CCAP) discussed above
+
+ 6    will generate incremental revenues that will benefit all customers. It is correct, however, that there
+
+ 7    is a fourth rider included in the Plan that is intended to enable Ameren Missouri to invest in
+
+ 8    technologies that provide baseload or long duration carbon free energy in the future – this could
+
+ 9    include technologies such as advanced and small modular nuclear, long duration energy storage,
+
+10    or other technologies – that at certain times may not necessarily be a part of our PRP because of
+
+11    their costs at that time but which provide an avenue for long-term reliability using carbon-free
+
+12    capacity and energy that certain Large Load Customers would like to support.  Presumably there
+
+13   would be certain costs to adding such resources (above the costs associated with our "base"
+
+14    preferred resource plan) and under this rider, the Large Load Customer desiring that we implement
+
+15    the resource would cover those costs. But the key benefits from adding that carbon free baseload
+
+16    or long duration reliable generation would eventually benefit all customers by demonstrating a
+
+17   technology that could be further deployed in the Company's generation portfolio.
+
+18         Q.    Does the ability to monetize the environmental attributes of the planned future
+
+19   and potential additional clean energy resources by offering these programs to Large Load
+
+20   Customers provide further confidence that Large Load Customers will pay their fair share?
+
+21         A.     Absolutely. While the risk analysis discussed above shows that this is true without
+
+22    incremental revenues from these kinds of programs, given the importance of such programs to
+
+23    these kinds of customers to enable Ameren Missouri to add carbon-free generation to our portfolio
+
+                                           27      Direct Testimony of
+     Ajay K. Arora
+
+ 1    in a timely manner, we expect that they are likely to sign up for them and that they will therefore
+
+ 2   provide this additional revenue from the monetization of environmental attributes of carbon-free
+
+ 3   energy resources, further reducing an already low risk relating to stranded costs associated with
+
+ 4    previously planned generation.
+
+ 5         Q.    You noted earlier that the overall generation plan consists of a mix of
+
+ 6   dispatchable and renewable resources, and that dispatchable resources are expected to
+
+ 7   provide a substantial majority of the energy the Company's customers need. Could you
+
+ 8   please discuss near-term plans to implement additional generation?
+
+ 9         A.     Yes. We continue to engage in robust resource planning, and when changes are
+
+10   needed to the plan, we make them, as we did when we filed our current PRP in February of this
+
+11    year.  While not yet effective, there are new provisions in Senate Bill 4 that will enhance this
+
+12    process and enable getting needed generation on the system in a more cost-effective and timely
+
+13   manner, and we are taking account of those statutory changes as we plan. We also recognize how
+
+14    critical reliability is and understand the challenges we continue to see in the broader MISO market,
+
+15   which continues to become tighter on capacity.
+
+16         To that end, we have proactively secured long lead time materials for dispatchable gas fired
+
+17    generation and are deep into negotiating contracts for dispatchable battery storage projects to
+
+18   ensure that we have sufficient resources in the near-term.  The Commission will see CCN
+
+19    applications related to these additions soon. In addition, the Company continues to execute on the
+
+20    additional generation and storage projects reflected in the 2025 PRP through 2035, subject of
+
+21    course, as I discussed above, to making adjustments as planning considerations change.
+
+22          Stepping back to look at the big picture, as reflected in the 2025 Preferred Resource Plan,
+
+23   over the next ten years Ameren Missouri is planning to add over 5,000 MW of dispatchable natural
+
+                                           28      Direct Testimony of
+     Ajay K. Arora
+
+ 1   gas baseload and peaking generation and battery storage systems, to replace retiring baseload coal
+
+ 2   and natural gas-fired generation, incorporate new Large Load Customers, and increase reliability.
+
+ 3  We also plan to add 4,200 MW of renewable energy resources over that time period. This planned
+
+ 4    increase in dispatchable generation resources ensures that Ameren Missouri is generating at least
+
+ 5  70% of its annual energy needs through dispatchable energy resources, including nuclear, and
+
+ 6   about 30% from renewable energy resources. By ensuring that Ameren Missouri always has at
+
+ 7    least 70% dispatchable energy resources between nuclear, hydro, coal, natural gas, and battery
+
+ 8    storage systems, we ensure that we can reliably integrate renewable energy resources, resulting in
+
+ 9   a portfolio that is predominantly dispatchable but that includes the benefits of carbon-free nuclear
+
+10   and renewable generation as well. The dispatchable additions in particular will enhance reliability
+
+11    for all customers, including new Large Load Customers. The Company’s continued progress on
+
+12   renewable energy projects ensures that we take advantage of the cost effectiveness of renewable
+
+13    energy, which has no emissions, no fuel costs, and provides risk mitigation against continued
+
+14    regulatory pressure on fossil-fuel based assets, especially coal generation, while also allowing us
+
+15    to meet Large Load Customer needs (as noted, which is important to attracting them in the first
+
+16    place) for clean or carbon free energy.
+
+17         Q.    Does this conclude your Direct Testimony?
+
+18         A.     Yes.
+
+
+
+
+
+                                           29            BEFORE THE PUBLIC SERVICE COMMISSION
+                  OF THE STATE OF MISSOURI
+
+ In the Matter of the Application of Union    )
+ Electric Company d/b/a Ameren Missouri    )                                                            File No. ET-2025-0184 for Approval of New or Modified Tariffs     )
+ for Service to Large Load Customers.         )
+
+                   AFFIDAVIT OF AJAY K. ARORA
+
+STATE OF MISSOURI     )
+                                    ) ss
+CITY OF ST. LOUIS        )
+
+Ajay K. Arora, being first duly sworn states:
+
+    My name is Ajay K. Arora and on my oath declare that I am of sound mind and lawful age;
+
+that I have prepared the foregoing Direct Testimony; and further, under the penalty of perjury, that
+
+the same is true and correct to the best of my knowledge and belief.
+
+
+                                                                            /s/ Ajay K. Arora
+                                                 Ajay K. Arora
+
+
+Sworn to me this 14th day of May, 2025.

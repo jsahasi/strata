@@ -1,0 +1,1038 @@
+
+===PAGE 1===
+250830100
+Witness Rebuttal Testimony Summary
+Stan Blackwell 
+Director- Data Center Practice
+Witness:
+Title:
+Summary:
+Company Witness Stan Blackwell’s testimony supports the Company’s High Load Customer 
+Proposal, emphasizing its necessity due to the unprecedented growth of data centers in Virginia, 
+particularly in Northern Virginia, which is the largest data center market globally. The Proposal 
+aims to balance the needs of High Load Customers with the protection of the Company4 s system 
+and other customers, ensuring that High Load Customers pay their fair share and do not shift costs 
+to others. It includes the creation of the GS-5 tariff and rate class, minimum demand charges, a 
+14-year contract term, and expanded deposit and credit requirements.
+Mr. Blackwell explains that the Proposal is tailored to the unique scope and pace of High Load 
+Customer load growth on the Company’s system. He notes that Staff generally supports or does 
+not oppose most aspects of the Proposal and that twelve intervening parties offered a range of 
+positions on the specific elements of the Proposal. He points to the diversity of views on the 
+specifics and general lack of dispute that the time is right for the Proposal to be made as evidence 
+that the Proposal is in fact appropriately balancing the Company’s obligation to serve High Load 
+Customers while continuing to ensure proper cost allocation and protection of the Company’s 
+system and other customers from stranded cost risk.
+Mr. Blackwell testifies that the new GS-5 class is designed to ensure appropriate cost allocation 
+for High Load Customers. He explains that the proposed 25 MW threshold and 75% load factor 
+requirements are based on extensive analysis and are necessary to prevent cross-subsidization. He 
+clarifies the application of the High Load Customer contract requirements and contracting process. 
+He also discusses how the 14-year contract term, allowance for capacity re-sizing, and exit fee and 
+collateral requirements appropriately balance High Load Customer needs, including for flexibility, 
+and protection of other customers against stranded cost risks. In response to Staffs suggestion 
+that the proposed collateral requirement could be subject to the Commission^ deposit rule, Mr. 
+Blackwell concludes that this rule should not apply to the collateral contemplated in the Proposal, 
+as the proposed requirement is fundamentally different from traditional customer deposits in 
+purpose and magnitude.
+Mr. Blackwell concludes by addressing Staff and Consumer Counsel recommendations that the 
+capital costs associated with High Load projects that have not reached a certain degree of progress 
+be removed from rate base. He emphasizes that the Company utilizes a portfolio-based approach 
+such that these investments are reasonably predicted to occur. Based on his own and the 
+Company’s long experience working with these customers, when one such customer falls out of 
+line, another one will step into the gap given the extraordinary demand for viable locations within 
+the Company’s service territory.
+
+===PAGE 2===
+250830100
+Please state your name, position with Virginia Electric and Power Company1 Q.
+(“Dominion Energy Virginia” or the “Company”), and business address.2
+My name is Stan Blackwell and I am the Director of the Data Center Practice for the3 A.
+Company. My business address is 600 E. Canal Street, Richmond, Virginia 23219.4
+Did you previously file testimony in either Case No. PUR-2025-00058 or Case No.Q.5
+PUR-2025-00059?6
+Yes. In the Biennial Review proceeding (Case No. PUR-2025-00058), I submitted pre-7 A.
+filed direct testimony on behalf of the Company on March 31, 2025.8
+Q. What is the purpose of your rebuttal testimony?9
+My rebuttal testimony continues to support the Company’s request for approval of itsA.10
+High Load Customer Proposal (the “Proposal”), which defines High Load Customers as11
+customers with actual or contracted demand of at least 25 MW and includes: (1) creation12
+13’ of the GS-5 tariff and rate class (a customer with a measured or contracted demand of 25
+MW or greater and a measured or expected load factor of at least 75%); (2) the creation14
+and expansion of minimum demand charges to all High Load Customers for distribution,15
+transmission, and generation infrastructure; (3) the creation of a 14-year standard contract16
+term for new High Load Customers inclusive of a 4-year load ramp; and (4) an expansion17
+of deposit and credit requirements. I will address Staff’s position on these issues and18
+REBUTTAL TESTIMONY
+OF
+STAN BLACKWELL
+ON BEHALF OF
+VIRGINIA ELECTRIC AND POWER COMPANY 
+BEFORE THE
+STATE CORPORATION COMMISSION OF VIRGINIA 
+CASE NOS. PUR-2025-00058 & 00059
+
+===PAGE 3===
+250830100
+1 respond to numerous Intervenor critiques and recommendations with respect to the
+2 Company’s Proposal. I will also further clarify certain Intervenor statements pertaining
+3 to the Company’s contracting process.
+4 I. High Load Customer Proposal
+Before you discuss specific topics related to the Proposal, please address why the
+6 Commission should adopt the Company’s High Load Customer Proposal as the
+7 baseline framework to address the continually increasing scope and volume of such
+8 customers coming to the Company’s system.
+As emphasized in my direct testimony, the Company’s High Load Customer Proposal
+10 represents a carefully constructed, forward-looking framework that balances the growing
+needs of the Company’s largest and fastest-growing customers with the need to protect11
+the integrity of the Company’s system and the interests of all customers.12
+Specifically, in the Company’s view, the Proposal strikes the appropriate balance13
+14 between fulfilling the obligation to serve high load customers, ensuring that high load
+customers continue to pay their fair share based on their unique usage characteristics, and15
+protecting other customers from potentially shouldering stranded costs associated with16
+17 the investments necessary to serve these customers. As additionally supported by other
+Company witnesses, the Proposal reflects principled rate design, is rooted in cost18
+causation and forward-looking investment needs, and includes appropriate financial and19
+operational accountability measures such as minimum demand obligations and collateral20
+21 requirements.
+2
+9 A.
+5 Q.
+
+===PAGE 4===
+250830100
+In addition, the proposed package provides a fair, transparent, and scalable foundation—1
+one that is necessary given the exponential growth of large loads in the Company’s2
+service territory. It includes flexible but meaningful thresholds that appropriately define3
+High Load Customers and the GS-5 customer class and introduces contract-based terms4
+that mirror the magnitude of investments driven by these customers.5
+The Proposal is competitive with similar structures in peer utility jurisdictions, as6
+explained in Company Witness Steven W. Wishart’s rebuttal testimony, aligning with the7
+emerging best practices in other states while remaining tailored to the realities of the8
+Company’s system and load profile.9
+Ultimately, I believe that the High Load customer framework should be seen as a10
+competitive, balanced, and well-supported approach that ensures long-term fairness and11
+rate stability for all customers. It also provides a framework for the customer to make an12
+informed business decision regarding how much capacity is needed based on the13
+understanding that it will share in the responsibility to pay for that capacity. The14
+Company continues to support its approval, in full, by the Commission.15
+Is the Company unique in the scope and pace of high load customer load growth in16 Q.
+its service territory?17
+Yes. As noted in my direct testimony, Virginia is home to the largest data center market18 A.
+in the world, with Northern Virginia alone surpassing the combined size of the next five19
+largest U.S. markets. This scale is not just notable—it is unprecedented, and it20
+fundamentally alters the risk profile the Company must manage. Figure 1 below21
+3
+
+===PAGE 5===
+250830100
+illustrates the stark contrast in market size between Northern Virginia and the next-largest 1
+markets.2
+Figure 1 Available Colocation Data Center Inventory as measured in MW
+4.934
+Northern VA market is larger than the next 5 largest U.S. markets combined.
+Source: JLL's North America DataCenter Report - North America Year-end 2024
+The figure above represents a comparison of infrastructure that has been installed across 3
+the various markets. What it does not show is the growth in requests for new capacity.4
+The figure below highlights the new data center capacity in process for the Company’s 5
+service territory. Note the increase in each of the contract types from July 2024 to July 6
+2025. Executed Electric Service Agreements (“ESA”) have increased 1,803 MW, 7
+executed Construction Letters of Authorization (“CLOA”) have increased 1,263 MW, 8
+and executed Engineering Letters of Authorization (“ELOA”) have increased 22,5629
+MW. These contract increases signal the strong growth being experienced in Virginia10
+and the need to make practical, balanced changes in regulation.11
+4
+Count Market
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+MW
+4,934 
+1,193 
+987 
+949 
+866 
+810
+804
+646
+605 
+362 
+315 
+190 
+160 
+157 
+140
+112
+13,230
+% of
+Market
+37% 
+9% 
+7% 
+7% 
+7% 
+69b 
+69b 
+59b 
+59b 
+39b 
+29b 
+19b 
+19b 
+19b 
+19b 
+19b 
+1009b
+1,193
+987
+949
+866
+810
+4,805
+Next 5
+Virginia Markets 
+4,934Northern VA 
+Dallas Ft Worth 
+Pacific NW 
+Atlanta 
+Chicago 
+Northern CA 
+Phoenix 
+Austin/San Antonio 
+NJ
+LasVegas/Reno
+Southern CA 
+NY 
+Boston 
+Salt Lake City 
+Houston 
+Denver 
+Total in Report
+
+===PAGE 6===
+250830100
+50,000 Executed Contracts as of July by Year
+45,000
+40,000
+10,000
+5,000
+2023
+■ ELOA CLOA HESA
+What is the Staffs overall position on the High Load Customer proposal?Q.1
+As discussed in Staff Witness Brian S. Pratt’s testimony, in general the Staff supports orA.2
+does not oppose most aspects of the Proposal. I discuss the Staffs position and certain3
+specific recommendations on each component of the Proposal in the following sections of4
+my testimony.5
+How would you summarize the positions taken by Intervenors on the High Load6 Q.
+Customer Proposal?7
+Twelve intervening parties submitted testimony on the High Load Proposal. While each8 A.
+of the twelve offers critiques of individual elements of the Proposal, most of these9
+5
+5,827
+2,008
+8,658
+g- 35,000 
+£
+•f 30,000 
+raa.ra 
+« 25,000 
+2
+*2 
+~ 20,000 
+re
+"c 
+O 15,000
+Figure 2 Executed Contracts by Year
+
+===PAGE 7===
+250830100
+witnesses are consistent in that they do not contend that a new framework is needed to 1
+address the rapidly expanding needs of the High Load Customers coming to the2
+Company’s system. In my view, consistent with that of Company Witness Edward H.3
+Baine, this range of positions actually supports the Proposal as appropriately balancing 4
+the obligation to serve High Load Customers while continuing to ensure proper cost 5
+allocation and protecting the Company’s system and other customers from stranded cost 6
+risk. Below I will respond to specific concerns or recommendations made by Intervenors 7
+and Staff by topic matter. Several issues raised by Staff and Intervenors with respect to8
+the High Load Proposal are also being addressed by Company Witness J. Scott Gaskill9
+10 and others.
+11 A. New GS-5 Class
+Does Staff take a position on the proposed GS-5 Class?12 Q.
+Yes. Staff Witness Pratt testified that “[i]t appears to Staff that placing GS-5 Customers13 A.
+in a distinct class would better isolate the Company’s various types of large non-14
+residential customers, which may allow the Company (and the Commission) to better15
+assess whether costs are properly allocated to and recovered from non-residential16
+customers, according to principles of cost causation”). (Pratt at 10, 43-46) I agree with17
+this assessment. The primary driver for creation of the GS-5 class is to ensure18
+appropriate cost allocation of the costs caused by High Load Customers.19
+Can you summarize intervenors’ testimony with regard to the proposed GS-5 class?20 Q.
+Yes. A number of intervenors specifically or generally support creation of the new rate21 A.
+class, including Consumer Counsel, Microsoft, Amazon, VCFUR, and Piedmont22
+6
+
+===PAGE 8===
+250830100
+Environmental Counsel. Certain intervenors express concerns with the specific criteria1
+for the class that I address generally below. Only Google Witness Berry opposes the2
+creation of the GS-5 class at all which is counter to the risks identified by the JLARC3
+4 report.
+Do you have a general response to Google Witness Berry?5 Q.
+Yes. Google Witness Berry recommends that the Commission reject the establishment of6 A.
+a GS-5 rate class altogether and instead create separate GS-3 and GS-4 “subclasses.”7
+Under her proposal, all customers would pay the same rates, but high load customers8
+would be subject to the minimums. (Berry at 18.)9
+The new GS-5 rate schedule was thoughtfully and appropriately designed to achieve the10
+cost allocation goal of ensuring that High Load Customers continue to pay rates that align11
+their cost recovery with their cost causation. Establishing a separate high load factor12
+class will provide greater transparency of the cost allocation process as applied to these13
+customers and account for the different cost causation profile they present as compared to14
+lower load factor large customers. The Company does not support Witness Berry’s15
+methodology, as it could lead to lower load factor customers subsidizing the high load16
+factor customers. Company Witness Paul B. Haynes addresses this issue further in his17
+rebuttal testimony.18
+7
+
+===PAGE 9===
+250830100
+1 B. Eligibility For the GS-5 Class
+Several witnesses filed testimony stating that the Company did not provide any
+analysis backing up the proposed 25 MW threshold and 75% load factor3
+requirements for both “High Load” customers and the GS-5 tariff. (Brooks at20-4
+21; Berry at 3-4; Gabel-Frank at 5, 6-7.) How do you respond?5
+As an initial matter, the establishment of these requirements cannot be reduced to a
+simple formula. Instead, we began with an objective—to isolate a subset of customers7
+with distinct usage and cost causation characteristics so that their cost allocation and8
+contribution can be transparently developed and monitored, as set out more fully in the9
+testimony of Company Witness Haynes. In addition, because the Company’s goal is to10
+protect against the risks of substantial stranded costs, which correlates to the cost of11
+needed infrastructure to serve, it focused on the higher demand customers that require12
+higher levels of investment. Another guidepost is that the criteria should be applied in a13
+non-discriminatory fashion, i.e., here we did not set out to create a “data center only”14
+customer class. And the Company also considered thresholds employed in other15
+jurisdictions to ensure Virginia’s competitiveness with its relevant peers as Company16
+Witness Wishart describes in his testimony. Extensive analysis of the customer profiles17
+in all of the relevant existing rate classes yielded the defining criteria for the proposed18
+GS-5 class.19
+For example, as Company Witness Haynes further describes and as Staff Witness Pratt20
+notes in his testimony, a 75% load factor represents the average load factor in the GS-321
+and GS-4 rate classes. Separating those High Load Customers with an above-average22
+load factor into a separate class allows for more transparency and more precise rate23
+8
+6 A.
+2 Q.
+
+===PAGE 10===
+250830100
+design for both high load factor and lower load factor customers. This will help ensure1
+that low load factor customers are not subsidizing high load factor customers within the2
+GS-3 and GS-4 classes now and in the future.3
+As noted in my direct testimony, the 25 MW and 75% load factor criteria demonstrate4
+that these are both high demand and consistently high energy consumption customers,5
+which matches the load profile of many of the larger, mature data center sites, as well as6
+some non-data center industrial customers. This combination distinguishes true large7
+load customers from the more generic GS-3 and GS-4 customer class groupings.8
+In short, the Company applied its judgment based on years of experience with these9
+customers together with the principles identified above to strike the right balance between10
+its obligation to serve High Load Customers, fair cost allocation to those customers, and11
+the avoidance of cross-subsidization of these customers by other customer classes. This12
+balance can be seen with the Company’s position falling in the middle of the conflicting13
+testimony of the various parties on this issue.14
+Several witnesses argue for a higher demand threshold than 25 MW for the GS-515 Q.
+class, as high as 100 MW. (See, e.g., Collins at 13.) How do you respond to these16
+17 recommendations?
+The Company carefully considered several factors in determining the 25 MW threshold.18 A.
+First, the infrastructure required to connect and serve a high load customer is significant19
+(ranging from $25 million to over $200 million). This range in investment spans the gap20
+between just building a new substation under an existing transmission line to extending21
+new transmission to a new substation. The Company’s proposal is designed to protect22
+9
+
+===PAGE 11===
+250830100
+against other customers paying for this infrastructure. Second, the proposed GS-5 class1
+with its 25 MW threshold was established in order to better align cost responsibility and2
+cost recovery for high load customers. The proposed GS-5 class would encompass3
+approximately 140 existing customer accounts. Raising the demand threshold for the4
+GS-5 class would further limit the number of qualifying customers. At 75 MW, for5
+example, the class would only have 55 current customers, including 53 data centers and 26
+industrial customers. Company Witnesses Haynes and Robert E. Miller provide more7
+detail on the GS-5 thresholds and how they lead to a better allocation to determine cost8
+responsibility and cost recovery through rate design.9
+The Company’s primary concern in opposing recommendations to raise the capacity10
+threshold is that it would provide less risk protection for the broader customer base by11
+excluding other high load customers. In deriving its Proposal, the Company sought to12
+establish criteria that are fair to the High Load customers but also provide a robust level13
+of risk mitigation for all customers. While the thresholds are a matter of Commission14
+discretion, the Company has framed its recommendations with a recognition of the15
+collective magnitude of the risks to all customers as load continues to grow.16
+C. Application of Contract Requirements17
+18 Q. In your review of the pre-filed respondent testimony, did you observe any
+19 misunderstandings or confusion regarding key elements of the Company’s High
+Load Customer proposal as it relates to existing customers?20
+Yes, I did. Microsoft Witness Gabel-Frank recommends “that any changes to rate design21 A.
+involving new minimum demands for distribution, generation, and transmission, and any22
+10
+
+===PAGE 12===
+250830100
+new terms and conditions imposing new collateral requirements, long contracts terms,1
+and exit fees, not apply to such High Load customers until they have added new load2
+totaling 25 MW or more.” (Gabel-Frank at 17.)3
+To clarify, the Company’s proposed contracting requirements apply only to customers4
+that qualify as a High Load customer and some of the requirements only apply to new5
+customers establishing service after January 1, 2027. There are several scenarios offered6
+below to further clarify the Company’s proposal:7
+An existing customer has contracted capacity greater than or equal to 25 MW. Under8 1.
+this scenario, the customer will qualify as a High Load Customer. This designation9
+will cause the customer to be assigned demand minimums. If the existing customer10
+also has a load factor of 75%, then it will be moved to the proposed GS-5 tariff. The11
+14-year contract term and collateral requirements will not be assigned.12
+An existing customer has less than 25 MW of contracted capacity and decides to add13 2.
+additional capacity to an existing ESA such that the total new capacity will be greater14
+than or equal to 25 MW. Under this scenario, with the addition of the new capacity,15
+the customer would qualify as a High Load Customer. The customer would be16
+required to sign a new ESA or amendment carrying all new proposed terms (14-year17
+contract term, demand minimums, and collateral). However, the Company provides18
+the following clarification: the collateral requirement will only be assigned to the19
+incremental capacity added that causes the customer to qualify as a High Load20
+21 Customer.
+All new customers that qualify as High Load Customers will carry all of the proposed22 3.
+contract provisions for the total requested capacity.23
+11
+
+===PAGE 13===
+250830100
+I would also like to clarify that the minimum demand provisions only apply if a customer1
+fails to meet their committed demand. If a customer consumes capacity as contracted and2
+exceeds the demand minimum threshold percentages, the minimum demand charges are3
+not applied.4
+Do you have a response to Witness Gabel-Frank’s recommendation that minimumsQ.5
+should be removed at the end of the contract term? (Gabel-Frank at 14.)6
+Yes. Minimum demand determinations are a critical part of sound rate design to supportA.7
+a customer’s cost of service. As discussed in more detail by Company witnesses Haynes8
+and Miller, the minimum demand charge should remain in the Company’s tariff to9
+support the ongoing spend on O&M and replacement equipment. Rates that include10
+recovery on plant include the relevant recovery for the life of the plant. Assuming the11
+customer continues to use the plant beyond that point, it is fair to assume the plant will12
+need to be replaced and that the replacement plant would also have built in capital costs.13
+D. Capacity Re-Sizing14
+Does the Staff take a position on the Company’s proposal to permit High LoadQ.15
+customers to reduce their capacity with 36 months’ notice?16
+Witness Pratt states that the Staff does not oppose this proposal. (Pratt at 20.)A.17
+Several respondents have recommended the Company provide additional or18 Q.
+broader flexibility for high load customers to reduce their contracted capacity.19
+(Bremser at 16; Higgins at 4,16-20; Berry at 3-4; Collins at 17.) How does the20
+21 Company respond?
+The Company disagrees with the recommendation to offer additional flexibility beyondA.22
+12
+
+===PAGE 14===
+250830100
+1 the options included in the proposal. The Company’s filed proposal already provides two
+meaningful and structured capacity reduction options that apply during the proposed 14-2
+year contract term, beginning January 1,2027. First, the proposal allows a customer to3
+reduce its contracted capacity by up to 20% at no cost. This is a free, no-fault option that4
+provides flexibility. Second, the customer may seek to reduce its obligation by an5
+6 additional 30%—but only if another customer agrees to assume the associated capacity.
+If no other customer picks up that capacity, then the original customer remains financially7
+responsible. Both reductions require separate 36-month notices.8
+These mechanisms provide up to a 50% reduction from the originally requested capacity9
+10 during the contract term, but do so in a way that both provides flexibility to the customer
+11 and ensures a majority of the cost responsibility (second 30% reduction) remains with the
+customer that caused the infrastructure to be built. The Company believes this approach12
+13 is in the best interest of customers because it provides an appropriate degree of flexibility
+14 without undermining cost causation principles or creating subsidies from other
+customers. It also strikes a balance between imposing financial commitments based on15
+high load customers’ original requests, while also incentivizing them to release unused16
+capacity. Allowing some flexibility in capacity reassignment helps assure the Company17
+does not needlessly build additional utility infrastructure to accommodate new high load18
+customers when other such customers have unused capacity.19
+13
+
+===PAGE 15===
+250830100
+Next, several witnesses offered testimony seeking clarity on capacity reductions1 Q.
+prior to the January 1,2027, effective date. (Bremser at 16; Higgins at 4,16-20;2
+Berry at 4; Collins at 17.) Please explain the two methods that are currently3
+available for customers to reduce distribution capacity.4
+The Company currently offers two methods for reducing distribution capacity:5 A.
+Method 1: A customer may pay the remaining book value and associated removal costs6
+to eliminate any assets and associated capacity it no longer needs. This applies to both7
+standard service and excess facilities.8
+Method 2: A customer may designate the unwanted assets and associated capacity as9
+excess facilities and pay a monthly charge while the assets remain in place.10
+Is the Company seeking to remove these methods in the instant proceeding?Q.11
+No. The Company did not propose to remove the two existing methods available toA.12
+customers seeking to reduce distribution capacity. These methods remain fully available.13
+E. Contract term14
+What is the Staffs position on the 14-year term?15 Q.
+Staff does not oppose the Company's proposed 14-year contract term, inclusive of the16 A.
+proposed “load ramp” and “capacity resizing” provisions, or the proposed exit fee. Staff17
+generally believes that utility rates and terms and conditions should align with principles18
+of cost causation. The Company’s proposed 14-year contract would effectively “lock-in”19
+the customer's revenue for a period of time, either through 14 years of service or an exit20
+fee in the event of early termination, which Staff believes would help to recover the21
+14
+
+===PAGE 16===
+250830100
+customer’s cost of service, thus reasonably mitigating cost shifting and stranded assets 1
+concerns. Given the sizeable nature and amount of capital investments required to serve2
+High Load Customers, Staff concluded that this safeguard appears reasonable. (Pratt at3
+4 20)
+Q- Do you agree?5
+Yes. The Company’s approach was to strike a balance with the needs of high load 6 A.
+customers while protecting against cost shifting and stranded assets. As filed, the7
+Company is providing customers the option to take 100% capacity for the entire 14-year 8
+contract term or ramp into it using a 4-year ramp period followed by 10 years at 100% of9
+requested capacity.10
+11 Q. PEC Witness Abbott posits that “[gjiven the Company’s data center load growth
+forecast and the incremental NPV cost (price tag) of $22.4 billion that Dominion’s12
+supplemental 2024 IRP filing identified to serve the projected data center load13
+growth, I believe a longer contract term and a faster ramp schedule is justified” and14
+15 recommends a total contract term of 20 years, “inclusive of a 3-year ramp period to
+achieve total capacity.” (Abbott at 43-45.) What is your response?16
+Witness Abbott’s recommendation is framed by his appreciation of the Company’s17 A.
+“making a proposal aimed at reducing the risk and the potential shifting of costs to other18
+customers,” though he differs from the Company with respect to the length of term and19
+ramp period that best meets that goal.20
+Based on an analysis that he acknowledges is over-simplified, Witness Abbott concludes21
+that the “undepreciated plant balance at the end of a 20-year term will be meaningfully22
+15
+
+===PAGE 17===
+250830100
+lower than at the end of a 14-year term under any set of assumptions.” (Abbott at 45.) He1
+also states that a “20-year contract term would ... increase the exit fee in the event a High2
+Load customer ceases operation before the end of the contract]^ which] provides3
+additional protection to mitigate the risks borne by other customers.” (Abbott at 45.)4
+In my view, the proposed 14-year term with a four-year ramp period strikes the5
+appropriate balance of meeting the Company’s obligation to serve new High Load6
+customers, maintaining the competitiveness of Virginia’s service territory with other7
+utilities, while mitigating the risks of stranded costs for other customers.8
+9 Q- Witness Abbott also proposes that “the ramp schedule be more front loaded and
+shortened by one year” to “still allowfl some flexibility for the High Load customer10
+to grow into its contract capacity but... offerf] greater protection against cost11
+shifting to other ratepayers compared to Dominion’s proposal.” (Abbott at 45-46.)12
+13 How do you respond?
+In the Company’s experience, customers that provide a load ramp tend to request a 4-year14 A.
+load ramp period. The Company’s proposal recognizes this experience. As stated above,15
+this proposal balances the Company’s obligation to serve, Virginia’s competitiveness for16
+high load customers, and protection for stranded assets and cross subsidies.17
+16
+
+===PAGE 18===
+250830100
+1 F. Exit Fees
+APV Witness Wilson recommends that the proposed exit fee “be revised to ensure2 Q.
+that the minimum transmission and generation demand charges are collected from3
+each customer, irrespective of whether the customer exercises the one-time contract4
+demand reset option.” (Wilson at 74-75, Rec. IV-A.) Can you address this5
+6 recommendation?
+Yes, I can. Witness Wilson proposes a formula for exit fees to be added to section7 A.
+XXVII.E.3 of the Terms and Conditions and applied to such customers to “ensuref] that,8
+on a nominal basis, the customer’s load demand charge payments over the initial term9
+exceed the minimum charges over that period, plus the minimum charges at the reduced10
+contract demand level for any years beyond the initial term.” In very simple terms,11
+Witness Wilson does not recommend the initial 20% reduction as filed by the Company,12
+rather he recommends the customer pay exit fees for this reduction.13
+14 What is your response?Q.
+The Company continues to support its proposal as filed. Some customers request too15 A.
+little capacity initially and must upgrade their capacity. Others request too much capacity16
+initially and must reduce their capacity. The Company’s proposal strikes a balance17
+between offering customers limited reduction flexibility and offering limited forgiveness18
+by not charging exit fees for the initial 20% capacity reduction. With this balance in19
+mind, the Company filed the condition of a 36-month notice for the initial 20% reduction,20
+which allows the Company the opportunity to find another willing customer to take the21
+reduced capacity. The Company also filed the condition for a separate 36-month notice22
+for the 30% reduction for the same reason.23
+17
+
+===PAGE 19===
+250830100
+Q. Google Witness Berry recommends that the exit fee proposal be modified “to1
+include reassignment options and dispute resolution procedures similar to those for2
+reductions in contract capacity.” She contends that “[t]his policy will provide an3
+effective deterrent to speculative or overestimated load, prevent undue restrictions4
+on load that is not speculative, and protect customers from the risk of stranded costs5
+while simultaneously preserving needed flexibility for High Load customers and6
+ensuring efficient use of system resources.” (Berry at 44-46.) How do you respond?7
+The Company did propose “reassignment options” as outlined at pages 19-21 of myA.8
+direct testimony. The proposal as filed offers two reduction options. The first 20%9
+reduction carries no exit fee penalty; it is in essence free. The second 30% reduction10
+does carry exit fees that can be avoided if the capacity is reassigned to another customer.11
+Given these options, the Company does not agree that there should be a “dispute12
+resolution” process. In fact, in my opinion introducing a “dispute resolution” process13
+would encourage, not discourage speculative load. The Company strongly disagrees with14
+Witness Berry’s recommendation; under the Company’s proposal, the customer’s15
+capacity request is clear, the associated costs are clear, and the terms of the contract are16
+clear at the time of contract signing, so there is no need for a “dispute resolution” process.17
+18
+
+===PAGE 20===
+250830100
+1 G. Collateral Requirements
+Q.2 Staff Witness Pratt states that “[gjiven the sizeable nature, and amount, of capital
+3 investments required to serve High Load Customers, as previously discussed, Staff
+4 agrees that collateral would serve as a safeguard to help reasonably mitigate cost
+shifting concerns in the event a customer is not willing or able to fulfill their5
+6 contract.” (Pratt at 31) Witness Pratt also asserts that the collateral may be subject
+7 to the Commission’s rules on deposits. Can you summarize his proposal in this
+8 regard?
+A. Yes. Staff Witness Pratt points to the Commission’s Customer Deposit Rules, which9
+10 provide that utilities may require customer deposits “to protect against uncollectible
+accounts,” the maximum amount of which cannot “exceed the equivalent of the11
+12 customer’s estimated liability for two months usage....” Witness Pratt suggests that the
+proposed collateral requirement “would protect the Company against future amounts13
+14 which are now uncollectible because the customer terminated their contract prematurely.”
+He submits that this is an issue for the Commission’s determination and recommends that15
+(1) if the Commission finds that the Company's collateral requirement is not subject to16
+the Customer Deposit Rules, then Staff does not oppose the Company’s collateral17
+requirement in the amount of $1.5 million per MW of contracted capacity over the 14-18
+year period, as proposed by the Company in this proceeding, and (2) if the Commission19
+finds that acceptance of cash, or any other aspect of the Company's collateral20
+requirement, is subject to the Customer Deposit Rules, then Staff submits that such21
+collateral amount should be limited to the customer's estimated liability for two months22
+usage, and further finds that the Company should be required to accrue interest on23
+19
+
+===PAGE 21===
+250830100
+deposits held longer than 90 days until the deposit is refunded, consistent with the1
+Customer Deposit Rules.2
+3 Q. What is your response?
+I am not an attorney, but on the advice of counsel, would respond that the collateral4 A.
+requirement included in the Proposal should not be subject to the Customer Deposit rules.5
+First, the proposed collateral requirement is fundamentally distinct from traditional6
+customer deposits in both purpose and magnitude. Regarding purpose, an “uncollectible”7
+under the rule has been understood to refer to a utility’s inability to collect on its bill for8
+electric service already provided to a customer; it should not apply to a situation where9
+the utility cannot collect revenue from a High Load Customer that has terminated its10
+contract early and significant infrastructure has been installed to serve the customer.11
+Regarding magnitude, both the dollar amount and the level of risk associated with High12
+Load Customers are several orders of magnitude greater than anything that could have13
+been contemplated for the deposit rule. To put it into context, for a GS-5 qualified14
+customer, two months of revenue would be approximately $6 million. The infrastructure15
+to serve a High Load Customer would be in the range of $25 to $250 million. Applying16
+the existing rule would not accomplish the goals of preventing subsidized costs and17
+stranded assets.18
+Finally, the proposed requirement is consistent with large load customer mitigation19
+strategies discussed in the Technical Conference convened in Docket No. PUR-2024-20
+00144, where the Commission noted “collateral provisions to protect against bankruptcy21
+or other failure to meet financial commitments” as a potential piece of a tariff framework22
+20
+
+===PAGE 22===
+250830100
+that should be considered to apply to high load customers. (Scheduling Order and Notice1
+2 of Technical Conference (Oct 2, 2024).)
+CIoudHQ Witness Brooks and DCC Witness Ramirez argue that the Company’s3 Q.
+proposed collateral requirements do not provide sufficient flexibility for projects4
+that have reached significant development milestones. (Brooks at 11-12; Ramirez at5
+6 11.) What is your response?
+The Company respectfully disagrees with these arguments.7 A.
+First, Witnesses Ramirez and Brooks recommend that collateral be assigned based on8
+differences in “project profiles” or project progress (Ramirez at 11; Brooks at 11-12).9
+This approach suggests that the risk of stranded costs and cross subsidization diminishes10
+as a customer project nears completion. However, the collateral as proposed is designed11
+to support the recovery of investment over the 14-year contract term. Just because a12
+project is at the beginning of the construction phase or at the end of the construction13
+phase has no bearing on the risk of not recovering the infrastructure investment the14
+customer asked to be built. Moreover, none of the considerations suggested by Witness15
+Brooks reduce the customer’s risk of default. Finally, many of the projects under16
+development are organized as Limited Liability Corporations or LLC. The Company has17
+no ability to influence how a customer organizes its business, establishes its credit line, or18
+manages its credit ratings. Therefore, standard credit practices based on publicly19
+available information are the foundation of the Company’s proposal and the factors20
+described above should not create an exception to the application of the collateral21
+22 requirement to a High Load Customer.
+21
+
+===PAGE 23===
+250830100
+Witness Ramirez also suggests that the Company should offer a range of acceptable1
+credit instruments (Ramirez at 12). As demonstrated in Schedule 2 to Company Witness2
+Timothy P. Stuller’s direct testimony, the Company proposed multiple forms of3
+collateral, including parental guarantees, letter of credit, surety bonds, or cash.4
+Finally, Witness Ramirez recommends that the Company assign collateral “at the cluster5
+level...multiple projects...across groups of customers” (Ramirez at 12). The assignment6
+of collateral across multiple projects is an interesting, yet flawed, concept. Given the size7
+of high load capacity requests, most requests are denominated in terms of a substation. If8
+a customer is taking all of the capacity of a substation, it is not clear which other9
+customers the risk should be pooled with. Another approach is to pool this substation10
+with other substations under contract for this same customer. Again, pooling two distinct11
+substations for the same customer does not realize any risk reduction. Both substations12
+carry investments in transmission, substation, and distribution infrastructure. And in this13
+example, the two substations need generation to provide energy. The more projects14
+under contract, the greater the need for new infrastructure and the greater the risk of15
+stranded costs. The Company does agree with one of the recommendations. The16
+argument to pool the risk of a shared substation does make sense and matches how the17
+Company proposed the collateral requirement. For example, if two customers equally18
+share the capacity of a 300 MW substation, each will be assigned collateral requirements19
+based on their individual credit ratings for their individual 150 MW capacity request.20
+The Company is not assigning a 300 MW collateral requirement to both customers in this21
+22 scenario.
+22
+
+===PAGE 24===
+250830100
+Q. CloudHQ Witness Brooks expresses concern that the Company’s High Load1
+Customer proposal limits acceptable credit support to the customer itself or its2
+parent company, and does not allow for third-party credit guarantees. (Brooks at3
+4 14.) Are these concerns valid?
+No, they are not. The Company’s current practices already allow for contract5 A.
+reassignment, including the reassignment of credit obligations to other parties. The6
+Company has proposed no changes to this approach. In fact, the Proposal explicitly7
+allows for credit reassignment, such that a third party with acceptable creditworthiness8
+may provide the required collateral support on behalf of the customer. This provision9
+addresses the very concern raised by Witness Brooks and reflects the Company’s10
+continued commitment to maintaining reasonable flexibility while protecting all11
+12 customers from potential default risk.
+Q. Some respondents argue that the Company’s collateral requirements are13
+inconsistent with those in other jurisdictions. (Ramirez at 33-35; Brooks at 15-20.)14
+15 Would you like to respond?
+Yes. When reviewing CloudHQ Witness Brooks’ Table 1 on page 17 of his testimony, it16 A.
+is clear that a critical contextual fact is missing: the extraordinary size and development17
+of Virginia’s market. Of the ten jurisdictions listed in his Table 1, only two—Virginia18
+(served by Dominion Energy) and Georgia (served by Southern Company)—appear19
+among the largest U.S. data center markets. The remaining jurisdictions cited are either20
+emerging or mid-tier targets. Similarly, DCC Witness Ramirez attempts to draw a21
+comparison in Table 2 on page 34 of her testimony, which includes Indiana Michigan22
+Power, Evergy Kansas and Missouri, ComEd, Consumers Energy, and the Company. Of23
+23
+
+===PAGE 25===
+250830100
+the utilities listed, only ComEd, which serves the Chicago area, represents a data center1
+market of somewhat comparable scale to that of the Company, and even the Chicago area2
+does not match the magnitude of existing infrastructure, active construction, and future3
+buildout facing the Company. The other utilities serve regions that do not approach the4
+size, density, or pace of data center development seen in Virginia.5
+The Company’s collateral requirements are not based on a uniform national standard;6
+they are tailored to the real-world risks associated with a uniquely concentrated and7
+capital-intensive environment in which the scale, density of data center development, and8
+load that the Company must support significantly outpace the other markets reflected in9
+these witnesses’ testimony. As previously discussed above, the scale of Virginia’s data10
+center industry supports a rigorous credit framework to ensure that the financial11
+obligations tied to large load additions do not shift to other customers. Given the scale12
+and size of the Virginia data center market, the risk level of stranded costs and cross13
+subsidization is significantly higher than all other markets. Said differently, it is higher14
+15 than the next five markets combined.
+Based on feedback from the Company’s Treasury department, the table below provides16
+the range of cost for collateral. Depending upon the credit rating, the range of cost is17
+0.81% to 1.30% of the face value of collateral. While the specifics for each customer18
+may vary based on credit ratings and market conditions over time, the Company19
+estimates that for a 100 MW capacity request, the collateral requirement is $150 million20
+($1.5 million x 100 MW). The cost of a letter of credit or surety bond would be in the21
+approximate range of $1.2 million to $2 million ($150 million x 0.81% or 1.30%). For22
+customers that qualify for the 70% exemption, this collateral requirement would be23
+24
+
+===PAGE 26===
+250830100
+reduced to approximately $45 million with the cost of a letter of credit or surety bond1
+would be in the approximate range of $365,000 to $585,000 ($150 million x (1-70%) x2
+0.81% or 1.30%).3
+Collateral Requirement ("CR")
+2.0
+The collateral requirement of $400,000 to $1.5 million per MW does not appear to be4
+onerous in relationship to the level of capital investment the Company is making to serve5
+these customers.6
+Finally, several respondents have recommended that the Company’s collateralQ.7
+requirement be tied to the timing of financial risk and decrease over time. (Ramirez8
+at 36-37.) Has the Company reconsidered its position in light of this feedback?9
+Yes. While the Company did not initially propose a reduction in collateral over time, theA.10
+Company has carefully considered the testimony and concerns raised by stakeholders and11
+agrees that it is reasonable to reduce the collateral requirement annually as the financial12
+risk to the Company declines. Under the current proposal, collateral is required at the13
+execution of the ESA, not energization; if a customer requests an ESA one year in14
+advance of energization, that is when the collateral will be required. The collateral is15
+required to cover the initial 14-year contract term once energized. Thus, if an ESA is16
+requested one year in advance of energization, the collateral requirement will be for 1517
+25
+' Be 1/5B-ratma assumption; annua! lc rate of 1.01% 
+' 53 1/BB- rating assumption; annua I bond rate of 1.30% 
+Ba a3/BBB-rating assumption; annua) LC rate of 0.90% 
+‘ Baa3/BBB- retina assumpcon; annua! bond rate of 0.81%
+Annual LCCostfor AnnualSurety Bond Cost AnnuallCCost Annual Surety Bond 
+Non-Exempt1 (SM) forNon-ExemptJ($M) for Exempf L$ML^spfo£&(ernpf_[ifjLFecnity92e(MW)UpfronKJU$M^^
+
+===PAGE 27===
+250830100
+years. However, after the first year of energization, the customer will have either met the 1
+minimum usage thresholds or exceeded them, thereby reducing the Company’s financial 2
+3 exposure.
+Accordingly, the Company supports an annual reduction in the collateral requirement 4
+over the term of the agreement after energization in the amount of 1/14 or approximately 5
+a 7% reduction per year. This approach aligns the collateral more closely with actual risk 6
+exposure and provides a fair and reasonable framework for both the customer and the7
+Company.8
+H. Equipment Deposit9
+Staff Witness Pratt testified that the Staff does not oppose the Company’s proposal10 Q.
+11 to require equipment deposits to fund the Company’s cost of certain equipment 
+12 necessary to initiate a High Load Customer’s service. Did any other party comment
+13 on this proposal?
+14 No, no other party commented on this proposal.A.
+IL Data Center Capital Investments15
+Before discussing recommendations regarding treatment of the Company’s data16 Q.
+center capital investments, Google Witness Berry and REAL Witness Lacey provide17
+testimony regarding the Company’s current contracting process and timeline for18
+19 High Load Customers. Would you like to clarify the Company’s current
+20 interconnection and ESA execution process?
+26
+
+===PAGE 28===
+250830100
+Yes, I would. The witnesses are drawing incorrect conclusions about the purpose,1 A.
+timing, and obligations that each contract addresses. Below is a description of the Load2
+Letter and the three contracts in the Company’s process:3
+4 Step 1: Signed Load Letter
+This initial document is non-binding for both the customer and the Company. By5
+submitting a signed load letter, the customer signals that it has a potential project under6
+consideration and would like the Company to evaluate it. This is not a contract.7
+Step 2: Engineering Letter of Authorization (“ELOA”)8
+Once a customer meets certain prerequisites, such as securing site control and submitting9
+a site plan, the customer may request and execute an ELOA along with a $250,00010
+deposit to cover engineering costs. This contractual agreement places the project into the11
+Company’s engineering queue and authorizes the Company to dedicate time and12
+resources to conduct a detailed engineering study. The engineering phase typically takes13
+nine to twelve months and evaluates the infrastructure required to serve the proposed site.14
+This process results in an estimated energization date and projected costs for the15
+necessary infrastructure. In short, the ELOA provides the customer with the critical16
+information needed to make an investment decision on the project. It is the customer’s17
+18 choice when to request an ELOA.
+19 Step 3: Construction Letter of Authorization (“CLOA”)
+Upon completion of the ELOA, the customer has 90 days to request a CLOA and another20
+90 days to execute it. Signing the CLOA commits the customer to two key obligations:21
+27
+
+===PAGE 29===
+250830100
+(1) Cost Responsibility: If the project is later canceled, the customer must reimburse the1
+Company for any investments made on its behalf.2
+(2) ESA Execution: The customer is required to execute an ESA for the installed capacity3
+once the infrastructure is completed and energized. The Company does provide the4
+customer with the option to execute the ESA up to one year in advance of energization.5
+Once the CLOA is signed, the Company reserves capacity for it. If the CLOA is not6
+executed within the 90-day window, the project is deemed canceled.7
+8 Step 4: Electric Service Agreement (“ESA”)
+The customer may execute the ESA up to one year in advance of the energization date.9
+The Company does not offer ESAs earlier in the process because doing so would require10
+reserving capacity for projects that may still be subject to delays or cancellation. This11
+one year in advance policy was introduced in 2022; prior to that time, ESA were executed12
+at the time of energization. Execution of the ESA, not meter set and energization of the13
+service, triggers the Company’s proposed collateral requirements. This approach14
+provides the customer with a choice as to when it wants to execute the ESA and secure15
+collateral. The ESA establishes the legal document that ties this customer to the16
+appropriate tariff, the Terms and Conditions, and assigns collateral.17
+Google Witness Berry recommends that the Commission require High Load18 Q.
+Customers to execute ESAs three to five years prior to project energization. (Berry19
+at 48.) Do you agree with this recommendation?20
+No. The Company strongly opposes requiring ESAs to be executed more than one year21 A.
+in advance of energization. In 2022 the Company briefly piloted early ESA execution at22
+28
+
+===PAGE 30===
+250830100
+the CLOA stage but discontinued the approach after several months due to the substantial1
+risks revealed by this approach. For example, in one case, a single customer secured all2
+available capacity in a geographic area despite no customer facilities being built and no3
+meaningful project progress. As a result, other viable projects were blocked from4
+accessing that capacity. In this example, the customer had the option to delay its5
+development and hold capacity indefinitely whether it consumed the capacity or not.6
+This does not make sense. If no meter is set, there is no way to bill the customer, and the7
+customer would only have to maintain collateral. Given the two-year Biennial Review8
+process, this would directly lead to cross subsidization.9
+In addition, project timelines often shift—due to permitting delays, construction10
+complications, or customer-driven changes. Committing capacity through early ESA11
+execution increases the risk of underutilized assets and inefficient system planning. It is12
+not prudent to tie up capacity for projects that may be years away from realization.13
+Allowing ESA execution one year prior to energization, as the Company has been14
+practicing, strikes a reasonable balance. This timing allows the Company to confirm both15
+its own and the customer’s construction progress before executing an ESA and initiating16
+collateral requirements—ensuring that capacity is contracted for credible, near-term17
+projects. No ESA and associated capacity should be contracted for a project not18
+progressing in development. The Company has the option to deem a customer delayed19
+project a canceled project and claim reimbursement under the terms of the CLOA.20
+While Google Witness Berry argues that earlier ESA execution would reduce speculative21
+or duplicative load requests, the Company’s actual experience suggests the opposite.22
+Signing contracts three to five years in advance may incentivize speculative behavior,23
+29
+
+===PAGE 31===
+250830100
+enabling customers to hold capacity while seeking end users for their projects. This I
+behavior is why the Company put in place the three contract structure, to prevent locking 2
+up capacity and/or building infrastructure for speculative projects. Hence, the CLOA 3
+process—combined with meaningful financial commitments—more effectively 4
+distinguishes serious, actionable projects. For these reasons, the Company respectfully 5
+disagrees with the recommendation and supports maintaining the current option for a 6
+customer to execute an ESA up to one year in advance of energization.7
+8 Q. REAL Witness Lacey raises concerns about the Company’s requirement that
+9 customers sign an ESA even if they choose to take Electricity Supply Service from a
+Competitive Service Provider (“CSP”). (Lacey at 11.) Do you agree?10
+A. No, I do not. The Company disagrees with REAL Witness Lacey’s characterization of11
+the ESA and rejects the suggestion that it imposes unnecessary or contradictory burdens12
+on customers who choose to receive Electricity Supply Service from a CSP.13
+First, Witness Lacey appears to misunderstand the distinct roles of Electric Supply14
+Service, Electric Delivery Service, and Electric Service more broadly. While a customer15
+16 may choose a CSP for supply, the Company continues to provide Electric Delivery
+Service, including the infrastructure necessary to deliver electricity and maintain system17
+reliability; there must be a cost recovery mechanism in place. The ESA governs this18
+delivery relationship, not the supply relationship for customers receiving Electricity19
+Supply Service from a CSP. (Electric Service as defined by the Company’s filed Terms20
+and Conditions (“T&Cs”) includes both Electric Delivery Service and Electric Supply21
+Service.)22
+30
+
+===PAGE 32===
+250830100
+1 The ESA includes essential provisions that apply regardless of supply source, including 
+but not limited to:2
+3 • Excess facilities charges;
+4 • Load ramp requirements;
+5 • Contract dollar minimums; and
+6 • Contracted demand levels, which form the basis for calculating minimum demand
+charges under the applicable Rate Schedules.7
+8 These obligations are tied to the delivery of electricity, not the generation or supply of 
+9 electricity, and are therefore unaffected by a customer’s decision to take generation
+service from a CSP.10
+Second, the existing clause stating that both parties remain responsible for obligations11
+under the ESA even if a customer stops taking Electricity Supply Service from the12
+13 Company reflects longstanding practice and ensures the Company can continue to
+recover costs for infrastructure and delivery services provided. This is especially14
+important given that infrastructure investments are not avoided simply because a15
+16 customer selects an alternate energy supplier. The Company’s proposed addition to the
+ESA simply clarifies that obligations previously agreed to—such as Facility Charges,17
+18 Minimum Demand Charges, and Non-Betterment Expenses—will remain in effect upon
+19 notice of termination of purchasing energy from the Company. The proposed addition
+thus does not introduce generation-related charges for shopping customers, as REAL20
+Witness Lacey suggests. The additional language makes existing obligations more21
+22 transparent, not more burdensome.
+31
+
+===PAGE 33===
+250830100
+The Company’s filed T&Cs further supports this approach. They specify that an existing1
+ESA remains in effect even if a customer transitions to a CSP, and that the Company may2
+require the customer to execute a new ESA with the same or substantially similar3
+provisions, to the extent such provisions do not conflict with the T&Cs. The ESA4
+therefore serves a legitimate and necessary purpose and is not inconsistent with customer5
+6 choice in the competitive supply market.
+Furthermore, Witness Lacey’s claim that customers are required to take service from the7
+Company for a full year after selecting a CSP (Lacey at 10-11) is incorrect. The ESA8
+9 explicitly allows for discontinuance of supply service in accordance with Commission
+10 rules, Virginia law, and the Company’s tariffs. However, this does not relieve the
+customer of obligations associated with Electric Delivery Service or related infrastructure11
+12 commitments—nor should it.
+A final consideration, under Section 56-577 A 3 of the Code of Virginia, a customer13
+14 cannot request Electricity Supply Services from a CSP until its demand during the most
+recent calendar year exceeds five megawatts. Thus, the Company will require the15
+16 customer to execute an ESA up to one year in advance of meter set as it must provide
+17 service including Electricity Supply Services until the customer is qualified to move to a
+18 CSP.
+Finally, the ESA is not a barrier to market participation. Rather, it ensures that19
+20 infrastructure costs incurred to serve large loads or high-demand projects are not unfairly
+shifted to other customers, and that delivery service obligations are clear and enforceable21
+regardless of how customers choose to obtain supply.22
+32
+
+===PAGE 34===
+250830100
+In summary, the ESA remains a necessary and appropriate instrument to support the1
+provision of Electric Delivery Service. Its terms are consistent with the Company’s2
+tariffs, Commission rules, and Virginia law. The Company opposes REAL Witness3
+Lacey’s proposed modifications and maintains that the ESA—along with the clarifying4
+language recently proposed—should remain in place without alteration.5
+Next, REAL Witness Lacey asserts that the ESA includes “undefined” minimum6 Q.
+demand charges. (Lacey at 11.) Do you agree with this assessment?7
+No, I do not. To the contrary, the ESA is a necessary and clearly defined agreement that8 A.
+supports the provision of Electric Service, regardless of a customer’s choice of Electric9
+Supply Service provider. The ESA aligns with the Company’s filed T&Cs, tariffs, and10
+policies, and contains no ambiguous or undefined obligations, the Company’s proposed11
+clarifying language merely reinforces existing, well-established requirements. The12
+reference in the ESA to “pages attached hereto” pertains to supporting documents and13
+exhibits that further explain the customer-specific provisions of the ESA.1 Additionally,14
+any minimum demand requirements based on contracted demand are also clearly defined15
+in the customer’s applicable Rate Schedule. These provisions are neither contradictory16
+nor unclear.17
+Turning to the capital investment associated with High Load Customer serviceQ.18
+requests, based on his argument that “[gjiven the minimal obligation from19
+customers prior to the CLOA stage, Staff maintains that projects in the Pre-ELOA20
+and ELOA stages are speculative and are not reasonably predicted to occur during21
+i See Filing Schedule 41 Page 67 of 847.
+33
+
+===PAGE 35===
+250830100
+the Rate Years,” Staff Witness Long removed the costs of these projects from the1
+Company’s rate base. (Long at 11.) Similarly, Consumer Counsel Witness Norwood2
+recommends that the Commission disallow the capital additions for substation3
+projects that are forecasted to be placed in service by the end of the 2027 Rate Year4
+for customers that do not have binding service agreements with the Company.5
+6 (Norwood at 20.) How do you respond?
+Company Witness Paul M. McLeod addresses these questions from an accounting andA.7
+ratemaking standpoint. I can respond to them based on the Company’s contracting8
+experience and past history with these customers. As discussed in my direct9
+testimony, the Company has acquired significant experience with high load customers10
+and personally I have worked with high load customers in the Company’s service area11
+since 2008 and specifically the data center industry since 2013. The Company’s12
+experience and my own observations demonstrate that even if one such customer falls13
+out of line, another one will step into the gap given the extraordinary demand for14
+viable locations within our service territory. Either way, the investments are15
+reasonably predicted to occur.16
+The three contract structure now in place complements the Company’s own approach17
+to planning for these investments, which these recommendations fail to recognize. The18
+Company plans and budgets for infrastructure utilizing a portfolio-based budgeting19
+approach, which accounts for a pipeline of projects at various stages of development, not20
+just those that have fully executed CLOAs or reached some other particular milestone.21
+The result of this approach is that if one project does cancel, funds are directed to22
+another project waiting in the wings. At the time of budgeting, the Company reviews all23
+34
+
+===PAGE 36===
+250830100
+projects in the pipeline, including projects that are in the contracting stage but not yet1
+finalized, to determine the appropriate budget for upcoming years. If a customer2
+ultimately does not proceed to execute a CLOA, the related project is not built, i.e., no3
+capital is spent on the project, and the Company redirects those budgeted funds to another4
+eligible project. This approach provides flexibility while ensuring that critical5
+6 infrastructure needs are met.
+Furthermore, as discussed in Company Witness Locke’s testimony, even if one were to7
+accept the Staffs position, based on the Company’s experience and the life cycle of8
+these projects discussed above, a majority of projected spend will have CLOAs by the9
+10 time this proceeding has completed.
+Why does the Company include projects without executed CLOAs in its budget?11 Q.
+Substation infrastructure can take up to three years to build, and the Company must plan12 A.
+and allocate capital accordingly. Because the biennial review process spans only two13
+years, the Company must budget for the full construction period—not just for projects14
+that fall within the review window. For this reason, the Company takes a portfolio15
+approach and makes an assumption as to which projects will proceed to construction.16
+Again, it has been the Company’s experience that a large number of projects will proceed17
+to construction and those that don’t, are replaced by others seeking acceleration, and thus18
+requiring capital expenditures to support their timeline. This is a prudent and long-19
+standing practice that allows the Company to maintain reliability and readiness while20
+efficiently managing customer-driven growth.21
+35
+
+===PAGE 37===
+250830100
+1 Q. Has the Company applied this approach only to data centers or other specific
+2 customer types?
+No. The Company has consistently used this budgeting approach regardless of customerA.3
+type. It reflects sound utility planning principles that align with long infrastructure lead4
+times and the dynamic nature of large load development.5
+6 Q. Does this conclude your pre-filed rebuttal testimony?
+7 A. Yes, it does.
+36

@@ -1,0 +1,19 @@
+{
+  "jurisdiction": "North Carolina Utilities Commission (NCUC)",
+  "docket": "E-100 Sub 208",
+  "filer": "Duke Energy Carolinas, LLC and Duke Energy Progress, LLC",
+  "source_url": "https://starw1.ncuc.gov/NCUC/ViewFile.aspx?Id=a125fc82-ee3a-40c7-b899-323b46d77217",
+  "source_detail_page": "https://starw1.ncuc.gov/NCUC/PSC/PSCDocumentDetailsPageNCUC.aspx?DocumentId=56594ff1-ac99-490b-817a-b1f3ffbf40b6&Class=Filing",
+  "ncuc_document_number": "F-E-20250724-098",
+  "ncuc_record_document_id": "56594ff1-ac99-490b-817a-b1f3ffbf40b6",
+  "ncuc_file_id": "a125fc82-ee3a-40c7-b899-323b46d77217",
+  "document_title": "DEC DEP Responses to Commission's Questions Regarding Large Load Customers",
+  "filing_date": "2025-07-24",
+  "how_obtained": "Downloaded the PDF from the NCUC STAR document handler https://starw1.ncuc.gov/NCUC/ViewFile.aspx?Id=<file-guid>, which is the link the commission's own document-detail page points at. starw1.ncuc.gov sits behind a Cloudflare managed challenge that refuses plain HTTP clients (403 for curl and for the plain fetch tool), so the session was driven with a real Chrome browser under Playwright, which passes the challenge normally; the PDF bytes were then read out of that same browser session. Converted the PDF to text with pdfminer.six extract_text(). The text is saved exactly as pdfminer emitted it - no reflow, no de-hyphenation, no ligature or soft-hyphen repair, form feeds, margin line numbers, column-split Q/A markers and OCR noise all left in place.",
+  "corpus_note": "Half of a divergence pair. Duke's answers to the identical question set in the Commission's Order Initiating Proceeding and Requesting Comments issued 2025-06-06. Its counterpart is nc-e100-sub208-denc-responses-commission-questions, filed the same day in the same docket by a different utility answering the same questions.",
+  "sha256": "260d6d715b5be167e4f8470b214a0c5b3bba1916178af4719d6ac4e9cec6363b",
+  "bytes": 42280,
+  "source_pdf_sha256": "54ff2c8bb4dc7df3bf8cf0fc64f22c626ded05c5d61015851463de6050db1777",
+  "source_pdf_bytes": 505617,
+  "retrieved_at": "2026-08-04T17:13:51Z"
+}

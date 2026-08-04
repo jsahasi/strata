@@ -1,0 +1,2118 @@
+ 
+AEP OHIO EX. NO._________ 
+ 
+ 
+ 
+ 
+ 
+BEFORE 
+THE PUBLIC UTILITIES COMMISSION OF OHIO 
+ 
+In the Matter of the Application of Ohio Power 
+Company for New Tariffs Related To Data 
+Centers and Mobile Data Centers 
+: 
+: 
+: 
+ 
+Case No. 24-508-EL-ATA 
+ 
+ 
+ 
+ 
+ 
+SUPPLEMENTAL TESTIMONY OF 
+MATTHEW S. MCKENZIE 
+IN SUPPORT OF THE AEP OHIO STIPULATION 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Filed November 1, 2024 
+ 
+AEP Ohio Supp. Page 72 of 330
+ 
+INDEX 
+I. 
+PERSONAL BACKGROUND ............................................................................................1 
+II. 
+PURPOSE OF TESTIMONY AND EXHIBITS2 ...............................................................2 
+III. 
+BACKGROUND .................................................................................................................3 
+IV. 
+FIRST PRONG OF THE THREE-PART TEST .................................................................3 
+V. 
+SECOND PRONG OF THE THREE-PART TEST ............................................................5 
+A. 
+How The AEP Ohio Stipulation Benefits Customers: Four Main 
+Characteristics ..........................................................................................................6 
+B. 
+How Specific Stipulation Provisions Benefit Customers and The Public 
+Interest....................................................................................................................11 
+1. 
+Paragraph III.A (Tariff Applicability) ........................................................12 
+2. 
+Paragraph III.B (Contract Term) ................................................................17 
+3. 
+Paragraph III.C (Collateral) .......................................................................18 
+4. 
+Paragraph III.D (Minimum Demand) ........................................................20 
+5. 
+Paragraph III.E (Load Ramp Period) .........................................................23 
+6. 
+Paragraph III.F (Customer Signup Process) ..............................................24 
+7. 
+Paragraph III.G (Retail Capacity Assignment) ..........................................28 
+8. 
+Paragraph III.H (Opportunity for Contract Capacity Reduction) ..............30 
+9. 
+Paragraph III.I (Behind-The-Meter Generation) ........................................31 
+10. 
+Paragraph III.J (Exit Fees) .........................................................................32 
+11. 
+Paragraph III.K (SSO) ...............................................................................33 
+VI. 
+THIRD PRONG OF THE THREE-PART TEST ..............................................................34 
+ 
+ 
+AEP Ohio Supp. Page 73 of 330
+1 
+BEFORE 
+THE PUBLIC UTILITIES COMMISSION OF OHIO  
+SUPPLEMENTAL TESTIMONY OF 
+MATTHEW S. MCKENZIE  
+IN SUPPORT OF THE AEP OHIO STIPULATION 
+ON BEHALF OF 
+OHIO POWER COMPANY 
+I. 
+PERSONAL BACKGROUND 
+1 
+Q. 
+Please state your name and business address. 
+2 
+A. 
+My name is Matthew S. McKenzie.  My business address is 700 Morrison Road, 
+3 
+Gahanna, Ohio 43230. 
+4 
+Q. 
+Who is your employer and what is your position? 
+5 
+A. 
+I am employed by Ohio Power Company (“AEP Ohio,” the “Company,” or the 
+6 
+“Applicant”) as Vice President of Regulatory and Finance.   
+7 
+Q. 
+What are your responsibilities as Vice President of Regulatory and Finance? 
+8 
+A. 
+I am responsible for AEP Ohio’s financial planning and strategy, and I lead our state 
+9 
+regulatory activities in Ohio. 
+10 
+Q. 
+Please describe your education and professional background. 
+11 
+A. 
+I graduated magna cum laude with a Bachelor of Arts degree in Philosophy from 
+12 
+Princeton University, and I received a Juris Doctor degree from Yale Law School.  After 
+13 
+law school, I served as a law clerk for two federal judges.  I then worked in the Appellate 
+14 
+Advocacy Group in the Washington, D.C. office of Jenner & Block LLC.  In 2014, I 
+15 
+accepted a position as Senior Counsel in the Legal Department of the American Electric 
+16 
+Power Service Corporation, and from 2014 to 2024, I represented AEP Ohio and other 
+17 
+AEP affiliates in state regulatory proceedings as in-house and external counsel.  
+18 
+AEP Ohio Supp. Page 74 of 330
+2 
+(Although I am a licensed attorney, I am not testifying as to legal matters in this case.)  In 
+1 
+February 2024, I began my current role as AEP Ohio’s Vice President – Regulatory & 
+2 
+Finance.   
+3 
+II. 
+PURPOSE OF TESTIMONY AND EXHIBITS 
+4 
+Q. 
+What is the purpose of your testimony? 
+5 
+A. 
+The purpose of my testimony is to support the Stipulation and Recommendation (“AEP 
+6 
+Ohio Stipulation”) filed on October 23, 2024 in this case by AEP Ohio, the Staff of the 
+7 
+Public Utilities Commission of Ohio (“Staff”); the Office of the Ohio Consumers’ 
+8 
+Counsel (“OCC”); Ohio Energy Group (“OEG”); Walmart Inc. (“Walmart”); and Ohio 
+9 
+Partners for Affordable Energy (“OPAE”) (collectively, the “AEP Ohio Stipulation 
+10 
+Signatories”).  My testimony discusses the criteria that the Commission uses when 
+11 
+considering the adoption of settlement agreements (the “Three-Part Test”) and explains 
+12 
+how the AEP Ohio Stipulation fulfills those criteria.  Specifically, my testimony supports 
+13 
+the conclusion that the AEP Ohio Stipulation: 
+14 
+(1)  
+is the product of serious bargaining among capable, knowledgeable parties;  
+15 
+(2) 
+as a package, benefits ratepayers and the public interest; and  
+16 
+(3) 
+does not violate any important regulatory principles or practices. 
+17 
+Q. 
+Are you supporting any exhibits? 
+18 
+A. 
+I am sponsoring the following exhibit: 
+19 
+• Exhibit MSM-Supp-1:  AEP Ohio Stipulation. 
+20 
+AEP Ohio Supp. Page 75 of 330
+3 
+III. 
+BACKGROUND 
+1 
+Q. 
+What is the background of this proceeding? 
+2 
+A. 
+I describe the background of this proceeding in my October 31, 2024, testimony in this 
+3 
+case opposing the Data Center Stipulation.1  Rather than repeat that discussion, I hereby 
+4 
+incorporate that portion of my testimony by reference. 
+5 
+IV. 
+FIRST PRONG OF THE THREE-PART TEST 
+6 
+Q. 
+What is the First Prong of the Commission’s Three-Part Test for stipulations? 
+7 
+A. 
+The First Prong of the Three-Part Test asks whether the stipulation is the product of 
+8 
+serious bargaining among capable, knowledgeable parties? 
+9 
+Q. 
+Did you participate in the negotiations which led to the AEP Ohio Stipulation? 
+10 
+A. 
+Yes.  I attended the all-party settlement meetings held at the offices of the Commission, 
+11 
+as well as several meetings with individual parties in this case, that led to the AEP Ohio 
+12 
+Stipulation.   
+13 
+Q. 
+Is the AEP Ohio Stipulation to product of serious bargaining? 
+14 
+A. 
+Yes.  The AEP Ohio Stipulation is the result of a lengthy process of negotiation involving 
+15 
+experienced counsel representing members of many stakeholder groups.  All Parties have 
+16 
+had the opportunity to participate in significant discovery and to file and review 
+17 
+testimony.  As detailed below, the Parties have engaged in a number of settlement 
+18 
+discussions, both with individual groups and in meetings open to all intervening parties.  
+19 
+ 
+1 The “Data Center Stipulation” is the Stipulation and Recommendation filed on October 10, 2024 in this 
+case by the Data Center Coalition (“DCC”); Amazon Data Services, Inc. (“Amazon”); Sidecat LLC 
+(“Meta”); Microsoft Corporation (“Microsoft”); Google LLC (“Google”); Ohio Blockchain Counsel; One 
+Energy Enterprises Inc.; Enchanted Rock, LLC; Ohio Energy Leadership Counsel (“OELC”); Ohio 
+Manufacturers’ Association Energy Group (“OMAEG”); Retail Energy Supply Association (“RESA”); 
+Constellation Energy Generation LLC and Constellation NewEnergy, Inc. (“Constellation”); and 
+Interstate Gas Supply (“IGS”). 
+AEP Ohio Supp. Page 76 of 330
+4 
+In connection with the AEP Ohio Stipulation, there were at least 10 all-party meetings to 
+1 
+discuss more than 12 different versions of draft term sheets and draft stipulations.    
+2 
+Q. 
+Could you please provide more details about the timeline of the all-party negotiation 
+3 
+process leading up to the AEP Ohio Stipulation?  
+4 
+A. 
+The all-party settlement process began on September 4, 2024, with the first all-party 
+5 
+settlement meeting.  From September 4, 2024 through October 1, 2024, AEP Ohio 
+6 
+circulated proposed settlement term sheets to all parties on four occasions (on September 
+7 
+9, September 18, September 25, and September 27), and counterproposals from other 
+8 
+parties were circulated on three occasions (September 16 by DCC and OEG; September 
+9 
+19-20 by DCC, OEG, OMAEG, and Constellation; and October 1 by DCC, OEG, and 
+10 
+Enchanted Rock).  Thus, prior to the October 10, 2024, Data Center Stipulation being 
+11 
+filed, seven all-party settlement meetings were held.  The terms sheets and settlement 
+12 
+meetings focused on an all-party settlement process.  For the seven all-party meetings led 
+13 
+by AEP Ohio before October 10, all parties were given an opportunity to openly address 
+14 
+questions and concerns at each meeting, and each proponent of a term sheet or proposed 
+15 
+modification had the opportunity to present and justify its positions.   
+16 
+In my testimony opposing adoption of the Data Center Stipulation, I address the 
+17 
+separate compressed email process in support of the Data Center Stipulation.  That was a 
+18 
+private “breakout” effort that involved no all-party meetings or open discussions of ideas 
+19 
+or proposals attributed to individual parties.   
+20 
+After the Data Center Stipulation was filed, there were three additional all-party 
+21 
+settlement meetings on October 16, October 18, and October 22, in which all parties – 
+22 
+including Data Center Stipulation Signatories – were invited to make redlines to the 
+23 
+AEP Ohio Supp. Page 77 of 330
+5 
+proposed settlement, ask questions, and offer comments on the term sheet that would 
+1 
+become the AEP Ohio Stipulation.  Excluding the separate short process used to develop 
+2 
+the Data Center Stipulation, the entire serious negotiation process was used to support the 
+3 
+AEP Ohio Stipulation: a total of 10 multi-hour all-party negotiating sessions with more 
+4 
+than a dozen detailed term sheets and draft stipulations exchanged.  These meetings 
+5 
+facilitated an open forum for questions, comments, and negotiation involving all parties.   
+6 
+Q. 
+Are the Signatory Parties to the AEP Ohio Stipulation capable and knowledge 
+7 
+parties? 
+8 
+A. 
+Yes.  The Signatory Parties to the AEP Ohio Stipulation are capable and knowledgeable 
+9 
+about the issues raised in this case.  In addition to AEP Ohio (the Applicant and utility 
+10 
+whose tariffs are at issue in this proceeding), each of the Signatory Parties to the AEP 
+11 
+Ohio Stipulation is represented by counsel who are frequent participants in Commission 
+12 
+proceedings and who have years of experience in regulatory matters before this 
+13 
+Commission.  There can be no doubt that the AEP Ohio Stipulation meets the first prong 
+14 
+of the three-part test. 
+15 
+V. 
+SECOND PRONG OF THE THREE-PART TEST 
+16 
+Q. 
+What is the Second Prong of the Three-Part Test? 
+17 
+A. 
+The Second Prong of the Three-Part Test asks whether the stipulation, as a package, 
+18 
+benefits ratepayers and the public interest. 
+19 
+AEP Ohio Supp. Page 78 of 330
+6 
+ 
+A. 
+HOW THE AEP OHIO STIPULATION BENEFITS CUSTOMERS: FOUR 
+1 
+ 
+MAIN CHARACTERISTICS 
+2 
+Q. 
+Does the AEP Ohio Stipulation, as a package, benefit ratepayers and the public 
+3 
+interest? 
+4 
+A. 
+Yes.  If approved, the AEP Ohio Stipulation, as a package, will benefit ratepayers and the 
+5 
+public interest.  When viewed as a package, there are four main characteristics of the AEP 
+6 
+Ohio Stipulation that support the Second Prong. 
+7 
+• The AEP Ohio Stipulation proposes a data-center-specific solution for a data-center-
+8 
+specific problem.  This solution appropriately maintains the status quo for AEP 
+9 
+Ohio’s traditional manufacturing and other large customers while requiring additional 
+10 
+financial commitments at the retail level from data centers for the costly EHV 
+11 
+transmission investments that data centers are causing. 
+12 
+• The AEP Ohio Stipulation allocates the risk of underutilized investments in a 
+13 
+balanced way as between data centers and AEP Ohio’s other customers, accounting 
+14 
+for the needs of data center customers while significantly mitigating risk for other 
+15 
+customers. 
+16 
+• The AEP Ohio Stipulation imposes reasonable incentives on data center customers to 
+17 
+accurately estimate their load needs up-front, before EHV transmission investment is 
+18 
+built to serve them, so that the investment can be right-sized to data centers’ actual 
+19 
+needs. 
+20 
+• The AEP Ohio Stipulation reflects numerous refinements to AEP Ohio’s Application 
+21 
+in which the Company has agreed to change the way it engages with data center 
+22 
+customers, including express procedures for signing up new customers and 
+23 
+reallocating unused capacity. 
+24 
+AEP Ohio Supp. Page 79 of 330
+7 
+Q. 
+How does the AEP Ohio Stipulation maintain the status quo for traditional 
+1 
+manufacturing and other large customers while requiring additional financial 
+2 
+commitments from data centers? 
+3 
+A. 
+The AEP Ohio Stipulation, consistent with the Application, applies the new tariff only to 
+4 
+new data center customers above 25 MW.  As AEP Ohio has made clear throughout this 
+5 
+case, it is data centers, not manufacturing and other large customers, who are driving the 
+6 
+need for costly EHV transmission investment.  Thus, the approach of the AEP Ohio 
+7 
+Stipulation is a targeted approach, placing additional financial commitments on data 
+8 
+centers while exempting traditional loads who are not driving the costs.  Taking this 
+9 
+approach benefits customers because it achieves the purposes of the tariff while 
+10 
+preserving the status quo tariff structure – which has worked for decades – for other large 
+11 
+loads.  This is a far better solution for AEP Ohio’s customers and the public interest than 
+12 
+the Data Center Stipulation, which applies financial obligations to both data centers and 
+13 
+traditional manufacturing and other large loads.  As I describe in my testimony opposing 
+14 
+the Data Center Stipulation, that approach creates significant headwinds for economic 
+15 
+development and puts Ohio at a competitive disadvantage when it comes to attracting 
+16 
+large manufacturing plants and other large job creators.  The data-center-only approach of 
+17 
+the AEP Ohio Stipulation avoids those negative effects on economic development that 
+18 
+will result from the “shotgun” approach adopted in the Data Center Stipulation.   
+19 
+AEP Ohio Supp. Page 80 of 330
+8 
+Q. 
+How does the AEP Ohio Stipulation benefit ratepayers and the public interest by 
+1 
+balancing the risk of underutilized investment between data centers and other 
+2 
+customers? 
+3 
+A. 
+As I explained in my testimony opposing the Data Center Stipulation, a key question for 
+4 
+the Commission in this case is who should take on the risk of data centers not “showing 
+5 
+up” or using the amount of power they say they will use.  That is, who will pay for any 
+6 
+underutilized transmission infrastructure that will be built to serve data centers – data 
+7 
+centers or other customers?   
+8 
+ 
+ 
+AEP Ohio filed its Application in this proceeding to mitigate the risk that 
+9 
+transmission infrastructure will be built for speculative data center projects, and when it 
+10 
+comes time to serve, the data center projects either will be cancelled or be using 
+11 
+significantly less power than they had planned.  If this happens, more of the costs of the 
+12 
+investments built to serve data centers will be shifted to other customers.  One key 
+13 
+question for the Commission, therefore, is how to allocate this risk of underutilization 
+14 
+among data centers and AEP Ohio’s remaining customers. 
+15 
+It is important to realize, moreover, that allocating this risk of underutilization is a 
+16 
+zero-sum game between data centers and AEP Ohio’s other customers.  When data 
+17 
+centers take on stronger financial commitments based on their higher power needs (for 
+18 
+example, higher minimum demand charges and stronger collateral requirements), there is 
+19 
+less risk that the costs of underutilized transmission infrastructure will be shifted to AEP 
+20 
+Ohio’s remaining customers.  The opposite is true when data centers take on weaker 
+21 
+financial commitments. 
+22 
+AEP Ohio Supp. Page 81 of 330
+9 
+ 
+ 
+The AEP Ohio Stipulation benefits customers and the public interest by striking a 
+1 
+reasonable balance between these competing interests.  Several provisions of the AEP 
+2 
+Ohio Stipulation – including provisions addressing contract term (¶ III.B), collateral 
+3 
+requirements (¶ III.C), minimum demand charges (¶ III.D), the load ramp period (¶ III.E), 
+4 
+and exit fees (¶ III.J) – combine to ensure that if data centers do not “show up” or do not 
+5 
+use the amount of power they signed up for, the data centers will be required to pay 
+6 
+significant minimum charges to offset the additional costs of new infrastructure built to 
+7 
+serve them.  At the same time, the AEP Ohio Stipulation does recognize and respond to 
+8 
+the input of data centers that the terms as proposed in the Application were too harsh or 
+9 
+difficult for them to plan for, including lower minimum demands charges (¶ III.D), a 
+10 
+longer load ramp period (¶ III.E), and numerous provisions helping data centers achieve 
+11 
+more certainty before they sign Electric Service Agreements (“ESAs”), including 
+12 
+procedures for signing up new customers and transferring unused capacity (discussed 
+13 
+further below). 
+14 
+Q. 
+How does the AEP Ohio Stipulation benefit ratepayers and the public interest by 
+15 
+establishing appropriate incentives for data center customers to accurately estimate 
+16 
+their power needs? 
+17 
+A. 
+The provisions in the AEP Ohio Stipulation that create additional financial commitments 
+18 
+from data centers establish strong incentives for data centers to estimate their true power 
+19 
+needs up front (i.e., when they sign an ESA).  This means that the data center customer’s 
+20 
+load will be accurately reflected in AEP Ohio’s load forecast, which is provided to PJM 
+21 
+to be used in the PJM transmission planning process.  Therefore, whatever EHV 
+22 
+transmission assets or other investments that result from the PJM transmission planning 
+23 
+AEP Ohio Supp. Page 82 of 330
+10 
+process will be driven by accurate, right-sized load forecasts to meet AEP Ohio’s actual 
+1 
+load. 
+2 
+ 
+ 
+A main problem with AEP Ohio’s existing tariff structure (and the Data Center 
+3 
+Stipulation) is that is it encourages data centers to overestimate their load and sign up for 
+4 
+more power than they need.  When customers sign up for a certain amount of contract 
+5 
+capacity in an ESA, AEP Ohio must ensure that this full amount of contract capacity is 
+6 
+available to serve the customer if the customers uses it.  Yet the current tariff’s 60% 
+7 
+minimum demand provision provides a 40% “buffer” – essentially a free capacity option 
+8 
+that data centers can sign up for and that AEP Ohio must make available, but data centers 
+9 
+need not pay for.  Instead, it is AEP Ohio’s other customers who will fund the 
+10 
+infrastructure necessary to provide this free “buffer” of capacity if it goes unused.  The 
+11 
+same problem arises with the Data Center Stipulation, whose 75% minimum demand for 
+12 
+the largest loads allows for a free 25% capacity option paid for by AEP Ohio’s other 
+13 
+customers.  For very large data center loads, this free option funded by other customers 
+14 
+can represent hundreds of megawatts, equivalent to the output of a small power plant.  
+15 
+For instance, under the Data Center Tariff, a data center who needs only 750 MW can 
+16 
+sign up for 1000 MW of capacity without paying anything for the free capacity option of 
+17 
+250 MW.  In the context of AEP Ohio’s 30,000 MW Central Ohio data center queue, the 
+18 
+amount of free “buffer” capacity can increase drastically – equivalent to multiple power 
+19 
+plants – even if only a portion of that queue signs ESAs.   
+20 
+ 
+ 
+The AEP Ohio Stipulation addresses this issue by imposing an 85% minimum 
+21 
+demand (¶ III.D) and a longer contract term (¶ III.B) and backing these provisions with 
+22 
+appropriate collateral (¶ III.C) and exit fee (¶ III.J) provisions.  These provisions strike 
+23 
+AEP Ohio Supp. Page 83 of 330
+11 
+the right balance of establishing meaningful, impactful incentives for data centers to 
+1 
+accurately estimate their own load, while also providing some flexibility and leeway if 
+2 
+the data centers’ estimates are inaccurate. 
+3 
+Q. 
+How does the AEP Ohio Stipulation benefit ratepayers and the public interest by 
+4 
+including refinements in the way AEP Ohio engages with data center customers? 
+5 
+A. 
+The AEP Ohio Stipulation contains numerous provisions that respond to the requests and 
+6 
+input of data center parties in this case by adjusting the way that AEP Ohio engages with 
+7 
+data center customers.  These provisions include an express procedure for signing up new 
+8 
+Schedule DCT customers (¶ III.F), a process by which Schedule DCT customers may 
+9 
+assign a limited amount of unused capacity to other Schedule DCT customers (¶ III.G), 
+10 
+an opportunity for existing customers to reduce their contract capacity (¶ III.H), and more 
+11 
+clarity regarding behind-the-meter generation (¶ III.I).  These provisions benefit 
+12 
+ratepayers and the public interest by providing more clarity around issues that are at-
+13 
+times complex and contentious – all while protecting the interest of other customers and 
+14 
+the grid, as I describe in detail below. 
+15 
+B. 
+HOW SPECIFIC STIPULATION PROVISIONS BENEFIT CUSTOMERS 
+16 
+AND THE PUBLIC INTEREST 
+17 
+Q. 
+Please describe this part of your testimony. 
+18 
+A. 
+Having identified four main characteristics of how the AEP Ohio Stipulation package 
+19 
+benefits customers and the public interest, I will now describe each provision and explain 
+20 
+how it contributes to these benefits. 
+21 
+AEP Ohio Supp. Page 84 of 330
+12 
+1. 
+PARAGRAPH III.A (TARIFF APPLICABILITY) 
+1 
+Q. 
+Please describe AEP Ohio Stipulation Paragraphs III.A.1 through III.A.4 regarding 
+2 
+tariff applicability. 
+3 
+A. 
+AEP Ohio Stipulation Paragraph III.A, Tariff Applicability, modifies the Application by 
+4 
+merging Schedules DCP (Data Center Power) and MDC/FLT (Mobile Data Center / 
+5 
+Flexible Load Tariff) from the Application.  The new tariff is called Schedule DCT (Data 
+6 
+Center Tariff), and a copy of this Schedule is provided as Exhibit A to the Stipulation.  
+7 
+The new Schedule DCT applies to both “Data Centers” and “Mobile Data Centers,” and 
+8 
+includes refined definitions for each customer class (¶ III.A.1-2).  The eligibility 
+9 
+threshold for Schedule DCT is 25 MW (id.) for all load, which is the same threshold for 
+10 
+the proposed Schedule DCT in the Application and represents an increase from 1 MW to 
+11 
+25 MW for mobile data center load as opposed to Schedule MDC/FLT in the Application. 
+12 
+Consistent with the Application, the proposed Schedule DCT only applies to new 
+13 
+data center or mobile data center load over 25 MW (¶ III.A.3).  Load that has already 
+14 
+signed an LOA or ESA before the effective date of the application is “grandfathered.”  
+15 
+Unless there is an “expansion” (addressed immediately below), Schedule DCT will not 
+16 
+apply, and the load will remain under the otherwise applicable tariff schedule (usually 
+17 
+Schedule GS (General Service), transmission voltage).   
+18 
+If a “grandfathered” data center load expands by more than 25 MW above the 
+19 
+contract capacity in its existing ESA, there are two options (¶ III.A.4):  First, if it is 
+20 
+technically feasible for AEP Ohio to separately meter the incremental expansion load, and 
+21 
+the customer pays all costs associated with this separate metering, then the 
+22 
+“grandfathered” load will continue to be served under the same tariff (e.g., Schedule GS) 
+23 
+AEP Ohio Supp. Page 85 of 330
+13 
+and the separately metered incremental load will be served under Schedule DCT.  
+1 
+Second, if it is not technically feasible to separately meter the incremental expansion 
+2 
+load, then the entire load – both the “grandfathered” part and the expansion part – will be 
+3 
+subject to Schedule DCT.   
+4 
+Q. 
+How does AEP Ohio Stipulation Paragraphs III.A.1 through III.A.4 regarding tariff 
+5 
+applicability benefit ratepayers and the customer interest? 
+6 
+A. 
+As explained above, applying the proposed Schedule DCT to data center customers above 
+7 
+25 MW is a tailored solution for a specific risk.  This approach requires additional 
+8 
+financial commitments of data centers – who are driving the need for EHV transmission 
+9 
+investment – while maintaining the status quo tariff structure for new manufacturers and 
+10 
+other large loads, which has worked well for decades.  This addresses the problem posed 
+11 
+by data centers without unduly harming Ohio’s competitiveness in attractive large 
+12 
+manufacturing plants and other large job creators.   
+13 
+Q. 
+Please describe AEP Ohio Stipulation Paragraph III.A.5 regarding aggregating the 
+14 
+load of affiliated companies to calculate minimum demand charges. 
+15 
+A. 
+For purposes of calculating the minimum demand charge in AEP Ohio Stipulation 
+16 
+Paragraph III.D (discussed below), all new load of affiliated companies and companies 
+17 
+with common ownership will be considered in the aggregate.  Affiliated projects will be 
+18 
+“stacked” in order of the energization data.  An example is the best way to describe this.  
+19 
+After the effective date of the tariff, Company A enters into an ESA for a 100 MW data 
+20 
+center, which it calls “Data Center 1.”  Under the minimum demand charge matrix in 
+21 
+Paragraph III.D (see also Stipulation Exhibit B), the minimum demand for Data Center 1 
+22 
+will be 82.5 MW.  Later, Company A enters into an ESA for a new 100 MW data center, 
+23 
+AEP Ohio Supp. Page 86 of 330
+14 
+which it calls Data Center 2.  For purposes of calculating the minimum demand for Data 
+1 
+Center 2, the contract capacity for Data Center 1 and 2 are added together:  100 MW + 
+2 
+100 MW = 200 MW.  On the minimum demand charge matrix in Paragraph III.D (see 
+3 
+also Stipulation Exhibit B), the minimum demand for a 200 MW data center is 85% of 
+4 
+200, or 170 MW.  Now, the minimum demand for Data Center 2 is set so that the 
+5 
+minimum demand of Data Center 1 plus Data Center 2 equals 170 MW: 
+6 
+82.5 + 𝑥= 170 
+7 
+𝑥= 170 −82.5 = 87.5 
+8 
+Thus, the minimum demand of Data Center 2 will be 87.5 MW.  In this way, two 100 
+9 
+MW data centers are treated the same for the purposes of minimum demand as one 200 
+10 
+MW data center. 
+11 
+Q. 
+How does AEP Ohio Stipulation Paragraph III.A.5 benefit ratepayers and the public 
+12 
+interest? 
+13 
+A. 
+The purpose of Paragraph III.A.5 is to prevent data centers from avoiding the higher 
+14 
+minimum demand charges associated with larger loads by building numerous smaller 
+15 
+data centers.  Data centers are modular, meaning it is theoretically possible to divide data 
+16 
+center functions among multiple locations connected by high speed fiberoptic cable.  
+17 
+Consider, for example, a data center campus with three 30 MW buildings.  When these 
+18 
+buildings are built next to each other on a campus, they are served through one 90 MW 
+19 
+AEP Ohio account.  It may be feasible for the customer to locate each building on 
+20 
+different properties a few miles apart.  The purpose of Paragraph III.A, Subparagraph 5 is 
+21 
+to treat both scenarios the same in terms of minimum demand, so that data centers cannot 
+22 
+AEP Ohio Supp. Page 87 of 330
+15 
+avoid higher demand charges through separately locating their facilities in multiple 
+1 
+locations. 
+2 
+Q. 
+Please describe AEP Ohio Stipulation Paragraph III.A.6 regarding the BTCR 
+3 
+programs. 
+4 
+Paragraph III.A.6 provides that Schedule DCT customers will be ineligible for AEP 
+5 
+Ohio’s 1CP or 6CP BTCR programs.   
+6 
+Q. 
+How does AEP Ohio Stipulation Paragraph III.A.6 regarding the BTCR programs 
+7 
+benefit ratepayers and the public interest? 
+8 
+A. 
+Allowing data centers to participate in the 1CP and 6CP BTCR programs would seriously 
+9 
+undermine the financial incentives created by the minimum demand provisions in the 
+10 
+Data Center Tariff, and therefore prevent data center participation in these programs is 
+11 
+vital to fulfilling the goal of the Data Center Tariff.   
+12 
+For most customers, charges under the BTCR are determined by the higher of (a) 
+13 
+the customer’s actual peak demand each month or (b) the minimum billing demand set by 
+14 
+the tariff.  Under the 1CP and 6CP BTCR programs, participating customers’ BTCR 
+15 
+charges are set based on the customer’s usage during the coincident peaks on the 
+16 
+transmission system, either the single (1CP) or six (6CP) highest coincident peaks.  In 
+17 
+other words, the customers’ minimum billing demand (e.g., 60% of contract capacity for 
+18 
+Schedule GS) is effectively overridden by the customer’s 1CP or 6CP usage.   
+19 
+Accordingly, if Schedule DCT customers were allowed to participate in the 1CP 
+20 
+or 6CP BTCR programs, the minimum demand provisions in Paragraph III.D – i.e., the 
+21 
+minimum demand levels of 60-85% depending on the size of the data center – would be 
+22 
+replaced by the customer’s usage during the 1CP and 6CP.  For example, under the AEP 
+23 
+AEP Ohio Supp. Page 88 of 330
+16 
+Ohio Stipulation, a cryptocurrency mine with a 300 MW contract capacity would have 
+1 
+minimum monthly demand charges based on 255 MW.  Cryptocurrency mines can and do 
+2 
+voluntarily reduce their load when energy prices are high.  If the cryptocurrency mine in 
+3 
+our example is allowed to participate in the 1CP or 6CP BTCR programs and is able to 
+4 
+reduce its load to, for example, 10 MW during the 1CP or 6CP, then its monthly demand 
+5 
+for purposes of calculating BTCR charges would be only 10 MW.  Under AEP Ohio’s 
+6 
+current BTCR transmission voltage rate of $7.45/kilowatt per month, the cryptocurrency 
+7 
+mine’s annual BTCR charge under its 255 MW minimum per the AEP Ohio Stipulation 
+8 
+would be approximately $22,797,000 million.2  If the cryptocurrency mine were able to 
+9 
+participate in the 1CP or 6CP program, its annual BTCR charge based on 10 MW and the 
+10 
+current Interim Pilot 1CP Transmission charge of $12.24/kilowatt per month would be 
+11 
+$1,468,800.3  That is a difference of $21,328,200.   
+12 
+Plainly, therefore, allowing Schedule DCT customers to participate in the 1CP or 
+13 
+6CP BTCR programs would undermine the increased financial obligations of the 
+14 
+proposed Schedule DCT and counteract the main purpose of this case – giving data center 
+15 
+customers more skin in the game in terms of minimum demand charges so that the data 
+16 
+centers accurately estimate their actual power needs when signing ESAs and make 
+17 
+ 
+2 255,000 𝑘𝑊× $7.45 × 12 𝑚𝑜𝑛𝑡ℎ𝑠 
+3 10,000 𝑘𝑊 × $12.24 × 12 𝑚𝑜𝑛𝑡ℎ𝑠 
+AEP Ohio Supp. Page 89 of 330
+17 
+minimum payments to offset the cost of transmission investments if they use less power 
+1 
+than they asked for.   
+2 
+2. 
+PARAGRAPH III.B (CONTRACT TERM) 
+3 
+Q. 
+Please describe AEP Ohio Stipulation Paragraph III.B regarding contract term. 
+4 
+A. 
+Paragraph III.B establishes an initial term of the ESA under Schedule DCT as the load 
+5 
+ramp plus 8 years.  It also specifies that the load ramp period will be no longer than 4 
+6 
+years.  Accordingly, if a Schedule DCT customer were to elect the full 4-year load ramp, 
+7 
+the initial term of its ESA would be 12 years (4-year load ramp + 8 years).  This scenario 
+8 
+reflects a both a longer load ramp period and a longer overall contract term than what 
+9 
+AEP Ohio proposed in the Application, which was 10 years including a maximum 3-year 
+10 
+load ramp (3-year load ramp + 7 years). 
+11 
+ 
+ 
+Paragraph III.B also states that the ESA will reflect AEP Ohio’s “best good faith 
+12 
+effort of the customer’s in-service date,” and it clarifies that if regional transmission 
+13 
+upgrades are needed, the in-service date will be “high-level and contingent on numerous 
+14 
+factors outside of AEP Ohio’s control.”  This is because regional transmission 
+15 
+investments are complex, multistep processes, and there are many steps in the process 
+16 
+that could be delayed due to factors outside of AEP Ohio’s control (e.g., siting issues, 
+17 
+supply chain delays).  Moreover, if large EHV transmission investments are needed to 
+18 
+serve the customer, the investments may be subject to a competitive process run by PJM.  
+19 
+The competitive process will add time to the project, and it is possible that PJM would 
+20 
+choose a company other than AEP to build the project.  To account for this possibility of 
+21 
+delay in the in-service date, Paragraph III.B states that a customer may petition the 
+22 
+AEP Ohio Supp. Page 90 of 330
+18 
+Commission for an adjustment to the contract term “based on the facts and circumstances 
+1 
+presented at the time.”  
+2 
+Q. 
+How does AEP Ohio Stipulation Paragraph III.B benefit ratepayers and the public 
+3 
+interest? 
+4 
+A. 
+A multiyear contract term is one of the key ways that the proposed Data Center Tariff 
+5 
+gives data centers more skin in the game than they currently have under AEP Ohio’s 
+6 
+existing tariff.  Paragraph III.B strengthens the financial incentives provided by a longer-
+7 
+term contract by extending the total contract term from 10 years (3+7) in the Application 
+8 
+to 12 years (4+8).  At the same time, however, Paragraph III.B extends the load-ramp 
+9 
+period from 3 years to 4 years, which reflects input from data centers about the need for 
+10 
+more time to reach full operational load.  Paragraph III.B also reflects data centers’ input 
+11 
+by expressly granting data centers the opportunity to petition the Commission to alter 
+12 
+their contract term if there is a delay in the infrastructure investment needed to serve the 
+13 
+customer.  This provision responds to data center concerns about in-service date delays. 
+14 
+3. 
+PARAGRAPH III.C (COLLATERAL) 
+15 
+Q. 
+Please describe AEP Ohio Stipulation Paragraph III.C concerning collateral 
+16 
+requirements.   
+17 
+A. 
+AEP Ohio stipulation Paragraph III.C states that there will be no change to the collateral 
+18 
+requirements proposed in AEP Ohio’s Application.  This means that Schedule DCT 
+19 
+customers who have credit ratings less than A- from S&P Global Inc. (“S&P”) and A3 
+20 
+from Moody’s Corporation (“Moody’s”) must provide a parent guarantee or collateral in 
+21 
+the form of a letter of credit or cash equal to 50% of the customer’s minimum charges 
+22 
+under the ESA.   
+23 
+AEP Ohio Supp. Page 91 of 330
+19 
+ 
+ 
+AEP Ohio Stipulation Paragraph III.C also addresses a change that is necessary 
+1 
+due to the merging of Schedules DCP and MDC/FLT into a single Schedule DCT – 
+2 
+specifically, it provides that the foreign adversary attestation concept required of 
+3 
+cryptocurrency/mobile customer from Schedule MDC/FLT as proposed in the 
+4 
+Application will be incorporated in Schedule DCT.  This means that 
+5 
+cryptocurrency/mobile customers served under Schedule DCT must provide an attestation 
+6 
+that they are not affiliated with or acting on behalf of a foreign adversary as defined in 15 
+7 
+C.F.R. § 7.4.   
+8 
+Q. 
+How does AEP Ohio Stipulation Paragraph III.C benefit ratepayers and the public 
+9 
+interest? 
+10 
+A. 
+As AEP Ohio pointed out in connection with its Application, the collateral provision in 
+11 
+AEP Ohio Paragraph III.C is designed to mitigate the risk that a data center customer will 
+12 
+declare bankruptcy or otherwise become insolvent and will be unable to follow through 
+13 
+on its obligation to make minimum payments under the ESA.  This will cause harm to 
+14 
+customers in precisely the way the data center tariff is meant to avoid – transmission 
+15 
+assets will be built for the now-insolvent data center customer, yet it will be other 
+16 
+customers who will bear the cost of the investment through increased rates.  Consistent 
+17 
+with the Application, AEP Ohio Stipulation Paragraph III.C strikes a balance between 
+18 
+data centers and AEP Ohio’s other customers.  It sets the level of collateral high enough 
+19 
+that data centers will have a strong incentive to accurately estimate and follow through 
+20 
+with their power needs, yet not so financially onerous that it stifles data center 
+21 
+development. 
+22 
+AEP Ohio Supp. Page 92 of 330
+20 
+ 
+ 
+AEP Ohio Stipulation Paragraph III.C retains the foreign adversary clause for 
+1 
+cryptocurrency/mobile data centers in response to widespread concerns that 
+2 
+cryptocurrency mining operations in the U.S. set up by foreign adversaries threaten 
+3 
+national security and could be used to intentionally disrupt the electric grid.4  Mitigating 
+4 
+this threat clearly furthers the public interest. 
+5 
+4. 
+PARAGRAPH III.D (MINIMUM DEMAND) 
+6 
+Q. 
+Please describe AEP Ohio Stipulation Paragraph III.D regarding minimum demand 
+7 
+charges. 
+8 
+A. 
+AEP Ohio Stipulation Paragraph III.D states that the monthly billing demand of the new 
+9 
+Schedule DCT customers will be determined by the greater of two criteria: (a) 85% of the 
+10 
+customer’s highest monthly billing demand from the past 11 months, or (b) a percentage 
+11 
+of the customer’s Contract Capacity based on specified load brackets.  These load 
+12 
+brackets begin at 25 MW (the applicability threshold for Schedule DCT) with minimum 
+13 
+demand set at 60% of contract capacity (consistent with the existing Schedule GS).  Then 
+14 
+the minimum demand increases to 85% of the marginal contract capacity above 25 MW.  
+15 
+At 75 MW contract capacity, the minimum demand increases to 100% of contract 
+16 
+capacity, though the total minimum demand can never exceed 85% of the total contract 
+17 
+capacity. 
+18 
+ 
+In addition, AEP Ohio Stipulation Paragraph III.D addresses what happens if a 
+19 
+customer uses more than its contract capacity.  It provides that, with Commission 
+20 
+approval, AEP Ohio may suspend service if a customer’s usage exceeds its contract 
+21 
+ 
+4 See Gabriel J.X. Dance & Michael Forsythe, Across U.S., Chinese Bitcoin Mines Draw National 
+Security Scrutiny, N.Y. Times (Oct. 18, 2023), available at 
+https://www.nytimes.com/2023/10/13/us/bitcoin-mines-china-united-states.html.  
+AEP Ohio Supp. Page 93 of 330
+21 
+capacity by more than 1,000 kW.  If additional capacity is available, AEP Ohio can seek 
+1 
+to adjust the Contract Capacity with the customer; if no agreement is reached, the issue 
+2 
+may be raised with the Commission.  Paragraph III.D makes clear that it does not affect 
+3 
+Stipulation Provision III.I regarding behind-the-meter generation and does not prevent 
+4 
+AEP Ohio from disconnecting or curtailing service to a Schedule DCT customer in the 
+5 
+event of a safety or reliability emergency.  These “Goldilocks” provisions help ensure that 
+6 
+data center customers do not request too little or too much capacity – but that they request 
+7 
+and use just the right amount based on their own estimates. 
+8 
+Q. 
+How do the minimum demand provisions in Paragraph III.D benefit ratepayers and 
+9 
+the public interest?  
+10 
+A. 
+The increased minimum demand and longer-term contracts in Schedule DCT work in 
+11 
+tandem to give data centers customers more skin in the game – in the form of financial 
+12 
+commitments – for the costly investments that will be needed to serve them.  The reason 
+13 
+for increasing data centers’ financial commitments is twofold:  First, increasing the 
+14 
+minimum demand from 60% to 85% will give data centers customers significantly 
+15 
+greater incentives to accurately estimate the amount of energy demand they will require.  
+16 
+That more accurate estimate, in turn, can be included in AEP Ohio’s load forecast that is 
+17 
+submitted to PJM, and then the PJM transmission planning process will use the more 
+18 
+accurate forecast to right-size transmission investment to serve the load.  Second, 
+19 
+increasing the minimum demand will guarantee that data centers will continue to provide 
+20 
+revenue to offset AEP Ohio’s transmission costs even if they end up using less power 
+21 
+than they said they would.  This mitigates the risk that other customers will be left 
+22 
+AEP Ohio Supp. Page 94 of 330
+22 
+“holding the bag” (i.e., be financially responsible) if data centers underutilize the large 
+1 
+investments built to serve them.   
+2 
+The reduction from 90% minimum demand (in the Application) to a sliding scale 
+3 
+topping out at 85% (in the AEP Ohio Stipulation) is a reasonable compromise in the 
+4 
+context of the entire settlement package.  For one thing, the sliding scale provides some 
+5 
+relief to smaller data center customers who use less power.  These customers often do not 
+6 
+have the resources or balances sheets of the large hyperscalers, yet they are an important 
+7 
+part of the diverse data center market.  The smaller data center customers, moreover, are 
+8 
+contributing to the need for large EHV transmission investments, but not nearly as much 
+9 
+as the large hyperscalers.  So while the minimum demand of smaller data centers should 
+10 
+be increased, it need not be increased as much as the minimum demand for large 
+11 
+hyperscalers who are building thousands of MW of data centers.   
+12 
+In a similar way, the sliding scale also eliminates the large step from 25,000 kW 
+13 
+(at 60%) to 25,001 kW (at 90%) that was a feature of AEP Ohio’s proposal in its 
+14 
+Application.  Under the sliding scale, the minimum demand increases gradually from 
+15 
+60% at 25 MW to 85% at approximately 117 MW (see AEP Ohio Stipulation Exhibit B), 
+16 
+which eliminates the large “jump.”  This change was meant, in part, to address data 
+17 
+center concerns that the 25 MW threshold was arbitrary or abrupt in operation.  
+18 
+Reducing the minimum demand from 90% in the Application to 85% in the AEP 
+19 
+Ohio Stipulation was also a reasonable compromise, in the context of the entire 
+20 
+stipulation package, between the interests of data centers and other customers.  The 85% 
+21 
+minimum demand is a strong financial commitment that achieves the two main objectives 
+22 
+of the Data Center Tariff: (1) incentivizing data centers to accurately estimate their load 
+23 
+AEP Ohio Supp. Page 95 of 330
+23 
+and (2) mitigating the risk that the cost of underutilized investment will shift to other 
+1 
+customers.  In this way, the 85% minimum demand still provides robust protections for 
+2 
+residential and other non-data-center customers (as evidenced by the Commission’s Staff, 
+3 
+OCC, OPAE, OEG, and Walmart joining as signatories).  Yet the 85% also provides data 
+4 
+centers a tangible compromise in the allocation of risk between data centers and other 
+5 
+customers. 
+6 
+Q. 
+How do the provisions addressing the scenario where the Schedule DCT customer 
+7 
+goes over its contract capacity benefit customers and the public interest? 
+8 
+A. 
+With increasing transmission capacity constraints from the tremendous increase in data 
+9 
+center demand, there could be serious reliability consequences for the grid if a data center 
+10 
+uses more power than the contract capacity in its ESA.  Data centers should not build 
+11 
+facilities that draw more power than their contract capacity, and if they do and there is no 
+12 
+additional contract capacity available, AEP Ohio must have the ability to seek 
+13 
+Commission approval to suspend service until the situation is addressed.  This provision 
+14 
+reasonably holds data center customers to the terms of their ESAs with AEP Ohio and 
+15 
+protects the grid. 
+16 
+5. 
+PARAGRAPH III.E (LOAD RAMP PERIOD) 
+17 
+Q. 
+Please describe AEP Ohio Stipulation Paragraph III.E addressing the load ramp 
+18 
+period. 
+19 
+A. 
+AEP Ohio Stipulation Paragraph III.E reiterates that the load ramp period for a Schedule 
+20 
+DCT ESA may be no longer than 4 years, a concept first introduced in Paragraph III.B.  It 
+21 
+then provides a schedule of minimums for the customer’s Load Ramp Contract Capacity 
+22 
+AEP Ohio Supp. Page 96 of 330
+24 
+(i.e., the customer’s contract capacity during the load ramp period) for each year of the 
+1 
+load ramp. 
+2 
+Q. 
+How does AEP Ohio Stipulation Paragraph III.E benefit ratepayers and the public 
+3 
+interest? 
+4 
+A. 
+As with other provisions, the load ramp period is a reasonable balance of competing 
+5 
+interests.  As noted above, the extension of the load ramp from three to four years 
+6 
+represents a concession to data center parties who said that a three-year load ramp was 
+7 
+operationally challenging.  But by specifying Load Ramp Contract Capacity levels for 
+8 
+each year, the AEP Ohio Stipulation ensures that data centers will make a substantial 
+9 
+revenue contribution even during the load ramp.  As explained in my testimony opposing 
+10 
+the Data Center Stipulation, some investments, such as new 765 kV or other EHV 
+11 
+transmission lines, are “lumpy,” meaning they are completed all at once at the start of the 
+12 
+load ramp.  Under certain circumstances, this creates a financial gap that must be covered 
+13 
+by other customers, who will end up shouldering the remaining costs.  By specifying 
+14 
+robust minimum Load Ramp Contract Capacity levels for each year of the load ramp 
+15 
+period, the AEP Ohio Stipulation minimizes the financial gap that must be covered by 
+16 
+other customers. 
+17 
+6. 
+PARAGRAPH III.F (CUSTOMER SIGNUP PROCESS) 
+18 
+Q. 
+Please describe AEP Ohio Stipulation Paragraph III.F addressing the customer sign-
+19 
+up process. 
+20 
+A. 
+AEP Ohio Stipulation Paragraph III.F establishes an express procedure for signing up 
+21 
+new load under Schedule DCT.   
+22 
+AEP Ohio Supp. Page 97 of 330
+25 
+Paragraph III.F begins by addressing the current situation in AEP Ohio’s Central 
+1 
+Ohio territory.  As AEP Ohio explained in its Application, in March 2023, AEP Ohio was 
+2 
+required to implemented a temporary moratorium on signing up new data center load due 
+3 
+to transmission capacity constraints.  As part of the moratorium, AEP Ohio established a 
+4 
+“first come, first served” queue for prospective customers expressing interest in building 
+5 
+new data centers or expanding existing data centers in Central Ohio.  Paragraph III.F of 
+6 
+the AEP Ohio Stipulation states that until Schedule DCT is implemented, the moratorium 
+7 
+will continue, and prospective data center customers will remain in AEP Ohio's Central 
+8 
+Ohio queue.  Paragraph III.F then sets forth a multistep process that will apply to all data 
+9 
+centers in AEP Ohio’s Central Ohio queue, and all other new data centers after the 
+10 
+effective date of the tariff. 
+11 
+First, customers must request that AEP Ohio conduct a formal load study of their 
+12 
+data center project.  Customers must pay a fee for this load study that ranges from 
+13 
+$10,000 to $100,000, depending on the complexity of the request.  Customers must 
+14 
+provide AEP Ohio the specific location, load ramp, and final load for the project and 
+15 
+demonstrate that they have control over the property.  Customers on AEP Ohio’s Central 
+16 
+Ohio queue must make a request for a formal load study within 45 days of Schedule 
+17 
+DCT’s effective date to retain their position in the queue. 
+18 
+Next, AEP Ohio will conduct the load study and create a service plan within 60 
+19 
+days if regional upgrades are needed or within 45 days for other cases.  Customers will be 
+20 
+grouped based on expected capacity increases for regional upgrades, and while AEP Ohio 
+21 
+will generally prioritize requests on a “first come, first served” basis, strict adherence to 
+22 
+this concept may vary due to grid conditions. 
+23 
+AEP Ohio Supp. Page 98 of 330
+26 
+Following this, AEP Ohio will present two contracts for customer signature: a 
+1 
+Letter of Agreement (LOA), which requires customers to reimburse AEP Ohio for 
+2 
+buildout costs if they cancel or delay their projects beyond 12 months, and an ESA, 
+3 
+which will include an estimated energization date, with the contract term starting from 
+4 
+that date. Customers will have 60 days to sign the LOA and ESA; failing to do so will 
+5 
+result in the automatic withdrawal of contracts.  If a customer declines, AEP Ohio may 
+6 
+offer a revised ESA to other customers in the queue. 
+7 
+Finally, AEP Ohio will include the customer's load in its PJM forecast, which will 
+8 
+begin the process of constructing any necessary EHV transmission infrastructure.  Once 
+9 
+the infrastructure is in place, AEP Ohio will energize the customer, and the contract will 
+10 
+commence.  Throughout this process, AEP Ohio will continue to update its load growth 
+11 
+forecasts to effectively meet future demands. 
+12 
+Q. 
+How does AEP Ohio Stipulation Paragraph III.F benefit ratepayers and the public 
+13 
+interest? 
+14 
+A. 
+Paragraph III.F benefits ratepayers and serves the public interest by addressing a key 
+15 
+concern raised by data center parties regarding the procedure for signing up new data 
+16 
+center loads in AEP Ohio’s Central Ohio queue and signing up all future data center loads 
+17 
+as well.  This revised process incorporates key provisions that protect the interests of AEP 
+18 
+Ohio’s existing customers, distinguishing it from the version outlined in the Data Center 
+19 
+Stipulation. 
+20 
+For instance, the load study fee in the AEP Ohio Stipulation ranges from $10,000 
+21 
+to $100,000, depending on the complexity of each request, with larger projects tending to 
+22 
+be more complex.  This tiered fee structure acknowledges the considerable time and 
+23 
+AEP Ohio Supp. Page 99 of 330
+27 
+resources that AEP Ohio’s transmission planning team must invest in studying large data 
+1 
+center loads.  These are real costs that AEP Ohio incurs, and the load study fee will 
+2 
+ensure that the customer who caused the study defrays its cost to the benefit of other 
+3 
+customers.  By establishing this usage-sensitive fee structure, AEP Ohio ensures that the 
+4 
+costs associated with complex requests are appropriately reflected. 
+5 
+Additionally, the revised procedure mandates that customers must control the land 
+6 
+when submitting an application.  This requirement is crucial in ensuring that applications 
+7 
+are legitimate and not speculative, thereby preventing unqualified requests and allowing 
+8 
+for a more efficient allocation of resources.   
+9 
+Moreover, the new process establishes reasonable timelines that strike a balance 
+10 
+between data centers’ need to deliberate on their projects and AEP Ohio’s need to 
+11 
+efficiently navigate the queue.  By allowing AEP Ohio to move forward with other 
+12 
+customers if initial applicants do not sign within the designated time frame, the procedure 
+13 
+ensures that resources are utilized effectively and allocated to customers who are ready to 
+14 
+go forward. 
+15 
+Importantly, Paragraph III.F maintains the current LOA and ESA process that has 
+16 
+proven to be effective in protecting AEP Ohio’s existing customers from stranded 
+17 
+investments that could result from project cancellations or significant delays.  In this way, 
+18 
+the AEP Ohio Stipulation is more beneficial to ratepayers and the public interests than the 
+19 
+Data Center Stipulation, which unreasonably restricts the LOA to CIAC costs and thereby 
+20 
+shifts the risk of stranded costs unfairly from data center customers to AEP Ohio’s 
+21 
+remaining customers. 
+22 
+AEP Ohio Supp. Page 100 of 330
+28 
+In summary, Paragraph 3.F not only clarifies the application process for data 
+1 
+centers but also reinforces protections for AEP Ohio’s existing customers. 
+2 
+7. 
+PARAGRAPH III.G (RETAIL CAPACITY ASSIGNMENT) 
+3 
+Q. 
+Please describe AEP Ohio Stipulation Paragraph III.G addressing retail capacity 
+4 
+assignment. 
+5 
+A. 
+AEP Ohio Stipulation Paragraph III.G creates a new concept that was not present in the 
+6 
+Application:  a process by which Schedule DCT customers may “assign” a portion of 
+7 
+their contract capacity to another Schedule DCT customer.  Specifically, if a customer 
+8 
+(the “Assigning Customer”) wants to reduce its Contract Capacity under Schedule DCT 
+9 
+during the contract term, it may request AEP Ohio to assign up to 25% of its Contract 
+10 
+Capacity (“Reallocated Capacity”) to another Schedule DCT customer (the “Receiving 
+11 
+Customer”).  AEP Ohio will make a good faith effort to accommodate the request so long 
+12 
+as several conditions are met: 
+13 
+• Unless “circumstances demonstrably change,” the Assigning Customer cannot 
+14 
+request new capacity until a reasonable time has passed after the assignment. 
+15 
+• The Receiving Customer must sign an Electric Service Agreement (ESA) for the 
+16 
+Reallocated Capacity.  If the capacity is for a new data center without an ESA, a 
+17 
+new ESA must be signed for at least the amount of Reallocated Capacity.  If it is 
+18 
+an expansion of an existing Data Center with an ESA, the current ESA must be 
+19 
+amended to reflect the increased capacity. 
+20 
+• AEP Ohio must determine that the transfer is electrically feasible from the 
+21 
+perspective of the transmission and distribution grid. 
+22 
+AEP Ohio Supp. Page 101 of 330
+29 
+• The Receiving Customer must pay for all equipment investment and incremental 
+1 
+costs associated with the transfer. 
+2 
+• The Receiving Customer must meet all collateral requirements under Schedule 
+3 
+DCT. 
+4 
+• Either (a) the transfer will not result in stranded investments reflected in the rates 
+5 
+of other ratepayers or (b) the Assigning Customer pays the costs of any stranded 
+6 
+equipment so that it is not reflected in the rates of other ratepayers. 
+7 
+• Both customers must confirm in writing to AEP Ohio that no compensation is 
+8 
+exchanged in consideration for the transfer, ensuring there is no secondary market 
+9 
+for AEP Ohio's transmission capacity.  AEP Ohio will monitor assignment 
+10 
+requests and consult with relevant staff on any transactions that may involve 
+11 
+additional compensation, reserving the right to deny or cancel any assignment 
+12 
+based on false attestations or discoveries of such compensation. 
+13 
+If all these conditions are met and the transfer is made, the Assigning Customer will be 
+14 
+relieved of its contractual obligations concerning the Reallocated Capacity (including the 
+15 
+exit fee) but will remain responsible for any remaining unused capacity. 
+16 
+Q. 
+How does AEP Ohio Stipulation Paragraph III.G benefit ratepayers and the public 
+17 
+interest? 
+18 
+A. 
+AEP Ohio Stipulation Paragraph III.G Is another example of a provision where the AEP 
+19 
+Ohio Stipulation Signatories listened to the input of data center parties and 
+20 
+accommodated an important  issue for those parties.  Specifically, Paragraph III.G 
+21 
+permits data centers who, for whatever reason, incorrectly overestimated their power 
+22 
+needs when signing their ESA to later “assign” up to 25% of unused contract capacity to 
+23 
+AEP Ohio Supp. Page 102 of 330
+30 
+another Schedule DCT customer.  This reduces risks for data center customers and 
+1 
+provides some flexibility.   
+2 
+ 
+ 
+Critically, moreover, AEP Ohio Stipulation Paragraph III.G also accounts for the 
+3 
+interests of AEP Ohio’s other customers by establishing multiple conditions on such an 
+4 
+assignment.  These conditions – such as accounting for any stranded costs and requiring 
+5 
+the receiving customer to take on the full contractual obligations of the assigning 
+6 
+customer – are designed to prevent a transfer of capacity from shifting costs to other 
+7 
+customers or causing any other harm to other customers, AEP Ohio, or the grid. 
+8 
+ 
+ 
+AEP Ohio Stipulation Paragraph III.G strikes a better balance and protects other 
+9 
+customers better than the Data Center Stipulation.  As described in my testimony in 
+10 
+opposition, the Data Center Stipulation lacks the many conditions in the AEP Ohio 
+11 
+Stipulation that protect other customers and clarify that assignment will only be possible 
+12 
+if other customers are essentially held harmless. 
+13 
+8. 
+PARAGRAPH III.H (OPPORTUNITY FOR CONTRACT 
+14 
+CAPACITY REDUCTION) 
+15 
+Q. 
+Please describe AEP Ohio Stipulation Paragraph III.H addressing an opportunity 
+16 
+for contract capacity reduction. 
+17 
+A. 
+Paragraph III.H states that AEP Ohio will communicate a one-time opportunity to 
+18 
+General Service customers with a contract demand exceeding 25 MW to reduce their 
+19 
+existing Contract Capacity. This reduction is contingent upon two conditions: (1) it must 
+20 
+not result in stranded assets, and (2) the customer must agree not to request additional 
+21 
+capacity at that location for three years following the reduction, unless there is a 
+22 
+“demonstrated change in circumstances.” 
+23 
+AEP Ohio Supp. Page 103 of 330
+31 
+Q. 
+How does AEP Ohio Stipulation Paragraph III.H benefit ratepayers and the public 
+1 
+interest? 
+2 
+A. 
+Paragraph III.H is another provision responding to issues raised by data center parties in 
+3 
+this case.  So long as the two conditions are met in order to protect other customers, the 
+4 
+opportunity for current customers to reduce capacity will free up additional capacity to be 
+5 
+used to serve data center customers on AEP Ohio’s queue, which benefits the public 
+6 
+interest. 
+7 
+9. 
+PARAGRAPH III.I (BEHIND-THE-METER GENERATION) 
+8 
+Q. 
+Please describe AEP Ohio Stipulation Paragraph III.I addressing behind-the-meter 
+9 
+generation. 
+10 
+A. 
+Paragraph III.I makes certain modifications to the Application tariff language as it 
+11 
+pertains to behind-the-meter generation. 
+12 
+First, Paragraph III.I adds a new sentence to the tariff to make clear that Schedule 
+13 
+DCT customers must enter into an interconnection agreement with AEP Ohio before 
+14 
+connecting any behind-the-meter power source. 
+15 
+Second, Paragraph III.I addresses the concept of using behind-the-meter 
+16 
+generation to offset its contract capacity (sometimes called “netting”).  Specifically, it 
+17 
+provides that if a customer chooses to use behind-the-meter generation to offset its 
+18 
+Contract Capacity, the customer must have equipment in place that can instantaneously 
+19 
+curtail load to match or exceed the output of the behind-the-meter generation, in line with 
+20 
+the transmission provider’s technical requirements.  Furthermore, if the customer’s 
+21 
+equipment fails and causes the customer to exceed its Contract Capacity, the customer 
+22 
+AEP Ohio Supp. Page 104 of 330
+32 
+must promptly repair and test the equipment, and AEP Ohio reserves the right to raise 
+1 
+reliability or safety concerns with the Commission if such a failure occurs.  
+2 
+Lastly, Paragraph III.I expressly states that nothing in the paragraph limits Ohio’s 
+3 
+energy policy promoting behind-the-meter generation, nor does it affect AEP Ohio’s 
+4 
+rights to disconnect or curtail load as outlined in its tariff and the Ohio Administrative 
+5 
+Code. 
+6 
+Q. 
+How does Paragraph III.I benefit ratepayers and the public interest. 
+7 
+A. 
+Responding to the “netting” concept introduced by Data Center Stipulation Signatory 
+8 
+parties, Paragraph III.I benefits customers and the public interest by establishing 
+9 
+conditions under which netting of contract capacity with behind-the-meter generation is 
+10 
+feasible.  The requirement that the load be curtailed in the event of an outage of the 
+11 
+behind-the-meter generation is key because it ensures that data center customers only use 
+12 
+their contract capacity and do not rely on transmission capacity without paying for it.  
+13 
+10. 
+PARAGRAPH III.J (EXIT FEES) 
+14 
+Q. 
+Please describe AEP Ohio Stipulation Paragraph III.J addressing exit fees. 
+15 
+A. 
+Paragraph III.J provides that the proposal for exit fees outlined in the Application will be 
+16 
+adopted with specific modifications. 
+17 
+ 
+ 
+First, Paragraph III.J states that the option to pay the exit fee and exit the contract 
+18 
+will become available after the fifth year of the contract following the load ramp period.  
+19 
+For instance, if a customer has a 3-year load ramp, it will be eligible to exit after 
+20 
+completing contract year 8 (3+5).  (The amount of the exit fee remains unchanged from 
+21 
+the Application: three years of minimum charges.) 
+22 
+AEP Ohio Supp. Page 105 of 330
+33 
+ 
+ 
+Second, Paragraph III.J states that AEP Ohio will create a regulatory liability for 
+1 
+any exit fee revenue or any revenue collected from customer collateral.  Within six 
+2 
+months of receiving such revenue, AEP Ohio will submit a proposal to the Commission 
+3 
+to use these funds to benefit its retail customers over the remaining term of the contract 
+4 
+for the data center that either paid the exit fee or provided the collateral. 
+5 
+Q. 
+Please describe how Paragraph III.J benefits ratepayers and the public interest. 
+6 
+A. 
+The purpose of the exit fee proposal in AEP Ohio’s Application – and in AEP Ohio 
+7 
+Stipulation Paragraph III.J – is to provide some relief and flexibility to data center 
+8 
+customers whose plans drastically change and can no longer go through with their data 
+9 
+center commitments.  At the same time, the exit fee provisions protect the rest of AEP 
+10 
+Ohio’s customers, because it requires an ongoing financial obligation and customer “skin 
+11 
+in the game” throughout the contract term.  Even with the exit fee, data centers will still 
+12 
+face strong incentives to accurately estimate their power needs up front and to follow 
+13 
+through with their plans, and they will be required to make substantial contributions to 
+14 
+the cost of the infrastructure built to serve them.  In this way, the exit fee provisions in 
+15 
+Paragraph III.J benefit ratepayers and the public interest.  
+16 
+11. 
+PARAGRAPH III.K (SSO) 
+17 
+Q. 
+Please describe AEP Ohio Stipulation Paragraph III.K addressing the SSO proposal 
+18 
+and how it benefits ratepayers and the public interest. 
+19 
+A. 
+AEP Ohio Stipulation Paragraph III.K provides that the SSO component of AEP Ohio’s 
+20 
+Application will be dismissed without prejudice, with AEP Ohio reserving the right to file 
+21 
+an application to raise those issues in a different docket.  In the context of the overall AEP 
+22 
+AEP Ohio Supp. Page 106 of 330
+34 
+Ohio Stipulation package, this is a reasonable outcome to focus this proceeding on the 
+1 
+core issues of the data center tariff. 
+2 
+VI. 
+THIRD PRONG OF THE THREE-PART TEST 
+3 
+Q. 
+What is the Third Prong of the Commission’s Three-Part Test for stipulations? 
+4 
+A. 
+The Third Prong of the Three-Part Test asks whether the stipulation violates any 
+5 
+important regulatory principle or practice. 
+6 
+Q. 
+Does the AEP Ohio Stipulation violate any important regulatory principle or 
+7 
+practice? 
+8 
+A. 
+No.  To the contrary, the AEP Ohio Stipulation furthers multiple important state policies. 
+9 
+Q. 
+What is the general state policy regarding retail electric service in Ohio? 
+10 
+A. 
+The state policy aims to ensure that consumers have access to “adequate, reliable, safe, 
+11 
+efficient, nondiscriminatory, and reasonably priced retail electric service” as stated in 
+12 
+R.C. 4928.02(A). 
+13 
+Q. 
+How does the AEP Ohio Stipulation further this state policy? 
+14 
+A. 
+For all the reasons discussed above in connection with Prongs One and Two, the AEP 
+15 
+Ohio Stipulation represents a reasonable compromise between data center interests and 
+16 
+the interests of other AEP Ohio customers.  It ensures that data centers have enough skin 
+17 
+in the game so that they accurately estimate their power needs up front, thereby allowing 
+18 
+the grid to be designed to provide “adequate” and “reliable” power in an “efficient” and 
+19 
+“reasonably priced” way.  It also ensures that data centers will make substantial 
+20 
+commitments to the retail cost of the infrastructure built to serve them even if the data 
+21 
+centers do not use as much power as they said they would.  This too helps keep electric 
+22 
+AEP Ohio Supp. Page 107 of 330
+35 
+service “reasonably priced” for AEP Ohio customers even if some EHV transmission 
+1 
+assets built to serve data centers go underutilized in the short term.   
+2 
+Furthermore, as I discuss in detail above, the AEP Ohio Stipulation also provides 
+3 
+several benefits to data center customers.  For one thing, it provides a reasonable way 
+4 
+forward to work through AEP Ohio’s queue and begin the process of serving new data 
+5 
+center projects in AEP Ohio’s Central Ohio service territory.  It also reflects changes to 
+6 
+AEP Ohio’s Application that reasonably lessen the data center financial commitments 
+7 
+from what AEP Ohio originally proposed, and it adds multiple concepts that were not 
+8 
+addressed in AEP Ohio’s Application to respond to data center input and requests.  
+9 
+Accordingly, the AEP Ohio Stipulation also supports data centers having access to 
+10 
+“adequate” and “reliable” power that is provided in an “efficient” and “reasonably 
+11 
+priced” way.   
+12 
+Q. 
+Is applying Schedule DCT to data centers but not other types of large load “unduly 
+13 
+discriminatory” as the proponents of the Data Center Stipulation have argued in 
+14 
+this proceeding? 
+15 
+A. 
+No, it is not unduly discriminatory.  A tariff may be unduly discriminatory if it treats 
+16 
+similarly situated customers differently without justification.  But it is both appropriate 
+17 
+and commonplace in utility regulation to recognize different classes of customers – 
+18 
+subject to different tariff schedules – when those classes are based on tangible, 
+19 
+reasonable, and justifiable distinctions.  Indeed, apart from AEP Ohio’s Schedule GS 
+20 
+(General Service), every schedule in AEP Ohio’s current, Commission-approved tariff 
+21 
+makes reasonable distinctions between different classes of customers based not only on 
+22 
+how much power the customer uses and at what voltage, but also, critically, on who the 
+23 
+AEP Ohio Supp. Page 108 of 330
+36 
+customers are and what they use electric service for.  This includes, at a minimum, the 
+1 
+following: 
+2 
+Table MSM-1 
+Tariff Schedules That Draw Reasonable Distinctions Between Customer Classes 
+Customer Class / Type of Customer 
+Applicable Tariff Schedules / Riders 
+Residential 
+Schedules RS, RSDM, RS-TOU, RS-TOD 
+County and independent fairs 
+Schedule GS-FAIR 
+Customers who use power for street 
+lighting 
+Schedule SL 
+Customers who use power for area 
+lighting 
+Schedule AL 
+Customers who use power for electric 
+heat 
+Schedule EHG 
+Schools 
+Schedules SS, EHS  
+Churches 
+Supplement No. 18 
+Power plants 
+Schedule GSP 
+Customers with behind-the-meter 
+generation 
+Schedules NEMS, NEMS-H, 
+COGEN/SPP 
+Customers who use power for EVs 
+Schedules PEV, RS-PEV, BUS-PEV 
+Automakers 
+Automaker Credit Rider 
+All the above tariff schedules and riders are examples of the Commission drawing 
+3 
+reasonable distinctions among types of customers and what they use power for.  So long 
+4 
+as those distinctions are reasonable and consistent, they are not unduly discriminatory, 
+5 
+but rather a vital and long-established way that the Commission achieves equity and other 
+6 
+policy goals in setting the rates that retail customers pay for electric service. 
+7 
+AEP Ohio Supp. Page 109 of 330
+37 
+Q. 
+What are the main distinctions between future data center customers and other 
+1 
+large loads that justify applying Schedule DCT only to new data centers? 
+2 
+A. 
+There are at least three reasonable distinctions that justify applying different tariff 
+3 
+schedules to new data centers and other large loads. 
+4 
+First, data centers, unlike other large loads, have been responsible for the 
+5 
+significant growth in AEP Ohio’s service territory in recent years and are expected to 
+6 
+drive substantial future growth.  AEP Ohio's peak demand in Central Ohio was 
+7 
+approximately 4,000 MW in 2018.  This means that since AEP Ohio was founded in the 
+8 
+early 20th century, it took about 100 years for the load in central Ohio to grow to 4,000 
+9 
+MW.  Yet it will take only 10 years from 2018 to 2028 for data centers to more than 
+10 
+double that load, with an additional 5,000 MW in data center load expected in Central 
+11 
+Ohio by 2028 due to signed ESAs.  No other industry in AEP Ohio’s long history has 
+12 
+caused such rapid growth in such a short time frame.  This unique hypergrowth feature of 
+13 
+data center load alone is sufficient for the Commission to conclude that data centers are 
+14 
+unique in their use of electricity. 
+15 
+Second, data centers are unique compared to other large loads in the sheer amount 
+16 
+and concentration of electric demand at one location.  Other than data centers, the largest 
+17 
+customers in AEP Ohio’s service territory are a few steel mills that use approximately 
+18 
+100 to 150 MW of electric demand in a single location.  In the past, AEP Ohio’s largest 
+19 
+customer was an aluminum smelter with a peak demand of approximately 400 MW, 
+20 
+which was unique.  In contrast, data centers have requested 1,000 MW or more in a single 
+21 
+location, posing unprecedented risks regarding the continued viability of the data center 
+22 
+AEP Ohio Supp. Page 110 of 330
+38 
+company, its location, and its product.  AEP Ohio must construct significant infrastructure 
+1 
+to serve such concentrated loads, making data centers particularly risky. 
+2 
+Third, and perhaps most importantly, data centers bring with them systematic, 
+3 
+industry-wide risks.  AEP Ohio’s typical non-data-center growth consists of a diverse 
+4 
+array of customers from various industries.  This diversity provides inherent protection 
+5 
+against building assets that may go unused due to downturns in a particular industry or 
+6 
+segment of the economy.  For example, if the automotive market experiences a downturn, 
+7 
+automobile parts manufacturers may use less electricity, but at the same time, another 
+8 
+industry such as agricultural processors might be thriving and use more electricity.  In 
+9 
+this way, the incremental ups and downs of different industries are mitigated, and there is 
+10 
+a diminished risk of cost shifting to AEP Ohio’s other customers from trouble in a single 
+11 
+industry.  With data centers, by contrast, AEP Ohio is facing the prospect of over half of 
+12 
+its Central Ohio load (or more) all being part of the same data center industry.  The 
+13 
+unprecedented scale and high-stakes nature of this risk facing AEP Ohio and its 
+14 
+customers means that data centers represent a large, systemic risk concentrated in a single 
+15 
+industry.  Increasingly, data centers’ vast demand for power is driven by speculate 
+16 
+investments that are betting that AI technology will be transformative and highly 
+17 
+lucrative.  If the data center industry experiences a downturn in five to ten years, or if use 
+18 
+cases for artificial intelligence do not materialize, or if data centers improve their 
+19 
+computing efficiency and need less power, these systemic risks could lead to significant 
+20 
+underutilization of the electric infrastructure that was built to power the data centers.  
+21 
+These risks, moreover, cannot be mitigated by the marginal ups and downs of other 
+22 
+industries in AEP Ohio’s service territory, since the data centers will constitute such a 
+23 
+AEP Ohio Supp. Page 111 of 330
+39 
+large percentage of AEP Ohio’s load.  Given the fact that data centers present uniquely 
+1 
+systematic and concentrated risks associated with hyperscale data center loads, it is 
+2 
+appropriate to require additional financial protections from the data center industry before 
+3 
+substantial transmission investments is built to meet their projected electric needs.  In my 
+4 
+opinion, data center customers are not similarly situated to other customer classes, and 
+5 
+the hyperscale, hypergrowth nature of their load sets them apart from other customer 
+6 
+classes.  Accordingly, their respective terms and conditions of service need not (and 
+7 
+should not) be the same.  
+8 
+Q. 
+What is the state policy regarding electric service and economic development? 
+9 
+A. 
+The state policy is to “facilitate the state’s effectiveness in the global economy” as stated 
+10 
+in R.C. 4928.02(N). 
+11 
+Q. 
+How does the AEP Ohio Stipulation promote the state policy to “facilitate the state’s 
+12 
+effectiveness in the global economy”? 
+13 
+A. 
+As I discussed at length in my testimony above, the AEP Ohio Stipulation appropriately 
+14 
+applies the increased financial commitments of Schedule DCT only to new data center 
+15 
+customers, who are driving the need for costly EHV transmission investment, and not to 
+16 
+new manufacturers and other large loads, for whom the status quo tariff structure has 
+17 
+worked well for many years.  This approach addresses the issues surrounding the 
+18 
+tremendous growth of data center load without needlessly hampering Ohio’s 
+19 
+effectiveness in the often-intense competition with other states and nations to attract new 
+20 
+manufacturers and other large job creators.  In promoting this important energy policy, 
+21 
+the approach of the AEP Ohio Stipulation is far superior to the approach of the Data 
+22 
+Center Stipulation.  As I describe in my testimony opposing the Data Center Stipulation, 
+23 
+AEP Ohio Supp. Page 112 of 330
+40 
+the financial obligations imposed by the Data Center Stipulation on all large new loads 
+1 
+introduce unnecessary burdens that compromise Ohio’s ability to attract job-creating 
+2 
+facilities, ultimately jeopardizing the state’s economic growth objectives and 
+3 
+effectiveness in the global economy. 
+4 
+Q. 
+Are there are any other ways that the AEP Ohio Stipulation furthers important 
+5 
+regulatory policies or practices? 
+6 
+A. 
+There are at least two other ways that the AEP Ohio Stipulation furthers important 
+7 
+regulatory principles and practices.   
+8 
+First, as noted above, the AEP Ohio Stipulation includes several refinements to 
+9 
+AEP Ohio’s Application that establish procedures and clarifications that will improve 
+10 
+AEP Ohio’s engagement with data center customers.  The Data Center Stipulation, by 
+11 
+contrast, violates regulatory policies by including several additional provisions in this 
+12 
+regard that AEP Ohio did not agree to and that improperly encroach on AEP Ohio’s right 
+13 
+to efficiently manage its own business and grid to benefit customers.  By addressing these 
+14 
+issues in a stipulation joined by the utility-Applicant, the AEP Ohio Stipulation furthers 
+15 
+regulatory policies in a way that the Data Center Stipulation does not. 
+16 
+Second, as noted above, the AEP Ohio Stipulation includes a process for Schedule 
+17 
+DCT customers to assign a portion of unused capacity to other Schedule DCT customers 
+18 
+so long as several customer-protecting conditions are met, one of which is an assurance 
+19 
+that no compensation or other consideration was exchanged for the assignment.  By 
+20 
+contrast, as explained in my opposition testimony, the Data Center Stipulation permits 
+21 
+new data centers to assign unused capacity in a manner that lacks key customer 
+22 
+protections, including that the Data Center Stipulation would permit (and even 
+23 
+AEP Ohio Supp. Page 113 of 330
+41 
+incentivize) a secondary market for capacity assignment.  Therefore, by allowing a 
+1 
+limited assignment process without encouraging a secondary market, the AEP Ohio 
+2 
+Stipulation furthers regulatory policies in a way that the Data Center Stipulation does not. 
+3 
+Q. 
+Does this conclude your testimony in support of the AEP Ohio Stipulation? 
+4 
+A. 
+Yes, but I reserve the right to address additional matters that may arise through the course 
+5 
+of this proceeding. 
+6 
+AEP Ohio Supp. Page 114 of 330
+This foregoing document was electronically filed with the Public Utilities
+Commission of Ohio Docketing Information System on
+11/1/2024 4:42:46 PM
+in
+Case No(s). 24-0508-EL-ATA
+Summary: Testimony Supplemental Testimony of Matthew McKenzie electronically
+filed by Mr. Michael J. Schuler on behalf of Ohio Power Company.
+AEP Ohio Supp. Page 115 of 330

@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Kentucky",
+  "commission": "Kentucky Public Service Commission",
+  "docket": "2025-00113",
+  "proceeding": "Electronic Application of Kentucky Utilities Company for an Adjustment of its Electric Rates, and Approval of Certain Regulatory and Accounting Treatments",
+  "how_obtained": "Downloaded the PDF with curl from the Kentucky PSC public electronic case filing path (psc.ky.gov/pscecf/...), which serves case documents without a login. Extracted text with PyMuPDF using sorted-block extraction (page.get_text('text', sort=True)) so the margin line numbers stay on the same line as the testimony text they number. Pages are joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation was applied; the spacing, running heads and word-spacing artefacts are exactly what the extractor produced.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://psc.ky.gov/pscecf/2025-00113/lisom%40spilmanlaw.com/08292025031453/2025-00113_-_Direct_Testimony_-_Walmart_-_Perry.pdf",
+  "document_title": "Direct Testimony and Exhibits of Lisa V. Perry on Behalf of Walmart Inc.",
+  "filing_date": "2025-08-29",
+  "filer": "Walmart Inc. (counsel: Spilman Thomas & Battle, PLLC)",
+  "witness": "Lisa V. Perry",
+  "document_type": "Direct testimony with exhibits",
+  "pages": 69,
+  "version_role": "original",
+  "version_pair_with": "ky-2025-00113-perry-direct-testimony-errata-clean.txt",
+  "notes": "Pages 1-37 are the testimony; pages 38-69 are the verification/affidavit and Exhibits LVP-1 through LVP-4. The word at page 20, line 14 reads 'intraclass' here and is changed to 'interclass' by the 2025-11-05 errata.",
+  "sha256": "246fbc66ecf2081a43d2f64066b91908d932a56e3421d5fbb20006a171fcbbd8",
+  "bytes": 184727,
+  "retrieved_at": "2026-08-04T16:46:09Z",
+  "source_pdf_sha256": "93ed5ea92c5bd66616892e7dd4973e4a12814727537d4954851da6bb3606e7c4",
+  "source_pdf_bytes": 789111
+}

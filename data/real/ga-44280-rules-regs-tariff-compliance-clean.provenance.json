@@ -1,0 +1,15 @@
+{
+  "jurisdiction": "Georgia Public Service Commission (GA PSC)",
+  "docket": "44280",
+  "source_url": "https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/221656/102762",
+  "source_detail_page": "https://psc.ga.gov/search/facts-document/?documentId=221656",
+  "facts_document_id": 221656,
+  "facts_file_id": 102762,
+  "document_title": "Revisions to Rules and Regulations Tariff Compliance Filing - CLEAN version of the revised tariff sheets",
+  "filing_date": "2025-02-28",
+  "filer": "Georgia Power Company",
+  "how_obtained": "Fetched the GA PSC FACTS document-detail page /search/facts-document/?documentId=221656 to read its download link, then downloaded the ZIP 'dkt_44280_revisions_to_rules_and_regs_tariff_compliance_filing.zip' from the public API endpoint https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/221656/102762. Unzipped it and took only 'Clean/DKT 44280 Clean.pdf'. Its redlined twin 'Tracked/DKT 44280 Tracked.pdf' from the same archive is saved separately as ga-44280-rules-regs-tariff-compliance-tracked.txt - the two are the same tariff sheets in clean and tracked-changes form. Converted the PDF to text with pdfminer.six extract_text(). Saved exactly as pdfminer emitted it - no reflow, no de-hyphenation, no ligature or soft-hyphen repair; running heads, marginal line-number columns, dot leaders and form feeds all left in place.",
+  "sha256": "ec72a8be36cf001d8eb08bc40899046196a786cd2f042032ce1ecc26a0c389ca",
+  "bytes": 61863,
+  "retrieved_at": "2026-08-04T16:51:28Z"
+}

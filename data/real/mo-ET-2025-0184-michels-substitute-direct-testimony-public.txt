@@ -1,0 +1,2177 @@
+                                                    Exhibit No.:
+                                                              Issue(s):  Resource Planning
+                                                     Witness:  Matt Michels
+                                       Type of Exhibit:  Direct Testimony
+                                           Sponsoring Party:  Union Electric Company
+                                                            File No.:  ET-2025-0184
+                                   Date Testimony Prepared:  May 14, 2025
+
+
+MISSOURI PUBLIC SERVICE COMMISSION
+
+
+         FILE NO. ET-2025-0184
+
+
+        DIRECT TESTIMONY
+
+              OF
+
+         MATT MICHELS
+
+             ON
+
+           BEHALF OF
+
+     UNION ELECTRIC COMPANY
+
+        D/B/A AMEREN MISSOURI
+
+
+
+
+
+                          St. Louis, Missouri
+                     May, 2025
+
+
+
+               P                   TABLE OF CONTENTS
+
+
+I.   INTRODUCTION ................................................................................................... 1
+
+II.   PURPOSE OF TESTIMONY .................................................................................. 2
+
+III.  AMEREN MISSOURI'S PREFERRED RESOURCE PLAN ................................. 4
+
+IV.  PLAN ANALYSIS FOR RISK ASSESSMENT ................................................... 19
+
+
+
+
+
+                                                                i                        DIRECT TESTIMONY
+
+                            OF
+
+                      MATT MICHELS
+
+                          FILE NO. ET-2025-0184
+
+ 1                                             I.  INTRODUCTION
+
+ 2         Q.    Please state your name and business address.
+
+ 3         A.    Matt Michels, Union Electric Company d/b/a Ameren Missouri ("Ameren
+
+ 4   Missouri" or "Company"), One Ameren Plaza, 1901 Chouteau Avenue, St. Louis, Missouri
+
+ 5   63103.
+
+ 6         Q.   What is your position with Ameren Missouri?
+
+ 7         A.      I am the Director, Corporate Analysis.
+
+ 8         Q.    Please  describe  your  educational  background and  employment
+
+ 9   experience.
+
+10         A.      I joined Ameren Services Company in 2005 as a Consulting Engineer in
+
+11   Corporate Planning. My responsibilities included coordination of the integration of
+
+12    processes and systems following the acquisition by Ameren Corporation of Illinois Power
+
+13   Company  ("Illinois Power") in October 2004.  I was subsequently involved in the
+
+14    integration of combustion turbine facilities acquired by Ameren Missouri in 2006. In
+
+15   September 2008, I was promoted to Managing Supervisor of Resource Planning with
+
+16    responsibility for long-range resource planning, including Ameren Missouri’s Integrated
+
+17   Resource Plan ("IRP") filings and associated analysis. In February 2013, I was promoted
+
+18    to Corporate Analysis Manager, and in June 2017, I was promoted to my current position.
+
+19    In that capacity, I continue to have direct responsibility for Ameren Missouri's resource
+
+
+                                        1       Direct Testimony of
+      Matt Michels
+
+ 1   planning process, including plans that include significant new load additions, such as data
+
+ 2    centers.
+
+ 3              I earned a Bachelor of Science degree in Electrical Engineering from the University
+
+ 4    of Illinois at Urbana-Champaign in May 1990. I have been employed by Ameren or Illinois
+
+ 5   Power since June 1990 in various positions related to resource and business planning.
+
+ 6   During most of that time, my responsibilities have included the development, use and
+
+ 7    oversight of various planning models used for purposes such as production costing,
+
+ 8    acquisition  evaluation,  corporate  restructuring,  financial  forecasting,  and  resource
+
+ 9    planning. I have previously testified before this Commission in proceedings involving
+
+10    resource planning, natural gas-fired resources, renewable energy resources, and energy
+
+11    efficiency.
+
+12                                   II. PURPOSE OF TESTIMONY
+
+13         Q.   What is the purpose of your direct testimony?
+
+14         A.    The purpose of my direct testimony is to describe the Company's recently
+
+15   adopted Preferred Resource Plan ("PRP") and analysis of the cost of accelerating resource
+
+16    additions that would otherwise have been made to serve all customers' needs, but for many
+
+17    of them at a later point in time, so that the Company can meet increased load expectations
+
+18    driven by expected large load additions. The results of the analysis I describe are used by
+
+19   Company witness Steven Wills to evaluate the customer rate implications of the Company's
+
+20   proposed tariffs filed in this case, which I will refer to collectively as the "Large Load
+
+21    Tariff."
+
+
+
+
+
+                                         2       Direct Testimony of
+      Matt Michels
+
+ 1         Q.   When did Ameren Missouri change its PRP from the one included in
+
+ 2   the Company's 2023 triennial Integrated Resource Plan ("IRP") filing?
+
+ 3         A.    Ameren Missouri filed a Notice of Change in PRP with the Missouri Public
+
+ 4    Service Commission ("Commission") on February 28, 2025.1  The Company's formal
+
+ 5   Notice of Change in PRP is attached to my testimony as Schedule MM-D1.
+
+ 6         Q.   What were the main reasons for changing the Company's PRP?
+
+ 7         A.    There were two primary reasons.  First, the Company has seen a surge in
+
+ 8    interest from large load customers locating in Ameren Missouri's service territory, the
+
+ 9    subject of this very case. Peak demand for individual large load customers can range from
+
+10   100 megawatts ("MW") to over a gigawatt ("GW"). As discussed in Company witness
+
+11   Ajay Arora's direct testimony, the Company expects as much as approximately 2 GW of
+
+12   such loads to begin ramping up on the system as early as 2026 and to be fully ramped-up
+
+13    within three to five years. Given the Company's obligation to serve, a change in the PRP
+
+14   was necessary to accelerate resources needed to reliably provide the service. Second, while
+
+15    significantly less impactful from an overall portfolio perspective, the reductions in
+
+16    anticipated demand and energy savings based on the conclusion of the case involving its
+
+17   most recent application for demand-side program approval under the Missouri Energy
+
+18    Efficiency Investment Act ("MEEIA") required that the Company reassess its long-term
+
+19    capacity and energy position.
+
+
+
+
+
+         1 On February 13, 2025, Ameren Missouri filed a brief notice of its intent to file a formal Notice of Change
+        in PRP. The formal notice was filed in accordance with 20 CSR 4240-22.080(12).
+
+                                         3       Direct Testimony of
+      Matt Michels
+
+ 1              III.  AMEREN MISSOURI'S PREFERRED RESOURCE PLAN
+
+ 2         Q.    Please describe the Company's current PRP as modified pursuant to its
+
+ 3   February 28, 2025, Notice of Change in PRP.
+
+ 4         A.    The Company's current PRP is shown in Figure 1 below, which shows the
+
+ 5   Company's planned timeline for resource retirements and additions through 2043.
+
+ 6                        Figure 1. Ameren Missouri 2025 PRP
+
+
+
+
+
+ 7
+
+ 8        As Figure 1 shows, the Company's PRP reflects the following:
+
+ 9             •  Retirement of Sioux Energy Center ("SEC") as early as the end of 2031 and
+
+10                  as late as the end of 2035.2 The retirement date range reflects the need for
+
+11                     flexibility to retire the existing coal units at the site only when planned new
+
+12                  generation  at the  site becomes  fully operational.   That  flexibility  is
+
+13                 important in part because of the long lead time necessary to construct and
+
+14               commission such generation, which can be impacted by supply chains for
+
+15                 equipment, materials, and labor.
+
+16             •  Retirement of two units at Labadie Energy Center ("LEC") at the end of
+
+17               2036 and the remaining two units at the end of 2042.  This remains
+
+18                unchanged from the Company's 2023 IRP preferred plan.
+
+
+         2 For modeling purposes, the retirement date for Sioux was assumed to be December 31, 2031, and the in-
+       service date for the replacement generation was assumed to be January 1, 2032.
+
+                                         4       Direct Testimony of
+      Matt Michels
+
+ 1             •  Retirement of Venice Energy Center ("VEC"), a natural gas simple cycle
+
+ 2              ("NGSC") facility located in Illinois, at the end of 2029. The retirement of
+
+ 3                Venice is required to comply with the requirements of Illinois' Climate and
+
+ 4                  Equitable Jobs Act ("CEJA"), enacted in 2021, and remains unchanged
+
+ 5               from the Company's 2023 IRP preferred plan.
+
+ 6             •  Retirement of the Company's remaining Illinois NGSC facilities at the end
+
+ 7                  of 2039, also to comply with CEJA and unchanged from the Company's
+
+ 8               2023 IRP preferred plan.
+
+ 9             •  Addition of 800 MW of NGSC capacity in late 2027 – the Castle Bluff
+
+10                     facility for which the Commission approved a certificate of convenience
+
+11                and necessity ("CCN") in October 2024, unchanged from the Company's
+
+12               2023 IRP preferred plan.3
+
+13             •  Addition of another 800 MW of NGSC capacity in late 2028 at the former
+
+14                      site of the Company's coal-fired Rush Island Energy Center ("RIEC"),
+
+15               which was retired in October 2024. This is a new addition not previously
+
+16                    explicitly reflected in the Company's 2023 IRP preferred plan but also
+
+17                   represents an acceleration of a portion of the "clean dispatchable" resources
+
+18                  the Company had planned to add by 2040, as indicated in its 2023 IRP.
+
+19               Adding this generation by 2028 is also driven by the need to make use of
+
+20                  the former Rush Island coal plant's valuable transmission interconnection
+
+21                    rights without the extended time that would be needed for a new generator
+
+22                  interconnection request, and the risks associated with such a new request
+
+
+
+         3 File No. EA-2024-0237.
+
+                                         5       Direct Testimony of
+      Matt Michels
+
+ 1                were one to become necessary for failure to implement new generation at
+
+ 2               Rush Island by September 1, 2028. 4
+
+ 3             •  Addition of 1,000 MW of wind generation by 2030 and another 1,000 MW
+
+ 4               by 2035, unchanged from the Company's 2023 IRP preferred plan.
+
+ 5             •  Addition of 2,200 MW of solar generation by 2030 (including 500 MW
+
+ 6                 placed in service in  late 20245 and another 400 MW for which the
+
+ 7               Commission approved CCNs6) and another 500 MW by 2035.  This
+
+ 8                   represents an acceleration of solar generation additions from that planned
+
+ 9                   in the Company's 2023 IRP preferred plan. As I discuss later in my direct
+
+10                  testimony, and as discussed by Company witnesses' Arora's and Dixon's
+
+11                    direct testimonies, renewable resource additions are a particularly important
+
+12                  consideration in attracting and serving new large customers, such as data
+
+13                    centers.
+
+14             •  Addition of 1,000 MW of battery energy storage systems ("BESS") by
+
+15                 2030, another 400 MW by 2036, and another 400 MW by 2042, for a total
+
+16                  of 1,800 MW.7 This also represents an acceleration as compared to the 2023
+
+17               PRP, as well as an increase, relative to the 800 MW of BESS additions
+
+18                 included in the Company's 2023 PRP. Four hundred MW of BESS is slated
+
+
+
+         4 This facility would also provide a capacity "buffer" under unforeseen circumstances (e.g., a reduction in
+      Ameren Missouri's ability to import capacity from other MISO load zones) even in the absence of
+       additional demand from new large load customers, and it also facilitates compliance with the requirements
+       of Section 393.104, recently enacted through the passage of Missouri Senate Bill No. 4 ("SB 4"), which
+      was signed into law by Governor Kehoe in April of this year.
+         5 Ameren Missouri's Huck Finn, Cass County, and Boomtown solar energy centers.
+         6 Ameren Missouri's planned and under construction Split Rail, Bowling Green, and Vandalia solar energy
+        centers.
+         7 All BESS included in the PRP is assumed to be 4-hour lithium-ion battery storage for modeling purposes.
+       Additions beyond 2030 may deploy technologies currently under development.
+
+                                        6       Direct Testimony of
+      Matt Michels
+
+ 1                   to go into service at the former site of the Company's Rush Island Energy
+
+ 2                 Center by September 1, 2028, which, like the gas generation addition at
+
+ 3               Rush Island, allows us to take advantage of the valuable transmission
+
+ 4                  interconnection rights that already exist at the Rush Island site.
+
+ 5             •  Addition of 2,100 MW of natural gas combined cycle ("NGCC") capacity
+
+ 6               by the end of 2031 and another 1,200 MW of NGCC capacity by the end of
+
+ 7                 2036.   This  represents an  acceleration  of  a  portion  of  the  "clean
+
+ 8                  dispatchable" resources included in the Company's 2023 IRP preferred plan,
+
+ 9              shown in 2040 and 2043.
+
+10             •  Addition of a further 600 MW of NGSC capacity at the beginning of 2038
+
+11                and another 600 MW of NGSC capacity at the beginning of 2043, both
+
+12                  representing new additions relative to the Company's 2023 IRP preferred
+
+13                   plan.
+
+14             •  Addition of 1,500 MW of nuclear generation at the beginning of 2040. This
+
+15                   represents the addition of further clean dispatchable generation, with the
+
+16                   selection of specific technology to be made at a later date.8
+
+17         Q.   How did Ameren Missouri arrive at its PRP?
+
+18         A.     In short, Ameren Missouri evaluated a range of potential outcomes, or
+
+19    cases, for new large loads, determined for each case the need for acceleration and addition
+
+20    of resources relative to its 2023 PRP to meet load and MISO planning reserve margin
+
+21   ("PRM") requirements, and selected the plan that 1) best represents expectations at the time
+
+22    the 2025 PRP was adopted of future large load additions, 2) provides some flexibility in
+
+
+
+         8 For modeling purposes, the Company's assumptions for modular nuclear generation were used.
+
+                                        7       Direct Testimony of
+      Matt Michels
+
+ 1    the near term regarding further large load additions, and 3) ensures that the Company
+
+ 2   maintains both short-term and long-term resource flexibility to address various risks to its
+
+ 3    portfolio and to facilitate compliance with both the letter and spirit of recently passed
+
+ 4    statutory provisions included in SB 4 to ensure reliable service to all customers.
+
+ 5         Q.    Please describe the large load customer cases that were evaluated.
+
+ 6         A.    Ameren Missouri evaluated seven different load cases, as shown in Table 1
+
+ 7   below. The seven cases reflect three different levels of large load additions in the near
+
+ 8   term – 500 MW, 1,500 MW, and 2,000 MW by 2032. Cases 1-3 reflect no further growth
+
+ 9    in large loads after 2032. Cases 4 and 5 reflect continued growth from 1,500 MW and
+
+10   2,000 MW loads achieved by 2032,  respectively,  to 2,500 MW and 3,500 MW,
+
+11    respectively, by 2040. Cases 6 and 7 reflect no further growth in large loads after 2032
+
+12   (1,500 MW and 2,000 MW in place by 2032, respectively), then a reduction in large loads
+
+13    to 500 MW in 2039. Cases 6 and 7 are used as the basis for evaluating the cost of resource
+
+14    acceleration to meet near-term large load customer demand, as I explain later in my direct
+
+15    testimony.
+
+16             Table 1. Large Load Cases – Annual Peak Demand (MW) at Meter9
+
+
+
+
+17
+
+
+
+
+
+         9 Large load demand is assumed to begin at the levels shown on January 1st of each calendar year.
+
+                                         8       Direct Testimony of
+      Matt Michels
+
+ 1         Q.   What kind of load factor was assumed for the additional large load
+
+ 2   demand?
+
+ 3         A.   A load factor of 85 percent was used.  This results in additional sales of
+
+ 4   approximately 4 million MWh for each 500 MW of large load demand.
+
+ 5         Q.   What resources are needed to meet demand in each of the seven load
+
+ 6   cases you just described?
+
+ 7         A.    The resource additions for each case are summarized in the attached
+
+ 8   Schedule MM-D2.
+
+ 9         Q.   Which case did the Company choose for inclusion in  its recently
+
+10   adopted PRP?
+
+11         A.    Ameren Missouri chose Case 4 for inclusion in its PRP and therefore as the
+
+12    basis for determining resource needs. Based on on-going discussions with potential
+
+13   customers, it is also actively planning for Case 5 as an alternative scenario, as I discuss
+
+14    later in my direct testimony.
+
+15         Q.     Is it possible that large load demand could exceed the amounts included
+
+16    in the PRP?
+
+17         A.     Yes. Ameren Missouri has included Case 5 as an alternative plan in the
+
+18   Notice of Change in PRP filed with the Commission on February 28, 2025.10  It should be
+
+19   noted that resource additions through 2032 for Case 5 are identical to those included in
+
+20   Case 4. This provides flexibility in the near term as the Company continues to evaluate
+
+21    requests for connection and service from prospective customers.
+
+
+
+
+
+         10 Schedule MM-D1, page 6, Table 1.1.
+
+                                        9       Direct Testimony of
+      Matt Michels
+
+ 1         Q.    Have you prepared a capacity  position for the  alternative plan
+
+ 2   represented in Case 5?
+
+ 3         A.     Yes.  Figure 2 below shows the winter capacity position for Case 5, and
+
+ 4   Figure 3 shows the summer capacity position, both under normal weather conditions. As
+
+ 5    the capacity positions in Figures 2 and 3 show, Ameren Missouri expects to have sufficient
+
+ 6    capacity to meet its load and reserve margin obligations starting in winter 2028-2029, with
+
+ 7   a potential minimal (less than a 100 MW) shortfall in winter 2027-2028, and in summer in
+
+ 8     all years of the planning horizon. As discussed later in my direct testimony, Ameren
+
+ 9   Missouri is taking steps to address winter capacity shortfalls during the coming three years.
+
+10                     Figure 2. Winter Capacity Position – Load Case 511
+
+
+
+
+
+11
+
+
+
+
+
+         11 All winter capacity position charts shown reflect January and February of the calendar year and
+      December of the prior year.
+
+                                        10       Direct Testimony of
+      Matt Michels
+
+ 1                     Figure 3. Summer Capacity Position – Load Case 5
+
+
+
+
+
+ 2
+
+ 3         Q.    Please explain why the Company chose to accelerate its additions of
+
+ 4    solar generation when it adopted its new PRP.
+
+ 5         A.    As the Company has previously described in its 2023 IRP and in several
+
+ 6  CCN application cases in recent years, it is important to replace the Company's fleet as
+
+ 7   aging coal-fired energy centers retire, ensuring reliability, maintaining affordability, and
+
+ 8    addressing  risks  regarding  the  use  of  fossil  fuels,  including  exposure  to  future
+
+ 9   environmental regulations. The Company's replacement plans target a balanced portfolio
+
+10   mix of both dispatchable generation and renewable energy resources that have no on-going
+
+11    fuel costs associated with the production of energy. Solar resources, along with efficient
+
+12    natural gas, wind, storage resources, and nuclear generation, play a key role in that
+
+13    transition. The addition of increased demand from large load customers, who also place a
+
+14   high value on the role of lower emitting resources, means more energy generation is needed
+
+15    to serve rising customer energy needs in addition to meeting their needs during times of
+
+16   peak demand, which can be met with peaking resources like NGSC and BESS. While
+
+17    potential wind projects can also be attractive for providing additional energy generation,
+
+18   and indeed the Company continues to include 2,000 MW of wind resource additions in its
+
+
+                                        11       Direct Testimony of
+      Matt Michels
+
+ 1   PRP, solar projects have proven to pose fewer implementation challenges relative to wind
+
+ 2    projects and provide energy generation during summer peak times. And as noted above
+
+ 3   and discussed by Messrs. Arora and Dixon in their direct testimonies, making sure
+
+ 4   renewable resources are timely available to address prospective customers' energy needs
+
+ 5   and their desire to meet their carbon free energy goals is important to attracting the
+
+ 6   customers in the first place.
+
+ 7         Q.   You mentioned NGSC and BESS as resources that can be used to meet
+
+ 8   peak demand, even though BESS produces no energy itself and NGSC units typically
+
+ 9   operate at relatively low capacity factors.  Please explain the rationale for the
+
+10   Company's inclusion of both in its PRP.
+
+11         A.    Both NGSC and BESS currently provide significant capacity benefit in
+
+12   MISO. Ameren Missouri currently assumes accredited values equal to 95 percent of rated
+
+13    output for BESS and 91 percent of rated output for NGSC, both for the winter season,
+
+14   which is a key driver of resource needs for Ameren Missouri. Over time, and as BESS
+
+15    resources are added to the grid, the capacity value of BESS may decline. Ameren Missouri
+
+16   has relied on analysis by Astrape', a reliability modeling consulting firm that provides
+
+17    analytical support to utilities and regional grid operators, including to MISO, to determine
+
+18    the possibility of declining capacity value of battery storage. Figure 4 below shows that
+
+19   BESS provides capacity value at essentially its full rated output up to 500 MW on Ameren
+
+20    Missouri's system. As more BESS resources are added, the incremental capacity benefit,
+
+21   expressed as effective load carrying capability ("ELCC") declines.
+
+
+
+
+
+                                        12       Direct Testimony of
+      Matt Michels
+
+ 1          Figure 4. Battery ELCC by Cumulative Capacity Deployed
+
+
+
+
+
+ 2
+
+ 3         However, while longer term the marginal ELCC for BESS declines as additional
+
+ 4   BESS resources are added to the grid, in the near- to-intermediate term, the economics of
+
+ 5   BESS relative to new NGSC today are advantageous. As a result, there is a cross-over
+
+ 6    point at which further BESS additions are less economical than additional new NGSC.
+
+ 7   Ameren Missouri combined its evaluation of BESS and NGSC economics and the insight
+
+ 8   from Figure 4 above to identify where that cross-over point likely is. Table 2 below shows
+
+ 9   a comparison of the economics of increasing amounts of BESS relative to NGSC on a
+
+10    capacity equivalent basis, using the Company's current accreditation value for NGSC and
+
+11    the ELCC curve shown in Figure 2. As Table 2 shows, BESS is more economic than
+
+12    additional NGSC (i.e., beyond that already included in the PRP) on a capacity equivalent
+
+13    basis up to 1,500 MW of BESS additions for Ameren Missouri (the negative numbers in
+
+14    the last row of Table 2 reflect a reduction in net present value of revenue requirement over
+
+15    the planning horizon).
+
+
+
+                                        13       Direct Testimony of
+      Matt Michels
+
+ 1         Table 2. Capacity Equivalent Economics – BESS vs. NGSC (Current Accred.)
+
+
+
+
+
+ 2
+
+ 3           Alternatively, I have also made a capacity equivalent comparison of BESS and
+
+ 4  NGSC using indicative accreditation values for NGSC with dual fuel (as new NGSC are
+
+ 5   being designed by Ameren Missouri to include) under MISO's proposed Direct-Loss-of-
+
+ 6   Load ("DLOL") accreditation framework. Table 3 below shows a comparison of BESS
+
+ 7   and NGSC on a capacity equivalent basis using MISO's indicative DLOL accreditation
+
+ 8   value for NGSC. Table 3 shows that BESS is more economic than additional NGSC up to
+
+ 9    at least 1,750 MW, and likely closer to 2,000 MW. Taking the results in Table 2 and Table
+
+10    3, BESS up to 1,500-2,000 MW is more economic relative to additional NGSC above that
+
+11   included in the 2025 PRP. The Company's planned addition of 1,800 MW of BESS falls
+
+12    in this range.
+
+13         Table 3. Capacity Equivalent Economics – BESS vs. NGSC (MISO DLOL)
+
+
+
+
+
+14
+
+
+
+
+                                        14       Direct Testimony of
+      Matt Michels
+
+ 1         Q.   What if something changes the relative economics of BESS and NGSC?
+
+ 2         A.     In that case, the Company could adjust its plans. Ameren Missouri's 2025
+
+ 3   PRP reflects 1,000 MW of BESS by the end of 2030.  If the economics of further BESS
+
+ 4   become disadvantageous, the Company would reassess  its resource additions.  Such
+
+ 5   changed conditions are a large reason why utilities prepare IRPs every few years and
+
+ 6   conduct continuous planning in between.
+
+ 7         Q.    You've explained why the Company has included 1,000 MW of BESS
+
+ 8   by 2030 and 1,800 MW total in its plan. What is the rationale for NGSC additions in
+
+ 9   the near term?
+
+10         A.   New NGSC additions with oil backup provide reliable capacity when it is
+
+11   needed most. NGSC is highly flexible, and during times of sustained high demand it can
+
+12    operate continuously if needed.  Relative to NGCC, NGSC can be implemented more
+
+13    quickly and easily to keep pace with rising demand, partly because NGSC does not require
+
+14    access to a large and continuous source of water for steam turbine operations that is an
+
+15    integral part of NGCC facilities.
+
+16         Q.    With the addition of solar generation for energy production and BESS
+
+17   and NGSC for meeting peak demand, why is there a need for NGCC resources?
+
+18         A.    While  the combination of both renewable and peaking resources  is
+
+19   necessary for implementing a balanced energy transition, baseload resources are also
+
+20   needed to ensure that customer needs are met around-the-clock and throughout the year.
+
+21   This is especially true when considering the addition of large load customer demand with
+
+22    essentially around-the-clock operations. This is why Ameren Missouri looks at the totality
+
+23    of its customers' needs for both capacity and energy.
+
+
+
+                                        15       Direct Testimony of
+      Matt Michels
+
+ 1         Q.   How does Ameren Missouri evaluate capacity needs?
+
+ 2         A.     This is done by evaluating the Company's capacity position, the difference
+
+ 3   between the total generating capacity of its portfolio of resources and the peak demand and
+
+ 4  MISO PRM. Ameren Missouri also analyzes all four seasons as part of its IRP planning.
+
+ 5   However, the winter season currently drives resource needs, in part due to lower winter
+
+ 6    accreditations for gas-only resources that experience fuel supply constraints during cold
+
+ 7    weather.
+
+ 8           Figures 5 and 6 below show the Company's winter and summer capacity positions,
+
+ 9    respectively, for Case 4 large load additions and existing and approved resources under
+
+10   normal weather conditions. There still exists (without making more resource additions) a
+
+11    short position in the winter in the near- to intermediate term absent adding more capacity.
+
+12          Figure 5. Winter Capacity Position – Load Case 4 – Existing and Approved
+
+13   Resources – Normal Weather
+
+
+
+
+
+14
+
+
+
+
+
+                                        16       Direct Testimony of
+      Matt Michels
+
+ 1          Figure 6. Summer Capacity Position – Load Case 4 – Existing and Approved
+
+ 2   Resources – Normal Weather
+
+
+
+
+
+ 3
+
+ 4         Q.    Please discuss Ameren Missouri's capacity positions for its PRP (i.e.,
+
+ 5   Case 4 large load demand) with all planned resource additions included, including
+
+ 6   the acceleration of some resources as discussed earlier.
+
+ 7         A.     Figures 7 and 8 show the Company's winter and summer capacity positions,
+
+ 8    respectively, for the 2025 PRP under normal weather conditions.  Figures 7 and 8 show
+
+ 9    that implementation of the Company's 2025 PRP will mean that the Company will have
+
+10    sufficient capacity to meet its load and PRM under normal weather conditions with a
+
+11    reasonable buffer starting in 2028.12
+
+
+
+
+
+         12 A reasonable capacity buffer is necessary to address risks associated with extreme weather demand,
+      changes in environmental regulation affecting generating resources, and other risks that may significantly
+        affect the need for capacity and the flexibility to consider options for reliably meeting customer energy
+       needs.
+
+                                        17       Direct Testimony of
+      Matt Michels
+
+ 1          Figure 7. Winter Capacity Position – Load Case 4 – All Planned Resources –
+
+ 2   Normal Weather
+
+
+
+
+
+ 3
+
+ 4          Figure 8. Summer Capacity Position – Load Case 4 – All Planned Resources
+
+ 5   – Normal Weather
+
+
+
+
+
+ 6
+
+ 7         Q.    As you noted, Figure 7 shows that the Company expects to be short
+
+ 8   capacity under normal weather conditions in 2025-2027. Will Ameren Missouri be
+
+ 9   able to meet its load and PRM obligation during those years?
+
+10         A.     Yes. While Ameren Missouri does not currently own the resources it would
+
+11   need to fully meet its load and PRM obligations during 2025-2027, it expects to secure
+
+12    capacity to meet its obligations during those years. The Company has been consistently
+
+
+
+                                        18       Direct Testimony of
+      Matt Michels
+
+ 1    projecting a capacity shortfall during that timeframe since its 2023 IRP and has continued
+
+ 2    to plan to meet its obligations. However, the Company is working to ensure that it has its
+
+ 3   own resources to meet those needs to eliminate any risks posed by needing to secure other
+
+ 4    capacity to meet its obligations.
+
+ 5                        IV.  PLAN ANALYSIS FOR RISK ASSESSMENT
+
+ 6         Q.    Did Ameren Missouri revise any of its IRP assumptions in developing
+
+ 7     its 2025 PRP for its evaluation of different large load plans?
+
+ 8         A.     Yes. As described in the Company's February 28, 2025, Notice of Change
+
+ 9    in PRP, Ameren Missouri reviewed its assumptions and made updates to its costs for wind
+
+10   and natural gas-fired resources to reflect current and expected market conditions as well as
+
+11   any necessary transmission infrastructure and environmental mitigation requirements.13
+
+12         Q.   You mentioned earlier that the Company revised its long-term outlook
+
+13    for implementation of MEEIA programs. How did that change affect the Company's
+
+14   need for resources?
+
+15         A.    As also described in the Company's February 28, 2025, Notice of Change
+
+16    in PRP, the change in the Company's long-term outlook for MEEIA programs results in
+
+17   reduced demand savings of approximately 300 MW by 2032 and 700 MW by 2043.14
+
+18   Adding the winter PRM of 25 percent results in an increase in resource needs driven by the
+
+19    recent MEEIA decision of approximately 375 MW by 2032 and 875 MW by 2043. The
+
+20    specific annual demand and energy savings and forecasted program budgets for the
+
+21   Company's long-term MEEIA programs is shown in Schedule MM-D1, page 16, Table 2.3.
+
+
+
+
+         13 Schedule MM-D1 – 2025 Change in Preferred Plan Report, pp. 13-14.
+         14 Schedule MM-D1 – 2025 Change in Preferred Plan Report, p. 15.
+
+                                        19       Direct Testimony of
+      Matt Michels
+
+ 1         Q.    Did the Company update its assumptions for its power price scenarios
+
+ 2   used in its IRP risk analysis?
+
+ 3         A.    No. The Company reviewed its price scenario assumptions as part of its
+
+ 4   2024 IRP Annual Update process and elected to make no changes at that time. However,
+
+ 5   Ameren Missouri did use the analytical services of Charles River Associates ("CRA") to
+
+ 6    evaluate price sensitivity to large additions of large loads across MISO and the broader
+
+ 7   market, as described in Schedule MM-D1, pages 19-22. In general, power prices increased
+
+ 8   with the inclusion of additional large loads in MISO, with the high case large load yielding
+
+ 9    the greatest increase in power prices. These additional power price scenarios were used to
+
+10    test the performance of the various alternative plans, including those with varying large
+
+11    loads (i.e., Cases 1-7).
+
+12         Q.   What were the results of the analysis of the alternative plans for large
+
+13   load cases 1-7?
+
+14         A.     Unsurprisingly, the results show that the higher the load, the higher the
+
+15    costs. That conclusion is not, in and of itself, useful. However, it does provide a basis for
+
+16    evaluating the balance between costs and the new revenue contributions from the additional
+
+17   demand and energy charges from new large load customers whose demand increases result
+
+18    in the need to accelerate resource additions. Company witness Steven Wills discusses his
+
+19    analysis of this balance in his direct testimony.
+
+
+
+
+
+                                        20      Direct Testimony of
+     Matt Michels
+
+1         Q.    Did the analysis of price sensitivity using the new price scenarios from
+
+2  CRA indicate any concerns with relying on the Company's 2023 IRP price scenario
+
+3   assumptions for purposes of analyzing the cost of the various plans?
+
+4         A.    No. The results of the price sensitivity analysis are shown in Schedule MM-
+
+5   D1, pages 26-27 and indicate that using such prices does not alter the conclusions of the
+
+6   Company's plan analysis.
+
+7         Q.    Does this conclude your direct testimony?
+
+8         A.     Yes, it does.
+
+
+
+
+
+                                       21            BEFORE THE PUBLIC SERVICE COMMISSION
+                  OF THE STATE OF MISSOURI
+
+ In the Matter of the Application of Union    )
+ Electric Company d/b/a Ameren Missouri    )                                                            File No. ET-2025-0184 for Approval of New or Modified Tariffs     )
+ for Service to Large Load Customers.         )
+
+                   AFFIDAVIT OF MATT MICHELS
+
+STATE OF MISSOURI     )
+                                    ) ss
+CITY OF ST. LOUIS        )
+
+Matt Michels, being first duly sworn states:
+
+    My name is Matt Michels and on my oath declare that I am of sound mind and lawful age;
+
+that I have prepared the foregoing Direct Testimony; and further, under the penalty of perjury, that
+
+the same is true and correct to the best of my knowledge and belief.
+
+
+                                                                  /s/ Matt Michels
+                                            Matt Michels
+
+Sworn to me this 14th day of May, 2025.PREFERRED RESOURCE PLAN
+
+
+
+
+                                                                         2 0 2 5 CHANGECCHANGEG
+
+
+
+
+
+                                                       Schedule MM-D1                     P1.  Executive Summary ............................................................................................... 1
+2.  Planning Environment ........................................................................................... 7
+        Environmental Regulations ............................................................................... 7
+        Supply-Side Resource Review ........................................................................ 13
+       Load Forecast Review .................................................................................... 14
+       Demand-Side Resource Review ..................................................................... 15
+        Uncertain Factors ............................................................................................ 16
+             Price Scenarios................................................................................................... 16
+            Scenario Modeling ................................................................................... 18
+3.  Alternative Plans and Risk Analysis .................................................................. 22
+         Alternative Plans Analysis Results .................................................................. 24
+        Data Center Price Scenario Sensitivity ........................................................... 26
+         Preferred Resource Plan and Contingencies .................................................. 27
+       Comparison to Prior Preferred Plan ................................................................ 30
+        Implementation ............................................................................................... 30
+
+
+
+
+
+                                                            Schedule MM-D1Ameren Missouri
+1. Executive Summary
+
+Ameren Missouri’s senior management has concluded that the Preferred Resource Plan
+(PRP) presented in its 2023 Triennial Integrated Resource Plan (IRP) (File No. EO-
+2024-0020) is no longer appropriate and should be revised. This conclusion was
+reached as a result of two key changes in the planning environment:
+
+   •  Data Center and Large Load Potential – Since the Company's 2023 IRP was filed,
+      the Company has seen significant growth in interest of potential data center
+      customers to locate in Ameren Missouri's service  territory.   Specifically, the
+     Company has fielded interest from customers representing aggregate potential
+      peak demand of approximately 3 GW, with signed construction contracts related
+       to interconnecting to Ameren Missouri's system totaling 1.8 GW. While other steps
+      remain to add these prospective customers to Ameren Missouri's system, including
+      the approval of a new rate tariff under which such customers would be served,
+      these developments evidence both the likelihood and magnitude of these potential
+      load additions.
+   •  Changes in Company-Sponsored Energy Efficiency Programs – The Missouri
+       Public Service Commission (MPSC) approved a non-unanimous stipulation and
+      agreement in File No. EO-2023-0136 in November 2024 regarding the Company's
+      Missouri Energy Efficiency Investment Act (MEEIA) energy efficiency and demand
+      response program budgets and expected energy and demand savings over the
+      next several years.  In recognition of concerns raised by the MPSC and some
+       stakeholders, the Company has revised its long-term outlook for these programs.
+      This change results in a reduction in expected winter peak demand savings of
+      approximately 300 MW by 2032 and 700 MW by 2043 relative to the Company's
+     2023 PRP levels.
+
+In addition to these key changes, Ameren Missouri has also revised its assumptions for
+the costs of certain resources  to  reflect current and expected market conditions.
+Resources with updated costs include wind, simple cycle gas combustion turbine
+generators (CTG), and natural gas combined cycle (NGCC) generation. The Company
+also reviewed its assumptions for natural gas prices, carbon prices, power prices and
+capacity prices and determined they were still appropriate for evaluating the performance
+of alternative resource plans.  Ameren Missouri continues to consider  its resource
+planning decisions in the context of a comprehensive generation strategy, which includes
+the following objectives:
+
+
+
+
+2025 Change in Preferred Plan                                    Page 1
+                                                            Schedule MM-D1Ameren Missouri
+
+    •  Operate Energy  Centers  safely,  economically, and  in an  environmentally
+      responsible fashion while transitioning the generation fleet.
+    •  Ensure overall energy (supply and grid) reliability and affordability.
+    •  Create and capitalize on investment opportunities that are beneficial to customers,
+      shareholders, the environment, and our communities.
+    •  Maintain financial, technical, regulatory, and environmental flexibility.
+
+As part of meeting these objectives, the Company seeks greater utilization of renewable
+energy resources together with appropriate reliance on existing and new dispatchable
+generation. Ameren Missouri also strives to ensure specific planning objectives are met
+by its Preferred Resource Plan. These objectives include:
+
+    •  Minimize customer costs (Present Value Revenue Requirements or "PVRR").
+    •  Customer Satisfaction (including rate impacts and reliability).
+    •   Portfolio  Transition  (clean  energy  expansion and  carbon  reduction  while
+      maintaining reliability).
+    •   Mitigate Financial/Regulatory Risk.
+    •  Economic Development.
+
+After considering the prospects for new large load additions and the other changes noted
+above and with the above stated objectives in mind, Ameren Missouri has selected a PRP
+that will support 1.5 GW of new additional demand by 2032 and 2.5 GW by 2040. The
+2025 PRP resource timeline is shown below in Figure 1.1.
+
+Figure 1.1: Ameren Missouri's 2025 PRP Resource Timeline
+
+
+
+
+
+The key elements of the Company's new PRP are as follows:
+
+   •  2,700 MW of solar generation by 2032 – This includes 500 MW of solar generation
+      placed in service at the end of 2024, another 1,700 MW by the end of 2030
+       (including 400 MW for which the MPSC has granted the Company's requests for
+        certificates of convenience and necessity (CCN)), and another 500 MW by the end
+
+2025 Change in Preferred Plan                                    Page 2
+                                                            Schedule MM-D1Ameren Missouri
+
+       of 2032.  Ameren Missouri expects to apply  for CCNs  for additional solar
+      generation facilities during 2025, with the first CCN application expected in the
+      second quarter of 2025.
+   •  2,000 MW of wind generation by 2035 – This remains unchanged from the
+     Company's 2023 PRP and includes 1,000 MW of wind by 2030 and another 1,000
+   MW by 2035.
+   •  1,800 MW of battery energy storage systems (BESS) by the end of 2042 – This
+       includes 1,000 MW of BESS additions by 2030, another 400 MW by 2035, and
+      another 400 MW by 2042. The Company expects to submit an application to the
+    MPSC for a CCN for the first tranche of BESS in the second quarter of 2025.
+   •  1,600 MW of new CTG generation by 2030 – This includes the 800 MW Castle
+       Bluff CTG facility at the site of the Company's former Meramec coal-fired energy
+      center by the end of 2027, for which the MPSC granted the Company a CCN in
+      October 2024.1  It also includes an additional 800 MW CTG facility to be located
+       at the site of the Company's former Rush Island coal-fired energy center by the
+     end of 2028. The Company expects to seek MPSC approval for a CCN for this
+         facility in the second quarter of 2025.
+   •  An additional 1,200 MW of CTG generation by 2042 – This includes 600 MW of
+    CTG generation by the end of 2037 and another 600 MW by the end of 2042. The
+     Company expects to eliminate or offset emissions from CTG facilities by 2045.
+   •  3,300 MW of NGCC generation by 2037 – This includes a 2,100 MW NGCC facility
+       at the site of the Company's existing Sioux coal-fired energy center by the end of
+     2031 and an additional 1,200 MW NGCC facility by the end of 2036. The Company
+      expects to eliminate or offset carbon dioxide emissions from these facilities by
+     2040 through some combination of hydrogen blending and carbon capture and
+      sequestration (CCS), assuming such technologies are commercially viable.
+   •  Retirement of all of the Company's coal-fired generation by the end of 2042 – This
+       includes retirement of two units at the Labadie Energy Center (LEC) by the end of
+     2036 and the other two units at LEC by the end of 2042, all unchanged from the
+     Company's 2023 PRP.    It also includes retirement of the coal-fired units at
+     Company's Sioux Energy Center (SEC) between the end of 2031 and the end of
+      2035. The Company is maintaining flexibility with regard to the retirement date for
+    SEC at this time to ensure system reliability during the transition to the new NGCC
+       generation.
+
+
+
+
+1 File No. EA-2024-0237
+
+2025 Change in Preferred Plan                                    Page 3
+                                                            Schedule MM-D1Ameren Missouri
+
+   •  1,500 MW of new nuclear generation in 2040 – While selection of a specific nuclear
+      technology has not be made, the Company continues to monitor development of
+     new technologies closely, including small modular reactors (SMR).  Ameren
+      Missouri expects to see successful implementation of new SMR technology before
+      making a commitment to the technology for deployment in its own fleet. Ameren
+      Missouri also expects to seek an extension to its operating license for its existing
+      Callaway Energy Center nuclear facility, which is currently set to expire in 2044.
+
+Figure 1.2 shows the Company's expected generation energy mix under the 2025 PRP.
+
+        Figure 1.2: Ameren Missouri's 2025 PRP Generation Energy Mix
+
+
+
+
+
+The PRP described above allows the Company to achieve its previously established
+carbon reduction targets – 60% reduction by 2030 and 85% reduction by 2040, compared
+to 2005 levels, and net zero emissions by 2045. The carbon reduction targets include
+both Scope 1 and Scope 2 emissions of greenhouse gases, including carbon dioxide,
+nitrogen oxides and sulfur hexafluoride.2  Figure 1.3 below shows the Company's
+
+
+2 Note that roughly 99% of the Scope 1 and Scope 2 greenhouse gas emissions are carbon dioxide
+emissions from Ameren Missouri's fleet of coal and natural gas fired generators.
+
+2025 Change in Preferred Plan                                    Page 4
+                                                            Schedule MM-D1Ameren Missouri
+
+expected carbon emissions for its new PRP compared to its 2023 PRP. Figure 1.4 shows
+the Company's expected carbon intensity for its new PRP compared to its 2023 PRP.
+        Figure 1.3: 2025 PRP Carbon Emissions Compared to 2023 PRP
+
+
+
+
+
+         Figure 1.4: 2025 PRP Carbon Intensity Compared to 2023 PRP
+
+
+
+
+
+In addition to the PRP, Ameren Missouri has also developed and analyzed contingency
+plans to recognize the uncertainty regarding potential data center load additions. These
+include an upside contingency plan to support 2 GW of new data center demand by 2032
+and 3.5 GW by 2040 and a low contingency plan to support 500 MW of new data center
+demand by 2032 with no additional data center demand growth thereafter.  It is important
+to note that the resource additions through 2032 for the contingency plan for 2 GW of
+data center demand by 2032 are the same as the resource additions through 2032 for the
+
+2025 Change in Preferred Plan                                    Page 5
+                                                            Schedule MM-D1Ameren Missouri
+
+PRP.  Also, the addition of 800 MW of CTG generation in 2028 is included in both the
+upside and low contingency plans as well as the PRP. While the extent and timing of
+data center load additions remain somewhat uncertain, the combination of the PRP and
+these contingency plans position Ameren Missouri to serve a range of demand that may
+materialize while ensuring reliable service at a reasonable cost to all of its customers.
+Table 1.1 below shows the resource additions for the 2025 PRP as well as the two
+contingency plans described above. Resource additions for the 2023 IRP are also shown
+for comparison.
+
+Table 1.1: Resource Additions for the 2025 PRP and Contingencies Compared to
+                                 the 2023 PRP
+                              2023 IRP Preferred Plan        500 MW Large Loads            1.5 GW Large Loads            2.0 GW Large Loads
+Data Center Load Additions                                                                     1.5 GW by 2032 (12 GWh)       2 GW by 2032 (16 GWh)                                N/A              500 MW by 2027 (4 GWh)(beginning of year)                                                                             2.5 GW by 2040 (20 GWh)       3.5 GW by 2040 (28 GWh)
+                                Aggressive Energy Efficiency   Limited Energy Efficiency and   Limited Energy Efficiency and   Limited Energy Efficiency andEnergy Efficiency / Demand                            and Demand Response    Continued Demand Response  Continued Demand Response  Continued Demand ResponseResponse                                   Programs                  Programs                  Programs                  Programs
+Total Retail Sales in 2040            36 Million MWh              40 Million MWh              56 Million MWh              64 Million MWh
+                                     Sioux (2032)              Sioux (2031-2035)            Sioux (2031-2035)            Sioux (2031-2035)Coal Retirements (end of                               Labadie - 2 Units (2036)       Labadie - 2 Units (2036)       Labadie - 2 Units (2036)       Labadie - 2 Units (2036)year)                               Labadie - 2 Units (2042)       Labadie - 2 Units (2042)       Labadie - 2 Units (2042)       Labadie - 2 Units (2042)
+Gas Retirements (end of            Venice (IL) (2029)             Venice (IL) (2029)             Venice (IL) (2029)             Venice (IL) (2029)
+year)                            Other ILCTGs (2039)          Other ILCTGs (2039)          Other ILCTGs (2039)          Other ILCTGs (2039)
+                                    1,000 MW by 2030             1,000 MW by 2030             1,000 MW by 2030             1,000 MW by 2030Wind Additions (end of year)                                    2,000 MW by 2035             2,000 MW by 2035             2,000 MW by 2035             2,000 MW by 2035
+                                    1,800 MW by 2030             1,800 MW by 2030             2,200 MW by 2030             2,200 MW by 2030Solar Additions (end of year)                                    2,700 MW by 2035             2,700 MW by 2035             2,700 MW by 2032             2,700 MW by 2032
+                                                                                               1,000 MW by 2030             1,000 MW by 2030Battery Additions (end of           400 MW by 2030             400 MW by 2030                                                                                               1,400 MW by 2037             1,400 MW by 2037year)                             800 MW by 2033             800 MW by 2033                                                                                               1,800 MW by 2042             1,800 MW by 2042
+                                                                                                                             2,100 MW (2032)Combined Cycle Gas                                                                           2,100 MW (2032)                                     1,200 MW (2033)              1,200 MW (2032)                                            1,200 MW (2037)Additions (beginning of year)                                                                    1,200 MW (2037)                                                                                                                             1,200 MW (2038)
+                                                                                        800 MW (2027)               800 MW (2027)Simple Cycle Gas Additions                                                             800 MW (2027)               800 MW (2028)               800 MW (2028)(beginning of year, except           800 MW (2027)                                                             800 MW (2028)               600 MW (2038)               600 MW (2035)2027 and 2028 additions in Q4)                                                                                        600 MW (2043)               600 MW (2037)
+New Nuclear Additions                                N/A                   900 MW (2040)               1,500 MW (2040)              1,500 MW (2040)(beginning of year)
+Other Clean Dispatchable            1,200 MW (2040)              1,200 MW (2037)                                                                             N/A                   N/AAdditions (beginning of year)        1,200 MW (2043)              1,200 MW (2043)
+
+Over the next two years, Ameren Missouri will be carrying out specific actions to execute
+on the new Preferred Resource Plan. These include:
+
+   •  Submitting an application to establish a new tariff for large load customers, such
+      as data centers, in the second quarter of 2025
+   •  Submitting applications for CCNs to the MPSC for:
+        o New solar generation projects (the first in the second quarter of 2025)
+        o New BESS facilities to be located at former coal energy center sites (the
+                   first in the second quarter of 2025)
+
+
+2025 Change in Preferred Plan                                    Page 6
+                                                            Schedule MM-D1Ameren Missouri
+
+       o  800 MW of CTG generation at the former Rush Island coal energy center
+               site (second quarter of 2025)
+   •  Continuing to evaluate proposals for new wind and solar generation projects
+   •  Continuing preparations  for the addition  of NGCC generation, including an
+       application to the MPSC for a CCN in 2026
+   •  Continuing to manage approved MEEIA programs for customer energy efficiency
+     and demand response
+   •  Continuing  to  monitor  developments  regarding  environmental  regulations,
+       identifying and evaluating options for compliance, and taking steps to maintain
+       available options
+   •   Initiating a new market potential study to identify opportunities for further energy
+     and demand savings from future MEEIA programs
+2. Planning Environment
+    Environmental Regulations
+Ameren Missouri has made significant investments to comply with existing environmental
+regulations and maintain a sufficient compliance margin. Rules proposed or promulgated
+since the IRP filing in 2023 include the 2023 update to the Mercury and Air Toxics
+Standards (MATS), the 2023 Steam Electric Power Generating Effluent Limitations
+Guidelines (ELG) Update, regulation of greenhouse gas emissions under section 111 of
+the Clean Air Act (GHG Rule), and the Legacy CCR Rule. Ameren Missouri has reviewed
+its assumptions on the eventual requirements for pending environmental regulations, as
+discussed in this section.
+
+Clean Air Act Regulation of Greenhouse Gases (GHG)
+
+On April 25, 2024, EPA issued final actions under Clean Air Act (CAA) section 111
+applicable to GHG emissions from power plants: a section 111(b) rule governing new
+stationary combustion turbines; and a section 111(d) rule, governing existing steam‐
+generating units (Final Rules). Many parties, including State Attorneys General, industry
+groups and rural electric cooperatives, among others, have sought judicial review of the
+Final Rules. The GHG rule for existing coal plants base the operational compliance
+requirements on the planned retirement date of the plant:
+       •  Operation beyond January 1, 2039 - requires emissions reductions equivalent
+           to 90% CCS by 2032.
+       •  Coal fired steam units retiring between 2032 and 2039 - require CO2 emissions
+          reductions equivalent to 40% natural gas co-firing by 2030.
+
+
+2025 Change in Preferred Plan                                    Page 7
+                                                            Schedule MM-D1Ameren Missouri
+
+       •  Coal plants retiring by 2032 - no additional regulations.
+For new natural gas fired combustion turbine units, the rule has different categories for
+compliance. Specifically, the new gas unit rules establish three categories of units based
+on unit capacity factor or how much the gas units will operate:
+   •  Low load < 20% of maximum annual capacity; intermediate load-between 20-40%
+       capacity; and base load units > 40% capacity.
+   •  Low and intermediate loads are subject to low emitting fuels and efficient design
+       of the units.
+   •  New base load gas units, however, will require 90% carbon capture and storage
+     (CCS) by 2032.
+Litigation pending before the D.C. Circuit Court of Appeals has been stayed following a
+request by USEPA to hold the GHG rule in abeyance pending administration review.
+Based upon various Executive Orders,  it  is likely that USEPA  will reconsider both
+underlying  policies and the compliance requirements set  forth  in the GHG Rule.
+Nevertheless, for purposes of its current plan analysis, the Company has evaluated plans
+both with and without compliance with the GHG rule.  Compliance with the GHG rule
+includes scenarios reflecting retirement of SEC by the end of 2031, 40% natural gas
+cofiring of LEC beginning in 2030, retirement of LEC by the end of 2038, NGCC operation
+without CCS limited to a 40% capacity factor, and CTG operation limited to a 20%
+capacity factor.
+Cross States Air Pollution Rule (CSAPR) – Ozone Season
+
+In January 2023, EPA disapproved Missouri's Good Neighbor State Implementation Plan
+(SIP). The disapproval of the state plan is a pre-requisite for EPA to promulgate a federal
+implementation plan (FIP) implementing the "Good Neighbor" requirements of the Clean
+Air Act (CAA) for the 2015 Ozone Standard. However, the State of Missouri, Ameren
+Missouri, and others challenged the EPA's final rule disapproving of the MO Good
+Neighbor SIP in the 8th Circuit Court of Appeals. The 8th Circuit stayed the EPA's
+disapproval of the MO Good Neighbor SIP pending the outcome of the ongoing litigation.
+Recently, The Court of Appeals granted the U.S. Department of Justice request to hold
+the case in abeyance indefinitely with status reports due every 90 days to allow EPA
+leadership to review the underlying SIP disapproval.  In  all, twelve states, including
+Missouri, have challenged, and obtained stays of, EPA's disapproval of their Good
+Neighbor SIPs for the 2015 Ozone Standard. Ameren Missouri will continue to follow the
+judicial process in this case.
+On June 5, 2023, EPA promulgated the "Good Neighbor Plan" (FIP) to require upwind
+states to reduce emissions of the ozone precursor nitrogen oxide (NOx) from electric
+generating units (EGUs) and certain stationary industrial sources, in accordance with
+
+
+2025 Change in Preferred Plan                                    Page 8
+                                                            Schedule MM-D1Ameren Missouri
+
+EPA’s 2015 ozone National Ambient Air Quality Standards (NAAQS). Disapproval of a
+state SIP is a necessary predicate to the issuance of a FIP. The FIP applied to 23 states
+including Ameren Missouri EGUs in both Illinois and Missouri and impacted Ameren
+Missouri's CSAPR allowances and compliance strategy going forward.  The FIP was
+immediately challenged in the DC Circuit Court of Appeals. While the DC Circuit denied
+a stay request, it intends to conduct an expedited review of the rule and has set a date
+for oral argument of April 2025 following supplemental briefing. The Supreme Court,
+however, has stayed the effective date of the FIP following the issuance of stay requests
+from numerous circuit courts including the 8th Circuit Court of Appeals.   If the FIP is
+eventually implemented  in Missouri, additional control technologies and/or reduced
+dispatch could be necessary as it was modeled and discussed in the 2023 IRP.
+It is uncertain as to how USEPA intends to proceed, but USEPA could grant petitions for
+reconsideration of the FIP or issue an advance notice of proposed rulemaking to rescind
+the SIP disapprovals. Given such uncertainty, for purposes of the Company's current
+planning analysis, the Company has analyzed plans that include 40% natural gas cofiring
+at LEC starting in 2030 and plans that include selective catalytic reduction (SCR)
+equipment retrofits for compliance with the FIP, if applicable.
+Attainment Designations for NAAQS for Ozone
+
+The St. Louis area was designated as marginal with a marginal area attainment date of
+August 2021. Based on the 2018-2020 design value the St. Louis area failed to attain the
+2015 standard and a bump up to moderate non-attainment was expected. However,
+because the St. Louis area 2019-2021 design value met the 2015 standard, Missouri DNR
+submitted a redesignation request in January 2022. Illinois EPA was working on a similar
+request for the Illinois portion of the St Louis non-attainment area. Unfortunately, prior to
+Illinois EPA's submission, 2022 ozone data indicated that the St. Louis Area ozone design
+value for 2020-2022 would show non-attainment. As a result, EPA bumped up the St.
+Louis Ozone non-attainment area to moderate nonattainment in 2022.  Because the
+2021-2023 design value (and the 2022-2024 design value) also shows non-attainment,
+the St. Louis Area has failed to attain the 2015 Ozone standard by the August 2024
+moderate area attainment date. As a result, it is expected that EPA will "bump up" the
+St. Louis Area to Serious Non-attainment shortly.  Ameren Missouri's coal units are
+already subject to, and meeting, Reasonably Achievable Control Technology (RACT) for
+the 2015 Ozone Standard as required by Consent Agreements in the Missouri State
+Implementation Plan. No additional NOx control requirements are expected for the coal
+units if the area is designated serious non-attainment. The bump up to Serious will result
+in a new attainment date of August 2027 and a reduction in the major source thresholds
+for PSD and Title V purposes.  After the bump up to serious non-attainment, the major
+source level for NOx emissions will be 50 tons per year (down from 100 tons per year) for
+new resources.
+
+
+2025 Change in Preferred Plan                                    Page 9
+                                                            Schedule MM-D1Ameren Missouri
+
+On August 6, 2024, EPA published in the Federal Register, at 89 Fed. Reg. 63,860, a
+proposed   rule  disapproving   Missouri’s  Supplemental  Good  Neighbor  State
+Implementation Plan submission with respect to the 2015 8-hour ozone NAAQS. On
+January 24, 2025, the State of Missouri filed a petition with the U.S. Court of Appeals for
+the Eighth Circuit petitioning the Court for review of this final ruling.
+
+For purposes of the Company's planning analysis, compliance was evaluated with either
+SCR retrofit or 40% natural gas cofiring at LEC starting in 2030.
+
+Attainment Designations for NAAQS for SO2
+
+The EPA lowered the SO2 ambient standard to 75 ppb on June 2, 2010. Initial attainment
+designations were finalized on August 5, 2013, and included the designation of two areas
+in Missouri as nonattainment. The two nonattainment areas included an area in the
+vicinity of Kansas City (portions of Jackson County) and an area around Herculaneum
+(portions of Jefferson County). In December 2017, the MDNR submitted a formal request
+to the EPA to re-designate the Jefferson County SO2 nonattainment area to attainment.
+On January 28, 2022, EPA published in the Federal Register a formal redesignation of
+the Jefferson County, MO SO2 nonattainment area to attainment. As a part of MDNR’s
+state implementation plan for the Herculaneum area, Ameren Missouri agreed to lower
+SO2 emissions limits for the Rush Island, Labadie and Meramec Energy Centers that took
+effect on January 1, 2017.
+
+On June 30, 2016, the EPA issued a final determination of “unclassifiable” for the area
+around the Labadie Energy Center. Data collected from the ambient SO2 monitors
+indicates that air quality in the vicinity of the Labadie Energy Center complies with the
+EPA standards. In September 2020, the EPA proposed to re-designate the area around
+Labadie from unclassifiable to attainment. The EPA  is expected to finalize the re-
+designation by the end of the year. Ameren Missouri continues to operate the monitoring
+systems and submit the data to both the MDNR and the EPA. Based on monitoring data
+gathered to date and the EPA proposal to designate the area as attainment, we have
+assumed the area around Labadie will ultimately be designated as "attainment". Ameren
+Missouri's assumptions for compliance regarding SO2 emissions reflect this expectation
+as well as expected steps necessary to comply with CSAPR.
+
+For purposes of the Company's current planning analysis, compliance at LEC was
+evaluated with either flue gas desulfurization (FGD) retrofit or 40% natural gas co-firing
+starting in 2030.
+
+NAAQS for Fine Particulate Matter
+
+Based on current data, St. Louis and Metro East in Illinois are both in attainment with the
+2012 PM2.5 standard.  The Clean Air Act requires the EPA to review all of the ambient
+
+
+2025 Change in Preferred Plan                                   Page 10
+                                                            Schedule MM-D1Ameren Missouri
+
+standards on a periodic basis. In December 2020, the EPA finalized a rule to retain the
+current standard for fine particulate matter. On February 7, 2024, the EPA promulgated
+a final rule reducing the primary annual PM2.5 NAAQS from 12 μg/m3 to 9 μg/m3. The
+revised standard is being challenged in court.
+
+Based on recent PM2.5 monitoring in the metro St. Louis Area, the St. Louis area will be
+designated a non-attainment area for the 2024 PM2.5 standard. As a result of a non-
+attainment designation, RACT for Particulate Matter (PM 2.5) and precursors (NOx/SO2)
+would be required by the State of Missouri as part of an attainment plan that is required
+to be submitted to EPA for approval by February 2027.
+
+For purposes of the Company's current planning analysis, compliance at LEC was
+evaluated with either FGD retrofit or 40% natural gas co-firing starting in 2030.
+
+Clean Air Act Regional Haze Requirements
+The goal of the Regional Haze Rule is to set visibility equivalent to natural background
+levels by 2064 in Class I areas. Class I areas are defined as national parks exceeding
+6,000 acres, wilderness and national memorial parks exceeding 5,000 acres and all
+international parks in existence on August 7, 1977. There are currently 156 Class I areas,
+two of which are in the State of Missouri (Hercules Glade and Mingo). As part of the first
+planning period (2008-2018), states have developed implementation plans necessary to
+meet the glide path for the first 10-year planning period. In addition, the Regional Haze
+Rule requires compliance with Best Available Retrofit Technology (BART) for SO2 & NOx
+for the first planning period. The EPA has determined that compliance with CSAPR meets
+the BART requirements. Ameren Missouri is fully compliant with CSAPR, and thus, is
+compliant with the BART requirements. On August 26, 2022, the Missouri Department of
+Natural Resources (MDNR) submitted its State Implementation Plan to EPA for approval.
+As part of this SIP, Ameren Missouri entered into agreements with MDNR to assure
+continued use of existing control technology. On July 3, 2024, EPA published in the
+Federal Register, at 89 Fed. Reg. 55,140, a proposal to partially disapprove Missouri’s
+State Implementation Plan for the regional haze second implementation period.
+For purposes of the Company's current planning analysis, compliance at LEC was
+evaluated with either FGD retrofit or 40% natural gas co-firing starting in 2030.
+
+CWA, Steam Electric Effluent Limitation Guidelines Revisions
+In May 2024, the EPA finalized regulations generally known as the Steam Electric Effluent
+Limitations Guidelines (ELG) Rule that govern certain discharge limitations in the Steam
+Electric Power Generating category. The ELG Rule establishes technical requirements
+and discharge standards for wastewaters generated at coal fired power plants such as
+flue gas desulfurization wastewater, bottom ash transport water, and combustion residual
+leachate. The ELG rule also establishes a new set of definitions and new effluent
+
+2025 Change in Preferred Plan                                   Page 11
+                                                            Schedule MM-D1Ameren Missouri
+
+limitations  for  various  legacy  wastewaters,  which may  be  present  in  surface
+impoundments.  This new rule is not expected to materially affect Ameren Missouri's
+generating fleet.
+Coal Combustion Residuals
+
+Ameren Missouri is executing  its compliance strategy in advance of the regulatory
+deadlines. On May 8, 2024, EPA finalized changes to the CCR regulations for inactive
+surface impoundments at inactive electric utilities, referred to as "legacy CCR surface
+impoundments". Within tailored compliance deadlines, owners and operators of
+legacy CCR surface impoundments must comply with  all existing requirements
+applicable to inactive CCR surface impoundments at active facilities, except for the
+location restrictions and liner design criteria. In addition, through implementation of
+the 2015 CCR rule, EPA found areas at regulated CCR facilities where CCR was
+disposed of or managed on land outside of regulated units at CCR facilities, referred
+to as “CCR Management Units", or CCRMUs.  Ameren Missouri is performing the
+facility reviews required by the Rule. The rule is currently being challenged judicially,
+and on February 13, 2025, the US Court of Appeals for the DC Circuit issued an order
+to hold the case in abeyance for 120 days. Ameren Missouri plans to closely watch the
+current judicial processes and adjust its planning accordingly.
+
+Ash Basin Closure Initiatives
+Ash basin impoundments at the Rush Island, Labadie, and Sioux Energy Centers are
+now complete. Remaining Meramec Energy Center ash basins are expected to be closed
+by the end of 2026. Closure of the original gypsum pond at Sioux Energy Center is now
+complete. The closure of the ash ponds will reduce our consumption of approximately 11
+billion gallon of water per year.
+
+Capital cost assumptions for mitigation technologies evaluated are shown in Table 2.1.
+
+    Table 2.1: Capital Cost Assumptions for Mitigation Technologies ($2024)
+
+
+
+
+
+2025 Change in Preferred Plan                                   Page 12
+                                                            Schedule MM-D1                                         CONFIDENTIAL
+                                             20 CSR 4240-2.135(2)(A)4
+Ameren Missouri
+
+    Supply-Side Resource Review
+Ameren Missouri analyzed the cost and performance characteristics of a wide range of
+supply side resources in its 2023 IRP and has documented its analysis in Chapter 6 of its
+2023 IRP  filing.  New supply side resources that were evaluated in the alternative
+resource plans in the 2023 IRP include the following:
+   •  Gas Combined Cycle
+   •  Gas Simple Cycle Combustion Turbine
+   •  Wind
+   •  Solar
+   •  Pumped Hydroelectric Energy Storage
+   •  Battery Storage
+   •  Nuclear
+Ameren Missouri has reviewed its assumptions for generating resources and determined
+that changes in cost assumptions are appropriate for wind, natural gas simple cycle, and
+natural gas combined cycle resources; comparisons to capital costs assumed in the 2023
+IRP are shown in Figures 2.1-2.3 below.
+
+                Figure 2.1: Wind Capital Cost (Overnight - $/kW)
+        ***
+
+
+
+
+
+                                                                                       ***
+
+
+
+
+
+2025 Change in Preferred Plan                                   Page 13                           P                                                            Schedule MM-D1                                                   CONFIDENTIAL
+                                                        20 CSR 4240-2.135(2)(A)4    Ameren Missouri
+
+                 Figure 2.2: Simple Cycle Capital Cost (Overnight - $/kW)
+                          ***
+
+
+
+
+
+                                                                                    ***
+                Figure 2.3: Combined Cycle Capital Cost (Overnight - $/kW)
+
+***
+
+
+
+
+
+                                                                                                            ***
+     Transmission Costs
+     Ameren Missouri has reviewed its assumptions for transmission costs and determined
+      the costs included in the 2023 IRP are appropriate while also including an additional
+     **__________** (2024$) interconnection cost for the combined cycle increased capacity
+      (2,100 MW vs 1,200 MW) in some alternative plans.
+       Load Forecast Review
+     Since the time of its 2023 IRP filing, Ameren Missouri has seen significant growth in the
+     prospects for data centers  in  its service  territory.  Ameren Missouri had included
+      incremental economic development load in its 2023 IRP forecast starting at 40 MW in
+     2025 and reaching 220 MW in 2031.  However, the requests Ameren Missouri has
+      received to date far exceed those assumed additions. Ameren Missouri has determined
+
+
+     2025 Change in Preferred Plan                                   Page 14
+                                                                 Schedule MM-D1                             PAmeren Missouri
+
+that large load additions, including data centers, are expected to add 500 MW to 2 GW of
+demand by 2032, and continued growth beyond 2032 could increase total demand to 2.5-
+3.5 GW by 2040. Table 2.2 below shows the annual peak demand additions assumed
+for modeling alternative resource plans for three scenarios. Note that the timing of load
+additions, including in the near term, is still uncertain.
+
+               Table 2.2: Data Center Load Addition Scenarios
+
+
+
+    Demand-Side Resource Review
+Ameren Missouri has reassessed its long-term expectations regarding energy efficiency
+programs under the Missouri Energy Efficiency Investment Act (MEEIA) following the
+conclusion of its MEEIA Cycle 4 application proceedings in File No. EO-2023-0136.  In
+that docket, the MPSC approved a stipulation and agreement that substantially reduced
+program budgets to approximately $50 million annually, with lower energy and demand
+savings than what the Company had sought in its application.  While the potential for
+greater energy and demand savings is expected to be available in the future, given the
+concerns that the MPSC and stakeholders expressed in that docket regarding the degree
+to which such savings can be relied upon for purposes of resource planning, Ameren
+Missouri has assumed that energy efficiency program budgets would remain relatively
+constant at MEEIA Cycle 4 levels over the planning horizon.
+
+The Company worked with GDS Associates, Inc., the consulting firm that supported the
+Company's most recent demand-side resource market potential study, to update  its
+expected energy and demand savings consistent with the aforementioned approved
+stipulation and agreement.  As a result, total annual demand savings for the winter
+season, which drives overall resource needs, are expected to be reduced by about 300
+MW by 2032 and about 700 MW over the 20-year planning horizon through 2043,
+compared to a portfolio at the realistic achievable potential (RAP) level as was included
+in the Company's 2023 PRP.  Table 2.3 below summarizes the Company's current
+assumptions for MEEIA program budgets, demand savings, and energy savings through
+2043.
+
+
+
+
+
+2025 Change in Preferred Plan                                   Page 15
+                                                            Schedule MM-D1Ameren Missouri
+
+  Table 2.3: Revised MEEIA Program Budgets and Demand and Energy Savings
+
+
+
+
+
+    Uncertain Factors
+     Price Scenarios
+
+Ameren Missouri has reviewed its assumptions for carbon prices and natural gas prices,
+which are the major drivers of power prices. As discussed in more detail in this section,
+Ameren Missouri has determined that its current expectations for the driver variables are
+within the ranges established in the 2023 triennial IRP. Figure 2.4 shows the scenario
+tree and the probabilities of each branch from the 2023 IRP.
+
+                          Figure 2.4: Scenario Tree
+
+
+
+
+
+2025 Change in Preferred Plan                                   Page 16
+                                                            Schedule MM-D1Ameren Missouri
+
+Carbon Dioxide Emission Prices
+
+The carbon price assumptions from the 2023 IRP were reviewed and remain reflective of
+expectations for the future price of carbon dioxide emissions. The carbon price scenarios
+and the probability-weighted average (PWA) are shown in Figure 2.5.
+
+                      Figure 2.5: CO2 Price Assumptions
+
+
+
+
+
+It should be noted that the price assumptions shown do not presume a particular
+mechanism (e.g., carbon tax, cap-and-trade program, etc.) by which the carbon price is
+implemented.  It can be explicit or implicit and may reflect expectations regarding potential
+regulations, including those that target other emissions associated with carbon-emitting
+resources. Ameren Missouri continues to monitor policy proposals and developments
+that may affect assumptions for carbon pricing.
+
+Natural Gas Prices
+
+Ameren Missouri has also revisited its assumptions for natural gas prices.  Figure 2.6
+shows the three price scenarios and the PWA price.  Ameren Missouri continues to
+monitor factors that may affect assumptions for natural gas prices.
+
+Ameren Missouri considers a number of key natural gas price drivers and risks. For the
+development of natural gas prices for the Company's 2023 IRP, the following key drivers
+and risks were examined:3
+
+
+3 File No. EO-2024-0020 Joint Filing, Resolution for NEE Deficiency 1
+
+2025 Change in Preferred Plan                                   Page 17
+                                                            Schedule MM-D1Ameren Missouri
+
+   •  LNG Exports
+   •  Geopolitical Market Drivers
+   •  Domestic Production and Extraction Costs
+   •  Natural Gas Infrastructure Permitting
+   •  Environmental Regulations for Gas Production and Transportation
+The Company examined LNG exports based on information from the U.S Department of
+Energy's 2022 Annual Energy Outlook, which indicated a wide range of potential LNG
+exports (see Figure 2.6 below). The Company also considered relevant geopolitical
+events, including the Russian invasion of Ukraine in early 2022.
+
+                    Figure 2.6: Natural Gas Price Forecasts
+
+
+
+
+
+     Scenario Modeling
+Since current assumptions for the key driver variables described in section 2.5.1 are
+within the ranges defined in the 2023 IRP, there is no change to the power price forecasts
+modeled for the 2023 IRP and the probability-weighted average prices, which are
+presented in Figure 2.7 below.
+
+
+
+
+
+2025 Change in Preferred Plan                                   Page 18
+                                                            Schedule MM-D1Ameren Missouri
+
+                      Figure 2.7: Market Price Scenarios
+
+
+
+
+
+Sensitivities for Data Center Load Levels
+
+With the recent surge in data center load potential, not only within Ameren Missouri's
+service territory but across other regions in the United States, it is important to consider
+the sensitivity of market prices to the rapid addition of large loads.  To evaluate the
+sensitivity of plan performance to different levels of data center load in the broader
+Eastern Interconnect and the MISO market, Ameren Missouri contracted with Charles
+River Associates (CRA) to analyze three scenarios of data center load and provide
+resultant market prices for energy and capacity. Table 2.4 below shows the data center
+load for high, middle and low scenarios for both MISO and PJM.
+
+For price scenario modeling, CRA analyzed the following combinations of assumptions
+using the Company's 2023 IRP scenarios for natural gas prices and carbon prices and
+load scenarios reflecting the data center load assumptions shown in Table 2.4 as follows:
+   •  High Scenario – 2023 IRP high carbon and gas prices, loads with high
+      assumptions for data center additions
+   •  Middle Scenario – 2023 IRP base carbon and gas prices, loads with middle
+      assumptions for data center additions
+   •  Low Scenario – 2023 IRP low carbon and gas prices, loads with low assumptions
+        for data center load additions
+
+
+
+
+2025 Change in Preferred Plan                                   Page 19
+                                                            Schedule MM-D1Ameren Missouri
+
+The resultant market prices for energy are shown in Figure 2.8, and the resultant
+capacity prices are shown in Figures 2.9 to 2.11. The sensitivity to power prices is
+discussed in Section 3.
+
+          Table 2.4: Data Center Load for Sensitivity Scenarios (MW)
+
+  PJM   Low Case Mid Case High Case   MISO  Low Case Mid Case High Case PJM+MISO Low Case Mid Case High Case
+   2024       6,665     6,665     6,665    2024       1,829     1,829     1,829     2024        8,494     8,494     8,494
+   2025       6,825     7,098     7,965    2025       2,100     2,400     2,608     2025        8,925     9,498    10,573
+   2026       7,250     8,665    11,914    2026       3,000     3,900     4,950     2026      10,250    12,565    16,864
+   2027       8,163    11,252    18,177    2027       4,350     6,300     9,000     2027      12,513    17,552    27,177
+   2028      10,226    15,000    24,000    2028       5,700     9,000    13,500     2028      15,926    24,000    37,500
+   2029      12,110    20,000    30,000    2029       7,050    12,000    18,000     2029      19,160    32,000    48,000
+   2030      13,843    25,000    37,500    2030       8,306    15,000    22,500     2030      22,148    40,000    60,000
+   2031      15,444    30,317    45,475    2031       9,266    18,190    27,285     2031      24,710    48,507    72,760
+   2032      16,929    35,146    52,719    2032      10,158    21,088    31,631     2032      27,087    56,234    84,350
+   2033      18,311    39,101    58,652    2033      10,987    23,461    35,191     2033      29,298    62,562    93,843
+   2034      19,600    42,156    63,234    2034      11,760    25,294    37,941     2034      31,360    67,450   101,175
+   2035      20,804    44,750    66,582    2035      12,482    26,850    39,949     2035      33,286    71,600   106,531
+   2036      21,931    46,500    68,898    2036      13,158    27,900    41,339     2036      35,089    74,400   110,237
+   2037      22,986    47,500    70,419    2037      13,792    28,500    42,251     2037      36,778    76,000   112,670
+   2038      23,750    48,500    72,000    2038      14,250    29,100    43,200     2038      38,000    77,600   115,200
+   2039      24,500    49,250    73,500    2039      14,700    29,550    44,100     2039      39,200    78,800   117,600
+   2040      25,000    50,000    75,000    2040      15,000    30,000    45,000     2040      40,000    80,000   120,000
+
+        Figure 2.8: Market Energy Prices for Data Center Load Scenarios
+
+
+
+
+
+2025 Change in Preferred Plan                                   Page 20
+                                                            Schedule MM-D1Ameren Missouri
+
+     Figure 2.9: Market Capacity Prices for High Data Center Load Scenario
+
+
+
+
+
+    Figure 2.10: Market Capacity Prices for Middle Data Center Load Scenario
+
+
+
+
+
+2025 Change in Preferred Plan                                   Page 21
+                                                            Schedule MM-D1Ameren Missouri
+
+Figure 2.11: Market Capacity Prices for Low Data Center Load Scenario
+
+
+
+
+
+3. Alternative Plans and Risk Analysis
+
+Ameren Missouri's analysis of alternative plans focused on several objectives:
+   •  Analyze differences in costs for different data center load scenarios, including
+      scenarios in which data center loads are reduced after some period of time
+   •  Analyze the impact of the change in the Company's planned MEEIA programs
+   •  Analyze the relative incremental cost of different compliance alternatives for LEC
+To that end, the alternative plans shown in Table 3.1 below were analyzed.
+               Table 3.1: Alternative Resource Plans Analyzed
+
+                                                                                 Coal
+     Plan Name     DSM       Renewables       New Supply-Side       Retirements/
+                                                                               Modifications
+     2023 Preferred                                     SC 2028, CC 2033 A                 RAP    Renewable Expansion                                 Base*     Plan (RAP)                                      CC 2040 and 2043
+     2023 PRP                                          SC 2028, CC 2032 B                  RAP    Renewable Expansion                                Sioux Dec-2031*      (RAP)- Sioux'31                                  CC 2040 and 2043
+     2023 PRP (RAP)                                     SC 2028, CC 2032 C                  RAP    Renewable Expansion                                 Sioux Dec-2031        - ESP - Sioux'31                                  CC 2040 and 2043
+     Lower DSM - CC                                 SC 2028, CC 2032, SC 2037 D                MEEIA 4   Renewable Expansion                                 Sioux Dec-2031        - ESP                                         CC 2040 and CC 2043
+
+
+2025 Change in Preferred Plan                                   Page 22
+                                                            Schedule MM-D1Ameren Missouri
+
+                                                                                 Coal
+     Plan Name     DSM       Renewables       New Supply-Side       Retirements/
+                                                                               Modifications
+                                                   SC 2028, CC 2032, SC 2037 E  Nuke - ESP      MEEIA 4   Renewable Expansion                                 Sioux Dec-2031                                                 Nuke900 2040, CC 2043
+                                                                                       Sioux Dec-2031                                                   SC 2028, CC 2032, SC 2037  F  SCR - FGD       MEEIA 4   Renewable Expansion                              Labadie 2U SCR &                                                 Nuke900 2040, CC 2043                                                                      FGD
+     Labadie Ret                                    SC 2028, CC 2032, SC 2032 G                MEEIA 4   Renewable Expansion                                 Sioux Dec-2031     2031                                        CC 2032, Nuke900 2040
+                                                                                       Sioux Dec-2031     Labadie Ret                                    SC 2028, CC 2032, SC 2032 H                MEEIA 4   Renewable Expansion                               Labadie 4U Dec-     2031 GHG                                    CC 2032, Nuke900 2040                                                                              2031
+                                                                                       Sioux Dec-2031
+                                                   SC 2028, CC 2032, SC 2039   Labadie 4U Cofire   I  GHG Cofire      MEEIA 4   Renewable Expansion                                                CC 2039, Nuke900 2040     Labadie 4U Dec-
+                                                                              2038
+                                                                                       Sioux Dec-2031
+                                                                                   Labadie 4U Cofire    GHG Cofire -                                    SC 2028, CC 2032, SC 2039  J                MEEIA 4   Renewable Expansion                               Labadie 2U FGD    FGD                                        CC 2039, Nuke900 2040                                                                                   Labadie 4U Dec-
+                                                                              2038
+                                                                                       Sioux Dec-2031                                                   SC 2028, CC 2032, SC 2037 K   Cofire - FGD     MEEIA 4   Renewable Expansion                              Labadie 4U Cofire                                                 Nuke900 2040, CC 2043                                                                                    Labadie 2U FGD
+                                                   SC 2028, CC 2032, SC 2037    Sioux Dec-2031  L   Cofire          MEEIA 4   Renewable Expansion                                                 Nuke900 2040, CC 2043    Labadie 4U Cofire
+                             Renewable Expansion -   SC 2028, CC2100 2032, SC     Sioux Dec-2031      Cofire GHG                                      Solar Accelerated       2029, CC 2039, SC600     Labadie 4U Cofire M  +2500 MW      MEEIA 4                         +1000MW Battery         2038, SC600 2039        Labadie 4U Dec-     Load                                       Storage             Nuke1500 2040            2038
+                             Renewable Expansion -                                                   SC 2028, SC 2029, CC 2032      Cofire +500                     Solar Accelerated                                   Sioux Dec-2031 N                MEEIA 4                       CC 2037, Nuke900 2040   MW Load               +1000MW Battery                                Labadie 4U Cofire                                                      CC 2043                                       Storage
+                             Renewable Expansion -      SC 2028, SC 2029
+      Cofire +1500                    Solar Accelerated     CC2100 2032, SC600 2039     Sioux Dec-2031 O                MEEIA 4   MW Load               +1000MW Battery        Nuke1500 2040        Labadie 4U Cofire
+                                       Storage               SC600 2043
+                                                      SC 2028, SC 2029                             Renewable Expansion -                                                 CC2100 2032, SC600 2037      Cofire +2000                    Solar Accelerated                                   Sioux Dec-2031 P                MEEIA 4                            CC600 2038   MW Load               +1000MW Battery                                Labadie 4U Cofire                                                     Nuke1500 2040                                       Storage                                                        SC600 2043
+
+
+
+2025 Change in Preferred Plan                                   Page 23
+                                                            Schedule MM-D1Ameren Missouri
+
+                                                                                 Coal
+     Plan Name     DSM       Renewables       New Supply-Side       Retirements/
+                                                                               Modifications
+                                                      SC 2028, SC 2029                             Renewable Expansion -                                                  CC2100 2032, CC 2037      Cofire +2500                    Solar Accelerated                                   Sioux Dec-2031 Q                MEEIA 4                             SC600 2038   MW Load               +1000MW Battery                                Labadie 4U Cofire                                                     Nuke1500 2040                                       Storage                                                        SC600 2043
+                                                      SC 2028, SC 2029                             Renewable Expansion -                                                  CC2100 2032, SC 2029      Cofire +3500                    Solar Accelerated                                   Sioux Dec-2031 R                MEEIA 4                          SC600 2035, CC 2037   MW Load               +1000MW Battery                                Labadie 4U Cofire                                                        SC600 2037                                       Storage                                                CC 2038, Nuke1500 2040
+                             Renewable Expansion -                                                      SC 2028, SC 2029      Cofire +1500 to                 Solar Accelerated                                   Sioux Dec-2031  S                MEEIA 4                       CC2100 2032, CC600 2043     500 MW Load            +600MW Battery                                Labadie 4U Cofire                                                     Nuke900 2043                                       Storage
+                             Renewable Expansion -                                                      SC 2028, SC 2029      Cofire +2000 to                 Solar Accelerated                                   Sioux Dec-2031 T                MEEIA 4                       CC2100 2032, CC600 2037     500 MW Load            +600MW Battery                                 Labadie 4U Cofire                                                  SC600 2037 Nuke900 2043                                       Storage
+  *All plans except for Plans A and B include new ESPs at two Labadie units.
+
+     Alternative Plans Analysis Results
+Table 3.2 shows the present value of revenue requirements (PVRR) results for the
+alternative plans shown in Table 3.1. These results reflect the 2023 IRP price scenarios
+described in section 2.5. Several conclusions can be drawn from these results.
+First, with respect to data center load additions, the greater the load addition and the
+longer such load additions are sustained, the higher the total cost in terms of PVRR.  It is
+important to recognize that differences in cost for significantly different levels of customer
+demand does not imply that higher cost plans are detrimental.  In fact, analysis results
+show that alternative plans with higher data center demand result in lower levelized rates
+than those with lower data center demand (or none), as shown in Table 3.2. Because the
+cost effects on Ameren Missouri's existing customers are necessarily dependent on rates
+for new data center customers, such considerations must be made in the context of
+establishing a new tariff, for which the Company plans to apply with the MPSC in the
+second quarter of 2025.
+Second, results for environmental compliance options for LEC indicate that 40% natural
+gas co-firing starting in 2030 is lower cost than either early retirement or retrofitting LEC
+
+
+
+
+2025 Change in Preferred Plan                                   Page 24
+                                                            Schedule MM-D1Ameren Missouri
+
+with FGD and SCR equipment.4 This is true whether or not EPA's GHG rule for power
+plants goes into effect. As discussed in section 2.1, significant uncertainty regarding
+various pending environmental regulations remains. Ameren Missouri will continue to
+monitor developments with respect to environmental regulations and identify and evaluate
+compliance options while maintaining flexibility to implement viable options.
+Third, the change from the RAP DSM portfolio included in the Company's 2023 PRP to
+the portfolio based on a continuation of budget levels approved for the Company's MEEIA
+Cycle 4 programs results in an increase in PVRR of about $2 billion. Ameren Missouri is
+initiating a new DSM market potential study to inform the preparation of its 2026 triennial
+IRP and will reassess its long-term plans for MEEIA programs as part of that effort.
+       Table 3.2: PVRR and Levelized Rates Results for Alternative Plans
+
+                                PVRR ($         Levelized Rates      Alternative Resource Plan                                                   Million)          Cents/kWh
+    A - 2023 Preferred Plan (RAP)           $85,471             $22.16
+
+    B - 2023 PRP (RAP)- Sioux'31           $85,501             $22.17
+    C - 2023 PRP (RAP) - ESP -                                           $85,805             $22.25      Sioux'31
+    D - Lower DSM - CC - ESP              $87,927             $22.43
+
+    E - Nuke - ESP                        $90,725             $23.14
+
+     F - SCR - FGD                        $92,532             $23.60
+
+    G - Labadie Ret 2031                   $92,207             $23.52
+
+    H - Labadie Ret 2031 GHG              $92,316             $23.55
+
+           I - GHG Cofire                         $92,000             $23.47
+
+      J - GHG Cofire - FGD                  $93,126             $23.75
+
+    K - Cofire - FGD                       $92,696             $23.64
+
+     L - Cofire                             $91,530             $23.35
+
+    M - Cofire GHG +2500 MW Load        $108,898             $20.52
+
+    N - Cofire +500 MW Load               $97,386             $22.49
+
+    O - Cofire +1500 MW Load             $104,284             $21.02
+
+
+
+
+4 Analysis of environmental compliance is included in this report in part to satisfy the commitment made
+by Ameren Missouri in its June 2024 Joint Filing in File No. EO-2024-0020.
+
+2025 Change in Preferred Plan                                   Page 25
+                                                            Schedule MM-D1Ameren Missouri
+
+                                PVRR ($         Levelized Rates      Alternative Resource Plan                                                   Million)          Cents/kWh
+    P - Cofire +2000 MW Load             $107,708             $20.30
+
+    Q - Cofire +2500 MW Load             $109,078             $20.55
+
+    R - Cofire +3500 MW Load             $115,307             $19.76
+
+    S - Cofire +1500 to 500 MW Load        $97,265             $20.71
+     T - Cofire +2000 to 500 MW Load        $99,652             $20.30
+
+    Data Center Price Scenario Sensitivity
+As mentioned previously, Ameren Missouri has worked with CRA to create additional
+price scenarios  to  reflect  different levels  of data center additions  in the Eastern
+Interconnect to analyze the price sensitivity of alternative plans. Figure 3.1 below shows
+the PVRR For each alternative plan for the 2023 IRP probability weighted average power
+prices and separately for each of the additional data center load price scenarios.
+     Figure 3.1: PVRR Sensitivity to Alternative Data Center Price Scenarios
+
+
+
+
+
+As the chart in Figure 3.1 shows, PVRR changes under some scenarios may slightly alter
+the order of some plans in the aggregate, but in only one case does the rank of an
+alternative plan change by more than one position, and this change does not affect the
+
+
+2025 Change in Preferred Plan                                   Page 26
+                                                            Schedule MM-D1Ameren Missouri
+
+relative cost of relevant decisions regarding environmental compliance or resources
+needed to serve demand. As a result, final plan analysis results are shown using only
+the full range of 2023 IRP price scenarios.
+     Preferred Resource Plan and Contingencies
+Ameren Missouri's management has selected  its new PRP in consideration of the
+prospects for new large load additions and the various costs and risks associated with
+the resource additions needed to serve them. A diverse portfolio of resources will be
+needed to ensure reliable service at reasonable rates to both existing and new customers,
+including resources that primarily provide capacity benefits (CTG, BESS), resources that
+provide carbon-free energy benefits (solar, wind), and resources that provide both
+significant capacity and energy (NGCC, nuclear). The potential for a range of large load
+additions and the potential  for future changes  in load associated with large load
+customers, both increases and reductions, has led Ameren Missouri to select a PRP that
+represents an acceleration of resource additions that were included in its prior PRP but
+that would be needed in the long-term even if such load additions were not permanent.
+This includes acceleration of solar resource additions, which provide significant carbon-
+free energy for large customers like data centers with corporate sustainability and clean
+energy goals.  It includes the acceleration of gas-fired generation and BESS resources to
+meet peak demand requirements in all seasons.
+At the same time, the new PRP reflects more specificity regarding resource additions in
+the long-term if large load additions are more permanent. The 2023 PRP included 2,400
+MW of "clean dispatchable" generation additions. The new PRP includes 1,500 MW of
+new nuclear generation in 2040. While the specific technology to be used has not yet
+been determined, the Company will continue to monitor developments in the market and
+fully evaluate new nuclear potential as part of its future IRP analyses. Ameren Missouri's
+new PRP is shown in Figure 3.2.
+                  Figure 3.2: Ameren Missouri's Revised PRP
+
+
+
+
+
+2025 Change in Preferred Plan                                   Page 27
+                                                            Schedule MM-D1Ameren Missouri
+
+Description of Changes and Rationale
+
+Following are the changes represented in the Company's new PRP relative to its prior
+PRP and the rationale:
+
+   •  Addition of data center loads – The new PRP includes the addition of data center
+      loads with cumulative demand reaching 1.5 GW by 2032 and 2.5 GW by 2040.
+   •  Reduction in MEEIA programs – The new PRP includes MEEIA programs
+      through 2043 at levels similar to those recently approved by the MPSC instead of
+       at the RAP level.
+   •  Acceleration of solar resource additions – The new PRP includes the same
+        total solar additions as the prior PRP – 2,700 MW – but with accelerated timing for
+      the additions to provide energy for new demand growth and clean energy to
+      support the corporate clean energy goals of new large customers.
+   •  Acceleration and expansion of battery storage resource additions – The new
+    PRP includes acceleration and expansion of BESS to provide flexible capacity for
+     new demand and integrate renewable resources, with 1,000 MW in service by the
+     end of 2030, another 400 MW by the end of 2035, and another 400 MW by the end
+       of 2042. This represents an overall increase in BESS of 1,000 MW relative to the
+       prior PRP, driven by significant new load additions and the reduction in expected
+     demand savings from MEEIA programs.
+   •  Acceleration and expansion of dispatchable generation resources – The new
+    PRP includes total natural gas and nuclear generation additions of 7,600 MW
+      (3,300 MW NGCC, 2,800 MW CTG, 1,500 MW nuclear) compared to 4,400 MW
+       of natural gas (1,200 MW NGCC, 800 MW CTG) and "clean dispatchable"
+      resources (2,400 MW) in the prior PRP.
+
+Because the changes are driven collectively by the changes in demand, it is helpful to
+understand how all of the changes affect the Company's capacity position in the final year
+of the planning horizon. Table 3.3 below shows a reconciliation of the Company's 2043
+capacity position under the new PRP relative to the prior PRP.
+
+Because the extent and timing of data center load additions is uncertain, Ameren Missouri
+has developed contingency plans for different levels of load additions. Table 3.4 below
+shows the resource additions for the 2025 PRP as well as the two contingency plans
+described above. Resource additions for the 2023 IRP are also shown for comparison.
+It is important to note that the resource additions through 2032 for the contingency plan
+for 2 GW of data center demand by 2032 are the same as the resource additions through
+2032 for the PRP. Also, the addition of 800 MW of CTG generation in 2028 is included
+in both the upside and low contingency plans as well as the PRP.
+
+
+2025 Change in Preferred Plan                                   Page 28
+                                                            Schedule MM-D1Ameren Missouri
+
+        Table 3.3: Change in Capacity Position – New PRP vs. Prior PRP
+
+
+
+
+
+ Table 3.4 Resource Additions for the 2025 PRP and Contingencies Compared to
+                                 the 2023 PRP
+                              2023 IRP Preferred Plan        500 MW Large Loads            1.5 GW Large Loads            2.0 GW Large Loads
+Data Center Load Additions                                                                     1.5 GW by 2032 (12 GWh)       2 GW by 2032 (16 GWh)                                N/A              500 MW by 2027 (4 GWh)(beginning of year)                                                                             2.5 GW by 2040 (20 GWh)       3.5 GW by 2040 (28 GWh)
+                                Aggressive Energy Efficiency   Limited Energy Efficiency and   Limited Energy Efficiency and   Limited Energy Efficiency andEnergy Efficiency / Demand                            and Demand Response    Continued Demand Response  Continued Demand Response  Continued Demand ResponseResponse                                   Programs                  Programs                  Programs                  Programs
+Total Retail Sales in 2040            36 Million MWh              40 Million MWh              56 Million MWh              64 Million MWh
+                                     Sioux (2032)              Sioux (2031-2035)            Sioux (2031-2035)            Sioux (2031-2035)Coal Retirements (end of                               Labadie - 2 Units (2036)       Labadie - 2 Units (2036)       Labadie - 2 Units (2036)       Labadie - 2 Units (2036)year)                               Labadie - 2 Units (2042)       Labadie - 2 Units (2042)       Labadie - 2 Units (2042)       Labadie - 2 Units (2042)
+Gas Retirements (end of            Venice (IL) (2029)             Venice (IL) (2029)             Venice (IL) (2029)             Venice (IL) (2029)
+year)                            Other ILCTGs (2039)          Other ILCTGs (2039)          Other ILCTGs (2039)          Other ILCTGs (2039)
+                                    1,000 MW by 2030             1,000 MW by 2030             1,000 MW by 2030             1,000 MW by 2030Wind Additions (end of year)                                    2,000 MW by 2035             2,000 MW by 2035             2,000 MW by 2035             2,000 MW by 2035
+                                    1,800 MW by 2030             1,800 MW by 2030             2,200 MW by 2030             2,200 MW by 2030Solar Additions (end of year)                                    2,700 MW by 2035             2,700 MW by 2035             2,700 MW by 2032             2,700 MW by 2032
+                                                                                               1,000 MW by 2030             1,000 MW by 2030Battery Additions (end of           400 MW by 2030             400 MW by 2030                                                                                               1,400 MW by 2037             1,400 MW by 2037year)                             800 MW by 2033             800 MW by 2033                                                                                               1,800 MW by 2042             1,800 MW by 2042
+                                                                                                                             2,100 MW (2032)Combined Cycle Gas                                                                           2,100 MW (2032)                                     1,200 MW (2033)              1,200 MW (2032)                                            1,200 MW (2037)Additions (beginning of year)                                                                    1,200 MW (2037)                                                                                                                             1,200 MW (2038)
+                                                                                        800 MW (2027)               800 MW (2027)Simple Cycle Gas Additions                                                             800 MW (2027)               800 MW (2028)               800 MW (2028)(beginning of year, except           800 MW (2027)                                                             800 MW (2028)               600 MW (2038)               600 MW (2035)2027 and 2028 additions in Q4)                                                                                        600 MW (2043)               600 MW (2037)
+New Nuclear Additions                                N/A                   900 MW (2040)               1,500 MW (2040)              1,500 MW (2040)(beginning of year)
+Other Clean Dispatchable            1,200 MW (2040)              1,200 MW (2037)                                                                             N/A                   N/AAdditions (beginning of year)        1,200 MW (2043)              1,200 MW (2043)
+
+
+2025 Change in Preferred Plan                                   Page 29
+                                                            Schedule MM-D1Ameren Missouri
+
+    Comparison to Prior Preferred Plan
+Table 3.5 below shows a comparison of the performance measures used by Ameren
+Missouri to assess the performance of alternative resource plans and select its
+preferred plan.
+
+Table 3.5: Comparison of Performance Measures for New and Prior PRP
+
+
+
+
+
+As discussed previously in this report, the increase in PVRR is primarily a reflection of the
+much higher load levels reflected in the new PRP, driven by expected data center
+customer load additions, relative to the 2023 PRP. Note that the new PRP results in a
+4.2% reduction in average rates relative to the 2023 PRP. Free cash flow reflects the
+need for both accelerated generation investment in the near term and overall greater
+generation investment in the long term. While the changes to the Company's outlook for
+MEEIA programs results in changes in both energy savings and jobs, the reduction in
+jobs is more than offset by construction and operating jobs resulting from new generation
+additions. Note that jobs are direct jobs and do not reflect job creation resulting from data
+center construction or economic benefits produced.
+    Implementation
+Over the next two years, Ameren Missouri will be carrying out specific actions to execute
+on the new Preferred Resource Plan. These include:
+
+   •  Submitting an application to establish a new tariff for large load customers, such
+      as data centers, in the second quarter of 2025
+   •  Submitting applications for CCNs to the MPSC for:
+        o New solar generation projects (the first in the second quarter of 2025)
+        o New BESS facilities to be located at former coal energy center sites (the
+                   first in the second quarter of 2025)
+
+
+
+2025 Change in Preferred Plan                                   Page 30
+                                                            Schedule MM-D1Ameren Missouri
+
+        o  800 MW of CTG generation at the former Rush Island coal energy center
+               site (second quarter of 2025)
+   •  Continuing to evaluate proposals for new wind and solar generation projects
+   •  Continuing preparations  for the addition  of NGCC generation, including an
+       application to the MPSC for a CCN in 2026
+   •  Continuing to manage approved MEEIA programs for customer energy efficiency
+     and demand response
+   •  Continuing  to  monitor  developments  regarding  environmental  regulations,
+       identifying and evaluating options for compliance, and taking steps to maintain
+       available options
+   •   Initiating a new market potential study to identify opportunities for further energy
+     and demand savings from future MEEIA programs
+
+
+
+
+
+2025 Change in Preferred Plan                                   Page 31
+                                                            Schedule MM-D1CONFIDENTIAL
+20 CSR 4240-2.135(2)(A)4
+
+
+
+
+
+            Schedule MM-D1Ameren Missouri                                            Appendix A
+
+
+
+     Table A.4 PVRR Sensitivity to Alternative Data Center Price Scenarios
+
+           Plan - $ Million                  PVRR    Scn 10   Scn 11   Scn 12
+         A  2023 Preferred Plan (RAP)        85,471    87,077    85,917    83,828
+          B  2023 PRP (RAP)- Sioux'31        85,501    87,138    85,926    83,792
+           C  2023 PRP (RAP) - ESP - Sioux'31   85,805    87,441    86,230    84,096
+         D  Lower DSM - CC - ESP            87,927    89,316    88,463    86,808
+            E  Nuke - ESP                      90,725    92,279    91,369    89,644
+             L   Cofire                          91,530    92,639    91,823    90,410
+                     I  GHG Cofire                     92,000    93,028    92,381    91,061
+         G  Labadie Ret 2031                92,207    93,136    92,297    90,777
+         H  Labadie Ret 2031 GHG           92,316    92,934    92,472    91,380
+            F  SCR - FGD                      92,532    94,103    93,167    91,461
+          K  Cofire - FGD                    92,696    93,721    92,946    91,581
+                 J  GHG Cofire - FGD               93,126    94,108    93,484    92,195
+            S  Cofire +1500 to 500 MW Load     97,265    97,857    97,629    97,118
+        N  Cofire +500 MW Load            97,386    98,382    97,667    96,273
+           T  Cofire +2000 to 500 MW Load     99,652  100,112  100,131    99,739
+        O  Cofire +1500 MW Load          104,284  104,716  104,626  104,103
+           P  Cofire +2000 MW Load          107,708  107,933  108,169  108,088
+      M GHG Cofire +2500 MW Load     108,898  108,874  109,358  109,580
+        Q  Cofire +2500 MW Load          109,078  109,337  109,345  109,008
+          R  Cofire +3500 MW Load          115,307  115,245  115,652  115,860
+
+
+
+
+
+2025 Change in Preferred Plan                                    Page 2
+
+                                                            Schedule MM-D1Schedule MM-D2

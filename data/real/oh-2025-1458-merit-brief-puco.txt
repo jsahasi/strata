@@ -1,0 +1,4429 @@
+IN THE SUPREME COURT OF OHIO 
+ 
+In the Matter of the Application of Ohio 
+Power Company For New Tariffs Related to 
+Data Centers and Mobile Data Centers. 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+ 
+ 
+Case No. 2025-1458 
+  
+Appeal from the Public Utilities 
+Commission of Ohio 
+ 
+Public Utilities Commission of Ohio 
+Case No. 24-508-EL-ATA 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+MERIT BRIEF SUBMITTED ON BEHALF OF APPELLEE 
+ 
+PUBLIC UTILITIES COMMISSION OF OHIO 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Kimberly W. Bojko (0069402) 
+(Counsel of Record) 
+Emma Y. Easley (0102144) 
+Carpenter Lipps LLP 
+280 North High Street, Suite 1300 
+Columbus, Ohio 43215 
+Telephone: (614) 365-4100  
+Facsimile: (614) 365-9145 
+bojko@carpenterlipps.com  
+easley@carpenterlipps.com  
+ 
+Counsel for Appellant, 
+The Ohio Manufacturers’ 
+Association Energy Group  
+David Yost (0056290) 
+Attorney General of Ohio 
+ 
+John Jones (0051913)  
+Section Chief, Public Utilities Section 
+ 
+Amy Botschner O’Brien (0074423) 
+Thomas Lindgren (0039210) 
+Lori Keating (0070183) 
+Assistant Attorneys General 
+30 East Broad Street, 16th Floor 
+Columbus, Ohio 43215 
+Telephone: (614) 466-4397 
+Facsimile: (614) 644-8767 
+Amy.BotschnerOBrien@OhioAGO.gov 
+Thomas.Lindgren@OhioAGO.gov 
+Lori.Keating@OhioAGO.gov  
+ 
+Counsel for Appellee,  
+Public Utilities Commission of Ohio 
+ 
+Steven T. Nourse (0046705) 
+(Counsel of Record) 
+American Electric Power Service Corporation 
+1 Riverside Plaza, 29th Floor Columbus, Ohio 
+43215-2373 
+Telephone: 614) 716-1608 
+stnourse@aep.com  
+Supreme Court of Ohio Clerk of Court - Filed March 24, 2026 - Case No. 2025-1458
+N. Trevor Alexander (0080713) 
+Kari D. Hehmeyer (0096284) 
+Samantha R. Meng (0103524) 
+BENESCH FRIEDLANDER COPLAN & 
+ARONOFF 
+41 South High Street, Suite 2600 
+Columbus, Ohio 43215 
+ 
+Telephone: (614) 223-9363 
+Facsimile: (614) 223-9330 
+talexander@beneschlaw.com  
+khehmeyer@beneschlaw.com  
+smeng@beneschlaw.com  
+ 
+Counsel for Intervening Appellee, 
+Ohio Power Company 
+ 
+Michael L. Kurtz (0033350) 
+(Counsel of Record) 
+Jody Kyler Cohn (0085402) 
+Boehm, Kurtz & Lowry 
+425 Walnut Street, Suite 2400 
+Cincinnati, Ohio 45202 
+Telephone: (513) 421-2255 
+Facsimile: (513) 421-2255 
+mkurtz@BKLlawfirm.com  
+jkylercohn@BKLlawfirm.com  
+ 
+Counsel for Intervening Appellee, 
+The Ohio Energy Group 
+ 
+Maureen R. Willis (0020847) 
+Ohio Consumers’ Counsel 
+ 
+William J. Michael (0070921) 
+(Counsel of Record) 
+John Varanese (0044176) 
+Assistant Consumers’ Counsel 
+Office of the Ohio Consumers’ Counsel 
+65 East State Street, Suite 700 
+Columbus, Ohio 43215 
+Telephone [Willis]: (614) 466-9567 
+Telephone [Michael]: (614) 466-1291 
+Telephone [Varanese]: (614) 387-2965 
+Maureen.willis@occ.ohio.gov  
+William.michael@occ.ohio.gov  
+John.varanese@occ.ohio.gov  
+ 
+Counsel for Intervening Appellee, 
+Office of the Ohio Consumers’ Counsel 
+ 
+ 
+ 
+March 24, 2026
+i 
+TABLE OF CONTENTS 
+PAGE 
+INTRODUCTION .......................................................................................................................... 1 
+STATEMENT OF FACTS AND CASE .......................................................................................... 2 
+STANDARD OF REVIEW ............................................................................................................ 4 
+ARGUMENT .................................................................................................................................. 6 
+Proposition of Law 1: The Commission lawfully and reasonably approved 
+Schedule DCT, which is based on actual, material differences in service and is 
+neither unduly discriminatory nor unlawful. ...................................................................... 6 
+A. 
+Schedule DCT is consistent with R.C. 4905.32, 4905.33, and 
+4905.35 because different customer classes may be established 
+based on justifiable and reasonable distinctions, and those statutes 
+do not prohibit discrimination when the classes are reasonably 
+based. .......................................................................................................... 6 
+B. 
+Appellant’s constitutional arguments have no merit. ................................ 15 
+C. 
+The Commission’s findings comply with R.C. 4903.09. .......................... 16 
+Proposition of Law No. 2: The Commission lawfully and reasonably found that 
+AEP Ohio’s temporary moratorium was reasonable and necessary and declined to 
+impose penalties. ............................................................................................................... 17 
+Proposition of Law No. 3: The Commission lawfully and reasonably found that 
+AEP Ohio demonstrated a real, pending transmission capacity constraint 
+supported by substantial, competent evidence. ................................................................. 22 
+Proposition of Law No. 4: The Commission lawfully and reasonably concluded 
+that AEP Ohio’s application was not for an increase in rates. .......................................... 25 
+Proposition of Law No. 5: The Commission lawfully and reasonably upheld the 
+ALJs’ decision regarding statutory notice requirements under R.C. 4909.18. ................. 27 
+Proposition of Law No. 6: The Commission lawfully and reasonably upheld the 
+ALJs’ reasonable limitations on cross-examination. ........................................................ 30 
+CONCLUSION ............................................................................................................................. 33 
+PROOF OF SERVICE .................................................................................................................. 35 
+i 
+TABLE OF AUTHORITIES 
+PAGE(S) 
+Cases 
+AK Steel Corp. v. Pub. Util. Comm., 2002-Ohio-1735 ................................................................... 4 
+Allnet Communications Serv., Inc. v. Pub. Util. Comm., 70 Ohio St.3d 202 (1994) .................. 7, 8 
+Buckeye Lake Chamber of Commerce v. Pub. Util. Comm., 161 Ohio St. 306 (1954) ................... 8 
+Cincinnati Gas & Electric Co., PUCO No. 82-622-EL-ATA (May 12, 1982) ............................. 27 
+Cincinnati Gas & Electric Co. v. Pub. Util. Comm., 86 Ohio St.3d 53 (1999) 
+Consumers' Counsel v. Pub. Util. Comm., 70 Ohio St.3d 244 (1994) .......................................... 15 
+Discount Cellular, Inc. v. Pub. Util. Comm., 2007-Ohio-53 ......................................................... 15 
+Duff v. Pub. Util. Comm., 56 Ohio St.2d 367 (1978) .............................................................. 28, 31 
+In re Application of Ohio Power Co., 2018-Ohio-4698 ................................................................. 4 
+In re Complaint of Buckeye Energy Brokers, Inc. v. Palmer Energy Co., 2014-Ohio-1532 ......... 33 
+In re Complaint of Suburban Natural Gas Co. v. Columbia Gas of Ohio, Inc., 2020-Ohio-
+5221............................................................................................................................................... 16 
+In re Complaint of Wingo v. Nationwide Energy Partners, L.L.C., 2020-Ohio-5583 ..................... 4 
+In re Complaints of Lycourt-Donovan v. Columbia Gas of Ohio, Inc., 2017-Ohio-7566 ............... 4 
+In re Ohio Power Co. for an Increase in Elec. Distrib. Rates, 2024-Ohio-2890 ......................... 17 
+In re the Application of Ohio Power Co., for Authority to Establish a Std. Service Offer 
+Pursuant to R.C. 4928.143, in the Form of an Elec. Security Plan, Slip Opinion No. 
+2025-Ohio-3034 ...................................................................................................................... 21, 33 
+Migden-Ostrander v. Pub. Util. Comm., 102 Ohio St.3d 451 (2004) ............................................. 7 
+Migden-Ostrander v. Pub. Util. Comm., 2004-Ohio-3924 ............................................................. 8 
+Monongahela Power Co. v. Pub. Util. Comm., 2004-Ohio-6896 ............................................... 4, 5 
+Myers v. Pub. Util. Comm., 1992-Ohio-135 ................................................................................... 5 
+Office of Consumers’ Counsel v. Pub. Util. Comm., 58 Ohio St.2d 108 (1979) ............................. 5 
+Ohio Consumers’ Counsel v. Pub. Util. Comm., 2006-Ohio-5789 ............................................... 26 
+ii 
+Ohio Edison Co. v. Pub. Util. Comm., 78 Ohio St. 3d, 466 (1997) ................................................ 5 
+Toledo Coalition for Safe Energy v. Pub. Util. Comm., 69 Ohio St. 2d 559 (1982) ..................... 31 
+TriHealth, Inc. v. Bd. of Comm’rs Hamilton County, 430 F.3d 783 (6th Cir. 2005) ..................... 16 
+Vectren Energy Delivery of Ohio, Inc. v. Pub. Util. Comm., 2007-Ohio-1386 ............................. 30 
+Weiss v. Pub. Util. Comm., 2000-Ohio-5 ............................................................................ 7, 28, 31 
+Statutes 
+R.C. 4901.13 ................................................................................................................................. 35 
+R.C. 4903.09 .......................................................................................................................... passim 
+R.C. 4903.10 ................................................................................................................................. 18 
+R.C. 4903.13 ................................................................................................................................... 4 
+R.C. 4905.09 ................................................................................................................................. 33 
+R.C. 4905.22 ........................................................................................................................... 21, 24 
+R.C. 4905.31 ................................................................................................................................... 8 
+R.C. 4905.32 ................................................................................................................................. 17 
+R.C. 4905.54 ................................................................................................................................. 24 
+R.C. 4909.18 .......................................................................................................................... passim 
+R.C. 4909.19 ..................................................................................................................... 29, 32, 33 
+R.C. 4928.02 ................................................................................................................................. 24 
+R.C. 4933.83 ........................................................................................................................... 21, 24 
+ 
+ 
+ 
+ 
+ 
+ 
+iii 
+Other Authorities 
+In re Application of Ohio Power Co. for Approval of a Special Contract Arrangement 
+with Ormet Primary Aluminum Corp., PUCO No. 96-999-EL-AEC, et al., 2006 Ohio 
+PUC LEXIS 359, Opinion and Order *11 (June 14, 2006) .......................................................... 18 
+In re Cheyenne Light, Fuel, and Power d/b/a Black Hills Energy to Implement a 
+Blockchain Interruptible Service Tariff, Docket No. 20003-173-ET-18, Record No. 
+15104, Memorandum Opinion, Findings, and Order Approving Stipulation (July 22, 
+2019) ............................................................................................................................................. 14 
+In re Commission Investigation into the Resale and Sharing of Local Exchange Telephone 
+Service, Pub. Util. Comm. 85-1199-TP-COI, 1986 Ohio PUC LEXIS 26, Entry on 
+Rehearing (October 14, 1986) ......................................................................................................... 7 
+In the Matter of the Application of Entergy Arkansas, LLC for a Proposed Tariff 
+Regarding Large Power High Load Density (“Crypto-Mining”), Arkansas Public Service 
+Commission Docket No. 22-032-TF, Order No. 7 (November 14, 2022) .................................... 13 
+In the Matter of the Application of Idaho Power Company for Authority to Establish a 
+New Schedule to Serve Speculative High-Density Load Customers, Idaho Public Utilities 
+Commission Case No. IPC-E-21-37, Order No. 35428 (June 15, 2022) ...................................... 13 
+In the Matter of the Application of Ohio Power Company for New Tariffs Related to Data 
+Centers and Mobile Data Centers, Case No. 24-508-EL-ATA (Entry on Rehearing) (Sept. 
+3, 2025). .......................................................................................................................................... 3 
+In the Matter of the Application of Ohio Power Company for New Tariffs Related to Data 
+Centers and Mobile Data Centers, Case No. 24-508-EL-ATA (Opinion & Order) (July 9, 
+2025) ............................................................................................................................................... 3 
+Rules 
+Adm. Code 4901-1-27 .......................................................................................... 30, 31, 33, 34, 36 
+Adm. Code 4901-1-25 .................................................................................................................. 31 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+MERIT BRIEF  
+SUBMITTED ON BEHALF OF APPELLEE 
+PUBLIC UTILITIES COMMISSION OF OHIO 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+INTRODUCTION 
+This case arises from the Public Utilities Commission of Ohio’s (Commission or PUCO) 
+consideration of a novel and increasingly consequential development in the state’s electric-utility 
+landscape: the rapid growth of large-scale data centers seeking service. Faced with projected 
+demand from customers in Ohio Power Company d/b/a AEP Ohio’s (AEP Ohio) territory whose 
+energy usage far exceeds that of traditional commercial or industrial consumers, the Commission 
+was asked to determine whether a new tariff was necessary to address the operational and cost 
+implications of that growth.  
+AEP Ohio filed an application proposing a tariff applicable to new data center and mobile 
+data center customers designed to accommodate the potential for unprecedented load growth, 
+driven almost exclusively by data centers locating within its service area. At issue below was 
+whether a special tariff was needed to address the unique needs of data centers. The Commission 
+made the correct factual determination that data centers are different from other large loads and 
+that a distinct tariff for data centers is appropriate to address the unique load characteristics, cost 
+allocation, and infrastructure concerns presented by the unprecedented scale and nature of data 
+center demand. 
+In the Order now under review, the Commission resolved several contested legal and 
+procedural issues, executing its responsibilities fairly and in full accordance with Ohio’s public-
+utility administrative law. The Commission determined that the application did not constitute an 
+increase to existing rates but instead proposed a tariff applicable to a distinct class of new 
+2 
+customers. It allowed a temporary moratorium on certain data center contracts to continue during 
+the pendency of the proceedings, until the effective date of the new tariff. The Commission 
+upheld the Administrative Law Judges’ (ALJ) rulings on challenges concerning notice and 
+service and sustained the ALJs’ evidentiary rulings made during the presentation of testimony. 
+And the Commission made detailed findings of fact grounded in extensive evidence, all within 
+the scope of its statutory authority and regulatory discretion. 
+The Commission’s decision, concluding that data centers pose unique, systemic risks that 
+do not exist for other large energy intensive customers, and adopting the stipulation and tariff 
+accounting for that, was reasonable and supported by the evidence and should be affirmed.  
+STATEMENT OF FACTS AND CASE 
+On May 13, 2024, AEP Ohio filed an application, pursuant to R.C. 4909.18, requesting 
+approval of the following tariffs to establish two new customer classifications: (1) a Data Center 
+Power tariff for new data center customers that will use a monthly maximum demand of 25 
+megawatts (MW) or greater at a single location; and (2) a Mobile Data Center tariff for new 
+mobile data center customers (such as cryptocurrency miners) that will use a monthly maximum 
+demand of 1 MW or greater at a single location. AEP Ex. 1, Appellant’s App. at 329-340.1 
+In addition to Appellant OMAEG, the ALJs granted intervention to twenty intervenors, 
+including numerous companies supporting data center interests, trade groups, and consumers 
+representatives. Order at ¶ 10, Appellant’s App. at 145. 
+After several months of settlement negotiations, two stipulations were ultimately filed in 
+the case below: one signed by OMAEG and others who predominantly represented data center 
+ 
+1 References to Appellant’s Appendix are denoted as “Appellant’s App. at ___.” 
+3 
+interests (the 10/10 Stipulation), and one signed by AEP Ohio, the PUCO Staff, the Office of the 
+Ohio Consumers’ Counsel, and others ( the 10/23 Stipulation), which included Schedule DCT. 
+Order at ¶¶ 11-12, 20, Appellant’s App. at 145. 
+A 13-day hearing was conducted after which the parties submitted post-hearing initial and 
+reply briefs. Order at ¶¶ 14-15, 19-20, Appellant’s App. at 146; Entry on Rehearing at 36, 
+Appellant’s App. at 250. After consideration of all the evidence and the post-hearing briefs, the 
+Commission issued an Opinion and Order (Order)2 on July 9, 2025, approving and adopting 
+Schedule DCT with slight modification. Order at ¶ 158, Appellant’s App. at 237.  
+With this finding, the Commission directed AEP Ohio to file updated tariffs for Schedule 
+DCT, under which applicable data centers are subject to a specified load ramp period, minimum 
+duration contracts, adjusted minimum demand charges, collateral requirements, capacity 
+reassignment limitations, and a new service enrollment process, amongst other 10/23 Stipulation 
+provisions. See Schedule DCT Provisions B, D, E, F, J, Appellant’s App. at 408, 413-418, 422. 
+AEP Ohio was also directed to cease its temporary service moratorium. Order at ¶ 158, 
+Appellant’s App. at 237. 
+Applications for rehearing were filed by Appellant and others. Entry on Rehearing at 
+¶ 22, Appellant’s App. at 244. On September 3, 2025, the Commission’s Entry on Rehearing3 
+denied the applications for rehearing. Entry on Rehearing at ¶ 62, Appellant’s App. at 267. 
+Appellant filed a Notice of Appeal to this Court on November 3, 2025. No other intervening 
+ 
+2 In the Matter of the Application of Ohio Power Company for New Tariffs Related to Data 
+Centers and Mobile Data Centers, Case No. 24-508-EL-ATA (Opinion & Order) (July 9, 2025). 
+3 In the Matter of the Application of Ohio Power Company for New Tariffs Related to Data 
+Centers and Mobile Data Centers, Case No. 24-508-EL-ATA (Entry on Rehearing) (Sept. 3, 
+2025). 
+4 
+party, including the corporations building billions of dollars of data centers in Ohio and their 
+trade group, the Data Center Coalition, appealed or moved to intervene in this appeal. 
+STANDARD OF REVIEW 
+R.C. 4903.13 provides that a final order made by the Public Utilities Commission shall be 
+reversed, vacated, or modified by the Supreme Court on appeal only when, upon consideration of 
+the record, the Court is of the opinion that such order was unlawful or unreasonable. The Court 
+does not “reweigh the evidence or second-guess the PUCO on questions of fact.” Lycourt-
+Donovan v. Columbia Gas of Ohio, Inc., 2017-Ohio-7566, ¶ 35. The Court “will not reverse or 
+modify a commission decision as to questions of fact when the record contains sufficient 
+probative evidence to show that the commission’s decision was not manifestly against the weight 
+of the evidence and was not so clearly unsupported by the record as to show misapprehension, 
+mistake, or willful disregard of duty.” In re Application of Ohio Power Co., 2018-Ohio-4698, ¶ 9 
+(citing Monongahela Power Co. v. Pub. Util. Comm., 2004-Ohio-6896, ¶ 29). “The application 
+of the relevant legal standards to the facts is one that is best left to the PUCO in the first 
+instance.” Complaint of Wingo v. Nationwide Energy Partners, L.L.C., 2020-Ohio-5583, ¶ 26.  
+This Court has “consistently refused to substitute [its] judgment for that of the 
+commission on evidentiary matters.” AK Steel Corp. v. Pub. Util. Comm., 2002-Ohio-1735, ¶ 13; 
+citing, Cincinnati Gas & Electric Co. v. Pub. Util. Comm., 86 Ohio St.3d 53 (1999); also citing, 
+Dayton Power & Light Co. v. Pub. Util. Comm., 4 Ohio St.3d 91 (1983); also citing, Columbus v. 
+Pub. Util. Comm., 170 Ohio St. 105 (1959). “The burden is on the appellant to show that the 
+commission’s decision is against the manifest weight of the evidence or is clearly unsupported by 
+the evidence.” Id. at ¶ 20. “This burden is difficult to sustain because the court has consistently 
+found it proper to defer to the commission’s judgment in matters that require the commission to 
+5 
+apply its specialized expertise and discretion … with regard to factual matters now on appeal.” 
+Monongahela Power Co. at ¶ 29. Further, this Court will not reverse a Commission order absent 
+a showing by an appellant that it has been or will be harmed or prejudiced by the order. Myers v. 
+Pub. Util. Comm., 1992-Ohio-135, ¶ 18. 
+As to questions of law, this Court has “complete and independent power of review” in 
+appeals from the Commission. Ohio Edison Co. v. Pub. Util. Comm., 78 Ohio St. 3d, 466, 469 
+(1997). Even so, this does not prevent the Court from drawing upon the specialized expertise of 
+the Commission in interpreting the law when “dealing with highly specialized issues and where 
+agency expertise would, therefore, be of assistance in discerning the presumed intent of our 
+General Assembly.” Office of Consumers’ Counsel v. Pub. Util. Comm., 58 Ohio St.2d 108, 110 
+(1979). While the Court does not give deference to administrative agencies in matters of 
+statutory interpretation, this case does not involve the construction of ambiguous statutes. 
+TWISM Ents., L.L.C. v. State Bd. of Registration for Prof’l Eng’rs & Surveyors, 2022-Ohio-
+4677. Moreover, the Court has recognized that an agency has considerable discretion regarding 
+the implementation of a statute within its jurisdiction. The agency’s exercise of its authority need 
+only fall within a zone of reasonableness. In re Application of Firelands Wind L.L.C., 2023-Ohio-
+2555, ¶ 15. 
+The record contains sufficient probative evidence demonstrating that the Commission’s 
+decisions were lawful, reasonable and supported by the manifest weight of the evidence. The 
+Commission properly determined that data centers are fundamentally different from other large 
+load customers, and for that reason, Schedule DCT is a just, reasonable, and lawful pathway for 
+data center customers to receive service from AEP Ohio while ensuring that other customers are 
+6 
+protected from the potential financial risks associated with the massive influx of data center load 
+to the Ohio grid.  
+ARGUMENT 
+Proposition of Law 1: The Commission lawfully and reasonably approved Schedule DCT, 
+which is based on actual, material differences in service and is neither unduly 
+discriminatory nor unlawful. 
+ 
+In its First Proposition of Law, Appellant argues that the Commission’s decision was 
+against the manifest weight of the evidence and discriminated against data centers in violation of 
+R.C. 4905.32, 4905.33, 4905.35, due process, and the Equal Protection Clause. Appellant also 
+briefly argues under its proposition that the Commission’s decision was not based upon sufficient 
+findings supported by the record in violation of R.C. 4903.09. The Court should reject 
+Appellant’s arguments because the treatment of data center customers under Schedule DCT is 
+reasonably based on unique risks posed by data center load and the Commission’s Opinion and 
+Order and Entry on Rehearing contained ample detail on the factual basis and reasoning 
+supporting the Commission’s decision. 
+R.C. 4905.32 directs that no public utility shall “refund or remit directly or indirectly, any 
+rate … or charge except such as are specified in such schedule and regularly and uniformly 
+extended to all persons … under like circumstances for like, or substantially similar, service.” 
+R.C. 4905.33 prohibits utilities from charging different rates for customers who receive “like and 
+contemporaneous service under substantially the same circumstances and conditions.” R.C. 
+A. 
+Schedule DCT is consistent with R.C. 4905.32, 4905.33, and 4905.35 because 
+different customer classes may be established based on justifiable and 
+reasonable distinctions, and those statutes do not prohibit discrimination 
+when the classes are reasonably based. 
+7 
+4905.35 prohibits utilities from providing service in a manner that would create “any undue or 
+unreasonable prejudice or disadvantage.”4 
+Interpreting these statutes, this Court has consistently held that a utility tariff is 
+considered unduly discriminatory only if it treats similarly situated customers differently without 
+justification. Allnet Communications Serv., Inc. v. Pub. Util. Comm., 70 Ohio St.3d 202, 207 
+(1994) (holding that under R.C. 4905.32 and R.C. 4905.35(A), “discrimination is not prohibited 
+per se but is prohibited only if without a reasonable basis”); See Weiss v. Pub. Util. Comm., 
+2000-Ohio-5 at ¶ 11 (holding that R.C. 4905.33 prohibits discriminatory pricing for “like and 
+contemporaneous service” rendered “under substantially the same circumstances and 
+conditions,” but does not prohibit differences in prices charged or collected where the utility 
+services rendered are different or if they are rendered under different circumstances or 
+condition). Thus, these statutes do not prohibit all discrimination in service and rates; only 
+“undue or unreasonable” discrimination is prohibited. See Weiss, 2000-Ohio-5 at ¶ 11; Allnet, 70 
+Ohio St.3d at 207. 
+ In Mahoning County v. Pub. Util. Comm., 58 Ohio St. 2d 40, 44 (1979), this Court 
+confirmed:  
+ 
+4 Although not cited by the Commission, Schedule DCT is also consistent with R.C. 4905.31, 
+which explicitly empowers the Commission to consider the end use of electricity when 
+separating customers into separate tariffs. R.C. 4905.31(D) provides the following: “[a] 
+classification of service based upon the quantity used, the time when used, the purpose for which 
+used, the duration of use, and any other reasonable consideration.” (Emphasis added.). This 
+Court has recognized that a classification based on factors listed in R.C. 4905.31(D) is not 
+prohibited if it is reasonable. See, Weiss, 2000-Ohio-5 at ¶ 9. R.C. 4905.31 does not apply 
+exclusively to reasonable arrangements or natural gas special contracts. See, e.g., In re 
+Commission Investigation into the Resale and Sharing of Local Exchange Telephone Service, 
+Pub. Util. Comm. 85-1199-TP-COI, 1986 Ohio PUC LEXIS 26, Entry on Rehearing (October 
+14, 1986). R.C. 4905.31 can be considered by the Court as alternative authority for supporting 
+the Commission’s decision when there is no need for additional findings of fact. See Long v. Vill. 
+Of Hanging Rock, 2011-Ohio-5137 at ¶ 33; Ford v. Bernard Fineson Dev. Ctr., 81 F. 3d 304, 307.  
+8 
+Absolute uniformity in rates or prices is not required by statute or case law. A 
+reasonable differential or inequality of rates may occur where such differential is 
+based upon some actual and measurable differences in the furnishing of services to 
+the consumer. 
+ 
+Ohio law thus allows differentiation between customers and customer groups. Customers can be 
+treated differently if there is a reasonable basis for the differing treatment. Allnet, 70 Ohio St.3d 
+at 207.  “Differences reasonably affecting the expense or difficulty of performing the same or 
+similar service in different areas or circumstances” may be reflected in cost recovery 
+variations/differences, which would not be deemed unlawful nor discriminatory. Migden-
+Ostrander v. Pub. Util. Comm., 2004-Ohio-3924 ¶ 311 (citing Buckeye Lake Chamber of 
+Commerce v. Pub. Util. Comm., 161 Ohio St. 306, 312 (1954)) 
+The record establishes that the Court’s well-established holdings in these cases are 
+applicable to the Commission’s Order here. See, e.g., Allnet, 70 Ohio St.3d at 207. Here, the 
+Commission properly found that the facts established on the record indicate reasonable 
+distinctions between data center customers and other large-load customers. Order at ¶¶ 124-128, 
+Appellant’s App. at 217-219.  
+Appellant OMAEG aptly summarizes the collective effect of R.C. 4905.32, R.C. 4905.33 
+and 4905.35: “In other words, similar customers must be treated similarly and charged like rates 
+for utility services.” (Emphasis in original.) Appellant Brief at 11. But Appellant’s summary 
+highlights why its argument fails: data centers are not similar to other large load customers—as 
+demonstrated by extensive record evidence of their differences—and thus, there is no legal 
+requirement that they be subject to the same tariff terms and conditions as other large-load 
+customers, like traditional manufacturers. 
+The distinctions that justify Schedule DCT are well-established in the record. Data center 
+customers present differences that impact AEP Ohio’s difficulty of delivering service to data 
+9 
+center customers compared to other large energy-intensive customers. Order at ¶ 129, 
+Appellant’s App. at 220. The Commission properly determined that AEP Ohio “has proven that 
+there is a real, pending transmission constraint concern that stems from data centers’ significant 
+load growth, and that the 10/23 Stipulation is a proactive solution to address these challenges.” 
+Order at ¶ 121, Appellant’s App. at 215. The Commission's Order specifically identifies and 
+discusses key distinctions of data centers that differ from all other Ohio electric customers, each 
+supported by evidence in the record. Order at ¶¶ 122, 152, Appellant’s App. at 215, 233. Data 
+centers bring unique challenges to the electricity network in Ohio, including unprecedented 
+hypergrowth, extreme load concentration, unique systemic risks, and demonstrated cost 
+causation. 
+The Commission’s Order explained that it is not just the volume and highly intensive 
+pattern of electric usage that distinguishes data center customers from other large energy 
+customers, like manufacturers. Order at ¶ 129, Appellant’s App. at 220-221. Testimony 
+established that individual data centers are expected to be the largest customers in AEP Ohio’s 
+service territory. Additionally, data centers are materially and distinctly different from other large 
+customers in various ways, including their impact on the grid in the quantity used, the purpose 
+for which used, and the duration of use. Id. 
+Data centers do, in fact, have load profiles that differ from other large customers. Data 
+centers can run at or near maximum capacity all day and every day, unlike traditional 
+manufacturers. Id. citing OEG Ex. 1 at 7. Not only are data centers larger than other customers 
+like traditional manufacturers, but they have the ability to scale up their operations and increase 
+their load more readily than many other industries. Id. The size and scalability of individual data 
+centers form a reasonable basis to distinguish them from other large load customers. Id. 
+10 
+Moreover, the data center industry is a riskier proposition than other large load customers 
+operating in more established industries—data centers are more mobile than other industries and 
+can more easily change locations and thus necessitate a more tailored solution to prevent non-
+cost causing customers from paying to overbuild AEP Ohio’s transmission system. Id., citing 
+Staff Ex. 1 at 17, Direct Testimony of Christopher Healey, Nov. 26, 2024, Appellee App. at 17.  
+The record establishes that data center load is experiencing unique and unprecedented 
+hypergrowth, unseen for other types of large loads. AEP Ohio witness Ali testified that there is 
+contracted new load of existing and additional customers totaling 4,400 MW in the central Ohio 
+areas by 2030, of which only 400 MW of use is from non-data center customers, which 
+represents only eight percent of the growth. Order at ¶ 94, Appellant’s App. at 197; Order at ¶ 
+122, citing AEP Ohio Ex. 2 at 3-6; Appellant’s App. at 215-216. Testimony established that there 
+were over 30,000 MW of unsigned data center load requests looking to connect to the 
+transmission system in the greater Columbus area. Id.  
+Based on a series of studies run by the AEP Transmission Planning organization, the 
+Commission found that even a fraction of the anticipated 30,000 MW load would result in 
+numerous overload and voltage violations throughout central Ohio. Id. This data center 
+hypergrowth is the predominant cause of projected transmission capacity constraints that would 
+require costly transmission investment.  
+In addition, the Commission found that data centers pose unique, systemic risks that do 
+not exist for other large-scale customers. Order at ¶ 108, Appellant’s App. at 206-207. As the 
+proportion of AEP Ohio's load dedicated to data centers increases, the risk of significant 
+underutilization of infrastructure built to serve data center load increases exponentially. Id. 
+Unlike non-data center load, which consists of a diverse array of customers from various 
+11 
+industries where risks can be mitigated by marginal fluctuations across different sectors, data 
+center risk is concentrated and industry specific. Id.  
+The Commission properly recognized that AEP Ohio’s transmission infrastructure is at a 
+tipping point, where significant infrastructure investment is needed to meet demand in excess of 
+approximately 10,000 MW in central Ohio. Entry on Rehearing at ¶ 45, Appellant’s App. at 256. 
+The Company has already committed to 5,000 MW of new data center load, bringing the system 
+dangerously close to this threshold. Id. Thus, there is a timely need for a proactive solution to 
+address potential reliability issues in the AEP Ohio central Ohio region, which is specifically 
+driven by data centers. Id. Documented in testimony and exhibits, these concerns create actual, 
+material differences in the risk posed by data centers. The evidence also established that data 
+centers, not other classes of customers, are driving the costly transmission upgrades. Order at 
+¶152, Appellant’s App. at 233-234.  
+Evidence established that: (a) data center load is projected to grow by around 5,000 MW 
+by 2030; (b) non-data center load is projected to grow by only 400 MW in the same period; and 
+(c) the transmission constraints requiring investment are driven by the data center growth. 
+Neither Appellant nor the nearly 19 other intervening parties in this case presented any evidence 
+contradicting these fundamental facts. 
+Appellant argues that AEP Ohio should have provided more detailed cost-of-service 
+studies or additional quantified data to support adoption of Schedule DCT. Appellant’s Brief at 
+19-20. This argument, however, ignores the unique and proactive nature of this proceeding. 
+AEP Ohio initiated this proceeding to address the concern that this unparalleled load 
+growth will require significant transmission investments, as its application was intended to 
+address the risk of stranded investments necessary to support future data center load growth 
+12 
+before those costs were fully incurred. Order at ¶ 122, Appellant’s App. at 216. The Order 
+recognized that AEP Ohio’s filing and proposal to address data center-specific issues is proactive 
+and takes steps to protect existing customers. Order at ¶ 131, Appellant’s App. at 223. 
+As the Commission explained in its Entry on Rehearing, there is a timely need for a 
+proactive solution to address potential reliability issues in the AEP Ohio central Ohio region, 
+which is specifically driven by data centers. Entry on Rehearing at ¶ 45, Appellant’s App. at 256. 
+At this stage of load growth expansion for AEP Ohio, detailed cost-specific information is not 
+yet available, and the specific costs to serve individual data centers will vary on a case-by-case 
+basis depending on their location, timing, and specific service needs. Id. Schedule DCT accounts 
+for this fact by including detailed provisions to ensure that specific rates applicable to each 
+customer are sufficient to cover the Company’s cost of service. Id. This approach is both 
+reasonable and necessary given the forward-looking nature of the proceeding. 
+Without Schedule DCT, transmission owners might make massive transmission 
+investments to serve projected data center load, with the risk that if data centers fail to 
+materialize or underutilize the infrastructure, AEP Ohio’s existing customers would bear the cost 
+of stranded investments. Order at ¶¶ 121-129, Appellant’s App. at 215-221. The DCT Schedule 
+addresses this risk by ensuring that data center customers bear appropriate responsibility for the 
+infrastructure investments their load requires. Id. 
+This cost causation principle is fundamental to utility regulation. Customers who drive 
+the need for infrastructure investment should bear the costs of that investment. The record 
+establishes that data centers are overwhelmingly the drivers of projected transmission investment 
+in central Ohio. Requiring them to assume appropriate financial responsibility for that 
+investment is equitable cost allocation. 
+13 
+The Commission also found that rapidly increasing data center load poses challenges for 
+the state’s grid reliability for all customers. Order at ¶ 123, Appellant’s App. at 216. The 
+Commission found the evidence AEP Ohio presented at hearing to be substantial and credible. In 
+addition to witness Ali’s testimony regarding load projections, transmission constraints, and 
+system impacts, AEP Ohio provided documentary evidence including responses to discovery 
+containing summaries of transmission analyses. Sidecat Ex. 10, Appellant’s App. at 797 
+(summary of transmission planning studies). 
+The Commission is not alone among public utility regulators in recognizing that the 
+unique traits of data center customers provide a reasonable basis for different treatment. Order at 
+¶ 131, Appellant’s App. at 222-223. Idaho, Arkansas, and Wyoming have approved data center-
+tailored proposals to address the unique traits of data center and/or blockchain customers. Id. The 
+Idaho Public Utilities Commission authorized the Idaho Power Company to establish a new 
+customer classification applicable to high-density load customers noting that the utility was 
+proactively mitigating potential stranded asset costs to its core customers. See, In the Matter of 
+the Application of Idaho Power Company for Authority to Establish a New Schedule to Serve 
+Speculative High-Density Load Customers, Idaho Public Utilities Commission Case No. IPC-E-
+21-37, Order No. 35428 (June 15, 2022). The Arkansas Public Service Commission approved a 
+crypto-tariff, noting that it was sensitive to the “flexible nature of cryptocurrency mining 
+installation and the inherent unpredictability of crypto mining operations.” See, In the Matter of 
+the Application of Entergy Arkansas, LLC for a Proposed Tariff Regarding Large Power High 
+Load Density (“Crypto-Mining”), Arkansas Public Service Commission Docket No. 22-032-TF, 
+Order No. 7 (November 14, 2022) at 8. In Wyoming, Black Hills Energy proposed a tariff 
+applicable to blockchain customers. The Wyoming Public Service Commission recognized it as a 
+14 
+“proactive approach to balance the economic opportunity for the State of Wyoming by attracting 
+these new industries with the risk posed to existing customers.” See, In re Cheyenne Light, Fuel, 
+and Power d/b/a Black Hills Energy to Implement a Blockchain Interruptible Service Tariff, 
+Docket No. 20003-173-ET-18, Record No. 15104, Memorandum Opinion, Findings, and Order 
+Approving Stipulation (July 22, 2019) at 2.  
+Consistent with the regulatory commissions from those jurisdictions, the Commission 
+found that “AEP Ohio’s filing and proposal to address a data center-specific issue is proactive 
+and takes steps to protect existing customers and non-data center customers from risks posed by 
+future significant and unprecedented buildout required to serve the data center load.” Order at ¶ 
+131, Appellant’s App. at 222-223. The Commission’s approach is consistent with regulatory 
+practices nationwide in recognizing data centers as a distinct customer class requiring specialized 
+treatment, keeping Ohio competitive with other states in data center growth.  
+The Commission lawfully determined that the creation of Schedule DCT is consistent 
+with applicable statutes and the Court’s rulings regarding undue discrimination. And with that 
+finding, the Commission “underscore[d] that differential treatment is not unreasonably 
+discriminatory, such that a variation in cost recovery rates for data centers would be lawful and 
+just in this specific situation.” Order at ¶ 129, Appellant’s App. at 221.  
+Schedule DCT protects other non-data center customers and appropriately apportions the 
+risk of underused investments by requiring the cost-causers to bear an appropriate share of 
+investment costs. Order at ¶ 123, Appellant’s App. at 216. Schedule DCT “ensures the cost-
+causers are held accountable for the significant investments the Company would have to 
+construct to ensure that all of its customers receive safe and reliable electrical service.” Order at 
+¶ 152, Appellant’s App. at 234. 
+15 
+Data centers represent a quantum leap in load size, growth rate, and concentration 
+compared to any other customer type in AEP Ohio's history. These are not marginal differences 
+but fundamental differences in magnitude, scale, and system impact. The potential for 30,000 
+MW of new data center load in a matter of years is not "substantially the same circumstances and 
+conditions" (R.C. 4905.33) as the load growth expected from non-data centers, which is 
+negligible by comparison. And R.C. 4905.35 only prohibits "undue or unreasonable prejudice or 
+disadvantage." It is not unreasonable or undue to place the financial burden of the growth caused 
+by data centers on data centers. Quite simply, Schedule DCT is entirely consistent with Ohio law, 
+and the Court should reject any arguments to the contrary. OMAEG’s argument that Schedule 
+DCT violates R.C. 4905.32, 4905.33, and 4905.35 lacks merit and should be rejected. 
+Appellant argues that, in addition to violating provisions of Chapter 4905 of the Revised 
+Code, the Commission’s decision violated “due process and Equal Protection Clause” by treating 
+similarly situated customers differently without a rational basis. Appellant’s Brief at 11-12. 
+Appellant’s argument fails on both procedural and substantive grounds.  
+These claims are procedurally defective because they lack the specificity required by 
+R.C. 4903.10 and fail to establish any discrete basis separate from the statutory discrimination 
+arguments. Grounds for rehearing must specifically allege in what respect the Commission’s 
+order was unreasonable or unlawful. Discount Cellular, Inc. v. Pub. Util. Comm., 2007-Ohio-53 
+at ¶59. The Court has strictly construed this specificity requirement, holding that the General 
+Assembly intended to deny the right to raise issues on appeal where an appellant used a shotgun 
+instead of a rifle approach. Consumers' Counsel v. Pub. Util. Comm., 70 Ohio St.3d 244, 248 
+(1994). Appellant raises a due process violation but does not make arguments about either 
+B. 
+Appellant’s constitutional arguments have no merit.
+16 
+procedural or substantive due process that are distinct from their equal protection or prior 
+statutory violation claims. See Appellant’s Brief at 11-12.  
+ 
+Second, in assessing whether a ruling is consistent with the Equal Protection Clause, the 
+governmental action need only have a rational basis to be upheld. TriHealth, Inc. v. Bd. of 
+Comm’rs Hamilton County, 430 F.3d 783 (6th Cir. 2005). As discussed thoroughly above, there 
+was ample evidence justifying the Commission’s approval of Schedule DCT, which treats a 
+distinct customer class differently, when such a distinction is reasonable. Here, the record 
+establishes multiple rational bases for Schedule DCT: unprecedented load growth driven by data 
+centers, extreme concentration of demand, unique systemic risks, and cost causation principles. 
+Data center customers are materially different from other large industrial customers in ways 
+directly relevant to utility service provision. The differential treatment is rationally related to 
+these legitimate differences. 
+Appellant also argues briefly in its First Proposition of Law that the Commission’s 
+decision was not based on sufficient findings supported in the record, in violation of R.C. 
+4903.09. The Court should reject Appellant’s argument. The Commission’s Order contained 
+extensive findings of fact and citations to the record to support its decision.  
+R.C. 4903.09 requires the PUCO to file “findings of fact and written opinions setting 
+forth the reasons prompting the decisions arrived at, based upon said findings of fact.” R.C. 
+4903.09. Although strict compliance is not required, a Commission order “must contain 
+sufficient detail for [the Court] to determine the factual basis and reasoning relied on by the 
+[PUCO].” In re Complaint of Suburban Natural Gas Co. v. Columbia Gas of Ohio, Inc., 2020-
+Ohio-5221, ¶ 19. The Court recently explained and applied R.C. 4903.09 in In re Ohio Power 
+C. 
+The Commission’s findings comply with R.C. 4903.09.
+17 
+Co. for an Increase in Elec. Distrib. Rates, 2024-Ohio-2890. There, the Court stated, “R.C. 
+4903.09 requires the Commission to provide this Court with an adequate record so that we may 
+determine how the Commission reached its decision. The Commission’s orders must contain 
+sufficient detail for us to determine the factual basis and reasoning relied on by the 
+Commission.” Id. at ¶ 32. The Court continued, “the Commission’s orders in this case contain 
+ample record citations for this court to determine the factual basis for the Commission’s 
+findings.” Id. In finding that the Commission’s order satisfied R.C. 4903.09, the Court noted that 
+the Commission explained its reasoning for rejecting certain evidence and cited support for this 
+reasoning from the evidentiary record. Id. at ¶ 37. “And that is all that R.C. 4903.09 requires.” 
+Id.  
+The Commission’s Order goes into great detail on the unprecedented hypergrowth of data 
+center load (Order at ¶¶ 94, 105, 122, 152; Appellant’s App at 197-198, 203, 215-216, 233-234), 
+the concentration of demand at individual sites (Order at ¶ 129, Appellant’s App. at 219-220), 
+the unique systemic risks (Order at ¶ 108, Appellant’s App at 206-207), transmission 
+infrastructure constraints (Order at ¶ 122, Appellant’s App. at 215-216), and the cost causation 
+principles justifying the tariff structure (Order at ¶ 152, Appellant’s App. at 233-234). Each of 
+these findings is supported by citations to witness testimony and exhibits. The Commission 
+complied fully with R.C. 4903.09. For these reasons, the Court should reject Appellant’s first 
+proposition of law and affirm the Commission’s Order. 
+Proposition of Law No. 2: The Commission lawfully and reasonably found that AEP Ohio’s 
+temporary moratorium was reasonable and necessary and declined to impose penalties. 
+In its second proposition of law, Appellant contends that AEP Ohio's temporary 
+moratorium on new data center connections violated R.C. 4933.83 and R.C. 4905.22 and that the 
+Commission erred in failing to find AEP Ohio in violation of these statutes and failing to impose 
+18 
+penalties on AEP Ohio for those violations. Appellant’s argument again fails on multiple 
+grounds. It fails because AEP Ohio’s temporary moratorium was a reasonable, necessary, and 
+lawful response to unprecedented data center load growth that threatened the reliability and 
+adequacy of service to all customers and did not violate R.C. 4933.83 or 4905.22. It also fails 
+because Appellant has not suffered any particularized harm.  
+R.C. 4905.22 requires utilities to provide service that is “necessary and adequate” and “in 
+all respects just and reasonable.” Similarly, R.C. 4933.83(B) requires electric utilities to furnish 
+adequate facilities to meet the “reasonable needs” of consumers within their certified territory 
+and to provide “physically adequate service.” 
+These statutes do not impose an unlimited obligation to connect any and all loads 
+regardless of system conditions. The Commission recognized that the obligation to serve is 
+bound by reasonableness and physical feasibility which includes not only service but the ability 
+to provide enough electricity to meet customer load. In re Application of Ohio Power Co. for 
+Approval of a Special Contract Arrangement with Ormet Primary Aluminum Corp., PUCO No. 
+96-999-EL-AEC, et al., 2006 Ohio PUC LEXIS 359, Opinion and Order *11 (June 14, 2006). If 
+a utility cannot extend service without jeopardizing reliability or risking voltage collapse and 
+blackouts, the obligation to serve does not compel immediate, insufficiently planned system 
+expansion. 
+In the Ormet case, the Commission found that where a utility could not take on a 
+customer’s load without risking the ability to provide reliable and sufficient service to other 
+customers, the utility was not able to provide physically adequate service. Id. at *11. The 
+circumstances here are analogous. AEP Ohio faced a situation where committing to serve the full 
+extent of requested data center load would jeopardize reliable service to existing customers due 
+19 
+to transmission system constraints. Under Ormet, AEP Ohio was not required—and arguably was 
+prohibited—from making commitments that would compromise its ability to provide physically 
+adequate service. Here, the issue is that AEP could not safely serve all the data center load that 
+was expressing interest in Central Ohio. AEP Ohio has a duty to provide safe and reliable 
+service. The utility took this reasonable step, then filed the data center case with the 
+Commission. Now with the Commission’s Order, the moratorium is over and AEP has a clear 
+process. AEP is not trying to deny any data center from connecting to the grid. 
+The record contains substantial evidence that the moratorium was a temporary, justified 
+and proactive measure to protect system reliability. AEP Ohio witness Ali, the transmission 
+planning expert in the case, provided detailed testimony regarding transmission system 
+constraints and the risks posed by unprecedented data center load growth. Mr. Ali testified that 
+AEP Transmission Planning studies performed in the summer of 2023 indicated that adding more 
+load without significant reinforcement to the grid could cause a voltage collapse, resulting in 
+brownouts and blackouts for customers. Entry on Rehearing at ¶ 45, Appellant’s App. at 256-257 
+citing Tr. Vol. I at 149-151, 265; Tr. Vol. III at 581, Appellant’s App. at 265. 
+Mr. Ali explained that the Central Ohio transmission network faces a tipping point where 
+significant infrastructure investment is needed to meet demand in excess of approximately 
+10,000 MW. Order at ¶ 122, Appellant’s App. at 215. The Company has already signed 
+agreements to add 5,000 MW of new data center load by 2030, bringing the system dangerously 
+close to this threshold. Id., citing AEP Ex. 2 at 3-6. 
+If AEP Ohio had committed to serving the full extent of requested data center load 
+without transmission system reinforcement, it could have jeopardized its ability to provide 
+reliable and sufficient service to existing customers. Whereas, if AEP Ohio only committed to 
+20 
+serving a portion of the requested data center load, it would not have been providing physically 
+adequate service to those customers. Order at ¶ 113, Appellant’s App. 210. The Company instead 
+implemented a temporary moratorium, notified affected customers, and initiated a Commission 
+proceeding to develop a long-term solution. The Commission found that this temporary measure 
+was implemented “to mitigate the Company’s load from escalating too quickly.” Order at ¶ 130, 
+Appellant’s App. at 221.  
+Moreover, upon the effective date of Schedule DCT, the Commission directed AEP Ohio 
+to cease the moratorium and to process the queue of customer service requests. Order at ¶ 130, 
+Appellant’s App. at 221-222. Therefore, with the lifting of the temporary moratorium, coupled 
+with the implementation of 10/23 Stipulation’s provisions, the Commission properly concluded 
+that “it should be abundantly apparent that the State of Ohio and its EDUs are open and willing 
+to invest in their transmission infrastructure to serve the unique load data centers pose, while also 
+instilling into these customers that they must make a commitment to bear a fair share of the cost 
+of such buildouts.” Id. 
+Since the Commission concluded that the moratorium was reasonable and did not find 
+AEP Ohio in violation of R.C. 4905.22 or 4933.83, the Commission reasonably declined to 
+impose penalties. Penalties are discretionary and appropriate only where a violation of law is 
+established. R.C. 4905.54. There was no violation of law and, therefore, no imposition of a 
+penalty.  
+Imposing penalties for a temporary action undertaken to prevent voltage collapse and 
+protect system reliability would have also directly undermined Ohio’s express state policy to 
+“[e]nsure the availability to consumers of adequate, reliable, safe, efficient, nondiscriminatory, 
+and reasonably priced retail electric service.” R.C. 4928.02(A). AEP Ohio’s proactive approach 
+21 
+here served the interests of both data center customers and existing customers. Penalizing this 
+approach would discourage utilities from bringing novel issues to the Commission for resolution. 
+The Commission reasonably concluded that penalizing AEP Ohio for acting to protect grid 
+reliability would not serve the public interest. Entry on Rehearing ¶ 48, Appellant’s App. at 258-
+259. Faced with an unprecedented influx of load requests from data center customers, AEP Ohio 
+had to strike a balance between providing reliable and adequate service to existing consumers 
+and the duty to make service available to new consumers. Order at ¶ 130, Appellant’s App. at 
+221, Entry on Rehearing at ¶ 51, Appellant’s App. at 261. 
+The Commission correctly supported AEP Ohio’s temporary moratorium. However, even 
+if the Commission had erred, Appellant’s argument would fail because Appellant has not shown 
+that it suffered any particularized harm. The Court has recently reiterated that a “party seeking 
+reversal of a Commission order cannot meet its burden of establishing prejudicial error without 
+furnishing an argument or citing evidence showing that it has suffered a particularized harm.” In 
+re the Application of Ohio Power Co., for Authority to Establish a Std. Service Offer Pursuant to 
+R.C. 4928.143, in the Form of an Elec. Security Plan, Slip Opinion No. 2025-Ohio-3034, ¶ 16-
+18, citing In re Complaint of Buckeye Energy Brokers, Inc. v. Palmer Energy Co., 2014-Ohio-
+1532, ¶¶ 23-24. Generalized claims of harm are not enough. Entry on Rehearing at ¶ 51, 
+Appellant’s App. at 261. At no point has Appellant demonstrated that it or any of its members 
+attempted to connect to the grid and were prevented from doing so by the moratorium, which 
+applied only to data centers and only to Central Ohio. Further, the Commission’s Order explicitly 
+ended the moratorium and approved a clear and transparent process for new data centers to 
+obtain service in AEP Ohio’s service territory. Order at ¶¶ 130, 158, Appellant’s App. at 221-222, 
+22 
+237. Where, as here, Appellant’s merit brief fails to demonstrate that it was harmed by the 
+moratorium imposed, there is no prejudicial error. 
+Proposition of Law No. 3: The Commission lawfully and reasonably found that AEP Ohio 
+demonstrated a real, pending transmission capacity constraint supported by substantial, 
+competent evidence. 
+Appellant contends that the Commission erred by finding that AEP Ohio demonstrated an 
+actual transmission capacity constraint without sufficient evidence in the record, in violation of 
+R.C. 4903.09. However, the record does contain substantial, competent evidence, including 
+expert testimony, transmission planning study summaries, and documented load growth 
+projections, that establishes that AEP Ohio faced a real transmission capacity constraint driven 
+by unprecedented data center load growth.  
+As discussed above, R.C. 4903.09 requires that the Commission file “findings of fact and 
+written opinions setting forth the reasons prompting the decisions arrived at, based upon said 
+findings of fact.” R.C. 4903.09. The Commission’s Order thoroughly evaluated this evidence, 
+provided detailed findings supported by specific record citations, and complied fully with R.C. 
+4903.09. Appellant’s disagreement with the Commission’s weighing of the evidence does not 
+constitute legal error. 
+In its Order, the Commission expressly found that AEP Ohio proved a real, pending 
+transmission constraint concern stemming from significant and unprecedented data center load 
+growth. Order at ¶ 129, Appellant’s App. 220-221. The Commission found that the central Ohio 
+grid approaches a tipping point near 10,000 MW of load, that AEP Ohio has already signed 
+approximately 5,000 MW of new data center load by 2030, that existing peak demand in central 
+Ohio is approximately 4,000 MW, and that inquiries for an additional 30,000 MW of load have 
+been received. Order at ¶¶ 121–122, Appellant’s App. at 215-216. The Commission found AEP 
+23 
+Ohio witness Ali to be credible when he testified that the Company more than doubled its 
+projected future demand in the central Ohio region, from approximately 4,000 MW to 9,000 
+MW, driven by new, large data center requests. Order at ¶ 122, Appellant’s App. 215-216, citing 
+AEP Ohio Ex. 2 at 3-6. The Commission relied on AEP Ex. 2, (load projections and signed 
+agreements), Sidecat Ex. 10, Appellant’s App. at 797-798 (summary of transmission planning 
+studies), and live testimony from AEP Ohio witness Ali subjected to extensive cross-examination 
+over multiple hearing days.  
+AEP Ohio witness Ali, the transmission planning expert in the case, provided detailed 
+testimony regarding transmission system constraints and the risks posed by unprecedented data 
+center load growth. Mr. Ali testified that the existing peak demand in Central Ohio is 4,000 MW; 
+that AEP Ohio has signed Electric Service Agreements and Letters of Agreement for new load 
+with existing and additional customers to add 5,000 MW of load to the Central Ohio region by 
+2030; that AEP Ohio has received over 30,000 MW of load requests from data centers that have 
+not yet signed agreements but are seeking to connect to the transmission system in Central Ohio; 
+and that the current Central Ohio transmission system cannot support load in excess of a total of 
+10,000 MW before needing significant infrastructure enhancements. Order at ¶ 122, Appellant’s 
+App. 215-216, citing AEP Ex. 2 at 3–5, Tr. Vol. I at 117, Appellant’s App. at 344. 
+This testimony demonstrates that with 4,000 MW of existing peak demand and 5,000 
+MW of signed new load, the system will reach 9,000 MW by 2030, which will approach the 
+10,000 MW threshold that triggers the need for significant infrastructure investment. Order at ¶ 
+152, Appellant’s App. at 233-234. 
+Witness Ali’s testimony was supported by transmission planning studies performed by the 
+AEP Transmission Planning organization. These studies evaluated three different load levels: (1) 
+24 
+the 5,000 MW of signed load that has already gone through the PJM process with all violations 
+addressed; (2) load growth of 750 MW beyond what the system can currently support; and (3) 
+load growth of 1,500 MW beyond what the system can currently support. Sidecat Ex. 10, 
+Appellant’s App. at 797-798. Under the second and third scenarios, the studies projected 
+numerous instances of lines overloading as well as voltage drop and voltage magnitude 
+violations. See Tr. Vol. 1 at 181, 227-229, Appellant’s App. at 359-361. This evidence directly 
+supports the finding that the transmission system faces capacity constraints when load exceeds 
+certain thresholds. 
+Moreover, the record establishes that data center load growth vastly exceeds growth from 
+all other customer classes combined. AEP Ohio has signed agreements for 5,000 MW of new 
+data center load by 2030. Appellant’s App. at 797-708, AEP Ohio Ex. 2 at 4–5. In contrast, AEP 
+Ohio estimates that load growth from non-data center customers between 2024 and 2030 is 
+approximately 400 MW. Order at ¶ 122, Appellant’s App. at 215-216. 
+This significant difference—5,000 MW versus 400 MW—provides independent support 
+for the Commission’s finding that data centers are driving the transmission capacity constraint. 
+The evidence demonstrated that without data center load growth, the transmission system would 
+have ample capacity to serve projected demand. It is only when the massive data center load is 
+added that capacity constraints emerge. Id. 
+Appellant relies on statements that specific future transmission projects are not yet 
+identified, that exact future costs are uncertain, and that reserve capacity must be evaluated case-
+by-case. Appellant’s Brief at 13-16. These statements do not contradict the existence of a 
+pending constraint. Rather, they reflect the forward-looking nature of transmission planning, the 
+25 
+need for load verification before finalizing project scope, and the very purpose of this 
+proceeding—to avoid overbuilding and stranded costs. 
+The Commission expressly acknowledged that the system could handle up to 
+approximately 10,000 MW, yet that threshold is projected to be reached based on signed load 
+alone. Order at ¶ 71, Appellant’s App. at 181-182. Uncertainty regarding the exact configuration 
+of future facilities does not negate the existence of a planning constraint. 
+Appellant cites witness McKenzie and discovery responses acknowledging uncertainty 
+about which specific transmission investments may be needed in the future, characterizing this as 
+an admission that no constraint exists. Appellant’s Brief at 19. However, the fact that AEP Ohio 
+cannot precisely predict which specific transmission projects will be needed years in the future 
+does not mean no capacity constraint exists. The specific investments required will depend on 
+which data center projects move forward, where they will be incorporated into the grid, and 
+when they will open. Testimony of Kamran Ali, Intervening Appellee AEP Ohio Supp. at 10-12.  
+The Commission’s findings are supported by the record, explained in adequate detail, and 
+comply fully with R.C. 4903.09. For these reasons, the Court should reject Appellant’s third 
+proposition of law and affirm the Commission’s Order. 
+Proposition of Law No. 4: The Commission lawfully and reasonably concluded that AEP 
+Ohio’s application was not for an increase in rates. 
+In its Proposition of Law No. 4, Appellant argues that the Commission erred by treating 
+AEP Ohio’s Application as an application to establish new rates rather than an application for an 
+increase in rates. Appellant makes this distinction because an application for increase in rates 
+triggers procedural requirements that Appellant argues (in Proposition of Law No. 5) were not 
+met. The Court should reject both propositions of law because the Commission correctly 
+determined that AEP Ohio’s Application was an application to establish new rates, not an 
+26 
+application for an increase in existing rates under R.C. 4909.18 and R.C. 4909.19. The 
+Application did not seek to increase any rate charged to any existing customer. Instead, it 
+proposed entirely new tariff schedules, applicable prospectively to newly defined data center 
+customer classes, while expressly grandfathering all existing customers. 
+R.C. 4909.18 distinguishes between (1) applications to establish a rate, classification, 
+charge, or regulation, and (2) applications to increase an existing rate. The statutory trigger for 
+heightened procedural requirements is an “increase” of an existing rate. As this Court has held, 
+an application constitutes a rate increase only when it seeks “an increase of an existing rate.” 
+Ohio Consumers’ Counsel v. Pub. Util. Comm., 2006-Ohio-5789, ¶ 18. Here, no existing rate has 
+increased. 
+The Commission found, “The Company’s application did not propose an increase in rates 
+pursuant to R.C. 4909.18 … [and] does not involve a request to increase rates for existing 
+customers because the proposed tariff involves the emergence of a prominent, new type of 
+customer.” Order at ¶ 25, Appellant’s App. at 148. Further, the Commission noted that there 
+would likely be no impact on existing customer rates due to grandfathering policies. Id. Data 
+center customers that had signed service agreements prior to the effective date of the new tariffs 
+were expressly grandfathered and would continue to be served under existing terms.  
+The Commission explained that “the Company’s proposal should not impact customer 
+rates, but rather, require heightened commitments prior to interconnection and service." Id. This 
+is not a rate increase; instead, it is a prospective framework for a new customer classification. 
+Schedule DCT contains explicit grandfathering provisions, and the Commission noted that there 
+would likely be no impact on existing customer rates due to grandfathering policies. Order at ¶ 
+25, Appellant’s App. at 148, 408. Customers with executed service agreements prior to the 
+27 
+effective date would continue under existing Schedule GS and would not be subject to any of the 
+terms of Schedule DCT. No current customer’s authorized tariff rate was modified, amended, or 
+increased. Any potential migration of grandfathered customers would occur only in a future base 
+rate case. Order at ¶ 46, Appellant’s App. at 158. 
+An increase presupposes a baseline. Prospective customers requesting new, specialized 
+service have no existing rate to increase. Establishing initial service terms for a newly defined 
+customer class is not an “increase” within the plain meaning of R.C. 4909.18. The Commission 
+has treated similar filings as "not for increase" where existing customers are grandfathered. See, 
+e.g., Cincinnati Gas & Electric Co., PUCO No. 82-622-EL-ATA (May 12, 1982) (new lighting 
+service with higher rates not considered an increase because existing customers retained their 
+prior service terms). 
+In sum, AEP Ohio did not seek to increase any existing rate. It proposed new schedules 
+for a newly defined customer class, with express grandfathering of existing customers. Under the 
+plain language of R.C. 4909.18 and precedent, that is not an application for an increase in 
+existing rates. Appellant’s fourth proposition of law should be rejected and the Commission’s 
+Order affirmed. 
+Proposition of Law No. 5: The Commission lawfully and reasonably upheld the ALJs’ 
+decision regarding statutory notice requirements under R.C. 4909.18. 
+Appellant argues that the Commission erred by proceeding to hearing without fulfilling 
+the statutory notice requirements of R.C. 4909.18. As discussed above, the Court should reject 
+Appellant’s argument because the Commission correctly determined that the application was to 
+establish new rates and R.C. 4909.18 did not apply. Therefore, the notice and procedural 
+requirements of R.C. 4909.18 and 4909.19 were not triggered. Even if those provisions had been 
+triggered, the ALJS substantially complied with those requirements, so that no error occurred. 
+28 
+R.C. 4909.19 establishes two distinct circumstances that trigger mandatory notice and 
+hearing requirements: (1) when an application seeks an increase in rates or charges, or (2) when 
+the Commission, upon investigation, determines that an application may be unjust or 
+unreasonable. But the statute does not mandate publication of legal notice for all applications or 
+all hearings. The Commission has discretion to schedule hearings for other purposes, and when it 
+does so, the notice requirements found in R.C. 4909.19 do not apply. 
+Neither of the circumstances that trigger notice and hearing requirements under R.C. 
+4909.19 occurred in this case. As discussed under Proposition of Law 4, the Commission 
+expressly determined that AEP Ohio’s application did not constitute a request for an increase in 
+existing rates. Order ¶ 25, Appellant’s App. at 148. The Commission also made no preliminary 
+finding that the application “may be unjust or unreasonable.” Since neither circumstance 
+occurred, the notice requirements of R.C. 4909.19 are inapplicable to this case. 
+The Court should not conclude that the procedural requirements of R.C. 4909.19 apply 
+simply because the Commission chose to hold a hearing. The matter was set for hearing in the 
+Commission’s administrative discretion for this novel proposed tariff in the state of Ohio, given 
+its significance and public interest, not because of any requirement in R.C. 4909.19. Entry on 
+Rehearing at ¶ 58, Appellant’s App. at 265; Tr. Vol. I at 37, Appellant’s App. at 343. The ALJS 
+correctly recognized that the Commission possesses discretion to hold a hearing even where R.C. 
+4909.18 does not mandate publication. Id. The Court has repeatedly recognized the 
+Commission’s broad authority to regulate its proceedings and manage its docket. See, e.g., Weiss 
+v. Pub. Util. Comm., 2000-Ohio-5, ¶ 24; Duff v. Pub. Util. Comm., 56 Ohio St.2d 367, 374 
+(1978). Consistent with that authority, the Commission has exercised its discretion to hold 
+hearings in applications not involving rate increases without requiring statutory publication. 
+29 
+Reversal is also unwarranted because, even though the notice requirements of R.C. 
+4909.19 did not apply, the Commission substantially complied with the statute. R.C. 4905.09 
+provides that substantial compliance with Chapter 4909 is sufficient and that Commission orders 
+“shall not be declared inoperative, illegal, or void for an omission of a technical nature.” The 
+purpose of the notice requirements was fully achieved in this case. 
+The purpose of notice, under R.C. 4909.18 and 4909.19, is to inform interested parties of 
+pending proceedings and provide an opportunity to participate. This proceeding received 
+extensive media coverage from its filing in May 2024. It was widely publicized, attracted 
+intervening parties representing diverse interests, and generated substantial public comment. 
+Order at ¶ 25, Appellant’s App. at 148. As the Commission observed, the proceeding “is one of 
+first impression for this Commission and the state of Ohio,” and “all procedural steps taken in 
+this case have been made publicly, in addition to being covered by several media outlets.” Id. 
+Appellant has failed to name any party that has suffered injury because it was unaware of the 
+proceedings or unable to participate. 
+All procedural steps taken in this case have been made publicly, in addition to being 
+covered by several media outlets, and public interest in the case has been robust, exhibited by the 
+number of filed public comments and intervening parties. Order at ¶ 25, Appellant’s App. at 148. 
+Moreover, upon consideration of the notice concerns raised, the Commission directed AEP Ohio 
+to publish notice of a local public hearing. The evidentiary hearing commenced on December 3, 
+2024 and continued for four days with full participation from all intervenors. Order at ¶ 14, 
+Appellant’s App. at 146. During an extended continuance of the evidentiary hearing, the 
+Commission scheduled a local public hearing for January 3, 2025 and directed AEP Ohio to 
+publish notice of both that public hearing and the date when the evidentiary hearing would 
+30 
+reconvene. Order at ¶ ¶ 15-18, Appellant’s App. at 146. The hearing then continued on January 6, 
+2025, again with full participation from a long list of intervenors. 
+Even if the Court were to find any technical deficiency in the notice procedures, the 
+supplemental notice provided during the continuance of the evidentiary hearing fully remedied 
+any concern. Under these circumstances, the Commission substantially complied with the notice 
+requirements of R.C. 4909.18, and Appellant has not demonstrated any prejudice. For these 
+reasons, Appellant’s fifth proposition of law should be rejected and the Commission’s Order 
+affirmed. 
+Proposition of Law No. 6: The Commission lawfully and reasonably upheld the ALJs’ 
+reasonable limitations on cross-examination. 
+In its final Proposition of Law, Appellant contends that the ALJs improperly curtailed 
+cross-examination of AEP Ohio witnesses Ali and McKenzie in violation of due process and 
+R.C. 4903.09. A review of the record, however, shows that the ALJs exercised appropriate 
+procedural discretion under Adm.Code 4901-1-27(B) to prevent cumulative, irrelevant, or 
+improper questioning. The Commission carefully reviewed and affirmed those rulings and found 
+no prejudice.  
+The Commission did not deprive Appellant of its due process rights. Appellant had 
+notice. A full hearing was conducted. Appellant called witnesses and cross-examined other 
+witnesses. Appellant had the ability to file exhibits, file briefs, and file an application for 
+rehearing. Under these same circumstances, this Court has previously held that due process was 
+afforded. See, Vectren Energy Delivery of Ohio, Inc. v. Pub. Util. Comm., 2007-Ohio-1386, ¶ 53 
+(finding that the party had notice, a full hearing, the ability to call its own witnesses, an 
+opportunity to cross-examine other witnesses, the ability to file exhibits, and an opportunity to 
+file briefs and an application for rehearing, and thus, it had due process). 
+31 
+Appellant was not denied due process because of evidentiary rulings made during cross-
+examination. R.C. 4901.13 provides that the “[C]ommission may adopt and publish rules to 
+govern its proceedings and to regulate the mode and manner of all . . . hearings relating to parties 
+before it.” Weiss v. Pub. Util. Comm., 2000-Ohio-5, ¶ 11. R.C. 4901.13 gives the Commission 
+broad discretion in the conduct of its hearings. Duff, 56 Ohio St. 2d at 379 . The Commission has 
+the “discretion to decide how, in light of its internal organization and docket considerations, it 
+may best proceed to manage and expedite the orderly flow of its business, avoid undue delay and 
+eliminate unnecessary duplication of effort.” Toledo Coalition for Safe Energy v. Pub. Util. 
+Comm., 69 Ohio St. 2d 559, 560, (1982).  
+Consistent with this authority, the Commission has adopted rules that allow its ALJs to 
+take such actions as are necessary to prevent the presentation of irrelevant or cumulative 
+evidence. Adm.Code 4901-1-25 (C); Adm.Code 4901-1-27 (B)(7)(b). Adm.Code 4901-1-27(B) 
+grants ALJs broad authority to govern the course of proceedings, exclude cumulative or 
+irrelevant evidence, enforce evidentiary standards, and ensure orderly and efficient 
+administration.  
+Appellant argues that its counsel was limited in questioning AEP Ohio witness, Mr. Ali, 
+regarding his modeling generation resources. However, the record demonstrates that Appellant 
+was permitted to question Mr. Ali regarding the assumptions underlying his modeling. Appellant 
+was permitted to ask whether additional generation resources were considered, whether PJM-
+controlled resources were included, whether alternative technologies could mitigate constraints, 
+and whether alternatives to the proposed 765 kV line were evaluated. Id; Entry on Rehearing at ¶ 
+59-60, Appellant’s App. at 266. The ALJs limited repetitive, project-specific questioning 
+regarding prospective generation resources after those topics had already been explored. Order at 
+32 
+¶ 31, Appellant’s App. at 151. The Commission properly found that the ALJs appropriately 
+stopped repetitive questioning in the interest of administrative efficiency and clarity of the 
+record. Order at ¶ 28, Appellant’s App. at 149-150. Properly limiting the scope of cross -
+examination and preventing cumulative questioning does not violate due process. 
+Appellant also argues that its counsel was not able to fully cross examine AEP Ohio 
+witness Mr. McKenzie. The limitation during Mr. McKenzie’s cross examination involved a 
+document containing pre-2019 data for which no proper foundation was laid and which witness 
+McKenzie testified he had never seen before and could not authenticate. Order at ¶ 31, 
+Appellant’s App. at 151. The ALJs appropriately prevented counsel from reading the document 
+into the record without authentication while permitting questioning regarding its substance. The 
+record further reflects that Appellant proceeded to question Mr. McKenzie extensively regarding 
+economic development, data center growth, transmission capacity, and system support for new 
+load. Order at ¶ 31, Appellant’s App. at 151. Based on this record, the Commission appropriately 
+concluded that the ALJs placed “reasonable parameters” on questioning and that Appellant was 
+given “significant leeway.” Id. 
+Appellant’s due process argument should also be rejected because Appellant has failed to 
+demonstrate any prejudice from the ALJs’ rulings. The Court has recently reiterated that a “party 
+seeking reversal of a Commission order cannot meet its burden of establishing prejudicial error 
+without furnishing an argument or citing evidence showing that it has suffered a particularized 
+harm.” In re the Application of Ohio Power Co., for Authority to Establish a Std. Service Offer 
+Pursuant to R.C. 4928.143, in the Form of an Elec. Security Plan, Slip Opinion No. 2025-Ohio-
+3034, at ¶ 16-18, citing In re Complaint of Buckeye Energy Brokers, Inc. v. Palmer Energy Co., 
+2014-Ohio-1532, ¶ 23-24. Generalized claims of harm are simply not enough. The Commission 
+33 
+appropriately found that Appellant demonstrated no prejudice, particularly considering the ample 
+latitude afforded during cross-examination. Appellant presented its own witnesses, submitted 
+exhibits, filed briefs, and sought rehearing. This Court should uphold the Commission’s decision. 
+Appellant also argues that the Commission failed to properly articulate in its Order, as 
+required under R.C. 4903.09, the basis for its decision upholding the ALJs’ evidentiary rulings. 
+This argument should again be rejected. As discussed previously, R.C. 4903.09 requires that the 
+Commission file “findings of fact and written opinions setting forth the reasons prompting the 
+decisions arrived at, based upon said findings of fact.” R.C. 4903.09. The Commission fulfilled 
+this requirement. The Commission identified the specific rulings at issue, explained why the 
+questioning was duplicative or improperly founded, found the ALJs’ parameters reasonable, and 
+reaffirmed those conclusions on rehearing. See Order ¶¶ at 28–31, Appellant’s App. at 149-151; 
+Entry on Rehearing at ¶ 61, Appellant’s App. at 267. This issue was thoroughly considered at the 
+Commission level, satisfying the statutory requirements and allowing meaningful appellate 
+review.  
+The ALJs acted within their discretion under Adm. Code 4901-1-27(B) to appropriately 
+regulate cross-examination. Appellant was afforded extensive opportunity to question witnesses 
+and fully participate in this case. The Commission provided detailed reasoning and found no 
+prejudice. No due process violation and no violation of R.C. 4903.09 occurred. For these 
+reasons, Appellant’s sixth proposition of law should be rejected, and the Commission’s Order 
+affirmed. 
+CONCLUSION 
+The Commission’s Order approving Schedule DCT should be affirmed. The Commission 
+confronted a significant and emerging issue in Ohio’s public utility landscape—the rapid 
+34 
+upcoming influx of data centers with unprecedented load—and addressed it squarely, 
+thoroughly, and lawfully. The record amply supports the Commission’s finding that data centers 
+are unique and that a distinct tariff, Schedule DCT, is therefore neither unjust nor discriminatory. 
+To the contrary, it is essential for protection of all Ohioans and to ensure the integrity of the grid. 
+Throughout the proceeding, the Commission acted within its statutory authority, adhered to 
+governing administrative law, and exercised its expertise in a reasonable and lawful manner. 
+The Commission’s decision should be affirmed. 
+ 
+ 
+Respectfully submitted, 
+ 
+Dave Yost (0056290) 
+Ohio Attorney General 
+ 
+John H. Jones (0051913) 
+Section Chief 
+ 
+ 
+/s/ Amy Botschner O’Brien 
+ 
+Amy Botschner O’Brien (0074423) 
+(Counsel of Record) 
+Thomas Lindgren (0039210) 
+Lori Keating (0070183) 
+Assistant Attorneys General 
+30 East Broad St., 16th Floor 
+Columbus, Ohio 43215 
+614.466.4397 (telephone) 
+866.431.4694 (facsimile) 
+Amy.BotschnerOBrien@OhioAGO.gov  
+Thomas.Lindgren@OhioAGO.gov 
+Lori.Keating@OhioAGO.gov  
+ 
+Counsel for Appellee, 
+Ohio Public Utilities Commission 
+ 
+ 
+ 
+ 
+35 
+ 
+ 
+PROOF OF SERVICE 
+I hereby certify that a true copy of the foregoing Appellee Brief, submitted on behalf of 
+Appellee, the Ohio Public Utilities Commission, was served via electronic mail upon the 
+following parties of record, this 24th day of March 2026. 
+ 
+/s/ Amy Botschner O’Brien 
+ 
+Amy Botschner O’Brien (0074423) 
+Assistant Attorney General 
+ 
+Parties of Record: 
+ 
+Kimberly W. Bojko (0069402) 
+(Counsel of Record) 
+Emma Y. Easley (0102144) 
+Carpenter Lipps LLP 
+280 North High Street, Suite 1300 
+Columbus, Ohio 43215 
+Telephone: (614) 365-4100  
+Facsimile: (614) 365-9145 
+bojko@carpenterlipps.com  
+easley@carpenterlipps.com  
+ 
+Counsel for Appellant,  
+The Ohio Manufacturers’ Association Energy 
+Group 
+ 
+ 
+Steven T. Nourse (0046705) 
+(Counsel of Record) 
+American Electric Power Service Corporation 
+1 Riverside Plaza, 29th Floor Columbus, Ohio 
+43215-2373 
+Telephone: 614) 716-1608 
+stnourse@aep.com  
+ 
+N. Trevor Alexander (0080713) 
+Kari D. Hehmeyer (0096284) 
+Samantha R. Meng (0103524) 
+BENESCH FRIEDLANDER COPLAN & 
+ARONOFF 
+41 South High Street, Suite 2600 
+Columbus, Ohio 43215 
+ 
+Telephone: (614) 223-9363 
+Facsimile: (614) 223-9330 
+talexander@beneschlaw.com  
+khehmeyer@beneschlaw.com  
+smeng@beneschlaw.com  
+ 
+Counsel for Intervening Appellee, 
+Ohio Power Company 
+ 
+Michael L. Kurtz (0033350) 
+(Counsel of Record) 
+Jody Kyler Cohn (0085402) 
+36 
+Boehm, Kurtz & Lowry 
+425 Walnut Street, Suite 2400 
+Cincinnati, Ohio 45202 
+Telephone: (513) 421-2255 
+Facsimile: (513) 421-2255 
+mkurtz@BKLlawfirm.com  
+jkylercohn@BKLlawfirm.com  
+ 
+Counsel for Intervening Appellee, 
+The Ohio Energy Group 
+ 
+Maureen R. Willis (0020847) 
+Ohio Consumers’ Counsel 
+ 
+William J. Michael (0070921) 
+(Counsel of Record) 
+John Varanese (0044176) 
+Assistant Consumers’ Counsel 
+Office of the Ohio Consumers’ Counsel 
+65 East State Street, Suite 700 
+Columbus, Ohio 43215 
+Telephone [Willis]: (614) 466-9567 
+Telephone [Michael]: (614) 466-1291 
+Telephone [Varanese]: (614) 387-2965 
+Maureen.willis@occ.ohio.gov  
+William.michael@occ.ohio.gov  
+John.varanese@occ.ohio.gov  
+ 
+Counsel for Intervening Appellee, 
+Office of the Ohio Consumers’ Counsel 
+Appendix
+TABLE OF CONTENTS 
+PAGE 
+ 
+Direct Testimony of Christopher Healey, Case No. 24-508-EL-ATA, Nov. 26, 2024………..…...1 
+ 
+ 
+BEFORE 
+THE PUBLIC UTILITIES COMMISSION OF OHIO 
+ 
+In the Matter of the Application of Ohio 
+Power Company for New Tariffs Related to 
+Data Centers and Mobile Data Centers. 
+ 
+) 
+) 
+) 
+ 
+Case No. 24-508-EL-ATA 
+ 
+ 
+ 
+ 
+DIRECT TESTIMONY 
+ 
+IN SUPPORT OF OCTOBER 23, 2024 
+STIPULATION AND RECOMMENDATION 
+ 
+AND 
+ 
+IN OPPOSITION TO OCTOBER 10, 2024 
+STIPULATION AND RECOMMENDATION 
+ 
+OF 
+ 
+CHRISTOPHER HEALEY 
+ 
+RATES AND ANALYSIS DEPARTMENT 
+ACCOUNTING AND FINANCE DIVISION 
+ 
+ 
+ 
+STAFF EXHIBIT ________ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+November 26, 2024
+1
+ 
+ 
+BACKGROUND AND OVERVIEW 
+1 
+ 
+2 
+1. 
+Q. 
+Please state your name and your business address. 
+3 
+ 
+A. 
+My name is Christopher Healey. My business address is 180 East Broad Street, 
+4 
+Columbus, Ohio 43215. 
+5 
+ 
+6 
+2. 
+Q. 
+By whom are you employed and in what capacity? 
+7 
+A. 
+I am employed by the Public Utilities Commission of Ohio (“PUCO” or 
+8 
+“Commission”) as Chief of the Accounting and Finance Division within the Rates 
+9 
+and Analysis Department. 
+10 
+ 
+11 
+3. 
+Q. 
+Please briefly summarize your educational background and work experience. 
+12 
+A. 
+I earned a Bachelor of Arts with majors in Mathematics, Economics, and 
+13 
+Linguistics from Rutgers University; a Juris Doctor from Duke University School 
+14 
+of Law; and a Graduate Certificate in Public and Nonprofit Leadership from the 
+15 
+John Glenn College of Public Affairs at the Ohio State University. 
+16 
+ 
+17 
+I have been employed by the PUCO since June 2023 as Chief of the Accounting 
+18 
+and Finance Division in the Rates and Analysis Department. In that role, I 
+19 
+manage teams of PUCO staff (“Staff”) analysts responsible for, among other 
+20 
+things, base rate cases, electric security plan proceedings, certain natural gas 
+21 
+alternative regulation proceedings, various rider audits and reviews, and utility 
+22 
+financing cases. Prior to joining Staff, I was Director of Utility Regulatory Affairs 
+23 
+2
+ 
+2 
+for Enervee Corp. from 2022 to 2023, an attorney for the Office of the Ohio 
+1 
+Consumers’ Counsel from 2016 to 2022, and an attorney for two international law 
+2 
+firms from 2008 to 2015. I am a licensed attorney in the State of Ohio. 
+3 
+ 
+4 
+4. 
+Q. 
+Have you previously testified before the PUCO? 
+5 
+A. 
+Yes. I testified on behalf of Staff in Case Nos. 23-23-EL-SSO and 23-301-EL-
+6 
+SSO. 
+7 
+ 
+8 
+5. 
+Q. 
+What is the purpose of your testimony in this proceeding? 
+9 
+A. 
+My testimony serves two related purposes. It supports and recommends approval 
+10 
+of the Joint Stipulation and Recommendation filed on October 23, 2024 (the 
+11 
+“10/23 Stipulation”), which is signed by Staff, Ohio Power Co. (“AEP Ohio”), 
+12 
+Ohio Energy Group (“OEG”), Walmart Inc., the Office of the Ohio Consumers’ 
+13 
+Counsel, and Ohio Partners for Affordable Energy. And it opposes and 
+14 
+recommends rejection of the Joint Stipulation and Recommendation filed on 
+15 
+October 10, 2024 (the “10/10 Stipulation”), which was signed by other 
+16 
+intervenors, primarily those representing (exclusively or in part) the interests of 
+17 
+data centers and retail suppliers.1 Parties use various terms to identify the two 
+18 
+competing stipulations (“First Stipulation” vs. “Second Stipulation”; “AEP Ohio 
+19 
+ 
+1 Parties to the 10/10 Stipulation are Amazon Data Services, Inc.; Microsoft Corp.; Google LLC; Sidecat LLC, an 
+affiliate of Meta Platforms, Inc.; the Data Center Coalition (of which Amazon, Microsoft, Google, and Meta are 
+members); the Ohio Blockchain Council (whose membership includes cryptocurrency miners/mobile data centers); 
+the Ohio Manufacturers’ Association Energy Group (“OMAEG”) (whose membership includes at least one data 
+center/mobile data center); Ohio Energy Leadership Council (whose membership includes data centers and/or 
+mobile data centers); Enchanted Rock, LLC (a company that partners with data centers on behind the meter 
+solutions); One Energy Enterprises Inc. (now known as One Power); Interstate Gas Supply; Constellation Energy 
+Generation, LLC/Constellation NewEnergy, Inc.; and the Retail Energy Supply Association (of which IGS and 
+Constellation are members) 
+3
+ 
+3 
+Stipulation” vs. “Data Center Stipulation”; etc.). To avoid unnecessary disputes 
+1 
+about naming, Staff recommends using the neutral terms “10/10 Stipulation” and 
+2 
+“10/23 Stipulation.” 
+3 
+ 
+4 
+6. 
+Q. 
+Can you briefly summarize AEP Ohio’s application to provide context for 
+5 
+the Commission’s consideration of the stipulations? 
+6 
+A. 
+Yes. Through its May 13, 2024 application (“Application”) and supporting 
+7 
+testimony, AEP Ohio proposed approval of two tariffs: a tariff for large data 
+8 
+center customers (the “Data Center Power” or “DCP” tariff) and a tariff for 
+9 
+mobile data centers/cryptocurrency miners (the “Mobile Data Center” or “MDC” 
+10 
+tariff, and together, the “Proposed Tariffs”). The following is a summary of the 
+11 
+more material terms of AEP Ohio’s Application proposal. 
+12 
+ 
+13 
+For each of the Proposed Tariffs, AEP Ohio proposed a minimum contract term of 
+14 
+ten years. After five years, a data center can terminate its contract by paying an 
+15 
+exit fee equal to three years of minimum charges. 
+16 
+ 
+17 
+The DCP tariff applies only to data centers with contract capacity above 25 MW, 
+18 
+and the MDC tariff applies to mobile data centers/cryptocurrency miners with 
+19 
+contract capacity above 1 MW. Neither of the Proposed Tariffs would apply to 
+20 
+non-data-center customers. 
+21 
+ 
+22 
+4
+ 
+4 
+Under the DCP tariff, data centers would pay a minimum demand charge equal to 
+1 
+90% of their contract capacity, whereas data centers under the MDC tariff would 
+2 
+pay a minimum demand charge of 95%.2 
+3 
+ 
+4 
+The Proposed Tariffs included a “load ramp” that would allow data centers to 
+5 
+gradually increase their contract capacity over a period of years before reaching 
+6 
+their final contract capacity. 
+7 
+ 
+8 
+The Application included a proposal to modify the process for data centers to 
+9 
+obtain default generation service, rather than serving them through the existing 
+10 
+Commission-approved standard service offer (“SSO”). 
+11 
+ 
+12 
+7. 
+Q. 
+What are the primary policy objectives of this proceeding? 
+13 
+A. 
+This case is about reliability, certainty, and accountability, all of which are 
+14 
+important for the protection of ratepayers. The electric utility industry is at a 
+15 
+crossroads in planning for the future of the grid. After many years of essentially 
+16 
+flat load growth, there is the potential for monumental increases in demand, 
+17 
+driven almost exclusively by the energy needs of data centers. As it stands today, 
+18 
+the AEP Ohio service territory cannot reliably accommodate the needs of every 
+19 
+data center that has expressed interest in locating in Central Ohio. So steps must 
+20 
+be taken to increase grid capacity, reduce the size of the queue of potential data 
+21 
+ 
+2 Technically, it is 90%/95% of “the greater of (a) the customer’s Contract Capacity, or (b) the customer’s highest 
+previously established monthly billing demand during the past 11 months.” See McKenzie 5/13 Testimony at MSM-
+1, Page 2 and MSM-2, Page 2. Section (b) would apply if a customer exceeds its contract capacity. Because many 
+witnesses in this case have filed multiple pieces of testimony, I cite them as “NAME DATE Testimony.” 
+5
+ 
+5 
+centers, or both. Thus, any result in this case should be aimed at ensuring a 
+1 
+reliable grid for all customers, data center or otherwise. 
+2 
+ 
+3 
+Maintaining electric reliability requires, among many other things, accurate 
+4 
+forecasts of future loads. The challenge is that forecasting future data center load 
+5 
+is difficult, if not impossible, because in the existing regulatory environment, 
+6 
+there is no good way to identify which data centers are serious about locating in 
+7 
+Ohio for the long term and which are not. Thus, any result in this case should be 
+8 
+aimed at improving the ability to accurately forecast data center load. 
+9 
+ 
+10 
+Accountability is also paramount in this proceeding. Grid investments to 
+11 
+accommodate future data center load could be substantial, with a significant 
+12 
+impact on utility customers’ rates. AEP Ohio’s current tariffs do not adequately 
+13 
+account for the risks that data centers bring. Customers are required only to sign 
+14 
+short-term contracts, and their financial exposure is relatively limited. Without a 
+15 
+tariff change, data centers could cause billions of dollars of costs for infrastructure 
+16 
+upgrades and end up paying for little of it if they go out of business, leave Ohio, 
+17 
+or use less capacity than they ask for. Thus, any result in this case should ensure 
+18 
+that new data centers are accountable for the costs that they cause. 
+19 
+ 
+20 
+The Commission must balance the interests of data centers and non-data-center 
+21 
+customers. Data centers should have a fair opportunity to continue building in 
+22 
+Ohio, on terms and conditions that are just and reasonable when considering the 
+23 
+6
+ 
+6 
+unique nature of data centers and the data center industry. Data centers must also 
+1 
+be accountable for costs that they cause. Non-data-center customers (like 
+2 
+residential and small business customers) should not unreasonably bear the risk of 
+3 
+investments made to accommodate data centers. 
+4 
+ 
+5 
+8. 
+Q. 
+What parts of AEP Ohio’s original proposal are modified by the 10/23 
+6 
+Stipulation? 
+7 
+A. 
+The 10/23 Stipulation improves upon the Application through various 
+8 
+modifications. Among other things, and as described in more detail below, the 
+9 
+10/23 Stipulation modifies the following provisions of AEP Ohio’s Application: 
+10 
+ 
+11 
+Tariff Applicability (Section III.A). The DCP and MDC tariffs are merged into 
+12 
+a single “Data Center Tariff.” The Data Center Tariff applies to all new data 
+13 
+centers, including mobile data centers and cryptocurrency miners, with demand 
+14 
+greater than 25 MW. 
+15 
+ 
+16 
+Minimum Demand Charge (Section III.D). Whereas the Application proposes a 
+17 
+minimum demand charge of 90% for data centers and 95% for mobile data 
+18 
+centers, the 10/23 Stipulation proposes a sliding scale with larger data centers 
+19 
+paying a higher minimum demand charge. Smaller data centers would pay a 60% 
+20 
+minimum demand charge, and the largest data centers would pay a minimum 
+21 
+demand charge of 85%. 
+22 
+ 
+23 
+7
+ 
+7 
+Load Ramp (Section III.E). The 10/23 Stipulation increases the load ramp 
+1 
+period from three years to four years and introduces a minimum contract capacity 
+2 
+(50% in year 1, 65% in year 2, 80% in year 3, 90% in year 4) during the load 
+3 
+ramp period. 
+4 
+ 
+5 
+Contract Term (Section III.B). The minimum contract term is the load ramp 
+6 
+period plus eight years, compared to the fixed ten-year term in the Application. 
+7 
+ 
+8 
+Termination and Exit Fee (Section III.J). Under the 10/23 Stipulation, Data 
+9 
+Center Tariff customers are eligible to terminate their contract and pay an exit fee 
+10 
+five years after the end of the load ramp period, compared to five years inclusive 
+11 
+of the load ramp period under the Application. The 10/23 Stipulation also requires 
+12 
+all exit fees to be credited for the benefit of ratepayers. 
+13 
+ 
+14 
+Process for Signing up New Data Center Customers (Section III.F). The 10/23 
+15 
+Stipulation provides a detailed, transparent process for new data centers to locate 
+16 
+in AEP Ohio’s service territory. 
+17 
+ 
+18 
+Assigning Retail Capacity to Another Customer (Section III.G). The 10/23 
+19 
+Stipulation establishes a process for data centers with excess capacity to assign 
+20 
+some of that capacity (up to 25%) to another data center customer. 
+21 
+ 
+22 
+8
+ 
+8 
+Transmission Pilots (Section III.A.6). Customers taking service under the Data 
+1 
+Center Tariff are not eligible to participate in AEP Ohio’s 1CP or 6CP Basic 
+2 
+Transmission Cost Rider (“BTCR”) pilot programs or successor programs. 
+3 
+ 
+4 
+Alleviating Transmission Constraints for Current Customers (Section III.H). 
+5 
+AEP Ohio will contact existing large nonresidential customers to see if there are 
+6 
+opportunities to reduce their contract capacity, which could make transmission 
+7 
+available for new customers or reduce the need for new investments. 
+8 
+ 
+9 
+Withdrawal of Standard Service Offer Modifications (Section III.K). The 
+10 
+Application proposed various changes to the SSO procurement process that would 
+11 
+apply to data center customers. The 10/23 Stipulation withdraws these proposals 
+12 
+without prejudice. 
+13 
+ 
+14 
+9. 
+Q. 
+In what ways does the 10/10 Stipulation modify the Application? 
+15 
+A. 
+The 10/10 Stipulation modifies many aspects of the Application. While the 10/10 
+16 
+Stipulation speaks for itself, I will highlight some of the major changes it makes 
+17 
+to the Application. 
+18 
+ 
+19 
+The 10/10 Stipulation (section III.B) eliminates the MDC tariff and converts the 
+20 
+DCP tariff to a new “Electricity-Intensive Customer” (“EIC”) tariff. This new EIC 
+21 
+tariff applies broadly to all types of large load customers—not just data centers, 
+22 
+but also Ohio manufacturers and other businesses. 
+23 
+9
+ 
+9 
+ 
+1 
+The EIC tariff applies only to new customers above 50 MW, as compared to 25 
+2 
+MW for large data centers in the Application. Further, customers with load above 
+3 
+50 MW, including new data centers, are exempt from the tariff unless AEP Ohio 
+4 
+provides proof of a capacity constraint specific to that customer. 
+5 
+ 
+6 
+The 10/10 Stipulation (section III.C) gives EIC customers an option to select a 
+7 
+contract term of the load ramp period plus eight years, ten years, or twelve years. 
+8 
+Depending on the term that the EIC customer chooses, the exit fee is either 
+9 
+reduced to one year or eliminated altogether. The 10/10 Stipulation (section 
+10 
+III.M) requires exit fees to be credited to AEP Ohio’s transmission rider or 
+11 
+deferred as a regulatory liability. It also (section III.G) increases the load ramp 
+12 
+period from three years to four years and introduces a minimum contract capacity 
+13 
+during the load ramp period, though the minimums under the 10/10 Stipulation 
+14 
+(30%, 50%, 70%, 90%) are lower than those under the 10/23 Stipulation (50%, 
+15 
+65%, 80%, 90%). 
+16 
+ 
+17 
+Like the 10/23 Stipulation, the 10/10 Stipulation (section III.E) includes a sliding 
+18 
+scale for the minimum demand charge. Because the EIC tariff only applies to 
+19 
+customers above 50 MW, any data center below 50 MW would pay a 60% 
+20 
+minimum demand charge. And depending on the length of the contract that an 
+21 
+EIC customer chooses, its minimum demand charge would be capped at 75%, 
+22 
+10
+ 
+10 
+80%, or 85% (with longer contracts paying the lower 75% minimum demand 
+1 
+charge). 
+2 
+ 
+3 
+The 10/10 Stipulation (section III.I) includes a process for new data centers to 
+4 
+locate in AEP Ohio’s service territory, though it differs from the 10/23 
+5 
+Stipulation. 
+6 
+ 
+7 
+The 10/10 Stipulation (section III.J) allows EIC customers with excess capacity to 
+8 
+assign some of that capacity (up to 50%) to other EIC customers, though the 
+9 
+eligibility and process are different from what is included in the 10/23 Stipulation. 
+10 
+ 
+11 
+The 10/10 Stipulation (section III.O) modifies the SSO proposals from AEP 
+12 
+Ohio’s Application such that new data center and other large load customers—
+13 
+and existing data center customers who would not be served under the proposed 
+14 
+EIC tariff—will not be eligible for the SSO. Instead, they would pay real-time 
+15 
+market prices if they don’t shop with a supplier. 
+16 
+ 
+17 
+Finally, the 10/10 Stipulation (section III.Q) asks the Commission to initiate a 
+18 
+Commission Ordered Investigation regarding transmission capacity constraints. 
+19 
+ 
+20 
+10. 
+Q. 
+What standard does the Commission apply when assessing a stipulation? 
+21 
+A. 
+The ultimate issue for the Commission to consider is whether the agreement is 
+22 
+reasonable and should be adopted. The Commission has long used a three-part 
+23 
+11
+ 
+11 
+test to evaluate stipulations: (i) Is the stipulation the product of serious bargaining 
+1 
+among capable and knowledgeable parties? (ii) As a package, does the stipulation 
+2 
+benefit ratepayers and the public interest? (iii) Does the stipulation package 
+3 
+violate any important regulatory principles or practices? The Commission may 
+4 
+reject a stipulation, approve a stipulation in its entirety, or modify a stipulation 
+5 
+and approve it as modified. 
+6 
+ 
+7 
+11. 
+Q. 
+Can you summarize your conclusions regarding the application of the three-
+8 
+part test to the stipulations? 
+9 
+A. 
+Yes. The 10/23 Stipulation was the product of serious bargaining, benefits 
+10 
+ratepayers and the public interest as a package, and is consistent with regulatory 
+11 
+principles and practices. The 10/10 Stipulation, in contrast, fails the three-part test 
+12 
+because it does not, as a package, benefit ratepayers and the public interest and 
+13 
+because it violates important regulatory principles and practices. Moreover, when 
+14 
+evaluated side-by-side, the 10/23 Stipulation is more beneficial to ratepayers and 
+15 
+more favorably supports the public interest compared to the 10/10 Stipulation. 
+16 
+This further supports approval of the 10/23 Stipulation. 
+ 
+17 
+12
+ 
+12 
+THREE-PART TEST – THE 10/23 STIPULATION 
+1 
+ 
+2 
+12. 
+Q. 
+Is the 10/23 Stipulation the product of serious bargaining between capable 
+3 
+and knowledgeable parties? 
+4 
+A. 
+Yes. There were ten all-party settlement meetings over the course of several 
+5 
+months, with all parties invited to each meeting. Three of these meetings took 
+6 
+place after the 10/10 Settlement was filed, with signatory parties to the 10/10 
+7 
+Settlement invited and actively participating. No party was excluded from these 
+8 
+meetings, and all parties were consistently offered the opportunity to provide 
+9 
+feedback during these meetings, via email, and through separate phone calls and 
+10 
+meetings. Staff also met with parties individually and in small groups. Any time a 
+11 
+party approached Staff with a request to meet regarding this case, Staff agreed to 
+12 
+meet and carefully considered the party’s feedback in developing its own 
+13 
+positions. Feedback from numerous parties—including 10/10 Stipulation 
+14 
+signatories—influenced and was incorporated into the 10/23 Stipulation. These 
+15 
+all-party meetings and individual/small group meetings were productive and 
+16 
+ultimately led to the development and filing of the 10/23 Stipulation. Finally, all 
+17 
+parties who actively participated in settlement negotiations are capable and 
+18 
+knowledgeable. All signatories to the 10/23 Stipulation are represented by 
+19 
+experienced counsel who actively participate in matters before the Commission. 
+20 
+13
+ 
+13 
+13. 
+Q. 
+Certain data center witnesses testify that the 10/23 Stipulation was not the 
+1 
+product of serious bargaining because no data center customers signed it. Do 
+2 
+you agree? 
+3 
+A. 
+No. In assessing the first prong, Data Center Coalition witness Higgins says that it 
+4 
+is a “glaring deficiency” of the 10/23 Stipulation that no data center signed it.3 
+5 
+Ohio Blockchain Council witness Robertson similarly claims that the 10/23 
+6 
+Stipulation does not pass the first prong because no data center signed it.4 The 
+7 
+Commission should reject these arguments. The data centers’ argument 
+8 
+contradicts the Commission’s rules, which allow “any two or more parties” to 
+9 
+enter into a stipulation.5 No stakeholder has veto power over a stipulation.  
+10 
+ 
+11 
+14. 
+Q. 
+OMAEG argues that the 10/23 Stipulation was not the product of serious 
+12 
+bargaining because Staff and the other signatory parties lack the ability to 
+13 
+evaluate the data presented to them and thus were not knowledgeable when 
+14 
+they signed the 10/23 Stipulation. Do you agree? 
+15 
+A. 
+No. OMAEG believes that AEP Ohio has not provided adequate information to 
+16 
+demonstrate that there is any concern with capacity constraints in its service 
+17 
+territory,6 which (according to OMAEG) demonstrates that the signatory parties 
+18 
+ 
+3 Higgins 11/8 Testimony at 5. 
+4 Robertson 11/8 Testimony at 4. 
+5 Ohio Adm. Code 4901-1-30(A) (emphasis added). 
+6 See, e.g., Seryak 11/8 Testimony at 10 (“AEP Ohio has refused to produce data and pertinent information 
+regarding the alleged transmission constraint and AEP Ohio’s or its affiliate’s transmission systems, ensuring that 
+the parties to the [10/23] Stipulation are not knowledgeable about the underlying transmission constraints on its 
+system and the impact of the proposed [Data Center Tariff] on customers.”). 
+14
+ 
+14 
+were not knowledgeable for purposes of the first prong of the Commission’s 
+1 
+three-part test.7 
+2 
+ 
+3 
+Staff rejects OMAEG’s claims that Staff was not knowledgeable when it signed 
+4 
+the 10/23 Stipulation. As the Commission is aware, Staff is highly knowledgeable 
+5 
+with numerous regulatory subject matter experts. Staff performed independent 
+6 
+research, extensively reviewed all information provided to it by AEP Ohio and 
+7 
+every other party in this case, and reasonably and independently concluded that 
+8 
+there is more than enough evidence to be concerned with capacity constraint 
+9 
+issues in AEP Ohio’s service territory. Consequently, Staff was knowledgeable 
+10 
+about the facts and evidence at issue in this case and freely negotiated and signed 
+11 
+the 10/23 Stipulation. 
+12 
+ 
+13 
+15. 
+Q. 
+Does the 10/23 Stipulation, as a package, benefit ratepayers and the public 
+14 
+interest? 
+15 
+A. 
+Yes. The 10/23 Stipulation, as a package, balances numerous interests and in 
+16 
+doing so, it benefits ratepayers and the public interests. Broadly speaking, it 
+17 
+achieves the most important policy goals of the proceeding. It supports the 
+18 
+continued development of a reliable grid in AEP Ohio’s service territory. It 
+19 
+enhances the accuracy of load forecasts, thus creating more certainty when 
+20 
+planning for large-scale grid investments. It reasonably assigns the risk of such 
+21 
+investments to cost causers, which are data centers, while providing a clear and 
+22 
+ 
+7 Seryak 11/8 Testimony at 9-10. 
+15
+ 
+15 
+transparent path for data centers to locate in Ohio. And it protects non-data-center 
+1 
+ratepayers (residential customers, small businesses, other non-data-center 
+2 
+commercial and industrial customers) from unreasonably paying for stranded 
+3 
+investments if data center load does not materialize. 
+4 
+ 
+5 
+16. 
+Q. 
+The 10/23 Stipulation recommends approval of a new tariff that applies only 
+6 
+to data centers. Does this benefit ratepayers and the public interest? 
+7 
+A. 
+Yes. A central premise of the opposition to the 10/23 Stipulation is the flawed 
+8 
+argument that the proposed Data Center Tariff is discriminatory and thus cannot 
+9 
+be approved. The Data Center Tariff, however, is not discriminatory because it 
+10 
+reasonably distinguishes between data centers and non-data-centers based on 
+11 
+factors that are pertinent for ratemaking purposes. 
+12 
+ 
+13 
+First, the sheer size of data center load—both at individual data center locations 
+14 
+and in the aggregate—is unique. The data centers industry could have an 
+15 
+unprecedented impact on the electric grid. Utilities that have planned for 
+16 
+relatively flat load growth over the past few decades are now faced with the 
+17 
+prospect of doubling or tripling the demand on their systems on a short timeframe. 
+18 
+AEP Ohio already has signed contracts for around 5,000 MW of data center load 
+19 
+(600 MW for current data centers plus 4,400 MW of new data center load 
+20 
+expected by 2030).8 This is more than the entire current peak demand in Central 
+21 
+ 
+8 See Kelso 5/13 Testimony at 8. 
+16
+ 
+16 
+Ohio, which, according to AEP Ohio, is about 4,000 MW.9 It is also more than ten 
+1 
+times the amount of expected non-data-center load growth.10 AEP Ohio also has 
+2 
+another 30,000 MW of data center load that has expressed interest in locating in 
+3 
+Central Ohio. 
+4 
+ 
+5 
+Second, individual data centers have the potential to affect the grid in ways that 
+6 
+are distinguishable from other customers. The total load at a single site can be 
+7 
+substantially more than even the largest industrial customers, with expectations 
+8 
+that individual data centers could soon be as large as 1,000 or even 2,000 MW.11 
+9 
+ 
+10 
+Third, there is substantial uncertainty regarding the data center industry. While 
+11 
+there are various projections regarding future data center load, the projections 
+12 
+seem to change daily, and it is difficult to know how much data center load will 
+13 
+materialize or where. It is sometimes difficult to assess how serious a potential 
+14 
+data center customer is about a given project. Prospective data center owners may 
+15 
+test the waters by expressing interest to multiple utilities, or interest in multiple 
+16 
+sites with the same utility, but with plans to build at only one or a few sites. Each 
+17 
+ 
+9 See Ali 5/13 Testimony at 3. The term “Central Ohio” is sometimes used colloquially to refer generally to the City 
+of Columbus and surrounding areas. Here, it has a more technical definition that relates to a customer’s location on 
+the grid. See Ali Testimony at 4 (defining “Central Ohio” as “the interconnected transmission system that 
+encompasses the greater Columbus Area and its suburbs” that is “highly interconnected to and dependent upon the 
+same transmission network”). 
+10 See Attachment CMH-1 (AEP Ohio response to Staff DR 1-5, stating that expected load growth from non-data-
+center customers is about 400 MW). 
+11 See Rich Miller, The Gigawatt Data Center Campus is Coming (April 29, 2024), available at 
+https://www.datacenterfrontier.com/hyperscale/article/55021675/the-gigawatt-data-center-campus-is-coming. See 
+also Electric Power Research Institute, Utility Experiences and Trends Regarding Data Centers (Sept. 2024) (48% 
+of surveyed utilities have had a request for a data center in excess of 1,000 MW). 
+17
+ 
+17 
+site might be counted in the utility’s queue, thus resulting in double (or triple, or 
+1 
+quadruple…) counting when looking at the data center industry in the aggregate. 
+2 
+ 
+3 
+Fourth, the uncertainty problem is exacerbated by unique data center features. 
+4 
+Some data centers have the potential to move from one location to another in 
+5 
+ways that other customers do not. Mobile data centers especially can more readily 
+6 
+move their operations compared to other industries. Some mobile data centers 
+7 
+operate out of shipping containers, which can be moved by train or truck. Other 
+8 
+data centers are even more mobile, with new modular or prefabricated designs 
+9 
+that can be moved by a forklift. Further, even larger data centers can more easily 
+10 
+change location than businesses in other industries because their core asset is 
+11 
+computing equipment that can be removed from an existing building and 
+12 
+reinstalled elsewhere. Thus, a utility might plan for new data center load, only to 
+13 
+have that load disappear after a relatively short period of time (assuming it shows 
+14 
+up in the first instance). Data center load can also disappear if companies go out 
+15 
+of business, are forced for economic reasons to scale back their operations, or 
+16 
+their energy needs change due to technological advances or other market 
+17 
+developments. Given the unknowns about future data center use cases, like 
+18 
+artificial intelligence, this type of business sector volatility would not be 
+19 
+surprising. 
+20 
+ 
+21 
+Fifth, the load at a single data center site can increase more readily than other 
+22 
+industries. The driving force behind data center electric load is computing power. 
+23 
+18
+ 
+18 
+It is relatively straightforward for a data center to increase its capacity needs by 
+1 
+buying more computers and installing them in its data center facility, or by 
+2 
+incrementally adding new data center units in shipping containers or similar 
+3 
+modular buildings. In contrast, the process of increasing capacity at a 
+4 
+manufacturing facility can be much more involved and take more time, given the 
+5 
+custom nature of individual businesses’ operations. 
+6 
+ 
+7 
+Finally, many large data centers run at near maximum capacity all day, every day 
+8 
+(i.e., they have a high load factor). According to AEP Ohio, there are only two 
+9 
+non-data customers with a load factor greater than 95%.12 
+10 
+ 
+11 
+The 10/23 Stipulation aims to address these challenges. A data center tariff should 
+12 
+be designed to ensure that data centers are serious and committed to locating in 
+13 
+Ohio for the long run, and pay their fair share of any costs that they cause. A 
+14 
+primary goal in this case is to protect other ratepayers from unreasonably 
+15 
+subsidizing data centers or being responsible for the cost of stranded assets. 
+16 
+ 
+17 
+The 10/23 Stipulation provides for both certainty and accountability. The 
+18 
+commitment to long-term contracts and minimum demand charge should reduce 
+19 
+speculative data center load. Neither AEP Ohio nor other market participants can 
+20 
+adequately and accurately plan for the future of the grid until there is greater 
+21 
+certainty about how much of the 30,000 MW of potential data center load is real 
+22 
+ 
+12 See Attachment CMH-2 (AEP Ohio’s response to Staff DR 1-1). 
+19
+ 
+19 
+and how much is speculative or illusory. AEP Ohio will be able to more 
+1 
+accurately forecast its load by removing from the queue those data centers that are 
+2 
+not willing to make a serious commitment to Ohio. Likewise, longer-term 
+3 
+contracts, minimum demand charges, and other financial commitments are 
+4 
+designed to ensure that data centers remain accountable. Adding substantial load 
+5 
+to the grid could come at a significant cost. If grid upgrades are made to 
+6 
+accommodate new data center load, it is essential that data centers pay their fair 
+7 
+share of the costs that they cause, whether for transmission upgrades or otherwise. 
+8 
+Likewise, other ratepayers should not be solely responsible for the cost of 
+9 
+stranded assets if the data center load fails to materialize or materializes and then 
+10 
+disappears in short order. The 10/23 Stipulation accomplishes these objectives 
+11 
+through a data center specific tariff.13 
+12 
+ 
+13 
+17. 
+Q. 
+Has the Commission previously considered a customer’s end use or type of 
+14 
+business/operations when establishing tariffs and rates? 
+15 
+A. 
+Yes. The Commission has approved tariffs that apply to customers based on the 
+16 
+purpose for which they use electricity. In AEP Ohio’s service territory, there are 
+17 
+approved tariffs for area lighting and street lighting, electric heating, schools and 
+18 
+churches, public authorities, electric vehicles, automakers, and agriculture. These 
+19 
+tariffs apply to customers with certain businesses, operations, or electricity end 
+20 
+uses; they are not strictly based on energy-related factors like load profile, peak 
+21 
+ 
+13 These factors also demonstrate why a data center specific tariff is consistent with regulatory principles and 
+practices. 
+20
+ 
+20 
+usage, or energy consumption. Other Ohio electric distribution utilities have 
+1 
+similar tariffs for end uses.14 
+2 
+ 
+3 
+In fact, one of the most basic rate class distinctions—residential vs. 
+4 
+nonresidential—is based on end use. AEP Ohio’s residential tariff requires a 
+5 
+residential customer to be (among other things) “a single or double occupancy 
+6 
+dwelling” that “consists of a kitchen, bathroom, and heating facilities connected 
+7 
+on a permanent basis.”15 None of these conditions have anything to do with load 
+8 
+profiles or energy usage. In short, there is nothing radical, unusual, or 
+9 
+unreasonably discriminatory about establishing a rate class based on the type of 
+10 
+customer, including its end use. 
+11 
+ 
+12 
+18. 
+Q. 
+Under section III.A of the 10/23 Stipulation, the Data Center Tariff applies to 
+13 
+data center customers with load greater than 25 MW. Does this 25 MW 
+14 
+minimum benefit ratepayers and the public interest? 
+15 
+A. 
+Yes. A 25 MW minimum is reasonable and should be approved. It’s important to 
+16 
+recognize just how big a 25 MW customer is. A 25 MW data center running at 
+17 
+90% capacity 24 hours a day would use more than 16 million kWh of electricity 
+18 
+in a month.16 Average nonresidential customer usage in AEP Ohio’s territory, in 
+19 
+contrast, is less than 14 thousand kWh monthly.17 In other words, a 25 MW data 
+20 
+ 
+14 See, e.g., Ohio Edison Tariff (lighting, schools, electric heating); AES Ohio Tariff (electric heating, lighting, 
+churches); Duke Energy Ohio Tariff (electric heating, lighting, schools and churches). 
+15 AEP Ohio Tariff Sheet No. 210-1. 
+16 25,000 * 24 * 0.9 * 365 / 12 = 16,425,000. 
+17 Average nonresidential customer information is based on AEP Ohio’s 2023 FERC Form 1, which states that in 
+2023, 191,669 commercial and industrial customers collectively used 30,769,276 MWh, for an average monthly 
+usage of about 13,378 kWh. 
+21
+ 
+21 
+center would use more than a thousand times the average nonresidential usage. 
+1 
+By another metric, a single 25 MW customer would be more than half a percent 
+2 
+of the current load in Central Ohio.18 Fewer than 200 such customers could more 
+3 
+than double the load in Central Ohio. In short, a 25 MW customer is very large 
+4 
+and would need to be accounted for in grid planning. 
+5 
+ 
+6 
+Further, it is important that the threshold be set low enough to deter gaming. 
+7 
+Under the 10/10 Stipulation, which proposes a 50 MW minimum instead of 25 
+8 
+MW, some data centers could potentially modify their operations to run at a 
+9 
+contract capacity of 49.9 MW to avoid the tariff. Large data centers would likely 
+10 
+not find it feasible to downsize below 25 MW when their typical size is 50 MW or 
+11 
+more. Thus, to ensure that large data centers are subject to the tariff, it is 
+12 
+reasonable to set the threshold at a level (25 MW) that is lower than many typical 
+13 
+large data centers. 
+14 
+ 
+15 
+A 25 MW minimum is also a reasonable compromise compared to the 
+16 
+Application. Under the Application, any mobile data center with load above 
+17 
+1 MW would be subject to the MDC Tariff. Increasing that to 50 MW for mobile 
+18 
+data centers would exempt an even greater number of mobile data 
+19 
+center/cryptocurrency mining customers from the tariff. 
+20 
+ 
+21 
+ 
+18 See Ali 5/13 Testimony at 3 (approximately 4,000 MW of total load in Central Ohio). 
+22
+ 
+22 
+For these reasons, the 25 MW threshold found in the 10/23 Stipulation benefits 
+1 
+ratepayers and the public interest. A higher threshold—like the 50 MW minimum 
+2 
+found in the 10/10 Stipulation—would assign too much risk to non-data-center 
+3 
+customers and thus is unreasonably high. 
+4 
+ 
+5 
+19. 
+Q. 
+Section III.D of the 10/23 Stipulation includes a sliding scale of minimum 
+6 
+demand charges for data center customers, ranging from 60% to 85%, 
+7 
+compared to the Application, which included a 90% minimum demand 
+8 
+charge for all new large data centers. Is this a reasonable compromise that 
+9 
+benefits ratepayers and the public interest? 
+10 
+A. 
+Yes. A minimum demand charge higher than 60% serves several purposes. It 
+11 
+encourages prospective data centers to accurately assess their energy needs. With 
+12 
+AEP Ohio’s current 60% minimum demand charge, prospective data center 
+13 
+customers would have an incentive to overstate their expected capacity. A 
+14 
+customer that is reasonably sure that it will use around 60 MW might request 
+15 
+contract capacity of 90 or 100 MW, since in either case, its demand charge would 
+16 
+be approximately the same. This could cause overbuilding of transmission 
+17 
+capacity, with higher bills for ratepayers. It could also cause capacity to be 
+18 
+unnecessarily tied up, with AEP Ohio reserving the extra capacity to provide firm 
+19 
+service to a customer at a level far beyond the customer’s actual need. The higher 
+20 
+demand minimum also ensures that if transmission is built to meet prospective 
+21 
+data centers’ requested contract capacity, those data centers pay more of their fair 
+22 
+share of such costs. If transmission is built assuming a data center will use 100 
+23 
+23
+ 
+23 
+MW, but the customer only pays for 60 MW of capacity, other customers could 
+1 
+unfairly pay higher rates for costs that they did not cause. 
+2 
+ 
+3 
+Under the 10/23 Stipulation, new data center customers would pay a minimum 
+4 
+demand charge using a sliding scale, similar in concept (mathematically) to 
+5 
+Federal income tax brackets. Exhibit B to the 10/23 Stipulation provides the 
+6 
+minimum demand charge for all customers subject to the new Data Center Tariff 
+7 
+in 1 MW increments. Thus, any prospective data center can look at Exhibit B and 
+8 
+determine exactly what its minimum demand charge will be.19 For example, a 30 
+9 
+MW data center would pay a minimum demand charge of 63.45%. The 
+10 
+percentage gradually increases but is capped. All Data Center Tariff customers 
+11 
+with contract capacity of 117 MW or more would pay a minimum demand charge 
+12 
+of 85%. The sliding scale balances the interests of smaller and larger data centers, 
+13 
+requiring only the largest data centers to pay the highest minimum demand 
+14 
+charge, while also protecting other ratepayers by increasing the minimum amount 
+15 
+that data centers will pay. 
+16 
+ 
+17 
+ 
+19 In other words, while the minimum demand charge is based on a bracket concept found in section III.D of the 
+10/23 Stipulation, Exhibit B to the 10/23 Stipulation avoids any confusion by calculating the mathematical result at 
+all possible contract capacities, in 1 MW increments. 
+24
+ 
+24 
+20. 
+Q. 
+Under the 10/23 Stipulation, the minimum demand charge applies to the 
+1 
+aggregate load of companies and their affiliates. Does this benefit ratepayers 
+2 
+and the public interest? 
+3 
+A. 
+Yes. Section III.A.5 of the 10/23 Stipulation provides that “[a]ll new load of 
+4 
+affiliate companies and companies with common ownership will be considered in 
+5 
+the aggregate for purposes of calculating the minimum demand charge that will be 
+6 
+included for the full term of each [electric service agreement] for new projects 
+7 
+under this tariff.” This provision is intended to prevent a data center company 
+8 
+from paying a lower minimum demand charge by building a series of smaller data 
+9 
+centers. 
+10 
+ 
+11 
+For example, as shown in Exhibit B to the 10/23 Stipulation, a 50 MW data center 
+12 
+would pay a minimum demand charge of 72.5%, whereas a 100 MW data center 
+13 
+would pay a minimum demand charge of 82.5%. A data center company might try 
+14 
+to avoid the higher 82.5% demand charge by building two 50 MW data centers 
+15 
+instead of one 100 MW data center. The aggregating provision of the 10/23 
+16 
+Stipulation prevents this by summing the total contract capacity across a single 
+17 
+data center company. In other words, if it were to build two 50 MW data centers, 
+18 
+together they would pay a minimum demand charge of 82.5%—the same as if the 
+19 
+company had built a single 100 MW data center.20 This applies to affiliated 
+20 
+companies as well. Otherwise, a parent company could game the system and 
+21 
+avoid the tariff by creating a new legal entity for each data center. 
+22 
+ 
+20 AEP Ohio witness McKenzie provides an example of how this would work through “stacking” if a data center 
+company builds one data center and then later builds another one. See McKenzie 11/1 Testimony at 13-14. 
+25
+ 
+25 
+ 
+1 
+The 10/10 Stipulation, in contrast, does not provide for aggregation in this 
+2 
+manner. Thus, it suffers from the loopholes I’ve identified here and does not 
+3 
+benefit ratepayers or the public interest. 
+4 
+ 
+5 
+21. 
+Q. 
+OMAEG claims that section III.A.5 of the 10/23 Stipulation would combine 
+6 
+multiple customer accounts into a single account. Is this accurate? 
+7 
+A. 
+No. OMAEG witness Seryak misconstrues this section of the 10/23 Stipulation. 
+8 
+He states that section III.A.5 of the 10/23 Stipulation would “aggregate multiple 
+9 
+accounts into a single customer bill without the consent of the customer.”21 This is 
+10 
+not accurate. The 10/23 Stipulation keeps individual customer accounts separate. 
+11 
+It only aggregates them for purposes of establishing each customer’s minimum 
+12 
+demand billing component, as explained in the example on page 13-14 of AEP 
+13 
+Ohio witness McKenzie’s November 1, 2024 testimony. Each customer account 
+14 
+will continue to separately pay its own bill based on its own billing determinants. 
+15 
+ 
+16 
+22. 
+Q. 
+Section III.E of the 10/23 Stipulation addresses load ramps. What is a load 
+17 
+ramp? 
+18 
+A. 
+Generally, a load ramp is a period over which a customer’s contract capacity 
+19 
+gradually increases before reaching the final contract capacity. It is designed to 
+20 
+account for the fact that a new business might phase in its operations over a 
+21 
+period of a years before reaching full operational status. In the context of a data 
+22 
+ 
+21 Seryak 11/8 Testimony at 20. 
+26
+ 
+26 
+center, a data center might build the basic infrastructure and periodically add 
+1 
+more computing power, thereby increasing its load until reaching its full contract 
+2 
+capacity. 
+3 
+ 
+4 
+In terms of ratemaking, a load ramp might work as follows. A new business 
+5 
+customer expects to build a new facility that will eventually need 100 MW of 
+6 
+load. But in the first few years of operation, it will use less than 100 MW. Under 
+7 
+the terms of its electric service agreement (“ESA”) with AEP Ohio, these early 
+8 
+years, known as the “load ramp period,” would have a contract capacity below 
+9 
+100 MW. It could be something like 60 MW in year 1, 80 MW in year 2, and then 
+10 
+100 MW in year 3 and thereafter. This would be a two-year load ramp because the 
+11 
+customer operated for two years before reaching its full contract capacity. 
+12 
+ 
+13 
+23. 
+Q. 
+Section III.E of the 10/23 Stipulation allows a load ramp for customers under 
+14 
+the Data Center Tariff. Does this benefit ratepayers and the public interest? 
+15 
+A. 
+Yes. Under the 10/23 Stipulation, data centers are permitted a load ramp period of 
+16 
+up to four years. In other words, they must begin paying minimum demand 
+17 
+charges based on their full contract capacity no later than year five of their 
+18 
+contract. This benefits data centers by acknowledging that a new data center may 
+19 
+take time to scale up its operations. It allows the data center to pay less than it 
+20 
+would if it were required to pay based on its full contract capacity immediately. 
+21 
+ 
+22 
+27
+ 
+27 
+The 10/23 Stipulation also provides minimums for the contract capacity during 
+1 
+the load ramp period. The minimum is 50% of contract capacity during year one, 
+2 
+65% during year two, 80% during year three, and 90% during year four. In other 
+3 
+words, for a data center that eventually wants 100 MW of contract capacity, its 
+4 
+contract would include a contract capacity of at least 50 MW in year one, 65 MW 
+5 
+in year two, 80 MW in year three, and 90 MW in year four. The data center’s 
+6 
+minimum demand charge would be based on these minimum contract capacity 
+7 
+amounts during the respective load ramp period years. 
+8 
+ 
+9 
+The minimum contract capacity amounts found in the 10/23 Stipulation are 
+10 
+designed to protect non-data-center ratepayers. Under the Application, AEP 
+11 
+Ohio’s Proposed Tariffs permitted a load ramp period but with no minimums. 
+12 
+Thus, AEP Ohio and the data center could have agreed to any contract capacity 
+13 
+during the load ramp period, no matter how low. For example, the Application 
+14 
+would have allowed AEP Ohio to agree that a 100 MW customer can have a 
+15 
+three-year load ramp of just 5 MW in each of the first three years before 
+16 
+increasing to 100 MW in year four. This customer might make only de minimis 
+17 
+payments during the load ramp period, despite ultimately adding substantial load 
+18 
+to the grid. The contract capacity minimums included in the 10/23 Stipulation 
+19 
+correct this issue by requiring a more substantial commitment from data centers 
+20 
+during the load ramp period. In the absence of such minimums, costs could be 
+21 
+unreasonably shifted to non-data-center customers. 
+22 
+ 
+23 
+28
+ 
+28 
+24. 
+Q. 
+Section III.B of the 10/23 Stipulation proposes a minimum contract term of 
+1 
+the load ramp period plus eight years. Does this benefit ratepayers and the 
+2 
+public interest? 
+3 
+A. 
+Yes. A longer contract term helps address an important goal in this proceeding. It 
+4 
+increases certainty because only data centers that are serious about locating in 
+5 
+Ohio will be willing to make a long-term commitment of eight to twelve years. 
+6 
+And it increases data center accountability because they will not be able to 
+7 
+quickly exit the market. If data centers were permitted to sign short-term 
+8 
+contracts, other ratepayers could be left paying for stranded costs when a data 
+9 
+center leaves AEP Ohio’s service territory, which would be inequitable.  
+10 
+ 
+11 
+Under the Application, AEP Ohio proposed a ten-year fixed contract. The 10/23 
+12 
+Stipulation’s proposal for the load ramp period plus eight years improves on 
+13 
+Application. A data center with no load ramp (meaning it pays based on its full 
+14 
+contract capacity from the start) would have an eight-year contract. Similarly, a 
+15 
+data center with a four-year load ramp would have a 12-year contract. An eight-
+16 
+to-twelve-year term makes data centers accountable for the costs that they cause, 
+17 
+including grid upgrades that are necessary to serve data center load. Further, any 
+18 
+data center that is unwilling to make this type of commitment will choose to 
+19 
+locate elsewhere, which will reduce the need for additional grid upgrades in AEP 
+20 
+Ohio’s service territory—upgrades that might otherwise be paid for in whole or in 
+21 
+part by other non-data-center customers. A long-term contract also provides 
+22 
+benefits to data centers. With a minimum contract of eight years, the data center 
+23 
+29
+ 
+29 
+gains certainty about its long-term ability to obtain electric service at its contract 
+1 
+capacity. 
+2 
+ 
+3 
+25. 
+Q. 
+Section III.J of the 10/23 Stipulation requires all exit fees and revenue 
+4 
+collected from customer collateral to be credited to ratepayers, with carrying 
+5 
+costs. Does this benefit ratepayers and the public interest? 
+6 
+A. 
+Yes. The 10/23 Stipulation requires Data Center Tariff customer to pay a 
+7 
+three-year exit fee if it terminates its contract early. This provides accountability 
+8 
+for new data centers and protects non-data-center customers by ensuring that they 
+9 
+will not be required to foot the bill for charges that would otherwise by paid by 
+10 
+data centers.  
+11 
+ 
+12 
+Further, all exit fees and revenue collected from customer collateral will be used 
+13 
+for the benefit of ratepayers. The purpose of the exit fees and collateral 
+14 
+requirements is to protect non-data-center ratepayers by ensuring additional 
+15 
+revenues if a Data Center Tariff customer terminates its contract early or 
+16 
+otherwise fails to pay its utility charges. AEP Ohio should not be permitted to 
+17 
+retain any such revenues for the benefit of its shareholders. The Application was 
+18 
+silent as to what AEP Ohio would do with any exit fees or revenue from 
+19 
+collateral. Thus, the 10/23 Stipulation requirement that all such dollars be booked 
+20 
+as a regulatory liability, with carrying costs, benefits ratepayers and the public 
+21 
+interest. 
+22 
+ 
+23 
+30
+ 
+30 
+Further, payment of the minimum demand charges under section III.D of the 
+1 
+10/23 Stipulation would automatically inure to the benefit of other customers 
+2 
+because these charges would be applied to the Rider BTCR revenue requirement, 
+3 
+thus reducing the amount that other customers would pay on a dollar-for-dollar 
+4 
+basis. 
+5 
+ 
+6 
+26. 
+Q. 
+Section III.A.6 of the 10/23 Stipulation provides that Schedule DCT 
+7 
+customers are not eligible to participate in AEP Ohio’s transmission pilots or 
+8 
+successor programs. Does this benefit ratepayers and the public interest? 
+9 
+A. 
+Yes. Under AEP Ohio’s BTCR 1CP pilot program, pilot participants pay for 
+10 
+transmission based on their demand during the single zonal transmission peak. 
+11 
+This means that AEP Ohio measures the customer’s demand during that single 
+12 
+peak hour in a prior 12-month period, and the customer pays transmission costs 
+13 
+every month for 12 months based on that demand. Pilot participates can then seek 
+14 
+to lower their demand as much as possible (for example, by curtailing their load 
+15 
+or relying on behind-the-meter generation or storage) whenever they think the 
+16 
+peak might occur. 
+17 
+ 
+18 
+For example, suppose a new data center has a contract capacity of 200 MW. New 
+19 
+transmission with significant costs might be built to accommodate this load. 
+20 
+Suppose, however, that this data center is a cryptocurrency miner that can reduce 
+21 
+its load to zero or close to zero. If the cryptocurrency miner is successful in 
+22 
+reducing its load to nearly zero during the zonal transmission peak, it would pay 
+23 
+31
+ 
+31 
+almost no transmission costs. This would undermine one of the core purposes of 
+1 
+the Data Center Tariff, which is to ensure that new data center customers pay their 
+2 
+fair share of costs. Thus, there is a substantial benefit to ratepayers and the public 
+3 
+interest if Data Center Tariff customers are not eligible for AEP Ohio’s 1CP pilot 
+4 
+programs or any successor programs. The same logic applies in prohibiting data 
+5 
+centers from participating in AEP Ohio’s 6CP pilot. 
+6 
+ 
+7 
+27. 
+Q. 
+The 10/23 Stipulation eliminates AEP Ohio’s proposed changes to the SSO 
+8 
+procurement process for data centers. Does this benefit ratepayers and the 
+9 
+public interest? 
+10 
+A. 
+Yes. In the Application, AEP Ohio proposed various changes to the SSO process 
+11 
+for data centers. Recently, the Commission has declined to adopt changes to the 
+12 
+SSO (other than implementing a capacity proxy price) and has stated that changes 
+13 
+to the SSO process would likely be considered in a single proceeding for all 
+14 
+electric distribution utilities “to promote consistency and fairness.”22 Thus, 
+15 
+removal of AEP Ohio’s proposed SSO modifications benefits customers and the 
+16 
+public interest. Any changes to the SSO procurement process for data centers or 
+17 
+others can be addressed, if the Commission deems it prudent, in a separate 
+18 
+proceeding. 
+19 
+ 
+20 
+ 
+22 See In re Application of [FirstEnergy] for Authority to Establish a Standard Service Offer Pursuant to R.C. 
+4928.143 in the Form of an Electric Security Plan, Case No. 23-301-EL-SSO, Opinion & Order ¶ 77 (May 15, 
+2024); see also In re Application of Ohio Power Co. for Authority to Establish a Standard Service Offer Pursuant to 
+R.C. 4928.143, in the Form of an Electric Security Plan, Opinion & Order ¶ 82 (Apr. 3, 2024); In re Application of 
+the Dayton Power & Light Co. d/b/a AES Ohio for Approval of its Electric Security Plan, Case No. 22-900-EL-SSO, 
+Opinion & Order ¶ 247 (Aug. 9, 2023). 
+32
+ 
+32 
+28. 
+Q. 
+Under the 10/23 Stipulation, the Data Center Tariff would apply throughout 
+1 
+AEP Ohio’s service territory. Does this benefit ratepayers and the public 
+2 
+interest? 
+3 
+A. 
+Yes. In the context of the 10/23 Stipulation package, this is a reasonable 
+4 
+compromise. In its testimony supporting the Application, AEP Ohio discusses its 
+5 
+concerns regarding capacity constraints in Central Ohio. For this purpose, AEP 
+6 
+Ohio defined “Central Ohio” as “the interconnected transmission system that 
+7 
+encompasses the greater Columbus Area and its suburbs, stretching to the west 
+8 
+through Marysville, north through Delaware, southwest through Grove City, east 
+9 
+through Newark to the areas of Conesville and Dresden, and southeast to 
+10 
+Lancaster.”23 According to AEP Ohio witness Ali, the Central Ohio region “is 
+11 
+highly interconnected to and dependent upon the same transmission network and 
+12 
+changes in any one part of this area directly impacts [sic] transmission facilities in 
+13 
+another. … [T]he transmission lines connecting stations together throughout this 
+14 
+area are all dependent on each other.”24 Further, as AEP Ohio explained in the 
+15 
+Application, the existing data center moratorium applies only to Central Ohio as 
+16 
+so defined.25 
+17 
+ 
+18 
+Thus, one might believe that the Data Center Tariff should only apply in Central 
+19 
+Ohio. The 10/10 Stipulation takes a related approach, recommending that its 
+20 
+ 
+23 Ali 5/13 Testimony at 4. 
+24 Id. 
+25 Application at 6 (emphasis added). See also Ali 5/13 Testimony at 6-7 (noting that the moratorium was “to allow 
+AEP’s transmission planning group time to study the impacts that the additional data center load requests will have 
+on the electrical delivery system in central Ohio AEP [sic] to ensure that the grid can reliably serve the new and 
+existing load”). 
+33
+ 
+33 
+proposed Schedule EIC only apply to customers where AEP Ohio “provides Proof 
+1 
+of a Transmission Capacity Constraint.”26 There are good reasons, however, to 
+2 
+apply the Data Center Tariff in AEP Ohio’s entire service territory, rather than 
+3 
+limiting it to Central Ohio or requiring proof of capacity constraints on a 
+4 
+customer-by-customer basis. 
+5 
+ 
+6 
+First, it is consistent with Commission practice to apply tariffs throughout a 
+7 
+utility’s service territory. The Commission could conceivably approve a data 
+8 
+center tariff that only applies to Central Ohio, but this would be atypical when 
+9 
+compared to other electric utility tariffs, almost all of which apply throughout a 
+10 
+utility’s service territory.27 
+11 
+ 
+12 
+Second, applying the tariff throughout AEP Ohio’s service territory is more 
+13 
+administratively efficient. Applying the tariff only in Central Ohio would require 
+14 
+a customer-by-customer assessment of whether the location is part of the 
+15 
+“interconnected transmission system” around Columbus. Similarly, the 10/10 
+16 
+Stipulation would require a study for each customer to determine if there is a 
+17 
+capacity constraint. Either of these options could lead to disputes about whether 
+18 
+the tariff should apply. Applying the tariff throughout AEP Ohio’s service 
+19 
+territory eliminates the potential for such disputes. 
+20 
+ 
+26 10/10 Stipulation at 3 (providing that AEP Ohio would be required to provide proof of a capacity constraint 
+“through the completion of a study by AEP Ohio which identifies the transmission load capacity at the proposed 
+customer location, and confirms that the proposed customer location has insufficient transmission load capacity, 
+thereby requiring significant transmission system upgrades”). 
+27 There have been examples where tariffs were different based on whether a customer was in AEP Ohio’s 
+“Columbus Southern” area or “Ohio Power” area. These are primarily historical anomalies that date back to before 
+Columbus Southern Power Company and Ohio Power Company merged. 
+34
+ 
+34 
+ 
+1 
+Third, it is not always clear whether a specific customer is causing a capacity 
+2 
+constraint. Suppose two new 75 MW data center customers want to locate in an 
+3 
+area where AEP Ohio determines it has 100 MW of available capacity. Should 
+4 
+they both be subject to the new tariff? Only one of them? Neither? Applying the 
+5 
+Data Center Tariff throughout AEP Ohio’s service territory avoids the challenges 
+6 
+associated with this type of situation—a situation that could be increasingly likely 
+7 
+to occur if many thousands of MW of data centers all seek to congregate in a 
+8 
+relatively small geographic area. 
+9 
+ 
+10 
+Fourth, as AEP Ohio witness McKenzie explained, while the impetus for this case 
+11 
+was the enormous interest from data centers in locating in Central Ohio, 
+12 
+“transmission constraints are emerging outside of Central Ohio as well.”28 Thus, 
+13 
+applying the Data Center Tariff throughout AEP Ohio’s service territory has the 
+14 
+benefit of fending off transmission constraint issues outside of Central Ohio, 
+15 
+rather than waiting for them to emerge and seeking a solution later. Applying the 
+16 
+Data Center Tariff outside of Central Ohio could also avoid a “freeze” like the 
+17 
+one AEP Ohio imposed in Central Ohio, which would be in the public interest. 
+18 
+ 
+19 
+ 
+28 McKenzie 10/31 Testimony at 29. 
+35
+ 
+35 
+Ultimately, it is reasonable, especially in the context of the many benefits to 
+1 
+ratepayers and the public interest under the 10/23 Stipulation package, to apply 
+2 
+the Data Center Tariff throughout AEP Ohio’s entire service territory.29 
+3 
+ 
+4 
+29. 
+Q. 
+Does the 10/23 Stipulation include any other benefits for ratepayers and the 
+5 
+public interest? 
+6 
+A. 
+Yes. Section III.F memorializes AEP Ohio’s existing data center freeze and 
+7 
+provides a clear and transparent path for data centers in the queue to obtain 
+8 
+service in AEP Ohio’s service territory.  
+9 
+ 
+10 
+Section III.G gives Data Center Tariff customers an opportunity to transfer some 
+11 
+of their contract capacity to another customer, thus giving them flexibility, while 
+12 
+protecting non-data-center ratepayers who will be assured that another data center 
+13 
+is assuming the financial obligations. 
+14 
+ 
+15 
+Section III.H requires AEP Ohio to reach out to its largest existing customers to 
+16 
+determine if there are opportunities to reduce their contract capacity, which could 
+17 
+help make additional capacity available to new data center or other customers and 
+18 
+could reduce the need to build new infrastructure. 
+19 
+ 
+20 
+ 
+29 If the Commission were to rule that the Data Center Tariff should only apply in Central Ohio, the tariff would 
+need to be modified accordingly to define “Central Ohio” and establish a process for determining whether a 
+proposed customer location is or is not in Central Ohio. 
+36
+ 
+36 
+30. 
+Q. 
+Is the 10/23 Stipulation consistent with important regulatory principles or 
+1 
+practices? 
+2 
+A. 
+Yes. The 10/23 Stipulation actively advances important regulatory principles and 
+3 
+practices. It is consistent with the important regulatory principle of cost causation. 
+4 
+It adds certainty to load forecasts, which protects customers from paying for 
+5 
+unnecessary or overbuilt grid infrastructure. And it is consistent with state policies 
+6 
+under R.C. 4928.02, including supporting economic development in Ohio and 
+7 
+encouraging development of behind-the-meter generation. 
+8 
+ 
+9 
+31. 
+Q. 
+What is the regulatory principle of cost causation? 
+10 
+A. 
+The principle of cost causation is that those who cause a cost to be incurred 
+11 
+should pay for such costs. The principle does not require perfect apportionment of 
+12 
+all costs to the cost causer. Practically speaking, perfect cost causation is rarely 
+13 
+achieved, for several reasons. Among other things, (i) there are often many causes 
+14 
+for a cost, (ii) precisely identifying who caused a cost may be impossible, a 
+15 
+judgment call, or administratively infeasible, (iii) it might be impossible or 
+16 
+administratively burdensome to design rates that perfectly mimic cost causation, 
+17 
+(iv) cost causation can be assessed in the short run, long run, or something in 
+18 
+between, with different results, (v) cost causers may cease to be customers before 
+19 
+they have paid for all costs that they have caused, and (vi) other important 
+20 
+regulatory principles can conflict with cost causation. Thus, the goal is to assign 
+21 
+costs to cost causers as best as possible, taking into account these limitations and 
+22 
+balancing other important regulatory principles. 
+23 
+37
+ 
+37 
+ 
+1 
+32. 
+Q. 
+Is the 10/23 Stipulation consistent with the principle of cost causation? 
+2 
+A. 
+Yes. The 10/23 Stipulation is consistent with the principle of cost causation 
+3 
+because it requires new, large data centers to pay for a substantial portion of the 
+4 
+costs of new grid infrastructure that they cause to be built. Given the potential 
+5 
+magnitude of new data center load coming to AEP Ohio’s service territory, it is 
+6 
+possible (if not likely) that substantial new capital investments will be made to 
+7 
+accommodate new data center load. The 10/23 Stipulation makes it more likely 
+8 
+that the cost causers—data centers—will be responsible for such costs by 
+9 
+(i) requiring them to sign long-term contracts, (ii) requiring higher minimum 
+10 
+demand charges, (iii) aggregating data centers with common ownership when 
+11 
+determining the minimum demand charges, (iv) increasing the amount that new 
+12 
+data centers pay during the load ramp period, (v) applying the Data Center Tariff 
+13 
+to new data centers above 25 MW, (vi) prohibiting Data Center Tariff customers 
+14 
+from participating in AEP Ohio’s transmission pilot programs, and (vii) requiring 
+15 
+exit fees if a data center terminates its contract early. 
+16 
+ 
+17 
+These financial commitments reasonably assign costs to data center cost causers. 
+18 
+In doing so, they protect non-data-center ratepayers from paying for the costs. 
+19 
+This demonstrates that the 10/23 Stipulation is consistent with the cost causation 
+20 
+principle. 
+21 
+ 
+22 
+38
+ 
+38 
+33. 
+Q. 
+How does the 10/23 Stipulation protect customers from paying for 
+1 
+unnecessary or overbuilt grid infrastructure? 
+2 
+A. 
+It is an important regulatory principle that customers should only pay for utility 
+3 
+investments that are used and useful in providing utility service. Utilities need to 
+4 
+“right size” their investments. In other words, ratepayers should not be required to 
+5 
+pay higher charges if a utility over builds or gold plates its capital investments 
+6 
+(regardless of whether the utility does so prudently and with good intent). 
+7 
+ 
+8 
+As I explained above, this proceeding arose because AEP Ohio is facing the 
+9 
+potential for unprecedented load growth, driven almost entirely by new data 
+10 
+centers. AEP Ohio knows that it has 5,000 MW of signed data center load, and it 
+11 
+should be able to reasonably plan for that load growth. But the speculative nature 
+12 
+of the additional 30,000 MW of potential data center load is a different story. 
+13 
+Without a data center tariff, it would be challenging, if not impossible, to 
+14 
+accurately forecast load growth in AEP Ohio’s service territory. In a worst-case 
+15 
+scenario, AEP Ohio or other transmission owners might pursue transmission 
+16 
+upgrades designed to accommodate the entire 30,000 MW—even if it is highly 
+17 
+unlikely that all 30,000 MW of potential data center load materializes—at 
+18 
+potentially astronomical cost to customers. Transmission could be overbuilt, and 
+19 
+AEP Ohio ratepayers, including residential consumers, small businesses, and 
+20 
+other non-data-center business customers, could pay for these unnecessary 
+21 
+transmission projects. 
+22 
+ 
+23 
+39
+ 
+39 
+The 10/23 Stipulation is designed to avoid overbuilding of grid infrastructure by 
+1 
+improving the accuracy of load forecasts. The terms of the proposed Data Center 
+2 
+Tariff—higher minimum demand charges, long-term contracts, exit fees, 
+3 
+minimum load ramps—ensure that only data centers who are truly committed to 
+4 
+Ohio will sign up for service, and that data centers sign up for load in the amount 
+5 
+that they will actually use. This should improve the accuracy of load forecasts as 
+6 
+speculative data center projects drop out of the 30,000 MW queue and data 
+7 
+centers avoid signing up for more capacity than they need. Transmission and 
+8 
+other infrastructure projects should then be built based on a reasonable forecast of 
+9 
+future data center load, rather than being overbuilt to account for speculative data 
+10 
+center projects. This supports the regulatory principle that customers only pay for 
+11 
+capital investments that are right-sized to the needs of customers. 
+12 
+ 
+13 
+34. 
+Q. 
+OMAEG claims that the 10/23 Stipulation will allow AEP Ohio to inflate its 
+14 
+load forecasts. Do you agree? 
+15 
+A. 
+No. OMAEG witness Seryak testified that he believes AEP Ohio is attempting to 
+16 
+use this proceeding, and the 10/23 Stipulation, to inflate its load forecasts for the 
+17 
+benefit of its own or its affiliates’ financial interests.30 And while Staff can’t 
+18 
+ 
+30 See Seryak 11/8 Testimony at 10 (AEP Ohio “is explicitly attempting to use its settlement in this case to inflate its 
+load forecast to PJM”); at 13 (“The [10/23] Stipulation gives AEP Ohio the ability to modify and increase the load 
+forecast it is submitting to PJM”); at 14 (“An increased load forecast could financially benefit AEP Ohio’s parent 
+company, AEP Inc.”); at 15 (“AEP Ohio thus stands to benefit financially or benefit its parent corporation or 
+affiliates financially from approval of the [10/23] Stipulation, as the stated aim of the [10/23] Stipulation is to 
+increase the load forecast to PJM, with the explicit purpose to trigger the construction of a multi-billion-dollar 
+transmission line.”); at 16 (“Again, AEP Ohio’s stated aim of its proposal and the [10/23] Stipulation is to modify 
+and increase its load forecast at PJM, with the explicit goal of triggering transmission expansion, which would then 
+be constructed by its transmission affiliate.”); at 24 (the 10/23 Stipulation would allow AEP Ohio to “manipulate its 
+load forecast in order to excuse additional, unnecessary transmission spending”). 
+40
+ 
+40 
+speak to AEP Ohio’s or its affiliates’ internal motivations, OMAEG’s reasoning is 
+1 
+flawed. As I explained above, the end result of approving the proposed Data 
+2 
+Center Tariff is that load forecasts should be lower, not higher. Without the Data 
+3 
+Center Tariff, load forecasts could include substantial amounts of speculative load 
+4 
+that might never materialize, and transmission could be built to accommodate this 
+5 
+speculative load. The Data Center Tariff protects against the very concern that 
+6 
+OMAEG claims is a flaw in the 10/23 Stipulation. 
+7 
+ 
+8 
+35. 
+Q. 
+How does the 10/23 Stipulation support economic development in Ohio? 
+9 
+A. 
+It is an important regulatory principle that regulation of electric utilities should 
+10 
+“facilitate the state’s effectiveness in the global economy.” See R.C. 4928.02(N). 
+11 
+The 10/23 Stipulation supports economic development in Ohio. It provides a 
+12 
+clear, transparent process (see 10/23 Stipulation § III.F) for data centers to 
+13 
+continue building in Ohio under terms and conditions that fairly balance the 
+14 
+interests of data centers and non-data-center customers. Further, by assigning 
+15 
+more costs to cost causers (new large data centers), it protects other ratepayers 
+16 
+from paying higher rates for costs that they do not cause. 
+17 
+ 
+18 
+The Data Center Tariff in the 10/23 Stipulation also includes language designed to 
+19 
+protect non-data-center ratepayers, including traditional Ohio manufacturers. For 
+20 
+example, AEP Ohio’s Application included proposed tariff language that could 
+21 
+have had negative consequences for non-data-center manufacturers. As filed, the 
+22 
+proposed data center tariff included the following language: “If the customer 
+23 
+41
+ 
+41 
+facility operates one or more Data Centers and has non-Data Center load (that 
+1 
+would otherwise be billed under the General Service Tariff) at a Single Location, 
+2 
+[the Large Data Center Tariff] will apply to all electric distribution service 
+3 
+provided for that customer account.”31 If this language were approved, a 
+4 
+traditional manufacturer might inadvertently be subjected to the data center tariff. 
+5 
+For example, a customer with a 100 MW manufacturing facility that also operates 
+6 
+a 2 MW data center at the same location could have had its entire manufacturing 
+7 
+operation treated as a data center for purposes of the tariff. This would be a bad 
+8 
+result for economic development in Ohio. 
+9 
+ 
+10 
+The 10/23 Stipulation corrects this oversight. Under the proposed terms of the 
+11 
+Data Center Tariff, a manufacturing customer that also operates a smaller data 
+12 
+center has two protections. First, if its data center operations are 25 MW or 
+13 
+smaller, it would be entirely exempt from the Data Center Tariff.32 Second, the 
+14 
+manufacturer would have the option of separately metering its non-data-center 
+15 
+and data center operations so that only the data center is subject to the Data 
+16 
+Center Tariff.33 This supports economic development by ensuring that only data 
+17 
+centers take service under the Data Center Tariff while traditional manufacturers 
+18 
+and other large business customers continue to take service under Commission-
+19 
+approved General Service tariffs. 
+20 
+ 
+21 
+ 
+31 McKenzie 5/13 Testimony, Exhibit MSM-1, Page 1. 
+32 See 10/23 Stipulation, Exhibit A, Page 2 of 7. 
+33 Id. 
+42
+ 
+42 
+36. 
+Q. 
+How does the 10/23 Stipulation support the development of behind-the-meter 
+1 
+generation in Ohio? 
+2 
+A. 
+Section III.I of the 10/23 Stipulation addresses behind-the-meter generation and 
+3 
+provides that data center customers, like all other customers, are required to 
+4 
+follow the Commission’s interconnection rules (Ohio Adm. Code 4901:1-22) for 
+5 
+behind-the-meter generation. The 10/23 Stipulation supports the development of 
+6 
+behind-the-meter generation in a manner that ensures grid safety and reliability by 
+7 
+requiring customers to maintain and repair their equipment and to take steps to 
+8 
+ensure that if their equipment fails, they do not overload the grid by substantially 
+9 
+exceeding their contract capacity. These reasonable protections allow data centers 
+10 
+to benefit from behind-the-meter generation in a safe manner that protects other 
+11 
+customers and the integrity of the grid. 
+12 
+ 
+13 
+37. 
+Q. 
+Section III.A.3 of the 10/23 Stipulation “grandfathers” current data center 
+14 
+customers such that they are exempt from the Data Center Tariff. Is this 
+15 
+consistent with regulatory principles and practices? 
+16 
+A. 
+Yes. Under the 10/23 Stipulation, data center customers that sign a letter of 
+17 
+agreement or electric service agreement with AEP Ohio before the effective date 
+18 
+of the Data Center Tariff will not be subject to the Data Center Tariff. This is 
+19 
+consistent with regulatory principles and practices because the current proceeding 
+20 
+is not for an increase in rates, and it is therefore reasonable for existing customers 
+21 
+to take service, for the time being, under existing tariffs. That being said, there are 
+22 
+43
+ 
+43 
+two caveats to such grandfathering in the 10/23 Stipulation that are necessary to 
+1 
+ensure consistency with regulatory principles and practices. 
+2 
+ 
+3 
+First, if an existing data center expands its contract capacity by more than 25 MW 
+4 
+after the Data Center Tariff goes into effect, it should be required to either 
+5 
+(i) separately meter that load (if feasible), with the new load served under the 
+6 
+Data Center Tariff, or (ii) lose its grandfathering status such that its entire load, 
+7 
+old and new, is served under the Data Center Tariff. For all the reasons explained 
+8 
+throughout my testimony, new data center load above 25 MW should be required 
+9 
+to make the financial commitments found in the Data Center Tariff. It would be 
+10 
+bad regulatory policy for new data centers to be treated differently from 
+11 
+expansions of existing data centers when they have substantially the same impact 
+12 
+on the grid. 
+13 
+ 
+14 
+Second, the grandfathering should be temporary, and the Commission should 
+15 
+reserve its ability to revisit the issue in a future AEP Ohio case. Earlier in this 
+16 
+proceeding, some intervenors suggested that not only should existing data centers 
+17 
+be exempt from a new data center tariff in this proceeding, but that the 
+18 
+Commission should rule that they will never be subject to it, even in a future rate 
+19 
+case.34 Likewise, the 10/10 Stipulation provides that existing data center 
+20 
+customers are not subject to its proposed EIC tariff, but it does not include a 
+21 
+reservation that this topic can be revisited in AEP Ohio’s next rate case. This 
+22 
+ 
+34 See, e.g., Baatz 8/29 Testimony at 15-16; Higgins 8/29 Testimony at 19-20. 
+44
+ 
+44 
+would be unreasonable and would violate regulatory principles. The Commission 
+1 
+has the authority to set new rates for all customers in a base distribution rate case 
+2 
+or other case involving a request for increase in rates. Customers have no right or 
+3 
+expectation that they can use contracts to trump the Commission’s authority to 
+4 
+change their rates. 
+5 
+ 
+6 
+Existing customers understand at the time of signing a contract with AEP Ohio 
+7 
+that their rates are subject to change based on Commission orders and that they 
+8 
+are not perpetually grandfathered into the current rates or terms and conditions.35 
+9 
+It would violate regulatory principles and practices if the Commission were to 
+10 
+predetermine the results of a future rate case by giving existing data centers a 
+11 
+perpetual grandfathering. By reserving parties’ rights to address the issue in a 
+12 
+future rate case (see 10/23 Stipulation at 4, footnote 1), the 10/23 Stipulation is 
+13 
+consistent with important regulatory principles and practices. 
+14 
+ 
+15 
+38. 
+Q. 
+If the Commission approves the 10/23 Stipulation, would new Data Center 
+16 
+Tariff customers pay just and reasonable rates, as required by R.C. 4905.22? 
+17 
+A. 
+Yes. There is an important point that might get overlooked: if data centers 
+18 
+accurately forecast their load and honor their contracts for the full term, they will 
+19 
+pay the same amount for electric distribution and transmission service as they 
+20 
+would under AEP Ohio’s General Service tariff. In this situation, they will not 
+21 
+pay any increased minimum demand charges because their demand charge will be 
+22 
+ 
+35 See Attachment CMH-3 (typical Electric Service Agreement). 
+45
+ 
+45 
+based on their actual demand, which will be at or very close to their contract 
+1 
+capacity. And they will not pay exit fees because they will continue to operate and 
+2 
+pay their electric bills through the full term of their contract. A Data Center Tariff 
+3 
+customer would pay more than it otherwise would under General Service tariffs if 
+4 
+it (i) uses materially less capacity than it asks for, which would trigger the 
+5 
+minimum demand charge, or (ii) terminates its contract before the full term, 
+6 
+which would trigger an exit fee. In each of these situations, it would be just and 
+7 
+reasonable for the data center to pay more because it will have contributed to the 
+8 
+concerns identified throughout my testimony regarding stranded assets and 
+9 
+unreasonably shifting risk to non-data-center customers. 
+10 
+ 
+11 
+39. 
+Q. 
+Based on your analysis of the three-part test as applied to the 10/23 
+12 
+Stipulation, what do you conclude? 
+13 
+A. 
+The 10/23 Stipulation passes all three prongs of the test. Staff recommends that 
+14 
+the Commission approve it without modification. 
+15 
+ 
+16 
+ 
+ 
+17 
+46
+ 
+46 
+THREE-PART TEST – THE 10/10 STIPULATION 
+1 
+ 
+2 
+40. 
+Q. 
+Is the 10/10 Stipulation the product of serious bargaining among capable and 
+3 
+knowledgeable parties? 
+4 
+A. 
+While the 10/10 Stipulation should be rejected under prongs two and three of the 
+5 
+Commission’s three-part test, and the 10/23 Stipulation is substantially more 
+6 
+beneficial to ratepayers and the public interest, Staff does not dispute that the 
+7 
+10/10 Stipulation was the product of serious bargaining among capable and 
+8 
+knowledgeable parties. 
+9 
+ 
+10 
+41. 
+Q. 
+AEP Ohio argues that the 10/10 Stipulation was not the product of serious 
+11 
+bargaining because AEP Ohio is not a signatory to it. What is Staff’s position 
+12 
+on this? 
+13 
+A. 
+AEP Ohio witness McKenzie testifies that the 10/10 Stipulation was not the 
+14 
+product of serious bargaining “because it imposes multiple significant 
+15 
+commitments on AEP Ohio without the Company’s consent.”36 This argument 
+16 
+fails because the 10/10 Stipulation does not impose anything on AEP Ohio 
+17 
+without Commission approval. The 10/10 Stipulation is a recommendation to the 
+18 
+Commission, jointly sponsored by its signatory parties, and nothing more. 
+19 
+Nothing is imposed on AEP Ohio unless and until the Commission says so. 
+20 
+ 
+21 
+ 
+36 McKenzie 10/31 Testimony at 11. 
+47
+ 
+47 
+AEP Ohio witness McKenzie also argues that “it is bad policy in a tariff case like 
+1 
+this to even entertain a settlement without the utility-Applicant’s agreement.”37 
+2 
+(OEG witness Wellborn similarly argues that the 10/10 Stipulation was not the 
+3 
+product of serious bargaining because “neither Commission Staff nor the 
+4 
+applicant utility agreed” to it.38) This argument is equivalent to saying that the 
+5 
+utility can unilaterally veto any stipulation that it does not sign. Staff disagrees 
+6 
+with this as contrary to public policy because it contradicts the Commission’s 
+7 
+rules, which allow “any two or more parties” to enter into a stipulation.39 No 
+8 
+party—including Staff—is required to be a signatory party for the Commission to 
+9 
+approve a stipulation. 
+10 
+ 
+11 
+42. 
+Q. 
+Does the 10/10 Stipulation, as a package, benefit ratepayers and the public 
+12 
+interest? 
+13 
+A. 
+No. While the 10/10 Stipulation does include some terms that are directionally 
+14 
+similar to those found in the 10/23 Stipulation, and some that improve upon the 
+15 
+proposals found in the Application, the 10/10 Stipulation, as a package, does not 
+16 
+benefit ratepayers or the public interest. 
+17 
+ 
+18 
+The overarching flaw with the 10/10 Stipulation package is that it unduly favors 
+19 
+the interests of data centers and does not provide enough protection for non-data-
+20 
+center customers. If the Commission were to adopt the 10/10 Stipulation, non-
+21 
+ 
+37 McKenzie 10/31 Testimony at 11-12. 
+38 Wellborn 10/31 Testimony at 4. 
+39 Ohio Adm. Code 4901-1-30(A). 
+48
+ 
+48 
+data-center customers would bear too much risk and could shoulder too much of 
+1 
+the costs that data centers cause. The 10/10 Stipulation likewise would not solve 
+2 
+the problem of ensuring the accuracy of load forecasts, and thus, it could result in 
+3 
+overbuilding transmission infrastructure, which would negatively impact utility 
+4 
+bills for all customers. 
+5 
+ 
+6 
+43. 
+Q. 
+Section III.B of the 10/10 Stipulation proposes a new Energy-Intensive 
+7 
+Customer tariff (“Schedule EIC”) that applies to all new large customers 
+8 
+with loads greater than 50 MW, not just data centers. Does this benefit 
+9 
+ratepayers and the public interest? 
+10 
+A. 
+No. Under the 10/10 Stipulation, new Schedule EIC would apply not only to data 
+11 
+centers but to other large load customers, like Ohio manufacturers. But as I 
+12 
+explained above, the concerns in this case regarding certainty and accountability 
+13 
+are unique to data centers. The 10/23 Stipulation’s approach of adopting a new 
+14 
+tariff that applies only to new data centers (with loads greater than 25 MW) is 
+15 
+narrowly tailored to address the specific grid concerns that are being caused by 
+16 
+data centers. It would be unreasonable and contrary to the public interest to 
+17 
+subject Ohio manufacturers and other business customers to the terms and 
+18 
+conditions of a new tariff that is designed to address a data-center-specific 
+19 
+problem.  
+20 
+ 
+21 
+49
+ 
+49 
+44. 
+Q. 
+Under section III.B of the 10/10 Stipulation, Schedule EIC only applies to 
+1 
+nonresidential customers with load greater than 50 MW. Does this 50 MW 
+2 
+minimum adequately protect non-data-center customers? 
+3 
+A. 
+No. A 50 MW minimum only captures the biggest data centers. As I explained 
+4 
+above, data centers between 25 MW and 50 MW are very large customers, and 
+5 
+they cannot be ignored for purposes of load forecasts and grid planning. With a 50 
+6 
+MW minimum, AEP Ohio could potentially be faced with a slate of 49.9 MW 
+7 
+data centers, which could materially impact the grid. But if these customers are 
+8 
+exempt from Schedule EIC, they would be served under AEP Ohio’s existing 
+9 
+tariffs, which include a 60% minimum demand charge, no mandatory minimum 
+10 
+contract length, no exit fees, no minimum load ramp, and no restrictions on 
+11 
+participating in AEP Ohio’s transmission pilots. In this scenario, non-data-center 
+12 
+customers would bear a substantial portion of the risk associated with increased 
+13 
+data center load, which would not benefit ratepayers and the public interest. 
+14 
+ 
+15 
+45. 
+Q. 
+The 10/10 Stipulation contains a sliding scale of minimum demand charges. 
+16 
+Does this benefit ratepayers and the public interest? 
+17 
+A. 
+No. While Staff, as a signatory party to the 10/23 Stipulation, supports minimum 
+18 
+demand charges that are lower than the 90% and 95% minimums found in the 
+19 
+Application, the 10/10 Stipulation goes too far by proposing demand minimums 
+20 
+that are too low to sufficiently protect non-data-center customers. 
+21 
+ 
+22 
+50
+ 
+50 
+First, because Schedule EIC under the 10/10 Stipulation applies only to customers 
+1 
+larger than 50 MW, all data centers below 50 MW would pay the standard 60% 
+2 
+minimum demand charge. The financial risk of this lower minimum demand 
+3 
+charge would be shifted to other ratepayers. 
+4 
+ 
+5 
+Second, in my opinion, the 80% minimum demand charge for option “B” 
+6 
+customers and 75% minimum demand charge for option “C” customers under the 
+7 
+10/10 Stipulation are too low to sufficiently protect other ratepayers and do not 
+8 
+assign adequate costs to the cost causer, which is the data center. As I explained 
+9 
+above, the lower the minimum demand charge, the less incentive a data center has 
+10 
+to accurately assess its contract capacity needs. A customer with a 75% minimum 
+11 
+demand charge might overstate its capacity needs by a substantial amount, with 
+12 
+other customers bearing much of the risk associated with that decision. A 75% 
+13 
+minimum demand charge could also result in overbuilding of transmission 
+14 
+infrastructure because AEP Ohio or other transmission operators might include 
+15 
+the full contract capacity in forecasts that are used in PJM’s transmission planning 
+16 
+process. 
+17 
+ 
+18 
+Further, while it remains to be seen which of the three options data centers would 
+19 
+choose if given the options provided by the 10/10 Stipulation, I would expect 
+20 
+most of the largest data centers to choose Option C, which includes the 75% 
+21 
+minimum demand charge. I anticipate that large data centers would find Option C 
+22 
+most beneficial because it not only includes the lowest minimum demand charge 
+23 
+51
+ 
+51 
+but also requires no exit fee. Thus, when assessing the 10/10 Stipulation, it is 
+1 
+reasonable to project that few of the new data center customers would pay an 80% 
+2 
+or 85% minimum demand charge. This is further support for the conclusion that 
+3 
+the 10/10 Stipulation does not benefit ratepayers or the public interest. 
+4 
+ 
+5 
+46. 
+Q. 
+Section III.G of the 10/10 Stipulation allows a load ramp period for 
+6 
+customers under Schedule EIC. Are these load ramp provisions reasonable? 
+7 
+A. 
+No. There are similarities between the load ramp in the 10/10 Stipulation and the 
+8 
+load ramp in the 10/23 Stipulation, and Staff supports the concept of a load ramp 
+9 
+in general and the inclusion of a minimum contract capacity during the load ramp 
+10 
+period. The load ramp minimums in the 10/10 Stipulation would also be an 
+11 
+improvement over the Application, which allowed for a load ramp with no 
+12 
+minimums. But the minimum contract capacities included in the 10/10 Stipulation 
+13 
+are too low and therefore shift too much risk to non-data-center ratepayers. 
+14 
+ 
+15 
+Under the 10/10 Stipulation, the minimum contract capacity is only 30% in year 
+16 
+one of the load ramp period, 50% in year two, 70% in year three, and 90% in year 
+17 
+four. The 30% and 50% minimums in years one and two are particularly 
+18 
+problematic. A 30% contract capacity minimum coupled with a minimum demand 
+19 
+charge of 75% would mean that a large data center customer might pay demand 
+20 
+charges of just 22.5%40 of its final contract capacity—even if transmission 
+21 
+infrastructure is built to accommodate the full contract capacity. That means other 
+22 
+ 
+40 30% of contract capacity * 75% minimum demand charge = 22.5% 
+52
+ 
+52 
+non-data-center customers, which did not cause these costs, could assume the risk 
+1 
+of the remaining 77.5%. A key to this case is reasonably assigning risk to cost 
+2 
+causers—data centers—and the load ramp minimums in the 10/10 Stipulation fail 
+3 
+to do this, to the detriment of non-data-center ratepayers and the public interest. 
+4 
+The higher load ramp minimums found in the 10/23 Stipulation, in contrast, 
+5 
+require a greater financial commitment from new data center customers, which 
+6 
+benefits all ratepayers and the public interest. 
+7 
+ 
+8 
+47. 
+Q. 
+Under the 10/10 Stipulation, data centers would be permitted to participate 
+9 
+in AEP Ohio’s transmission pilots. Does this benefit customers or the public 
+10 
+interest? 
+11 
+A. 
+No. Whereas the 10/23 Stipulation prohibits Data Center Tariff customers from 
+12 
+participating in AEP Ohio’s 1CP and 6CP transmission pilots (or successor 
+13 
+pilots), large data centers would be permitted to participate in these pilots under 
+14 
+Schedule EIC. This would be problematic. 
+15 
+ 
+16 
+Customers that participate in these pilots can take steps to reduce their 
+17 
+transmission charges to zero or very close to zero. This defeats one of the core 
+18 
+purposes of this proceeding—to ensure that data centers pay for costs that they 
+19 
+cause. Allowing participation in these transmission pilots would materially harm 
+20 
+other ratepayers and is not in the public interest. 
+21 
+ 
+22 
+53
+ 
+53 
+48. 
+Q. 
+Does the 10/10 Stipulation violate any important regulatory principles or 
+1 
+practices? 
+2 
+A. 
+Yes. The 10/10 Stipulation violates the important regulatory principle of cost 
+3 
+causation. It would also increase the likelihood of overbuilding grid infrastructure, 
+4 
+which would violate the regulatory principle that utility investments should be 
+5 
+right-sized so that customers do not pay for investments that are not used and 
+6 
+useful. Further, the 10/10 Stipulation would materially modify SSO procurement 
+7 
+for data centers and other large customers. This contradicts recent Commission 
+8 
+precedent. 
+9 
+ 
+10 
+49. 
+Q. 
+In what ways is the 10/10 Stipulation inconsistent with the important 
+11 
+regulatory principle of cost causation? 
+12 
+A. 
+The 10/10 Stipulation is inconsistent with cost causation because it would place 
+13 
+too much risk on non-data-center customers for costs that data centers are 
+14 
+causing. As explained throughout my testimony and the testimony of other 
+15 
+witnesses, serving load at anywhere near the magnitude of potential future data 
+16 
+centers in AEP Ohio’s service territory will likely require substantial capital 
+17 
+investments, and these investments will be paid for by customers through their 
+18 
+utility rates. Data centers are causing these costs. The 10/10 Stipulation, however, 
+19 
+assigns too much of the costs to non-data-center customers. 
+20 
+ 
+21 
+The 50 MW threshold under Schedule EIC allows all data centers under 50 MW 
+22 
+to avoid long-term contracts, exit fees, higher minimum demand charges, and 
+23 
+54
+ 
+54 
+minimum load ramps. Non-data-center customers, including residential and small 
+1 
+business customers, could end up bearing nearly all the risk associated with data 
+2 
+centers of this size. 
+3 
+ 
+4 
+The 75% minimum demand charge under Schedule EIC, which is likely to apply 
+5 
+to many of the largest data centers, allows too much of a “cushion” for data 
+6 
+centers when choosing their contract capacity. Large scale infrastructure 
+7 
+investments could be made to accommodate nearly 100% of data center contract 
+8 
+capacity, so it would be unreasonable to allow large data centers to pay a 
+9 
+minimum demand charge of only 75%. 
+10 
+ 
+11 
+The 10/10 Stipulation’s failure to restrict participation in AEP Ohio’s 
+12 
+transmission pilots is also inconsistent with cost causation because, as explained 
+13 
+above, it could potentially allow data centers to pay little or no transmission costs 
+14 
+whatsoever. 
+15 
+ 
+16 
+In short, the 10/10 Stipulation does not require sufficient financial commitments 
+17 
+from data centers when accounting for the substantial capital investments that are 
+18 
+likely necessary to serve new data center load. 
+19 
+ 
+20 
+50. 
+Q. 
+How could the terms of the 10/10 Stipulation, if adopted, result in 
+21 
+overbuilding of grid infrastructure? 
+22 
+55
+ 
+55 
+A. 
+As I explained above, one of the key objectives in this case is increasing certainty 
+1 
+in load projections so that transmission can be built based on load that is likely to 
+2 
+materialize, rather than for speculative load that might never show up. Load 
+3 
+forecasts could be wildly inaccurate if data centers are allowed to request contract 
+4 
+capacity that substantially exceeds what they actually need. 
+5 
+ 
+6 
+The terms of the 10/23 Stipulation require substantial financial commitments from 
+7 
+prospective data centers, including commitments that are specifically tied to their 
+8 
+contract capacity. This would induce data centers to accurately forecast their 
+9 
+capacity needs—and to pay accordingly, even if those forecasts are ultimately 
+10 
+inaccurate. The 10/10 Stipulation, in contrast, could allow large data centers to 
+11 
+substantially overestimate their capacity needs without material financial 
+12 
+consequences. Again, the 50 MW minimum threshold for applicability of 
+13 
+Schedule EIC would allow smaller data centers (those under 50 MW) to request 
+14 
+contract capacity that is far greater than their actual needs without any long-term 
+15 
+commitment, exit fee, or minimum load ramp. They would have minimal 
+16 
+incentive to accurately forecast their load. Likewise, large data centers paying a 
+17 
+75% minimum demand charge under Schedule EIC would be able to over-
+18 
+forecast by 25%. As explained by AEP Ohio witness McKenzie, this could be 
+19 
+hundreds of MW for a very large data center, with transmission or other 
+20 
+infrastructure potentially being built to accommodate this additional load—load 
+21 
+that might not materialize. 
+22 
+ 
+23 
+56
+ 
+56 
+51. 
+Q. 
+Section III.O of the 10/10 Stipulation makes changes to the SSO for data 
+1 
+centers and other large customers. Is this inconsistent with important 
+2 
+regulatory principles and practices? 
+3 
+A. 
+Yes. Under the 10/10 Stipulation (section III.O), Schedule EIC customers and 
+4 
+existing data center customers over 25 MW would become ineligible for the SSO. 
+5 
+Instead, a new default option would be created for these customers (with some 
+6 
+details to be determined later) where competitive suppliers would “provide 
+7 
+electric power and energy that is based on real time energy and a pass through of 
+8 
+capacity plus an adder for ancillary costs and the supplier’s costs.” 
+9 
+ 
+10 
+In recent ESP cases, parties have proposed various changes to the SSO process, 
+11 
+including proposals similar to the one included in the 10/10 Stipulation. The 
+12 
+Commission has declined to adopt such proposals (other than implementing a 
+13 
+capacity proxy price) and has stated that changes to the SSO process would likely 
+14 
+be considered in a single proceeding for all electric distribution utilities “to 
+15 
+promote consistency and fairness.”41 Thus, adopting the SSO changes found in 
+16 
+the 10/10 Stipulation would be inconsistent with recent Commission precedent, 
+17 
+which violates regulatory principles and practices. 
+18 
+ 
+19 
+ 
+41 See In re Application of [FirstEnergy] for Authority to Establish a Standard Service Offer Pursuant to R.C. 
+4928.143 in the Form of an Electric Security Plan, Case No. 23-301-EL-SSO, Opinion & Order ¶ 77 (May 15, 
+2024); see also In re Application of Ohio Power Co. for Authority to Establish a Standard Service Offer Pursuant to 
+R.C. 4928.143, in the Form of an Electric Security Plan, Opinion & Order ¶ 82 (Apr. 3, 2024); In re Application of 
+the Dayton Power & Light Co. d/b/a AES Ohio for Approval of its Electric Security Plan, Case No. 22-900-EL-SSO, 
+Opinion & Order ¶ 247 (Aug. 9, 2023). 
+57
+ 
+57 
+52. 
+Q. 
+AEP Ohio witness McKenzie testifies that the 10/10 Stipulation fails the third 
+1 
+prong simply because AEP Ohio is not a signatory to it.42 Does Staff agree? 
+2 
+A. 
+Staff disagrees. While the 10/10 Stipulation fails the third prong of the three-part 
+3 
+settlement test for other reasons, there is no regulatory principle that all 
+4 
+settlements must be signed by the utility or anyone else. As I explained above, the 
+5 
+Commission’s rules explicitly allow any two parties to enter into a stipulation, 
+6 
+and no party—not the utility, not Staff, not anyone other than the Commission—
+7 
+can unilaterally veto a stipulation. 
+8 
+ 
+9 
+53. 
+Q. 
+Based on your analysis of the three-part test as applied to the 10/10 
+10 
+Stipulation, what do you conclude? 
+11 
+A. 
+The 10/10 Stipulation package does not benefit ratepayers or the public interest, 
+12 
+and it violates important regulatory principles or practices. The Commission 
+13 
+should reject it. 
+14 
+ 
+ 
+15 
+ 
+42 McKenzie 10/31 Testimony at 48-50. 
+58
+ 
+58 
+SUMMARY AND CONCLUSIONS 
+1 
+ 
+2 
+54. 
+Q. 
+Can you briefly summarize why the 10/23 Stipulation should be approved 
+3 
+and the 10/10 Stipulation should be rejected? 
+4 
+A. 
+Yes. As I explained above, Staff has been guided in this case by a desire to 
+5 
+improve reliability, certainty, and accountability, all for the benefit of ratepayers, 
+6 
+in addressing the challenges of new data center load. As is often the case in 
+7 
+Commission proceedings, competing interests must be balanced. The 10/23 
+8 
+Stipulation is a reasonable compromise that balances the interests of data centers 
+9 
+and non-data-center customers. Data centers want to locate in Ohio on terms and 
+10 
+conditions that are fair and reasonable to them. Non-data-center customers want 
+11 
+protection and assurances that their bills will not become unaffordable because 
+12 
+they are paying for new infrastructure that is built to accommodate data center 
+13 
+projects. 
+14 
+ 
+15 
+The 10/23 Stipulation provides a substantially better balance of interests than the 
+16 
+10/10 Stipulation: 
+17 
+• 
+By proposing a tariff that applies only to data centers, the 10/23 
+18 
+Stipulation seeks a data-center-specific solution to an issue being driven 
+19 
+by data centers. The 10/10 Stipulation, in contrast, casts a wider net, 
+20 
+subjecting Ohio manufacturers and other non-data-center industrial 
+21 
+customers to a new tariff and its new obligations. 
+22 
+59
+ 
+59 
+• 
+The 10/23 Stipulation includes long-term contracts, coupled with a three-
+1 
+year exit fee. The 10/10 Stipulation, in contrast, includes long-term 
+2 
+contracts with either a one-year exit fee or no exit fee at all. 
+3 
+• 
+The 10/23 Stipulation increases minimum demand charges for data center 
+4 
+customers, with the largest data centers paying a minimum demand 
+5 
+charge of 85%. To borrow a phrase from AEP Ohio, this gives data 
+6 
+centers appropriate “skin in the game.” In contrast, many large data 
+7 
+centers under the 10/10 Stipulation could pay a minimum demand charge 
+8 
+of just 75%, which shifts too much risk to non-data-center customers. 
+9 
+• 
+Under the 10/10 Stipulation, every data center under 50 MW would be 
+10 
+exempt from the new tariff. This shifts too much risk to non-data-center 
+11 
+ratepayers and creates substantial uncertainty in load forecasting. The 
+12 
+10/23 Stipulation’s 25 MW threshold is more reasonable. 
+13 
+• 
+The 10/10 Stipulation has a massive loophole allowing data centers to 
+14 
+participate in AEP Ohio’s transmission pilots, which could allow data 
+15 
+centers to avoid the minimum demand charges that are essential to protect 
+16 
+other ratepayers. 
+17 
+• 
+The higher load ramp minimums under the 10/23 Stipulation (50%, 65%, 
+18 
+80%, 90%) compared to the 10/10 Stipulation (30%, 50%, 70%, 90%) 
+19 
+more reasonably assign costs to the cost causers: data centers. 
+20 
+ 
+21 
+When viewed as a package, the 10/10 Stipulation is skewed toward the interests 
+22 
+of data centers. It allows them to avoid financial responsibility for the costs that 
+23 
+60
+ 
+60 
+they cause and shifts far too much risk to non-data-center customers. The 10/23 
+1 
+Stipulation, in contrast, tends to the needs of both data centers and non-data-
+2 
+center customers alike. It should be approved without modification because it 
+3 
+passes the Commission’s three-part test and is superior to the 10/10 Stipulation. 
+4 
+ 
+5 
+55. 
+Q. 
+Does this conclude your testimony? 
+6 
+A. 
+Yes. 
+7 
+61
+ 
+61 
+CERTIFICATE OF SERVICE 
+The undersigned hereby certifies that a true and correct copy of the Testimony of 
+Christopher Healey has been served upon the below-named counsel via electronic mail, this 26th 
+day of November, 2024. 
+ 
+/s/ Ambrosia Wilson 
+ 
+ 
+Ambrosia Wilson 
+ 
+Assistant Attorney General 
+ 
+PARTIES OF RECORD: 
+ 
+stnourse@aep.com  
+mjschuler@aep.com  
+talexander@beneschlaw.com  
+Ambrosia.Wilson@OhioAGO.gov  
+Ashley.Wnek@OhioAGO.gov  
+paul@CarpenterLipps.com  
+mkurtz@bkllawfirm.com  
+khehmeyer@beneschlaw.com  
+smeng@beneschlaw.com  
+Stacie.Cathcart@igs.com  
+Natalia.Messenger@igs.com  
+dproano@bakerlaw.com  
+CPirik@dickinson-wright.com  
+jsecrest@dickinsonwright.com  
+todonnell@dickinsonwright.com  
+cgrundmann@spilmanlaw.com  
+dwilliamson@spilmanlaw.com  
+slee@spilmanlaw.com  
+dparram@brickergraydon.com  
+dborchers@brickergraydon.com  
+kherrnstein@brickergraydon.com  
+rmains@brickergraydon.com  
+trent@hubaydougherty.com  
+william.michael@occ.ohio.gov  
+John.varanese@occ.ohio.gov  
+jdunn@oneenergyllc.com 
+ktreadway@oneenergyllc.com  
+mwarnock@oneenergyllc.com  
+ 
+mpritchard@mcneeslaw.com  
+awalke@mcneeslaw.com  
+stephanie.chmiel@thompsonhine.com  
+vanessa.boddy@thompsonhine.com  
+khelfrich@ohioec.org  
+lkaleps@ohioec.org  
+glpetrucci@vorys.com  
+mjsettineri@vorys.com  
+jreckert@vorys.com  
+cynthia.brady@constellation.com  
+jesse.rodriguez@constellation.com  
+mark.hayden@constellation.com  
+john.gomoll@constellation.com  
+jlang@calfee.com  
+mbarbara@calfee.com  
+kennedy@whitt-sturtevant.com  
+cockrell@whitt-sturtevant.com  
+rdove@keglerbrown.com  
+nbobb@keglerbrown.com  
+aimbrogno@meyersroman.com  
+lmcalister@amppartners.org  
+ghull@amppartners.org  
+rebekah@gloverlegalservices.com  
+jkylercohn@bkllawfirm.com  
+ 
+ 
+62
+ 
+62 
+ 
+ 
+Attorney Examiners: 
+david.hicks@puco.ohio.gov  
+isabel.marcelletti@puco.ohio.gov  
+greta.see@puco.ohio.gov  
+ 
+ 
+63
+OHIO POWER COMPANY’S RESPONSE TO 
+THE PUBLIC UTILITIES COMMISSION OF OHIO’S 
+DATA REQUEST 
+PUCO CASE NO. 24-0508-EL-RDR 
+FIRST SET 
+DATA REQUEST 
+Staff-DR 1-5 
+Page 8 of the McKenzie testimony states, “AEP Ohio has signed ESAs 
+with customers planning to build approximately 5,000 MW of data 
+center load by 2030. Growth from other customers is on a much smaller 
+scale.” What is the expected additional load by 2030 for non-data 
+center load?
+RESPONSE 
+AEP Ohio’s distribution planning team currently estimates that known and expected Central 
+Ohio load growth from customers other than data center customers between 2024 and 2030 is 
+approximately 400 MW. 
+Attachment CMH-1 
+64
+OHIO POWER COMPANY’S RESPONSE TO 
+THE PUBLIC UTILITIES COMMISSION OF OHIO’S 
+DATA REQUEST 
+PUCO CASE NO. 24-0508-EL-RDR 
+FIRST SET 
+DATA REQUEST 
+Staff-DR 1-1 
+The Application 2 states that “the load profile of data centers is unique 
+because, unlike other commercial or industrial businesses that run 
+varying shifts of production or only operate during normal business 
+hours, they require high levels of demand – operating 24 hours a day, 7 
+days a week, 365 days a year with no natural cycling. Consequently, 
+data center customers often have load factors that exceed 95%.” Does 
+AEP Ohio have non-data center customers with a similar load profile? 
+If so, what types of businesses fit this description?
+RESPONSE 
+AEP Ohio witness McKenzie’s testimony supports the Company position that data centers form 
+a unique customer class. Regarding non-data center customers with “similar” load profiles, AEP 
+Ohio has one three-shift refinery customer and one three-shift foundry customer with load 
+factors greater than 95%. 
+Attachment CMH-2 
+65
+: 
+DocuSign Envelope ID: 
+Attachment CMH-3 
+66
+ 
+DocuSign Envelope ID: 
+67
+This foregoing document was electronically filed with the Public Utilities
+Commission of Ohio Docketing Information System on
+11/26/2024 4:00:15 PM
+in
+Case No(s). 24-0508-EL-ATA
+Summary: Testimony Direct Testimony in Support of October 23, 2024 Stipulation
+and Recommendation and in Opposition to October 10, 2024 Stipulation and
+Recommendation of Christopher Healey, Rates and Analysis Department
+Accounting and Finance Division electronically filed by Mrs. Kimberly M. Naeder on
+behalf of PUCO.
+68

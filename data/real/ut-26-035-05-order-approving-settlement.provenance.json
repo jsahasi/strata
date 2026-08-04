@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Utah",
+  "commission": "Public Service Commission of Utah",
+  "docket": "26-035-05",
+  "proceeding": "Application of Rocky Mountain Power for Approval of a Large-Load Service Contract between PacifiCorp and a Large-Load Customer",
+  "how_obtained": "Found the docket page on psc.utah.gov (a WordPress site: /<yyyy>/<mm>/<dd>/docket-no-<docket>/), read its raw HTML and pulled the pscdocs.utah.gov links out of it. Utah serves every document at a flat, guessable path: https://pscdocs.utah.gov/<utility>/<yy>docs/<docketdigits>/<docid><AbbreviatedTitle><m-d-yyyy>.pdf, with no login and no session. Downloaded with curl and extracted text with PyMuPDF sorted-block extraction (page.get_text('text', sort=True)), pages joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://pscdocs.utah.gov/electric/26docs/2603505/3447332603505oasadmfatmdrao4-10-2026.pdf",
+  "document_title": "Order Approving Settlement and Denying Motion for Access to Materials Designated 'Regulator Access Only'",
+  "filing_date": "2026-04-10",
+  "filer": "Public Service Commission of Utah",
+  "witness": null,
+  "document_type": "Commission order",
+  "pages": 20,
+  "version_role": "order disposing of the settlement above",
+  "version_pair_with": "ut-26-035-05-settlement-stipulation.txt",
+  "notes": "Closes the large-load service contract docket and rules on the confidentiality motion.",
+  "sha256": "b46dfaea0f4c0ba8dff7ca6d6306c739eeece6a3b4e055216964cbad578b0243",
+  "bytes": 29940,
+  "retrieved_at": "2026-08-04T16:59:54Z",
+  "source_pdf_sha256": "17258be4e340b649feefae2780040ca20a65400327f747fa5583c49a71992fb3",
+  "source_pdf_bytes": 179474
+}

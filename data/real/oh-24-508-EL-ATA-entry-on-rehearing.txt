@@ -1,0 +1,934 @@
+THE PUBLIC UTILITIES COMMISSION OF OHIO 
+IN THE MATTER OF THE APPLICATION OF 
+OHIO POWER COMPANY 
+FOR NEW 
+TARIFFS RELATED TO DATA CENTERS 
+AND MOBILE DATA CENTERS. 
+ 
+CASE NO. 24-508-EL-ATA 
+ENTRY ON REHEARING 
+Entered in the Journal on September 3, 2025 
+I. 
+SUMMARY  
+{¶ 1} 
+ The Commission denies the applications for rehearing filed by the Data 
+Center Coalition, The Ohio Blockchain Council, Ohio Manufacturers’ Association Energy 
+Group, One Power Company, and Amazon Data Services, Inc. 
+II. 
+PROCEDURAL  
+A. Procedural History  
+{¶ 2} 
+Ohio Power Company (AEP Ohio or the Company) is a public utility, as that 
+term is defined in R.C. 4905.02 and, as such, is subject to the jurisdiction of this Commission. 
+{¶ 3} 
+On May 13, 2024, AEP Ohio filed an application, pursuant to R.C. 4909.18, 
+requesting approval of the following tariffs to establish two new customer classifications: 
+(1) the Data Center Power tariff for new data center customers that will use a monthly 
+maximum demand of 25 megawatts (MW) or greater at a single location; and (2) the Mobile 
+Data Center tariff for new mobile data center customers (such as cryptocurrency miners) 
+that will use a monthly maximum demand of 1 MW or greater at a single location.  (AEP Ex. 
+1).   
+{¶ 4} 
+By Entry issued May 16, 2024, the administrative law judge (ALJ) scheduled 
+a technical conference to be held on May 30, 2024, at 10:00 a.m., at the offices of the 
+Commission. 
+Supreme Court of Ohio Clerk of Court - Filed November 03, 2025 - Case No. 2025-1458
+24-508-EL-ATA 
+  
+- 2 - 
+ 
+On May 20, 2024, the ALJ established a comment period, during which initial comments 
+were due on June 10, 2024 and reply comments were due June 20, 2024.  On June 7, 2024, the 
+ALJ amended the comment period such that initial comments were due by June 25, 2024 
+and reply comments were due by July 8, 2024. 
+{¶ 5} 
+The technical conference was held as scheduled on May 30, 2024. 
+{¶ 6} 
+On June 25, 2024, numerous entities timely filed initial comments. 
+{¶ 7} 
+On July 8, 2024, numerous entities timely filed reply comments. 
+{¶ 8} 
+Also on various dates, multiple individuals and entities filed public 
+comments in this case docket.   
+{¶ 9} 
+By Entry issued September 3, 2024, the ALJ granted the following parties 
+intervention in this proceeding: Ohio Energy Group (OEG); Interstate Gas Supply, LLC 
+(IGS); Amazon Data Services, Inc. (ADS); Data Center Coalition (DCC); Walmart Inc. 
+(Walmart); Google LLC (Google); Enchanted Rock, LLC (Enchanted Rock); The Ohio 
+Manufacturers’ Association Energy Group (OMAEG); the Office of the Ohio Consumers’ 
+Counsel (OCC); One Power Company f/k/a One Energy Enterprises Inc. (One Power) 1; the 
+Retail Energy Supply Association; Constellation NewEnergy, Inc. and Constellation Energy 
+Generation LLC, jointly (Constellation); Microsoft Corporation (Microsoft); Sidecat, LLC 
+(Sidecat); Ohio Partners for Affordable Energy (OPAE); Ohio Energy Leadership Council 
+(OELC); The Ohio Blockchain Council (OBC); Calpine Retail Holdings, LLC; Buckeye 
+Power, Inc. (Buckeye); and American Municipal Power, Inc (AMP). 
+ 
+1  On October 28, 2024, a notice was filed indicating One Power Enterprises Inc. changed its name to One 
+Power Company. 
+24-508-EL-ATA 
+  
+- 3 - 
+ 
+{¶ 10} 
+On October 10, 2024, a joint stipulation and recommendation (10/10 
+Stipulation) was filed by Microsoft, DCC, ADS, Google, Sidecat, Constellation, Enchanted 
+Rock, IGS, Blockchain, OELC, OMAEG, One Power, and RESA. 
+{¶ 11} 
+On October 23, 2024, AEP Ohio filed a joint stipulation and recommendation 
+(10/23 Stipulation), signed by AEP Ohio, Staff, OEG, OCC, Walmart, and OPAE. 
+{¶ 12} 
+By Entry dated October 25, 2024, the ALJ scheduled the evidentiary hearing 
+to commence on December 3, 2024, and established specific testimony filing deadlines 
+respective to the joint stipulations and recommendations filed on October 10, 2024, and 
+October 23, 2024.  Also in the Entry, the discovery response time was shortened to five 
+business days and could be conducted until November 12, 2024.  
+{¶ 13} 
+The evidentiary hearing commenced as scheduled on December 3, 2024, at 
+the Commission’s offices.   
+{¶ 14} 
+On December 5, 2024, due to an unforeseen medical emergency, the hearing 
+was adjourned for the day and the proceedings were scheduled to reconvene the following 
+day.  At the outset of the proceedings on December 6, 2024, it was determined that the 
+evidentiary hearing could not proceed as contemplated; and the ALJs continued the hearing 
+to reconvene on December 11, 2024. 
+{¶ 15} 
+During the evening of December 9, 2024, counsel for OBC served all parties 
+and the ALJs’ a courtesy copy of a motion for continuance with a request for expedited 
+treatment.  On December 10, 2024, OMAEG filed a letter supporting OBC’s motion for 
+continuance.   
+{¶ 16} 
+By Entry on December 10, 2024, the ALJ granted OBC’s motion to continue 
+the hearing to January 6, 2025. 
+24-508-EL-ATA 
+  
+- 4 - 
+ 
+{¶ 17} 
+On December 11, 2024, the ALJ issued an Entry scheduling a local public 
+hearing for January 3, 2025, at the Commission’s offices and ordered AEP Ohio to issue a 
+public notice.  
+{¶ 18} 
+On January 6, 2025, the evidentiary hearing reconvened and finished on 
+January 17, 2025.  
+{¶ 19} 
+AEP Ohio, Staff, OCC and OPAE, Walmart, OEG, DCC, ADS, Google, 
+Sidecat, OMAEG, OBC, Constellation, IGS, RESA, jointly, Buckeye and American Municipal 
+Power, Inc., One Power, Enchanted Rock, and OELC filed timely initial briefs.  Staff, IGS, 
+Walmart, the Company, OMAEG, One Power, ADS, OMAEG, OBC, Constellation, RESA, 
+Google, DCC, Sidecat, OEG, and, jointly OCC and OPAE filed timely reply briefs. 
+{¶ 20} 
+On July 9, 2025, the Commission issued an Opinion and Order (Order) 
+approving and adopting the 10/23 Stipulation, as modified therein.   
+{¶ 21} 
+   R.C. 4903.10 provides that any party to a proceeding before the 
+Commission may apply for rehearing with respect to any matter determined in that 
+proceeding within 30 days after the entry of the order upon the journal of the Commission. 
+{¶ 22} 
+On August 8, 2025, OMAEG, DCC, One Power, OBC, and ADS filed 
+applications for rehearing, asserting several assignments of error.    
+{¶ 23} 
+ On August 18, 2025, AEP Ohio and OCC filed memorandum contra to the 
+applications for rehearing.   
+III. 
+DISCUSSION 
+{¶ 24} 
+As a general matter, the Commission agrees with both AEP Ohio and OCC’s 
+position that a majority of the assignments of error raised by intervening parties have 
+already been addressed in the Order.  On that basis alone, the Commission has routinely 
+denied applications for rehearing.  See, e.g., In re the Review of the Reconciliation Rider of Duke 
+24-508-EL-ATA 
+  
+- 5 - 
+ 
+Energy Ohio, Inc., Case No. 20-167-EL-RDR (Duke Reconciliation Rider Review), Second Entry 
+on Rehearing (Aug. 21, 2024) at ¶ 27; In re the Complaint of Youngstown Thermal, Ltd. 
+Partnership v. Ohio Edison Co., Case No. 93-1408-EL-CSS, Entry on Rehearing (Oct. 18, 1995).  
+Regardless, as was the case in our original analysis and determination reflected in the 
+Opinion and Order, any claim or argument raised by the application for rehearing not 
+specifically discussed herein was, nevertheless, thoroughly considered by the Commission 
+and is denied. 
+A. The 10/23 and 10/10 Stipulations – The Order and the Three- Part Test (ADS 
+Assignment of Error #2; One Power Assignments of Error #7, #8, and #9; DCC 
+Assignments of Error #5 and #6)   
+{¶ 25} 
+In its second assignment of error, ADS states that the Commission’s finding 
+that the 10/10 Stipulation did not meet the second or third prong of the Commission’s test 
+was unreasonable and unlawful, because such a determination is unsupported by the 
+evidentiary record.  ADS disputes the rationale that the 10/23 Stipulation was approved on 
+the basis that the 10/23 Stipulation presented a superior settlement package compared to 
+the 10/10 Stipulation.  According to ADS, the 10/23 Stipulation’s provisions regarding 
+minimum billing demand and contract length are notably less beneficial to the Company 
+and all ratepayers, compared to the 10/10 Stipulation’s terms.  ADS echoes its briefed 
+arguments that DCC witness Higgins was the only expert witness who conducted a 
+quantitative analysis of potential rate impacts in this proceeding.  And Mr. Higgins supports 
+the position that even less stringent terms compared to the 10/10 Stipulation would have 
+been sufficient for AEP Ohio to recover the requisite incremental transmission costs to serve 
+data center customers.  (DCC Ex. 11, at 15; DCC Ex. 9 at 20-28.)  Regarding the third prong, 
+ADS emphasizes that record evidence establishes that the 10/10 Stipulation advances 
+important state policies and regulatory practices and principles via its nondiscriminatory 
+application to all high energy intensive users.  ADS insists that in furtherance of the 
+enumerated policies in R.C. 4928.02(A), the 10/10 Stipulation helps AEP Ohio manage its 
+load growth and ensures that large-load customers are incentivized to accurately estimate 
+24-508-EL-ATA 
+  
+- 6 - 
+ 
+their power needs, without imposing terms that apply to a specific industry.  Lastly, ADS 
+urges the Commission to reconsider the important economic development implications of 
+its decisions.  In support, ADS states that the 10/10 Stipulation addresses AEP Ohio’s 
+transmission issues presented in this matter without creating a regulatory framework that 
+would greatly discourage future data center investments in the state.  Accordingly, ADS 
+requests the Commission to reconsider its approval of the 10/23 Stipulation on rehearing.  
+(ADS App. at 12-17.) 
+{¶ 26} 
+One Power’s ninth assignment of error also asserts that the Commission’s 
+adoption of the 10/23 Stipulation was unlawful and unreasonable because it was not 
+supported by sufficient findings of fact.  Generally, One Power states that the Commission 
+refers to testimony and record elements but overall fails to identify specific factual findings 
+or perform the comparative analysis required by R.C. 4903.09.  Similar to ADS’s points, One 
+Power asserts that the Order does not quantify the effects of either stipulation, explain how 
+the record supports its conclusion that the 10/23 Stipulation benefits all ratepayers, or 
+distinguish between the impacts on participating and nonparticipating customers.  (One 
+Power App. at 37.)   
+{¶ 27} 
+In response, AEP Ohio notes that ADS and One Power’s arguments in these 
+sections merely rehash arguments made in post-hearing briefs and which were already 
+considered by the Commission.  AEP Ohio states that both parties misapply the 
+Commission’s settlement standard and gloss over the Commission’s review of proposed 
+stipulations “as a package,” not on the basis of individual provisions.  The Company 
+submits that by discussing individual provisions of the 10/23 Stipulation it disagrees with, 
+ADS misses the true objective of the second prong of the three-part test.  AEP Ohio 
+highlights a list of distinctions between the two stipulations, which the Company maintains 
+are material differences.  Similarly, AEP Ohio asserts that One Power’s application of R.C. 
+4903.09 is flawed.  Pointing to the lengthy Order issued by the Commission and highlighting 
+specific findings made therein based on an evaluation of the complete record, AEP Ohio 
+disputes One Power’s assertion that the Order lacked sufficient findings of fact.  In short, 
+24-508-EL-ATA 
+  
+- 7 - 
+ 
+AEP Ohio argues that ADS and One Power are only emphasizing select pieces of evidence 
+to support their positions, and that both parties fail to present a case that undermines the 
+Commission’s findings that were based on reviewing the stipulations as a package.  The 
+Company thus avers that the Commission fully reviewed the evidence in the record and 
+articulated clear reasoning as to why the 10/23 Stipulation was superior to the 10/10 
+Stipulation.  (AEP Memo Contra at 5-11.) 
+{¶ 28} 
+OCC, likewise, argues that the 10/23 Stipulation met the three-part test 
+specifically responding to ADS’s contention that it fails prongs two and three.  OCC submits 
+that the 10/23 Stipulation benefits consumers and is in the public interest because it 
+provides for a detailed, transparent processing that protects non-data center customers from 
+unnecessary risk.  (OCC Memo Contra at 15-16.) 
+{¶ 29} 
+DCC also raises two interrelated assignments of error (Assignments of Error 
+#5, #6) alleging that the Order is unlawful, unreasonable, and against the manifest weight 
+of evidence because (i) the Commission found, without support, that the 10/23 Stipulation 
+properly allocates transmission costs to data center “cost-causers,” and (ii) the 10/23 
+Stipulation fails the Commission’s three-prong test for evaluating stipulations.   DCC 
+believes that there is nothing in the record to support the Commission’s conclusion that data 
+centers are, in fact, the “cost-causers” driving the need for upgrades.  Thus, according to 
+DCC, the Order violates R.C. 4903.09, which requires the Commission to make findings of 
+fact and opinions and set forth the reasoning for such decisions.  Furthermore, DCC states 
+that the 10/23 Stipulation fails the three-prong test because AEP Ohio’s tariffs were 
+approved in a manner that circumvents ratemaking requirements under R.C. 4909.18, 
+unduly discriminates against data center customers, and fails to comport with the 
+regulatory principle of cost causation.  (DCC App. at 22-24.)    
+{¶ 30} 
+With respect to these arguments, AEP Ohio replies that the record in this 
+case overwhelmingly demonstrates that data centers, not other classes of customers, are 
+driving the costly transmission upgrades and, therefore, should be the parties to bear those 
+24-508-EL-ATA 
+  
+- 8 - 
+ 
+costs.  AEP Ohio avers that the Commission approved the 10/23 Stipulation, in part, because 
+it explicitly found that the 10/10 Stipulation offered too many opportunities for data center 
+customers to “avoid their responsibility as the main cost-causers" for the transmission 
+upgrades.  Order at ¶152.  AEP Ohio states that the Commission provided more than 
+sufficient reasoning, with references to the record evidence, to support its conclusions.  AEP 
+Ohio believes that DCC misapplies R.C. 4903.09, as that statute does not require that a 
+specific type of evidence be cited by the Commission.  Rather, the Commission was 
+presented with two competing proposals, fully analyzed the evidence presented by both 
+sides, and then reasonably concluded that the 10/23 Stipulation provided the more balanced 
+package.  All of this, AEP Ohio asserts, is well-supported in a lengthy Order and meets all 
+statutory requirements.  (AEP Ohio Memo Contra at 15-17.) 
+{¶ 31} 
+OCC dismisses DCC’s arguments on this point, noting that the Order 
+extensively reviewed and compared the two stipulations, thus belying DCC’s contention 
+that the Commission failed to fully articulate its reasoning (OCC Memo Contra at 13-14). 
+{¶ 32} 
+One Power also submits two assignments of error regarding specific 
+provisions in the 10/23 Stipulation.  In its seventh assignment of error, One Power states 
+that the Commission’s approval of the 10/23 Stipulation’s cost of study provision is 
+unlawful, as R.C. 4928.151 obligates the Commission to adopt and enforce line extension 
+rules on a uniform basis.  In this proceeding, One Power represents that the 10/23 
+Stipulation violates existing regulatory framework by requiring data center customers to 
+cover the cost of a load study in a range of $10,000 to $100,000.  One Power explains that this 
+provision allows the Company to have terms and fees associated with transmission line 
+extensions that differ from those charged by Ohio’s other electric utilities in violation of R.C. 
+4928.151 and Ohio Adm.Code 4901:1-9-07.  (One Power App. at 34-35.)    
+{¶ 33} 
+Finally, in its eighth assignment of error, One Power asserts that the 
+Commission violated Ohio law by requiring customers to reimburse the Company for 100 
+percent of its building costs to serve the customer.  In support, One Power states that there 
+24-508-EL-ATA 
+  
+- 9 - 
+ 
+is nothing in the Ohio Revised Code or Administrative Code that allows the Company to 
+condition its provision of electric service on signing a contract, including a Letter of 
+Agreement (LOA), which obligates the customer to reimburse AEP Ohio for 100 percent of 
+its buildout costs.  Rather, One Power states, the law requires a customer to pay a portion 
+of the costs of transmission and distribution line extensions, per Ohio Adm.Code 4901:1-9-
+07(D)(3)(a).  One Power notes that the utility is responsible for 60 percent of the total cost of 
+the line extension, while the customer iso only responsible for 40 percent of the total cost 
+(Contribution In Aid of Construction or CIAC).  One Power argues that AEP Ohio has not 
+sought to modify its line extension tariff in this case or otherwise tried to address the line 
+extension rule’s requirements, and thus, it is unlawful for the Commission to allow AEP 
+Ohio to modify this requirement as part of the 10/23 Stipulation.  (One Power App. at 35-
+36.) 
+{¶ 34} 
+In response to One Power’s seventh assignment of error, AEP Ohio argues 
+that One Power is conflating the provision in the 10/23 Stipulation covering the cost of the 
+load study fee and a customer’s CIAC.  The purpose of Paragraph III.F.1 in the 10/23 
+Stipulation, AEP Ohio states, is merely to cover the cost of the load study.  This is separate 
+from any CIAC required of a customer, which seeks funds from a customer to offset 
+construction costs.  To the extent that One Power now argues that the costs of load study 
+fees are already included in distribution rates, AEP Ohio replies that there is no basis for 
+such a claim.  As to One Power’s eighth assignment of error, the Company highlights that 
+One Power repeats verbatim the same argument made in its post-hearing brief concerning 
+AEP Ohio’s use of LOAs.  AEP Ohio concedes that the LOAs require a customer to 
+reimburse costs if the customer cancels or significantly delays a project.  The Company 
+reiterates, however, that the LOAs serve a critical purpose to protect other customers from 
+bearing the costs of abandoned projects and also ensure that AEP Ohio receives collateral to 
+recover the cost of infrastructure specifically built for a particular customer.  AEP Ohio states 
+that One Power’s mere dislike of this established procedure is not grounds to deem it 
+unlawful.  (AEP Ohio Memo Contra at 23-26.) 
+24-508-EL-ATA 
+  
+- 10 - 
+ 
+{¶ 35} 
+Having reviewed the applications for rehearing and memoranda contra, the 
+Commission denies the assignments of error outlined in this section.  As an initial, and 
+arguably definitive, point, the assignments of error at issue have already been raised (in 
+largely identical form) and considered by the Commission.  In the Order, we determined 
+that the 10/23 Stipulation satisfied the three-part test for evaluating stipulations, while also 
+finding that the 10/10 Stipulation failed that test.  None of the parties’ applications raise 
+new issues that were not previously considered and rejected by the Commission; and 
+nothing in the abovementioned assignments of error persuade the Commission to alter its 
+previous findings on these matters.  Mere disagreement with the Commission's ultimate 
+decision is not appropriate grounds for rehearing. Duke Reconciliation Rider Review, Second 
+Entry on Rehearing (Aug. 21, 2024) at citing In re the Complaint of Elyria Foundry Co. v. Ohio 
+Edison Co., Case No. 05-796-EL-CSS, Second Entry on Rehearing (May 2, 2007) at 4-5. 
+{¶ 36} 
+The evidentiary record in this case is extensive, including 13 days of live 
+testimony at hearing and numerous pre-filed testimonies.  The Commission thoroughly 
+reviewed this entire record and found that a capacity constraint driven by data center load 
+exists in AEP Ohio’s service territory, and that the 10/23 Stipulation, as a package, presented 
+the best framework to address that constraint.  The reasons for approving the 10/23 
+Stipulation rather than the alternative 10/10 Stipulation were fully and carefully explained 
+in the Order.  Order at ¶ 121.  Further, we articulated the basis for determining that the 
+10/23 Stipulation, and not the 10/10 Stipulation, furthers state policies and comports with 
+regulatory principles. Order at ¶ 123, 151-52.  We reject the arguments of ADS and One 
+Power concerning a lack of reasoning as to why the 10/23 Stipulation presented the more 
+appropriate solution, based on the record evidence, and recommend that the parties review 
+those sections of the Order which enumerate specific provisions of the 10/23 Stipulation 
+which the Commission found superior to those proposed in the other proposed settlement.  
+Order at ¶ 123-26.  Having already considered and ruled on these issues, the Commission 
+stands by the determinations made in the Order and affirms them in this Entry on 
+Rehearing.  Accordingly, each of the assignments of error outlined in this section are denied. 
+24-508-EL-ATA 
+  
+- 11 - 
+ 
+B. Capacity Constraint (OMAEG Assignment of Error #3) 
+{¶ 37} 
+In its third assignment of error, OMAEG contends that AEP Ohio failed to 
+demonstrate the existence of genuine transmission constraints which necessitate the 
+creation of a data center tariff or the adoption of the 10/23 Stipulation.  Similar to previous 
+DCC arguments outlined above, OMAEG bases this assignment on R.C. 4903.09, arguing 
+that there is no record evidence showing that AEP Ohio is truly experiencing a transmission 
+capacity constraint.  OMAEG believes that the Commission simply accepted a 
+representation from AEP Ohio that a capacity constraint exists and that it is being driven 
+solely by data centers.  OMAEG argues that AEP Ohio failed to conduct rigorous 
+quantitative analysis on this issue, averring that the studies run by the AEP Transmission 
+Planning organization are both unreliable and insufficient to support AEP Ohio’s claims 
+(OMAEG App. at 11-14.) 
+{¶ 38} 
+AEP Ohio responds by first noting that OMAEG previously raised this same 
+argument in it briefs and that it was already thoroughly considered and dismissed by the 
+Commission.  Thus, on that basis alone, this assignment of error should be rejected.  In 
+further response, however, the Company stresses that R.C. 4903.09 simply requires the 
+Commission to provide enough detail for a reviewing court to determine the factual basis 
+for its decisions.  AEP Ohio asserts that the Commission clearly met this requirement.  
+Rather than the mere speculation claimed by OMAEG, the Company points to exhibits and 
+transcripts in the record which the Commission cited in support of its findings.  Further, 
+AEP Ohio points out that Mr. Ali was cross-examined extensively by multiple 10/10 
+Signatory Parties on this very issue.  All of this was relied upon by the Commission in 
+formulating the Order.  With respect to OMAEG questioning the sufficiency of the AEP 
+Transmission Planning studies, the Company notes that not only was Sidecat Ex. 10 part of 
+the evidence on this point, but that Mr. Ali also testified extensively concerning capacity 
+constraints.  OCC similarly responds, pointing to the Order itself to demonstrate that the 
+Commission provided extensive explanations for its findings and conclusions.  (AEP Ohio 
+Memo Contra at 11-15; OCC Memo Contra at 9.) 
+24-508-EL-ATA 
+  
+- 12 - 
+ 
+{¶ 39} 
+With respect to OMAEG’s third assignment of error, the Commission denies 
+the request for rehearing.  We first note that these same arguments were considered and 
+rejected in the Order and that, on that basis alone, this assignment of error can be denied.  
+Duke Reconciliation Rider Review, Second Entry on Rehearing (Aug. 21, 2024) at ¶ 27.  We also 
+highlight that in the Order we found that the Company proved a real, pending transmission 
+constraint concern and then outlined the evidentiary basis for this conclusion.  Within these 
+sections of the Order, the Commission pointed to specific exhibits and hearing testimony 
+which demonstrated to our satisfaction that the Company is experiencing unparalleled load 
+growth that will require significant transmission investments.  Order at ¶ 121-22. OMAEG 
+has raised nothing on this issue in its application for rehearing which would warrant a 
+reversal of this finding.   
+C. Alleged Discrimination (DCC Assignment of Error #1, #2; One Power Assignment of 
+Error #6; OMAEG Assignment of Error #1; and ADS Assignment of Error #1) 
+{¶ 40} 
+Overall, DCC (Assignment of Error #1, #2), One Power (Assignment of Error 
+#6), OMAEG (Assignment of Error #1), and ADS (Assignment of Error #1) assert various 
+assignments of error regarding the alleged discriminatory nature of the 10/23 Stipulation 
+and request that the Commission reverse its decision on this matter.2  Specifically, DCC 
+asserts that 10/23 Stipulation violates R.C. 4928.02(A)’s provision against discriminatory 
+service by requiring minimum contract length, minimum demand charges, and collateral 
+contract terms that are substantially more stringent and disadvantageous relative to the 
+otherwise applicable rate schedule, General Service.  Also, DCC states that the Order 
+required a finding that there were actual and measurable differences in the circumstances 
+ 
+2  Also, One Power and OMAEG raised issues pursuant to the Equal Protection Clause which will not be 
+addressed in this Entry on Rehearing.  We note that no such arguments were brought to the Commission’s 
+attention during the evidentiary hearing or briefed arguments.  As such, the Commission will not comment 
+on these arguments as they were raised for the first time at the rehearing stage of this proceeding.  In re the 
+Complaint of Suburban Natural Gas Co. v. Columbia Gas of Ohio, Inc., Case No. 17-2168-GA-CSS, Second Entry 
+on Rehearing (Oct. 23, 2019) at ¶ 23; In re the Application of the Power Purchase Agreement Rider of Ohio Power 
+Co., Case No. 18-1003-EL-RDR, Second Entry on Rehearing (Aug. 21, 2024) at ¶ 22. 
+24-508-EL-ATA 
+  
+- 13 - 
+ 
+and conditions, or the cost of service rendered to the data center customers, of which the 
+Commission had nothing in evidence to support this conclusion.  Mirroring its briefed 
+arguments on this issue, DCC notes that a public utility may make reasonable distinction 
+amongst customers but such distinctions must be “anchored” in actual and measurable 
+differences in customer services rendered, or in the circumstances or conditions under 
+which those services are provided, citing to the Federal Energy Regulatory Commission’s 
+Basin Electric Power Cooperative order (Basin Power Order), Buckeye Lake Chamber of 
+Commerce v. Public Utilities Com., 161 Ohio St. 306 (1954) and Mahoning County v. Public 
+Utilities Com., 58 Ohio St. 2d 40 (1979).  (DCC App. at 3-7, 15.)  Similarly, One Power believes 
+that the Commission’s approval of the 10/12 Stipulation violates R.C. 4905.32, R.C. 4905.33, 
+and R.C. 4905.35 by endorsing AEP Ohio’s discrimination against similarly situated 
+customers without providing sufficient reasoning or record evidence to support its 
+conclusion (One Power App. at 27).  OMAEG also agrees that the Commission improperly 
+adopted the 10/23 Stipulation against the manifest weight of the evidence presented during 
+the evidence or otherwise admitted to the record, in violation of R.C. 4903.09 and Supreme 
+Court precedent cited by DCC.  (OMAEG App. at 5.)  ADS also contends that there is no 
+dispute that the 10/23 Stipulation discriminates against customers in a specific industry 
+segment or that AEP Ohio has never previously singled out a specific industry segment for 
+less favorable treatment under its electric distribution service tariffs.  ADS thus insists that 
+the issue the Commission must review is whether the record evidence and applicable law 
+justified this kind of discriminatory treatment.  (ADS App. at 5.)   
+{¶ 41} 
+Generally, DCC, One Power, OMAEG, and ADS assert that there was 
+insufficient record evidence to support the Commission’s conclusions in its Order.  ADS 
+contends that the only evidence cited by the proponents of the 10/23 Stipulation and 
+ultimately, the Commission, was based upon contradicted assumptions and speculation 
+regarding the nature of data center load that were not informed by expertise or quantitative 
+support.  ADS notes that DCC’s witness Higgins testified that the Company had not 
+conducted any quantitative analysis of the impact of anticipated data center load on rates 
+24-508-EL-ATA 
+  
+- 14 - 
+ 
+(DCC Ex. 9 at 21).  Moreover, ADS is concerned that the Commission relied on the Migden-
+Ostrander decision because the evidentiary record in this case could not meet the standard 
+to determine that, “expense or difficulty of performing the same or similar service in 
+different areas or circumstances” could allow cost recovery variations/differences, citing to 
+Migden-Ostrander v. Pub. Util. Comm., 102 Ohio St.3d 451, 459 (2004).  Relatedly, One Power 
+contends that because Migden-Ostrander allowed differentiation in charges for the same or 
+similar customers only due to the differences in the expense or difficulty of performing that 
+service and because there were no comparative studies or verified cost data, the 
+Commission’s reliance on Migden-Ostrander cannot be justified.  ADS also opines that the 
+Commission relies on speculation from AEP Ohio regarding data center service requests 
+which amount to an upwards of 30,000 MW and improperly made conclusions based on 
+OEG witness Wellborn’s testimony regarding data center’s inability to shift their usage to 
+off-peak times during peak usage times on the grid.  ADS points out that there are other 
+industries and customers that also cannot shift their usage to off-peak load to ease the strain 
+from peak usage times.  DCC echoes similar points and insists that AEP Ohio witness 
+McKenzie’s remarks about the magnitude of load growth and speculation about the 
+systemic risk data centers bring are nothing like quantitative evidence that courts have 
+required in order to uphold a discriminatory customer classification.  Further, DCC argues 
+that the magnitude or rate of load growth in the data center industry is immaterial to the 
+question of whether a discriminatory tariff is justified, because a large load tariff would 
+address the risks with the data center industry as well as the risk posed by similarly sized 
+large load customers.  OMAEG is also concerned that the Commission improperly relied on 
+a summary of AEP Ohio’s transmission studies rather than the actual studies.  OMAEG and 
+One Power note that no cost of service study was performed before or after this proceeding’s 
+initiation, which means that the actual cost of service rendered cannot or was not properly 
+considered in this case.  (ADS App. at 7-11; DCC App at 9-11; OMAEG App. at 5-7; One 
+Power App. at 29.)   
+24-508-EL-ATA 
+  
+- 15 - 
+ 
+{¶ 42} 
+In response, AEP Ohio argues that the record evidence clearly demonstrates 
+that the 10/23 Stipulation’s treatment of data center customers is based on actual, material 
+differences in service.  AEP Ohio echoes its arguments from post-hearing briefing and 
+asserts that the 10/23 Stipulation applies a new schedule to a unique class of data center 
+customers based on material distinctions in the delivery of the Company’s services.  
+Specifically, the Company indicates that the traits which make data centers stand apart from 
+other large industry users are the unprecedented hypergrowth, load concentration, and 
+systematic risk associated with data center customers.  AEP Ohio believes that the Order 
+discusses these distinctive traits and properly cites to the factual record to reach the 
+conclusion that the new data center load will significantly increase the Company’s actual 
+risk and expenses in serving not only data center customers but also other customers, citing 
+to Order at ¶129.  The Company also points to other state jurisdictions that approved data 
+center-tailored proposals to address the unique traits of data centers and/or blockchain 
+customers, citing to Order at ¶131.  (AEP Ohio Memo Contra at 18-20.)   
+{¶ 43} 
+AEP Ohio also refutes DCC’s application of the Basin Power Order and 
+Mahoning and Buckeye Lake decisions.  The Company indicates that DCC relies on these cases 
+to support its contention that the Company should have presented more detailed cost-
+specific information in support of its proposal.  However, according to AEP Ohio, DCC’s 
+arguments ignore the fact that such detailed cost information is not available at this time.  
+The Company explains that it filed the Application to proactively address a future load 
+growth issue, and that data center customers may pay different rates based on their own 
+unique usage needs and circumstances, and thus, the specific costs AEP Ohio incurs to serve 
+one data center will necessarily vary on a case-by-case basis.  AEP Ohio indicates that the 
+10/23 Stipulation accounts for the case-by-case nature of the new data center customers by 
+ensuring that the specific rates applicable to each customer are sufficient to cover the 
+Company’s cost of service.  (AEP Ohio Memo Contra at 20-21.)   
+{¶ 44} 
+OCC’s memorandum contra echoes similar sentiments to AEP Ohio’s 
+position and submits that the 10/23 Stipulation provides commitment and “skin in the 
+24-508-EL-ATA 
+  
+- 16 - 
+ 
+game” from prospective data center customers to ensure that other existing and future 
+customers are not responsible for the expenses to serve these industry-specific customers.  
+OCC insists that the Commission determined that the record evidence indicates reasonable 
+concerns and distinctions to be made between data center customers and other large-load 
+customers.  (OCC Memo Contra at 10.) 
+{¶ 45} 
+Regarding DCC, One Power, OMAEG, and ADS’s related assignments of 
+error regarding the alleged unduly discriminatory nature of the 10/23 Stipulation, the 
+Commission denies rehearing.  The Commission emphasizes that these parties’ assignments 
+have already been considered and rejected in this proceeding.  Duke Reconciliation Rider 
+Review, Second Entry on Rehearing (Aug. 21, 2024) at ¶ 27.  Regardless, we find that they 
+hold no merit for the reasons provided herein.  We affirm our determination that the 
+evidentiary record supports the notion that the 10/23 Stipulation’s differential treatment of 
+data center customers is based on actual, material differences in the service to be provided 
+by AEP Ohio.  While we note that the Company has experienced a significant increase in 
+unsigned service interest from data centers (approximately 30,000 MW), the Commission is 
+further persuaded by the current rapid load growth from existing or already contracted data 
+center customers.  For instance, AEP Ohio witness Ali testified that the Company more than 
+doubled its projected future demand in the central Ohio region, from approximately 4,000 
+MW to 9,000 MW driven by new, large data center requests.  Consistent with our findings 
+in the Order, the Commission stresses that the Company’s analyses indicated that its 
+transmission infrastructure is at a tipping point, in which significant infrastructure 
+investment would be needed to meet demand in excess of approximately 10,000 MW in 
+central Ohio, and it has already signed an additional 5,000 MW of new data center load by 
+2030.  Order at ¶¶ 94, 105, 122, 152, citing AEP Ohio Ex. 2 at 3-6.  Thus, there is a timely need 
+for a proactive solution to address potential reliability issues in the AEP Ohio central Ohio 
+region, which is specifically driven by data centers.  Moreover, we recognize that, at this 
+tenuous stage of load growth expansion for AEP Ohio, there would not be more cost-specific 
+information available.  Furthermore, we affirm our previous findings that conclude data 
+24-508-EL-ATA 
+  
+- 17 - 
+ 
+centers pose unique, systemic risks that do not exist for other large-scale customers.  Order 
+at ¶ 108.  The Commission underscores the fact that the 10/23 Stipulation is a proactive, 
+comprehensive settlement package that outlines a just and reasonable pathway for data 
+center customers to receive service from AEP Ohio that is commensurate with the 
+investments the utility will need to make, in order to ensure it can provide physically 
+adequate and reliable electric service for all of its customers.  Order at ¶ 128-29.  Therefore, 
+we reject the assignments of error that suggest the Commission has not thoroughly reviewed 
+and utilized the evidentiary record in its Order determining a novel proceeding 
+contemplating a warranted differential tariff on data center customers. 
+D. AEP Ohio’s Temporary Moratorium (DCC Assignment of Error #3; One Power 
+Assignment of Error #5; OMAEG Assignment of Error #5)  
+{¶ 46} 
+DCC (Assignment of Error #3), OMAEG (Assignment of Error #2), and One 
+Power (Assignment of Error #5) submit assignments of error related to the Company’s 
+moratorium that was in effect prior to the Commission’s Order.  Specifically, these parties 
+all assert that  AEP Ohio implemented its moratorium without Commission approval, in 
+violation of R.C. 4905.22.  OMAEG and One Power’s assignments of error regarding the 
+moratorium also stated that the Company violated the Certified Territories Act (R.C. 
+4933.83).  Overall, DCC, OMAEG, and One Power indicate that the Company violated its 
+statutory obligation to serve its customers.  OMAEG opines that AEP Ohio is required to 
+provide adequate facilities and services to meet the reasonable needs of the customers in its 
+service territory, including data centers.  OMAEG, therefore, laments that the Commission 
+should have treated the moratorium as being unlawful.  (OMAEG App. at 10.)  Furthermore, 
+DCC and One Power state that the Commission’s reliance on the complaint case initiated by 
+AEP Ohio’s complaint against Nationwide Energy Partners, LLC (NEP) to justify the 
+Company’s moratorium in this proceeding is misplaced because, in that proceeding, AEP 
+Ohio filed a complaint with the Commission to clarify the status of the law at issue 
+concurrent with its moratorium over NEP’s conversion requests.  In re Complaint of The Ohio 
+Power Co v. Nationwide Energy Partners, LLC, Case No. 21-990-EL-CSS (NEP Complaint Case), 
+24-508-EL-ATA 
+  
+- 18 - 
+ 
+Opinion and Order (Sept. 6, 2023).  However, in this case, One Power and DCC note that the 
+Company imposed a blanket moratorium over all customers of a specific industry for more 
+than a year before filing its Application.  (One Power App. at 24-25; DCC App. at 16-17.)   
+{¶ 47} 
+One Power also argues that the Ohio Revised Code clearly indicates a 
+process for analyzing load concerns that was not followed at all for this proceeding.  One 
+Power points to the Long-Term Forecast Report (LTFR) process under R.C. 4935.04, which 
+includes a Commission-initiated hearing limited to the scope of forecasting and reviewing 
+projected loads and capacity, and results in an order discussing the utility’s load concerns.  
+One Power thus takes issue with the year lag between the moratorium and the Company’s 
+application in this proceeding and asserts that the events transpiring up to the moratorium 
+and afterwards reveals a failure of transparency and an improper pattern of the Company’s 
+self-interested behavior that is in violation of Ohio law.  One Power also expresses concerns 
+that Commission’s findings in the Order could not substitute for a lack of record evidence 
+to satisfy the requirements under R.C. 4903.09, such that the Commission could not excuse 
+AEP Ohio from its obligations under R.C. 4905.22 and R.C. 4933.83.  Lastly, One Power 
+insists that if the Commission does not grant rehearing on this assignment of error, it invites 
+future moratoria imposed by utilities without Commission oversight and outside of a 
+statutorily mandated process, which could undermine regulatory predictability and 
+implicate the rule of law under R.C. Title 49.  (One Power App. at 22-25.)               
+{¶ 48} 
+In response, AEP Ohio insists that it has an obligation to serve customers 
+pursuant to R.C. 4905.22 and 4933.83 within the bounds of reason, in which the Company 
+must provide physical adequate service.  The Company also emphasizes that state law does 
+not force utilities to serve in a matter that exposes the utility and its other customers to unjust 
+risks.  Accordingly, AEP Ohio remains firm that had it committed to serve the full extent of 
+additional data center load seeking to locate within its service territory, then its ability to 
+provide reliable and sufficient service to the rest of its customers would be jeopardized.  
+Also, AEP Ohio indicates that had it served even a portion of the data center load, then it 
+would not have been able to provide physically adequate service to those data center-
+24-508-EL-ATA 
+  
+- 19 - 
+ 
+specific customers.  The Company represents that it initiated this tariff proceeding to 
+develop a solution to provide physically adequate service to both new data center customers 
+and existing customers.  And instead of outright denying new service requests, AEP Ohio 
+states that it implemented a transparent, temporary moratorium, which was clearly 
+communicated to all impacted customers, and sought a Commission-approved long-term 
+solution in the proposed tariff.  Furthermore, AEP Ohio notes that there is longstanding 
+precedent that supports the position that utilities are entitled to assume they will receive 
+just compensations for extensions of facilities to serve new customers.  Requiring the 
+Company to undertake significant infrastructure expansion for an unprecedent data center 
+load without the safeguards provided by the moratorium and tariff would conflict with the 
+principle that utilities should be able to assume that they will receive just compensation for 
+extensions of facilities to serve new customers, citing to People of State of New York ex 34 rel. 
+Woodhaven Gaslight Co. v. Pub. Serv. Comm. of New York, 269 U.S. 244 (1925); Forest Hills Util. 
+Co. v. Pub. Util. Comm., 31 Ohio St.2d 46, 56-57 (1972) (quoting Elyria Telephone Co. v. Pub. Util. 
+Comm., 158 Ohio St. 441 (1958), Syllabus ¶3).  In support of its position, AEP Ohio notes that 
+witness Ali testified about the risk of a voltage collapse should a significant load beyond 
+10,000 MW be served through the Central Ohio transmission network, and the potential for 
+a cascade into a brownout or blackout condition (Tr. Vol. I at 149-151; 265; Tr. Vol. III at 581).  
+AEP Ohio further explains that had the Commission agreed with One Power, OMAEG, and 
+DCC, the Commission would be penalizing AEP Ohio for taking reasonable and necessary 
+action to address material threats to the safety, reliability, and adequacy of the electric grid 
+and service provided to the Company’s customer base.  Lastly, AEP Ohio insists that One 
+Power’s points about the LTFR are meritless because the Company has properly avoided 
+reporting overly speculative load that could trigger unnecessary overinvestment in the 
+transmission system.  (AEP Ohio Memo Contra at 32-35.) 
+{¶ 49} 
+AEP Ohio also dismisses One Power and DCC’s arguments that the NEP 
+Complaint Case is an improper analogy for the Company’s moratorium in this proceeding.  
+In support, the Company notes that the moratorium in the NEP case involved a situation 
+24-508-EL-ATA 
+  
+- 20 - 
+ 
+during which the moratorium was enacted to address new and unprecedented 
+circumstances, citing to NEP Complaint Case, Opinion and Order (Sept. 6, 2023) at ¶2-3.  AEP 
+Ohio insists that there are similar circumstances present, as the Company filed its 
+Application to address challenged associated with new and unprecedented data center load.  
+AEP Ohio adamantly believes that just as the temporary pause was reasonable and 
+necessary in the NEP Complaint Case, so was the temporary moratorium on new data center 
+service requests.  (AEP Ohio Memo Contra at 36.)   
+{¶ 50} 
+OCC further emphasizes that the Commission determined that the 
+Company had adequate reason in the public’s interest to balance the concerns of providing 
+a reliable and adequate service to consumers with the duty to make service available to new 
+customers.  Moreover, OCC contends that the Order provides ample citations to the 
+evidentiary record and reasonable to inform the Supreme Court of Ohio of the 
+Commission’s basis for its findings regarding the moratorium.  (OCC Memo Contra at 8-9.) 
+{¶ 51} 
+The Commission denies rehearing on DCC, One Power, and OMAEG’s 
+related assignments of error regarding AEP Ohio’s temporary moratorium.  In so doing, the 
+Commission emphasizes that the arguments raised in these parties’ assignments have 
+already been extensively briefed and carefully considered by the Commission in the Order.  
+As stated in the Order, the Commission is indifferent to the fact that AEP Ohio did not 
+conduct a study during its moratorium period, as it seems obvious that the moratorium was 
+implemented to mitigate the Company’s load from escalating too quickly.  This indicates 
+that either the Company studied or was aware of triggers for load constraint problems.  The 
+Commission appreciates that the rapid spike in data center load is a unique situation and 
+requires unique solutions so that AEP Ohio can both provide service to new customers and 
+also maintain stable, reliable service for existing customers.  Moreover, we reject the 
+collective 10/10 Stipulation signatories’ objections to and criticisms against this temporary 
+measure.  As AEP Ohio points out, R.C. 4905.22 and 4933.83 require a public utility to 
+provide service within the bounds of reason.  State law, regulations, and Commission 
+precedent do not, however, force utilities to serve in a manner that is unreasonable or 
+24-508-EL-ATA 
+  
+- 21 - 
+ 
+exposes a utility and/or its customers to unjustified risks.  See In re Application of Ohio Power 
+Co. For Approval of a Special Contract Arrangement with Ormet Primary Aluminum Corp., Case 
+Nos. 96-999-EL-AEC, et al., Opinion and Order (June 14, 2006) at 11.  Faced with an 
+unprecedented influx of load requests from data center customers, AEP Ohio had to strike 
+a balance between providing reliable and adequate service to existing consumers and the 
+duty to make service available to new consumers.  In instituting the moratorium and 
+initiating this proceeding, AEP Ohio acted proactively to address the issue before it created 
+additional, larger problems for its existing customers and the grid’s integrity.  Order at ¶ 
+130.  For these reasons, we approved of the action in the Order and do so again in this Entry 
+on Rehearing.  The parties present no new arguments which compel us to reverse our 
+previous rulings on this issue.  Moreover, the parties have failed to demonstrate any 
+prejudicial error resulting from the moratorium.  The Supreme Court has recently reiterated 
+that a “party seeking reversal of a Commission order cannot meet its burden of establishing 
+prejudicial error without furnishing an argument or citing evidence showing that it has 
+suffered a particularized harm. In re the Application of Ohio Power Co., for Authority to Establish 
+a Std. Service Offer Pursuant to R.C. 4928.143, in the Form of an Elec. Security Plan, Slip Opinion 
+No. 2025-Ohio-3034, at ¶¶ 16-18, citing In re Complaint of Buckeye Energy Brokers, Inc. v. Palmer 
+Energy Co., 2014-Ohio-1532, ¶ 23-24. Generalized claims of harm, as raised by DCC, One 
+Power, and OMAEG, are simply not enough. We, therefore, affirm our determinations made 
+in the Order that the evidentiary record supports AEP Ohio’s rationale for instituting the 
+temporary moratorium.   
+E. Collateral Requirements (OBC Assignments of Error #1 and #2) 
+{¶ 52} 
+OBC’s first assignment of error states that the Commission erred in 
+approving the Stipulation’s collateral requirements.  OBC argues the Stipulation’s collateral 
+requirements are punitive, excessive, and unreasonable without sufficient record evidence 
+in violation of R.C. 4903.09.  In support of its position, OBC represents that a majority of its 
+members would be unable to meet the 10/23 Stipulation’s collateral requirements and be 
+prevented from doing business in Ohio.  OBC emphasizes that reinforcing such 
+24-508-EL-ATA 
+  
+- 22 - 
+ 
+requirements would have a chilling effect on businesses wanting to do business in the state 
+of Ohio and hamper economic development and harm all customers.  Recognizing that the 
+Company would be able to hold a customer’s guarantee or collateral from the time of 
+signing the Electric Service Agreement (ESA) in an amount equal to 50 percent of the total 
+minimum charges for the full contract term, the required collateral amount is “staggering.”  
+OBC opines that the 10/23 Stipulation requires customers to meet eight or nine figure 
+collateral requirements three to four years in advance of even receiving electric service and 
+having the opportunity to generate operating income.  Moreover, OBC indicates that this 
+kind of requirement disrupts capital planning and allocation for most companies.   
+Furthermore, OBC asserts that the Company offered no evidence that shows why data 
+center customers should be held to a higher standard than other kinds of large load 
+customers, or that data center customers typically oversize interconnection requests.  OBC, 
+thus, insists that the Order was against the manifest weight of the evidence and 
+unsupported by sufficient record evidence in violation of R.C. 4903.09.  (OBC App. at 2-5.) 
+{¶ 53} 
+In the alternative that the Commission denies rehearing on this issue, OBC’s 
+second assignment of error at minimum requests that the Commission define and/or 
+describe what constitutes a “financial sponsor” in the Order regarding the modified 
+collateral requirements.  OBC notes that the term “financial sponsor” is not set forth in the 
+Order and further opines that no additional details are given that might allow OBC 
+members or other data center customers to determine the Commission’s meaning or how 
+the collateral modification could be implemented.  OBC also opines that it is unclear as to 
+whether the financial sponsor will even be able to satisfy the 10/23 Stipulation’s collateral 
+requirements.  OBC asserts that the modification does nothing to alleviate the burdensome 
+and excessive nature of the collateral requirements and there is no explanation in the Order 
+as to how the modification resolves the concerns of stifling business in Ohio, assuming a 
+company can satisfy the stringent collateral requirements.  OBC concludes that the 
+Commission has no record evidence to support its modification in the Order, and no 
+evidence exists to demonstrate that such modification would benefit the public interest.  As 
+24-508-EL-ATA 
+  
+- 23 - 
+ 
+a result, OBC believes that the Order violates R.C. 4903.09, and, nonetheless, requests 
+clarification on the meaning of “financial sponsor.”  (OBC App. at 5-7.)     
+{¶ 54} 
+Conversely, AEP Ohio argues that the Commission’s modification to the 
+collateral requirement was a reasonable and adequately explained option that is not 
+prejudicial to OBC.  In particular, AEP Ohio states that OBC’s challenge ignores the fact that 
+the collateral requirement only covers 50 percent of the customer’s financial obligations 
+under its contract and is raised by OBC even after the Commission’s Order relaxed the 
+collateral requirements by permitting a financial sponsor or co-signer “in the interest of 
+supporting the state’s role in attracting a diverse industrial customer base that contributes 
+to significant economic development on a state, national and global level.” Order at ¶ 126.  
+Further AEP Ohio asserts that Schedule DCT’s collateral requirements are reasonable and 
+supported by the record.  In addition, AEP Ohio points out that the Commission’s allowance 
+for financial sponsors to co-sign for a data center customer’s financial obligation is a 
+permissive and voluntary option that cannot, by itself, reasonably be portrayed as being 
+prejudicial to OBC.  Furthermore, OCC and AEP Ohio opine that the Commission’s order 
+provides sufficient contextual explanations for OBC, and other applicable parties, to 
+determine the meaning of the term “financial sponsor.”  (AEP Ohio Memo Contra at 27-30; 
+OCC Memo Contra at 6-7.)  
+{¶ 55} 
+The Commission finds that OBC’s assignments of error significantly overlap 
+with those addressed in the Order.  To this point, we reiterate our finding that the 
+evidentiary record demonstrates that data center customers present unique challenges of 
+delivering service compared to other large, energy-intensive customers, and, thus, a higher 
+up-front commitment is necessary to ensure existing customers’ service remains 
+unimpacted. See, Order at ¶ 129.  Concurrently, the modifications made to the collateral 
+requirements is also well supported by the evidence in the record, as it will enable data 
+center customers to have flexibility commensurate with the realities of corporate financing, 
+while aligning with the commitment level sought by the collateral terms in the 10/23 
+Stipulation.  Order at ¶ 126.  The Supreme Court of Ohio has held that, as long as there is a 
+24-508-EL-ATA 
+  
+- 24 - 
+ 
+basic rationale and record supporting the Commission’s finding, no violation R.C. 4903.09 
+exists.  MCI Telecommunications Corp. v. Pub. Util. Comm., 32 Ohio St.3d 306, 312 (1987); 
+Tongren v. Pub. Util. Comm., 85 Ohio St. 3d 87, 90 (1999).  The Commission provided such a 
+basis, thus satisfying R.C. 4903.09, when affording additional flexibility in the Schedule DCT 
+collateral requirements.  Further, while we agree with the Company that the term “financial 
+sponsor” is a well-known legal term of art that does not require further clarification, we will 
+provide additional context for OBC, as requested.  As contemplated in the Order, “financial 
+sponsor” is meant to include any entity that co-signs a LOA or ESA alongside a data center 
+customer and serves to satisfy the data center customer’s creditworthiness criteria and/or 
+posts either all, or a portion of, the collateral requirement for the data center customer.  Thus, 
+we deny OBC’s assignment of error and clarify “financial sponsor,” as requested.    
+F. Procedural Assignments of Error (OMAEG Assignments of Error #4 and #5; One 
+Power Assignments of Error #1, #2, #3, and #4)  
+{¶ 56} 
+OMAEG (Assignments of Error #4, #5) and One Power (Assignments of 
+Error # 1, 2, 3, and 4) raise nearly identical arguments to their joint request for certification 
+of an interlocutory appeal filed on December 9, 2024 and One Power’s motion to dismiss 
+filed on August 5, 2024.  OMAEG posits that if the Application was deemed not to be for an 
+increase of rates, the only reason that a hearing should have been set is because “the 
+proposals in the application appear ‘unjust or unreasonable.” And as a result, the mandatory 
+notice requirement set forth in R.C. 4909.18 would still apply.  Alternatively, OMAEG and 
+One Power insist that if the Application was deemed to be for an increase in rates, then the 
+Commission was required to set the matter for hearing and the mandatory notice 
+requirement still applies.  One Power also argues that rehearing is necessary because the 
+Commission mischaracterized Schedule DCT as a new service for customers that are not 
+new to AEP Ohio and failed to evaluate the significant financial obligations imposed by the 
+Application and 10/23 Stipulation, which evades mandatory procedural safeguards of R.C. 
+4909.18 and R.C. 4909.19.  DCC, in its fourth assignment of error, also contends that the 
+Order improperly denied One Power’s motion to dismiss and incorrectly concluded that the 
+24-508-EL-ATA 
+  
+- 25 - 
+ 
+Application did not propose an increase in charges pursuant to R.C. 4909.18.  (OMAEG App. 
+at 18; One Power App. at 13; DCC App. at 17-21.) 
+{¶ 57} 
+The Company rejects One Power and OMAEG’s arguments and indicates 
+that these arguments have been entirely addressed by the Commission already.  Moreover, 
+AEP Ohio emphasizes that this case has been widely publicized in the media and attracted 
+intervention from diverse parties.  The Company further highlights that the Commission 
+has already denied One Power’s related motion to dismiss based on the rationale that the 
+Application was subject to R.C. 4909.18 notice requirements.  AEP Ohio opines that the 
+evidentiary hearing in this case was set based on the Commission’s discretion and not 
+because it was making a determination that the Application could be deemed unjust or 
+unreasonable.  AEP Ohio insists that OMAEG and One Power also disregard the doctrine 
+of substantial compliance, which supports the Commission’s directive to the Company to 
+serve notice for a local hearing inviting interested stakeholder comments.  The Company 
+believes that OMAEG and One Power’s notice-related assertions are unpersuasive, because 
+they suffered no prejudice in this proceeding, that the case was widely publicized, and the 
+Commission provided supplemental notice of the proceeding.  (AEP Ohio Memo Contra at 
+41-44.)   
+{¶ 58} 
+ The Commission finds that the above-described assignments of error offer 
+no additional support for these same arguments raised by One Power and OMAEG.  The 
+Commission and ALJs have spoken on these issues in several instances, including during 
+the evidentiary hearing and in the Order itself.  Order at ¶¶ 21-25; Tr. Vol I at 37; Entry 
+(Sept. 2, 2025).  As such, this Commission has thoroughly considered One Power and 
+OMAEG’s contentions that the Application was for an increase in rates and subject to the 
+notice requirements under R.C. 4909.18.  However, we affirm our previous holdings that the 
+Application was not for an increase in rates and that the evidentiary hearing was held, at 
+the Commission’s discretion, for this novel proposed tariff in the state of Ohio.  The 
+Commission denies these assignments of error and upholds its determination that this 
+Application, as an application not for an increase in rates, was consistent with the 
+24-508-EL-ATA 
+  
+- 26 - 
+ 
+requirements of R.C. 4909.18, and that no party was prejudiced by the notice, filings, and 
+hearing dates set during this proceeding.  As noted in the September 2, 2025 Entry, 
+generalized claims of harm are not enough.  Entry (Sept. 2, 2025) at ¶ 10, citing In re the 
+Application of Ohio Power Co., for Authority to Establish a Std. Service Offer Pursuant to R.C. 
+4928.143, in the Form of an Elec. Security Plan, Slip Opinion No. 2025-Ohio-3034, at ¶¶ 16-18, 
+citing In re Complaint of Buckeye Energy Brokers, Inc. v. Palmer Energy Co., 2014-Ohio-1532, ¶ 
+23-24.  
+{¶ 59} 
+OMAEG’s last assignment of error (Assignment of Error #6) pertains to the 
+ALJs’ rulings that limited OMAEG’s cross-examination of AEP Ohio witness Ali and 
+McKenzie.  OMAEG reiterates its arguments from its initial and reply briefs, while also 
+stating that the Commission’s decision to uphold the ALJs’ rulings is not properly supported 
+in violation of R.C. 4903.09.  Particularly, OMAEG believes that the Commission upheld the 
+ALJs’ decisions to terminate certain lines of questioning without relying on record evidence 
+and is thus unjust, unreasonable, and unlawful.  OMAEG maintains its position that the 
+ALJs’ rulings denied the Commission a full review and examination of facts and key matters 
+to this case’s disposition.  (OMAEG App. at 23-24; Order at ¶ 26.)            
+{¶ 60} 
+AEP Ohio argues that the Commission has already affirmed the ALJs’ 
+discretion regarding their decisions to terminate certain lines of cross-examination during 
+the evidentiary hearing.  The Company points out that there is Commission precedent 
+which consistently supports the fact that ALJs may limit lines of questioning within their 
+broad discretion, citing to In re Ohio Power Co., Case No. 18-1004-EL-RDR, et al., Opinion 
+and Order (Aug. 21, 2024) at ¶45-46.  The Company repeats its arguments from briefs, 
+stating that the ALJs properly curtailed OMAEG’s cross-examination of witness Ali due to 
+the duplicative nature of the questioning and of witness McKenzie, as he was unfamiliar 
+with, and unable to authenticate, the document OMAEG’s counsel sought to use during 
+questioning.  The Company accordingly believes that the Commission properly considered 
+OMAEG’s concerns over the ALJs’ rulings during hearing.  (AEP Ohio Memo Contra at 44-
+47; Order at ¶ 27.)   
+24-508-EL-ATA 
+  
+- 27 - 
+ 
+{¶ 61} 
+Regarding OMAEG’s repeated effort to overturn the ALJs’ rulings regarding 
+the limiting of Mr. Ali and Mr. McKenzie’s cross-examination, the Commission finds that 
+OMAEG raises no new arguments that were not already considered and ruled upon by the 
+Commission and, therefore, this assignment of error shall be denied.  See Order at ¶¶ 28-31; 
+see also Duke Reconciliation Rider Review, Second Entry on Rehearing (Aug. 21, 2024) at ¶ 27.  
+Further, OMAEG has demonstrated no prejudice, especially when considering the ample 
+latitude afforded to it during its extensive cross-examination of both witnesses.   
+IV. 
+CONCLUSION  
+{¶ 62} 
+  The Commission has reviewed and considered all claims and arguments 
+contained in the applications for rehearing filed by DCC, OMAEG, One Power, ADS, and 
+OBC.  The Commission finds that several arguments are nearly identical to those raised in 
+post-hearing briefing and that the applications for rehearing do not identify any error 
+demonstrating that our prior consideration of this matter was inadequate, against the 
+manifest weight of the evidence, or otherwise unlawful and unreasonable.  Accordingly, as 
+to each of the claimed errors, we affirm the determinations made in the Order and deny 
+each assignment of error. 
+V. 
+ORDER 
+{¶ 63} 
+It is, therefore, 
+{¶ 64} 
+ORDERED, That applications for rehearing filed by DCC, OMAEG, One 
+Power, ADS, and OBC be denied.    
+24-508-EL-ATA 
+  
+- 28 - 
+ 
+{¶ 65} 
+ORDERED, That a copy of this Entry on Rehearing be served upon all 
+interested persons and parties of record. 
+ 
+IMM/DMH/ZTC/dmh 
+COMMISSIONERS: 
+Approving:  
+Jenifer French, Chair 
+Daniel R. Conway  
+Lawrence K. Friedeman 
+Dennis P. Deters 
+John D. Williams 
+ 
+This foregoing document was electronically filed with the Public Utilities
+Commission of Ohio Docketing Information System on
+9/3/2025 2:22:45 PM
+in
+Case No(s). 24-0508-EL-ATA
+Summary: Entry on Rehearing denying the applications for rehearing filed by the
+Data Center Coalition, The Ohio Blockchain Council, Ohio Manufacturers’
+Association Energy Group, One Power Company, and Amazon Data Services, Inc.
+electronically filed by Ms. Mary E. Fischer on behalf of Public Utilities Commission
+of Ohio.

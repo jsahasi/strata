@@ -1,0 +1,15 @@
+{
+  "source_url": "https://iurc.portal.in.gov/_entity/sharepointdocumentlocation/e41bdd1b-8140-f011-b4cc-001dd803db57/bb9c6bba-fd52-45ad-8e64-a444aef13c39?file=AESIN_Verified%20Petition_06032.pdf",
+  "retrieved_at": "2026-08-04T16:54:02Z",
+  "sha256": "73de108ba57e667ce91bc00ed3138c46fef45a6c071a9d065fbe56b5f3914d5c",
+  "sha256_source_pdf": "169256e0d7161566c08091a5505a38b4e7c65eeee6569b201e3eeb320b0079aa",
+  "jurisdiction": "Indiana (IURC)",
+  "docket": "46258",
+  "document_title": "Verified Petition of Indianapolis Power & Light Company d/b/a AES Indiana",
+  "filing_date": "2025-06-03",
+  "filer": "Indianapolis Power & Light Company d/b/a AES Indiana",
+  "source_pdf_bytes": 280993,
+  "text_bytes": 99249,
+  "pages": 45,
+  "how_obtained": "Fetched the PDF over HTTPS with curl (no login, no cookies; the IURC portal serves these documents anonymously). Converted to text with PyMuPDF page.get_text() using default settings, concatenating pages in order with no separator inserted and no other change: line breaks, spacing, hyphenation, running heads, margin line numbers and any OCR errors are left exactly as the extractor produced them."
+}

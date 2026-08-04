@@ -1,0 +1,5156 @@
+STATE OF INDIANA 
+INDIANA UTILITY REGULATORY COMMISSION 
+PETITION OF INDIANAPOLIS POWER & LIGHT 
+COMPANY D/B/A AES INDIANA (“AES INDIANA”) 
+FOR AUTHORITY TO INCREASE RATES AND 
+CHARGES FOR ELECTRIC UTILITY SERVICE 
+THROUGH A PHASE-IN RATE ADJUSTMENT; AND 
+FOR 
+APPROVAL 
+OF 
+RELATED 
+RELIEF, 
+INCLUDING (1) REVISED DEPRECIATION RATES, 
+INCLUDING COST OF REMOVAL LESS SALVAGE 
+AND UPDATED DEPRECIATION EXPENSE; (2) 
+ACCOUNTING RELIEF, INCLUDING DEFERRALS 
+AND AMORTIZATIONS, (3) 
+INCLUSION 
+OF 
+CAPITAL INVESTMENT, (4) RATE ADJUSTMENT 
+MECHANISM PROPOSALS, INCLUDING A NEW 
+PROPERTY TAX RIDER, AND (5) NEW SCHEDULES 
+OF RATES, RULES AND REGULATIONS FOR 
+SERVICE. 
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+CAUSE NO. 46258 
+INDIANA OFFICE OF UTILITY CONSUMER COUNSELOR 
+PUBLIC EXHIBIT NO. 2 – REDACTED TESTIMONY OF OUCC WITNESS 
+MICHAEL D. ECKERT 
+Respectfully submitted, 
+INDIANA OFFICE OF UTILITY CONSUMER
+COUNSELOR 
+____________________________ 
+T. Jason Haas, Attorney No. 34983-29
+Senior Deputy Consumer Counselor
+Adam J. Kashin, Attorney No. 37960-49
+Deputy Consumer Counselor
+FILED 
+September 9,  2025
+INDIANA UTILITY  
+REGULATORY COMMISSION 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 1 of 24 
+ 
+REDACTED TESTIMONY OF WITNESS MICHAEL D. ECKERT 
+CAUSE NO. 46258 
+INDIANAPOLIS POWER & LIGHT COMPANY D/B/A AES INDIANA 
+ 
+I. 
+INTRODUCTION 
+Q: 
+Please state your name, business address, and employment capacity. 
+1 
+A: 
+My name is Michael D. Eckert, and my business address is 115 West Washington 
+2 
+Street, Suite 1500 South, Indianapolis, Indiana 46204. I am a Chief Technical 
+3 
+Advisor within the Electric Division for the Indiana Office of Utility Consumer 
+4 
+Counselor (“OUCC”). My qualifications are set forth in Appendix A of this 
+5 
+document. 
+6 
+Q: 
+Have you previously testified before the Indiana Utility Regulatory 
+7 
+Commission (“Commission” or “IURC”)? 
+8 
+A: 
+Yes. I have testified on behalf of the OUCC before the Commission in numerous 
+9 
+proceedings, including multiple rate cases filed by Indianapolis Power & Light 
+10 
+Company d/b/a AES Indiana (“AESI,” “Company,” or “Petitioner”) (Cause Nos. 
+11 
+44576, 45029 and 45911), Indiana Michigan Power Company (“I&M”) (Cause 
+12 
+Nos. 45235 and 45933), CenterPoint Energy Indiana South (“CEI South”) (Cause 
+13 
+No. 45990), Citizens Thermal Energy (“CTE”) (Cause Nos. 44349 and 44781), 
+14 
+Duke Energy Indiana, LLC (“Duke”) (Cause Nos. 45253, 45576, and 46038), and 
+15 
+Northern Indiana Public Service Company LLC (“NIPSCO”) (Cause Nos. 45159, 
+16 
+45772, and 46120). I have provided testimony in numerous dockets before the 
+17 
+Commission including Fuel Adjustment Clause (“FAC”) proceedings filed by 
+18 
+various utilities, including AESI (Cause No. 38703 FAC XXX), I&M (Cause No. 
+19 
+38702 FAC XX), CEI South (Cause No. 38708 FAC XXX), CTE (Cause No. 41969 
+20 
+FAC XX), Duke (Cause No. 38707 FAC XXX), and NIPSCO (Cause No. 38706 
+21 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 2 of 24 
+ 
+FAC XXX).  
+1 
+II. 
+PURPOSE OF TESTIMONY 
+Q: 
+What is the purpose of your testimony? 
+2 
+A: 
+I am sponsoring the OUCC’s overall revenue requirement recommendation in this 
+3 
+Cause. I incorporate the impact of other OUCC witnesses’ recommendations in the 
+4 
+revenue requirement calculations. I incorporate an adjustment to AESI’s test year 
+5 
+depreciation expense to account for the effect of the OUCC Witness James Garren’s 
+6 
+proposed depreciation changes. Based on the return on equity recommended by 
+7 
+OUCC witness Leja Courter and adjusted by OUCC witness Brian Latham, I 
+8 
+recommend a weighted average cost of capital (“WACC”) of 6.50%. 
+9 
+I testify regarding the OUCC’s evaluation and analyses of the revenue 
+10 
+requirement request in AESI’s case-in-chief. I explain how cost trackers continue 
+11 
+to shift the risk of operating expense increases and capital expenditures from AESI 
+12 
+to its ratepayers. I also explain specific adjustments and recommendations 
+13 
+regarding certain AESI requests, including its proposals for fuel cost, fuel 
+14 
+inventory, IURC Fee expense, and uncollectible accounts expense. 
+15 
+I recommend the Commission: 
+16 
+1) Reject AESI’s requested annual rate increase of $192.9 million (10.10%)1 and 
+17 
+decrease Petitioner’s current revenue requirement by $21.2 million;2  
+18 
+2) Reject Petitioner’s requested 10.7% authorized return on equity (“ROE”) and 
+19 
+instead approve an 8.5% ROE3 based on the ROE analysis (9.00%) by OUCC 
+20 
+witness Leja Courter and further modifications by OUCC witness Brian 
+21 
+Latham; 
+22 
+ 
+1 Direct Testimony of Brandi Davis-Handy, page 7, lines 1 - 2. 
+2 Schedule MDE-1, Phase 2, page 1 of 1. 
+3 Public’s Exhibit No. 8, Direct Testimony of Leja Courter, page 2, line 10. 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 3 of 24 
+ 
+3) Continue the current agreement allowing the OUCC and intervenors to file FAC 
+1 
+testimony 35 days after AESI files its petition and testimony;  
+2 
+4) Reject AESI’s proposed fuel cost adjustment; 
+3 
+5) Utilize the current IURC factor in effect to calculate IURC fee expense; 
+4 
+6) Utilize the OUCC’s uncollectible percentage in the calculation of uncollectible 
+5 
+expense; and 
+6 
+7) Approve the recommendations and proposals of the OUCC’s additional 
+7 
+witnesses. 
+8 
+Q: 
+To the extent you do not address a specific item, should that be construed to 
+9 
+mean you or the OUCC agree with Petitioner’s proposal? 
+10 
+A: 
+No. The scope of my testimony is limited to the specific items addressed herein. 
+11 
+Q: 
+Please describe the review you conducted to prepare your testimony. 
+12 
+A: 
+I reviewed AESI’s petition and prefiled testimony in this proceeding. I also read 
+13 
+relevant Commission Orders, reviewed Petitioner’s workpapers, and reviewed the 
+14 
+Minimum Standard Filing Requirement documents. I submitted data requests 
+15 
+(“DR”) and reviewed Petitioner’s responses to the OUCC’s and Intervenors’ DRs. 
+16 
+In addition, I reviewed consumer comments submitted in this Cause and 
+17 
+participated in meetings with OUCC staff. 
+18 
+III. 
+OUCC REVENUE REQUIREMENTS 
+Q: 
+Please summarize your findings regarding Petitioner’s proposed revenue 
+19 
+requirement. 
+20 
+A: 
+My compilation of the OUCC’s analyses shows AESI’s annual revenues should be 
+21 
+decreased by $21.2 million,4 or an approximately 1.00% decrease in its revenue 
+22 
+requirement. This contrasts with AESI’s $192.9 million, or 10.1%, requested 
+23 
+ 
+4 Schedule MDE-1, Phase 2, page 1 of 1. 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 4 of 24 
+ 
+increase.5 I recommend a revenue requirement decrease based on a 6.50% WACC.6 
+1 
+Q: 
+Please provide an overview of the OUCC’s process to evaluate AESI’s 
+2 
+proposed revenue requirements. 
+3 
+A: 
+As an Investor-Owned Utility (“IOU”), AESI’s rates and charges are regulated 
+4 
+under Ind. Code § 8-1-2-1, et seq. The OUCC compared the operating revenues, 
+5 
+operating expenses, rate base figures, capital structure, and net operating income 
+6 
+from AESI’s historic base period year ending December 31, 2024, to the     
+7 
+Unadjusted Forward Looking Test Year (2026) operating revenues, operating 
+8 
+expenses, rate base figures, capital structure, and net operating income. 
+9 
+Adjustments to the Unadjusted Forward Looking Test Year (2026) revenue and 
+10 
+expense data were generally made to reflect changes that will be and are projected 
+11 
+to occur by the end of the Adjusted Forward Looking Test Year (2026). The OUCC 
+12 
+also adjusted Petitioner’s forecasted rate base and proposed rate of return used in 
+13 
+calculating return on rate base. 
+ 
+14 
+Q: 
+AESI is proposing to implement its requested rate increase in two phases. Have 
+15 
+you prepared schedules for Phase 1 and Phase 2 to support and accompany 
+16 
+your testimony? 
+17 
+A: 
+Yes. The Phase 1 and Phase 2 schedules (MDE-1 through MDE-8) listed below are 
+18 
+attached to my testimony. (See Table MDE – 1). The schedules are also included 
+19 
+in a separate submission to the Commission in Microsoft Excel format with the 
+20 
+formulas intact.  
+21 
+Table MDE - 1 
+Schedule 
+Number 
+ 
+Phase 
+ 
+Schedule Name 
+MDE-1 
+1 
+Comparison of Petitioner's and OUCC Recommended Revenue 
+ 
+5 Direct Testimony of Brandi Davis-Handy, page 7, lines 1 - 2. 
+6 Schedule MDE-1, Phase 2, page 1 of 1. 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 5 of 24 
+ 
+Increase/(Decrease) as of December 31, 2025 
+MDE-4 
+1 
+Pro-Forma Income Statement for the Twelve months ended December 
+31, 2024, December 31, 2025, and December 31, 2026 
+MDE-5 
+1 
+Rate Base Summary as of December 31, 2025 
+MDE-6 
+1 
+Weighted Cost of Capital as of December 31, 2025 
+MDE-7 
+1 
+OUCC Revenue and Expense Adjustment as of December 31, 2025 
+MDE-1 
+2 
+Comparison of Petitioner's and OUCC Recommended Revenue 
+Increase/(Decrease) as of December 31, 2026 
+MDE-2 
+1 & 2 
+Balance Sheets as of December 31, 2024, December 31, 2025, and 
+December 31, 2026 
+MDE-3 
+1 & 2 
+Balance Sheets as of December 31, 2024, December 31, 2025, and 
+December 31, 2026 
+MDE-4 
+2 
+Pro-Forma Income Statement for the Twelve months ended December 
+31, 2026 
+MDE-5 
+2 
+Rate Base Summary as of December 31, 2026 
+MDE-6 
+2 
+Weighted Cost of Capital as of December 31, 2026 
+MDE-7 
+2 
+OUCC Revenue and Expense Adjustment as of December 31, 2026 
+MDE-8 
+1 & 2 
+OUCC Rate Base Adjustments as of December 31, 2025, and December 
+31, 2026 
+ 
+Q: 
+Please describe how you prepared Schedules MDE-2 and MDE-3. 
+1 
+A: 
+Schedules MDE-2 and MDE-3 are AESI’s 2024, 2025, and 2026 Balance Sheets 
+2 
+and Income Statements, respectively. These financial statement schedules are 
+3 
+copied directly from AESI’s Financial Exhibit. 
+4 
+Q: 
+Please describe Schedule MDE-4. 
+5 
+A: 
+Schedule MDE-4 is the Pro forma Income Statement reflecting AESI’s proposed 
+6 
+test year Pro forma Income Statement as of December 31, 2025, and December 31, 
+7 
+2026.   
+8 
+Q: 
+Please describe Schedule MDE-5. 
+9 
+A: 
+Schedule MDE-5 is the OUCC’s Original Cost Electric Rate Base as of December 
+10 
+31, 2025, and December 31, 2026. 
+11 
+Q: 
+Please describe Schedule MDE-6. 
+12 
+A: 
+Schedule MDE-6 is the OUCC’s WACC Calculation as of December 31, 2025, and 
+13 
+December 31, 2026. 
+14 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 6 of 24 
+ 
+Q: 
+Please describe Schedules MDE-7 and MDE-8. 
+1 
+A: 
+Schedule MDE-8 shows the OUCC’s Revenue and Expense Adjustment as of 
+2 
+December 31, 2025, and December 31, 2026. Schedule MDE-8 shows the OUCC’s 
+3 
+rate base adjustments as of December 31, 2025, and December 31, 2026.  
+4 
+Q: 
+What adjustment did you make to income taxes? 
+5 
+A: 
+My adjustment for income taxes represents the taxes on the Operating Income on 
+6 
+Schedule MDE-4. The adjustment is applied to net operating income at the statutory 
+7 
+state rate (4.9%) and the statutory federal rate (21%). These adjustments are shown 
+8 
+in my Schedules MDE-1 and Schedule MDE-7.   
+9 
+Q: 
+What are AESI’s capital structure and WACC proposals for the Adjusted 
+10 
+Forward-Looking Test Year ending December 31, 2026? 
+11 
+A: 
+AESI’s proposed capital structure consists of 47.33% long-term debt, 46.48% 
+12 
+common equity, 6.00% Cost Free Capital, and 0.18% for other capital. Using the 
+13 
+10.7% ROE AESI witness Adrien McKenzie recommends, and the 5.38% cost of 
+14 
+debt as of December 31, 2026, AESI’s proposed WACC is 7.52%.7  
+15 
+Q: 
+What is your recommended WACC? 
+16 
+A: 
+Based on Mr. Courter’s 9.0% ROE recommendation and Mr. Latham’s downward 
+17 
+adjustments for 1) affordability (30 basis points) and 2) ACE billing (20 basis 
+18 
+points), my proposed capital structure results in a WACC of 6.50%. (See Schedule 
+19 
+MDE-6).  
+20 
+Q: 
+Are you incorporating any adjustments to depreciation expense and 
+21 
+accumulated depreciation?  
+22 
+A: 
+Yes. I incorporate Mr. Garren’s proposed depreciation expense reduction of 
+23 
+ 
+7 AES Indiana Financial Exhibit AESI-CC, Schedule CC-2. 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 7 of 24 
+ 
+$62.893 million8 into my revenue requirement recommendation. 
+1 
+IV. 
+CURRENT RIDER IMPACT 
+Q: 
+How will the outcome of this case affect AESI’s current riders? 
+2 
+A: 
+After the Commission issues its order, AESI will continue to implement riders that 
+3 
+change rates quarterly, bi-annually, and annually through the FAC, Demand-Side 
+4 
+Management Adjustment (“DSMA”), Environmental Compliance Cost Recovery 
+5 
+Adjustment (“ECR”), Capacity Adjustment (“CAP”), Off-System Sales Margin 
+6 
+Adjustment (“OSS”), Regional Transmission Organization Adjustment (“RTO”), 
+7 
+and Transmission, Distribution and Storage System Improvement Charge 
+8 
+(“TDSIC”).  
+9 
+Q: 
+Do cost trackers shift risk from a utility to its ratepayers? 
+10 
+A: 
+Yes. Cost trackers shift the risk of increased operating expenses and capital 
+11 
+expenditure from utilities to their ratepayers. Trackers also reduce the effects of 
+12 
+regulatory lag, which would otherwise incentivize utilities to control costs and 
+13 
+evaluate expenditures to ensure costs are reasonable and prudent. In traditional 
+14 
+ratemaking, base rate cases motivate utilities to control costs between rate cases 
+15 
+because the utility bears the risk of higher costs. Trackers, on the other hand, allow 
+16 
+for more immediate recovery of costs. Overall, cost trackers provide real benefits 
+17 
+to utilities and their shareholders by reducing cost recovery risk and investors’ 
+18 
+earning uncertainties. 
+19 
+Q: 
+Have you calculated how AESI’s current trackers impact its residential 
+20 
+customers’ monthly bill based on 1,000 kWh per month usage as of August 20, 
+21 
+2025? 
+22 
+ 
+8 Direct Testimony of Witness James Garren, page 6, Table JSG - 1. 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 8 of 24 
+ 
+A: 
+Yes. Table MDE-2 below illustrates the tracker impacts on the monthly bill of an 
+1 
+AESI residential customer using 1,000 kWh per month. The current base rate 
+2 
+portion of the monthly bill totals $136.62, which includes the customer charge and 
+3 
+energy charge portion of the bill (lines 1-3). The total monthly bill, including 
+4 
+trackers, is $158.26. Therefore, 13.67% of a typical AESI residential customer’s 
+5 
+monthly bill is associated with the utility’s numerous trackers (lines 4-10). 
+6 
+Table MDE - 2: Residential Customer Bill Calculation as of August 20, 2025 
+Line 
+No. 
+Description 
+kWh 
+Rate 
+$ 
+% of Bill 
+1 
+Customer Charge 
+N/A 
+N/A 
+$17.00 
+10.74% 
+2 
+Energy Charge (First 500 kWh 
+per month) 
+500 
+$0.125421 
+62.71 
+39.62% 
+3 
+Energy Charge (Second 500 kWh 
+per month) 
+500 
+$0.113822  
+ 56.91 
+35.96% 
+4 
+Fuel Charge 
+1,000 
+$0.001223 
+1.22 
+0.77% 
+5 
+Demand Side Management 
+Adjustment 
+1,000 
+$0.005404  
+5.40  
+3.41% 
+6 
+ECR Adjustment 
+1,000 
+$0.009476  
+9.48  
+5.99% 
+7 
+Capacity Adjustment 
+1,000 
+($0.000519)  
+(0.52)  
+(0.33)% 
+8 
+Off-System Sales Margin 
+1,000 
+$0.004121 
+4.12 
+2.60% 
+9 
+Regional Transmission 
+Organization Adjustment 
+1,000 
+$0.000044 
+0.04  
+0.03% 
+10 
+TDSIC Adjustment 
+1,000 
+$0.001893  
+1.89  
+1.20% 
+11 
+Total  
+ 
+ 
+$158.26 
+100.00% 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Description 
+ 
+ 
+$ 
+% of Bill 
+12 
+Base Charge 
+ 
+ 
+$136.62 
+86.33% 
+13 
+Non-FAC Trackers 
+ 
+ 
+20.42 
+12.90% 
+14 
+FAC 
+ 
+ 
+1.22 
+0.77% 
+15 
+Total 
+ 
+ 
+$158.26 
+100.00% 
+V. 
+RIDERS 
+Q: 
+Does AESI propose changing any of its current riders and/or adding a new 
+7 
+rider? 
+8 
+A: 
+Yes. Currently, AESI has eight established riders and two new proposed riders. 
+9 
+AESI is proposing the following for each of its riders: 
+10 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 9 of 24 
+ 
+1) TDSIC Rider (Rider 3): AESI proposes no change; 
+1 
+ 
+2) FAC Rider (Rider 6): Petitioner is proposing a new base cost of fuel of 
+2 
+$0.044940 (current is $0.039027); 
+3 
+ 
+3) Environmental Compliance Cost Recovery Adjustment Rider (Rider 20): AESI 
+4 
+is proposing to establish a new benchmark level in base rates for consumable 
+5 
+expenses; 
+6 
+ 
+4) DSMA Rider (Rider 22): AESI proposes no change; 
+7 
+ 
+5) CAP Rider (Rider 24): AESI is proposing a new benchmark level; 
+8 
+ 
+6) OSS Rider (Rider 25): AESI proposes a new benchmark level; and  
+9 
+ 
+7) RTO Rider (Rider 26): AESI is proposing a new benchmark level; and 
+ 
+10 
+8) GPR Rider (Rider 21): AESI proposes no change. 
+ 
+Q: 
+Is OUCC witness Brittany Baker recommending denial of AESI’s proposed 
+11 
+property tax rider? 
+12 
+A: 
+Yes. Ms. Baker’s testimony discusses why the proposed property tax rider should 
+13 
+be denied. 
+14 
+Q: 
+Did you review AESI’s proposed Phase-In Adjustment Rider? 
+15 
+A: 
+Yes. I do not oppose AESI’s proposed Phase-In Adjustment Rider (Rider 28).  
+16 
+Q: 
+Do you have any recommendations regarding the FAC? 
+17 
+A: 
+Yes. The current agreement that allows the OUCC and intervenors to file FAC 
+18 
+testimony 35 days after AESI files its petition and testimony should be continued.  
+19 
+Q: 
+What do you recommend regarding the cost allocation of AESI’s proposed 
+20 
+trackers? 
+21 
+A: 
+I recommend the Commission approve OUCC witness Michael Deupree’s 
+22 
+proposed customer class revenue allocation factors for all AESI riders. 
+23 
+VI. 
+FUEL OIL INVENTORY LEVEL (GALLONS) 
+Q: 
+Does the OUCC agree with AESI’s proposed Harding Street fuel oil inventory 
+24 
+level of 1,000,000 gallons?  
+25 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 10 of 24 
+ 
+A: 
+No. A reasonable amount of fuel oil inventory must be maintained and reflected in 
+1 
+customers’ base rates. AESI is allowed to earn a return on its fuel oil inventory, 
+2 
+which is different than the fuel oil costs recovered through the FAC. AESI’s 
+3 
+Harding Street fuel oil inventory has remained relatively flat since December 2022. 
+4 
+AESI’s Harding Street fuel oil inventory at the end of calendar year 2022 was 
+5 
+853,429 gallons9 ($1,557,472).10 At the end of the historical year (December 31, 
+6 
+2024) its fuel oil inventory was 810,534511 tons ($1,725,958).12  
+7 
+Q: 
+Please explain how you calculated your recommended fuel oil inventory level. 
+8 
+ A: 
+I calculated the fuel oil inventory level by multiplying 800,128 gallons of fuel oil 
+9 
+by AESI’s proposed price per gallon of $2.13 to arrive at an inventory balance of 
+10 
+$1,703,801. My recommended fuel oil inventory is based on the average of AESI’s 
+11 
+December 31, 2022, 2023, and 2024 fuel oil inventory balances, as shown in Table 
+12 
+MDE – 3. 
+13 
+Table MDE- 3 
+Fuel Oil Inventory 
+ 
+Description 
+2022 
+Actual 
+2023 
+Actual 
+2024 
+Forecasted 
+2025 
+Forecasted 
+2026 
+Forecasted 
+OUCC 
+Amount 
+Gallons 
+853,429 
+736,423 
+810,534 
+1,000,000 
+1,000,000 
+800,128 
+Price 
+$1.82 
+$1.79 
+$2.13 
+$2.13 
+$2.13 
+$2.13 
+Expense 
+$1,557,472 
+$1,319,859 
+$1,725,958 
+$2,129,409 
+$2,129,409 
+$1,703,801 
+ 
+Q: 
+What amount of fuel oil inventory do you recommend be included in rate base?  
+14 
+A: 
+An average of the three most recent complete calendar years would be a reasonable 
+15 
+fuel oil inventory level for Petitioner to include in rate base because this average is 
+16 
+ 
+9 Attachment MDE - 1:  46258 OUCC DR 18-2. 
+10 Id. 
+11 46258_AESIN_Financial Exhibits and Workpapers_060325.xls, Tab: RB7-WP2-Fuel Oil Inventory Ad. 
+12 Id. 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 11 of 24 
+ 
+based on actual historical data. I am recommending an inventory level of 800,128 
+1 
+tons or $1,703,801. Thus, I am recommending an additional downward adjustment 
+2 
+of $425,608 to AESI's proposed downward adjustment of $741,000. 
+3 
+VII. 
+FUEL COST 
+Q: 
+Do you accept AESI’s requested base cost of fuel?  
+4 
+A: 
+No. AESI’s proposed base cost of fuel is too high in light of current economic 
+5 
+conditions and customer affordability concerns. AESI is proposing a $0.044940 per 
+6 
+kWh base cost of fuel as compared to the currently approved $0.039027 per kWh 
+7 
+base cost of fuel. AESI’s proposal will increase fuel costs included in base rates by 
+8 
+$35.627 million.  
+9 
+Q: 
+How does AESI’s proposed base cost of fuel compare to other utilities?  
+10 
+A: 
+AESI’s proposed base cost of fuel will be the highest in Indiana, if approved. 
+11 
+AESI’s current base cost of fuel is the second highest. (See Table MDE – 4) 
+12 
+Table MDE - 4 
+Utility Name 
+Base Cost of Fuel 
+Cause Number 
+Order Date 
+AESI (proposed) 
+$0.044940 per kWh 
+46258 
+NA 
+AESI (current) 
+$0.039027 per kWh 
+45911 
+April 17, 2024 
+CenterPoint South 
+$0.044308 per kWh 
+45990 
+December 5, 2023 
+Duke Energy Indiana 
+$0.034378 per kWh 
+46038 
+April 4, 2024 
+Indiana Michigan  
+$0.012981 per kWh 
+45933 
+May 8, 2024 
+NIPSCO 
+$0.027166 per kWh 
+46120 
+September 12, 2024 
+ 
+Q: 
+How much of AESI’s proposed operations and maintenance expense and 
+13 
+operating expenses consist of proposed fuel costs? 
+14 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 12 of 24 
+ 
+A: 
+AESI’s proposed fuel costs are $597.427 million. They constitute 52.90% of total 
+1 
+operations and maintenance expense and 36.96% of total operating expenses. 
+2 
+Q: 
+Will AESI be more susceptible to natural gas market rates once Petersburg 
+3 
+Units 3 and 4 are retired? 
+4 
+A: 
+Yes. Once Petersburg Units 3 and 4 are no longer using coal, AESI’s power sources 
+5 
+will be limited to gas generation, Purchased Power Agreements, and MISO market 
+6 
+purchases. AESI’s O&M Schedule 2 shows the total dollar amount associated with 
+7 
+each type of generation. I have included parts of O&M Schedule 2 in the Table 
+8 
+below (Table MDE – 5). I have also added a column showing the percentage of 
+9 
+each type of power compared to total power. AESI’s projected fuel sources subject 
+10 
+to market prices and variations and account for almost 90.0% of its generation. 
+11 
+Table MDE-5 
+ 
+Source 
+AESI Proposed 
+Fuel/Power Expense 
+Percent to 
+Total 
+Coal and oil generation 
+$ 0 
+0.00% 
+Gas generation 
+530,451 
+77.71% 
+Other generation- internal combustion 
+0 
+0.00% 
+Wind generation 
+0 
+0.00% 
+Purchases through MISO: 
+ 
+ 
+Wind purchase power agreement 
+purchases 
+54,668 
+8.01% 
+Non-wind PPA market purchases 
+58,987 
+8.64% 
+MISO components of cost of fuel 
+14,627 
+2.14% 
+Purchased power other than MISO 
+(solar) 
+23,879 
+3.50% 
+Total cost of fuel 
+$682,612 
+100.00% 
+ 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 13 of 24 
+ 
+Q: 
+What is your recommendation? 
+1 
+A: 
+I recommend the Commission disallow AESI’s requested fuel increase of $35.627 
+2 
+million. 
+3 
+Q: 
+What base cost of fuel do you recommend? 
+4 
+A: 
+The OUCC’s recommended cost of fuel is $0.42260 after exclusion of AESI’s 
+5 
+proposed fuel cost increase of $35.627 million. This number is calculated by 
+6 
+dividing the Unadjusted test year fuel cost of $561.800 million13 by the Adjusted 
+7 
+MWh source of 13,293,984.14 
+8 
+Q: 
+Why should the Commission maintain the current base cost of fuel as opposed 
+9 
+to raising it to the level AESI proposed? 
+10 
+A: 
+Disallowing AESI’s requested increase would protect consumers from higher base 
+11 
+rates as lower base rates are more affordable for consumers in the near-term. The 
+12 
+Commission should prioritize keeping electricity affordable for all customers. 
+13 
+Further, this provides protection to consumers if the market prices used in AESI’s 
+14 
+calculation of its proposed base cost of fuel do not materialize. In addition, AESI 
+15 
+is in a better position if recovery is delayed rather than ratepayers prepaying for 
+16 
+fuel cost and receiving credit later.  
+17 
+Q: 
+How is AESI able to recover all its fuel costs through its FAC proceedings? 
+18 
+A: 
+The FAC proceeding allows utilities to recover the actual cost of fuel and purchased 
+19 
+power on a dollar-for-dollar basis. AESI makes a quarterly filing regarding its 
+20 
+forecasted fuel costs and the recovery of its past fuel costs. If AESI has over-
+21 
+recovered its fuel costs, it will provide consumers a credit and if it has under-
+22 
+recovered its fuel costs, it will charge customers to recover the amount under-
+23 
+ 
+13 AES Indiana Financial Exhibit AESI-OPER, Schedule OM2. 
+14 Id. 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 14 of 24 
+ 
+recovered. Each FAC filing is subject to OUCC review and IURC approval. This 
+1 
+ensures the estimates and charges are reasonable, accurate, and consistent with 
+2 
+Indiana law. Once the Commission approves the FAC rate, the rate is charged to 
+3 
+the utility’s customers, which results in a charge or credit. 
+4 
+Q: 
+Please explain how the charge or credit is determined. 
+5 
+A: 
+In general, it consists of four parts. First, the forecasted cost of fuel is determined. 
+6 
+Second, the over/under recovery of past fuel costs is determined. Third, the 
+7 
+over/under recovery and the forecasted fuel costs are added together to determine 
+8 
+the adjusted fuel charge. Fourth, the base cost of fuel as determined by the 
+9 
+Commission is subtracted from the adjusted fuel charge to determine the fuel 
+10 
+adjustment credit/charge factor to be applied to customer bills. 
+11 
+Q: 
+What do you recommend regarding AESI’s fuel cost? 
+12 
+A: 
+I recommend the Commission reject AESI’s proposed embedded fuel cost increase 
+13 
+of $35.627 million as it will help alleviate the immediate financial burden on 
+14 
+ratepayers. Petitioner will not be harmed by this reduction because it will still 
+15 
+recover and collect actual fuel costs pursuant to Ind. Code 8-1-2-42. 
+16 
+VIII. 
+FUEL COST – REVENUE ADJUSTMENT 
+Q: 
+Did you make an adjustment to increase fuel costs to reflect the additional fuel 
+17 
+associated with the with OUCC Witness Derek Leader’s revenue adjustment? 
+18 
+A: 
+Yes. OUCC Witness Leader increased sales by $229,851 (2,126,250 kWh). My 
+19 
+adjustment increases fuel costs $89,855 to reflect the additional fuel expense 
+20 
+associated with the increase sales. This amount was calculated by multiplying the 
+21 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 15 of 24 
+ 
+increase in kWh of 2,126,250 by the OUCC’s proposed base cost of fuel of 
+1 
+$0.042260 as depicted in Schedule MDE-7, page 3. 
+2 
+IX. 
+STORM DAMAGE AND RESTORATION 
+Q: 
+Did any thunderstorms affect AESI’s customers during the first half of 2025?    
+3 
+A: 
+Yes. AESI classified a thunderstorm that occurred on April 2, 2025,15 as a major, 
+4 
+level 3 event.  
+5 
+Q: 
+What reporting requirements did AESI agree to in its last rate case? 
+6 
+A: 
+In the Settlement Agreement in Cause No. 45911, AESI agreed to: 
+7 
+1) A 2,500 customer threshold for filing reports under 170 IAC 4-l-23(b)(l); 
+8 
+ 
+2) Continuous reports until customer interruptions drop to zero; 
+9 
+ 
+3) Meet with the OUCC and additional interested Settling Parties to collaborate 
+10 
+on any additional modifications to its storm reporting requirements and/or 
+11 
+related procedures; and 
+12 
+ 
+4) Submit a report to the Commission with any additional recommendations. 
+13 
+ 
+Q: 
+Did AESI report the number of crews it used in its Major Storm Outage 
+14 
+reports to the Commission? 
+15 
+A: 
+Yes. In the “Notes” section16 of the reports, AESI identified the number of crews it 
+16 
+used to repair its systems. The crews were identified by types of crews such AES 
+17 
+(Line/UG and Trouble), Contractor Crews (Field and vegetation), and Mutual 
+18 
+ 
+15 Major Storms are defined as Level 3 and Level 4. 
+16 Attachment MDE – 2, Report of Outage – April 2, 2025. 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 16 of 24 
+ 
+Assistance (Utility and Contractor Crews). In addition, AESI provided a “Storm 
+1 
+Restoration Major Overview.” 
+2 
+Q: 
+Did the OUCC meet with AESI and other consumer parties to address 
+3 
+additional modifications to Petitioner’s storm reporting requirements? 
+4 
+A: 
+Yes. In addition, AESI filed a report17 with the Commission on July 16, 2024. 
+5 
+Q: 
+What do you recommend? 
+6 
+A: 
+I recommend AESI continue to: 
+7 
+1) Report storm outages affecting at least 2,500 customers, pursuant to 170 IAC 
+8 
+4-l-23(b)(l); 
+9 
+ 
+2) Continue reports until customer interruptions drop to zero; and 
+10 
+ 
+3) State the number and types of crews it used to repair the system following each 
+11 
+outage. 
+12 
+X. 
+CUSTOMER SUPPORT PROGRAMS 
+Q: 
+Is AESI proposing to continue the customer support programs it agreed to 
+13 
+implement in  Cause No. 45911? 
+14 
+A: 
+Yes. On pages 19 and 20 of her direct testimony, Petitioner’s witness Brandi Davis-
+15 
+Handy testified the Company proposes to maintain the customer support practices 
+16 
+implemented as a result of the approved Cause No. 45911. The support practices 
+17 
+AESI proposes to continue are: 1) Low Income Home Energy Assistance Program 
+18 
+ 
+17 AES Indiana Storm Reporting Collaborative Compliance Filing, IURC Cause No. 45911, July 16, 2024. 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 17 of 24 
+ 
+(“LIHEAP”) Customer Deposits; 2) Residential Late Payment Charge; 3) 
+1 
+Disconnection/Reconnection; and 4) Medical Hold/Medical Alert. 
+2 
+Q: 
+ Please describe these four programs. 
+3 
+A: 
+The four programs are18: 
+4 
+1) LIHEAP Customer Deposit. If an applicant for residential service or current 
+5 
+customer is qualified by a Community Action Agency to participate in the 
+6 
+LIHEAP program, the residential deposit will be limited to $50.00.  
+7 
+ 
+2) Residential Late Payment Charge. Once within a rolling twelve-month 
+8 
+period, the Company will waive the late payment charge on a delinquent bill, 
+9 
+provided payment is tendered not later than the last date for payment of the net 
+10 
+amount of the next succeeding month’s bill. 
+11 
+ 
+3) Disconnection/Reconnection. With respect to disconnections due to non-
+12 
+payment, AESI will not disconnect service for any residential customer on 
+13 
+Fridays, Saturdays, Sundays, and the following Holidays: New Year’s Day, 
+14 
+Memorial Day, Independence Day, Labor Day, Thanksgiving Day, Friday after 
+15 
+Thanksgiving Day, December 24, and Christmas Day. The fee for remote 
+16 
+disconnection continues to be set at $0. The fee for remote reconnection remains 
+17 
+$3; and 
+18 
+ 
+4) Medical Hold/Medical Alert. If the customer is a LIHEAP-Qualified 
+19 
+Participant, the protection from disconnection for Medical Hold will continue 
+20 
+to reflect the increase from 20 days to 30 days. A Medical Hold will not require 
+21 
+proof of the reason for the hold. Before any disconnection, the Company will 
+22 
+continue to place a collection call to such customer that prompts the customer 
+23 
+to contact the Company to establish an installment plan. If a residential 
+24 
+customer is on the Medical Hold or Medical Alert Program, or a participant in 
+25 
+the AMI Opt-Out Program, or does not have an AMI meter, or has not provided 
+26 
+a phone number or email address, AESI will make an on-premises visit on the 
+27 
+day of disconnect. 
+28 
+ 
+ 
+18 Direct Testimony of Brandi Davis-Handy, page 19, line 10 through page 20, line 4. 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 18 of 24 
+ 
+Q: 
+Does the OUCC support AESI’s proposed continuation of these four customer 
+1 
+support programs? 
+2 
+A: 
+Yes.  
+3 
+XI. 
+OTHER CONCERNS 
+Q: 
+Did the Commission issue an order addressing the effective date of approved 
+4 
+rate changes? 
+5 
+A: 
+Yes. In Cause No. 45772, a recent electric rate case for NIPSCO, the OUCC and 
+6 
+the NIPSCO Industrial Group filed a motion requesting the Commission require 
+7 
+NIPSCO to apply its new rates and charges on a prospective basis for service 
+8 
+rendered after the effective date of the new rates, rather than to bills it issued after 
+9 
+the effective date which included service rendered before the effective date. The 
+10 
+Commission granted the motion on October 11, 2023, finding that “neither the 
+11 
+Settlement Agreement nor the August Order approving that Settlement Agreement 
+12 
+authorized NIPSCO to implement the new rates on a bills-rendered basis, as 
+13 
+opposed to on a consumption basis.” (Cause No. 45772, Order of the Commission 
+14 
+on Motion to Enforce at 2 (Oct. 11, 2023)). 
+15 
+Q: 
+Should AESI also implement the rates approved in this Cause on a prospective 
+16 
+basis to service rendered after the rates become effective? 
+17 
+A: 
+Yes. The OUCC requests the Commission to find that any rate change approved for 
+18 
+a jurisdictional utility only apply on the basis of service rendered on or after the 
+19 
+effective date of the rate change, and not to bills issued after the effective date 
+20 
+because these may include service provided before the effective date. 
+21 
+XII. 
+CUSTOMER SATISFACTION 
+Q: 
+Have you reviewed public data regarding AESI’s customer satisfaction levels? 
+22 
+A: 
+Yes. I reviewed public J.D. Power Customer Satisfaction surveys regarding AESI. 
+23 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 19 of 24 
+ 
+Public J.D. Power information on Overall Residential Customer Satisfaction shows 
+1 
+AESI has ranked anywhere from above the segment average (4th) to below the 
+2 
+segment average (12th) out of the 16 utilities in the “Midwest Region,” “Midsize 
+3 
+Segment” during the last five years (2020-2024).19 Table MDE-6 shows how AESI 
+4 
+compares to the Midwest Segment Average, according to J.D. Power.  
+5 
+Table MDE - 6 
+Midwest Midsize Utility Comparison 
+ 
+Year 
+ 
+AESI Score 
+Midwest Segment 
+Average 
+ 
+Rank 
+Total 
+Utilities 
+2024 
+671 
+692 
+12 
+16 
+2023 
+704 
+706 
+11 
+16 
+2022 
+768 
+769 
+4 
+7 
+2021 
+735 
+746 
+10 
+16 
+2020 
+741 
+747 
+9 
+16 
+ 
+ 
+19 2024: https://www.jdpower.com/business/press-releases/2014-electric-utility-residential-customer-
+satisfaction-study. 
+2023: https://www.jdpower.com/business/press-releases/2023-electric-utility-residential-customer-
+satisfaction-study. 
+2022: https://www.jdpower.com/business/press-releases/2022-electric-utility-residential-customer-
+satisfaction-study.  
+2021: https://www.jdpower.com/business/press-releases/2021-electric-utility-residential-customer-
+satisfaction-study.  
+2020: https://www.jdpower.com/business/press-releases/2020-electric-utility-residential-customer-
+satisfaction-study.  
+ 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 20 of 24 
+ 
+Public J.D. Power information on Overall Residential Customer Satisfaction shows 
+1 
+AES Indiana has ranked anywhere from 3rd to 4th lowest among the five Indiana 
+2 
+electric IOUs during the last five years (2020-2024).20 
+3 
+Table MDE - 7 
+Indiana Utility Comparison 
+Year 
+AESI 
+CEI South 
+Duke 
+      I&M 
+NIPSCO 
+2024 
+671 
+556 
+712 
+727 
+700 
+2023 
+704 
+598 
+726 
+728 
+705 
+2022 
+768 
+NA 
+783 
+787 
+713 
+2021 
+735 
+651 
+757 
+729 
+752 
+2020 
+741 
+690 
+764 
+752 
+743 
+ 
+Q: 
+Have the OUCC and Commission received significant public input in this 
+4 
+proceeding? 
+5 
+A: 
+Yes. The OUCC has received more than 6,700 written consumer comments in this 
+6 
+proceeding, while all four of the IURC’s public field hearings were well attended. 
+7 
+OUCC witness Ashley Bishop’s testimony discusses the comments and field 
+8 
+hearings in more detail.  
+9 
+XIII. 
+UNCOLLECTIBLE ACCOUNTS EXPENSE 
+Q: 
+Did you review Petitioner's adjustment to uncollectible accounts expense? 
+10 
+A: 
+Yes. AESI used a ten-year (2014 through 2023) average of uncollectible expense 
+11 
+ 
+20 2024: https://www.jdpower.com/business/press-releases/2014-electric-utility-residential-customer-
+satisfaction-study. 
+2023: https://www.jdpower.com/business/press-releases/2023-electric-utility-residential-customer-
+satisfaction-study. 
+2022: https://www.jdpower.com/business/press-releases/2022-electric-utility-residential-customer-
+satisfaction-study.  
+2021: https://www.jdpower.com/business/press-releases/2021-electric-utility-residential-customer-
+satisfaction-study.  
+2020: https://www.jdpower.com/business/press-releases/2020-electric-utility-residential-customer-
+satisfaction-study.  
+ 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 21 of 24 
+ 
+percentage to calculate its uncollectible expense percentage, which it used in its 
+1 
+calculation of pro forma uncollectible expense. In addition, AESI removed the high 
+2 
+(2023) and low (2020) amounts as extraordinary. AESI calculated its uncollectible 
+3 
+expense by multiplying forecasted electric operating revenue (less Off-System 
+4 
+Sales, Rent Revenues, and Miscellaneous Electric Revenues) by the uncollectible 
+5 
+expense percentage to arrive at pro forma uncollectible expense. 
+6 
+Q: 
+Do you agree with Petitioner’s Uncollectible Account Expense methodology? 
+7 
+A: 
+Yes. However, I do not agree with AESI’s calculation of the uncollectible account 
+8 
+expense percentage that it used in its calculation.  
+9 
+Q: 
+Why do you disagree with Petitioner’s uncollectible account expense 
+10 
+percentage? 
+11 
+A: 
+During my review of AESI's schedules and workpapers, I determined the Company 
+12 
+should have removed three years of uncollectible expense percentage as being 
+13 
+extraordinary instead of two. The 2021 uncollectible expense percentage is 
+14 
+significantly higher than the other years used in the calculation (See Table MDE-
+15 
+8) and should be removed for the same reason AESI removed the uncollectible 
+16 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 22 of 24 
+ 
+expenses for 2020 and 2023 to make the uncollectible expense percentage 
+1 
+accurately representative of recent history. 
+2 
+Table MDE-8 
+ 
+Year 
+ 
+Revenues 
+Net Write 
+Offs 
+Uncollectible 
+Account (%) 
+AESI 
+Calculation 
+OUCC 
+Calculation 
+2023 
+1,555,183,632 
+7,763,948 
+0.4992 % 
+ 
+ 
+2022 
+1,600,496,720 
+7,008,000 
+0.4379 % 
+0.4379 % 
+0.4379 % 
+2021 
+1,369,893,785 
+6,448,000 
+0.4707 % 
+0.4707 % 
+ 
+2020 
+1,279,699,639 
+3,627,000 
+0.2834 % 
+ 
+ 
+2019 
+1,385,238,075 
+5,528,000 
+0.3991 % 
+0.3991 % 
+0.3991 % 
+2018 
+1,386,038,216 
+6,017,000 
+0.4341 % 
+0.4341 % 
+0.4341 % 
+2017 
+1,317,627,722 
+5,389,000 
+0.4090 % 
+0.4090 % 
+0.4090 % 
+2016 
+1,309,006,380 
+4,255,000 
+0.3251 % 
+0.3251 % 
+0.3251 % 
+2015 
+1,230,781,193 
+3,851,000 
+0.3129 % 
+0.3129 % 
+0.3129 % 
+2014 
+1,229,651,882 
+4,758,000 
+0.3869 % 
+0.3869 % 
+0.3869 % 
+Total 
+ 
+ 
+ 
+0.3994% 
+0.3891% 
+ 
+Q: 
+What is your adjustment to uncollectible expense? 
+3 
+ A: 
+My adjustment reduces uncollectible expense by $1.042 million as opposed to 
+4 
+Petitioner’s proposed adjustment increase of $848,000. 
+5 
+XIV. 
+PUBLIC UTILITY FEE 
+Q: 
+Please explain your adjustment to the Indiana IURC fee rate. 
+6 
+A: 
+In its filing, AESI used an IURC Fee rate of $0.1750 percent. The currently 
+7 
+approved IURC fee rate is $0.1456147 percent for the period covering July 1, 2025, 
+8 
+through June 30, 2026. I have used the current IURC fee of $0.1456147 in my 
+9 
+calculation of the Present Rate and Pro Forma Proposed IURC Fee Expense 
+10 
+because that rate is fixed, known, and measurable. 
+11 
+XV. 
+AMORTIZATION EXPENSE 
+Q: 
+What should the Commission require AESI to do when the amortization 
+12 
+period ends? 
+13 
+A: 
+I recommend the Commission require AESI to reduce its base rates to account for 
+14 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 23 of 24 
+ 
+the end of the amortization of regulatory assets upon the amortization period 
+1 
+expiring. AESI has proposed this reduction be through its credit rider, which the 
+2 
+OUCC does not oppose. 
+3 
+XVI. 
+RECOMMENDATIONS 
+Q: 
+Please summarize your recommendations. 
+4 
+A: 
+I recommend the Commission: 
+5 
+1) Reject AESI’s requested annual rate increase of $192.9 million (10.10%)21 
+6 
+and decrease Petitioner’s current revenue requirement by $21.2 million; 
+7 
+2) Reject Petitioner’s requested 10.7% authorized ROE and approve an 8.5% 
+8 
+ROE based on Mr. Courter’s ROE analysis (9.0%) and Mr. Latham’s further 
+9 
+modifications; 
+10 
+3) Continue the current agreement that allows the OUCC and intervenors to 
+11 
+file FAC testimony 35 days after AESI files its petition and testimony;  
+12 
+4) Reject Petitioner’s adjustment to fuel cost; 
+13 
+5) Utilize the IURC Factor and the uncollectible percentage recommended by 
+14 
+the OUCC; 
+15 
+6) Approve modifications to certain depreciation rates as recommended by Mr. 
+16 
+Garren; and 
+17 
+7) Approve the recommendations of the OUCC’s additional witnesses. 
+18 
+ 
+Q: 
+Does this conclude your testimony? 
+19 
+A: 
+Yes. 
+ 
+20 
+ 
+21 Direct Testimony of Brandi Davis-Handy, page 6, lines 1 - 2. 
+ 
+Public Exhibit No. 2 
+Cause No. 46258 
+Page 24 of 24 
+ 
+APPENDIX A – QUALIFICATIONS OF MICHAEL D. ECKERT 
+Q: 
+Please describe your educational background and experience. 
+1 
+A: 
+I graduated from Purdue University in West Lafayette, Indiana, in December 1986, 
+2 
+with a Bachelor of Science degree, majoring in Accounting. I passed the Certified 
+3 
+Public Accountant Exam. Upon graduation, I worked as a Field Auditor with the 
+4 
+Audit Bureau of Circulation in Schaumburg, Illinois, until October 1987. In 
+5 
+December 1987, I accepted a position as a Staff Accountant with the OUCC. In 
+6 
+May 1995, I was promoted to Principal Accountant, and in December 1997, I was 
+7 
+promoted to Assistant Chief Accountant. As part of the OUCC’s reorganization, I 
+8 
+accepted the position of Assistant Director of the OUCC’s Telecommunications 
+9 
+Division in July 1999. From January 2000 through May 2000, I was the Acting 
+10 
+Director of the Telecommunications Division. From January 2000 through May 
+11 
+2000, I was the Acting Director of the Telecommunications Division. During an 
+12 
+OUCC reorganization, I accepted a position as a Senior Utility Analyst, and in 
+13 
+September 2017, I was promoted to Assistant Director of the OUCC’s Electric 
+14 
+Division. In February 2022, I was promoted to Director of the Electric Division. In 
+15 
+November 2024, I accepted the position of Chief Technical Advisor. As part of my 
+16 
+continuing education, I have attended the National Association of Regulatory 
+17 
+Utility Commissioners (“NARUC”) two-week seminar in Lansing, Michigan. I 
+18 
+attended NARUC’s Spring 1993 and 1996 seminar on the system of accounts. In 
+19 
+addition, I attended several CPA sponsored courses and the Institute of Public 
+20 
+Utilities Annual Conference in December 1994 and December 2000. 
+21 
+Phase 1:
+Schedule Name:
+Schedule MDE - 1
+Schedule MDE - 2
+Schedule MDE - 3
+Schedule MDE - 4
+Schedule MDE - 5
+Schedule MDE - 6
+Schedule MDE - 7
+OUCC Rate Base Adjustment as of December 31, 2025
+Schedule MDE - 8
+Phase 2:
+Schedule MDE - 1
+Schedule MDE - 2
+Schedule MDE - 3
+Schedule MDE - 4
+Schedule MDE - 5
+Schedule MDE - 6
+Schedule MDE - 7
+OUCC Rate Base Adjustment as of December 31, 2026
+Schedule MDE - 8
+Balance Sheets as of December 31, 2024, December 31, 2025, and December 31, 2026
+Pro-Forma Income Statement for the Twelve months ended December 31, 2026
+Rate Base Summary as of December 31, 2026
+Weighted Cost of Capital as of December 31, 2026
+OUCC Rate Base Adjustments as of December 31, 2025 and December 31, 2026
+Pro-Forma Income Statement for the Twelve months ended December 31, 2025
+Rate Base Summary as of December 31, 2025
+Weighted Cost of Capital as of December 31, 2025
+OUCC Rate Base Adjustments as of December 31, 2025 and December 31, 2026
+Comparison of Petitioner's and OUCC Recommended Revenue Increase/(Decrease) as of 
+December 31, 2026
+Balance Sheets as of December 31, 2024, December 31, 2025, and December 31, 2026
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Cover and Index
+Comparison of Petitioner's and OUCC Recommended Revenue Increase/(Decrease) as of 
+December 31, 2025
+Balance Sheets as of December 31, 2024, December 31, 2025, and December 31, 2026
+Balance Sheets as of December 31, 2024, December 31, 2025, and December 31, 2026
+Phase 1:
+Schedule Name:
+Schedule MDE - 1
+Schedule MDE - 2
+Schedule MDE - 3
+Schedule MDE - 4
+Schedule MDE - 5
+Schedule MDE - 6
+Schedule MDE - 7
+OUCC Rate Base Adjustment as of December 31, 2025
+Schedule MDE - 8
+Pro-Forma Income Statement for the Twelve months ended December 31, 2025
+Rate Base Summary as of December 31, 2025
+Weighted Cost of Capital as of December 31, 2025
+OUCC Rate Base Adjustments as of December 31, 2025 and December 31, 2026
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Cover and Index
+Comparison of Petitioner's and OUCC Recommended Revenue Increase/(Decrease) as of 
+December 31, 2025
+Balance Sheets as of December 31, 2024, December 31, 2025, and December 31, 2026
+Balance Sheets as of December 31, 2024, December 31, 2025, and December 31, 2026
+Schedule MDE - 1
+Phase 1
+Page 1 of  1
+Line 
+No.
+Description
+AES Indiana 
+Fee/Rate
+OUCC 
+Fee/Rate
+AES Indiana Revenue 
+Inc/(Dec)
+OUCC Revenue 
+Inc/(Dec)
+OUCC 
+Schedule 
+Reference
+1
+ Net Original Cost Rate Base  
+4,977,153
+$                  
+4,949,886
+$                      
+Schedule 5
+2
+ Rate of Return  
+7.36%
+6.40%
+Schedule 6
+3
+ Net Operating Income (Line 1* Line 2)
+366,319
+                       
+316,793
+                           
+4
+ Pro forma Net Operating Income  
+302,552
+                       
+356,205
+                           
+Schedule 4
+5
+ Increase in Net Operating Income (NOI Shortfall) (Line 3 - Line 4)
+63,767
+                         
+(39,412)
+                            
+6
+ Effective Incremental Revenue NOl Conversion Factor (Line 17)
+74.697%
+74.727%
+7
+ lncrease in Revenue Requirement (Based on Net Original Cost Rate Base) 
+(Line 5/Line 6)
+85,367
+$                       
+(52,742)
+$                          
+Gross Revenue Conversion Factor:
+8
+Revenue
+100.0000%
+100.0000%
+9
+Less: Petitioner Uncollectible Accounts Expense
+0.3994%
+0.3994%
+10
+Less: OUCC Uncollectible Accounts Expense
+0.3891%
+0.3891%
+11
+Less: Petitioners IURC Fee Expense
+0.1750%
+0.1750%
+12
+Less: OUCC IURC Fee Expense
+0.1456%
+0.1456%
+13
+State Taxable Income (Line 8 - (Line 9 - Line 12))
+99.4256%
+99.4653%
+14
+Less:  Gross State Income Tax Rate
+4.9000%
+4.9000%
+4.8719%
+4.8738%
+15
+Federal Taxable Income (Line 13 - Line 14)
+94.5537%
+94.5915%
+16
+Less: Federal Income Tax Rate  
+21.0000%
+21.0000%
+19.8563%
+19.8642%
+17
+Revenue Conversion Factor (Line 15 - Line 16)
+74.6975%
+74.7273%
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Comparison of Petitioner's and OUCC Recommended
+Revenue Increase/(Decrease) as of December 31, 2025
+(000)
+Schedule MDE-2
+Phase 1 and 2
+Page 1 of 2
+December 31, 2024
+December 31, 2025
+December 31, 2026
+Line No.
+Description
+Amounts
+Amounts
+Amounts
+1
+Utility Plant In Service
+2
+Utility Plant In Service
+$7,615,364
+$8,068,415
+$8,817,883
+3
+Less:  Accumulated Depreciation
+3,977,095
+4,210,129
+4,454,351
+4
+Net Utility Plant In Service
+3,638,269
+3,858,286
+4,363,532
+5
+Construction Work In Progress
+270,582
+366,901
+177,604
+6
+Other Utility Plant - Net
+1,002
+1,002
+1,002
+7
+Total Utility Plant
+$3,909,853
+$4,226,189
+$4,542,138
+8
+Other Propoerty and Investments
+9
+  Other Property Plant and Investments
+$56,998
+$56,998
+$56,998
+10
+Current Assets
+11
+Cash and Cash Equivalents
+$23,882
+$29,722
+$34,085
+12
+Accounts Receivable (Less Allowance for Doubtful Accounts)
+198,045
+184,390
+202,838
+13
+Fuel Stock
+50,842
+51,232
+51,625
+14
+Plant Materials and Operating Supplies
+111,341
+115,582
+122,352
+15
+Prepayments and Other Current Assets
+193,544
+187,807
+195,558
+16
+Total Current Assets
+$577,654
+$568,733
+$606,458
+17
+Deferred Debits
+18
+Unamortized Debt Expense
+$26,443
+$26,443
+$26,443
+19
+Rate-Based Regulatory Assets
+1,328,209
+1,152,086
+1,120,201
+20
+Non Rate-Based Regulatory Assets
+569,009
+1,006,958
+1,344,703
+21
+Unamortized Loss on Reaquired Debt
+12,832
+12,832
+12,832
+22
+Accumulated Deferred Income Taxes - FAS 109
+0
+0
+0
+23
+Accumulated Deferred Income Taxes - Other
+188,286
+188,286
+188,286
+24
+Miscellaneous
+33,507
+34,729
+34,725
+25
+Total Deferred Debits
+$2,158,286
+$2,421,334
+$2,727,190
+26
+Total Assets
+$6,702,791
+$7,273,254
+$7,932,784
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Balance Sheets as of December 31, 2024, December 31, 2025, and December 31, 2026
+(000)
+Schedule MDE-2
+Phase 1 and 2
+Page 2 of 2
+December 31, 2024
+December 31, 2025
+December 31, 2026
+Line No.
+Description
+Amounts
+Amounts
+Amounts
+1
+Proprietary Capital
+2
+Common Stock Issued
+$324,537
+$324,537
+$324,537
+3
+Preferred Stock Issued
+0
+0
+4
+Premium on Cumulative Preferred Stock
+0
+0
+5
+Other Paid In Capital
+1,418,296
+1,968,296
+2,318,296
+6
+Retained Earnings
+353,800
+353,800
+353,800
+7
+Unappropriated Undistributed Subsidiary Earnings/(Deficit)
+57,721
+57,721
+57,721
+8
+Total Proprietary Capital
+$2,154,354
+$2,704,354
+$3,054,354
+9
+10
+Long-Term Debt
+11
+Bonds
+$2,763,800
+$3,063,800
+$3,063,800
+12
+Unamortized Discount on Long-Term Debt
+(8,092)
+(8,092)
+(8,092)
+13
+Total Long-Term Debt
+$2,755,708
+$3,055,708
+$3,055,708
+14
+Other Noncurrent Liabilities
+15
+Obligations Under Capital Leases - Noncurrent
+$0
+$0
+$0
+16
+Accumulated Provision for Injuries and Damages
+0
+0
+0
+17
+Accumulated Depreciation for Pensions and Benefits
+369
+369
+369
+18
+Accumulated Miscellaneous Operating Provisions
+0
+0
+0
+19
+Long-Term Portion of Derivative Instrument Liabilities
+0
+0
+0
+20
+Asset Retirement Obligations
+370,210
+370,210
+370,210
+21
+Total Other Noncurrent Liabilities
+$370,579
+$370,579
+$370,579
+22
+Current and Accrued Liabilities
+23
+Accounts payable
+$191,682
+$193,720
+$171,742
+24
+Short Term Debt
+500,000
+167,300
+420,200
+25
+Customer Deposits
+11,892
+11,892
+11,892
+26
+Taxes Accrued
+18,887
+18,887
+18,887
+27
+Interest Accrued
+30,408
+30,408
+30,408
+28
+Dividends Declared
+0
+0
+0
+29
+Tax Collections Payable
+7,325
+7,325
+7,325
+30
+Other Current Liabilities 
+22,821
+22,821
+22,821
+31
+Total Current & Accrued Liabilities
+$783,015
+$452,353
+$683,275
+32
+Deferred Credits
+33
+Accumulated Deferred Investment Tax Credits
+$18
+$18
+$0
+34
+Other Deferred Credits
+9,953
+9,953
+18
+35
+Other Regulatory Liabilities
+71,429
+71,429
+9,953
+36
+Accumulated Deferred Income Taxes - FAS 109
+(58,378)
+0
+71,429
+37
+Accumulated Deferred Income Taxes - Other
+616,112
+608,860
+687,468
+38
+Total Deferred Credits
+$639,134
+$690,260
+$768,868
+39
+Total Capitalization and Liabilities
+$6,702,790
+$7,273,254
+$7,932,784
+Balance Sheets as of December 31, 2024, December 31, 2025, and December 31, 2026
+(000)
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Schedule MDE-3
+Phase 1 and 2
+Page 1 of 1
+December 31, 2024
+December 31, 2025
+December 31, 2026
+Line No.
+Description
+Amounts
+Amounts
+Amounts
+1
+Operating Revenues
+$1,633,897
+$1,883,553
+$1,989,756
+2
+Operating Expenses
+3
+Operating Expense
+$836,280
+$955,680
+$1,000,780
+4
+Maintenance Expense
+145,339
+175,149
+173,972
+5
+Depreciation Expense
+303,949
+300,348
+322,098
+6
+Amortization of Depletion of Plant
+25,740
+30,642
+32,222
+7
+Amortization of Utility Plant Acquisition Adjustment
+15
+18
+19
+8
+Amortization of Regulatory Debits/Credits
+(7,507)
+34,312
+36,796
+9
+Taxes Other Than Income Taxes
+29,576
+33,457
+40,970
+10
+Income Taxes - Federal
+13,921
+16,804
+799
+11
+Income Taxes - Other
+3,305
+4,069
+168
+12
+Net Deferred Income Taxes - Federal
+16,759
+25,341
+42,211
+13
+Net Deferred Income Taxes - Other
+5,593
+7,094
+11,207
+14
+ITC Adjustment (NET)
+(3)
+(16)
+(3)
+15
+Gains on Disposition of Allowances
+0
+0
+0
+16
+ARO Accretion and Loss on ARO Settlements
+0
+0
+0
+17
+Total Utility Operating Expenses
+$1,372,967
+$1,582,898
+$1,661,239
+18
+Net Utility Operating Income
+260,930
+300,655
+328,517
+19
+Nonutility Operating Income
+20
+Revenues from Nonutility Operations
+($18)
+$0
+($4)
+21
+Expenses of Nonutility Operations
+(1,237)
+(10)
+(10)
+22
+Non-operating Rental Income
+9
+0
+0
+23
+Equity in Earnings of Subsidiaries
+28,991
+0
+0
+24
+Interest and Dividend Income
+2,194
+46
+47
+25
+Allowance for Equity Funds Used During Construction
+3,991
+849
+8,194
+26
+Miscellaneous Non-operating Income
+101
+0
+0
+27
+Gain on Disposition of Property
+1,559
+0
+0
+28
+Total Other Income
+$35,590
+$885
+$8,227
+29
+Other Income Deductions
+30
+Loss on Disposition of Property
+$0
+$0
+$0
+31
+Miscellaneous Amortization
+0
+0
+0
+32
+Donations
+1,893
+1,479
+1,507
+33
+Penalties
+1
+40
+41
+34
+Civic Expenditures
+729
+740
+710
+35
+Other Deductions
+1,821
+0
+0
+36
+Taxes on Other Income and Deductions
+(70)
+2,094
+1,995
+37
+Total Other Income Deductions
+$4,374
+$4,353
+$4,253
+38
+Interest Charges
+39
+Interest on Long-Term Debt
+$131,458
+$158,988
+$173,695
+40
+Amortization of Debt Discount
+1,754
+0
+0
+41
+Amortization of Loss on Reacquired Debt
+26,359
+5,492
+6,000
+42
+Other Interest Expense
+0
+0
+0
+43
+Allowance for Borrowed Funds Used During Construction 
+(32,240)
+(31,308)
+(21,901)
+44
+Net Interest Charges
+$127,331
+$133,172
+$157,794
+45
+Net Income
+$164,815
+$164,015
+$174,697
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Operating Income Statements for the periods ending December 31, 2024, December 31, 2025, and December 31, 2026
+(000)
+Schedule MDE-4
+Phase 1
+Page 1 of 1
+Line
+Phase Test Year
+AES IN 
+Adjustments
+AES Indiana 
+Adjusted
+OUCC Adjustments at 
+Present Rates
+OUCC Adjusted
+Adjustments
+OUCC Adjusted
+No.
+Description:
+Unadjusted
+At Present Rates
+At Present Rates
+P1 Att. MDE-7, p. 1
+At Present Rates
+At Proposed Rates
+At Proposed Rates
+(Col. 1)
+(Col. 2)
+(Col. 3)
+(Col. 4)
+(Col. 5)
+1
+Operating Revenues
+$             1,989,756 
+$                 (72,073)
+$             1,917,683 
+$                                  230 
+$             1,917,913 
+$                 (52,742)
+$             1,865,171 
+Operating Expenses
+2
+Operation and Maintenance Expenses
+$             1,174,752 
+$                 (39,377)
+$             1,135,375 
+$                            (70,252)
+$             1,065,123 
+$                      (282)
+$             1,064,841 
+3
+Depreciation Expense
+                  391,135 
+                        (539)
+                  390,596 
+                                         0 
+                  390,596 
+                              0 
+                  390,596 
+4
+Taxes - Other Than Income Taxes
+                     40,970 
+                       6,181 
+                     47,151 
+                                   (932)
+                     46,219 
+                              0 
+                     46,219 
+5
+Total Operating Expenses Other Than 
+Income Taxes
+$             1,606,857 
+$                 (33,735)
+$             1,573,122 
+$                            (71,184)
+$             1,501,938 
+$                      (282)
+$             1,501,656 
+6
+Net Operating Income Before Income 
+Taxes
+$                382,899 
+$                 (38,338)
+$                344,561 
+$                             71,414 
+$                415,975 
+$                 (52,460)
+$                363,516 
+Income Taxes
+7
+Federal Income Taxes - Current
+$                        799 
+$                  17,257 
+$                  18,056 
+$                             14,262 
+$                  32,318 
+$                 (10,477)
+$                  21,841 
+8
+State Income Taxes - Current
+                          168 
+                       4,234 
+                       4,402 
+                                 3,499 
+                       7,901 
+                     (2,571)
+                       5,330 
+9
+Federal Income Taxes - Deferred
+                     42,211 
+                   (27,182)
+                     15,029 
+                                         0 
+                     15,029 
+                              0 
+                     15,029 
+10
+State Income Taxes - Deferred
+                     11,207 
+                     (6,669)
+                       4,538 
+                                         0 
+                       4,538 
+                              0 
+                       4,538 
+11
+Income Tax Credit Adjustments
+                            (3)
+                          (13)
+                          (16)
+                                         0 
+                          (16)
+                              0 
+                          (16)
+12
+Total Income Taxes
+$                  54,382 
+$                 (12,373)
+$                  42,009 
+$                             17,761 
+$                  59,770 
+$                 (13,047)
+$                  46,723 
+13
+ Net Utility Operating Income
+$                328,517 
+$                 (25,965)
+$                302,552 
+$                             53,653 
+$                356,205 
+$                 (39,412)
+$                316,793 
+ 
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Pro-Forma Income Statement for the Twelve months ended December 31, 2025
+(000)
+Schedule MDE-5
+Phase 1
+Page 1 of 1
+Adj. Rate Base
+OUCC
+Pro forma
+Line
+Test Year
+Rate Base
+Rate Base
+As Of
+No.
+Description
+Adjustment
+December 31, 2025
+Adjustments
+December 31, 2025
+(Note A)
+(Note A)
+(Note A)
+(Note B)
+Rate Base
+1
+Utility Plant
+8,085,715
+$                    
+(1,047,869)
+$    
+7,037,846
+$                 
+(26,843)
+$       
+7,011,003
+$                 
+2
+Non Jurisdictional Plant
+-
+                                 
+-
+                  
+-
+                              
+-
+                
+-
+                             
+3
+Common Allocated
+-
+                                 
+-
+                  
+-
+                              
+-
+                
+-
+                             
+4
+Total Electric Utility Plant
+8,085,715
+                      
+(1,047,869)
+      
+7,037,846
+                   
+(26,843)
+         
+7,011,003
+                   
+5
+Utility Plant Accumulated Depreciation
+(4,210,460)
+                     
+861,863
+           
+(3,348,597)
+                  
+-
+                
+(3,348,597)
+                 
+6
+Non Jurisdictional Plant Accumulated Depreciation
+-
+                                 
+-
+                  
+-
+                              
+-
+                
+-
+                             
+7
+Common Allocated Accumulated Depreciation
+-
+                                 
+-
+                  
+-
+                              
+-
+                
+-
+                             
+8
+Total Electric Accumulated Depreciation
+(4,210,460)
+                     
+861,863
+           
+(3,348,597)
+                  
+-
+                
+(3,348,597)
+                 
+9
+Net Electric Utility Plant
+3,875,255
+$                    
+(186,006)
+$       
+3,689,249
+$                 
+(26,843)
+$       
+3,662,406
+$                 
+10
+Materials & Supplies
+122,352
+                         
+(4,037)
+             
+118,315
+                      
+-
+                
+118,315
+                      
+11
+Production Fuel
+50,617
+                           
+(47,746)
+           
+2,871
+                          
+(425)
+              
+2,446
+                          
+12
+Regulatory Assets
+1,152,086
+                      
+14,633
+             
+1,166,719
+                   
+-
+                
+1,166,719
+                   
+13
+Total Electric Rate Base
+5,200,310
+$                    
+(223,156)
+$       
+4,977,153
+$                 
+(27,268)
+$       
+4,949,886
+$                 
+Note A:
+AES Indiana Prefiled Exhibit:  46258_AESIN_Financial Exhibits Phase 1 Workpapers_060325, Tab: RB1-Original Cost Electric Rate
+Note B:
+OUCC Adjustments are listed on Schedule 8, Page 1 of 1.
+AES Indiana
+OUCC
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Rate Base Summary as of December 31, 2025
+(000)
+Schedule MDE-6
+Phase 1
+Page 1 of 1
+December 31, 2025
+Percent of
+Return
+Weighted
+Line No.
+Description
+Balance
+Total
+Rate
+Return rate
+(Note A)
+1
+Long-Term Debt
+$3,050,700
+50.54%
+5.26%
+2.66%
+2
+Preferred Stock
+0
+0.00%
+0.00%
+0.00%
+3
+Common Equity
+2,646,633
+43.85%
+8.50%
+3.73%
+4
+Customer Deposits
+11,892
+0.20%
+6.00%
+0.01%
+5
+Prepaid Pension Asset (Net of OPEB liability)
+(140,649)
+-2.33%
+0.00%
+0.00%
+6
+Deferred Income Taxes
+467,122
+7.74%
+0.00%
+0.00%
+7
+Post 1970 ITC
+2
+0.00%
+6.77%
+0.00%
+8
+Totals
+$6,035,700
+100.00%
+6.40%
+December 31, 2025
+Percent of
+Return
+Weighted
+Line No.
+Description
+Balance
+Total
+Rate
+Return rate
+1
+Long-Term Debt
+$3,050,700
+53.55%
+5.26%
+2.82%
+2
+Preferred Stock
+0
+0.00%
+0.00%
+0.00%
+3
+Common Equity
+2,646,633
+46.45%
+8.50%
+3.95%
+4
+Totals
+$5,697,333
+100.00%
+6.77%
+Note A:
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Weighted Cost of Capital as of December 31, 2025
+(000)
+Post 1970 ITC Calculation
+AES Indiana Prefiled Exhibit:  46258_AESIN_Financial Exhibits Phase 1 Workpapers_060325, Tab: CC2- Weighted Averag C
+Schedule MDE-7
+Phase 1
+Page 1 of 5
+Summary of Adjustments to Net Income
+Witness
+Depreciation
+Taxes
+Net
+Schedule
+O&M
+& Amortization
+Other Than
+State
+Federal
+Operating
+Description:
+Reference
+Revenues
+Expenses
+Expense
+Income
+Income Taxes Income Taxes
+Income
+OUCC Adjustments:
+Revenue Adjustment
+Leader
+$230
+-
+                 
+-
+                 
+11
+                  
+46
+                  
+173
+                
+Fuel Expense-Revenue Adjustment
+Eckert (7-3)
+$90
+-
+                 
+-
+                 
+(4)
+                   
+(18)
+                 
+(68)
+                 
+Fuel Expense
+Eckert (7-2)
+-
+                 
+(35,627)
+          
+-
+                 
+-
+                 
+1,746
+             
+7,115
+             
+26,766
+           
+Vegetation Management Expense
+Sanka
+-
+                 
+(17,442)
+          
+-
+                 
+-
+                 
+855
+                
+3,483
+             
+13,104
+           
+Storm Reserve Expense
+Lantrip
+-
+                 
+(1,477)
+            
+-
+                 
+-
+                 
+72
+                  
+295
+                
+1,110
+             
+Payroll Expense
+Baker
+-
+                 
+(11,438)
+          
+-
+                 
+-
+                 
+560
+                
+2,284
+             
+8,593
+             
+Payroll Tax Expense
+Baker
+-
+                 
+-
+               
+-
+                 
+(932)
+               
+46
+                  
+186
+                
+700
+                
+Payroll Related Expense
+Baker
+-
+                 
+(2,857)
+            
+-
+                 
+-
+                 
+140
+                
+571
+                
+2,146
+             
+Rate Case Expense
+Baker
+-
+                 
+(759)
+             
+-
+                 
+-
+                 
+37
+                  
+152
+                
+570
+                
+IURC Fee Expense
+Eckert (7-5)
+-
+                 
+(548)
+             
+-
+                 
+-
+                 
+27
+                  
+109
+                
+412
+                
+Uncollectible Account Expense
+Eckert (7-4)
+-
+                 
+(194)
+             
+-
+                 
+-
+                 
+10
+                  
+39
+                  
+146
+                
+-
+                 
+-
+               
+-
+                 
+-
+                 
+-
+                 
+-
+                 
+-
+                 
+-
+                 
+-
+                 
+-
+                 
+-
+                 
+Total OUCC Adjustments
+230
+$              
+(70,252)
+$        
+-
+$               
+(932)
+               
+3,499
+$           
+14,262
+$         
+53,653
+$         
+Revenue Conversion Factor
+4.90000%
+19.97100%
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+for the Test Year Ended December 31, 2025
+($000)
+Schedule MDE-7
+Phase 1 and 2
+Page 2 of 5
+ Line 
+No. 
+Description:
+OUCC Proposed 
+Amount
+1
+OUCC Proposed Fuel Cost
+$                     561,800 
+2
+Less:  AESI Proposed Base Cost of Fuel
+597,427
+3
+OUCC Adjustment - Inc/(Dec)
+$                      (35,627)
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Fuel Expense
+($000)
+Schedule MDE-7
+Phase 1 and 2
+Page 3 of 5
+ Line 
+No. 
+Description:
+OUCC Proposed 
+Amount
+Tariff Rate
+OUCC Proposed 
+Amount
+Revenue Adjustment:
+1
+Residential Class:
+2
+Residential Service (RS) (MWh)
+1,147
+3
+Residential (RC) (MWh)
+803
+4
+Residential Heat (RH) (MWh)
+177
+5
+Total Mwh
+2,126
+Fuel Expense Adjustment
+6
+Total kWh
+2,126,250
+7
+Multiply by Base Cost of Fuel
+$0.042260
+8
+OUCC Adjustment - Inc/(Dec)
+$89,855
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Fuel Expense Adjustment - Revenue
+(000)
+Schedule MDE-7
+Phase 1 and 2
+Page 4 of 5
+ Line 
+No. 
+Description:
+Amount
+1
+Forecasted electric operating revenues for the twelve  
+months ended December 31, 2026
+$1,917,683 
+2
+Less: Off-system sales
+(24,906)
+3
+Less: Rents from electric property
+(3,540)
+4
+Less:  Miscellaneous electric revenue
+(4,387)
+5
+   Net forecasted electric operating revenues
+1,884,850 
+6
+Uncollectible accounts experience rate
+0.3891 %
+7
+Adjusted uncollectible electric accounts expense
+7,334 
+8
+Unadjusted uncollectible electric accounts expense
+6,486 
+9
+Adjustment at present rates
+848 
+10
+Less: AES Proposed adjustment
+(1,042)
+11
+OUCC Adjustment - Inc/(Dec)
+($194)
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Uncollectible Expense
+($000)
+Schedule MDE-7
+Phase 1 and 2
+Page 5 of 5
+ Line 
+No. 
+Description:
+Amount
+1
+Forecasted electric operating revenues for the twelve
+months ended December 31, 2026
+$1,917,683 
+2
+Less:  Off-system sales
+(24,906)
+3
+Less:  Rents
+(3,540)
+4
+Less:  Other customer charges
+(10,816)
+5
+Less:  Miscellaneous electric revenues
+(4,387)
+6
+Less:  Uncollectible accounts expense
+(7,528)
+7
+Net forecasted electric operating revenue subject to public 
+utility fee
+1,866,506 
+8
+Effective public utility fee rate
+0.1456 %
+9
+Adjusted test year public utility fee
+2,718 
+10
+Less: AES Indiana IURC Fee
+3,266 
+11
+Adjustment at proposed rates
+($548)
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+IURC Fee Expense
+($000)
+Line 
+No. 
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+1D 
+11 
+12 
+13 
+Indianapolis Power & Light Company dlb/a AES Indiana 
+Cause No. 46258 
+Original Cost Rate Base adjustments as of December 31, 2025 and December 31, 2026 
+(000) 
+December 31, 2025 
+December31,2026 
+Witness 
+OUCC Rate Base 
+OUCC Rate Base 
+Description: 
+Reference 
+Adjustment 
+Adjustment 
+{1) 
+(2) 
+Fuel Inventory 
+Eckert 
+($425) 
+$0 
+ACE Investment 
+Lantrip 
+(4,350) 
+(4,600) 
+368.00 Line Transformers 
+Keley 
+(20.921) 
+0 
+364.00 Poles, Towers & Fixture 
+Keley 
+0 
+(617) 
+391.00 Office Furniture & Fixt 
+Keley 
+(200) 
+(328) 
+360.00 Underground conduclors and devices 
+Keley 
+{217) 
+0 
+397.00 Communication Equip Post 1996 
+Keley 
+{405) 
+(695) 
+398.00 Miscellaneous Equipment 
+Kelley 
+0 
+(715) 
+303.0D Intangible - Software 
+Kelley 
+0 
+(500) 
+303.00 Intangible - Software 
+Kelley 
+0 
+{1,363) 
+353.0D Station Equipment 
+Kelley 
+0 
+(1,708) 
+391.60 Office Furniture & Fixt 
+Kelley 
+(ISO) 
+0 
+Total Pro Forma Rate Base Adjustments 
+$ 
+(27,268) 
+$ 
+(10,526) 
+Schedule MDE-8 
+Phase 1 and2 
+Page 1 of1 
+December31,2025 
+plus December 31, 
+20260UCC Rate Base 
+Adjustment 
+(1+2) 
+(425) 
+(8,950) 
+(20.921) . 
+(617) 
+(528) 
+(217) 
+(1,100) 
+(715) 
+(500) 
+(1,363) 
+(1,708) 
+(ISO) 
+$ 
+(37.794) 
+Phase 2:
+Schedule MDE - 1
+Schedule MDE - 2
+Schedule MDE - 3
+Schedule MDE - 4
+Schedule MDE - 5
+Schedule MDE - 6
+Schedule MDE - 7
+OUCC Rate Base Adjustment as of December 31, 2026
+Schedule MDE - 8
+Pro-Forma Income Statement for the Twelve months ended December 31, 2026
+Rate Base Summary as of December 31, 2026
+Weighted Cost of Capital as of December 31, 2026
+OUCC Rate Base Adjustments as of December 31, 2025 and December 31, 2026
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Cover and Index
+Comparison of Petitioner's and OUCC Recommended Revenue Increase/(Decrease) as of 
+December 31, 2026
+Balance Sheets as of December 31, 2024, December 31, 2025, and December 31, 2026
+Balance Sheets as of December 31, 2024, December 31, 2025, and December 31, 2026
+Schedule MDE - 1
+Phase 2
+Page 1 of  1
+Line 
+No.
+Description
+AES Indiana 
+Fee/Rate
+OUCC 
+Fee/Rate
+AES Indiana Revenue 
+Inc/(Dec)
+OUCC Revenue 
+Inc/(Dec)
+OUCC 
+Schedule 
+Reference
+1
+ Net Original Cost Rate Base  
+5,547,851
+$                  
+5,510,058
+$           
+Schedule 5
+2
+ Rate of Return  
+7.52%
+6.50%
+Schedule 6
+3
+ Net Operating Income (Line 1* Line 2)
+417,198
+                      
+358,154
+                
+4
+ Pro forma Net Operating Income  
+273,084
+                      
+374,056
+                
+Schedule 4
+5
+ Increase in Net Operating Income (NOI Shortfall) (Line 3 - Line 4)
+144,114
+                      
+(15,902)
+                 
+6
+ Effective Incremental Revenue NOl Conversion Factor (Line 17)
+74.697%
+74.729%
+7
+ lncrease in Revenue Requirement (Based on Net Original Cost Rate Base) 
+(Line 5/Line 6)
+192,931
+$                     
+(21,279)
+$               
+Gross Revenue Conversion Factor:
+8
+Revenue
+100.0000%
+100.0000%
+9
+Less: Petitioner Uncollectible Accounts Expense
+0.3994%
+0.3994%
+10
+Less: OUCC Uncollectible Accounts Expense
+0.3891%
+0.3891%
+11
+Less: Petitioners IURC Fee Expense
+0.1750%
+0.1750%
+12
+Less: OUCC IURC Fee Expense
+0.1456%
+0.1456%
+13
+State Taxable Income (Line 8 - (Line 9 - Line 12))
+99.4256%
+99.4653%
+14
+Less:  Gross State Income Tax Rate
+4.9000%
+4.9000%
+4.8719%
+4.8719%
+15
+Federal Taxable Income (Line 13 - Line 14)
+94.5537%
+94.5934%
+16
+Less: Federal Income Tax Rate  
+21.0000%
+21.0000%
+19.8563%
+19.8646%
+17
+Revenue Conversion Factor (Line 15 - Line 16)
+74.6975%
+74.7288%
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Comparison of Petitioner's and OUCC Recommended
+Revenue Increase/(Decrease) as of December 31, 2026
+(000)
+Schedule MDE-2
+Phase 1 and 2
+Page 1 of 2
+December 31, 2024
+December 31, 2025
+December 31, 2026
+Line No.
+Description
+Amounts
+Amounts
+Amounts
+1
+Utility Plant In Service
+2
+Utility Plant In Service
+$7,615,364
+$8,068,415
+$8,817,883
+3
+Less:  Accumulated Depreciation
+3,977,095
+4,210,129
+4,454,351
+4
+Net Utility Plant In Service
+3,638,269
+3,858,286
+4,363,532
+5
+Construction Work In Progress
+270,582
+366,901
+177,604
+6
+Other Utility Plant - Net
+1,002
+1,002
+1,002
+7
+Total Utility Plant
+$3,909,853
+$4,226,189
+$4,542,138
+8
+Other Propoerty and Investments
+9
+  Other Property Plant and Investments
+$56,998
+$56,998
+$56,998
+10
+Current Assets
+11
+Cash and Cash Equivalents
+$23,882
+$29,722
+$34,085
+12
+Accounts Receivable (Less Allowance for Doubtful Accounts)
+198,045
+184,390
+202,838
+13
+Fuel Stock
+50,842
+51,232
+51,625
+14
+Plant Materials and Operating Supplies
+111,341
+115,582
+122,352
+15
+Prepayments and Other Current Assets
+193,544
+187,807
+195,558
+16
+Total Current Assets
+$577,654
+$568,733
+$606,458
+17
+Deferred Debits
+18
+Unamortized Debt Expense
+$26,443
+$26,443
+$26,443
+19
+Rate-Based Regulatory Assets
+1,328,209
+1,152,086
+1,120,201
+20
+Non Rate-Based Regulatory Assets
+569,009
+1,006,958
+1,344,703
+21
+Unamortized Loss on Reaquired Debt
+12,832
+12,832
+12,832
+22
+Accumulated Deferred Income Taxes - FAS 109
+0
+0
+0
+23
+Accumulated Deferred Income Taxes - Other
+188,286
+188,286
+188,286
+24
+Miscellaneous
+33,507
+34,729
+34,725
+25
+Total Deferred Debits
+$2,158,286
+$2,421,334
+$2,727,190
+26
+Total Assets
+$6,702,791
+$7,273,254
+$7,932,784
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Balance Sheets as of December 31, 2024, December 31, 2025, and December 31, 2026
+(000)
+Schedule MDE-2
+Phase 1 and 2
+Page 2 of 2
+December 31, 2024
+December 31, 2025
+December 31, 2026
+Line No.
+Description
+Amounts
+Amounts
+Amounts
+1
+Proprietary Capital
+2
+Common Stock Issued
+$324,537
+$324,537
+$324,537
+3
+Preferred Stock Issued
+0
+0
+4
+Premium on Cumulative Preferred Stock
+0
+0
+5
+Other Paid In Capital
+1,418,296
+1,968,296
+2,318,296
+6
+Retained Earnings
+353,800
+353,800
+353,800
+7
+Unappropriated Undistributed Subsidiary Earnings/(Deficit)
+57,721
+57,721
+57,721
+8
+Total Proprietary Capital
+$2,154,354
+$2,704,354
+$3,054,354
+9
+10
+Long-Term Debt
+11
+Bonds
+$2,763,800
+$3,063,800
+$3,063,800
+12
+Unamortized Discount on Long-Term Debt
+(8,092)
+(8,092)
+(8,092)
+13
+Total Long-Term Debt
+$2,755,708
+$3,055,708
+$3,055,708
+14
+Other Noncurrent Liabilities
+15
+Obligations Under Capital Leases - Noncurrent
+$0
+$0
+$0
+16
+Accumulated Provision for Injuries and Damages
+0
+0
+0
+17
+Accumulated Depreciation for Pensions and Benefits
+369
+369
+369
+18
+Accumulated Miscellaneous Operating Provisions
+0
+0
+0
+19
+Long-Term Portion of Derivative Instrument Liabilities
+0
+0
+0
+20
+Asset Retirement Obligations
+370,210
+370,210
+370,210
+21
+Total Other Noncurrent Liabilities
+$370,579
+$370,579
+$370,579
+22
+Current and Accrued Liabilities
+23
+Accounts payable
+$191,682
+$193,720
+$171,742
+24
+Short Term Debt
+500,000
+167,300
+420,200
+25
+Customer Deposits
+11,892
+11,892
+11,892
+26
+Taxes Accrued
+18,887
+18,887
+18,887
+27
+Interest Accrued
+30,408
+30,408
+30,408
+28
+Dividends Declared
+0
+0
+0
+29
+Tax Collections Payable
+7,325
+7,325
+7,325
+30
+Other Current Liabilities 
+22,821
+22,821
+22,821
+31
+Total Current & Accrued Liabilities
+$783,015
+$452,353
+$683,275
+32
+Deferred Credits
+33
+Accumulated Deferred Investment Tax Credits
+$18
+$18
+$0
+34
+Other Deferred Credits
+9,953
+9,953
+18
+35
+Other Regulatory Liabilities
+71,429
+71,429
+9,953
+36
+Accumulated Deferred Income Taxes - FAS 109
+(58,378)
+0
+71,429
+37
+Accumulated Deferred Income Taxes - Other
+616,112
+608,860
+687,468
+38
+Total Deferred Credits
+$639,134
+$690,260
+$768,868
+39
+Total Capitalization and Liabilities
+$6,702,790
+$7,273,254
+$7,932,784
+Balance Sheets as of December 31, 2024, December 31, 2025, and December 31, 2026
+(000)
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Schedule MDE-3
+Phase 1 and 2
+Page 1 of 1
+December 31, 2024
+December 31, 2025
+December 31, 2026
+Line No.
+Description
+Amounts
+Amounts
+Amounts
+1
+Operating Revenues
+$1,633,897
+$1,883,553
+$1,989,756
+2
+Operating Expenses
+3
+Operating Expense
+$836,280
+$955,680
+$1,000,780
+4
+Maintenance Expense
+145,339
+175,149
+173,972
+5
+Depreciation Expense
+303,949
+300,348
+322,098
+6
+Amortization of Depletion of Plant
+25,740
+30,642
+32,222
+7
+Amortization of Utility Plant Acquisition Adjustment
+15
+18
+19
+8
+Amortization of Regulatory Debits/Credits
+(7,507)
+34,312
+36,796
+9
+Taxes Other Than Income Taxes
+29,576
+33,457
+40,970
+10
+Income Taxes - Federal
+13,921
+16,804
+799
+11
+Income Taxes - Other
+3,305
+4,069
+168
+12
+Net Deferred Income Taxes - Federal
+16,759
+25,341
+42,211
+13
+Net Deferred Income Taxes - Other
+5,593
+7,094
+11,207
+14
+ITC Adjustment (NET)
+(3)
+(16)
+(3)
+15
+Gains on Disposition of Allowances
+0
+0
+0
+16
+ARO Accretion and Loss on ARO Settlements
+0
+0
+0
+17
+Total Utility Operating Expenses
+$1,372,967
+$1,582,898
+$1,661,239
+18
+Net Utility Operating Income
+260,930
+300,655
+328,517
+19
+Nonutility Operating Income
+20
+Revenues from Nonutility Operations
+($18)
+$0
+($4)
+21
+Expenses of Nonutility Operations
+(1,237)
+(10)
+(10)
+22
+Non-operating Rental Income
+9
+0
+0
+23
+Equity in Earnings of Subsidiaries
+28,991
+0
+0
+24
+Interest and Dividend Income
+2,194
+46
+47
+25
+Allowance for Equity Funds Used During Construction
+3,991
+849
+8,194
+26
+Miscellaneous Non-operating Income
+101
+0
+0
+27
+Gain on Disposition of Property
+1,559
+0
+0
+28
+Total Other Income
+$35,590
+$885
+$8,227
+29
+Other Income Deductions
+30
+Loss on Disposition of Property
+$0
+$0
+$0
+31
+Miscellaneous Amortization
+0
+0
+0
+32
+Donations
+1,893
+1,479
+1,507
+33
+Penalties
+1
+40
+41
+34
+Civic Expenditures
+729
+740
+710
+35
+Other Deductions
+1,821
+0
+0
+36
+Taxes on Other Income and Deductions
+(70)
+2,094
+1,995
+37
+Total Other Income Deductions
+$4,374
+$4,353
+$4,253
+38
+Interest Charges
+39
+Interest on Long-Term Debt
+$131,458
+$158,988
+$173,695
+40
+Amortization of Debt Discount
+1,754
+0
+0
+41
+Amortization of Loss on Reacquired Debt
+26,359
+5,492
+6,000
+42
+Other Interest Expense
+0
+0
+0
+43
+Allowance for Borrowed Funds Used During Construction 
+(32,240)
+(31,308)
+(21,901)
+44
+Net Interest Charges
+$127,331
+$133,172
+$157,794
+45
+Net Income
+$164,815
+$164,015
+$174,697
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Operating Income Statements for the periods ending December 31, 2024, December 31, 2025, and December 31, 2026
+(000)
+Schedule MDE-4
+Phase 2
+Page 1 of 1
+Line
+Phase Test Year
+AES IN 
+Adjustments
+AES Indiana 
+Adjusted
+OUCC Adjustments at 
+Present Rates
+OUCC Adjusted
+Adjustments
+OUCC Adjusted
+No.
+Description:
+Unadjusted
+At Present Rates
+At Present Rates
+P2 Att. MDE-7, p. 1
+At Present Rates
+At Proposed Rates
+At Proposed Rates
+(Col. 1)
+(Col. 2)
+(Col. 3)
+(Col. 4)
+(Col. 5)
+1
+Operating Revenues
+$             1,989,756 
+$                (72,073)
+$             1,917,683 
+$                                 230 
+$             1,917,913 
+$                (21,279)
+$             1,896,634 
+Operating Expenses
+2
+Expenses
+$             1,174,752 
+$                (46,530)
+$             1,128,222 
+$                           (70,342)
+$             1,057,880 
+$                     (114)
+$             1,057,766 
+3
+Depreciation Expense
+                  391,135 
+                    49,060 
+                  440,195 
+                             (62,893)
+                  377,302 
+                             0 
+                  377,302 
+4
+Taxes - Other Than Income Taxes
+                    40,970 
+                      5,781 
+                    46,751 
+                                  (932)
+                    45,819 
+                             0 
+                    45,819 
+0
+5
+Than Income Taxes
+$             1,606,857 
+$                    8,311 
+$             1,615,168 
+$                         (134,167)
+$             1,481,001 
+$                     (114)
+$             1,480,887 
+6
+Net Operating Income Before 
+Income Taxes
+$                382,899 
+$                (80,384)
+$                302,515 
+$                          134,397 
+$                436,912 
+$                (21,166)
+$                415,746 
+Income Taxes
+7
+Federal Income Taxes - Current
+$                       799 
+$                  17,259 
+$                  18,058 
+$                            26,840 
+$                  44,898 
+$                  (4,227)
+$                  40,671 
+8
+State Income Taxes - Current
+                         168 
+                      4,234 
+                      4,402 
+                                6,585 
+                    10,987 
+                    (1,037)
+                      9,950 
+9
+Federal Income Taxes - Deferred
+                    42,211 
+                  (37,283)
+                      4,928 
+                      4,928 
+                             0 
+                      4,928 
+10
+State Income Taxes - Deferred
+                    11,207 
+                    (9,148)
+                      2,059 
+                      2,059 
+                             0 
+                      2,059 
+11
+Income Tax Credit Adjustments
+                           (3)
+                         (13)
+                         (16)
+                         (16)
+                             0 
+                         (16)
+12
+Total Income Taxes
+$                  54,382 
+$                (24,951)
+$                  29,431 
+$                            33,425 
+$                  62,856 
+$                  (5,264)
+$                  57,593 
+13
+ Net Utility Operating Income
+$                328,517 
+$                (55,433)
+$                273,084 
+$                          100,972 
+$                374,056 
+$                (15,902)
+$                358,154 
+ 
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Pro-Forma Income Statement for the Twelve months ended December 31, 2026
+(000)
+Schedule MDE-5
+Phase 2
+Page 1 of 1
+Unadjusted
+Adj. Rate Base
+OUCC
+Pro forma
+Line
+Test Year
+Rate Base
+Rate Base
+As Of
+No.
+Description
+Adjustment
+31-Dec-26
+Adjustments
+31-Dec-26
+(Note A)
+(Note A)
+(Note A)
+(Note B)
+Rate Base
+1
+Utility Plant
+8,817,883
+$                   
+(938,638)
+$       
+7,879,245
+$      
+(37,369)
+$       
+7,841,876
+                      
+2
+Non Jurisdictional Plant
+-
+                                
+-
+                  
+-
+                  
+-
+                
+-
+                                
+3
+Common Allocated
+-
+                                
+-
+                  
+-
+                  
+-
+                
+-
+                                
+4
+Total Electric Utility Plant
+8,817,883
+                     
+(938,638)
+         
+7,879,245
+        
+(37,369)
+         
+7,841,876
+                      
+5
+Utility Plant Accumulated Depreciation
+(4,454,351)
+                    
+861,900
+          
+(3,592,451)
+       
+-
+                
+(3,592,451)
+                    
+6
+Non Jurisdictional Plant Accumulated Depreciation
+-
+                                
+-
+                  
+-
+                  
+-
+                
+-
+                                
+7
+Common Allocated Accumulated Depreciation
+-
+                                
+-
+                  
+-
+                  
+-
+                
+-
+                                
+8
+Total Electric Accumulated Depreciation
+(4,454,351)
+                    
+861,900
+          
+(3,592,451)
+       
+-
+                
+(3,592,451)
+                    
+9
+Net Electric Utility Plant
+4,363,532
+$                   
+(76,738)
+$         
+4,286,794
+$      
+(37,369)
+$       
+4,249,425
+$                    
+10
+Materials & Supplies
+122,352
+                        
+(4,037)
+             
+118,315
+           
+-
+                
+118,315
+                         
+11
+Production Fuel
+50,617
+                          
+(48,488)
+           
+2,129
+               
+(425)
+              
+1,704
+                            
+12
+Regulatory Assets
+1,120,201
+                     
+20,413
+            
+1,140,614
+        
+-
+                
+1,140,614
+                      
+13
+Total Electric Rate Base
+5,656,702
+$                   
+(108,850)
+$       
+5,547,852
+$      
+(37,794)
+$       
+5,510,058
+$                    
+Note A:
+AES Indiana Prefiled Exhibit:  46258_AESIN_Financial Exhibits Workpapers_060325, Tab: RB1-Original Cost Electric Rate
+Note B:
+OUCC Adjustments are listed on Schedule 8, Page 1 of 1.
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Rate Base Summary as of December 31, 2026
+(000)
+AES Indiana
+OUCC
+Schedule MDE-6
+Phase 2
+Page 1 of 1
+December 31, 2026
+Percent of
+Return
+Weighted
+Line No.
+Description
+Balance
+Total
+Rate
+Return rate
+(Note A)
+1
+Long-Term Debt
+$3,051,302
+47.33%
+5.38%
+2.54%
+2
+Preferred Stock
+0
+0.00%
+0.00%
+0.00%
+3
+Common Equity
+2,996,633
+46.48%
+8.50%
+3.95%
+4
+Customer Deposits
+11,892
+0.18%
+6.00%
+0.01%
+5
+Prepaid Pension Asset (Net of OPEB liability)
+(133,494)
+-2.07%
+0.00%
+0.00%
+6
+Deferred Income Taxes
+520,540
+8.07%
+0.00%
+0.00%
+7
+Post 1970 ITC
+308
+0.00%
+6.92%
+0.00%
+8
+Totals
+$6,447,181
+100.00%
+6.50%
+December 31, 2026
+Percent of
+Return
+Weighted
+Line No.
+Description
+Balance
+Total
+Rate
+Return rate
+1
+Long-Term Debt
+$3,051,302
+50.45%
+5.38%
+2.71%
+2
+Preferred Stock
+0
+0.00%
+0.00%
+0.00%
+3
+Common Equity
+2,996,633
+49.55%
+8.50%
+4.21%
+4
+Totals
+$6,047,935
+100.00%
+6.92%
+Note A:
+AES Indiana Prefiled Exhibit:  46258_AESIN_Financial Exhibits Workpapers_060325, Tab: CC2- Weighted Averag Cost of C
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Weighted Cost of Capital as of December 31, 2026
+(000)
+Post 1970 ITC Calculation
+Schedule MDE-7 
+Phase 2
+Page 1 of 5
+Summary of Adjustments to Net Income
+Depreciation
+Taxes
+Net
+Schedule
+O&M
+& Amortization
+Other Than
+State
+Federal
+Operating
+Description:
+Reference
+Revenues
+Expenses
+Expense
+Income
+Income Taxes
+Income Taxes
+Income
+OUCC Expense Adjustments:
+Revenue Adjustment
+Leader
+$230
+- 
+- 
+- 
+11
+ 
+46
+ 
+173
+ 
+Fuel Expense-Revenue Adjustment
+Eckert (7-3)
+- 
+- 
+- 
+- 
+- 
+- 
+Fuel Expense
+Eckert (7-2)
+- 
+(35,627)
+ 
+- 
+- 
+1,746
+ 
+7,115
+ 
+26,766
+ 
+Vegetation Management Expense
+Sanka
+- 
+(17,442)
+ 
+- 
+- 
+855
+ 
+3,483
+ 
+13,104
+ 
+Storm Reserve Expense
+Lantrip
+- 
+(1,477)
+ 
+- 
+- 
+72
+ 
+295
+ 
+1,110
+ 
+Payroll Expense
+Baker
+- 
+(11,438)
+ 
+- 
+- 
+560
+ 
+2,284
+ 
+8,593
+ 
+Payroll Tax Expense
+Baker
+- 
+- 
+- 
+(932)
+ 
+46
+ 
+186
+ 
+700
+ 
+Payroll Related Expense
+Baker
+- 
+(2,857)
+ 
+- 
+- 
+140
+ 
+571
+ 
+2,146
+ 
+Rate Case Expense
+Baker
+- 
+(759)
+ 
+- 
+- 
+37
+ 
+152
+ 
+570
+ 
+Depreciation Expense Adjustment
+Garren
+- 
+- 
+(62,893)
+          
+- 
+3,082
+ 
+12,560
+ 
+47,251
+ 
+IURC Fee Expense
+Eckert (7-5)
+- 
+(548)
+ 
+- 
+- 
+27
+ 
+109
+ 
+412
+ 
+Uncollectible Account Expense
+Eckert (7-4)
+- 
+(194)
+ 
+*
+- 
+- 
+10
+ 
+39
+ 
+146
+ 
+Total OUCC Adjustments
+230
+$
+ 
+(70,342)
+$        
+(62,893)
+$        
+(932)
+ 
+6,585
+$
+ 
+26,840
+$         
+100,971
+$       
+Revenue Conversion Factor
+4.90000%
+19.97100%
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+for the Test Year Ended December 31, 2026
+($000)
+Schedule MDE-7
+Phase 1 and 2
+Page 2 of 5
+ Line 
+No. 
+Description:
+OUCC Proposed 
+Amount
+1
+OUCC Proposed Fuel Cost
+$ 
+ 561,800 
+2
+Less:  AESI Proposed Base Cost of Fuel
+597,427
+3
+OUCC Adjustment - Inc/(Dec)
+$ 
+ (35,627)
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Fuel Expense
+($000)
+Schedule MDE-7
+Phase 1 and 2
+Page 3 of 5
+ Line 
+No. 
+Description:
+OUCC Proposed 
+Amount
+Tariff Rate
+OUCC Proposed 
+Amount
+Revenue Adjustment:
+1
+Residential Class:
+2
+Residential Service (RS) (MWh)
+1,147
+3
+Residential (RC) (MWh)
+803
+4
+Residential Heat (RH) (MWh)
+177
+5
+Total Mwh
+2,126
+Fuel Expense Adjustment
+6
+Total kWh
+2,126,250
+7
+Multiply by Base Cost of Fuel
+$0.042260
+8
+OUCC Adjustment - Inc/(Dec)
+$89,855
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Fuel Expense Adjustment - Revenue
+(000)
+Schedule MDE-7
+Phase 1 and 2
+Page 4 of 5
+ Line 
+No. 
+Description:
+Amount
+1
+Forecasted electric operating revenues for the twelve 
+months ended December 31, 2026
+$1,917,683 
+2
+Less: Off-system sales
+(24,906)
+3
+Less: Rents from electric property
+(3,540)
+4
+Less:  Miscellaneous electric revenue
+(4,387)
+5
+   Net forecasted electric operating revenues
+1,884,850 
+6
+Uncollectible accounts experience rate
+0.3891 %
+7
+Adjusted uncollectible electric accounts expense
+7,334 
+8
+Unadjusted uncollectible electric accounts expense
+6,486 
+9
+Adjustment at present rates
+848 
+10
+Less: AES Proposed adjustment
+(1,042)
+11
+OUCC Adjustment - Inc/(Dec)
+($194)
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+Uncollectible Expense
+($000)
+Schedule MDE-7
+Phase 1 and 2
+Page 5 of 5
+ Line 
+No. 
+Description:
+Amount
+1
+Forecasted electric operating revenues for the twelve
+months ended December 31, 2026
+$1,917,683 
+2
+Less:  Off-system sales
+(24,906)
+3
+Less:  Rents
+(3,540)
+4
+Less:  Other customer charges
+(10,816)
+5
+Less:  Miscellaneous electric revenues
+(4,387)
+6
+Less:  Uncollectible accounts expense
+(7,528)
+7
+Net forecasted electric operating revenue subject to public 
+utility fee
+1,866,506 
+8
+Effective public utility fee rate
+0.1456 %
+9
+Adjusted test year public utility fee
+2,718 
+10
+Less: AES Indiana IURC Fee
+3,266 
+11
+Adjustment at proposed rates
+($548)
+Indianapolis Power & Light Company d/b/a AES Indiana
+Cause No. 46258
+IURC Fee Expense
+($000)
+Line 
+No. 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10 
+11 
+12 
+13 
+Indianapolis Power & Light Company d/b/a AES Indiana 
+Cause No. 46258 
+Original Cost Rate Base adjustments as of December 31, 2025 and December 31, 2026 
+(000) 
+December 31, 2025 
+December 31, 2026 
+Witness 
+OUCC Rate Base 
+OUCC Rate Base 
+Description: 
+Reference 
+Adjustment 
+Adjustment 
+(1) 
+(2) 
+Fuel Inventory 
+Eckert 
+($425) 
+$0 
+ACE Investment 
+Lantrip 
+(4,350) 
+(4,600) 
+368.00 Line Transformers 
+Kelley 
+(20,921) 
+0 
+364.00 Poles, Towers & Fixture 
+Kelley 
+0 
+(617) 
+391.00 Office Furniture & Fixt 
+Kelley 
+(200) 
+(328) 
+360.00 Underground conductors and devices 
+Kelley 
+(217) 
+0 
+397.00 Communication Equip Post 1996 
+Kelley 
+(405) 
+(695) 
+398.00 Miscellaneous Equipment 
+Kelley 
+0 
+(715) 
+303.00 Intangible - Software 
+Kelley 
+0 
+(500) 
+303.00 Intangible - Software 
+Kelley 
+0 
+(1,363) 
+353.00 Station Equipment 
+Kelley 
+0 
+(1,708) 
+391.60 Office Furniture & Flxt 
+Kelley 
+750 
+0 
+Total Pro Forma Rate Base Adjustments 
+$ 
+{27,268) 
+$ 
+{10,526) 
+Schedule MDE-8 
+Phase 1 and 2 
+Page1of1 
+December 31, 2025 
+plus December 31, 
+2026OUCC Rate Base 
+Adjustment 
+(1+2) 
+(425) 
+(8,950) 
+(20,921) 
+(617) 
+(528) 
+(217) 
+(1,100) 
+(715) 
+(500) 
+(1,363) 
+(1.708) 
+750 
+$ 
+{37,794) 
+Indianapolis Power & Light Company 
+d/b/a AES Indiana 
+Cause No. 46258 
+AES Indiana Responses to OUCC DR Set 18 
+6 
+Data Request OUCC DR 18 - 
+ 2 
+Referring to the direct testimony of Alexander Dickerson, Table AJD-1, please provide the same 
+information in the same format as provided in Table AJD-1 for Calendar years ending December 
+31, 2022, and December 31, 2023. 
+ 
+Objection: 
+Response:  
+OUCC DR 18-2 Table 1: 
+1
+Attachment MDE - 1
+Page 1 of 1
+2022 
+2023 
+HSSOil 
+Actual 
+Actual 
+Gallons 
+853,429 
+736,423 
+Dollars 
+$1,557,472 
+$1,319,859 
+$/Gallon 
+$1.82 
+$1.79 
+Attachment MDE - 2
+Page 1 of 2
+REPORT OF OUTAGE 
+State Form 54646 (R4 / 07-24) 
+INDIANA UTILITY REGULATORY COMMISSION 
+Instructions for reporting are on page 2 and do not need to be filed with the report. 
+Required luformatiou 
+Fiual Report: 
+~YES 
+□NO 
+Coutact Information 
+Name ofUtilify: 
+AES Indiana 
+Utili1Y Contact Representative: 
+Chad Rogers 
+Contact Phone Number: 
+Cell: 317-340-7684, Office: 317-261-8983 
+Outage Information 
+Estimated Total Number of Customers affected and 
+~87,000 Customers Affected 
+Number of Customers still out as of this report: 
+0 Customers Still Out from this Storm Event as of This Report 
+Interruption(s) Start Date (month, day, year) I Time: 
+04/02/2025 @2130 Hrs 
+71.5 Hours 
+Duration oflnterruption(s): 
+Location oflnterruption(s): 
+Across Entire Service Territory 
+County, City, Address or other description 
+Cause oflnterruption(s): 
+Rain, lightning, 60-80 mph winds, and reported tornado resulting from 
+weather front moving through service territory. 
+Estimated Service Restoration Time: 
+Restoration efforts for those affected by this storm event have been 
+completed. 
+Reported By: 
+Date (month, day, year) I Time: 
+Notes: 
+Alisha Goad 
+04/05/2025 @ 2100 Hrs 
+AES Crews: 21 Line/VG, 8 Trouble 
+Contractor Crews: 47 Field, 70 Vegetation 
+MA Utility Crews: 0 
+MA Contractor Crews: 30 Line 
+Storm Restoration Major Overview: Replaced 49 Poles and 40 Transformers. 5 Transmission 
+H-frame structures damaged. 
+Attachment MDE - 2
+Page 2 of 2
+REPORT OF OUTAGE INSTRUCTIONS 
+Initial Ontage Reporting Conditions 
+• 
+Investor-owned utilities must report outages lasting two (2) or more hours and affecting 2% 
+or 5,000 of their customers, whichever is less. 
+• 
+Municipal and cooperative utilities must report outages lasting two (2) hours or more 
+and affecting 1,500 or more customers. 
+• 
+The report should be made to the Commission as soon as possible after the two (2) hours, 
+and the customer affected level has been reached. 
+• 
+The initial report should be accomplished via email addressed to outage@urc.in.gov 
+• 
+Utilities are encouraged to report any outage believed to cause public concern. For example, a 
+large housing development or a segment of the business district during business hours, even if 
+the outage does not meet the duration/customer level threshold. 
+Updates to On-going Outages: 
+Following the initial outage report, outage status updates shall be provided by email to outage@urc.in.gov at 
+the times listed below until the problem is resolved. If circumstances limit the availability of email for reporting, a 
+telephone report is acceptable. All telephone reports shall also be supported by a corresponding email report as soon 
+as possible. 
+Business Days: 6:00 a.m., 9:00 a.m., 11 :00 a.m., 2:00 p.m., 4:00 p.m., and 9:00 p.m. Indianapolis time. 
+Non-Business Days: 6:00 a.m., 2:00 p.m., and 9:00 p.m. Indianapolis time. 
+In the case of an extreme emergency, a schedule will be agreed to by the Commission and the utility 
+( e.g. times when major circuits are restored). The last report to be submitted by a utility shall be noted as the 
+"Final Report" for this event. 
+Contact Person: Each utility must provide the Commission with a contact person in case of inquiries on 
+outages the utility did not report to the Commission. During significant restoration events, additional information 
+requested by the Commission should be directed to the individual listed on the latest report from the utility. 
+AFFIRMATION 
+I affirm, under the penalties for perjury, that the foregoing representations are true 
+and correct to the best of my information and belief. 
+Michael D. Eckert 
+Chief Technical Advisor 
+Indiana Office of Utility Consumer Counselor 
+ Cause No. 46258 
+  September 9, 2025 
+  Date 
+CERTIFICATE OF SERVICE 
+This is to certify that a copy of the Indiana Office of Utility Consumer Counselor 
+Public Exhibit No. 2 – Redacted Testimony of OUCC Witness Michael D. Eckert has been served 
+upon the following in the above-captioned proceeding by electronic service on September 9, 2025: 
+Teresa Morton Nyhart  
+Jeffrey M. Peabody  
+Kay E. Pashos  
+Mark R. Alson  
+Taft Stettinius & Hollister LLP 
+One Indiana Square, Suite 3500 
+Indianapolis, Indiana 46204 
+tnyhart@taftlaw.com 
+jpeabody@taftlaw.com  
+kpashos@taftlaw.com  
+malson@taftlaw.com   
+Jennifer A. Washburn 
+Citizens Action Coalition 
+1915 West 18th Street, Suite C 
+Indianapolis, Indiana 46202 
+jwashburn@citact.org  
+Barry A. Naum  
+Steven W. Lee 
+SPILMAN THOMAS & BATTLE, PLLC 
+1100 Bent Creek Boulevard, Suite 101 
+Mechanicsburg, PA 17050 
+bnaum@spilmanlaw.com   
+slee@spilmanlaw.com  
+Anne E. Becker  
+LEWIS KAPPES, P.C. 
+One American Square, Suite 2500 
+Indianapolis, Indiana 46282 
+abecker@lewis-kappes.com  
+Copies to: 
+rkurtz@citact.org, austin.baker@aes.com, 
+kristi.figg@aes.com, jbieber@energystrat.com, 
+and ETennant@Lewis-kappes.com   
+Joseph P. Rompala 
+Aaron A. Schmoll 
+Emily R. Vlasak 
+LEWIS & KAPPES, P.C. 
+One American Square, Suite 2500 
+Indianapolis, Indiana 46282-0003 
+JRompala@Lewis-Kappes.com  
+ASchmoll@Lewis-Kappes.com  
+EVlasak@Lewis-Kappes.com  
+Kurt J. Boehm, Esq.  
+Jody Kyler Cohn, Esq.  
+Boehm, Kurtz & Lowry  
+425 Walnut Street,  
+Cincinnati, Ohio 45202  
+KBoehm@BKLlawfirm.com  
+JKylerCohn@BKLlawfirm.com 
+John P. Cook, Esq.  
+John P. Cook & Associates 
+900 W. Jefferson Street 
+Franklin, IN 46131 
+John.cookassociates@earthlink.net 
+Nikki G. Shoultz 
+Kristina Kern Wheeler 
+Gregory Loyd 
+Bose McKinney & Evans LLP 
+111 Monument Circle, Suite 2700 
+Indianapolis, IN 46204 
+nshoultz@boselaw.com  
+kwheeler@boselaw.com  
+gloyd@boselaw.com  
+_________________________________ 
+T. Jason Haas, Attorney No. 34983-29
+Senior Deputy Consumer Counselor
+INDIANA OFFICE OF UTILITY CONSUMER COUNSELOR 
+115 West Washington Street, Suite 1500 South 
+Indianapolis, IN 46204 
+(317) 232-2494 - Phone
+(317) 232-5923 - Facsimile
+(317) 232-3315 - Haas Phone
+(317) 233-3237 - Kashin Phone
+Thaas@oucc.IN.gov
+akashin@oucc.IN.gov
+infomgt@oucc.IN.gov

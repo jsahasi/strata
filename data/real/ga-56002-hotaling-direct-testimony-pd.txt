@@ -1,0 +1,8168 @@
+May 2, 2025 
+
+VIA ELECTRONIC DELIVERY 
+
+Ms. Sallie Tanner 
+Executive Secretary 
+Georgia Public Service Commission 
+244 Washington Street, SW 
+Atlanta, Georgia 30334 
+
+Re:  Direct Testimony on Behalf of Georgia Interfaith Power & Light and Southface 
+
+Energy Institute; Docket No. 56002, 56003 
+
+Dear Ms. Tanner: 
+
+Please find enclosed an electronic version of the following Direct Testimony of Chelsea 
+Hotaling on behalf of Georgia Interfaith Power & Light and Southface Energy Institute to 
+be filed in Docket No. 56002 and 56003.   
+
+Please also find enclosed an electronic version of the Trade Secret version of the Direct 
+Testimony of Chelsea Hotaling on behalf of GIPL and Southface.  
+
+Respectfully submitted, 
+
+__________________________ 
+
+Bob Sherrier 
+Staff Attorney 
+Southern Environmental Law Center 
+Ten 10th Street NW, Suite 1050 
+Atlanta, Georgia 30309 
+678-686-8487
+bsherrier@selc.org
+
+Counsel for GIPL and Southface  
+
+STATE OF GEORGIA 
+
+BEFORE THE 
+
+ PUBLIC SERVICE COMMISSION 
+
+In Re:  
+
+Georgia Power Company’s  
+2025 Integrated Resource Plan 
+
+And 
+
+Georgia Power Company’s 2025 
+Application for the Certification, 
+Decertification, and Amended Demand-
+Side Management Plan 
+
+)  
+)  
+)  
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+
+ Docket No. 56002 
+
+ Docket No. 56003 
+
+DIRECT TESTIMONY OF CHELSEA HOTALING  
+
+ON BEHALF OF  
+
+GEORGIA INTERFAITH POWER & LIGHT  
+
+AND SOUTHFACE ENERGY INSTITUTE 
+
+May 2, 2025 
+
+PUBLIC DISCLOSURETABLE OF CONTENTS 
+
+I.  INTRODUCTION  ................................................................................................................................................. 1 
+
+II.  SUMMARY OF RECOMMENDATIONS .......................................................................................................... 2 
+
+III.  GEORGIA POWER’S LARGE LOAD FORECAST ...................................................................................... 3 
+
+A.  GEORGIA POWER DID NOT UPDATE ITS LARGE LOAD MODEL TO REFLECT ITS NEW DATA. ................................ 5 
+B.  DATA DEMONSTRATES GEORGIA POWER’S GROWTH ASSUMPTIONS ARE INACCURATE. ................................... 9 
+1.  Delay Data: GPC is underestimating project delays. ................................................................................ 9 
+2. 
+Ramp Rates: Georgia Power’s assumption that “ramp rates” are known variables is undermined by 
+2024 data. ................................................................................................................................................. 10 
+
+3.  Dropout Rates: Georgia Power’s data reflects high rates of dropout from the queue, which are not 
+
+reflected in its modeling assumptions. ...................................................................................................... 12 
+
+C.  GEORGIA POWER’S RELIANCE ON INACCURATE ASSUMPTIONS HAS LED TO AN OVERSTATEMENT OF ITS LOAD 
+
+FORECAST. ..................................................................................................................................................... 15 
+
+1.  Dropout Risk: Georgia Power’s model does not reflect the risk of prospective customers (without a 
+
+2. 
+3. 
+
+contract) dropping out of the pipeline. ..................................................................................................... 15 
+Bifurcated Load Model: Georgia Power should develop two distinct load forecast projections. ............ 19 
+ Project Delay Risk: Georgia Power understates the length of delay that its prospective customers are 
+likely to encounter. ................................................................................................................................... 20 
+New assumptions significantly impact load growth sensitivities. ............................................................. 22 
+Additional concerns not captured in load growth sensitivities above: load ramp & materialization rates.  
+  ................................................................................................................................................................. 23 
+D.  RECOMMENDATIONS ...................................................................................................................................... 28 
+
+4. 
+5. 
+
+IV. RESERVE MARGIN STUDY ........................................................................................................................... 29 
+
+V. THE RESOURCE MIX STUDY ......................................................................................................................... 38 
+
+B. 
+
+A.  ALTERNATIVE MODELING RUNS: I TESTED THE IMPACT OF 5 SENSITIVITIES ON THE ECONOMICALLY OPTIMAL 
+RESOURCE MIX RECOMMENDED BY AURORA. ................................................................................................ 39 
+IN ADDITION TO THE LIMITED VARIABLES I TESTED, ADDITIONAL MODELING ASSUMPTIONS SHOULD BE 
+REEVALUATED. .............................................................................................................................................. 46 
+1.  Georgia Power instructed its model not to choose more than 1,500 MW of solar per year. .................... 46 
+2.  Georgia Power’s cost assumptions for thermal resources are too low. ................................................... 47 
+C.  ALTERNATIVE MODELING RUNS: RESOURCE MIX RESULTS .......................................................................... 50 
+D.  ALTERNATIVE MODELING RUNS: PRESENT VALUE OF REVENUE REQUIREMENTS RESULTS .......................... 52 
+E.  COAL RETIREMENTS: MORE RELIABLE INFORMATION IS NEEDED TO IDENTIFY THE MOST ECONOMICALLY 
+
+OPTIMAL PATH FORWARD. .............................................................................................................................. 55 
+
+VI. CONCLUSION 
+
+ ............................................................................................................................................... 58 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface  
+GPSC Docket No. 56002 and 56003 
+Page 1 
+
+PUBLIC DISCLOSURE 
+ 
+ 
+ 
+ 
+ 
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+I.  INTRODUCTION 
+
+Q: 
+
+PLEASE STATE YOUR NAME, TITLE, AND BUSINESS ADDRESS. 
+
+A:  My name is Chelsea Hotaling. I am a Senior Consultant at Energy Futures Group (“EFG”), 
+
+located at 90 Main Street, Canton, New York, 13617. 
+
+Q:  MS.  HOTALING,  PLEASE  SUMMARIZE  YOUR  EDUCATIONAL  AND 
+
+PROFESSIONAL EXPERIENCE. 
+
+A: 
+
+I have worked for eight years in electric utility regulation and related fields. I have reviewed 
+
+dozens  of  integrated  resource  plans  (“IRPs”)  and  related  filings  by  utilities  in  Arizona, 
+
+Colorado,  Indiana,  Iowa,  Kansas,  Kentucky,  Michigan,  Minnesota,  Missouri,  Montana, 
+
+New Mexico, Nova Scotia, Puerto Rico, South Carolina, and Wisconsin. I have performed 
+
+my own capacity expansion, production cost, and reliability modeling in numerous cases 
+
+using  multiple  models  including  EnCompass,  AURORA,  PLEXOS,  and  the  Strategic 
+
+Energy & Risk Valuation Model (“SERVM”).  
+
+I received a Bachelor’s Degree in Accounting and Economics from Elmira College in 2011. 
+
+I also received a Master of Business Administration Degree in 2012, a Master’s Degree in 
+
+Environmental  Policy  in  2019,  and  a  Master’s  Degree  in  Data  Analytics  in  2020,  from 
+
+Clarkson University. My curriculum vitae, included as Exhibit CH-1, provides additional 
+
+detail regarding my professional and educational experience. 
+
+Q. 
+
+HAVE  YOU  PREVIOUSLY  TESTIFIED  BEFORE  THE  GEORGIA  PUBLIC 
+
+SERVICE COMMISSION? 
+
+A. 
+
+Yes, I testified before the Georgia Public Service Commission in Georgia Power’s 2023 
+
+IRP Update, Docket No. 55378. 
+
+23 
+
+Q: 
+
+ON WHOSE BEHALF ARE YOU TESTIFYING IN THIS CASE? 
+
+24 
+
+25 
+
+A: 
+
+I am testifying on behalf of Georgia Interfaith Power and Light (“GIPL”) and Southface 
+
+Energy Institute (“Southface”).  
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface  
+GPSC Docket No. 56002 and 56003 
+Page 1 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+26 
+
+27 
+
+Q:  WHAT IS THE PURPOSE OF YOUR TESTIMONY? 
+
+A: 
+
+I  was  asked  to  review  the  assumptions  and  recommendations  Georgia  Power  Company 
+
+(“GPC” or “Georgia Power”) made in its 2025 IRP with respect to the large load forecast, 
+
+the SERVM modeling used to develop the target reserve margin (“TRM”), and Georgia 
+
+Power’s proposed pathway for meeting projected load growth.  
+
+II.  SUMMARY OF RECOMMENDATIONS 
+
+Q: 
+
+PLEASE SUMMARIZE YOUR FINDINGS AND RECOMMENDATIONS. 
+
+A:   My key findings and recommendations are as follows: 
+
+1.  Load Forecast 
+
+a.  Georgia Power has not updated its large load forecast assumptions to reflect data it 
+
+has collected since the 2023 IRP, despite the new data undermining the reliability 
+
+of assumptions in its model. 
+
+i.  Importantly,  Georgia  Power’s  large  load  forecast  model  does  not 
+
+incorporate  the  risk  of  prospective  customers  without  signed  contracts 
+
+dropping out of the pipeline. In order to capture this risk, Georgia Power 
+
+should  utilize  data  on  the  historical  dropout  rate  for  these  prospective 
+
+customers. 
+
+b.  Georgia Power’s load forecast is overstated. When I made selected modifications 
+
+to Georgia Power’s input assumptions to reflect the actual data collected by Georgia 
+
+Power,  the  results  indicated  these  changes  have  a  significant  impact  on  the 
+
+projected load growth for Georgia Power. 
+
+c.  The Commission should not use Georgia Power’s 2025 IRP large load forecast for 
+
+resource planning. Instead, the Commission should direct Georgia Power to submit 
+
+a  revised  large  load  forecast  with  updated  inputs  and  assumptions  to  reflect  its 
+
+actual data. In addition, the Commission should direct Georgia Power to project 
+
+growth for its “committed” customers. Georgia Power’s projected growth potential 
+
+based  on  prospective,  non-committed  customers  should  be  provided  to  the 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface  
+GPSC Docket No. 56002 and 56003 
+Page 2 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+Commission  as  an  additional  layer  of  information  to  inform  the  Commission’s 
+
+policy determinations. 
+
+2.  Reserve Margin Study  
+
+a.  The Commission should order Georgia Power to modify its approach to modeling 
+
+new large load customers in SERVM to ensure that those loads are not scaled based 
+
+on weather and do not have load forecast errors applied to them within the reserve 
+
+margin study. 
+
+3.  Resource Mix Study 
+
+a.  The  Commission should  order Georgia  Power to  update its load projections and 
+
+resource mix model for at least MG0 and MG0-111: 
+
+1.  Using available load growth data to identify more reasonable assumptions; 
+
+and 
+
+2.  Using  cost  comparison  data  from  the  pending  all-source  RFP  to  reflect 
+
+critical resource cost assumptions in its resource mix. 
+
+III.  GEORGIA POWER’S LARGE LOAD FORECAST 
+
+Q:   HOW DID GEORGIA POWER DEVELOP ITS FORECAST FOR NEW LARGE 
+
+LOAD CUSTOMERS FOR THE 2025 IRP? 
+
+A: 
+
+Georgia Power used the same load forecasting methodology and model that was introduced 
+
+in the 2023 IRP. 
+
+Q:   CAN YOU EXPLAIN WHY GEORGIA POWER DEVELOPED ITS OWN MODEL 
+
+FOR FORECASTING NEW LARGE LOAD CUSTOMERS? 
+
+A: 
+
+The level of new large load1 growth resulted in a significant difference in the load growth 
+
+projection between the 2022 and 2023  IRP. The traditional methods of forecasting load 
+
+growth rely on economic and demographic variables as drivers of energy use. Since these 
+
+1 See Georgia Power 2025 Integrated Resource Plan (“2025 IRP Main Document”) at 35, fn. 26 (Georgia Power’s 
+definition of large load states, “In general, for purposes of forecasting and planning for large load customers, the 
+Company defines ‘large load’ to be industrial load greater than or equal to 45 MW and commercial load greater than 
+or equal to 115 MW.”). 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface  
+GPSC Docket No. 56002 and 56003 
+Page 3 
+
+PUBLIC DISCLOSURE 
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+26 
+
+27 
+
+models are based on the historical trends for the different variables included in the model, 
+
+it is challenging for the traditional forecast to be able to account for the large load (Georgia 
+
+Power also refers to as “economic development projects”) arising from the demand growth 
+
+Georgia  is  experiencing.  As  a  result,  Georgia  Power  developed  its  own  model  for 
+
+forecasting load growth from new large load customers, which Georgia Power refers to as 
+the load realization model (“LRM”).2 
+
+Q:   CAN YOU EXPLAIN HOW THE LOAD REALIZATION MODEL IS 
+
+CONFIGURED TO FORECAST THE NEW LARGE LOAD CUSTOMERS? 
+
+A: 
+
+Yes.  Georgia Power’s description of the configuration of the model has not changed since 
+
+the 2023 IRP Update.  A description of the basics of the model is attached as Exhibit CH-
+
+2.  However,  my  analysis  revealed  a  significant  discrepancy  between  Georgia  Power’s 
+
+model  and  the  2025  IRP  model  outputs.  This  discrepancy  suggests  Georgia  Power  has 
+
+adjusted its large load projections from the model output, without describing publicly this 
+
+step of its process. This unexplained adjustment is described further at page 13.     
+
+Q:   DID  YOU  REVIEW  GEORGIA  POWER’S  PROCESS  FOR  DEVELOPING 
+
+ASSUMPTIONS  FOR  NEW  LARGE  LOAD  CUSTOMERS,  OR  THE  LOAD 
+
+REALIZATION MODEL, AS PART OF THE 2023 IRP? 
+
+A: 
+
+Yes, I reviewed the 2023 IRP load realization model and the probabilities Georgia Power 
+
+assigned to the uncertain variables specified in the model. 
+
+Q:   WHEN YOU REVIEWED THE LOAD REALIZATION MODEL AT THE TIME 
+
+OF THE 2023 IRP, DID YOU MAKE ANY RECOMMENDATIONS? 
+
+A: 
+
+Yes.  I recommended that Georgia Power use the 50th percentile, or P50, for its large load 
+
+model adjustment value.  At that time, Georgia Power was using the 95th percentile, or P95, 
+
+for its large load model adjustment value, and I did not believe it was reasonable to plan 
+
+for a load scenario that was at or higher than 95% of modeling scenarios identified by the 
+
+model. I provided several reasons to support the P50 level, but one of the main reasons is 
+
+that using the most likely value (P50) aligns with the approach used for developing load 
+
+2 The load forecast model is referred to as the “load realization model” in the workpapers provided by Georgia 
+Power with this filing. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface  
+GPSC Docket No. 56002 and 56003 
+Page 4 
+
+PUBLIC DISCLOSURE 
+ 
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+forecasts  for  utility  planning.  Load  forecasts  that  utilities  use  as  inputs  for  capacity 
+
+expansion models are typically 50/50 forecasts, which means there is a 50% chance of an 
+
+over-forecast (meaning the forecast is higher than actual needs) and a 50% chance of an 
+
+under-forecast (meaning the forecast is lower than actual needs).  
+
+I also made a recommendation for Georgia Power to track customer data. The 2023 IRP 
+
+was the first time Georgia Power introduced the load realization model. Given the lack of 
+
+historical data for large load customers at the scale they appeared in the model, I testified 
+
+that  granular  data  tracking  was  critical  to  help  inform  what  values  to  include  for  the 
+
+uncertain  variables  in  the  load  realization  model.  At  that  time,  there  was  no  data  to 
+
+benchmark  the  assumptions  Georgia  Power  made  for  each  probability  included  in  the 
+
+model. 
+
+Q: 
+
+DID GEORGIA  POWER CONTINUE TO USE  THE 95TH PERCENTILE FROM 
+
+THE LOAD REALIZATION MODEL FOR THE 2025 IRP? 
+
+A: 
+
+No. Georgia Power has modified its new large load forecast to include the 50th percentile 
+
+from the load realization model. This is a significant improvement from the 2023 IRP. 
+
+Q: 
+
+HAS GEORGIA POWER BEEN TRACKING DATA REGARDING ITS LARGE 
+
+LOAD GROWTH SINCE THE 2023 IRP? 
+
+A: 
+
+Yes. Georgia Power has been filing quarterly reports reflecting the growth in the large load 
+
+pipeline, as well as providing important data metrics concerning the changes to that growth. 
+
+This is another significant improvement from the 2023 IRP. 
+
+Georgia Power did not update its large load model to reflect its new data. 
+
+Q: 
+
+HAS GEORGIA POWER USED ITS NEW DATA TO INFORM THE 
+
+UNCERTAIN VARIABLES USED IN ITS LARGE LOAD MODEL? 
+
+A.
+
+No. Georgia Power has not used new data on large loads to update its assumptions about 
+how large load customers will behave.3 
+
+3 2025 Direct Hr’g Tr. 519:15-17. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 5 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+Q:   WHAT IS YOUR BASIS FOR BELIEVING THAT GEORGIA POWER DID NOT 
+
+USE ITS AVAILABLE DATA IN ITS LOAD REALIZATION MODEL? 
+
+A: 
+
+Georgia Power testified that it has not updated the probabilities used in its large load model 
+
+since it originally developed the large load model, prior to the 2023 IRP Update.  Georgia 
+
+Power testified that it is “exploring some refinements of certain probabilities, and [it] may 
+suggest to make those refinements going forward.”4 But despite having two full quarters 
+
+of Commission-ordered data5 at its disposal, and additional information from the 2023 IRP, 
+
+at the time of developing this load forecast, Georgia Power failed to account for that data 
+
+in its estimates.6 Further, Georgia Power has indicated that it does not plan to supplement 
+its analysis during this docket.7   
+
+Q: 
+
+SHOULD GEORGIA POWER HAVE UPDATED ITS LARGE LOAD MODEL 
+
+USING AVAILABLE DATA? 
+
+A: 
+
+Yes. Georgia Power testified that it is “commit[ed] . . . to be rigorous . . . to incorporate the 
+latest  available  information  every  time  that  we  develop  a  forecast.”8  I  agree  that  this 
+
+approach to updating is necessary. But Georgia Power did not follow this approach with 
+
+respect to its large load model in this IRP. It is unreasonable not to at least test Georgia 
+
+Power’s  assumptions  with  the  available  data.  The  reliability  of  the  modeling  used  by 
+
+Georgia Power depends on the reliability of the assumptions fed into the model.  If Georgia 
+
+Power is not utilizing recent data about the assumptions for the model, then the model will 
+
+not reflect how those loads are materializing. 
+
+For this docket, by the time the load forecast was developed, Georgia Power had at least 
+
+three quarters of granular load information—two of which had been published (in part) as 
+
+required by this Commission. By the time Georgia Power testified in this case, Georgia 
+
+Power had at least five quarters of granular load information. That is not only the best data 
+
+4 2025 Direct Hr’g Tr. 520:20-22. 
+5 Georgia Power files quarterly Large Load Economic Development Reports in Docket No. 55378. 
+6 Georgia Power response to STF-DEA-1-44. 
+7 2025 Direct Hr’g Tr. 489:9-11. 
+8 2025 Direct Hr’g Tr. 659:24-660:2. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface  
+GPSC Docket No. 56002 and 56003 
+Page 6 
+
+PUBLIC DISCLOSURE 
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+available  to  Georgia  Power:  It  is  the  only  Georgia  Power-specific  quantitative  data 
+
+available to test the assumptions upon which the entire model relies. 
+
+Q: 
+
+IF THE DATA INPUTS RELIED ON BY GEORGIA POWER HAVE NOT   
+
+CHANGED SINCE THE 2023 IRP, WHY HAVE YOUR CRITIQUES OF THOSE 
+
+INPUTS CHANGED? 
+
+A: 
+
+The model is only as good as its inputs. During the 2023 IRP, Georgia Power repeatedly 
+
+explained that it was relying on “informed judgment within the Company to develop key 
+assumptions” because there was “no historical data that can serve as a guide.”9 That is no 
+
+longer the case.  While it is true that the data available is limited, the available data still has 
+
+considerable value.   
+
+Q: 
+
+CAN YOU SHARE SOME HIGHLIGHTS FROM YOUR REVIEW OF THE DATA 
+
+FROM  EACH  OF  THE  QUARTERLY  LOAD  REPORTS  SUBMITTED  BY 
+
+GEORGIA POWER? 
+
+A: 
+
+Table  1  provides  the  changes  observed  between  the  first  quarterly  report  submitted  by 
+Georgia Power through the fourth quarterly report.10 “Load Change” reflects the aggregate 
+
+change  in  the  customer’s  projection  for  its  announced  load.  This  represents  customers 
+
+making  modifications  to  their  announced  load,  whether  that  is  an  increase  or  decrease. 
+
+When looking across the four quarterly reports, there has been a downward adjustment for 
+
+the load announced by customers, with the exception of quarter three. “Load Removed” 
+
+reflects the level of load that has left Georgia Power’s load queue. There was a significant 
+
+drop between the 2023 IRP model and the first quarterly report, and some level of load has 
+
+left the queue across each report. “Initial Service Change” reflects the number of customers 
+
+that  made  a  change  to  their  requested  online  date.  “Load  Ramp  Change”  reflects  the 
+
+number of customers that modified their projected load ramp.  
+
+9 See, e.g., Georgia Power responses to STF-DEA-1-8 (PD), attached as CH-Exhibit 4 and STF-DEA-1-9 (PD) 
+(Docket 55378), attached as CH-Exhibit 5. 
+10 The “Q1” column reflects changes from the 2023 IRP model through the first quarterly report. The “Q2” column 
+reflects changes from the first quarterly report to the second quarterly report. The “Q3” column reflects changes 
+from the second quarterly report to the third quarterly report. The “Q4” column reflects changes from the third 
+quarterly report to the fourth quarterly report. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 7 
+
+PUBLIC DISCLOSURE“Announced” Load Change  
+Load Removed 
+Load Added 
+Initial Service Change  
+(# of customers) 
+Load Ramp Change 
+(# of customers) 
+
+Q1 
+-204 MW 
+-5,983 MW 
+9,906 MW 
+
+Q2 
+-581 MW 
+-2,595 MW 
+6,359 MW 
+
+Q3 
+134 MW 
+-2,835 MW 
+14,734 MW 
+
+Q4 
+-957 MW 
+-1,698 MW 
+12,203 MW 
+
+17 
+
+15 
+
+23 
+
+25 
+
+50 
+
+23 
+
+21 
+
+13 
+
+Table 1. Changes in Quarterly Load Reports11 
+
+Q:   DO THE QUARTERLY LOAD REPORTS SUBMITTED BY GEORGIA POWER 
+
+ALSO PROVIDE INFORMATION ON THE NUMBER OF CUSTOMERS THAT 
+
+GEORGIA POWER CONSIDERS TO BE COMMITTED? 
+
+A: 
+
+Yes, the reports provide information on the “Project Stage”, which indicate whether there 
+
+is a signed contract, a request for service (“RFS”), or if customers are under what Georgia 
+
+Power refers to as technical review. Georgia Power considers committed customers to be 
+those customers who have at least executed a request for service from Georgia Power.12 
+
+Georgia  Power  considers  prospective  customers,  or  those  under  technical  review,  as 
+customers that have not signed a RFS with the company.13  
+
+Q:   WHAT  DID  YOUR  REVIEW  OF  THE  QUARTERLY  LOAD  REPORTS 
+
+INDICATE  ABOUT  THE  LEVEL  OF  COMMITTED  AND  PROSPECTIVE 
+
+CUSTOMERS? 
+
+A: 
+
+Table  2  shows  a  comparison  of  committed  customers  (those  with  a  signed  contract  or 
+
+request  for  service)  and  prospective  (customers  under  technical  review)  across  the  four 
+
+quarterly load reports submitted by Georgia Power. 
+
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+11 Calculated from data provided in the Quarterly Load Reports submitted by Georgia Power. 
+12 2025 IRP Main Document at 36, fn. 27. 
+13 Georgia Power response to STF-DEA-1-4. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface  
+GPSC Docket No. 56002 and 56003 
+Page 8 
+
+PUBLIC DISCLOSURE 
+ 
+ 
+Contract 
+
+Request for Service 
+
+Technical Review 
+
+Total 
+
+Q1 
+
+Q2 
+
+Q3 
+
+Q4 
+
+2,834 
+(14.5%) 
+3,353 
+(17.1%) 
+13,393 
+(68.4%) 
+19,580 
+(100%) 
+
+3,446 
+(15.1%) 
+3,806 
+(16.7%) 
+15,511 
+(68.1%) 
+22,763 
+(100%) 
+
+3,571 
+(10.3%) 
+4,475 
+(12.9%) 
+26,586 
+(76.8%) 
+34,632 
+(100%) 
+
+3,811 
+(8.7%) 
+4,031 
+(9.2%) 
+35,906 
+(82.1%) 
+43,748 
+(100%) 
+
+Table 2. Level of Committed and Prospective Customers (MW) 
+
+Customers with a contract have entered into an agreement with Georgia Power to receive 
+
+service. Customers with a signed request for service have signed an agreement that if they 
+
+choose to locate in Georgia, then they will select Georgia Power as their electric service 
+
+provider.  Customers  in  Technical  Review  do  not  appear  to  have  any  required  financial 
+
+commitment  to  Georgia  Power.  As  Table  2  indicates,  there  has  been  movement  in  the 
+
+number of customers going from technical review to request for service, and customers 
+
+moving from request  for service to  the  contract  stage, but  the  vast majority of  the load 
+
+pipeline are customers Georgia Power classifies as under technical review.  
+
+Data demonstrates Georgia Power’s growth assumptions are inaccurate. 
+
+Q: 
+
+AT THE TIME THE LARGE LOAD MODEL WAS CREATED, WAS THERE ANY 
+
+REASON  FOR  GEORGIA  POWER  TO  BELIEVE  THAT  GEORGIA  POWER’S 
+
+ASSUMPTIONS WERE INACCURATE?   
+
+A: 
+
+Yes. As explained in more detail below, the data Georgia Power provides in the large load 
+
+economic  development  reports  (“quarterly  reports”)  suggests  some  of  Georgia  Power’s 
+
+assumptions are too aggressive, which would cause load projections to be too high. There 
+
+are several examples. 
+
+1. Delay Data: GPC is underestimating project delays.
+
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 9 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+For example, data from the second quarterly report14 reflects that customers’ commercial 
+
+operation date is likely to be significantly more delayed than Georgia Power assumes in its 
+
+model. Georgia Power’s modeling assumptions “are based on the Company’s estimates,” 
+not quantitative data.15 
+
+Table  3  shows  the  project  delay  data  through  the  second  quarterly  report  across  all 
+
+customer segments (first row) and then for the customer segments that had more than three 
+
+data points, which include 
+
+ In comparison to the values Georgia Power assumed, which are reflected 
+
+in the last line of the below Table 3, these data-driven values indicate substantially longer 
+
+maximum delays and a longer most likely delay for the 
+
+ customer 
+
+segment. 
+
+Customer Segment 
+
+Minimum16 
+
+Most Likely 
+(Months) 
+
+Maximum 
+
+All 
+GPC Model Assumption 
+Table 3. Project Delay Reported in Q1 and Q2 Large Load Reports 
+
+2.  Ramp  Rates:  Georgia  Power’s  assumption  that  “ramp  rates”  are  known  variables  is 
+
+undermined by 2024 data. 
+
+The load realization model includes a projected  ramp rate for  each  customer  within the 
+
+model. Georgia Power treats the “ramp-up” schedule as a “known project input” provided 
+by the customer.17 And it does not model that input for being uncertain.  
+
+Quarterly  data  reveals  that  the  “ramp-up”  schedule  provided  by  customers  is  very 
+
+uncertain, and that customers project—on average—a ramp-up of energy demand faster 
+
+than actually required.   
+
+14 Georgia Power “locked down all inputs related to modeling the large load customer forecast on June 30, 2024.”  
+Georgia Power response to STF-DEA-3-5 subpart b. 
+15 2025 Tech. Appx. 1, B2025 Load and Energy Forecast, 7.1.8 at 106. 
+16Although some project delays were actually reporting an earlier project date, negative values were set to be 0 for 
+the minimum. 
+17 2025 Tech. Appx. 1, B2025 Load and Energy Forecast, 7.1.1-7.1.2 at 103. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface  
+GPSC Docket No. 56002 and 56003 
+Page 10 
+
+PUBLIC DISCLOSURE 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+Table 4 and Table 5 show the difference in ramp rates between the 2023 IRP and the first 
+
+quarterly load report and then the first quarterly load report and the second quarterly load 
+
+report,  respectively.  Both  tables  indicate  a  downward  adjustment  to  the  projected  ramp 
+
+rates for customers. Georgia Power’s load realization model is only configured to reflect 
+
+the probability of either the customer’s announced load versus metered load or the initial 
+
+service date changing. The assumptions related to the rate ramp are as given in the model. 
+
+However, as the data reflects, downward adjustments are being reported for the ramp rates. 
+
+Year 
+2024 
+2025 
+2026 
+2027 
+2028 
+2029 
+2030 
+2031 
+2032 
+2033 
+2034 
+2035 
+2036 
+2037 
+
+2023 IRP 
+254 
+1,209 
+2,058 
+2,607 
+2,985 
+3,308 
+3,689 
+3,958 
+4,144 
+4,221 
+4,293 
+4,360 
+4,392 
+4,392 
+
+Q1  Difference 
+146 
+760 
+1,459 
+1,915 
+2,492 
+2,903 
+3,224 
+3,399 
+3,545 
+3,706 
+3,835 
+3,935 
+3,967 
+4,188 
+
+-108
+-449
+-599
+-692
+-493
+-405
+-465
+-559
+-599
+-515
+-458
+-425
+-425
+-204
+
+8 
+
+Table 4. Ramp Rate Reported in First Quarterly Report 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 11 
+
+PUBLIC DISCLOSUREYear 
+2024 
+2025 
+2026 
+2027 
+2028 
+2029 
+2030 
+2031 
+2032 
+2033 
+2034 
+2035 
+2036 
+2037 
+
+Q1 
+268 
+1,356 
+3,313 
+4,751 
+6,807 
+7,950 
+8,776 
+8,963 
+9,046 
+9,118 
+9,190 
+9,257 
+9,289 
+9,510 
+
+Q2 
+157 
+639 
+1,923 
+3,879 
+6,007 
+7,557 
+8,365 
+8,669 
+8,756 
+8,842 
+8,929 
+8,929 
+8,929 
+8,929 
+
+Difference 
+-111 
+-717 
+-1,390 
+-872 
+-800 
+-393 
+-411 
+-294 
+-290 
+-276 
+-261 
+-328 
+-360 
+-581 
+
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+Table 5. Ramp Rate Reported in Second Quarterly Report 
+
+As  I  will  discuss  in  more  detail  below,  it  appears  Georgia  Power  made  a  downward 
+
+adjustment to the load realization model. It is unclear whether this adjustment is intended 
+
+to account for some of the differences seen in the data related to ramp rates or if there are 
+
+other driver(s) for the adjustment.  
+
+3.  Dropout  Rates: Georgia Power’s data reflects  high rates of  dropout  from the queue, 
+
+which are not reflected in its modeling assumptions. 
+
+The  load  realization  model  does  not  incorporate  a  risk  of  customers  without  a  signed 
+
+contract with Georgia Power dropping out of the queue.  
+
+Instead,  Georgia  Power’s  forecast  assumes  that  it  is  almost  certain  that  all  of  the  data 
+centers in its pipeline will end up operating their projects in Georgia.18 These estimates are 
+
+incompatible with the data available and with the market. 
+
+•  Georgia  Power  estimates  a  93%  likelihood  that  all  data  centers  in  its  pipeline  in 
+
+technical review (meaning, who have not yet signed a request for service with Georgia 
+
+Power) will eventually sign a contract for service in Georgia.  None of those projects 
+
+are under construction. 
+
+18 Georgia Power response to DEA-3-8 Attachment TS. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface  
+GPSC Docket No. 56002 and 56003 
+Page 12 
+
+PUBLIC DISCLOSURE 
+ 
+ 
+ 
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+26 
+
+• Georgia Power estimates a 95% likelihood that all data centers in its pipeline that have
+
+signed  a  request  for  service  or  contract  for  service  will,  in  fact,  succeed  as  projects
+
+requiring energy on the system (i.e., will not cancel the project or go into bankruptcy).
+
+A review of the data indicates that there is a substantial risk of these prospective customers 
+
+dropping out of the queue. If this risk is not captured in the model, then it could lead to an 
+
+over-projection  for  customers  that  have  not  entered  into  any  agreements  with  Georgia 
+
+Power. I will discuss this in more detail below. 
+
+Q: 
+
+HAVE YOU PROVIDED AN EXHAUSTIVE LIST OF THE WAYS IN WHICH 
+
+GEORGIA POWER HAS FAILED TO USE THE BEST AVAILABLE DATA? 
+
+A: 
+
+No.  I  have  provided  examples  to  illustrate  the  difference  between  Georgia  Power’s 
+
+modeling and its own data that it has made available at the direction of this Commission. 
+
+Q: 
+
+ARE THERE ANY OTHER REASONS FOR CONCERN ABOUT THE MODEL’S 
+
+INPUTS? 
+
+A: 
+
+Yes. It appears that Georgia Power introduced a new step into the load realization model, 
+
+which it has not publicly identified or defined. This step reduces the P50 level of projected 
+
+load from the load realization model before it is incorporated into the load forecast modeled 
+
+in  AURORA  for  the  resource  mix  study.  I  use  the  word  appear  when  I  describe  this 
+
+modification because Georgia Power has offered no explanation for why it has made this 
+
+adjustment  to the data. I  was only able to identify this difference when  I  reran Georgia 
+
+Power’s load realization model through the @RISK software and produced results different 
+from  what  was  reported  by  Georgia  Power.19  Table  6  shows  the  P50  load  reported  by 
+
+Georgia Power and the results when I rerun the model that Georgia Power provided with 
+
+its IRP workpapers. My rerun of the load realization model shows higher load projections 
+
+than what Georgia Power has provided in its IRP filing. While it is unclear why Georgia 
+
+Power implemented this step, I maintained this assumption of a discount for the alternative 
+
+load forecasts I developed and discuss in more detail in my testimony. 
+
+19 2025 Tech. Appx. 1, TS-B2025 Load and Energy Forecast, Table 7.2.1 at 108. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 13 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+Q:  WHY IT IS IMPORTANT TO UNDERSTAND THIS APPARENT 
+
+ADJUSTMENT? 
+
+A: 
+
+It is important to understand why Georgia Power made this adjustment, particularly if it is 
+
+to correct for differences observed in  how  load  is  materializing  as  compared  to  what is 
+
+projected by the load realization model. If there is a gap between projections in the model 
+
+and what Georgia Power is currently observing with these new large load customers, or for 
+
+what  Georgia  Power  expects  to  happen,  then  that  is  an  indication  that  the  model  is  not 
+
+capturing something correctly or that model inputs need to be updated. Either way, it is 
+
+another sign that the load realization model should be reevaluated for improvements. 
+
+Reported by GPC 
+(MW) 20 
+
+Rerun of Model 
+(MW)21 
+
+% Difference 
+(GPC Reported v.CH Rerun) 
+
+Year 
+
+2024 
+2025 
+2026 
+2027 
+2028 
+2029 
+2030 
+2031 
+2032 
+2033 
+2034 
+2035 
+2036 
+2037 
+2038 
+2039 
+2040 
+2041 
+2042 
+2043 
+2044 
+
+10 
+
+Table 6. Comparison of Results for the Load Realization Model 
+
+20 Id. 
+21 My rerun of the load realization model is based on the Georgia Power workpaper named “Budget 2025 Load 
+Realization Model TRADE SECRET”. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface  
+GPSC Docket No. 56002 and 56003 
+Page 14 
+
+PUBLIC DISCLOSURE 
+1 
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+Georgia Power’s reliance on inaccurate assumptions has led to an overstatement of its 
+
+load forecast. 
+
+Q: 
+
+AFTER  REVIEWING  THE  DATA  FROM  GEORGIA  POWER’S  QUARTERLY 
+
+LOAD  REPORTS,  DID  YOU  TEST  THE  IMPACT  OF  MODIFYING  INPUT 
+
+ASSUMPTIONS ON GEORGIA POWER’S LOAD REALIZATION MODEL? 
+
+A: 
+
+Yes. I evaluated the impact of making three changes to the load realization model: 
+
+1.
+
+Introducing a new P1 probability, or P1A, to capture the risk of technical review
+
+customers dropping out of Georgia Power’s load queue.
+
+2. Splitting the forecast into one for only committed customers and one for committed
+
+customers  plus  technical  review  customers,  with  the  inclusion  of  the  new  P1A
+
+probability.
+
+3. Modifying the delay probability to reflect data from the four 2024 quarterly load
+
+reports.
+
+I will discuss each of these changes in more detail below. 
+
+1. Dropout  Risk:  Georgia  Power’s  model  does  not  reflect  the  risk  of  prospective
+
+customers (without a contract) dropping out of the pipeline.
+
+Q: 
+
+DO  YOU  BELIEVE  GEORGIA  POWER’S  LOAD  REALIZATION  MODEL 
+
+REFLECTS  THE  RISK  OF  PROSPECTIVE  CUSTOMERS,  OR  THOSE 
+
+DESIGNATED  WITH  A  PROJECT  STATUS  OF  TECHNICAL  REVIEW, 
+
+DROPPING OUT OF THE LOAD QUEUE?  
+
+21 
+
+A: 
+
+No, I do not.  
+
+22 
+
+23 
+
+24 
+
+25 
+
+26 
+
+27 
+
+Q:  WHY  IS  IT  IMPORTANT  FOR  THE  RISK  OF  TECHNICAL  REVIEW 
+
+CUSTOMERS DROPPING OUT OF THE QUEUE TO BE REFLECTED IN THE 
+
+LOAD REALIZATION MODEL? 
+
+A: 
+
+If  there  is  not  an  adjustment  incorporated  to  reflect  the  risks  around  technical  review 
+
+customers  dropping  out  of  the  queue,  then  the  projected  load  for  these  prospective 
+
+customers  included  in  the  load  realization  model  will  be  too  high.  If  there  is  an  over-
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 15 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+10 
+11 
+12 
+
+13 
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+26 
+
+projection of load, then there is the risk that Georgia Power will plan to procure capacity 
+
+that may not be needed if the load does not materialize from the prospective customers. 
+
+Q: 
+
+IS IT YOUR UNDERSTANDING THAT GEORGIA POWER’S STANCE IS THAT 
+
+P1 REFLECTS THIS RISK OF TECHNICAL REVIEW CUSTOMERS 
+
+DROPPING OUT OF THE QUEUE? 
+
+A: 
+
+In his testimony on the stand, Witness Valle is asked where in the model it accounts for 
+
+prospective  customers  dropping  out  of  the  pipeline,  and  he  suggests  that  P1  (which 
+estimates whether a customer will select the state of Georgia) captures this risk.22  
+
+Q:  So the selecting state probability isn’t just, are you going to 
+select Georgia or another state?  That is designed to incorporate, 
+are  you  going  to  select  Georgia  or  are  you  going  to  fail  as  a 
+business or not materialize at all?  Is that – 
+
+A:  (Witness Valle)  That is the decision that the model is trying 
+to quantify, yes. 
+
+After reviewing the data, I am not sure how this can be. For example, data center developers 
+
+who  have  not  signed  a  contract  with  Georgia  Power  were  assigned  an  almost  certain 
+
+(93%)23 likelihood of choosing Georgia over other states. This is almost certainly too high 
+
+to  reflect  the  likelihood  that  data  center  developers  will  choose  Georgia,  and  it  is 
+
+unreasonably high as a data point to reflect the likelihood that each data center development 
+
+project will actually come to fruition.  This probability cannot account for the probability 
+
+of  projects  dropping  out  of  the  queue  before  they  have  a  signed  contract  with  Georgia 
+
+Power, whether that be due to financial reasons, changes in plans, indefinite delay, etc.  
+
+Q:  WHAT  WERE  THE  PROBABILITIES  FOR  THE  TECHNICAL  REVIEW 
+
+CUSTOMERS IN GEORGIA POWER’S LOAD REALIZATION MODEL? 
+
+A: 
+
+Table 7 shows the average P1, P2, P3, and probability product for the technical review 
+
+customers in the load realization model used in the 2025 IRP.  
+
+22 See 2025 Direct Hr’g Tr. 526:18-527:19. 
+23 Georgia Power response to STF-DEA-3-8. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 16 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+P1 
+84% 
+
+P2 
+42% 
+
+P324  Product 
+95% 
+
+35% 
+
+Table 7. Average Probabilities for T echnical Review Customers25 
+
+Technical review customers accounted for 15,511 MW of the announced load in the model. 
+
+If  the  probability  product  for  each  technical  review  customer  is  multiplied  by  the 
+
+announced load for each project, that represents about 5,412 MW of new load for technical 
+
+review customers. While that does represent a discount from the total announced pipeline, 
+
+it does not capture the additional risk of technical review customers not proceeding with 
+
+their prospective projects. 
+
+Table 8 shows Georgia Power’s reporting of the customers that dropped out of the 2023 
+
+IRP model. Out of the original 51 projects in the 2023 IRP model, 27 projects—over half—
+left the queue.26 
+
+Dropped  Drop Rate 
+
+Project Success 
+Probability (P2) 
+25% 
+50% 
+75% 
+100% 
+Total 
+Table 8. 2023 IRP Model Customer Change27 
+
+Total 
+Customers 
+13 
+15 
+9 
+14 
+51 
+
+6 
+14 
+6 
+1 
+27 
+
+46% 
+93% 
+67% 
+7% 
+53% 
+
+Based on the drop rate for each of the Project Success levels reported by Georgia Power, 
+
+there is an even more significant risk (70% dropout) for projects that have been assigned 
+
+anything other than a 100% Project Success Probability by Georgia Power.  
+
+Q: 
+
+HOW DO YOU PROPOSE THAT GEORGIA POWER UPDATE ITS LOAD 
+
+REALIZATION MODEL TO REFLECT THE RISK OF CUSTOMERS WITH A 
+
+TECHNICAL REVIEW PROJECT STATUS DROPPING OUT? 
+
+A: 
+
+I recommend that Georgia Power include a probability that I refer to as “P1A”. The idea is 
+
+that this probability reflects the success rate for technical review customers not dropping 
+
+24 The same value is assigned to each customer regardless of project status. 
+25 Georgia Power response to STF-DEA-3-8. 
+26 Georgia Power response to STF-DEA-1-43. 
+27 Id. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 17 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+26 
+
+27 
+
+out of the new large load queue. The P3 probability, or Georgia Power’s probability for 
+
+contract success, is included in the load realization model to reflect the success rate of a 
+
+customer materializing after a contract with Georgia Power has been signed.28 While this 
+
+probability reflects the chance of customers dropping out of the model, even with a signed 
+
+contract, the model does not reflect the probability of a customer leaving Georgia Power’s 
+
+load queue if they are considered in the technical review stage with no commitments. There 
+
+were 46 technical review customers included in the second quarterly report, and based on 
+the data provided by Georgia Power, none of them have a status of “Under Construction”.29 
+
+This is important to note as it highlights the concern around the level of commitment from 
+
+technical review customers. Since the customers under technical review have not signed 
+
+any contracts  with Georgia  Power, additional  risk of  these customers leaving the queue 
+
+should be incorporated into the load realization model.  
+
+Q: 
+
+HOW  CAN  THE  DATA  FROM  THE  LARGE  LOAD  REPORTS  BE  USED  TO 
+
+DEVELOP PROBABILITY P1A? 
+
+A: 
+
+The data of customers dropping out of the load queue can be used to compare points in 
+
+time.  For  example,  if  you  start  with  the  data  from  Q1,  there  were  41  technical  review 
+
+projects. If you track those projects through until the Q4 report, there were 12 projects that 
+
+dropped  out  because  they  were  “cancelled”  or  “indefinitely”  delayed.  There  were  an 
+
+additional  4  projects  that  dropped  out  for  choosing  an  “alternative  state”  and  3  other 
+
+projects dropped out for other reasons. If you only consider those projects that dropped out 
+
+as a result of being cancelled or delayed indefinitely, then the dropout rate for a technical 
+
+review  customer  is  12/41  or  29%.  When  translated  into  a  probability  for  success  of  a 
+
+technical review customer remaining in the queue based on the data between the Q1 and 
+
+Q2 large load reports, that would be 71%. This can then be included as P1A in the load 
+
+realization model and applied to the technical review customers. 
+
+Q: 
+
+THE  RECOMMENDATION  YOU  HAVE  MADE  AS  IT  RELATES  TO  P1A  IS 
+
+DEVELOPED  FROM  DATA  THAT  WAS  NOT  KNOWN  AT  THE  TIME 
+
+28 Georgia Power response to STF-DEA-1-13. Docket No. 55378. 
+29 Georgia Power response to STF-DEA-3-8. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 18 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+25 
+
+26 
+
+27 
+
+28 
+
+GEORGIA  POWER  DEVELOPED  ITS  LOAD  FORECAST  FOR  THE  IRP, 
+
+WHICH WAS THE SECOND QUARTERLY REPORT. HOW COULD GEORGIA 
+
+POWER HAVE INTEGRATED THIS RISK INTO ITS MODEL? 
+
+A: 
+
+The calculation I provided illustrates an example of how the data can be used to develop 
+
+an assumption around P1A. For Georgia  Power, there  was  data  available  on the  rate of 
+
+projects  dropping  out  of  the  load  queue  between  the  2023  IRP  model  and  the  start  of 
+
+Georgia Power submitting the large load reports. This data is referenced in Table . I did 
+
+not use these data points because I did not have information on the project status of those 
+
+customers or the reasons each customer left the queue. (If the customers dropped out of the 
+
+pipeline to operate in another state or to take service from another Georgia provider, those 
+
+probabilities of dropout would presumably still be captured in the model. So it is important 
+
+to understand why customers dropped out.) The information I am missing to do a more 
+
+complete analysis is available to Georgia Power. In addition, the data in Table 7 strongly 
+
+suggests that the dropout value I use (P1A) to demonstrate the sensitivity of dropout to the 
+
+model is likely very conservative. With additional time, the dropout rate would be expected 
+
+to increase. 
+
+Q: 
+
+IS IT YOUR RECOMMENDATION THAT GEORGIA POWER MAINTAIN THE 
+
+P1A PROBABILITY AT 71%? 
+
+A: 
+
+No. My recommendation relates to the inclusion of a P1A probability that incorporates the 
+
+risk of  a  technical  review customer dropping out of the  load  queue. As  it  relates to the 
+
+specific  probability,  my  recommendation  is  for  Georgia  Power  to  use  the  data  it  is 
+
+collecting for the quarterly load reports to develop the best approximation of dropout risk 
+
+for technical customers for each iteration of its load realization model.   
+
+2. Bifurcated  Load  Model:  Georgia  Power  should  develop  two  distinct  load  forecast
+
+projections.
+
+Q: 
+
+CAN  YOU  EXPLAIN  WHY  YOU  ARE  RECOMMENDING  THAT  GEORGIA 
+
+POWER SEPARATE ITS LOAD  REALIZATION  MODEL  TO  DEVELOP TWO 
+
+LOAD FORECAST PROJECTIONS? 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 19 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+26 
+27 
+
+A: 
+
+Georgia Power should develop at least two load forecasts in IRPs in order to evaluate the 
+
+different level of resource needs required depending on the forecast evaluated. I typically 
+
+recommend  that  a  Commission  only  plan  new  generation  resources  for  large  load 
+
+customers that have a financial commitment to the utility. This ensures better certainty that 
+
+the investments made will,  in fact, be needed.  In  fact,  this  is  the approach  that Georgia 
+
+Power uses when evaluating transmission projects. In response to a document response, 
+
+Georgia Power explains that “[o]nce the Company received either an RFS or CES from the 
+
+customer, the load along with associated projects are modeled in the official transmission 
+
+planning base cases and included in the expansion planning processes. This process is also 
+
+used for similar loads signed by other load serving entities in the Integrated Transmission 
+
+System.”30 
+
+If Georgia  Power is unable to  reliably  predict growth  for customers who  do not have a 
+
+financial  commitment  to  Georgia  Power  (technical  review  customers),  the  Commission 
+
+should  plan  resources  only  for  the  projected  growth  from  customers  with  a  firm 
+
+commitment to Georgia Power. 
+
+Put another way, while Georgia Power’s load realization model tries to capture some of 
+
+the uncertain variables connected with trying to forecast new large load customer growth, 
+
+it does not reflect the risk inherent with customers that have no commitment to Georgia 
+
+Power, or those customers designated as technical review. Developing and evaluating a 
+
+base forecast that only includes those customers that Georgia Power deems as committed 
+
+and then developing additional forecasts for sensitivities with alternative assumptions, such 
+
+as  including  prospective  customers  in  the  forecast,  can  be  used  to  evaluate  the  level  of 
+
+resources  needed  across  each  forecast.  This  will  also  help  clarify  the  level  of  load  that 
+
+drives resource decisions and the impact of overbuilding capacity if prospective customer 
+
+load does not materialize. 
+
+3. Project Delay Risk: Georgia Power understates the length of delay that its prospective
+
+customers are likely to encounter.
+
+30 Georgia Power response to STF-DEA-3-6 subpart c. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 20 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+Q: 
+
+CAN  YOU EXPLAIN  HOW  YOU DEVELOPED  AN  UPDATED PROBABILITY 
+
+THAT REPRESENTS A PROJECT DELAY? 
+
+A: 
+
+To  update  the  probability  of  a  project  delaying  its  projected  start  date,  I  evaluated  the 
+
+customers with project delays spanning from the 2023 IRP load realization model to the 
+
+fourth quarterly report.31  
+
+I  tracked  reported  delays  by  customer.  For  some  customers,  there  were  several 
+
+modifications made over the course of the four different quarterly reports. Since there were 
+
+a number of customers with more than one change, I took the aggregate change for those 
+
+customers.32  
+
+Delay probabilities are assigned in theory by Georgia Power based on a customer’s industry 
+
+classification (i.e., data center, batteries, etc.). However, in reality, Georgia Power assigns 
+
+all customers the same likelihoods of delay.  
+
+For any customer segment with over three customers,  I developed a minimum, median, 
+
+and maximum value to include in the load realization model. (I set a cutoff of having at 
+
+least three customers per customer segment in order to ensure that there would be enough 
+
+data  to  develop  the  minimum,  most  likely,  and  maximum  values  for  the  triangular 
+
+distribution. I capped the “minimum” delay at zero, or no delay.) So if a customer class 
+
+included  a  customer  that  sought  to  accelerate  its  initially  requested  service  date,  that 
+
+customer class’s minimum delay would remain zero, because Georgia Power does not have 
+
+an obligation to accelerate the service date for a customer after a contract has been signed. 
+
+Georgia Power assumes a triangular distribution for the delay probability. This means that 
+
+the probability is represented by a minimum, most likely, and maximum value. Table 9  
+
+shows a comparison between the probabilities Georgia Power assumed and the changes I 
+
+made based on the data in the quarterly load reports. For the data center customer segments, 
+
+the divergence between the assumption I developed and what Georgia Power assumed is 
+
+31 In the forecast developed for the IRP, Georgia Power only used data up through the second quarter report for 
+purposes of developing a forecast for the IRP. 2025 IRP Main Document at 36, fn. 29. I used data that extended 
+beyond what Georgia Power used to develop the load forecast for the 2025 IRP, but I used the data to evaluate the 
+impact of updating the probabilities. 
+32 For example, if Customer A announced a 6-month delay in the Q1 Report and then announced a second delay of 
+12 months in the Q4 report, I summed those together to be an 18-month delay for that customer. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 21 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+for the maximum values. The battery manufacturing and other customer segments result in 
+
+higher  values  for  the  most  likely  and  maximum  values  used  to  develop  the  triangular 
+
+distribution.  
+
+Customer Segment 
+
+Data Centers – Big Tech 
+
+GPC IRP Assumptions 
+GPC’s 2023 IRP - Q4 Data 
+
+Data Centers - Developers 
+
+GPC IRP Assumptions 
+GPC’s 2023 IRP - Q4 Data 
+
+Battery Manufacturing 
+
+Other 
+
+GPC IRP Assumptions 
+GPC’s 2023 IRP - Q4 Data 
+
+GPC IRP Assumptions 
+GPC’s 2023 IRP - Q4 Data 
+
+Min33  Most Likely  Max 
+
+0 
+
+0 
+
+0 
+
+3 
+
+6 
+
+6 
+
+9 
+
+15 
+
+54 
+
+45 
+
+18 
+
+21 
+
+Table 9. Comparison of Modified Delay Probability 
+
+4.  New assumptions significantly impact load growth sensitivities.
+
+Q: 
+
+HOW DOES THE LEVEL OF PROJECTED LOAD FROM GEORGIA POWER’S 
+
+LOAD REALIZATION MODEL CHANGE WHEN YOU INCLUDE YOUR  
+
+ALTERNATE ASSUMPTIONS? 
+
+A: 
+
+Figure  1  shows  the  results  of  the  three  different  forecasts  I  evaluated  with  modified 
+
+assumptions: 
+
+1. Only including committed customers [“Committed”]
+
+2. Adding  the  P1A  probability  to  technical  review  customers  [“Committed  +
+
+P1A”]
+
+3. Adding  the  P1A  probability  to  technical  review  customers  and  applying  the
+
+project delay probability to all customers [“Committed + P1A Delay”]
+
+All  forecasts  include  the  unexplained  discount  Georgia  Power  applied  that  I  discussed 
+
+earlier in my testimony. 
+
+33 Any values with a negative minimum were set to be 0 months. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 22 
+
+PUBLIC DISCLOSURE)
+
+W
+M
+
+(
+d
+a
+o
+L
+
+Rerun
+
+Committed
+
+Committed+P1A
+
+Committed+P1A Delay
+
+Figure 1. Alternative Load Realization Model Runs (MW) 
+
+Q: 
+
+ARE YOU RECOMMENDING THAT THE COMMISSION PLAN TO THESE 
+
+CURVES? 
+
+A: 
+
+No. These curves are generated based on a limited set of adjustments for demonstrative 
+
+purposes  of  the  impact  of  these  adjustments.  These  curves  illustrate  that  updating  the 
+
+project delay probability and incorporating the risk of technical review customers leaving 
+
+the queue results in significantly lower demand projections.      
+
+Q: 
+
+IS  THERE  ANYTHING  ELSE  TO  NOTE  ABOUT  GEORGIA  POWER’S  LOAD 
+
+REALIZATION MODEL? 
+
+A: 
+
+Yes, as I noted earlier in my testimony, there are additional indicators that the load model 
+
+is overstating load, that are not captured in the above curves. These curves do not yet adjust 
+
+for overstated ramp rates or the probability that Georgia Power’s assumptions about the 
+
+likelihood that a project’s announced load will actually materialize on the system.  
+
+5. Additional  concerns  not  captured  in  load  growth  sensitivities  above:  load  ramp  &
+
+materialization rates.
+
+Q: 
+
+PLEASE EXPLAIN FURTHER YOUR CONCERNS ABOUT LOAD RAMP 
+
+PROBABILITIES THAT ARE NOT CAPTURED IN THE ABOVE CURVES? 
+
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+15 
+
+16 
+
+17 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 23 
+
+PUBLIC DISCLOSURE 
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+A: 
+
+The above curves do not correct the data to adjust for customers’ demonstrated tendency 
+
+to overstate how quickly they will need to ramp up their energy usage. While the project 
+
+delay probability captures the uncertainty around delays to the project online date, there is 
+
+another  risk with the new  large  load customers and  that is  the  projected  load  ramp rate 
+
+provided  by  customers.  Table  10  shows  a  comparison  of  the  load  ramp  changes  that 
+
+occurred  between  each  of  the  quarterly  load  reports  submitted  by  Georgia  Power.  The 
+
+changes reflected represent an aggregate load ramp change across the customer projects. 
+
+Year  Q134 
+
+Q2 
+
+Q3 
+
+Q4 
+
+2024 
+2025 
+2026 
+2027 
+2028 
+2029 
+2030 
+2031 
+2032 
+2033 
+2034 
+2035 
+2036 
+2037 
+
+-108
+-449
+-599
+-692
+-493
+-405
+-465
+-559
+-599
+-515
+-458
+-425
+-425
+-204
+
+-111
+-717
+-1,390
+-872
+-800
+-393
+-411
+-294
+-290
+-276
+-261
+-328
+-360
+-581
+
+-20
+-57
+-431
+-835
+-634
+-378
+-393
+-311
+-10
+62 
+134 
+134 
+134 
+134 
+
+-37
+-25
+-547
+-1,098
+-1,179
+-1,143
+-1,413
+-1,201
+-1,158
+-1,069
+-957
+-957
+-957
+-957
+
+Table 10. Changes in Quarterly Load Reports: Ramp Rate 
+
+For  the  majority  of  the  years,  each  quarterly  load  report  is  projecting  a  downward 
+
+adjustment to the customer’s load ramp rate. Whatever the reason for the modification, the 
+
+data  from  the  quarterly  load  reports  indicates  a  pattern  of  downward  adjustment  on 
+
+projected load ramp rates.  
+
+Q: 
+
+PLEASE EXPLAIN YOUR CONCERNS ABOUT GEORGIA POWER’S 
+
+ASSUMPTIONS  ABOUT  HOW  CUSTOMERS’  ANNOUNCED  LOAD  WILL 
+
+MATERIALIZE ON THE SYSTEM. 
+
+34 Reflects difference between models prior to the Quarter One Report. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 24 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+A: 
+
+Georgia Power assigns values to a project’s likelihood of actually demanding the load it 
+
+forecasts.  The value used by Georgia Power is a probability for the difference between 
+
+“announced”  versus  “materialized  load”,  incorporated  in  the  model.  The  current 
+
+probabilities are reflected in Table 11. Georgia Power is using the values below to reflect 
+
+how accurate each customer segment is at projecting their eventual load needs. 
+
+Minimum  Most Likely  Maximum 
+
+Customer Segment 
+Cryptocurrency 
+Data Centers - Big Tech 
+Data Centers - Developers 
+Industrial Segments 
+
+Table 11.  Metered vs. Announced Load: Triangular Distribution Values35 These 
+
+values  are  very  high,  and  I  recommend  that  Georgia  Power  reevaluate  these 
+
+thresholds—at  least  for  data  centers—using  updated  information  about  data  center 
+
+development from the market, until it has data from its own customers. 
+
+Furthermore,  it  is  concerning  that  Georgia  Power  has  assigned  the  same  value  to  data 
+
+centers run by “developers” as data centers run by “big tech.” In practice, this means that 
+
+Georgia Power is assuming that data center developers are as likely to accurately predict 
+
+their load as data centers run by big tech. This is not a reasonable assumption: Developers 
+
+may sign a request for service with Georgia Power before even identifying an off-taker for 
+
+its site.   
+
+Counsel for GIPL and Southface asked Georgia Power about this assumption at the direct 
+
+hearings,  and  Georgia Power  responded that  “at  the time of developing the forecast [in 
+
+2023], [it] didn’t have all the information available” and that there were not as many data 
+center developers in the pipeline at that time.36 When developing this assumption for the 
+
+2023 IRP, Georgia Power had to rely on “informed judgment” alone, because there was 
+“no historical data that can serve as a guide for the forecast.”37   
+
+35 Georgia Power workpaper named “Budget 2025 Load Realization Model TRADE SECRET”. 
+36 2025 Direct Hr’g Tr. 522:23-523:10. 
+37 Georgia Power response to STF-DEA-1-8 (Docket 55378), attached as Exhibit CH-4. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 25 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+Both assertions by Georgia Power are true: It has more data now, and it also has a far higher 
+
+percentage of developers in its pipeline now. However, the impact of these assumptions on 
+
+the  load  forecast  is  highly  significant.  I  recommend  Georgia  Power  update  these 
+
+assumptions. 
+
+Q: 
+
+YOU UTILIZED DATA FROM THE QUARTERLY REPORTS TO MODIFY THE 
+
+PROJECT  DELAY  PROBABILITY.  WHY  DID  YOU  NOT  USE  THE  SAME 
+
+APPROACH  TO  MODIFY  THE  ANNOUNCED  VERSUS  METERED  LOAD 
+
+PROBABILITY? 
+
+A: 
+
+I chose not to modify the announced versus metered probability because my review focused 
+
+on the large load materialization data, and there are not yet enough data points from the 
+
+announced load and customers that have broken ground, constructed their facilities, and 
+
+are  online  to  test  Georgia  Power’s  assumptions.  However,  I  do  not  agree  that  the 
+
+assumptions made in the load realization model are an accurate reflection of what the ratio 
+
+of load will be. For instance, the data  from the quarterly load reports does indicate that 
+
+customers have announced changes to their announced load levels. And as shown in Table 
+
+11, data center customers are assigned higher announced versus metered values than the 
+
+other customer segments in the load realization model.  
+
+It will be imperative for Georgia Power to update these assumptions, especially as it relates 
+
+to data centers, since they are a substantial portion of the load queue. 
+
+Similar  to  Georgia  Power,  ERCOT  is  forecasting  significant  growth  from  data  center 
+
+customers. For ERCOT’s 2025 long-term demand energy forecast, adjustment factors were 
+
+applied based on actual observations of large load projects. ERCOT reviewed the requested 
+
+MWs compared to the peak consumption for each Data Center site that had in-service dates 
+
+in 2022 through 2024 and found that the average peak consumption per site was 49.8% of 
+
+the  requested  MW.38  This  data  from  ERCOT  supports  the  conclusions  that  the  values 
+
+38 2025 ERCOT System Planning Long-Term Hourly Peak Demand and Energy Forecast at 9 (Apr. 8, 2025). 
+Retrieved from https://www.ercot.com/files/docs/2025/04/08/ERCOT-2025-Long-Term-Load-Forecast-Report.pdf 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 26 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+Georgia Power assumes for the announced versus metered load are considerably overstated 
+
+for data center customers. 
+
+Q: 
+
+YOU HAVE NOT DISCUSSED THE ADDITIONS TO GEORGIA POWER’S 
+
+LOAD  QUEUE  BETWEEN  THE  SECOND  QUARTERLY  REPORT  AND  THE 
+
+FOURTH  QUARTERLY  REPORT.  IS  THERE  ANYTHING  TO  NOTE  ABOUT 
+
+THE ADDITIONAL LOAD REFLECTED IN THOSE REPORTS? 
+
+A: 
+
+One  thing  to  note  about  the  new  prospective  customers  added  to  Georgia  Power’s  load 
+
+queue between the second quarterly report and the fourth quarterly report is the timing of 
+
+when these prospective customers are requesting service. When looking at a total projected 
+
+MW  load  number  from  the  reports,  it  is  hard  to  understand  the  disaggregated  project-
+
+specific data. Table 12 shows a comparison of the number of new customers requesting to 
+
+start service between the years 2023 – 2030. Each column to the right of “Q1” reflects the 
+
+new requests added to the queue and reported for that quarter.  
+
+Year 
+2023 
+2024 
+2025 
+2026 
+2027 
+2028 
+2029 
+2030 
+
+2 
+2 
+9 
+4 
+0 
+0 
+0 
+0 
+Table 12. Quarterly Load Report Comparison  
+
+New Q2  New Q3  New Q4 
+2 
+7 
+14 
+7 
+1 
+0 
+0 
+0 
+
+Q1 
+1 
+12 
+25 
+15 
+6 
+2 
+2 
+1 
+
+0 
+1 
+7 
+7 
+3 
+0 
+0 
+0 
+
+The data reported by Georgia Power indicates that all of Georgia Power’s new prospective 
+
+customers  between  Q2  and  Q4  requested  in-service  dates  between  2024  –  2027. 
+
+Furthermore, the average load request from a new customer has been rising: 
+
+• The average in Q2 for new requests is 393 MW.
+
+• The average in Q3 for new requests is 487 MW.
+
+• The average in Q4 for new requests is 678 MW.
+
+These trends raise questions about the realistic nature of the timing and size of the load 
+
+needs of customers. These trends also raise many questions about how to manage requests 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 27 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+26 
+
+27 
+
+28 
+
+compared  to  the  level  of  load  that  can  be  served  under  timelines  needed  to  add  new 
+
+generation and maintain reliability for Georgia Power’s existing customers. For example, 
+
+for new prospective customers entering the load queue and requesting an in-service date 
+
+between 2025-2027, will these customers remain in the queue and ask for a later in-service 
+
+date?  Will  these  prospective  customers  modify  their  announced  load  level?  Will  these 
+
+prospective  customers  modify  their  announced  load  level  and  ramp  rate?  All  of  these 
+
+questions  heighten  the  risk  related  to  prospective  customers  that  have  not  made  a 
+
+commitment to Georgia Power. 
+
+D. Recommendations
+
+Q:  WHAT  RECOMMENDATIONS  DO  YOU  HAVE  FOR  THE  LOAD 
+
+REALIZATION MODEL? 
+
+A: 
+
+I appreciate that Georgia Power updated its approach and is incorporating the P50, or 50th 
+
+percentile,  from  the  results  of  the  load  realization  model,  and  that  Georgia  Power  is 
+
+monitoring  some  data  relevant  to  the  assumptions  in  the  model.  This  is  a  significant 
+
+improvement from the 2023 IRP. Despite this improvement, there are other areas in the 
+
+model that need to be updated in order for Georgia Power to continue to use this model to 
+
+develop  a  forecast  of  new  large  load  customers.  I  offer  the  following  three 
+
+recommendations: 
+
+1. Georgia  Power  should  utilize  the  data  from  the  Quarterly  Load  Reports  to
+
+update the inputs and probabilities in the load realization model.
+
+2. Georgia  Power  should  reflect  the  additional  risk  from  technical  review
+
+customers  by incorporating a probability to  reflect the dropout  rate  for these
+
+prospective customers.
+
+3. Georgia Power should develop two load forecasts for planning purposes. The
+
+first forecast should only include the committed customers, or those customers
+
+with signed contracts or Requests for Service. The second forecast should build
+
+upon the first and layer in the projected load from the customers considered to
+
+be under the technical review status. Performing modeling with both forecasts
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 28 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+26 
+
+27 
+
+will  provide  a  range  of  resources  needed  to  meet  Georgia  Power’s  winter 
+
+reserve margin. 
+
+Q:  WHAT  RECOMMENDATIONS  DO  YOU  HAVE  FOR  THE  COMMISSION  AT 
+
+THIS TIME CONCERNING THE LOAD REALIZATION MODEL? 
+
+A: 
+
+I recommend that the Commission not approve Georgia Power’s projected growth as part 
+
+of its integrated resource plan at this time.  Instead, I recommend the Commission order 
+
+Georgia Power to update its load projections using available load growth data to modify 
+
+assumptions  to  reflect  more  rigorous  analysis  of  available  information.  I  further 
+
+recommend this update differentiate between customers committed to Georgia Power and 
+
+prospective  customers.  In  my  opinion,  the  large  load  model  data  provided  by  Georgia 
+
+Power to support this IRP is not reliable enough to plan substantial resource investments.   
+
+IV. RESERVE MARGIN STUDY
+
+Q: 
+
+HAS GEORGIA POWER UPDATED ITS WINTER RESERVE MARGIN BASED 
+
+ON THE RESERVE MARGIN STUDY PERFORMED FOR THE 2025 IRP? 
+
+A: 
+
+Yes. Southern Company performed an updated reserve margin study, which Georgia Power 
+
+relies on for this IRP.  
+
+Q: 
+
+DO  YOU  HAVE  ANY  CONCERNS  WITH  HOW  SOUTHERN  COMPANY 
+
+CONDUCTED ITS RESERVE MARGIN STUDY. 
+
+A: 
+
+Yes. I am concerned about the modeling approach used for large loads in the reserve margin 
+
+study. The approach used by Georgia Power may overstate the necessary reserve margin. 
+
+Large loads do not respond to extreme weather in the same way that typical loads respond, 
+
+so unless large loads are treated differently in the model, there is a significant likelihood 
+
+that the model will overstate the reserve margin required for extreme weather events.  In 
+
+addition, load forecast error could be double counted by using a load realization model in 
+
+the  load  forecast,  which  accounts  for  load  forecast  error,  and  by  scaling  up  the  reserve 
+
+margin for additional load forecast error. I explain both of these concerns further in my 
+
+testimony. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 29 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+To identify the precise impact of this modeling choice would require modeling alternative 
+
+scenarios in SERVM, which I have not done as part of this analysis. However, Southern 
+
+Company’s choice to model large loads like other loads in its system could substantially 
+
+overstate the required  reserve margin because a  large percentage  of the  entire Southern 
+
+Company projected load is classified as large load customers ( %). In addition, a large 
+
+portion  of  the  reserve  margin—nearly  half  of  it—is  directly  attributable  to  the  model’s 
+
+predictions about weather response and load forecast error.   
+
+Figure 2. Components of Winter TRM39 
+
+Q: 
+
+DO YOU HAVE  ANY  RECOMMENDATIONS  RELATED  TO HOW  GEORGIA 
+
+POWER MODELED THE NEW LARGE LOAD CUSTOMERS IN THE TARGET 
+
+RESERVE MARGIN STUDY? 
+
+A: 
+
+Yes. I recommend that Southern Company modify its approach for how new large load 
+
+customers are modeled in its reserve margin study, to more accurately reflect large load’s 
+
+39 2025 Tech. Appx. 1, PD-An Economic and Reliability Study of the Target Reserve Margin for the Southern 
+Company System at 60, Fig. III.13. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 30 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+response  to extreme weather. Specifically,  I recommend that Southern  Company model 
+
+large load customers like a negative generator in the modeling process, so that the model 
+
+does not inappropriately scale up large load demand in response to extreme weather events. 
+
+Q: 
+
+PLEASE EXPLAIN YOUR MODELING RECOMMENDATION. 
+
+A: 
+
+Southern  Company  uses  the  Strategic  Energy  and  Risk  Valuation  Model  (“SERVM”) 
+
+model to perform its Reserve Margin Study. One of the risks the SERVM model captures 
+
+is uncertainty from weather. In the model, a multitude of weather years, or 1973-2022 in 
+Georgia Power’s modeling,40 are included to reflect different weather across these years. 
+
+The way SERVM works is that a future study year is selected, (Georgia Power selected 
+202841), and one of the inputs into the model is the projected load forecast for that future 
+
+study year. In SERVM, there will be an 8,760 hourly shape for each weather year between 
+
+1973  and  2022.  The  SERVM  model  uses  historical  weather  patterns  to  develop  load 
+
+profiles  for  each  weather  year  in  the  study  to  predict  how  loads  would  respond  if  the 
+
+weather experienced in that particular year were to repeat. Put another way, the hourly load 
+
+for 1973 represents how load will respond if the 1973 weather conditions occur in the study 
+
+year. 
+
+SERVM sees this projected load forecast and scales the historical loads so that the average 
+or median42  peak demand from those historical weather years matches the projected energy 
+
+and peak demand for the study period. It is my understanding that Georgia Power included 
+the new large load customers as part of those projected peak values.43 As Georgia Power 
+
+said: 
+
+40 2025 Tech. Appx. 1, TS-An Economic and Reliability Study of the Target Reserve Margin for the Southern 
+Company System (“Reserve Margin Study”) at 1. 
+41 Id. 
+42 Either the average or median can be specified by the user. 
+43 Georgia Power response to STF-PIA-5-12 subpart a (the Company confirmed that forecasted economic 
+development projects are included in the System Peak Load values). 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 31 
+
+PUBLIC DISCLOSURE1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+26 
+
+27 
+
+28 
+
+The 2024 Reserve Margin Study was performed with seasonal 
+peak  load  defined,  and  the  model  adjusted  weather  year  load 
+shapes based on those seasonal peak load values. The following 
+2028  System Peak Load values were used for all  primary  and 
+sensitivity  studies:  32,986  MW 
+(Spring),  39,138  MW 
+(Summer),  38,309  MW  (Winter),  and  30,286  MW  (Autumn). 
+Utilizing  these  peak  loads  and  related  energy  forecasts,  the 
+model  applied  a  scaling  algorithm  to  adjust  the  individual 
+weather year load shapes.44 
+
+Modeling large  load  customers in this manner  means that they  will  be  impacted by the 
+
+different weather patterns inherent in the weather years evaluated in SERVM. For large 
+
+load customers that are not sensitive to weather, this is not the approach that should be 
+used.45 Instead of the approach used by Georgia Power, new large loads should be modeled 
+
+like  a  negative  generator  in  SERVM.46  Under  this  approach,  the  new  large  loads  could 
+
+have a specific 8,760 shape assigned that reflects the seasonal changes in the load shape. 
+
+The  difference  between  these  seasonal  impacts  is  that  they  are  expected  based  on  the 
+
+cooling needs of a data center. Modeling new large loads in this manner will better reflect 
+
+the expected operations of these customers and will prevent them from being included in 
+
+the load forecast that is scaled in SERVM for the weather years included in the study. 
+
+Q:  WHY ARE YOU MAKING THIS RECOMMENDATION FOR GEORGIA POWER 
+
+TO  MODIFY  ITS  APPROACH  TO  MODELING  NEW  LARGE  LOAD 
+
+CUSTOMERS IN SERVM? 
+
+A: 
+
+If  new  large  load  customers  are  included  in  the  projected  peak  load  forecast  input  into 
+
+SERVM,  this  means  they  will  be  subject  to  the  scaling  algorithm  within  SERVM.  The 
+
+result is that the scaling could overestimate the load related to new large load customers. 
+
+Georgia  Power’s  forecast  for new large load customers in the 2028 study year is 
+MW,47 or approximately  % of the Southern Company system summer peak modeled in 
+
+the 2028 study year in SERVM. With the projected load growth  from Georgia Power’s 
+
+44 2025 Tech. Appx. 1, TS-Reserve Margin Study at 12. 
+45 Georgia Power testified that the SERVM model was “trained” on customer behavior using “training data from 
+2018 through 2022,” but the data center loads accounted for in that sample are small. 2025 Direct Hr’g Tr. 407:10-
+24. 
+46 Depending on the version of SERVM used, this can be modeled as a Load Modifier. 
+47 Derived from 2025 Tech. Appx. 1, TS-Load and Energy Forecast, Table 7.2.1 at 108. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 32 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+8 
+9 
+10 
+11 
+12 
+13 
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+model,  future study years  will have an  even larger  share  of new  large  load  growth as a 
+
+percentage of the total Southern Company system peak. It is important for Georgia Power 
+
+to ensure that the modeling approach for including new large load customers in SERVM 
+
+does not misrepresent the load response from these customers during weather events, which 
+
+could  overestimate  periods  of  risk  in  the  model.  When  asked  about  the  drivers  of  the 
+
+increase in reserve margin between the 2022 IRP and the 2025 IRP, Georgia Power said: 
+
+As described on page 52 of the 2024 Reserve Margin Study in 
+Technical Appendix Volume 1, Section 2, the winter loss of load 
+expectation (“LOLE”) at a 26% target reserve margin (“TRM”) 
+increased relative to the same winter TRM in the 2021 Reserve 
+Margin Study. This is due to increased peak load volatility and 
+sustained loads during overnight hours associated with customer 
+response to cold weather events. This impact is not associated 
+with high load factor loads under normal weather conditions.48 
+
+Georgia Power identifies response to cold weather events as a main driver in the LOLE 
+
+difference in the 2021 and 2024 reserve margin study. This underscores the importance for 
+
+Georgia Power to modify how it incorporates new large load customers into SERVM to 
+
+ensure that these customer loads do not face the same scaling within SERVM to respond 
+
+to  weather  events  since  they  are  not  a  weather  responsive  load.  Figure  3  shows  the 
+
+historical low winter temperatures for the weather years modeled in SERVM. The years 
+
+with the lowest temperatures are 1982, 1983, and 1985.  
+
+Notably,  when  I  reviewed  the  SERVM  output  files  included  in  Georgia  Power’s 
+
+workpapers for the reserve margin study, the weather years 1982, 1983, and 1985 account 
+
+for  approximately  %  of  the  expected  unserved  energy  (“EUE”)  out  of  the  total  EUE 
+
+across all of the weather years modeled.49 
+
+48 Georgia Power response to STF-JKA-3-6 subpart a. 
+49 Georgia Power workpaper named “B24 Winter RMS_Final_Monthly Average_SystemMetrics (TS)”. I filtered for 
+study results for the Unit Modifier named “Base;B24 Tier Cal;RM26-Winter”. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 33 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+Figure 3. Historical Low Winter Temperatures50 
+
+Q: 
+
+IS  THERE  ANOTHER  REASON  WHY  YOU  RECOMMEND  THAT  GEORGIA 
+
+POWER  MODIFY  ITS  APPROACH  TO  MODELING  NEW  LARGE  LOAD 
+
+CUSTOMERS IN SERVM? 
+
+A: 
+
+Yes. Modeling the large load customers like a negative generator instead of including their 
+
+load  in  the  projected  peak  forecast  means  their  load  will  not  be  impacted  by  any  load 
+
+forecast  errors  (“LFE”)  specified  in  SERVM.  If  load  forecast  errors  are  specified,  this 
+
+means that cases will be run in SERVM that apply those errors to the load forecast. For 
+
+instance, if you have a load forecast error of +2%, this means the load  will be adjusted 
+
+upward by 2%, and if there is a load forecast error of -2%, then the load will be adjusted 
+
+downward by 2%. Each load forecast error is assigned a probability, which weights the 
+
+load forecast errors.  
+
+50 2025 Tech. Appx., TS-Reserve Margin Study, Figure I.1 at 3. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 34 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+For the load forecast errors Georgia Power includes in its SERVM modeling, there are two 
+
+components  of  the  error.  One  component  represents  economic  error  and  the  other 
+
+represents load forecast model error. Georgia Power developed the economic error based 
+
+on differences in the high and low economic scenarios from the U.S. Energy Information 
+
+Administration (“EIA”) 2023 Annual Energy  Outlook and then  weighted by the system 
+class  weights  for  residential,  commercial,  and  industrial  customers.51  Georgia  Power 
+
+developed the model error based on variances between actual historic load to model-fitted 
+load.52 The result of Georgia Power’s process for calculating load forecast errors is a range 
+
+between -6.12% to 5.16%. 
+
+Staff asked Georgia Power about the potential of double counting the application of these 
+
+load forecast errors to new large load customers. Georgia Power’s response to that question 
+
+was  that  the  economic  error  was  based  on  the  EIA  2023  Annual  Energy  Outlook  and 
+
+“represents a more traditional view of economic uncertainty. It is, therefore, not duplicative 
+
+of  the  risk  adjustments  applied  to  the  Georgia  Power  load  forecast  for  large  load 
+
+customers.”53 I disagree with Georgia Power on the concern of double counting. The load 
+
+realization  model  used  to  develop  the  projection  of  new  large  load  customers  that  are 
+
+included  in  the  peak  forecast  reflects  some  risks  around  those  customers  through  the 
+
+probabilities that are included in the model. Georgia Power developed the load realization 
+
+model because the economics of the large load customers could not be captured through 
+
+traditional regression models, like those used to develop forecasts for the other customer 
+
+classes. It is not accurate to develop a model that reflects risks around these customers and 
+
+then apply a second adjustment through the load forecast error in SERVM. Utilizing the 
+
+alternative approach I have suggested for modeling new large loads will help prevent an 
+
+overestimation of risk during cold weather responses and prevent any double adjustment 
+
+of load forecast error. 
+
+51 2025 Tech. Appx., TS-Reserve Margin Study at 13-14. 
+52 2025 Tech. Appx., TS-Reserve Margin Study at 13-14. 
+53 Georgia Power response to STF-JKA-3-3. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 35 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+9 
+10 
+11 
+12 
+13 
+14 
+15 
+16 
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+Q: 
+
+ARE OTHER UTILITIES MODIFYING THE APPROACH TO MODELING NEW 
+
+LARGE LOAD CUSTOMERS IN SERVM? 
+
+A: 
+
+In  my  role  at  EFG,  I  participate  in  the  Duke  Energy  Indiana  and  Santee  Cooper  IRP 
+
+stakeholder  meetings.  For  Duke  Energy  Indiana’s  2024  IRP,  EFG  provided  the 
+
+recommendation  to  model  large  load  customers  and  electric  vehicle  load  as  a  negative 
+
+generator instead of including those loads in the projected peak forecast. With regard to 
+
+future enhancements related to SERVM modeling, Duke said in its IRP: 
+
+investigation 
+
+To  that  end,  stakeholders  have  identified  assumptions,  which 
+bear  further 
+in  future  modeling  activities, 
+particularly  around  the  load  simulations  used  in  the  SERVM 
+analysis. These include: (1) the shape and weather- response of 
+potential  future  high-load  factor  large  customers  such  as  data 
+centers,  and  (2)  the  treatment  of  electric  vehicle  loads  and 
+charging  strategies.  These  and  other  potential  determinants  of 
+modeled reliability will continue to be evaluated in future efforts 
+to more accurately characterize potential risks to Duke Energy 
+Indiana customers.54 
+
+As a stakeholder participant in the Santee Cooper IRP meetings, Santee Cooper brought its 
+
+consultant and vendor for the SERVM model, Astrapè, to discuss the changes that would 
+
+be  implemented  for  the  planning  reserve  margin  (“PRM”)  and  effective  load  carrying 
+
+capability (“ELCC”) studies for the 2026 IRP. One of the items noted by Astrapè during 
+
+that  meeting  was  disaggregating  load  components  into  separate  load  shapes  and  the 
+
+categories referenced in the presentation included energy efficiency, electric vehicles, and 
+datacenters.55 
+
+54 2024 Duke Energy Indiana IRP, Appendix E at 408-09 (Nov. 1, 2024). Retrieved from https://www.duke-
+energy.com/-/media/pdfs/for-your-home/dei-irp/2024-plan-and-attachments/vol-i-complete-2024-dei-irp-
+plan.pdf?rev=93f4e009ddfc44b0baa3f94f3e195b4a 
+55 Santee Cooper Stakeholder Working Group Meeting #4 at 33 (Nov. 13, 2024). Retrieved from 
+https://www.santeecooper.com/About/Integrated-Resource-Plan/2026-IRP-Stakeholder-Process/_pdfs/Santee-
+Cooper-IRP-Working-Group-Meeting-4-FINAL.pdf 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 36 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+9 
+10 
+11 
+12 
+13 
+14 
+15 
+16 
+17 
+18 
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+26 
+
+27 
+
+28 
+
+29 
+
+30 
+
+Q: 
+
+DURING YOUR REVIEW OF THE RESERVE MARGIN STUDY, WERE 
+
+THERE ANY OTHER NOTABLE FINDINGS THAT YOU WISH TO 
+
+HIGHLIGHT? 
+
+A: 
+
+Yes.  One  of  the  findings  from  the  reserve  margin  study  is  that  the  1:10  Loss  of  Load 
+
+Expectation  (“1:10  LOLE”),  or  industry  standard  of  .1  day/year,  is  higher  than  the 
+
+economic optimum reserve margin (“EORM”). This is a change from previous studies. As 
+
+Georgia Power said: 
+
+Except  for  the  2018  Reserve  Margin  Study,  the  annual  1:10 
+LOLE  threshold  within  the  Southern  Company  System  has 
+historically occurred at reserve margins at or below the EORM. 
+Thus,  EORM  and  the  risk-adjusted  EORM  have  historically 
+been the primary focus when determining the TRM. However, 
+as  the  Company  continues  to  update  reliability  risks  in  its 
+modeling, the 2024 analysis has indicated that the LOLE for the 
+System, particularly in the Winter season, is higher than in years 
+past.  Thus,  the  reserve  margin  necessary  to  maintain  the  1:10 
+LOLE  threshold  is  also  higher.  Similar  to  the  2018  Reserve 
+Margin  Study,  the  1:10  LOLE  threshold  in  the  2024  Reserve 
+Margin Study also exceeds the EORM.56 
+
+To  develop  Georgia  Power’s  target  reserve  margin  (“TRM”),  Georgia  Power  takes  an 
+
+additional step to evaluate the expected costs of maintaining reserve capacity, production 
+
+costs, and reliability costs to determine the economic optimum reserve margin (“EORM”). 
+
+This evaluation considers the tradeoff between the costs of additional generating capacity 
+
+on the system versus the improvement in resource adequacy from having those additional 
+
+generating resources. Georgia Power evaluated the EORM by comparing the production57 
+and reliability58 costs, as determined by the SERVM model, to the incremental capacity 
+
+cost  of  new  generation  over  several  different  winter  planning  reserve  margin  levels 
+
+(ranging  from  20%  to  30%)  to  find  the  point  where  the  sum  of  the  production  costs, 
+
+reliability costs, and incremental capacity costs is minimized. Georgia Power then takes an 
+
+additional step to calculate the potential to mitigate high-cost outcomes using the Value at 
+
+56 2025 Tech. Appx., TS-Reserve Margin Study at 52. 
+57 Production costs include the cost of generation (such as fuel and variable O&M) and costs of market purchases. 
+58 Reliability costs include the cost of expected unserved energy, emergency market purchases, and the cost to call 
+demand response resources. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 37 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+Risk (“VaR”) metric. The VaR evaluates the difference in cost at the expected value and 
+
+the cost at a specified confidence interval. Georgia Power looks at the cost to move from 
+
+one reserve margin to the next and compares the incremental increase in reserve margin to 
+
+the incremental decrease in VaR.  
+
+Table 13 shows a comparison of the recommended winter TRM, the 1:10 LOLE TRM, 
+
+and the EORM for the 2022 and 2025 IRP reserve margin studies. In the 2022 IRP, Georgia 
+
+Power  recommended  a  26%  winter  TRM  since  it  fell  within  confidence  intervals  (80th 
+percentile) considered for the VaR.59 For this IRP, Georgia Power is recommending a 26% 
+
+winter TRM since the 1:10 LOLE is 25.75%, and 26% falls within the confidence intervals 
+considered for the VaR.60 
+
+Study 
+2022 IRP 
+2025 IRP 
+
+Recommended  1:10 LOLE 
+
+26% 
+26% 
+
+20.00%61
+25.75%63
+
+EORM 
+24.25%62
+22.75%64
+
+Table 13. Comparison of Winter Reserve Margins
+
+V. THE RESOURCE MIX STUDY
+
+Q: 
+
+DID YOU HAVE ACCESS TO THE MODEL THAT GEORGIA POWER USES 
+
+TO PERFORM CAPACITY EXPANSION MODELING FOR THE RESOURCE 
+
+MIX STUDY? 
+
+A: 
+
+Yes, I did have access to the AURORA model. I appreciate that Georgia Power facilitated 
+
+conversations with Energy Exemplar to allow intervenors to receive access to an intervenor 
+
+project license. Without the assistance of Georgia Power, it would be unlikely that we could 
+
+have secured an intervenor license through Energy Exemplar. 
+
+59 2022 Tech. Appx., Public-Reserve Margin Study at x. 
+60 2025 Tech. Appx., TS- Reserve Margin Study at 70. 
+61 2022 Tech. Appx., Public-Reserve Margin Study at 49. 
+62 2022 Tech. Appx., Public-Reserve Margin Study at 38. 
+63 2025 Tech. Appx., TS-Reserve Margin Study at xi. 
+64 2025 Tech. Appx., TS-Reserve Margin Study at 43. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 38 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+Q: 
+
+BEFORE  YOU  DISCUSS  THE  ALTERNATIVE  MODELING  RUNS  YOU 
+
+PERFORMED  IN  AURORA,  ARE  THERE  ANY  LIMITATIONS  THAT  YOU 
+
+WANT TO NOTE?   
+
+A: 
+
+Yes, I do want to mention a few limitations. First, with docketed proceedings, there is a 
+
+tight  timeframe  for  which  intervenors  can  perform  alternative  modeling.  Performing 
+
+alternative  modeling  involves  reviewing  the  model  developed  by  the  utility,  evaluating 
+
+modeling input assumptions, determining which input assumptions to modify, setting up 
+
+those  modified  inputs,  running  the  model,  and  reviewing  model  output.  Due  to  time 
+
+constraints, I had to narrow my focus to evaluate a limited set of issues.65 If I had more 
+
+time,  I  would  have  explored  additional  modeling  runs,  such  as  looking  at  the  different 
+
+pathways  for  Plant  Bowen  and  Plant  Scherer.  In  addition,  assumptions  had  to  be  made 
+
+given the lack of intervenor ability to ask discovery questions. It is challenging to not be 
+
+able  to  ask  discovery  questions  to  follow  up  on  Georgia  Power’s  modeling  inputs  and 
+
+assumptions  or  to  request  additional  information  if  it  is  needed.  As  it  pertains  to  the 
+
+alternative modeling I performed, I encountered some challenges with assumptions for the 
+
+new large load customers and energy efficiency. I will highlight these particular inputs in 
+
+more  detail  later  below  as  I  explain  the  alternative  modeling  runs  presented  in  my 
+
+testimony. 
+
+A. Alternative Modeling Runs: I tested the impact of 5 sensitivities on the economically
+
+optimal resource mix recommended by Aurora. 
+
+Q: 
+
+CAN YOU EXPLAIN THE PROCESS YOU USED TO DEVELOP ALTERNATIVE 
+
+MODELING RUNS IN AURORA? 
+
+A: 
+
+I  performed  capacity  expansion  and  production  cost  modeling  using  the  AURORA 
+
+software  to  develop  alternative  portfolios  using  different  input  assumptions  from  what 
+
+Georgia Power modeled for this IRP. The modeling I performed in AURORA66 utilized 
+
+65 Through counsel for GIPL and Southface, I began to work on accessing Georgia Power’s software systems 
+(Aurora) in October 2024, but I was not granted access until March 2025. The compressed timeline to access these 
+files limited my potential analysis. 
+66 I used AURORA Version 14.2.1104 to perform the modeling presented in my testimony. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 39 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+Georgia Power’s “base case” (111 MG0) database that Georgia Power provided with its 
+workpapers.67  
+
+I then made one input change to Georgia Power’s “base case.”  I brought over information 
+
+related to the existing unit uprates from the AURORA database used to develop the Unit 
+
+Uprate analysis. These assumptions include Georgia Power’s request to pursue investments 
+
+that would add capacity to some of its existing thermal and nuclear resources. I included 
+
+this assumption for all modeling runs presented in my testimony. 
+
+Table 14 provides a list of the alternative modeling runs I have done using AURORA. I 
+
+will discuss each modeling run in more detail below. 
+
+Plan 
+GPC 111 + Uprates 
+
+Alt DSM68 
+Alt No P50 
+Alt Committed 
+
+Alt Committed + P1A 
+
+Description 
+GPC’s base case, as modified to assume that 
+Georgia Power performs upgrades to existing 
+units (as it requests in 2025 IRP). 
+Adds new DSM assumptions. 
+Plans for no new large load customers. 
+Plans only for large load customers who have 
+signed a RFS or ESA. 
+Plans for all large load customers, adding in a 
+new sensitivity using dropout rates for 
+technical review customers. 
+
+Alt Committed + P1A and Delay  Plans for all large load customers, adding in 
+
+two new sensitivities: One for technical review 
+dropout rates and one for delayed start dates. 
+
+Table 14. Alternative Modeling Runs 
+
+Q:  WHAT DOES THE GPC 111 UPRATES MODELING RUN REPRESENT? 
+
+A: 
+
+The  modeling  run  named  “GPC  111  +  Uprates”  reflects  Georgia  Power’s  modeling 
+
+assumptions with the inclusion of the assumed existing unit uprates that Georgia Power 
+
+has requested as part of this IRP. Since I have included the existing unit uprates for all 
+
+alternative modeling I performed, I needed to develop a new case for the representation of 
+
+Georgia Power’s 111 MG0 plan to include these existing unit uprates. 
+
+67 2025 Direct Hr’g Tr. 490:4. 
+68 Demand Side Management. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 40 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+Q:  WHAT DOES THE ALTERNATIVE PLAN WITH DSM REFLECT? 
+
+A: 
+
+The “Alt DSM” plan takes the GPC 111 + Uprates modeling run and incorporates energy 
+
+efficiency estimates for the proposed case and demand response assumptions developed by 
+
+Witness Sherwood. Please see Ms. Sherwood’s testimony for more detail on how those 
+
+assumptions were developed. Based on the information Georgia Power provided on how 
+energy efficiency was included in the load forecast modeled in AURORA,69 it appeared 
+
+there was a gap in the savings between Georgia Power’s DSM Plan and what was included 
+
+in the IRP load forecast. In order to adjust for that difference, I incorporated the energy 
+
+efficiency savings as an incremental reduction to the load forecast Georgia Power input 
+
+into  AURORA.  The  additional  demand  response  developed  by  Witness  Sherwood  was 
+
+modeled in AURORA as an increase to the winter and summer capacity for the existing 
+
+demand  response  resource  in  the  database.  Table  15  shows  the  incremental  energy 
+
+efficiency savings that were included in the model.  
+
+Year  Residential  Commercial 
+2025 
+2026 
+2027 
+2028 
+2029 
+2030 
+2031 
+2032 
+2033 
+2034 
+2035 
+
+165,549 
+298,177 
+431,957 
+566,615 
+701,771 
+844,072 
+985,727 
+1,127,284 
+1,268,953 
+1,422,783 
+1,597,854 
+
+124,848 
+241,699 
+358,693 
+483,312 
+611,328 
+743,100 
+878,140 
+1,013,224 
+1,148,308 
+1,294,856 
+1,451,120 
+
+Table 15. Energy Efficiency Savings  (MWh)70 
+
+Table  16  shows  the  incremental  demand  response  savings  that  were  modeled.  A  ramp 
+
+period was modeled leading up to the full summer capacity of 125 MW in 2027.  
+
+69 Georgia Power response to STF-JKA-1-1 Attachment C. 
+70 Savings through 2059 were reflected in the load forecast modeled in AURORA. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 41 
+
+PUBLIC DISCLOSUREYear  Summer (MW)  Winter (MW) 
+2025 
+2026 
+2027 
+
+42 
+83 
+125 
+
+14 
+28 
+42 
+
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+Table 16.  Demand Response Savings (MW). 
+
+Q: 
+
+HOW DID YOU MODEL MS. SHERWOOD’S ENERGY EFFICIENCY SAVINGS 
+
+IN AURORA? 
+
+A: 
+
+In the resource mix study, Georgia Power modeled energy efficiency as a reduction to the 
+
+hourly load forecast input into AURORA. In order to develop an hourly (8,760) shape to 
+
+translate  the  annual  energy  efficiency  savings,  I  developed  a  profile  based  on  the  2024 
+
+hourly  load  profile  from  Georgia  Power’s  hourly  load  forecast  input  into  AURORA. 
+
+Typically, I would rely on a utility’s workpapers reflecting hourly values.  But in this case, 
+
+Georgia Power did not provide sufficient information to use this approach.  
+
+Staff  requested  the  supporting  workpapers  Georgia  Power  used  to  develop  the  load 
+forecasts  presented  in  the  IRP  and  incorporated  into  the  AURORA  modeling.71  The 
+
+provided workpapers only showed the translation of annual savings into monthly savings. 
+
+Since I needed to be able to translate the annual savings developed by Witness Sherwood 
+
+into hourly values to model as a reduction to the hourly load forecast, I had to make an 
+
+alternative assumption.  
+
+Q: 
+
+CAN YOU EXPLAIN THE TECHNICAL PROCESS YOU USED TO APPLY THE 
+
+DIFFERENT  LOAD  FORECASTS  DEVELOPED  IN  THE  ALTERNATIVE 
+
+MODELING? 
+
+A: 
+
+In  addition  to  running  Georgia  Power’s  modified  base  case  and  alternative  DSM 
+
+assumptions, I evaluated four different load forecasts in AURORA. Similar to the energy 
+
+efficiency savings, the new large load customer forecast needed to be translated into an 
+
+hourly forecast to be able to model within AURORA. Staff asked Georgia Power about the 
+
+hourly shape used for new large load customers and Georgia Power did not provide any 
+
+data with the response to Staff’s question.72 In order to have hourly values to reflect in 
+
+71 Georgia Power response to STF-JKA-1-1. 
+72 Georgia Power response to STF-PIA-5-7. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 42 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+AURORA, I had to make assumptions around the shape of the new large load customers. 
+
+In order to develop a shape, I took the quarterly peak values reported in the output from 
+
+the load realization model and then made two adjustments. The first assumption was to 
+
+adjust the values from the load realization model by a seasonal factor. I developed this by 
+
+looking at the data provided in one of the data center customer’s contract with Georgia 
+
+Power  for  the  projected  monthly  peak  values.  Under  this  approach,  I  have  reflected 
+
+seasonal adjustments expected for new large loads, especially as it relates to cooling in the 
+
+summer, but it does not reflect any hourly variability. Given the large proportion of data 
+
+center  customers  in  the  load  realization  model,  I  would  not  expect  significant  variation 
+
+from hour to hour for these customers. I averaged the monthly adjustment factors by quarter 
+
+so that they could be applied to the quarterly peak values from the load realization model. 
+
+The second assumption was to apply a quarterly loss expansion factor to the new customer 
+
+load. Since Georgia Power develops a different expansion factor by customer class, I took 
+
+the ratio of commercial and industrial commercials in the load realization model to develop 
+
+a  weight  to  apply  to  the  expansion  factors.  I  averaged  the  monthly  expansion  factors 
+
+reported  by  Georgia  Power  to  develop  a  quarter  average  that  could  be  applied  to  the 
+
+quarterly peak values from the load realization model. Table 17 shows the result of the two 
+
+adjustments that were applied to each alternative load forecast. 
+
+Monthly 
+Adjustment73 
+
+Expansion 
+Factor74 
+
+Quarter One 
+Quarter Two 
+Quarter Three 
+Quarter Four 
+
+Table 17. Quarterly Adjustment and Expansion Factors 
+
+The  process  I used  represents  my  best  approximation  of  developing  hourly  forecasts  to 
+
+model in AURORA for the new large load customers. Since I was  not able to replicate 
+
+Georgia Power’s exact process, there will be some differences because of this. 
+
+73 Georgia Power Response to STF-PIA-1-10, Attachment R.  
+74 2025 Tech. Appx. 1, TS-B2025 Load and Energy Forecast, Attachment 6.07-7 at 96. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 43 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+All of the forecasts also included the same discount discussed earlier in my testimony. I 
+
+maintained this approach to be consistent with Georgia Power. 
+
+Q:  WHAT ARE THE DIFFERENCES IN THE ALTERNATIVE LOAD FORECASTS 
+
+YOU DEVELOPED? 
+
+A: 
+
+“No P50”: The first forecast, or “No P50,” removes the new large load customers using the 
+
+process  I  discussed  above  to  translate  the  projected  quarterly  demand  from  the  load 
+
+realization model into the hourly load modeled in AURORA.  
+
+“Committed”: The second forecast, or “Committed,” only includes those customers in the 
+
+load realization model that have a signed contract or RFS with Georgia Power. I updated 
+
+the model to reflect four customers that had moved to a signed contract or RFS as reported 
+
+in the quarter four load report.  
+
+“Committed  +  PIA”:  The  third  forecast,  or  “Committed  +  P1A,”  reflects  the  additional 
+
+probability I discussed earlier in my testimony as it relates to customers under technical 
+
+review dropping out of the pipeline. This probability includes an additional adjustment, 
+
+which  I  refer  to  as  P1A,  that  takes  into  account  a  dropout  rate  for  technical  review 
+
+customers. This forecast also updates the load realization model to reflect those customers 
+
+that have dropped out of the model in between the Second and Fourth Quarter reports.  
+
+“Committed + P1A and Delay”: The fourth forecast, or “Committed + P1A and Delay” 
+
+reflects the changes in the “Committed + P1A” forecast and includes the updated project 
+
+delay probabilities I calculated and applied to all customers in the model.  
+
+Figure 4  shows  the annual peak  demand for  each of the alternative load  forecasts with 
+
+large load customers. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 44 
+
+PUBLIC DISCLOSURE)
+
+W
+M
+
+(
+d
+a
+o
+L
+
+Committed
+
+Committed+P1A
+
+Committed+P1A Add Delay
+
+Figure 4. Alternate Load Forecasts (MW) 
+
+Q:  WHY DID YOU DEVELOP ALTERNATIVE LOAD FORECASTS TO MODEL IN 
+
+AURORA? 
+
+A: 
+
+I developed the different load forecast assumptions to evaluate the impact of changes in 
+
+the load forecast assumptions and the corresponding difference in resources selected within 
+
+AURORA.  To  be  clear,  I  am  not  questioning  whether  there  will  be  new  large  load 
+
+customers locating in Georgia Power’s service territory. However, there is a lot of volatility 
+
+with these new customers, especially as it relates to how many and at what level these new 
+
+customers  will  materialize.  These  forecasts  also  provide  an  indication  of  the  risks 
+
+associated with the assumptions embedded in the forecast of new large load customers and 
+
+the risk of overbuilding capacity. Breaking out the forecasts between those customers that 
+
+have signed contracts and made commitments to Georgia Power and those who have not, 
+
+or  the  technical  review  customers,  provides  a  distinction  between  what  resources  are 
+
+needed to meet the requirements of the committed customers, and the potential resources 
+
+that would be needed to meet projected load from the technical review customers.  
+
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 45 
+
+PUBLIC DISCLOSURE 
+1 
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+26 
+
+B. In addition to the limited variables I tested, additional modeling assumptions should 
+
+be reevaluated. 
+
+Q: 
+
+ARE THERE OTHER MODELING INPUTS IN AURORA THAT CAUSE YOU TO 
+
+RECOMMEND  CAUTION  ABOUT  HOW  THE  COMMISSION  INTERPRETS 
+
+GEORGIA POWER’S RESOURCE MIX STUDIES? 
+
+A: 
+
+Yes.  I have concerns about  the  use  of restrictive build limits  on  solar,  during  a  time of 
+
+significant growth, and I have concerns about the cost assumptions Georgia Power is using 
+
+to drive its resource mix data. 
+
+I recommend the Commission direct Georgia Power to present data without annual build 
+
+limits applied to new solar resources in AURORA.    
+
+I  further  recommend  that  the  Commission  wait  to  evaluate  the  most  cost-effective  path 
+
+forward until Georgia Power is able to use cost assumptions from its pending RFP in its 
+
+modeling.    As  described  below,  the  costs  used  by  Georgia  Power  to  model  thermal 
+
+resources understate the costs currently available in the market. 
+
+Finally,  I  note  that  the  resource  mix  study  does not  account  for  Georgia  Power’s  DSM 
+
+portfolio.  As reflected in my testimony, by adding Georgia Power’s proposed DSM case 
+
+(with a 40 MW adjustment for Ms. Sherwood’s proposed demand response), the model 
+
+selected more battery resources and fewer thermal resources.   
+
+1. Georgia Power instructed its model not to choose more than 1,500 MW of solar per
+
+year.
+
+Q: 
+
+PLEASE EXPLAIN WHAT LIMITS GEORGIA POWER PUTS ON SOLAR IN ITS 
+
+RESOURCE MIX MODEL. 
+
+A: 
+
+Georgia Power assumed that no more than 1,500 MW of solar could be built for the entire 
+Southern Company system on an annual basis.75 Across the Southern Company system, 
+
+the MG0 111 modeling run performed by Georgia Power indicated that solar was a binding 
+limit, when solar was allowed to be selected, through 2044.76  Georgia Power included an 
+
+75 2025 Tech. Appx. 2, TS-Resource Mix Study, Table 4 at 21. 
+76 Resource Mix Study workpaper named “Capacity Expansion Plans – 2025 IRP.” 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 46 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+26 
+
+additional  restrictive  assumption  that 
+
+. 
+
+Q:  WHAT IS A BINDING CONSTRAINT AS IT RELATES TO MODELING? 
+
+A: 
+
+A constraint is binding when the model adds new resources up to the level specified by the 
+
+constraint. Typically, it is the case that if the constraint were relaxed (i.e., more solar could 
+
+be selected) the model would add more of those resources. 
+
+Q:  WHY  DID  YOU  NOT  MODIFY  THE  SOLAR  BUILD  LIMITS  FOR  THE 
+
+MODELING YOU PERFORMED IN AURORA? 
+
+A: 
+
+I did not modify the solar build limits because I wanted to limit the number of modeling 
+
+input changes I made for comparing the alternative modeling assumptions to those modeled 
+
+by Georgia Power. However, I recommend that Georgia Power explore higher solar build 
+
+limits in future IRP modeling. Having modeling results with and without the annual solar 
+
+build limits will provide information on what level of solar the model deems to be optimal 
+
+for selection without being restricted to the specified build limit. 
+
+2. Georgia Power’s cost assumptions for thermal resources are too low.
+
+Q: 
+
+DO YOU HAVE CONCERNS WITH THE COSTS GEORGIA POWER MODELED 
+
+FOR NEW THERMAL RESOURCES IN THE RESOURCE MIX STUDY? 
+
+A: 
+
+Yes,  the  costs  that  Georgia  Power  modeled  for  new  combined  cycle  (“CC”)  and 
+
+combustion turbine (“CT”) resources are significantly lower than the costs I have observed 
+
+other  utilities  report  for  new  CC  and  CT  resources.  Georgia  Power  modeled  CCs  at  a 
+/kW  in  2024  dollars.77 
+
+starting  overnight  cost  of  $
+
+/kW  in  2024  and  CTs  at  $
+
+Georgia Power assumed the capital costs for new CCs and CTs escalates at  %.78 
+
+Georgia Power’s capital costs are significantly different when compared to other utilities 
+
+such  as  Kentucky  Utilities  and  Louisville  Gas  and  Electric  (“KU/LG&E”),  Dominion 
+
+Energy  South  Carolina  (“DESC”),  and  Indiana  Michigan  Power  Company  (“I&M”). 
+
+KU/LG&E filed its 2024 IRP in October 2024 and included assumptions of new 1x1 CC 
+
+77 2025 Tech. Appx. 2, TS-Resource Mix Study, Table 5 at 25. 
+78 2025 Tech. Appx. 2, TS-Resource Mix Study at 27. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 47 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+was $2,121/kW for a new 1x1 CC and $1,636/kW for a new CT in 2030 dollars.79 For its 
+
+2025 IRP Annual Update, Dominion Energy South Carolina (“DESC”) reported a 1x1 CC 
+
+capital cost of $2,086/kW and $1,333/kW to $1,473/kW for CTs.80 For its most recent IRP, 
+
+Indiana Michigan Power Company (“I&M”) modeled new 1x1 CCs at $2,000/kW and CTs 
+
+at $1,500/kW.81 
+
+It  is  important  to  note  that  KU/LG&E  recently  (prior  to  filing  their  2024  Joint  IRP) 
+
+underwent a CPCN application for a new 1x1 CC, and they have also submitted a pending 
+
+CPCN application for two additional CC units, so they are familiar with the current market 
+
+conditions and costs for constructing new CC units. KU/LG&E went through the CPCN 
+
+proceeding in 2023 and it obtained Commission approval to build Mill Creek 5, which is a 
+
+645 MW 1x1 CC. The current estimated cost is approximately $913.4 million since the 
+
+companies  were  able  to  lock  in  pricing  after  that  commission  reached  a  decision  in 
+
+November  2023.  Since  the  time  of  that  Kentucky  commission  decision,  there  has  been 
+
+increased demand for turbines from the three manufacturers (GE, Siemens, Mitsubishi), 
+
+which has resulted in higher prices for CCs and CTs. For the pending CPCN application, 
+
+KU/LG&E have reported estimated costs between $2,144 and $2,194 per kW for each 645 
+
+MW CC.82 The Companies have also reported they have no reason to believe that costs 
+will return to the Mill Creek 5 levels.83 If the Georgia Power CC costs are escalated to 2030 
+
+dollars,  this  translates  to  $
+
+/kW,  which  is  approximately  %  lower  than  the  costs 
+
+reported by KU/LG&E in the pending CPCN application. 
+
+Q: 
+
+IF GEORGIA POWER’S CAPITAL COSTS FOR NEW THERMAL RESOURCES 
+
+ARE  LOWER THAN THE  COSTS  YOU HAVE SEEN  REPORTED BY OTHER 
+
+UTILITIES,  HOW  DID  YOU  ACCOUNT  FOR  THIS  COST  DIFFERENCE  IN 
+
+YOUR MODELING? 
+
+79 2024 Joint IRP of Louisville Gas and Electric Company and Kentucky Utilities Company Volume III, Technology 
+Update, Table 1 at 4 (Oct. 18, 2024). Kentucky PSC Case No. 2024-00326. Retrieved from 
+https://psc.ky.gov/pscecf/2024-00326/rick.lovekamp%40lge-ku.com/10182024014139/08-
+LGE_KU_2024_IRP_Volume_III.pdf.  
+80 DESC 2025 IRP Annual Update, Table 12 at 64. Docket No. 2025-9-E. 
+81 Indiana Michigan Power Company IRP Stakeholder Workshop (Sept. 24, 2024) at 18-19. Retrieved from 
+https://www.indianamichiganpower.com/lib/docs/community/projects/IM-irp/IN_Stakeholder_Meeting_2.pdf. 
+82 Testimony of Lonnie E. Bellar in Case No. 2025-00045 before the Kentucky Public Service Commission. 
+83 Direct Testimony of Lonnie E. Bellar at 10-11. Kentucky PSC Case No. 2025-00045. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 48 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+6 
+7 
+8 
+9 
+10 
+11 
+12 
+13 
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+26 
+
+27 
+
+28 
+
+29 
+
+30 
+
+A: 
+
+The capital costs Georgia Power modeled for new CT and CC resources are significantly 
+
+lower than costs I have seen in other utility IRPs and CPCN filings. When Georgia Power 
+
+witnesses were asked if they were aware that the price for a CC has significantly increased 
+
+from the assumptions Georgia Power modeled in the IRP, Witness Hubbert said: 
+
+We are aware of that. So the vintage of the data that supported 
+the mix study, because it had to be done to support the filing, 
+was around August, maybe September time frame. So since that 
+time frame, we are aware that costs have increased because of 
+the  global  demand  for  combustion  turbines,  combined  cycles. 
+But  we  did  not  update  the  mix  study,  including  higher  costs. 
+However,  we  have  used  a  higher  cost  when  making  offers  to 
+customers -- large load customers and incorporating it into those 
+analyses, but we didn't redo the entire mix study with a higher 
+cost for a single technology or two technologies.84 
+
+It is not clear if Georgia Power has entered into agreements with turbine manufacturers that 
+
+allowed them to secure a lower price. In addition, based on the information Georgia Power 
+
+provided in response to Hearing Request 1-4, it is unclear where pricing might fall for any 
+
+projects Georgia Power bid into the RFP related to new CT and CC resources. For these 
+
+reasons, I chose to post-process capital cost changes for CT and CC resources instead of 
+
+modifying the cost inputs in AURORA. With this approach, I can show PVRR impacts as 
+
+a range between the capital costs assumed by Georgia Power and if those were increased 
+
+to reflect pricing reported by peer utilities. 
+
+I relied on the capital costs KU/LG&E reported in its 2024 IRP to update the CT and CC 
+
+capital costs. The capital costs modeled by KU/LG&E are generally consistent with other 
+
+public  and  confidential  estimates  I  have  seen.  In  order  to  maintain  the  same  cost 
+
+relationship Georgia Power had for CC and CC with local CCS, I maintained that same 
+
+ratio  to  adjust  the  CC  with  CCS  costs  to  align  with  the  cost  change  I  made  to  the  CC 
+
+resources. In order to develop the updated capital costs to adjust, I used the same process 
+
+that  Georgia  Power  implements  to  develop  the  costs  that  are  ultimately  input  into  the 
+AURORA model. This process includes developing a spend curve,85 the SAM files that 
+
+84 2025 Direct Hr’g Tr. 513:16-514:2. 
+85 Georgia Power response to STF-JKA-5-27 Attachments A and B TS. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 49 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+develop the revenue requirements86, and then the file that builds up the $/MW-week cost 
+modeled in AURORA.87 
+
+Table 18 shows the comparison between Georgia Power’s assumption for the overnight 
+
+capital cost of CT, CC, and CC with CCS – Local resources in 2024 $/kW. My revised cost 
+
+assumptions  maintained the  same  inflation rate that Georgia Power used to escalate the 
+
+capital costs of the new thermal resources over the planning period. 
+
+Resource 
+CT 
+CC 
+CC with CCS - Local 
+
+Georgia Power  Alternate 
+
+$
+$
+$
+
+$1,427 
+$1,850 
+$5,469 
+
+Table 18. New Thermal Resources Overnight Capital Cost (2024 $/kW) 
+
+C.  Alternative Modeling Runs: Resource Mix Results
+
+Q: 
+
+HOW DID YOUR ALTERNATIVE MODELING ASSUMPTIONS IMPACT THE 
+
+RESOURCE MIX RECOMMENDED BY AURORA? 
+
+A: 
+
+The  first  comparison  I  will  make  between  plans  is  for  the  GPC  111  +  Uprates  and  the 
+
+Alternative Plan with DSM since the only difference between those two plans is the DSM 
+
+assumptions from Ms. Sherwood. Table 19 shows that there is a lower level of builds from 
+
+new thermal resources when additional DSM savings are included.  
+
+System (SoCo)-
+Wide Plan 
+GPC 111 + Uprates 
+Alt DSM 
+
+CT 
+
+CC 
+
+Solar 
+
+BESS  Wind 
+
+3,600 
+3,600 
+
+6,300 
+5,400 
+
+8,400 
+8,400 
+
+3,900 
+4,200 
+
+600 
+600 
+
+Table 19. Capacity Expansion Plan Through 2034 (MW) 
+
+The second comparison is for the different load forecasts evaluated. Table 20 shows the 
+
+expansion plan through 2031 across the different load forecasts. 
+
+86 SAM files were provided for each resource technology as part of the Resource Mix Study workpapers. 
+87 Georgia Power Resource Mix workpaper named “TAS to Aurora – FinalB25 TRADE SECRET.” 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 50 
+
+PUBLIC DISCLOSURECT 
+
+System (SoCo)-
+Wide Plan 
+2,400 
+GPC 
+2,100 
+Alt DSM 
+300 
+Alt No P50 
+Alt Committed 
+1,800 
+Alt Committed+P1A  1,800 
+Alt Committed+P1A 
+add Delay 
+
+3,000 
+
+CC 
+
+Solar 
+
+BESS 
+
+4,800 
+4,500 
+0 
+3,600 
+3,900 
+
+3,900 
+3,900 
+0 
+600 
+3,900 
+
+3,900 
+3,900 
+900 
+2,100 
+4,500 
+
+Thermal 
+Total 
+7,200 
+6,600 
+300 
+5,400 
+5,700 
+
+Total 
+15,000 
+14,400 
+1,200 
+8,100 
+14,100 
+
+3,300 
+
+3,900 
+
+2,400 
+
+6,300 
+
+12,600 
+
+Table 20. Capacity Expansion Plan for Alternative
+
+ Load Forecasts Through 2031(MW) 
+
+Table 21 shows the capacity expansion plan through 2034 across the different load forecasts. 
+
+CT 
+
+System (SoCo)-
+Wide Plan 
+3,600 
+GPC 111 + Uprates 
+600 
+Alt No P50 
+2,700 
+Alt Committed 
+Alt Committed+P1A  2,100 
+Alt Committed+P1A 
+add Delay 
+
+4,500 
+
+CC 
+
+Solar 
+
+BESS  Wind 
+
+6,300 
+300 
+5,100 
+6,000 
+
+8,400 
+1,200 
+5,100 
+8,400 
+
+3,900 
+1,200 
+2,100 
+4,500 
+
+4,200 
+
+8,400 
+
+3,300 
+
+600 
+600 
+600 
+600 
+
+600 
+
+Thermal 
+Total 
+9,900 
+900 
+7,800 
+8,100 
+
+Total 
+
+22,800 
+3,900 
+15,600 
+21,600 
+
+8,700 
+
+21,000 
+
+Table 21. Capacity Expansion Plan for Alternative Load Forecasts Through 2034 (MW) 
+
+I will note it is likely that AURORA would have selected additional solar resources through 
+
+2034 if the build limits modeled by Georgia Power were relaxed. The 8,400 MW through 
+
+2034  reflects  the  maximum  amount  of  solar  that  the  model  can  add  by  2034  under  the 
+
+annual build limits. 
+
+Q: 
+
+SINCE THE AURORA MODELING IS DONE ON A SOCO SYSTEM BASIS, HOW 
+
+DOES GEORGIA POWER ALLOCATE ITS PORTION OF NEW RESOURCES? 
+
+A: 
+
+I  tried  to  follow  the  allocation  process  Georgia  Power  outlined  with  its  AURORA 
+database.88 I also utilized the ratio of additions specified for Georgia Power as compared 
+
+to the Southern Company system resources in the capacity expansion tables provided by 
+Georgia Power.89 I could not replicate Georgia Power’s process exactly so the allocation I 
+
+developed is a best estimate of resources needed under the different load forecasts to meet 
+
+Georgia Power’s winter reserve margin. Table 22 shows the estimated resources needed 
+
+88 Georgia Power provided document named “Allocation Process.” 
+89 Georgia Power workpaper named “Capacity Expansion Plans – 2025 IRP.” 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 51 
+
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+for Georgia Power in 2031 under the different load forecast assumptions. These resources 
+
+are reported at the nameplate capacity. The “Alt No P50” did not have any new resources 
+
+selected until 2031, and I did not assign any to Georgia Power since it was over the required 
+
+winter reserve margin. 
+
+Plan 
+
+CT 
+
+CC 
+
+Solar 
+
+BESS 
+
+Alt No P50 
+Alt Committed 
+Alt Committed+P1A 
+Alt Committed+P1A 
+add Delay 
+
+0 
+1,800 
+1,800 
+
+0 
+2,100 
+2,760 
+
+0 
+400 
+3,350 
+
+0 
+1,804 
+3,750 
+
+Thermal 
+Total 
+0 
+3,900 
+4,560 
+
+Total 
+0 
+6,104 
+11,660 
+
+3,000 
+
+2,100 
+
+3,350 
+
+1,963 
+
+5,100 
+
+10,413 
+
+Table 22. Georgia Power Allocated Resources in 2031 (MW) 
+
+Q:  WHAT KEY CONCLUSIONS DO YOU DRAW FROM THESE RESOURCE MIX 
+
+SENSITIVITIES BASED ON VARYING LOAD SCENARIOS? 
+
+A: 
+
+It  is  clear  that  the  large  load  customers  are  driving  significant  resource  needs,  and  that 
+
+discrete adjustments to the load sensitivities result in significant variations in economically 
+
+optimal resource mixes.  For example, the economically optimal outcome based on GPC’s 
+
+projected base case involves 10,000 MWs of additional oil and gas resources by 2034 for 
+
+the Southern Company system.  However, the economically optimal outcome drops the 
+
+recommended additional oil and gas resources by 2034 to 8,700 MWs when adjusting the 
+
+load forecast by only two discrete metrics (delay data and project dropout).  In addition, 
+
+there is strong evidence that the economically optimal resource mix would include more 
+
+solar, but that the results reflected here are limited by Georgia Power’s maximum limits on 
+
+solar builds. 
+
+D. Alternative Modeling Runs: Present Value of Revenue Requirements Results
+
+Q: 
+
+DID YOU DEVELOP THE PRESENT VALUE OF REVENUE REQUIREMENTS 
+
+(“PVRR”) FOR EACH OF THE MODELING RUNS YOU EVALUATED? 
+
+A: 
+
+Yes.  The  present  value  of  revenue  requirements  (“PVRR”)  is  a  useful  cost  tool  for 
+
+evaluating  the  differences  in  cost  between  alternative  portfolios  of  resources  and  for 
+
+understanding  the cost implications of certain assumptions. Georgia  Power’s process of 
+
+developing portfolios in the resource mix study relies on reporting system costs (i.e., fuel, 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 52 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+variable O&M) and fixed costs (i.e., new resource costs and any existing unit fixed O&M) 
+to develop the PVRR at the total Southern Company system level.90  
+
+Q:  WHAT PROCESS DID YOU USE FOR DEVELOPING THE PVRRs? 
+
+I followed Georgia Power’s approach, but I made one change. Instead of relying on costs 
+
+from  the  capacity  expansion  step  within  AURORA,  I  put  each  portfolio  I  developed 
+
+through what is called a “zonal” production cost within AURORA. This step simulates a 
+
+dispatch of the system on an 8,760 basis. 
+
+Q: 
+
+CAN  YOU  EXPLAIN  WHY  YOU  UTILIZED  THE  ZONAL,  OR  PRODUCTION 
+
+COST MODELING RUNS, FROM AURORA TO DEVELOP THE PVRR? 
+
+A:  When performing modeling, the  standard approach is  to  place  any  portfolios  developed 
+
+from capacity expansion through production cost modeling because of the difference in 
+
+time  granularity  between  capacity  expansion  and  production  cost  modeling.  Due  to  the 
+
+large problem size of a capacity expansion run (optimizing for new resource decisions), 
+
+time sampling has to take place in this step. Simulating resource dispatch using hourly, 
+
+chronological modeling should eliminate any inaccuracies in generation and therefore cost 
+
+that  can  arise  from  sampling  time  in  the  capacity  expansion  modeling.  Alternatively, 
+
+production cost modeling evaluates every hour of the year chronologically over the study 
+
+period, providing detailed system performance metrics. This is the reason that it is standard 
+
+practice to conduct production cost runs as well as capacity expansion modeling. A report 
+
+released  by  the  Lawrence  Berkely  National  Laboratory  (“LBNL”)  and  Synapse  Energy 
+
+Economics, Inc. references the capacity expansion and production cost modeling approach: 
+
+90 Georgia Power response to STF-JKA-1-7. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 53 
+
+PUBLIC DISCLOSURE1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10 
+11 
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+26 
+
+27 
+
+28 
+
+29 
+
+This  first  model  is  called  “capacity  expansion”  because  the 
+model can add new resources and retire existing ones. The goal 
+of the model is to build a least-cost system that meets projected 
+loads, subject to reliability constraints and policy requirements 
+such as state renewable portfolio standards. The production cost 
+model  optimizes  a  candidate  resource  portfolio  for  least-cost 
+operations,  capturing  economic  dispatch,  unit  commitment, 
+ancillary service requirements, and other technical constraints at 
+an hourly or sub-hourly basis. This simulation of the economic 
+operation of the power system is often much more temporally 
+and spatially detailed than simulation by the capacity expansion 
+model.91 
+
+For any PVRRs reported by Georgia Power for the Resource Mix Study, I recommend that 
+
+Georgia Power use the results of production cost modeling to develop the PVRRs. 
+
+Q: 
+
+IS THERE ANYTHING ELSE YOU WOULD LIKE TO NOTE ABOUT THE PVRR 
+
+CALCULATION? 
+
+A: 
+
+Yes, I will note that since all of the plans included the same level of energy efficiency, I 
+
+did not explicitly include the costs Georgia Power assumed for its modeling. In addition, 
+
+since the alternative plans all assumed the same 111 pathway for Plant Bowen and Plant 
+
+Scherer to co-fire in 2030 and retire by 2039, I did not include those additional costs as 
+
+they are the same across plans. Lastly, since all plans included the uprates for the existing 
+
+units, the costs associated with the uprates were not incorporated into the PVRR as they 
+
+remain the same across plans. 
+
+Q:  WHAT  IS  THE  PVRR  IMPACT  FOR  THE  ALTERNATIVE  PLANS  YOU 
+
+MODELED IF A HIGHER CAPITAL COST IS ASSUMED FOR NEW THERMAL 
+
+RESOURCES? 
+
+A: 
+
+Table 23 shows the PVRR comparison for the alternative plans with different load forecast 
+
+assumptions when the higher capital costs for new CC, CT, and CC with CCS resources 
+
+are included. 
+
+91 Best Practices in Integrated Resource Planning: A Guide for Planners Developing the Electricity Resource Mix of 
+the Future at 7, Synapse Economics and Lawrence Berkeley Lab (Dec. 6, 2024). Retrieved from https://eta-
+publications.lbl.gov/sites/default/files/2024-12/irp_best_practices_2024_synapse_lbnl_24-061_0.pdf. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 54 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+Plan 
+
+System Cost 
+
+GPC 111 + Uprates 
+Alt No P50 
+Alt Committed 
+Alt Committed + P1A 
+Alt Committed + P1A and Delay 
+Table 23. PVRR Comparison with Thermal
+
+$109,789,528 
+$70,171,694 
+$95,579,840 
+$105,506,067 
+$103,973,245 
+
+System Cost with 
+Thermal Capital Cost 
+Change 
+$116,693,410 
+$71,645,730 
+$100,838,100 
+$111,770,615 
+$109,904,151 
+
+ Capital Cost Change ($000) 
+
+The PVRR results show the substantial differences in cost between the load forecasts and 
+
+highlight the cost risk related to planning to meet the forecasts. For additional detail, see 
+
+Exhibit CH-3 for additional information on the PVRR results.92 
+
+E. Coal Retirements: More reliable information is needed to identify the most
+
+economically optimal path forward. 
+
+Q: 
+
+DID  YOUR  ALTERNATIVE  MODELING  IN  AURORA  CONTEMPLATE 
+
+ALTERNATIVE  PATHWAYS  TO  GEORGIA  POWER’S  ASSUMPTION  THAT 
+
+PLANT  BOWEN  AND  SCHERER  WOULD  CO-FIRE  NATURAL  GAS  IN  2030 
+
+AND RETIRE BY 2039? 
+
+A: 
+
+I maintained Georgia Power’s assumption that Plant Bowen and Scherer would begin co-
+
+firing  at  40%  natural  gas  in  2030  and  retire  by  2039  under  the  111  MG0  scenario.  I 
+
+maintained this assumption so I could isolate the changes in the alternate plans I modeled 
+
+in AURORA as it relates to the different load forecast assumptions. 
+
+Q:  WHAT  DID  GEORGIA  POWER’S  RETIREMENT  STUDY  DETERMINE  FOR 
+
+PLANT BOWEN AND PLANT SCHERER? 
+
+A: 
+
+Georgia  Power’s  retirement  study  found  retirement  and  replacement  with  generic  CC 
+
+capacity under the 111 assumption to be the least cost pathway.93 The least cost pathway 
+
+for Plant Scherer under the 111 assumption was to co-fire in 2030 and retire by 2039. The 
+
+92 Exhibit CH-3 has additional information on the PVRR results. 
+93 2025 Tech. Appx. 1, TS-Unit Retirement Study at 20. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 55 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+retirement study assumed retirement for all of the Bowen units and did not evaluate a partial 
+
+retirement.  
+
+Q:  WILL  A  SUBSTANTIAL  INVESTMENT  BE  NEEDED  AT  PLANT  BOWEN  IF 
+
+THE UNITS ARE NOT RETIRED? 
+
+A: 
+
+Yes. In order to meet the supplemental effluent limitation guidelines (“ELG”), the ELG 
+.94  Georgia  Power  indicated  that  if  the  units 
+
+control  investment  needed  is  $
+
+retire  by  12/31/2034  then  additional  ELG  investment  can  be  avoided.95  ELG  controls 
+
+would still be needed under the 111 pathway for Bowen to co-fire in 2030 and retire by 
+
+2039.96 
+
+Q: 
+
+DID  YOU  EVALUATE  THE  IMPACT  OF  ANY  ALTERNATIVE  LOAD 
+
+SCENARIOS  ON  THE  COAL  RETIREMENT  STUDIES  PERFORMED  BY 
+
+GEORGIA POWER? 
+
+A: 
+
+Yes. I modeled the impact of retiring Bowen 1 & 2 under the “committed” customer load 
+
+growth scenario, using the assumptions built into the MG0-111 model. 
+
+I  found  that  the  retiring  Bowen  1  &  2  by  January  1,  2032  was  more  economic  than 
+
+continuing to operate Bowen 1 & 2, when using Georgia Power’s thermal cost assumptions. 
+
+When I adjusted the costs of replacement thermal resources to reflect the market, the costs 
+
+of continuing to operate Bowen 1 & 2 beyond 2032 became comparable to the costs of 
+
+retirement. Table 24 shows the PVRR comparison for the Bowen 1 and 2 retirement by 
+
+2032 plan under the “committed” customer load forecast. I used the capital expenditure 
+
+and fixed O&M costs Georgia Power assumed in the resource retirement study.97 I assumed 
+
+that Georgia Power could avoid half of the needed ELG control investments if Bowen 1 
+
+and 2 could retire by 2032. For the co-firing cost assumptions, I assumed half of the costs 
+
+would be needed to co-fire Bowen 3 and 4, with the exception of the pipeline lateral capital 
+
+since that investment would be necessary even if Bowen 1 and 2 are not co-fired. These 
+
+94 2025 Tech. Appx. 1, TS-Unit Retirement Study at 9. 
+95 2025 Tech. Appx. 1, TS-Unit Retirement Study at 6. 
+96 2025 Tech. Appx. 1, TS-Unit Retirement Study at 6. 
+97 Georgia Power workpaper named “2025IRP_AV_BowenU1-4_TRADE SECRET”. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 56 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+costs were added to the production and Fixed O&M costs reported by AURORA to develop 
+
+the total system cost. 
+
+One note about the PVRR is that it does not reflect any transmission costs. As Georgia 
+
+Power said in the unit retirement study, “[t]he Company is not assuming explicit projects 
+
+or costs to accommodate the retirement of resources.”98 Instead, the unit retirement study 
+
+accounted  for  transmission  system  costs  by  incorporating  a  cost  for  replacement 
+
+generation. Since those costs are unknown, and dependent on the replacement generation, 
+
+I did not incorporate a transmission cost assumption under this analysis since the modeling 
+
+is considering generic replacement resources and not site-specific resources.  
+
+System 
+Cost 
+
+System Cost 
+with Thermal 
+Capital Cost 
+Change 
+
+Alt Committed 
+
+Alt Committed B1&2 Retire 
+
+Table 24. PVRR Results ($000) 
+
+Any analysis around the retirement of partial units or the full plant at Bowen will be highly 
+
+dependent on the costs of replacement resources, any transmission investments necessary 
+
+for  the  replacement  resources,  and  the  level  of  new  large  load  customers.  Due  to  time 
+
+constraints, I did not evaluate alternative load growth scenarios. 
+
+Q: 
+
+DO  YOU  HAVE  A  RECOMMENDATION  ABOUT  WHEN  GEORGIA  POWER 
+
+SHOULD RETIRE ITS COAL UNITS AT THIS TIME? 
+
+A: 
+
+No.  In  my  opinion,  the  Commission  does  not  have  sufficient  information  to  make 
+
+significant resource determinations at this time. The decision to convert Georgia Power’s 
+
+coal plants to co-fire gas is a significant resource investment that may not be necessary and 
+
+may not be an economic option.   
+
+I recommend that the Commission defer decisions about coal retirement dates until it has 
+
+more accurate load forecast data and better data concerning alternative resource cost. 
+
+98 2025 Tech. Appx., TS-Unit Retirement Study at 11. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 57 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+23 
+
+24 
+
+25 
+
+Q: 
+
+BASED ON YOUR FINDINGS, DO YOU HAVE ANY RECOMMENDATIONS ON 
+
+THE RESOURCE MIX MOVING FORWARD? 
+
+A: 
+
+Given the likely divergence in costs between the generic costs modeled in the resource mix 
+
+study and the results Georgia Power will receive through the pending RFP, I recommend 
+
+that Georgia Power perform an additional analysis to confirm the results of the resource 
+
+mix study. In the event there are significant differences in cost between the generic costs 
+
+modeled in this IRP and the RFP bids, Georgia Power should update the resource mix study 
+
+to incorporate the cost data from the RFP bids.  
+
+VI. CONCLUSION
+
+Q: 
+
+BASED  ON  THE  MODELING  YOU  PERFORMED  AND  YOUR  REVIEW  OF 
+
+GEORGIA  POWER’S  IRP,  WHAT  RECOMMENDATIONS  DO  YOU  HAVE 
+
+RELATED  TO  THE  RESOURCE  MIX  STUDY  AND  GEORGIA  POWER’S 
+
+PROJECTED CAPACITY NEED? 
+
+A:  We are in an extremely challenging environment for resource planning: energy demand is 
+
+growing rapidly;  costs for generation  are  accelerating  quickly; and the legal  framework 
+
+that will apply to power plants (e.g., the EPA 111 rule) is uncertain.  Given the nature of 
+
+the  planning  environment  today  and  the  ability  for  the  Commission  to  resolve  many 
+
+uncertainties with additional modeling requests and additional time to see the results of the 
+
+pending  RFP,  I  recommend  that  the  Commission  defer  substantial  resource  investment 
+
+decisions—like the decision about when to retire coal plants—until Georgia Power is able 
+
+to  provide  modeling  using  the  best  available  growth  data  and  more  realistic  cost 
+
+assumptions. 
+
+Specifically,  I recommend that the Commission order Georgia  Power to  update its load 
+
+projections and resource mix model for at least MG0 and MG0-111: 
+
+1) Using available load growth data to identify more reasonable assumptions;
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 and 56003 
+Page 58 
+
+PUBLIC DISCLOSURE1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+8 
+
+9 
+
+10 
+
+11 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+2)  Using cost comparison data from the pending all-source RFP to reflect critical 
+
+resource cost assumptions in resource mix. 
+
+The  data  provided  by  Georgia  Power  is  insufficient  to  plan  substantial  resource 
+
+investments.  The  data  relied  upon  for  the  load  growth  projections  is  inaccurate  and 
+
+overstates the likelihood of demand growth. The cost data relied upon for cost-comparisons 
+
+is already significantly outdated due to the recent rise in prices. However, Georgia Power 
+
+is fortunate to be positioned to evaluate cost bids for capacity resources as early as this 
+
+summer, based on its planned All-Source RFP schedule.   
+
+I  do  not  make  these  recommendations  to  delay  approval  of  Georgia  Power’s  projected 
+
+growth and resource mix lightly.  I recognize the value of timely investments and the need 
+
+to make significant resource decisions with imperfect information. Delaying approval of 
+
+Georgia Power’s load growth predictions and resource mix allocations in the IRP will have 
+
+the benefit of having resource-specific cost information, resource availability information, 
+
+and the additional benefit of having more time to see what updates there are for Georgia 
+
+Power’s new large load customer queue. This approach will also allow Georgia Power to 
+
+see if there is a portfolio of resource technologies that could replace a portion, or all of the 
+
+Plant Bowen or Scherer units given the substantial investment needed in ELG controls if 
+
+they operate past 2034.  
+
+19 
+
+Q: 
+
+DOES THIS CONCLUDE YOUR TESTIMONY? 
+
+20 
+
+A: 
+
+Yes. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface  
+GPSC Docket No. 56002 and 56003 
+Page 59 
+
+PUBLIC DISCLOSURESTATE OF GEORGIA  
+BEFORE THE  
+ PUBLIC SERVICE COMMISSION  
+
+In Re:   
+
+Georgia Power Company’s   
+2025 Integrated Resource Plan    
+
+And  
+
+Georgia Power Company’s 2025 
+Application for the Certification, 
+Decertification, and Amended Demand-
+Side Management Plan  
+
+)   
+)   
+)   
+)  
+)  
+)  
+)  
+)  
+)  
+)  
+)  
+
+ Docket No. 56002  
+
+ Docket No. 56003  
+
+       EXHIBIT CH-1 
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+  
+    
+   
+  
+  
+    
+  
+  
+    
+    
+     
+   
+ 
+ 
+ 
+  
+  
+  
+      
+       
+ 
+Chelsea Hotaling 
+Senior Consultant 
+
+PROFESSIONAL SUMMARY 
+
+Chelsea is a Consultant at Energy Futures Group specializing in integrated resource 
+planning and load forecasting. Prior to joining EFG, Chelsea held a research position 
+at Clarkson University while completing her Master’s in Data Analytics and 
+Environmental Policy & Governance. Chelsea’s research focused on multi-stakeholder 
+microgrids for resiliency. She also participated in the Reforming the Energy Vision 
+(REV) proceedings for the Potsdam (NY) microgrid REV project. Chelsea’s current 
+work is focused on all aspects of Integrated Resource Planning including capacity 
+expansion and production cost modeling and load forecasting.  Chelsea runs the 
+EnCompass model in support of long-term planning exercises such an IRP analyses 
+and has critiqued IRP modeling performed using Aurora, PLEXOS, PowerSimm, and 
+System Optimizer. Chelsea has also conducted capacity expansion, production cost, 
+and reliability modeling using the EnCompass, Aurora, PLEXOS, and SERVM models. 
+Chelsea has experience working with numerous software programs including Python, 
+R, and Stata. 
+
+EXPERIENCE 
+
+2025-present: Senior Consultant, Energy Futures Group, Hinesburg, VT 
+2021-2024: Consultant, Energy Futures Group, Hinesburg, VT 
+2020-2021: Senior Analyst, Energy Futures Group, Hinesburg, VT 
+2019-2020: Analyst, Energy Futures Group, Hinesburg, VT 
+2018-2019: Intern, Sommer Energy, Canton, NY 
+2016-2019: Research Assistant, Clarkson University, Potsdam, NY 
+
+EDUCATION 
+
+M.S., Data Analytics, Clarkson University, 2020 
+
+M.S., Environmental Policy and Governance, Clarkson University, 2019 
+
+MBA, Concentration in Environmental Management, Clarkson University, 2012 
+
+B.S., Accounting and Economics, Elmira College, 2011 
+
+SELECTED PROJECTS 
+
+  Clean Wisconsin. Performed capacity expansion and production cost modeling 
+
+within PLEXOS to evaluate alternative resource portfolios to the plan put forward 
+by Wisconsin Electric Power Company. (2024 – 2025) 
+
+ 
+ 
+ 
+ 
+ 
+ 
+Chelsea Hotaling  |  Senior Consultant 
+
+  West Virginia Citizen Action Group, Solar United Neighbors, and Energy 
+
+Efficient West Virginia. Reviewed the commitment and operation of the Amos, 
+Mitchell, and Mountaineer generating units during the 2023-2024 review period. 
+(2024) Reviewed the commitment and operation of the Harrison and Fort Martin 
+generating units during the 2022-2023 review period. (2023) 
+
+  The South Carolina Coastal Conservation League and Southern Alliance for 
+
+Clean Energy. Evaluated Santee Cooper’s 2024 Annual Integrated Resource Plan 
+Update. (2023-2024) Evaluated Dominion Energy South Carolina’s 2024 Annual 
+Integrated Resource Plan Update. (2023-2024) Performed EnCompass and SERVM 
+modeling to evaluate a clean energy replacement portfolio for proposed coal 
+plant retirements in the Santee Cooper 2023 IRP. (2023) Performed SERVM 
+modeling to evaluate a clean energy replacement portfolio for proposed coal 
+plant retirements in the Dominion Energy South Carolina 2023 IRP. (2023) 
+Evaluation of Dominion Energy South Carolina’s 2020 Integrated Resource Plan. 
+(2020) 
+
+  The Ecology Center, the Environmental Law & Policy Center, the Union of 
+Concerned Scientists, and Vote Solar. Performed capacity expansion and 
+production cost modeling within EnCompass to put forward an alternate plan to 
+DTE’s preferred plan in its 2022 IRP. (2022 to 2023) 
+
+  GridLab. Performed capacity expansion and production cost modeling within 
+
+EnCompass to identify resource mixes to achieve 100% emissions-free electricity by 
+2035 for the Public Service Company of New Mexico’s electric system. (2022 to 
+2023) 
+
+  Sierra Club. Evaluated Louisville Gas & Electric and Kentucky Utilities 2024 
+
+Integrated Resource Plan and performed capacity expansion and production cost 
+modeling within PLEXOS in support of those comments. (2024-2025). Performed 
+capacity expansion and production cost modeling within EnCompass to evaluate 
+retirement and replacement of MidAmerican’s coal plants. (2022 to 2023) 
+
+  Minnesota Center for Environmental Advocacy. Evaluated Xcel Energy’s 2024 
+
+Integrated Resource Plan and performed EnCompass modeling in support of that 
+evaluation (2024). Evaluated Otter Tail Power’s 2021 Integrated Resource Plan and 
+EnCompass modeling in support of that evaluation. (2022 to 2024) Evaluated 
+Minnesota Power’s 2021 Integrated Resource Plan and performed EnCompass 
+modeling in support of that evaluation. (2021 to 2022) Evaluated Xcel Energy’s 
+2020 Integrated Resource Plan and performed EnCompass modeling in support of 
+that evaluation. (2019 to 2021) 
+
+  Citizens Action Coalition of Indiana. Comments regarding Duke Energy Indiana’s 
+integrated resource plans to meet future energy and capacity needs (May 2022). 
+Comments regarding Northern Indiana Public Service Company’s integrated 
+resource plans to meet future energy and capacity needs. (March 2022) 
+Comments regarding Southern Indiana Gas and Electric’s integrated resource 
+
+2  
+
+ 
+ 
+Chelsea Hotaling  |  Senior Consultant 
+
+plans to meet future energy and capacity needs (November 2020). Comments 
+regarding Indianapolis Power and Light’s integrated resource plans to meet 
+future energy and capacity needs (April 2020). Comments regarding Indiana 
+Michigan Power Company’s integrated resource plans to meet future energy and 
+capacity needs (December 2019). 
+
+  Natural Resources Defense Council. Reviewed and provided comments on 
+
+Ameren Missouri’s 2023 Integrated Resource Plan. (2023) 
+
+  Kentucky Resources Council and Kentuckians for the Commonwealth. 
+
+Reviewed and provided comments on Big Rivers Electric 2023 Integrated Resource 
+Plan. (2023) 
+
+  Kentuckians for the Commonwealth, Kentucky Solar Energy Society, and 
+Mountain Association. Reviewed and provided comments on East Kentucky 
+Power Cooperative’s 2022 Integrated Resource Plan. (2022) 
+
+  Kentuckians for the Commonwealth, Kentucky Solar Energy Society, 
+
+Metropolitan Housing Coalition, and Mountain Association. Reviewed and 
+provided comments on Louisville Gas & Electric and Kentucky Utilities’ 2021 
+Integrated Resource Plan. (2022) 
+
+  The Council for the New Energy Economics. Reviewed and submitted comments 
+on Evergy’s IRP filing in Kansas and Missouri (2020 – 2024) Participated in Evergy’s 
+integrated resource plan stakeholder workshops and performed EnCompass 
+modeling to evaluate coal plant retirements (2020 to 2021). 
+
+  The Department of Attorney General and Sierra Club. Reviewed and submitted 
+testimony on the Aurora modeling Indiana Michigan Power Company performed 
+for its 2021 Integrated Resource Plan. (2022) 
+
+  The Environmental Law and Policy Center, The Ecology Center, Union of 
+
+Concerned Scientists, and Vote Solar. Performed Aurora modeling to evaluate 
+higher levels of distributed solar for the Consumers Energy Company’s 2021 
+Integrated Resource Plan. (2020 to 2021) 
+
+  Colorado Office of the Utility Consumer Advocate. Performed EnCompass 
+modeling related to the Public Service Company of Colorado’s 2021 Electric 
+Resource Plan. (2021) 
+
+  EfficiencyOne. Supported EfficiencyOne’s participation in Nova Scotia Power’s 
+
+integrated resource planning process. (2019 to 2020) 
+
+  Washington Electric Cooperative. Conducted the analysis for the 2020 
+
+Integrated Resource Plan. (2019 to 2020) 
+
+  Coalition for Clean Affordable Energy. Evaluated the Public Service Company of 
+
+New Mexico’s abandonment and replacement of the San Juan generating station 
+and performed EnCompass modeling to develop an alternative replacement 
+portfolio. (2019 to 2020) 
+
+3  
+
+ 
+ 
+Chelsea Hotaling  |  Senior Consultant 
+
+SELECTED PUBLICATIONS 
+
+Hotaling, C., Bird, S., & Heintzelman, M. D. (2021). Willingness to pay for microgrids to 
+
+enhance community resilience. Energy Policy, 154, 112248.  
+
+Atems, B., & Hotaling, C. (2018). The effect of renewable and nonrenewable electricity 
+
+generation on economic growth. Energy Policy, 112, 111-118.  
+
+Bird, S., & Hotaling, C. (2017). Multi-stakeholder microgrids for resilience and 
+
+sustainability. Environmental Hazards, 16(2), 116-132.  
+
+Bird, S., Enayati, A., Hotaling, C., and Ortmeyer, T. (2017). Resilient Community 
+
+Microgrids: Governance and Operational Challenges. In Energy Internet: An Open 
+
+Energy Platform to Transform Legacy Power Systems into Open Innovation and 
+
+Global Economic Engine, edited by Alex Q. Huang and Wencong Su. Elsevier. 
+
+EXPERT TESTIMONY 
+
+Before the Public Service Commission of Wisconsin, Docket No. 6630-CE-317. 
+
+Application of Wisconsin Electric Power Company for a Certificate of Public 
+
+Convenience and Necessity to Construct and Operate the South Oak Creek 
+
+Combustion Turbine Project. On behalf of Clean Wisconsin. 
+
+Before the Public Service Commission of Wisconsin, Docket No. 6630-CE-316. 
+
+Application of Wisconsin Electric Power Company for a Certificate of Public 
+
+Convenience and Necessity to Construct and Operate the Paris Reciprocating 
+
+Internal Combustion Engines Project. On behalf of Clean Wisconsin. 
+
+Before the Public Service Commission of Montana, Docket No. 2024.05.053. 
+
+NorthWestern Energy’s Application to Increase Retail Electric and Natural Gas Utility 
+
+Service Rates and for Approval of Service Schedules, Cost Allocation, and Rate 
+
+Design. On behalf of Montana Environmental Information Center, Human Resource 
+
+Council District XI, Natural Resources Defense Council, and NW Energy Coalition 
+
+(“Joint Parties”). 
+
+Before the Public Service Commission of West Virginia, Case No. 24-0413-E-ENEC. 
+
+Petition to Initiate the Annual Review and to Update the ENEC Rates Currently in 
+
+Effect. On behalf of West Virginia Citizen Action Group, Solar United Neighbors, and 
+
+Energy Efficient West Virginia. 
+
+4  
+
+ 
+ 
+ 
+Chelsea Hotaling  |  Senior Consultant 
+
+Before the Georgia Public Service Commission, Docket No. 55378. Georgia Power 
+
+Company’s 2023 Integrated Resource Plan Update. On behalf of Georgia Interfaith 
+
+Power & Light. 
+
+Before the Public Service Commission of West Virginia, Case No. 23-0735-E-ENEC. 
+
+Petition and General Investigation to Determine Reasonable Rates and Charges on 
+
+and after January 1, 2024. On behalf of West Virginia Citizen Action Group, Solar 
+
+United Neighbors, and Energy Efficient West Virginia. 
+
+Before the South Carolina Public Service Commission, Docket No. 2023-154-E. On 
+
+behalf of the South Carolina Coastal Conservation League and Southern Alliance for 
+
+Clean Energy. 
+
+Before the South Carolina Public Service Commission, Docket No. 2023-9-E. On behalf 
+
+of the South Carolina Coastal Conservation League, Southern Alliance for Clean 
+
+Energy, and Sierra Club. 
+
+Before the Michigan Public Service Commission, Case No. U-21193. In the Matter of the 
+
+Application of DTE Electric Company for Approval of its Integrated Resource Plan 
+
+Pursuant to MCL 460.6t, and for other relief, on behalf of the Ecology Center, the 
+
+Environmental Law & Policy Center, the Union of Concerned Scientists, and Vote Solar. 
+
+Before the Kentucky Public Service Commission, Case Number 2022-00387. In the 
+
+Matter of Electronic Tariff Filing of Kentucky Power Company for Approval of a Special 
+
+Contract with Ebon International, LLC, on behalf of Mountain Association, 
+
+Kentuckians for the Commonwealth, Appalachian Citizens’ Law Center, Sierra Club, 
+
+and Kentucky Resources Council.  
+
+Before the Kentucky Public Service Commission, Case Number 2022-00371. In the 
+
+Matter of Electronic Tariff Filing of Kentucky Utilities Company for Approval of an 
+
+Economic Development Rider Special Contract with Bitiki-KY, LLC, on behalf of 
+
+Kentuckians for the Commonwealth, Kentucky Solar Energy Society, Mountain 
+
+Association, and Kentucky Resources Council.  
+
+Before the Iowa Utilities Board, Docket No. RPU-2022-0001. Application for a 
+
+Determination of Ratemaking Principle, on behalf of Environmental Intervenors.  
+
+Before the Michigan Public Service Commission, Case No. U-21189. In the Matter of the 
+
+Application of Indiana Michigan Power Company for Approval of its Integrated 
+
+Resource Plan Pursuant to MCL 460.6t, Avoided Costs and for Other Relief, on behalf 
+
+of Attorney General Dana Nessel and Sierra Club. 
+
+5  
+
+ 
+ 
+Chelsea Hotaling  |  Senior Consultant 
+
+Before the Michigan Public Service Commission, Case No. U-21090. In the Matter of 
+
+the Application of Consumers Energy Company for Approval of its Integrated 
+
+Resource Plan Pursuant to MCL 460.6t and for Other Relief, on behalf of the 
+
+Environmental Law and Policy Center, the Ecology Center, Union of Concerned 
+
+Scientists, and Vote Solar.  
+
+Before the Public Utilities Commission of Colorado, Proceeding No. 21A-0141E. In the 
+
+Matter of the Application of Public Service Company of Colorado for Approval of its 
+
+2021 Electric Resource Plan and Clean Energy Plan, on behalf of the Colorado Office 
+
+of the Utility Consumer Advocate. 
+
+6  
+
+ 
+ 
+ 
+STATE OF GEORGIA 
+
+BEFORE THE 
+
+ PUBLIC SERVICE COMMISSION 
+
+In Re: 
+
+Georgia Power Company’s 
+2025 Integrated Resource Plan 
+
+And 
+
+Georgia Power Company’s 2025 
+Application for the Certification, 
+Decertification, and Amended Demand- 
+Side Management Plan 
+
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+
+Docket No. 56002 
+
+Docket No. 56003 
+
+EXHIBIT CH-2
+
+PUBLIC DISCLOSUREGeorgia Power’s Large Load Model Assumptions 
+
+The Load Realization Model is based on a Monte Carlo simulation, which is a statistical process 
+
+that helps estimate the probability of uncertain events. In this case, the Monte Carlo simulation 
+
+was designed by Georgia Power to estimate the probability (likelihood) that certain amounts of 
+
+load  will  actually  be  demanded  by  large  customers  on  its  system.  Specifically,  Georgia  Power 
+
+decided  to  utilize  the  @RISK  software  which  performs  Monte  Carlo  simulations  on  variables 
+
+specified by Georgia Power to try to capture the uncertainty related to the load growth. Georgia 
+
+Power’s Load Realization Model is run with 100,000 simulations, with each individual simulation 
+
+representing a different estimate of potential load growth based on the assumptions that Georgia 
+
+Power modeled for the uncertain variables. Once the @RISK model performs 100,000 draws on 
+
+these  uncertain  variables,  the  load  for  each  potential  project  is  added  together  to  arrive  at  the 
+
+portfolio level load projection each year that Georgia Power then includes as an adjustment to the 
+
+baseline load forecast.  
+
+Georgia Power utilizes three different uncertain variables, or probabilities, in the load 
+realization model: (1) “project success”; (2) metered vs. announced load; and (3) probability 
+of a delayed commercial operation date for a project. 
+
+The first variable in the model is what Georgia Power calls the probability of “Project Success,”1 
+
+which represents a compilation of three separate inputs: 
+
+(1) Whether the project will be located in the state of Georgia (referred to as P1)
+
+(2) Whether  Georgia  Power  will  be  selected  as  the  electric  service  provider  for  the
+
+project (referred to as P2)
+
+(3) The success rate of the project after the contract is signed (referred to as P3)
+
+For P1, each project was assigned either a 100% or 50% value. For P2, each project was assigned 
+
+a value of 25%, 50%, 75%, or 100%. P3 is the success rate that Georgia Power has reported for its 
+
+historical projects. During the 2023 IRP, Georgia Power stated that it had a recent success rate of 
+
+about 95% for projects coming online after a service contract is signed, and it used the success rate 
+at that time for assigning the P3 variable.2 Overall Project Success is based on the product of the 
+
+1 2025 Tech. Appx. 1, TS-Load and Energy Forecast at 104. 
+2 Georgia Power response to STF-DEA-1-13. Docket No. 55378. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 & 56003 
+Exhibit CH-2 | Page 1 of 3 
+
+PUBLIC DISCLOSUREthree inputs (P1 x P2 x P3). The product of these three inputs is ultimately the variable that is 
+
+factored into the Monte Carlo simulations for the model. The value reported for the Project Success 
+
+represents the percentage of times that the load will materialize in each simulation. For example, 
+
+if a project has a success value reported at 71%, that means that out of the 100,000 combinations 
+
+that are drawn in the Monte Carlo simulation, the announced load will be included in the model 
+simulation 71% of the time—or 71,000 of the 100,000 simulated outcomes.3 
+
+The  other  two  variables  included  to  capture  uncertainty  in  the  load  forecast  model  include  the 
+
+probability that the announced load for the project will be more or less than the load that actually 
+
+materializes (Metered vs. Announced Load) and the probability that the announced Commercial 
+
+Operation Date  (“COD”) of the project  will  be delayed.  Georgia  Power  assigned  both of these 
+
+variables a triangular distribution with a low, mid, and high value.  
+
+The values assigned to some of the customer segments are shown in Table 1. 
+
+Minimum  Most Likely  Maximum 
+
+Customer Segment 
+Cryptocurrency 
+Datacenter – Big Tech 
+Data Centers - Developers 
+Industrial Segments 
+
+Table 11.  Metered vs. Announced Load: Triangular Distribution Values4 
+
+Within the model, the metered vs. announced load variable is used to scale the announced load of 
+the project according to the ramp-up schedule5 that is also specified in the model. For example, 
+
+the announced load for a project might be 300 MW, but there is some uncertainty around whether 
+
+this full level of load will materialize, as it could be less than 300 MW. The model will interpret 
+
+this uncertainty by pulling from the low, mid, and high values that Georgia Power has specified 
+
+for  the  customer  segments.  In  the  example  I  referenced  above,  if  the  project  is  at  300  MW  of 
+
+announced load, then that project will materialize as a percentage of that announced load in the 
+
+3 Georgia Power response to STF-DEA-1-16 subpart b. Docket No. 55378. 
+4 Georgia Power workpaper named “Budget 2025 Load Realization Model TRADE SECRET”. 
+5 The ramp-up schedule reflects that the entire load is typically not required on Day-1 of a project. For example, if a 
+project has an announced load of 300 MW, it might expect to need 100 MW on Day-1 and then ramp up by 50 MW 
+each year to reach the 300 MW announced load by 2027. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 & 56003 
+Exhibit CH-2 | Page 2 of 3 
+
+PUBLIC DISCLOSURELoad Realization Model (i.e., if the maximum value for that customer segment is 80%, the 300 
+
+MW load will appear as 240 MW in the outputs). 
+
+Table  2  below  shows  the  triangular  distribution  values  for  the  Commercial  Operation  Date 
+
+(“COD”) delay. Based on the values specified by Georgia Power, this means that the maximum 
+
+delay for any project in  the model is 
+
+ months, and the most likely value  is 
+
+ months.  These 
+
+values are assumed for each customer within the Load Realization Model, regardless of customer 
+
+segment. 
+
+Minimum  Most Likely  Maximum 
+
+Commercial Operation Date 
+(“COD”) Delay 
+
+Table 22.  COD Delay (Months): Triangular Distribution Values6 
+
+Once the @RISK model performs 100,000 draws on these uncertain variables, the load for each 
+
+potential project is added together to arrive at the portfolio level load projection each year that 
+
+Georgia Power then includes as an adjustment to the baseline load forecast. 
+
+6 Georgia Power workpaper named “Budget 2025 Load Realization Model TRADE SECRET”. 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 & 56003 
+Exhibit CH-2 | Page 3 of 3 
+
+PUBLIC DISCLOSUREIn Re:  
+
+Georgia Power Company’s  
+2025 Integrated Resource Plan 
+
+And 
+
+Georgia Power Company’s 2025 
+Application for the Certification, 
+Decertification, and Amended Demand-
+Side Management Plan 
+
+)  
+)  
+)  
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+
+ Docket No. 56002 
+
+ Docket No. 56003 
+
+EXHIBIT CH-3 
+
+PUBLIC DISCLOSURESTATE OF GEORGIA BEFORE THE  PUBLIC SERVICE COMMISSION Components of Present Value of Revenue Requirements ($000) 
+
+Plan 
+
+Production 
+Cost 
+
+Fixed Costs 
+
+System Cost 
+
+GPC 111 + Uprates 
+Alt No P50 
+Alt Committed 
+Alt Committed + P1A 
+Alt Committed + P1A and Delay 
+
+$109,789,528 
+$70,171,694 
+$95,579,840 
+$105,506,067 
+$103,973,245 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface 
+GPSC Docket No. 56002 & 56003 
+Exhibit CH-3 | Page 1 of 1 
+
+PUBLIC DISCLOSURESTATE OF GEORGIA  
+
+BEFORE THE  
+
+ PUBLIC SERVICE COMMISSION  
+
+In Re:   
+
+Georgia Power Company’s   
+2025 Integrated Resource Plan    
+
+And  
+
+Georgia Power Company’s 2025 
+Application for the Certification, 
+Decertification, and Amended Demand-
+Side Management Plan  
+
+)   
+)   
+)   
+)  
+)  
+)  
+)  
+)  
+)  
+)  
+)  
+
+ Docket No. 56002  
+
+ Docket No. 56003  
+
+                                     EXHIBIT CH-4 
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+  
+    
+   
+  
+  
+    
+  
+  
+    
+    
+ 
+                                   
+                         
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Docket No. 55378  
+Georgia Power Company's 2023 Integrated Resource Plan Update  
+STF-DEA Data Request Set Number 1 
+_______________________________________________________________________ 
+
+STF-DEA-1-8 
+
+Question: 
+
+Refer to the Trade Secret 2023 IRP Update Load and Energy Forecast, p. 18, Table 1.5.1.7-1, 
+providing the Low, Mid, and High metered vs. announced loads.  
+
+a. Provide  all  workpapers  and  analysis  supporting  the  values  used  in  the  analysis.
+Workpapers should be provided in electronic spreadsheet format with formulas intact
+and all source data included. Also provide any sensitivities tested by the Company.
+b. Are these values consistent with the Company’s historical experience with contracted
+
+large load projects? If so, provide supporting details and documentation.
+
+Response: 
+
+a. The  new  large  load  projects  that  are  considering  Georgia  Power  as  their  electric
+supplier  are  unprecedented  both  in  the  number  of  projects  and  the  size  of  the  loads
+being proposed. Since Georgia Power has not experienced this sort of growth before,
+there is no historical data that  can serve as a  guide for  the forecast. As  a  result, the
+Company  relied  on  informed  judgment  within  the  Company  to  develop  key
+assumptions such as the Low, Mid, and High specifications found in Table 1.5.1.7-1.
+
+b. The Company has little historical experience with contracted large loads of the size,
+volume,  and  industry  segments  that  are  considering  Georgia  Power.  The  Company
+relied instead on informed judgment.
+
+Contact: Francisco Valle 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface GPSC Docket No. 56002 & 56003 Exhibit CH-4 | Page 1 of 1 STATE OF GEORGIA  
+
+BEFORE THE  
+
+ PUBLIC SERVICE COMMISSION  
+
+In Re:   
+
+Georgia Power Company’s   
+2025 Integrated Resource Plan    
+
+And  
+
+Georgia Power Company’s 2025 
+Application for the Certification, 
+Decertification, and Amended Demand-
+Side Management Plan  
+
+)   
+)   
+)   
+)  
+)  
+)  
+)  
+)  
+)  
+)  
+)  
+
+ Docket No. 56002  
+
+ Docket No. 56003  
+
+       EXHIBIT CH-5 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+    
+  
+  
+  
+  
+  
+  
+    
+   
+  
+  
+    
+  
+  
+    
+    
+   
+ 
+ 
+ 
+ 
+ 
+ 
+     
+      
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Docket No. 55378  
+Georgia Power Company's 2023 Integrated Resource Plan Update  
+STF-DEA Data Request Set Number 1 
+_______________________________________________________________________ 
+
+STF-DEA-1-9 
+
+Question: 
+
+Refer to the Trade Secret 2023 IRP Update Load and Energy Forecast, p. 18, Table 1.5.1.8-1, 
+providing the Low, Mid, and High values for delays in project in-service.  
+
+a.
+
+b.
+
+Provide  all  workpapers  and  analysis  supporting  the  values  used  in  the  analysis.
+Workpapers should be provided in electronic spreadsheet format with formulas intact
+and all source data included. Also provide any sensitivities tested by the Company.
+Are these values consistent with the Company’s historical experience with contracted
+large load projects? If so, provide supporting details and documentation.
+
+Response: 
+
+a.
+
+b.
+
+The  new  large  load  projects  that  are  considering  Georgia  Power  as  their  electric
+supplier  are  unprecedented  both  in  the  number  of  projects  and  the  size  of  the  loads
+being proposed. Since Georgia Power has not experienced this sort of growth before,
+there  is  no historical data  that  can serve as a guide for the forecast. As a result, the
+Company  relied  on  informed  judgment  within  the  Company  to  develop  key
+assumptions such as the Low, Mid, and High specifications for delays found in Table
+1.5.1.8-1.
+
+The Company has little historical experience with contracted large loads in the size,
+volume,  and  industry  segments  that  are  considering  Georgia  Power.  The  Company
+relied instead on informed judgment.
+
+Contact: Francisco Valle 
+
+Chelsea Hotaling Direct Testimony, on behalf of GIPL and Southface GPSC Docket No. 56002 & 56003 Exhibit CH-5 | Page 1 of 1 CERTIFICATE OF SERVICE 
+
+I  certify  that  the  foregoing  Direct  Testimony  of  Chelsea  Hotaling  on  behalf  of 
+
+Georgia  Interfaith  Power  &  Light  and  Southface  Energy  Institute  was  filed  with  the 
+Public Service Commission in Dockets No. 56002 and 56003 by electronic delivery on the 2nd 
+
+of  May,  2025.  An  electronic  copy  of  the  same  was  served  upon  all  parties  listed  below  by 
+
+electronic mail as follows: 
+
+Bob Sherrier 
+
+Sallie Tanner Executive Secretary 
+Georgia Public Service Commission  
+244 Washington Street, SW  
+Atlanta, Georgia 30334  
+stanner@psc.ga.gov 
+
+Justin Pawluk  
+Jamie Barber  
+Robert Trokey 
+Georgia Public Service Commission  
+244 Washington Street, SW  
+Atlanta, Georgia 30334  
+jpawluk@psc.state.ga.us  
+jpawluk@psc.ga.gov  
+jamieb@psc.ga.gov  
+rtrokey@psc.ga.gov 
+
+Chris Collado 
+Georgia Public Service Commission 
+244 Washington Street, SW  
+Atlanta, Georgia 30334  
+ccollado@psc.state.ga.us  
+ccollado@psc.ga.gov 
+
+Steven J. Hewitson 
+Brandon F. Marzo 
+Allison W. Pryor 
+Troutman Pepper Hamilton Sanders, LLP 
+Bank of America Plaza 
+600 Peachtree Street, N.E. 
+Suite 3000 
+Atlanta, Georgia 30308-2216 
+steven.hewitson@troutman.com 
+brandon.marzo@troutman.com 
+allison.pryor@troutman.com 
+
+Jeremiah Haswell  
+Georgia Power Company  
+241 Ralph McGill Boulevard, NE  
+Bin 10230  
+Atlanta, Georgia 30308 
+jhaswell@southernco.com 
+
+Cheryl Johnson  
+Georgia Power Company  
+241 Ralph McGill Boulevard, NE 
+Atlanta, Georgia 30308-3374  
+cljohnson@southernco.com 
+
+Robert B. Baker  
+Robert B. Baker, P.C. 
+Resource Supply Management 
+2480 Briarcliff Road, NE  
+Suite 6 
+Atlanta, Georgia 30329  
+bobby@robertbaker.com 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Jim Clarkson 
+Resource Supply Management 
+135 Emerald Lake Road  
+Columbia, South Carolina 29209 
+jclarkson@rsmenergy.com 
+
+Charles B. Jones, III 
+Lloyd Avram 
+Georgia Association of Manufacturers 
+The Hurt Building 
+50 Hurt Plaza, Suite 1620 
+Atlanta, Georgia 30303 
+cjones@gamfg.org  
+lavram@gamfg.org 
+
+Jeffry C. Pollock 
+J. Pollock Incorporated 
+14323 South Outer 40 Road, Suite 206 N 
+Town and Country, Missouri 63017-5734 
+jcp@jpollockinc.com 
+
+Simon Mahan 
+Southern Renewable Energy Association  
+11610 Pleasant Ridge Rd., Suite 103 #176 
+Little Rock, Arkansas 72223 
+simon@southernwind.org 
+
+Whit Cox 
+Southern Renewable Energy Association 
+11610 Pleasant Ridge Rd., Suite 103 #176 
+Little Rock, Arkansas 72223 
+whit@southernrenewable.org 
+
+Scott F. Dunbar 
+Partner, Keyes & Fox LLP 
+1580 Lincoln St., Suite 1105 
+Denver, Colorado 80203 
+sdunbar@keyesfox.com 
+
+Alicia Zaloga  
+Assistant, Keyes & Fox LLP  
+115 Kildaire Farm Road, Ste. 202-203  
+Cary, North Carolina 27511 
+azaloga@keyesfox.com  
+
+Anna Bella Korbatov 
+Fermata Energy 
+100 10th Street NE, #101 
+Charlottesville, Virginia 22902 
+annabella@fermataenergy.com 
+
+Steve Letendre, PhD 
+Fermata Energy 
+100 10th Street NE, #101 
+Charlottesville, Virginia 22902 
+steve@fermataenergy.com 
+
+Isabella Ariza  
+Dorothy E. Jaffe  
+Zachary M. Fabish  
+Sierra Club  
+50 F Street NW, 8th Floor  
+Washington, DC 20001  
+Isabella.ariza@sierraclub.org  
+Dori.jaffe@sierraclub.org  
+Zack.fabish@sierraclub.org 
+
+Curt Thompson  
+Thompson & Associates Law Firm, PC  
+3775 Venture Drive, Dl00  
+Duluth, Georgia 30096  
+curtbthompson@bellsouth.net 
+
+Maggie Shober  
+Southern Alliance for Clean Energy  
+PO Box 1842 
+Knoxville, Tennessee 37901 
+maggie@cleanenergy.org 
+
+Heather Pohnan  
+Southern Alliance for Clean Energy  
+691 John Wesley Dobbs Ave NE, Suite C  
+Atlanta, Georgia 30312  
+heather@cleanenergy.org  
+
+Eddy Moore  
+Southern Alliance for Clean Energy  
+PO Box 1842 
+Knoxville, Tennessee 37901  
+eddy@cleanenergy.org  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Bryan Jacob  
+Southern Alliance for Clean Energy, Inc.  
+1455 Hampton Hill Drive  
+Alpharetta, Georgia 30022  
+bryan@cleanenergy.org  
+
+Patrick King II  
+Natural Resources Defense Council  
+1152 15th St NW #300  
+Washington, DC 20005  
+pkingii@nrdc.org 
+
+Luis Martinez  
+Natural Resources Defense Council  
+1152 15th St NW #300  
+Washington, DC 20005  
+lrnartinez@nrdc.org 
+
+Amanda Levin  
+Natural Resources Defense Council  
+1152 15th St NW #300  
+Washington, DC 20005 
+alevin@nrdc.org 
+
+Maeve Sneddon  
+Natural Resources Defense Council  
+1152 15th St NW #300  
+Washington, DC 20005  
+msneddon@nrdc.org 
+
+Alicia Brown 
+Capital Good Fund 
+333 Smith Street  
+Providence, Rhode Island 02908  
+aliciab@capitalgoodfund.org 
+
+Kimberly (“Kasey”) A. Sturm 
+Weissman PC 
+One Alliance Center, Fourth Floor 
+3500 Lenox Road 
+Atlanta, Georgia 30326 
+kaseys@weissman.law 
+
+Jonathan Hunt 
+Metropolitan Atlanta Rapid Transit 
+Authority 
+2424 Piedmont Road, NE 
+Atlanta, Georgia 30324 
+jhunt@itsmarta.com  
+
+Peter J. Andrews  
+Metropolitan Atlanta Rapid Transit 
+Authority  
+2424 Piedmont Road, NE  
+Atlanta, Georgia 30324  
+pandrews@itsmarta.com  
+
+Juan Estrada 
+Attorney At Law 
+Juan Estrada Law, LLC. 
+3675 Crestwood Parkway, Suite 400, 
+Duluth, Georgia 30096 
+Juan@JuanEstradaLaw.com 
+
+Liz Coyle  
+Georgia Watch  
+55 Marietta Street, Suite 903  
+Atlanta, Georgia 30303  
+lcoyle@georgiawatch.org 
+
+Peter Hubbard  
+Georgia Center for Energy Solutions 
+55 Leslie Street SE  
+Atlanta, Georgia 30317  
+peter@georgia-ces.org  
+
+John Joseph McNutt  
+Regulatory Law Counsel  
+U.S. Army Legal Services Agency  
+Office of The Judge Advocate General  
+9275 Gunston Road (JALS-ELD)  
+Fort Belvoir, Virginia 22060-5546  
+john.j.mcnutt.civ@anny.mil 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Newton M. Galloway 
+Terri M. Lyndall 
+Galloway & Lyndall, LLP 
+406 North Hill Street 
+Griffin, Georgia 30223 
+ngalloway@gallyn-law.com 
+tlyndall@gallyn-law.com 
+
+David E. Penland 
+One Griffin Center 
+100 S. Hill Street, Suite 600 
+Griffin, Georgia 30223 
+dpenland@beckowen.com 
+
+Cordon M. Smart 
+Fox Rothschild LLP 
+230 N. Elm Street 
+Suite 1200 
+Greensboro, North Carolina 27401 
+csmart@foxrothschild.com 
+
+Benjamin L. Snowden 
+Fox Rothschild LLP 
+301 Hillsborough Street 
+Suite 1120 
+Raleigh, North Carolina  27603 
+BSnowden@FoxRothschild.com 
+
+Gerald T. Chichester 
+Fox Rothschild, LLP 
+999 Peachtree Street, NE 
+Suite 1500 
+Atlanta, Georgia 30309 
+GChichester@FoxRothschild.com 
+
+David Nifong 
+City of Decatur  
+Department of Public Works 
+2635 Talley Street 
+Decatur, Georgia 30030 
+david.nifong@decaturga.com 
+
+Mike Wharton 
+Athens-Clarke County Unified Government 
+Sustainability Office 
+110 Bray Street  
+Athens, Georgia 30601 
+Mike.Wharton@accgov.com 
+
+Joey Crews 
+Athens-Clarke County  
+Sustainability Office 
+110 Bray Street 
+Athens, Georgia 30601 
+joseph.crews@accgov.com 
+
+Mendie White 
+Gwinnett County  
+Offices of the County Administrator 
+75 Langley Drive 
+Lawrenceville, Georgia 30046 
+mendie.white@gwinnettcounty.com 
+
+Chandra Farley 
+John R. Seydel 
+City of Atlanta,  
+Office of Sustainability and Resilience 
+55 Trinity Ave SW 
+Atlanta, Georgia 30303 
+cfarley@atlantaga.gov 
+jrseydel@atlantaga.gov 
+
+Gordon Kenna 
+DeKalb County 
+Public Works 
+180 Sams Street  
+Decatur, Georgia 30030 
+hgkenna@dekalbcountyga.gov  
+
+Kathy Reed  
+DeKalb County Government  
+Department of Planning and Sustainability  
+178 Sams Street  
+Decatur, Georgia 30030  
+kdreed@dekalbcountyga.gov 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+William Bradley Carver Sr., Esq. 
+Hall Booth Smith, P.C. 
+191 Peachtree Street NE 
+Suite 2900 
+Atlanta, Georgia 30303 
+bcarver@hallboothsmith.com 
+
+Donald Moreland 
+Georgia Solar Energy Association 
+1199 Euclid Avenue 
+Atlanta, Georgia 30307 
+don@solarcrowdsource.com 
+L. Craig Dowdy  
+Taylor English Duma LLP 
+1600 Parkwood Circle 
+Suite 200 
+Atlanta, Georgia 30339 
+craigdowdy@taylorenglish.com 
+
+Tyler Mauldin 
+Microsoft Corporation 
+200 17th Street NW 
+Atlanta, Georgia  
+tylermauldin@microsoft.com  
+
+Taylor English Duma LLP 
+1600 Parkwood Circle SE 
+Suite 200 
+Atlanta, Georgia 30339 
+c.dowdy@taylorenglish.com  
+cdowdy@taylorenglish.com 
+
+Juan Estrada 
+Juan Estrada Law, LLC. 
+3675 Crestwood Parkway,  
+Suite 400 
+Duluth, Georgia 30096 
+Juan@JuanEstradaLaw.com 
+
+Kimberly Scott  
+Georgia WAND Education Fund, Inc. 
+250 Georgia Ave SE # 202  
+Atlanta, Georgia 30312  
+kim@georgiawand.org  
+
+Allison Kvien  
+Vote Solar 
+2810 Coliseum Centre Drive Suite 120 
+Charlotte, North Carolina 28217 
+akvien@votesolar.org  
+
+Stephen Butler 
+Georgia Solar Energy Industries 
+Association, Inc. 
+2451 Cumberland Parkway  
+Suite 3380 
+Atlanta, Georgia 30339  
+steve@connectpublicaffairs.org 
+
+Stephanie U. Eaton 
+Carrie H. Grundmann 
+Spilman Thomas & Battle, PLLC 
+110 Oakwood Drive, Suite 500 
+Winston-Salem, North Carolina 
+seaton@spilmanlaw.com 
+cgrundmann@spilmanlaw.com 
+
+Steven W. Lee  
+Spilman Thomas & Battle, PLLC 
+1100 Bent Creek Blvd., Suite 101 
+Mechanicsburg, Pennsylvania 17050 
+slee@spilmanlaw.com 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+

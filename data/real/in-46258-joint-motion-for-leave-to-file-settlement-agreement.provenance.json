@@ -1,0 +1,15 @@
+{
+  "source_url": "https://iurc.portal.in.gov/_entity/sharepointdocumentlocation/553e1dcb-fba9-f011-bbd3-001dd8084fd9/bb9c6bba-fd52-45ad-8e64-a444aef13c39?file=46258_AESIN_Joint%20Motion%20for%20Leave%20to%20File%20Settlement%20Agreement_101525.pdf",
+  "retrieved_at": "2026-08-04T16:54:02Z",
+  "sha256": "2020e2c307ebd2d1bfc944c6edadfe2ec9bf8d15185d5d51ab8cc1e75d52a7b9",
+  "sha256_source_pdf": "1cbd3f69f4dbbe453484547d2d673d83f8d3b10b2a1ea649655b47212cfc6ca7",
+  "jurisdiction": "Indiana (IURC)",
+  "docket": "46258",
+  "document_title": "Joint Motion for Leave to File Settlement Agreement and for Modification of Procedural Schedule",
+  "filing_date": "2025-10-15",
+  "filer": "AES Indiana, Indiana Industrial Group, Walmart, Rolls-Royce, City of Indianapolis",
+  "source_pdf_bytes": 771586,
+  "text_bytes": 55495,
+  "pages": 22,
+  "how_obtained": "Fetched the PDF over HTTPS with curl (no login, no cookies; the IURC portal serves these documents anonymously). Converted to text with PyMuPDF page.get_text() using default settings, concatenating pages in order with no separator inserted and no other change: line breaks, spacing, hyphenation, running heads, margin line numbers and any OCR errors are left exactly as the extractor produced them."
+}

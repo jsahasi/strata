@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Utah",
+  "commission": "Public Service Commission of Utah",
+  "docket": "26-035-05",
+  "proceeding": "Application of Rocky Mountain Power for Approval of a Large-Load Service Contract between PacifiCorp and a Large-Load Customer",
+  "how_obtained": "Found the docket page on psc.utah.gov (a WordPress site: /<yyyy>/<mm>/<dd>/docket-no-<docket>/), read its raw HTML and pulled the pscdocs.utah.gov links out of it. Utah serves every document at a flat, guessable path: https://pscdocs.utah.gov/<utility>/<yy>docs/<docketdigits>/<docid><AbbreviatedTitle><m-d-yyyy>.pdf, with no login and no session. Downloaded with curl and extracted text with PyMuPDF sorted-block extraction (page.get_text('text', sort=True)), pages joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://pscdocs.utah.gov/electric/26docs/2603505/344253RbtlTstmnyCraigMEllerRMP3-10-2026.pdf",
+  "document_title": "Rebuttal Testimony of Craig M. Eller for Rocky Mountain Power",
+  "filing_date": "2026-03-10",
+  "filer": "Rocky Mountain Power (PacifiCorp)",
+  "witness": "Craig M. Eller",
+  "document_type": "Rebuttal testimony",
+  "pages": 17,
+  "version_role": "same witness answering the direct testimony above",
+  "version_pair_with": "ut-26-035-05-eller-direct-testimony-redacted.txt",
+  "notes": "Lets a reader follow one witness's position from direct to rebuttal inside one docket.",
+  "sha256": "5f8892980274eef5500436b17f84a82bae97c3b92551c2bd5e44d0e45f58df12",
+  "bytes": 31036,
+  "retrieved_at": "2026-08-04T16:59:54Z",
+  "source_pdf_sha256": "87c86ffb945438a907691f14ac12fcb5566140e8f62689424ef63c4f8983de4f",
+  "source_pdf_bytes": 849069
+}

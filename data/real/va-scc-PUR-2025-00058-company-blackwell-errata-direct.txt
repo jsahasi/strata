@@ -1,0 +1,276 @@
+
+===PAGE 1===
+250510145
+Case Number (if already assigned) PUR-2025-00058
+Case Name (if known)
+OTHRDocument Type
+Document Description Summary Virginia Electric and Power Company's Errata Filing
+5Total Number of Pages
+33701Submission ID
+eFiling Date Stamp 5/5/2025 4:38:17PM
+Application of Virginia Electric and Power Company for 
+a 2025 biennial review of the rates, terms and 
+conditions for the provision of generation, distribution 
+and transmission services pursuant to § 56-585.1 A of 
+the Code of Virginia
+Virginia State Corporation Commission 
+eFiling CASE Document Cover Sheet
+
+===PAGE 2===
+250510145
+McGuireWoods
+May 5, 2025
+BY ELECTRONIC DELIVERY
+Dear Mr. Logan:
+Please do not hesitate to contact me if you have any questions regarding the enclosed.
+Highest regards,
+/s/ Timothy D. Patterson
+Timothy D. Patterson
+enc.
+cc:
+Please find enclosed for electronic fding in the above-referenced matter a redline and 
+clean version of page 5 of Company Witness Blackwell’s Direct Testimony.
+Mr. Bernard Logan, Clerk 
+State Corporation Commission
+Document Control Center 
+Tyler Building, First Floor
+1300 E. Main Street
+Richmond, VA 23219
+Hon. D. Mathias Roussy, Jr., Chief Hearing Examiner 
+Paul E. Pfeffer, Esq.
+David J. DePippo, Esq.
+Elaine S. Ryan, Esq.
+Application of Virginia Electric and Power Company for a 2025 biennial review of the rates, 
+terms and conditions for the provision of generation, distribution and transmission services 
+pursuant to § 56-585.1 A of the Code of Virginia
+Case No. PUR-2025-00058
+Atlanta | Austin | Baltimore | Charlotte | Charlottesville | Chicago | Dallas | Houston | Jacksonville | London | Los Angeles - Century City 
+Los Angeles - Downtown | New York | Norfolk | Pittsburgh | Raleigh | Richmond | San Francisco | Tysons | Washington, D.C.
+On March 31, 2025, Virginia Electric and Power Company (the “Company”) fded its 
+Application in the above-referenced matter. After filing the Application, the Company identified 
+an error on page 5 of Company Witness Stan Blackwell’s Direct Testimony. Specifically, in 
+Figure 1, row “Billed Sales (MWh),” and column “2024,” a digit was inadvertently omitted from 
+the figure. The correct figure should be “24,248,543” rather than “4,248,543.”
+Timothy D. Patterson
+Direct: 804.775.1069 
+tpatterson@mcguirewoods.com
+McGuireWoods LLP
+Gateway Plaza
+800 East Canal Street
+Richmond, VA 23219-3916
+Phone: 804.775.1000
+Fax: 804.775.1061
+www.mcguirewoods.com
+ERRATA FILING
+
+===PAGE 3===
+250510145
+Service List
+2
+Bnana M. Jackson, Esq. 
+Jason A. Richardson, Esq
+
+===PAGE 4===
+1 Q. Are the capacity requests from data center customers getting larger?
+Indeed they are. In the early days of the development of the industry in Virginia, a2 A.
+typical data center capacity request would be in the range of 10-20 MW. Today, the3
+majority of requests are for 300 MW campuses. However, the Company has also4
+received very large campus requests within the 2,400 to 7,000 MW range. As a result,5
+the required investment in generation, transmission, and distribution infrastructure to6
+serve these customers, along with meeting other incremental needs resulting from7
+traditional load growth, electrification trends and unrelated economic development, has8
+increased substantially—a topic which is addressed further by several other Company9
+witnesses.10
+11 Q. Mr. Blackwell, do you have a table that summarizes some of these trends that you
+12 have been discussing.
+Yes. My Figure 1 below details some of the growth metrics surrounding the data center13 A.
+industry in Virginia, including the number of customers and developers in our territory,14
+the demand and sales figures for data center customers, and the increase in volume and15
+size of capacity connections.16
+Data Center Metrics
+5
+Number of accounts____________
+Number of customers___________
+Number of developers__________
+Capacity under ESA (MW)______
+Capacity under construction (MW) 
+Billing Demand (MW)__________
+Billed Sales (MWh)____________
+Connect Capacity (MW)_________
+New Connects Per Year_________
+Capacity (MW) per Connect
+2025 Biennial Review
+Case No. puF2505-1)6bM5
+Blackwell Direct Testimony (rev. May 5, 2025) 
+Redline Version
+2013
+_____ n/a
+______ 29
+_____ n/a
+_____ n/a
+_____ n/a
+462
+3,191,987
+______ 67 
+_______ 6
+11
+2024
+451
+_______ 51 
+~50
+8,755
+5,198
+3,583
+24,248,543
+977
+_______ 15 
+65
+Gross
+Change
+n/a
+76% 
+n/a 
+n/a 
+n/a 
+676%
+660%
+1358%
+150% 
+483%
+
+===PAGE 5===
+1 Q. Are the capacity requests from data center customers getting larger?
+Indeed they are. In the early days of the development of the industry in Virginia, a 2 A.
+typical data center capacity request would be in the range of 10-20 MW. Today, the 3
+majority of requests are for 300 MW campuses. However, the Company has also 4
+received very large campus requests within the 2,400 to 7,000 MW range. As a result, 5
+the required investment in generation, transmission, and distribution infrastructure to 6
+serve these customers, along with meeting other incremental needs resulting from 7
+traditional load growth, electrification trends and unrelated economic development, has8
+increased substantially—a topic which is addressed further by several other Company9
+witnesses.10
+11 Q. Mr. Blackwell, do you have a table that summarizes some of these trends that you
+12 have been discussing.
+Yes. My Figure 1 below details some of the growth metrics surrounding the data center13 A.
+industry in Virginia, including the number of customers and developers in our territory,14
+the demand and sales figures for data center customers, and the increase in volume and15
+size of capacity connections.16
+Data Center Metrics
+2024
+483%
+5
+2025 Biennial Review 
+Case No. PUR25S5d(0345
+Blackwell Direct Testimony (rev. May 5, 2025) 
+Clean Version
+Gross
+Change 
+n/a
+2013
+______n/a
+29
+______n/a
+______n/’a
+______n/'a
+462
+3,191,987
+______ 67 
+_______ 6 
+11
+Number of accounts____________
+Number of customers___________
+Number of developers__________
+Capacity under ESA (MW)
+Capacity under construction (MW) 
+Billing Demand (MW)__________
+Billed Sales (MWh)____________
+Connect Capacity (MW)_________
+New Connects Per Year_________
+Capacity (MW7) per Connect
+451
+51
+-50 
+8.755 
+5,198
+3,583
+24,248,543
+977
+15
+65
+76%
+n/a
+___n/a
+n/'a
+676%
+660%
+1358%
+150%
+
+===PAGE 6===
+250510145
+CERTIFICATE OF SERVICE
+/s/ Timothy D. Patterson
+Nikhil Vijaykar, Esq.
+Keyes & Fox LLP
+580 California Street, 12th Floor 
+San Francisco, CA 94104
+Nathaniel Benforado, Esq.
+Josephus M. Allmond, Esq. 
+Katherine King, Esq.
+Southern Environmental Law Center
+120 Garrett Street, Suite 400 
+Charlottesville, VA 22902
+Dorothy E. Jaffe, Esq.
+Sierra Club
+50 F Street Northwest, 8th Floor 
+Washington, D.C 20001
+Claire Marie Horan, Esq.
+Appalachian Mountain Advocates
+P.O.Box 403
+Charlottesville, VA 22902
+K. Beth Clowers, Esq.
+Ashley B. Macko, Esq.
+Anna Dimitri, Esq.
+Clay F. Kulesza, Esq.
+Office of General Counsel
+State Corporation Commission
+1300 E. Main Street, Tyler Bldg., 10th Fl. 
+Richmond, VA 23219
+Evan D. Johns, Esq.
+Appalachian Mountain Advocates
+6101 Penn Avenue, Suite No. 201 
+Pittsburgh, PA 15206
+Dylan J. Gillis, Esq.
+Williams Mullen
+Boro Tower
+8350 Broad Street, Suite 1600 
+Tysons, VA 22102
+C. Meade Browder, Jr., Esq. 
+John E. Farmer, Jr., Esq. 
+Carew S. Bartley, Esq. 
+Office of the Attorney General 
+Division of Consumer Counsel 
+202 N. Ninth Street 
+Richmond, VA 23219
+Brian R. Greene, Esq.
+Claire M. Gardner, Esq. 
+GreeneHurlocker, PLC
+4908 Monument Avenue, 2nd Floor 
+Richmond, VA 23230
+William T. Reisinger, Esq. 
+ReisingerGooch, PLC
+1108 East Main Street, Suite 1102 
+Richmond, VA 23219
+Timothy G. McCormick, Esq. 
+Christian F. Tucker, Esq. 
+Christian & Barton, LLP
+901 East Cary Street, Suite 1800 
+Richmond, VA 23219
+Cody T. Murphey, Esq.
+Cassidy C. Galindo, Esq.
+Williams Mullen
+200 South 10th Street, Suite 1600 
+Richmond, VA 23219
+I hereby certify that on this 5th day of May 2025, a true and accurate copy of the 
+foregoing filed in Case No. PUR-2025-00058 was hand delivered, electronically mailed, 
+and/or mailed first class postage pre-paid to the following:

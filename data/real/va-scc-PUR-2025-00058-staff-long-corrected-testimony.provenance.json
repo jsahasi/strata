@@ -1,0 +1,19 @@
+{
+  "source_url": "https://www.scc.virginia.gov/DocketSearch/Home/Document/12/382870",
+  "retrieved_at": "2026-08-04T16:51:43Z",
+  "sha256": "4c36388913a6a22027d78a4166252acd0418fbc6ee3c34a2e0c3c41b546ad504",
+  "jurisdiction": "US-VA (Virginia State Corporation Commission)",
+  "docket": "PUR-2025-00058",
+  "matter_no": 146025,
+  "scc_doc_id": "382870",
+  "document_title": "Corrected Prefiled Testimony of Daniel M. Long",
+  "filing_date": "2025-08-20",
+  "filer": "Virginia Electric and Power Company (Commission Staff testimony; witness Daniel M. Long)",
+  "content_type_served": "application/pdf",
+  "source_pdf_sha256": "38644a102a2dbd3d8fc9eb206f2ea1bddaceb27087a7e29eb7a6710dad5e4aab",
+  "source_pdf_bytes": 2201278,
+  "saved_text_bytes": 13120,
+  "extraction_tool": "pypdf 6.14.2 page.extract_text()",
+  "note": "Corrected ('CORRECTED - CLEAN') reissue of Staff witness Long's prefiled testimony on data-center Pre-ELOA/ELOA cost removals.",
+  "how_obtained": "Fetched the PDF from the Virginia SCC DocketSearch document handler (https://www.scc.virginia.gov/DocketSearch/Home/Document/12/<DocID>) with curl -L, following the site's 307 redirect to the lowercase /docketsearch/home/document/12/<DocID> path, which returned Content-Type application/pdf. The DocID was obtained from the DocketSearchAPI Breeze endpoint GetDocuments (?$filter=MATTER_NO eq <matter>) for this case. Converted the PDF to text with pypdf 6.14.2 using page.extract_text() concatenated per page with '===PAGE n===' separators. The text is saved exactly as pypdf produced it: not cleaned, not reflowed, not de-hyphenated; soft hyphens, ligature artefacts, transposed line-number/Q-A ordering and OCR-style noise are left intact."
+}

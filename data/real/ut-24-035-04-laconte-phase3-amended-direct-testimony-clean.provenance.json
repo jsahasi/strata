@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Utah",
+  "commission": "Public Service Commission of Utah",
+  "docket": "24-035-04",
+  "proceeding": "Application of Rocky Mountain Power for Authority to Increase its Retail Electric Utility Service Rates in Utah and for Approval of its Proposed Electric Service Schedules and Electric Service Regulations",
+  "how_obtained": "Found the docket page on psc.utah.gov (a WordPress site: /<yyyy>/<mm>/<dd>/docket-no-<docket>/), read its raw HTML and pulled the pscdocs.utah.gov links out of it. Utah serves every document at a flat, guessable path: https://pscdocs.utah.gov/<utility>/<yy>docs/<docketdigits>/<docid><AbbreviatedTitle><m-d-yyyy>.pdf, with no login and no session. Downloaded with curl and extracted text with PyMuPDF sorted-block extraction (page.get_text('text', sort=True)), pages joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://pscdocs.utah.gov/electric/24docs/2403504/338451AmndPhsIIIDirTstmnBillieSLaConteUTLCGCln2-25-2025.pdf",
+  "document_title": "Amended Phase III Direct Testimony of Billie S. LaConte on behalf of the Utah Large Customer Group - Clean",
+  "filing_date": "2025-02-25",
+  "filer": "Utah Large Customer Group (counsel: Holland & Hart LLP)",
+  "witness": "Billie S. LaConte",
+  "document_type": "Amended direct testimony, clean copy",
+  "pages": 43,
+  "version_role": "amendment (clean)",
+  "version_pair_with": "ut-24-035-04-laconte-phase3-direct-testimony-original.txt",
+  "notes": "The changed figure: the deferred excess liability insurance premium reduction moves from $30.9 million to $5.8 million, and the sentence that read 'reduced by $30.9 million to $81.2 million' becomes simply 'reduced by $5.8 million'. A number-level amendment is the hardest kind to catch by eye and the easiest to get wrong downstream.",
+  "sha256": "64a583fdfeb84c48763f12f0b32f74031bb3c3b02f8273406d8d26bacf5229d7",
+  "bytes": 120915,
+  "retrieved_at": "2026-08-04T16:59:54Z",
+  "source_pdf_sha256": "0fdb21b40d986eddb280f622932eee8cb2a171062fa6bed96104d7fbe39c6c5b",
+  "source_pdf_bytes": 1498263
+}

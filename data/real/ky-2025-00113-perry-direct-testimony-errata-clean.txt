@@ -1,0 +1,1844 @@
+              COMMONWEALTH OF KENTUCKY
+             BEFORE THE PUBLIC SERVICE COMMISSION
+
+In the Matter of:
+
+ELECTRONIC APPLICATION OF                   )
+KENTUCKY UTILITIES COMPANY FOR         )
+AN ADJUSTMENT OF ITS ELECTRIC             )   CASE NO. 2025-00113
+RATES, AND APPROVAL OF CERTAIN           )
+REGULATORY AND ACCOUNTING               )
+TREATMENTS                                             )
+
+
+                DIRECT TESTIMONY AND EXHIBITS OF
+
+                            LISA V. PERRY
+
+                     ON BEHALF OF
+
+                     WALMART INC.
+
+
+
+
+
+                                    Filed: August 29, 2025                                  Table of Contents
+
+I.      Introduction ......................................................................................................................... 1
+II.     Purpose of Testimony and Summary of Recommendations ............................................... 3
+III.    Revenue Requirement and ROE ......................................................................................... 8
+       (A)    Revenue Requirement and ROE .............................................................................. 8
+       (B)    Customer Impact of Requested ROE..................................................................... 10
+       (C)    Recent ROEs Approved by the Commission ......................................................... 10
+      (D)    National Utility Industry ROE Trends .................................................................. 12
+              Figure 1.  KU's Proposed ROE vs. Authorized ROEs for Vertically Integrated
+                 Utilities, 2023 to present. Source: Exhibit LVP-3. ............................................... 14
+       (E)    Conclusion ............................................................................................................ 16
+IV.    Cost of Service Study, Production Cost Allocation, and Revenue Allocation ................. 16
+       (A)    Cost of Service Study and Production Cost Allocation ........................................ 16
+       (B)    Revenue Allocation ............................................................................................... 17
+V.    Rate Design ....................................................................................................................... 22
+       (A)    Revenue Allocation ............................................................................................... 22
+       (B)    Rate EHLF ............................................................................................................ 23
+       (C)    Public EV Charging Rate...................................................................................... 28
+VI.   Key Accounts Program for Large Customers ................................................................... 32
+
+
+Exhibits
+
+Exhibit LVP-1: Witness Qualifications Statement
+Exhibit LVP-2: Impact of KU's Current Return on Equity vs. KU's Proposed Return on Equity
+
+Exhibit LVP-3: Reported Authorized Returns on Equity, Electric Utility Rate Cases Completed,
+2023 to Present
+
+Exhibit LVP-4: Impact of KU's Current Return on Equity vs. National Average Awarded Return
+on Equity, Vertically Integrated Investor Owned Utilities from 2023 to Present                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1     I.     Introduction
+
+ 2         Q.   PLEASE  STATE  YOUR  NAME,  BUSINESS  ADDRESS,  AND
+
+ 3            OCCUPATION.
+
+ 4         A.   My name is Lisa V. Perry. My business address is 2608 SE J Street, Bentonville,
+
+ 5           AR 72716-0550. I am employed by Walmart Inc. ("Walmart") as Director, Utility
+
+ 6                  Partnerships - Regulatory.
+
+ 7         Q.   ON WHOSE BEHALF ARE YOU TESTIFYING IN THIS CASE?
+
+ 8         A.      I am testifying on behalf of Walmart.
+
+ 9         Q.   PLEASE DESCRIBE YOUR EDUCATION AND EXPERIENCE.
+
+10         A.      I received a J.D. in 1999 and a LL.M. in Taxation in 2000 from the University of
+
+11                  Florida Levin College of Law. From 2001 to 2019, I was in private practice with
+
+12                an emphasis from 2007 to 2019 in Energy Law. My practice included representing
+
+13                   large commercial clients before the utility regulatory commissions in Colorado,
+
+14                 Texas, New Mexico, Arkansas, and Louisiana in matters ranging from general rate
+
+15                  cases to renewable energy programs. I joined the energy department at Walmart in
+
+16                September 2019 as Senior Manager, Energy Services. My Witness Qualifications
+
+17                 Statement is attached as Exhibit LVP-1.
+
+18         Q.   HAVE YOU PREVIOUSLY SUBMITTED TESTIMONY BEFORE THE
+
+19          KENTUCKY PUBLIC SERVICE COMMISSION ("COMMISSION")?
+
+20         A.     Yes, I submitted testimony in Case No. 2020-00174, 2020-00349, 2020-00350,
+
+21                2021-00481, 2023-00159, and 2024-00354.
+
+
+
+
+
+                                             1                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.   HAVE YOU PREVIOUSLY SUBMITTED TESTIMONY BEFORE OTHER
+
+ 2           STATE REGULATORY COMMISSIONS?
+
+ 3         A.     Yes, I have submitted testimony with State Regulatory Commissions for Arkansas,
+
+ 4                 Colorado,  Connecticut,  Florida,  Georgia,  Iowa,  Illinois,  Indiana,  Kansas,
+
+ 5                  Louisiana, Maryland, Michigan, New Hampshire, New York, North Carolina,
+
+ 6                 Ohio,  Oklahoma,  Oregon,  Pennsylvania,  South  Carolina,  Texas,  Virginia,
+
+ 7                Washington, Wisconsin, and Wyoming. I have also provided legal representation
+
+ 8                   for customer stakeholders before the State Regulatory Commissions for Colorado,
+
+ 9                 Texas,  Arkansas,  Louisiana,  and New Mexico  in  the  cases  listed  under
+
+10               "Commission Dockets" in Exhibit LVP-1.
+
+11         Q.   ARE YOU SPONSORING EXHIBITS IN YOUR TESTIMONY?
+
+12         A.     Yes. I am sponsoring the exhibits listed in the Table of Contents.
+
+13         Q.   PLEASE  BRIEFLY  DESCRIBE  WALMART'S  OPERATIONS  IN
+
+14           KENTUCKY.
+
+15         A.    As shown on Walmart's website, Walmart operates 101 retail units and three supply
+
+16                 chain facilities, and it employs over 31,000 associates in the Commonwealth of
+
+17                 Kentucky.1 In fiscal year ending 2025, Walmart purchased $1.0 billion worth of
+
+18                goods and services from Kentucky-based  suppliers, supporting over 46,000
+
+19                   supplier jobs.2
+
+
+
+
+
+         1 https://corporate.walmart.com/about/location-facts/united-states/kentucky
+         2 Id.
+
+
+                                             2                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.   PLEASE BRIEFLY DESCRIBE WALMART'S OPERATIONS WITHIN
+
+ 2           THE SERVICE TERRITORY FOR KENTUCKY UTILITIES COMPANY
+
+ 3             ("KU" OR "COMPANY").
+
+ 4         A.    Walmart has approximately 31  retail stores and related  facilities within the
+
+ 5               Company's service territory. The majority of these facilities are served on the Time
+
+ 6                  of Day – Secondary ("TODS") Schedule with some smaller facilities taking service
+
+ 7               from the General Service ("GS") Schedule.
+
+ 8
+
+ 9    II.    Purpose of Testimony and Summary of Recommendations
+
+10         Q.  WHAT IS THE PURPOSE OF YOUR TESTIMONY?
+
+11         A.    The purpose of my testimony is to address aspects of the Company's Application
+
+12                  ("Application") filed with the Commission on May 30, 2025. Specifically, I address
+
+13                  the  Company's:   (i)  requested  Return  on  Equity  ("ROE")  and  provide
+
+14                recommendations to assist the Commission in its consideration of the proposed
+
+15             ROE,  (ii) cost of service study ("COSS") and cost allocation,  (iii) revenue
+
+16                    allocation, (iv) TODS rate design, and (v) new tariff for Extremely High Load
+
+17                  Factor customers ("Rate EHLF"). I also discuss the Company's current lack of a
+
+18                    rate specifically for public electric vehicle ("EV") charging and the Company's key
+
+19                 account management program.
+
+
+
+
+
+                                             3                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.    IN SETTING THE REVENUE REQUIREMENT, ROE, ALLOCATION,
+
+ 2          AND RATE DESIGN CHANGES FOR THE COMPANY, SHOULD THE
+
+ 3           COMMISSION CONSIDER THE IMPACT OF THE PROPOSED RATE
+
+ 4            INCREASE ON BUSINESS CUSTOMERS?
+
+ 5         A.     Yes. Electricity is a significant operating cost for retailers such as Walmart. When
+
+ 6                    electric rates increase, the increased cost to retailers can put pressure on consumer
+
+ 7                   prices and on the other expenses required by a business to operate. As such, the
+
+ 8               Commission should thoroughly and carefully consider the impact on customers in
+
+ 9                examining the requested revenue requirement and ROE, in addition to all other
+
+10                   facets of this case, to ensure that any increase in the Company's rates is the
+
+11             minimum amount necessary to provide safe, adequate, and reliable service, while
+
+12                   also providing the Company with the opportunity to recover its reasonable and
+
+13                 prudent costs and earn a reasonable return on its investment.
+
+14         Q.   PLEASE SUMMARIZE WALMART'S RECOMMENDATIONS TO THE
+
+15            COMMISSION.
+
+16         A.     Walmart's recommendations to the Commission are as follows:
+
+17                   (1)    Unless the Commission determines that a higher ROE is warranted due to
+
+18                       changes  in  circumstances  since  the Company's  last  rate  case,  the
+
+19                     Commission should approve an ROE no higher than the Company's
+
+20                          currently authorized ROE of 9.425 percent, especially when accounting for:
+
+21                             (a)     the use of risk-reducing rate-making structures such as the forecast
+
+22                                       test  year,  which  accelerates  cost  recovery  and  reduces  the
+
+
+
+
+                                             4                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                           Company's exposure to regulatory lag when compared to the use of
+
+ 2                              a historical test year in setting rates;
+
+ 3                           (b)     the customer impact of the resulting revenue requirement increase;
+
+ 4                                and,
+
+ 5                             (c)     recent ROEs  approved  in  Kentucky  and  other  jurisdictions
+
+ 6                              nationwide that do not support the Company's requested ROE.
+
+ 7                   (2)    For purposes of  this case, Walmart does not oppose the Company's
+
+ 8                       proposed COSS and does not take a position on the Company's proposal to
+
+ 9                        apply  the  six  coincident  peak  ("6CP")  production  cost  allocation
+
+10                       methodology. However, to the extent  that alternative cost of service
+
+11                       methodologies or modifications to the Company's methodology, including
+
+12                           alternative production cost allocation methodologies, are proposed by other
+
+13                            parties or the Company, Walmart reserves the right to address any such
+
+14                       changes in accordance with the Commission's procedures in this case.
+
+15                   (3)    At the Company's proposed revenue requirement, Walmart does not oppose
+
+16                          the Company's proposed revenue allocation.
+
+17                   (4)      If the Commission determines that the appropriate revenue requirement is
+
+18                            less  than  the  revenue  requirement  requested by  the Company,  the
+
+19                     Commission should take steps to further reduce the interclass subsidies
+
+20                    embedded in current rates. To accomplish this, Walmart proposes the
+
+21                         following:
+
+22                                  Starting with the revenue allocation requested by the Company, the
+
+23                     Commission should apply 50 percent of the overall revenue reduction (the
+
+
+                                             5                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                          difference between the revenue requirement requested by the Company and
+
+ 2                          the revenue requirement approved by the Commission) to those rate classes
+
+ 3                  who are paying in excess of their cost-based levels. In applying the first 50
+
+ 4                         percent overall revenue reduction, it may need to be adjusted downward
+
+ 5                                   (i.e., to some percent less than 50) if it would result in a subsidizing rate
+
+ 6                           class moving  to a subsidized  position. Then, the remaining revenue
+
+ 7                         reduction should be evenly applied to  all rate classes to mitigate the
+
+ 8                       proposed increases for all ratepayers on an equal percentage basis.
+
+ 9                   (5)    For purposes of  this case, Walmart does not oppose the Company's
+
+10                       proposed TODS rate design. However, to the extent that modifications to
+
+11                          the Company's proposal are proposed by other parties, Walmart reserves the
+
+12                            right to address any such changes in accordance with the Commission's
+
+13                        procedures in this case.
+
+14                   (6)    Walmart appreciates the Company's efforts to recognize and address the
+
+15                       unique risks posed by customers whose demands are substantially larger
+
+16                        than those of other customers through measures such as Rate EHLF.
+
+17                        Accordingly, Walmart supports Rate EHLF and recommends that the
+
+18                     Commission approve the rate as proposed. At the same time, Walmart
+
+19                       emphasizes  the importance  of ensuring  that  the Company's  internal
+
+20                         processes are structured to provide timely and equitable access to the system
+
+21                           for other commercial and industrial ("C&I") customers who are also
+
+22                       expanding their energy usage through new facilities, advanced equipment,
+
+23                         and/or investments in technologies that require additional electrification.
+
+
+                                             6                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                   (7)    Walmart recommends that the Commission require the Company to work
+
+ 2                        with interested stakeholders to develop a new EV rate specifically for
+
+ 3                          public-facing Direct Current Fast Chargers ("DCFC") and to either seek
+
+ 4                     Commission approval of such rate or provide an update on the stakeholder
+
+ 5                         process within six months following the issuance of a Final Order in this
+
+ 6                           case.
+
+ 7                   (8)    Walmart appreciates the Company providing a single point of contact and
+
+ 8                                 its ongoing commitment to engaging with all of its customers through
+
+ 9                        continuous  evaluation  of  its  relationship and  adapting  processes  as
+
+10                        technology and customer needs evolve. In particular, Walmart values the
+
+11                     Company's key account manager program for large customers, especially
+
+12                         those customers like Walmart with multiple locations throughout the
+
+13                          service territory, and supports the efforts of this team, as discussed herein.
+
+14                     While not a specific recommendation, Walmart highlights  this in  its
+
+15                        testimony to inform the Commission of the valuable service provided by the
+
+16                     Company's key account manager team.
+
+17         Q.   DOES THE FACT THAT YOU MAY NOT ADDRESS AN ISSUE OR
+
+18            POSITION ADVOCATED BY THE COMPANY INDICATE WALMART'S
+
+19            SUPPORT?
+
+20         A.    No. The fact that an issue is not addressed herein or in related filings should not be
+
+21                 construed as an endorsement of, agreement with, or consent to any filed position.
+
+22
+
+
+
+
+                                             7                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1    III.   Revenue Requirement and ROE
+
+ 2       (A)   Revenue Requirement and ROE
+
+ 3         Q.  WHAT IS YOUR UNDERSTANDING OF THE COMPANY'S PROPOSED
+
+ 4           REVENUE REQUIREMENT INCREASE?
+
+ 5         A.   My understanding is that the Company is seeking an annual revenue increase of
+
+ 6                 approximately $226.1 million, or 11.5 percent.3 This proposed increase is based on
+
+ 7                 a 12-month forecasted test period ending December 31, 2026,4 as supported by a
+
+ 8               12-month base period ending August 31, 2025, and consisting of six months of
+
+ 9                   actual data (September 1, 2024 through February 28, 2025) and six months of
+
+10                  forecasted data (March 1, 2025 through August 31, 2025).5
+
+11         Q.  WHAT IS THE COMPANY'S PROPOSED ROE IN THIS CASE?
+
+12         A.    The Company proposes an ROE of 10.95 percent based on a range of 10.32 percent
+
+13                   to 11.84 percent.6 In addition, the Company proposes a capital structure of 46.15
+
+14                  percent debt and 52.86 percent equity for ratemaking purposes.7 Applying the
+
+15               Company's proposed ROE to its proposed capital structure, the Company is asking
+
+16                  the Commission to approve a Rate of Return equal to 8.10 percent based on 13-
+
+17               month weighted average cost of capital ("WACC").8
+
+
+
+
+
+         3 See Application, p. 4, ¶ 6; see also Direct Testimony of Robert M. Conroy ("Conroy Direct"), p. 2, lines 9-10.
+         4 See Application, p. 7, ¶ 11; see also Conroy Direct, p. 9, line 11.
+         5 See Application, p. 7, ¶ 11; see also Conroy Direct, p. 9, lines 14-16.
+         6 See Direct Testimony of Dylan W. D'Ascendis ("D'Ascendis Direct"), p. 2, lines 21-23 and p. 4, lines 3-5.
+         7 See Schedule J-1.1/J-1.2.
+         8 See id.
+
+
+                                             8                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.    IS  THE  COMPANY'S  PROPOSED ROE  HIGHER  THAN  ITS
+
+ 2           CURRENTLY AUTHORIZED ROE?
+
+ 3         A.     Yes. On June 30, 2021, the Commission awarded the Company an ROE in its last
+
+ 4                 base rate case of 9.425 percent.9 The 10.95 percent ROE proposed in  this
+
+ 5                 proceeding represents an increase of nearly 153 basis points to the Company's
+
+ 6                   currently authorized ROE.
+
+ 7         Q.    IS WALMART CONCERNED THAT THE COMPANY'S ROE  IS
+
+ 8            EXCESSIVE?
+
+ 9         A.     Yes. Walmart believes that the Company's proposed ROE of 10.95 percent is
+
+10                  excessive, especially in light of:
+
+11                   (1)     the use of risk-reducing rate-making structures such as the forecast test year,
+
+12                       which accelerates cost recovery and reduces the Company's exposure to regulatory
+
+13                            lag when compared to the use of a historical test year in setting rates;
+
+14                   (2)     the customer impact of the resulting revenue requirement increase as
+
+15                         discussed below; and,
+
+16                   (3)     recent ROEs approved in Kentucky and other jurisdictions nationwide that
+
+17                     do not support the Company's requested ROE, as discussed below.
+
+18
+
+
+
+
+
+         9 See In the Matter of Electronic Application of Kentucky Utilities Company for an Adjustment of its Electric Rates, a
+        Certificate of Public Convenience and Necessity to Deploy Advanced Metering Infrastructure, Approval of Certain
+       Regulatory and Accounting Treatments, and Establishment of a One-Year Surcredit, Case No. 2020-00349, Order
+       (issued June 30, 2021) ("2021 Rate Case Order"), p. 23.
+
+
+                                             9                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1   (B)   Customer Impact of Requested ROE
+
+ 2         Q.  WHAT   IS  YOUR  UNDERSTANDING  OF  THE  COMPANY'S
+
+ 3           CURRENTLY APPROVED ROE?
+
+ 4         A.    As stated above, my understanding is that the Company's currently approved ROE
+
+ 5                      is 9.425 percent.10
+
+ 6         Q.   HAVE YOU CALCULATED AN ESTIMATE OF THE IMPACT OF THE
+
+ 7           RETURN ON RATE BASE FROM THE COMPANY'S PROPOSED
+
+ 8            INCREASE IN ROE FROM 9.425 PERCENT TO 10.95 PERCENT?
+
+ 9         A.     Yes. Using the Company's proposed rate base, cost of debt, and capital structure,
+
+10                  the impact of the proposed increase in authorized ROE is approximately $65.7
+
+11                   million, or 29.07 percent of the proposed revenue requirement increase sought in
+
+12                     this case.11
+
+13
+
+14   (C)    Recent ROEs Approved by the Commission
+
+15         Q.    IS THE COMPANY'S PROPOSED ROE SIGNIFICANTLY HIGHER
+
+16          THAN THE ROEs APPROVED BY THIS COMMISSION FROM 2023 TO
+
+17            PRESENT?
+
+18         A.     Yes. Since 2023, this Commission has issued orders with stated ROEs in two cases
+
+19                   for investor owned utilities with the average of the ROEs approved equal to 9.75
+
+20                   percent.12
+
+
+
+
+
+         10 See 2021 Rate Case Order, pp. 8, 30.
+         11 Exhibit LVP-2.
+         12 Exhibit LVP-3.
+
+
+                                            10                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.    IN WHICH OTHER CASES DID THE COMMISSION ISSUE ORDERS
+
+ 2           WITH STATED ROEs?
+
+ 3         A.    The Commission issued Orders with stated ROEs in the following cases:
+
+ 4                     Case No. 2022-00372, Duke Energy Kentucky Inc. rate case that was
+
+ 5                       completed in 2023, in which the Commission approved an ROE of 9.75
+
+ 6                           percent.13
+
+ 7                     Case No. 2023-00159, Kentucky Power Company rate case that was
+
+ 8                       completed in 2024, in which the Commission approved an ROE of 9.75
+
+ 9                           percent.14
+
+10              As such, the Company's proposed 10.95 percent ROE  is counter to recent
+
+11               Commission actions regarding ROEs for other investor-owned electric utilities in
+
+12                Kentucky.
+
+13
+
+
+
+
+
+         13 In the Matter of:  Electronic Application of Duke Energy Kentucky, Inc. for (1) an Adjustment of Electric Rates;
+        (2) Approval of New Tariffs; (3) Approval of Accounting Practices to Establish Regulatory Assets and Liabilities; and
+        (4) All Other Required Approvals and Relief, Case No. 2022-00372, Order (issued Oct. 12, 2023), p. 41; see also
+       Exhibit LVP-3.
+         14 In the Matter of: Electronic Application of Kentucky Power Company for (1) a General Adjustment of its Rates for
+        Electric Service; (2) Approval of Tariffs and Riders; (3) Approval of Accounting Practices to Establish Regulatory
+       Assets and Liabilities; (4) a Securitization Financing Order; and (5) All Other Required Approvals and Relief, Case
+      No. 2023-00159, Order (issued Jan. 19, 2024), p. 61; see also Exhibit LVP-3.
+
+
+                                            11                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1   (D)    National Utility Industry ROE Trends
+
+ 2         Q.    IS THE COMPANY'S PROPOSED ROE SIGNIFICANTLY HIGHER
+
+ 3          THAN THE ROEs APPROVED BY OTHER UTILITY REGULATORY
+
+ 4           COMMISSIONS SINCE 2023?
+
+ 5         A.     Yes. According to data from S&P Global Market Intelligence ("S&P Global"), a
+
+ 6                   financial news and reporting company, the average of the 104 reported electric
+
+ 7                      utility rate case ROEs authorized by commissions to investor-owned utilities since
+
+ 8               2023 is 9.68 percent.15 The range of reported authorized ROEs over this period is
+
+ 9                 8.63 percent to 11.45 percent, and the median authorized ROE is 9.70 percent.16
+
+10              The average and median values (9.68 percent and 9.70 percent, respectively) are
+
+11                   significantly below the Company's proposed ROE of 10.95 percent. As such, the
+
+12               Company's proposed 10.95 percent ROE is counter to broader electric industry
+
+13                    trends.
+
+14         Q.   SEVERAL OF THE REPORTED AUTHORIZED ROEs ARE FOR
+
+15            DISTRIBUTION-ONLY UTILITIES OR FOR ONLY A UTILITY'S
+
+16            DISTRIBUTION  SERVICE  RATES. WHAT  IS  THE AVERAGE
+
+17           AUTHORIZED ROE IN THE REPORTED GROUP FOR VERTICALLY
+
+18           INTEGRATED UTILITIES LIKE THE COMPANY?
+
+19         A.     In the group reported by S&P Global, the average authorized ROE for vertically
+
+20                   integrated utilities from 2023 through present is 9.77 percent.17 The average ROE
+
+
+
+
+
+         15 Exhibit LVP-3.
+         16 Id.
+         17 Id.
+
+
+                                            12                                                                               Walmart Inc.
+                                                                              Direct Testimony of Lisa V. Perry
+                                              Kentucky Public Service Commission Case No. 2025-00113
+
+
+1                  authorized for vertically integrated utilities in 2023 was 9.71 percent; in 2024, it
+
+2               was 9.85 percent; and so far in 2025, it is 9.74 percent.18 By comparison to all
+
+3                 nationwide metrics, the Company's proposed 10.95 percent ROE is counter to
+
+4                 broader electric industry trends and, in fact, as shown in Figure 1 below, would be
+
+5                  the second highest approved ROE for any vertically integrated utility (out of 80
+
+6                      utilities) at any time since 2023. Beyond the typical cost of service models, the
+
+7             Company offers no basis for the Commission to award such an increased ROE.
+
+
+
+
+
+       18 Id.
+
+
+                                            13                                                                               Walmart Inc.
+                                                                              Direct Testimony of Lisa V. Perry
+                                              Kentucky Public Service Commission Case No. 2025-00113
+
+
+
+
+
+                                                             Alaska Electric Light Power
+                                                                  KU's Requested ROE
+                                                 Tampa Electric Company
+                                                    Southern California Edison Co.
+                                                   Duke Energy Florida LLC
+                                                                      Pacific Gas and Electric Co.
+                                                     San Diego Gas & Electric Co.
+                                                                   Florida Public Utilities Co.
+                                                                  Otter Tail Power Co.
+                                                   Duke Energy Carolinas LLC
+                                                       Bear Valley Electric Svc. Inc.
+                                                                                PacifiCorp
+                                                               Liberty Utilities (CalPeco Ele
+                                                  Green Mountain Power Corp.
+                                                                 Virginia Electric & Power Co.
+                                                Dominion Energy South Carolina
+                                                   Duke Energy Carolinas LLC
+                                                       Consumers Energy Co.
+                                                          DTE Electric Co.
+                                                          Puget Sound Energy Inc.
+                                                                AES Indiana
+                                                       Consumers Energy Co.
+                                                          DTE Electric Co.
+                                                   Upper Peninsula Power Co.
+                                                       Consumers Energy Co.
+                                                               Interstate Power & Light Co.
+                                                   Upper MI Energy Rsrc Corp.
+                                                   Upper Peninsula Power Co.
+                                                           Indiana Michigan Power Co.
+                                                           Indiana Michigan Power Co.
+                                                     Southern IN Gas & Electric Co.
+                                                                               Avista Corp.
+                                                            Appalachian Power Co.
+                                                     Wisconsin Public Service Corp.
+                                                       Wisconsin Electric Power Co.
+                                                    Monongahela Power Co.
+                                                     Wisconsin Power and Light Co
+                                                       Northern States Power Co.
+                                                  Duke Energy Progress LLC
+                                                    Northern IN Public Svc. Co. LLC
+                                                   Minnesota Power Entrprs Inc.
+                                                                  NIPSCO
+                                                    Duke Energy Indiana, LLC
+                                                   UNS Electric Inc.
+                                                         Kentucky Power Company
+                                                   Duke Energy Kentucky Inc.
+                                        MDU Resources Group
+                                                Cheyenne Light Fuel Power Co.
+                                                                      Sierra Pacific Power Co.
+                                                                 Virginia Electric & Power Co.
+                                                  Madison Gas and Electric Co.
+                                                    NorthWestern Energy Group
+                                        MDU Resources Group
+                                                   Minnesota Power Entrprs Inc.
+                                                                   Idaho Power Co.
+                                                  Duke Energy Progress LLC
+                                                  Green Mountain Power Corp.
+                                                                  Entergy Texas Inc.
+                                                            Arizona Public Service Co.
+                                                        Tucson Electric Power Co.
+                                                         Nevada Power Co.
+                                                                                PacifiCorp
+                                                           Public Service Co. of Oklahoma
+                                                                                PacifiCorp
+                                               Oklahoma Gas and Electric Co.
+                                                                   Idaho Power Co.
+                                                          Portland General Electric Co.
+                                                            Appalachian Power Co.
+                                                      Southwestern Public Svc Co.
+                                                  Southwestern Electric Power Co
+                                                           Public Service Company of NM
+                                                             Black Hills Colorado Electric
+                                                                               Avista Corp.
+                                                                                PacifiCorp
+                                                                                PacifiCorp
+                                                          Portland General Electric Co.
+                                                                  Public Service Co. of OK
+                                                                  Public Service Co. of CO
+                                                                 Public Service Co. of NM
+                                                       Northern States Power Co.
+
+                                                                         0.00%                                             2.00%                                              4.00%                                              6.00%                                              8.00%                                             10.00%                                             12.00%
+
+
+1          Figure 1.  KU's Proposed ROE vs. Authorized ROEs for Vertically Integrated
+2             Utilities, 2023 to present. Source: Exhibit LVP-3.
+
+
+                                            14                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.  WHAT  IS THE REVENUE REQUIREMENT IMPACT WERE THE
+
+ 2           COMMISSION TO APPROVE AN ROE FOR THE COMPANY
+
+ 3           EQUIVALENT TO 9.77 PERCENT, THE AVERAGE AWARDED ROE
+
+ 4           FOR VERTICALLY INTEGRATED INVESTOR OWNED UTILITIES
+
+ 5            SINCE 2023?
+
+ 6         A.      If the Commission were to approve an ROE for the Company of 9.77 percent,
+
+ 7                  versus the Company's proposal of 10.95 percent, it would result in a reduction to
+
+ 8                  the requested revenue requirement increase of about $50.9 million, or 22.50
+
+ 9                   percent.19
+
+10         Q.    IS WALMART RECOMMENDING THAT THE COMMISSION BE
+
+11          BOUND BY ROEs AUTHORIZED BY OTHER STATE REGULATORY
+
+12           COMMISSIONS?
+
+13         A.    No. Decisions of other state regulatory commissions are not binding on this
+
+14                Commission. Each commission considers the specific circumstances in each case
+
+15                   in its determination of the proper ROE. Walmart is providing this nationwide
+
+16                 information to illustrate a national customer's perspective on industry trends in
+
+17                  authorized ROE.
+
+18
+
+
+
+
+
+         19 Exhibit LVP-4.
+
+
+                                            15                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1   (E)    Conclusion
+
+ 2         Q.  WHAT IS YOUR RECOMMENDATION TO THE COMMISSION IN
+
+ 3          REGARD TO THE COMPANY'S PROPOSED ROE?
+
+ 4         A.    Unless the Commission determines that a higher ROE is warranted due to changes
+
+ 5                   in circumstances since the Company's last rate case, the Commission should
+
+ 6                approve an ROE no higher than the Company's currently authorized ROE of 9.425
+
+ 7                   percent, especially when accounting for:
+
+ 8                   (1)     the use of risk-reducing rate-making structures such as the forecast test year,
+
+ 9                      which accelerates cost recovery and reduces the Company's exposure to
+
+10                         regulatory lag when compared to the use of a historical test year in setting
+
+11                             rates;
+
+12                   (2)     the customer impact of the resulting revenue requirement increase as
+
+13                         discussed above; and,
+
+14                   (3)     recent ROEs approved in Kentucky and other jurisdictions nationwide that
+
+15                     do not support the Company's requested ROE, as discussed above.
+
+16
+
+17   IV.   Cost of Service Study, Production Cost Allocation, and Revenue Allocation
+
+18   (A)    Cost of Service Study and Production Cost Allocation
+
+19         Q.  WHAT IS WALMART'S POSITION ON SETTING RATES BASED ON
+
+20           THE UTILITY'S COST OF SERVICE?
+
+21         A.    Walmart advocates that rates be set based on the utility's cost of service for each
+
+22                    rate class. This produces equitable rates that reflect cost causation, sends proper
+
+23                   price signals, and minimizes price distortions.
+
+
+                                            16                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.  HOW DOES THE COMPANY PROPOSE TO ALLOCATE FIXED
+
+ 2           PRODUCTION COSTS?
+
+ 3         A.       It is my understanding that the Company allocated fixed production costs to the
+
+ 4                customer classes in its COSS based on the 6CP methodology using the system
+
+ 5                 peaks for three summer months, being July, August, and September, and for the
+
+ 6                   three winter months of December, January, and February.20
+
+ 7         Q.   DOES WALMART TAKE A  POSITION ON THE COMPANY'S
+
+ 8           PROPOSED COST OF SERVICE METHODOLOGY AT THIS TIME?
+
+ 9         A.    For purposes of this case, Walmart does not oppose the Company's proposed COSS
+
+10                and does not take a position on the Company's proposal to apply the 6CP production
+
+11                   cost allocation methodology. However, to the extent that alternative cost of service
+
+12                 methodologies  or  modifications  to  the Company's  methodology,  including
+
+13                    alternative production cost allocation methodologies, are proposed by other parties,
+
+14               Walmart reserves the right to address any such changes in accordance with the
+
+15                Commission's procedures in this case.
+
+16
+
+17   (B)   Revenue Allocation
+
+18         Q.  WHAT IS REVENUE ALLOCATION?
+
+19         A.    Revenue allocation, sometimes referred to as rate spread, is the assignment of the
+
+20                 revenue responsibility to each customer class. A revenue allocation that assigns
+
+21                 revenue to each class at its cost of service is free of inter-class subsidies. In contrast,
+
+
+
+
+         20 See Direct Testimony of Timothy S. Lyons, p. 19, lines 13-16.
+
+
+                                            17                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1               where revenue is allocated to a class at a level above its cost of service, that rate
+
+ 2                   class is subsidizing any rate class that is allocated revenue below its cost of service.
+
+ 3         Q.   ARE THERE INSTANCES IN WHICH THE COMMISSION WOULD
+
+ 4            ASSIGN DIFFERENT REVENUE TO INDIVIDUAL CLASSES THAN IS
+
+ 5           CALLED FOR WITHIN THE COSS, RESULTING IN INTER-CLASS
+
+ 6             SUBSIDIES?
+
+ 7         A.     Yes. At times, the regulator may find it necessary to approve a level of revenue
+
+ 8                 requirement to a particular class which differs from the cost responsibility amount
+
+ 9                 determined in the COSS. This is often driven by the need to ensure that customers
+
+10                   are not seriously adversely impacted by major changes to the level of rates. Other
+
+11                  reasons can include perceived differences in COSS results and reality, relative risks
+
+12                 assigned to classes, social goals associated with the role of the prices in a particular
+
+13                    jurisdiction, and response to the state of the economy within or external to the
+
+14                  regulatory jurisdiction. The Commission may exercise its discretion based on one
+
+15                  or more of these concerns to adjust revenue allocation to support policy or advance
+
+16                  the public interest. However, these adjustments often result in rates that are not
+
+17                  cost-based and, as a result, may not be just, reasonable, and equitable.
+
+18         Q.  WHAT IS THE ULTIMATE GOAL WHEN ALLOCATING REVENUE?
+
+19         A.    To the extent possible, inter-class subsidies should be eliminated through a revenue
+
+20                   allocation that reflects the cost of service. If this is not possible in the immediate
+
+21                   case, the Commission should establish a clear path to the elimination or reduction
+
+22                  of undesired subsidies, continually moving each class closer to their respective cost
+
+23                  of service until undesired subsidies are eliminated and price signals are improved.
+
+
+                                            18                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1              Where proper price signals in the form of cost-based rates are in place, it generates
+
+ 2                   overall system efficiencies since customers understand the actual costs of the
+
+ 3                energy they use.
+
+ 4         Q.  WHAT IS YOUR UNDERSTANDING OF THE PROCESS USED TO
+
+ 5           ARRIVE AT THE COMPANY'S PROPOSED REVENUE ALLOCATION?
+
+ 6         A.       It is my understanding that the proposed rates were designed to recover the utility's
+
+ 7                   overall cost of service while ensuring equity among customer classes.21 Class
+
+ 8                 revenue targets were set based on the COSS, with rate increases for under-
+
+ 9                  recovering classes set higher than the system average to move them closer to the
+
+10                system return of rate ("ROR").22 At the same time, the design sought to moderate
+
+11                      bill impacts for continuity.23 The process began by determining total revenues to be
+
+12                 recovered from base rates, then assigning revenue targets by class using COSS
+
+13                     results, and finally designing class rates to meet those targets based on proforma
+
+14                       bills, demand (kW/kVA), and energy (kWh) usage.24
+
+15         Q.  WHAT METHODOLOGY HAS THE COMPANY PROPOSED TO
+
+16           ALLOCATE ITS PROPOSED REVENUE REQUIREMENT INCREASE?
+
+17         A.    The Company targeted class revenues based on a 10.0 percent movement towards
+
+18                   cost of service rates for each class.25
+
+
+
+
+
+         21 See Direct Testimony of Timothy S. Lyons ("Lyons Direct"), p. 22, lines 6-8.
+         22 See id. at 22, lines 6-13.
+         23 See id. at 22, lines 13-14.
+         24 See id. at 22, lines 17-21.
+         25 See id. at 23, lines 7-9.
+
+
+                                            19                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.    IS IT YOUR UNDERSTANDING THAT THE COMPANY'S PROPOSED
+
+ 2           REVENUE ALLOCATION MOVES CLASSES TO THEIR COST-BASED
+
+ 3           REVENUE REQUIREMENT?
+
+ 4         A.    No, it does not. Based on my review of Exhibit TSL-4, which shows a system
+
+ 5                 average increase of 12.1 percent, the Company identifies the rate class increases
+
+ 6                  indicated by the COSS (for example, a 5.7 percent increase for the TODS rate).26
+
+ 7                  After applying the mitigation measures described above, however, the proposed
+
+ 8                  increase for the TODS rate class is still 11.5 percent, nearly double was is indicated
+
+ 9               by the COSS.27 This shows that the proposed rates do not align with cost-based
+
+10                   levels for all classes.28
+
+11         Q.  WHAT      IS    WALMART'S    REVENUE    ALLOCATION
+
+12          RECOMMENDATION TO THE COMMISSION AT THE COMPANY'S
+
+13           PROPOSED REVENUE REQUIREMENT?
+
+14         A.    Walmart appreciates the Company addressing interclass subsidies. As such, at the
+
+15               Company's  proposed  revenue  requirement,  Walmart  does  not  oppose  the
+
+16               Company's proposed revenue allocation. Walmart does, however, believe that the
+
+17             Company should put in place steps targeted towards eliminating subsidies in rate
+
+18                   in the near-term.
+
+
+
+
+
+         26 See Exhibit TSL-4, p. 1.
+         27 See id.
+         28 See id.
+
+
+                                            20                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.  WHAT IS WALMART'S RECOMMENDATION TO THE COMMISSION
+
+ 2               IF THE COMMISSION DETERMINES THAT A LOWER REVENUE
+
+ 3           REQUIREMENT IS APPROPRIATE?
+
+ 4         A.     Since  subsidies  are  not  eliminated  under  the Company's  proposal,  if  the
+
+ 5               Commission determines that the appropriate revenue requirement is less than the
+
+ 6                 revenue requirement requested by the Company, the Commission should take steps
+
+ 7                   to further reduce the interclass subsidies. To accomplish this, Walmart proposes the
+
+ 8                  following:
+
+ 9                          Starting with the revenue allocation requested by the Company, the
+
+10               Commission should apply 50 percent of the overall revenue reduction (the
+
+11                   difference between the revenue requirement requested by the Company and the
+
+12                 revenue requirement approved by the Commission) to those rate classes who are
+
+13                 paying in excess of their cost-based levels. In applying the first 50 percent overall
+
+14                 revenue reduction, it may need to be adjusted downward (i.e., to some percent less
+
+15                 than 50) if it would result in a subsidizing rate class moving to a subsidized position.
+
+16                Then, the remaining overall revenue reduction should be evenly applied to all rate
+
+17                   classes to mitigate the proposed increases for all ratepayers on an equal percentage
+
+18                    basis.
+
+19
+
+
+
+
+
+                                            21                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1   V.    Rate Design
+
+ 2   (A)   Revenue Allocation
+
+ 3         Q.   BRIEFLY DESCRIBE THE TODS RATE.
+
+ 4         A.    The TODS Rate is a multi-part rate for large customers that includes a Basic Service
+
+ 5                 Charge, an Energy Charge (per kWh), and Peak, Intermediate, and Base Demand
+
+ 6                Charges (per kVA).29
+
+ 7         Q.   DOES THE COMPANY PROPOSE ANY CHANGES TO THE TODS RATE
+
+ 8            PRICING STRUCTURE.
+
+ 9         A.    No, the Company does not appear to propose any significant structural changes to
+
+10                  the TODS Rate.30
+
+11         Q.   DOES WALMART OPPOSE THE COMPANY'S PROPOSED TODS RATE
+
+12            DESIGN?
+
+13         A.    For purposes of this case, Walmart does not oppose the Company's proposed TODS
+
+14                    rate design. However, to the extent that modifications to the TODS rate design are
+
+15                proposed by other parties, Walmart reserves the right to address any such changes
+
+16                   in accordance with the Commission's procedures in this case.
+
+17
+
+
+
+
+
+         29 Attachment to Filing Requirement, Tab 4 ‒807 KAR 5:001 Section 16(1)(b)(3), p. 26 (tariff sheet for Time-of-Day
+      Secondary Service).
+         30 See Direct Testimony of Michael E. Hornung ("Hornung Direct"), p. 10, lines 19-24.
+
+
+                                            22                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1   (B)    Rate EHLF
+
+ 2         Q.    IS THE COMPANY PROPOSING A NEW TARIFF FOR CERTAIN
+
+ 3           CUSTOMERS?
+
+ 4         A.     Yes,  it  is. The Company is proposing a new tariff, Rate EHLF, designed for
+
+ 5                 customers with demands exceeding 100 MVA and load factors above 85 percent.31
+
+ 6              The Company refers to these customers as "extremely high load factor" customers.
+
+ 7         Q.  WHY IS THE COMPANY ASKING THE COMMISSION TO APPROVE A
+
+ 8         NEW RATE  SPECIFICALLY FOR EXTREMELY  HIGH LOAD
+
+ 9           CUSTOMERS?
+
+10         A.    The Company determined that customers with demands over 100 MVA and load
+
+11                   factors above 85 percent have unique service characteristics and potential financial
+
+12                 impacts that justify a separate rate schedule.32 Because even a small number of such
+
+13                 customers could necessitate new generation resources, the proposed Rate EHLF
+
+14                  includes higher minimum billing demands, longer contract terms, and stronger
+
+15                    collateral requirements.33 The Company claims that these provisions will protect
+
+16                 customers while  still offering service  at average embedded cost rates to  all
+
+17                  customers.34
+
+18         Q.  WHAT IS YOUR UNDERSTANDING OF THE STRUCTURE OF RATE
+
+19            EHLF?
+
+20         A.   My understanding is that Rate EHLF will include the following charges:
+
+
+
+
+         31 See Hornung Direct, p. 4, lines 9-10.
+         32 See id. at 4, lines 9-13.
+         33 See id. at 4, lines 13-16.
+         34 See id. at 4, lines 16-19.
+
+
+                                            23                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                   (1)    $/day Basic Service Charge;
+
+ 2                   (2)   $/kWh Energy Charge; and
+
+ 3                   (3)   $/kVA Maximum Load Charge.35
+
+ 4         Q.    IS THE COMPANY PROPOSING ADDITIONAL REQUIREMENTS AND
+
+ 5           PROTECTIONS UNDER RATE EHLF BEYOND WHAT IT WOULD
+
+ 6          NORMALLY REQUIRE FOR C&I CUSTOMERS?
+
+ 7         A.     Yes,  it  is. To support specific objectives around these Extremely High Load
+
+ 8                 Customers, it is my understanding that the Company is proposing to increase certain
+
+ 9                 requirements under Rate EHLF including,  (i) a single, non-time-differentiated
+
+10              demand charge,36 (ii) higher minimum billing demand ratchet,37 (iii) minimum
+
+11                      initial contract term of 15 years;38 and (iv) additional collateral requirements.39
+
+12         Q.   CAN YOU EXPLAIN THE REQUIREMENTS A CUSTOMER MUST
+
+13          MEET TO QUALIFY AS AN EXTREMELY HIGH LOAD CUSTOMER
+
+14         WHO MUST TAKE SERVICE UNDER RATE EHLF?
+
+15         A.       It is my understanding that Rate EHLF will apply to customers who meet both of
+
+16                  the following criteria: (i) a contract capacity greater than 100 MVA; and (ii) an
+
+17                 expected average monthly load factor above 85 percent.40
+
+
+
+         35 Attachment to Filing Requirement, Tab 4 ‒807 KAR 5:001 Section 16(1)(b)(3), p. 35 (tariff sheet for Extremely
+      High Load Factor Service).
+         36 See Hornung Direct, p. 5, lines 6-8.
+         37 See id. at 5, lines 14-15. The monthly demand for the Maximum Load Charge is defined as the greater of
+          (i) maximum measured load in the current billing period, (ii) highest measured load in the preceding 11 monthly
+        billing periods, or (iii) 80 percent of the contract capacity based on the maximum load expected on the system or on
+         facilities specified by the customer. See Attachment to Filing Requirement, Tab 4 ‒807 KAR 5:001 Section
+        16(1)(b)(3), p. 26 (tariff sheet for Time-of-Day Secondary Service).
+         38 See Hornung Direct, p. 6, line 5.
+         39 See id. at 6, lines 14-15.
+         40 See Attachment to Filing Requirement, Tab ‒- 807 KAR 5:001 Section 16(1)(b)(3), p. 35 (tariff sheet for Extremely
+      High Load Factor Service).
+
+
+                                            24                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.   DOES WALMART SUPPORT HIGH LOAD CUSTOMER TARIFFS SUCH
+
+ 2            AS SCHEDULE RATE EHLF?
+
+ 3         A.     Generally, yes it does. Due to the significant forecasted load growth driven in large
+
+ 4                   part by data centers, Walmart supports the creation of separate tariffs specifically
+
+ 5                 designed to address the unique characteristics of Extremely High Load Factor
+
+ 6                 customers. While  traditional,  large C&I customers have  historically driven
+
+ 7                     electricity demand, they also tend to deliver broader economic benefits to the local
+
+ 8               community and utility, including significantly more job opportunities and new
+
+ 9                  ratepayers as compared to the limited ongoing positions typically associated with
+
+10                  data center operations.
+
+11                          Additionally, data centers present a unique challenge due to the scale and
+
+12                  concentration of their energy demands. Individual data center projects can be
+
+13                hundreds or even thousands of MWs in size, with a single facility potentially
+
+14                 comprising a  substantial  portion  of a  utility's system  peak. This  level  of
+
+15                  concentrated load presents system planning and cost recovery risks not typically
+
+16                  associated with other types of C&I development. Unique issues such as those
+
+17                  presented by data centers and similar industries warrant unique solutions.
+
+18         Q.  HOW DO TARIFFS SUCH AS RATE EHLF ADDRESS THESE
+
+19           CONCERNS?
+
+20         A.    Given the unprecedented scale of electricity demand associated with Extremely
+
+21               High Load Factor customers – and the significant investment required to serve that
+
+22              demand – it is essential that appropriate safeguards are implemented to protect
+
+23                   existing customers. This includes ensuring that projected load materializes as
+
+
+                                            25                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                 expected and remains in service over a meaningful duration. Additionally, Walmart
+
+ 2                  believes that fostering a supportive environment for traditional C&I customers is
+
+ 3                     vital to Kentucky's long-term economic health. Establishing a separate Extremely
+
+ 4               High Load Factor customer class and related tariff can provide a prudent framework
+
+ 5                   to manage the unique risks posed by data center growth while balancing the broader
+
+ 6                    interests of both current and prospective customers across the Commonwealth.
+
+ 7         Q.    IN ADDITION TO PROTECTIONS PROVIDED IN TARIFFS SUCH AS
+
+ 8           RATE EHLF, DOES WALMART HAVE OTHER CONCERNS AROUND
+
+ 9          EXTREMELY HIGH LOAD FACTOR CUSTOMERS?
+
+10         A.     Yes, Walmart is also concerned that the significant system demands posed by
+
+11                Extremely High Load Factor customers could limit system access for other C&I
+
+12                 customers such as Walmart that also require additional power to support operational
+
+13                 expansion, deploy new technologies, and invest in high-powered equipment. These
+
+14                 investments not only drive operational efficiency and performance but are also
+
+15                      critical to achieving corporate sustainability goals. Although  traditional C&I
+
+16                 customers typically do not bring load to the Company's system at the same scale as
+
+17                  hyperscale data centers, they nonetheless provide substantial and broad-based
+
+18               economic value to the Commonwealth of Kentucky. These customers support local
+
+19                economies by creating jobs, generating significant tax revenue, and contributing to
+
+20                 long-term economic development. In short, traditional C&I customers bring more
+
+21                 than just new load ‒they help build  resilient communities and diversify the
+
+22               economic base. Ensuring that these customers can continue to locate and expand
+
+
+
+
+                                            26                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                  operations within  the Company's  service  territory  is  essential  to  sustaining
+
+ 2                 Kentucky's economic growth.
+
+ 3         Q.  HOW DOES WALMART BELIEVE THE COMPANY CAN ADDRESS
+
+ 4           THESE CONCERNS?
+
+ 5         A.     In order to ensure sufficient capacity for all customers, Walmart recommends that
+
+ 6                  the Company balance the interests of Extremely High Load Factor customers with
+
+ 7                  those of other existing and potential customers, particularly traditional C&I
+
+ 8                 customers, by implementing internal procedures that allocate or reserve system
+
+ 9                  access in a way that protects the needs of non-Extremely High Load Factor
+
+10                 customers by ensuring that the demand from these extremely large customers does
+
+11                  not crowd out other C&I customers.
+
+12         Q.  WHAT IS WALMART'S RECOMMENDATION TO THE COMMISSION
+
+13           WITH REGARD TO THE PROPOSED RATE EHLF?
+
+14         A.    Walmart appreciates the Company's efforts to recognize and address the unique
+
+15                    risks posed by customers whose demands are substantially larger than those of other
+
+16                 customers through measures such as Rate EHLF. Accordingly, Walmart supports
+
+17                Rate EHLF and recommends that the Commission approve the rate as proposed. At
+
+18                  the same time, Walmart emphasizes the importance of ensuring that the Company's
+
+19                    internal processes are structured to provide timely and equitable access to the
+
+20                system for other C&I customers who are also expanding their energy usage through
+
+21              new facilities, advanced equipment, and/or investments in technologies that require
+
+22                   additional electrification.
+
+23
+
+
+                                            27                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1   (C)    Public EV Charging Rate
+
+ 2         Q.   DOES THE COMPANY CURRENTLY OFFER OR PROPOSE TO OFFER
+
+ 3              IN THIS CASE A RATE SPECIFICALLY FOR EV CHARGING?
+
+ 4         A.    To the best of my knowledge, the Company does not currently offer rates
+
+ 5                   specifically for public EV charging.
+
+ 6         Q.   DOES WALMART SUPPORT THE NEED FOR PUBLIC EV RATE
+
+ 7            DESIGN?
+
+ 8         A.     Yes, Walmart supports public EV charging rates that are specifically designed for
+
+ 9                  public charging at third-party locations.
+
+10         Q.   ARE THERE  CERTAIN EV RATE STRUCTURES THAT THE
+
+11           COMMISSION SHOULD CONSIDER?
+
+12         A.     Yes, there are. It does not appear that the Company currently offers or is proposing
+
+13                   to offer a rate structure specifically for customers who are interested in owning and
+
+14                  operating public EV charging equipment, specifically DCFC.
+
+15         Q.  WHY DOES WALMART BELIEVE THAT THE COMPANY SHOULD
+
+16           OFFER A RATE FOR THIRD-PARTY OWNED PUBLIC DCFCs?
+
+17         A.     Building out a robust public EV charging network is a key component to supporting
+
+18                  the EV industry as a whole and encouraging EV adoption by eliminating range
+
+19                  anxiety and other challenges that EV drivers face when needing to charge their
+
+20                  vehicle as compared to traditional internal combustion vehicles. Increasing the
+
+21               number  of EV  chargers,  including  public-facing DCFCs,  is needed  in  the
+
+22               Company's service territory. To accomplish this, additional initiatives and rate
+
+23                   structures are needed to fully develop a public DCFC network. Specifically, as
+
+
+                                            28                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                  discussed in more detail below, an important component to third-party investment
+
+ 2                   in public EV chargers is the availability of EV-specific distribution rate options for
+
+ 3                  public DCFCs.
+
+ 4         Q.   DOES WALMART HAVE EXPERIENCE IN THE EV CHARGING
+
+ 5            SPACE?
+
+ 6         A.     Yes, Walmart has substantial experience with offering EV charging to its customers
+
+ 7                and  is actively growing  its presence in the EV charging space. Specifically,
+
+ 8               Walmart currently hosts more than 1,200 public DCFCs at 285 different locations
+
+ 9                  across 43 states. As announced recently, Walmart intends to build its own EV fast
+
+10                 charging network at thousands of Walmart and Sam's Club locations across the U.S.
+
+11                 over the next few years.41 Walmart retail sites are ideally situated for EV charging
+
+12                    stations because of their large parking lots, easy public access, and multi-site
+
+13                   locations.
+
+14         Q.   ARE WALMART-OWNED AND  OPERATED  CHARGERS NOW
+
+15           AVAILABLE TO THE PUBLIC?
+
+16         A.     Yes. Walmart opened its first Walmart-owned and operated charging station in
+
+17               McKinney, Texas42 in March 2025, and since then we have opened several more
+
+18                    stations in the Dallas area. The base configuration of our charging stations is eight
+
+19                      stalls supplied by four 400 kW units with two handles each. Depending on the site,
+
+20                   additional units may be added.
+
+
+
+
+         41 Vishal Kapadia, Leading the Charge: Walmart Announces Plan to Expand Electric Vehicle Charging Network,
+      Walmart   (Apr.   6,   2023),   https://corporate.walmart.com/newsroom/2023/04/06/leading-the-charge-walmart-
+       announces-plan-to-expand-electric-vehicle-charging-network.
+         42 https://www.walmart.com/store/206-mckinney-tx/ev-charging-station
+
+
+                                            29                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.  WHY HAS WALMART DECIDED TO PARTICIPATE IN THE PUBLIC
+
+ 2           EV CHARGING SPACE?
+
+ 3         A.    As part of its renewable energy and carbon reduction efforts, Walmart is committed
+
+ 4                   to supporting EV adoption by providing EV charging stations in thousands of
+
+ 5                   locations around the country that not only serve EV customers who reside and/or
+
+ 6               work nearby but that also advance the nationwide EV infrastructure. Further,
+
+ 7               Walmart is proud to offer EV charging as a convenience to its customers who
+
+ 8                   currently own EVs and  for  future EV owners. Building an EV charging
+
+ 9                   infrastructure that serves local communities, both large and small, as well as
+
+10                   corridors located within states and throughout the country, is critical as vehicle
+
+11                owners consider their options when purchasing a new vehicle.
+
+12         Q.   ARE ELECTRIC RATES A FACTOR THAT WALMART CONSIDERS
+
+13         WHEN INSTALLING OR SITING EV CHARGING INFRASTRUCTURE
+
+14           AT ITS FACILITIES?
+
+15         A.     Yes, Walmart seeks to balance the risks and costs of installing and maintaining a
+
+16                    particular EV charging station, which is informed, in part, by the tariff under which
+
+17                  the electricity is provided from the utility to the owner of the EV charger.
+
+18         Q.   SHOULD THE COMMISSION REQUIRE THE COMPANY TO DEVELOP
+
+19          AN EV CHARGING-SPECIFIC RATE FOR PUBLIC EV CHARGERS?
+
+20         A.     Yes, it should. In the short term, public EV charging-specific rates are needed to
+
+21                  support third-party investment in EV charging equipment. As an investor in EV
+
+22                 charging equipment for both the public and for its own private fleet, Walmart
+
+23                 understands how EV charging rates can either promote or impede EV charging
+
+
+                                            30                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                 investment and experience. While the EV industry continues to grow, there will be
+
+ 2                 a ramp up to sufficient EV adoption to support an extensive public EV charging
+
+ 3                 network. This will create geographical locations where public EV chargers are
+
+ 4                    either not being used or are used infrequently. For these under-utilized chargers that
+
+ 5                   are being billed by the utility under a more traditional rate tariff with a demand
+
+ 6                  charge, the charger operator may be assessed the maximum demand charge even
+
+ 7                     after only a single use of that charging unit regardless of whether there is any
+
+ 8                   additional charging during that month. This outcome negatively impacts the
+
+ 9                economics for that unit and may lead to little or no third-party investment in public
+
+10           EV chargers sited in areas of low usage.
+
+11         Q.  WHAT IS WALMART'S RECOMMENDATION TO THE COMMISSION
+
+12           WITH REGARD TO DEVELOPING AN EV RATE SPECIFICALLY FOR
+
+13            PUBLIC EV CHARGERS?
+
+14         A.    Walmart recommends that the Commission require the Company to work with
+
+15                   interested stakeholders to develop a new EV rate specifically for public-facing EV
+
+16                  chargers and to either seek Commission approval of such rate or provide an update
+
+17               on the stakeholder process within six months following the issuance of a Final
+
+18                Order in this case.
+
+19
+
+
+
+
+
+                                            31                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1   VI.   Key Accounts Program for Large Customers
+
+ 2         Q.   DOES THE COMPANY PROVIDE TESTIMONY ON ITS VIEW OF
+
+ 3          CUSTOMER SERVICE AND ENGAGEMENT?
+
+ 4         A.     Yes, it does. As explained by Company witness Montgomery, the Company states
+
+ 5                    that customer focus is central to their vision and values.43 They prioritize safety,
+
+ 6                    affordability, and respect while actively seeking customer  input.44 To meet
+
+ 7                customer needs, according to the Company, it provides timely energy usage and
+
+ 8                    billing information, offers tailored programs, and continually pursues process
+
+ 9                improvements to enhance service.45
+
+10         Q.   DOES THE COMPANY PROVIDE A CUSTOMER REPRESENTATIVE
+
+11          TO ENGAGE WITH ITS LARGER CUSTOMERS?
+
+12         A.     Yes, it does. Based on my understanding, the Company's parent, PPL Corporation
+
+13                 ("PPL"), has recently consolidated its key account program for large customers
+
+14                such  as  Walmart. As  a  result,  rather  than  maintaining  separate  account
+
+15                   representatives for each subsidiary utility, Walmart can now coordinate through a
+
+16                   single representative who addresses all of its needs across the entire PPL footprint.
+
+
+
+
+
+         43 See Direct Testimony of Shannon L. Montgomery, p. 2, line 7.
+         44 See id. at 2, lines 8-11.
+         45 See id. at 2, lines 11-16.
+
+
+                                            32                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.   DOES WALMART PREFER TO HAVE A SINGLE POINT OF CONTACT
+
+ 2            AS OPPOSED TO MULTIPLE KEY ACCOUNT MANAGERS FOR EACH
+
+ 3            UTILITY WITHIN THE PPL FAMILY?
+
+ 4         A.     Yes. Having a single point of contact allows Walmart to coordinate more efficiently
+
+ 5                 with the Company across the full range of its energy-related needs. This streamlined
+
+ 6                communication channel helps Walmart move quickly when applying for new
+
+ 7                    electric service, enrolling in or maintaining participation in customer programs, and
+
+ 8                 scheduling planned outages to minimize disruptions to operations. It also ensures
+
+ 9                    that Walmart can promptly notify the Company of unplanned outages, billing
+
+10                  concerns, or other operational issues as they arise. By reducing administrative
+
+11                  delays and avoiding duplicative efforts, a dedicated point of contact enhances both
+
+12                  responsiveness and overall service reliability.
+
+13         Q.  WHAT BENEFITS COME FROM HAVING A DEDICATED ACCOUNT
+
+14           REPRESENTATIVE FOR LARGE CUSTOMERS?
+
+15         A.    The key account representative plays a vital role in the customer-utility relationship
+
+16               by providing a single point of contact at the utility for day-to-day operational and
+
+17                   technical  support,  updates  on  rates  and  utility  programs,  support  during
+
+18                 emergencies such as hurricanes and winter storm events, and a conduit for
+
+19                   customer-utility communications on broader strategic opportunities. For Walmart,
+
+20                   in particular, which generally maintains multiple sites within a utility's service
+
+21                     territory,  it also ensures a single, consistent message applicable to  all of  its
+
+22                   operations. A top-notch account representative is practically a member of the
+
+23                  customer's energy management team and an advocate for the customer within the
+
+
+                                            33                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                      utility organization. This, in turn, ensures that the Company's other customer
+
+ 2                   service representatives are available to serve the needs of the Company's broader
+
+ 3                    rate base.
+
+ 4         Q.   ARE THERE BENEFITS TO OTHER UTILITY CUSTOMERS AND THE
+
+ 5          BROADER COMMUNITY?
+
+ 6         A.     Yes. Account representatives for large customers help those customers serve their
+
+ 7                 communities, particularly during storms and other emergency events. For example,
+
+ 8                   in the event of a power outage during a storm, customers need a knowledgeable and
+
+ 9                    efficient point of contact to coordinate power restoration, advocate and direct action
+
+10                  within the utility, and work to ensure business continuity. If one of Walmart's stores
+
+11                   loses power, knowing the estimated duration of the outage in a timely manner can
+
+12                 help determine whether Walmart should provide a mobile generator to operate the
+
+13                    entire facility or whether refrigerated trailers are needed to refrigerate perishables
+
+14                and how soon Walmart can return to serving the community. Additionally, the
+
+15                  process of installing a mobile generator requires utility engagement – utility crews
+
+16                   are required to pull fuses on the distribution system in order to allow the generator
+
+17                   to interconnect – and to execute on this process efficiently requires the attention
+
+18                and expertise of an account representative. Repeatedly calling a call center, which
+
+19             may involve speaking with multiple different representatives, providing identifying
+
+20                   info (account number,  service  address,  etc.), reviewing information already
+
+21                  provided, and not knowing when and how the issue will be resolved is inefficient
+
+22                and frustrating for customers.
+
+
+
+
+                                            34                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.  WHAT IS WALMART'S RECOMMENDATION TO THE COMMISSION?
+
+ 2         A.    Walmart appreciates the Company providing a single point of contact and its
+
+ 3                ongoing commitment to engaging with  all  its customers through continuous
+
+ 4                  evaluation of its relationship and adapting processes as technology and customer
+
+ 5                 needs evolve. In particular, Walmart values the Company's key account manager
+
+ 6                program for large customers and supports the efforts of this team, as previously
+
+ 7                  discussed. While not a specific recommendation, Walmart highlights this in its
+
+ 8                 testimony to inform the Commission of the valuable service provided by the
+
+ 9               Company's key account manager team.
+
+10         Q.   DOES THIS CONCLUDE YOUR TESTIMONY?
+
+11         A.     Yes.
+
+
+
+
+
+                                            35

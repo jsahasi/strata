@@ -1,0 +1,19 @@
+{
+  "source_url": "https://www.scc.virginia.gov/DocketSearch/Home/Document/12/382352",
+  "retrieved_at": "2026-08-04T16:51:43Z",
+  "sha256": "3526721e49ea0bb95f3db7c33e90c7b57f2861dff3f006e809a477383c40c62b",
+  "jurisdiction": "US-VA (Virginia State Corporation Commission)",
+  "docket": "PUR-2025-00058",
+  "matter_no": 146025,
+  "scc_doc_id": "382352",
+  "document_title": "Volume 6 - Prefiled Testimony of Brian S. Pratt, Division of Public Utility Regulation (Part G)",
+  "filing_date": "2025-07-30",
+  "filer": "Virginia Electric and Power Company (Commission Staff testimony; witness Brian S. Pratt, Division of Public Utility Regulation)",
+  "content_type_served": "application/pdf",
+  "source_pdf_sha256": "23ab373a04e9b81d6934c381ce9e53e802ba1aa76351394c31374ac1456dd8ad",
+  "source_pdf_bytes": 9962302,
+  "saved_text_bytes": 86000,
+  "extraction_tool": "pypdf 6.14.2 page.extract_text()",
+  "note": "ORIGINAL of version-pair A. Contains Table 2 (per-customer energy/demand/load factor for GS-5 vs GS-3/GS-4) on page 13 whose figures were later corrected in DocID 382507.",
+  "how_obtained": "Fetched the PDF from the Virginia SCC DocketSearch document handler (https://www.scc.virginia.gov/DocketSearch/Home/Document/12/<DocID>) with curl -L, following the site's 307 redirect to the lowercase /docketsearch/home/document/12/<DocID> path, which returned Content-Type application/pdf. The DocID was obtained from the DocketSearchAPI Breeze endpoint GetDocuments (?$filter=MATTER_NO eq <matter>) for this case. Converted the PDF to text with pypdf 6.14.2 using page.extract_text() concatenated per page with '===PAGE n===' separators. The text is saved exactly as pypdf produced it: not cleaned, not reflowed, not de-hyphenated; soft hyphens, ligature artefacts, transposed line-number/Q-A ordering and OCR-style noise are left intact."
+}

@@ -1,0 +1,1812 @@
+STATE OF INDIANA 
+INDIANA UTILITY REGULATORY COMMISSION 
+PETITION OF INDIANAPOLIS POWER & LIGHT 
+COMPANY D/B/A AES INDIANA (“AES INDIANA”) 
+FOR AUTHORITY TO INCREASE RATES AND 
+CHARGES FOR ELECTRIC UTILITY SERVICE 
+THROUGH A PHASE-IN RATE ADJUSTMENT; AND 
+FOR 
+APPROVAL 
+OF 
+RELATED 
+RELIEF, 
+INCLUDING (1) REVISED DEPRECIATION RATES, 
+INCLUDING COST OF REMOVAL LESS SALVAGE 
+AND UPDATED DEPRECIATION EXPENSE; (2) 
+ACCOUNTING RELIEF, INCLUDING DEFERRALS 
+AND 
+AMORTIZATIONS, 
+(3) 
+INCLUSION 
+OF 
+CAPITAL INVESTMENT, (4) RATE ADJUSTMENT 
+MECHANISM PROPOSALS, INCLUDING A NEW 
+PROPERTY TAX RIDER, AND (5) NEW SCHEDULES 
+OF RATES, RULES AND REGULATIONS FOR 
+SERVICE.  
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+CAUSE NO. _________ 
+VERIFIED PETITION FOR GENERAL RATE INCREASE AND  
+ASSOCIATED RELIEF UNDER IND. CODE § 8-1-2-42.7 AND NOTICE 
+OF PROVISION OF INFORMATION REQUIRED BY  
+THE MINIMUM STANDARD FILING REQUIREMENTS  
+Indianapolis Power & Light Company d/b/a AES Indiana (“Petitioner”, “AES Indiana”, 
+“IPL”, or “Company”) respectfully requests the Indiana Utility Regulatory Commission 
+(“Commission”) to issue an order authorizing AES Indiana to increase its rates and charges for 
+electric utility service through a phase-in rate adjustment; and for approval of related relief, 
+including: (1) revised depreciation rates, including cost of removal less salvage, and updated 
+depreciation expense; (2) accounting relief, including deferrals and amortizations; (3) inclusion of 
+capital investment; (4) rate adjustment mechanism proposals, including a new Property Tax Rider; 
+and (5) new schedules of rates, rules and regulations for service.  This filing is made pursuant to 
+Ind. Code § 8-1-2-42.7 (“Section 42.7”).  In support of this Petition, AES Indiana represents the 
+following: 
+46258
+FILED 
+June 3, 2025
+INDIANA UTILITY  
+REGULATORY COMMISSION 
+2 
+Petitioner’s Corporate and Regulated Status and Service Area. 
+1.
+AES Indiana is a public utility corporation organized and existing under the laws of 
+the State of Indiana with its principal office at One Monument Circle, Indianapolis, Indiana 46204.  
+Petitioner is engaged in rendering electric utility service in the State of Indiana. 
+2.
+AES Indiana renders retail electric utility service to approximately 532,000 retail 
+customers located principally in and near the City of Indianapolis, Indiana, and in portions of the 
+following Indiana counties: Boone, Hamilton, Hancock, Hendricks, Johnson, Marion, Morgan, 
+Owen, Putnam and Shelby Counties.   
+3.
+AES Indiana is part of The AES Corporation, a US-based energy company with 
+global operations.  AES US Services, LLC is the service company that supports AES Indiana and 
+other AES affiliates. 
+4.
+In addition to AES’ ownership, CDP Infrastructure Fund L.P., a wholly owned 
+subsidiary of La Caisse de depot et placement du Quebec (“CDPQ”), also owns a minority equity 
+interest in IPALCO, AES Indiana’s immediate parent company.   
+Petitioner’s “Public Utility” Status.
+5.
+AES Indiana is a “public utility” under Ind. Code § 8-1-2-1 and a “utility” under 
+Section 42.7.  AES Indiana is subject to the jurisdiction of this Commission in the manner and to 
+the extent provided by the Public Service Commission Act, as amended, and other pertinent laws 
+of the State of Indiana. 
+6.
+AES Indiana is also subject to the jurisdiction of the Federal Energy Regulatory 
+Commission (“FERC”).  
+3 
+7.
+As authorized by the Commission’s Order in Cause No. 42027 dated December 17, 
+2001, AES Indiana’s transmission system is under the functional control of the Midcontinent 
+Independent Transmission System Operator, Inc. (“MISO”), a FERC-approved regional 
+transmission organization (“RTO”), and is used for the provision of open access nondiscriminatory 
+transmission service pursuant to MISO’s Open Access Transmission Tariff (“OATT”) on file with 
+the FERC.  As a member of MISO, charges and credits are billed to AES Indiana for functional 
+operation of the transmission system, management of the MISO markets, and general 
+administration of the RTO.  As a MISO member, AES Indiana must also adhere to the federal 
+reliability standards developed and enforced by the North American Electric Reliability 
+Corporation (“NERC”), which is the electric reliability organization certified by the FERC to 
+establish and enforce reliability standards for the bulk power system.  ReliabilityFirst (“RF”) is one 
+of eight NERC Regional Entities and is responsible for overseeing regional reliability standard 
+development and enforcing compliance.  AES Indiana’s transmission facilities are wholly located 
+with the RF region. 
+AES Indiana’s Electric Utility System. 
+8.
+AES Indiana renders electric service by means of electric production, transmission 
+and distribution plant, as well as general property, equipment and related facilities, including office 
+buildings, service buildings, and other property, all of which is used and useful for the convenience 
+of the public in the production, transmission, delivery and furnishing of electric energy, heat, light 
+and power.  AES Indiana has maintained and continues to maintain its properties in good condition 
+as reasonably necessary for the provision of electric service to customers in accordance with 
+Indiana law. 
+4 
+9.
+AES Indiana’s property is classified in accordance with the Uniform System of 
+Accounts (“USOA”) as prescribed by the FERC and approved and adopted by this Commission.   
+10.
+In order to continue to properly serve the public located in its service area and to 
+discharge its duties as public utility, AES Indiana has made and continues to make numerous 
+additions, replacements and improvements to its electric utility systems.   
+11.
+AES Indiana also engages in power purchase transactions through MISO and 
+bilateral purchases as necessary to meet the demands of its customers.   
+Statutory Authority for Requested Relief.  
+12.
+This Petition is filed pursuant to Section 42.7.  Other provisions of the Public 
+Service Commission Act, as amended, Ind. Code § 8-1-2-1, et seq., that may be applicable to the 
+subject matter of this proceeding, include, but are not limited to:  Ind. Code §§ 8-1-2-0.5, 0.6, 4, 6, 
+10, 12, 14, 19, 20, 21, 23, 42, 61, 68 and 71 and Ind. Code § 8-1-8.8-11. 
+GAO 2013-5. 
+13.
+In accordance with the guidance provided by the Commission’s General 
+Administrative Order 2013-5 (Rate Case Standard Procedural Schedule and Recommended Best 
+Practices for Rate Cases Submitted under Ind. Code § 8-1-2-42.7) (“GAO 2013-5”), AES Indiana 
+provided its Notice of Intent to File Rate Case to the Commission on April 30, 2025.  This Notice 
+was provided at least 30 days prior the date of filing this Petition.  A copy thereof was provided to 
+the Indiana Office of Utility Consumer Counselor (“OUCC”) and other stakeholders.  
+Test Year, Rate Base Cutoff Dates. 
+14.
+Pursuant to Section 42.7(d), AES Indiana is utilizing a forward-looking test period 
+determined on the basis of projected data for the twelve (12) months ending December 31, 2026 
+5 
+(Test Year).  In accordance with Section 42.7, this Test Year (which commences January 1, 2026), 
+begins not later than 24 months after the date on which this Petition is filed. 
+15.
+AES Indiana is utilizing the Test Year end, December 31, 2026, as the general rate 
+base cutoff date. AES Indiana proposes the Commission establish AES Indiana’s authorized net 
+operating income by applying the overall weighted average cost of capital to the Test Year end 
+original cost rate base.  The Company also proposes the Test Year end original cost rate base be 
+used as the fair value of the Company’s utility property. 
+Submission of Case-in-Chief and Other Supporting Documentation. 
+16.
+AES Indiana is filing its written case-in-chief, including the information required by 
+Section 42.7(b), in written form contemporaneous with this Petition. In accordance with the 
+Commission’s 
+GAO 
+2020-05 
+(Improving 
+Procedural 
+Efficiencies 
+Guidelines 
+and 
+Recommendations), and to facilitate review of the filing, AES Indiana has attached to this Petition, 
+as Petition Exhibit A, an index of issues, requests, and supporting witnesses.  A summary of the 
+witness testimony is attached hereto as Petition Exhibit B.1
+17.
+AES Indiana has also prepared its filing in accordance with the Commission’s 
+Minimum Standard Filing Requirements (“MSFRs”) (170 IAC 1-5-1 et seq.).  As recognized in 
+GAO 2013-5 (SB 560 Rate Case Standard Schedule), a future test year does not align with all of 
+the Commission’s pre-existing MSFRs.  AES Indiana has provided supporting documentation in 
+accordance with the MSFRs, GAO 2013-5, and GAO 2020-05, modified where appropriate to be 
+compatible with the forward-looking test year authorized by Section 42.7. The Company’s filing 
+1 The overview of the Company’s proposals herein and in the Exhibits to the Petition is intended to highlight issues 
+and is not an exhaustive list of AES Indiana’s requests in this proceeding.  A complete account of AES Indiana’s 
+requested relief can be found in AES Indiana’s case-in-chief. 
+6 
+also includes the load forecast, the cost-of-service study, the proposed return on equity and fair rate 
+of return analysis, the depreciation study, and demolition studies. The supporting revenue 
+requirement workpapers are also being provided in Excel format on electronic media with 
+formulas intact pursuant to the best practices set forth in GAO 2013-5 and GAO 2020-05.   
+18.
+AES Indiana’s supporting documentation also includes historical data for the 
+calendar year 2024, the most recent audited set of financial statements at the time AES Indiana 
+began preparing this filing. 
+19.
+The Company’s prefiled case-in-chief includes the AES Indiana Exhibit 1 - 
+Financial Exhibit which consolidates the data supporting AES Indiana’s projected costs and 
+revenues for the Test Year.  Each Test Year adjustment is sponsored and described by an AES 
+Indiana witness, as shown in the index included with AES Indiana Exhibit 1 - Financial Exhibit.  
+AES Indiana Exhibit 1 presents AES Indiana’s overall requested rate relief for the Test Year.  The 
+Financial Exhibit is organized by subject (e.g. financial schedules, cost of capital, rate base, 
+revenue, operations and maintenance, tax, etc.) as shown in the exhibit index.   
+AES Indiana’s Existing Rates and Rate Structure. 
+20.
+AES Indiana’s current basic rates and charges were approved by the Commission in 
+its Order in Cause No. 45911 based upon test year operating results for the twelve months ended 
+December 31, 2022, adjusted for fixed, known and measurable changes and appropriate 
+normalizations and annualizations.2  Those basic rates and charges were effective May 9, 2024 and 
+2 The Commission’s Order in Cause No. 45911 was issued April 17, 2024 (“45911 Order”).  Nunc Pro Tunc Orders 
+were issued April 24 and 30, 2024. 
+7 
+remain in effect today, as modified by various riders approved by the Commission from time to 
+time.3
+21.
+AES Indiana files a quarterly Fuel Adjustment Clause (“FAC”) proceeding 
+(docketed as Cause No. 38703 FAC [X]) in accordance with Ind. Code § 8-1-2-42(d) and the 
+Company’s Standard Contract Rider No. 6 to adjust its rates to account for fluctuations in its fuel 
+costs.  AES Indiana also files adjustments to other riders set forth in its Commission-approved 
+tariff.  These riders adjust AES Indiana’s rates for service to timely recover changes in certain 
+costs associated with the provision of service. 
+22.
+The petition initiating Cause No. 45911 was filed with the Commission on June 28, 
+2023.  Therefore, in accordance with Ind. Code § 8-1-2-42(a), more than fifteen months have 
+passed since the filing date of AES Indiana’s most recent request for a general increase in its basic 
+rates and charges.  
+23.
+AES Indiana’s current depreciation accrual rates were approved by the 
+Commission’s 45911 Order. 
+Petitioner’s Operating Results Under Existing Rates. 
+24.
+Notwithstanding diligent efforts to continue to control costs, AES Indiana’s 
+underlying revenue requirements have changed and continue to change.  Since its basic rates and 
+charges were last established, AES Indiana has continued to make significant capital expenditures 
+for additions, replacements and improvements to its electric utility system and operating expenses 
+have increased.   
+3 In this filing, the Company uses “basic rates” and ‘base rates” interchangeably. 
+8 
+25.
+AES Indiana must continue to make significant capital expenditures to maintain the 
+system at a current state of efficiency and otherwise meet the ongoing need for service in its 
+service territory.   
+26.
+As a result of the capital additions and regulatory assets to be reflected in rate base 
+in this filing and other changes in the ongoing cost of providing service, AES Indiana’s Test Year 
+return on its electric utility property is below the level required to provide revenues adequate to 
+cover its necessary and reasonable operating expenses, to provide revenues which will enable AES 
+Indiana to continue to attract capital required for additions, replacements and improvements to its 
+electric utility property and to comply with regulatory mandates at a reasonable cost, to maintain 
+and support AES Indiana’s credit, to assure confidence in AES Indiana’s financial soundness, and 
+to earn a fair return on its electric utility property comparable to that available on other 
+investments of comparable risk.  AES Indiana’s existing rates and charges will be insufficient to 
+provide revenues adequate to cover its necessary and reasonable operating expenses and to provide 
+the opportunity to earn the fair return to which AES Indiana is lawfully entitled.  Therefore, AES 
+Indiana’ existing rates are unjust, unreasonable, insufficient and confiscatory and should be 
+increased. 
+Petitioner’s Proposed Rates and Charges. 
+27.
+Adequate rates are essential to allow AES Indiana to achieve the financial results 
+that will be necessary to attract needed debt and equity capital on reasonable terms, to comply with 
+environmental and other mandates and to otherwise invest to meet the continued need for 
+electricity within AES Indiana’s service area.  AES Indiana requests new rates and charges and 
+associated accounting relief be authorized to enable AES Indiana to realize a reasonable and 
+adequate net operating income to render adequate and reliable service and facilities to the public.   
+9 
+28.
+As proposed in the case-in-chief, AES Indiana requests the Commission to approve 
+an overall annual incremental increase in revenues from basic rates and charges, including rate 
+adjustment mechanisms, in the total amount of approximately $192.9 million.  AES Indiana 
+proposes to implement the requested revenue increase in two steps through a Phase-in-Rate 
+Adjustment (“PRA”) process.  As explained by Company witnesses Baker and Aliff, in Phase I 
+(the initial step), revenue would increase by approximately $85.4 million.  As also explained by 
+Company witnesses Baker and Aliff, the second step will reflect an increase of $107.5 million. As 
+discussed by witnesses Baker and Davis-Handy, there is also a revenue increase of approximately 
+17% already authorized by the Commission for Transmission Distribution System Improvement 
+Charge (“TDSIC”) Plan and other capital investment projects. This additional revenue increase is 
+included in this filing.   
+29.
+Implementation of the requested rate increase in phases reasonably reflects the 
+utility property that is used and useful at the time rates are placed into effect.  It also captures the 
+Test Year changes in the cost of labor following the Repowering of Petersburg Units 3 and 4. AES 
+Indiana’s proposed PRA process balances customer and Company interests and is detailed in AES 
+Indiana’s case-in-chief filed contemporaneous herewith. 
+30.
+The Company works to provide service at a price that is affordable and competitive 
+across the residential, commercial and industrial customer classes.  The impact of the proposed 
+revenue increase on customers is detailed in the testimony of AES Indiana witnesses Rimal and 
+Baker included with the Company’s written case-in-chief filing made contemporaneous with this 
+Petition.   
+10 
+31.
+The operating costs and investment reflected in the proposed revenue requirement 
+are reasonable and necessary to fulfill the Company’s obligation to provide service to customers 
+and to provide a fair return on the Company’s rate base.  The capital investments reflected in the 
+Company’s filing support the electric system’s reliability, resiliency, stability and environmental 
+sustainability as well as affordability.  Much of the capital investment has been previously 
+approved by the Commission.  
+32.
+AES Indiana’s proposed revenue requirement includes the regulatory assets for the 
+Company’s investment in certain joint ventures, certain environmental compliance and other costs 
+AES Indiana has deferred in accordance with the Commission’s Orders as identified in AES 
+Indiana’s case-in-chief. 
+33.
+This rate review also reflects the cost of operational needs, such as vegetation 
+management, storm restoration and property taxes.  This filing also updates depreciation rates to 
+better align depreciation expense with the period in which the generation plants provide service to 
+customers.  The Test Year level of operating expense is accurate, reasonable and representative of 
+AES Indiana’s going forward cost of providing service. 
+34.
+AES Indiana proposes to implement a new Property Tax Adjustment Rider 
+(“PTA”).  The proposed PTA is designed to recover the excess (or deficit) of an estimate of the 
+property tax amounts compared to the amount of such costs approved to be included in the 
+determination of basic rates in this proceeding.  AES Indiana also proposes to maintain its existing 
+rate adjustment mechanisms with some modifications as further detailed in AES Indiana’s case-in-
+chief and summarized in the Index attached to this Petition as Exhibit A.  These proposals include 
+a proposal to continue deferring and subsequently track and recover in the ECCRA the costs 
+11 
+incurred for the Petersburg Repowering Project that may not be included in base rates in this 
+Cause.  This proposal will provide timely cost recovery and reduce carrying charges that would 
+otherwise be deferred for future recovery through rates.   
+35.
+AES Indiana proposes to adjust the then-current factors for the FAC, DSM, 
+ECCRA, CAP, OSS Margin, and RTO rate adjustment riders for costs that will be reflected in the 
+new basic rates and charges resulting from this proceeding.  AES Indiana is proposing to continue 
+to recover all expenses for DSM and Green Power Initiative in their respective rate adjustment 
+riders.   
+36.
+The Company’s other accounting and ratemaking proposals are reflected in AES 
+Indiana’s case-in-chief, including proposals to (a) defer for subsequent recovery or credit in rates 
+(b) changes in federal or state statutory income tax rates or changes in the calculation of taxable 
+income, and (c) defer for subsequent recovery or credit in rates through the proposed PTA 
+Adjustment changes in Indiana property tax rates and expense.   
+37.
+AES Indiana’s various rate design proposals are detailed in its pre-filed case-in-
+chief.  An overview is reflected in the index to the filing included with this Petition as Exhibit A 
+and summary of testimony of AES Indiana witness Rimal is included with Exhibit B to this 
+Petition. The Company’s filing also includes the Company’s proposed firm load customer class 
+revenue allocation factors that would be used should the Company elect to file a future 
+Transmission, Distribution, Storage System Improvement Charge (“TDSIC”) proceeding 
+following this basic rate case.  See Company witness Rimal.  The Company requests Commission 
+approval of these allocation factors. See Ind. Code § 8-1-39-9. 
+12 
+38.
+AES Indiana proposes to replace its existing rate schedules governing the electric 
+utility service rendered by it with new schedules of rates and charges and terms and conditions 
+applicable thereto.  These changes are summarized in AES Indiana’s prefiled testimony and shown 
+in the redlined version of the Tariff included with AES Indiana’s case-in-chief.  The proposed rate 
+schedules and revised Tariff are included in the Company’s case-in-chief. 
+Five Pillars 
+39.
+The proposed filing reasonably considers reliability, affordability, resiliency, 
+stability and environmental sustainability in accordance with Indiana Code § 8-1-2-0.6.  In 
+accordance with GAO 2023-04 (“Guidelines Regarding the Five Pillars”), the filing index included 
+with this Petition as Exhibit A includes the location of information, discussions, and/or evidence 
+regarding of each of the Five Pillars enumerated in Ind. Code § 8-1-2-0.6.  
+Confidential Information. 
+40.
+Pursuant to 170 IAC 1-5-15(e)(2), the electronic copy of the cost-of-service study is 
+to be treated as confidential and protected from disclosure to the public under Ind. Code § 5-14-3-4 
+and Ind. Code § 8-1-2-29.   
+41.
+Contemporaneous with the filing of this Petition, AES Indiana is also filing a 
+motion for protective order in accordance with 170 IAC 1-1.1-4 and to otherwise comply with 170 
+IAC 1-5-3.  The filing of this motion is necessary and appropriate to protect other confidential 
+information included in AES Indiana’s filing.  AES Indiana has entered into a nondisclosure 
+agreement with the OUCC and will work together with any intervenors to negotiate an acceptable 
+confidentiality agreement to facilitate the production of the confidential information as 
+appropriate.   
+13 
+Procedural Schedule.  
+42.
+In accordance with 170 IAC 1-1.1-9(a)(8), Petitioner is working with the OUCC 
+and potential intervenors to develop an agreed procedural schedule and associated terms.  The 
+Company’s proposed schedule is attached hereto as Petition Exhibit C.  This proposed schedule is 
+based on the Commission’s GAO-2013-05.  To the extent necessary or appropriate and pursuant to 
+170 IAC 1-1.1-15, AES Indiana requests that a date for a prehearing conference and preliminary 
+hearing be promptly set by the Commission to address procedural matters so as to allow 
+completion of the case within 300 days in accordance with GAO-2013-05 and Section 42.7.   
+Customer Notification. 
+43.
+In accordance with Ind. Code § 8-1-2-61(a), AES Indiana will publish notice of the 
+filing of this Petition in a newspaper of general circulation published in each Indiana county in 
+which AES Indiana renders service.  The proofs of publication of notice will be late filed as an 
+exhibit. 
+44.
+In accordance with 170 IAC 4-1-18(c), AES Indiana will furnish to each residential 
+customer within forty-five (45) days of this Petition, a notice which fairly summarizes the nature 
+and extent of the proposed changes.     
+Attorneys For Petitioner. 
+45.
+The names and addresses of AES Indiana’s duly authorized representatives, to 
+whom all correspondence and communications concerning this Petition should be sent, are as 
+follows:   
+Teresa Morton Nyhart (Atty. No. 14044-49) 
+Jeffrey M. Peabody (Atty. No. 28000-53) 
+Kay E. Pashos (Atty. No. 11644-49) 
+14 
+Mark R. Alson (Atty. No. 27724-64) 
+Taft Stettinius & Hollister LLP 
+One Indiana Square, Suite 3500 
+Indianapolis, Indiana 46204 
+Nyhart Phone:  
+(317) 713-3648 
+Peabody Phone: 
+(317) 713-3647 
+Pashos Phone:  
+(317) 713-3660 
+Alson Phone:  
+(317) 713-3661 
+Fax: 
+ 
+(317) 713-3699 
+Nyhart Email:  
+tnyhart@taftlaw.com 
+Peabody Email: 
+jpeabody@taftlaw.com 
+Pashos Email:  
+kpashos@taftlaw.com 
+Alson Email:  
+malson@taftlaw.com 
+    WITH COURTESY COPIES TO: 
+Kristi Figg 
+Austin Baker 
+AES Indiana 
+One Monument Circle 
+Indianapolis, Indiana 46204 
+Email:  kristi.figg@aes.com 
+Email:  austin.baker@aes.com 
+WHEREFORE, Petitioner, AES Indiana, respectfully requests that the Commission 
+promptly establish a procedural schedule and associated terms, make such investigation and hold 
+such hearings as are necessary or advisable, and, thereafter, make and enter an order in this Cause 
+in accordance with the 300-day time frame provided in GAO-2013-5 and Section 42.7: 
+a.
+finding that AES Indiana’s existing rates and charges for electric utility service are 
+insufficient to provide revenues to cover the reasonable and necessary Test Year 
+operating expenses and fair return and are therefore unjust, unreasonable, 
+insufficient, and confiscatory; 
+15 
+b.
+establishing and by order fixing increased rates and charges to be imposed, 
+observed and followed in the future by AES Indiana in lieu of those found to be 
+unjust, unreasonable, insufficient and confiscatory; 
+c.
+authorizing AES Indiana to revise and place into effect for accrual accounting 
+purposes its depreciation rates as proposed in its evidence herein; 
+d.
+recognizing the Company’s net prepaid pension asset in its capital structure; 
+e.
+including all of AES Indiana’s utility plant in service, including plant to be in 
+service by end of 2026, in the revenue requirement to be established in this Cause;  
+f.
+approving the new Property Tax Adjustment Rider; 
+g.
+approving the new Phase-in Rate Adjustment Rider; 
+h.
+authorizing AES Indiana to implement modifications to its rate adjustment 
+mechanisms as proposed in AES Indiana’s evidence; 
+i.
+approving AES Indiana’s proposal to include in the ECCRA the costs incurred for 
+the Petersburg Repowering Project that are not included in base rates in this Cause.   
+j.
+approving and granting accounting authority to AES Indiana to implement its 
+accounting and rate proposals, including the Company’s cost deferrals, authority to 
+maintain the Major Storm Damage Restoration Reserve Account and the Vegetation 
+Management Reserve Account, and approval to amortize rate case expense and to 
+amortize the regulatory asset created pursuant to the Commission’s Order in Cause 
+No. 43580; 
+16 
+k.
+approving the accounting relief and other requests identified in AES Indiana’s 
+evidence herein; 
+l.
+approving AES Indiana’s proposed rate design including the changes to the 
+customer charges for the residential and small commercial rate classes;  
+m.
+approving various changes in AES Indiana’s Rules and Regulations of Service and 
+AES Indiana’s Electric Service Tariff as proposed in AES Indiana’s evidence 
+herein;  
+n.
+authorizing and approving the filing by AES Indiana of new schedules of increased 
+rates and charges for electric service so as to provide just, reasonable, sufficient and 
+non-confiscatory rates; and  
+o.
+granting to AES Indiana such other and further relief as may be appropriate and 
+proper. 
+Respectfully submitted this 3rd day of June 2025,  
+INDIANAPOLIS POWER & LIGHT COMPANY 
+d/b/a AES INDIANA 
+By: 
+____________________________________ 
+Brandi Davis-Handy, President 
+17 
+Verification 
+I, Brandi Davis-Handy, President of AES Indiana, affirm under the penalties for perjury 
+that the foregoing factual representations are true to the best of my knowledge, information, and 
+belief. 
+Dated: June 3, 2025. 
+________________________________ 
+Brandi Davis-Handy 
+18 
+CERTIFICATE OF SERVICE 
+The undersigned hereby certifies that a copy of the foregoing has been served this 3rd day 
+of June, 2025 via electronic mail, to: 
+Mr. William I. Fine 
+Ms. Carol Sparks Drake 
+Ms. Abby R. Gray 
+Indiana Office of Utility Consumer Counselor 
+Suite 1500 South, 115 W. Washington St. 
+Indianapolis, Indiana 46204 
+wfine@oucc.in.gov
+cadrake@oucc.in.gov
+agray@oucc.in.gov
+infomgt@oucc.in.gov
+Courtesy copies were provided to: 
+Jennifer A. Washburn 
+Reagan Kurtz 
+Citizens Action Coalition of Indiana, Inc. 
+1915 W. 18th Street, Suite C 
+Indianapolis, Indiana 46202 
+jwashburn@citact.org
+rkurtz@citact.org
+Barry A. Naum 
+SPILMAN THOMAS & BATTLE, PLLC 
+1100 Bent Creek Boulevard, Suite 101 
+Mechanicsburg, PA 17050 
+bnaum@spilmanlaw.com
+Joseph P. Rompala 
+Lewis & Kappes, P.C. 
+One American Square, Suite 2500 
+Indianapolis, Indiana 46282 
+JRompala@lewis-kappes.com
+Courtesy copy to: 
+ETennant@lewis-kappes.com
+Kurt J. Boehm, Esq. 
+Boehm, Kurtz & Lowry 
+36 East Seventh Street, Suite 1510 
+Cincinnati, Ohio 45202 
+KBoehm@BKLlawfirm.com
+Kristina Kern Wheeler 
+Nikki Gray Shoultz 
+BOSE MCKINNEY &EVANS LLP 
+111 Monument Circle, Suite 2700 
+Indianapolis, Indiana 46204 
+kwheeler@boselaw.com
+nshoultz@boselaw.com
+19 
+173190622v1 
+Anne E. Becker 
+Lewis & Kappes, P.C. 
+One American Square, Suite 2500 
+Indianapolis, Indiana 46282 
+abecker@lewis-kappes.com
+Courtesy copy to: 
+ATyler@lewis-kappes.com
+___________________________________ 
+Teresa M. Nyhart 
+Teresa Morton Nyhart (Atty. No. 14044-49) 
+Jeffrey M. Peabody (Atty. No. 28000-53) 
+Kay E. Pashos (Atty. No. 11644-49) 
+Mark R. Alson (Atty. No. 27724-64) 
+Taft Stettinius & Hollister LLP 
+One Indiana Square, Suite 3500 
+Indianapolis, Indiana 46204 
+Nyhart Phone:  
+(317) 713-3648 
+Peabody Phone: 
+(317) 713-3647 
+Pashos Phone:  
+(317) 713-3660 
+Alson Phone:  
+(317) 713-3661 
+Fax: 
+ 
+(317) 713-3699 
+Nyhart Email:  
+tnyhart@taftlaw.com 
+Peabody Email: 
+jpeabody@taftlaw.com 
+Pashos Email:  
+kpashos@taftlaw.com 
+Alson Email:  
+malson@taftlaw.com 
+Attorneys for INDIANAPOLIS POWER & LIGHT COMPANY 
+D/B/A AES INDIANA
+Indianapolis Power & Light Company d/b/a AES Indiana 
+Verified Petition – Exhibit A 
+Page 1 of 8 
+Indianapolis Power & Light Company d/b/a AES Indiana 
+2025 Rate Case 
+Index of Issues, Requests, and Supporting Witnesses
+1
+Subject 
+Description 
+Supporting Witness  
+Test Year (TY) 
+Twelve Months Ended December 31, 2026. 
+Petition ¶14. 
+Peters. 
+Historical Base Period 
+Twelve Months Ended December 31, 2024. 
+Petition ¶18. 
+Peters.
+Financial Information 
+and Revenue 
+Requirement Details 
+AES Indiana Exhibit 1 - Financial Exhibit presents 
+the overall requested rate relief and consolidates 
+data supporting the Company’s projected TY costs 
+and revenues.
+Various, as reflected in the AES Indiana Exhibit 
+1 -  Financial Exhibit index and supporting 
+workpapers. 
+Five Pillars 
+Consideration of Five Attributes enumerated in Ind. 
+Code § 8-1-2-0.6. 
+Davis-Handy (five pillars). 
+Peters (forecast and cost management). 
+Holtsclaw (T&D). 
+Ellis (generation). 
+Rimal (COS & rate design). 
+Baker (bill comparison).
+1 This Index of the Company’s case-in-chief is intended to highlight issues and is not an exhaustive list of AES Indiana’s requests in this proceeding.  A 
+complete account of AES Indiana’s requested relief can be found in AES Indiana’s case-in-chief, including but not limited to AES Indiana’s petition, 
+testimony, exhibits.  Additional information is provided in the workpapers, and the Company’s MSFR responses.  AES Indiana Exhibit 1 - Financial 
+Exhibit provides an additional index.
+Indianapolis Power & Light Company d/b/a AES Indiana 
+Verified Petition – Exhibit A 
+Page 2 of 8 
+Revenue Requirement 
+Subject 
+AES Indiana Proposal 
+Supporting AES Indiana Witness 
+Workpaper or Exhibit 
+Reference 
+Overall 
+Revenue 
+Increase 
+Total annual incremental increase in 
+revenue of approximately $192.9 million. 
+Filing also reflects an approximately 17% 
+revenue increase to reflect cost recovery 
+previously approved by the Commission. 
+The Company proposes to implement the 
+increase in two phases via a Phase-In Rate 
+Adjustment (PRA) 
+Davis-Handy (overview). 
+Rimal (cost of service/rate 
+design). 
+Aliff (PRA). 
+Baker (bill comparison). 
+AESI-OPER, Schedule 
+OPINC. 
+Financial 
+Forecast 
+Set rates based on AES Indiana’s TY 
+financial forecast.  
+Reflect forecasted revenues, O&M, capital 
+investments and cost of capital in rates. 
+Peters (forecast). 
+Russo (load forecast). 
+Aliff (rate schedules). 
+Baillie (property and casualty 
+insurance expense). 
+Dalton (compensation). 
+Dickerson (fuel inventory) 
+Ellis (generation O&M and 
+capital investment). 
+Holtsclaw (T&D O&M and 
+capital investment). 
+See also entries below.
+AES Indiana Exhibit 1 – 
+Financial Exhibit (which 
+is 
+indexed) 
+and 
+supporting workpapers. 
+Return on 
+Equity 
+(ROE)
+Authorize 10.7% ROE. 
+McKenzie. 
+AESI-CC, 
+Schedules 
+CC2 
+(P1) 
+and 
+CC2 
+(WACC).
+Indianapolis Power & Light Company d/b/a AES Indiana 
+Verified Petition – Exhibit A 
+Page 3 of 8 
+Revenue Requirement (Cont’d) 
+Subject
+Request
+Supporting Witness
+Workpaper or Exhibit 
+Reference
+Weighted 
+Average Cost of 
+Capital 
+(WACC) 
+Authorize WACC applied to forecasted 
+original cost rate base. 
+AES Indiana’s forecasted overall WACC:  
+7.36% at December 31, 2025 and 7.52% at 
+end of TY (December 31, 2026). 
+Adjusted TY ratemaking capital structure 
+reflects 47.33%/46.48% ratio of long term 
+debt to equity.
+McKenzie (ROE; reasonableness 
+of capital structure). 
+Illyes (capital structure, overall 
+WACC calculation, financing 
+activity). 
+AESI-CC, Schedules 
+CC2 (P1) and CC2 
+(WACC). 
+Depreciation 
+Set new depreciation rates and reflect the 
+resulting depreciation expense in base rates 
+based on depreciation study. 
+Spanos (depreciation). 
+Guletsky (decommissioning 
+study (Eagle Valley, 
+Georgetown, Harding Street, 
+Petersburg). 
+Wood (decommissioning study 
+Hoosier Wind). 
+Peters 
+(depreciation 
+and 
+amortization expense). 
+Attach. JJS-1 (2024 
+Depreciation Study). 
+Attach. JJS-2 (2026 
+Depreciation Study). 
+Attach. JJS-3 
+depreciation calculation 
+using ALG). 
+Attach. PMG-1 (2024 
+Decommissioning 
+Study). 
+Attachment DB-1 
+(Decommissioning 
+Study-Hoosier Wind). 
+AESI-OPER, 
+Schedule 
+DEPR.
+Prepaid Pension 
+Asset 
+Include AES Indiana’s Prepaid Pension 
+Asset net of the OPEB liability as 
+component in the capital structure.
+Roach. 
+Attach. HMR-4. 
+AESI-CC, Sch. CC2. 
+Indianapolis Power & Light Company d/b/a AES Indiana 
+Verified Petition – Exhibit A 
+Page 4 of 8 
+Revenue Requirement (Cont’d) 
+Subject 
+Request 
+Supporting Witness
+Workpaper or Exhibit 
+Reference
+Taxes 
+Reflect TY tax expense in base rates. 
+Apply gross revenue conversion factor 
+(GRCF). 
+Update excess accumulated deferred 
+income tax (ADIT). 
+Present effective tax rate. 
+See also new Property Taxes Adjustment 
+(PTA) in Rider section below. 
+Miller. 
+Dalton (payroll tax). 
+AESI-REVREQ, Sch. 
+REVREQ2 (GRCF). 
+AESI-OPER, Sch. TX1 
+through TX-3 (tax 
+expenses). 
+AESI-OPER, Sch. TX4 
+(ADIT). 
+AESI-OPER, Sch. TX5 
+through TX 8 
+(adjustments and 
+calculations; effective tax 
+rate). 
+AESI-OPER, Sch. OTX1 
+through OTX3 (other 
+taxes).
+Forecasted Rate Base 
+Reflect forecasted capital projects in rate 
+base using PRA.  
+Peters (capital forecast and 
+description of forecast 
+methodology). 
+Ellis (generation forecast 
+and projects; inventory). 
+Holtsclaw (T&D forecast 
+and projects; inventory). 
+Dickerson (fuel inventory). 
+Aliff (PRA, TDSIC roll-in 
+and regulatory assets).
+Petition ¶¶28-29. 
+AESI-RB, Schedules 
+RB1 through RB8. 
+Indianapolis Power & Light Company d/b/a AES Indiana 
+Verified Petition – Exhibit A 
+Page 5 of 8 
+Revenue Requirement (Cont’d) 
+Subject 
+Request 
+Supporting Witness
+Workpaper or Exhibit 
+Reference
+Major Storm Damage 
+Restoration Reserve 
+and Storm Expense 
+Continue mechanism previously 
+approved by Commission with updated 
+level of embedded expense.   
+Aliff (Reserve). 
+Holtsclaw (storm expense 
+support).
+AESI-OPER, Sch. OM11. 
+Vegetation 
+Management 
+& 
+Reserve Account 
+Set rates using forecasted Vegetation 
+Management cost for distribution and 
+transmission systems including use of 
+extended trim specification for 
+distribution system over five-year cycle. 
+Continue to utilize the methodology 
+agreed to in Cause No. 45911 whereby 
+Company defers any shortfalls in annual 
+vegetation management costs relative to 
+the amount embedded in base rates.
+Flint (vegetation 
+management cost 
+forecast). 
+Aliff (Reserve Account). 
+AESI-OPER, Sch. OM12. 
+Regulatory Assets 
+And Deferrals. 
+Reflect regulatory assets includable in 
+rate base, including Company investment 
+in Joint Ventures and other projects 
+previously approved by the Commission.
+Aliff. 
+AES Indiana Attachment 
+KA-1. 
+AESI-RB, Sch. RB8. 
+General 
+Accounting 
+and Other Matters. 
+Accounting standards and internal 
+controls, affiliate services and AROs. 
+Faller. 
+AES Indiana Attachments 
+DF-1 through DF-3 
+(services agreement and 
+CAAM). 
+AESI-RB, Schedule RB5 
+(remove forecasted asset 
+retirement costs).
+Indianapolis Power & Light Company d/b/a AES Indiana 
+Verified Petition – Exhibit A 
+Page 6 of 8 
+Cost of Service and Rate Design 
+Subject 
+Request 
+Supporting Witness 
+Workpaper or Exhibit 
+Reference 
+Allocated 
+Cost 
+of 
+Service 
+Study 
+(“ACOSS”) 
+Same ACOSS model as used in AES 
+Indiana’s most recent rate cases, Cause 
+Nos. 45911, 45029 and 44576. 
+Rimal. 
+Confidential WP BR-
+1.0C (ACOSS Model); 
+also, Confidential WP 
+BR 3.0C (Rate Design 
+and Revenue Proof).
+Overall Rate Design 
+Allocation of revenue based on two 
+criteria: 1) eliminate 50% of the current 
+subsidy subject to an increase cap of 1.3 
+times the overall system increase to any 
+rate schedule; and 2) no rate schedule 
+receives a rate reduction.  Approach 
+reduces inter-class subsidies and moves 
+classes closer to their cost of service, 
+while moderating impacts on any one 
+particular class. 
+Move toward cost of service while 
+recognizing gradualism through approval 
+of: 
+• $15.00 monthly service charge for 
+small customers (< 325 
+kWh/month). 
+• $20.00 monthly service charge for 
+larger customers (> 325 
+kWh/month). 
+• Continue to use declining block rate 
+structure to recover fixed costs not 
+recovered via customer charge.
+Rimal (rate design and 
+rates). 
+Attach. BR-2 through -9 
+(rate design). 
+See also supporting 
+Rimal workpapers. 
+Attach. AJB-1 and AJB-2 
+(clean and redline tariff). 
+Indianapolis Power & Light Company d/b/a AES Indiana 
+Verified Petition – Exhibit A 
+Page 7 of 8 
+Cost of Service and Rate Design (Cont’d) 
+Subject 
+Request
+Supporting Witness
+Workpaper or Exhibit 
+Reference
+Rate Design - Other 
+Updated TDSIC allocation factors 
+presented for approval.
+Rimal. 
+Attach. BR-13 (TDSIC 
+allocation factors).
+Rider 
+Proposals 
+– 
+General
+Maintain existing rate adjustment riders 
+and add two new riders.
+Aliff. 
+Attach. AJB-1 & 2 (clean 
+and redline tariff).
+New Rider Proposals 
+New Property Tax (PTA) Rider 18 - the 
+annual PTA is designed to recover the 
+excess (or deficit) of an estimate of the 
+property tax amounts compared to the 
+amount of such costs embedded in the 
+determination of basic rates in this 
+proceeding.  
+Phase-In Rate Adjustment (PRA) Rider 
+28 - the PRA credit is the mechanism that 
+will be used to implement the new rates in 
+two distinct steps.
+Miller (PTA support). 
+Aliff (PTA and PRA rider 
+mechanics). 
+Attach. AJB 1 & 2 (clean 
+and redline tariff). 
+Rider Proposals 
+TDSIC (Rider 3) 
+No change in Rider. 
+TDSIC investment rolls into base rates.
+Aliff. 
+Attach. AJB 1 & 2 (clean 
+and redline tariff). 
+Rider Proposals  
+FAC (Rider 6)
+Update base cost of fuel. 
+Dickerson (updated base 
+cost of fuel). 
+Aliff (presentation of 
+riders).
+Attach. AJB 1 & 2 (clean 
+and redline tariff). 
+AESI-OPER, Sch. OM2 
+(base cost of fuel).
+Indianapolis Power & Light Company d/b/a AES Indiana 
+Verified Petition – Exhibit A 
+Page 8 of 8 
+173191732v3 
+Cost of Service and Rate Design (Cont’d) 
+Subject 
+Request 
+Supporting Witness
+Workpaper or Exhibit 
+Reference
+Rider Proposals 
+ECCRA (Rider 20)
+Updated benchmark for consumables, 
+continued tracking of emission 
+allowances. 
+Use ECCRA to track Petersburg 
+Repowering costs not included in base 
+rates. 
+Steiner (consumables & 
+allowances). 
+Aliff (rider). 
+Attach. AJB 1 & 2 (clean 
+and redline tariff). 
+AESI-OPER, Sch. OM5 
+(consumables). 
+AESI-OPER, Sch. OM8 
+(allowances).
+Rider Proposals DSM 
+(Rider 22) 
+No change to Rider 
+Filing updates lost revenue margin rates.
+Aliff (rider, lost revenue 
+margin rates). 
+Attach. 
+KA-2 
+– 
+lost 
+revenue margin rates. 
+Rider Proposals –  
+CAP (Rider 24) 
+Update benchmark. 
+Steiner (forecasted capacity 
+sales and costs). 
+Aliff (rider). 
+Attach. AJB 1 & 2 (clean 
+and redline tariff). 
+AESI-OPER, Sch. REV9 
+(capacity sales).
+Rider Proposals –  
+OSS (Rider 25) 
+Update OSS margins embedded in basic 
+rates and continue to flow 100% of 
+margins through OSS Rider for benefit of 
+customers.  
+Steiner (forecasted OSS 
+margins). 
+Aliff (rider). 
+Attach. AJB 1 & 2 (clean 
+and redline tariff). 
+AESI-OPER, Sch. REV6 
+(OSS margins).
+Rider Proposals –  
+RTO (Rider 26)
+Update MISO Non-fuel costs and 
+revenues embedded in basic rates. 
+Aliff. 
+Attach. AJB 1 & 2 (clean 
+and redline tariff). 
+AESI-OPER, Sch. REV8 
+and OM13.
+Tariff 
+Update tariff to reflect new rates and 
+implement minor clarifications of the 
+Tariff language. 
+Rimal (rates). 
+Baker. 
+Aliff. 
+Attach. AJB 1 & 2 (clean 
+and redline tariff). 
+Attach. AJB 3 (index of 
+tariff revisions).
+Indianapolis Power & Light Company d/b/a AES Indiana 
+Verified Petition - Exhibit B 
+Witness Summaries 
+1. Brandi Davis-Handy – President of AES Indiana.  
+AES Indiana (also referred to as “the Company”) provides retail electric service in ten counties in 
+Central Indiana, including Marion County and parts of nine adjoining counties. AES Indiana is 
+guided by three core values. First, we put safety first for our people, contractors and communities. 
+Second, we act with the highest standards, which is at the core of all we do and how we conduct 
+ourselves and interact with stakeholders. Third, we work all together, as one team moving with 
+vision, speed, and flexibility to adapt to our dynamic and rapidly changing world. As of December 
+31, 2024, AES Indiana supplies retail electric service to approximately 532,000 residential, 
+commercial, and industrial customers.   
+While the Company works to responsibly manage the cost of providing service, in this case, AES 
+Indiana also seeks to better align the rate review process with the cost incurred to provide service. 
+The Company proposes to use the forward-looking calendar year 2026 as the test period for this 
+proceeding. The Company moved to the future test year approach utilized by many other investor-
+owned utilities here in Indiana and nationally to mitigate the impact of regulatory lag and to 
+establish a closer nexus between the cost incurred to provide service and the reflection of that cost 
+in the price for service. 
+The Commission has previously improved investments in facilities needed to provide service to 
+AES Indiana. This includes the Company’s investment in the renewable joint ventures, TDSIC, 
+and the Petersburg Unit 3 and 4 Repowering.  
+To level set, if this rate case was not filed, cost recovery previously authorized by the Commission 
+will increase revenue by approximately 17% over the base rates approved in the Company’s last 
+rate case.  This revenue increase relates to the TDSIC Plan cost recovery and ECR cost recovery 
+for previously approved projects (Hardy Hills, Petersburg Energy Center, Pike County Battery and 
+Hoosier Wind). This cost recovery is rolled into rates in this filing., 
+In this proceeding, AES Indiana also requests Commission approval of an annual incremental 
+increase in revenues of approximately $192.9 million. The amount is based on a test year ended 
+December 31, 2026. The overall revenue increase calculated in the Company’s filing is expected 
+to be placed into effect January 1, 2027, as part the second step of a two-step phase-in plan.   
+The rate relief sought in this case is driven by the increasing cost of providing service, including 
+the cost of storm restoration, vegetation management, property taxes, and depreciation. The 
+Company rate filing reasonably considers each of the Five Pillars of electric utility service, namely: 
+Reliability; Affordability; Resiliency; Stability; and Environmental Sustainability. The rate request  
+proposed by the Company in this proceeding is balanced and necessary to support the Company’s 
+ongoing effort to provide reliable electric service and facilities to customers.   
+AES Indiana commits to continue its efforts to engage in a respectful dialogue with all stakeholders 
+about the costs that drive the price for electric service. 
+2 
+2. David C. Peters – Senior Director of Financial Planning and Analysis (“FP&A”) and 
+Transactions, AES US Services. 
+The Company proposes rates based on the forward-looking calendar year, January 1, 2026, through 
+December 31, 2026 (“Test Year”). This includes both base (also referred to as “basic”) rates and 
+rider rates. AES Indiana Exhibit 1 – Financial Exhibit consolidates the data supporting AES 
+Indiana’s projected costs and revenues for the Test Year. This Financial Exhibit is organized by 
+subject (e.g., financial schedules, cost of capital, rate base, revenue, etc.) as shown in the Exhibit 
+Index. The Test Year is based on the forecast that was prepared during the Company’s last annual 
+forecast development process. The adjustments are described by the Company’s witnesses, and, 
+where applicable, supported by the workpapers as shown on the index to AES Indiana Exhibit 1 – 
+Financial Exhibit. 
+The major components of the forecast reflected in the Test Year are: Operating revenue; Load; 
+Generation; Operation and Maintenance (“O&M”); Depreciation and amortization expense; 
+Taxes; and Capital expenditures. The load forecast is presented by AES Indiana witness Russo. 
+The projected revenue increase mainly reflects the return of and on new assets that are projected 
+to be placed in service, higher operating costs (O&M and property taxes), and higher debt 
+financing costs. 
+As shown on Table DCP-1, non-fuel, non-labor O&M is $0.2 million (0.1%) higher in the Adjusted 
+Test Year compared to the Historical Base Period. The relatively flat O&M demonstrates 
+reasonable and sound management of costs that are under the Company’s control despite 
+inflationary pressures and growth in rate base during that period. The two areas with material cost 
+increases in the Adjusted Test Year are vegetation management and storms. AES Indiana witness 
+Flint discusses the vegetation management cost in detail. Higher storm expense is reflective of 
+recent actuals as discussed by AES Indiana witnesses Holtsclaw and Aliff.  
+The increase in depreciation and amortization expense is attributable to four factors – 1) 
+depreciation expense on capital investment additions; 2) amortization expense on renewable 
+projects listed as regulatory assets (e.g., Hardy Hills, Pike Battery, and Petersburg Energy Center); 
+3) updated decommissioning cost studies; and 4) using the Equal Life Group (“ELG”) procedure 
+for depreciation, which AES Indiana witness Spanos recommends, instead of the continued use of 
+the Average Life Group (“ALG”) procedure agreed to in settlement in last rate case.  
+The increase in income taxes included in the Adjusted Test Year is primarily driven by a higher 
+taxable income at AES Indiana’s proposed rates. The increase in Taxes Other than Income Taxes 
+included in the Adjusted Test Year is primarily driven by higher real estate and personal property 
+taxes due to higher utility plant balances.
+AES Indiana’s forecasted capital additions are $952.9 million and $957.3 million in 2025 and 
+2026, respectively. AES Indiana Confidential Workpaper DCP-2 contains a list of in service 
+capital projects during the Linking Period and Adjusted Test Year. All information is broken down 
+by function (generation, transmission, distribution, etc.). AES Indiana witnesses Ellis and 
+Holtsclaw discuss additional details for generation, transmission, and distribution capital 
+3 
+investments. AES Indiana witness Peters provides additional details for digital and other capital 
+investments. 
+The forecasted test period data is reasonable and representative of AES Indiana’s operations during 
+the period rates will be in effect. Mr. Peters’ testimony provides the relevant assumptions in the 
+forecast and reflects a comprehensive effort of work across many functional teams at AES Indiana 
+to establish a forecast that is reasonable and accurate. Therefore, the Adjusted Test Year results 
+reflected in AES Indiana Financial Exhibit AESI-OPER, Schedule OPINC provide a sound basis 
+for setting new rates. 
+3. Michael E. Russo – Senior Forecast Consultant, Itron, Inc.  
+Mr. Russo testifies the load forecast approach is based on a set of linear regression models 
+estimated for the tariff classes. Models are estimated using historical monthly billed sales and 
+customer data for the period January 2011 to September 2024 for the residential, small 
+commercial, and secondary service large tariffs. Models for the primary service large and primary 
+distribution tariff are estimated using data for the period January 2018 to September 2024. The 
+model derived forecasts capture the expected impact of customer growth, economic activity, 
+regional end-use saturation and efficiency trends, and AES Indiana’s energy efficiency (“EE”) 
+program savings. The forecast is then adjusted for customer-owned photovoltaic (“PV”) 
+generation, and electric vehicles (“EV”). The primary service large and primary distribution tariff 
+models use a simple regression model approach which relates historical sales to weather conditions 
+and monthly binaries. The lighting and water heating tariff models use a simple regression model 
+approach which relates historical sales to monthly binaries, designed to capture the seasonal 
+variation. 
+Mr. Russo describes the sales forecast outlook from the end of model estimation period through 
+the 2026 test-year period. He testifies that the test-year sales do not include adjustments for future 
+large loads such as data centers. Mr. Russo explains how weather inputs are calculated, discusses 
+the economic variables used in the forecast, identifies the sources for the end-use saturation and 
+efficiency data used in the SAE model inputs, and explains how AES Indiana sponsored energy 
+efficiency savings are incorporated into the forecast. Mr. Russo explains how forecasted billing 
+month sales are converted to calendar month sales. He also explains how the load shapes are 
+developed and how the tariff class coincident and non-coincident peaks were calculated. 
+4. Kimberly Aliff – Revenue Requirements Manager, Regulatory Affairs, AES Indiana. 
+AES Indiana Financial Exhibit AESI-REVREQ, Schedule REVREQ1 fairly represents the 
+Company’s revenue requirement request in this proceeding after taking into account adjustments 
+to reflect certain Commission Orders, changes to rate base, regulatory assets, expenses, and 
+revenues.  
+AES Indiana witness Holtsclaw discusses the recent history of the number of storms by level that 
+have occurred and supports the forecasted storm expense. As can be seen at the bottom of AES 
+Indiana Financial Exhibit AESI–OPER, Schedule OM11, due to the recent qualifying storm 
+activity, AES Indiana projects that as of December 31, 2026, there would be a balance of $14.1 
+million in the Major Storm Regulatory Asset. This balance includes an additional forecasted 
+reserve for the April 2, 2025 storm that impacted AES Indiana service territory discussed by AES 
+4 
+Indiana witness Holtsclaw. AES Indiana proposes to amortize this balance over three years, 
+resulting in a forecasted annual true up of the storm reserve balance of $4.7 million, which will be 
+recorded against the Major Storm Regulatory Asset. The total major storm reserve benchmark and 
+true up for the Adjusted Test Year is $12.0 million.  
+AES Indiana proposes to continue to utilize the same Vegetation Management Reserve 
+methodology as accepted in Cause Nos. 45029 and 45911.  
+AES Indiana is not proposing substantive changes to the current rate adjustment riders.  
+As discussed by AES Indiana witness Ellis, the Petersburg Repowering Project is currently 
+underway. In its Order in Cause No. 46022, the Commission issued a CPCN under Ind. Code § 8-
+1-8.5-2 and approved the Petersburg Repowering Project as a clean energy project under Ind. Code 
+§ 8-1-8.8-11. The Company expects to complete this project in December 2026, however, if the 
+repowering of Petersburg is not completed by the end of the Adjusted Test Year, the Company 
+proposes to include the deferred balances approved for recovery in a subsequent ECCRA filing 
+after an Order in this proceeding is issued. Similar to approvals for other clean energy projects, the 
+use of the ECCRA will reduce the overall balance of the regulatory asset and resulting revenue 
+requirement as of the time it will be included in a subsequent base rate case.   
+AES Indiana is proposing to add one new rate adjustment rider – Property Tax Adjustment 
+(“PTA”). AES Indiana witness Miller discusses how the annual property tax expense is material 
+and experiences volatility. He further explains why an adjustment rider provides an efficient means 
+to allow property tax changes to flow through to customers in a timely manner. The PTA factor is 
+intended to recover the excess (or deficit) of an estimate of the property tax amounts compared to 
+the amount of such costs approved to be included in the determination of basic rates in this 
+proceeding.  
+The Company proposes to implement the new base rate order in two phases to reasonably reflect 
+rate base and revenue requirement updates at the time rates are placed into effect. The Phase-In 
+Rate Adjustment (“PRA”) credit described by AES Indiana witness Rimal is the mechanism that 
+will be used to implement rates in two distinct steps and will be applied to Phase 2 rates in order 
+to calculate Phase 1 rates. The PRA will be eliminated at the end of the Test Year to reflect the 
+second step of the phase-in. The Phase 2 rates will reflect the rate base and revenue requirement 
+as of December 31, 2026 and adjust the Petersburg cost of labor to reflect the completion of the 
+Repowering project. The Company has also aligned the timing of its capital structure with net plant 
+in service for purposes of developing the PRA rates. The PRA process will reasonably capture 
+changes in utility investment as of the beginning and end of the Test Year, as well as Test Year 
+changes in operating costs at Petersburg. 
+5. Adrien M. McKenzie – CFA, President, Financial Concepts and Applications, Inc. 
+(d/b/a FINCAP, Inc.).
+Mr. McKenzie applies the DCF, CAPM, ECAPM, risk premium, and expected earnings analyses 
+to a proxy group of electric utilities, with the results being summarized on AES Indiana Attachment 
+AMM-2. As shown there, based on the results of his analysis, a cost of equity range for the 
+Company’s electric operations of 10.2% to 11.2% is recommended. Mr. McKenzie concludes that 
+5 
+the 10.7% midpoint of this range represents a just and reasonable cost of equity that is adequate to 
+compensate the Company’s investors, while maintaining the Company’s financial integrity and 
+ability to attract capital on reasonable terms. 
+As this testimony documents, the electric utilities in the proxy group operate under a wide variety 
+of regulatory mechanisms, including decoupling and infrastructure cost trackers. Similarly, the 
+vast majority of these proxy firms operate in regulatory jurisdictions that allow for future test years, 
+formula rates, and multi-year rate plans. As a result, there is no basis to distinguish AES Indiana’s 
+investment risks from the proxy group used as the basis of his analyses. 
+The ROE recommendation does not consider the very recent dislocations in capital markets 
+attributable to the potential impact of an ongoing trade war on global commerce and economic 
+growth. While investors are clearly demanding significantly higher returns to compensate for the 
+unprecedented risks associated with the global threat to economic growth and financial stability 
+posed by the Trump administration’s tariff policies, the high degree of uncertainty and extreme 
+short-term volatility greatly complicates any ability to account for this heightened risk in 
+evaluating the cost of equity for the Company at this time. Thus, Mr. McKenzie may revise his 
+analyses and ROE recommendations for AES Indiana as additional information becomes available 
+and there is greater clarity over the implications of the trade conflict on investors’ long-term risk 
+perceptions and required returns. 
+6. Dustin J. Illyes – Treasurer, US Utilities, including AES Indiana, AES US Services.
+The Company’s Adjusted Test Year weighted average cost of capital (“WACC”) is forecasted to 
+be 7.52% with a regulatory capital structure of 47.33% long-term debt and 46.48% common equity 
+as of December 31, 2026, which is consistent with the Company’s long-term targeted capital 
+structure. This, and the investor-supplied capital structure are shown on AES Indiana Financial 
+Exhibit AESI-CC, Schedule CC2.  
+AES Indiana targets a capital structure that allows it to maintain the financial strength of an 
+investment grade utility so that the Company can deliver service at a reasonable cost to customers. 
+Maintaining an investment grade profile is important to ensure the Company has reliable access to 
+the credit markets at attractive interest rates during all types of economic cycles, ultimately 
+benefiting customers. This in turn provides the ability to meet its financial obligations during 
+periods of heavy capital expenditures. 
+The WACC reflects the ROE developed and recommended by AES Indiana witness McKenzie. 
+The forecasted rates for long-term debt at the end of the Linking Period (December 31, 2025) and 
+the end of the Adjusted Test Year (December 31, 2026) shown on AES Indiana Financial Exhibit 
+AESI CC, Schedules CC1 (P1) and CC1, are 5.26% and 5.38%, respectively. 
+In 2025, AES Indiana plans to issue $340 million of first mortgage bonds. This will include the 
+refinancing of two series of first mortgage bonds that have or will mature, totaling $80 million, 
+with the remainder of the proceeds being used as part of the financing plans for the Company’s 
+ongoing capital investment program. Additionally, in 2026, AES Indiana plans to refinance its $30 
+million and $60 million tax-exempt first mortgage bonds that come due. The 2025 long-term debt 
+issuance was authorized by the Commission in Cause No. 45954, on February 29, 2024. The 
+6 
+Company expects to file a separate financing petition later this year for Commission approval of 
+the 2026 refinancing. 
+Predictability, full and timely cost recovery, and a regulatory environment supportive of a utility’s 
+financial integrity are key credit considerations at all three credit rating agencies. While the credit 
+rating agencies currently view the Indiana regulatory environment as supportive, they also point 
+to any future deterioration or weakening in the supportiveness of the regulatory environment as 
+one of the key factors that could lead to a downgrade for AES Indiana. Any negative change in the 
+ratings of AES Indiana would have a negative impact on both the Company and its customers.  
+The credit ratings of AES Indiana have not changed since the Company’s last rate case. However, 
+some of the outlooks did change. In January 2024, S&P lowered their outlook from Positive to 
+Stable, and in June 2024, Moody’s outlook was lowered from Stable to Negative. Both agencies 
+referenced temporary strain on financial metrics from elevated capital expenditure investments as 
+their rationale for the downgrades. 
+The Company’s WACC and capital structure underpin its financial integrity and are key 
+considerations given by the credit rating agencies, along with the regulatory environment, in 
+determining the Company’s credit ratings. Maintaining investment grade ratings is vital to both 
+AES Indiana and its customers as it allows for the necessary flexibility to determine when and how 
+to access the capital markets in order to achieve reasonable terms. A constructive outcome in this 
+case that approves the Company’s capital structure and WACC as filed will support the continued 
+financial integrity of AES Indiana, allowing it to earn a reasonable rate of return, meet its financial 
+obligations, and provide safe and reliable service to its customers.  
+7. Nicholas M. Miller – Director, Tax for AES US Utilities, AES Services.
+The Company has accurately reflected income taxes and taxes other than income taxes in the 
+revenue requirement in this proceeding. The calculations made to derive these expenses are 
+reasonable and consistent with the methodology used in prior Commission proceedings. The Gross 
+Revenue Conversion Factor calculation is consistent with House Enrolled Act 1001 (the state 
+budget bill), which increased the amount of the public utility fee to 0.175%. 
+The Company has included excess accumulated deferred income taxes (“ADIT”) amortization in 
+the Unadjusted Test Year and Adjusted Test Year totaling $3.4 million, which is consistent with 
+the amount established in Cause No. 45911. To the extent that the actual annual amortization 
+determined by the average rate assumption method (“ARAM”) differs from the estimated amount, 
+the balance of the non-normalized deficient ADIT shown on Workpaper TX4-WP1, line 23, will 
+be increased or decreased to ensure that the total amortization of normalized and non-normalized 
+excess ADIT is equal to $3.4 million, and the normalized amortization is equal to ARAM. This 
+approach may result in a residual balance of non-normalized excess or deficient ADIT that will 
+remain once the normalized balance is fully amortized, which is dependent on the result of the 
+annual ARAM calculation and cannot be estimated at this time. The treatment of the residual non-
+normalized balance will be addressed in a future proceeding. This accounting treatment is 
+necessary to ensure the Company remains in compliance with tax normalization rules and is 
+consistent with the methodology used and accepted in the Company’s last base rate case in Cause 
+No. 45911. 
+7 
+In the event of changes to federal or state income tax law, the Company proposes to defer as a 
+regulatory asset or liability all differences in calculated income tax expense resulting from the 
+change in law until those changes can be included in the calculation of the Company’s rates. This 
+could include changes to the federal or state statutory income tax rate or changes in the calculation 
+of taxable income. If tax law changes are enacted while this proceeding is still pending, the 
+Company will adjust the income tax expense included in the calculation of the revenue requirement 
+in this case. However, if this proceeding has been concluded, the Company will initiate a sub- 
+docket or other proceeding to adjust rates to reflect the income tax expense that would have been 
+included if the tax law changes were enacted at the time of filing. These adjustments will also 
+reflect any necessary changes to excess or deficient ADIT resulting from any changes in statutory 
+income tax rates. This proceeding will be limited to the applicable tax law changes. 
+While the starting point of any property tax expense is based on capital spend and property placed 
+in service, the ultimate methodologies used to assign an assessed value on that property are 
+determined by the Indiana Department of Local Government Finance (“DLGF”). This 
+methodology includes adjustments that are outside the Company’s control, such as the deduction 
+for abnormal obsolescence. 
+There has been an increased focus on property taxes in the Indiana legislative sessions in recent 
+years which provides uncertainty regarding the ability to accurately forecast property tax expense. 
+In 2025, legislation was passed that could dramatically change the calculation of distributable 
+personal property tax assessed value. Specifically, Senate Enrolled Act No. 1, signed into law on 
+April 15, 2025, eliminates the 30% floor rule for certain assets placed in service after January 1, 
+2025, which would have the potential to significantly reduce assessed values over time. The 
+passage of this bill is not expected to have any immediate impact on the Company’s property tax 
+expense, but it does have the potential to become impactful over time. 
+The proposed New Standard Contract Rider No. 18 PTA provides an efficient means to flow cost 
+increases or decreases resulting from a change in property taxes through rates in a timely manner. 
+8. John J. Spanos – President, Gannett Fleming.
+Mr. Spanos calculates depreciation rates for AES Indiana’s electric plant as of June 30, 2024. He 
+also recommends depreciation rates for AES Indiana’s forecasted electric plant in service as of 
+December 31, 2026. Mr. Spanos recommends the annual depreciation accrual rates for each 
+depreciable group be calculated based on the straight-line remaining life method, using remaining 
+lives weighted consistent with the ELG procedure. The straight-line remaining life method of 
+depreciation allocates the original cost of the property, less accumulated depreciation, less future 
+net salvage, in equal amounts to each year of remaining service life. The ELG procedure is a 
+method for determining the remaining life annual accrual for each vintage property group. Under 
+this procedure, the future book accruals (original cost less book reserve) for each vintage are 
+divided by the composite remaining life for the surviving original cost of that vintage. The vintage 
+composite remaining life is derived by summing the original cost less the calculated reserve for 
+each ELG and dividing by the sum of the whole life annual accruals. Mr. Spanos testifies that the 
+ELG procedure is the most accurate procedure for matching asset utilization with asset recovery. 
+Depreciation rates as of June 30, 2024 and December 31, 2026 using the ALG procedure are also 
+8 
+provided. Mr. Spanos testifies the depreciation and amortization rates set forth in Attachment JJS-
+2 appropriately reflect the rates at which the costs of AES Indiana’s assets are being consumed 
+over their useful lives. These rates are an appropriate basis for setting electric rates in this matter 
+and for the Company to use for booking depreciation and amortization expense going forward. 
+9. Alexander J. Dickerson – Senior Manager, Wholesale Energy, AES Indiana.
+The Adjusted Test Year fuel inventory forecast removes the Company’s existing coal inventory 
+from rate base as well as the fuel oil inventory at Petersburg as these will no longer be necessary 
+following the Petersburg gas conversion. Harding Street will continue to maintain 1,000,000 
+gallons of fuel oil inventory during the Test Year as required by the Company’s black start protocol 
+requirements.  AES Indiana Financial Exhibit AESI-OPER, Schedule OM2 shows the derivation 
+of the Adjusted Test Year base cost of fuel, which reflects the Company’s forecasted dispatch of 
+system resources for 2026. More specifically, the base cost of fuel includes several different 
+components that together make up a portion of a customer’s bill. These components include the 
+cost of generation from AES Indiana assets, power purchase agreements, and market purchases 
+from MISO, and are offset by Off System sales back to MISO. The base cost of fuel also includes 
+firm gas transportation costs. The proposed Adjusted Test Year base cost of fuel is $0.044940 per 
+kwh. By comparison, the Company’s current base cost of fuel, established in Cause No. 45029, is 
+$0.039027. 
+10. Caleb Steiner –  Director, Regulated Operations and Term Management, US Utilities, 
+AES Services.
+This testimony discusses the EnCompass model inputs and outputs and provides background detail 
+and explanation for the forecasted generation cost and quantity estimates.  
+As proposed by the Company, OSS Rider 25 should continue to flow 100% of the Company’s 
+OSS margins through rates to the benefit of retail customers to allow retail service rates to be 
+reduced by AES Indiana's efforts in the wholesale market. The level of OSS margins embedded in 
+the retail revenue requirement should be decreased from the $28.6 million benchmark in current 
+rates to $24.9 million.  
+Incremental changes in the charges and credits for the net cost and benefit of AES Indiana’s 
+participation in MISO’s Resource Adequacy Process and the cost and benefit of bilateral capacity 
+transactions should continue to be recognized via the Company’s existing CAP Rider. The retail 
+revenue requirement should include an embedded $6.1 million credit to reflect a net capacity sale 
+varying by season.  
+The structure of the MISO capacity construct and accreditation methodology discussed above are 
+expected to vary annually and impact the Company’s capacity position in the Test Year and going 
+forward. That said, the Company’s benchmark proposal reasonably considers the structure of the 
+PRA, the uncertainty of auction clearing prices for each season, and the liquidity of the capacity 
+market. Updating the benchmark as proposed by AES Indiana allows basic rates to reflect a 
+representative level of revenues and costs the Company expects during the period rates are 
+projected to be in effect. 
+9 
+Consumable costs are variable, largely outside AES Indiana’s control, and potentially significant. 
+The level of consumable expense embedded in the retail rate, $4.0 million, reflects the best 
+estimate of costs in the Adjusted Test Year. Tracking these costs through the ECCRA mechanism 
+aligns the Company and the customers’ interest as it allows the Company to timely recover 
+increases in volatile and variable consumable costs as well as return the benefit of lower total 
+consumable costs to customers. 
+Seasonal NOx allowance costs are also variable, largely outside AES Indiana’s control, and 
+potentially significant. NOx emissions, and in conjunction allowance consumption, are a function 
+of generation quantity. The quantity of generation in the Seasonal NOx period is largely driven by 
+weather. Demand for allowances is highly dependent on weather and therefore continues to be 
+variable before and during each NOx season. In addition, the EPA program that establishes NOx 
+emission limits is currently proceeding under a legal challenge with the future of the rule unknown. 
+Because of these conditions, it is difficult to determine a sustainable baseline for purchases or 
+sales. Therefore, the Company’s proposal to flow all NOx allowance purchases and sales through 
+the ECR with no benchmark reasonably reflects the actual expense or sales in the ECCRA and 
+aligns the Company’s interest with the customer. 
+11. Andrew Baillie – Program Director, Global Insurance, AES Services, LLC. 
+The Adjusted Test Year cost for Property and Casualty insurance was developed by using actual 
+costs incurred in the Historical Base Period and projecting forward for expected changes in the 
+premium levels for each line of coverage based on the insurance market conditions, in discussion 
+with the Company’s Brokers, and also reviewing expected industry trends in areas such as market 
+loss levels, occurrence of major natural catastrophe losses and also legal trends for claim payments 
+and oversized or nuclear verdicts on injury and third party claims. 
+Only moderate inflationary increases are expected on Property Insurance after a high period of 
+growth in premiums over the last five years. For the casualty insurances, higher increases are 
+expected largely driven by concerns over high jury awards and costs in the areas of legal liability 
+(third party, auto and workers compensation). The outlook for the financial lines cover is also 
+relatively stable. 
+The adjustment set forth in AES Indiana Financial Exhibit AESI-OPER, Schedule-OM24 
+(property and other casualty insurance expense) is appropriate for setting new basic rates and 
+charges as this adjustment reflects actual costs incurred in the Historical Base Period and 
+projecting forward for expected changes in the premium levels for each line of coverage based on 
+the insurance market conditions. Consequently, it is necessary to make this adjustment to properly 
+determine the appropriate level of ongoing electric operating expenses.  
+12.Hampton Matthew Roach – Senior Director, Global Benefits, AES Services.
+AES Indiana requests $7.3 million of pension and OPEB expense to be reflected in the Adjusted 
+Test Year revenue requirement. This amount represents the most current projection of GAAP 
+pension and OPEB expense for the year 2026 and reasonably incorporates 2024 actual 
+performance as well as the most recent actuarial assumptions.  
+10 
+Additionally, AES Indiana requests the net prepaid pension asset be included in the Company’s 
+authorized cost of capital. The prepaid pension asset represents cumulative pension contributions 
+in excess of cumulative pension expense under GAAP (which is the amount included in the 
+revenue requirement) and unamortized pension costs. The prepaid pension asset is recorded on the 
+Company’s books and preserves the integrity of the pension fund. This additional funding is 
+investor sourced. The additional funding is used to purchase additional assets in the pension trust 
+and earns additional returns and thus provides a benefit to customers in reduced annual pension 
+expense that is included in the revenue requirement. AES Indiana has provided several references 
+to other rate cases where inclusion of the full prepaid pension asset was allowed to earn a return 
+in either cost of capital or rate base. Therefore, it is reasonable to include the projected full prepaid 
+pension asset net of the OPEB liability as of the end of the Test Year, totaling $133.5 million, in 
+the cost of capital calculation as shown on AES Indiana Attachment HMR-4. 
+13. Cody A. Flint – Manager, Vegetation Management, AES Services. 
+Vegetation management is necessary to maintain proper clearance between AES Indiana’s 
+facilities and the surrounding vegetation to minimize electrical hazards and prevent outages caused 
+by vegetation interference. Consistent with state policy, effective vegetation management helps 
+provide customers with reliable service and a stable source of electricity in which frequency and 
+voltage are maintained consistently with industry standards. 
+As shown in Table CAF-1, tree failure is a leading cause of distribution power outages and is 
+responsible for the highest percentage of Customer Minutes Interrupted (“CMI”). AES Indiana 
+requests recovery of the costs incurred to reduce tree-related outages as part of AES Indiana’s 
+ongoing efforts to deliver safe and reliable electric service to customers. 
+AES Indiana’s service territory is located principally in and around the City of Indianapolis. The 
+urban tree canopy within AES Indiana’s assigned service area is significant. This tree canopy 
+provides benefits to the city but also poses challenges for AES Indiana to maintain adequate 
+clearances. In addition, more than half of AES Indiana’s distribution lines are located more than 
+15 feet from the road, leading to higher costs per mile. Many of these lines are situated in the 
+backyards of customers’ homes, which contribute to increased vegetation management costs due 
+to the need for manual access to these areas rather than using an aerial lift. 
+In addition, AES Indiana continues to encounter escalating labor costs for its vegetation 
+management operations. In 2024, the Company conducted a bidding process for a long-term 
+contract for vegetation management on its distribution system, ultimately entering two new 
+contracts. This process revealed a significant increase in costs across all contractors who submitted 
+bids. 
+The settlement agreement in Cause No. 45911 supported the Company’s effort to gain experience 
+with the extended trimming specification. The Company trimmed 906 miles of line under the 
+extended trimming specification since starting the program in 2022. The amount of technical work 
+required to remove overhanging limbs from many of these circuits has resulted in a significant 
+increase in trimming costs, above the estimates used in the last rate case. However, while costs 
+have risen with the extended specification compared to the previous Box Cut method, the 
+reliability of those circuits has also improved. 
+11 
+To evaluate the reliability associated with extended trimming, AES Indiana performed an analysis 
+based on data from 12 circuits trimmed under the extended trimming specification and 20 circuits 
+trimmed under the historical Box Cut specification. The data clearly demonstrates that the 
+extended specification delivers superior performance compared to the Box Cut method. The 
+extended trimming specification is more effective in reducing customer interruptions and customer 
+minutes interrupted versus the Box Cut specification. This reliability benefit continues to be seen 
+even two years after the trimming was performed. 
+AES Indiana believes that the extended trimming specification is the optimal approach for line 
+clearing on the distribution system. This specification strikes a balance between the Box Cut 
+trimming specification and a full storm-proofing specification. Although the change to the 
+extended trimming specification has proven to be more costly than was estimated in the previous 
+rate case, this method is producing good results. Therefore, to mitigate costs, the Company 
+proposes implementing a new five-year distribution vegetation management cycle (instead of 
+continuing the current four-year cycle), starting in 2026. This change will result in cost savings 
+due to the reduced annual average mileage requirements, which are 918 miles for a four-year plan 
+compared to 735 miles for a five-year plan. This change, with the updated cost per mile rate, 
+translates to an average annual savings of $9.8 million.
+AES Indiana ran an Interruption Cost Estimate (“ICE”) Calculator to evaluate the benefits to its 
+customers with the extended trimming. The ICE calculator is funded by the Department of Energy 
+and is an industry-standard electric reliability planning tool designed for electric reliability 
+planners at utilities, government organizations or other entities that are interested in estimating 
+interruption costs and/or the benefits associated with reliability improvements in the U.S. This 
+analysis shows the total benefit to all customers from the extended trimming specification is 
+estimated to be $94.1 million to $140.0 million between 2026 and 2030 (i.e., the first full cycle 
+using the extended trimming specification). The ICE Calculator estimates that residential 
+customers would each receive a benefit of roughly $3.39 to $5.04 and nonresidential customers 
+would each receive a benefit of roughly $1,514 to $2,245. In other words, the reliability benefits 
+to all customers are expected to exceed the incremental cost of continuing with the extended 
+trimming specification over the full five-year cycle. 
+For the Adjusted Test Year, AES Indiana averaged the projected costs for the first three years of 
+the five-year cycle, resulting in a proposed Adjusted Test Year expense of $42.6 million. This 
+approach is reasonable as it aligns with the expected duration that the rates in this case will be in 
+effect. Additionally, it reduces the Adjusted Test Year amount compared to what it would be if the 
+Company had annualized the projected cost for the entire five-year cycle. 
+The Adjusted Test Year transmission vegetation management expense is $1.8 million, as shown 
+on AES Indiana Financial Exhibit AESI-OPER, Schedule OM12. The Adjusted Test Year amount 
+reflects updated contract pricing obtained through a competitive bidding process and incorporates 
+the additional costs associated with the application of herbicide to reestablish the transmission 
+corridor sidewalls. The Adjusted Test Year level of expense is reasonable and representative of 
+the transmission vegetation management expense necessary to allow AES Indiana to continue to 
+12 
+perform transmission vegetation management under the existing five-year cycle while also 
+addressing the sidewalls on all its 345kV transmission circuits.   
+AES Indiana is dedicated to providing its customers with safe and reliable electric service. To 
+better achieve this goal, the Company recommends the Commission approve the full 
+implementation of the Transmission and Distribution Vegetation Plans and associated expenses as 
+outlined in this testimony. 
+14. Matthew J. Dalton – Director of Human Resources, AES Services.
+Mr. Dalton supports the reasonableness of AES Indiana’s forecasted compensation expenses 
+included in the Adjusted Test Year. The Company’s Total Direct Compensation is designed to be 
+market competitive and is necessary to attract and retain the talent required to provide safe, 
+reliable, and affordable electric service. The Company uses multiple reputable market data sources 
+to benchmark compensation levels. The Adjusted Test Year Total Direct Compensation package 
+is aligned with the median of the market and is comparable to what other utilities and non-utility 
+employers offer for similar roles. 
+The Company’s incentive programs are structured to reward operational performance and 
+customer-focused outcomes, supporting the delivery of high-quality utility service. Incentive 
+compensation included in the Adjusted Test Year complies with the Commission’s three-prong 
+test for ratemaking recognition. 
+Mr. Dalton’s testimony also supports the reasonableness of the forecasted benefits and payroll tax 
+expenses. Benefits expenses are reasonably forecasted and support employee retention and well-
+being. Payroll tax expenses are calculated using applicable federal and state tax rates applied to 
+the forecasted payroll.  
+15. Michael L. Holtsclaw – Director, Power Delivery Operations, AES Indiana.
+Mr. Holtsclaw describes AES Indiana’s Transmission and Distribution (“T&D”) system and its 
+operation. Mr. Holtsclaw supports the forecasted T&D investment expected to be in service at the 
+end of the Adjusted Test Year and the forecasted O&M expense. He shows the Company 
+reasonably considers the Five Pillars in its T&D operations.  
+The Adjusted Test Year level of T&D system capital and O&M reflected in the Company’s filing 
+is reasonable and necessary to the ongoing provision of service. The forecasted Adjusted Test Year 
+O&M budget was developed by taking the historical O&M expenses and projecting them forward, 
+with an adjustment to the O&M expenses for any anticipated material changes or removal of one-
+time expenses that are not representative of on-going expenses. A major driver for the difference 
+between O&M expense for the Historical Base Period and the Adjusted Test Year is vegetation 
+management and storm expenses. 
+The Adjusted Test Year T&D capital investment is based on the forecast presented by AES Indiana 
+witness Peters, adjusted for emergent work on the 345 kV line due to an EF-2 tornado that touched 
+down in Bartholomew County, Indiana on March 19, 2025. The Company’s projected T&D 
+investment includes two forecasted periods – the Linking Period (2025) and the Adjusted Test 
+Year (2026).  
+13 
+Mr. Holtsclaw’s testimony focuses on investment that is forecasted to be in service by the end of 
+the Adjusted Test Year and that is not part of the Company’s ongoing TDSIC Plan approved by 
+the Commission in Cause No. 45264. The ongoing TDSIC investment is the subject of separate 
+proceedings, docketed as Cause No. 45264 TDSIC-X. AES Indiana witness Aliff explains how the 
+TDSIC investment is being rolled into basic rates. As shown on AES Indiana Attachment MH-3, 
+the Company forecasts approximately $423.5 million in non-TDSIC T&D investment to be placed 
+in service by the end of the Adjusted Test Year. Approximately $214 million of this capital 
+investment is forecasted to be in service by the end of the Linking Period. Approximately $209 
+million of this capital investment is forecasted to be in service by the end of the Adjusted Test 
+Year. Mr. Holtsclaw discusses the capital forecast he supports by FERC account and provides 
+additional project details in his public and confidential attachments. The testimony shows the 
+forecasted level of capital expenditures is reasonable and necessary for the ongoing provision of 
+retail electric service to AES Indiana’s customers. 
+Mr. Holtsclaw also testifies that the 13-month average for T&D inventory reasonably represents 
+the going forward inventory levels. The T&D materials and supplies inventory shows an overall 
+decrease of $2.0 million from December 31, 2024, to the 13-month average ending December 31, 
+2026. This is driven by the anticipated inventory needed for projects over the period and reducing 
+inventory levels back down as material lead times return to more reasonable historical levels. 
+The MTEP Project has been reasonably removed from the Test Year as non-jurisdictional. Non-
+fuel MISO costs should continue to be recovered through the RTO Rider.  
+A three-year average is representative of Levels 1 and 2 storm events and is reasonably reflected 
+in the Adjusted Test Year. The Major Storm Damage Restoration Reserve should be continued.   
+16. Gregory Ellis – Director of Generation for AES Indiana AES Indiana’s Harding 
+Street Station, Georgetown Station and Eagle Valley Station.  
+Mr. Ellis provides an overview of the Company’s five generating stations: Eagle Valley Station 
+(Martinsville, IN), Georgetown Stations (Indianapolis, IN), Harding Street Station (Indianapolis, 
+IN), Hoosier Wind (Benton County, IN), and Petersburg Station (Petersburg, IN). He testifies that 
+all of these generating assets have and will continue to provide capacity and energy for the benefit 
+of the Company’s retail customers and are used and useful in serving customers. He shows the 
+Harding Street Solar Array is used and useful in the provision of retail electric service. He also 
+describes how the Company’s owned units are managed and operated, and identifies the other 
+resources the Company uses to meet its customers’ requirements for electricity, including joint 
+venture investments in generation and storage.  The Company reasonably considers the Five Pillars 
+in the planning and operation of its generation.  
+AES Indiana’s capital expenditures are reasonable and important to maintain the Company’s 
+facilities in safe and reliable conditions. Mr. Ellis elaborates on how capital investment is 
+determined and presents the forecasted generation investment expected to be placed in service by 
+the end of the Adjusted Test Year in summary and in detail. He shows the generation-related 
+capital expenditures he supports are both reasonable and necessary to continue the safe, reliable, 
+and environmentally compliant operation of the generation fleet. 
+14 
+AES Indiana Financial Exhibit AESI-RB, Schedule RB6 reasonably adjusts the forecasted 
+generation materials and supplies inventory to reflect the 13-month average. AES Indiana 
+Financial Exhibit AESI-OPER, Schedule OM6 reasonably adjusts forecasted outage spend for the 
+fleet and utilizes a three-year average to account for the cyclical nature of outages at the facilities. 
+AES Indiana Financial Exhibit AESI-OPER, Schedule OM7 reasonably adjusts forecasted O&M 
+to reflect the expected spend following the repower of Petersburg Units 3 & 4 to natural gas. 
+17.David Faller – Assistant Controller, AES US Utilities, AES Services.
+Mr. Faller provides an overview of AES Indiana’s financial operations and explains the steps taken 
+by the Company to maintain the integrity of its books and records in accordance with the FERC, 
+USOA, GAAP, FASB, Sarbanes-Oxley, and other control procedures. The Company’s 
+independent auditor’s report from Ernst & Young stated that the financial statements in their 
+opinion were presented fairly in all material respects. Transactions between AES Indiana and AES 
+Services or other Affiliate Companies are governed by the various affiliate agreements and the 
+CAAM. These and other affiliate transactions allow for the sharing of technical expertise and for 
+cost-sharing opportunities related to operational goods and services. Finally, Mr. Faller explains 
+the amount of asset retirement costs included in the Adjusted Test Year are also reasonable.
+18.Paula M. Guletsky – Vice President and S&L Project Director, Sargent & Lundy, 
+L.L.C. (“S&L”).
+Ms. Guletsky presents the S&L Decommissioning Study that developed the decommissioning cost 
+estimates for AES Indiana’s Eagle Valley, Harding Street, Petersburg, and Georgetown Generating 
+Stations. The Decommissioning Study provides the estimated cost associated with the total 
+decommissioning and demolition of site structures and facilities to allow alternate use of plant 
+areas afterward. Complete and prompt demolition is recommended because it relieves AES Indiana 
+of the liabilities associated with leaving behind unmaintained, potentially unsafe structures. 
+19. David Barrie – Director of Advisory Services, Wood Canada Limited.
+This testimony provides the estimated cost associated with the total decommissioning and 
+demolition of the Hoosier Wind Farm to allow alternate use of site areas afterward.  
+Decommissioning plans and cost estimates are recommended to ensure appropriate budgeting is 
+considered to mitigate the risk of an unmaintained asset after the end of the life of the project. 
+20. Austin J. Baker – Manager, Regulatory Affairs, AES Indiana.
+Mr. Baker addresses the electric operating revenue adjustments from AES Indiana Financial 
+Exhibit AESI-OPER, Schedule REV3 and REV4 to account for test year rider revenues and to 
+reasonably normalize and annualize revenue. AES Indiana Financial Exhibit AESI-OPER, 
+Schedule REV10 incorporates the increased revenues from proposed rates that are presented by 
+AES Indiana witness Rimal. The proposed rates in this case result in residential bills that remain 
+competitive. The proposed changes and modifications to update AES Indiana’s Tariff are 
+reasonable and support the proposals presented by other AES Indiana witnesses. 
+21. Bickey Rimal – Vice President, Concentric Energy Advisors, Inc.
+Using the Concentric Cost of Service Model, AES Indiana’s overall revenue requirements have 
+been allocated to the various classes of service in a manner that reflects the relative costs of 
+providing service to each class. This is accomplished through analyzing costs and assigning each 
+15 
+173189247v1 
+customer or rate class its proportionate share of the utility’s total revenues and costs within the test 
+year. The Allocated Cost of Service Study (“ACOSS”) followed the industry standard three step 
+approach of cost functionalization, cost classification, and cost allocation to establish cost 
+responsibility of each rate class. 
+The results of the ACOSS show that at present rates there is a wide variation in the rates of return 
+by rate schedule. Even though the goal is to move all rate classes to their cost of service, consistent 
+with the policy of the state, the Company considered affordability for each of the customer classes 
+and determined that the percentage rate increases experienced by individual rate schedules should 
+be mitigated to moderate the impacts on individual rate schedules. Using the results of the ACOSS 
+as a guide and in collaboration with the Company, the revenue requirement was allocated to classes 
+such that the current subsidy associated with each class was reduced. Rates were then designed to 
+increase the alignment of rate structures and cost structures by reducing the proportion of the fixed 
+costs recovered through variable energy charges. Even though the proposed increases to customer 
+charges for residential and small commercial customers move in the direction of recovering more 
+of the fixed costs in the customer charge, a substantial portion of fixed costs will still be recovered 
+in the variable energy charge component of the rates for these customers. The proposed rates and 
+rate structures for large industrial customers are very closely aligned with the unit costs resulting 
+from the ACOSS. As a result, the proposed rate structure and rates are just, reasonable, and not 
+unreasonably preferential or discriminatory. Further, the proposed rate structure and rates are 
+expected to provide AES Indiana with a reasonable opportunity to earn the required return on its 
+invested capital and recover its necessary and reasonable operating expenses. 
+Using the results of the ACOSS, Mr. Rimal developed the updated TDSIC revenue allocation 
+factors by rate code based on firm load.  AES Indiana Attachment BR-13 shows the TDSIC 
+revenue allocation factors. 
+Mr. Rimal conducted a comparison of LED street lighting versus other street lighting required by 
+the Settlement Agreement in Cause No. 45911. He explains the comparison of LED street lighting 
+to other street lighting is not very relevant currently because the Company is unable to provide 
+non-LED street lighting services to customers for majority of light types. The Company is unable 
+to procure non-LED lights in any meaningful quantity at this time and for certain light types the 
+Company is unable to procure non-LED lights at all. 
+Mr. Rimal conducted the low load factor analysis required by the Settlement Agreement in Cause 
+No. 45911 and shared the result of the analysis with the relevant stakeholders. 
+Mr. Rimal conducted cost allocation and designed illustrative rates to evaluate the difference 
+between residential multi-family and non-multi-family customers. Based on his analysis, Mr. 
+Rimal concludes that the cost to serve a multi-family customer is very similar to the cost of serving 
+a non-multi-family customer and as result a distinct and separate multi-family rate is not necessary 
+at this time. 
+EXHIBIT C 
+AES Indiana 2023 Basic Rate Case 
+PROPOSED 
+300 Day Rate Case Schedule Under 
+IURC GAO 2013-5 and Ind. Code § 8-1-2-42.7 
+1 
+Per GAO 
+DAY(week)(increment) 
+ACTION 
+Proposed/Agreed Date 
+(variations italics)
+Tue. June 3, 2025 
+0 
+Petition &Case-in-Chief;  
+Tue. June 3, 2025 
+Tue. July 1
+28 (wk 4)(28)
+Prehearing Conference (if 
+Tue. July 1
+Tue. July 22 
+49 (wk 7)(21) 
+Technical Conferences 
+This schedule does not 
+address technical 
+conferences
+Tue. Aug. 19 
+77 (wk 11)(28) 
+Field Hearing 
+TBA by IURC 
+Tue. Sept. 9
+98 (wk 14)(21)
+OUCC & Intervenors Case-
+Tue. Sept. 9
+Tue. Oct. 7 
+126 (wk 18)(28) 
+Rebuttal/Cross-Answering 
+Tue. Oct. 7 
+Tue. Oct. 14 
+133 (wk 19)(7) 
+Settlement Agreement and 
+supporting testimony. PerP 
+GAO 2013-5 this is last day 
+to submit settlement 
+agreement with supporting 
+testimony and maintain 
+overall schedule.
+Tue. Oct. 14 
+Oct. 22 
+3 business days before 
+hearing
+Witness Order submitted 
+Oct. 21 
+Tue. Oct. 28- Wed. 
+Nov. 12 (Nov 11 
+rolls forward to 
+next business day) 
+147-161 
+(wks 21 & 22)(14) 
+Evidentiary Hearing (adjust 
+schedule to limit to 4 days 
+per week and recognize 
+holiday, NARUC and ISBA 
+Utility Law Conference) 
+OPTION A: 
+Mon. Oct. 27- Tues. Oct. 
+28; 
+Mon. Nov. 3- Thurs. Nov.6;
+Thurs. Nov. 13-Fri. Nov. 
+14;  
+Mon. Nov. 17-Tues. Nov. 
+18. 
+OPTION B:: 
+Mon. Nov. 3-Thurs. Nov.6;
+Thurs. Nov. 13-Fri. Nov. 
+14; 
+Mon. Nov. 17-Thurs. Nov. 
+20.
+EXHIBIT C 
+AES Indiana 2023 Basic Rate Case 
+PROPOSED 
+300 Day Rate Case Schedule Under 
+IURC GAO 2013-5 and Ind. Code § 8-1-2-42.7 
+2 
+Tue. Dec 2  
+Day 182 (wk 26) (21) 
+AES Indiana Proposed Order
+– advance PO filing if 
+OUCC/Int. date so advanced 
+to better accommodate 
+holidays
+Tues. Nov. 25 
+Tue. Dec. 23 
+203 (wk 29) (21) 
+OUCC & Intervenors Post 
+Hearing Filings 
+Wed. Dec. 17 
+Tue. Dec. 30 
+210 (week 30)(7) )  
+AES Indiana Reply Brief 
+(adjust to accommodate 
+holidays)
+Fri. Jan. 2, 2026 
+Mon. Mar. 23, 2026 90 days from exceptions date -- 
+-- 
+ Mon.  Mar 30  
+300 (wk 43) 
+Statutory Order deadline 
+Wed. Apr. 1, 2026 (move
+to reg. conf. day)
+EXHIBIT C 
+AES Indiana 2023 Basic Rate Case 
+PROPOSED 
+300 Day Rate Case Schedule Under 
+IURC GAO 2013-5 and Ind. Code § 8-1-2-42.7 
+3 
+173168274v2 
+Other terms:  
+Technical Conference: Nothing in this schedule precludes a party from proposing a technical 
+conference. 
+Service: The parties will provide same day service of filings via email, hand delivery or large file 
+transfer. 
+Discovery: Discovery is available to all parties and shall be conducted on an informal basis. Any 
+response or objection to a discovery request shall be made within ten (10) calendar days of the 
+receipt of such request until October 7, 2025. Thereafter, any response or objection to a discovery 
+request shall be made within five (5) business days of the receipt of such request. Any discovery 
+communication received after noon on a Friday or after 5:00 p.m. on any other business day shall 
+be deemed to have been received the following business day. There will be blackout dates for 
+discovery from August 30, 2025 through September 1, 2025. Dates designated as “blackout dates” 
+shall not be included in determining the number of days provided for responding to a discovery 
+request.  The last date on which a discovery response or objection will be due is two days prior to 
+the first day of the evidentiary hearing. The Parties may conduct discovery through electronic 
+means. Subject to the protection of confidential information, all parties will be served with 
+discovery requests and responses. 
+Workpapers: When prefiling technical evidence with the Commission, each party shall file copies 
+of the work papers used to produce that evidence within two (2) business days after the prefiling 
+of such technical evidence. Copies of the same shall also be served on the other parties to this 
+Cause. 
+Number of Copies/Corrections: Filings with the Commission shall comply with General 
+Administrative Order 2016-2. Any corrections to prefiled testimony shall be made in writing as 
+soon as possible after discovery of the need to make such corrections. 
+Objections to Prefiled Testimony and Attachments: Any objections to the admissibility of prefiled 
+testimony or attachments shall be filed with the Commission and served on all parties of record 
+not less than five (5) business days prior to the date scheduled for commencement of the hearing 
+at which the testimony or exhibit will be offered into the record. 
+Temporary Rates: This schedule does not address temporary rates. 

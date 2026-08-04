@@ -1,0 +1,15 @@
+{
+  "jurisdiction": "Georgia Public Service Commission (GA PSC)",
+  "docket": "56002",
+  "source_url": "https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/221233/102406",
+  "source_detail_page": "https://psc.ga.gov/search/facts-document/?documentId=221233",
+  "facts_document_id": 221233,
+  "facts_file_id": 102406,
+  "document_title": "Georgia Power Company's 2025 Integrated Resource Plan - Main Document, Public Disclosure version",
+  "filing_date": "2025-01-31",
+  "filer": "Georgia Power Company",
+  "how_obtained": "Fetched the GA PSC FACTS document-detail page /search/facts-document/?documentId=221233 to read its download link, then downloaded the 103,717,722-byte ZIP '2025_irp_public_disclosure.zip' from the public API endpoint https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/221233/102406. The server ignores HTTP Range requests, so the whole archive had to be pulled. Unzipped it and took only 'Main Document/2025 IRP Main Document.pdf'; every Technical Appendix volume in the same archive was left alone. Converted that PDF to text with pdfminer.six extract_text(). Saved exactly as pdfminer emitted it - no reflow, no de-hyphenation (e.g. 'non-\\nassociated' is left broken across lines), no ligature or soft-hyphen repair; dot-leader tables of contents and form feeds left in place. PAIRS WITH: ga-56002-irp-2025-errata-2-section-g3-replacement.txt. Section G.3 of THIS document reads 'interconnected with 12 non-associated utilities through 61 different transmission facilities'; the errata replaces it with 14 and 68 respectively.",
+  "sha256": "b1899608fcf304be3001937dec79ff0be1a96c54af88d0d296864a90536218f4",
+  "bytes": 419536,
+  "retrieved_at": "2026-08-04T16:58:18Z"
+}

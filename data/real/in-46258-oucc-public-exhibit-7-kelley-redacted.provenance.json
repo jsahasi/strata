@@ -1,0 +1,15 @@
+{
+  "source_url": "https://iurc.portal.in.gov/_entity/sharepointdocumentlocation/2376d4b8-528e-f011-b4cc-001dd80846ac/bb9c6bba-fd52-45ad-8e64-a444aef13c39?file=46258%20OUCC%20Public%20Exhibit%20No.%207%20Redacted%20Testimony%20of%20OUCC%20Witness%20Patrick%20A.%20Kelley_09-09-2025.pdf",
+  "retrieved_at": "2026-08-04T16:54:02Z",
+  "sha256": "6e009b48c63eda593781f58f0362273d5d2332309a24fd2dc01d6ebb2a458ff7",
+  "sha256_source_pdf": "1cac1144aeae3871e0943071f3e4541ac2381cdfe897b8113f325f62c306899f",
+  "jurisdiction": "Indiana (IURC)",
+  "docket": "46258",
+  "document_title": "OUCC Public Exhibit No. 7 - Redacted Testimony of OUCC Witness Patrick A. Kelley (public redacted version)",
+  "filing_date": "2025-09-09",
+  "filer": "Indiana Office of Utility Consumer Counselor (OUCC)",
+  "source_pdf_bytes": 3702532,
+  "text_bytes": 52133,
+  "pages": 36,
+  "how_obtained": "Fetched the PDF over HTTPS with curl (no login, no cookies; the IURC portal serves these documents anonymously). Converted to text with PyMuPDF page.get_text() using default settings, concatenating pages in order with no separator inserted and no other change: line breaks, spacing, hyphenation, running heads, margin line numbers and any OCR errors are left exactly as the extractor produced them."
+}

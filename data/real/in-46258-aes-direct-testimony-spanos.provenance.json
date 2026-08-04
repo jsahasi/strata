@@ -1,0 +1,15 @@
+{
+  "source_url": "https://iurc.portal.in.gov/_entity/sharepointdocumentlocation/6eecdad9-ab40-f011-b4cc-001dd803db57/bb9c6bba-fd52-45ad-8e64-a444aef13c39?file=46258_AESIN_Direct%20Testimony%20of%20John%20Spanos%20-%208%20of%2021_060325.pdf",
+  "retrieved_at": "2026-08-04T16:54:02Z",
+  "sha256": "de4605a63aaef3ac3fc08e25921c44c532ac1858ee8b6368b156858a4c65f2a6",
+  "sha256_source_pdf": "58b825dadf0a517b459877870f430f7e8f90e6594b1a6df2a0c73df5cefb6dcf",
+  "jurisdiction": "Indiana (IURC)",
+  "docket": "46258",
+  "document_title": "Direct Testimony of John J. Spanos (8 of 21), with depreciation study attachments",
+  "filing_date": "2025-06-03",
+  "filer": "Indianapolis Power & Light Company d/b/a AES Indiana",
+  "source_pdf_bytes": 14094982,
+  "text_bytes": 1635608,
+  "pages": 767,
+  "how_obtained": "Fetched the PDF over HTTPS with curl (no login, no cookies; the IURC portal serves these documents anonymously). Converted to text with PyMuPDF page.get_text() using default settings, concatenating pages in order with no separator inserted and no other change: line breaks, spacing, hyphenation, running heads, margin line numbers and any OCR errors are left exactly as the extractor produced them."
+}

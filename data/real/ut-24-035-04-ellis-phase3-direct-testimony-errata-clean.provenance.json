@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Utah",
+  "commission": "Public Service Commission of Utah",
+  "docket": "24-035-04",
+  "proceeding": "Application of Rocky Mountain Power for Authority to Increase its Retail Electric Utility Service Rates in Utah and for Approval of its Proposed Electric Service Schedules and Electric Service Regulations",
+  "how_obtained": "Found the docket page on psc.utah.gov (a WordPress site: /<yyyy>/<mm>/<dd>/docket-no-<docket>/), read its raw HTML and pulled the pscdocs.utah.gov links out of it. Utah serves every document at a flat, guessable path: https://pscdocs.utah.gov/<utility>/<yy>docs/<docketdigits>/<docid><AbbreviatedTitle><m-d-yyyy>.pdf, with no login and no session. Downloaded with curl and extracted text with PyMuPDF sorted-block extraction (page.get_text('text', sort=True)), pages joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://pscdocs.utah.gov/electric/24docs/2403504/338343PhsIIIDirTstmnyMarkEllisOCSCln%202-18-2025.pdf",
+  "document_title": "Phase III Direct Testimony of Mark Ellis for the Office of Consumer Services - Clean",
+  "filing_date": "2025-02-18",
+  "filer": "Utah Office of Consumer Services",
+  "witness": "Mark Ellis",
+  "document_type": "Corrected direct testimony, clean copy",
+  "pages": 32,
+  "version_role": "errata (clean)",
+  "version_pair_with": "ut-24-035-04-ellis-phase3-direct-testimony-original.txt",
+  "notes": "Same 32 pages. A plain diff against the original reports well over thirty changed lines, but almost all of them are the running head repeating on every page. Only four are substantive: the title page, page 1 line 13, and the two exhibit self-references. Separating the repeated boilerplate change from the real edits is the interesting part. Note the live source filename contains a literal space before the date, encoded %20.",
+  "sha256": "d6915ca8a4564b11a2b2bedb7b8cb35f16e2040161211abc66b488feb5c1321e",
+  "bytes": 57057,
+  "retrieved_at": "2026-08-04T16:59:54Z",
+  "source_pdf_sha256": "be0918c60686fe2cf4b1b3e42daff1963314fe7bd9458fadb66e9ab2745f5300",
+  "source_pdf_bytes": 220606
+}

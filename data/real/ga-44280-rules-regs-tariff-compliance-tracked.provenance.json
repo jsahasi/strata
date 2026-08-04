@@ -1,0 +1,15 @@
+{
+  "jurisdiction": "Georgia Public Service Commission (GA PSC)",
+  "docket": "44280",
+  "source_url": "https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/221656/102762",
+  "source_detail_page": "https://psc.ga.gov/search/facts-document/?documentId=221656",
+  "facts_document_id": 221656,
+  "facts_file_id": 102762,
+  "document_title": "Revisions to Rules and Regulations Tariff Compliance Filing - TRACKED-CHANGES (redline) version of the revised tariff sheets",
+  "filing_date": "2025-02-28",
+  "filer": "Georgia Power Company",
+  "how_obtained": "Fetched the GA PSC FACTS document-detail page /search/facts-document/?documentId=221656 to read its download link, then downloaded the ZIP 'dkt_44280_revisions_to_rules_and_regs_tariff_compliance_filing.zip' from the public API endpoint https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/221656/102762. Unzipped it and took only 'Tracked/DKT 44280 Tracked.pdf'. Its clean twin is saved as ga-44280-rules-regs-tariff-compliance-clean.txt. NOTE: because this is a redline, flat text extraction collapses each deletion and its replacement into a single run - e.g. 'JanuaryApril, 2025' is struck 'January' immediately followed by inserted 'April'. That artefact is left in deliberately. Converted the PDF to text with pdfminer.six extract_text(). Saved exactly as pdfminer emitted it - no reflow, no de-hyphenation, no ligature or soft-hyphen repair; running heads, marginal line-number columns, dot leaders and form feeds all left in place.",
+  "sha256": "a4585b4d31d3ff32b598c0bd4222fb6780ca0a1d4e9e532303ee0a79e2a887b1",
+  "bytes": 62529,
+  "retrieved_at": "2026-08-04T16:51:28Z"
+}

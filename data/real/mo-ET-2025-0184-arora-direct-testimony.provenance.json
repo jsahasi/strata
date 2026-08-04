@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Missouri",
+  "commission": "Missouri Public Service Commission",
+  "docket": "ET-2025-0184",
+  "proceeding": "In the Matter of the Application of Union Electric Company d/b/a Ameren Missouri for Approval of New Modified Tariffs for Service to Large Load Customers",
+  "how_obtained": "Found the filing through the Missouri EFIS case search. The search form at /Case/Search posts with an ASP.NET antiforgery token, so I fetched that page with a cookie jar, read the token out of the HTML, and POSTed SubmissionNumber=ET-2025-0184 with IsIndividualFilingSearch=true. The JSON reply carries a results grid of /Case/FilingDisplay/<id> links; each of those pages lists its attachments as /Document/Display/<id>, which serves the PDF publicly with no login. Downloaded the PDF with curl and extracted text with PyMuPDF sorted-block extraction (page.get_text('text', sort=True)), pages joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://efis.psc.mo.gov/Document/Display/859358",
+  "efis_filing_url": "https://efis.psc.mo.gov/Case/FilingDisplay/634146",
+  "document_title": "Exhibit No. 1 - Direct Testimony of Ajay K. Arora",
+  "filing_date": "2025-12-03 (marked as hearing Exhibit No. 1; testimony originally filed 2025-05-14)",
+  "filer": "Union Electric Company d/b/a Ameren Missouri",
+  "witness": "Ajay K. Arora",
+  "document_type": "Direct testimony admitted as a hearing exhibit",
+  "pages": 33,
+  "version_role": "testimony corrected by a separate errata sheet (Exhibit No. 10)",
+  "notes": "The matching Amended Errata Sheet was filed as Exhibit No. 10, document 859403. That errata sheet is a scanned image with no text layer, so its corrections could not be retrieved as text and it was not saved.",
+  "sha256": "7f96a28be76317568430151ec2048dabd52786312f03f4bb4db18581b908399c",
+  "bytes": 64114,
+  "retrieved_at": "2026-08-04T16:54:01Z",
+  "source_pdf_sha256": "88e7e18523367ccbcae7653d8235dc4020fd844ee1f18e4ee27bcf7536b39638",
+  "source_pdf_bytes": 993216
+}

@@ -1,0 +1,460 @@
+
+===PAGE 1===
+260750228COMMONWEALTH OF VIRGINIA
+STATE CORPORATION COMMISSION
+AT RICHMOND, JULY 31, 2026
+APPLICATION OF
+VIRGINIA ELECTRIC AND POWER COMPANY CASE NO. PUR-2026-00056
+FINAL ORDER
+On May 1, 2026, Virginia Electric and Power Company d/b/a Dominion Energy Virginia 
+(“Dominion” or “Company”), pursuant to § 56-585.1 A 4 (“Subsection A 4”) of the Code of
+Virginia (“Code”) and 20 VAC 5-204-5, 20 VAC 5-204-10, 20 VAC 5-204-60, and 
+20 VAC 5-204-90 of the Rules Governing Utility Rate Applications and Annual Informational
+Filings of Investor-Owned Electric Utilities, 20 VAC 5-204-5, et seq., filed an application 
+(“Application”) with the State Corporation Commission (“Commission”) for approval of a 
+revised increment/decrement rate adjustment clause (“RAC”) designated as Rider Tl, for an 
+adjustment to the Company’s recovery of costs under Subsection A 4, currently being recovered 
+through a combination of the Subsection A 4 component of base rates and the current Rider Tl.
+Subsection A 4 deems to be reasonable and prudent, among other things, the “costs for 
+transmission services provided to the utility by the regional transmission entity of which the 
+utility is a member” and “costs charged to the utility that are associated with demand response 
+programs approved by the Federal Energy Regulatory Commission [(“FERC”)] and administered 
+by the regional transmission entity of which the utility is a member.”
+The Company has been a member of PJM Interconnection, L.L.C. (“PJM”), a regional 
+transmission entity that has been approved by FERC as a regional transmission organization,
+For approval of a rate adjustment clause pursuant to 
+§ 56-585.1 A 4 of the Code of Virginia
+State Corporation Commission 
+Document Control Center 
+07/31/2026-4:56 PM
+
+===PAGE 2===
+260750228
+Dominion, as an integrated electric utility member of PJM, obtains transmission 
+service from PJM and pays PJM charges for such service at the rates contained in PJM’s Open
+Access Transmission Tariff approved by FERC.* 2 The Company stated that it also pays PJM 
+charges for costs associated with demand response programs approved by FERC and 
+administered by PJM.3
+In this proceeding, Dominion sought approval of a revenue requirement for the rate year
+September 1, 2026, through August 31, 2027 (“Rate Year”).4 This revenue requirement, if 
+approved, would be recovered through a combination of base rates and a revised 
+increment/decrement Rider Tl. Rider T1 is designed to recover the increment/decrem ent 
+between the revenues produced from the Subsection A 4 component of base rates and the new 
+revenue requirement developed from the Company’s Subsection A 4 costs for the Rate Year.5
+The total proposed revenue requirement to be recovered over the Rate Year is 
+$1,538,974,037, comprising an increment Rider Tl of $998,533,997, and forecast collections of 
+$540,440,040 through the transmission component of base rates.6 This total revenue 
+requirement represents an increase of $206,899,352 compared to the revenues projected to be 
+produced during the Rate Year by the combination of the base rate component of Subsection A 4 
+i Ex. 2 (Application) at 4.
+2 Id.
+3 Id. at 5.
+* Id. at 1.
+5 Id. at 6.
+6 Id.; Ex. 4 (Wilkinson Direct) at 2.
+2
+since 2005.1
+
+===PAGE 3===
+260750228
+(the Company’s former Rider T) and the Rider T1 rates currently in effect.7 * Implementation of 
+the proposed Rider T1 on September 1, 2026, would increase the total monthly bill of a typical 
+8residential customer using 1,000 kilowatt-hours per month by $2.90.
+In Case No. PUR-2025-00058, the Commission directed the Company, in its next filing 
+pursuant to Code § 56-585.1 A 4, to develop and propose alternative cost allocations for the 
+purpose of examining transmission cost allocation.9 The Commission further directed that one 
+alternative shall be a modified Average & Excess model that incorporates principles from a six- 
+month (or higher) coincident peak allocation methodology.10 In response to this directive, the
+Company addressed, among other things: (i) the requested alternative cost allocation 
+methodologies; (ii) the impact of such methods on the GS-5 rate class; and (iii) whether there are 
+any additional considerations impacting transmission rates of return, especially for the GS-4 and
+GS-5 classes, beyond allocation methodology.11
+On May 11, 2026, the Commission issued an Order for Notice and Hearing (“Procedural
+Order”) in this proceeding that, among other things, docketed the Application; established a 
+procedural schedule; directed Dominion to provide notice of its Application to the public;
+provided interested persons an opportunity to comment on the Application or participate in the 
+8 Ex. 6 (Caffall Direct) at 8.
+10 Id. at 528.
+11 Ex. 7 (Miller Direct) at 3.
+3
+9 Application of Virginia Electric and Power Company for a 2025 biennial review of the rates, terms and conditions 
+for the provision of generation, distribution and transmission services pursuant to § 56-585.1 A of the Code of 
+Virginia, Case No. PUR-2025-00058, 2025 S.C.C. Ann. Rept. 521, 527-528, Final Order (Nov. 5, 2025).
+7 Ex. 4 (Wilkinson Direct) at 2. “The requested total revenue requirement in this Application of $1,538,974,037 
+represents an increase of $195,638,302 from the total revenue requirement approved for recovery in Case No. 
+PUR-2025-00076.” Id.
+
+===PAGE 4===
+260750228
+proceeding as a respondent by filing a notice of participation; scheduled public witness and 
+evidentiary hearings; directed the Staff of the Commission (“Staff’) to investigate the
+Application and file testimony and exhibits containing its findings and recommendations 
+thereon; and appointed a Hearing Examiner to conduct all further proceedings in this matter.
+Notices of participation were timely filed by the Virginia Committee for Fair Utility
+Rates (“Committee”); Appalachian Voices (“APV”); Microsoft Corporation (“Microsoft”); Old
+Dominion Electric Cooperative (“ODEC”); Piedmont Environmental Council (“PEC”); Amazon
+Data Services (“Amazon”); Sierra Club and the National Resources Defense Council (together as 
+“Joint Respondents”); Google, LLC (“Google”); Stack Infrastructure, Inc. (“Stack”); Virginia,
+Maryland, and Delaware Association of Electric Cooperatives (“Association”); Loudoun County,
+Virginia (“Loudoun”); Scout Development, LLC (“Scout”); and the Office of the Attorney
+General’s Division of Consumer Counsel (“Consumer Counsel”). The Commission received 
+hundreds of public comments on Dominion’s Application. On June 3, 2026, Dominion filed 
+proof of notice as directed in the Procedural Order.
+On June 11, 2026, respondent testimony was filed by Amazon, PEC, ODEC12, APV,
+Google, Joint Respondents, Committee, and Scout. Staff filed the testimony of four witnesses on
+June 16, 2026. Dominion filed rebuttal testimony on June 30, 2026.
+The public witness hearing was held on July 14, 2026,13 followed immediately by the 
+evidentiary hearing which also convened on July 14, 2026, and concluded on July 16, 2026.
+Counsel for Dominion, the Committee, APV, Microsoft, ODEC, PEC, Amazon, Joint
+Respondents, Google, the Association, Loudoun, Scout, Consumer Counsel and Commission
+12 ODEC filed the corrected testimony of witness Eric Dembek on July 9, 2026.
+13 Two public witnesses testified at the public witness hearing. Tr. 8.
+4
+
+===PAGE 5===
+260750228
+Staff were in attendance.14 As directed by the Commission, counsel for these parties delivered 
+closing arguments at the end of the proceedings.
+On July 20, 2026, APV, Microsoft, PEC, the Committee, ODEC, Amazon, and Dominion 
+filed post-hearing responses to Commissioner Bagot’s questions posed to the parties during the 
+proceedings.
+NOW TELE COMMISSION, upon consideration of this matter, is of the opinion and finds 
+as follows.15
+Revenue Requirement
+The Company’s Application filed in this proceeding proposed a total Rider T1 revenue 
+requirement of $1,538,974,037,16 of which $598,621,98917 is to be collected in base rates and 
+$940,352,04818 collected through Rider T1 during the Rate Year. The Commission recognizes 
+that approval of this uncontested revenue requirement will increase monthly bills paid for by 
+virtually all customers.19 Pursuant to the language of Subsection A 4, the costs that are the 
+subject of this Application are “deemed reasonable and prudent,” including the Company’s 
+return on investment, which is set by FERC; the Commission is without discretion to add or 
+subtract from these costs.
+14 Stack was excused from participating at the hearing. Loudoun County was excused following opening statements.
+16 Ex. 2 (Application) at 6.
+17 This is an increase from the $540,440,040 proposed in the Application. See Ex. 28 (Caffall Rebuttal) at 2.
+18 This is a decrease from the $998,533,997 proposed in the Application. Id.
+19 Id. at Sch. 6.
+5
+15 The Commission has fully considered the evidence and arguments in the record. See also Board of Supervisors of 
+Loudoun County v. State Corp. Comm ’n, 292 Va. 444, 454 n. 10 (2016) (“We note that even in the absence of this 
+representation by the Commission, pursuant to our governing standard of review, the Commission’s decision comes 
+to us with a presumption that it considered all of the evidence of record.”) (citation omitted).
+
+===PAGE 6===
+260750228
+Revenue Requirement Allocation Methodology
+The Commission approves the amended 12-CP allocation methodology, as fully 
+described and updated in the Company’s rebuttal case, for the purpose of allocating costs in
+Rider T1 during the Rate Year. This methodology enjoyed support from diverse perspectives 
+including Staff, the Company, the Committee, and Consumer Counsel.20
+The amended 12-CP allocation methodology includes two key changes. First, the 
+amended 12-CP allocation methodology includes a forecast adjustment to align the customer 
+class level allocation determinants with the expected customer billing units for the Rate Year.21
+As explained by the Company, with rapid year-over-year expected growth in large-load 
+customers, this adjustment results in comparably lower rates for non-large-load customer 
+classes.22 Second, the amended 12-CP allocation methodology includes a minimum demand 
+adjustment to the allocation factor used for this proceeding.23 This adjustment applies the newly 
+adopted minimum demand charges for large-load customers, with a minimum charge for 
+transmission of 85% of a large-load customer’s contract demand (for any customers whose 
+actual usage does not exceed that threshold) beginning January 1, 2027.24 In effect, the
+Company adjusted actual customer-level load to the 85% minimum demand threshold, which 
+21 Ex. 27 (Miller Rebuttal) at 16.
+22 Id.
+23 Id. at 22.
+24 Id at 19.
+6
+20 [Ex. 24 (Pratt) at 21 (Generally agreeing that “the 12 CP Methodology is a reasonable method for allocating the 
+costs of Dominion’s Transmission Facilities.”); Ex. 27 (Miller Rebuttal) at 14 (Testifying that the Company
+continues “to recommend use of the 12 CP methodology with the proposed forecast adjustment for this
+proceeding^]); Ex. 9 (Collins) at 2 (supporting “the 12 CP method to allocate transmission costs in this case.”); Tr. 
+1101 (“Consumer Counsel’s position is that at this time the prudent approach is to continue with the 12-CP method 
+for now and to allow the picture to develop regarding the GS-5 minimum demand charges and their impacts to cost 
+allocation.”).
+
+===PAGE 7===
+260750228
+results in a significant adjustment to the allocation factor.25 At the extremes, this minimum 
+demand adjustment decreases the residential class’s allocation factor by 2.84% and increases the
+GS-4 rate class’s allocation factor by 4.33%.26
+To illustrate the impact of the amended 12-CP allocation methodology using the current
+Rate Year, the Company originally projected a $2.90 monthly bill increase for a typical 
+residential customer using 1,000 kWh.27 As approved herein, the amended 12-CP allocation 
+methodology reduces the projected Rider T1 monthly increase for such a residential customer by 
+67.5%—from $2.90 per month to $0.94 per month.28
+Direct Assignment of Transmission Costs
+Many Respondents and Staff advanced mechanisms in this proceeding through which 
+certain transmission costs could be isolated and directly assigned to large-load customers. These 
+costs fell into three categories: (1) “direct connect” facilities, which generally included 
+transmission substations and associated infrastructure to interconnect a large-load customer to 
+the grid; (2) supplemental projects (excluding direct connect facilities) caused by the 
+interconnection of large-load customers; and (3) transmission backbone infrastructure 
+development or upgrades, including Regional Transmission Expansion Plan projects, from which 
+the large-load customers—among others—would benefit.
+26 Ex. 27 (Miller Rebuttal) at 22.
+27 Ex. 20 (Knight) at 14.
+7
+25 Ex. 17 (Nelson) at 31 (“Because GS-5 loads are growing at a rapid pace, not considering the minimum demand 
+charge within cost allocation could significantly reduce the amount allocated to the class.”).
+28 Ex. 28 (Cahall Rebuttal) at 3. This reduced monthly bill amount also includes the impact of returning choice 
+customer adjustment to the forecast. Id.
+
+===PAGE 8===
+260750228
+Appalachian Voices’ testimony supported “direct assignment to the customers whose 
+growth is driving the need for [supplemental] projects” because “new supplemental projects to
+serve new customers or accommodate load growth have not been designed to widely benefit all
+”29ratepay er s[.]
+ODEC’s testimony supported a process through which Dominion would “[d]irectly 
+[a]llocate the cost of transmission facilities caused by large-load customers in the DOM Zone to 
+large-load customers regardless of the customer’s [electric distribution company (“EDC”)]
+because Dominion is constructing the transmission facilities for all large-load customers in the
+”30 ODEC further proposed that “[t]o ensure that the large-load customer pays forDOM Zone.
+all the transmission facility costs it causes, the Commission should require the customer to pay 
+for ongoing O&M costs associated with the transmission facilities the customer requires for
+service. This could be accomplished through an adjustment to the customer’s NITS29 30 31 32 33 charge, or 
+”32another payment mechanism, to be determined in a new proceeding.
+PEC’s testimony supported “direct assignment of transmission costs for certain M-3 
+supplemental transmission projects including (1) substations and (2) upstream supplemental 
+transmission projects required to connect the substations to the backbone high voltage system
+and any required upgrades to resolve harm identified either internally by Dominion Transmission 
+”33or through a [do no harm] analysis. PEC recommended that certain but-for “costs of the
+29 Ex. 10 (Goggin) at 35.
+30 Ex. 13 (Miller) at 14.
+31 Network Integration Transmission Services.
+32 Ex. 11 (Dembek) at 12.
+33 Ex. 14 (Abbott) at 37-38.
+8
+
+===PAGE 9===
+260750228
+supplemental transmission infrastructure be directly assigned to the retail Large-Load data center
+customer(s) that require the infrastructure and collected from these customers through the 
+”34payment of [a contribution in aid of construction (“CIAC”)].
+The Joint Respondents’ testimony identified tiers of transmission and distribution 
+infrastructure associated with connecting large load customers. ’5 With respect to the 
+transmission function, Joint Respondents supported requiring a CIAC, with a refund mechanism, 
+for all costs from the large-load customer’s meter to the transmission backbone/’6
+Amazon’s testimony supported allowing large-load customers to make voluntary CIACs
+”37“as a way to reduce ratepayer burden. Amazon recommended that a large-load customer
+electing such a voluntarily CIAC option “receive top priority in Dominion’s interconnection
+”38 Amazon disagreed with mandatory direct cost allocation proposals/9queue.
+Google’s testimony supported a change to Dominion’s existing line extension policy to 
+enable large customers to voluntarily make a CIAC for substations, with ongoing maintenance 
+costs being shared by the system.34 35 36 37 38 39 40
+The Committee’s testimony did not directly address direct assignment methodologies.
+34 Id.
+35 Ex. 17 (Nelson) at 20.
+36 Ex. 17 (Nelson) at 21.
+37 Ex. 15 (Brooks) at 6.
+38 Id. at 14.
+39 Id. at 19.
+40 Ex. 18 (Berry) at 7.
+9
+
+===PAGE 10===
+260750228
+Staff recommended Dominion be required to file proposed modifications to its line 
+extension policy to provide for the cost recovery of transmission facilities through a net-of- 
+revenue CIAC, if such facilities would not have been necessary, absent a customer’s service 
+connection, or service upgrade.41 Staff identified numerous unresolved issues if Dominion’s line 
+extension policy were amended to allow for such CIACs.42 43 In order to satisfy its statutory 
+obligations, Staff asserted that the Commission could issue an order determining Rider T1 rates 
+and direct further proceedings, in the instant case docket, for the receipt and consideration of 
+proposed line extension policy modifications.4j
+Dominion did not favor direct assignment and took the position that it would be prudent 
+for the Commission to allow the new minimum demand charge structure and current cost 
+allocation methodology to mature before directing any further substantial changes to the 
+transmission cost recovery framework.44 In the event that the Commission desired to consider 
+direct assignment in the immediate term, the Company provided two pathways forward. The
+Company’s preferred option is direct assignment of costs to the newly created GS-5 class, or 
+appropriate cooperative/other EDC, in situations where the Commission in a respective 
+transmission CPCN proceeding has determined that some or all of the need for the project is 
+being driven by a GS-5 or similar cooperative/other EDC customer.45 The Company’s second 
+41 Ex. 24 (Pratt) at 28.
+42 Id. at 29-30.
+43 Id. at 28-29.
+44 Ex. 25 (Hines Rebuttal) at 3.
+45 Id. at 7-9.
+10
+
+===PAGE 11===
+260750228
+alternative is for direct assignment of costs to the triggering customer, as opposed to the class, 
+through an ongoing facilities charge over the life of the customer’s contract.46
+At the hearing, the Company, Respondents, and Staff generally agreed that if the
+Commission were to pursue direct assignment of certain transmission costs, supplemental 
+proceedings would be needed.4' Accordingly, the Commission will establish a docket forthwith 
+for that purpose, with certain parameters defined below:
+Dominion’s Terms and Conditions for Electric Line Extensions and Installations
+The record in the current case supports directing Dominion, after coordinating with
+Staff,48 to file for the approval of amendments to the Company’s existing line extension policy 
+that would require a mandatory CIAC for defined types of transmission facilities. The Company 
+is directed to file, in the new docket to be established by the Commission, a proposed amended 
+line extension policy within 90 days from the date of this Final Order. The Commission 
+provides below parameters that shall be reflected in the amended line extension policy, with the 
+understanding that some refinements and additional consideration may be necessary.
+Under Dominion’s existing line extension policy, projected customer revenue is used to 
+determine a “revenue credit,” which is applied against the capital expenditures incurred by
+Dominion to construct and install certain new or expanded distribution facilities to serve the 
+46 Id. at 9.
+11
+47 See e.g., Ex. 25 (“Hines Rebuttal”) at 16 (Recommending that “broader questions of transmission cost recovery 
+and cost allocation from large-load customers [occur] in a separate future proceeding . . . .”); Ex. 24 (Pratt) at 28 
+(“Staff believes that the Commission could issue an order determining Rider T1 rates and direct further proceedings, 
+in the instant case docket, for the receipt and consideration of the Company’s proposed line extension policy 
+modifications.”); Tr. 969, 973, 1086, 1091, 1015-1016, 1025, 1044, 1055, 1059, 1098.
+48 Staff identified a number of outstanding questions in the event that the Commission directed amendments to 
+Dominion’s line extension policy. Ex. 24 (Pratt) at 29. The Company and Staff are directed to consider these 
+questions in its coordinated efforts and Dominion is directed to address these questions when filing its amended line 
+extension policy.
+
+===PAGE 12===
+260750228
+customer.49 The remaining amount of capital expenditure, net of this revenue credit, is then 
+charged to the individual customer through a CIAC.50 Dominion is directed to follow a similar 
+net-of-revenue approach51 52 for certain capital expenditures, defined below, incurred by Dominion 
+to install new or expanded transmission facilities to serve large-load customers. However, the 
+revenue used to determine the amount of the mandatory CIAC shall be limited to revenues 
+expected to be produced by a customer’s transmission charges.
+The Commission clarifies that such a change to the line extension policy is to apply 
+,„52prospectively and only to “direct connect' transmission facilities—generally meaning
+substations and the lines connecting the customer to the bulk transmission system—that are 
+needed to serve new or expanding large-load customers (in these instances the large-load 
+customer would be the but-for cause of the “direct connect” transmission facilities).
+The record established that there is a relationship between mandatory CIACs and the risk 
+addressed by collateral requirements recently approved for certain large-load customers.53 The
+Commission directs the Company, in coordination with Staff, to consider how the mandatory
+CIAC can be used to offset or reduce collateral requirements in an equitable manner.
+Direct Assignment of Additional Transmission Costs
+49 Ex. 24 (Pratt) at 24.
+50 Id.
+12
+51 If warranted, the Commission would consider a varying benchmark multiple for continuing estimated annual 
+revenue.
+53 See., e.g., Tr. 364 (PEC Witness Abbott testifying that a “CIAC would completely eliminate all risk [of stranded 
+costs] going forward. So it would still be better than the collateral requirements.”).
+52 The record in this proceeding sketches a definition of “direct connect” facilities to include: substations and lines, 
+Tr. 551, and other transmission infrastructure that is necessary to connect the large-load customer to the bulk 
+transmission system. Tr. 505, 582-589. Dommion, in coordination with Staff, is directed to propose an explicit 
+definition of “direct connect” facilities when it files the amended line extension policy.
+
+===PAGE 13===
+260750228
+The Commission recognizes that a line extension policy addressing “direct connect” 
+transmission facilities may not address all instances in which a utility may incur transmission- 
+related costs to address transmission system reliability criteria violations that appear to be 
+directly caused by the addition of one or more large-load customers. 54 The Commission remains 
+committed to ensuring a fair and reasonable—but not excessive—allocation of appropriate costs 
+to large-load customers. To that end, the Commission may use the upcoming docket to also 
+consider: (i) if the amended line extension policy described above could or should be extended to 
+higher-order transmission costs;55 (ii) a blended approach whereby the “direct connect” facilities 
+are subject to the amended line extension policy described above while higher-order transmission 
+costs (e.g., supplemental project costs not covered by the line extension policy) are directly 
+assigned to the GS-5 rate class;56 or (iii) maintain the course with the amended line extension 
+policy addressed herein.
+The Commission recognizes that over the last two years it has explored and approved 
+meaningful tariff reforms57 (e.g., creation of a new GS-5 rate class, and tariff provisions 
+requiring collateral requirements, minimum demand charges, exit fees, and a 14-year term 
+period),58 all related to protecting legacy customers from the risks associated with connecting 
+new large-load customers. The tariff reforms approved, and those envisioned in the expanded 
+54 See e.g., Ex. 22; Tr. 665.
+56 Ex. 25 (Hines Rebuttal) at 7.
+57 Tr. 1041.
+58 Tr. 1047.
+13
+55 Some parties recognized that the transmission system could benefit from more regional transmission planning—as 
+compared to supplemental projects. E.g., Ex. 10 (Goggin) at 17-18. To the extent that the Company has more of a 
+financial incentive to avoid a CIAC, such an extension of the line extension policy to include supplemental projects 
+could drive more regional planning.
+
+===PAGE 14===
+260750228
+line extension policy, are a reflection of the imposing risks that could be realized through the 
+sudden influx of new singularly large customers. The Commission also recognizes the potential 
+rate benefits associated with such an increased number of billing determinants over which to 
+spread system costs.
+While the current record supports a more rapid approach towards direct assignment of 
+costs through a CIAC for “direct connect” facilities, the Commission finds that the record 
+supports a more deliberate approach to the question of direct assignment of higher-order 
+transmission costs. The Commission acknowledges that many of the recent tariff reforms, 
+including the expanded line extension policy envisioned in this Final Order, will require some 
+period of time before impacts can be fully understood and any benefits realized. In addition, the
+Commission is aware that FERC is considering reforms that may overlap or duplicate efforts 
+already being implemented at the state-level.59 Nonetheless, within the Commission’s 
+jurisdictional line of authority, if existing or new tariff reforms prove to be insufficient, the
+Commission retains the tools necessary to make appropriate adjustments.
+Mutual Operating Agreements
+As identified in the Committee’s Post-Hearing filing addressing potential jurisdictional 
+limits of the Commission in creating a CIAC mechanism for certain supplemental projects, 
+“FERC has squarely addressed areas where states have exclusive jurisdiction: ‘states retain 
+exclusive authority over the specific terms of retail sales and retail rate design, including how the 
+costs of interstate wholesale sales and transmission of electricity assigned to a wholesale
+59 See e.g., Committee Post-Hearing Letter Response at 2.
+14
+
+===PAGE 15===
+260750228
+■> ”60customer are allocated among that wholesale customer’s retail customers. To this point, in
+this Final Order the Commission has addressed the allocation or assignment of the DOM Load
+Serving Entity’s (“LSE”) portion of DOM Transmission Zone wholesale transmission costs 
+among Dominion LSE retail customers,60 61 which is consistent with the above quote from FERC 
+explaining its understanding of jurisdictional boundaries. The record is less clear that the
+EDC’s portion—of DOM Zone wholesale transmission costs among customers that are not DOM
+LSE’s retail customers, especially in the context of a rate proceeding for Dominion LSE’s retail 
+customers. In fact, ODEC’s own testimony in this proceeding implies FERC’s jurisdiction over 
+this issue and the potential for additional proceedings.62
+Accordingly, the Commission finds that such issues between various DOM Zone 
+wholesale customers should be addressed in the context of the existing Mutual Operating
+Agreements (“MOA”) on file with FERC. Dominion states that these MOAs set forth the terms 
+and conditions to connect and operate facilities and coordinate planning with the Company’s 
+interconnecting wholesale transmission customers.63 The Company further represents that the
+MOAs address cost allocation for Delivery Point establishment and allocate costs to each party 
+when such modifications are required.64
+61 See e.g., Ex. 24 (Pratt) at 10.
+62 Ex. 11 (Dembek) at 12; Ex. 13 (Miller) at 3.
+63 Dominion Post-Hearing Brief at 6-7; See also Ex. 13 (Miller) at 3.
+64 Dominion Post-Hearing Brief at 7.
+15
+60 Committee Post-Hearing Letter Response at 1 (citing PJMInterconnection, L.L.C., 193 FERC ^61,217) (cleaned 
+up).
+Commission has the exclusive jurisdiction to allocate the DOM LSE’s portion—or another
+
+===PAGE 16===
+260750228
+To be clear, the Commission recognizes that potential issues exist regarding fair 
+assignment of costs when a large-load customer in one LSE/EDC creates costs for customers in a 
+different LSE/EDC65—an equity issue that can go in both directions.66 It is apparent, however, 
+that a legally durable solution would be promoted through coordination with FERC’s established 
+process. Accordingly, Dominion is directed to work with ODEC, and any other necessary EDCs, 
+with the goal of finding an acceptable and symmetrical approach towards assigning costs in these 
+circumstances and to file a status update with the Commission within 120 days from the date of 
+this Final Order.67
+Accordingly, IT IS ORDERED THAT:
+(1) Rider Tl, as approved herein, shall become effective for service rendered on and 
+after September 1, 2026.
+(2) The Company forthwith shall file, with the Clerk of the Commission and the
+Commission’s Divisions of Public Utility Regulation and Utility Accounting and Finance, the 
+updated tariff sheets for Rider Tl as approved herein.
+(3) The Company is directed to file, after coordinating with Staff, in a separate docket to 
+be established by the Commission forthwith, proposed amendments to the Company’s existing 
+line extension policy as described herein. The Company is directed to file its proposed amended 
+line extension policy within 90 days from the date of this Final Order.
+65 See generally Ex. 10 (Mara).
+66 Ex. 25 (Hines Rebuttal) at 13-15.
+16
+67 See id. at 16 (“To the extent so directed, the Company is willing to continue discussions with stakeholders to 
+determine if there can be agreement on a direct assignment protocol for supplemental transmission project costs, and 
+to engage with other EDCs in the DOM Zone and undertake any necessary filings at the FERC to implement any 
+directives of the Commission along these lines.”).
+
+===PAGE 17===
+260750228
+(4) The Company is directed to file, after working with ODEC, and any other necessary
+EDCs, with the goal of finding an acceptable and symmetrical approach towards assigning costs 
+in these circumstances, a status update with the Commission within 120 days of the date of this
+Final Order, also in the separate docket to be established forthwith.
+(5) This case is dismissed.
+A COPY hereof shall be sent electronically by the Clerk of the Commission to all persons 
+on the official Service List in this matter. The Service List is available from the Clerk of the
+Commission.
+17

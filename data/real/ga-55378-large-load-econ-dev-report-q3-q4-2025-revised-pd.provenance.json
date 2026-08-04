@@ -1,0 +1,15 @@
+{
+  "jurisdiction": "Georgia Public Service Commission (GA PSC)",
+  "docket": "55378",
+  "filer": "Georgia Power Company",
+  "source_url": "https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/225690/106952",
+  "source_detail_page": "https://psc.ga.gov/search/facts-document/?documentId=225690",
+  "facts_document_id": 225690,
+  "facts_file_id": 106952,
+  "document_title": "Quarterly Large Load Economic Development Reports Q3 and Q4 2025 - REVISED/corrected Public Disclosure versions (errata refiling)",
+  "filing_date": "2026-03-04",
+  "how_obtained": "Fetched the GA PSC FACTS document-detail page /search/facts-document/?documentId=225690 to read its download link, then downloaded the ZIP from the public API endpoint https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/225690/106952. Unzipped it and took ONLY the public-disclosure (PD) PDF, deliberately leaving the trade-secret (TS) files in the archive untouched. Converted that PDF to text with pdfminer.six extract_text(). The text is saved exactly as pdfminer emitted it - no reflow, no de-hyphenation, no ligature or soft-hyphen cleanup, form feeds and column artefacts left in place.",
+  "sha256": "cfa35d082f8273e66eb57042b0b3ded508570219d7b7dbabd45640ce4f745a03",
+  "bytes": 68877,
+  "retrieved_at": "2026-08-04T16:45:33Z"
+}

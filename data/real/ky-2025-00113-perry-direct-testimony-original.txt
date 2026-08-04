@@ -1,0 +1,3200 @@
+              COMMONWEALTH OF KENTUCKY
+             BEFORE THE PUBLIC SERVICE COMMISSION
+
+In the Matter of:
+
+ELECTRONIC APPLICATION OF                   )
+KENTUCKY UTILITIES COMPANY FOR         )
+AN ADJUSTMENT OF ITS ELECTRIC             )   CASE NO. 2025-00113
+RATES, AND APPROVAL OF CERTAIN           )
+REGULATORY AND ACCOUNTING               )
+TREATMENTS                                             )
+
+
+                DIRECT TESTIMONY AND EXHIBITS OF
+
+                            LISA V. PERRY
+
+                     ON BEHALF OF
+
+                     WALMART INC.
+
+
+
+
+
+                                    Filed: August 29, 2025                                  Table of Contents
+
+I.      Introduction ......................................................................................................................... 1
+II.     Purpose of Testimony and Summary of Recommendations ............................................... 3
+III.    Revenue Requirement and ROE ......................................................................................... 8
+       (A)    Revenue Requirement and ROE .............................................................................. 8
+       (B)    Customer Impact of Requested ROE..................................................................... 10
+       (C)    Recent ROEs Approved by the Commission ......................................................... 10
+      (D)    National Utility Industry ROE Trends .................................................................. 12
+              Figure 1.  KU's Proposed ROE vs. Authorized ROEs for Vertically Integrated
+                 Utilities, 2023 to present. Source: Exhibit LVP-3. ............................................... 14
+       (E)    Conclusion ............................................................................................................ 16
+IV.    Cost of Service Study, Production Cost Allocation, and Revenue Allocation ................. 16
+       (A)    Cost of Service Study and Production Cost Allocation ........................................ 16
+       (B)    Revenue Allocation ............................................................................................... 17
+V.    Rate Design ....................................................................................................................... 22
+       (A)    Revenue Allocation ............................................................................................... 22
+       (B)    Rate EHLF ............................................................................................................ 23
+       (C)    Public EV Charging Rate...................................................................................... 28
+VI.   Key Accounts Program for Large Customers ................................................................... 32
+
+
+Exhibits
+
+Exhibit LVP-1: Witness Qualifications Statement
+Exhibit LVP-2: Impact of KU's Current Return on Equity vs. KU's Proposed Return on Equity
+
+Exhibit LVP-3: Reported Authorized Returns on Equity, Electric Utility Rate Cases Completed,
+2023 to Present
+
+Exhibit LVP-4: Impact of KU's Current Return on Equity vs. National Average Awarded Return
+on Equity, Vertically Integrated Investor Owned Utilities from 2023 to Present                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1     I.     Introduction
+
+ 2         Q.   PLEASE  STATE  YOUR  NAME,  BUSINESS  ADDRESS,  AND
+
+ 3            OCCUPATION.
+
+ 4         A.   My name is Lisa V. Perry. My business address is 2608 SE J Street, Bentonville,
+
+ 5           AR 72716-0550. I am employed by Walmart Inc. ("Walmart") as Director, Utility
+
+ 6                  Partnerships - Regulatory.
+
+ 7         Q.   ON WHOSE BEHALF ARE YOU TESTIFYING IN THIS CASE?
+
+ 8         A.      I am testifying on behalf of Walmart.
+
+ 9         Q.   PLEASE DESCRIBE YOUR EDUCATION AND EXPERIENCE.
+
+10         A.      I received a J.D. in 1999 and a LL.M. in Taxation in 2000 from the University of
+
+11                  Florida Levin College of Law. From 2001 to 2019, I was in private practice with
+
+12                an emphasis from 2007 to 2019 in Energy Law. My practice included representing
+
+13                   large commercial clients before the utility regulatory commissions in Colorado,
+
+14                 Texas, New Mexico, Arkansas, and Louisiana in matters ranging from general rate
+
+15                  cases to renewable energy programs. I joined the energy department at Walmart in
+
+16                September 2019 as Senior Manager, Energy Services. My Witness Qualifications
+
+17                 Statement is attached as Exhibit LVP-1.
+
+18         Q.   HAVE YOU PREVIOUSLY SUBMITTED TESTIMONY BEFORE THE
+
+19          KENTUCKY PUBLIC SERVICE COMMISSION ("COMMISSION")?
+
+20         A.     Yes, I submitted testimony in Case No. 2020-00174, 2020-00349, 2020-00350,
+
+21                2021-00481, 2023-00159, and 2024-00354.
+
+
+
+
+
+                                             1                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.   HAVE YOU PREVIOUSLY SUBMITTED TESTIMONY BEFORE OTHER
+
+ 2           STATE REGULATORY COMMISSIONS?
+
+ 3         A.     Yes, I have submitted testimony with State Regulatory Commissions for Arkansas,
+
+ 4                 Colorado,  Connecticut,  Florida,  Georgia,  Iowa,  Illinois,  Indiana,  Kansas,
+
+ 5                  Louisiana, Maryland, Michigan, New Hampshire, New York, North Carolina,
+
+ 6                 Ohio,  Oklahoma,  Oregon,  Pennsylvania,  South  Carolina,  Texas,  Virginia,
+
+ 7                Washington, Wisconsin, and Wyoming. I have also provided legal representation
+
+ 8                   for customer stakeholders before the State Regulatory Commissions for Colorado,
+
+ 9                 Texas,  Arkansas,  Louisiana,  and New Mexico  in  the  cases  listed  under
+
+10               "Commission Dockets" in Exhibit LVP-1.
+
+11         Q.   ARE YOU SPONSORING EXHIBITS IN YOUR TESTIMONY?
+
+12         A.     Yes. I am sponsoring the exhibits listed in the Table of Contents.
+
+13         Q.   PLEASE  BRIEFLY  DESCRIBE  WALMART'S  OPERATIONS  IN
+
+14           KENTUCKY.
+
+15         A.    As shown on Walmart's website, Walmart operates 101 retail units and three supply
+
+16                 chain facilities, and it employs over 31,000 associates in the Commonwealth of
+
+17                 Kentucky.1 In fiscal year ending 2025, Walmart purchased $1.0 billion worth of
+
+18                goods and services from Kentucky-based  suppliers, supporting over 46,000
+
+19                   supplier jobs.2
+
+
+
+
+
+         1 https://corporate.walmart.com/about/location-facts/united-states/kentucky
+         2 Id.
+
+
+                                             2                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.   PLEASE BRIEFLY DESCRIBE WALMART'S OPERATIONS WITHIN
+
+ 2           THE SERVICE TERRITORY FOR KENTUCKY UTILITIES COMPANY
+
+ 3             ("KU" OR "COMPANY").
+
+ 4         A.    Walmart has approximately 31  retail stores and related  facilities within the
+
+ 5               Company's service territory. The majority of these facilities are served on the Time
+
+ 6                  of Day – Secondary ("TODS") Schedule with some smaller facilities taking service
+
+ 7               from the General Service ("GS") Schedule.
+
+ 8
+
+ 9    II.    Purpose of Testimony and Summary of Recommendations
+
+10         Q.  WHAT IS THE PURPOSE OF YOUR TESTIMONY?
+
+11         A.    The purpose of my testimony is to address aspects of the Company's Application
+
+12                  ("Application") filed with the Commission on May 30, 2025. Specifically, I address
+
+13                  the  Company's:   (i)  requested  Return  on  Equity  ("ROE")  and  provide
+
+14                recommendations to assist the Commission in its consideration of the proposed
+
+15             ROE,  (ii) cost of service study ("COSS") and cost allocation,  (iii) revenue
+
+16                    allocation, (iv) TODS rate design, and (v) new tariff for Extremely High Load
+
+17                  Factor customers ("Rate EHLF"). I also discuss the Company's current lack of a
+
+18                    rate specifically for public electric vehicle ("EV") charging and the Company's key
+
+19                 account management program.
+
+
+
+
+
+                                             3                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.    IN SETTING THE REVENUE REQUIREMENT, ROE, ALLOCATION,
+
+ 2          AND RATE DESIGN CHANGES FOR THE COMPANY, SHOULD THE
+
+ 3           COMMISSION CONSIDER THE IMPACT OF THE PROPOSED RATE
+
+ 4            INCREASE ON BUSINESS CUSTOMERS?
+
+ 5         A.     Yes. Electricity is a significant operating cost for retailers such as Walmart. When
+
+ 6                    electric rates increase, the increased cost to retailers can put pressure on consumer
+
+ 7                   prices and on the other expenses required by a business to operate. As such, the
+
+ 8               Commission should thoroughly and carefully consider the impact on customers in
+
+ 9                examining the requested revenue requirement and ROE, in addition to all other
+
+10                   facets of this case, to ensure that any increase in the Company's rates is the
+
+11             minimum amount necessary to provide safe, adequate, and reliable service, while
+
+12                   also providing the Company with the opportunity to recover its reasonable and
+
+13                 prudent costs and earn a reasonable return on its investment.
+
+14         Q.   PLEASE SUMMARIZE WALMART'S RECOMMENDATIONS TO THE
+
+15            COMMISSION.
+
+16         A.     Walmart's recommendations to the Commission are as follows:
+
+17                   (1)    Unless the Commission determines that a higher ROE is warranted due to
+
+18                       changes  in  circumstances  since  the Company's  last  rate  case,  the
+
+19                     Commission should approve an ROE no higher than the Company's
+
+20                          currently authorized ROE of 9.425 percent, especially when accounting for:
+
+21                             (a)     the use of risk-reducing rate-making structures such as the forecast
+
+22                                       test  year,  which  accelerates  cost  recovery  and  reduces  the
+
+
+
+
+                                             4                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                           Company's exposure to regulatory lag when compared to the use of
+
+ 2                              a historical test year in setting rates;
+
+ 3                           (b)     the customer impact of the resulting revenue requirement increase;
+
+ 4                                and,
+
+ 5                             (c)     recent ROEs  approved  in  Kentucky  and  other  jurisdictions
+
+ 6                              nationwide that do not support the Company's requested ROE.
+
+ 7                   (2)    For purposes of  this case, Walmart does not oppose the Company's
+
+ 8                       proposed COSS and does not take a position on the Company's proposal to
+
+ 9                        apply  the  six  coincident  peak  ("6CP")  production  cost  allocation
+
+10                       methodology. However, to the extent  that alternative cost of service
+
+11                       methodologies or modifications to the Company's methodology, including
+
+12                           alternative production cost allocation methodologies, are proposed by other
+
+13                            parties or the Company, Walmart reserves the right to address any such
+
+14                       changes in accordance with the Commission's procedures in this case.
+
+15                   (3)    At the Company's proposed revenue requirement, Walmart does not oppose
+
+16                          the Company's proposed revenue allocation.
+
+17                   (4)      If the Commission determines that the appropriate revenue requirement is
+
+18                            less  than  the  revenue  requirement  requested by  the Company,  the
+
+19                     Commission should take steps to further reduce the interclass subsidies
+
+20                    embedded in current rates. To accomplish this, Walmart proposes the
+
+21                         following:
+
+22                                  Starting with the revenue allocation requested by the Company, the
+
+23                     Commission should apply 50 percent of the overall revenue reduction (the
+
+
+                                             5                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                          difference between the revenue requirement requested by the Company and
+
+ 2                          the revenue requirement approved by the Commission) to those rate classes
+
+ 3                  who are paying in excess of their cost-based levels. In applying the first 50
+
+ 4                         percent overall revenue reduction, it may need to be adjusted downward
+
+ 5                                   (i.e., to some percent less than 50) if it would result in a subsidizing rate
+
+ 6                           class moving  to a subsidized  position. Then, the remaining revenue
+
+ 7                         reduction should be evenly applied to  all rate classes to mitigate the
+
+ 8                       proposed increases for all ratepayers on an equal percentage basis.
+
+ 9                   (5)    For purposes of  this case, Walmart does not oppose the Company's
+
+10                       proposed TODS rate design. However, to the extent that modifications to
+
+11                          the Company's proposal are proposed by other parties, Walmart reserves the
+
+12                            right to address any such changes in accordance with the Commission's
+
+13                        procedures in this case.
+
+14                   (6)    Walmart appreciates the Company's efforts to recognize and address the
+
+15                       unique risks posed by customers whose demands are substantially larger
+
+16                        than those of other customers through measures such as Rate EHLF.
+
+17                        Accordingly, Walmart supports Rate EHLF and recommends that the
+
+18                     Commission approve the rate as proposed. At the same time, Walmart
+
+19                       emphasizes  the importance  of ensuring  that  the Company's  internal
+
+20                         processes are structured to provide timely and equitable access to the system
+
+21                           for other commercial and industrial ("C&I") customers who are also
+
+22                       expanding their energy usage through new facilities, advanced equipment,
+
+23                         and/or investments in technologies that require additional electrification.
+
+
+                                             6                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                   (7)    Walmart recommends that the Commission require the Company to work
+
+ 2                        with interested stakeholders to develop a new EV rate specifically for
+
+ 3                          public-facing Direct Current Fast Chargers ("DCFC") and to either seek
+
+ 4                     Commission approval of such rate or provide an update on the stakeholder
+
+ 5                         process within six months following the issuance of a Final Order in this
+
+ 6                           case.
+
+ 7                   (8)    Walmart appreciates the Company providing a single point of contact and
+
+ 8                                 its ongoing commitment to engaging with all of its customers through
+
+ 9                        continuous  evaluation  of  its  relationship and  adapting  processes  as
+
+10                        technology and customer needs evolve. In particular, Walmart values the
+
+11                     Company's key account manager program for large customers, especially
+
+12                         those customers like Walmart with multiple locations throughout the
+
+13                          service territory, and supports the efforts of this team, as discussed herein.
+
+14                     While not a specific recommendation, Walmart highlights  this in  its
+
+15                        testimony to inform the Commission of the valuable service provided by the
+
+16                     Company's key account manager team.
+
+17         Q.   DOES THE FACT THAT YOU MAY NOT ADDRESS AN ISSUE OR
+
+18            POSITION ADVOCATED BY THE COMPANY INDICATE WALMART'S
+
+19            SUPPORT?
+
+20         A.    No. The fact that an issue is not addressed herein or in related filings should not be
+
+21                 construed as an endorsement of, agreement with, or consent to any filed position.
+
+22
+
+
+
+
+                                             7                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1    III.   Revenue Requirement and ROE
+
+ 2       (A)   Revenue Requirement and ROE
+
+ 3         Q.  WHAT IS YOUR UNDERSTANDING OF THE COMPANY'S PROPOSED
+
+ 4           REVENUE REQUIREMENT INCREASE?
+
+ 5         A.   My understanding is that the Company is seeking an annual revenue increase of
+
+ 6                 approximately $226.1 million, or 11.5 percent.3 This proposed increase is based on
+
+ 7                 a 12-month forecasted test period ending December 31, 2026,4 as supported by a
+
+ 8               12-month base period ending August 31, 2025, and consisting of six months of
+
+ 9                   actual data (September 1, 2024 through February 28, 2025) and six months of
+
+10                  forecasted data (March 1, 2025 through August 31, 2025).5
+
+11         Q.  WHAT IS THE COMPANY'S PROPOSED ROE IN THIS CASE?
+
+12         A.    The Company proposes an ROE of 10.95 percent based on a range of 10.32 percent
+
+13                   to 11.84 percent.6 In addition, the Company proposes a capital structure of 46.15
+
+14                  percent debt and 52.86 percent equity for ratemaking purposes.7 Applying the
+
+15               Company's proposed ROE to its proposed capital structure, the Company is asking
+
+16                  the Commission to approve a Rate of Return equal to 8.10 percent based on 13-
+
+17               month weighted average cost of capital ("WACC").8
+
+
+
+
+
+         3 See Application, p. 4, ¶ 6; see also Direct Testimony of Robert M. Conroy ("Conroy Direct"), p. 2, lines 9-10.
+         4 See Application, p. 7, ¶ 11; see also Conroy Direct, p. 9, line 11.
+         5 See Application, p. 7, ¶ 11; see also Conroy Direct, p. 9, lines 14-16.
+         6 See Direct Testimony of Dylan W. D'Ascendis ("D'Ascendis Direct"), p. 2, lines 21-23 and p. 4, lines 3-5.
+         7 See Schedule J-1.1/J-1.2.
+         8 See id.
+
+
+                                             8                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.    IS  THE  COMPANY'S  PROPOSED ROE  HIGHER  THAN  ITS
+
+ 2           CURRENTLY AUTHORIZED ROE?
+
+ 3         A.     Yes. On June 30, 2021, the Commission awarded the Company an ROE in its last
+
+ 4                 base rate case of 9.425 percent.9 The 10.95 percent ROE proposed in  this
+
+ 5                 proceeding represents an increase of nearly 153 basis points to the Company's
+
+ 6                   currently authorized ROE.
+
+ 7         Q.    IS WALMART CONCERNED THAT THE COMPANY'S ROE  IS
+
+ 8            EXCESSIVE?
+
+ 9         A.     Yes. Walmart believes that the Company's proposed ROE of 10.95 percent is
+
+10                  excessive, especially in light of:
+
+11                   (1)     the use of risk-reducing rate-making structures such as the forecast test year,
+
+12                       which accelerates cost recovery and reduces the Company's exposure to regulatory
+
+13                            lag when compared to the use of a historical test year in setting rates;
+
+14                   (2)     the customer impact of the resulting revenue requirement increase as
+
+15                         discussed below; and,
+
+16                   (3)     recent ROEs approved in Kentucky and other jurisdictions nationwide that
+
+17                     do not support the Company's requested ROE, as discussed below.
+
+18
+
+
+
+
+
+         9 See In the Matter of Electronic Application of Kentucky Utilities Company for an Adjustment of its Electric Rates, a
+        Certificate of Public Convenience and Necessity to Deploy Advanced Metering Infrastructure, Approval of Certain
+       Regulatory and Accounting Treatments, and Establishment of a One-Year Surcredit, Case No. 2020-00349, Order
+       (issued June 30, 2021) ("2021 Rate Case Order"), p. 23.
+
+
+                                             9                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1   (B)   Customer Impact of Requested ROE
+
+ 2         Q.  WHAT   IS  YOUR  UNDERSTANDING  OF  THE  COMPANY'S
+
+ 3           CURRENTLY APPROVED ROE?
+
+ 4         A.    As stated above, my understanding is that the Company's currently approved ROE
+
+ 5                      is 9.425 percent.10
+
+ 6         Q.   HAVE YOU CALCULATED AN ESTIMATE OF THE IMPACT OF THE
+
+ 7           RETURN ON RATE BASE FROM THE COMPANY'S PROPOSED
+
+ 8            INCREASE IN ROE FROM 9.425 PERCENT TO 10.95 PERCENT?
+
+ 9         A.     Yes. Using the Company's proposed rate base, cost of debt, and capital structure,
+
+10                  the impact of the proposed increase in authorized ROE is approximately $65.7
+
+11                   million, or 29.07 percent of the proposed revenue requirement increase sought in
+
+12                     this case.11
+
+13
+
+14   (C)    Recent ROEs Approved by the Commission
+
+15         Q.    IS THE COMPANY'S PROPOSED ROE SIGNIFICANTLY HIGHER
+
+16          THAN THE ROEs APPROVED BY THIS COMMISSION FROM 2023 TO
+
+17            PRESENT?
+
+18         A.     Yes. Since 2023, this Commission has issued orders with stated ROEs in two cases
+
+19                   for investor owned utilities with the average of the ROEs approved equal to 9.75
+
+20                   percent.12
+
+
+
+
+
+         10 See 2021 Rate Case Order, pp. 8, 30.
+         11 Exhibit LVP-2.
+         12 Exhibit LVP-3.
+
+
+                                            10                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.    IN WHICH OTHER CASES DID THE COMMISSION ISSUE ORDERS
+
+ 2           WITH STATED ROEs?
+
+ 3         A.    The Commission issued Orders with stated ROEs in the following cases:
+
+ 4                     Case No. 2022-00372, Duke Energy Kentucky Inc. rate case that was
+
+ 5                       completed in 2023, in which the Commission approved an ROE of 9.75
+
+ 6                           percent.13
+
+ 7                     Case No. 2023-00159, Kentucky Power Company rate case that was
+
+ 8                       completed in 2024, in which the Commission approved an ROE of 9.75
+
+ 9                           percent.14
+
+10              As such, the Company's proposed 10.95 percent ROE  is counter to recent
+
+11               Commission actions regarding ROEs for other investor-owned electric utilities in
+
+12                Kentucky.
+
+13
+
+
+
+
+
+         13 In the Matter of:  Electronic Application of Duke Energy Kentucky, Inc. for (1) an Adjustment of Electric Rates;
+        (2) Approval of New Tariffs; (3) Approval of Accounting Practices to Establish Regulatory Assets and Liabilities; and
+        (4) All Other Required Approvals and Relief, Case No. 2022-00372, Order (issued Oct. 12, 2023), p. 41; see also
+       Exhibit LVP-3.
+         14 In the Matter of: Electronic Application of Kentucky Power Company for (1) a General Adjustment of its Rates for
+        Electric Service; (2) Approval of Tariffs and Riders; (3) Approval of Accounting Practices to Establish Regulatory
+       Assets and Liabilities; (4) a Securitization Financing Order; and (5) All Other Required Approvals and Relief, Case
+      No. 2023-00159, Order (issued Jan. 19, 2024), p. 61; see also Exhibit LVP-3.
+
+
+                                            11                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1   (D)    National Utility Industry ROE Trends
+
+ 2         Q.    IS THE COMPANY'S PROPOSED ROE SIGNIFICANTLY HIGHER
+
+ 3          THAN THE ROEs APPROVED BY OTHER UTILITY REGULATORY
+
+ 4           COMMISSIONS SINCE 2023?
+
+ 5         A.     Yes. According to data from S&P Global Market Intelligence ("S&P Global"), a
+
+ 6                   financial news and reporting company, the average of the 104 reported electric
+
+ 7                      utility rate case ROEs authorized by commissions to investor-owned utilities since
+
+ 8               2023 is 9.68 percent.15 The range of reported authorized ROEs over this period is
+
+ 9                 8.63 percent to 11.45 percent, and the median authorized ROE is 9.70 percent.16
+
+10              The average and median values (9.68 percent and 9.70 percent, respectively) are
+
+11                   significantly below the Company's proposed ROE of 10.95 percent. As such, the
+
+12               Company's proposed 10.95 percent ROE is counter to broader electric industry
+
+13                    trends.
+
+14         Q.   SEVERAL OF THE REPORTED AUTHORIZED ROEs ARE FOR
+
+15            DISTRIBUTION-ONLY UTILITIES OR FOR ONLY A UTILITY'S
+
+16            DISTRIBUTION  SERVICE  RATES. WHAT  IS  THE AVERAGE
+
+17           AUTHORIZED ROE IN THE REPORTED GROUP FOR VERTICALLY
+
+18           INTEGRATED UTILITIES LIKE THE COMPANY?
+
+19         A.     In the group reported by S&P Global, the average authorized ROE for vertically
+
+20                   integrated utilities from 2023 through present is 9.77 percent.17 The average ROE
+
+
+
+
+
+         15 Exhibit LVP-3.
+         16 Id.
+         17 Id.
+
+
+                                            12                                                                               Walmart Inc.
+                                                                              Direct Testimony of Lisa V. Perry
+                                              Kentucky Public Service Commission Case No. 2025-00113
+
+
+1                  authorized for vertically integrated utilities in 2023 was 9.71 percent; in 2024, it
+
+2               was 9.85 percent; and so far in 2025, it is 9.74 percent.18 By comparison to all
+
+3                 nationwide metrics, the Company's proposed 10.95 percent ROE is counter to
+
+4                 broader electric industry trends and, in fact, as shown in Figure 1 below, would be
+
+5                  the second highest approved ROE for any vertically integrated utility (out of 80
+
+6                      utilities) at any time since 2023. Beyond the typical cost of service models, the
+
+7             Company offers no basis for the Commission to award such an increased ROE.
+
+
+
+
+
+       18 Id.
+
+
+                                            13                                                                               Walmart Inc.
+                                                                              Direct Testimony of Lisa V. Perry
+                                              Kentucky Public Service Commission Case No. 2025-00113
+
+
+
+
+
+                                                             Alaska Electric Light Power
+                                                                  KU's Requested ROE
+                                                 Tampa Electric Company
+                                                    Southern California Edison Co.
+                                                   Duke Energy Florida LLC
+                                                                      Pacific Gas and Electric Co.
+                                                     San Diego Gas & Electric Co.
+                                                                   Florida Public Utilities Co.
+                                                                  Otter Tail Power Co.
+                                                   Duke Energy Carolinas LLC
+                                                       Bear Valley Electric Svc. Inc.
+                                                                                PacifiCorp
+                                                               Liberty Utilities (CalPeco Ele
+                                                  Green Mountain Power Corp.
+                                                                 Virginia Electric & Power Co.
+                                                Dominion Energy South Carolina
+                                                   Duke Energy Carolinas LLC
+                                                       Consumers Energy Co.
+                                                          DTE Electric Co.
+                                                          Puget Sound Energy Inc.
+                                                                AES Indiana
+                                                       Consumers Energy Co.
+                                                          DTE Electric Co.
+                                                   Upper Peninsula Power Co.
+                                                       Consumers Energy Co.
+                                                               Interstate Power & Light Co.
+                                                   Upper MI Energy Rsrc Corp.
+                                                   Upper Peninsula Power Co.
+                                                           Indiana Michigan Power Co.
+                                                           Indiana Michigan Power Co.
+                                                     Southern IN Gas & Electric Co.
+                                                                               Avista Corp.
+                                                            Appalachian Power Co.
+                                                     Wisconsin Public Service Corp.
+                                                       Wisconsin Electric Power Co.
+                                                    Monongahela Power Co.
+                                                     Wisconsin Power and Light Co
+                                                       Northern States Power Co.
+                                                  Duke Energy Progress LLC
+                                                    Northern IN Public Svc. Co. LLC
+                                                   Minnesota Power Entrprs Inc.
+                                                                  NIPSCO
+                                                    Duke Energy Indiana, LLC
+                                                   UNS Electric Inc.
+                                                         Kentucky Power Company
+                                                   Duke Energy Kentucky Inc.
+                                        MDU Resources Group
+                                                Cheyenne Light Fuel Power Co.
+                                                                      Sierra Pacific Power Co.
+                                                                 Virginia Electric & Power Co.
+                                                  Madison Gas and Electric Co.
+                                                    NorthWestern Energy Group
+                                        MDU Resources Group
+                                                   Minnesota Power Entrprs Inc.
+                                                                   Idaho Power Co.
+                                                  Duke Energy Progress LLC
+                                                  Green Mountain Power Corp.
+                                                                  Entergy Texas Inc.
+                                                            Arizona Public Service Co.
+                                                        Tucson Electric Power Co.
+                                                         Nevada Power Co.
+                                                                                PacifiCorp
+                                                           Public Service Co. of Oklahoma
+                                                                                PacifiCorp
+                                               Oklahoma Gas and Electric Co.
+                                                                   Idaho Power Co.
+                                                          Portland General Electric Co.
+                                                            Appalachian Power Co.
+                                                      Southwestern Public Svc Co.
+                                                  Southwestern Electric Power Co
+                                                           Public Service Company of NM
+                                                             Black Hills Colorado Electric
+                                                                               Avista Corp.
+                                                                                PacifiCorp
+                                                                                PacifiCorp
+                                                          Portland General Electric Co.
+                                                                  Public Service Co. of OK
+                                                                  Public Service Co. of CO
+                                                                 Public Service Co. of NM
+                                                       Northern States Power Co.
+
+                                                                         0.00%                                             2.00%                                              4.00%                                              6.00%                                              8.00%                                             10.00%                                             12.00%
+
+
+1          Figure 1.  KU's Proposed ROE vs. Authorized ROEs for Vertically Integrated
+2             Utilities, 2023 to present. Source: Exhibit LVP-3.
+
+
+                                            14                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.  WHAT  IS THE REVENUE REQUIREMENT IMPACT WERE THE
+
+ 2           COMMISSION TO APPROVE AN ROE FOR THE COMPANY
+
+ 3           EQUIVALENT TO 9.77 PERCENT, THE AVERAGE AWARDED ROE
+
+ 4           FOR VERTICALLY INTEGRATED INVESTOR OWNED UTILITIES
+
+ 5            SINCE 2023?
+
+ 6         A.      If the Commission were to approve an ROE for the Company of 9.77 percent,
+
+ 7                  versus the Company's proposal of 10.95 percent, it would result in a reduction to
+
+ 8                  the requested revenue requirement increase of about $50.9 million, or 22.50
+
+ 9                   percent.19
+
+10         Q.    IS WALMART RECOMMENDING THAT THE COMMISSION BE
+
+11          BOUND BY ROEs AUTHORIZED BY OTHER STATE REGULATORY
+
+12           COMMISSIONS?
+
+13         A.    No. Decisions of other state regulatory commissions are not binding on this
+
+14                Commission. Each commission considers the specific circumstances in each case
+
+15                   in its determination of the proper ROE. Walmart is providing this nationwide
+
+16                 information to illustrate a national customer's perspective on industry trends in
+
+17                  authorized ROE.
+
+18
+
+
+
+
+
+         19 Exhibit LVP-4.
+
+
+                                            15                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1   (E)    Conclusion
+
+ 2         Q.  WHAT IS YOUR RECOMMENDATION TO THE COMMISSION IN
+
+ 3          REGARD TO THE COMPANY'S PROPOSED ROE?
+
+ 4         A.    Unless the Commission determines that a higher ROE is warranted due to changes
+
+ 5                   in circumstances since the Company's last rate case, the Commission should
+
+ 6                approve an ROE no higher than the Company's currently authorized ROE of 9.425
+
+ 7                   percent, especially when accounting for:
+
+ 8                   (1)     the use of risk-reducing rate-making structures such as the forecast test year,
+
+ 9                      which accelerates cost recovery and reduces the Company's exposure to
+
+10                         regulatory lag when compared to the use of a historical test year in setting
+
+11                             rates;
+
+12                   (2)     the customer impact of the resulting revenue requirement increase as
+
+13                         discussed above; and,
+
+14                   (3)     recent ROEs approved in Kentucky and other jurisdictions nationwide that
+
+15                     do not support the Company's requested ROE, as discussed above.
+
+16
+
+17   IV.   Cost of Service Study, Production Cost Allocation, and Revenue Allocation
+
+18   (A)    Cost of Service Study and Production Cost Allocation
+
+19         Q.  WHAT IS WALMART'S POSITION ON SETTING RATES BASED ON
+
+20           THE UTILITY'S COST OF SERVICE?
+
+21         A.    Walmart advocates that rates be set based on the utility's cost of service for each
+
+22                    rate class. This produces equitable rates that reflect cost causation, sends proper
+
+23                   price signals, and minimizes price distortions.
+
+
+                                            16                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.  HOW DOES THE COMPANY PROPOSE TO ALLOCATE FIXED
+
+ 2           PRODUCTION COSTS?
+
+ 3         A.       It is my understanding that the Company allocated fixed production costs to the
+
+ 4                customer classes in its COSS based on the 6CP methodology using the system
+
+ 5                 peaks for three summer months, being July, August, and September, and for the
+
+ 6                   three winter months of December, January, and February.20
+
+ 7         Q.   DOES WALMART TAKE A  POSITION ON THE COMPANY'S
+
+ 8           PROPOSED COST OF SERVICE METHODOLOGY AT THIS TIME?
+
+ 9         A.    For purposes of this case, Walmart does not oppose the Company's proposed COSS
+
+10                and does not take a position on the Company's proposal to apply the 6CP production
+
+11                   cost allocation methodology. However, to the extent that alternative cost of service
+
+12                 methodologies  or  modifications  to  the Company's  methodology,  including
+
+13                    alternative production cost allocation methodologies, are proposed by other parties,
+
+14               Walmart reserves the right to address any such changes in accordance with the
+
+15                Commission's procedures in this case.
+
+16
+
+17   (B)   Revenue Allocation
+
+18         Q.  WHAT IS REVENUE ALLOCATION?
+
+19         A.    Revenue allocation, sometimes referred to as rate spread, is the assignment of the
+
+20                 revenue responsibility to each customer class. A revenue allocation that assigns
+
+21                 revenue to each class at its cost of service is free of inter-class subsidies. In contrast,
+
+
+
+
+         20 See Direct Testimony of Timothy S. Lyons, p. 19, lines 13-16.
+
+
+                                            17                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1               where revenue is allocated to a class at a level above its cost of service, that rate
+
+ 2                   class is subsidizing any rate class that is allocated revenue below its cost of service.
+
+ 3         Q.   ARE THERE INSTANCES IN WHICH THE COMMISSION WOULD
+
+ 4            ASSIGN DIFFERENT REVENUE TO INDIVIDUAL CLASSES THAN IS
+
+ 5           CALLED FOR WITHIN THE COSS, RESULTING IN INTER-CLASS
+
+ 6             SUBSIDIES?
+
+ 7         A.     Yes. At times, the regulator may find it necessary to approve a level of revenue
+
+ 8                 requirement to a particular class which differs from the cost responsibility amount
+
+ 9                 determined in the COSS. This is often driven by the need to ensure that customers
+
+10                   are not seriously adversely impacted by major changes to the level of rates. Other
+
+11                  reasons can include perceived differences in COSS results and reality, relative risks
+
+12                 assigned to classes, social goals associated with the role of the prices in a particular
+
+13                    jurisdiction, and response to the state of the economy within or external to the
+
+14                  regulatory jurisdiction. The Commission may exercise its discretion based on one
+
+15                  or more of these concerns to adjust revenue allocation to support policy or advance
+
+16                  the public interest. However, these adjustments often result in rates that are not
+
+17                  cost-based and, as a result, may not be just, reasonable, and equitable.
+
+18         Q.  WHAT IS THE ULTIMATE GOAL WHEN ALLOCATING REVENUE?
+
+19         A.    To the extent possible, inter-class subsidies should be eliminated through a revenue
+
+20                   allocation that reflects the cost of service. If this is not possible in the immediate
+
+21                   case, the Commission should establish a clear path to the elimination or reduction
+
+22                  of undesired subsidies, continually moving each class closer to their respective cost
+
+23                  of service until undesired subsidies are eliminated and price signals are improved.
+
+
+                                            18                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1              Where proper price signals in the form of cost-based rates are in place, it generates
+
+ 2                   overall system efficiencies since customers understand the actual costs of the
+
+ 3                energy they use.
+
+ 4         Q.  WHAT IS YOUR UNDERSTANDING OF THE PROCESS USED TO
+
+ 5           ARRIVE AT THE COMPANY'S PROPOSED REVENUE ALLOCATION?
+
+ 6         A.       It is my understanding that the proposed rates were designed to recover the utility's
+
+ 7                   overall cost of service while ensuring equity among customer classes.21 Class
+
+ 8                 revenue targets were set based on the COSS, with rate increases for under-
+
+ 9                  recovering classes set higher than the system average to move them closer to the
+
+10                system return of rate ("ROR").22 At the same time, the design sought to moderate
+
+11                      bill impacts for continuity.23 The process began by determining total revenues to be
+
+12                 recovered from base rates, then assigning revenue targets by class using COSS
+
+13                     results, and finally designing class rates to meet those targets based on proforma
+
+14                       bills, demand (kW/kVA), and energy (kWh) usage.24
+
+15         Q.  WHAT METHODOLOGY HAS THE COMPANY PROPOSED TO
+
+16           ALLOCATE ITS PROPOSED REVENUE REQUIREMENT INCREASE?
+
+17         A.    The Company targeted class revenues based on a 10.0 percent movement towards
+
+18                   cost of service rates for each class.25
+
+
+
+
+
+         21 See Direct Testimony of Timothy S. Lyons ("Lyons Direct"), p. 22, lines 6-8.
+         22 See id. at 22, lines 6-13.
+         23 See id. at 22, lines 13-14.
+         24 See id. at 22, lines 17-21.
+         25 See id. at 23, lines 7-9.
+
+
+                                            19                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.    IS IT YOUR UNDERSTANDING THAT THE COMPANY'S PROPOSED
+
+ 2           REVENUE ALLOCATION MOVES CLASSES TO THEIR COST-BASED
+
+ 3           REVENUE REQUIREMENT?
+
+ 4         A.    No, it does not. Based on my review of Exhibit TSL-4, which shows a system
+
+ 5                 average increase of 12.1 percent, the Company identifies the rate class increases
+
+ 6                  indicated by the COSS (for example, a 5.7 percent increase for the TODS rate).26
+
+ 7                  After applying the mitigation measures described above, however, the proposed
+
+ 8                  increase for the TODS rate class is still 11.5 percent, nearly double was is indicated
+
+ 9               by the COSS.27 This shows that the proposed rates do not align with cost-based
+
+10                   levels for all classes.28
+
+11         Q.  WHAT      IS    WALMART'S    REVENUE    ALLOCATION
+
+12          RECOMMENDATION TO THE COMMISSION AT THE COMPANY'S
+
+13           PROPOSED REVENUE REQUIREMENT?
+
+14         A.    Walmart appreciates the Company addressing intraclass subsidies. As such, at the
+
+15               Company's  proposed  revenue  requirement,  Walmart  does  not  oppose  the
+
+16               Company's proposed revenue allocation. Walmart does, however, believe that the
+
+17             Company should put in place steps targeted towards eliminating subsidies in rate
+
+18                   in the near-term.
+
+
+
+
+
+         26 See Exhibit TSL-4, p. 1.
+         27 See id.
+         28 See id.
+
+
+                                            20                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.  WHAT IS WALMART'S RECOMMENDATION TO THE COMMISSION
+
+ 2               IF THE COMMISSION DETERMINES THAT A LOWER REVENUE
+
+ 3           REQUIREMENT IS APPROPRIATE?
+
+ 4         A.     Since  subsidies  are  not  eliminated  under  the Company's  proposal,  if  the
+
+ 5               Commission determines that the appropriate revenue requirement is less than the
+
+ 6                 revenue requirement requested by the Company, the Commission should take steps
+
+ 7                   to further reduce the interclass subsidies. To accomplish this, Walmart proposes the
+
+ 8                  following:
+
+ 9                          Starting with the revenue allocation requested by the Company, the
+
+10               Commission should apply 50 percent of the overall revenue reduction (the
+
+11                   difference between the revenue requirement requested by the Company and the
+
+12                 revenue requirement approved by the Commission) to those rate classes who are
+
+13                 paying in excess of their cost-based levels. In applying the first 50 percent overall
+
+14                 revenue reduction, it may need to be adjusted downward (i.e., to some percent less
+
+15                 than 50) if it would result in a subsidizing rate class moving to a subsidized position.
+
+16                Then, the remaining overall revenue reduction should be evenly applied to all rate
+
+17                   classes to mitigate the proposed increases for all ratepayers on an equal percentage
+
+18                    basis.
+
+19
+
+
+
+
+
+                                            21                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1   V.    Rate Design
+
+ 2   (A)   Revenue Allocation
+
+ 3         Q.   BRIEFLY DESCRIBE THE TODS RATE.
+
+ 4         A.    The TODS Rate is a multi-part rate for large customers that includes a Basic Service
+
+ 5                 Charge, an Energy Charge (per kWh), and Peak, Intermediate, and Base Demand
+
+ 6                Charges (per kVA).29
+
+ 7         Q.   DOES THE COMPANY PROPOSE ANY CHANGES TO THE TODS RATE
+
+ 8            PRICING STRUCTURE.
+
+ 9         A.    No, the Company does not appear to propose any significant structural changes to
+
+10                  the TODS Rate.30
+
+11         Q.   DOES WALMART OPPOSE THE COMPANY'S PROPOSED TODS RATE
+
+12            DESIGN?
+
+13         A.    For purposes of this case, Walmart does not oppose the Company's proposed TODS
+
+14                    rate design. However, to the extent that modifications to the TODS rate design are
+
+15                proposed by other parties, Walmart reserves the right to address any such changes
+
+16                   in accordance with the Commission's procedures in this case.
+
+17
+
+
+
+
+
+         29 Attachment to Filing Requirement, Tab 4 ‒807 KAR 5:001 Section 16(1)(b)(3), p. 26 (tariff sheet for Time-of-Day
+      Secondary Service).
+         30 See Direct Testimony of Michael E. Hornung ("Hornung Direct"), p. 10, lines 19-24.
+
+
+                                            22                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1   (B)    Rate EHLF
+
+ 2         Q.    IS THE COMPANY PROPOSING A NEW TARIFF FOR CERTAIN
+
+ 3           CUSTOMERS?
+
+ 4         A.     Yes,  it  is. The Company is proposing a new tariff, Rate EHLF, designed for
+
+ 5                 customers with demands exceeding 100 MVA and load factors above 85 percent.31
+
+ 6              The Company refers to these customers as "extremely high load factor" customers.
+
+ 7         Q.  WHY IS THE COMPANY ASKING THE COMMISSION TO APPROVE A
+
+ 8         NEW RATE  SPECIFICALLY FOR EXTREMELY  HIGH LOAD
+
+ 9           CUSTOMERS?
+
+10         A.    The Company determined that customers with demands over 100 MVA and load
+
+11                   factors above 85 percent have unique service characteristics and potential financial
+
+12                 impacts that justify a separate rate schedule.32 Because even a small number of such
+
+13                 customers could necessitate new generation resources, the proposed Rate EHLF
+
+14                  includes higher minimum billing demands, longer contract terms, and stronger
+
+15                    collateral requirements.33 The Company claims that these provisions will protect
+
+16                 customers while  still offering service  at average embedded cost rates to  all
+
+17                  customers.34
+
+18         Q.  WHAT IS YOUR UNDERSTANDING OF THE STRUCTURE OF RATE
+
+19            EHLF?
+
+20         A.   My understanding is that Rate EHLF will include the following charges:
+
+
+
+
+         31 See Hornung Direct, p. 4, lines 9-10.
+         32 See id. at 4, lines 9-13.
+         33 See id. at 4, lines 13-16.
+         34 See id. at 4, lines 16-19.
+
+
+                                            23                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                   (1)    $/day Basic Service Charge;
+
+ 2                   (2)   $/kWh Energy Charge; and
+
+ 3                   (3)   $/kVA Maximum Load Charge.35
+
+ 4         Q.    IS THE COMPANY PROPOSING ADDITIONAL REQUIREMENTS AND
+
+ 5           PROTECTIONS UNDER RATE EHLF BEYOND WHAT IT WOULD
+
+ 6          NORMALLY REQUIRE FOR C&I CUSTOMERS?
+
+ 7         A.     Yes,  it  is. To support specific objectives around these Extremely High Load
+
+ 8                 Customers, it is my understanding that the Company is proposing to increase certain
+
+ 9                 requirements under Rate EHLF including,  (i) a single, non-time-differentiated
+
+10              demand charge,36 (ii) higher minimum billing demand ratchet,37 (iii) minimum
+
+11                      initial contract term of 15 years;38 and (iv) additional collateral requirements.39
+
+12         Q.   CAN YOU EXPLAIN THE REQUIREMENTS A CUSTOMER MUST
+
+13          MEET TO QUALIFY AS AN EXTREMELY HIGH LOAD CUSTOMER
+
+14         WHO MUST TAKE SERVICE UNDER RATE EHLF?
+
+15         A.       It is my understanding that Rate EHLF will apply to customers who meet both of
+
+16                  the following criteria: (i) a contract capacity greater than 100 MVA; and (ii) an
+
+17                 expected average monthly load factor above 85 percent.40
+
+
+
+         35 Attachment to Filing Requirement, Tab 4 ‒807 KAR 5:001 Section 16(1)(b)(3), p. 35 (tariff sheet for Extremely
+      High Load Factor Service).
+         36 See Hornung Direct, p. 5, lines 6-8.
+         37 See id. at 5, lines 14-15. The monthly demand for the Maximum Load Charge is defined as the greater of
+          (i) maximum measured load in the current billing period, (ii) highest measured load in the preceding 11 monthly
+        billing periods, or (iii) 80 percent of the contract capacity based on the maximum load expected on the system or on
+         facilities specified by the customer. See Attachment to Filing Requirement, Tab 4 ‒807 KAR 5:001 Section
+        16(1)(b)(3), p. 26 (tariff sheet for Time-of-Day Secondary Service).
+         38 See Hornung Direct, p. 6, line 5.
+         39 See id. at 6, lines 14-15.
+         40 See Attachment to Filing Requirement, Tab ‒- 807 KAR 5:001 Section 16(1)(b)(3), p. 35 (tariff sheet for Extremely
+      High Load Factor Service).
+
+
+                                            24                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.   DOES WALMART SUPPORT HIGH LOAD CUSTOMER TARIFFS SUCH
+
+ 2            AS SCHEDULE RATE EHLF?
+
+ 3         A.     Generally, yes it does. Due to the significant forecasted load growth driven in large
+
+ 4                   part by data centers, Walmart supports the creation of separate tariffs specifically
+
+ 5                 designed to address the unique characteristics of Extremely High Load Factor
+
+ 6                 customers. While  traditional,  large C&I customers have  historically driven
+
+ 7                     electricity demand, they also tend to deliver broader economic benefits to the local
+
+ 8               community and utility, including significantly more job opportunities and new
+
+ 9                  ratepayers as compared to the limited ongoing positions typically associated with
+
+10                  data center operations.
+
+11                          Additionally, data centers present a unique challenge due to the scale and
+
+12                  concentration of their energy demands. Individual data center projects can be
+
+13                hundreds or even thousands of MWs in size, with a single facility potentially
+
+14                 comprising a  substantial  portion  of a  utility's system  peak. This  level  of
+
+15                  concentrated load presents system planning and cost recovery risks not typically
+
+16                  associated with other types of C&I development. Unique issues such as those
+
+17                  presented by data centers and similar industries warrant unique solutions.
+
+18         Q.  HOW DO TARIFFS SUCH AS RATE EHLF ADDRESS THESE
+
+19           CONCERNS?
+
+20         A.    Given the unprecedented scale of electricity demand associated with Extremely
+
+21               High Load Factor customers – and the significant investment required to serve that
+
+22              demand – it is essential that appropriate safeguards are implemented to protect
+
+23                   existing customers. This includes ensuring that projected load materializes as
+
+
+                                            25                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                 expected and remains in service over a meaningful duration. Additionally, Walmart
+
+ 2                  believes that fostering a supportive environment for traditional C&I customers is
+
+ 3                     vital to Kentucky's long-term economic health. Establishing a separate Extremely
+
+ 4               High Load Factor customer class and related tariff can provide a prudent framework
+
+ 5                   to manage the unique risks posed by data center growth while balancing the broader
+
+ 6                    interests of both current and prospective customers across the Commonwealth.
+
+ 7         Q.    IN ADDITION TO PROTECTIONS PROVIDED IN TARIFFS SUCH AS
+
+ 8           RATE EHLF, DOES WALMART HAVE OTHER CONCERNS AROUND
+
+ 9          EXTREMELY HIGH LOAD FACTOR CUSTOMERS?
+
+10         A.     Yes, Walmart is also concerned that the significant system demands posed by
+
+11                Extremely High Load Factor customers could limit system access for other C&I
+
+12                 customers such as Walmart that also require additional power to support operational
+
+13                 expansion, deploy new technologies, and invest in high-powered equipment. These
+
+14                 investments not only drive operational efficiency and performance but are also
+
+15                      critical to achieving corporate sustainability goals. Although  traditional C&I
+
+16                 customers typically do not bring load to the Company's system at the same scale as
+
+17                  hyperscale data centers, they nonetheless provide substantial and broad-based
+
+18               economic value to the Commonwealth of Kentucky. These customers support local
+
+19                economies by creating jobs, generating significant tax revenue, and contributing to
+
+20                 long-term economic development. In short, traditional C&I customers bring more
+
+21                 than just new load ‒they help build  resilient communities and diversify the
+
+22               economic base. Ensuring that these customers can continue to locate and expand
+
+
+
+
+                                            26                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                  operations within  the Company's  service  territory  is  essential  to  sustaining
+
+ 2                 Kentucky's economic growth.
+
+ 3         Q.  HOW DOES WALMART BELIEVE THE COMPANY CAN ADDRESS
+
+ 4           THESE CONCERNS?
+
+ 5         A.     In order to ensure sufficient capacity for all customers, Walmart recommends that
+
+ 6                  the Company balance the interests of Extremely High Load Factor customers with
+
+ 7                  those of other existing and potential customers, particularly traditional C&I
+
+ 8                 customers, by implementing internal procedures that allocate or reserve system
+
+ 9                  access in a way that protects the needs of non-Extremely High Load Factor
+
+10                 customers by ensuring that the demand from these extremely large customers does
+
+11                  not crowd out other C&I customers.
+
+12         Q.  WHAT IS WALMART'S RECOMMENDATION TO THE COMMISSION
+
+13           WITH REGARD TO THE PROPOSED RATE EHLF?
+
+14         A.    Walmart appreciates the Company's efforts to recognize and address the unique
+
+15                    risks posed by customers whose demands are substantially larger than those of other
+
+16                 customers through measures such as Rate EHLF. Accordingly, Walmart supports
+
+17                Rate EHLF and recommends that the Commission approve the rate as proposed. At
+
+18                  the same time, Walmart emphasizes the importance of ensuring that the Company's
+
+19                    internal processes are structured to provide timely and equitable access to the
+
+20                system for other C&I customers who are also expanding their energy usage through
+
+21              new facilities, advanced equipment, and/or investments in technologies that require
+
+22                   additional electrification.
+
+23
+
+
+                                            27                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1   (C)    Public EV Charging Rate
+
+ 2         Q.   DOES THE COMPANY CURRENTLY OFFER OR PROPOSE TO OFFER
+
+ 3              IN THIS CASE A RATE SPECIFICALLY FOR EV CHARGING?
+
+ 4         A.    To the best of my knowledge, the Company does not currently offer rates
+
+ 5                   specifically for public EV charging.
+
+ 6         Q.   DOES WALMART SUPPORT THE NEED FOR PUBLIC EV RATE
+
+ 7            DESIGN?
+
+ 8         A.     Yes, Walmart supports public EV charging rates that are specifically designed for
+
+ 9                  public charging at third-party locations.
+
+10         Q.   ARE THERE  CERTAIN EV RATE STRUCTURES THAT THE
+
+11           COMMISSION SHOULD CONSIDER?
+
+12         A.     Yes, there are. It does not appear that the Company currently offers or is proposing
+
+13                   to offer a rate structure specifically for customers who are interested in owning and
+
+14                  operating public EV charging equipment, specifically DCFC.
+
+15         Q.  WHY DOES WALMART BELIEVE THAT THE COMPANY SHOULD
+
+16           OFFER A RATE FOR THIRD-PARTY OWNED PUBLIC DCFCs?
+
+17         A.     Building out a robust public EV charging network is a key component to supporting
+
+18                  the EV industry as a whole and encouraging EV adoption by eliminating range
+
+19                  anxiety and other challenges that EV drivers face when needing to charge their
+
+20                  vehicle as compared to traditional internal combustion vehicles. Increasing the
+
+21               number  of EV  chargers,  including  public-facing DCFCs,  is needed  in  the
+
+22               Company's service territory. To accomplish this, additional initiatives and rate
+
+23                   structures are needed to fully develop a public DCFC network. Specifically, as
+
+
+                                            28                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                  discussed in more detail below, an important component to third-party investment
+
+ 2                   in public EV chargers is the availability of EV-specific distribution rate options for
+
+ 3                  public DCFCs.
+
+ 4         Q.   DOES WALMART HAVE EXPERIENCE IN THE EV CHARGING
+
+ 5            SPACE?
+
+ 6         A.     Yes, Walmart has substantial experience with offering EV charging to its customers
+
+ 7                and  is actively growing  its presence in the EV charging space. Specifically,
+
+ 8               Walmart currently hosts more than 1,200 public DCFCs at 285 different locations
+
+ 9                  across 43 states. As announced recently, Walmart intends to build its own EV fast
+
+10                 charging network at thousands of Walmart and Sam's Club locations across the U.S.
+
+11                 over the next few years.41 Walmart retail sites are ideally situated for EV charging
+
+12                    stations because of their large parking lots, easy public access, and multi-site
+
+13                   locations.
+
+14         Q.   ARE WALMART-OWNED AND  OPERATED  CHARGERS NOW
+
+15           AVAILABLE TO THE PUBLIC?
+
+16         A.     Yes. Walmart opened its first Walmart-owned and operated charging station in
+
+17               McKinney, Texas42 in March 2025, and since then we have opened several more
+
+18                    stations in the Dallas area. The base configuration of our charging stations is eight
+
+19                      stalls supplied by four 400 kW units with two handles each. Depending on the site,
+
+20                   additional units may be added.
+
+
+
+
+         41 Vishal Kapadia, Leading the Charge: Walmart Announces Plan to Expand Electric Vehicle Charging Network,
+      Walmart   (Apr.   6,   2023),   https://corporate.walmart.com/newsroom/2023/04/06/leading-the-charge-walmart-
+       announces-plan-to-expand-electric-vehicle-charging-network.
+         42 https://www.walmart.com/store/206-mckinney-tx/ev-charging-station
+
+
+                                            29                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.  WHY HAS WALMART DECIDED TO PARTICIPATE IN THE PUBLIC
+
+ 2           EV CHARGING SPACE?
+
+ 3         A.    As part of its renewable energy and carbon reduction efforts, Walmart is committed
+
+ 4                   to supporting EV adoption by providing EV charging stations in thousands of
+
+ 5                   locations around the country that not only serve EV customers who reside and/or
+
+ 6               work nearby but that also advance the nationwide EV infrastructure. Further,
+
+ 7               Walmart is proud to offer EV charging as a convenience to its customers who
+
+ 8                   currently own EVs and  for  future EV owners. Building an EV charging
+
+ 9                   infrastructure that serves local communities, both large and small, as well as
+
+10                   corridors located within states and throughout the country, is critical as vehicle
+
+11                owners consider their options when purchasing a new vehicle.
+
+12         Q.   ARE ELECTRIC RATES A FACTOR THAT WALMART CONSIDERS
+
+13         WHEN INSTALLING OR SITING EV CHARGING INFRASTRUCTURE
+
+14           AT ITS FACILITIES?
+
+15         A.     Yes, Walmart seeks to balance the risks and costs of installing and maintaining a
+
+16                    particular EV charging station, which is informed, in part, by the tariff under which
+
+17                  the electricity is provided from the utility to the owner of the EV charger.
+
+18         Q.   SHOULD THE COMMISSION REQUIRE THE COMPANY TO DEVELOP
+
+19          AN EV CHARGING-SPECIFIC RATE FOR PUBLIC EV CHARGERS?
+
+20         A.     Yes, it should. In the short term, public EV charging-specific rates are needed to
+
+21                  support third-party investment in EV charging equipment. As an investor in EV
+
+22                 charging equipment for both the public and for its own private fleet, Walmart
+
+23                 understands how EV charging rates can either promote or impede EV charging
+
+
+                                            30                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                 investment and experience. While the EV industry continues to grow, there will be
+
+ 2                 a ramp up to sufficient EV adoption to support an extensive public EV charging
+
+ 3                 network. This will create geographical locations where public EV chargers are
+
+ 4                    either not being used or are used infrequently. For these under-utilized chargers that
+
+ 5                   are being billed by the utility under a more traditional rate tariff with a demand
+
+ 6                  charge, the charger operator may be assessed the maximum demand charge even
+
+ 7                     after only a single use of that charging unit regardless of whether there is any
+
+ 8                   additional charging during that month. This outcome negatively impacts the
+
+ 9                economics for that unit and may lead to little or no third-party investment in public
+
+10           EV chargers sited in areas of low usage.
+
+11         Q.  WHAT IS WALMART'S RECOMMENDATION TO THE COMMISSION
+
+12           WITH REGARD TO DEVELOPING AN EV RATE SPECIFICALLY FOR
+
+13            PUBLIC EV CHARGERS?
+
+14         A.    Walmart recommends that the Commission require the Company to work with
+
+15                   interested stakeholders to develop a new EV rate specifically for public-facing EV
+
+16                  chargers and to either seek Commission approval of such rate or provide an update
+
+17               on the stakeholder process within six months following the issuance of a Final
+
+18                Order in this case.
+
+19
+
+
+
+
+
+                                            31                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1   VI.   Key Accounts Program for Large Customers
+
+ 2         Q.   DOES THE COMPANY PROVIDE TESTIMONY ON ITS VIEW OF
+
+ 3          CUSTOMER SERVICE AND ENGAGEMENT?
+
+ 4         A.     Yes, it does. As explained by Company witness Montgomery, the Company states
+
+ 5                    that customer focus is central to their vision and values.43 They prioritize safety,
+
+ 6                    affordability, and respect while actively seeking customer  input.44 To meet
+
+ 7                customer needs, according to the Company, it provides timely energy usage and
+
+ 8                    billing information, offers tailored programs, and continually pursues process
+
+ 9                improvements to enhance service.45
+
+10         Q.   DOES THE COMPANY PROVIDE A CUSTOMER REPRESENTATIVE
+
+11          TO ENGAGE WITH ITS LARGER CUSTOMERS?
+
+12         A.     Yes, it does. Based on my understanding, the Company's parent, PPL Corporation
+
+13                 ("PPL"), has recently consolidated its key account program for large customers
+
+14                such  as  Walmart. As  a  result,  rather  than  maintaining  separate  account
+
+15                   representatives for each subsidiary utility, Walmart can now coordinate through a
+
+16                   single representative who addresses all of its needs across the entire PPL footprint.
+
+
+
+
+
+         43 See Direct Testimony of Shannon L. Montgomery, p. 2, line 7.
+         44 See id. at 2, lines 8-11.
+         45 See id. at 2, lines 11-16.
+
+
+                                            32                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.   DOES WALMART PREFER TO HAVE A SINGLE POINT OF CONTACT
+
+ 2            AS OPPOSED TO MULTIPLE KEY ACCOUNT MANAGERS FOR EACH
+
+ 3            UTILITY WITHIN THE PPL FAMILY?
+
+ 4         A.     Yes. Having a single point of contact allows Walmart to coordinate more efficiently
+
+ 5                 with the Company across the full range of its energy-related needs. This streamlined
+
+ 6                communication channel helps Walmart move quickly when applying for new
+
+ 7                    electric service, enrolling in or maintaining participation in customer programs, and
+
+ 8                 scheduling planned outages to minimize disruptions to operations. It also ensures
+
+ 9                    that Walmart can promptly notify the Company of unplanned outages, billing
+
+10                  concerns, or other operational issues as they arise. By reducing administrative
+
+11                  delays and avoiding duplicative efforts, a dedicated point of contact enhances both
+
+12                  responsiveness and overall service reliability.
+
+13         Q.  WHAT BENEFITS COME FROM HAVING A DEDICATED ACCOUNT
+
+14           REPRESENTATIVE FOR LARGE CUSTOMERS?
+
+15         A.    The key account representative plays a vital role in the customer-utility relationship
+
+16               by providing a single point of contact at the utility for day-to-day operational and
+
+17                   technical  support,  updates  on  rates  and  utility  programs,  support  during
+
+18                 emergencies such as hurricanes and winter storm events, and a conduit for
+
+19                   customer-utility communications on broader strategic opportunities. For Walmart,
+
+20                   in particular, which generally maintains multiple sites within a utility's service
+
+21                     territory,  it also ensures a single, consistent message applicable to  all of  its
+
+22                   operations. A top-notch account representative is practically a member of the
+
+23                  customer's energy management team and an advocate for the customer within the
+
+
+                                            33                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1                      utility organization. This, in turn, ensures that the Company's other customer
+
+ 2                   service representatives are available to serve the needs of the Company's broader
+
+ 3                    rate base.
+
+ 4         Q.   ARE THERE BENEFITS TO OTHER UTILITY CUSTOMERS AND THE
+
+ 5          BROADER COMMUNITY?
+
+ 6         A.     Yes. Account representatives for large customers help those customers serve their
+
+ 7                 communities, particularly during storms and other emergency events. For example,
+
+ 8                   in the event of a power outage during a storm, customers need a knowledgeable and
+
+ 9                    efficient point of contact to coordinate power restoration, advocate and direct action
+
+10                  within the utility, and work to ensure business continuity. If one of Walmart's stores
+
+11                   loses power, knowing the estimated duration of the outage in a timely manner can
+
+12                 help determine whether Walmart should provide a mobile generator to operate the
+
+13                    entire facility or whether refrigerated trailers are needed to refrigerate perishables
+
+14                and how soon Walmart can return to serving the community. Additionally, the
+
+15                  process of installing a mobile generator requires utility engagement – utility crews
+
+16                   are required to pull fuses on the distribution system in order to allow the generator
+
+17                   to interconnect – and to execute on this process efficiently requires the attention
+
+18                and expertise of an account representative. Repeatedly calling a call center, which
+
+19             may involve speaking with multiple different representatives, providing identifying
+
+20                   info (account number,  service  address,  etc.), reviewing information already
+
+21                  provided, and not knowing when and how the issue will be resolved is inefficient
+
+22                and frustrating for customers.
+
+
+
+
+                                            34                                                                                Walmart Inc.
+                                                                                Direct Testimony of Lisa V. Perry
+                                               Kentucky Public Service Commission Case No. 2025-00113
+
+
+ 1         Q.  WHAT IS WALMART'S RECOMMENDATION TO THE COMMISSION?
+
+ 2         A.    Walmart appreciates the Company providing a single point of contact and its
+
+ 3                ongoing commitment to engaging with  all  its customers through continuous
+
+ 4                  evaluation of its relationship and adapting processes as technology and customer
+
+ 5                 needs evolve. In particular, Walmart values the Company's key account manager
+
+ 6                program for large customers and supports the efforts of this team, as previously
+
+ 7                  discussed. While not a specific recommendation, Walmart highlights this in its
+
+ 8                 testimony to inform the Commission of the valuable service provided by the
+
+ 9               Company's key account manager team.
+
+10         Q.   DOES THIS CONCLUDE YOUR TESTIMONY?
+
+11         A.     Yes.
+
+
+
+
+
+                                            35              COMMONWEALTH OF KENTUCKY
+             BEFORE THE PUBLIC SERVICE COMMISSION
+
+In the Matter of:
+
+ELECTRONIC APPLICATION OF                   )
+KENTUCKY UTILITIES COMPANY FOR         )
+AN ADJUSTMENT OF ITS ELECTRIC             )   CASE NO. 2025-00113
+RATES, AND APPROVAL OF CERTAIN           )
+REGULATORY AND ACCOUNTING               )
+TREATMENTS                                             )
+
+
+                           EXHIBITS OF
+
+                            LISA V. PERRY
+
+                     ON BEHALF OF
+
+                     WALMART INC.              COMMONWEALTH OF KENTUCKY
+             BEFORE THE PUBLIC SERVICE COMMISSION
+
+In the Matter of:
+
+ELECTRONIC APPLICATION OF                   )
+KENTUCKY UTILITIES COMPANY FOR         )
+AN ADJUSTMENT OF ITS ELECTRIC             )   CASE NO. 2025-00113
+RATES, AND APPROVAL OF CERTAIN           )
+REGULATORY AND ACCOUNTING               )
+TREATMENTS                                             )
+
+
+                         EXHIBIT LVP-1 OF
+
+                            LISA V. PERRY
+
+                     ON BEHALF OF
+
+                     WALMART INC.                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+Lisa V. Perry
+Director, Utility Partnerships - Regulatory
+Walmart Inc.
+Business Address: 2608 SE J Street, Bentonville, Arkansas 72716
+Business Phone: (479) 274-0238
+
+EXPERIENCE
+September 2023 – Present
+Walmart Inc., Bentonville, AR
+Director, Utility Partnerships - Regulatory
+
+September 2019 – September 2023
+Walmart Inc., Bentonville, AR
+Senior Manager, Energy Services
+
+November 2017 – September 2019
+Oram & Houghton PLLC, Round Rock, TX
+Of Counsel, Energy Law
+
+February 2016 – November 2017
+Ray Quinney & Nebeker, P.C., Salt Lake City, UT
+Of Counsel, Energy Law
+
+September 2007 – February 2016
+Welborn, Sullivan, Meck & Tooley, P.C., Denver, CO
+Partner, Energy Law
+
+EDUCATION
+2000  University of Florida Levin College of Law LL.M., Taxation
+1999  University of Florida Levin College of Law J.D.
+1996  University of South Florida                B.A., Criminology
+1993  University of South Florida                B.A., Psychology
+
+FILED TESTIMONY
+2025
+Arkansas Public Service Commission Docket No. 25-003-U: In the Matter of the Application of
+Southwestern Electric Power Company for Approval of a General Change in Rates and Tariffs.
+Issue: General rate case.                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+Commonwealth  of  Virginia  State  Corporation Commission Case No. PUR-2025-00058:
+Application of Virginia Electric and Power Company For a 2025 biennial review of the rates, terms
+and conditions for the provision of generation, distribution and transmission services pursuant to
+§ 56-585.1 A of the Code of Virginia.
+Issue: 2025 Biennial Plan.
+
+Florida Public Service Commission Docket No. 20250011-EI: In re: Petition for rate increase by
+Florida Power & Light Company.
+Issue: General Rate Case.
+
+Georgia Public Service Commission Docket No. 56002: In Re: Georgia Power Company’s 2025
+Integrated Resource Plan and Docket No. 56003: In Re: Georgia Power Company’s 2025
+Application for the Certification, Decertification, and Amended Demand-Side Management Plan.
+Issue: Approval of triennial Integrated Resource Plan.
+
+Public Utilities Commission of Ohio Case Nos. 24-0468-EL-AIR, 24-0469-EL-ATA, 24-0470-
+EL-AAM, and 24-0471-EL-UNC: In the Matter of the Application of Ohio Edison Company, the
+Cleveland Electric Illuminating Company and the Toledo Edison Company for an Increase in
+Electric Distribution Rates, Tariff Approval, Approval to Change Accounting Methods, and for
+Approval of Miscellaneous Customer Programs.
+Issue: General rate case.
+
+Commonwealth of Kentucky Public Service Commission Case No. 2024-00354: In the Matter of
+Electronic Application of Duke Energy Kentucky, Inc. for: 1) an Adjustment of the Electric Rates;
+2) Approval of New Tariffs; 3) Approval of Accounting Practices to Establish Regulatory Assets
+and Liabilities; and 4) All Other Required Approvals and Relief.
+Issue: General rate case.
+
+Commonwealth  of  Virginia  State  Corporation Commission Case No. PUR-2024-00184:
+Application of Virginia Electric and Power Company in  re: Virginia Electric and Power
+Company’s 2024 Integrated Resource Plan filing pursuant to Va. Code § 56-597 et. seq.
+Issue: 2024 Integrated Resource Plan.
+
+New Hampshire Public Utilities Commission Docket No. DE 24-070: Public Service Company of
+New Hampshire d/b/a Eversource Energy Petition for Temporary and Permanent Rates.
+Issue: General Rate Case.
+
+
+
+
+
+                                                                             2                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+2024
+Indiana Utility Regulatory Commission Cause No. 46120: Petition of Northern Indiana Public
+Service Company LLC Pursuant to Ind. Code §§ 8-1-2-42.7, 8-1-2-61 and 8-1-2.5-6 for (1)
+Authority to Modify its Retail Rates and Charges for Electric Utility Service Through a Phase In
+of Rates; (2) Approval of New Schedules of Rates and Charges, General Rules and Regulations,
+and Riders (Both Existing and New): (3) Approval of Revised Common and Electric Depreciation
+Rates Applicable to its Electric Plant in Service; (4) Approval of Necessary and Appropriate
+Accounting Relief, Including, but Limited to, Authority to Capitalize as Rate Base all Expenditures
+for Improvements  to  Petitioner’s  Information Technology Systems Through  the  Design,
+Development, and Implementation of a Work and Asset Management (“WAM”) Program, to the
+Extent Necessary; and (5) Approval of Alternative Regulatory Plans for the Partial Waiver of 170
+IAC 4-1-16(f) and Proposed Remote Disconnection and Reconnection Process and, to the Extent
+Necessary, Implementation of a Low Income Program.
+Issue: General Rate Case.
+
+State of New York Public Service Commission Case 24-E-0461: Proceedings on Motion of the
+Commission as to the Rates, Charges, Rules and Regulations of Central Hudson Gas & Electric
+Corporation for Electric Service and Case 24-G-0462: Proceedings on Motion of the Commission
+as to the Rates, Charges, Rules and Regulations of Central Hudson Gas & Electric Corporation for
+Gas Service.
+Issue: General rate case for electric and gas.
+
+Michigan Public Service Commission Case No. U-21585: In the matter of the application of
+CONSUMERS ENERGY COMPANY for authority to increase its rates, amend its rate schedules
+and rules governing the distribution and supply of electric energy, and for miscellaneous
+accounting authority.
+Issue: General rate case.
+
+State of New York Public Service Commission Case 24-E-0322: Proceedings on Motion of the
+Commission as to the Rates, Charges, Rules and Regulations of Niagara Mohawk Power
+Corporation d/b/a National Grid for Electric Service and Case 24-G-0323: Proceedings on Motion
+of the Commission as to the Rates, Charges, Rules and Regulations of Niagara Mohawk Power
+Corporation d/b/a National Grid for Gas Service.
+Issue: General rate case for electric and gas.
+
+Public Utilities Commission of Ohio Case No. 24-508-EL-ATA: In the Matter of the Application
+of Ohio Power Company for New Tariffs Related to Data Centers and Mobile Data Centers.
+Issue: Approval of two tariffs designed specifically for lager data centers and mobile data centers.
+
+Public Service Commission of Wisconsin Docket No. 6690-UR-128: Application of Wisconsin
+Public Service Corporation for Authority to Adjust Electric and Natural Gas Rates.
+Issue: General rate case for electric and gas.
+
+
+
+
+
+                                                                             3                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+Public Utility Commission of Texas Docket No. 56216, SOAH Docket No. 473-24-21528:
+Application of Entergy Texas, Inc. for Approval of Rate Schedule UODG.
+Issue: Seeing approval of a voluntary microgrid program.
+
+Michigan Public Service Commission Case No. U-21534: In the matter of the Application of DTE
+ELECTRIC COMPANY for authority to increase its rates, amend its rate schedules and rules
+governing the distribution and supply of electric energy, and for miscellaneous accounting
+authority.
+Issue: General rate case.
+
+Public Utility Commission of Oregon Docket No. UE 435: In the Matter of Portland General
+Electric Company, Request for a General Rate Revision.
+Issue: General Rate Case.
+
+Commonwealth  of  Virginia  State  Corporation Commission Case No. PUR-2024-00024:
+Application of Appalachian Power Company for a 2024 biennial review of its base rates, terms
+and conditions pursuant to § 56-585.8 of the Code of Virginia.
+Issue: Biennial review of rates.
+
+Indiana Utility Regulatory Commission Cause No. 46038: Petition of Duke Energy Indiana, LLC
+Pursuant to Ind. Code §§ 8-1-2-42.7 and 8-1-2-61, for (1) Authority to Modify its Rates and
+Charges for Electric Utility Service Through a Multi-Step Rate Implementation of New Rates and
+Charges Using a Forecasted Test Period; (2) Approval of New Schedules of Rates and Charges,
+General Rules and Regulations, and Riders; (3) Approval of Revised Electric Depreciation Rates
+Applicable to its Electric Plant in Service, and Approval of Regulatory Asset Treatment Upon
+Retirement of the Company’s Last Coal-fired Steam Generation Plant; (4) Approval of an
+Adjustment to the Company’s FAC Rider to Track Coal Inventory Balances; and (5) Approval of
+Necessary and Appropriate Accounting Relief, Including Authority to: (A) Defer to a Regulatory
+Asset Expenses Associated with the Edwardsport Carbon Capture and Sequestration Study, (B)
+Defer to a Regulatory Asset Costs Incurred to Achieve Organizational Savings, and (C) Defer to
+a Regulatory Asset or Liability, as Applicable, all Calculated Income Tax Differences Resulting
+from Future Changes in Income Tax Rates.
+Issue: General Rate Case.
+
+Washington  Utilities and Transportation Commission Docket Nos. UE-240006/UG-240007
+(consolidated): Washington Utilities and Transportation Commission, Complainant v. Avista
+Corporation d/b/a Avista Utilities, Respondent.
+Issue: General rate case for electric and gas service.
+
+Public Service Commission of South Carolina Docket Nos. 2023-8-E and 2023-10-E: In re: Duke
+Energy Progress, LLC’s 2023 Integrated Resource Plan (IRP) and In re: Duke Energy Carolinas,
+LLC’s 2023 Integrated Resource Plan (IRP).
+Issue: General Rate Case.
+
+
+
+
+
+                                                                             4                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+Public Utility Commission of Texas Docket No. 56211, SOAH Docket No. 473-24-13232:
+Application of CenterPoint Energy Houston Electric, LLC for Authority to Change Rates.
+Issue: General Rate Case.
+
+Pennsylvania Public Utility Commission Docket No. R-2024-3047068: Pennsylvania Public
+Utility Commission v. FirstEnergy Pennsylvania Electric Company
+Issue: General Rate Case.
+
+Pennsylvania Public Utility Commission Docket No. R-2024-3046931: Pennsylvania Public
+Utility Commission v. PECO Energy Company – Electric Division
+Issue: General Rate Case.
+
+Pennsylvania Public Utility Commission Docket No. R-2024-3046932: Pennsylvania Public
+Utility Commission v. PECO Energy Company – Gas Division
+Issue: General Rate Case.
+
+Pennsylvania Public Utility Commission Docket No. R-2024-3046523: Pennsylvania Public
+Utility Commission v. Duquesne Light Company
+Issue: General Rate Case.
+
+Public Service Commission of South Carolina Docket No. 2024-34-E: In re: Application of
+Dominion Energy South Carolina, Inc. for Authority to Adjust and Increase Its Retail Electric Rate
+Schedules, Tariffs, and Terms and Conditions
+Issue: General Rate Case.
+
+North Carolina Utilities Commission Docket No. E-100, Sub 190: In the Matter of Biennial
+Consolidated Carbon Plan and Integrated Resource Plans of Duke Energy Carolinas, LLC, and
+Duke Energy Progress LLC, Pursuant to N.C.G.S. § 62-110.1(c).
+Issue: Carbon Plan and Integrated Resource Plan.
+
+Public Utility Commission of Texas Docket No. 56165, SOAH Docket No. 473-24-12812:
+Application of AEP Texas Inc. for Authority to Change Rates.
+Issue: General Rate Case.
+
+Illinois Commerce Commission Docket Nos. 22-0487 and 23-0082 (cons.) (reopen.): Illinois
+Commerce Commission on its Own Motion vs. Ameren Illinois Company d/b/a Ameren Illinois
+and Order Requiring Ameren Illinois Company to file an Initial Multi-Year Integrated Grid Plan
+and Initiating Proceeding to Determine Whether the Plan is Reasonable and Complies with the
+Public Utilities Act and Ameren Illinois Company d/b/a Ameren Illinois Petition for Approval of
+a Multi-Year Rate Plan pursuant to 220 ILCS 5/16-108.18.
+Issue: Refiled Multi-Year Integrated Grid Plan.
+
+
+
+
+
+                                                                             5                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+Public Service Commission of South Carolina Docket No. 2022-326-E: In re: Joint Application of
+Duke Energy Carolinas, LLC and Duke Energy Progress, LLC for Approval of Customer
+Renewable Programs
+Issue: Seeking approval of new voluntary renewable programs.
+
+Iowa Utilities Board Docket No. RPU-2023-0002: In re: Interstate Power and Light Company
+Issue: General rate case.
+
+Public Service Commission of South Carolina Docket No. 2023-388-E: In re: Application of Duke
+Energy Carolinas, LLC for Increase in Electric Rates, Adjustments in Electric Rate Schedules and
+Tariffs, and Request for an Accounting Order
+Issue: General rate case.
+
+Florida Public Service Commission Docket No. 20230020-EI: In  re:  Petition  for limited
+proceeding for recovery of incremental storm restoration costs related to Hurricanes Elsa, Eta,
+Isaias, Ian, Nicole, and Tropical Storm Fred, by Duke Energy Florida, LLC.
+Issue: Seeking approval of cost recovery for storm costs resulting from the named Hurricanes and
+Tropical Storm.
+
+Public Utility Commission of Texas Docket No. 55176, SOAH Docket No. 473-24-06013:
+Application of El Paso Electric Company to Implement a Voluntary Texas Business Solar Power
+Program.
+Issue: Approval of a voluntary renewable energy program.
+
+Florida Public Service Commission Docket No. 20230019-EI: In re: Petition for recovery of costs
+associated with named tropical systems during the 2019-2022 hurricane seasons and replenishment
+of storm reserve, by Tampa Electric Company.
+Issue: Seeking approval of cost recovery for storm costs incurred during the 2019-2022 hurricane
+seasons.
+
+Georgia Public Service Commission Docket No. 55378: In Re: Georgia Power Company’s 2023
+Integrated Resource Plan Update, Certification of the Power Purchase Agreement Between
+Georgia Power Company and Mississippi Power Company and Santa Rosa Energy Center LLC,
+and Amended Certification of the Residential Thermostat Demand Response Demand Side
+Management Program.
+Issue: Approval of an updated Integrated Resource Plan.
+
+Public Service Commission of South Carolina Docket No. 2023-369-E: In re: S.C. Code Ann.
+Section 58-37-60 Independent Study to Evaluate the Integration of Renewable Energy and
+Emerging Energy Technologies into the Electric Grid for the Public Interest.
+Issue: Evaluation of integrating renewable generation and related technologies into the grid.
+
+
+
+
+
+                                                                             6                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+2023
+Public Service Commission for the State of Maryland Case No. 9702: In the Matter of the
+Application of Potomac Electric Power Company for Adjustments to its Retail Rates for the
+Distribution of Electric Energy
+Issue: General rate case.
+
+Public Service Commission for the State of New York Case No. 23-E-0418: Proceeding on Motion
+of the Commission as to the Rates, Charges, Rules and Regulations of Central Hudson Gas &
+Electric Corporation for Electric Service; and Case No. 23-G-0419: Proceeding on Motion of the
+Commission as to the Rates, Charges, Rules and Regulations of Central Hudson Gas and Electric
+Corporation for Gas Service.
+Issue: General rate cast for electric and gas service.
+
+Indiana Utility Regulatory Commission Cause No. 45933: Petition of Indiana Michigan Power
+Company, an Indiana Corporation, for Authority to Increase its Rates and Charges for Electric
+Utility Service Through a Phase In Rate Adjustment; and for Approval of Related Relief Including:
+(1) Revised Depreciation  Rates, Including Cost of Removal Less Salvage, and Updated
+Depreciation Expense;  (2) Accounting  Relief, Including Deferrals and Amortizations;  (3)
+Inclusion of Capital Investment; (4) Rate Adjustment Mechanism Proposals, Including New Grant
+Projects Rider and Modified Tax Rider; (5) a Voluntary Residential Customer Powerpay Program;
+(6) Waiver  of  Declination  of  Jurisdiction  with  Respect  to  Certain  Rules  to  Facilitate
+Implementation of the Powerpay Program; (7) Cost Recovery for Cook Plant Subsequent License
+Renewal Evaluation Project; and (8) New Schedules of Rates, Rules and Regulations.
+Issue: General rate case.
+
+Public Utilities Commission of Ohio Case No. 23-301-EL-SSO: In the Matter of the Application
+of Ohio Edison Company, the Cleveland Electric Illuminating Company, and the Toledo Edison
+Company for Authority to Establish a Standard Service Offer Pursuant to R.C. 4928.143 in the
+Form of an Electric Security Plan.
+Issue: Approval of the Company’s proposed Electric Security Plan.
+
+Louisiana Public Service Commission Docket No. U-36697: Application of Entergy Louisiana,
+LLC for Approval of an alternative market-based mechanism process seeking to secure up to 3,000
+MW of solar resources, including certification of those resources, expansion of the Geaux Greem
+Option Rider, and approval of a new renewable tariff.
+Issue: Approval of a voluntary renewable program backed by utility-owned solar assets.
+
+Commonwealth  of  Virginia  State  Corporation Commission Case No. PUR-2023-00101:
+Application of Virginia Electric and Power Company for a 2023 biennial review of the rates, terms
+and conditions for the provision of generation, distribution and transmission services pursuant to
+§ 56-585.1 A of the Code of Virginia.
+Issue: Biennial review of rates.
+
+
+
+
+
+                                                                             7                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+Commonwealth of Kentucky Public Service Commission Case No. 2023-00159: Electronic
+Application of Kentucky Power Company for (1) a General Adjustment of its Rates for Electric
+Service; (2) Approval of Tariffs and Riders; (3) Approval of Accounting Practices to Establish
+Regulatory Assets and Liabilities; (4) a Securitization Financing Order; and (5) all other Required
+Approvals and Relief.
+Issue: General rate case.
+
+Louisiana Public Service Commission Docket No. U-36625: Application of Entergy Louisiana,
+LLC for Approval of the Entergy Future Ready Resilience Plan (Phase I)
+Issue: Recovery of costs to upgrade transmission and distribution systems.
+
+Colorado Public  Utilities Commission Proceeding No. 23A-0242E:  In  the Matter of the
+Application of Public Service Company of Colorado for Approval of its 2024-2026 Transportation
+Electrification Plan.
+Issue: Seeking approval of utility’s second transportation electrification plan.
+
+Indiana Utility Regulatory Commission Cause No. 45919: In the Matter of the Petition of Indiana
+Michigan Power Company for Approval of (1) an Electric Vehicle Fast Charging Rate and Tariff
+and (2) Deferred Accounting Treatment for the Costs of Certain Company-Owned Electric Vehicle
+Fast Charging Stations and the Revenue from the Electric Vehicle Fast Charging Tariff.
+Issue: Approval of an EV charging tariff for utility-owned public EV chargers.
+
+Oklahoma Corporation Commission Cause No. PUD 2023000038: In the Matter of the Application
+of Oklahoma Gas and Electric Company for Commission Preapproval of New Generation
+Capacity Pursuant to 17 O.S. Section 286(C).
+Issue: Approval to construct two CT units and recovery of costs through a rider.
+
+State Corporation Commission of the State of Kansas Docket No. 23-EKCE-775-RTS: In the
+Matter of the Joint Application of Evergy Kansas Central, In., Evergy Kansas South, Inc., and
+Evergy Metro, Inc. for Approval to Make Certain Changes in their Charges for Electric Service.
+Issue: General rate case.
+
+Michigan Public Service Commission Case No. U-21389: In the matter of the application of
+CONSUMERS ENERGY COMPANY for authority to increase its rates for the generation and
+distribution of electricity and for other relief.
+Issue: General rate case.
+
+Public Service Commission of Wyoming Docket No. 20000-633-ER-23 (Record No. 17252): In
+the Matter of the Application of Rocky Mountain Power for Authority to Increase its Retail Electric
+Service Rates by Approximately $140.2 Million Per Year or 21.6 Percent and to Revise the Energy
+Cost Adjustment Mechanism.
+Issue: General Rate Case.
+
+
+
+
+
+                                                                             8                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+Public Utility Commission of Texas Docket No. 54634, SOAH Docket No. 473-23-14020:
+Application of Southwestern Public Service Company for Authority to Change Rates.
+Issue: General Rate Case.
+
+Commonwealth  of  Virginia  State  Corporation Commission Case No. PUR-2023-00002:
+Application of Appalachian Power Company for a 2023 triennial review of its base rates, terms
+and conditions pursuant to § 56-585.1 of the Code of Virginia.
+Issue: Triennial review of rates.
+
+Michigan Public Service Commission Case No. U-21297: In the matter of the Application of DTE
+ELECTRIC COMPANY for authority to increase its rates, amend its rate schedules and rules
+governing the distribution and supply of electric energy, and for miscellaneous accounting
+authority.
+Issue: General rate case.
+
+Indiana Utility Regulatory Commission Cause No. 45816: Investigation of the Indiana Utility
+Regulatory Commission Regarding the Public Utility Regulatory Policies Act Section 111(d)
+Standards as Amended by the Infrastructure Investment and Jobs Act.
+Issue: Electric vehicle charging programs and tariffs.
+
+Illinois Commerce Commission Docket No. 23-0055: Commonwealth Edison Company Petition
+for Approval of a Multi-Year Rate Plan under Section 16-108.18 of the Public Utilities Act.
+Issue: Multi-Year Rate Plan rate case.
+
+Illinois Commerce Commission Docket No. 23-0082: Ameren Illinois Company d/b/a Ameren
+Illinois Petition for Approval of a Multi-Year Rate Plan pursuant to 220 ILCS 5/16-108.18.
+Issue: Multi-Year Rate Plan rate case.
+
+Illinois Commerce Commission Docket No. 23-0067: Ameren Illinois Company d/b/a Ameren
+Illinois Proposed General Increase in Rates and Revisions to Other Terms and Conditions of
+Service. (Tariff filed January 6, 2023).
+Issue: Gas general rate case.
+
+Illinois Commerce Commission Docket No. 23-0066: Northern Illinois Gas Company d/b/a Nicor
+Gas Company Proposed General Increase in Rates and Revisions to Other Terms and Conditions
+of Service. (Tariff filed January 3, 2023).
+Issue: Gas general rate case.
+
+Indiana Utility Regulatory Commission Cause No. 45843: Verified Petition of Indianapolis Power
+& Light Company d/b/a AES Indiana for Commission Approval of an Electric Vehicle Portfolio,
+Including: (1) A Public Use Electric Vehicle Pilot Program Pursuant to Ind. Code Ch. 8-1-43; and
+(2) Time-Varying and Other Alternative Pricing Structures and Tariffs Pursuant to Ind. Code §8-
+1-2.5-6(3); and for Approval of Associated Accounting and Ratemaking.
+Issue: Electric vehicle charging programs and tariffs.
+
+
+
+
+                                                                             9                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+Arkansas Public Service Commission Docket No. 22-065-U: In the Matter of the Application of
+Southwestern Electric Power Company for a Certificate of Public Convenience and Necessity to
+Operate the John W. Turk, Jr. Power Plant to Supply a Public Service to its Arkansas Customers
+and for Approval of a Generation Cost Recovery Rider to Recover its Costs in Arkansas Rates.
+Issue: Cost recovery from customers of an existing generation resource.
+
+Commonwealth of Virginia State Corporation Commission Case No. PUR-2022-00166: Petition
+of Appalachian Power Company for consideration of the appropriate framework for cost recovery,
+the allocation of costs net of benefits pursuant to Code § 56-585.5 F, and class and jurisdictional
+cost allocation.
+Issue: Recovery methodology and cost allocation of VCEA-related costs.
+
+Oklahoma Corporation Commission Cause No. PUD 202200093: Application of Public Service
+Company of Oklahoma, an Oklahoma Corporation, for an Adjustment in its Rates and Charges
+and the Electric Service Rules, Regulations and Conditions of Service for Electric Service in the
+State of Oklahoma and to Approve a Formula Base Rate Proposal.
+Issue: General rate case.
+
+Oklahoma Corporation Commission Cause No. PUD 202200121: Application of Public Service
+Company of Oklahoma (PSO) for Approval of the Cost Recovery of the Selected Wind and Solar
+Facilities (Renewable Resources); a Determination there is a Need for the Renewable Resources;
+Approval for Cost Recovery of Prudent Costs Incurred by PSO for the Renewable Resources;
+Approval of a Temporary Cost Recovery Rider; Approval of Certain Treatment of Federal
+Production Tax Credits; and Such Other Relief the Commission Deems PSO is Entitled.
+Issue: Acquisition of renewable generation and recovery through a rider.
+
+Arkansas Public Service Commission Docket No. 22-061-U: In the Matter of an Application into
+Potential Cost Shifting Associated with Net Metering.
+Issue: Net metering  tariff and any potential cost  shifting between participating and non-
+participating customers.
+
+2022
+Commonwealth of Virginia State Corporation Commission Case No. PUR-2022-00124: Petition
+of Virginia Electric and Power Company for approval of its 2022 RPS Development Plan under §
+56-585.5 D 4 of the Code of Virginia and related requests.
+Issue: Approval of 2022 RPS Plan, new renewable projects, PPAs, and cost recovery mechanism,
+Rider CE, pursuant to the VCEA.
+
+Public Service Commission of South Carolina Docket No. 2022-254-E: In re: Application of Duke
+Energy Progress, LLC for Increase in Electric Rates, Adjustments in Electric Rate Schedules and
+Tariffs, and Request for an Accounting Order.
+Issue: General rate case.
+
+
+
+
+
+                                                                            10                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+Public Utility Commission of Texas Docket No. 53719, SOAH Docket No. 473-22-04394:
+Application of Entergy Texas, Inc. for Authority to Change Rates.
+Issue: General rate case.
+
+Louisiana Public Service Commission Docket No. U-36350: Application of Entergy Louisiana,
+LLC for Recovery in Rates of Costs Related to Hurricane Ida and Related Relief
+Issue: Recovery costs related to Hurricane Ida.
+
+Illinois Commerce Commission Docket Nos. 22-0432 and 22-0442 (cons.): Commonwealth
+Edison Company Petition for Approval of Beneficial Electrification Plan under the Electric
+Vehicle Act, 20 ILCS 627/45 and New EV Charging Delivery Classes under the Public Utilities
+Act, Article IX and Illinois Commerce Commission on its own Motion vs. Commonwealth Edison
+Company Investigation into Commonwealth Edison Company’s Beneficial Electrification Plan
+Filing pursuant to 20 ILCS 627/45
+Issue: Approval of Beneficial Electrification Plan.
+
+Illinois Commerce Commission Docket Nos. 22-0431 and 22-0443 (cons.): Ameren Illinois
+Company d/b/a Ameren Illinois Petition for Approval of Beneficial Electrification Plan pursuant
+to Section 45 of the Electric Vehicle Act and Illinois Commerce Commission on its own Motion
+vs. Ameren Illinois Company d/b/a Ameren Illinois Investigation into Ameren Illinois Company’s
+Beneficial Electrification Plan Filing pursuant to 20 ILCS 627/45
+Issue: Approval of Beneficial Electrification Plan.
+
+Florida Public Service Commission Docket No. 20220010-EI: In re: Storm protection plan cost
+recovery clause
+Issue:  Seeking approval of the cost allocation and recovery methodologies used for storm
+protection plan cost recovery clause.
+
+Michigan Public Service Commission Case No. U-21224: In the matter of the application of
+CONSUMERS ENERGY COMPANY for authority to increase its rates for the generation and
+distribution of electricity and for other relief.
+Issue: General rate case.
+
+Commonwealth of Virginia State Corporation Commission Case No. PUR-2021-00156: Ex Parte:
+Establishing a proceeding concerning the allocation of RPS-related costs and the determination of
+certain proxy values for Virginia Electric and Power Company.
+Issue: Allocation methodology for VCEA-related costs and benefits.
+
+Michigan Public Service Commission Case No. U-20836: In the matter of the Application of DTE
+Electric Company for authority to increase its rates, amend its rate schedules and rules governing
+the distribution and supply of electric energy, and for miscellaneous accounting authority.
+Issue: General rate case.
+
+
+
+
+
+                                                                            11                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+Oklahoma Corporation Commission Cause No. PUD 202100164: In the Matter of the Application
+of Oklahoma Gas and Electric Company for an Order of the Commission Authorizing Applicant
+to Modify its Rates, Charges, and Tariffs for Retail Electric Service in Oklahoma.
+Issue: General Rate Case.
+
+Louisiana Public Service Commission Docket No. U-36190: Application of Entergy Louisiana,
+LLC for Certification and Approval of the 2021 Solar Portfolio, Rider Geaux Green Option, Cost
+Recovery and Related Relief.
+Issue: Approval of a voluntary renewable program backed by utility-owned solar assets.
+
+Commonwealth of Virginia State Corporation Commission Case No. PUR-2021-00206: Petition
+of Appalachian Power Company For approval of its 2021 RPS Plan under § 56-585.5 of the Code
+of Virginia and related requests.
+Issue: Seeking approval of RPS Plan and recovery mechanisms for related costs.
+
+Commonwealth of Kentucky Public Service Commission Case No. 2021-00481: Electronic Joint
+Application of American Electric Power Company, Inc., Kentucky Power Company and Liberty
+Utilities Co. for Approval of the Transfer of Ownership and Control of Kentucky Power Company.
+Issue: Acquisition of Kentucky Power Company by Liberty Utilities Company.
+
+Arkansas Public Service Commission Docket No. 21-070-U: In the Matter of the Application of
+Southwestern Electric Power Company for Approval of a General Change in Rates and Tariffs.
+Issue: General rate case.
+
+Arkansas Public Service Commission Docket No. 21-087-U: In the Matter of Oklahoma Gas and
+Electric Company’s Request to Extend its Formula Rate Plan Rider.
+Issue: Seeking extension of formula rate plan.
+
+Public Utility Commission of Texas Docket No. 52451, SOAH Docket No. 473-22-0816:
+Application of Southwestern Public Service Company for Approval of Advanced Metering System
+(AMS) Deployment Plan, AMS Surcharge, and Non-Standard Metering Service Fee.
+Issue: Approval to implement AMS and recover costs through an additional surcharge.
+
+2021
+Louisiana Public Service Commission Docket No. U-36105: Application for Certification to
+Deploy Natural Gas-Fired Distributed Generation and Authorization to Implement Rider UODG.
+Issue: Approval to implement a distributed generation program and rider recovery.
+
+Public Utility Commission of Texas Docket No. 52389, SOAH Docket No. 473-22-0009:
+Application of Southwestern Electric Power Company for Advanced Metering System (AMS)
+Deployment Plan, AMS Surcharge, and Non-Standard Metering Service Fees.
+Issue: Approval to implement AMS and recover costs through an additional surcharge.
+
+
+
+
+
+                                                                            12                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+Louisiana Public Service Commission Docket No. U-35991: Application of Entergy Louisiana,
+LLC for Recovery in Rates of Costs Related to Hurricanes Laura, Delta, Zeta and Winter Storm
+Uri and for Related Relief.
+Issue: Securitization of system restoration costs due to extreme weather conditions.
+
+Oklahoma Corporation Commission Cause No. PUD 202100076: Application of Public Service
+Company of Oklahoma (“PSO”) for Approval of a Financing Order for the Collection of Increased
+Costs Caused by the Extreme Winter Weather and Contained in the Regulatory Asset Authorized
+by Order 717625, Including an Appropriate Carrying Cost, and Such Other Relief as the
+Commission Deems PSO is Entitled.
+Issue: Securitization of excessive fuel costs due to extreme weather conditions.
+
+Colorado Public  Utilities Commission Proceeding No. 21A-0141E:   In the Matter of the
+Application of Public Service Company of Colorado for Approval of its 2021 Electric Resource
+Plan and Clean Energy Plan.
+Issue: Seeking approval of utility’s plan to meet legislative renewable and carbon reduction goals.
+
+Arkansas Public Service Commission Docket No. 21-054-TF: In the Matter of the Application of
+Entergy Arkansas, LLC for a Proposed Tariff Revision Regarding a Green Promise Tariff.
+Issue: Seeking approval for a voluntary renewable energy tariff.
+
+Commonwealth  of  Virginia  State  Corporation Commission Case No. PUR-2021-00058:
+Application of Virginia Electric and Power Company for a 2021 triennial review of the rates, terms
+and conditions for the provision of generation, distribution and transmission services pursuant to
+§ 56-585.1 A of the Code of Virginia.
+Issue: General Rate Case.
+
+Public Utility Commission of Texas Docket No. 52040, SOAH Docket No. 473-21-2607:
+Application of El Paso Electric Company for Advanced Metering System (AMS) Deployment
+Plan, AMS Surcharge, and Non-Standard Metering Service Fees.
+Issue: Approval to implement AMS and recover costs through an additional surcharge.
+
+Oklahoma Corporation Commission Cause No. PUD 202100072: In the Matter of the Application
+of Oklahoma Gas and Electric Company for a Financing Order Pursuant to the February 2021
+Regulated Utility Consumer Protection Act Approving Securitization of Costs Arising from the
+Winter Weather Event of February 2021.
+Issue: Securitization of excessive fuel costs due to extreme weather conditions.
+
+Public Utility Commission of Texas Docket No. 51802, SOAH Docket No. 473-21-1892:
+Application of Southwestern Public Service Company for Authority to Change Rates.
+Issue: General rate case.
+
+
+
+
+
+                                                                            13                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+Oklahoma Corporation Commission Cause No. PUD 202100055: Application of Public Service
+Company of Oklahoma, an Oklahoma Corporation, for an Adjustment in its Rates and Charges
+and the Electric Service Rules, Regulations and Conditions of Service for Electric Service in the
+State of Oklahoma.
+Issue: General rate case.
+
+Louisiana Public Service Commission Docket No. U-35441: Application of Southwestern Power
+Company (SWEPCO) for Approval of a Change in Rates, Extension of Formula Rate Plan and
+Other Related Relief.
+Issue: General rate case and extension of formula rate plan.
+
+Michigan Public Service Commission Case No. U-20963:  In the matter of the application of
+Consumers Energy Company for authority to increase its rates for the generation and distribution
+of electricity and for other relief.
+Issue: General rate case.
+
+Florida Public Service Commission Docket No. 20210010-EI: In re: Storm protection plan cost
+recovery clause
+Issue:  Seeking approval of the cost allocation and recovery methodologies used for storm
+protection plan cost recovery clause.
+
+Arkansas Public Service Commission Docket No. 19-008-U: In the Matter of the Application of
+Southwestern Electric Power Company for Approval of a General Change in Rates and Tariffs.
+Issue: Seeking approval for amortization period and carrying costs for extraordinary fuel costs
+related to Winter Storm Uri.
+
+Public  Utility  Regulatory  Authority  of  Connecticut  Docket No.  17-12-03RE11: PURA
+Investigation into Distribution System Planning of the Electric Distribution Companies – New
+Rate Designs and Rates Review.
+Issue: Investigation into low-income rates and economic development rates.
+
+Public Utility Commission of Texas Docket No. 51415, SOAH Docket No. 473-21-0538:
+Application of Southwestern Electric Power Company for Authority to Change Rates.
+Issue: General rate case.
+
+Commonwealth of Virginia State Corporation Commission Case No. PUR-2020-00170: Petition
+of Virginia Electric and Power Company for approval of a rate adjustment clause, designated Rider
+RPS, under § 56-585.1 A 5 d of the Code of Virginia.
+Issue: Seeking approval of a Rider RPS to recover costs associated with REC purchases made to
+comply with the Virginia Clean Economy Act.
+
+
+
+
+
+                                                                            14                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+Commonwealth of Kentucky Public Service Commission Case No. 2020-00350: Electronic
+Application of Louisville Gas and Electric Company for an Adjustment of its Electric and Gas
+Rates, a  Certificate of Public Convenience and Necessity to Deploy Advanced Metering
+Infrastructure, Approval of Certain Regulatory and Accounting Treatments, and Establishment of
+a One-Year Surcredit.
+Issue: General rate case.
+
+Commonwealth of Kentucky Public Service Commission Case No. 2020-00349: Electronic
+Application of Kentucky Utilities Company for an Adjustment of its Electric Rates, a Certificate
+of Public Convenience and Necessity to Deploy Advanced Metering Infrastructure, Approval of
+Certain Regulatory and Accounting Treatments, and Establishment of a One-Year Surcredit.
+Issue: General rate case.
+
+Commonwealth of Virginia State Corporation Commission Case No. PUR-2020-00164: Ex Parte:
+Allocating RPS costs to certain customers of Virginia Electric and Power Company.
+Issue: Determining which costs and benefits of Virginia Clean Economy Act-related assets should
+be allocated to non-utility customers and seeking approval of a Rider NBC to recover/credit some
+of those costs and/or benefits.
+
+Oklahoma Corporation Commission Cause No. PUD 202000097: Application of Public Service
+Company of Oklahoma (“PSO”) for Approval of the Cost Recovery of Facilities to be Located at
+Ft. Sill; a Determination there is a Need for the Facilities; Approval for Future Inclusion in Base
+Rates for Cost Recovery of Prudent Costs Incurred by PSO for the Facilities; Approval of a
+Temporary Cost Recovery Rider; and Such Other Relief the Commission Deems PSO is Entitled.
+Issue: Seeking approval to acquire a solar facility and gas facility sited at Fort Sill.
+
+Commonwealth of Virginia State Corporation Commission Case No. PUR-2020-00134: Ex Parte:
+Establishing 2020 RPS Proceeding for Virginia Electric and Power Company.
+Issue: Seeking approval of a Renewable Portfolio Standard Plan and rider pursuant to the Virginia
+Clean Economy Act (VCEA).
+
+2020
+Commonwealth of Virginia State Corporation Commission Case No. PUR-2020-00135: Ex Parte:
+Establishing 2020 RPS Proceeding for Appalachian Power Company.
+Issue: Seeking approval of a Renewable Portfolio Standard Plan pursuant to the Virginia Clean
+Economy Act (VCEA).
+
+Public Service Commission of South Carolina Docket No. 2019-209-E: In re: South Carolina
+Energy Freedom Act (House Bill 3659) Proceeding Related to Dominion Energy South Carolina,
+Incorporated and S.C. Code Ann. Section 58-41-30 Related to Electrical Utilities and Their
+Current Voluntary Renewable Energy Program, and Such Other Proceedings Required By the
+Commission.
+Issue: Seeking approval of a Voluntary Renewable Energy Rider.
+
+
+
+
+
+                                                                            15                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+Public Service Commission of South Carolina Docket No. 2020-125-E: In re: Application of
+Dominion Energy South Carolina, Incorporated for Adjustment of Rates and Charges.
+Issue: General rate case.
+
+Arkansas Public Service Commission Docket No. 16-036-FR: In the Matter of Formula Rate Plan
+Filings of Entergy Arkansas, Inc., Pursuant to APSC Docket No. 15-015-U.
+Issue: Seeking five-year extension of Formula Rate Plan.
+
+Commonwealth of Kentucky Public Service Commission Case No. 2020-00174:  Electronic
+Application of Kentucky Power Company for (1) a General Adjustment of its Rates for Electric
+Service; (2) Approval of Tariffs and Riders; (3) Approval of Accounting Practices to Establish
+Regulatory Assets and Liabilities; (4) Approval of a Certificate of Public Convenience and
+Necessity; and (5) All Other Required Approvals and Relief.
+Issue: General rate case.
+
+Colorado Public  Utilities Commission Proceeding No. 20A-0204E:   In the Matter of the
+Application of Public Service Company of Colorado for Approval of its 2021-2023 Transportation
+Electrification Plan.
+Issue: Seeking approval of utility’s plan to encourage EV adoption in its service territory.
+
+Oklahoma Corporation Commission Cause No. PUD 202000021: In the Matter of the Application
+of Oklahoma Gas and Electric Company for an Order of the Commission Approving a Recovery
+Mechanism for Expenditures Related to the Oklahoma Grid Enhancement Plan.
+Issue: Seeking approval of a rider that allows for interim recovery of costs associated with
+expenditures made to enhance the grid.
+
+Arkansas Public Service Commission Docket No. 20-027-U: In the Matter of the Application of
+Walmart Inc. for Approval to Bid Demand Response into Wholesale Electricity Markets Through
+an Aggregator of Retail Customers.
+Issue: Seeking approval to bid demand response into MISO through a third-party aggregator.
+
+Commonwealth  of  Virginia  State  Corporation Commission Case No. PUR-2020-00015:
+Application of Appalachian Power Company For a 2020 Triennial Review of the Rates, Terms
+and Conditions for the Provision of Generation, Distribution and Transmission Services Pursuant
+to § 56-585.1 A of the Code of Virginia.
+Issue: General Rate Case.
+
+Michigan Public Service Commission Case No. U-20697:  In the matter of the application of
+Consumers Energy Company for authority to increase its rates for the generation and distribution
+of electricity and for other relief.
+Issue: General rate case.
+
+
+
+
+
+                                                                            16                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+Florida Public Service Commission Consolidated Docket Nos. 20200067-EI, 20200069-EI,
+20200070-EI, 20200071-EI: In re: Review of 2020-2029 Storm Protection Plan pursuant to Rule
+25-6.030, F.A.C., Tampa Electric Company et al.
+Issue: Seeking approval of Storm Protection Plans submitted by Tampa Electric Company, Duke
+Energy Florida, LLC, Gulf Power Company, and Florida Power & Light Company.
+
+Commonwealth  of  Virginia  State  Corporation Commission Case No. PUR-2019-00201:
+Application of Virginia Electric and Power Company for approval of its 2019 DSM Update
+pursuant to § 56-585.1 A 5 of the Code of Virginia.
+Issue: Seek approval to implement eleven new demand-side management programs, to extend
+existing programs - some with updated parameters and cost/benefit results, and to continue three
+rate adjustment clauses.
+
+Public Utility Commission of Texas Docket No. 49737, SOAH Docket No. 473-19-6862:
+Application of Southwestern Electric Power Company for Certificate of Convenience and
+Necessity Authorization and Related Relief for the Acquisition of Wind Generation Facilities.
+Issue: Seeking approval to acquire a wind generation facility located in Oklahoma.
+
+Louisiana Public Service Commission Docket No. U-35324: Application of Southwestern Power
+Company (SWEPCO) for Certification and Approval of the Acquisition of Certain Renewable
+Resources in Accordance with the MBM Order and the 1983 and 1994 General Orders.
+Issue: Seeking approval to acquire a wind generation facility located in Oklahoma.
+
+2019
+Commonwealth of Virginia State Corporation Commission Case No. PUR-2019-00154: Petition
+of Virginia Electric and Power Company for approval of a plan for electric distribution grid
+transformation projects pursuant to § 56-585.1 A 6 of the Code of Virginia, and for approval of an
+addition to the terms and condition applicable to electric service.
+Issue: Seeking approval of certain expenditures relating to grid improvement and grid hardening.
+
+Commonwealth  of  Virginia  State  Corporation Commission Case No. PUR-2019-00094:
+Application of Virginia Electric and Power Company for Approval of a 100 Percent Renewable
+Energy Tariff, Designated Rider TRG, Pursuant to §§ 56-577 A 5 and 56-234 of the Code of
+Virginia.
+Issue: Seek approval of a 100 percent renewable energy tariff.
+
+Public Service Commission of South Carolina Docket No. 2019-239-E: In re: Dominion Energy
+South Carolina, Incorporated’s Request for Approval of an Expanded Portfolio of Demand Side
+Management Programs, and a Modified Demand Side Management Rate Rider.
+Issue: Seeking approval of an expanded Demand Side Management Plan and modified Demand
+Side Management Rate Rider.
+
+
+
+
+
+                                                                            17                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+Oklahoma Corporation Commission Cause No. PUD 201900048: Application of Public Service
+Company of Oklahoma for Approval of the Cost Recovery of the Selected Wind Facilities; A
+Determination there is a Need for the SWFs; Approval for Future Inclusion in Base Rates Cost
+Recovery of Prudent Costs Incurred by PSO for the SWFs; Approval of a Temporary Cost
+Recovery Rider; Approval of Certain Accounting Procedures Regarding Federal Production Tax
+Credits; and Such Other Relief the Commission Deems PSO in Entitled.
+Issue: Seeking approval to acquire a wind generation facility located in Oklahoma and Wind
+Facility Asset Rider.
+
+Arkansas Public Service Commission Docket No. 19-035-U: In the Matter of the Application of
+Southwestern Electric Power Company for Approval to Acquire Wind Generating Facilities
+Pursuant to the Arkansas Clean Energy Development Act.
+Issue: Seeking approval to acquire a wind generation facility located in Oklahoma and Wind
+Facility Asset Rider.
+
+COMMISSION DOCKETS (Appearing as Attorney of Record)
+2019
+Public Utility Commission of Texas Docket No. 49421: Application of CenterPoint Energy
+Houston Electric, LLC for Authority to Change Rates.
+Issue: General rate case
+
+Public Utility Commission of Texas Docket No. 49494: Application of AEP Texas Inc. for
+Authority to Change Rates.
+Issue: General rate case
+
+Public Utility Commission of Colorado Docket No. 19AL-0268E: In the Matter of Advice Letter
+No. 1797 Filed by Public Service Company of Colorado to Reset the Currently Effective General
+Rate Schedule Adjustment (“GRSA”) as Applied to Base Rates for all Electric Rate Schedules as
+well as Implement a Base Rate kWh Charge, General Rate Schedule Adjustment-Energy (“GRSA-
+E”) to Become Effective June 20, 2019.
+Issue: General rate case, Phase I
+
+2018
+Public Utility Commission of Texas Docket No. 48371: Entergy Texas, Inc.’s Statement of Intent
+and Application for Authority to Change Rates.
+Issue: General rate case
+
+Public  Utility Commission of Colorado Docket No. 18M-0074EG: In the Matter of the
+Commission’s Consideration of the Impact of the Federal Tax Cuts and Jobs Act of 2017 on the
+Rates of Colorado Investor-Owned Electric and Natural Gas Utilities.
+Issue: Commenced by the Commission to consider the impacts of the Tax Cut and Jobs Act of
+2017 on the revenue requirements and rates of all Colorado investor-owned electric and natural
+gas utilities.
+
+
+
+
+
+                                                                            18                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+2017
+Public Utility Commission of Texas Docket No. 47461: Application of Southwestern Electric
+Power Company for Certificate of Convenience and Necessity Authorization and Related Relief
+for the Wind Catcher Energy Connection Project in Oklahoma.
+Issue: Purchase of a wind generation facility and generation tie line.
+
+Public Utility Commission of Texas Docket No. 47527: Application of Southwestern Public
+Service Company for Authority to Change Rates.
+Issue: General rate case
+
+Public Utility Commission of Colorado Docket No. 17A-0462EG: In the Matter of the Application
+of Public Service Company of Colorado for Approval of a Number of Strategic Issues Relating to
+its Electric and Gas Demand-Side Management Plan.
+Issue: Seek Commission re-examination and approval of the overall objectives and structure of
+Public Service’s DSM initiatives to guide the Company in designing future DSM plans.
+
+Public Utility Commission of Colorado Docket No. 17AL-0649E: In the Matter of Advice Letter
+No. 1748-Electric Filed by Public Service Company of Colorado to Revise its PUC No. 8-Electric
+Tariff to Implement a General Rate Schedule Adjustment and Other Rate Changes Effective on
+Thirty Days’ Notice.
+Issue: General rate case, Phase I
+
+Arkansas Public Service Commission Docket No. 17-038-U: In the Matter of the Application of
+Southwestern Electric Power Company for Approval to Acquire a Wind Generating Facility and
+to Construct a Dedicated Generation Tie Line.
+Issue: Purchase of a wind generation facility and generation tie line.
+
+Louisiana  Public  Service Commission Docket No. U-34619:  Application  for  Expedited
+Certification and Approval  of  the Acquisition  of  Certain Renewable Resources and  the
+Construction of a Generation Tie Pursuant to the 1983 and/or 1994 General Orders.
+Issue: Purchase of a wind generation facility and generation tie line.
+
+2016
+Public Utility Commission of Colorado Docket No. 16AL-0048E: In the Matter of Advice Letter
+No. 1712-Electric Filed by Public Service Company of Colorado to Replace Colorado PUC No.
+7-Electric Tariff with Colorado PUC No. 8-Electric Tariff.
+Issue: General rate case, Phase II
+
+Public Utility Commission of Colorado Docket No. 16A-0055E: In the Matter of the Application
+of Public Service Company of Colorado for Approval of its Solar*Connect Program.
+Issue: Implement a voluntary solar program offering participating customers the ability to offset
+their current supply of energy from the Public Service system with solar energy produced at a
+dedicated facility or facilities.
+
+
+
+
+
+                                                                            19                                                                  Walmart Inc.
+                                                                                Exhibit LVP-1
+                                 Kentucky Public Service Commission Case No. 2025-00113
+
+New Mexico Public Regulation Commission Docket No. 16-00276-UT: In the Matter of the
+Application of Public Service Company of New Mexico for Revision of its Retail Electric Rates
+Pursuant to Advice Notice No. 533.
+Issue: General rate case
+
+INDUSTRY TRAINING
+o  2020 Practical Regulatory Training for the Electric Industry, Center for Public Utilities, New
+   Mexico State University College of Business
+o  2020 IPU Accounting and Ratemaking Course, Michigan State University
+o  2016 and 2022 Western NARUC Utility Rate School
+o  EUCI Courses on the utility industry, cost allocation, and rate design.
+
+
+
+
+
+                                                                            20              COMMONWEALTH OF KENTUCKY
+             BEFORE THE PUBLIC SERVICE COMMISSION
+
+In the Matter of:
+
+ELECTRONIC APPLICATION OF                   )
+KENTUCKY UTILITIES COMPANY FOR         )
+AN ADJUSTMENT OF ITS ELECTRIC             )   CASE NO. 2025-00113
+RATES, AND APPROVAL OF CERTAIN           )
+REGULATORY AND ACCOUNTING               )
+TREATMENTS                                             )
+
+
+                         EXHIBIT LVP-2 OF
+
+                            LISA V. PERRY
+
+                     ON BEHALF OF
+
+                     WALMART INC.                                                                                                                                 Walmart, Inc.
+                                                                                                                                                           Exhibit LVP-2
+                                                                                            Kentucky Public Service Commission Case No. 2025-00113
+              Impact of KU's Current Return on Equity vs. KU's Proposed Return on Equity
+
+                                             Currently Authorized ROE (9.425%)
+                                                                         Percent of
+                                           Capital Component                 Total Capital      Cost       Weighted Cost
+ (1)    Schedule J-1.1/J-1.2   Short-term Debt                                  2.55%       4.46%              0.11%
+ (2)    Schedule J-1.1/J-1.2   Long-term Debt                                 44.60%       4.93%              2.20%
+ (3)    Schedule J-1.1/J-1.2  Common Equity                                 52.86%       9.43%              4.98%
+                                                                       100.01%
+
+ (4)      Sum (1):(3)     WACC at Currently Authorized ROE (9.425%)                                         7.29%
+ (5)         Exhibit TSL-2      Rate Base                                                        $     6,094,469,285
+ (6)            (4) x (5)       Net Operating Income, Currently Authorized ROE                         $       444,565,023
+                                            Proposed ROE (10.95%)
+                                           Capital Component                    Ratio         Cost       Weighted Cost
+ (7)    Schedule J-1.1/J-1.2   Short-term Debt                                  2.55%       4.46%              0.11%
+ (8)    Schedule J-1.1/J-1.2   Long-term Debt                                 44.60%       4.93%              2.20%
+ (9)    Schedule J-1.1/J-1.2  Common Equity                                 52.86%      10.95%              5.79%
+                                                                       100.01%
+
+(10)      Sum (7):(9)     WACC at Proposed ROE (10.95%)                                                  8.10%
+(11)        Exhibit TSL-2      Rate Base                                                        $     6,094,469,285
+(12)         (10) x (11)      Net Operating Income, Proposed ROE                                  $       493,693,454
+                                   Increase in Revenue Requirement from Increase in ROE
+(13)          (12) - (6)        Difference in Revenue Increase                                       $        49,128,431
+(14)       Schedule H-1      Converstion Factor                                                               1.338086
+(15)         (13) x (14)       Increase Related to Increase in ROE                                   $        65,738,066
+(16)      Schedule M-2.1    Proposed Revenue Deficiency                                        $       226,121,848
+(17)          (15)/(16)       Percent Increase Related to Increase in ROE                                        29.07%              COMMONWEALTH OF KENTUCKY
+             BEFORE THE PUBLIC SERVICE COMMISSION
+
+In the Matter of:
+
+ELECTRONIC APPLICATION OF                   )
+KENTUCKY UTILITIES COMPANY FOR         )
+AN ADJUSTMENT OF ITS ELECTRIC             )   CASE NO. 2025-00113
+RATES, AND APPROVAL OF CERTAIN           )
+REGULATORY AND ACCOUNTING               )
+TREATMENTS                                             )
+
+
+                         EXHIBIT LVP-3 OF
+
+                            LISA V. PERRY
+
+                     ON BEHALF OF
+
+                     WALMART INC.                                                                                                                           Walmart, Inc.
+                                                                                                                                            Exhibit LVP-3
+                                                                                     Kentucky Public Service Commission Case No. 2025-00113
+
+
+
+
+                                                 Reported Authorized Returns on Equity, Electric Utility Rate Cases Completed, 2023 to Present
+
+                                                                                                                                               Vertically
+                                                                                                                                    Integrated (V)                       ROE Fully              Approved
+                                                       Parent Company                          Requested                                / Distribution                                      Litigated or    Approved    Equity        Equity
+       State                          Utility                      Ticker               Docket        ROE       Order Date     Only (D)    Approved ROE    Difference         Settled     WACC      Ratio      Contribution
+            (1)                                     (2)                                       (3)                               (4)                       (5)                    (6)                  (7)                    (8)                     (9)                  (11)               (12)            (13)                (14)
+                                                                                                                                                                                                                                                   (8) - (5)                                                                         (8) X (13)
+
+
+Michigan             Consumers Energy Co.            CMS                   C-U-21224                    10.25%         1/19/2023     V                 9.90%               (35)  Settled                N/A       N/A            N/A
+Minnesota             Minnesota Power Entrprs Inc.         ALE                    D-E-015/GR-21-335            10.25%         1/23/2023     V                 9.65%               (60)  Fully Litigated         7.12%      52.50%            5.07%
+Wyoming             Cheyenne Light Fuel Power Co.       BKH                    D-20003-214-ER-22            10.30%         1/26/2023     V                 9.75%               (55)  Settled                7.48%      52.00%            5.07%
+South Carolina        Duke Energy Progress LLC         DUK                    D-2022-254-E                 10.20%          2/9/2023     V                 9.60%               (60)  Settled                6.83%      52.43%            5.03%
+Louisiana              Southwestern Electric Power Co       AEP                    D-U-35441                   10.35%         2/17/2023     V                 9.50%               (85)  Settled                N/A       N/A            N/A
+Texas                Oncor Electric Delivery Co.           SRE                    D-53601                      10.30%          3/9/2023     D                 9.70%               (60)  Fully Litigated         6.65%      42.50%            4.12%
+Michigan             Upper Peninsula Power Co.                                    C-U-21286                    10.80%         3/24/2023     V                 9.90%               (90)  Settled                N/A       N/A            N/A
+California               Liberty Utilities (CalPeco Ele        AQN                     A-21-05-017                  10.50%         4/27/2023     V                10.00%               (50)  Settled                N/A      52.50%            N/A
+Maine                 Versant Power                                                D-2022-00255                  9.35%         5/31/2023     D                 9.35%                   -     Settled                5.69%      49.00%            4.58%
+Minnesota              Northern States Power Co.           XEL                    D-E-002/GR-21-630            10.20%          6/1/2023     V                 9.25%               (95) NA               NA      52.50%            4.86%
+Maine                   Central Maine Power Co.              IBE                     D-2022-00152                 10.20%          6/6/2023     D                 9.35%               (85)  Withdrawn/Rejecte     NA      50.00%            4.68%
+North Dakota      MDU Resources Group          MDU                   C-PU-22-194                  10.50%          6/6/2023     V                 9.75%               (75)  Settled                7.13%      50.81%            4.95%
+New York              Consolidated Edison Co. of NY        ED                      C-22-E-0064                  10.00%         7/20/2023     D                 9.25%               (75)  Settled                6.75%      48.00%            4.44%
+Indiana                Northern IN Public Svc. Co. LLC        NI                      45772                        10.40%          8/2/2023     V                 9.80%               (60)  Settled                6.80%      51.63%            5.06%
+Texas                  Entergy Texas Inc.                ETR                    D-53719                      10.80%          8/3/2023     V                 9.57%             (123)  Settled                6.61%      51.21%            4.90%
+North Carolina        Duke Energy Progress LLC         DUK                   D-E-2 Sub 1300                10.40%         8/18/2023     V                 9.80%               (60)  Settled                7.07%      53.00%            5.19%
+Connecticut           The United Illuminating Co.            IBE                      D-22-08-08                   10.20%         8/25/2023     D                 8.63%             (157)  Fully Litigated         6.48%      50.00%            4.32%
+Arizona               Tucson Electric Power Co.            FTS                     D-E-01933A-22-0107            9.75%         8/25/2023     V                 9.55%               (20) NA                   6.93%      54.32%            5.19%
+Vermont              Green Mountain Power Corp.                                    C-23-1852-TF                  9.58%         8/23/2023     V                 9.58%                   -     Fully Litigated         6.88%      49.88%            4.78%
+Idaho                   Avista Corp.                 AVA                   C-AVU-E-23-01               10.25%         8/31/2023     V                 9.40%               (85)  Settled                7.19%      50.00%            4.70%
+Alaska                 Alaska Electric Light Power         AVA                    D-U-22-078                   13.45%         8/31/2023     V                11.45%             (200)  Fully Litigated         8.79%      60.70%            6.95%
+Colorado                Public Service Co. of CO            XEL                   D-22AL-0530E                10.25%          9/6/2023     V                 9.30%               (95)  Settled                 6.95%      55.69%            5.18%
+Montana         MDU Resources Group          MDU                    D-2022-11-099                10.50%         9/21/2023     V                 9.65%               (85)  Settled                 7.53%      50.30%            4.85%
+Kentucky            Duke Energy Kentucky Inc.         DUK                    C-2022-00372                 10.35%        10/12/2023     V                 9.75%               (60)  Fully Litigated         NA      52.15%            5.08%
+New York        NY State Electric & Gas Corp.          IBE                      C-22-E-0317                  10.20%        10/12/2023     D                 9.20%             (100)  Settled                 6.40%      48.00%            4.42%
+New York              Rochester Gas & Electric Corp.         IBE                      C-22-E-0319                  10.20%        10/12/2023     D                 9.20%             (100)  Settled                 6.67%      48.00%            4.42%
+Maryland             The Potomac Edison Co.             FE                     C-9695                       10.60%        10/18/2023     D                 9.50%             (110)  Fully Litigated           6.92%      53.00%            5.04%
+New Mexico           Southwestern Public Svc Co.         XEL                    C-22-00286-UT                10.75%        10/19/2023     V                 9.50%             (125)  Settled                 7.17%      54.70%            5.20%
+Montana              NorthWestern Energy Group        NWE                    D-2022-7-78 (elec)             10.54%        10/25/2023     V                 9.65%               (89)  Settled                 6.72%      48.02%            4.63%
+Oklahoma               Public Service Co. of OK            AEP                   Ca-PUD2022-000093           10.40%         11/3/2023     V                 9.30%             (110) NA                   6.69%      52.00%            4.84%
+Wisconsin            Madison Gas and Electric Co.        MGEE                  D-3270-UR-125 (Elec)           9.80%         11/3/2023     V                 9.70%               (10)  Fully Litigated         NA      55.00%            5.34%
+Wisconsin              Northern States Power Co.           XEL                    D-4220-UR-126 (Elec)          10.25%         11/9/2023     V                 9.80%               (45)  Fully Litigated         NA      52.50%            5.15%
+Wisconsin             Wisconsin Power and Light Co        LNT                    D-6680-UR-124 (Elec)          10.00%         11/9/2023     V                 9.80%               (20)  Fully Litigated         NA      54.00%            5.29%
+New Jersey              Atlantic City Electric Co.           EXC                   D-ER23020091                10.50%        11/17/2023     D                 9.60%               (90)  Settled                 6.58%      50.20%            4.82%
+Wyoming               PacifiCorp                      BRK.A                  D-200000-633-ER-23           10.00%        11/28/2023     V                 9.35%               (65)  Fully Litigated           7.13%      48.99%            4.58%
+Virginia                Appalachian Power Co.             AEP                    PUR-2023-00002               10.60%        11/30/2023     V                 9.50%             (110)  Settled                N/A       N/A            N/A
+Michigan          DTE Electric Co.                DTE                    C-U-21297                    10.25%         12/1/2023     V                 9.90%               (35)  Fully Litigated           5.56%      NA          NA
+California               PacifiCorp                      BRK.A                   A-22-05-006                  10.50%        12/14/2023     V                10.00%               (50)  Fully Litigated           7.34%      52.25%            5.23%
+Illinois              Ameren Illinois                  AEE                    D-23-0082                    10.50%        12/14/2023     D                 8.72%             (178)  Fully Litigated           6.59%      50.00%            4.36%
+Illinois              Commonwealth Edison Co.          EXC                    D-23-0055                    10.65%        12/14/2023     D                 8.91%             (174)  Fully Litigated           6.70%      50.00%            4.46%
+Maryland               Baltimore Gas and Electric Co.        EXC                    C-9692                       10.40%        12/14/2023     D                 9.50%               (90)  Fully Litigated           6.77%      52.00%            4.94%
+North Carolina        Duke Energy Carolinas LLC         DUK                   D-E-7 Sub 1276                10.40%        12/15/2023     V                10.10%               (30)  Fully Litigated           7.50%      53.00%            5.35%
+
+
+                                                                                                                            1                                                                                                                           Walmart, Inc.
+                                                                                                                                            Exhibit LVP-3
+                                                                                     Kentucky Public Service Commission Case No. 2025-00113
+
+
+
+
+                                                 Reported Authorized Returns on Equity, Electric Utility Rate Cases Completed, 2023 to Present
+
+                                                                                                                                               Vertically
+                                                                                                                                    Integrated (V)                       ROE Fully              Approved
+                                                       Parent Company                          Requested                                / Distribution                                      Litigated or    Approved    Equity        Equity
+       State                          Utility                      Ticker               Docket        ROE       Order Date     Only (D)    Approved ROE    Difference         Settled     WACC      Ratio      Contribution
+            (1)                                     (2)                                       (3)                               (4)                       (5)                    (6)                  (7)                    (8)                     (9)                  (11)               (12)            (13)                (14)
+                                                                                                                                                                                                                                                   (8) - (5)                                                                         (8) X (13)
+
+
+Oregon                 Portland General Electric Co.         POR                   D-UE-416                     9.80%        12/18/2023     V                 9.50%               (30)  Settled                 6.99%      50.00%            4.75%
+Nevada              Nevada Power Co.                 BRK.A                  D-23-06007                   10.26%        12/26/2023     V                 9.52%               (74)  Fully Litigated           7.44%      52.72%            5.02%
+Idaho                  Idaho Power Co.                   IDA                     C-IPC-E-23-11                 10.40%        12/28/2023     V                 9.60%               (80)  Settled                 7.25%      NA          NA
+New Mexico            Public Service Co. of NM          PNM                   C-22-00270-UT                10.25%          1/3/2024     V                 9.25%             (100)  Fully Litigated           6.47%      49.61%            4.59%
+Kentucky             Kentucky Power Company1           AEP                     C-2023-00159                  9.90%         1/19/2024     V                 9.75%               (15)  Settled              NA      41.25%            4.02%
+Arizona           UNS Electric Inc.                  FTS                     D-E-04204A-22-0251            9.95%         1/31/2024     V                 9.75%               (20)  Fully Litigated           7.18%      53.72%            5.24%
+New Jersey             Jersey Central Power & Light Co.       FE                    D-ER23030144                10.40%         2/14/2024     D                 9.60%               (80)  Settled                 7.18%      51.90%            4.98%
+Virginia                 Virginia Electric & Power Co.        D                      C-PUR-2023-00101              9.70%         2/28/2024     V                 9.70%                   -      Settled                 7.05%      NA          NA
+Michigan             Consumers Energy Co.            CMS                   C-U-21389                    10.25%          3/1/2024     V                 9.90%               (35)  Fully Litigated           5.86%      41.13%            4.07%
+Arizona                Arizona Public Service Co.         PNW                    D-E-01345A-22-0144           10.25%          3/5/2024     V                 9.55%               (70)  Fully Litigated           6.81%      51.93%            4.96%
+West Virginia          Monongahela Power Co.             FE                      C-23-0460-E-42T              10.85%         3/26/2024     V                 9.80%             (105)  Settled              NA      NA          NA
+Indiana            AES Indiana                    AES                    Ca-45911                     10.60%         4/17/2024     V                 9.90%               (70)  Settled                 6.58%      44.36%            4.39%
+Delaware             Delmarva Power & Light Co.         EXC                    D-22-0897                    10.50%         4/18/2024     D                 9.60%               (90)  Settled                 6.97%      50.50%            4.85%
+Indiana                  Indiana Michigan Power Co.          AEP                    Ca-45933                     10.50%          5/8/2024     V                 9.85%               (65)  Settled              NA      NA          NA
+Maryland             Potomac Electric Power Co.          EXC                    C-9702                       10.50%         6/10/2024     D                 9.50%             (100)  Fully Litigated           7.13%      50.50%            4.80%
+South Carolina        Duke Energy Carolinas LLC         DUK                    2023-388-E                   10.50%         6/20/2024     V                 9.94%               (56)  Settled                 7.32%      51.21%            5.09%
+Massachusetts          Fitchburg Gas & Electric Light        UTL               DPU 23-80                    10.50%         6/28/2024     D                 9.40%             (110)  Fully Litigated           7.46%      52.26%            4.91%
+Michigan                Indiana Michigan Power Co.          AEP                    U-21461                      10.50%          7/2/2024     V                 9.86%               (64)  Fully Litigated           6.03%      40.20%            3.96%
+New York               Central Hudson Gas & Electric         FTS                     C-23-E-0418                   9.80%         7/18/2024     D                 9.50%               (30)  Fully Litigated           6.92%      48.00%            4.56%
+South Carolina         Dominion Energy South Carolina      D                       D-2024-34-E                  10.60%          8/8/2024     V                 9.94%               (66)  Settled                 7.93%      52.51%            5.22%
+Florida              Duke Energy Florida LLC          DUK                    D-20240025-EI                11.15%         8/21/2024     V                10.30%               (85)  Settled                 7.56%      45.57%            4.69%
+Vermont              Green Mountain Power Corp.                                    C-24-1709-TF                  9.97%         8/26/2024     V                 9.97%                   -     FFully Litigated           7.05%      49.81%            4.97%
+Iowa                       Interstate Power & Light Co.         LNT                   D-RPU-2023-0002              10.11%         9/17/2024     V                 9.87%               (24)  Settled                 7.29%      51.00%            5.03%
+Nevada                  Sierra Pacific Power Co.             BRK.A                  D-24-02026                   10.47%         9/18/2024     V                 9.74%               (73)  Fully Litigated           7.43%      52.40%            5.10%
+Oregon                Idaho Power Co.                   IDA                   D-UE-426                    10.40%         9/23/2024     V                 9.50%               (90)  Settled                 7.30%      50.00%            4.75%
+Michigan             Upper Peninsula Power Co.                                    C-U-21555                    10.70%         9/26/2024     V                 9.86%               (84)  Settled              NA      NA          NA
+Massachusetts          Massachusetts Electric Co.         NG                DPU 23-150                   10.50%         9/30/2024     D                 9.35%             (115)  Fully Litigated           7.09%      52.83%            4.94%
+Texas             AEP Texas Inc.                  AEP                    D-56165                      10.60%         10/8/2024     D                 9.76%               (84)  Settled                 6.66%      42.50%            4.15%
+New Jersey             Public Service Electric Gas           PEG                   D-ER23120924                10.40%         10/9/2024     D                 9.60%               (80)  Settled                 7.07%      55.00%            5.28%
+Michigan             Upper MI Energy Rsrc Corp.        WEC                   C-U-21541                    10.25%        10/10/2024     V                 9.86%               (39)  Settled              NA      NA          NA
+California                Pacific Gas and Electric Co.          PCG                     A-22-04-008 (Phase 2)           10.70%        10/17/2024     V                10.28%               (42)  Fully Litigated         NA      NA          NA
+California             San Diego Gas & Electric Co.         SRE                     A-22-04-012 (Phase 2)           10.65%        10/17/2024     V                10.23%               (42)  Fully Litigated         NA      NA          NA
+California              Southern California Edison Co.          EIX                      A-22-04-009 (Phase 2)           10.75%        10/17/2024     V                10.33%               (42)  Fully Litigated         NA      NA          NA
+Minnesota             Minnesota Power Entrprs Inc.         ALE                    D-E-015/GR-23-155            10.30%        10/24/2024     V                 9.78%               (52)  Settled                 7.25%      53.00%            5.18%
+Wisconsin             Wisconsin Electric Power Co.        WEC                   D-5-UR-111                   10.00%         11/7/2024     V                 9.80%               (20)  Fully Litigated         NA      NA          NA
+Wisconsin             Wisconsin Public Service Corp.       WEC                   D-6690-UR-128                10.00%         11/7/2024     V                 9.80%               (20)  Fully Litigated         NA      NA          NA
+Virginia                Appalachian Power Co.             AEP                    PUR-2024-00024               10.80%        11/20/2024     V                 9.80%             (100)  Fully Litigated           7.26%      48.24%            4.73%
+District of Columbia    Potomac Electric Power Co.          EXC                   FC-1176                      10.50%        11/25/2024     D                 9.50%             (100)  Fully Litigated           7.29%      50.50%            4.80%
+Oklahoma            Oklahoma Gas and Electric Co.       OGE                   PUD2023-000087              10.50%        11/26/2024     V                 9.50%             (100)  Settled              NA      53.50%          NA
+Florida             Tampa Electric Company          EMA                    20240026-EI                  11.50%         12/3/2024     V                10.50%             (100)  Fully Litigated           6.90%      NA          NA
+Oregon                 PacifiCorp                      BRK.A                 UE-433                       9.65%        12/19/2024     V                 9.50%               (15)  Fully Litigated           7.40%      50.00%            4.75%
+Oregon                 Portland General Electric Co.         POR                   UE-435                       9.50%        12/20/2024     V                 9.34%               (16)  Fully Litigated           6.99%      50.00%            4.67%
+
+
+                                                                                                                            2                                                                                                                           Walmart, Inc.
+                                                                                                                                            Exhibit LVP-3
+                                                                                     Kentucky Public Service Commission Case No. 2025-00113
+
+
+
+
+                                                 Reported Authorized Returns on Equity, Electric Utility Rate Cases Completed, 2023 to Present
+
+                                                                                                                                               Vertically
+                                                                                                                                    Integrated (V)                       ROE Fully              Approved
+                                                       Parent Company                          Requested                                / Distribution                                      Litigated or    Approved    Equity        Equity
+       State                          Utility                      Ticker               Docket        ROE       Order Date     Only (D)    Approved ROE    Difference         Settled     WACC      Ratio      Contribution
+            (1)                                     (2)                                       (3)                               (4)                       (5)                    (6)                  (7)                    (8)                     (9)                  (11)               (12)            (13)                (14)
+                                                                                                                                                                                                                                                   (8) - (5)                                                                         (8) X (13)
+
+
+Washington             Avista Corp.                 AVA                   UE-240006                   10.40%        12/20/2024     V                 9.80%               (60)  Fully Litigated           7.32%      48.50%            4.75%
+North Dakota            Otter Tail Power Co.              OTTR                   PU-23-342                    10.60%        12/30/2024     V                10.10%               (50)  Settled                 7.53%      53.50%            5.40%
+North Carolina           Virginia Electric & Power Co.        D                          E-22, Sub 694                 10.60%         1/14/2025     V                 9.95%               (65)  Settled                 7.30%      52.50%            5.22%
+Oklahoma               Public Service Co. of Oklahoma        AEP                   PUD2023-000086              10.80%         1/15/2025     V                 9.50%             (130)  Settled                 6.98%      51.12%            4.86%
+Washington            Puget Sound Energy Inc.                                      UE-240004                   10.50%         1/15/2025     V                 9.90%               (60)  Fully Litigated           7.64%      50.00%            4.95%
+California             Bear Valley Electric Svc. Inc.        AWR                     22-08-010                    11.25%         1/16/2025     V                10.00%             (125)  Settled                 8.07%      57.00%            5.70%
+Michigan          DTE Electric Co.                DTE                    U-21534                      10.50%         1/23/2025     V                 9.90%               (60)  Fully Litigated           5.69%      39.23%            3.88%
+Indiana              Duke Energy Indiana, LLC         DUK                   46038                        10.50%         1/29/2025     V                 9.75%               (75)  Fully Litigated           6.19%      43.28%            4.22%
+Indiana                Southern IN Gas & Electric Co.        CNP                    45990                        10.40%          2/3/2025     V                 9.80%               (60)  Settled                 6.77%      48.28%            4.73%
+Florida                  Florida Public Utilities Co.           CPK                     20240099-EI                  11.30%          3/4/2025     V                10.15%             (115)  Fully Litigated         NA      42.42%          NA
+Maine                 Versant Power                                                 2023-00336                    9.35%         3/11/2025     D                 9.35%                   -     Fully Litigated           6.84%      50.00%            4.68%
+Colorado              Black Hills Colorado Electric        BKH                   24AL-0275E                   9.83%         3/12/2025     V                 9.40%               (43)  Fully Litigated           6.90%      48.00%            4.51%
+Texas                  CenterPoint Energy Houston          CNP                    56211                        10.40%         3/13/2025     D                 9.65%               (75)  Settled                 6.61%      43.25%            4.17%
+New York            Orange & Rockland Utilities Inc.       ED                      24-E-0060                    10.25%         3/20/2025     D                 9.75%               (50)  Settled                 7.25%      48.00%            4.68%
+Michigan             Consumers Energy Co.            CMS                   U-21585                      10.25%         3/21/2025     V                 9.90%               (35)  Fully Litigated           5.97%      41.73%            4.13%
+New Hampshire         Liberty Utilities Granite State        AQN                   DE-23-039                    10.35%         3/25/2025     D                 9.10%             (125)  Fully Litigated           7.71%      52.00%            4.73%
+Utah                    PacifiCorp                      BRK.A                   24-035-24                     9.65%         4/25/2025     V                 9.38%               (27)  Fully Litigated           7.06%      44.42%            4.17%
+New Mexico            Public Service Company of NM       TXNM                  24-00089-UT                  10.45%         5/15/2025     V                 9.45%             (100)  Settled                 6.90%      51.00%            4.82%
+Wyoming               PacifiCorp                      BRK.A                  20000-671-ER-24               9.65%          6/2/2025     V                 9.50%               (15)  Settled                 7.27%      47.50%            4.51%
+Indiana            NIPSCO                          NI                      46120                        10.60%         6/26/2025     V                 9.75%               (85)  Settled                 7.14%      53.01%            5.17%
+
+
+Entire Period
+# of Decisions                                                                                       104
+Average                 (All Utilities)                                                                       10.37%                                       9.68%               (70)                      6.99%     50.04%           4.95%
+Average                (Distribution Only)                                                                  10.29%                                       9.38%               (90)                      6.85%     49.52%           4.54%
+Average                (Vertically Integrated Only)                                                           10.40%                                       9.77%               (63)                      7.04%     50.25%           5.11%
+Median                 (All Utilities)                                                                       10.40%                                       9.70%               (70)                      7.05%     50.50%           4.93%
+Maximum              (All Utilities)                                                                       13.45%                                       11.45%             (200)                      8.79%     60.70%           6.95%
+Minimum               (All Utilities)                                                                       9.35%                                       8.63%               (72)                      5.56%     39.23%           4.12%
+Kentucky                                                                                            2       10.13%                                       9.75%               (38)                       #DIV/0!     47.92%           5.20%
+Settled                                                                                               10.39%                                       9.67%               (72)                      7.03%     50.37%           4.84%
+Fully Litigated                                                                                        10.35%                                       9.69%               (66)                      6.93%     49.57%           5.11%
+
+
+2023
+# of Decisions                                                                                        45
+Average                 (All Utilities)                                                                       10.36%                                       9.58%               (77)                      6.92%     51.42%           4.92%
+Average                (Distribution Only)                                                                  10.26%                                       9.24%             (102)                      6.56%     49.23%           4.55%
+Average                (Distribution Only, exc. IL FRP)                                                        10.20%                                       9.33%               (87)                      6.55%     49.07%           4.58%
+Average                (Vertically Integrated Only)                                                           10.39%                                       9.71%               (69)                      7.09%     52.40%           5.09%
+
+
+
+
+                                                                                                                            3                                                                                                                           Walmart, Inc.
+                                                                                                                                            Exhibit LVP-3
+                                                                                     Kentucky Public Service Commission Case No. 2025-00113
+
+
+
+
+                                                 Reported Authorized Returns on Equity, Electric Utility Rate Cases Completed, 2023 to Present
+
+                                                                                                                                               Vertically
+                                                                                                                                    Integrated (V)                       ROE Fully              Approved
+                                                       Parent Company                          Requested                                / Distribution                                      Litigated or    Approved    Equity        Equity
+       State                          Utility                      Ticker               Docket        ROE       Order Date     Only (D)    Approved ROE    Difference         Settled     WACC      Ratio      Contribution
+            (1)                                     (2)                                       (3)                               (4)                       (5)                    (6)                  (7)                    (8)                     (9)                  (11)               (12)            (13)                (14)
+                                                                                                                                                                                                                                                   (8) - (5)                                                                         (8) X (13)
+
+
+
+2024
+# of Decisions                                                                                        41
+Average                 (All Utilities)                                                                       10.39%                                       9.78%               (61)                      7.08%     49.51%           4.79%
+Average                (Distribution Only)                                                                  10.41%                                       9.53%               (88)                      7.09%     50.44%           4.81%
+Average                (Distribution Only, exc. IL FRP)                                                        10.41%                                       9.53%               (88)                      7.09%     50.44%           4.81%
+Average                (Vertically Integrated Only)                                                           10.38%                                       9.85%               (54)                      7.07%     49.12%           4.78%
+
+
+2025
+# of Decisions                                                                                        18
+Average                 (All Utilities)                                                                       10.37%                                       9.68%               (69)                      6.96%     47.93%           4.66%
+Average                (Distribution Only)                                                                  10.09%                                       9.46%               (63)                      7.10%     48.31%           4.57%
+Average                (Distribution Only, exc. IL FRP)                                                        10.09%                                       9.46%               (63)                      7.10%     48.31%           4.57%
+Average                (Vertically Integrated Only)                                                           10.45%                                       9.74%               (71)                      6.91%     47.82%           4.68%
+
+
+Source: S&P Global Market Intelligence
+Last Updated:         7/24/2025
+λ S&P incorrectly reports the ROE ask as 10.26% and the authorized ROE as 9.56%
+1 S&P incorrectly reports the utility as Kingsport Power Company
+
+
+
+
+
+                                                                                                                            4              COMMONWEALTH OF KENTUCKY
+             BEFORE THE PUBLIC SERVICE COMMISSION
+
+In the Matter of:
+
+ELECTRONIC APPLICATION OF                   )
+KENTUCKY UTILITIES COMPANY FOR         )
+AN ADJUSTMENT OF ITS ELECTRIC             )   CASE NO. 2025-00113
+RATES, AND APPROVAL OF CERTAIN           )
+REGULATORY AND ACCOUNTING               )
+TREATMENTS                                             )
+
+
+                         EXHIBIT LVP-4 OF
+
+                            LISA V. PERRY
+
+                     ON BEHALF OF
+
+                     WALMART INC.                                                                                                                                 Walmart, Inc.
+                                                                                                                                                           Exhibit LVP-4
+                                                                                            Kentucky Public Service Commission Case No. 2025-00113
+
+        Impact of KU's Current Return on Equity vs. National Average Awarded Return on Equity,
+                     Vertically Integrated Investor Owned Utilities from 2023 to Present
+
+                                          Average Awarded ROE (9.77%)
+                                                                         Percent of
+                                           Capital Component                 Total Capital      Cost       Weighted Cost
+ (1)    Schedule J-1.1/J-1.2   Short-term Debt                                  2.55%       4.46%              0.11%
+ (2)    Schedule J-1.1/J-1.2   Long-term Debt                                 44.60%       4.93%              2.20%
+ (3)    Schedule J-1.1/J-1.2  Common Equity                                 52.86%       9.77%              5.16%
+                                                                       100.01%
+
+ (4)      Sum (1):(3)     WACC at Average Awarded ROE (9.77%)                                             7.48%
+ (5)         Exhibit TSL-2      Rate Base                                                        $     6,094,469,285
+ (6)            (4) x (5)       Net Operating Income, Average Awarded ROE                           $       455,679,324
+                                            Proposed ROE (10.95%)
+                                           Capital Component                    Ratio         Cost       Weighted Cost
+ (7)    Schedule J-1.1/J-1.2   Short-term Debt                                  2.55%       4.46%              0.11%
+ (8)    Schedule J-1.1/J-1.2   Long-term Debt                                 44.60%       4.93%              2.20%
+ (9)    Schedule J-1.1/J-1.2  Common Equity                                 52.86%      10.95%              5.79%
+                                                                       100.01%
+
+(10)      Sum (7):(9)     WACC at Proposed ROE (10.95%)                                                  8.10%
+(11)        Exhibit TSL-2      Rate Base                                                        $     6,094,469,285
+(12)         (10) x (11)      Net Operating Income, Proposed ROE                                  $       493,693,454
+                                   Increase in Revenue Requirement from Increase in ROE
+(13)          (12) - (6)        Difference in Revenue Increase                                       $        38,014,130
+(14)       Schedule H-1      Converstion Factor                                                               1.338086
+(15)         (13) x (14)       Increase Related to Increase in ROE                                   $        50,866,176
+(16)      Schedule M-2.1    Proposed Revenue Deficiency                                        $       226,121,848
+(17)          (15)/(16)       Percent Increase Related to Increase in ROE                                        22.50%

@@ -1,0 +1,19 @@
+{
+  "source_url": "https://www.scc.virginia.gov/DocketSearch/Home/Document/12/383337",
+  "retrieved_at": "2026-08-04T16:51:43Z",
+  "sha256": "3af0273529063c00c78178316af8323eb0ceef0f18f2a39a8c72c7b87dbffefd",
+  "jurisdiction": "US-VA (Virginia State Corporation Commission)",
+  "docket": "PUR-2025-00058",
+  "matter_no": 146025,
+  "scc_doc_id": "383337",
+  "document_title": "Errata correcting Robert E. Miller's Rebuttal Testimony pages",
+  "filing_date": "2025-09-03",
+  "filer": "Virginia Electric and Power Company (witness Robert E. Miller)",
+  "content_type_served": "application/pdf",
+  "source_pdf_sha256": "dd9ec2e57cc8652ca2166a6f3c626e67effda8581bbe486c9814c92fda9f3bf5",
+  "source_pdf_bytes": 7789430,
+  "saved_text_bytes": 66363,
+  "extraction_tool": "pypdf 6.14.2 page.extract_text()",
+  "note": "Version-pair C, second errata to the same Miller Rebuttal Testimony (two successive corrections of one document).",
+  "how_obtained": "Fetched the PDF from the Virginia SCC DocketSearch document handler (https://www.scc.virginia.gov/DocketSearch/Home/Document/12/<DocID>) with curl -L, following the site's 307 redirect to the lowercase /docketsearch/home/document/12/<DocID> path, which returned Content-Type application/pdf. The DocID was obtained from the DocketSearchAPI Breeze endpoint GetDocuments (?$filter=MATTER_NO eq <matter>) for this case. Converted the PDF to text with pypdf 6.14.2 using page.extract_text() concatenated per page with '===PAGE n===' separators. The text is saved exactly as pypdf produced it: not cleaned, not reflowed, not de-hyphenated; soft hyphens, ligature artefacts, transposed line-number/Q-A ordering and OCR-style noise are left intact."
+}

@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Utah",
+  "commission": "Public Service Commission of Utah",
+  "docket": "24-035-04",
+  "proceeding": "Application of Rocky Mountain Power for Authority to Increase its Retail Electric Utility Service Rates in Utah and for Approval of its Proposed Electric Service Schedules and Electric Service Regulations",
+  "how_obtained": "Found the docket page on psc.utah.gov (a WordPress site: /<yyyy>/<mm>/<dd>/docket-no-<docket>/), read its raw HTML and pulled the pscdocs.utah.gov links out of it. Utah serves every document at a flat, guessable path: https://pscdocs.utah.gov/<utility>/<yy>docs/<docketdigits>/<docid><AbbreviatedTitle><m-d-yyyy>.pdf, with no login and no session. Downloaded with curl and extracted text with PyMuPDF sorted-block extraction (page.get_text('text', sort=True)), pages joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://pscdocs.utah.gov/electric/24docs/2403504/338152PhsIIIDirTstmnyMarkEllisOCS2-7-2025.pdf",
+  "document_title": "Phase III Direct Testimony of Mark Ellis for the Office of Consumer Services",
+  "filing_date": "2025-02-07",
+  "filer": "Utah Office of Consumer Services",
+  "witness": "Mark Ellis",
+  "document_type": "Direct testimony",
+  "pages": 32,
+  "version_role": "original",
+  "version_pair_with": "ut-24-035-04-ellis-phase3-direct-testimony-errata-clean.txt",
+  "notes": "Carries the wrong witness number throughout: the title page and every running head read 'Ellis Phase III OCS - 2D', and the testimony cites Exhibits OCS 2.1D and 2.2D. The errata filed 11 days later renumbers all of it.",
+  "sha256": "9a7bb1dcd4863dd1e5518705c1ac3e04ab8a18b3b11196146e3c80943dc7eebe",
+  "bytes": 57070,
+  "retrieved_at": "2026-08-04T16:59:54Z",
+  "source_pdf_sha256": "5c70effa4d1346d0b7835c29442ed0d53e5620b2b5cce945b278e631c4e0c2b4",
+  "source_pdf_bytes": 220282
+}

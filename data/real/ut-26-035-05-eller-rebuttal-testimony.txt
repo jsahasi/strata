@@ -1,0 +1,714 @@
+                                Rocky Mountain Power
+                                   Docket No. 26-035-05
+                                      Witness: Craig M. Eller
+
+
+
+
+
+ BEFORE THE PUBLIC SERVICE COMMISSION
+        OF THE STATE OF UTAH
+
+
+
+
+      ROCKY MOUNTAIN POWER
+
+____________________________________________
+
+        Rebuttal Testimony of Craig M. Eller
+
+
+
+
+
+                March 2026 1                                              I.    INTRODUCTION
+
+ 2   Q.    Please state your name, business address, and present position with PacifiCorp
+
+ 3          d/b/a Rocky Mountain Power.
+
+ 4   A.   My name is Craig M. Eller. My business address is 1407 West North Temple Street,
+
+ 5           Suite 310, Salt Lake City, Utah 84116. My present position is Senior Vice President,
+
+ 6          Business Development and Customer Experience for the Company.
+
+ 7   Q.    Are you the same Craig Eller who filed direct testimony in the Company’s
+
+ 8          application filing?
+
+ 9   A.     Yes.
+
+10                                                  II.   PURPOSE
+
+11   Q.   What is the purpose of your rebuttal testimony in this proceeding?
+
+12   A.       I will review the recommendations of the Division of Public Utilities (“Division”), the
+
+13           Office of Consumer Services (“Office”), and the Utah Association of Energy Users
+
+14         (“UAE”); pointing out areas of alignment and clarifying the Company’s position where
+
+15           the parties indicate concern or uncertainty.
+
+16   Q.    Please summarize your rebuttal testimony.
+
+17   A.   My testimony affirms that the Division and Office recommend approval of the Large
+
+18         Load Service Contract (“LLSC”) while the UAE states it is unopposed to the approval
+
+19           of the LLSC. Each party details limited instances where it had unanswered questions
+
+20           or uncertainty at the time of  its direct testimony. I detail subsequent actions the
+
+21        Company has taken to address these concerns through additional responses to data
+
+22           requests and informal discussions. As a result of these actions, the Company believes
+
+
+
+
+
+     Page 1 – Rebuttal Testimony of Craig M. Eller23            that it has provided sufficient information both to the parties and the record to support
+
+24          approval of the LLSC.
+
+25                             III.  RESPONSE TO DIVISION TESTIMONY
+
+26   Q.    Please summarize the Division’s position in this proceeding.
+
+27   A.    The Direct Testimony of Matt Pernichele summarizes the LLSC, the policy objectives
+
+28           of the Large Load Act1 (SB 132), the completeness of the Company’s application, and
+
+29           the requirements necessary under SB 132 for the Commission to approve the LLSC.
+
+30         The Division finds that the Company’s initial application was “largely complete”2 and
+
+31          concludes that it “recommend[s] that the Commission approve the LLSC pending a
+
+32         showing by the Company that Utah ratepayers will not be adversely impacted.”3
+
+33   Q.    Does the Division expand on what information it believes prevented it from finding
+
+34          the Company’s initial application as ‘fully complete’ and has the Company taken
+
+35           steps to address these concerns?
+
+36   A.     Yes. The Division states that while the Company’s initial application provided a copy
+
+37           of the LLSC, as required by the statute, that it did not “contain explicit information
+
+38           projecting costs to Utah ratepayers.”4 The Division also notes that through discovery
+
+39         between the application and the filing of the Division’s direct testimony that the
+
+40        Company “provided most of the additional information that the [Division] needed
+
+41          during its investigation.”5
+
+
+
+
+         1 Utah Code Ann. §§ 54-26-101to -901 (2025).
+         2 Application of Rocky Mountain Power or Approval of Large-Load Service Contract between PacifiCorp and a
+      Large-Load Customer, Docket No. 26-035-05, Direct Testimony of Matt Pernichele for the Division of Public
+         Utilities, at lines 33-43 (March 3, 2026) (“Pernichele Direct”).
+         3 Id. at lines 40-41.
+         4 Id. at line 101-103.
+         5 Id. at line 93-94.
+
+     Page 2 – Rebuttal Testimony of Craig M. Eller42   Q.    Does the Division state that any information remained lacking at the time of its
+
+43           direct testimony?
+
+44   A.     Yes. As of the time of the Division’s direct testimony it states all information had been
+
+45           received “except for the SG allocation”6 which was the subject of a pending data
+
+46           request to the Company for which “the deadline has not passed.”7
+
+47   Q.    Has the Company provided a response to the data request since the Division filed
+
+48              its testimony?
+
+49   A.     Yes. The Company subsequently provided additional detail for the treatment of the
+
+50       LLSC in the Company’s allocations of costs between states in DPU Data Request 2.1,
+
+51         which is attached as Exhibit RMP___(CME-1R) of this rebuttal testimony.
+
+52   Q.    Does the response address the Division’s concern and if so, how?
+
+53   A.     Yes. Response summarizes the treatment of all costs treatments as previously described
+
+54            in my Direct testimony and the testimony of Company witness Ramon J. Mitchell. In
+
+55           addition, the response further clarifies the treatment of the system generation (SG) and
+
+56          system energy (SE) allocation factors as follows:
+
+57               “The  dynamic  2020   Inter-Jurisdictional   Cost   Allocation
+
+58                Methodology (2020 Protocol) allocation factors will be updated to
+
+59               remove the LLSC load. Specifically, the LLSC load and associated
+
+60                 peaks will be removed from the calculation of the system energy (SE)
+
+61               and system generation (SG) allocation factors. Because the LLSC
+
+62                  resources and purchases are expected to fully serve the LLCS’s
+
+63                  needs, and be fully excluded from system costs, no change to
+
+
+         6 Id. at lines 105-107.
+         7 Id. at lines 303-304.
+
+     Page 3 – Rebuttal Testimony of Craig M. Eller64                  allocation factors is anticipated. Under this expectation, both the
+
+65             LLSC energy and peak contributions would be fully excluded from
+
+66                 system load calculations.”8
+
+67   Q.    Does this treatment mitigate the Division’s concerns about costs being shifted to
+
+68         Utah customers through the SG factor?
+
+69   A.     Yes. The Company believes this treatment fully mitigates the Division’s concerns as
+
+70           the removal of the LLSC load from the SG factor ensures costs will be allocated as they
+
+71           are today without the LLSC load. The Company notes that this treatment is appropriate
+
+72            in this instance as the specific facts of this LLSC demonstrate no incremental costs for
+
+73           transmission9 or load interconnection.10 In addition, all incremental costs associated
+
+74          with the capacity resources necessary to support the LLSC load and maintain system
+
+75             reliability  will be  separately accounted  for and excluded from Utah’s revenue
+
+76           requirements.11
+
+77   Q.     Is there any further clarification that should be made between the Company’s
+
+78         proposed treatment of the SG allocation factor and the phrasing used by the
+
+79          Division?
+
+80   A.     Yes. The Division implies that the SG allocation factor will be adjusted by “deducting
+
+81           the Reservation Charge from PacifiCorp’s Utah revenue requirement.”12 This phrasing
+
+82             is inaccurate, instead the SG allocation will be adjusted by deducting the LLSC load’s
+
+
+         8 Exhibit RMP___(CME-1R).
+         9 Application of Rocky Mountain Power or Approval of Large-Load Service Contract between PacifiCorp and a
+      Large-Load Customer, Docket No. 26-035-05, Direct Testimony of Craig M. Eller for Rocky Mountain Power,
+        at lines 317-323 (Feb 10, 2026) (“Eller Direct”).
+         10 Id. at 324-333.
+         11 Application of Rocky Mountain Power or Approval of Large-Load Service Contract between PacifiCorp and
+      a Large-Load Customer, Docket No. 26-035-05, Direct Testimony of Ramon J. Mitchell for Rocky Mountain
+       Power, at lines 136-217 (Feb 10, 2026) (“Mitchell Direct”).
+         12 Pernichele Direct, at lines 294-298 and 299-301.
+
+     Page 4 – Rebuttal Testimony of Craig M. Eller 83           contribution to system peaks from the SG factor. Separately, and as noted in my Direct
+
+ 84          testimony in lines 75-79, the Company does intend to remove revenue from the
+
+ 85          Reservation Charge from  the Company’s revenue requirement along with  the
+
+ 86           incremental costs associated with service to the LLSC load. The net impact of the
+
+ 87         Company’s proposed treatment is that 1) all incremental costs associated with service
+
+ 88            to the LLSC will remain outside of the Company’s cost of service, thereby preventing
+
+ 89           allocation of said costs to Utah customers, and 2) Utah customers will not experience
+
+ 90          an increased allocation of existing system costs from the SG factor as the SG factor
+
+ 91            will be adjusted to remove the LLSC load.
+
+ 92   Q.    Does the Division make any other recommendations in its Direct Testimony?
+
+ 93   A.     Yes. The Division makes two additional recommendations. First, that upstream market
+
+ 94          impacts on commodities “should not be considered in evaluating this LLSC”13 and
+
+ 95          second, that achieving the anticipated benefits to all customers from the LLSC is more
+
+ 96           appropriate than “hoarding excess capacity for later use”14
+
+ 97   Q.    Does the Company agree with the Division’s first assertion and does it have any
+
+ 98          additional commentary on the topic?
+
+ 99   A.     In general, the Company agrees that market impacts on commodity pricing should be
+
+100          excluded from the approval of the LLSC. The Company notes that UCA § 54-26-301(3)
+
+101              lists the requirements for a large load contract between a qualified electric utility, such
+
+102           as the Company, and a large load customer. Notably, these requirements do not include
+
+103          market impacts on commodity pricing. The Company agrees with the Division that any
+
+104           attempt to quantify potential impacts on commodity prices would be inherently
+
+
+           13 Pernichele Direct, at lines 316-339.
+           14 Id. at lines 340-439.
+
+      Page 5 – Rebuttal Testimony of Craig M. Eller105           speculative, difficult to quantify, and subject to much broader, and arguably more
+
+106            substantial, changes in the western market including actions by surrounding states. The
+
+107        Company also notes  that should the Commission find  that market impacts on
+
+108         commodity pricing should be incorporated into the approval of large load service
+
+109           contracts by the Company, such review should also be considered prior to approving
+
+110         any large load contracts or private generation contracts entered into by a large-scale
+
+111           generation provider.
+
+112   Q.    Does the Company agree with the Division’s second assertion and does it have any
+
+113          additional commentary on the topic?
+
+114   A.     In general, the Company agrees with the Division on this topic as well, noting the
+
+115            significant anticipated net benefits of the LLSC for the Company’s Utah customers and
+
+116           the State of Utah in general. The Company also notes that each large load service
+
+117            contract, both by the Company and by large-scale generation providers, should
+
+118          continue to evaluate the case-specific impacts on the transmission system and that in
+
+119           the event such service would create incremental transmission costs ensure recovery
+
+120           consistent with SB 132.
+
+121   Q.   Do you believe that the Commission should review all Large Load Contracts in
+
+122         any of the utility’s subsequent rate cases “to evaluate the accuracy and usefulness
+
+123           of existing contracts in order to learn how to better craft future ones”?15
+
+124   A.    The Company understands that, if approved, the LLSC will be subject to on-going
+
+125           reporting requirements consistent with §54-26-602(4). The Company agrees with the
+
+126           Division’s goal of learning from past practices to better craft future arrangements. That
+
+
+
+           15 Id. at line 362-366.
+
+      Page 6 – Rebuttal Testimony of Craig M. Eller127          being said, the Company would stress that any approved large load service contract
+
+128          should be evaluated consistent with the accounting treatment adopted at the time of the
+
+129          approval of the large load service contract. This approach would avoid pitfalls which
+
+130           the Division acknowledges “could be inequitable to revisit existing contracts” while
+
+131          enabling the accounting treatment of any future large load service contract to better
+
+132            reflect its case-specific facts and circumstances.
+
+133                    IV.  RESPONSE TO THE OFFICE’S TESTIMONY
+
+134   Q.    Please summarize the Office’s recommendations in this proceeding.
+
+135   A.    The Office analyses the requirements for approval of a large load service contract and
+
+136          whether  the  Company’s  application  demonstrates  that  the LLSC  meets  the
+
+137          requirements of SB 132 and the associated administrative rules. In general, the
+
+138          testimony concludes “the LLSC appears to meet the requirements”16 and “the Office
+
+139         recommends that the PSC approve this request.”17
+
+140   Q.    Does the Office suggest any areas of the LLSC application are inconclusive or
+
+141         should be monitored in the future?
+
+142   A.     Yes, like the Division, the Office appears to stop short of fully endorsing the Company’s
+
+143          proposed treatment of transmission costs stating, “it appears that a methodology for
+
+144           transmission cost allocation is not needed in this case.”18
+
+
+
+
+
+           16 Application of Rocky Mountain Power or Approval of Large-Load Service Contract between PacifiCorp and
+       a Large-Load Customer, Docket No. 26-035-05, Direct Testimony of Cameron Irmas for the Office of
+       Consumer Services, at lines 264-267 (March 3, 2026) (“Irmas Direct”).
+           17 Id.
+           18 Id. at lines 160-161.
+
+      Page 7 – Rebuttal Testimony of Craig M. Eller145   Q.    Does the Company agree that no transmission cost allocation method was
+
+146         proposed in its Application?
+
+147   A.    No, the Company believes  it did propose an allocation methodology in its initial
+
+148            application. The Company notes that like the Division, the Office did not have access
+
+149            to the information presented in Exhibit RMP___(CME-1R) at the time  it filed its
+
+150           testimony. As noted previously, the response reiterated and clarified the proposed
+
+151           treatment of cost allocations, including treatment of system transmission costs, and not
+
+152          having access to these materials at the time of the Office’s filing may have led to
+
+153           confusion.
+
+154              The Company’s proposed methodology addresses the allocation of existing
+
+155          system costs to Utah customers to prevent additional costs being shifted to Utah
+
+156          customers. In summary, to ensure no increase in the allocation of system costs,
+
+157           including transmission, is experienced by Utah customers, the Company proposes to
+
+158         remove the LLSC load from both the SG and SE factors in the future.
+
+159   Q.   How do you respond to the Office’s assertion that the allocation of transmission
+
+160           costs should be reviewed in future LLSC proceedings on a case-by-case basis?19
+
+161   A.    The Company agrees that this is a key consideration in approvals of all large-load
+
+162           service agreements whether they are entered by the Company or by a large-scale
+
+163           generation provider.
+
+
+
+
+
+           19 Id. at lines 165-167.
+
+      Page 8 – Rebuttal Testimony of Craig M. Eller164                        V.   RESPONSE TO UAE TESTIMONY
+
+165   Q.   What are UAE’s recommendations in this proceeding?
+
+166   A.    The UAE  generally  describes  the summary  information from  the  public and
+
+167           confidential versions of the Company’s application while noting  its difficulty in
+
+168           assessing the ultimate impacts on other customers due to  its inability to review
+
+169          information marked as Highly Confidential. As a result of these challenges, the UAE
+
+170            states two conclusions: 1) that it is unopposed to approval of the LLSC and 2) that it
+
+171         recommends “the Commission refrain from approving RMP’s proposed accounting
+
+172           treatment until intervening parties such as UAE have been provided a meaningful
+
+173           opportunity to review the relevant details of the proposed accounting treatment and
+
+174          respond on the record, whether in rebuttal testimony or through another appropriate
+
+175           procedural mechanism.”20
+
+176   Q.   How do you respond to UAE’s recommendations?
+
+177   A.     In  general,  the  Company  appreciates  UAE’s  measured  approach   to   its
+
+178          recommendations which attempt to balance the interests of its constituents while not
+
+179           unnecessarily impeding the approval of the LLSC. The Company acknowledges that
+
+180        UAE’s inability to review the highly confidential information could create some
+
+181           challenges; however, the Company believes these challenges can be addressed without
+
+182           violating customer confidentiality or disclosure contrary to §54-26-602(5) which states
+
+183        “A qualified electric utility may not be required to publicly disclose specific revenue
+
+
+
+
+
+           20 Application of Rocky Mountain Power or Approval of Large-Load Service Contract between PacifiCorp and
+       a Large-Load Customer, Docket No. 26-035-05, Direct Testimony of Justin Bieber on behalf of Utah
+        Association of Energy Users, at lines 202-206 (March 3, 2026) (“Bieber Direct”).Direct Testimony of Justin
+         Bieber, at lines 202-206.
+
+      Page 9 – Rebuttal Testimony of Craig M. Eller184          information from individual large load customers in any proceeding described in
+
+185           Subsection.”
+
+186   Q.    Has the Company worked diligently to provide additional information to UAE as
+
+187          requested?
+
+188   A.     Yes, the Company and the UAE have engaged in a series of discussions which the
+
+189        Company believes have addressed several stated concerns through reference to existing
+
+190          responses to data requests or prior testimony by the Company. Through these efforts,
+
+191           the Company believes it has addressed all but one item listed as reasons “why [UAE
+
+192             is] unable to review and validate RMP’s assertion that the proposed accounting
+
+193           treatment will prevent existing retail customers from subsidizing new large load.”21
+
+194   Q.    Please elaborate on how the Company addressed concerns regarding “how the
+
+195         proposed accounting treatment  will prevent  existing  retail customers from
+
+196          subsidizing the cost of shared facilities.”22
+
+197   A.    Through additional discussions, the Company provided additional context on shared
+
+198             facilities described in my direct testimony at lines 334-338. The Company clarified that
+
+199           the shared facilities contributions constitute one or more refunds to other customers
+
+200        who had previously provided one or more “refundable advance” pursuant to parts 2(b),
+
+201           3(c) and/or 4(c) of Utah Rule 12. Amounts covered by the prior customer(s) refundable
+
+202          advance are not included in rates and as such, the contribution towards shared facilities
+
+203           represents a payment between customers which similarly is excluded from rates.
+
+
+
+
+
+           21 Id. at lines 138-140.
+           22 Id. at lines 156-157.
+
+      Page 10 – Rebuttal Testimony of Craig M. Eller204   Q.    Please elaborate on how the Company addressed concerns regarding the extent to
+
+205         which the Customer “will utilize existing transmission infrastructure or to what
+
+206          extent  it  will pay for embedded transmission costs commensurate with  its
+
+207          contribution to the Company’s overall transmission revenue requirement.”23
+
+208   A.    Like the Division and Office, the UAE did not have access to the information presented
+
+209            in Exhibit RMP___(CME-1R). The UAE has since been provided this response. As
+
+210            stated previously, the Company intends to prevent any increase in the allocation of
+
+211         embedded transmission costs to Utah by adjusting the SG and SE factors to remove the
+
+212       LLSC load.
+
+213   Q.    Please elaborate on how the Company addressed concerns regarding whether the
+
+214        Company will “require contributions in aid of construction (“CIAC”) or other
+
+215           direct payments such that the [relevant] assets will not be placed into rate base or
+
+216         whether certain costs have already been, or will be, included in rate base and offset
+
+217         through contractual revenues?”24
+
+218   A.    Through additional discussions, the Company provided references back to its proposed
+
+219          accounting treatment of incremental costs to ensure costs of these assets will not be
+
+220          placed into rate base as described in Exhibit RMP___(CME-1R).
+
+221   Q.    Are there any topics detailed by UAE which are not fully addressed through public
+
+222          or confidential information?
+
+223   A.     Yes. The UAE’s concerns regarding its inability to independently “validate whether the
+
+224          proposed energy credits would be equal to or greater than the incremental cost” likely
+
+225          remain.
+
+
+           23 Id. at lines 171-175.
+           24 Id. at lines 178-184.
+
+      Page 11 – Rebuttal Testimony of Craig M. Eller226   Q.    Does this mean the UAE should be given access to highly confidential information
+
+227          regarding the Energy Charge?
+
+228   A.    No, the Company continues to maintain that this information is highly confidential and
+
+229           proprietary to both it and the LLSC customer.
+
+230   Q.    Under any of the scenarios listed above, can you summarize where in the record
+
+231           of this docket the Company explains how the Company’s proposed accounting
+
+232          treatment results in energy credits to NPC that are at least equal to or greater than
+
+233          then incremental costs attributable to the large load customer?25
+
+234   A.     Yes. Exhibit RMP___(CME-1R) provides a summary of the relevant locations in the
+
+235         Company’s testimony where this information can be found, and states:
+
+236                  “Please refer to Ramon Mitchell’s Direct Testimony, lines 55 through
+
+237                  99. All energy consumed by the LLSC will be credited back to
+
+238                 PacifiCorp customers in regulatory filings to ensure that no costs are
+
+239                   shifted to other customers. Additionally, please refer to the Direct
+
+240                Testimony of Company witness, Thomas R. Burns, specifically Table 1,
+
+241               which provides the quantified net benefits expected to be returned to
+
+242                 customers. Overall, these costs will be separately tracked, and the
+
+243                  associated credits are expected to result in a net‑zero or net benefit to
+
+244                  the Company’s overall revenue requirement.”
+
+245                                    VI.  CONCLUSION
+
+246   Q.   What is your recommendation to the Commission?
+
+247   A.       I recommend that the Commission approve the Company’s Application and issue an
+
+
+
+           25 Id. at lines 152-155.
+
+      Page 12 – Rebuttal Testimony of Craig M. Eller248           order affirming that the proposed LLSC meets the requirements of the Large Load Act
+
+249         and endorsing the Company’s proposed accounting treatment.
+
+250   Q.    Does this conclude your rebuttal testimony?
+
+251   A.     Yes.
+
+
+
+
+
+      Page 13 – Rebuttal Testimony of Craig M. Eller                                  Rocky Mountain Power
+                                           Exhibit RMP___(CME-1R)
+                                     Docket No. 26-035-05
+                                         Witness: Craig M. Eller
+
+
+
+
+
+   BEFORE THE PUBLIC SERVICE COMMISSION
+          OF THE STATE OF UTAH
+
+
+
+
+        ROCKY MOUNTAIN POWER
+
+   ____________________________________________
+
+Exhibit Accompanying Rebuttal Testimony of Craig M. Eller
+
+            DPU Data Request 2.1
+
+
+
+
+
+                   March 2026                                                                                   Rocky Mountain Power
+                                                                                           Exhibit RMP___(CME-1R) Page 1 of 2
+                                                                                          Docket No. 26-035-05
+26-035-05 / Rocky Mountain Power                                                   Witness: Craig M. Eller
+March 4, 2026
+DPU Data Request 2.1
+
+DPU Data Request 2.1
+
+       Please provide a simplified analysis comparing the projected change in the
+      Company’s Utah revenue requirement without this LLSC against the same year
+       with the inclusion of this LLSC’s load, expenses, and revenue. Use the 2020
+       Allocation Protocol and data from the most recent year available. This question
+       supersedes Division of Public Utilities Data Request 1.2. Do not answer DPU
+        1.2.
+
+Response to DPU Data Request 2.1
+
+      Large Load Service Contract (LLSC) load (dynamic 2020 Inter-
+       Jurisdictional Cost Allocation Methodology (2020 Protocol) allocations) –
+       Please refer to the Direct Testimony of Company witness, Ramon J. Michell, lines
+      218 through 228. The dynamic 2020 Inter-Jurisdictional Cost Allocation
+      Methodology (2020 Protocol) allocation factors will be updated to remove the
+     LLSC load. Specifically, the LLSC load and associated peaks will be removed
+      from the calculation of the system energy (SE) and system generation (SG)
+        allocation factors. Because the LLSC resources and purchases are expected to
+        fully serve the LLCS’s needs, and be fully excluded from system costs, no change
+        to allocation factors is anticipated. Under this expectation, both the LLSC energy
+      and peak contributions would be fully excluded from system load calculations.
+
+     LLSC Expense (energy costs) – Please refer to Ramon Mitchell’s Direct
+       Testimony, lines 55 through 99. All energy consumed by the LLSC will be
+       credited back to PacifiCorp customers in regulatory filings to ensure that no costs
+       are shifted to other customers. Additionally, please refer to the Direct Testimony
+       of Company witness, Thomas R. Burns, specifically Table 1, which provides the
+       quantified net benefits expected to be returned to customers. Overall, these costs
+        will be separately tracked, and the associated credits are expected to result in a
+       net‑zero or net benefit to the Company’s overall revenue requirement.
+
+     LLSC Expense (transmission costs) – Please refer to the Direct Testimony of
+     Company witness, Craig M. Eller, lines 317 through 323. No incremental
+       transmission improvement of third-party transmission costs are expected.
+
+     LLSC Expense (capacity costs) - Please refer to Ramon Mitchell’s Direct
+       Testimony, lines 136 through 217. The Company will procure sufficient resources
+        to fully offset the capacity-related incremental costs that result from the LLSC
+        load. Please refer to Ramon Mitchell’s Direct Testimony, lines 199 through 208
+        for the treatment of capacity costs during the transition period. These costs will be
+       separately accounted for and not included in Utah’s revenue requirement.
+
+     LLSC Expense (interconnection costs) – Please refer to Craig Eller’s Direct
+       Testimony, lines 324 through 333. All interconnection improvement costs have
+      been fully paid on behalf of the LLSC by the facility developer. Upon initiation of                                                                                   Rocky Mountain Power
+                                                                                           Exhibit RMP___(CME-1R) Page 2 of 2
+                                                                                          Docket No. 26-035-05
+26-035-05 / Rocky Mountain Power                                                   Witness: Craig M. Eller
+March 4, 2026
+DPU Data Request 2.1
+
+       the service, the Company will provide a standard meter allowance which will be
+       recovered through the LLSC reservation charge.
+
+     LLSC Revenue – Please refer to Craig Eller’s Direct Testimony, lines 68 through
+       79. Revenue collected through the reservation charge and the contract
+      management charge will be removed from the Company’s Utah revenue
+       requirement. Energy‑related revenues will be credited back to PacifiCorp
+       customers through regulatory filings. In addition, LLSC participation provides
+       meaningful benefits to certain tariffed programs, all of which are separately
+       tracked and fully isolated from the overall revenue requirement used to establish
+       cost of service (COS) rates.
+
+       In summary, the Company expects that all load, expenses, and revenues
+       associated with the LLSC will be fully removed from the Utah revenue
+       requirement through detailed and segregated accounting records. As a result, the
+       approval of the LLSC is anticipated to have a net‑zero impact on the Utah revenue
+       requirement when compared to the pre‑LLSC baseline. In addition, the Company
+        anticipates marginal capacity benefits to Utah customers from the procurement of
+        additional resources, as well as net energy benefits, as further described in
+      Thomas Burns’s Direct Testimony.

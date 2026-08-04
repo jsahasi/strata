@@ -1,0 +1,1510 @@
+STATE OF INDIANA 
+INDIANA UTILITY REGULATORY COMMISSION 
+PETITION OF INDIANAPOLIS POWER & LIGHT 
+COMPANY D/B/A AES INDIANA (“AES INDIANA”) 
+FOR AUTHORITY TO INCREASE RATES AND 
+CHARGES FOR ELECTRIC UTILITY SERVICE 
+THROUGH A PHASE-IN RATE ADJUSTMENT; AND 
+FOR 
+APPROVAL 
+OF 
+RELATED 
+RELIEF, 
+INCLUDING (1) REVISED DEPRECIATION RATES, 
+INCLUDING COST OF REMOVAL LESS SALVAGE 
+AND UPDATED DEPRECIATION EXPENSE; (2) 
+ACCOUNTING RELIEF, INCLUDING DEFERRALS 
+AND AMORTIZATIONS, (3) 
+INCLUSION 
+OF 
+CAPITAL INVESTMENT, (4) RATE ADJUSTMENT 
+MECHANISM PROPOSALS, INCLUDING A NEW 
+PROPERTY TAX RIDER, AND (5) NEW SCHEDULES 
+OF RATES, RULES AND REGULATIONS FOR 
+SERVICE. 
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+CAUSE NO. 46258 
+INDIANA OFFICE OF UTILITY CONSUMER COUNSELOR 
+PUBLIC EXHIBIT NO. 7 – REDACTED TESTIMONY OF 
+OUCC WITNESS PATRICK A. KELLEY 
+Respectfully submitted, 
+INDIANA OFFICE OF UTILITY CONSUMER
+COUNSELOR 
+____________________________ 
+T. Jason Haas, Attorney No. 34983-29
+Senior Deputy Consumer Counselor
+Adam J. Kashin, Attorney No. 37960-49
+Deputy Consumer Counselor
+FILED 
+September 9, 2025
+INDIANA UTILITY  
+REGULATORY COMMISSION 
+1 
+Q: 
+2 
+A: 
+3 
+4 
+5 
+6 
+7 
+Q: 
+8 
+A: 
+9 
+10 
+11 
+12 
+13 
+14 
+15 
+16 
+17 
+Public Exhibit No. 7 
+Cause No. 46258 
+Page 1 of 13 
+REDACTED TESTIMONY OF OUCC WITNESS PATRICK A. KELLEY 
+CAUSE NO. 46258 
+INDIANAPOLIS POWER & LIGHT COMPANY D/B/A AES INDIANA 
+NOTE: CONFIDENTIAL INFORMATION APPEARS IN-
+I. 
+INTRODUCTION 
+Please state your name, business address, and employment capacity. 
+My name is Patrick A. Kelley, and my business address is 115 West Washington 
+Steet, Suite 1500 South, Indianapolis, Indiana 46204. I am employed by the Indiana 
+Office of Utility Consumer Counselor ("OUCC") as a Utility Analyst. My 
+educational background and experience are set forth in Appendix A to this 
+testimony. 
+What is the purpose of your testimony? 
+I present my review of the capital costs for generation resources and the 
+transmission and distribution ("T&D") system that Indianapolis Power & Light 
+d/b/a AES Indiana ("AESI," "Company," or "Petitioner") included in rate base in 
+this Cause. I recommend the Indiana Utility Regulato1y 
+Commission 
+("Commission") deny recove1y of ce1iain generation capital costs outlined by AESI 
+witness Grego1y Ellis and T&D capital costs AESI witness Michael L. Holtsclaw 
+presented. 
+Specifically, 
+I 
+recommend 
+the 
+Commission 
+disallow 
+<CONFIDENTIAL> -
+<CONFIDENTIAL> associated with T&D 
+capital costs and <CONFIDENTIAL> -
+<CONFIDENTIAL> associated 
+with generation capital costs. 
+Public Exhibit No. 7 
+Cause No. 46258 
+Page 2 of 13 
+ 
+ 
+ 
+ 
+Q: 
+What did you do to prepare your testimony? 
+1 
+A: 
+I reviewed AESI’s case-in-chief testimony and workpapers, particularly those of 
+2 
+Mr. Ellis and Mr. Holtsclaw, and AESI’s prior rate Order in Cause No. 45911. I 
+3 
+compared the new generation capital costs requested in this case to the best 
+4 
+estimates approved by the Commission for Hoosier Wind in Cause No. 45931, 
+5 
+Petersburg Energy Center in Cause No. 45591 as modified in Cause No. 45832, 
+6 
+and Petersburg Repowering in Cause No. 46022. I reviewed the Transmission, 
+7 
+Distribution, Storage Improvement Charge (“TDSIC”) Plan in Cause No. 45264 
+8 
+and attended the TDSIC 10 adjustment filing tech-to-tech meeting. I consulted with 
+9 
+other OUCC analysts, prepared data requests (“DR”), reviewed AESI’s responses 
+10 
+to DRs, and I attended tech-to-tech meetings with AESI personnel regarding this 
+11 
+case.   
+12 
+Q: 
+To the extent you do not address a specific issue, does this mean you agree with 
+13 
+those portions of AESI’s proposals? 
+14 
+A: 
+No. The scope of my testimony is limited to the specific items addressed herein. 
+15 
+II. T&D CAPITAL COST ADDITIONS  
+ 
+Q: 
+Does AESI, in this Cause, seek to include in rate base additional T&D capital 
+16 
+costs incurred since the rate base cut-off in Cause No. 45911? 
+17 
+A: 
+Yes. In this Cause, AESI included Commission-approved costs for its current 
+18 
+TDSIC Plan, approved in Cause No. 45264. Additionally, AESI requested approval 
+19 
+to recover non-TDSIC costs, or costs that were not included in the TDSIC Plan. 
+20 
+AESI presented the T&D plant-in-service in Mr. Holtsclaw’s testimony and 
+21 
+Public Exhibit No. 7 
+Cause No. 46258 
+Page 3 of 13 
+ 
+ 
+ 
+ 
+attachments.1 AESI Witness David C. Peters’ workpaper DCP-1 included the 
+1 
+Historical Base Period of 2024, and workpaper DCP-2 included the Linking Period 
+2 
+of 2025 and the Test Year of 2026.  
+3 
+Q: 
+How did AESI arrange the work orders?  
+4 
+A: 
+In Mr. Holtsclaw’s forementioned attachments and Mr. Peters’ workpapers, AESI 
+5 
+provided work orders as additions to plant in-service sorted by the most expensive 
+6 
+Transmission or Distribution projects. However, AESI did not present any sorting 
+7 
+of work orders for TDSIC projects.  
+8 
+Q: 
+Do any non-TDSIC work order items in T&D additional capital costs to be 
+9 
+included in rate base concern you? 
+10 
+A: 
+Yes. I am concerned with the following work orders: 
+11 
+• Indy Eleven Ph1 Stadium; 
+12 
+• Work orders pertaining to 2022 transformers; 
+13 
+• Corporate Furniture; 
+14 
+• Monrovia BESS Land Purchase; 
+15 
+• Distribution Automation; and 
+16 
+• Cancelled Projects: 
+17 
+o VW Electric Vehicle Fast Charging Project; 
+18 
+o PMAC Display Software License 2025; 
+19 
+o Customer Outage Data Enhancement (“CODE”); and 
+20 
+o Master Model Data PDPM. 
+21 
+ 
+Q: 
+Please explain your concern with the inclusion of the Indy Eleven Ph1 Stadium 
+22 
+project. 
+23 
+A: 
+First, AESI’s testimony did not provide a clear explanation of what the project 
+24 
+entails. In response to OUCC DR 8-1(n), AESI simply stated that the project was 
+25 
+for the “announced soccer stadium.”2 Second, it is unlikely that this investment will 
+26 
+occur by the end of the 2026 test year due to the termination of the initial plan for 
+27 
+ 
+1 Direct Testimony of Michael L. Holtsclaw, Attachment MH-2 and Attachment MH-4. 
+2 Attachment PAK-1: AESI’s response to OUCC DR 8-1(n). 
+Public Exhibit No. 7 
+Cause No. 46258 
+Page 4 of 13 
+ 
+ 
+ 
+ 
+the Indy Eleven Stadium.3 Therefore, it is unreasonable to include capital costs 
+1 
+associated with the Indy Eleven Ph1 Stadium in forecasted rate base, and I 
+2 
+recommend the Commission deny them.   
+3 
+Q: 
+Please explain your concern with the inclusion of work orders pertaining to 
+4 
+2022 transformers. 
+5 
+A: 
+Attachment MH-2, page 1 of 8, contains the line item “Transformers Q3, Q4 2022.” 
+6 
+In response to OUCC DR 21-21(b) regarding this line item, AESI responded, in 
+7 
+part, “The transformers were all received in Q3 of 2022 and reflected in rate base.”4  
+8 
+Further, in response to OUCC DR 25-1, AESI stated: 
+9 
+Per FERC accounting rules the capital cost of transformers and the 
+10 
+installation labor are capitalized and recorded at the time of purchase 
+11 
+not at the time of installation. There is an offsetting credit recorded 
+12 
+to an expense account for transformer installation labor. Any 
+13 
+transformers purchased and received prior to December 31, 2022 
+14 
+would have been included in the Utility Plant In-Service in Cause 
+15 
+45911. When the transformers are installed only the installation 
+16 
+labor is charged to that previously mentioned expense account.5 
+17 
+ 
+I identified seven additional work orders with a 2022 transformer description.6 The 
+18 
+capital cost for this line item would have been included in Utility Plant In Service 
+19 
+in Cause No. 45911, and Petitioner’s case-in-chief does not clearly show the 
+20 
+specific expense account to which further details of credits are being recorded. 
+21 
+Accordingly, AESI may already be recovering these costs in current rates. Because 
+22 
+Petitioner’s case is deficient on detail that raises a potential for double recovery I 
+23 
+ 
+3 Attachment PAK-2: https://www.wthr.com/article/sports/soccer/indy-eleven/mayor-joe-hogsett-
+negotiations-on-eleven-park-soccer-stadium-terminated-while-his-new-proposal-advances/531-d3c880fd-
+fa15-47fb-ac44-1b1778fd5b79. 
+4 Attachment PAK-3: AESI’s response to OUCC DR 21-21(b). 
+5 Attachment PAK-4: AESI’s response to OUCC DR 25-1 (emphasis added). 
+6 Attachment PAK-5: T&D Spreadsheet. 
+Public Exhibit No. 7 
+Cause No. 46258 
+Page 5 of 13 
+ 
+ 
+ 
+ 
+recommend the Commission deny all capital costs associated with these line items.    
+1 
+Q: 
+Please explain your concern regarding the inclusion of Corporate Furniture. 
+2 
+A: 
+Attachment MH-4, page 3 of 3, includes a line item for “Corporate Furniture” and 
+3 
+includes amounts in the linking period (2025 Forecast) and the adjusted test year 
+4 
+(2026 Forecasted). AESI plans to spend <CONFIDENTIAL> 
+ 
+5 
+<CONFIDENTIAL> on "CORPORATE FURNITURE." When the OUCC 
+6 
+inquired regarding this work order in DR 8-1(m), AESI responded 
+7 
+<CONFIDENTIAL> 
+ 
+8 
+ 
+9 
+<CONFIDENTIAL>7 AESI provided no further explanation of how it determined 
+10 
+“historical use” or what period the company relied on for determining its forecasted 
+11 
+furniture need for 2025 and 2026.  
+12 
+In response to OUCC DR 13-23, AESI provided its 2023 T&D capital 
+13 
+expenditure.8 In 2023, I could only find one work order description pertaining to 
+14 
+furniture, “INDIANA FURNITURE 1, CORP,” of which AESI spent 
+15 
+<CONFIDENTIAL> 
+ <CONFIDENTIAL>. AESI provided 2024 T&D 
+16 
+capital expenditure data in its case-in-chief.9 I was unable to find work orders 
+17 
+pertaining to furniture in 2024. Therefore, AESI’s forecasted need for corporate 
+18 
+furniture in 2025 and 2026 is not supported by the actual historical spend from 2023 
+19 
+and 2024.  
+20 
+ 
+7 Attachment PAK-1: AESI’s Response to OUCC DR 8-1(m). 
+8 Attachment PAK-6: AESI’s response to OUCC DR 13-23, Confidential Attachment 1. 
+9 46258_AESIN_Confidential Workpaper DCP-1_060325.xlsx, tab: 2024 actual working file. 
+-
+-
+Public Exhibit No. 7 
+Cause No. 46258 
+Page 6 of 13 
+ 
+ 
+ 
+ 
+If AESI bases its 2025 and 2026 forecasted furniture need on historical data 
+1 
+other than 2023 and 2024, then it has not provided the necessary data to justify its 
+2 
+expected 2025 and 2026 furniture expenditures. Therefore, I am unable to evaluate 
+3 
+whether this amount is reasonable and prudent based on AESI’s historical trends. 
+4 
+Finally, AESI provides no evidence of the actual need or usefulness for these 
+5 
+significant corporate furniture expenses. For these reasons, I recommend removal 
+6 
+of these costs from AESI’s rate base.  
+7 
+Q: 
+Please explain your concern with the inclusion of the Monrovia BESS Land 
+8 
+Purchase. 
+9 
+A: 
+Attachment MH-2, page 4 of 8, contains a line item for “Monrovia BESS Land 
+10 
+Purchase.” AESI responded to OUCC DR 21-26 about the purpose of the land 
+11 
+purchase stating, <CONFIDENTIAL> 
+ 
+12 
+ 
+13 
+ <CONFIDENTIAL>10 AESI admits that the originally 
+14 
+intended purpose of this land purchase is for a project that has been canceled and 
+15 
+thus will not be used and useful by the end of the 2026 test year. While the land 
+16 
+could possibly be used in the provision of service to customers, AESI indicates it 
+17 
+is currently reviewing its options as to whether it will sell the land or use it for 
+18 
+another project. Since AESI has made no decision as to whether it will keep this 
+19 
+land or how it will use it, AESI has not adequately shown this purchase to be 
+20 
+prudent for customers. Furthermore, without knowing for certain what the land will 
+21 
+be used for, it would be inappropriate to include it in T&D capital costs if AES 
+22 
+ 
+10 Attachment PAK-7: AESI’s response to OUCC DR 21-26. 
+Public Exhibit No. 7 
+Cause No. 46258 
+Page 7 of 13 
+ 
+ 
+ 
+ 
+Indiana uses the land for activities unrelated to T&D. Therefore, I recommend 
+1 
+removing costs associated with the Monrovia BESS land purchase from AESI’s 
+2 
+forecasted test year rate base. 
+3 
+Q: 
+Please explain your concern with the inclusion of Distribution Automation. 
+4 
+A: 
+Attachment MH-4, page 2 of 3, contains the line item “Distribution Automation.” 
+5 
+In its response to OUCC DR 8-1(s), AESI stated: <CONFIDENTIAL> 
+6 
+ 
+7 
+ 
+8 
+ <CONFIDENTIAL>11 Reclosers are automatic electrical switches. 
+9 
+Typical reclosers survive 10,000-30,000 open-and-close operations under normal 
+10 
+load and 100-250 electrical fault interruptions; reclosers can often be expected to 
+11 
+remain operational for 30 years or more.12 AESI’s current TDSIC Plan (Cause No. 
+12 
+45264), received Commission approval in 2020. It has been, at most, five years 
+13 
+since any reclosers have been installed under AESI’s TDSIC Plan, and reclosers 
+14 
+can come with five-year warranties, as is the case with recloser manufacturer 
+15 
+Tavrida Electric.13 AESI provided no explanation as to why repair and replacement 
+16 
+would be necessary for new reclosers nor why these would not be replaced under 
+17 
+warranty. Therefore, it is unreasonable to assume that AESI would incur costs for 
+18 
+ 
+11 Attachment PAK-1: AESI’s response to OUCC DR 8-1(s) (emphasis added). 
+12 https://www.asbeam.com/news/recloser_circuit_breaker-cn.html 
+See also, https://hughespowersystem.com/upload/pdf/Hughes_Recloser 
+See also, https://www.eaton.com/content/dam/eaton/products/medium-voltage-power-distribution-control-
+systems/reclosers/single-phase-vacuum-recloser-product-aid-pa280018en.pdf 
+See also, https://www.tavrida.com/tena/solutions/automatic-circuit-reclosers/tavrida-reclosers/ 
+See also, https://www.siemens.com/us/en/products/energy/techtopics/techtopics-130.html  
+13 https://www.tavrida.com/tena/solutions/automatic-circuit-reclosers/tavrida-reclosers/  
+-
+Public Exhibit No. 7 
+Cause No. 46258 
+Page 8 of 13 
+ 
+ 
+ 
+ 
+these reclosers over the 2025 to 2026 timeframe. Furthermore, allowing AESI to 
+1 
+include these costs in forecasted rate base would disincentivize it to seek warranty 
+2 
+replacements from the manufacturer. For these reasons, I recommend removing this 
+3 
+cost from forecasted rate base.  
+4 
+Q: 
+Please explain your concern with AESI’s inclusion of the four remaining work 
+5 
+orders you list above. 
+6 
+A: 
+When the OUCC requested more details regarding the VW Electric Vehicle Fast 
+7 
+Charging Project,14 PMAC Display Software License15, Customer Outage Data 
+8 
+Enhancement16, and Master Model Data PDPM17 work orders, AESI responded 
+9 
+that the projects were “canceled” and the funding for the projects was expected to 
+10 
+be reallocated to other future T&D investments or yet to be identified projects. 
+11 
+AESI provided no further explanation as to how this amount will be used or where 
+12 
+it will be allocated.  
+13 
+Since filing its case-in-chief on May 3, 2025, AESI has admitted in response 
+14 
+to DR, as noted above, to canceling several projects upon which it bases the 2026 
+15 
+forecasted test year rate base. The fact that AESI reported and then cancelled 
+16 
+projects in its filing in such a relatively short timeframe calls into question the 
+17 
+accuracy of AESI’s forecasts and overall rate request. Moreover, simply alleging 
+18 
+these unspecified reallocations raises the issue of whether AESI accurately and 
+19 
+firmly identified projects that are actually needed to provide reliable and affordable 
+20 
+ 
+14 Attachment PAK-1: AESI’s response to OUCC DR 8-1(u). 
+15 Attachment PAK-8: AESI’s response to OUCC DR 21-20(d). 
+16 Attachment PAK-8: AESI’s response to OUCC DR 21-20(a). 
+17 Attachment PAK-1: AESI’s response to OUCC DR 8-1(e). 
+Public Exhibit No. 7 
+Cause No. 46258 
+Page 9 of 13 
+ 
+ 
+ 
+ 
+electric service. Essentially, AESI is asking for a blank check, which incentivizes 
+1 
+it to spend it in full on “yet to be identified” projects or future T&D investments. 
+2 
+This does not conform to Ind. Code § 8-1-2-0.5 or to the affordability requirement 
+3 
+of Ind. Code § 8-1-2-0.6(2) – rates should only reflect the cost of reasonable and 
+4 
+necessary investments to keep electric service affordable for all ratepayers.  
+5 
+Because AESI has failed to adequately support reallocating the costs 
+6 
+associated with these four projects, the costs associated with them should be 
+7 
+removed from test year rate base. 
+8 
+Q: 
+What is the total amount of T&D capital projects you recommend removing 
+9 
+from AESI’s test year rate base? 
+10 
+A: 
+I recommend removing <CONFIDENTIAL> 
+ <CONFIDENTIAL> 
+11 
+from test year rate base for T&D projects, which are outlined in Confidential Table 
+12 
+PAK-1 below. OUCC witness Michael D. Eckert has incorporated this removal in 
+13 
+his revenue requirement schedules.  
+14 
+-
+Public Exhibit No. 7 
+Cause No. 46258 
+Page 10 of 13 
+ 
+ 
+ 
+ 
+Table PAK-1  
+(CONFIDENTIAL) 
+Description 
+T&D 
+Indy Eleven Ph1 Stadium 
+ 
+Transformers 2022 
+  
+Corporate Furniture 
+  
+Monrovia BESS Land Purchase 
+  
+Distribution Automation 
+  
+VW Electric Vehicle Fast Charging 
+Project 
+  
+PMAC Display Software License, 2025 
+  
+Customer Outage Data Enhancement 
+(CODE) 
+ 
+Master Model Data PDPM 
+  
+TOTAL 
+ 
+ 
+III. GENERATION CAPITAL COSTS ADDITIONS 
+Q: 
+Please describe AESI’s generation fleet for which it includes capital costs to be 
+1 
+included in its test year rate base in this Cause. 
+2 
+A: 
+AESI owns and operates three natural gas-fired generation facilities: Eagle Valley, 
+3 
+Harding Street, and Georgetown. AESI received approval to convert Petersburg 
+4 
+Units 3 and 4 from coal to natural gas in Cause No. 46022. As described by Mr. 
+5 
+Ellis, AESI’s renewable facilities include Petersburg Energy Center,18 Hoosier 
+6 
+Wind,19 Hardy Hills Solar Project,20 and Pike County Energy Storage Project.21  
+7 
+Q: 
+How were the generation capitals costs organized and presented? 
+8 
+A: 
+Mr. Ellis, in his attachments.22 presented the capital costs for the thermal plants and 
+9 
+the capital costs for projects that exceed $500,000, except the capital costs for 
+10 
+ 
+18 Cause No. 45591, as modified in Cause No. 45832. 
+19 Cause No. 45931. 
+20 Cause Nos. 45493 and 45493 S1. 
+21 Cause No. 45920. 
+22 Direct Testimony of Gregory Ellis, Attachment GE-4 and Attachment GE-6. 
+---
+Public Exhibit No. 7 
+Cause No. 46258 
+Page 11 of 13 
+ 
+ 
+ 
+ 
+projects at Eagle Valley, which presented the capital costs exceeding $100,000. All 
+1 
+project work orders were in Mr. Peters’ workpapers DCP-1 and DCP-2. 
+2 
+Q: 
+Are you concerned with any generation capital cost additions AESI includes 
+3 
+in rate base? 
+4 
+A: 
+Yes. I am concerned with the Harding Street Station (“HSS”) WiFi Expansion. 
+5 
+Q: 
+Please explain. 
+6 
+A: 
+“HSS Wi-Fi Expansion” was presented in a line item for the Harding Street 
+7 
+facility.23 The OUCC sought information on this line item and, in response to 
+8 
+OUCC DR 6-11(a), AESI stated the “Wi-Fi expansion was canceled. The funding 
+9 
+related to this project has been reallocated to other identified projects.”24 However, 
+10 
+AESI provided no specification as to where and for what the costs were reallocated.  
+11 
+In OUCC DR 13-25, the OUCC sought a second explanation from AESI on 
+12 
+the cancellation of HSS Wi-Fi, and AESI responded similarly: “The Wi-Fi 
+13 
+expansion at Harding Street was canceled as higher priority, and emergent projects 
+14 
+were identified.”25 Similar to the  concerns regarding T&D projects I discussed 
+15 
+previously, it is impossible to determine whether this expenditure is necessary and 
+16 
+prudent without knowing the specific project(s) this amount will be reallocated to. 
+17 
+Therefore,  I recommend the Commission disallow <CONFIDENTIAL> 
+ 
+18 
+<CONFIDENTIAL>, the HSS Wi-fi forecasted capital costs from test year rate 
+19 
+base. 
+20 
+Q: 
+What is the cumulative amount of generation and T&D capital projects you 
+21 
+ 
+23 Ellis Direct, Attachment GE-6, page 2 of 4 and Confidential Workpaper DCP-2, tab: “Harding Street FC 
+Detail”, Row 18. 
+24 Attachment PAK-9: AESI’s Response to OUCC DR 6-11(a). 
+25 Attachment PAK-10: AESI’s Response to DR 13 – 25. 
+-
+Public Exhibit No. 7 
+Cause No. 46258 
+Page 12 of 13 
+ 
+ 
+ 
+ 
+recommend removing from AESI’s test year rate base? 
+1 
+A: 
+I recommend removing <CONFIDENTIAL> 
+ <CONFIDENTIAL> 
+2 
+from test year rate base for T&D projects, which are outlined in Confidential Table 
+3 
+PAK-2 below. Mr. Eckert has incorporated this removal in his revenue requirement 
+4 
+schedules.   
+5 
+Table PAK-2 
+(CONFIDENTIAL) 
+ 
+Description 
+Generation 
+T&D 
+Total 
+HSS WiFi Expansion 
+  
+ 
+ 
+Indy Eleven Ph1 Stadium 
+ 
+ 
+ 
+Transformers Q3, 2022 
+ 
+  
+ 
+Corporate Furniture 
+ 
+  
+ 
+Monrovia BESS Land Purchase 
+ 
+  
+ 
+Distribution Automation 
+ 
+  
+ 
+VW Electric Vehicle Fast Charging 
+Project 
+ 
+  
+ 
+PMAC Display Software License, 2025 
+ 
+  
+ 
+Customer Outage Data Enhancement 
+(CODE) 
+ 
+ 
+ 
+Master Model Data PDPM 
+ 
+  
+ 
+TOTAL 
+  
+ 
+ 
+ 
+ 
+IV. RECOMMENDATIONS 
+Q: 
+Please summarize your recommendations. 
+6 
+A: 
+I recommend the Commission remove: 
+7 
+1. <CONFIDENTIAL> 
+ <CONFIDENTIAL> associated 
+8 
+with T&D capital expenditures from AESI’s test year rate base; and 
+9 
+2. <CONFIDENTIAL> 
+ <CONFIDENTIAL> associated with 
+10 
+-
+---
+--
+Public Exhibit No. 7 
+Cause No. 46258 
+Page 13 of 13 
+ 
+ 
+ 
+ 
+generation capital expenditures from AESI’s test year rate base.  
+1 
+Q: 
+Does this conclude your testimony? 
+2 
+A: 
+Yes.  
+3 
+Cause No. 46258 
+OUCC Appendix A 
+Page 1 of 1 
+ 
+ 
+ 
+ 
+APPENDIX A 
+1 
+QUALIFICATIONS OF PATRICK A. KELLEY 
+2 
+Q: 
+Please describe your educational background and experience. 
+3 
+A: 
+I graduated with a Bachelor of Science degree in Physics and Mathematics from 
+4 
+Purdue University in West Lafayette, Indiana, in 2015. I subsequently acquired a 
+5 
+Master’s degree in Physics from Purdue University in Indianapolis, Indiana in 
+6 
+2019. I am currently finishing my Ph.D. in Physics from Purdue University, with 
+7 
+graduation expected by the end of the fall semester of 2025. During my Master’s 
+8 
+degree and most of my Ph.D. studies, I have taught introductory physics laboratory, 
+9 
+recitation, and course material. Additionally, I participated in diverse research, 
+10 
+from optical trapping for ultrasensitive fundamental force measurements of gravity 
+11 
+to molecular dynamical simulation of biophysical model membranes. This 
+12 
+demonstrates a deep understanding of basic principles of physical systems.  
+13 
+I began my career with the OUCC in July 2024. As part of my utility-
+14 
+focused education since joining the OUCC, I attended the New Mexico State 
+15 
+University Center for Public Utilities "The Basics" Practical Regulatory Training 
+16 
+Courses on October 14-18, 2024.  
+17 
+Cause No. 46258 
+OUCC Attachment PAK-1 
+Page 1 of 5 
+Data Request OUCC DR 8 
+AES Indiana 
+EXCLUDED FROM PUBLIC ACCESS 
+Cause No. 46258 
+PER ACCESS TO COURT RECORDS RULE 5 OUCC DR 8-1 Confidential Attachment 1 
+Page 1 of5 
+- Ql 
+Please answer the questions for each individual project below. These projects and the associated 
+costs are found in "46258 AESIN_Confidential Workpaper DCP-2_060325.xlsx" under the 
+b. Please describe the project listed on row 14, and why the 
+C. 
+ro • ect listed on row 20, and provide 
+Cause No. 46258 
+OUCC Attachment PAK-1 
+Page 2 of 5 
+AES Indiana 
+EXCLUDED FROM PUBLIC ACCESS 
+Cause No. 46258 
+PER ACCESS TO COURT RECORDS RULE 5 OUCC DR 8-1 Confidential Attachment 1 
+Page 2 of5 
+1. 
+Please describe the projects listed on row 62, and provide the 
+-
+· 
+Facility Projects & Space Planning 
+1,500 
+1,591 
+3,091 
+J. Please describe the project listed on row 52, and provide 
+k. Please describe the project listed on row 69, and how 
+n. 
+ro·ect listedon row 108. Has AES -
+? Please explain your answer, 
+r. 
+Please describe the project listed on row 88, and how it 
+Cause No. 46258 
+OUCC Attachment PAK-1 
+Page 3 of 5 
+AES Indiana 
+EXCLUDED FROM PUBLIC ACCESS 
+Cause No. 46258 
+PER ACCESS TO COURT RECORDS RULE 5 OUCC DR 8-1 Confidential Attachment 1 
+Page 3 of5 
+s. Please describe the project listed on row 90, and how 
+-· 
+Distribution Automation 
+405 
+695 
+1,100 
+t. 
+Please describe the ro • ect listed on row 98, and 
+Objection: 
+AES Indiana objects to the Request on the grounds and to the extent the request seeks 
+infonnation that is confidential, proprieta1y, competitively-sensitive and/or trade secret. AES 
+Indiana objects to the Request on the grounds and to the extent the request seeks a compilation, 
+analysis or study that AES Indiana has not performed and to which AES Indiana objects to 
+peifonning. Subject to and without waiver of the foregoing objections, AES Indiana provides the 
+following response. 
+Response: 
+a. Project 3/23 Sto1m Response is to replace a tempora1y transmission tower that was 
+installed after sto1m damage in March 2023. 
+b. Project Fiber Replacement - Southwest to Lilly South is for protection upgrades at 
+Southwest Substation and needed to be replaced because the fiber was needed for 
+protection communication between substations. 
+c. 132-24-1 EV to Mooresville Static Wire to OPGW Project is for static and 
+communication upgrades. Static Wire Upgrade to OPGW 16 Miles is for static and 
+communication upgrades. OPGW was needed protection communication between Eagle 
+Valley plant and Mooresville substation. 
+d. AES IN Communications 10Gb Network Upgrade 2025, this project has two aspects, 
+upgrading the substation fiber network to support 10Gb and to purchase and install Nokia 
+10Gb interfaces. The Company is replacing hardware to increase speed and capability. 
+e. Master Model Data PDPM – Indiana Transmission Project has been canceled. The 
+funding related to this project will be reallocated to another yet to be identified project. 
+ 
+f. 132-78 Rockville – Crawfordsville Project is transmission line work associated with an 
+expansion to the Rockville Substation and is necessary because it is related to a new 
+future substation due to load expansion. 
+ 
+g. Syst Prot. & Comm Projects 2026 is for emergency spare equipment such as relays to 
+replace failed equipment and ensure system protection. There are no similar projects in 
+the TDSIC Plan.  
+ 
+h. IN Transportation Projects is for AES fleet vehicles not Indiana Department Of 
+Transportation projects and is not reimbursable. 
+ 
+i. Facility Projects & Space Planning is for all facility planning and projects at the Electric 
+Building, Morris Street Facility, and Arlington Service Center as required. 
+ 
+j. Storms project is an estimate for capitalized costs from anticipated storms. Please see 
+OUCC DR 8-1 Attachment 2 for actual costs for years 2009 through 2025. 
+ 
+k. Line Patrol – Distribution is to proactively replace capital equipment found to be failing 
+during Line Patrol. This type of project is not included in TDSIC. 
+ 
+l. AES IN Communications 100Gb MPLS Core Upgrade 2025 Project is replacing obsolete 
+Nokia core routers at ARL and MS for reason of capacity and life cycle. 
+ 
+m. Corporate Furniture Projects is replacement furniture needs based on historical use. The 
+number of employees could vary. 
+ 
+n. Indy Eleven – Ph1 Stadium is a project for the announced soccer stadium. Deposit has 
+not been requested as final plans have not been provided. 
+ 
+o. IndyGo Blue Line Segment 3 is mandated by Department of Public Works for changes to 
+AES Indiana facilities and are not reimbursable. 
+ 
+p. IndyGo Blue Line is mandated by Department of Public Works for changes to AES 
+Indiana facilities and are not reimbursable. 
+ 
+q. APL New Business is for dusk to dawn auto lights contracted for by customers. 
+ 
+r. T&D Communications is for emergent work and is based on historical needs for radio 
+equipment replacements. This type of project is not included in TDSIC. 
+ 
+s. Distribution Automation is capital repairs and replacements of line reclosers, this is 
+considered non-TDSIC work once new reclosers have been installed under TDSIC. 
+ 
+EXCLUDED FROM PUBLIC ACCESS  
+PER ACCESS TO COURT RECORDS RULE 5 
+AES Indiana 
+Cause No. 46258 
+OUCC DR 8-1 Confidential Attachment 1 
+Page 4 of 5
+Cause No. 46258 
+OUCC Attachment PAK-1 
+Page 4 of 5
+t. OH St Light Replace is nonrefundable streetlight work installed under the contract with 
+the City of Indianapolis. Specific streets impacted are not known at this time and are 
+based on the city’s request. 
+ 
+u. VW Electric Vehicle Fast Charging Project has been canceled. The funding related to this 
+project will be reallocated to another yet to be identified project. 
+ 
+v. The projects that make up the amount on row 113 “Other Distribution Projects (less than 
+$500k)” are included on AES Indiana Confidential Workpaper DCP-2, “Distribution FC 
+Detail” tab, “Total” column, rows 83 through 143. 
+EXCLUDED FROM PUBLIC ACCESS  
+PER ACCESS TO COURT RECORDS RULE 5 
+AES Indiana 
+Cause No. 46258 
+OUCC DR 8-1 Confidential Attachment 1 
+Page 5 of 5
+Cause No. 46258 
+OUCC Attachment PAK-1 
+Page 5 of 5
+1/3
+Mayor says negotiations on Eleven Park 'terminated'
+www.wthr.com/article/sports/soccer/indy-eleven/mayor-joe-hogsett-negotiations-on-eleven-park-soccer-stadium-
+terminated-while-his-new-proposal-advances/531-d3c880fd-fa15-47fb-ac44-1b1778fd5b79
+Indy Eleven
+Mayor says negotiations on Eleven Park soccer stadium 'terminated'
+while his new proposal advances
+The mayor's proposal to build a different stadium for a Major League Soccer expansion team
+received initial approval Wednesday.
+Author: Rich Nye
+Published: 7:32 PM EDT May 1, 2024
+Updated: 10:58 AM EDT May 2, 2024
+INDIANAPOLIS — Indianapolis Mayor Joe Hogsett said the city is no longer working with the
+developer of Eleven Park to build a soccer stadium for the Indy Eleven at the site on the
+southwest corner of downtown. 
+But the mayor's new proposal to build a different stadium for a Major League Soccer
+expansion team received initial approval Wednesday, May 1.
+Cause No. 46258
+OUCC Attachment PAK-2 
+Page 1 of 3
+2/3
+The Metropolitan Development Commission considered a new tax district plan for a
+professional soccer stadium in Indy.
+"The proposal by Mayor Hogsett is to construct a publicly-owned, publicly-constructed,
+soccer-specific stadium in support of a potential application to Major League Soccer to grant
+Indianapolis an expansion club,” city attorney Scott Chinn told the commission.
+The original tax area was approved by the City-County Council in December for the Eleven
+Park mixed-use development with a 20,000-seat soccer stadium built by Keystone Group,
+whose owner, Ersal Ozdemir, also owns the Indy Eleven United Soccer League team.
+RELATED: Indianapolis to take run at Major League Soccer expansion franchise
+But on Wednesday, Hogsett said he no longer supports the Eleven Park stadium plan.
+“The negotiations regarding Indy Eleven, the Park stadium, have been terminated because
+they just don't make fiscal sense, financial sense,” Hogsett said. “And I think in their quieter
+moments, Keystone Group would admit that they need more support from public entities in
+order to get their private investment done. And I'm just not willing to put the taxpayers in
+Marion County at risk in that regard."
+The new tax district would fund a soccer-specific stadium on the southeast corner of
+downtown on Pearl Street. The original tax district for the Eleven Park site is still on the table.
+But only one proposal can be submitted to the state budget committee. The deadline is June
+30 to be considered under the current state authorization legislation.
+Cause No. 46258
+OUCC Attachment PAK-2 
+Page 2 of 3
+3/3
+Credit: WTHR
+Indy Eleven supporters attended a meeting of the Metropolitan Development Commission to
+voice opposition to Mayor Joe Hogsett's stadium plan.
+Soccer supporters came to the commission meeting Wednesday wearing T-shirts that read,
+“Build Eleven Park.” Most are members of the Brickyard Battalion soccer supporter group.
+"Anxiety would be a great word for it – frustration,” Brickyard Battalion President David
+Ziemba said. “The members have reached out. There's a lot of anger directed at the mayor's
+office right now. Because again, they don't understand, and I am in the position of trying to
+explain to them what's going on. I've been trying to figure out from the mayor's office what's
+going on, and he won't contact me."
+RELATED: ‘Surprised and disappointed’ | Eleven Park developer reacts to Mayor
+Hogsett’s alternative stadium site for MLS franchise bid
+The commission passed the mayor's new stadium proposal to the City-County Council. The
+resolution is expected to be introduced to the council on May 13.
+City-County Councilor Kristen Jones stood with soccer supporters after the commission
+meeting. The Eleven Park project is in her district.
+“They want the original PSDA (professional sports development area), an allocation area,
+and honor the commitment that we've already passed,” Jones said. “They want Eleven Park
+to be built as planned.”
+But the mayor's plan has changed.
+Cause No. 46258
+OUCC Attachment PAK-2 
+Page 3 of 3
+CONFIDENTIAL- Excluded from Public Access Per 
+Indiana Rules oo Access to Court Records Rule 5 
+Data Request OUCC DR 21 - 21 
+Cause No. 46258 
+OUCC Attachment PAK-3 
+Page 1 ofl 
+AES Indiana 
+cause No. 46258 
+OUCC DR 21 -21 Confidential Attachment 1 
+Page 1 of 1 
+Refening to Petitioner's Exhibit No. 15, Confidential Attachment MH-2, "T&D Project Detail," 
+please provide a detailed explanation identifying and describing the reason for the purchase, the 
+number of transfo1mers included, the cost of each transfonner, whether the transformers have 
+been received, the number oftransfo1mers installed each calendar year from 2019-2024, and the 
+number oftransfo1mers kept in inventory each year for calendar years 2019-2024 for each of the 
+following items: 
+a. 
+Transfonners Q4 2023, 
+b. 
+Transfonners Q3 2022, 
+c. 
+119281Dist. Transfo1mer 
+d. 
+368-Line Transfo1mers, 
+Objection: 
+(page I) 
+DSIC 
+AES Indiana objects to the Request on the grounds and to the extent the Request solicits 
+infonnation that is confidential, proprieta1y, competitively sensitive and/or trade secret. Subject 
+to and without waiver of the foregoing objections, AES Indiana provides the following response 
+with the confidential info1mation provided pursuant to the nondisclosure agreement between the 
+paiiies. 
+Response: 
+The company maintains approximately a three-month supply oftransfo1mers to be used in large 
+storm events and to meet new demand. This strategy adjusts based on lead time of equipment 
+orders, mnnber of devices used for replacement, and new construction. CmTently we have 
+approximately 4,883 devices kept in inventory. Total delivered per year from 2019-2024 varied 
+from 1,335 to 10,437. 
+a. This line item reflects the capitalized costs for all transfo1mers purchased in Q4 of 2023. The 
+Company received approximately 1,325 transfonners with costs that vaiy from $1,020 to 
+$64,515. The transfo1mer's material costs and installation labor ai·e capitalized at the time of 
+purchase. Once installed, there is an offsetting O&M entry made. 
+b. This line item reflects the capitalized costs for all transformers purchased in Q3 of 2022 The 
+Company received approximately 2,609 transfonners received, cost varies from $1,020 to 
+$64,515, all received, all installed in Q3 of 2022. 
+c. 119281 Dist. Transfo1mer Purchase is the blanket for all transfo1mers that are received in a 
+year. Once installed they are reallocated to the yeai· and quaiier blanket purchase. 
+d. This line item represents the transfonners purchased for TDSIC projects. 
+AES Indiana 
+CONFIDENTIAL -
+Cause No. 46258 
+Cause No. 46258 
+OUCC Attachment P AK-4 
+Page 1 of 2 
+Excluded from Public Access Per Indiana 
+OUCC DR 25-1 Confidential Attachment 1 
+Rules on Access to Court Records Rule 5 
+Page 1 of 2 
+Data Request OUCC DR 25 -
+1 
+RefeITing to AES Indiana's response to OUCC DR No. 21-2l(b), please: 
+a. 
+Please confnm the 2,609 transfo1mers were installed before the rate base cutoff, 
+December 31, 2022, in Cause No. 45911 and please provide whether the transfonners were 
+included in rate base as included in Utility Plant in Service in Cause No. 45911. Please explain in 
+detail. Fmiher, if not included in rate base in Cause No. 45911, please respond to the following 
+requests. 
+i. 
+Please provide a detailed explanation identifying and describing the reason the 
+transfo1mers were not included in rate base for Cause No. 45911. 
+ii. 
+For the 2,609 transfo1mers as included in Petitioner's Exhibit No. 15, Confidential 
+Attachment MH-2, please provide the total undepreciated original capital costs upon their 
+installation in Q3 of 2022, please provide the amount of annual depreciation, and please provide 
+the net book value as of the rate base cutoff date at the end of the Test Year in this Cause No. 
+45258 (December 31, 2026). 
+111. 
+Please identify the accounts, and all associated accounts, including, without limitation, 
+depreciation, in which these transfo1mer costs are being reflected since their installation in Q3 of 
+2022 and please provide the location in the financial exhibits for this Cause No. 46258 where 
+these transfo1mers are reflected, including, without limitation the depreciation of these 
+transfo1mers. 
+iv. 
+Please confnm the <Confidential>-
+<Confidential> for "Transfo1mers Q3 
+2022" is net of depreciation. If not confnmed, please explain in detail. 
+b. 
+If these transfo1mers were included in rate base in Cause No. 45911, please provide the 
+location in the financial exhibits for this Cause No. 45911 where these transfo1mers are reflected, 
+including, without limitation, the depreciation of these transfo1mers. 
+Objection: 
+AES Indiana objects to the request on the grounds and to the extent the request seeks info1mation 
+that is confidential, proprieta1y , competitively sensitive, and/or trade secret. Subject to and 
+without waiver of the foregoing objection, AES Indiana provides the following response. 
+Response: 
+Please see OUCC DR 25-1 Confidential Atta.chment 1 for an unredacted copy of the question 
+and response. 
+a) Per FERC accounting rnles the capital cost of transfonners and the installation labor are 
+capitalized and recorded at the time of purchase not at the time of installation. There is 
+an offsetting credit recorded to an expenses account for transfo1mer installation labor. 
+Any transfo1mers purchased and received prior to December 31, 2022 would have been 
+included in the Utility Plant In-Service in Cause 45911. When the transformers are 
+installed only the installation labor is charged to that previously mentioned expense 
+account. 
+i-iv. Not applicable
+b) Please see AES Indiana Financial Exhibit AESI–DEPR, Schedule DEPR-WP2 in Cause
+No. 45911 Excel column S row 168
+CONFIDENTIAL -  
+Excluded from Public Access Per Indiana 
+Rules on Access to Court Records Rule 5
+AES Indiana 
+Cause No. 46258 
+OUCC DR 25-1 Confidential Attachment 1 
+Page 2 of 2
+Cause No. 46258 
+OUCC Attachment PAK-4 
+Page 2 of 2
+OUCC Attachment PAK-5-C is an Excel file which is CONFIDENTIAL 
+Cause No. 46258
+OUCC Attachment PAK-5 
+Page 1 of 1
+Indianapolis Power & Light Company 
+d/b/a AES Indiana 
+Cause No. 46258 
+AES Indiana Responses to OUCC DR Set 13 
+30 
+Data Request OUCC DR 13 - 
+ 23 
+Referring to Petitioner's Direct Testimony of Michael L. Holtsclaw, Confidential Attachment MH-
+2, please provide the 2023 utility plant in service project actual costs for 2023 for all sections - 
+Transmission, Distribution, and TDSIC - in the same format as Confidential Attachment MH-2, 
+2024 Actuals.
+Objection: 
+AES Indiana objects to the Request on the grounds and to the extent the request seeks a 
+compilation, analysis or study that AES Indiana has not performed and to which AES Indiana 
+objects to performing. AES Indiana further objects to the Request on the grounds and to the extent 
+the request seeks information that is confidential, proprietary, competitively-sensitive and/or trade 
+secret. Subject to and without waiver of the foregoing objections, AES Indiana provides the 
+following response.  
+Response:  
+AES Indiana prepared the 2024 in service actual detail for the purposes of this case because it was 
+the Historical Base Period. This format is not a format the Company uses or maintains in the 
+normal course of business. Please see OUCC DR 13-23 Confidential Attachment 1 for a list of 
+2023 projects (column E) including the in service costs in column L. Please note that a summary 
+of Transmission, Distribution, and TDSIC are at the bottom of this attachment. The totals on this 
+attachment match the amounts in column B, on the “T&D In Service Summary” tab of AES 
+Indiana Confidential Workpaper DCP-1 in this case. 
+Cause No. 46258
+OUCC Attachment PAK-6 
+Page 1 of 2
+OUCC Attachment PAK-6-C is an Excel file which is CONFIDENTIAL 
+Cause No. 46258
+OUCC Attachment PAK-6 
+Page 2 of 2
+CONFIDENTIAL - Excluded from Public Access Per Indiana 
+Rules on Access to Court Records Rule 5 
+Data Request OUCC DR 21 - 26 
+Cause No. 46258 
+OUCC Attachment PAK-7 
+Page 1 of 1 
+AcS Indiana 
+Cause No. 46258 
+OUCC DR 21-26 Confidential Attachment 1 
+Page 1 of 1 
+RefeITing to Petitioner's Exhibit No. 15, Confidential Attachment MH-4, "T&D Project Detail," 
+page 4, "Monrovia BESS Land Purchase" in the amount of ~ 
+please: 
+a. 
+Provide when the land was purchased. 
+b. 
+Provide whether any other land has been, or will be, purchased in relation to this BESS. 
+If yes, please provide when the land will be acquired and the purchase price of the land. 
+c. 
+Provide the purpose of the land purchased in the item described above. 
+d. 
+Whether the land is used and useful in the provision of electi·ic service to AES Indiana 
+customers as of December 31, 2026. If yes, please provide a detailed explanation identifying and 
+describing how the land purchased in this item benefits the provision of electi·ic service to AES 
+Indiana customers. If not, please provide a detailed explanation identifying and describing the 
+reason the item is included in this rate case. 
+e. 
+Define the te1m BESS as used in this instance. 
+f. 
+Provide whether the Monrovia BESS has been approved by the Co1mnission. If yes, 
+please provide the cause number granting Co1mnission approval of the BESS. If no, please 
+provide a detailed explanation identifying and describing the reason for the purchase of the land 
+before receiving Commission approval. 
+g. 
+Provide whether there has been any investment(s) in the Monrovia BESS, other than this 
+land purchase. If yes, please provide a detailed explanation of the nature of the investment(s) and 
+the cost(s) associated with the investment(s). If no, please provide a detailed list of the 
+investment(s) and the projected cost(s) of the investment(s). 
+Enter Res onse Below 
+Objection: 
+AES Indiana objects to the Request on the grounds and to the extent the Request solicits 
+info1mation that is confidential, proprietaiy, competitively sensitive and/or ti·ade secret. Subject 
+to and without waiver of the foregoing objections, AES Indiana provides the following response 
+with the confidential info1mation provided pursuant to the nondisclosure agreement between the 
+paiiies. 
+Response: 
+The Company would like to clarify, that the Monrovia BESS Land Purchase" in the amount of 
+tlll 
+appears on AES Indiana Confidential Attachment MH-2 and not AES Indiana 
+Confidential Attachment MH-4 
+a. 
+The land was purchased on October 1, 2024 
+b. 
+No other land has been purchased. 
+c. 
+The project that was going to be constlucted on the land has been canceled. The 
+Company is evaluating if it will sell the land or use it for future project. 
+d.-e. 
+Please see subpait c. 
+f.-g. 
+No, please see subpaii c. 
+CONFIDENTIAL - Excluded from Public Access Per Indiana 
+Rules on Access to Court Records Rule 5 
+Data Request OUCC DR 21 - 20 
+Cause No. 46258 
+OUCC Attachment PAK-8 
+Page 1 of 1 
+Ats Indiana 
+Cause No. 46258 
+OUCC DR 21-20 Confidential Attachment 1 
+Page 1 of 1 
+Refening to Petitioner's Exhibit No. 15, Confidential Attachment MH-4, "T&D Project Detail," 
+for each of the following items please provide a detailed explanation identifying and describing 
+the pmpose of the project, and the benefit of each project to the AES Indiana Transmission and 
+Distribution ("T&D") system, the location of each project: 
+a. 
+Customer Outage Data Enhancement (CODE), 2026, ~ 
+(page 2) 
+b. 
+New GWD Software Indiana, 2025, 
+(page 2) 
+c. 
+New GWD Software Indiana, 2026, 
+(page 2) 
+d. 
+PMAC Display Software License, 2025, 
+(page 3) 
+Enter Res onse Below 
+Objection: 
+AES Indiana objects to the Request on the grounds and to the extent the Request solicits 
+infom1ation that is confidential, proprietaiy, competitively sensitive and/or trade secret. Subject 
+to and without waiver of the foregoing objections, AES Indiana provides the following response 
+with the confidential infonnation provided pursuant to the nondisclosure agreement between the 
+paiiies. 
+Response: 
+a. This software purchase was canceled. The funding for this project is expected to be 
+reallocated to other T&D investments to be placed in se1vice during the Adjusted Test 
+Yeai·. 
+b. This item represents phase one of new graphic work design software to migrate to new 
+system mapping. The old software has become obsolete and needs to be replaced to 
+continue to maintain the T&D system. Because this is a software, there is not a physical 
+location this project can be linked to. 
+c. This item represents phase two of new graphic work design softwai·e to migrate to new 
+system mapping and design. The old software has become obsolete and needs to be 
+replaced to continue to maintain the T&D system. Because this is a software, there is not 
+a physical location this project can be linked to. 
+d. PMAC software purchase was canceled. The funding for this project is expected to be 
+reallocated to other T&D investments to be placed in se1vice during the Adjusted Test 
+Yem·. 
+Indianapolis Power & Light Company 
+d/b/a AES Indiana 
+Cause No. 46258 
+AES Indiana Responses to OUCC DR Set 6 
+17 
+Data Request OUCC DR 6 - 11 
+Please provide an explanation of and a detailed listing of every cost element contained in each 
+Harding Street item: 
+a.
+Necessity of Wi-Fi Expansion;
+b.
+Justification for “HSS Black Start Infrastructure”, referencing the direct testimony of
+Gregory Ellis, page 9, lines 10-12, “Harding Street Station GT 2 serves as AES Indiana’s black
+start asset and this in turn provides the capability to restart the grid in the event of a black out.”;
+c.
+Misc./Unforeseen Projects 2025-2033;
+d.
+Outage Unforeseen;
+e.
+Necessity of Unit 7 Elevator Upgrade.
+Objection: 
+AES Indiana objects to the Request on the grounds and to the extent the request seeks a 
+compilation, analysis or study that AES Indiana has not performed and to which AES Indiana 
+objects to performing. Subject to and without waiver of the foregoing objections, AES Indiana 
+provides the following response. 
+Response:  
+The Company does not budget by cost element for these projects. Requested explanations for the 
+projects are below. 
+a.
+Wi-Fi expansion was canceled. The funding related to this project has been reallocated to
+other identified projects.
+b. HSS black start infrastructure refers to all equipment and systems at Harding Street
+Station (HSS) that support the black start procedure. This specific project involves
+updates and improvements to HSS GT2 necessary to ensure the unit is ready to reliably
+serve in the event of a system black out.
+c.
+Misc/Unforeseen Projects 2025-2033 serves as a way for the Company to budget for
+projects that have not yet been identified. The Company builds a budget based on
+experience operating the units. As equipment fails or nears end of life, a project will be
+created specific to the piece of equipment and then will be funded from this project line.
+d. The Outage Unforeseen project line is similar to the Misc/Unforeseen Projects line
+discussed above. The major difference is that this line specifically deals with projects
+related to outages. These projects are typically identified during the outage inspection
+process and utilize this line to fund individual project lines.
+e.
+The Unit 7 Elevator Upgrade is both reasonable and necessary as the existing elevator is
+obsolete. This elevator is necessary to allow operations to quickly move between floors to
+safely and efficiently operate the unit.
+Cause No. 46258
+OUCC Attachment PAK-9 
+Page 1 of 1
+Indianapolis Power & Light Company 
+d/b/a AES Indiana 
+Cause No. 46258 
+AES Indiana Responses to OUCC DR Set 13 
+32 
+Data Request OUCC DR 13 - 
+ 25 
+Please refer to AES Indiana’s response to OUCC DR No. 6-11(a). Please explain in detail why 
+Petitioner canceled the Wi-Fi expansion for Harding Street, why the Harding Street Wi-Fi 
+expansion was selected for cancelation over the Eagle Valley and Petersburg W-Fi expansions, 
+and please include in your response any variations of, or differences in, the use of ePas or other 
+programs reliant on Wi-Fi for the respective generation facilities.
+Objection: 
+Response:  
+The Wi-Fi expansion at Harding Street was canceled as higher priority, and emergent projects 
+were identified. Eagle Valley and Petersburg have completed or will complete their Wi-Fi 
+expansions as planned. These Wi-Fi expansions were not selected for cancellation as they were 
+necessary to support the more efficient use of Wi-Fi reliant programs at the facilities. The programs 
+that are reliant on Wi-Fi are used in similar ways at each generation facility, to the extent that Wi-
+Fi is available at those facilities. 
+Cause No. 46258 
+OUCC Attachment PAK-10 
+Page 1 of 1
+AFFIRMATION 
+ 
+ 
+I affirm, under the penalties for perjury, that the foregoing representations are true 
+and correct to the best of my information and belief. 
+ 
+ 
+ 
+            Utility Analyst  
+ 
+Indiana Office of Utility Consumer Counselor 
+Cause No. 46258 
+ 
+ 
+September 9, 2025 
+ 
+ 
+ 
+Date 
+ 
+ 
+CERTIFICATE OF SERVICE 
+This is to certify that a copy of the Indiana Office of Utility Consumer Counselor Public 
+Exhibit No. 7 - Redacted Testimony of OUCC Witness Patrick A. Kelley has been served upon the 
+following in the above-captioned proceeding by electronic service on September 9, 2025: 
+ 
+Teresa Morton Nyhart  
+Jeffrey M. Peabody  
+Kay E. Pashos  
+Mark R. Alson  
+Taft Stettinius & Hollister LLP 
+One Indiana Square, Suite 3500 
+Indianapolis, Indiana 46204 
+tnyhart@taftlaw.com 
+jpeabody@taftlaw.com  
+kpashos@taftlaw.com  
+malson@taftlaw.com   
+ 
+Jennifer A. Washburn 
+Citizens Action Coalition 
+1915 West 18th Street, Suite C 
+Indianapolis, Indiana 46202 
+Phone: (317) 735-7764 
+jwashburn@citact.org  
+ 
+Barry A. Naum  
+Steven W. Lee 
+SPILMAN THOMAS & BATTLE, PLLC 
+1100 Bent Creek Boulevard, Suite 101 
+Mechanicsburg, PA 17050 
+bnaum@spilmanlaw.com   
+slee@spilmanlaw.com  
+ 
+Anne E. Becker  
+LEWIS KAPPES, P.C. 
+One American Square, Suite 2500 
+Indianapolis, Indiana 46282 
+abecker@lewis-kappes.com  
+ 
+Copies to: 
+rkurtz@citact.org, austin.baker@aes.com, 
+kristi.figg@aes.com, jbieber@energystrat.com, 
+and ETennant@Lewis-kappes.com   
+ 
+Joseph P. Rompala 
+Aaron A. Schmoll 
+Emily R. Vlasak 
+LEWIS & KAPPES, P.C. 
+One American Square, Suite 2500 
+Indianapolis, Indiana 46282-0003 
+JRompala@Lewis-Kappes.com  
+ASchmoll@Lewis-Kappes.com  
+EVlasak@Lewis-Kappes.com  
+ 
+Kurt J. Boehm, Esq.  
+Jody Kyler Cohn, Esq.  
+Boehm, Kurtz & Lowry  
+425 Walnut Street,  
+Cincinnati, Ohio 45202  
+KBoehm@BKLlawfirm.com  
+JKylerCohn@BKLlawfirm.com  
+ 
+John P. Cook, Esq.  
+John P. Cook & Associates 
+900 W. Jefferson Street 
+Franklin, IN 46131 
+John.cookassociates@earthlink.net  
+ 
+Nikki G. Shoultz 
+Kristina Kern Wheeler 
+Gregory Loyd 
+Bose McKinney & Evans LLP 
+111 Monument Circle, Suite 2700 
+Indianapolis, IN 46204 
+nshoultz@boselaw.com  
+kwheeler@boselaw.com  
+gloyd@boselaw.com  
+ 
+ 
+ 
+ 
+_________________________________ 
+T. Jason Haas, Attorney No. 34983-29 
+Senior Deputy Consumer Counselor 
+ 
+INDIANA OFFICE OF UTILITY CONSUMER COUNSELOR 
+115 West Washington Street, Suite 1500 South 
+Indianapolis, IN 46204 
+(317) 232-2494 - Phone 
+(317) 232-5923 - Facsimile 
+(317) 232-3315 - Haas Phone 
+(317) 233-3237 - Kashin Phone 
+Thaas@oucc.IN.gov  
+akashin@oucc.IN.gov  
+infomgt@oucc.IN.gov  
+ 

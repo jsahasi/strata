@@ -1,0 +1,20 @@
+{
+  "source_url": "https://www.supremecourt.ohio.gov/pdf_viewer/pdf_viewer.aspx?pdf=997940.pdf&subdirectory=2025-1458%5CDocketItems&source=DL_Clerk",
+  "retrieved_at": "2026-08-04T16:53:33Z",
+  "sha256": "aded33d8edc386aa75ac97ca0d76bb59da38fdb12f8c1f1ac794e72bbe1af75c",
+  "jurisdiction": "Ohio",
+  "docket": "2025-1458",
+  "document_title": "Merit Brief of Appellant The Ohio Manufacturers' Association Energy Group",
+  "filing_date": "2026-02-02",
+  "filer": "The Ohio Manufacturers' Association Energy Group (Appellant)",
+  "how_obtained": "Fetched the PDF over HTTPS from the Supreme Court of Ohio public docket document handler (pdf_viewer.aspx), then extracted the embedded text layer with PyMuPDF 1.26.5 page.get_text(\"text\"), concatenating pages in order. No cleaning, reflowing, de-hyphenation, encoding repair or page markers were applied; marginal line numbers, running heads, Q/A markers and blank image-only (redacted) pages appear exactly as the extractor produced them. Appeal from PUCO case 24-508-EL-ATA.",
+  "source_pdf_sha256": "5d422cedc38727267ec956cb33ef880c7703173cf57bc0e8da2f18543c536078",
+  "source_pdf_bytes": 390420,
+  "source_pdf_pages": 41,
+  "source_page_range_0indexed": null,
+  "pages_extracted": 41,
+  "text_bytes": 81238,
+  "publisher": "Supreme Court of Ohio, Clerk of Court public docket (ECMS), case 2025-1458",
+  "access": "public record; no login, no paywall; redacted public versions only",
+  "extractor": "PyMuPDF 1.26.5 (MuPDF 1.26.10) page.get_text(\"text\")"
+}

@@ -1,0 +1,40 @@
+STATE OF GEORGIA
+
+BEFORE THE 
+GEORGIA PUBLIC SERVICE COMMISSION
+
+
+In Re:
+
+Georgia Power Company’s			) 		Docket No. 56002
+2025 Integrated Resource Plan		) 		
+							
+
+
+THIRD ERRATA TO GEORGIA POWER’S 2025 IRP
+
+Georgia Power respectfully submits the following corrections to its 2025 Integrated Resource Plan (“IRP”) in Docket No. 56002.
+
+Technical Appendix Volume 1, B2025 Load and Energy Forecast TRADE SECRET: In responding to data request STF-DEA-3-14, the Company corrected the “Load Factor (%)” value for 2024 in Attachment 6.0-1: Summer Coincident Demand with Adjustments (MW) on page 88. The Company is providing a replacement TRADE SECRET version of this page. There is no impact to the PUBLIC DISCLOSURE version of the B2025 Load and Energy Forecast.
+
+The change in this value does not affect the Company’s conclusions or recommendations in the 2025 IRP.
+
+Technical Appendix Volume 1, Unit Retirement Study TRADE SECRET: In responding to data request STF-PIA-4-15, the Company noted that Table 1 of the 2025 IRP Unit Retirement Study did not include the pre-screening estimate to meet zero-liquid discharge (“ZLD”) for combustion residual leachate (“CRL”) at Plant Bowen as part of the incremental effluent limitations guidelines (“ELG”) capital investment, although the Unit Retirement Study analysis did include this pre-screening estimate. The Company provided a corrected Table 1 in response to STF-PIA-4-15 and is now providing a replacement TRADE SECRET version of page 9 from the 2025 IRP Unit Retirement Study TRADE SECRET Word document. There is no impact to the PUBLIC DISCLOSURE version of the 2025 IRP Unit Retirement Study.
+
+The change in this value does not affect the Company’s conclusions or recommendations in the 2025 IRP.
+
+Technical Appendix Volume 1, Hydro Modernization TRADE SECRET: The Company is providing replacement TRADE SECRET and PUBLIC DISCLOSURE versions of page 11 of the Hydro Modernization Word document to correct Table 2 to include removal capital costs for Plant North Highlands. The removal capital cost estimates for Plant North Highlands were inadvertently not included in Table 2; however, these costs were included in the cost-benefit analysis. Therefore, there are no changes needed to the cost-benefit analysis results. 
+
+
+
+In responding to data request STF-JKA-5-3, the Company also identified that the “Hydro_Modernization_Budgets_TRADE SECRET.xlsx” workpaper, “Capital_Details” tab, reflects a newer vintage of the cost estimates for the modernization capital for Plant Lloyd Shoals than the values on the other tabs of this workpaper, which were used in the hydro modernization cost-benefit analysis. The newer vintage data for Plant Lloyd Shoals, although lower cost, were not incorporated into the hydro modernization cost-benefit analysis due to the fact that the data were not available until after the Company completed its cost-benefit analysis. If the newer vintage from the “Capital_Details” tab had been used in the cost-benefit analysis, the results would have shown Plant Lloyd Shoals hydro modernization to be more economic. Therefore, the Company is not updating the cost-benefit analysis for Plant Lloyd Shoals.
+
+The changes in these data do not affect the Company’s conclusions or recommendations in the 2025 IRP.
+
+Technical Appendix Volume 2, Technology Screening and Application Standards TRADE SECRET: In responding to data request STF-JKA-3-24, the Company updated $/kW information for the Engineering, Procurement, and Construction (“EPC”) Cost, Land and External Infrastructure Cost, and Owner’s Cost for the Solar Photovoltaic (“PV”) (Single Axis Tracking Solar PV) technology from page 23 of the 2025 IRP Technology Screening TRADE SECRET Word document. The Company is now providing corrected versions of pages 21 and 23 from the 2025 IRP Technology Screening TRADE SECRET Word document related to cost information for the Reciprocating Internal Combustion Engine (“RICE”) technology (page 21), the Solar Photovoltaic (Single Axis Tracking Solar PV) technology (page 23, further updating the $/kW information from STF-JKA-3-24), and the Solar Photovoltaic (Fixed Tilt Solar PV) technology (page 23). There is no impact to the PUBLIC DISCLOSURE version of this document. Because the RICE technology is not included in the Company’s Resource Mix Study, and the costs for the Solar PV technologies were correctly modeled in the Resource Mix Study, there is no impact to the inputs or outputs of the Resource Mix Study.
+
+The changes in these data do not affect the Company’s conclusions or recommendations in the 2025 IRP.
+
+Technical Appendix Volume 3, Section D – Georgia ITS Ten-Year Transmission Expansion Plan TRADE SECRET: The Company is providing replacement TRADE SECRET and PUBLIC DISCLOSURE versions of page 336 of Technical Appendix Volume 3. The Company corrects the start date of the Smart Valves at East Villa Rica Switching Station project from 06/01/2028 to 06/01/2026.
+
+The change in this value does not affect the Company’s conclusions or recommendations in the 2025 IRP.

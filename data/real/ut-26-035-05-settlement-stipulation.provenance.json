@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Utah",
+  "commission": "Public Service Commission of Utah",
+  "docket": "26-035-05",
+  "proceeding": "Application of Rocky Mountain Power for Approval of a Large-Load Service Contract between PacifiCorp and a Large-Load Customer",
+  "how_obtained": "Found the docket page on psc.utah.gov (a WordPress site: /<yyyy>/<mm>/<dd>/docket-no-<docket>/), read its raw HTML and pulled the pscdocs.utah.gov links out of it. Utah serves every document at a flat, guessable path: https://pscdocs.utah.gov/<utility>/<yy>docs/<docketdigits>/<docid><AbbreviatedTitle><m-d-yyyy>.pdf, with no login and no session. Downloaded with curl and extracted text with PyMuPDF sorted-block extraction (page.get_text('text', sort=True)), pages joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://pscdocs.utah.gov/electric/26docs/2603505/344331StlmntStpltn3-13-2026.pdf",
+  "document_title": "Settlement Stipulation",
+  "filing_date": "2026-03-13",
+  "filer": "Joint signatories in Docket 26-035-05",
+  "witness": null,
+  "document_type": "Settlement stipulation",
+  "pages": 13,
+  "version_role": "the settlement the Commission then approved",
+  "version_pair_with": "ut-26-035-05-order-approving-settlement.txt",
+  "notes": "Read with the 2026-04-10 order it forms a settlement-then-order pair.",
+  "sha256": "d57f00b7f9c785584c337f1ad98bd26a309515777c73a18cd65ec8b87f8ce3f0",
+  "bytes": 21546,
+  "retrieved_at": "2026-08-04T16:59:54Z",
+  "source_pdf_sha256": "1d03e9d25e778c7aca3b1341cf351343becdadd6d329ea5764c5f2813f89955d",
+  "source_pdf_bytes": 676020
+}

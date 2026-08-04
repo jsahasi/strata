@@ -1,0 +1,1898 @@
+       BEFORE THE PUBLIC SERVICE COMMISSION OF UTAH
+
+
+
+Application of Rocky Mountain Power for
+Authority to Increase its Retail Electric Utility   Docket No. 24-035-04
+Service Rates in Utah and for Approval of its
+Proposed Electric Service Schedules and
+Electric Service Regulations
+
+
+
+
+
+            DIRECT TESTIMONY OF BILLIE S. LACONTE
+
+                SUBMITTED ON BEHALF OF THE
+
+              UTAH LARGE CUSTOMER GROUP
+
+
+
+
+
+                      AMENDED
+
+                             February 25, 2025        BEFORE THE PUBLIC SERVICE COMMISSION OF UTAH
+
+
+
+ Application of Rocky Mountain Power for
+ Authority to Increase its Retail Electric Utility   Docket No. 24-035-04
+ Service Rates in Utah and for Approval of its
+ Proposed Electric Service Schedules and
+ Electric Service Regulations
+
+
+
+                    TABLE OF CONTENTS
+
+TABLE OF CONTENTS .................................................................................................... ii
+
+GLOSSARY OF ACRONYMS ......................................................................................... iii
+
+LIST OF EXHIBITS .......................................................................................................... iv
+
+I. INTRODUCTION, QUALIFICATIONS, AND SUMMARY ........................................1
+
+   Summary ......................................................................................................................2
+
+II. EXCESS LIABILITY INSURANCE .............................................................................5
+
+III. INSURANCE COST ADJUSTMENT ........................................................................12
+
+IV. CONCLUSION............................................................................................................18
+
+APPENDIX A ....................................................................................................................19
+
+APPENDIX B ....................................................................................................................22
+
+
+
+
+
+    Direct Testimony of                                        Docket No. 24-035-04
+    Billie S. LaConte                                     Utah Large Customer Group
+
+                                    Page ii               GLOSSARY OF ACRONYMS
+
+            Term                        Definition
+      BHE                  Berkshire Hathaway Energy Company
+
+      EBA                Energy Balancing Account
+
+       ELI                 Excess Liability Insurance
+
+       ICA                  Insurance Cost Adjustment
+     O&M                Operation and Maintenance
+
+      PG&E                 Pacific Gas and Electric
+      RMP (or Company)  Rocky Mountain Power
+
+      ROE                 Return on Equity
+      T&D                 Transmission and Distribution
+      UTLCG             Utah Large Customer Group
+
+
+
+
+
+Direct Testimony of                                        Docket No. 24-035-04
+Billie S. LaConte                                     Utah Large Customer Group
+
+                                Page iii                         LIST OF EXHIBITS
+
+
+Exhibit BSL-1:    RMP Response to DPU Data Request 5.1
+
+Exhibit BSL-2:    RMP Response to UAE Data Request 8.1
+
+Exhibit BSL-3:    RMP Response to OCS Data Request 10.3
+
+
+                        APPENDICES
+
+Appendix A:         Qualifications of Billie S. LaConte
+
+Appendix B:          List of Appearances of Billie S. LaConte
+
+
+
+
+
+    Direct Testimony of                                        Docket No. 24-035-04
+    Billie S. LaConte                                     Utah Large Customer Group
+
+                                    Page iv                         I. INTRODUCTION, QUALIFICATIONS, AND SUMMARY
+
+
+ 1   Q.   PLEASE STATE YOUR NAME AND BUSINESS ADDRESS.
+
+ 2   A.     Billie S. LaConte. My business address is 14323 South Outer 40 Rd., Suite 206N, St.
+
+ 3           Louis, Missouri 63017.
+
+
+ 4   Q.  WHAT IS YOUR OCCUPATION AND BY WHOM ARE YOU EMPLOYED?
+
+ 5   A.      I am an Associate of J. Pollock, Incorporated.
+
+
+ 6   Q.   PLEASE  STATE  YOUR  EDUCATIONAL  BACKGROUND  AND
+
+ 7       EXPERIENCE.
+
+ 8   A.      I have a Bachelor of Arts Degree in Mathematics from Boston University and a
+
+ 9          Master’s in Business Administration from Washington University. Since graduation
+
+10            in 1995, I have been engaged in a variety of consulting assignments, including energy
+
+11          procurement and regulatory matters in both the United States and several Canadian
+
+12           provinces. More details are provided in Appendix A to this testimony. A list of my
+
+13          appearances is provided in Appendix B to this testimony.
+
+
+14   Q.   ON WHOSE BEHALF ARE YOU SPONSORING TESTIMONY IN THIS
+
+15       PROCEEDING?
+
+16   A.      I am testifying on behalf of the Utah Large Customer Group (“UTLCG”). The UTLCG
+
+17             is an unincorporated association of certain Rocky Mountain Power (“RMP” or the
+
+18         “Company”) Schedule No. 9 customers that receive and pay for electric service from
+
+19      RMP in the State of Utah.
+
+
+          Direct Testimony of                                        Docket No. 24-035-04
+           Billie S. LaConte                                     Utah Large Customer Group
+
+                                         Page 120   Q.  WHAT ISSUES ARE YOU ADDRESSING IN YOUR TESTIMONY?
+
+21   A.      I am addressing:
+22                •  RMP’s Excess Liability Insurance (“ELI”) costs; and
+23                •  The proposed Insurance Cost Adjustment (“ICA”) rider.
+
+24   Q.   ARE YOU SPONSORING ANY EXHIBITS IN SUPPORT OF YOUR DIRECT
+
+25       TESTIMONY?
+
+26   A.     Yes.  I am sponsoring Exhibits BSL-1 through BSL-3. These are responses to data
+
+27           requests submitted in this proceeding which I cite in my testimony.
+
+
+28   Q.   ARE YOU ENDORSING RMP’S PROPOSED REVENUE REQUIREMENT,
+
+29       COST ALLOCATION AND/OR RATE DESIGN PROPOSALS THAT ARE
+
+30      NOT ADDRESSED IN YOUR DIRECT TESTIMONY?
+
+31   A.    No. One should not interpret my testimony as endorsing RMP’s proposals on any
+
+32           issues not addressed. That said, UTLCG submitted testimony through other witnesses
+
+33          providing its position to the Commission on RMP’s Phase I and Phase II issues,
+
+34           including revenue requirement, cost allocation, and rate design.
+
+35  Summary
+
+36   Q.   PLEASE SUMMARIZE YOUR FINDINGS AND RECOMMENDATIONS.
+
+37   A.   My findings and recommendations are as follows:
+38          Excess Liability Insurance
+39          • RMP is seeking to recover $185.7 million (total Company) or $82 million
+40               (Utah-allocated) for ELI in the test year.1 RMP seeks recovery of its test-year
+41            ELI expense through a newly proposed ICA rider. After the test period, RMP
+42              proposes that the ICA surcharge could support a self-insurance program in lieu
+43              of potentially higher cost commercial premium products.
+
+
+
+         1 Phase 1 Rebuttal Testimony of Shelley E. McCoy, Exhibit RMP ___(SEM-4R), p. 2.
+
+          Direct Testimony of                                        Docket No. 24-035-04
+           Billie S. LaConte                                     Utah Large Customer Group
+
+                                         Page 244          •  RMP’s ELI expense has increased significantly compared to other similarly
+45               situated utilities. This reflects the impact of the James v. PacifiCorp verdict,
+46            which concerned  wildfires  that occurred  in Oregon during 2020.  The
+47            Commission should limit the allowed ELI expense to prevent Utah retail
+48             customers from paying the excessive wildfire costs that are due to PacifiCorp’s
+49              gross negligence and reckless behavior.
+
+50          Insurance Cost Adjustment Rider (Schedule No. 92)
+51          •  RMP’s proposed ICA rider purportedly seeks to recover third-party ELI,
+52               separate and apart from base rates. However, the additional stated purpose of
+53               the proposed ICA rider is for a future unspecified filing in which RMP intends
+54               to seek additional cost recovery of an unspecified, unknown, and currently
+55            unknowable amount.
+
+56          •  The ICA rider is an example of single-issue or “piecemeal” ratemaking, which
+57              allows RMP to track and adjust rates to recover changes in a specific cost, in
+58                isolation, separate from the context of the whole.  This lacks any holistic
+59               consideration  as  to  whether  a  rate  increase  is  needed  to  provide an
+60              “opportunity” for RMP to earn a reasonable rate of return. Because piecemeal
+61             ratemaking allows rates to change outside the scrutiny of a general rate case,
+62               irrespective of the utility’s earnings, and effectively guarantees dollar-for-dollar
+63               cost recovery, it reduces RMP’s incentive to minimize costs and shifts risk from
+64              shareholders to customers.
+
+65          •  The Company’s proposal to use any excess ICA collections to fund a self-
+66              insurance reserve for its future, yet unspecified, use deprives customers the
+67                ability to use the dollars paid into the ICA, particularly if RMP doesn’t need the
+68              funds at this time.
+
+69          •  Without further specificity and a clear justification of whether and to what
+70               extent the ICA rider is needed, it provides RMP a guarantee rather than an
+71              opportunity to earn a reasonable rate of return.  Accordingly, the ICA rider
+72             should be rejected.
+
+73          •  RMP’s proposal to allocate ICA rider costs based on each class’s percentage of
+74              base revenues is not consistent with cost causation.  Base revenues include
+75              production plant and related expenses, as well as net power costs. However,
+76               the purpose of having ELI is to mitigate RMP’s exposure to damages resulting
+77            from  wildfires  that  directly impact RMP’s transmission and  distribution
+78            (“T&D”) facilities.
+
+
+
+          Direct Testimony of                                        Docket No. 24-035-04
+           Billie S. LaConte                                     Utah Large Customer Group
+
+                                         Page 379          •  Accordingly, if the ICA rider is approved:
+
+80             o  The costs eligible for recovery in the ICA rider should be limited only
+81                       to the costs of ELI premiums as incurred,
+82             o  Eligible costs should be allocated in a similar manner to RMP’s
+83                    proposed Wildfire Mitigation Balancing Account, which is based on
+84                     previously allocated T&D costs; and
+85             o  The Commission should reduce RMP’s authorized return on equity
+86                  (“ROE”) to recognize that the proposed ICA tracker significantly
+87                     reduces RMP’s financial risk.2
+
+
+
+
+
+         2  This recommendation is offered in addition to – not in lieu of – UTLCG’s previously submitted
+      recommendations on RMP’s ROE.
+
+          Direct Testimony of                                        Docket No. 24-035-04
+           Billie S. LaConte                                     Utah Large Customer Group
+
+                                         Page 4                                       II. EXCESS LIABILITY INSURANCE
+
+
+ 88   Q.  WHAT IS EXCESS LIABILITY INSURANCE?
+
+ 89   A.    ELI provides coverage for liability to third parties arising out of bodily injury and
+
+ 90           property damage losses suffered by those third parties. It includes coverage for general
+
+ 91             liability, wildfire liability, and employer’s liability. Claims for damages to third parties
+
+ 92           are included within excess liability coverage.
+
+
+ 93   Q.  HOW DOES RMP ACQUIRE ITS ELI COVERAGE?
+
+ 94   A.     PacifiCorp d/b/a RMP, through  its parent company, Berkshire Hathaway Energy
+
+ 95        Company (“BHE”), purchases ELI as part of BHE’s aggregated insurance purchase.
+
+ 96         The ELI premiums are allocated to PacifiCorp and other BHE subsidiaries through
+
+ 97        BHE’s corporate allocation, which is based on an average percentage of: property,
+
+ 98            plant, and equipment; employee count; loss history; overhead electric T&D lines; and
+
+ 99      T&D pipeline miles.3
+
+
+100   Q.  WHAT IS THE AMOUNT OF ELI THAT RMP SEEKS TO RECOVER IN THE
+
+101       TEST YEAR?
+
+102   A.   On a total-Company basis, PacifiCorp seeks $185.7 million, which is $82 million on a
+
+103           Utah-allocated basis using the System Overhead allocation factor from the 2020 Multi-
+
+104           State Cost Allocation Protocol.
+
+
+
+
+
+          3 Direct Testimony of Mariya V. Coleman, p. 6, lines 106-09.
+
+           Direct Testimony of                                        Docket No. 24-035-04
+            Billie S. LaConte                                     Utah Large Customer Group
+
+                                          Page 5 105   Q.  HOW DID RMP DETERMINE THE AMOUNT OF ELI EXPENSE?
+
+ 106   A.    The amount is based on the sum of the cost of the various ELI policies purchased by
+
+ 107       BHE and allocated to RMP. RMP’s ELI expense is composed of policies from several
+
+ 108           providers.
+
+
+ 109   Q.   HAVE ELI EXPENSES INCREASED FOR OTHER UTILITIES OPERATING
+
+ 110        IN THE WESTERN UNITED STATES?
+
+ 111   A.     Yes. ELI expense is recorded in FERC Account 925, Injuries and Damages. Table 1
+
+ 112          provides the historical ratio of injuries and damages expense to total T&D plant for the
+
+ 113           period 2016 – 2023. The ratios for each utility increased, although PacifiCorp’s ratio
+
+ 114           increased the most.
+
+                                          Table 1
+                             Injuries and Damages Expense as a Percentage
+                                 of Transmission and Distribution Plant
+                                          2016-2023
+                                               ($000)
+                                                                          Avg.   High Yr.
+                                                                              2016-    Inc. Over
+ Company    2016   2017   2018    2019   2020   2021   2022   2023    2022     Avg.
+Edison
+International  0.28%  0.34%  8.15%   2.32%  5.41%  4.25%  4.78%  2.48%   3.65%   223.48%
+Pacific Gas
+and Electric   0.63%  0.51%  30.60%  26.75%  2.64%  3.61%  3.72%  3.64%   9.78%   312.95%
+
+PacifiCorp    0.01%  0.07%  0.13%   0.06%  1.08%  0.18%  0.64%  10.81%  0.31%   3,473.11%
+San Diego
+Gas and
+Electric      0.84%  0.87%  0.94%   1.08%  1.31%  1.44%  1.43%  1.21%   1.13%   127.38%
+
+Source: FERC Form 1, page 206, line 75 and page 207, line 58.
+
+
+
+
+            Direct Testimony of                                        Docket No. 24-035-04
+             Billie S. LaConte                                     Utah Large Customer Group
+
+                                           Page 6115        As demonstrated above, the ratio for Edison International increased significantly from
+
+116         2017 to 2018, from 0.34% to 8.15%, respectively, due to wildfires in 2017 and 2018.
+
+117               It has since decreased to 2.48% in 2023, which is below its 3.65% 2016-2022 average.
+
+118           Similarly, for Pacific Gas and Electric (“PG&E”), its ratio skyrocketed to 30.60% and
+
+119         26.75% in 2018 and 2019, respectively, but has since decreased to between 2.64%
+
+120          (2020) and 3.72% (2022), with 2023 coming in at 3.64%, which is well below its 9.78%
+
+121         2016-2022 average. PG&E experienced catastrophic wildfires in 2017 and 2018.
+
+122                  PacifiCorp’s ratio remained steady until 2020, when it increased by 1,700%, to
+
+123          1.08%, then declined to a level more in line with years prior to 2020. The increase in
+
+124         2023  is partially due to $631 million in cash payments paid by PacifiCorp for
+
+125           settlements related to the 2020 Wildfires that occurred in Oregon.4 Adjusting for that
+
+126          amount, PacifiCorp’s 2023 ratio decreases from 10.81% to approximately 7%, which
+
+127             is still over 2,100% higher than its 0.31% average for 2016-2022.  Clearly, RMP’s
+
+128           wildfire history and the results of the James v. PacifiCorp verdict, which showed
+
+129          PacifiCorp acted in a reckless and grossly negligent manner, have impacted RMP’s ELI
+
+130          expense. This trend is apparent in the sharp ELI cost increase for Edison International
+
+131         and PG&E commensurate with, or immediately following, wildfire liability.  For
+
+132          comparison, San Diego Gas & Electric, another major investor-owned  utility in
+
+133            California, did not have any wildfire events attributed to its utility equipment between
+
+134         2016 and 2023 and, therefore, did not experience an annual increase significantly out
+
+135           of step with its annual average.  I would also note that PacifiCorp’s maximum ratio is
+
+
+
+           Direct Testimony of                                        Docket No. 24-035-04
+            Billie S. LaConte                                     Utah Large Customer Group
+
+                                          Page 7136         3,473% higher than its average ratio. This is significantly above the same metric for
+
+137           the other utilities, further demonstrating that PacifiCorp’s wildfire history and the
+
+138         James v. PacifiCorp verdict significantly impacted PacifiCorp’s projected year ELI
+
+139          expense.
+
+
+140   Q.  WHY DID YOU USE T&D PLANT TO MEASURE THE IMPACT OF ELI ON
+
+141      EACH UTILITY?
+
+142   A.    BHE’s ELI expense is partially allocated to PacifiCorp and its subsidiaries using miles
+
+143           of electric T&D lines.5  Similarly, wildfire liability is allocated on miles of overhead
+
+144            electric T&D lines.6 Power lines pose the most significant threat of igniting wildfires
+
+145         and are a major factor when considering wildfire liability and ELI expense. Therefore,
+
+146      T&D plant is an appropriate metric to compare the impact of ELI expense on each
+
+147              utility.
+
+
+148   Q.  WHY DOES THE AVERAGE SHOWN IN TABLE 1 EXCLUDE 2023?
+
+149   A.      I excluded 2023 to remove the impact of the $631 million in settlement payments
+
+150           pertaining to the 2020 Wildfires in Oregon that were paid during this time.
+
+
+151   Q.  WHAT DO THE RESULTS OF YOUR ANALYSIS DEMONSTRATE?
+
+152   A.    The results of my analysis demonstrate that RMP’s requested ELI expense drastically
+
+
+
+
+          4 RMP Response to DPU Data Request 5.1, a copy of which is provided in Exhibit BSL-1.
+
+          5 RMP Response to UAE Data Request 8.1(a), a copy of which is provided in Exhibit BSL-2.
+          6 Id.
+
+           Direct Testimony of                                        Docket No. 24-035-04
+            Billie S. LaConte                                     Utah Large Customer Group
+
+                                          Page 8153           increased during certain years due to the impact of the James v. PacifiCorp verdict and
+
+154           the cash payments for the 2020 Wildfires in Oregon. RMP’s projected injuries and
+
+155         damages expense for the test year is $19.6 million, which excludes ELI expense.7 The
+
+156           projected year ELI expense is $82 million which, combined with the injuries and
+
+157         damages expense, totals $101.6 million. RMP’s total projected year T&D plant is
+
+158          $9.45 billion and its ratio of injuries and damages expense to total T&D plant is 1.08%.8
+
+159         While this is substantially lower than its 2023 ratio, it is 248% higher than its average
+
+160            ratio of 0.31%, and 69% higher than its 0.64% ratio for 2022.
+
+
+161   Q.  WHAT DO YOU RECOMMEND?
+
+162   A.      I recommend that the Commission normalize RMP’s ELI expense.  Specifically, I
+
+163         recommend that the Commission limit RMP’s injuries and damages expense to an
+
+164         amount that is between 0.64% and 1.08% of its projected year T&D plant.  If the
+
+165         Commission limited RMP’s injuries and damages expense to the midpoint of 0.86% of
+
+166      T&D plant, which is a fair and reasonable limit, it results in an approximate $20.3
+
+167           million disallowance. This would still reflect the higher ELI expense that PacifiCorp
+
+168         and other western utilities are experiencing, while ensuring that RMP’s Utah customers
+
+169           are not adversely impacted by (or subsidizing) the James v. PacifiCorp verdict in
+
+170          Oregon.
+
+
+
+
+          7 Direct Testimony of Shelley E. McCoy, Exhibit RMP ___(SEM-3), p. 2.12, line 907.
+          8  Id. at p. 2.22, line 1685 and p. 2.23, line 1759 ($5,149,257,938 in Utah-allocated transmission plant
+      + $4,295,767,953 in Utah-allocated distribution plant = $9,445,025,891 in Utah-allocated T&D plant).
+
+           Direct Testimony of                                        Docket No. 24-035-04
+            Billie S. LaConte                                     Utah Large Customer Group
+
+                                          Page 9171   Q.   RMP IS ALSO REQUESTING A DEFERRAL OF $112.1 MILLION IN ELI
+
+172       EXPENSE FOR ITS 2023-2024 POLICY PERIOD. PLEASE EXPLAIN YOUR
+
+173       POSITION REGARDING THIS REQUEST.
+
+174   A.    The Commission consolidated into this proceeding a rehearing on the potential deferral
+
+175           of $112.1 million (total Company) in ELI expense for RMP’s 2023-2024 policy
+
+176           period.9 RMP’s Utah-allocated share is approximately 44.258% or $49.6 million.10 I
+
+177          understand the issue before the Commission on rehearing is whether RMP’s tortious
+
+178          conduct  is a  “substantial  or primary cause of  its  increased premiums”11  and,
+
+179            specifically, whether RMP has presented “additional evidence to further demonstrate
+
+180            that the James v. PacifiCorp verdict did not cause the increase in the Company’s excess
+
+181             liability insurance premium expenses.”12  Based on the above analysis,  it appears
+
+182           apparent that RMP’s increased ELI expense is attributable, in significant measure, to
+
+183           the James v. PacifiCorp verdict and associated liabilities and litigation. Thus, it does
+
+184           not appear that RMP has met its burden on rehearing and the deferral should be denied.
+
+
+
+
+
+          9 Phase III Direct Testimony of Mariya V. Coleman, p. 2, lines 38-41.
+          10 RMP’s Utah-allocated share of the deferred amount is based on its 2023 System Overhead Factor.
+
+          11 Application of Rocky Mountain Power for a Deferred Accounting Order Regarding Insurance Costs,
+       Docket No. 23-035-40, Order Denying Application, p. 12 (Mar. 29, 2024).
+
+          12 Phase III Direct Testimony of Mariya V. Coleman, p. 3, lines 52-54.
+
+           Direct Testimony of                                        Docket No. 24-035-04
+            Billie S. LaConte                                     Utah Large Customer Group
+
+                                         Page 10185   Q.     IF, NOTWITHSTANDING YOUR CONCERNS DISCUSSED HEREIN, THE
+
+186       COMMISSION CHOOSES TO GRANT THE DEFERRAL, DO YOU HAVE
+
+187      ANY SPECIFIC RECOMMENDATIONS THAT SHOULD BE CONSIDERED
+
+188        IN DOING SO?
+
+189   A.     Yes.  I recommend that the Commission normalize the deferred ELI expenses, similar
+
+190            to my recommendation pertaining to the injuries and damages expense discussed
+
+191           previously.  If the Commission were to limit RMP’s recovery to the 0.86% midpoint
+
+192         between 0.64% (2022) and 1.08% (2020) as shown in Table 1, it would reduce the
+
+193           deferred ELI premium by $5.8 million.
+
+
+
+
+
+           Direct Testimony of                                        Docket No. 24-035-04
+            Billie S. LaConte                                     Utah Large Customer Group
+
+                                         Page 11                                    III. INSURANCE COST ADJUSTMENT
+
+
+194   Q.  WHY IS RMP PROPOSING TO IMPLEMENT THE ICA RIDER?
+
+195   A.   RMP states that the proposed ICA rider would allow the Company to track and recover
+
+196         ELI costs and collections, separate and apart from base rates.  Additionally, the
+
+197        Company plans to use this mechanism to recover other as-yet undefined insurance
+
+198            related costs, and potentially combine commercial insurance and Company self-
+
+199           insurance in this rider.13
+
+
+200   Q.   ARE THERE ANY PROBLEMS WITH THE PROPOSED ICA RIDER?
+
+201   A.     Yes.  First, the proposed ICA rider constitutes single-issue or piecemeal ratemaking.
+
+202          Second, it is unclear whether the proposed ICA rider would only recover insurance
+
+203          premiums. According to RMP’s responses to data requests, the Company would also
+
+204           include punitive damage insurance policy costs in the proposed ICA rider.14 However,
+
+205           the proposed rider does not have a list or any description of the specific costs that would
+
+206          be eligible for recovery. Third, RMP’s proposal to spread the costs across classes using
+
+207          base revenues is not consistent with cost-causation principles.
+
+
+208   Q.  WHAT  DO  YOU  MEAN  BY  SINGLE-ISSUE  OR  PIECEMEAL
+
+209       RATEMAKING?
+
+210   A.    Piecemeal ratemaking occurs whenever a utility is allowed to implement a tracker that
+
+
+
+          13 Amended Direct Testimony of Joelle R. Steward, p. 6, lines 114-120.
+          14 RMP Response to OCS Data Request 10.3, a copy of which is included in Exhibit BSL-3.
+
+           Direct Testimony of                                        Docket No. 24-035-04
+            Billie S. LaConte                                     Utah Large Customer Group
+
+                                         Page 12211           guarantees dollar-for-dollar cost recovery.  Piecemeal ratemaking allows a utility to
+
+212           adjust rates outside of, and absent the scrutiny provided in, a general rate case. Such
+
+213           guarantees are contrary to the regulatory compact in which a utility should be allowed
+
+214          a reasonable opportunity to earn a reasonable rate of return on the facilities used to
+
+215          provide electricity service and to recover reasonable and necessary operating expenses.
+
+216        When costs are evaluated in a general rate case, they are considered comprehensively,
+
+217          whereas a tracker, such as the proposed ICA rider, considers such costs in isolation.
+
+218          Piecemeal ratemaking also ignores the dynamics of ratemaking.  After rates are
+
+219           established in a rate case, specific costs may increase while other costs may decrease,
+
+220            offsetting any need  to  increase  rates  overall.   This  effectively  converts  the
+
+221          “opportunity” to recover these certain costs into a “guarantee.” As a consequence,
+
+222          piecemeal ratemaking: (1) shifts risks to ratepayers that are properly borne by the utility
+
+223           shareholders; (2) fails to balance ratepayer and shareholder interests; and (3) will not
+
+224          provide RMP the proper incentive to minimize costs.
+
+
+225   Q.   DOES CONVERTING THE OPPORTUNITY TO RECOVER THE COST OF
+
+226       PROVIDING SERVICE INTO A GUARANTEE REDUCE THE COMPANY’S
+
+227       OPERATING AND FINANCIAL RISKS?
+
+228   A.     Yes. Given this, I recommend the Commission reject the proposed ICA rider or, if
+
+229          approved, reduce RMP’s ROE accordingly, in addition to the ROE recommendations
+
+230        made by UTLCG witness, Mr. David Garrett, in Phase I.
+
+
+
+
+
+           Direct Testimony of                                        Docket No. 24-035-04
+            Billie S. LaConte                                     Utah Large Customer Group
+
+                                         Page 13231   Q.  WHY ARE YOU CONCERNED WITH THE LACK OF DEFINITION
+
+232       ASSOCIATED WITH COSTS TRACKABLE IN THE ICA RIDER?
+
+233   A.   A tracker should have a defined scope of allowable costs, similar to the Energy
+
+234          Balancing Account (“EBA”).  Without such limits, RMP would be incentivized to
+
+235           include in the ICA rider as many categories of costs as possible (given the effectively
+
+236          guaranteed recovery). Following RMP’s inclusion of costs, dispute is likely to arise
+
+237           regarding whether, and the extent to which, costs are appropriately included in the rider
+
+238           or should be included in base rates. Further, the Company is proposing that any excess
+
+239        ICA collections be used to fund a self-insurance reserve.15  This proposal deprives
+
+240          customers the ability to use the excess dollars paid into the ICA, even if RMP doesn’t
+
+241          need the funds at this time or even anytime soon. Thus, having a defined set of costs
+
+242           appropriate for rider recovery is critical before approving rider recovery. This allows
+
+243           the Commission and stakeholders to evaluate the need for, and magnitude of, potential
+
+244            rider recovery. Therefore, the Commission should reject the ICA rider at this time.
+
+
+245   Q.    IF THE COMMISSION APPROVES THE ICA RIDER, DO YOU HAVE ANY
+
+246      RECOMMENDATIONS?
+
+247   A.     Yes. As I discuss below, RMP’s proposed allocation of ICA costs is not consistent
+
+248          with cost causation.  If the ICA rider is approved despite its flaws, the Commission
+
+249          should require ICA costs to be allocated similar to the Wildfire Mitigation Balancing
+
+250          Account.
+
+
+
+          15 Direct Testimony of Joelle R. Steward, p. 33, lines 685-687.
+
+           Direct Testimony of                                        Docket No. 24-035-04
+            Billie S. LaConte                                     Utah Large Customer Group
+
+                                         Page 14251   Q.  HOW IS RMP PROPOSING TO RECOVER THE COSTS IN THE PROPOSED
+
+252       ICA RIDER?
+
+253   A.   RMP proposes to allocate the ICA rider costs to each class on an equal percentage of
+
+254          base revenue. In this case, base revenues include Monthly Customer Charges, Power
+
+255          Charges,  Facilities  Charges, Energy  Charges, and  Voltage  Discounts  of each
+
+256          customer’s applicable rate schedule.16 Energy Charges would also include the base
+
+257       EBA Charges.
+
+
+258   Q.   RMP WITNESS, MR. MEREDITH, STATES THAT INSURANCE COSTS ARE
+
+259      THE RESULT OF MANAGING RISK FOR ALL ASPECTS OF A UTILITY’S
+
+260       OPERATIONS. DO YOU AGREE?
+
+261   A.    No. The proposed ICA rider is targeted to manage the dramatic escalation in the cost
+
+262           of ELI, which is primarily due to the Company’s wildfire risks. Largely, these risks
+
+263           are impacted by the operation and maintenance (“O&M”) of the T&D systems. ELI
+
+264          has little or nothing to do with production plant, non-fuel O&M expense, or EBA-
+
+265            related expenses. Therefore, it would be inappropriate to allocate the ICA rider costs
+
+266         on base revenues that reflect these unrelated expenses.
+
+
+267   Q.    IS RMP PROPOSING TO RETAIN A SEPARATE RIDER TO RECOVER
+
+268       WILDFIRE  MITIGATION  COSTS  DEFERRED  FROM  PREVIOUS
+
+269       PROCEEDINGS?
+
+270   A.     Yes. RMP is proposing to retain Schedule No. 97, the Wildfire Mitigation Balancing
+
+271          Account.
+
+
+
+          16 Amended Direct Testimony of Robert M. Meredith, Exhibit RMP ___(RMM-12A), p. 66.
+
+           Direct Testimony of                                        Docket No. 24-035-04
+            Billie S. LaConte                                     Utah Large Customer Group
+
+                                         Page 15272   Q.  HOW  IS RMP PROPOSING TO ALLOCATE THE COSTS TO BE
+
+273      RECOVERED IN THE WILDFIRE MITIGATION BALANCING ACCOUNT
+
+274       RIDER?
+
+275   A.   RMP proposes to allocate these costs based on previously allocated T&D costs.
+
+
+276   Q.   SHOULD THE SAME ALLOCATIONS ALSO BE USED FOR THE
+
+277       PROPOSED ICA RIDER?
+
+278   A.    While  I maintain that the ICA rider should not be adopted at this time,  if the
+
+279         Commission approves the ICA rider, then yes, the same allocation methodology should
+
+280           apply. As previously explained, the escalating costs of ELI is directly related to the
+
+281           wildfires for which RMP has been found grossly negligent and reckless in causing.
+
+282         These wildfires are largely attributable to the O&M of the Company’s T&D system.
+
+283          Hence, consistent with cost causation, if the Commission approves the proposed ICA
+
+284             rider, the costs should be spread in the same manner as the proposed Wildfire
+
+285           Mitigation Balancing Account — relative to previously allocated T&D costs.
+
+
+286   Q.   PLEASE SUMMARIZE YOUR RECOMMENDATIONS RELATED TO THE
+
+287       ICA RIDER.
+
+288   A.    The Commission should reject the ICA rider. The ICA rider is an example of single-
+
+289           issue ratemaking, which should be avoided. Further, as currently defined, the ICA rider
+
+290             is too broad and could potentially recover a broad array of costs other than for
+
+291         premiums paid for excess liability insurance.
+
+
+
+
+           Direct Testimony of                                        Docket No. 24-035-04
+            Billie S. LaConte                                     Utah Large Customer Group
+
+                                         Page 16292                       If the Commission approves the ICA rider, the following changes should be
+
+293         made:
+
+294                •  The recovery should include only the costs of ELI premiums as
+295                       incurred;
+
+296                •  The costs should be allocated to customer classes using previously
+297                      allocated T&D costs; and
+
+298                •  RMP’s authorized ROE should be reduced to recognize that a tracker
+299                       significantly reduces RMP’s financial risk.
+
+
+
+
+
+           Direct Testimony of                                        Docket No. 24-035-04
+            Billie S. LaConte                                     Utah Large Customer Group
+
+                                         Page 17                                       IV. CONCLUSION
+
+
+300   Q.   PLEASE SUMMARIZE THE FINDINGS THAT THE COMMISSION SHOULD
+
+301      MAKE CONSISTENT WITH YOUR ANALYSIS AND RECOMMENDATIONS
+
+302       CONTAINED IN YOUR DIRECT TESTIMONY.
+
+303   A.    The Commission should adopt the following findings:
+
+304                •  RMP’s projected year ELI expense is too high and should be reduced
+305                  by at least $20.3 million.
+
+306                •  RMP’s request to defer 2023-2024 policy period ELI expense should be
+307                      denied.
+
+308                •   If the Commission grants deferral of historical ELI expenses from the
+309                   2023-2024 policy period, the expense should be reduced by $5.8
+310                       million.
+
+311                •  Reject the proposed ICA rider.
+312                •   Alternatively,  if the Commission approves the ICA rider, the rider
+313                    should be modified as follows:
+
+314               o  Specify the costs eligible for recovery;
+315               o  Allocate the eligible costs in the same manner (i.e., on previously
+316                          allocated T&D costs) as is used in the Schedule No. 97 Wildfire
+317                         Mitigation Balancing Account; and
+318               o  Make appropriate reductions to RMP’s ROE to account for RMP’s
+319                       reduced financial risk.
+
+320   Q.   DOES THIS CONCLUDE YOUR DIRECT TESTIMONY?
+
+321   A.     Yes.
+
+
+
+
+
+           Direct Testimony of                                        Docket No. 24-035-04
+            Billie S. LaConte                                     Utah Large Customer Group
+
+                                         Page 18                        APPENDIX A
+
+                           Qualifications of Billie S. LaConte
+
+Q.   PLEASE STATE YOUR NAME AND BUSINESS ADDRESS.
+
+A.     Billie S. LaConte. My business mailing address is 14323 S. Outer 40 Rd., Town and
+
+       Country, Missouri 63017.
+
+
+Q.  WHAT IS YOUR OCCUPATION AND BY WHOM ARE YOU EMPLOYED?
+
+A.      I am an Associate employed by J. Pollock, Incorporated.
+
+
+Q.   PLEASE  STATE  YOUR  EDUCATIONAL  BACKGROUND  AND
+
+     EXPERIENCE.
+
+A.      I have a Bachelor of Arts Degree in Mathematics from Boston University and a
+
+       Master’s degree in Business Administration from Washington University.
+
+           Upon graduation in May 1995, I joined Drazen Consulting Group, Inc. (DCGI).
+
+     DCGI was incorporated in 1995 assuming the utility rate and economic consulting
+
+        activities of Drazen Associates, Inc., active since 1937. I joined J.Pollock in May 2015.
+
+             During my tenure at DCGI and J.Pollock my work has focused on revenue
+
+       requirement issues, cost of capital (return on equity and capital structure), cost
+
+        allocation, rate design, sales and price forecasts, power cost forecasting, electric
+
+        restructuring issues, integrated resource plans, formula rate plans, asset management
+
+       agreements and contract interpretation.
+
+
+
+
+
+    Direct Testimony of                                        Docket No. 24-035-04
+    Billie S. LaConte                                     Utah Large Customer Group
+
+                                   Page 19              I have been engaged in a wide range of consulting assignments including energy
+
+   and regulatory matters in both the United States and several Canadian provinces. This
+
+   has included advising clients on economic and strategic issues concerning the natural
+
+   gas pipeline, oil pipeline, electric, wastewater and water utilities.  I have testified on
+
+    cost of capital issues, including return on equity, cost of debt, and capital structure, as
+
+   well as revenue requirement issues. I have prepared cost allocation and rate design
+
+    studies to provide timely support to clients engaged in settlement negotiations in
+
+    electric and gas utilities, provided power cost forecasting studies to assist clients in
+
+    project planning and negotiated contracts with electric utilities for standby services and
+
+    interruptible  rates.    I have  also prepared  studies on  electric and gas  utilities’
+
+   performance-based rates (PBR) and benchmarking programs to evaluate their success
+
+   and to provide recommendations on methods to be used.   I worked on contract
+
+    interpretation to resolve contract disputes for several clients. I have provided financial
+
+   and cost of service analysis for natural gas pipelines certificate approval from the
+
+    Federal Energy Regulatory Commission (FERC) and the Canadian National Energy
+
+   Board (NEB). Additionally, I completed the Corporate Credit Rating Analysis course
+
+    presented by Moody’s Analytics.
+
+              I have worked on various projects located in many states and several Canadian
+
+   provinces  including  Alberta,  British  Columbia,  Nova  Scotia,  Quebec,  and
+
+   Saskatchewan.  I have testified before the state regulatory commissions of Arkansas,
+
+    Florida, Georgia, Iowa, Louisiana, Michigan, Minnesota, Missouri, New Mexico,
+
+
+
+Direct Testimony of                                        Docket No. 24-035-04
+Billie S. LaConte                                     Utah Large Customer Group
+
+                                Page 20      North Carolina, Pennsylvania, South Carolina, and Texas, and the provincial regulatory
+
+       boards of Alberta and Nova Scotia.  I similarly have appeared before the St. Louis
+
+       Metropolitan Sewer District Commission and the City of Philadelphia Water, Sewer
+
+      and Storm Water Rate Board.
+
+
+Q.   PLEASE DESCRIBE J. POLLOCK, INCORPORATED.
+
+A.      J. Pollock  assists  clients to procure and manage energy in both regulated and
+
+       competitive markets. The J. Pollock team also advises clients on energy and regulatory
+
+        issues. Our clients include commercial, industrial and institutional energy consumers.
+
+         J. Pollock is a registered Class I aggregator in the State of Texas.
+
+
+
+
+
+    Direct Testimony of                                        Docket No. 24-035-04
+    Billie S. LaConte                                     Utah Large Customer Group
+
+                                   Page 21                                        APPENDIX B
+                                 Testimony Filed in Regulatory Proceedings
+                                         by Billie S. LaConte
+
+                                                                                                 REGULATORY
+                       UTILITY                        ON BEHALF OF             DOCKET         TYPE       JURISDICTION                SUBJECT                   DATE
+  ENTERGY ARKANSAS, LLC                         Arkansas Electric Energy Consumers, Inc.         24-072-U              Direct          AR         Certificate of Environmental Compatibility and Public        12/19/2024
+                                                                                                                             Need
+  ENTERGY ARKANSAS, LLC                         Arkansas Electric Energy Consumers, Inc.        16-036-FR     Supplemental Direct     AR      Response to Commission Order regarding Legal Fees       12/2/2024
+
+
+  SUMMIT UTILITIES ARKANSAS, INC.                 Arkansas Gas Consumers, Inc.                  23-079-U      Settlement Support      AR       Support of Settlement                                   10/7/2024
+
+
+  ENTERGY ARKANSAS, LLC                         Arkansas Electric Energy Consumers, Inc.        16-036-FR             Direct          AR       Production Tax Credits; Distribution Storm/Failure Capital    10/2/2024
+                                                                                                                                                                             Additions; Power Through Program; Legal Fees
+
+
+  SUMMIT UTILITIES ARKANSAS, INC.                 Arkansas Gas Consumers, Inc.                  23-079-U          Surrebuttal *        AR       Class Cost-of-Service Study; Class Revenue Allocation;      9/9/2024
+                                                                                                                                                                                    Classification of Distribution Mains; Design Day Demand;
+                                                                                                                                                                               Allocation Factors; Heating Assistance Funds
+
+
+  SUMMIT UTILITIES ARKANSAS, INC.                 Arkansas Gas Consumers, Inc.                  23-079-U           Surrebuttal        AR       Return on Equity; Capital Structure; Incentive                9/9/2024
+                                                                                                                                                   Compensation; O&M expenses; Riders; Regulatory Asset
+
+
+  PIEDMONT NATURAL GAS COMPANY, INC.            Carolina Utility Customers Assocation, Inc.       G-9, Sub 837            Direct          NC       Return on Equity                                        8/13/2024
+
+
+  PECO ENERGY COMPANY - ELECTRIC DIVISION      Philadelphia Area Industrial Energy Users      R-2024-3046931       Surrebuttal         PA       Class Cost-of-Service Study; Class Revenue Allocation      8/2/2024
+                                                  Group
+
+  PECO ENERGY COMPANY - GAS DIVISION             Philadelphia Area Industrial Energy Users      R-2024-3046932       Surrebuttal         PA       Class Cost-of-Service Study; Class Revenue Allocation;      8/2/2024
+                                                  Group                                                                                                Volumetric Rate Differential
+
+  PECO ENERGY COMPANY - ELECTRIC DIVISION      Philadelphia Area Industrial Energy Users      R-2024-3046931        Rebuttal          PA       Class Cost-of-Service Study; Class Revenue Allocation      7/16/2024
+                                                  Group
+
+  PECO ENERGY COMPANY - GAS DIVISION             Philadelphia Area Industrial Energy Users      R-2024-3046932        Rebuttal          PA       Class Cost-of-Service Study; Class Revenue Allocation;     7/16/2024
+                                                  Group                                                                                                Volumetric Rate Differential
+
+  SUMMIT UTILITIES ARKANSAS, INC.                 Arkansas Gas Consumers, Inc.                  23-079-U              Direct          AR       Return on Equity; Capital Structure; Expenses; Incentive     7/10/2024
+                                                                                                                                                   Compensation; Excess Deferred Income Tax Asset
+
+
+   DOMINION ENERGY SOUTH CAROLINA, INC.         South Carolina Utility Energy Users Committee    2024-34-E           Surrebuttal        SC       Return on Equity; Capital Structure                         7/3/2024
+
+
+   MICHIGAN GAS UTILITIES CORPORATION             Association of Businesses Advocating Tariff       U-21540              Direct             MI       Operation and Maintenance Expense                       7/1/2024
+                                                            Equity
+
+  PECO ENERGY COMPANY - ELECTRIC DIVISION      Philadelphia Area Industrial Energy Users      R-2024-3046931          Direct           PA       Class Cost-of-Service Study; Class Revenue Allocation      6/17/2024
+                                                  Group
+
+  PECO ENERGY COMPANY - GAS DIVISION             Philadelphia Area Industrial Energy Users      R-2024-3046932          Direct           PA       Class Cost-of-Service Study; Class Revenue Allocation;     6/17/2024
+                                                  Group                                                                                                Volumetric Rate Differential
+
+   DOMINION ENERGY SOUTH CAROLINA, INC.         South Carolina Utility Energy Users Committee    2024-34-E             Direct          SC       Return on Equity; Capital Structure                         6/5/2024
+
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-21490              Direct             MI       Proposed Trackers; Return on Equity; Capital Structure;     4/22/2024
+                                                            Equity                                                                   Home Products Program Sale
+
+
+Direct Testimony of                                                                                   Docket No. 24-035-04
+Billie S. LaConte                                                                                Utah Large Customer Group
+                                                       Page 22                                        APPENDIX B
+                                 Testimony Filed in Regulatory Proceedings
+                                         by Billie S. LaConte
+
+                                                                                                 REGULATORY
+                       UTILITY                        ON BEHALF OF             DOCKET         TYPE       JURISDICTION                SUBJECT                   DATE
+  MINNESOTA POWER                               Large Power Intervenors                    E-015/GR-23-155         Direct         MN       Return on Equity; Capital Structure; Adjustment Clauses;     3/18/2024
+                                                                                                                                                                            Incentive Compensation; Prepaid Pension Asset
+
+
+   PENNSYLVANIA-AMERICAN WATER COMPANY       Pennsylvania-American Large Water Users    R-2023-3043189       Surrebuttal         PA       Class Cost-of-Service Study; Allocation of Subsidy;          3/4/2024
+                                                  Group                                   R-2023-3043190                                      Environmental Compliance Investment Charge; Revenue
+                                                                                                                                                        Decoupling and Return on Equity; Industrial Rate Design;
+                                                                                                                                                                        Deferral Mechanism; Arrearage Management Plan Cost
+                                                                                                                                                                               Allocation
+
+   PENNSYLVANIA-AMERICAN WATER COMPANY       Pennsylvania-American Large Water Users    R-2023-3043189        Rebuttal          PA        Cost-of-Service Study; Revenue Allocation; Rate Design;    2/21/2024
+                                                  Group                                   R-2023-3043190                                       Riders DIS and DRS; Revenue Decoupling Mechanism
+
+
+   PENNSYLVANIA-AMERICAN WATER COMPANY       Pennsylvania-American Large Water Users    R-2023-3043189          Direct           PA       Return on Equity; Incentive Compensation; Alternative        2/1/2024
+                                                  Group                                   R-2023-3043190                                   Ratemaking Mechanisms; Class Cost-of-Service Study;
+                                                                                                                                             Wastewater Subsidy and Allocation; Rate Design;
+                                                                                                                                  Reveue Requirement Scale-Back
+
+  ENTERGY ARKANSAS, LLC                         Arkansas Electric Energy Consumers, Inc.        16-036-FR      Settlement Support      AR       Support of Settlement                                   10/31/2023
+
+
+  ENTERGY ARKANSAS, LLC                         Arkansas Electric Energy Consumers, Inc.        16-036-FR             Direct          AR       Projected Year FLIP Investment; Solar Plant Capital         10/4/2023
+                                                                                                                                                                             Additions; Power Through Program; Legal Fees
+
+  DUKE ENERGY CAROLINAS, LLC                      Carolina Utility Customers Assocation, Inc.       E-7, Sub 1276           Direct          NC       Return on Equity; Capital Structure; Performance           7/19/2023
+                                                                                                                                                                            Incentive Mechanisms
+
+   PHILADELPHIA GAS WORKS                           Philadelphia Industrial and Commercial Gas     2023-3037933        Surrebuttal         PA       Class Cost-of-Service Study; Class Revenue Allocation;      7/7/2023
+                                                     Users Group PICGUG                                                                                  Universal Service Plan Costs
+
+   PHILADELPHIA GAS WORKS                           Philadelphia Industrial and Commercial Gas     2023-3037933         Rebuttal          PA       Class Cost-of-Service Study; Class Revenue Allocation;     6/26/2023
+                                                     Users Group PICGUG                                                                                  Universal Service Plan Costs
+
+   PHILADELPHIA GAS WORKS                           Philadelphia Industrial and Commercial Gas     2023-3037933           Direct           PA       Class Cost-of-Service Study; Class Revenue Allocation      6/2/2023
+                                                     Users Group PICGUG
+
+  SOUTHWESTERN PUBLIC SERVICE COMPANY      Texas Industrial Energy Consumers            22-00286-UT     Settlement Support     NM       Support of Settlement                                   5/26/2023
+
+
+   PHILADELPHIA WATER DEPARTMENT                 Philadelphia Large Users Group              2023 General          Rebuttal          Philadelphia   Class Cost-of-Service Study; Stormwater Incentive          4/27/2023
+                                                                                             Rate Proceeding                       Rate Board   Program; Late Payment Fee Allocation; TAP Enrollment;
+                                                                                                                                                                   Retroactive Arrearage Forgiveness
+
+  SOUTHWESTERN PUBLIC SERVICE COMPANY      Texas Industrial Energy Consumers            22-00286-UT            Direct         NM       Future Test Year; Revenue Requirement Issues            4/21/2023
+
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-21308              Direct             MI        Projected Test-Year Adjustments; Proposed Trackers;       4/17/2023
+                                                            Equity                                                                                           Return on Equity; Capital Structure
+
+   PHILADELPHIA WATER DEPARTMENT                 Philadelphia Large Users Group              2023 General            Direct           Philadelphia   Class Cost-of-Service Study                              4/12/2023
+                                                                                             Rate Proceeding                       Rate Board
+
+  DUKE ENERGY PROGRESS, LLC                   Nucor Steel - South Carolina                   2022-254-E          Surrebuttal        SC       Regulatory Asset Amortization Periods                    12/22/2022
+
+
+  NORTHERN STATES POWER                         Xcel Large Industrials                      E002/GR-21-630       Surrebuttal       MN       Return on Equity; Prepaid Pension Asset; Incentive          12/6/2022
+                                                                                                                                                   Compensation; Coal Plant Amortization
+
+Direct Testimony of                                                                                   Docket No. 24-035-04
+Billie S. LaConte                                                                                Utah Large Customer Group
+                                                       Page 23                                        APPENDIX B
+                                 Testimony Filed in Regulatory Proceedings
+                                         by Billie S. LaConte
+
+                                                                                                 REGULATORY
+                       UTILITY                        ON BEHALF OF             DOCKET         TYPE       JURISDICTION                SUBJECT                   DATE
+  DUKE ENERGY PROGRESS, LLC                   Nucor Steel - South Carolina                   2022-254-E             Direct          SC       Coal Combustion Residual Amortization; Other             12/1/2022
+                                                                                                                                                             Regulatory Asset Amortization
+
+  NORTHERN STATES POWER                         Xcel Large Industrials                      E002/GR-21-630        Rebuttal        MN        Incentive Compensation; Prepaid Pension Asset            11/8/2022
+
+
+  ENTERGY ARKANSAS, LLC                         Arkansas Electric Energy Consumers, Inc.        16-036-FR      Settlement Support      AR       Support of Settlement                                   11/2/2022
+
+
+  GEORGIA POWER COMPANY                        Georgia Association of Manufacturers             44280               Direct          GA       Return on Equity; Capital Structure                       10/20/2022
+
+
+  ENTERGY ARKANSAS, LLC                         Arkansas Electric Energy Consumers, Inc.        16-036-FR             Direct          AR       Projected Year Feeder Level Investment Plan; Power       10/5/2022
+                                                                                                                                                Through Program
+
+  NORTHERN STATES POWER                         Xcel Large Industrials                      E002/GR-21-630          Direct         MN       Return on Equity; Incentive Compensation; Pre-Paid         10/3/2022
+                                                                                                                                                  Pension Asset
+
+   PENNSYLVANIA-AMERICAN WATER COMPANY       Pennsylvania-American Large Water Users        R-2022-           Rejoinder         PA       Class Cost-of-Service Study                               9/6/2022
+                                                  Group                                     3031672/73
+
+   PENNSYLVANIA-AMERICAN WATER COMPANY       Pennsylvania-American Large Water Users        R-2022-            Surrebuttal         PA       Wastewater Subsidy Allocation; Revenue Stabilization       9/1/2022
+                                                  Group                                     3031672/73                                     Mechanism; Customer Reclassification
+
+  ONCOR ELECTRIC DELIVERY COMPANY LLC        Texas Industrial Energy Consumers               53601               Direct           TX        Self-Insurance Reserve; Annual Storm Expense;            8/26/2022
+                                                                                                                                                             Regulatory Asset Amortization
+
+   PENNSYLVANIA-AMERICAN WATER COMPANY       Pennsylvania-American Large Water Users        R-2022-            Rebuttal          PA      Revenue Requirement Allocation; Class Cost-of-Service     8/19/2022
+                                                  Group                                     3031672/73                                       Study
+
+  PECO ENERGY COMPANY                              Philadelphia Area Industrial Energy Users      R-2022-3031113       Surrebuttal         PA       Design Day Demand; Rate Differentials                     8/4/2022
+                                                  Group
+
+   PENNSYLVANIA-AMERICAN WATER COMPANY       Pennsylvania-American Large Water Users        R-2022-              Direct           PA       Wasterwater Subsidy and Allocation; Revenue             7/29/2022
+                                                  Group                                     3031672/73                                                 Stabilization Mechanism; Customer Classification;
+                                                                                                                                    Revenue Requirement Scale Back
+  PECO ENERGY COMPANY                              Philadelphia Area Industrial Energy Users      R-2022-3031113        Rebuttal          PA       Class Cost-of-Service Study; Scale Back of Rates;          7/21/2022
+                                                  Group                                                                                       Design Day Demand; Rate Differentials; Universal
+                                                                                                                                                             Service Programs
+  PECO ENERGY COMPANY                              Philadelphia Area Industrial Energy Users      R-2022-3031113          Direct           PA       Class Cost-of-Service Study; Class Revenue Allocation      6/22/2022
+                                                  Group
+
+   AUSTIN ENERGY                                 Texas Industrial Energy Consumers              None                Direct           TX      Cash Flow Method; Financial Metrics; General Fund         6/22/2022
+                                                                                                                                                                          Transfer; Internally Generated Funds
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-21148            Rebuttal            MI        Uncollectible Expense; Rate Stability Target                4/29/2022
+                                                            Equity
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-21148              Direct             MI       Return on Equity, Capital Structure; Renewable Natural       4/8/2022
+                                                            Equity                                                                          Gas Plant; Incentive Compensation; Transportation
+                                                                                                                        Demand Charge; Gas Curtailment and Requirements for
+                                                                                                                                                                      Plant Protection; Unauthorized Gas Usage Charge
+
+
+  SEMCO ENERGY GAS COMPANY                      Association of Businesses Advocating Tariff       U-21169              Direct             MI         Facilities Improvement Demand Surcharge                 3/18/2022
+                                                            Equity
+
+  ENTERGY ARKANSAS, LLC                         Arkansas Electric Energy Consumers, Inc.        16-036-FR      Settlement Support      AR       Support of Settlement                                   10/27/2021
+
+
+Direct Testimony of                                                                                   Docket No. 24-035-04
+Billie S. LaConte                                                                                Utah Large Customer Group
+                                                       Page 24                                        APPENDIX B
+                                 Testimony Filed in Regulatory Proceedings
+                                         by Billie S. LaConte
+
+                                                                                                 REGULATORY
+                       UTILITY                        ON BEHALF OF             DOCKET         TYPE       JURISDICTION                SUBJECT                   DATE
+   EL PASO ELECTRIC COMPANY                    Freeport-McMoRan Copper & Gold, Inc.           52195               Direct           TX       Return on Equity; Nuclear Non-Fuel Operation and         10/22/2021
+                                                                                                                                                        Maintenance; Rate Case Expense; Retiring Generating
+                                                                                                                                                                       Units
+
+  ENTERGY ARKANSAS, LLC                         Arkansas Electric Energy Consumers, Inc.        16-036-FR             Direct          AR       Projected Year Capital Additions; Projected Year O&M      10/5/2021
+                                                                                                                                            expense
+
+  PECO ENERGY COMPANY                              Philadelphia Area Industrial Energy Users      R-2021-3024601       Surrebuttal         PA       Return on Equity; Post-Test Year Adjustment                8/5/2021
+                                                  Group
+
+  CENTERPOINT ENERGY ARKANSAS GAS            Arkansas Gas Consumers, Inc.                  21-044-U              Direct          AR       Formula Rate Plan Extension; Return on Equity; Class       7/19/2021
+                                                                                                                                                                   Cost-of-Service Study
+
+  PECO ENERGY COMPANY                              Philadelphia Area Industrial Energy Users      R-2021-3024601          Direct           PA       Return on Equity; Post-Test Year Adjustment               6/28/2021
+                                                  Group
+
+   FLORIDA LIGHT & POWER COMPANY                  Florida Inudstrial Power Users Group            20210015-EI            Direct            FL       Cost of Capital; Early Plant Retirement; Rate Case          6/21/2021
+                                                                                                                                        Expense Amortization; Income Tax Change Mechanism
+  DTE GAS COMPANY                                   Association of Businesses Advocating Tariff       U-20940              Direct             MI       Return on Equity; Operation and Maintenance Expenses;     6/3/2021
+                                                            Equity                                                                                                       Incentive Compensation
+  SOUTHWESTERN PUBLIC SERVICE COMPANY       Occidental Permian Ltd.                      20-00238-UT            Direct         NM      Rate Design, Retired Plant, Expense Amortization          5/17/2021
+
+
+   PHILADELPHIA WATER DEPARTMENT                 Philadelphia Large Users Group                   Fiscal Years          Rebuttal          Philadelphia   Class Cost-of-Service Study; Stormwater Incentive          4/7/2021
+                                                                                               2022-2023                         Rate Board   Program
+
+
+  SOUTHWESTERN ELECTRIC POWER COMPANY     Texas Industrial Energy Consumers               51415               Direct           TX        Early Plant Retirement; Excess Accumulated Deferred       3/31/2021
+                                                                                                                                                           Federal Income Taxes; Self-Insurance Reserve; Imputed
+                                                                                                                                                            Capacity
+
+  SHARYLAND UTILITIES, L.L.C.                      Texas Industrial Energy Consumers               51611               Direct           TX       Rate-Case Expenses; Operation and Maintenance           3/8/2021
+                                                                                                                                                 Expense; Transmission Cost of Service Refund Rider
+
+  PECO ENERGY COMPANY                              Philadelphia Area Industrial Energy Users       2020-3018929        Surrebuttal         PA      Revenue Allocation; Rate Design                          2/9/2021
+                                                  Group
+
+  PECO ENERGY COMPANY                              Philadelphia Area Industrial Energy Users       2020-3018929         Rebuttal          PA        Allocation of Distribution Mains; Revenue Allocation; Rate    1/19/2021
+                                                  Group                                                                                              Design; Universal Service Fund Charge
+
+  PECO ENERGY COMPANY                              Philadelphia Area Industrial Energy Users       2020-3018929           Direct           PA       Class Cost-of-Service Study; Class Revenue Allocation     12/22/2020
+                                                  Group
+
+  ENTERGY ARKANSAS, LLC                         Arkansas Electric Energy Consumers, Inc.        16-036-FR          Surrebuttal        AR     FRP Extension; Return on Equity; Capital Structure; Class   11/17/2020
+                                                                                                    (FRP Extension)                     Cost-of-Service Study; Industrial Rate Design
+
+   PENNSYLVANIA-AMERICAN WATER COMPANY       Pennsylvania-American Large Water Users     2020-3019369        Surrebuttal         PA       Rate Design; Regionalization and Consolidation            10/20/2020
+                                                  Group                                    2020-3019371                                        Surcharge; Return on Equity
+
+  ENTERGY ARKANSAS, LLC                         Arkansas Electric Energy Consumers, Inc.        16-036-FR             Direct          AR     FRP Extension; Return on Equity; Capital Structure; Class   10/19/2020
+                                                                                                    (FRP Extension)                     Cost-of-Service Study; Industrial Rate Design
+
+  ENTERGY ARKANSAS, LLC                         Arkansas Electric Energy Consumers, Inc.        16-036-FR             Direct          AR        Historical Year Netting Adjustment; :Long-Term Debt        10/5/2020
+                                                                                                                 (2020 Eval. Report)                 Costs
+
+   PENNSYLVANIA-AMERICAN WATER COMPANY       Pennsylvania-American Large Water Users     2020-3019369         Rebuttal          PA       Rate Design                                            9/29/2020
+                                                  Group                                    2020-3019371
+
+   PENNSYLVANIA-AMERICAN WATER COMPANY       Pennsylvania-American Large Water Users     2020-3019369           Direct           PA        Regionalization and Consolidation Surcharges;              9/8/2020
+                                                  Group                                    2020-3019371                                    Commercial Rate Design
+
+Direct Testimony of                                                                                   Docket No. 24-035-04
+Billie S. LaConte                                                                                Utah Large Customer Group
+                                                       Page 25                                        APPENDIX B
+                                 Testimony Filed in Regulatory Proceedings
+                                         by Billie S. LaConte
+
+                                                                                                 REGULATORY
+                       UTILITY                        ON BEHALF OF             DOCKET         TYPE       JURISDICTION                SUBJECT                   DATE
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-20697            Rebuttal            MI        Financial Compensation Mechanism; Deferred Capital       7/14/2020
+                                                            Equity                                                                                      Spending Recovery Mechanism; Karn 1 & 2 Retention
+                                                                                                                                        and Separation costs, return on equity, storm restoration
+                                                                                                                                                                                         deferral; PowerMIFleet Pilot Foundational Infrastructure
+                                                                                                                                                   Program; Conservation Voltage Reduction
+  CENTERPOINT ENERGY RESOURCES CORP         Arkansas Gas Consumers, Inc.                 17-010-FR             Direct          AR       Projected Year Capital Expenditures; Capitalization          7/2/2020
+                                                                                                                                                                                     Policy; Projected Year Adjustments
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-20697              Direct             MI       Return on Equity; Capital Structure; Debt Cost; Additional    6/24/2020
+                                                            Equity                                                                                         Surcharges and Deferred Regulatory Accounts
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-20650            Rebuttal            MI       Return on Equity; Statistical Analysis of Distribution Mains    5/5/2020
+                                                            Equity                                                                                                        Allocation
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-20650              Direct             MI       Return on Equity; Capital Structure; Long-Term Debt Cost    4/14/2020
+                                                            Equity
+
+  DTE GAS COMPANY                                   Association of Businesses Advocating Tariff       U-20642            Rebuttal            MI       Return on Equity                                        4/14/2020
+                                                            Equity
+
+  DTE GAS COMPANY                                   Association of Businesses Advocating Tariff       U-20642              Direct             MI       Return on Equity; Operation and Maintenance Expenses     3/24/2020
+                                                            Equity
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-20618              Direct             MI         Certificate of Convenience and Necessity                  1/17/2020
+                                                            Equity
+
+  ENTERGY ARKANSAS, LLC                         Arkansas Electric Energy Consumers, Inc.        16-036-FR      Settlement Support      AR       Support of Settlement                                   10/30/2019
+
+
+  GEORGIA POWER COMPANY                        Georgia Association of Manufacturers and         42516               Direct          GA        Alternate Rate Plan; Coal Combustion Residual Cost       10/17/2019
+                                                       Georgia Industrial Group                                                                          Recovery; Amortization of Retired Plant
+
+  ENTERGY ARKANSAS, LLC                         Arkansas Electric Energy Consumers, Inc.        16-036-FR             Direct          AR      Tax Cuts and Jobs Act Impact; Projected Year Revenues;   10/4/2019
+                                                                                                                                                                 Projected Year BRORB; Grid Modernization; Advanced
+                                                                                                                                                            Metering Infrastructure Expense
+
+  SOUTHWESTERN ELECTRIC POWER COMPANY     Western Arkansas Large Energy Consumers      19-008-U           Surrebuttal        AR     SWEPCO's Formula Rate Review; Energy Cost            9/24/2019
+                                                                                                                                             Recovery Rider; Distribution Reliability Rider
+
+  CENTERPOINT ENERGY RESOURCES CORP         Arkansas Gas Consumers, Inc.                 17-010-FR      Settlement Support      AR       Support of Settlement                                   7/31/2019
+
+
+  SOUTHWESTERN ELECTRIC POWER COMPANY     Western Arkansas Large Energy Consumers      19-008-U              Direct          AR     SWEPCO's Formula Rate Review; Capital Structure;        7/16/2019
+                                                                                                                                                                                       Distribution Reliability Rider; Arkansas Formula Rate
+                                                                                                                                                       Plans
+
+  CENTERPOINT ENERGY RESOURCES CORP         Arkansas Gas Consumers, Inc.                 17-010-FR             Direct          AR       Formula Rate Plan, Capital Additions, Operation and         7/2/2019
+                                                                                                                                                  Maintenance Expenses
+
+  ENTERGY LOUISIANA, LLC                             Occidential Chemical Corporation               U-35130       Cross-Answering        LA       Fuel Tracking Mechanism                                 7/1/2019
+
+
+  CENTERPOINT ENERGY HOUSTON ELECTRIC, LLC   Texas Industrial Energy Consumers               49421               Direct           TX       Unprotected Excess Deferred Income Tax Rider;            6/6/2019
+                                                                                                                                                                            Incentive Compensation
+
+  ENTERGY LOUISIANA, LLC                             Occidential Chemical Corporation               U-35130              Direct            LA       Fuel Tracking Mechanism                                5/10/2019
+
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-20322            Rebuttal            MI       Return on Equity                                        4/29/2019
+                                                            Equity
+  CENTERPOINT ENERGY RESOURCES CORP         Arkansas Gas Consumers, Inc.                   18-057         Supplemental        AR      Gas Distribution Uprstream Services Contracting Process    4/23/2019
+                                                                                                                                        Surrebuttal
+Direct Testimony of                                                                                   Docket No. 24-035-04
+Billie S. LaConte                                                                                Utah Large Customer Group
+                                                       Page 26                                        APPENDIX B
+                                 Testimony Filed in Regulatory Proceedings
+                                         by Billie S. LaConte
+
+                                                                                                 REGULATORY
+                       UTILITY                        ON BEHALF OF             DOCKET         TYPE       JURISDICTION                SUBJECT                   DATE
+  CENTERPOINT ENERGY RESOURCES CORP         Arkansas Gas Consumers, Inc.                   18-057            Surrebuttal        AR      Gas Distribution Uprstream Services Contracting Process    4/12/2019
+
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-20322              Direct             MI       Return on Equity; Capital Structure; Project vs. Historical     4/5/2019
+                                                            Equity                                                                                             Test Year; Earnings Sharing Mechanism
+
+  DUKE ENERGY PROGRESS, LLC                   Nucor Steel - South Carolina                   2018-318-E             Direct          SC      Excess Deferred Income Tax Rider; Post-Test Year          3/4/2019
+                                                                                                                                                              Adjustments; Coal Ash Pond Closure Expense; End-of-
+                                                                                                                                                                                          Life Nuclear Costs; Regulatory Assets; Return on Equity
+                                                                                                                                        and Equity Ratio
+
+  CENTERPOINT ENERGY RESOURCES CORP         Arkansas Gas Consumers, Inc.                   18-057               Direct          AR      Gas Distribution Uprstream Services Contracting Process    2/12/2019
+
+
+  ENTERGY ARKANSAS, INC.                         Arkansas Electric Energy Consumers, Inc.        16-036-FR      Settlement Support      AR       Support of Settlement                                   10/30/2018
+
+
+  ENTERGY ARKANSAS, INC.                         Arkansas Electric Energy Consumers, Inc.        16-036-FR             Direct          AR       Formula Rate Plan Tariff; Long-Term Debt Cost and         10/4/2018
+                                                                                                                                                                  Preferred Equity; Projeced Year Capital Additions;
+                                                                                                                                                                                        Historical Year Capital Additions
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-20134            Rebuttal            MI       Return on Equity                                        10/1/2018
+                                                            Equity
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-20134              Direct             MI       Return on Equity, Capital Structure and Long-Term Debt     9/10/2018
+                                                            Equity                                                                                                Cost, Investment Recovery Mechanism Excess Sharing
+                                                                                                                                      Mechanism
+
+  CENTERPOINT ENERGY RESOURCES CORP         Arkansas Gas Consumers, Inc.                 17-010-FR          Opposition        AR       Opposition to Settlement Agreement                        8/3/2018
+
+
+  CENTERPOINT ENERGY RESOURCES CORP         Arkansas Gas Consumers, Inc.                 17-010-FR             Direct          AR       Impact of Tax Cuts and Jobs Act of 2017; Forecast          7/2/2018
+                                                                                                                                              Revenues; Uncollectible Expense; Pipeline Integrity
+                                                                                                                                          Assessment and Remediation Expense
+  ENTERGY ARKANSAS, INC.                         Arkansas Electric Energy Consumers, Inc.          17-052            Surrebuttal        AR          Utility Restructuring Costs and Tax Effects                 5/31/2018
+
+
+   PUBLIC SERVICE COMPANY OF NEW MEXICO         City of Farmington, New Mexico;                 17-00174              Direct         NM        Integrated Resource Plan; Future of San Juan Generation    5/4/2018
+                                                   Board of County Commissioners for San Juan                                                              Station
+                                                     County
+  ENTERGY ARKANSAS, INC. and CENTERPOINT       Arkansas Electric Energy Consumers, Inc. and      18-006               Direct          AR        Effect on Revenue Requirement due to 2017 Tax Cuts      3/29/2018
+  ENERGY ARKANSAS GAS                          Arkansas Gas Consumers, Inc.                                                              and Jobs Act
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U18424             Rebuttal            MI       Rate of Return                                          3/21/2018
+                                                            Equity
+
+  ENTERGY ARKANSAS, INC.                         Arkansas Electric Energy Consumers, Inc.        18-014-TF             Direct          AR       Impact of Tax Cuts and Jobs Act of 2017 and Tax           3/19/2018
+                                                                                                                                                        Adjustment Rider
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-18424              Direct             MI       Rate of Return, Capital Structure                         2/28/2018
+                                                            Equity
+
+  CENTERPOINT ENERGY ARKANSAS GAS            Arkansas Gas Consumers, Inc.                  17-050-U           Surrebuttal        AR       Asset Management Agreement Proposal                   1/12/2018
+
+
+  CENTERPOINT ENERGY ARKANSAS GAS            Arkansas Gas Consumers, Inc.                  17-050-U              Direct          AR       Asset Management Agreement Proposal                   12/8/2017
+
+
+  ENTERGY ARKANSAS, INC.                         Arkansas Electric Energy Consumers, Inc.        16-036-FR      Settlement Support      AR       Support of Settlement                                   10/31/2017
+
+
+Direct Testimony of                                                                                   Docket No. 24-035-04
+Billie S. LaConte                                                                                Utah Large Customer Group
+                                                       Page 27                                        APPENDIX B
+                                 Testimony Filed in Regulatory Proceedings
+                                         by Billie S. LaConte
+
+                                                                                                 REGULATORY
+                       UTILITY                        ON BEHALF OF             DOCKET         TYPE       JURISDICTION                SUBJECT                   DATE
+  ENTERGY ARKANSAS, INC.                         Arkansas Electric Energy Consumers, Inc.        16-036-FR             Direct          AR       Forecast Revenues, Cost of Debt, Revenue Requirement    10/4/2017
+                                                                                                                                        and Capital Additions
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-18322            Rebuttal            MI       Return on Equity                                         9/7/2017
+                                                            Equity
+
+  CONSUMERS ENERGY COMPANY                     Association of Businesses Advocating Tariff       U-18322              Direct             MI       Return on Equity, Capital Structure                        8/10/2017
+                                                            Equity
+
+  CENTERPOINT ENERGY RESOURCES CORP         Arkansas Gas Consumers, Inc.                 17-010-FR      Settlement Support      AR       Support of Settlement                                   7/31/2017
+
+
+  CENTERPOINT ENERGY RESOURCES CORP         Arkansas Gas Consumers, Inc.                 17-010-FR             Direct          AR       Rate of Return, Capital Structure, Labor Expense            7/3/2017
+
+
+  ENTERGY ARKANSAS, INC.                         Arkansas Electric Energy Consumers, Inc.        16-036-FR      Settlement Support      AR       Support of Settlement                                   10/24/2016
+
+
+  ENTERGY ARKANSAS, INC.                         Arkansas Electric Energy Consumers, Inc.        16-036-FR             Direct          AR       Rate of Return, Forecast Revenue, Capitalization           9/30/2016
+
+
+  METROPOLITAN EDISON COMPANY;              MEIUG, PICA and WPPII                    2016-2537349,        Surrebuttal         PA       Return on Equity                                        8/31/2016
+   PENNSYLVANIA ELECTRIC COMPANY AND WEST                                              2016-2537352,
+  PENN POWER                                                                            2016-2537359
+  METROPOLITAN EDISON COMPANY;              MEIUG, PICA and WPPII                    2016-2537349,           Direct           PA       Return on Equity                                        7/22/2016
+   PENNSYLVANIA ELECTRIC COMPANY AND WEST                                              2016-2537352,
+  PENN POWER                                                                            2016-2537359
+  NORTHERN STATES POWER                         Xcel Large Industrials                           15-826               Direct         MN       Return on Equity, Multi-Year Rate Plan                    6/14/2016
+
+
+  CENTERPOINT ENERGY RESOURCES CORP         Arkansas Electric Energy Consumers, Inc.         15-098-U           Surrebuttal        AR       Return on Equity, Formula Rate Plan, Capital Structure       6/7/2016
+
+
+  CENTERPOINT ENERGY RESOURCES CORP         Arkansas Electric Energy Consumers, Inc.         15-098-U              Direct          AR       Return on Equity, Captial Structure                        4/14/2016
+
+
+   MISSOURI-AMERICAN WATER COMPANY          BJC Healthcare                          WR-2011-0337         Rebuttal        MO       Return on Equity                                        1/19/2012
+
+
+   MISSOURI-AMERICAN WATER COMPANY          BJC Healthcare                          WR-2011-0337           Direct         MO       Return on Equity                                       11/17/2011
+
+
+  METROPOLITAN ST. LOUIS SEWER DISTRICT        Barnes-Jewish Hospital                         N/A           Supplemental      MO      Rate Model                                             9/16/2011
+
+
+  METROPOLITAN ST. LOUIS SEWER DISTRICT        Barnes-Jewish Hospital                         N/A              Surrebuttal       MO      Rate Increase, CIRP, Consent Decree                     8/19/2011
+
+
+  METROPOLITAN ST. LOUIS SEWER DISTRICT        Barnes-Jewish Hospital                         N/A               Rebuttal        MO      Rate Increase, CIRP, Consent Decree                     7/18/2011
+
+
+  AMEREN UE                                           Missouri Energy Group                      ER-2011-0028        Surrebuttal       MO       Return on Equity, Energy Efficiency Cost Recovery          4/15/2011
+
+
+  AMEREN UE                                           Missouri Energy Group                      ER-2011-0028         Rebuttal        MO       Return on Equity, Energy Efficiency Cost Recovery          3/25/2011
+
+
+  AMEREN UE                                           Missouri Energy Group                      ER-2011-0028           Direct         MO       Return on Equity                                         2/8/2011
+
+
+  AMEREN UE                                           Missouri Energy Group                      EO-2010-0255           Direct         MO      Prudence Audit of FAC Periods 1 and 2                   11/22/2010
+
+
+  ENTERGY ARKANSAS, INC.                         Arkansas Electric Energy Consumers, Inc.         09-084-U        Direct - In Support      AR       Supporting the Proposed Settlement Agreement            5/11/2010
+
+Direct Testimony of                                                                                   Docket No. 24-035-04
+Billie S. LaConte                                                                                Utah Large Customer Group
+                                                       Page 28                                        APPENDIX B
+                                 Testimony Filed in Regulatory Proceedings
+                                         by Billie S. LaConte
+
+                                                                                                 REGULATORY
+                       UTILITY                        ON BEHALF OF             DOCKET         TYPE       JURISDICTION                SUBJECT                   DATE
+  ENTERGY ARKANSAS, INC.                         Arkansas Electric Energy Consumers, Inc.         09-084-U           Surrebuttal        AR       Return on Equity                                        4/14/2010
+
+
+  ENTERGY ARKANSAS, INC.                         Arkansas Electric Energy Consumers, Inc.         09-084-U              Direct          AR       Return on Equity                                        2/26/2010
+
+
+  AMEREN UE                                           Missouri Energy Group                      ER-2010-0036           Direct         MO      Energy Efficiency Costs                                 12/18/2009
+
+
+  AMEREN UE                                           Missouri Energy Group                      ER-2008-0318        Surrebuttal       MO       Return on Equity                                        11/5/2008
+
+
+  AMEREN UE                                           Missouri Energy Group                      ER-2008-0318           Direct         MO       Return on Equity, Off-System Sales                       8/28/2008
+
+
+  METROPOLITAN ST. LOUIS SEWER DISTRICT         Missouri Energy Group                          N/A               Rebuttal        MO      Long-Term Financial Plan, Capital Financing                5/2/2007
+
+
+  AMEREN UE                                           Missouri Energy Group                      ER-2007-0002        Surrebuttal       MO       Return on Equity, Interruptible Demand, Response Pilot      2/27/2007
+
+
+  AMEREN UE                                           Missouri Energy Group                      ER-2007-0002           Direct         MO        Interruptible Rate                                       12/29/2006
+
+
+  AMEREN UE                                           Missouri Energy Group                      ER-2007-0002           Direct         MO       Return on Equity, Off-System Sales, Sharing Mechanism,   12/15/2006
+                                                                                                                 10% Cap on Residentials
+
+  AMEREN UE                                           Missouri Energy Group                      EA-2005-0180         Rebuttal        MO      Economic Analysis                                      1/31/2005
+
+
+  NOVA SCOTIA POWER INC.                      Avon Valley Greenhouses                 NSUARB-P-881          Direct          NS       Cost of Capital                                         10/12/2004
+
+
+   MISSOURI-AMERICAN WATER COMPANY             Missouri Energy Group                    WR-2003-0500        Surrebuttal       MO      Working Capital, Return on Equity, Cost Allocation          12/5/2003
+
+
+   MISSOURI-AMERICAN WATER COMPANY             Missouri Energy Group                    WR-2003-0500         Rebuttal        MO      Rate Design                                           11/10/2003
+
+
+   MISSOURI-AMERICAN WATER COMPANY             Missouri Energy Group                    WR-2003-0500           Direct         MO       Return on Equity, Acquisition Adjustment, Cash Working     10/3/2003
+                                                                                                                                                                          Capital
+
+  METROPOLITAN ST. LOUIS SEWER DISTRICT         Missouri Energy Group                          N/A                 Direct         MO      Revenue Requirement, Financial Planning                 4/22/2003
+
+
+   INTERSTATE POWER AND LIGHT COMPANY        Lee County Energy Users Group- Direct          RPU-02-3           Surrebuttal             IA      Revenue Requirement, Return on Equity                   9/19/2002
+
+
+  METROPOLITAN ST. LOUIS SEWER DISTRICT         Missouri Energy Group                          N/A              Surrebuttal       MO      Revenue Requirement, Capital Financing                  8/13/2002
+
+
+  METROPOLITAN ST. LOUIS SEWER DISTRICT         Missouri Energy Group                          N/A              Surrebuttal       MO      Revenue Requirement, Captial Financiaing, Cost           7/28/2002
+                                                                                                                                                                               Allocation
+
+   INTERSTATE POWER AND LIGHT COMPANY        Lee County Energy Users Group- Direct          RPU-02-3             Direct                IA      Revenue Requirement, Return on Equity                   7/26/2002
+
+
+  METROPOLITAN ST. LOUIS SEWER DISTRICT         Missouri Energy Group                          N/A               Rebuttal        MO      Revenue Requirement, Capital Financing                  7/10/2002
+
+
+    * Testimony adopted from Jonathan Ly.
+
+
+
+Direct Testimony of                                                                                   Docket No. 24-035-04
+Billie S. LaConte                                                                                Utah Large Customer Group
+                                                       Page 29                                                                         Exhibit BSL-124-035-04 / Rocky Mountain Power
+                                                            Page 1 of 6August 6, 2024
+DPU Data Request 5.1
+
+DPU Data Request 5.1
+
+       Wildfire Interrogatories - Wildfire Losses-2023 Estimated Losses – Provide
+       the information requested below concerning the following information stated on
+       PacifiCorp’s FERC Form 1 for the 12 months ending December 31, 2023 (pg.
+        62):
+
+      Estimated Losses for and Settlements Associated with the Wildfires - Based
+      on the facts and circumstances available to PacifiCorp through February 23, 2024,
+       the date through which PacifiCorp has evaluated the impacts of events occurring
+        after December 31, 2023 as indicated under "Subsequent Events", including (i)
+      ongoing cause and origin investigations; (ii) ongoing settlement and mediation
+       discussions; (iii) other litigation matters and upcoming legal proceedings; and (iv)
+       the status of the James case, PacifiCorp increased its accrual by $1,930 million
+       during the year ended December 31, 2023, bringing its cumulative estimated
+       probable losses associated with the Wildfires to $2,407 million through December
+       31, 2023. PacifiCorp's cumulative accrual includes estimates of probable losses
+        for fire suppression costs, real and personal property damages, natural resource
+      damages and noneconomic damages such as personal injury damages and loss of
+         life damages that it is reasonably able to estimate at this time and which is subject
+        to change as additional relevant information becomes available. Any information
+       associated with the Wildfires arising subsequent to February 23, 2024 will be
+       considered in a future period.
+
+      Through December 31, 2023, PacifiCorp paid $684 million in settlements
+       associated with the 2020 Wildfires, including $299 million to 463 claimants and
+      $250 million to 10 companies with commercial timber interests associated with
+       the Archie Creek, French Creek, Susan Creek and Smith Springs Road fires
+        (collectively, the "Archie Creek Complex Fire") in Douglas County, Oregon. The
+       Archie Creek Complex Fire settlements resolve substantially all claims filed by
+       individual plaintiffs and all claims filed by commercial timber plaintiffs
+       associated with the Archie Creek Complex Fire, but do not address related
+      damages claimed by the U.S. or Oregon Departments of Justice. In January 2024
+       through February 23, 2024, PacifiCorp entered into additional settlements
+       associated with the 2020 Wildfires totaling $51 million with 167 plaintiffs.
+
+        (a) Wildfire Losses-2023 Estimated Losses – Provide a breakdown of the
+           estimated $1.93 billion increase in the accrual for probable Wildfire losses.
+           Please include all relevant details concerning the estimated losses, including
+          amount,* expected insurance recoveries, accounts charged, location, dates of
+            loss (past or future), and types of losses (e.g., fire suppression costs, real and
+           personal property damages, natural resource damages and noneconomic
+         damages such as personal injury damages and loss of life damages). Provide
+           the amount(s) allocated to Utah. Indicate the allocation factor(s) applied.                                                                         Exhibit BSL-124-035-04 / Rocky Mountain Power                                                            Page 2 of 6August 6, 2024
+DPU Data Request 5.1
+
+        (b) Wildfire Losses-Actual Losses Recorded During 2023 – The amounts
+          PacifiCorp paid through December 31, 2023, above are stated as $684 million
+            in settlements associated with the 2020 Wildfires.
+
+               (i)   Provide the amounts and accounts charged for the above 2020 Wildfire
+                 costs that were incurred during calendar year 2023. Provide the
+               amount(s) allocated to Utah. Indicate the allocation factor(s) applied.
+
+               (ii)  Did PacifiCorp incur any costs in calendar year 2023 that were related to
+                 wildfires that occurred other than for the 2020 wildfires? Please include
+                    all relevant details concerning the other 2023 losses, including amount,*
+               expected insurance recoveries, accounts charged, location, dates of loss
+                 (past or future), and types of losses (e.g., fire suppression costs, real and
+                personal property damages, natural resource damages and noneconomic
+              damages such as personal injury damages and loss of life damages).
+               Provide the amount(s) allocated to Utah. Indicate the allocation factor(s)
+                 applied.
+
+               (iii)  Wildfire Losses-Actual Losses Recorded in 2023 (Utah) – How much
+                of the 2020 wildfire losses incurred through December 31, 2023 in i and
+                         ii above are associated with fires and damages that occurred in Utah?
+                Please include all relevant details concerning the Utah related losses,
+                including amount,* accounts charged, location, dates of loss, and types
+                of losses (e.g., fire suppression costs, real and personal property
+              damages, natural resource damages and noneconomic damages such as
+                personal injury damages and loss of life damages). Provide the
+               amount(s) allocated to Utah. Indicate the allocation factor(s) applied.
+
+             (iv)  Wildfire Losses-Actual Losses Recorded Prior to 2023 – Provide all
+              amounts* paid for Wildfire damages by year prior to 2023 (2018-2022)
+                including locations, dates, and types of costs incurred. Please include all
+                 relevant details concerning the estimated losses, including amount,*
+               expected insurance recoveries, accounts charged, location, dates of loss
+                 (past or future), and types of losses (e.g., fire suppression costs, real and
+                personal property damages, natural resource damages and noneconomic
+              damages such as personal injury damages and loss of life damages).
+               Provide the amount(s) allocated to Utah. Indicate the allocation factor(s)
+                 applied.
+
+            (v)  Wildfire Losses-Actual Losses Recorded Prior to 2023 – Indicate the
+              amounts paid prior to 2023 associated with fires and damages that
+               occurred in Utah.
+
+             (vi)  Wildfire Losses-Actual Insurance Recoveries – Provide the amounts*
+                of insurance recoveries that PacifiCorp received for the above costs by                                                                          Exhibit BSL-124-035-04 / Rocky Mountain Power
+                                                             Page 3 of 6August 6, 2024
+DPU Data Request 5.1
+
+                year (2023-2018). Provide the amount(s) allocated to Utah. Indicate the
+                 allocation factor(s) applied.
+
+        *If amounts are not readily available, you may use estimates in $ millions
+
+Response to DPU Data Request 5.1
+
+    (a) PacifiCorp objects to this request to the extent it seeks legal analysis, opinions,
+       and/or conclusions. PacifiCorp further objects to the data request to the extent it
+       seeks information that is protected by the attorney-client and/or attorney work
+       product privileges as the wildfires associated with the liability accruals are the
+       subject of pending litigation. Subject to and without waiving the foregoing
+        objections, the Company responds as follows:
+
+      The increase in estimated losses, net of expected insurance recoveries, accrued in
+      2023 for the wildfires were recorded in FERC Account 925 (Injuries and
+      Damages). Please refer to the tables below in Note 14 in Notes to the Financial
+       Statements in the 2023 Securities and Exchange Commission (SEC) Form 10-K
+        for the accrued losses and accruals of expected insurance recoveries recognized in
+       2023.
+
+
+
+
+
+       All of the amounts included in these disclosures are associated with the 2020
+       Wildfires in Oregon and Northern California that occurred in September 2020 and
+       with the 2022 McKinney Fire that began in the Oak Knoll Ranger District of the
+      Klamath National Forest in Siskiyou County, California in July 2022.                                                                         Exhibit BSL-124-035-04 / Rocky Mountain Power                                                            Page 4 of 6August 6, 2024
+DPU Data Request 5.1
+
+      For the ratemaking process, the accruals for injuries and damages provisions are
+      removed and replaced with a three-year average of cash paid, including applicable
+        self-retention payments, net of any insurance recoveries. For purposes of the
+       current proceeding, the Company has replaced injury and damages accruals with a
+       three-year average of cash paid in 2021 through 2023.
+
+    (b) Please refer to the Company’s responses to subparts (i) through (vi) below:
+
+          (i)   PacifiCorp objects to this subpart on the basis of the attorney-client privilege
+           and the attorney work product doctrine as the wildfires associated with the
+               liability accruals are the subject of pending litigation. Subject to and without
+           waiving the foregoing objections, the Company responds as follows:
+
+            Please refer to the Company’s response to subpart (a) above for the amounts
+            charged to expense during 2023 for both the additional loss accruals of
+           $1,930 million and the partially offsetting accruals of expected insurance
+             recoveries of $253 million, which net to $1,677 million.
+
+          None of the amounts accrued in 2023 for the 2020 Labor Day Wildfires
+           were allocated to Utah in the current proceeding; please refer to the
+          Company’s response to subpart (a) above. The Company has included a
+            claim payment of $200,000 for the McKinney fire as part of the three-year
+            cash average calculation. However, that amount does not represent a request
+              for recovery of any dollars related to the McKinney fire but rather was used
+              in the average cash paid claims as a way to forecast a level of claims for the
+            Test Period.
+
+          (ii)  PacifiCorp objects to this subpart on the basis of the attorney-client privilege
+           and the attorney work product doctrine. PacifiCorp further objects that the
+             request calls for legal analysis and legal conclusions. Subject to and without
+           waiving the foregoing objections, the Company responds as follows:
+
+            Total injuries and damages provisions, net of estimated insurance
+             recoveries, charged to FERC Account 925 during 2023 were $1,688 million,
+             including the $1,677 million associated with the 2020 Labor Day and 2022
+          McKinney Wildfires referred to in the Company’s response to subpart (b)(i)
+            above. Thus, additional amounts were incurred beyond just the 2020 Labor
+         Day and 2022 McKinney Wildfires for other injuries and damages
+             provisions associated with third-party damages claims[, which are the
+             subject of pending or threatened litigation].
+
+          None of the amounts accrued in 2023 for the 2020 Labor Day or 2022
+          McKinney Wildfires were allocated to Utah in the current proceeding.
+            Please refer to the Company’s response to subpart (a) above for details on
+             the ratemaking process.                                                                         Exhibit BSL-124-035-04 / Rocky Mountain Power                                                            Page 5 of 6August 6, 2024
+DPU Data Request 5.1
+
+
+          (iii) None of the amounts included in the disclosure that is the overall subject of
+               this request or that are presented in the Company’s response to subpart (b)(i)
+           above were associated with fires that occurred in Utah. However, included
+              in the $1,688 million referred to in (b)(ii) is $5.2 million accrual associated
+            with a Utah fire.
+
+            Please refer to the Company’s responses to subparts (a) and (b)(ii) above for
+            information regarding the calculation of injuries and damages expense
+            included in rate cases.
+
+        (iv)  PacifiCorp objects to this request to the extent it seeks legal analysis,
+             opinions, and/or conclusions. PacifiCorp further objects to the data request
+              to the extent it seeks information that is protected by the attorney-client
+            and/or attorney work product privileges as the wildfires associated with the
+               liability accruals are the subject of pending litigation. Subject to and without
+           waiving the foregoing objections, the Company responds as follows:
+
+            Please refer to the Company’s response to subpart (a) above, particularly the
+           “Payments” line of the first table, noting that $684 million of payments were
+          made across 2022 and 2023. No payments associated with the 2020 Labor
+         Day or 2022 McKinney Wildfires were made prior to 2022. Please also refer
+              to subpart (a) for information regarding the calculation of injuries and
+           damages expense included in rate cases.
+
+        (v)  PacifiCorp objects to this request as vague and unclear due to the open-ended
+           time frame. Nonetheless, PacifiCorp responds as follows, covering 2021 and
+          2022 that are the periods prior to 2023 that are relevant to this request and
+           responding specifically to amounts associated with wildfires, which are the
+            subject of this request. Please also refer to the Company’s response to
+            subpart (a) above for further context.
+
+         Amounts paid for wildfires that occurred in Utah in 2022 and 2021 are as
+            follows:
+
+          $19,000 paid in March 2022 and $26,000 paid October 2022.
+
+        (vi)  PacifiCorp objects to this request to the extent it seeks information regarding
+             costs that are outside the scope of this proceeding and not reasonably
+             calculated to lead to the discovery of admissible evidence. Without waiving
+           any objection, the Company responds as follows:
+
+            Please refer to the second table included in the Company’s response to
+             subpart (b)(i) above, specifically the “Payments received” line, noting $31
+             million of insurance recoveries were received in 2022. No insurance24-035-04 / Rocky Mountain Power                                          Exhibit BSL-1
+August 6, 2024                                                  Page 6 of 6
+DPU Data Request 5.1
+
+             recoveries associated with the 2020 Labor Day or 2022 McKinney Wildfires
+           were received prior to 2022.                                                                          Exhibit BSL-224-035-04 / Rocky Mountain Power                                                             Page 1 of 2September 20, 2024
+UAE Data Request 8.1
+
+UAE Data Request 8.1
+
+      Excess Liability Insurance. Please refer to the direct testimony of RMP witness
+      Mariya Coleman, lines 107-109, in which Ms. Coleman states: “BHE’s corporate
+        allocation calculates an average percentage of property, plant, and equipment;
+      employee count; loss history; overhead electric transmission and distribution
+        lines; and transmission and distribution pipeline miles.” Please respond to the
+       following:
+
+        (a) Does BHE use the same corporate allocation for each type of insurance that
+       BHE acquires and allocates to its subsidiaries?  If not, please explain how the
+           allocations differ for different types of insurance.
+
+        (b) Please describe what weight the BHE corporate allocation gives to each
+           allocation factor identified in the referenced testimony.
+
+        (c) For each of the corporate allocation factors listed in the referenced testimony,
+           please provide a spreadsheet showing the use of the factors to allocate
+           insurance premium costs to PacifiCorp for the years 2019 through 2024. In
+          your response, please specify how “loss history” impacted the calculation of
+           the allocation and show in detail how the “loss history” factor was calculated.
+
+Response to UAE Data Request 8.1
+
+        (a) Berkshire Hathaway Energy Company’s (BHE) allocations of the premiums
+           are based on reasonable and objective factors depending on the type of
+          coverage with several of the major types of policies listed below:
+
+          •  Excess Liability excluding wildfire: property/plant/equipment, operating
+              revenue, number of employees, loss history, miles of overhead
+              transmission and distribution lines and miles of transmission and
+                distribution pipeline.
+
+          •  Wildfire Liability: miles of overhead electric transmission and distribution
+                lines and miles of transmission and distribution pipeline. In California,
+               also consider high fire threat district (HFTD) versus non-HFTD.
+
+          •   Property: total insurable values of each company’s plants, substations and
+                offices.
+
+          •  Worker’s Compensation: employee salary and headcount by business.
+
+          •  Fiduciary/Crime: employee count.
+
+        (b) Please refer to Confidential Attachment UAE 8.1.                                                                          Exhibit BSL-224-035-04 / Rocky Mountain Power                                                             Page 2 of 2September 20, 2024
+UAE Data Request 8.1
+
+
+        (c) The loss history component is reflective of insurance proceeds received by
+          PacifiCorp divided by all insurance proceeds received by all companies
+            participating in the shared insurance over the last 20 years. Please refer to
+           Confidential Attachment UAE 8.1 for years 2020 through 2024. Information
+            for calendar year 2019 is not available.
+
+       Confidential information is provided subject to Public Service Commission of
+      Utah (UPSC) Rules R746-1-601–606.24-035-04 / Rocky Mountain Power                                        Exhibit BSL-3
+                                                           Page 1 of 2September 3, 2024
+OCS Data Request 10.3
+
+OCS Data Request 10.3
+
+      Excess Liability Insurance. The Direct Testimony of Mariya V. Coleman
+        indicates on page 3 that the Company maintains Punitive Damages insurance that
+       “Provides indemnity-only excess liability coverage for punitive damages imposed
+       or awarded against insured under certain circumstances specified in the policy”.
+      For each Punitive Damages insurance policy in effect for the 2024-25 policy
+        period, please respond to the following questions. If the 2024-25 policies have not
+       yet been finalized, please update this response once finalized.
+
+        (a) Does the Company intend to include the Punitive Damages insurance policy
+           costs in its proposed Insurance Cost Adjustment?
+
+        (b) Provide a summary of the “certain circumstances specified the policy” for
+          each of the Punitive Damages insurance policies.
+
+        (c) Do these policies only provide for coverage if the Company is found liable for
+           punitive damages in a legal judgement? Please explain your response.
+
+Response to OCS Data Request 10.3
+
+        (a) Yes. The Company intends to include the punitive damages insurance policy
+           cost in its proposed Insurance Cost Adjustment.
+
+        (b) The insurability of punitive damages varies by state.
+
+         The punitive damage coverage is not in addition to or additional limits. The
+            limit is shared, and the wrap is put in place only to address the gap in
+          coverage where a United States (U.S.) policy is not able to respond. The
+           punitive damage policy is intended to wrap around the U.S. policy terms and
+          only indemnify the insured for punitive damage losses. All punitive damage
+         wrap policies are self-procured. Other key exclusions to coverage of note:
+
+          •  Excludes any punitive damages agreed to in a settlement.
+          •  Excludes coverage for any punitive damages, which compulsory damages
+               are not covered.
+          •  Excludes defense for punitive damages.
+
+           Punitive damage wrap policies are intended to “wrap” around a traditional
+           insurance policy to provide coverage for punitive damages. The policies do
+          not provide any additional limit – the limit is shared with the U.S. issued
+           policy that is being wrapped. Puni-wraps are placed out of Bermuda and are
+           not subject to U.S. laws.                                                                        Exhibit BSL-324-035-04 / Rocky Mountain Power                                                            Page 2 of 2
+September 3, 2024
+OCS Data Request 10.3
+
+        (c) Yes. This is a condition on all of the placements.

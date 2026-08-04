@@ -1,0 +1,19 @@
+{
+  "jurisdiction": "North Carolina Utilities Commission (NCUC)",
+  "docket": "E-7 Sub 1329",
+  "filer": "North Carolina Utilities Commission",
+  "source_url": "https://starw1.ncuc.gov/NCUC/ViewFile.aspx?Id=9132ec0a-5972-41ed-acfe-e530094be0e2",
+  "source_detail_page": "https://starw1.ncuc.gov/NCUC/PSC/PSCDocumentDetailsPageNCUC.aspx?DocumentId=5eddd796-222f-4315-9689-344123b259d9&Class=Order",
+  "ncuc_document_number": "E-20250710-47570",
+  "ncuc_record_document_id": "5eddd796-222f-4315-9689-344123b259d9",
+  "ncuc_file_id": "9132ec0a-5972-41ed-acfe-e530094be0e2",
+  "document_title": "Order Granting Motion for Limited Waiver of Commission Rule R1-17B(c)",
+  "filing_date": "2025-07-10",
+  "how_obtained": "Downloaded the PDF from the NCUC STAR document handler https://starw1.ncuc.gov/NCUC/ViewFile.aspx?Id=<file-guid>, which is the link the commission's own document-detail page points at. starw1.ncuc.gov sits behind a Cloudflare managed challenge that refuses plain HTTP clients (403 for curl and for the plain fetch tool), so the session was driven with a real Chrome browser under Playwright, which passes the challenge normally; the PDF bytes were then read out of that same browser session. Converted the PDF to text with pdfminer.six extract_text(). The text is saved exactly as pdfminer emitted it - no reflow, no de-hyphenation, no ligature or soft-hyphen repair, form feeds, margin line numbers, column-split Q/A markers and OCR noise all left in place.",
+  "corpus_note": "The ruling half of the pair: the Commission's order on the motion filed 2025-07-08. Captioned in both Docket E-2 Sub 1380 and Docket E-7 Sub 1329, so it also exercises multi-docket citation resolution.",
+  "sha256": "28ebd4b4c9067e88c1df7b39ef5e4d8fe39238e84ce10c5c565d5d59b8790ab8",
+  "bytes": 5223,
+  "source_pdf_sha256": "2893823d93f8c23c8555e16d229f8025f1f8f5b4dbbd4433b306a8f720d64484",
+  "source_pdf_bytes": 96334,
+  "retrieved_at": "2026-08-04T17:13:51Z"
+}

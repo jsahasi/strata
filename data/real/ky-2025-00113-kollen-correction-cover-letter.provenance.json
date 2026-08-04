@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Kentucky",
+  "commission": "Kentucky Public Service Commission",
+  "docket": "2025-00113",
+  "proceeding": "Electronic Application of Kentucky Utilities Company for an Adjustment of its Electric Rates and Approval of Certain Regulatory and Accounting Treatments (filed jointly with Case No. 2025-00114, Louisville Gas & Electric Company)",
+  "how_obtained": "Downloaded the PDF with curl from the Kentucky PSC public electronic case filing path (psc.ky.gov/pscecf/...), which serves case documents without a login. Extracted text with PyMuPDF using sorted-block extraction (page.get_text('text', sort=True)) so margin line numbers stay on the line they number. Pages joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation. OCR noise in the scanned signature and notary blocks is left exactly as extracted.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09302025014043/25.09.30_Read_1st_LGE-KU_Rate.pdf",
+  "document_title": "Read First cover letter filing the Corrected Version of the OAG-KIUC Joint Written Direct Testimony of Lane Kollen",
+  "filing_date": "2025-09-30",
+  "filer": "Lawrence W. Cook, Assistant Attorney General, Kentucky Office of the Attorney General",
+  "witness": null,
+  "document_type": "Cover letter / notice of corrected filing",
+  "pages": 1,
+  "version_role": "correction cover notice",
+  "version_pair_with": "ky-2025-00113-kollen-direct-testimony-corrected-clean.txt",
+  "notes": "Ground truth for the Kollen version pair, stated in the letter's own words: 'The corrections are found on page 95 of Mr. Kollen's testimony, and changes original references to \"Brown BESS\" to now read \"Cane Run BESS.\"'",
+  "sha256": "19e77b5951b4ade21ba4fae5a3ae8396fbb8f1ab2ce2ae647ad860a4a3dadaee",
+  "bytes": 1534,
+  "retrieved_at": "2026-08-04T16:47:36Z",
+  "source_pdf_sha256": "6ed4ef0f8d1f7646d1b880875edb02e5caa0a2be0cb0a75fe61c82392810519c",
+  "source_pdf_bytes": 236403
+}

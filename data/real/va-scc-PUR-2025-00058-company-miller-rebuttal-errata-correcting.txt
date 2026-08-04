@@ -1,0 +1,1538 @@
+
+===PAGE 1===
+250920017
+PUR-2025-00058Case Number (if already assigned)
+Case Name (if known)
+ERTADocument Type
+Total Number of Pages 37
+35067Submission ID
+9/3/2025 4:27:00PMeFiling Date Stamp
+Virginia State Corporation Commission 
+eFiling CASE Document Cover Sheet
+Document Description Summary Virginia Electric and Power Company's Errata
+correcting Robert E. Miller's Rebuttal Testimony pages
+Application of Virginia Electric and Power Company for 
+a 2025 biennial review of the rates, terms and 
+conditions for the provision of generation, distribution 
+and transmission services pursuant to § 56-585.1 Aof 
+the Code of Virginia
+
+===PAGE 2===
+250920017
+McGuireWoods
+ERRATA FILING
+September 3, 2025
+BY ELECTRONIC DELIVERY
+Dear Mr. Logan:
+Please do not hesitate to contact me if you have any questions regarding the enclosed.
+Highest regards, 
+/s/ Joseph K. Reid, III
+Joseph K. Reid, III
+Mr. Bernard Logan, Clerk 
+State Corporation Commission
+Document Control Center 
+Tyler Building, First Floor
+1300 E. Main Street
+Richmond, VA 23219
+Application of Virginia Electric and Power Company,
+To revise its fuel factor pursuant to Va. Code § 56-249.6 
+Case No. PUR-2025-00059
+Application of Virginia Electric and Power Company for a 2025 biennial review of the rates, 
+terms and conditions for the provision of generation, distribution and transmission services 
+pursuant to § 56-585.1 A of the Code of Virginia
+Case No. PUR-2025-00058
+Atlanta | Austin | Baltimore | Charlotte | Charlottesville | Chicago | Dallas | Houston | Jacksonville | London | Los Angeles - Century City 
+Los Angeles - Downtown | New York | Norfolk | Pittsburgh | Raleigh | Richmond | San Francisco | Tysons | Washington, D.C.
+On August 13, 2025, Virginia Electric and Power Company (the “Company”) filed its 
+Rebuttal Testimony in Case Nos. PUR-2025-00058 and PUR-2025-00059. After making this 
+fding, the Company identified certain non-substantive corrections to be made to Company 
+Witness Robert E. Miller’s Rebuttal Testimony on pages 2-5, 33, 36, 39, 47, 50-51, 53, 58-59, 
+and 77-78. Please find enclosed for electronic filing in the above-referenced matter a corrected 
+version of these pages, with versions in clean and in redline, which should entirely replace the 
+previously-filed pages.
+Joseph K. Reid, III 
+Direct: 804.775.1198 
+jreid@mcguirewoods.com
+McGuireWoods LLP
+Gateway Plaza
+800 East Canal Street 
+Richmond, VA 23219-3916 
+Phone: 804.775.1000 
+Fax: 804.775.1061
+www.mcguirewoods.com
+
+===PAGE 3===
+250920017
+Enclosures
+cc: Hon. D. Mathias Roussy, Jr., Chief Hearing Examiner 
+Paul E. Pfeffer, Esq.
+David J. DePippo, Esq.
+Nicole M. Allaband, Esq.
+Elaine S. Ryan, Esq.
+Timothy D. Patterson, Esq.
+Andrea R. Kells, Esq.
+Katherine C. Creef, Esq.
+Briana M. Jackson, Esq.
+Jason A. Richardson, Esq.
+Charles J. Dickenson, Esq.
+PUR-2025-00058 Service List
+PUR-2025-00059 Sendee List
+Atlanta | Austin | Baltimore | Charlotte i Charlottesville | Chicago | Dallas | Houston ; Jacksonville j London i Los Angeles - Century City 
+Los Angeles - Downtown | New York • Norfolk | Pittsburgh | Raleigh i Richmond | San Francisco ; Tysons | Washington, D.C.
+
+===PAGE 4===
+1 Q. Mr. Miller, how is your testimony organized?
+I have divided my testimony into the following sections:2 A.
+I.
+Discussion of the A&E Cost Allocation Methodology5 II.
+Other Cost Allocation Methodologies6 III.
+High Load and GS-5 Customer Class Matters7 IV.
+V.
+VI.
+Terms and Conditions and Other Items12 VII.
+13 Q. Are you sponsoring any exhibits as part of your rebuttal testimony?
+Yes. Company Exhibit No. , REM, consisting of Rebuttal Schedules 1 through 12 was14 A.
+prepared by me or under my supervision and is accurate and complete to the best of my15
+knowledge and belief.16
+I.
+17 Q. Mr. Miller, could you please provide a brief summary of the major issues that you
+18 address in your rebuttal testimony?
+I address the following issues in my rebuttal testimony, with the relevant page for the19 A.
+beginning of each topic indicated in parentheses:20
+The Company’s folly adjusted cost of service studies for 2026 and 2027 have21
+been updated. (Pg. 5)22
+2
+10
+11
+8
+9
+3
+4
+SUMMARY, UPDATE TO FULLY ADJUSTED COST OF SERVICE, AND OTHER 
+COST OF SERVICE DISCUSSION
+Minimum System Methodology, Allocation of Distribution Plant, and 
+Customer Charge Support
+Discussion of Specific Distribution Plant Allocation Issues Raised by 
+Appalachian Voices Witness John Wilson
+Summary, Update to Fully Adjusted Cost of Service, and Other Cost of 
+Service Discussion
+Case Nos. PUR-2025-00058 and PUR^gg^g^gP] 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Clean Version
+
+===PAGE 5===
+I respond to Staff Witnesses Brian S. Pratt and Glenn Watkins, as well as Data1
+Center Coalition (“DCC”) Witness Kevin C. Higgins regarding concerns about2
+the complexity and lack of working formulas in its cost of service study outputs.3
+4 (Pg- 9)
+I discuss the testimony of Virginia Committee for Fair Utility Rates (“VCFUR”)5
+Witness Brian C. Collins, Federal Executive Agencies (“Navy”) Witness6
+Maurice Brubaker, Piedmont Environmental Council (“PEC”) Witness Gregory7
+Abbott, Sierra Club Witness Ron Nelson, DCC Witness Higgins, and Staff8
+Witness Watkins regarding the Average and Excess (“A&E”) allocation9
+methodology. Having evaluated the testimony of these parties, the Company10
+recommends continued use of the A&E methodology. (Pg. 13)11
+I discuss alternative allocation methodologies proposed by Staff Witness12
+Watkins, PEC Witness Abbott, and Sierra Club Witness Nelson and evaluates13
+whether these methodologies should be adopted. The Company ultimately14
+recommends against the use of these alternative allocation methodologies in the15
+context of the present proceeding. (Pg. 29)16
+I discuss issues related to the need for the Company’s GS-5 class, as well as the17
+proper customer characteristics for inclusion in the class and the impact of the18
+Company’s minimum demand adjustments, in response to Amazon Data19
+Services (“Amazon”) Witness Albert W. Bremser, Appalachian Voices (“APV”)20
+Witness John D. Wilson, CloudHQ LLC (“CloudHQ”) Witness Cameron21
+Brooks, Office of Attorney General Division of Consumer Counsel (“Consumer22
+Counsel”) Witness Scott Norwood, DCC Witnesses Higgins, Google, LLC23
+3
+Case Nos. PUR-2025-00058 and PUR^gg^gggP] 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Clean Version
+
+===PAGE 6===
+("Google") Witness Carolyn A. Berry, Microsoft Corporation ("Microsoft")1
+Witness Isaac Gabel-Frank, PEC Witness Abbott, Retail Energy Advancement2
+League ("REAL”) Witnesses Frank Lacey and Scott Hempling, Sierra Club3
+Witness Nelson, Staff Witness Pratt, VCFUR Witness Collins, and Walmart Inc.4
+(“Walmart”) Witness Lisa V. Perry. The Company recommends, with regard to5
+considerations of cost allocation, adoption of the GS-5 class parameters as6
+proposed in Direct filing (Pg. 46)7
+I discuss the testimony of Staff Witness Watkins, Staff Witness Ruben S.8
+Blevins, and APV Witness Wilson regarding the merits and weaknesses of the9
+minimum system methodology and the basic customer method for the10
+classification and allocation of distribution plant, as well as the support of the11
+Basic Customer Charge. The Company recommends continued use of the12
+minimum system methodology. (Pg. 55)13
+I discuss various other comments and recommendations made by APV Witness14
+Wilson with regard to the classification and allocation of distribution plant. The15
+Company recommends that Witness Wilson’s recommendations not be adopted16
+in this proceeding. (Pg. 74)17
+Finally, I discuss the response of Staff Witnesses Blevins and John A. Ellis18
+regarding the Company’s proposal to re-integrate Rate Schedule 28 lighting19
+fixture plant to the Virginia Jurisdiction and the Company’s proposal to update20
+certain charges within its Terms and Conditions. (Pg. 82)21
+4
+Case Nos. PUR-2025-00058 and PUR^gg^gggP] 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Clean Version
+
+===PAGE 7===
+Q. Have you updated any of your schedules from your direct testimony?1
+Yes, I am providing updated versions of my Direct Schedules 3, 4, 6, 7, 8, 9, 10, 11, and 12.A.2
+These schedules will be my Rebuttal schedules 1, 2, 3, 4, 5, 6, 7, 8, and 9. I also have3
+additional schedules that do not have a direct corollary to my Direct Schedules. Rebuttal4
+Table 1, below, summarizes my Rebuttal Schedules.5
+Q. Please describe the updates to the schedules listed above.6
+My Rebuttal Schedules 1 and 2 (updates of my Direct Schedules 3 and 4) show an updatedA.7
+calculation of the respective 2026 and 2027 forecast adjusted A&E methodology Factor 1.8
+As part of Filing Schedule 42 supported by Company Witness C. Alan Givens, the Company9
+is making an adjustment to revenues for 2026 and 2027 to reflect additional generation10
+revenues associated with certain customers who have notified the Company of their return11
+from third party energy suppliers. These revenues are added to each class’s annualized12
+revenues in the fully adjusted cost of service and thus impact the final rates of return used to13
+inform Company Witness Givens’ class revenue requirement apportionment.14
+5
+Case Nos. PUR-2025-00058 and PUR^g^^)g9| 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Clean Version
+Schedule No.
+Schedule 1 
+Schedule 2 
+Schedule 3 
+Schedule 4 
+Schedule 5 
+Schedule 6 
+Schedule 7 
+Schedule 8 
+Schedule 9 
+Schedule 10 
+Schedule 11 
+Schedule 12
+Rebuttal Table 1
+Summary of Miller Rebuttal Testimony Schedules
+Description
+Updated Calculation of 2026 Forecast Adjusted A&E Factor 1 
+Updated Calculation of 2027 Forecast Adjusted A&E Factor 1 
+Updated Filing Schedule 40a Summary - 2024 A&E Average 
+Updated Filing Schedule 40b Summary - 2024 A&E Baseline 
+Updated Filing Schedule 40c Summary - 2024 A&E Baseline 
+Updated Fully Adjusted COS - 2026 
+Updated Fully Adjusted COS - 2027 
+Updated Unit Cost COS - 2026 
+Updated Unit Cost COS - 2027 
+Response to Watkins Schedule 3
+Summary of Staff & Intervenor Positions on GS-5 Class Cost Allocation 
+Reconciliation of Minimum System Distribution Amounts by FERC Account to COS
+
+===PAGE 8===
+fuel expense and revenue items shown on Schedule 20 of the Company’s cost of service1
+studies.2
+3 Q. Does the Company have concerns regarding the POD method?
+A. As is likely evident from the description above, the POD method is very complicated.4
+time consuming, and data intensive to calculate. Additionally, a significant amount of5
+data necessary to calculate the POD factor is confidential. This method would have6
+decreased transparency for customers and present significant challenges for parties that7
+may not have the time or technical expertise to get into the level of detail required. And8
+given Staffs concerns about the existing complexity in the Company’s cost of service9
+model, the proposal of the POD method seems strange, given that this method would10
+significantly increase the complexity of underlying calculations and supporting11
+workpapers for the cost of service study.12
+To offer a comparison, the A&E methodology’s calculation is reasonably comprehensible13
+and focuses on three determinants, as I have discussed. While there is a sizeable amount14
+of data that goes into the calculation, the data is generally limited to customer load during15
+approximately 30 peak hours and customer energy usage throughout the year. The POD16
+methodology, on the other hand, pulls 8,784 (or 8,760 for a non-leap year) hours of17
+customer usage, as well as generation by plant by hour, and plant costs by plant (or18
+depreciation costs by plant). There is significantly more margin for errors small or large,19
+and such errors may be hidden under the massive amount of data used. For example, in20
+Sierra Club Witness Nelson’s calculation, the “fall back” hour associated with daylight21
+savings time is mistakenly removed from the calculation, leaving him an hour short for22
+the year. While this single hour likely had little impact on the actual result of the23
+33
+Case Nos. PUR-2025-00058 and PUR^g^gggP] 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Clean Version
+
+===PAGE 9===
+This approach to allocating the fixed costs of a generating facility does not, in my1
+opinion, recognize that these costs vary based on the generating capacity of the facility.2
+Instead, it makes the allocated cost vary based on the total production of the facility over3
+the course of the year, meaning that the primary factor being used to allocate fixed costs,4
+especially for high load factor generating units, is the yearly output, or energy, produced5
+by the facility. This does not appropriately recognize the nature of these fixed demand6
+costs and how these costs are incurred.7
+8 Q. Could you provide an example?
+Consider the Company’s nuclear generating units. The plant costs associated with these9 A.
+units are fixed and likewise depreciation costs and some O&M costs are fixed, regardless10
+of how much the facility actually runs during the year. For the most part, these nuclear11
+units would run every available hour during the year, except during refueling periods.12
+But due to the complexity of refueling, a refueling outage can represent a notable change13
+in the hours the nuclear unit runs during a specific year. To provide some simplified14
+numbers, consider a situation where nuclear unit #1 runs for all hours of the year, wrhile15
+nuclear unit #2 has a refueling outage and thus runs for approximately 90% of the year.16
+Assume, for the sake of simplicity, that each unit had the same gross plant, depreciation,17
+and fixed O&M, and that the gross plant amount was $87,840,000. Assuming the same18
+output for each hour of the year, the fixed costs associated with unit #1 would be divided19
+by 8,784 (given that 2024 was a leap year), meaning that the hourly weighted cost would20
+be $10,000. Since unit #2 only ran 90% of the year, the same gross plant would be21
+divided by 7,905, roughly, meaning that the hourly weighted cost wrould be roughly22
+$11,200. Thus, the hourly costs for unit #2 are 112% of the costs of unit #1, despite each23
+36
+Case Nos. PUR-2025-00058 and 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Clean Version
+
+===PAGE 10===
+1 Q. Have you reviewed the SWP A allocation factors calculated by Staff Witness
+2 Watkins?
+Yes, I have reviewed Staff Witness Watkins calculations. Consistent with how he3 A.
+described the SWPA method on pages 25, 26, and 34 of his testimony, Staff Witness4
+Watkins has taken the average of customer demands at the Company’s summer and5
+winter peak and also taken the average demand for the customer classes over the course6
+of the year. He weighted the ratio of class average demand to total on the basis of the7
+jurisdictional load factor and then weighted the averaged summer and winter peaks by8
+one minus the jurisdictional load factor. He combined the two weighted factors to arrive9
+at an overall SWPA factor. As with the 12CP factors, he then applied the relevant growth10
+factors to the results of the average to get a 2026 and 2027 forecast adjusted version of11
+the SWPA factor for the Virginia customer classes. The growth factor is the same used12
+by the Company in its calculation of the 2026 and 2027 forecast adjusted A&E factors. I13
+note that the Company does use the SWPA methodology for allocation of system costs to14
+the jurisdictions in its North Carolina jurisdiction. Prior to its most recent base rate15
+proceeding, the Company had also used the SWPA methodology to allocate jurisdictional16
+costs to the customer classes, but in its most recent rate case in 2024, the North Carolina17
+Utilities Commission (“NCUC”) approved the use of an A&E-based allocation factor to18
+allocate jurisdictional costs to the classes.19
+20 Q. Has any other party in this proceeding opined on a peak and average allocation
+21 methodology?
+Yes, Navy Witness Brubaker discusses peak and average methodologies on pages 522 A.
+through 8 of his testimony. He notes, as I have above, that average demand is a23
+39
+Case Nos. PUR-2025-00058 and PUR^g^gggP] 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Clean Version
+
+===PAGE 11===
+reject the Company’s proposal to establish a separate GS-5 customer class. Her 1
+reasoning, presented on page 18 of her testimony, is that “creating a new rate class will 2
+not inherently prevent cross-subsidization, nor will it provide greater transparency than 3
+simply maintaining these customers within the GS-3 and GS-4 sub-classes already 4
+proposed.” Additionally, Google Witness Berry argues that, while the Company’s 5
+primary motivation for creating the GS-5 class was “a concern about potential cross­6
+subsidization of rates,” the “potential magnitude and direction” of such cross­7
+subsidization “has not been analyzed or substantiated by Dominion, and is currently8
+unknown.”9
+10 Q. Do you agree with Google Witness Berry’s position that keeping the High Load
+11 customers in the GS-3 and GS-4 classes would provide the same transparency as the
+12 creation of a new7 GS-5 class?
+As I understand Google Witness Berry’s proposal, she believes the GS-5 class to be13 A.
+unnecessary because High Load customers could be evaluated in their existing classes.14
+Thus, I interpret her position as both disagreeing with the necessity of the GS-5 class and15
+disagreeing with the use of a load factor to distinguish between high load factor High16
+Load customers and other High Load customers.17
+With regards to the necessity of the GS-5 class, I do not agree with Google Witness18
+Berry’s position. Mathematically, I believe that it would be possible for the Company to19
+conduct additional cost of service studies showing a breakout of each of the GS-3 and20
+GS-4 classes into a GS-3 High Load sub-class and GS-3 Other sub-class and a GS-4 High21
+Load sub-class and GS-4 Other sub-class. But taking such approach would lose much of22
+the increased transparency that represents one of the benefits of a GS-5 class. Either the23
+47
+Case Nos. PUR-2025-00058 and 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Clean Version
+
+===PAGE 12===
+“customers have such a significant size, relative to the rest of these classes, they do create1
+a meaningful impact on the results of the allocation factor calculations used to allocate2
+costs to these classes.” While there certainly were existing customers in the GS-3 and3
+GS-4 classes that exceeded both a 25MW size and a 75% load factor, such customers4
+were far less prevalent before the recent customer growth, and thus they did not have5
+such a meaningful impact on the determinants used to allocate costs to the classes.6
+Company Witness Haynes provides, as his Rebuttal Table 3, a brief summary of the7
+changes in the GS-3 and GS-4 classes since 2008. As shown in this table, the number of8
+5MW and above accounts has increased by 170% and the number of 25MW and above9
+accounts has increased by 350%. Additionally, this table also shows that there has only10
+been an increase of 50% for customers over 100MW, with that number moving from two11
+customers to three customers.12
+13 Q. How do you interpret these customer increases?
+Based on the numbers from Company Witness Haynes’ Rebuttal Table 3, it is clear that a14 A.
+significant portion of the recent growth in the GS-3 and GS-4 customer classes is related15
+to customers over 5MW, with customers over 25MW growing even more rapidly. This16
+table further reinforces the pattern of growth in average customer size that I showed in17
+my Direct Testimony Table 2. (Miller Direct at 25). Given the information in these two18
+tables, a reasonable test to determine if the parameters of the Company’s current19
+proposed GS-5 have adequately addressed the customers causing this increase in class20
+size is to compare the average demand and average energy for a GS-3 and GS-4 customer21
+both before and after the creation of a GS-5 class. Rebuttal Table 9, below, shows this22
+23 comparison.
+50
+Case Nos. PUR-2025-00058 and PUR^g^gggP] 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Clean Version
+
+===PAGE 13===
+1 Rebuttal Table 9
+2024 Class Information - Without and With GS-5 as a Separate Class
+Customers
+6,407 5,1872
+As shown in this table, the creation of the GS-5 class significantly reduces the average 3
+demand for the GS-4 class, putting the GS-4 numbers to amounts that are much more 4
+consistent with the class’s position prior to the recent period of customer growth. Thus, I 5
+believe the GS-5 class, as proposed by the Company, successfully addresses the6
+Company’s concerns regarding cost allocation transparency within the GS-3, GS-4, and7
+GS-5 classes. While there is not necessarily a specific mathematical analysis that points 8
+directly to the 25 MW threshold, Table 9 above shows 25 MW threshold produces results9
+that are reasonable, and therefore the Company’s recommendation should be approved.10
+Q. How do you address the proposal of parties to increase the GS-5 class minimum size11
+to 70 or greater MW?12
+I believe my Rebuttal Table 9, above, demonstrates that the use of the 25 MW thresholdA.13
+does produce reasonable results. Additionally, as also noted by Company Witness14
+Haynes, the use of a higher MW threshold will decrease the size of the GS-5 customer15
+class, meaning that the class will capture a smaller portion of the recent customer growth16
+and will also be more prone to volatility from year to year in terms of cost allocation, as17
+51
+3,221,961
+12,158
+2,760,899
+22,446
+GS-3
+1,820
+GS-4
+265
+GS-3
+1,779
+GS-4
+183
+GS-5
+123
+Class Peak Demand 
+Peak Demand/Customer
+Class Energy 
+Energy/Customer
+11,659,997 24,270,430
+91,587
+Case Nos. PUR-2025-00058 and PUR^g^^)g9| 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Clean Version
+1,889,366
+1,038
+1,584,736
+891
+787,488
+4,303
+9,228,044 5,616,051 21,086,333
+30,689 171,434
+
+===PAGE 14===
+requirements and having the same usage pattern may be located in two different customer1
+classes. Such a situation would be antithetical to the Company’s goal of increased2
+transparency within its GS-3, GS-4, and GS-5 customer classes.3
+4 Q. Do you have any comment on the load factor requirement for the GS-5 customer
+5 class?
+Of the roughly 150 customers that exceed the Company’s proposed 25MW threshold,6 A.
+greater than 90% of these customers have a load factor of over 75%. In terms of the7
+Company’s stated cost allocation goals, described in my Direct Testimony, the use of the8
+load factor makes sense, as it groups customers with not only similar size but also similar9
+usage characteristics. For customers with load factors less than 75%, their usage patterns10
+differ from the GS-5 customers and would have more similarity to the remaining GS-411
+customers, with the exception of being a larger size. Thus, I believe that the use of a load12
+factor produces more appropriate customer classes than simply using customer demand13
+by itself would. Additionally, as shown in Rebuttal Table 9, the Company’s current14
+parameters do appear to produce reasonable results regarding the GS-3, GS-4, and GS-515
+classes.16
+17 Q. From a cost allocation perspective, is there anything that should be considered with
+18 regard to the various positions parties have taken on the minimum demand
+19 charges?
+Yes. The Company’s minimum demand charges are supported by Company Witness20 A.
+Gaskill and Company Witness Blackwell. With regard to cost allocation, however, it is21
+important to note that the Company adjusted relevant 2027 forecast adjusted allocation22
+factors for the proposed minimum demand adjustment. Any changes to the Company’s23
+53
+Case Nos. PUR-2025-00058 and PUR^g^gggP] 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Clean Version
+
+===PAGE 15===
+within the Company’s cost of service studies, some portions of each of FERC Accounts1
+360 - Land, 361 - Structures and Improvements, 364 - Poles, 365 - Overhead2
+Conductors, 366 - Underground Conduit, 367 - Underground Conductors, 3683
+Transformers, and 369 - Services are allocated using factors that vary with the number of4
+customers at the relevant level of distribution service, and the remaining portions are5
+allocated using factors that vary with customer kW demand at the relevant level of6
+distribution service. In addition to the allocation of the distribution plant itself, several7
+other costs, such as depreciation, O&M expenses, and taxes, are allocated on ratios8
+determined by the overall plant balances for each account or for distribution plant in total.9
+These allocations would therefore be influenced in part by allocation factors based on the10
+number of customers, and thus a portion of costs allocated using those factors should be11
+considered customer-related.12
+Q. How does the allocation of distribution plant relate to the unit cost cost of service13
+study?14
+Within the jurisdictional, functional, and class cost of service studies, various items areA.15
+allocated using externally calculated allocation factors that vary based on number of16
+customers. The customer-related factors used in the class cost of service study are shown17
+below, in Rebuttal Table 10.18
+19 Rebuttal Table 10
+List of External Allocation Factors Calculated Using Number of Customers
+58
+Factor 17
+Factor 18
+Factor 19
+Factor 20
+Factor 46
+Factor 99
+Factor 100OL
+Case Nos. PUR-2025-00058 and PLJR^g^^^ 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Clean Version
+Factor 21
+Factor 23
+Factor 24
+Factor 26
+
+===PAGE 16===
+Within the Company’s unit cost cost of service studies, costs allocated on the allocation1
+factors shown in Rebuttal Table 10 are part of the customer component (made up of the2
+Metering component and the Customer All Other component, as described in my direct3
+testimony). The result of this approach is that the Company’s unit cost study does4
+include the customer-related portion of distribution plant FERC Accounts 360, 361, 364,5
+365, 366, 367, 368, and 369, along with all of FERC Accounts 370 - Metering and 3736
+Street Lights and Signal Systems, in the customer component of the unit cost study. This7
+designation is appropriate because the way these costs are allocated to the customer8
+classes is not determined by demand or energy. Adding more customers to a customer9
+class would result in that customer class receiving a greater amount of these costs. This10
+is true not only for services, metering, and the other costs contained in the basic customer11
+method, but also true for the portion of distribution plant that is being allocated on a12
+customer-based factor and any other costs that allocate on internally calculated allocation13
+factors dependent on these distribution plant balances. Thus, it is reasonable that, as14
+these costs will vary for each customer class dependent on the number of customers in15
+the class, and not on the energy or demand of the class, these costs would be considered16
+most appropriately recovered through a customer-based charge, such as the monthly17
+customer charge.18
+19 Q. Did Staff Witness Watkins address the allocation of distribution plant in his
+20 testimony?
+Yes, Staff Witness Watkins is supportive of the Company’s methodology for allocating21 A.
+distribution plant, including the use of customer-based allocation factors to allocate a 22
+portion of FERC Accounts 360, 361, 364, 365, 366, 367, and 368. In his testimony, on23
+59
+Case Nos. PUR-2025-00058 and PUR^g^gggP] 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Clean Version
+
+===PAGE 17===
+minimum components. Ultimately. I do not believe that the RAP report presented by1
+APV Witness Wilson addresses the actual details of the Company’s minimum system2
+methodology; therefore, I recommend that little to no weight be given to this report.3
+4 Q. Please address APV Witness Wilson’s belief that there is inconsistency between the
+5 minimum system study and the cost of service study.
+APV Witness Wilson presents, on page 43 of his testimony, presents a table purporting to6 A.
+show differences between the Company’s cost of service study and its minimum system7
+method. I have reviewed this table and replicated the calculations underlying it, and I8
+believe that APV Witness Wilson has fundamentally misunderstood the Company’s cost9
+of service and cost allocation process. His cost of service numbers are erroneous because10
+he bases them solely on the residential class cost of service results. But the minimum11
+system calculation is done at the state level and then allocated to the Virginia Jurisdiction12
+and then on to the customer classes. An individual customer class would not be expected13
+to have the same ratio of distribution customer to distribution demand plant because each14
+component will be allocated to the customer classes based on a different allocation factor,15
+meaning that some classes with a large number of customers, like Residential, will have16
+more customer-related costs, while other classes with only a few customers but high17
+demand, will have minimal customer-related costs. My Rebuttal Table 11, below’, shows18
+the customer and demand amounts and percentages for each Virginia Jurisdiction class,19
+as well as for the Jurisdiction as a whole and the Company’s system. Note that there is a20
+slight variation, for the system, from the minimum system numbers used by APV21
+Witness Wilson, as his minimum system numbers are based on the Company’s 13 month22
+77
+Case Nos. PUR-2025-00058 and PUR^g§^gggP| 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Clean Version
+
+===PAGE 18===
+average minimum system calculation rather than the EOP calculation, as would be 1
+consistent with the Company’s class cost of service study.2
+3 Rebuttal Table 11
+FERC Account 364 - Amounts and Percents of Distribution Plant by Customer and Demand
+VA Juris Residential GS-1 GS-2 GS-3 GS-4 Churches
+My Rebuttal Schedule 12 shows the calculation behind this table as well as similar 5
+calculations for FERC Accounts 365, 366, 367, 368, and 369.6
+Q. APV Witness Wilson also expresses a number of concerns regarding the underlying7
+data supporting the Company’s minimum system approach. How does the8
+Company respond?9
+APV Witness Wilson has conducted a very detailed dive into a number of the supportingA.10
+items for the Company’s minimum system approach. As I am sure APV Witness Wilson 11
+would also agree, the Company’s minimum system approach is complex, pulling from a12
+78
+36.30%
+63.70% 
+35.77%
+64.23% 
+45.38%
+54.62% 
+15,316,717
+19,310,474
+40.19%
+59.81% 
+2,617,899
+49,157,007
+4,128,622
+74,607,366
+155,127
+47,345,193
+337,850
+82,181,889
+15.79%
+84.21% 
+11,078,762
+536,097
+6,411,834
+536,097
+36.30%
+63.70%
+33.92%
+66.08%
+37.99%
+62.01%
+28,572,407
+42,518,017
+13,255,689
+23,207,543
+36.35%
+63.65%
+5.60%
+94.40%
+182,723
+34,836,696
+0.52%
+99.48%
+0.41%
+99.59%
+0.00%
+0.00%
+550,528
+2,935,782
+17.32%
+82.68%
+5.24%
+94.76%
+0.03%
+99.97% 
+95.38%
+4.62%
+92.28%
+7.72%
+Total
+Amount - Customer 
+Amount - Demand
+Primary
+Amount - Customer 
+Amount - Demand
+Secondary
+Amount - Customer
+Amount - Demand
+Secondary 
+% - Customer 
+% - Demand
+Primary 
+% - Customer 
+% - Demand
+423,060,273 370,522,554 325,830,047
+742,295,781 665,340,405 392,222,182
+System
+36.30%
+63.70%
+VA Juris
+37.30% 
+62.70%
+Residential
+52.85% 
+47.15%
+Churches
+14.03% 
+85.97%
+Lighting
+100.00%
+0.00%
+Lighting
+4,666,928
+195,671,887 158,889,682 137,205,689
+343,322,768 309,524,701 223,951,955
+24,338
+70,339,071
+1,510,723
+25,450,359
+GS-2
+5.06%
+94.94%
+GS-3
+0.33%
+99.67%
+24,338
+70,339,071
+GS-4
+0.03%
+99.97%
+227,505
+1,393,730
+323,023
+1,542,052
+GS-1
+44.23% 
+55.77%
+Total 
+% - Customer 
+% - Demand
+Case Nos. PUR-2025-00058 and PLJR^g^^^ 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Clean Version
+System
+227,388,386 211,632,872 188,624,358
+398,973,013 355,815,703 168,270,227
+
+===PAGE 19===
+1 Q. Mr. Miller, how is your testimony organized?
+I have divided my testimony into the following sections:2 A.
+I.
+Discussion of the A&E Cost Allocation Methodology5 II.
+Other Cost Allocation Methodologies6 III.
+High Load and GS-5 Customer Class Matters7 IV.
+V.
+VI.
+Terms and Conditions and Other Items12 VII.
+13 Q. Are you sponsoring any exhibits as part of your rebuttal testimony?
+Yes. Company Exhibit No. , REM, consisting of Rebuttal Schedules 1 through 12 was14 A.
+prepared by me or under my supervision and is accurate and complete to the best of my15
+knowledge and belief.16
+I.
+17 Q. Mr. Miller, could you please provide a brief summary of the major issues that you
+18 address in your rebuttal testimony?
+I address the following issues in my rebuttal testimony, with the relevant page for the19 A.
+beginning of each topic indicated in parentheses:20
+The Company’s fully adjusted cost of service studies for 2026 and 2027 have21
+been updated. (Pg. 54)22
+2
+10
+11
+8
+9
+3
+4
+SUMMARY, UPDATE TO FULLY ADJUSTED COST OF SERVICE, AND OTHER 
+COST OF SERVICE DISCUSSION
+Discussion of Specific Distribution Plant Allocation Issues Raised by 
+Appalachian Voices Witness John Wilson
+Summary, Update to Fully Adjusted Cost of Service, and Other Cost of 
+Service Discussion
+Minimum System Methodology, Allocation of Distribution Plant, and 
+Customer Charge Support
+Case Nos. PUR-2025-00058 and PUr256W£O 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Redline Version
+
+===PAGE 20===
+I respond to Staff Witnesses Brian S. Pratt and Glenn Watkins, as well as Data1
+Center Coalition (“DCC”) Witness Kevin C. Higgins regarding concerns about2
+the complexity and lack of working formulas in its cost of service study outputs.3
+4 (Pg- ^2)
+I discuss the testimony of Virginia Committee for Fair Utility Rates (“VCFUR”)5
+Witness Brian C. Collins, Federal Executive Agencies (“Navy”) Witness6
+Maurice Brubaker, Piedmont Environmental Council (“PEC”) Witness Gregory7
+Abbott, Sierra Club Witness Ron Nelson, DCC Witness Higgins, and Staff8
+Witness Watkins regarding the Average and Excess (“A&E”) allocation9
+methodology. Having evaluated the testimony of these parties, the Company10
+recommends continued use of the A&E methodology. (Pg. 134)11
+I discuss alternative allocation methodologies proposed by Staff Witness12
+Watkins, PEC Witness Abbott, and Sierra Club Witness Nelson and evaluates13
+whether these methodologies should be adopted. The Company ultimately14
+recommends against the use of these alternative allocation methodologies in the15
+context of the present proceeding. (Pg. 2927)16
+I discuss issues related to the need for the Company’s GS-5 class, as well as the17
+proper customer characteristics for inclusion in the class and the impact of the18
+Company’s minimum demand adjustments, in response to Amazon Data19
+Services (“Amazon”) Witness Albert W. Bremser, Appalachian Voices (“APV”)20
+Witness John D. Wilson, CloudHQ LLC (“CloudHQ”) Witness Cameron21
+Brooks, Office of Attorney General Division of Consumer Counsel (“Consumer22
+Counsel”) Witness Scott Norwood, DCC Witnesses Higgins, Google, LLC23
+3
+Case Nos. PUR-2025-00058 and PUR25093®fe1 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Redline Version
+
+===PAGE 21===
+(“Google”) Witness Carolyn A. Berry, Microsoft Corporation (“Microsoft”)1
+Witness Isaac Gabel-Frank, PEC Witness Abbott, Retail Energy Advancement2
+League (“REAL”) Witnesses Frank Lacey and Scott Hempling, Sierra Club3
+Witness Nelson, Staff Witness Pratt, VCFUR Witness Collins, and Walmart Inc.4
+(“Walmart”) Witness Lisa V. Perry. The Company recommends, with regard to5
+considerations of cost allocation, adoption of the GS-5 class parameters as6
+proposed in Direct filing (Pg. 4446)7
+I discuss the testimony of Staff Witness Watkins, Staff Witness Ruben S.8
+Blevins, and APV Witness Wilson regarding the merits and weaknesses of the9
+minimum system methodology and the basic customer method for the10
+classification and allocation of distribution plant, as well as the support of the11
+Basic Customer Charge. The Company recommends continued use of the12
+minimum system methodology. (Pg. 53-55)13
+I discuss various other comments and recommendations made by APV Witness14
+Wilson with regard to the classification and allocation of distribution plant. The15
+Company recommends that Witness Wilson’s recommendations not be adopted16
+in this proceeding. (Pg. 7274)17
+Finally, I discuss the response of Staff Witnesses Blevins and John A. Ellis18
+regarding the Company’s proposal to re-integrate Rate Schedule 28 lighting19
+fixture plant to the Virginia Jurisdiction and the Company’s proposal to update20
+certain charges within its Terms and Conditions. (Pg. 8082)21
+4
+Case Nos. PUR-2025-00058 and PUr256W£O 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Redline Version
+
+===PAGE 22===
+Q. Have you updated any of your schedules from your direct testimony?1
+Yes, I am providing updated versions of my Direct Schedules 3, 4, 6, 7, 8, 9, 10, 11, and 12.2 A.
+These schedules will be my Rebuttal schedules 1, 2, 3, 4, 5, 6, 7, 8, and 9. I also have3
+additional schedules that do not have a direct corollary to my Direct Schedules. Rebuttal4
+Table 1, below, summarizes my Rebuttal Schedules.5
+Q. Please describe the updates to the schedules listed above.6
+My Rebuttal Schedules 1 and 2 (updates of my Direct Schedules 3 and 4) show an updated7 A.
+calculation of the respective 2026 and 2027 forecast adjusted A&E methodology Factor 1.8
+As part of Filing Schedule 42 supported by Company Witness C. Alan Givens, the Company9
+is making an adjustment to revenues for 2026 and 2027 to reflect additional generation10
+revenues associated with certain customers who have notified the Company of their return11
+from third party energy suppliers. These revenues are added to each class’s annualized12
+revenues in the fully adjusted cost of service and thus impact the final rates of return used to13
+inform Company Witness Givens’ class revenue requirement apportionment.14
+5
+Schedule No.
+Schedule 1 
+Schedule 2 
+Schedule 3 
+Schedule 4 
+Schedule 5 
+Schedule 6 
+Schedule 7 
+Schedule 8 
+Schedule 9 
+Schedule 10 
+Schedule 11 
+Schedule 12
+Rebuttal Table 1
+Summary of Miller Rebuttal Testimony Schedules_______________________
+Description
+________ Updated Calculation of 2026 Forecast Adjusted A&E Factor 1________  
+Updated Calculation of 2027 Forecast Adjusted A&E Factor 1
+Updated Filing Schedule 40a Summary - 2024 A&E Average 
+Updated Filing Schedule 40b Summary - 2024 A&E Baseline
+_________Updated Filing Schedule 40c Summary • 2024 A&E Baseline_________  
+Updated Fully Adjusted COS - 2026
+Updated Fully Adjusted COS - 2027 
+Updated Unit Cost COS - 2026 
+Updated Unit Cost COS -20267 2027 
+Response to Watkins Schedule 3
+Summary of Staff & Intervenor Positions on GS-5 Class Cost Allocation
+Reconciliation of Minimum System Distribution Amounts by FERC Account to COS
+Case Nos. PUR-2025-00058 and PUR^£®20^1 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Redline Version
+
+===PAGE 23===
+fuel expense and revenue items shown on Schedule 20 of the Company’s cost of service1
+studies.2
+3 Q. Does the Company have concerns regarding the POD method?
+As is likely evident from the description above, the POD method is very complicated,
+time consuming, and data intensive to calculate. Additionally, a significant amount of5
+data necessary to calculate the POD factor is confidential. This method would have6
+decreased transparency for customers and present significant challenges for parties that7
+may not have the time or technical expertise to get into the level of detail required. And8
+given Staffs concerns about the existing complexity in the Company’s cost of service9
+model, the proposal of the POD method seems strange, given that this method would10
+significantly increase the complexity of underlying calculations and supporting11
+workpapers for the cost of service study.12
+To offer a comparison, the A&E methodology’s calculation is reasonably comprehensible13
+and focuses on three determinants, as I have discussed. While there is a sizeable amount14
+of data that goes into the calculation, the data is generally limited to customer load during15
+approximately 30 peak hours and customer energy usage throughout the year. The POD16
+methodology, on the other hand, pulls 8,784 (or 8,760 for a non-leap year) hours of17
+customer usage, as well as generation by plant by hour, and plant costs by plant (or18
+depreciation costs by plant). There is significantly more margin for errors small or large,19
+and such errors may be hidden under the massive amount of data used. For example, in20
+Sierra Club Witness Nelson’s calculation, the “fall back” hour associated with daylight21
+savings time is mistakenly removed from the calculation, leaving him an hour short for22
+the year. While this single hour likely had little impact on the actual result of the23
+33
+Case Nos. PUR-2025-00058 and PUr256W£O 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Redline Version
+4 A.
+
+===PAGE 24===
+This approach to allocating the fixed costs of a generating facility does not, in my1
+opinion, recognize that these costs vary based on the generating capacity of the facility.2
+Instead, it makes the allocated cost vary based on the total production of the facility over3
+the course of the year, meaning that the primary factor being used to allocate fixed costs,4
+especially for high load factor generating units, is the yearly output, or energy, produced5
+by the facility. This does not appropriately recognize the nature of these fixed demand6
+costs and how these costs are incurred.7
+8 Q. Could you provide an example?
+Consider the Company’s nuclear generating units. The plant costs associated with these
+units are fixed and likewise depreciation costs and some O&M costs are fixed, regardless10
+of how much the facility actually runs during the year. For the most part, these nuclear11
+units would run every available hour during the year, except during refueling periods.12
+But due to the complexity of refueling, a refueling outage can represent a notable change13
+in the hours the nuclear unit runs during a specific year. To provide some simplified14
+numbers, consider a situation where nuclear unit #1 runs for all hours of the year, while15
+nuclear unit #2 has a refueling outage and thus runs for approximately 90% of the year.16
+Assume, for the sake of simplicity, that each unit had the same gross plant, depreciation,17
+and fixed O&M, and that the gross plant amount was $887,8740,000. Assuming the18
+same output for each hour of the year, the fixed costs associated with unit #1 would be19
+divided by 8,784 (given that 2024 was a leap year), meaning that the hourly weighted20
+cost would be $10,000. Since unit #2 only ran 90% of the year, the same gross plant21
+would be divided by 7,905, roughly, meaning that the hourly weighted cost would be22
+roughly $11,200. Thus, the hourly costs for unit #2 are 112% of the costs of unit #1,23
+36
+Case Nos. PUR-2025-00058 and PUr256W£O 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Redline Version
+9 A.
+
+===PAGE 25===
+1 Q. Have you reviewed the SWPA allocation factors calculated by Staff Witness
+2 Watkins?
+Yes, I have reviewed Staff Witness Watkins calculations. Consistent with how he3 A.
+described the 12-CP SWPA method on pages 25, 26, and 34 of his testimony, Staff4
+Witness Watkins has taken the average of customer demands at the Company’s summer5
+and winter peak and also taken the average demand for the customer classes over the6
+course of the year. He weighted the ratio of class average demand to total on the basis of7
+the jurisdictional load factor and then weighted the averaged summer and winter peaks by8
+one minus the jurisdictional load factor. He combined the two weighted factors to arrive9
+at an overall SWPA factor. As with the 12CP factors, he then applied the relevant growth10
+factors to the results of the average to get a 2026 and 2027 forecast adjusted version of11
+the SWPA factor for the Virginia customer classes. The growth factor is the same used12
+by the Company in its calculation of the 2026 and 2027 forecast adjusted A&E factors. I13
+note that the Company does use the SWPA methodology for allocation of system costs to14
+the jurisdictions in its North Carolina jurisdiction. Prior to its most recent base rate15
+proceeding, the Company had also used the SWPA methodology to allocate jurisdictional16
+costs to the customer classes, but in its most recent rate case in 2024, the North Carolina17
+Utilities Commission (“NCUC”) approved the use of an A&E-based allocation factor to18
+allocate jurisdictional costs to the classes.19
+20 Q. Has any other party in this proceeding opined on a peak and average allocation
+21 methodology?
+Yes, Navy Witness Brubaker discusses peak and average methodologies on pages 522 A.
+through 8 of his testimony. He notes, as I have above, that average demand is a23
+39
+Case Nos. PUR-2025-00058 and PUr256W£O 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Redline Version
+
+===PAGE 26===
+reject the Company’s proposal to establish a separate GS-5 customer class. Her 1
+reasoning, presented on page 18 of her testimony, is that “creating a new rate class will 2
+not inherently prevent cross-subsidization, nor will it provide greater transparency than 3
+simply maintaining these customers within the GS-3 and GS-4 sub-classes already 4
+proposed.” Additionally, Google Witness Berry argues that, while the Company’s 5
+primary motivation for creating the GS-5 class was “a concern about potential cross­6
+subsidization of rates,” the “potential magnitude and direction” of such cross­7
+subsidization “has not been analyzed or substantiated by Dominion, and is currently8
+unknown.”9
+10 Q. Do you agree with Google Witness Berry’s position that keeping the High Load
+11 customers in the GS-3 and GS-4 classes would provide the same transparency as the
+12 creation of a new GS-5 class?
+As I understand Google Witness Berry’s proposal, she believes the GS-5 class to be13 A.
+unnecessary because High Load Factor customers could be evaluated in their existing14
+classes. Thus, I interpret her position as both disagreeing with the necessity of the GS-515
+class and disagreeing with the use of a load factor to distinguish between high load factor16
+High Load customers and other High Load customers.17
+With regards to the necessity of the GS-5 class, I do not agree with Google Witness18
+Berry’s position. Mathematically, I believe that it would be possible for the Company to19
+conduct additional cost of service studies showing a breakout of each of the GS-3 and20
+GS-4 classes into a GS-3 High Load sub-class and GS-3 Other sub-class and a GS-4 High21
+Load sub-class and GS-4 Other sub-class. But taking such approach would lose much of22
+the increased transparency that represents one of the benefits of a GS-5 class. Either the23
+47
+Case Nos. PUR-2025-00058 and PUr256W£O 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Redline Version
+
+===PAGE 27===
+“customers have such a significant size, relative to the rest of these classes, they do create1
+a meaningful impact on the results of the allocation factor calculations used to allocate2
+costs to these classes.” While there certainly were existing customers in the GS-3 and3
+GS-4 classes that exceeded both a 25MW size and a 75% load factor, such customers4
+were far less prevalent before the recent customer growth, and thus they did not have5
+such a meaningful impact on the determinants used to allocate costs to the classes.6
+Company Witness Haynes provides, as his Rebuttal Table 3, a brief summary of the7
+changes in the GS-3 and GS-4 classes since 2008. As shown in this table, the number of8
+5MW and above accounts has increased by 170% and the number of 25MW and above9
+accounts has increased by 350%. Additionally, this table also shows that there has only10
+been an increase of 50% for customers over 100MW, with that number moving from two11
+customers to three customers.12
+13 Q. How do you interpret these customer increases?
+Based on the numbers from Company Witness Haynes’ Rebuttal Table 3, it is clear that a
+significant portion of the recent growth in the GS-3 and GS-4 customer classes is related15
+to customers over 5MW, with customers over 25MW growing even more rapidly. This16
+table further reinforces the pattern of growth in average customer size that I showed in17
+my Direct Testimony Table 2. (Miller Direct at 25). Given the information in these two18
+tables, a reasonable test to determine if the parameters of the Company’s current19
+proposed GS-5 have adequately addressed the customers causing this increase in class20
+size is to compare the average demand and average energy for a GS-3 and GS-4 customer21
+both before and after the creation of a GS-5 class. Rebuttal Table 96, below, shows this22
+23 comparison.
+50
+Case Nos. PUR-2025-00058 and PUr256W£O 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Redline Version
+14 A.
+
+===PAGE 28===
+1 Rebuttal Table 96
+2024 Class Information - Without and With GS-5 as a Separate Class
+Customers
+6,407 5,1872
+As shown in this table, the creation of the GS-5 class significantly reduces the average 3
+demand for the GS-4 class, putting the GS-4 numbers to amounts that are much more 4
+consistent with the class’s position prior to the recent period of customer growth. Thus, I 5
+believe the GS-5 class, as proposed by the Company, successfully addresses the6
+Company’s concerns regarding cost allocation transparency within the GS-3, GS-4, and7
+GS-5 classes. While there is not necessarily a specific mathematical analysis that points 8
+directly to the 25 MW threshold, Table 9 above shows 25 MW threshold produces results9
+that are reasonable, and therefore the Company’s recommendation should be approved.10
+Q. How do you address the proposal of parties to increase the GS-5 class minimum size11
+to 70 or greater MW?12
+I believe my Rebuttal Table 96, above, demonstrates that the use of the 25 MW thresholdA.13
+does produce reasonable results. Additionally, as also noted by Company Witness14
+Haynes, the use of a higher MW threshold will decrease the size of the GS-5 customer15
+class, meaning that the class will capture a smaller portion of the recent customer growth16
+and will also be more prone to volatility from year to year in terms of cost allocation, as17
+51
+3,221,961
+12,158
+2,760,899
+22,446
+GS-3
+1,820
+GS-4
+265
+GS-3
+1,779
+GS-4
+183
+GS-5
+123
+Class Peak Demand 
+Peak Demand/Customer
+Class Energy 
+Energy/Customer
+11,659,997 24,270,430
+91,587
+1,889,366
+1,038
+1,584,736
+891
+787,488
+4,303
+Case Nos. PUR-2025-00058 and PUr26®£&0)^ 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Redline Version
+9,228,044 5,616,051 21,086,333
+30,689 171,434
+
+===PAGE 29===
+requirements and having the same usage pattern may be located in two different customer1
+classes. Such a situation would be antithetical to the Company’s goal of increased2
+transparency within its GS-3, GS-4, and GS-5 customer classes.3
+4 Q. Do you have any comment on the load factor requirement for the GS-5 customer
+5 class?
+Of the roughly 150 customers that exceed the Company’s proposed 25MW threshold,6 A.
+greater than 90% of these customers have a load factor of over 75%. In terms of the7
+Company’s stated cost allocation goals, described in my Direct Testimony, the use of the8
+load factor makes sense, as it groups customers with not only similar size but also similar9
+usage characteristics. For customers with load factors less than 75%, their usage patterns10
+differ from the GS-5 customers and would have more similarity to the remaining GS-411
+customers, with the exception of being a larger size. Thus, I believe that the use of a load12
+factor produces more appropriate customer classes than simply using customer demand13
+by itself would. Additionally, as shown in Rebuttal Table 96, the Company’s current14
+parameters do appear to produce reasonable results regarding the GS-3, GS-4, and GS-515
+classes.16
+17 Q. From a cost allocation perspective, is there anything that should be considered with
+18 regard to the various positions parties have taken on the minimum demand
+19 charges?
+Yes. The Company’s minimum demand charges are supported by Company Witness20 A.
+Gaskill and Company Witness Blackwell. With regard to cost allocation, however, it is21
+important to note that the Company adjusted relevant 2027 forecast adjusted allocation22
+factors for the proposed minimum demand adjustment. Any changes to the Company’s23
+53
+Case Nos. PUR-2025-00058 and PUr25093®@?1 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Redline Version
+
+===PAGE 30===
+within the Company’s cost of service studies, some portions of each of FERC Accounts1
+360 - Land, 361 - Structures and Improvements, 364 - Poles, 365 - Overhead2
+Conductors, 366 - Underground Conduit, 367 - Underground Conductors, 3683
+Transformers, and 369 - Services are allocated using factors that vary with the number of4
+customers at the relevant level of distribution service, and the remaining portions are5
+allocated using factors that vary with customer kW demand at the relevant level of6
+distribution service. In addition to the allocation of the distribution plant itself, several7
+other costs, such as depreciation, O&M expenses, and taxes, are allocated on ratios8
+determined by the overall plant balances for each account or for distribution plant in total.9
+These allocations would therefore be influenced in part by allocation factors based on the10
+number of customers, and thus a portion of costs allocated using those factors should be11
+considered customer-related.12
+Q. How does the allocation of distribution plant relate to the unit cost cost of service13
+study?14
+Within the jurisdictional, functional, and class cost of service studies, various items areA.15
+allocated using externally calculated allocation factors that vary based on number of16
+customers. The customer-related factors used in the class cost of service study are shown17
+below, in Rebuttal Table 107.18
+19 Rebuttal Table 710
+List of External Allocation Factors Calculated Using Number of Customers
+58
+Factor 17
+Factor 18
+Factor 19
+Factor 20
+Factor 46
+Factor 99
+Factor 100OL
+Case Nos. PUR-2025-00058 and PUr26®£&0)^ 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Redline Version
+Factor 21
+Factor 23
+Factor 24
+Factor 26
+
+===PAGE 31===
+Within the Company’s unit cost cost of service studies, costs allocated on the allocation1
+factors shown in Rebuttal Table 10^7 are part of the customer component (made up of the2
+Metering component and the Customer All Other component, as described in my direct3
+testimony). The result of this approach is that the Company’s unit cost study does4
+include the customer-related portion of distribution plant FERC Accounts 360, 361, 364,5
+365, 366, 367, 368, and 369, along with all of FERC Accounts 370 - Metering and 3736
+Street Lights and Signal Systems, in the customer component of the unit cost study. This7
+designation is appropriate because the way these costs are allocated to the customer8
+classes is not determined by demand or energy. Adding more customers to a customer9
+class would result in that customer class receiving a greater amount of these costs. This10
+is true not only for services, metering, and the other costs contained in the basic customer11
+method, but also true for the portion of distribution plant that is being allocated on a12
+customer-based factor and any other costs that allocate on internally calculated allocation13
+factors dependent on these distribution plant balances. Thus, it is reasonable that, as14
+these costs will vary for each customer class dependent on the number of customers in15
+the class, and not on the energy or demand of the class, these costs would be considered16
+most appropriately recovered through a customer-based charge, such as the monthly17
+customer charge.18
+19 Q. Did Staff Witness Watkins address the allocation of distribution plant in his
+20 testimony?
+Yes, Staff Witness Watkins is supportive of the Company’s methodology for allocating
+distribution plant, including the use of customer-based allocation factors to allocate a22
+portion of FERC Accounts 360, 361, 364, 365, 366, 367, and 368. In his testimony, on23
+59
+Case Nos. PUR-2025-00058 and PUr256W£O 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Redline Version
+21 A.
+
+===PAGE 32===
+minimum components. Ultimately, I do not believe that the RAP report presented by1
+APV Witness Wilson addresses the actual details of the Company’s minimum system2
+methodology; therefore, I recommend that little to no weight be given to this report.3
+4 Q. Please address APV Witness Wilson’s belief that there is inconsistency between the
+5 minimum system study and the cost of service study.
+APV Witness Wilson presents, on page 43 of his testimony, presents a table purporting to6 A.
+show differences between the Company’s cost of service study and its minimum system7
+method. I have reviewed this table and replicated the calculations underlying it, and I8
+believe that APV Witness Wilson has fundamentally misunderstood the Company’s cost9
+of service and cost allocation process. His cost of service numbers are erroneous because10
+he bases them solely on the residential class cost of service results. But the minimum11
+system calculation is done at the state level and then allocated to the Virginia Jurisdiction12
+and then on to the customer classes. An individual customer class would not be expected13
+to have the same ratio of distribution customer to distribution demand plant because each14
+component will be allocated to the customer classes based on a different allocation factor,15
+meaning that some classes with a large number of customers, like Residential, will have16
+more customer-related costs, while other classes with only a few customers but high17
+demand, will have minimal customer-related costs. My Rebuttal Table 811, below,18
+shows the customer and demand amounts and percentages for each Virginia Jurisdiction19
+class, as well as for the Jurisdiction as a whole and the Company’s system. Note that20
+there is a slight variation, for the system, from the minimum system numbers used by21
+APV Witness Wilson, as his minimum system numbers are based on the Company’s 1322
+77
+Case Nos. PUR-2025-00058 and PUr256W£O 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Redline Version
+
+===PAGE 33===
+month average minimum system calculation rather than the EOP calculation, as would be 1
+consistent with the Company’s class cost of service study.2
+3 Rebuttal Table 118
+FERC Account 364 - Amounts and Percents of Distribution Plant by Customer and Demand
+VA Juris Residential GS-1 GS-2 GS-3 GS-4 Churches
+My Rebuttal Schedule 12 shows the calculation behind this table as well as similar 5
+calculations for FERC Accounts 365, 366, 367, 368, and 369.6
+Q. APV Witness Wilson also expresses a number of concerns regarding the underlying7
+data supporting the Company’s minimum system approach. How does the8
+Company respond?9
+APV Witness Wilson has conducted a very detailed dive into a number of the supportingA.10
+items for the Company’s minimum system approach. As I am sure APV Witness Wilson 11
+would also agree, the Company’s minimum system approach is complex, pulling from a12
+78
+36.30%
+63.70% 
+35.77%
+64.23% 
+45.38%
+54.62% 
+15,316,717
+19,310,474
+40.19%
+59.81% 
+2,617,899
+49,157,007
+4,128,622
+74,607,366
+155,127
+47,345,193
+337,850
+82,181,889
+15.79%
+84.21% 
+11,078,762
+536,097
+6,411,834
+536,097
+36.30%
+63.70%
+33.92%
+66.08%
+37.99%
+62.01%
+28,572,407
+42,518,017
+13,255,689
+23,207,543
+36.35%
+63.65%
+5.60%
+94.40%
+182,723
+34,836,696
+0.52%
+99.48%
+0.41%
+99.59%
+0.00%
+0.00%
+550,528
+2,935,782
+17.32%
+82.68%
+5.24%
+94.76%
+0.03%
+99.97% 
+95.38%
+4.62%
+92.28%
+7.72%
+Total
+Amount - Customer 
+Amount - Demand
+Primary
+Amount - Customer 
+Amount - Demand
+Secondary
+Amount - Customer
+Amount - Demand
+Secondary 
+% - Customer 
+% - Demand
+Primary 
+% - Customer 
+% - Demand
+423,060,273 370,522,554 325,830,047
+742,295,781 665,340,405 392,222,182
+System
+36.30%
+63.70%
+VA Juris
+37.30% 
+62.70%
+Residential
+52.85% 
+47.15%
+Churches
+14.03% 
+85.97%
+Lighting
+100.00%
+0.00%
+Lighting
+4,666,928
+195,671,887 158,889,682 137,205,689
+343,322,768 309,524,701 223,951,955
+24,338
+70,339,071
+1,510,723
+25,450,359
+GS-2
+5.06%
+94.94%
+GS-3
+0.33%
+99.67%
+24,338
+70,339,071
+GS-4
+0.03%
+99.97%
+227,505
+1,393,730
+323,023
+1,542,052
+GS-1
+44.23% 
+55.77%
+Total 
+% - Customer 
+% - Demand
+Case Nos. PUR-2025-00058 and PUr26®£&0)^ 7
+Miller Rebuttal (rev. Sep. 3, 2025)
+Redline Version
+System
+227,388,386 211,632,872 188,624,358
+398,973,013 355,815,703 168,270,227
+
+===PAGE 34===
+250920017
+CERTIFICATE OF SERVICE
+Nikhil Vijaykar, Esq.
+Keyes & Fox LLP
+580 California Street, 12th Floor 
+San Francisco, CA 94104
+Nathaniel Benforado, Esq.
+Gregory Buppert, Esq.
+Josephus M. Allmond, Esq. 
+Katherine King, Esq.
+Southern Environmental Law Center
+120 Garrett Street, Suite 400 
+Charlottesville, VA 22902
+Dorothy E. Jaffe, Esq.
+Sierra Club
+50 F Street Northwest, 8th Floor 
+Washington, D.C 20001
+Claire Marie Horan, Esq.
+Appalachian Mountain Advocates
+P.O.Box 403
+Charlottesville, VA 22902
+K. Beth Clowers, Esq.
+Ashley B. Macko, Esq.
+Anna Dimitri, Esq.
+Clay F. Kulesza, Esq.
+Office of General Counsel
+State Corporation Commission
+1300 E. Main Street, Tyler Bldg., 10th Fl. 
+Richmond, VA 23219
+Evan D. Johns, Esq.
+Appalachian Mountain Advocates
+6101 Penn Avenue, Suite No. 201 
+Pittsburgh, PA 15206
+Dylan J. Gillis, Esq.
+Williams Mullen
+Boro Tower
+8350 Broad Street, Suite 1600 
+Tysons, VA 22102
+C. Meade Browder, Jr., Esq. 
+John E. Farmer, Jr., Esq. 
+Carew S. Bartley, Esq. 
+Office of the Attorney General 
+Division of Consumer Counsel 
+202 N. Ninth Street 
+Richmond, VA 23219
+Brian R. Greene, Esq.
+Claire M. Gardner, Esq. 
+GreeneHurlocker, PLC
+4908 Monument Avenue, 2nd Floor 
+Richmond, VA 23230
+William T. Reisinger, Esq. 
+ReisingerGooch, PLC
+1108 East Main Street, Suite 1102 
+Richmond, VA 23219
+Timothy G. McCormick, Esq. 
+Christian F. Tucker, Esq. 
+Christian & Barton, LLP
+901 East Cary Street, Suite 1800 
+Richmond, VA 23219
+I hereby certify that on this 3ld day of September 2025, a true and accurate copy 
+of the foregoing filed in Case No. PUR-2025-00058 was hand delivered, electronically 
+mailed, and/or mailed first class postage pre-paid to the following:
+Cody T. Murphey, Esq.
+Cassidy C. Galindo, Esq. 
+Williams Mullen
+200 South 10th Street, Suite 1600 
+Richmond, VA 23219
+
+===PAGE 35===
+250920017
+Timothy B. Hyland, Esq.
+Hyland Law, PLLC
+11710 Plaza America Drive, Suite 160 
+Reston, VA 20190
+Cullen D. Seltzer, Esq.
+Adam B. Winston, Esq. 
+Sands Anderson PC
+919 East Main Street, Suite 2300 
+P.O.Box 1998
+Richmond, VA 23218
+Edward E. Bagnell, Jr., Esq. 
+Spotts Fain, PC
+411 E. Franklin Street, Suite 600 
+Richmond, VA 23219
+Andrew W. Deel, Esq.
+John J. McNutt, Esq.
+U.S. Army Legal Sendee Agency 
+Office of the Judge Advocate General 
+9275 Gunston Rd., 4th Floor 
+Fort Belvoir, VA 22060
+Kurt J. Boehm, Esq. 
+Jody Kyler Cohn, Esq. 
+Boehm, Kurtz & Lowry
+425 Walnut Street, Suite 2400 
+Cincinnati, OH 45202
+Bradley J. Nowak, Esq.
+Robert F. Riley, Esq.
+Williams Mullen
+8350 Broad Street, Suite 1600 
+Tysons, VA 22102
+Cliona Mary Robb, Esq. 
+Michael J. Quinan, Esq. 
+Catherine Chapman, Esq. 
+Thompson McMullan
+100 Shockoe Slip, 3rd Floor 
+Richmond, VA 23219
+Steven W. Lee, Esq.
+Spilman Thomas & Battle, PLLC
+1100 Bent Creek Boulevard, Suite 101 
+Mechanicsburg, PA 17050
+Frann G. Francis, Esq.
+Senior Vice President & General Counsel 
+The Apartment and Office Building 
+Association of Metropolitan Washington
+1025 Connecticut Avenue, NW, Suite 1005 
+Washington, D.C. 20036
+David R. Moeller, Esq. 
+Fredrikson & Byron, P.A.
+60 South Sixth Street, Suite 1500 
+Minneapolis, MN 55402-4400
+Carrie H. Grundmann, Esq. 
+Spilman Thomas & Battle, PLLC 
+110 Oakwood Drive, Suite 500 
+Winston-Salem, NC 27103
+William C. Cleveland, Esq. 
+Lighthouse Policy & Law, PLC 
+240 West Main Street, Suite 100 
+Charlottesville, VA 22902
+Gregory Habeeb, Esq.
+Katherine Pollard, Esq. 
+Gentry Locke
+919 E. Main Street, Suite 1130 
+Richmond, VA 23219
+Joseph B. Makhoul, Esq.
+Max A. So, Esq.
+Williams Mullen
+200 South 10th Street, Suite 1600 
+Richmond, VA 23219
+
+===PAGE 36===
+250920017
+/s/Joseph K. Reid, III
+Gonzalo Rodriguez, Esq.
+Keyes & Fox LLP
+1050 Connecticut Ave NW, Suite 500 
+Washington. DC 20036
+James W. Speer, Esq. 
+Virginia Poverty Law Center 
+919 E. Main Street, Suite 610 
+Richmond, VA 23219
+John K. Byrum, Jr., Esq.
+Christopher P. Cox, Esq.
+Woods Rogers Vandeventer Black PLC 
+Riverfront Plaza, West Tower
+901 East Byrd Street, Suite 1600 
+Richmond, VA 23219
+
+===PAGE 37===
+250920017
+CERTIFICATE OF SERVICE
+Evan D. Johns, Esq.
+Appalachian Mountain Advocates
+6101 Penn Avenue, Suite No. 201 
+Pittsburgh, PA 15206
+Dorothy E. Jaffe, Esq.
+Sierra Club
+50 F Street Northwest, 8th Floor 
+Washington, D.C. 20001
+Brian R. Greene, Esq.
+Eric J. Wallace, Esq.
+Claire M. Gardner, Esq.
+Alexis G. Laundry, Esq.
+GreeneHurlocker, PLC
+4908 Monument Avenue, 2Bd Floor 
+Richmond, VA 23230
+E. Grayson Holmes, Esq.
+Nathaniel Benforado, Esq.
+Rachel James, Esq.
+Josephus M. Allmond, Esq.
+Emma Clancy, Esq.
+Katherine King, Esq.
+Southern Environmental Law Center
+120 Garett Street, Suite 400 
+Charlottesville, VA 22902
+Claire M. Horan, Esq.
+Appalachian Mountain Advocates
+P.O. Box 403
+Charlottesville, VA 22902
+Kiva Bland Pierce, Esq.
+Mike Zielinski, Esq.
+Office of General Counsel
+State Corporation Commission
+1300 E. Main Street, Tyler Bldg., 10th Fl. 
+Richmond, VA 23219
+Steven W. Lee, Esq.
+Spilman Thomas & Battle, PLLC
+1100 Bent Creek Boulevard, Suite 101 
+Mechanicsburg, PA 17050
+Timothy G. McCormick, Esq. 
+Christian F. Tucker, Esq. 
+Christian & Barton, LLP
+901 East Cary Street, Suite 1800 
+Richmond, VA 23219
+Carrie H. Grundmann, Esq. 
+Spilman Thomas & Battle, PLLC 
+110 Oakwood Drive, Suite 500 
+Winston-Salem, NC 27103
+Cliona Mary Robb, Esq. 
+Michael J. Quinan, Esq. 
+Catherine Chapman, Esq. 
+Thompson McMullan
+100 Shockoe Slip, 3rd Floor 
+Richmond, VA 23219
+C. Meade Browder, Jr., Esq. 
+John E. Farmer, Jr., Esq. 
+Carew S. Bartley, Esq. 
+Office of the Attorney General 
+Division of Consumer Counsel 
+202 N. Ninth Street 
+Richmond, VA 23219
+I hereby certify that on this 3ld day of September 2025, a true and accurate copy 
+of the foregoing filed in Case No. PUR-2025-00059 was hand delivered, electronically 
+mailed, and/or mailed first class postage pre-paid to the following:
+
+===PAGE 38===
+250920017
+/s/ Joseph K. Reid, III
+Edward E. Bagnell. Jr., Esq. 
+Spotts Fain, PC
+411 E. Franklin Street, Suite 600 
+Richmond, VA 23219
+William T. Reisinger, Esq. 
+ReisingerGooch PLC
+1108 East Main Street, Suite 1102 
+Richmond, VA 23219
+David R. Moeller, Esq. 
+Fredrikson & Byron, P.A.
+60 South Sixth Street, Suite 1500 
+Minneapolis, MN 55402-4400

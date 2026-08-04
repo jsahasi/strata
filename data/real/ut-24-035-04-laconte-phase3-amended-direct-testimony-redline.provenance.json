@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Utah",
+  "commission": "Public Service Commission of Utah",
+  "docket": "24-035-04",
+  "proceeding": "Application of Rocky Mountain Power for Authority to Increase its Retail Electric Utility Service Rates in Utah and for Approval of its Proposed Electric Service Schedules and Electric Service Regulations",
+  "how_obtained": "Found the docket page on psc.utah.gov (a WordPress site: /<yyyy>/<mm>/<dd>/docket-no-<docket>/), read its raw HTML and pulled the pscdocs.utah.gov links out of it. Utah serves every document at a flat, guessable path: https://pscdocs.utah.gov/<utility>/<yy>docs/<docketdigits>/<docid><AbbreviatedTitle><m-d-yyyy>.pdf, with no login and no session. Downloaded with curl and extracted text with PyMuPDF sorted-block extraction (page.get_text('text', sort=True)), pages joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://pscdocs.utah.gov/electric/24docs/2403504/338450AmndPhsIIIDirTstmnBillieSLaConteUTLCGRdln2-25-2025.pdf",
+  "document_title": "Amended Phase III Direct Testimony of Billie S. LaConte on behalf of the Utah Large Customer Group - Redline",
+  "filing_date": "2025-02-25",
+  "filer": "Utah Large Customer Group (counsel: Holland & Hart LLP)",
+  "witness": "Billie S. LaConte",
+  "document_type": "Amended direct testimony, redline copy",
+  "pages": 43,
+  "version_role": "amendment (redline)",
+  "version_pair_with": "ut-24-035-04-laconte-phase3-amended-direct-testimony-clean.txt",
+  "notes": "Keep this one. Because PDF text extraction keeps struck-through characters, the redline collapses the old and new numbers into single nonsense tokens: the date reads 'February 257, 2025' and the dollar figure reads '$30.95.8 million'. Any pipeline that ingests redlines as if they were clean text will parse those as real values. This file is the regression guard for that failure.",
+  "sha256": "694790af658d20c71ba9b2c7bf1faaf59d1d3fd295f7cab3c2fb8a94270fd50b",
+  "bytes": 120939,
+  "retrieved_at": "2026-08-04T16:59:54Z",
+  "source_pdf_sha256": "27e8258fc80c0d40f1ddcf31207eae4c28551eafa1e98ad83b27159cfca64567",
+  "source_pdf_bytes": 1498657
+}

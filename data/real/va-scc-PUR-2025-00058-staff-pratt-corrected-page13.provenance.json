@@ -1,0 +1,19 @@
+{
+  "source_url": "https://www.scc.virginia.gov/DocketSearch/Home/Document/12/382507",
+  "retrieved_at": "2026-08-04T16:51:43Z",
+  "sha256": "9439905ecabac6e5af35373640b8c8e3d4f8d2bde0e83658e531f8e31040020b",
+  "jurisdiction": "US-VA (Virginia State Corporation Commission)",
+  "docket": "PUR-2025-00058",
+  "matter_no": 146025,
+  "scc_doc_id": "382507",
+  "document_title": "Corrected page 13 of the Prefiled Testimony of Brian S. Pratt (clean and redlined)",
+  "filing_date": "2025-08-06",
+  "filer": "Virginia Electric and Power Company (Commission Staff; Office of General Counsel, per Anna A. Dimitri)",
+  "content_type_served": "application/pdf",
+  "source_pdf_sha256": "bc1f65e9fe7675b93e86003f22c0610aff5ab59d73e207e1668c2e6f5e3ebb22",
+  "source_pdf_bytes": 994720,
+  "saved_text_bytes": 4776,
+  "extraction_tool": "pypdf 6.14.2 page.extract_text()",
+  "note": "CORRECTION of version-pair A. Staff corrected calculation errors in Table 2 page 13: Peak Demand row 1.4/9.3/35.4 MW -> 1.4/33.4/10.2 MW; Load Factor 67.7/81.8/89.0% -> 67.7/74.3/89.4%.",
+  "how_obtained": "Fetched the PDF from the Virginia SCC DocketSearch document handler (https://www.scc.virginia.gov/DocketSearch/Home/Document/12/<DocID>) with curl -L, following the site's 307 redirect to the lowercase /docketsearch/home/document/12/<DocID> path, which returned Content-Type application/pdf. The DocID was obtained from the DocketSearchAPI Breeze endpoint GetDocuments (?$filter=MATTER_NO eq <matter>) for this case. Converted the PDF to text with pypdf 6.14.2 using page.extract_text() concatenated per page with '===PAGE n===' separators. The text is saved exactly as pypdf produced it: not cleaned, not reflowed, not de-hyphenated; soft hyphens, ligature artefacts, transposed line-number/Q-A ordering and OCR-style noise are left intact."
+}

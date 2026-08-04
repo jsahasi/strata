@@ -1,0 +1,696 @@
+McGuireWoods LLP 
+501 Fayetteville St. 
+Suite 500 
+Raleigh, NC 27601 
+Phone: 919.755.6600  
+Fax: 919.755.6699 
+www.mcguirewoods.com 
+
+Nick A. Dantonio                                                                                                                                                                                                                                 
+Direct: 919.755.6605                                                                                                                                                                                                                                
+ndantonio@mcguirewoods.com 
+
+July 24, 2025 
+
+VIA ELECTRONIC FILING 
+
+Ms. A. Shonta Dunston, Chief Clerk 
+North Carolina Utilities Commission  
+4325 Mail Service Center 
+Raleigh, North Carolina 27699-4325 
+
+Dear Ms. Dunston: 
+
+Re: 
+
+Responses to Commission Questions Regarding Large Load Customers 
+Docket No. E-100 Sub 208 
+
+Dear Ms. Dunston: 
+
+Enclosed for filing in the above-referenced proceeding on behalf of Virginia 
+
+Electric and Power Company, d/b/a Dominion Energy North Carolina (“Company”), are 
+the Company’s Responses to Commission Questions Regarding Large Load Customers 
+presented in the North Carolina Utilities Commission’s (“NCUC” or “Commission”) 
+Order Initiating Proceeding and Requesting Comments issued on June 6, 2025 in this 
+proceeding (Attachment A). 
+
+The Company has experienced significant demand growth in the past decade 
+
+driven by large load customers within its Virginia service territory and has, as a result, 
+developed significant experience and acquired knowledge with respect to serving such 
+customers generally and the data center industry in particular.  
+
+Today, the Company currently serves over 450 data center meters across 
+approximately 50 data center customers. As of  the end of June 2025, the Company has 
+an aggregated metered demand of  approximately 4.0 GW (3,979 MW) with a forecasted 
+peak value of 4,015 MW.  For context, peak measured demand for the Company in 2024 
+was 18,408.81 MW.  The Company is forecasting continued growth in this industry 
+throughout the next 20 years. 
+
+Currently, all of the data centers the Company currently serves or is studying are 
+
+located within the Company’s Virginia jurisdiction with a high concentration in “Data 
+Center Alley” in Northern Virginia. The responses contained in Attachment A to this 
+letter therefore reflect the Company’s experience with these customers in its Virginia 
+jurisdiction and address implications for the North Carolina jurisdiction where indicated. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Thank you for your assistance with this matter. Feel free to contact me with any 
+
+questions about this filing. 
+
+Very truly yours, 
+
+/s/Nick A. Dantonio 
+
+Enclosure 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Attachment A 
+Docket No. E-100, Sub 208 
+Page 1 of 9 
+
+Dominion Energy North Carolina 
+2025 NC Large Electric Load Additions – Docket No. E-100, Sub 208 
+Responses to Order Initiating Proceedings and Requesting Comments 
+
+Question No. 1 
+
+Provide  an  update  on  the  status  of  negotiations  with  data  centers  and  other  large  load  projects 
+seeking to develop sites in North Carolina.  
+
+a.  Provide an overview of backup generation contemplated for these projects.  
+b.  Please  state  whether  any  of  these  projects  are  anticipated  to  be  co-located  load  with 
+generating facilities. If so, please describe the measures that will need to be implemented 
+to ensure grid reliability and fair cost to customers. 
+
+Response: 
+
+Currently, all of the data centers the Company currently serves or is studying are located within 
+the Company’s Virginia jurisdiction with a high concentration in “Data Center Alley” in Northern 
+Virginia.  There  are  currently no active data  center development projects  in  its  North  Carolina 
+jurisdiction.  In August 2024, Natron Energy announced the development of an approximately 65 
+MW battery manufacturing facility in Edgecombe County, NC, representing the latest large load 
+customer in the Company’s North Carolina jurisdiction.1 
+
+As of July 2025, one data center in the Company’s Virginia service area is served by a co-located 
+generating  facility,  owned  by  the  data  center  itself.  This  facility  and  the  associated  load  is  not 
+connected to  the grid.  The Company is  not  aware of any active plans for additional co-located 
+generating  facilities  in  its  service  territory.  In  addition,  all  data  centers  have  on-site  backup 
+generation that can be used during grid emergencies or service interruptions.  The vast majority of 
+the installed backup generation at data centers in the Virginia service territory is fueled by diesel, 
+which, pursuant to EPA regulations2  are not able to be used as co-located generators to serve day-
+to-day load requirements. 
+
+1 https://www.commerce.nc.gov/news/press-releases/2024/08/15/governor-cooper-announces-1000-new-jobs-
+edgecombe-county-natron-energy-selects-kingsboro-megasite. 
+2 See generally 40 C.F.R. Part 63, Subpart ZZZZ.  
+
+1 
+
+ 
+ 
+              
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Attachment A 
+Docket No. E-100, Sub 208 
+Page 2 of 9 
+
+Question No. 2 
+
+Describe potential cost allocation issues or other issues attributable to large load additions/data 
+centers of which the Commission should be aware, including co-located loads. Provide examples 
+from other jurisdictions. 
+
+Response: 
+
+The goal of any cost allocation methodology and rate design is to—as best as possible—ensure 
+that each customer or customer class is paying their share of the utility’s system costs. 
+
+Data centers as an industry are providing critical support for what has become an essential service 
+in our society, as well as important economic development benefits to the localities where they 
+locate.  As discussed in the Company’s response to Question 1, it has not experienced data center 
+interest  in  its  North  Carolina  service  area  yet,  but  it  has  experienced  interest  from  large  load 
+customers more generally. Properly managed, an expanded commercial and industrial customer 
+base can benefit all utility customers. Energy intensive customers create costs for the system, but 
+they also spread the utility’s fixed costs over more units of consumption and, for this reason, could 
+help to lower system average costs borne by all customers over the long-term.  
+
+To  date,  the  Company  believes  that  its  current  allocation  methodologies  have  appropriately 
+addressed the goal of equitable allocation of costs to the various customer classes. The Company’s 
+current  cost  allocation  methodologies  and  rate  designs  are  not  resulting  in  the  class  cross-
+subsidization and the classes are within the zone of reasonableness in terms of their relevant rates 
+of return of the system costs they are causing. 
+
+Dominion does not have a separate rate class in North Carolina for high load factor customers, 
+such as data centers; such customers would generally be included in the Company’s Large General 
+Service classes (North Carolina Schedules 6L, 6C, 6VP, 6P, or NS ). In Virginia, such customers 
+are generally included in the GS-3 and GS-4 classes. 
+
+As new data centers have connected over the past several years in the Company’s Virginia service 
+area, the GS-3 and GS-4 classes’ proportion of energy and demand has increased; and, as a result, 
+the relative allocation of system costs to the GS-3 and GS-4 rate classes has naturally increased in 
+turn.    With  the  growth  of  large  load  customers  in  Virginia,  however,  there  has  developed  a 
+significant difference within the GS-4 customer class between the smaller GS-4 customers—who 
+have peak demands just above 500 kW—and the large load customers who have peak demands of 
+over  25  MW.  The  large  load  customers,  because  of  their  size,  require  the  Company  to  make 
+significantly  larger  infrastructure  investments  in  order  to  provide  service  to  these  customers. 
+Additionally, these customers also generally have a higher load factor, measured by the customer’s 
+average demand divided by the customer’s peak demand. 
+
+As the large load customers continue to grow and dominate the ranks of the GS-3 and GS-4 classes 
+in Virginia, they create a meaningful impact on the results of the allocation factor calculations used 
+to  allocate  costs  to  these  classes:  because  the  large  load  and  high  load  factor  customers  have 
+different characteristics than other GS-3 and GS-4 customers, there is a potential for intra-class 
+
+2 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Attachment A 
+Docket No. E-100, Sub 208 
+Page 3 of 9 
+subsidization of costs allocated to the GS-4 customer class. For this reason and to ensure that the 
+allocation  of  costs  to  customer  classes  fairly  and  accurately  reflects  the  load  and  operating 
+characteristics of the customers in the class, in the context of the Company’s on-going biennial 
+review in Virginia (Case No. PUR-2025-00058), the Company has proposed the addition of a new 
+rate  class  for  high  load  and  high  load  factor  customers  in  Virginia,  identified  as  the  GS-5  rate 
+class.3  
+
+In addition to allocating system costs to customers by class, there are two additional ways that 
+Dominion  allocates  other  costs  to  customers  in  Virginia,  which  help  ensure  that  large  load 
+customers pay for the investments the utility is making to serve them. First, the Company obligates 
+large  customers  to  pay,  on  average  over  a  4-year  period,  at  least  enough  incremental  non-fuel 
+revenue  to  meet  or  exceed  any  distribution  interconnection  costs  required  to  interconnect  that 
+customer.  Second, the Company’s GS-3 and GS-4 rate schedules include a provision that obligates 
+the  customers  to  pay  for  not  less  than  70%  of  the  capacity  of  the  normal  service  transformer 
+required to serve the customer’s projected load, regardless of a customer’s actual usage.  There are 
+no such provisions in the GS-3 and GS-4 rate schedules related to the recovery of transmission or 
+generation  related  costs.    Dominion’s  North  Carolina  rate  schedules  do  not  include  similar 
+provisions at this time.  To the extent the Company experiences growth in demand from large load 
+customers in this jurisdiction, then it may be appropriate, at that time, to consider the adoption of 
+similar provisions in North Carolina.  The Company does not see a need for any changes to its 
+North Carolina rate schedules at this time, however, as those rate schedules remain appropriate for 
+the large load industrial customers we serve. 
+
+Notably, because the Company’s data center-driven load growth is occurring within its Virginia 
+service area, the share of system costs allocated to North Carolina has declined in recent years and 
+is projected to continue to do so. The table below illustrates this trend, whereby the North Carolina 
+Jurisdictional Factor 3 (energy) has declined over the past five years from approximately 5.1% to 
+4.1%.    North  Carolina  customers  realize  a  benefit  from  the  large  load  growth  in  the  Virginia 
+jurisdiction as their respective share of the system costs decrease over time. 
+
+Jurisdictional Factor 3 (Energy) Percentages 2020-2024 
+
+System 
+100.0000% 
+100.0000% 
+100.0000% 
+100.0000% 
+100.0000% 
+
+2020 
+2021 
+2022 
+2023 
+2024 
+
+VA Juris 
+
+VA Non 
+
+FERC 
+
+NC Juris 
+
+79.6338% 
+80.5824% 
+81.5484% 
+82.3069% 
+82.3977% 
+
+13.4589% 
+12.6975% 
+12.2960% 
+11.8146% 
+11.9125% 
+
+1.8119% 
+1.7580% 
+1.6532% 
+1.5891% 
+1.5475% 
+
+5.0954% 
+4.9621% 
+4.5024% 
+4.2894% 
+4.1423% 
+
+To reemphasize, while Dominion believes its cost allocation methodologies in North Carlina have 
+been appropriate to date, the Company keenly recognizes that we are in an era of unprecedented 
+load growth for the foreseeable future. Though adjustments to the definitions of customer classes, 
+cost allocation methods, rate design, and contracting terms may be warranted in the future if data 
+center-driven load growth continues to expand in North Carolina, the Company does not believe 
+any changes to its cost allocation methodologies in North Carolina are necessary at this time. 
+
+3 https://www.scc.virginia.gov/docketsearch#caseDocs/146025.  
+
+3 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Attachment A 
+Docket No. E-100, Sub 208 
+Page 4 of 9 
+
+Question No. 3 
+
+Describe  any  potential  modifications  to  the  North  Carolina  Interconnection  Procedures  (NCIP) 
+that would be necessary to interconnect generation resources for large electric load customer/data 
+centers and describe whether the current study process timeframe under the NCIP is sufficient for 
+generation to serve large electric load customer/data centers. Provide examples of interconnection 
+procedure revisions from other jurisdictions. 
+
+Response: 
+
+At this time the Company has not identified any modifications to the NCIP that would be needed 
+to interconnect generation resources for large electric load customers, including data centers, in 
+North  Carolina.  PJM  Interconnection,  LLC’s  (“PJM”)  queue  reform  is  currently  underway  to 
+transition  from  a  serial  queue  to  a  cluster  study  process,  and  PJM  is  not  accepting  new 
+Interconnection Requests until 2026. These revisions are, however, anticipated to relieve some of 
+the bottleneck challenges in PJM’s interconnection queue and help generators interconnect more 
+efficiently. Aside from generally improving the timing component of the interconnection process, 
+the Company does not anticipate the PJM interconnection reforms to have a material impact on 
+the interconnection of generation resources for large electric load customers specifically. 
+
+4 
+
+ 
+ 
+ 
+ 
+ 
+ 
+Attachment A 
+Docket No. E-100, Sub 208 
+Page 5 of 9 
+
+Question No. 4 
+
+Explain  potential  stranded  cost  issues  associated  with  large  electric  load  customer/data  center 
+additions,  including  examples  from  other  jurisdictions,  and  provide  recommendations  for 
+mitigating this risk. 
+
+Question No. 5 
+
+Describe whether new tariffs should be developed for some or all large load customers/data centers 
+to provide protections for other customer classes and ensure that large load customers pay their 
+cost of service. If new tariffs are appropriate for some but not all large load customers, explain 
+why new tariffs are not appropriate for all large load customers. 
+
+Question No. 6 
+
+Describe  the  appropriate  demand  threshold  for  a  large  load  customer/data  center  tariff(s)  and 
+explain when the new tariffs will be prepared and the recommended approval process for the new 
+tariffs. Provide examples from other jurisdictions. 
+
+Question No. 7 
+
+Describe appropriate terms and conditions for a large load customer/data center tariff(s). Provide 
+examples from other jurisdictions. 
+
+Response to Question Nos. 4-7: 
+
+Mitigating against the risk of stranded costs is a  forward-looking exercise. This process begins 
+with robust forecasting of customer needs. Forecasting electric load involves determining future 
+electricity demand based on various factors such as historical usage patterns, weather conditions, 
+economic trends, population growth, contractual agreements, and customer intelligence. Accurate 
+load forecasting is essential for ensuring a reliable power supply, optimizing grid operations, and 
+reducing  costs.  Long-term  forecasts  support  infrastructure  planning  and  generation  investment 
+decisions. 
+
+In the Company’s service territory, data centers are driving a significant amount of load growth.  
+Dominion’s ability to forecast data center load growth is distinct in that Dominion serves more 
+data centers today than the next five domestic markets combined. Dominion has more than eleven 
+years of monthly data center metered information, which it combines with customer intelligence 
+and  market  research  to  develop  load  predictions.  Those  predictions  are  then  validated  against 
+signed contracts and customer requests. 
+
+The Company’s current data center forecasting methodology and contracting process has proven 
+effective at accurately forecasting demand growth such that Dominion is confident the load growth 
+projected for the Company over the next 10-15 years is real and is coming.   
+
+5 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Attachment A 
+Docket No. E-100, Sub 208 
+Page 6 of 9 
+Dominion  is  keenly  aware  of  the  risks  associated  with  inaccurate  forecasting  to  the  utility, 
+consumers,  and  the  overall  power  grid.  Overestimating  demand  may  result  in  unnecessary 
+generation, leading to higher operational costs and potentially increased environmental impacts.  
+Conversely,  underestimating  demand  can  cause  supply  shortages,  impacting  customer  growth 
+plans, broader economic development activities, and grid reliability.  For this reason, the Company 
+forecasts data center load separately from  all other load to yield the most reliable and accurate 
+overall load forecast. 
+
+With  this  unprecedented  load  growth,  substantial  and  significant  investment  across  generation, 
+transmission, and distribution will be needed. Dominion is committed to ensuring that customers 
+driving  additional  investments  pay  a  fair  share  of  those  investments  and  continue  to  bear  cost 
+responsibility in the event of a change in market conditions, regulations, or technology. Indeed, 
+long-term investments require long-term commitments, beyond what is currently afforded by the 
+Company’s approved terms and conditions for utility service. Prior to filing the Virginia biennial 
+rate  case,  Dominion  carefully  examined  its  contracting  provisions  to  determine  where 
+enhancements were appropriate.   
+
+Ultimately,  the  Company  determined  that  within  its  Virginia  jurisdiction,  updated  terms  and 
+conditions for electric service are needed to account for the large and growing volume of large 
+load customers in Dominion’s Virginia service area.  As noted above, this proposal is currently 
+pending before the Virginia State Corporation Commission in the Company’s biennial rate case 
+proceeding,  Case  No.  PUR-2025-00058.  Key  tenants  of  that  proposal,  which  also  includes  the 
+expansion of customer classes discussed earlier in these comments, are displayed below. 
+
+6 
+
+ 
+ 
+ 
+ 
+  
+ 
+Attachment A 
+Docket No. E-100, Sub 208 
+Page 7 of 9 
+With respect to Question 6, and as discussed above, in Virginia the Company has proposed new 
+terms and conditions for electric service that would be applicable to all “high load” customers with 
+a  demand  of  25  MW  or  greater,  regardless  of  load  factor.  These  newly  proposed  terms  and 
+conditions also include minimum demand provisions, contract term lengths with exit fees for early 
+termination of service, and expansion of deposit and credit requirements, as summarized in the 
+response to Question 4 above.  In addition, the Company has proposed a new GS-5 customer class 
+for all “high load” customers with a contracted demand of 25 MW or greater and a measured or 
+expected load factor of 75% or greater. 
+
+The Company believes that the 25 MW strikes an appropriate balance in that customers of this size 
+and larger—data center and otherwise—require significant infrastructure to connect and serve. 
+
+With respect to Question 7, the Company is aware of several large-load tariffs and related updated 
+regulations that have been recently approved in other jurisdictions. The Company evaluated the 
+proposals submitted in these proceedings in developing its own changes that are currently pending 
+in Virginia. These include: 
+
+-  AEP  Ohio’s  Data  Center  Power  Tariff,  which  would  require  qualifying  data  center 
+customers (those with  new or expanded load greater than 25 MW) to  meet  a minimum 
+billing  demand  threshold  and  load  ramp  period  requirement,  and  includes  additional 
+provisions including an exit fee, collateral and security provisions, system reliability, and 
+technical standards compliance.4 
+
+- 
+
+Indiana Michigan Power’s updates to its Industrial Power Tariff – Tariff I.P., to incorporate 
+terms to accommodate large load customers (large load customers with a contract capacity 
+greater than or equal to 70 MW at an individual plant or 150 MW on an aggregated basis) 
+with a contract term of no less than 12 years, plus a designated ramp period up to 5 years.5 
+
+-  Georgia Power’s rule updates, which allows the utility to impose performance and credit 
+provisions on customers expected to demand 100 MW or more. The rule also mandates 
+longer contract durations for high-load customers and these contracts must be reviewed by 
+the PSC before implementation.6   
+
+-  Evergy  proposals  in  Kansas  and  Missouri  for  approval  of  Large  Load  Power  Service 
+(“LLPS”) rate plans, which introduce new tariffs and riders and a streamlined process to 
+interconnection new large load customers.7 
+
+4 In the Matter of the Application of Ohio Power Company for New Tariffs Related to Data Centers and Mobile 
+Data Centers, Opinion and Order, Case No. 240508-EL-ATA (July 9, 2025), available at  
+https://dis.puc.state.oh.us/ViewImage.aspx?CMID=A1001001A25G09B43531I00509.   
+5  In the Matter of the Verified Petition of Indiana Michigan Power Company for Approval of Modifications to its 
+Industrial Power Tariff – Tariff I.P., Cause No. 46097, Order of the Commission (Feb. 19, 2025), available at 2025 
+WL 638311 (Ind. U.R.C.). 
+6 https://psc.ga.gov/site/assets/files/8617/media_advisory_data_centers_rule_1-23-2025.pdf; See Georgia Power 
+Company, Rules and Regulations for Electric Service. Revised Feb. 1, 2025. 
+7 In the Matter of the Application of Evergy Kansas Metro, Inc., Evergy Kansas South, Inc., and Evergy Kansas 
+Central, Inc. for Approval of Large Load Power Service Rate Plan and Associated Tariffs, Docket No. 25-EKME-
+315-TAR, Application (filed Feb. 11, 2025). 
+
+7 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Attachment A 
+Docket No. E-100, Sub 208 
+Page 8 of 9 
+
+Question No. 8 
+
+Describe any value of, and best practices for, tariffs allowing large-load customers to self-supply. 
+Provide examples from other jurisdictions. 
+
+Response: 
+
+Large-load  customers  are  interconnecting  across  the  country  into  regions  with  a  diverse  set  of 
+interconnection  and  facility  design  options,  including  front  of  the  meter  and  behind  the  meter 
+configurations. The Federal Energy Regulatory Commission (“FERC”) has yet to establish a set 
+of standards or best practices for large-load customers. However, FERC has pending proceedings 
+that may result in rules defining best practices and self-supply in tariffs. FERC issued a show cause 
+order to explore potential rules to establish the process for co-locating large-load customers with 
+generation.8 Additionally, FERC recently held a technical conference to examine the challenges 
+of resource adequacy in the RTO and ISO regions where participants contemplated the need for 
+large-load customers to self-supply.9  
+
+Question No. 9 
+
+Describe whether a large load customer/data center tariff should address (a) voltage ride-through 
+behavior; (b) sensitivity to transient disturbances; (c) load transfer and reconnection protocols; or 
+(d) ramp rate limitations for large-scale load reconnection? If not, explain how these issues can be 
+addressed and mitigated in other ways. Provide examples from other jurisdictions. 
+
+Response: 
+
+Generally, the Company’s Terms and Conditions of electric service10 and Electric Transmission 
+Facility  Interconnection  Requirements  (“FIR”) 11  address  the  responsibilities  of  the  customer 
+related to  its  load  characteristics and behavior. The  tariff  rate  schedules  used for the  billing of 
+electricity,  including  the  Company’s  Virginia  jurisdiction  High  Load  Customer  Proposal 
+referenced in the response to Question 4, address less technical aspects of electric service than the 
+engineering  principles  referenced  in  this  question.  Specifically,  the  Company’s  Virginia  High 
+Load Customer tariff proposal keeps billing parameters to the traditional kW demand and kWh 
+energy components of electric utility rate design. 
+
+Pursuant to the FIR, the Company collects information regarding voltage ride-through behavior, 
+sensitivity  to  transient  disturbances,  load  transfer  and  reconnection  protocols,  and  ramp  rate 
+
+8 See Docket No. EL25-49-000, https://www.ferc.gov/news-events/news/ferc-orders-action-co-location-issues-
+related-data-centers-running-ai.  
+9 See Meeting the Challenge of Resource Adequacy in Regional Transmission Organizations and Independent 
+System Operator Regions, Technical Conference, Docket No. AD25-7-000, available at https://ferc.gov/news-
+events/events/day-1-commissioner-led-technical-conference-regarding-challenge-resource.  
+10 https://www.dominionenergy.com/virginia/rates-and-tariffs/terms-and-conditions.  
+11 https://cdn-dominionenergy-prd-001.azureedge.net/-/media/content/large-business-services/pdfs/virginia/facility-
+interconnection-
+requirements.pdf?rev=f791a63728ba4fad96d9847586530276&hash=F3F2B78F011C1B507F37AB475AB785D6.  
+
+8 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Attachment A 
+Docket No. E-100, Sub 208 
+Page 9 of 9 
+limitations  for  reconnection  from  large  electronic  loads  seeking  to  connect  to  the  Company’s 
+system.    
+
+Additionally, the Company is currently developing an update to the FIR, which will be published 
+in October 2025, that will include minimum requirements to address voltage ride-through and load 
+transfer specifically. These requirements will take into account how these customers respond to 
+transient disturbances and require facilities to respond in a way that supports the reliability of the 
+Bulk Electric System. Further updates to be published in April 2026 will detail more requirements 
+for reconnection.  
+
+As additional needs are identified or technical specifications require updates, the Company plans 
+to  continue  to  review  the  FIR  to  update  it  as  needed.  Because  of  the  technical  nature  of  these 
+behaviors, the FIR is the most appropriate place for these requirements.  
+
+9 
+
+ 
+ 
+ 
+ 
+ 
+CERTIFICATE OF SERVICE 
+
+I hereby certify that a copy of the foregoing Responses to Commission Questions 
+
+Regarding Large Load Customers, as filed in Docket No. E-100 Sub 208, was served 
+
+electronically or via U.S. Mail, first-class postage prepaid, upon all parties of record. 
+
+This the 24th day of July, 2025. 
+
+/s/ Nick A. Dantonio 
+Nick A. Dantonio 
+McGuireWoods LLP 
+501 Fayetteville Street, Suite 500 (27601) 
+P.O. Box 27507 
+Raleigh, North Carolina 27611 
+Phone:  (919) 755-6605 
+Fax: 
+ (919) 755-6612 
+ndantonio@mcguirewoods.com 
+
+Attorney for Virginia Electric and Power 
+Company, d/b/a Dominion Energy North 
+Carolina 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+

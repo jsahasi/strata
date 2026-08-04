@@ -1,0 +1,1194 @@
+ 
+IN THE SUPREME COURT OF OHIO 
+ 
+In the Matter of the Application of Ohio 
+Power Company For New Tariffs Related to 
+Data Centers and Mobile Data Centers. 
+ 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+Case No. 2025-1458 
+  
+Appeal from the Public Utilities Commission of 
+Ohio 
+ 
+Public Utilities Commission of Ohio 
+Case No. 24-508-EL-ATA 
+ 
+ 
+MERIT BRIEF OF APPELLANT, 
+THE OHIO MANUFACTURERS’ ASSOCIATION ENERGY GROUP  
+ 
+ 
+Kimberly W. Bojko (0069402) 
+(Counsel of Record) 
+Emma Y. Easley (0102144) 
+Carpenter Lipps LLP 
+280 North High Street, Suite 1300 
+Columbus, Ohio 43215 
+Telephone: (614) 365-4100  
+Facsimile: (614) 365-9145 
+bojko@carpenterlipps.com 
+easley@carpenterlipps.com  
+ 
+COUNSEL FOR APPELLANT, 
+THE OHIO MANUFACTURERS’ 
+ASSOCIATION ENERGY GROUP 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Dated:  February 2, 2026 
+David Yost (0056290) 
+Attorney General of Ohio 
+ 
+John Jones (0051913)  
+Section Chief, Public Utilities Section 
+ 
+Amy Botschner O’Brien (0074423) Thomas 
+Lindgren (0039210) 
+Lori Keating (0070183) 
+Assistant Attorneys General 
+30 East Broad Street, 16th Floor 
+Columbus, Ohio 43215 
+Telephone: (614) 466-4397 
+Facsimile: (614) 644-8767 
+john.jones@ohioattorneygeneral.gov 
+ 
+COUNSEL FOR APPELLEE, 
+PUBLIC UTILITIES COMMISSION OF 
+OHIO 
+ 
+Steven T. Nourse (0046705) 
+(Counsel of Record) 
+American Electric Power Service 
+Corporation 
+1 Riverside Plaza, 29th Floor Columbus, 
+Ohio 43215-2373 
+Telephone:  (614) 716-1608 
+stnourse@aep.com 
+ 
+ 
+ 
+Supreme Court of Ohio Clerk of Court - Filed February 02, 2026 - Case No. 2025-1458
+ 
+ 
+ 
+N. Trevor Alexander (0080713) 
+Kari D. Hehmeyer (0096284) 
+Samantha R. Meng (0103524) 
+BENESCH FRIEDLANDER COPLAN & 
+ARONOFF 
+41 South High Street, Suite 2600 
+Columbus, Ohio 43215 
+ 
+Telephone:  (614) 223-9363 
+Facsimile:  (614) 223-9330 
+talexander@beneschlaw.com 
+khehmeyer@beneschlaw.com 
+smeng@beneschlaw.com 
+ 
+COUNSEL FOR INTERVENING 
+APPELLEE, 
+OHIO POWER COMPANY 
+ 
+Michael L. Kurtz (0033350) 
+(Counsel of Record) 
+Jody Kyler Cohn (0085402) 
+Boehm, Kurtz & Lowry 
+425 Walnut Street, Suite 2400 
+Cincinnati, Ohio 45202 
+Telephone: (513) 421-2255 
+Facsimile: (513) 421-2255 
+mkurtz@BKLlawfirm.com 
+jkylercohn@BKLlawfirm.com 
+ 
+COUNSEL FOR INTERVENING  
+APPELLEE, 
+THE OHIO ENERGY GROUP 
+ 
+Maureen R. Willis (0020847) 
+Ohio Consumers’ Counsel 
+William J. Michael (0070921) 
+(Counsel of Record) 
+John Varanese (0044176) 
+Assistant Consumers’ Counsel 
+Office of the Ohio Consumers’ Counsel 
+65 East State Street, Suite 700 
+Columbus, Ohio 43215 
+Telephone [Michael]: (614) 466-1291 
+Maureen.willis@occ.ohio.gov 
+William.michael@occ.ohio.gov 
+John.varanese@occ.ohio.gov 
+ 
+ 
+ 
+ 
+COUNSEL FOR INTERVENING  
+APPELLEE, 
+OFFICE OF THE OHIO CONSUMERS’ 
+COUNSEL 
+ 
+ 
+i 
+ 
+TABLE OF CONTENTS 
+Page 
+TABLE OF CONTENTS .............................................................................................................. i 
+TABLE OF AUTHORITIES ....................................................................................................... ii 
+I. 
+INTRODUCTION............................................................................................................. 1 
+II. 
+STATEMENT OF THE FACTS AND CASE ................................................................ 5 
+III. 
+STANDARD OF REVIEW .............................................................................................. 9 
+IV. 
+ARGUMENT ................................................................................................................... 10 
+PROPOSITION OF LAW NO. 1:  The PUCO Erred by Unjustly, Unreasonably, and 
+Unlawfully approving AEP’s discriminatory Schedule DCT contrary to the manifest 
+weight of the evidence, and violated R.C. 4905.32, 4905.33, 4905.35, due process, and the 
+Equal Protection Clause. ................................................................................................... 10 
+PROPOSITION OF LAW NO. 2:  The PUCO Erred by Unjustly, Unreasonably, and 
+Unlawfully finding that AEP’s moratorium did not violate the CTA (R.C. 4933.83) and 
+R.C. 4905.22, and by failing to impose penalties on AEP for its illegal actions. ............. 14 
+PROPOSITION OF LAW NO. 3:  The PUCO Erred by Unjustly, Unreasonably, and 
+Unlawfully finding that AEP’s load forecasts were accurate and that AEP demonstrated an 
+actual transmission constraint or need that was not supported by sufficient evidence in the 
+record in violation R.C. 4903.09. ...................................................................................... 18 
+PROPOSITION OF LAW NO. 4:  The PUCO Erred by Unjustly, Unreasonably, and 
+Unlawfully concluding that AEP’s Application was not an application for an increase in 
+rates in violation of PUCO precedent. .............................................................................. 23 
+PROPOSITION OF LAW NO. 5:  The PUCO Erred by Unjustly, Unreasonably, and 
+Unlawfully failing to reverse the ALJs’ unlawful decision to ignore statutory notice 
+requirements and to commence the evidentiary hearing in violation of statutory due process 
+and the plain language of R.C. 4909.18. ........................................................................... 26 
+PROPOSITION OF LAW NO. 6:  The PUCO Erred by Unjustly, Unreasonably, and 
+Unlawfully upholding the ALJs’ rulings that precluded OMAEG from questioning AEP 
+witnesses about matters directly relevant and material to this case in violation of due 
+process rights and R.C. 4903.09. ...................................................................................... 29 
+V. 
+CONCLUSION ............................................................................................................... 32 
+ 
+ 
+ 
+ 
+ 
+TABLE OF AUTHORITIES 
+Page 
+Cases 
+Acuity, A Mut. Ins. Co. v. Progressive Specialty Ins. Co., 2023-Ohio-3780 ................................ 24 
+Adamsky v. Buckeye Local Sch. Dist., 73 Ohio St. 3d 360, 65 N.E.2d 212 (1995) ...................... 12 
+Canton Storage & Transfer Co. v. Pub. Util. Comm., 72 Ohio St.3d 1 (1995) ............................ 12 
+Clark v. Snapper Power Equip., Inc., 21 Ohio St.3d 58, 488 N.E.2d 138 (1986) ........................ 24 
+Constellation NewEnergy, Inc. v. Pub. Util. Comm., 104 Ohio St.3d 530, 2004-Ohio-6767, 820 
+N.E.2d 885 .................................................................................................................................. 9 
+Consumers’ Counsel v. Pub. Util. Comm., 58 Ohio St.2d 108, 388 N.E.2d 1370 (1979) .............. 9 
+Dayton v. State, 151 Ohio St.3d 168, 2017-Ohio-6909, 87 N.E.3d 176 ....................................... 24 
+Elyria Foundry Co. v. Pub. Util. Comm., 114 Ohio St.3d 305, 2007-Ohio-4164, 871 N.E.2d 1176
+ .................................................................................................................................................... 9 
+In re Application of Columbus S. Power Co., 147 Ohio St.3d 439, 2016-Ohio-1608, 67 N.E.3d 734
+ .................................................................................................................................................... 9 
+In re Comm. Rev. of Capacity Charges of Ohio Power Co., 147 Ohio St.3d 59, 2016-Ohio-1607
+ .................................................................................................................................................. 16 
+In the Matter of the Application of Columbia Gas of Ohio, Inc. for Authority to Revise its Rules 
+and Regulations to Provide for a Delayed Payment Penalty Filed not for an Increase Pursuant 
+to Section 4909.18, Revised Code, PUCO Case No. 80-370-GA-ATA ............................. 24, 25 
+In the Matter of the Application of The Cincinnati Gas & Electric Company to Modify its 
+Nonresidential Generation Rates to Provide for Market-Based Standard Service Offer Pricing 
+and to Establish an Alternative Competitive-Bid Service Rate Option Subsequent to the Market 
+Development Period, PUCO Case Nos. 03-93-EL-ATA, et al. ................................................ 24 
+In the Matter of the Complaint of Suburban Nat. Gas Co. v. Columbia Gas of Ohio, Inc., 162 Ohio 
+St.3d 162, 2020-Ohio-5221, 164 N.E.3d 425 ........................................................................... 24 
+In the Matter of the Joint Application of AEP Ohio Transmission Company, Inc. and Columbus 
+Southern Power Company and Ohio Power Company for Approval of Proposed Transfers, 
+PUCO Case No. 10-246-EL-UNC ............................................................................................ 22 
+Indus. Energy Users-Ohio v. Pub. Util. Comm., 117 Ohio St.3d 486, 2008-Ohio-990, 885 N.E.2d 
+195 ............................................................................................................................................ 16 
+Mahoning Cty. Twps. v. Pub. Util. Comm., 58 Ohio St. 2d 40 (1979) ................................... 11, 13 
+ 
+ 
+ 
+MCI Telecommunications Corp. v. Pub. Util. Comm., 32 Ohio St. 3d 306, 513 N.E.2d 337 (1987)
+ .................................................................................................................................................. 16 
+Motor Freight, Inc. v. Pub. Util. Comm., 120 Ohio St. 1, 165 N.E. 355 (1929) ............................ 9 
+Ohio Consumers’ Counsel v. Pub. Util. Comm., 109 Ohio St. 3d 328, 2006-Ohio-2110 ............ 11 
+Ohio Consumers’ Counsel v. Pub. Util. Comm., 111 Ohio St.3d 300, 2006-Ohio-5789 ............. 27 
+Ohio Edison Co. v. Pub. Util. Comm., 78 Ohio St.3d 466, 678 N.E.2d 922 (1997)....................... 9 
+Penn Central Transportation Co. v. Pub. Util. Comm., 35 Ohio St.2d 97, 298 N.E.2d 97 (1973)
+ .................................................................................................................................................. 17 
+State ex rel. Carna v. Teays Valley Local School Dist. Bd. of Edn., 131 Ohio St.3d 478, 2012-
+Ohio-1484, 967 N.E.2d 193 ...................................................................................................... 18 
+State ex rel. Colvin v. Brunner, 120 Ohio St.3d 110, 2008-Ohio-5041, 896 N.E.2d 979 ............ 17 
+Tongren v. Pub. Util. Comm., 85 Ohio St.3d 87, 706 N.E.2d 1255 (1999) ...................... 12, 17, 30 
+TriHealth, Inc. v. Bd. of Comm’rs, Hamilton County, Ohio, 430 F.3d 783 (6th Cir. 2005) ......... 11 
+Vectren Energy Delivery of Ohio, Inc. v. Pub. Util. Comm., 113 Ohio St.3d 180, 863 N.E.2d 599, 
+2006-Ohio-1386 ........................................................................................................................ 30 
+Wachendorf v. Shaver, 149 Ohio St. 231, 78 N.E.2d 370 (1948) ................................................. 17 
+Statutes 
+R.C. 4903.09 .......................................................................................................................... passim 
+R.C. 4903.10 ................................................................................................................................... 8 
+R.C. 4903.13 ................................................................................................................................... 9 
+R.C. 4905.22 ................................................................................................................... 1, 4, 14, 17 
+R.C. 4905.32 ..................................................................................................................... 1, 3, 4, 10 
+R.C. 4905.33 ..................................................................................................................... 1, 3, 4, 10 
+R.C. 4905.35 ..................................................................................................................... 1, 3, 4, 10 
+R.C. 4909.18 .......................................................................................................................... passim 
+R.C. 4909.19 ......................................................................................................................... 1, 5, 28 
+R.C. 4928.02 ........................................................................................................................... 14, 17 
+ 
+ 
+ 
+R.C. 4933.83 .......................................................................................................................... passim 
+Rules 
+Ohio Adm.Code 4901-1-35 ............................................................................................................ 8 
+ 
+1 
+ 
+IN THE SUPREME COURT OF OHIO 
+ 
+In the Matter of the Application of Ohio 
+Power Company For New Tariffs Related to 
+Data Centers and Mobile Data Centers. 
+ 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+Case No. 2025-1458 
+  
+Appeal from the Public Utilities Commission of 
+Ohio 
+ 
+Public Utilities Commission of Ohio 
+Case No. 24-508-EL-ATA 
+ 
+ 
+MERIT BRIEF OF APPELLANT, 
+THE OHIO MANUFACTURERS’ ASSOCIATION ENERGY GROUP 
+ 
+ 
+I. 
+INTRODUCTION 
+The Public Utilities Commission of Ohio (“PUCO”) sent a clear message to businesses 
+across the country on July 9, 2025:  Certain types of businesses are not welcome in the state of 
+Ohio and that the State’s economic development is less important than a monopoly utility’s bottom 
+line.  Which type of business is next on the utility’s chopping block?  This Court should overturn 
+the PUCO’s deliberate and unjustified discrimination against certain businesses and send its own 
+message:  The state of Ohio is open to all businesses, and the PUCO is required to follow the law. 
+Against the manifest weight of the evidence, the PUCO unjustly, unreasonably, and 
+unlawfully approved the Ohio Power Company’s (“AEP”) unduly discriminatory data center tariff 
+(“Schedule DCT”), discriminating against one type of customer based solely on its business 
+function and use of electricity.  Significantly, this approval was not supported by a demonstration 
+of some actual and measurable differences in the furnishing of services to the customers being 
+discriminated against or the cost to serve those customers.  As such, the PUCO’s decision was 
+contrary to the manifest weight of the evidence presented in this case and inconsistent with the 
+mandates set forth in numerous statutes, including R.C. 4905.22, R.C. 4905.32, R.C. 4905.33, R.C. 
+4905.35, R.C. 4933.83, R.C. 4909.18, R.C. 4909.19, and R.C. 4903.09.  Moreover, in addition to 
+ 
+2 
+ 
+being unduly discriminatory and unreasonable on its face, Schedule DCT threatens to impede 
+Ohio’s future economic development by sending a clear message to the business community—that 
+the utility makes up the rules of the game, choosing who to provide electric service to and what 
+cost.  Allowing AEP to implement such a discriminatory tariff sets a risky precedent of permitting 
+electric distribution utilities (“EDUs”) to propose tariffs directed at certain kinds of customers 
+based on their industry type and energy usage rather than their electric load characteristics or the 
+costs that they cause on the system.  Therefore, the PUCO’s July 9, 2025 Opinion and Order 
+(hereinafter, “Order”) and September 3, 2025 Entry on Rehearing issued in Case No. 24-508-EL-
+ATA (collectively, “PUCO Orders”) should be reversed as both PUCO Orders are unlawful, 
+unreasonable, inconsistent with Ohio law, and unsupported by the record evidence presented in 
+this case. 
+From the inception of this case, AEP claimed that Central Ohio has a transmission capacity 
+constraint right now.  And yet, AEP admitted on the record of the case that it relied on speculative 
+and duplicative load forecasts to justify its request to implement the discriminatory tariff for a 
+particular type and group of customers based solely on their business function and use of 
+electricity.  See Tr. Vol. I at 187–88, 269 (Appx. 345–46, 368); Tr. Vol. II at 351, 364–72 (Appx. 
+371, 384–92).  Whether or not a new, large extra-high voltage (“EHV”) line into the Central Ohio 
+region will even be necessary remains uncertain, and even if it is, AEP stated that significant 
+infrastructure enhancements would not be necessary unless the demand in Central Ohio reaches 
+1,500 MW over 10,000 MW at some future date.  Tr. Vol. I at 227 (Appx. 359); Tr. Vol. II at 372 
+(Appx. 392).  Similarly, AEP not only conceded that it has “‘no way to separate committed data 
+center customers from speculative ones,’” but that “[t]his proceeding is, in part, to clarify the level 
+of interest and commitment to being served.”  OMAEG Ex. 36 at 19 (Seryak October Testimony, 
+ 
+3 
+ 
+quoting McKenzie Direct at 10) (Appx. 586); Sidecat Ex. 18 (Response to OMAEG-RFP-01-006) 
+(Appx. 799).  Despite all of this, AEP saw fit to include these speculative customers and their loads 
+in its forecasts, thereby inflating its load projections.  However, mere speculation and conjecture 
+is not evidence, nor should such speculation and conjecture have been relied upon by the PUCO 
+to reach its conclusions in this case. 
+The record evidence presented in this case overwhelmingly demonstrated that the 
+Stipulation and Recommendation filed on October 10, 2024 (“Customer Coalition Stipulation”) 
+by the majority of the parties in this case (collectively, “Customer Coalition Stipulation 
+Signatories”), as a package, represented a just and reasonable resolution of the issues related to 
+AEP’s application (“Application”)—in contrast to the Stipulation and Recommendation filed on 
+October 23, 2024 (“AEP Stipulation”) by AEP and a small group of other parties (collectively, 
+“AEP Stipulation Signatories”).  Joint Ex. 2 (“Customer Coalition Stipulation”) (Appx. 439); Joint 
+Ex. 1 (“AEP Stipulation”) (Appx. 408).  The Customer Coalition Stipulation Signatories further 
+demonstrated that Schedule DCT constitutes “textbook discrimination,” for which AEP offered 
+neither proper justification nor evidence to defend its proposal.  Such unjustified and arbitrary 
+discrimination against a certain industry based solely on the customer’s business function and use 
+of electricity violates the Equal Protection Clause, which prohibits discrimination that 
+“intentionally treats one differently than others similarly situated without any rational basis for the 
+difference,” as well as the plain meaning of multiple Ohio statutes, including R.C. 4905.32, 
+4905.33, 4905.35, and 4933.83.  Additionally, arguments presented by various customers 
+demonstrated the critical procedural defects of this case that should have prevented the hearing 
+from even commencing. 
+ 
+4 
+ 
+Despite all of this, the PUCO approved the AEP Stipulation and its discriminatory tariff 
+based primarily on five unreasonable and incorrect assumptions:  (1) that AEP could refuse to 
+serve a certain type of customer based on the customer’s end use of electricity that was attempting 
+to locate within AEP’s certified territory; (2) that AEP’s Application was not for an increase in 
+rates to certain customers; (3) that AEP demonstrated an actual transmission capacity constraint 
+that required a solution (i.e., there was need for the tariff); (4) that AEP’s load forecasts were 
+accurate; and (5) that AEP’s new tariff that targets only one particular type of customer is not 
+unduly discriminatory nor unlawful.  Order at ¶¶ 25, 122, 128 (Appx. 148, 215–16, 219).  These 
+assumptions are both contrary to the manifest weight of the evidence and ignore the clear and 
+unambiguous language/requirements set forth in applicable Ohio statues.  Together, they resulted 
+in the PUCO’s unjust, unreasonable, and unlawful decision to authorize AEP’s unduly 
+discriminatory tariff.  Therefore, OMAEG sought rehearing of that decision on the following six 
+grounds, which are also the grounds for this appeal: 
+First, approving AEP’s discriminatory Schedule DCT was unjust, unreasonable, and 
+unlawful because said approval violated R.C. 4905.32, 4905.33, and 4905.35, due process, and the 
+Equal Protection Clause.  See OMAEG’s Application for Rehearing at 4-8 (Appx. 279–83). 
+Second, the PUCO’s failure to find that AEP’s self-imposed moratorium was unlawful in 
+violation of the Certified Territories Act (“CTA”) (R.C. 4933.83) and R.C. 4905.22, and the 
+PUCO’s failure for not imposing penalties on AEP for its illegal actions was unjust, unreasonable, 
+and unlawful.  See OMAEG’s Application for Rehearing at 8-11 (Appx. 283–86). 
+Third, the PUCO’s finding that AEP demonstrated an actual transmission constraint that 
+requires a solution without any record evidence in support of the purported constraint or 
+ 
+5 
+ 
+speculative load forecasts was unjust, unreasonable, and unlawful because it violated R.C. 
+4903.09.  See OMAEG’s Application for Rehearing at 8-11 (Appx. 283–86). 
+Fourth, the PUCO’s finding that AEP’s Application was not an application for an increase 
+in rates was unjust, unreasonable, and unlawful because it ignored the plain language of R.C. 
+4909.18 and 4909.19.  See OMAEG’s Application for Rehearing at 14-16 (Appx. 289–91). 
+Fifth, the PUCO’s failure to address and rule on the Administrative Law Judges’ (“ALJs”) 
+unlawful decision to ignore statutory notice requirements and to commence the evidentiary hearing 
+in violation of the plain language of R.C. 4909.18 was unjust, unreasonable, and unlawful.  See 
+OMAEG’s Application for Rehearing at 16-21 (Appx. 391–96). 
+Sixth, upholding the ALJs’ rulings that prevented OMAEG from questioning AEP 
+witnesses about matters directly relevant and material to this case was unjust, unreasonable, and 
+unlawful because it violated R.C. 4903.09 and due process rights. 
+For the reasons more fully articulated below, the PUCO Orders are unjust unreasonable, 
+and unlawful.  As such, Appellant the Ohio Manufacturers’ Association Energy Group respectfully 
+requests that the Court reverse the PUCO’s Orders (July 9, 2025 Order and September 3, 2025 
+Entry on Rehearing) as set forth herein in accordance with and in adherence to the plain language 
+of applicable statutes. 
+II. 
+STATEMENT OF THE FACTS AND CASE 
+Even before the inception of the underlying case from which this appeal arises, AEP was 
+actively engaging in improper gamesmanship that flies in the face of Ohio law and accepted 
+regulatory practices, including Ohio’s CTA.  Beginning in March 2023 (over a year before the 
+filing of the Application in this case), AEP unilaterally decided to impose a discriminatory, 
+unnecessary, unjustified, and unlawful moratorium of service, refusing to connect and provide 
+service to a particular type and group of customers based solely on their business function and use 
+ 
+6 
+ 
+of electricity, in violation of Ohio law.  Tr. Vol. II at 358–59 (Appx. 378–79).  Notably, AEP’s 
+moratorium remained in place throughout settlement negotiations in the underlying case, giving 
+the monopoly distribution utility, AEP, undue bargaining power.  Tr. Vol. VII at 1522 (Appx. 
+401). 
+AEP’s moratorium, which the Company claimed was necessary due to the existence of an 
+alleged transmission capacity constraint brought about by these speculative new customers and 
+AEP’s inflated load forecast, was not ordered or approved by the PUCO or any other regulatory 
+body, nor was it even necessary given the regional grid operator’s (PJM Interconnection LLC) 
+existing processes to identify infrastructure needs and to approve implementation and cost 
+recovery of necessary transmission infrastructure projects.  Moreover, the veracity of AEP’s 
+speculative load forecasts was called into question by several parties in the underlying case. 
+Over a year after first imposing its unlawful and unapproved moratorium, AEP filed an 
+application requesting that the PUCO approve its proposal to establish two new customer 
+classifications and to implement two new tariffs targeting a particular type and group of customers 
+based solely on their business function and use of electricity (data centers and cryptocurrency or 
+bitcoin mining customers (a.k.a., mobile data centers)) that would increase these customers’ rates 
+if approved.  See AEP Ex. 1 (Application) (May 13, 2024) (Appx. 329).  More specifically, AEP’s 
+proposed tariffs would have required, among other things, that the new classifications of customers 
+do the following:  (1) enter into electric service agreements for a term of 10 years; (2) participate 
+in the PJM Emergency Demand Response program or AEP-declared emergency event and be 
+subject to disconnection; (3) pay all base rates and rider rates that other General Service customers 
+pay; (4) be subjected to a minimum demand charge (90% of their contract capacity for data centers; 
+95% of their contract capacity for mobile data centers); (5) be subjected to an exit fee equal to 
+ 
+7 
+ 
+three years of minimum charges; and (6) provide a guarantee or collateral equal to 50% of the total 
+minimum charges for the full term of the contract.  See AEP Ex. 3 (McKenzie October Testimony) 
+(Appx. 800).  Even though AEP’s request was for an increase in rates to these customers, AEP did 
+not file an application for a base distribution rate case and did not perform a cost-of-service study 
+to determine what the cost would in fact be to serve these two new types of customers. 
+OMAEG and numerous other customers and groups intervened in response to AEP’s 
+flagrant and unlawful effort to discriminate against certain customers based on their end-use of 
+energy rather than the cost to serve them.  Following multiple meetings and negotiations, the 
+Customer Coalition Stipulation was filed with the PUCO on October 10, 2024 by the majority of 
+the parties in the case, and the AEP Stipulation Signatories filed a counter-stipulation on October 
+23, 2024.  Unlike the Customer Coalition Stipulation, the AEP Stipulation that the PUCO 
+ultimately approved proposed a discriminatory tariff that targets one kind of customer for disparate 
+and unreasonable financial burdens and treatment. 
+At the start of the hearing in the underlying case, OMAEG and other Customer Coalition 
+Stipulation Signatories argued that the hearing should not proceed on the appointed date given the 
+plain language of R.C. 4909.18.  However, the ALJs’ decided to proceed with the hearing, and 
+during the hearing itself, the ALJs improperly narrowed the scope of the hearing by prohibiting 
+questioning on certain issues and limiting OMAEG’s cross-examination.  This cross-examination 
+was directly related to the issues in the case and whether the Customer Coalition Stipulation, as a 
+package, represented a just and reasonable resolution of the issues related to AEP’ Application, 
+unlike the AEP Stipulation.  Significantly, and contrary to the Order’s conclusion, AEP failed to 
+demonstrate (1) that a transmission capacity constraint actually exists, thereby justifying need for 
+AEP’s discriminatory tariff, and (2) that its tariff is not unlawfully discriminatory. 
+ 
+8 
+ 
+Contrary to the record evidence, the PUCO approved and adopted the AEP Stipulation and 
+authorized AEP to file tariffs for Schedule DCT on July 9, 2025.  See Order at ¶ 1 (Appx. 142).  
+Specifically, the PUCO unjustly, unreasonably, and unlawfully determined that: (1) AEP had 
+demonstrated a real transmission constraint that required a solution (i.e., need for AEP’s 
+discriminatory tariff); and (2) the AEP Stipulation is not unduly discriminatory nor unlawful.  
+Order at ¶¶ 122, 128 (Appx. 215–16, 219).  Additionally, the PUCO unjustly, unreasonably, and 
+unlawfully upheld the ALJs’ improper rulings that:  (1) allowed the hearing to go forward in 
+violation of R.C. 4909.18; and (2) limited cross-examination of AEP witnesses Ali and McKenzie 
+in violation of due process and R.C. 4909.09.  Order at ¶¶ 25, 31 (Appx. 148, 151).  As a 
+consequence of these findings, the PUCO unjustly, unreasonably, and unlawfully approved the 
+AEP Stipulation.  Order at ¶¶ 168–69 (Appx. 179–80). 
+AEP bore the burden of demonstrating that the AEP Stipulation (1) was the product of 
+serious bargaining between capable, knowledgeable parties; (2) as a package, is reasonable, serves 
+the public interest, benefits customers; and (3) does not violate any important regulatory principles 
+or practices.  However, the record evidence did not demonstrate that the AEP Stipulation satisfied 
+the PUCO’s three-part test.  To the contrary, the record evidence demonstrated that the AEP 
+Stipulation did not satisfy all prongs of the three-part test given that AEP failed to demonstrate the 
+existence of a transmission capacity constraint and need for the tariff and that Schedule DCT’s 
+discriminatory nature violates important regulatory principles and practices.  As such, the PUCO’s 
+approval of the AEP Stipulation and authorization of Schedule DCT were in error because they 
+were against the manifest weight of the evidence. 
+Pursuant to R.C. 4903.10 (Appx. 305) and Ohio Adm.Code 4901-1-35 (Appx. 327), 
+OMAEG timely filed an Application for Rehearing on August 8, 2025, which the PUCO 
+ 
+9 
+ 
+subsequently denied through its September 3, 2025 Entry on Rehearing.  See Entry on Rehearing 
+at ¶ 1 (Appx. 241).  OMAEG then timely filed its Notice of Appeal with this Court on November 
+3, 2025.  See OMAEG’s Notice of Appeal (November 3, 2025) (Appx. 1). 
+III. 
+STANDARD OF REVIEW 
+Ohio law is clear:  A PUCO order must be reversed, modified, or vacated if this Court finds 
+it unlawful or unreasonable.  R.C. 4903.13 provides that “a [PUCO] order shall be reversed, 
+vacated, or modified by this court . . . when, upon consideration of the record, the court finds the 
+order to be unlawful or unreasonable.”  Constellation NewEnergy, Inc. v. Pub. Util. Comm., 104 
+Ohio St.3d 530, 2004-Ohio-6767, 820 N.E.2d 885, ¶ 50; Office of Consumers’ Counsel v. Pub. 
+Util. Comm., 58 Ohio St.2d 108, 110, 388 N.E.2d 1370 (1979); see R.C. 4903.13 (Appx. 308).  
+This Court “has ‘complete and independent power of review as to all questions of law in appeals 
+from the [PUCO].’”  Elyria Foundry Co. v. Pub. Util. Comm., 114 Ohio St.3d 305, 2007-Ohio-
+4164, 871 N.E.2d 1176, ¶ 13, quoting Ohio Edison Co. v. Pub. Util. Comm., 78 Ohio St.3d 466, 
+469, 678 N.E.2d 922 (1997).   
+As to questions of fact, this Court has held that it will not reverse or modify a PUCO 
+decision when the record contains sufficient probative evidence to show that the PUCO’s decision 
+was not manifestly against the weight of the evidence and was not so clearly unsupported by the 
+record as to show misapprehension, mistake, or willful disregard of duty.  In re Application of 
+Columbus S. Power Co., 147 Ohio St.3d 439, 2016-Ohio-1608, 67 N.E.3d 734, ¶ 10.  Where there 
+is a mixed question of law and fact, the Court must judicially review the evidence to determine 
+whether the findings of fact are reasonable and lawful and whether the legal principles have been 
+properly applied.  Motor Freight, Inc. v. Pub. Util. Comm., 120 Ohio St. 1, 6, 165 N.E. 355 (1929). 
+Here, OMAEG’s Propositions of Law center upon questions of law and fact that are subject 
+to this Court’s power of review.  The record contains insufficient probative evidence to 
+ 
+10 
+ 
+demonstrate that the PUCO’s decisions were lawful, reasonable, and supported by the manifest 
+weight of the record evidence.  Therefore, this Court should reverse the PUCO’s decisions as set 
+forth herein. 
+IV. 
+ARGUMENT 
+PROPOSITION OF LAW NO. 1:  The PUCO Erred by Unjustly, Unreasonably, 
+and Unlawfully approving AEP’s discriminatory Schedule DCT contrary to the 
+manifest weight of the evidence, and violated R.C. 4905.32, 4905.33, 4905.35, due 
+process, and the Equal Protection Clause. 
+The PUCO erred by unjustly, unreasonably, and unlawfully approving AEP’s 
+discriminatory tariff in violation of R.C. 4905.32, 4905.33, 4905.35, due process, and the Equal 
+Protection Clause.  On its face, Schedule DCT is unduly discriminatory because it treats similarly 
+situated customers differently, and that disparate treatment was not justified by the record 
+evidence.  As a matter of law, the PUCO is required to protect all customers from undue 
+discrimination, but the PUCO Orders do just the opposite by authorizing AEP to target a particular 
+type and group of customers based solely on their business function and use of electricity. 
+R.C. 4905.32, 4905.33, and 4905.35 all prohibit Ohio utilities from engaging in 
+unreasonable and undue discrimination or offering preferential utility services and rates.  R.C. 
+4905.32 requires utilities to “regularly and uniformly” extend their tariff schedule and charge “all 
+persons, firms, and corporations under like circumstances for like, or substantially similar, 
+service.”  R.C. 4905.33(A) prohibits utilities from directly or indirectly overcharging or 
+undercharging customers “for doing a like and contemporaneous service under substantially the 
+same circumstances and conditions.”  And R.C. 4905.35(A) states that utilities shall not “give any 
+undue or unreasonable preference or advantage to any person, firm, corporation, or locality, or 
+subject any person, firm, corporation, or locality to any undue or unreasonable prejudice or 
+disadvantage.” 
+ 
+11 
+ 
+In other words, similar customers must be treated similarly and charged like rates for utility 
+services. 
+This Court has further explained that while “R.C. 4905.33 does not prohibit rate 
+discrimination per se,” it does “prohibit[] charging different rates when the utility is performing 
+. . . a like and contemporaneous service under substantially the same circumstances and 
+conditions.”  Ohio Consumers’ Counsel v. Pub. Util. Comm., 109 Ohio St. 3d 328, 2006-Ohio-
+2110, ¶ 23 (internal quotes omitted).  This means that while Ohio law does not require uniform 
+utility rates, differential or unequal rates must be “based upon some actual and measurable 
+differences in the furnishing of services to the consumer.”  Mahoning Cty. Twps. v. Pub. Util. 
+Comm., 58 Ohio St. 2d 40, 43–44 (1979).  Despite the Order recognizing and acknowledging these 
+restrictions on disparate treatment, the PUCO still unjustly, unreasonably, and unlawfully 
+concluded that the AEP Stipulation and Schedule DCT were not unduly discriminatory nor 
+unlawful.  Order at ¶ 128 (Appx. 219). 
+This finding is against the manifest weight of the evidence presented during the hearing 
+and not based upon sufficient findings supported by the record, in violation of R.C. 4903.09 and 
+precedent established by this Court. 
+It is undisputed that Schedule DCT treats a particular type of customer differently from 
+other large load customers similarly situated in Central Ohio, which is textbook discrimination.  
+Such unjustified and arbitrary discrimination against a certain industry violates the Equal 
+Protection Clause, which prohibits discrimination that “intentionally treats one differently than 
+others similarly situated without any rational basis for the difference.”  TriHealth, Inc. v. Bd. of 
+Comm’rs, Hamilton County, Ohio, 430 F.3d 783, 788 (6th Cir. 2005).  This Court has previously 
+determined that a government body’s discriminatory classification—such as what the PUCO 
+ 
+12 
+ 
+approved in this case—will “be found to violate equal protection if it treats similarly situated 
+people in a different manner based upon an illogical and arbitrary basis.”  Adamsky v. Buckeye 
+Local Sch. Dist., 73 Ohio St. 3d 360, 362, 65 N.E.2d 212 (1995).  The Court’s decision resulted in 
+several prior PUCO cases being remanded wherein rates or classifications lacked evidentiary 
+support.  See, e.g., Tongren v. Pub. Util. Comm., 85 Ohio St.3d 87, 706 N.E.2d 1255 (1999); 
+Canton Storage & Transfer Co. v. Pub. Util. Comm., 72 Ohio St.3d 1 (1995).  As demonstrated in 
+these cases, the PUCO orders allowing for the disparate treatment of certain kinds of customers 
+must be grounded in an evidentiary record and cannot stand on conclusory reasoning.  However, 
+as discussed further below, the record is void of any evidence to sufficiently justify that a “rational 
+basis for the difference” in treatment does in fact exist.  As such, the decision also violated due 
+process because the PUCO failed to respect the rights afforded these customers and ensure their 
+fair treatment by AEP.  Rather than protecting these customers, the PUCO sanctioned AEP’s 
+arbitrary and discriminatory actions. 
+Both PUCO Orders rely entirely on representations made by AEP itself regarding a 
+particular type of customer posing purported “unique, systemic risks” and the existence of an 
+alleged transmission capacity constraint.  Order at ¶¶ 108, 129 (Appx. 206–07, 220–21); Entry on 
+Rehearing at ¶ 45 (Appx. 256).  However, mere representations are not facts or evidence.  AEP 
+can represent a matter however it likes, but that does not make it true.  AEP was required to 
+demonstrate through evidence that there was a reasonable basis for its deliberate discrimination.  
+Yet the only evidence provided by AEP for the PUCO Orders to cite to were testimony by AEP’s 
+only employee, AEP witness Ali, (testimony unsupported by studies entered into evidence) and a 
+single page document (double-sided) summarizing studies that AEP ostensibly performed.  Order 
+at ¶ 129 (Appx. 220–21); Sidecat Ex. 10 (Response to Staff DR 2-2 Attachment 1) (Appx. 797).  
+ 
+13 
+ 
+The unsupported testimony of AEP’s own witness and a mere summary of studies performed in 
+2023 (two years before the underlying case was even initiated) are not tantamount by any means 
+to presenting actual studies and the study results themselves, nor are they sufficient to “prove” that 
+there is a reasonable basis for AEP ’s decision to discriminate against a particular type of customer.  
+Much more evidence is required before allowing regulated utility to not only implement a 
+discriminatory tariff, but also to set a dangerous precedent that would allow other monopoly 
+utilities to target specific industries for disparate treatment.  This Court has long held that a 
+“reasonable differential or inequality of rates may occur where such differential is based upon 
+some actual and measurable differences in the furnishing of services to the consumer.”  Mahoning 
+Cty. Twps., 58 Ohio St. 2d at 43–44.  Moreover, this Court has stated that while “different criteria 
+or classifications may be utilized in the establishment of reasonable utility rate structures, the basic 
+underlying consideration is that of cost of service rendered.”  Mahoning Cty. Twps., 58 Ohio St. 
+2d at 43 (emphasis added). 
+“Cost of service rendered” is typically determined through a cost of service study 
+(“COSS”), but no COSS was performed before or after the initiation of this case.  Thus, the actual 
+cost to serve these customers was not properly considered in this case.  Similarly, since the only 
+piece of evidence AEP offered into the record was a summary of a few 2023 ostensibly studies 
+performed by one of its affiliates, which was rebutted during cross-examination, AEP failed to 
+provide sufficient supporting evidence demonstrating some “actual and measurable differences in 
+the furnishing of services” to a particular type of customer versus other large load customers.  
+While the PUCO Orders echo AEP’s unfounded representations that a particular type of customer 
+poses a greater risk compared to other large load customers in order to make the finding that there 
+is some measurable difference between the different types of large load customers, AEP did not 
+ 
+14 
+ 
+quantify any of those risks in the record, or provide evidence demonstrating or supporting the 
+existence of such risks.  Order at ¶ 108 (Appx. 206–07); Entry on Rehearing at ¶ 45 (Appx. 256). 
+Since AEP utterly failed to provide sufficient evidence demonstrating a reasonable basis 
+for its discrimination and/or that some actual and measurable difference exists in furnishing of 
+services to the different types of large load customers, the PUCO lacked sufficient record evidence 
+upon which to base its finding that Schedule DCT is not unduly discriminatory.  Consequently, 
+the PUCO Orders unjustly, unreasonably, and unlawfully violate R.C. 4905.32, 4905.33, 4905.35, 
+due process, and the Equal Protection Clause by approving AEP’s discriminatory Schedule DCT.  
+As such, OMAEG respectfully requests that the Court reverse the PUCO Orders as unduly 
+discriminatory. 
+PROPOSITION OF LAW NO. 2:  The PUCO Erred by Unjustly, Unreasonably, 
+and Unlawfully finding that AEP’s moratorium did not violate the CTA (R.C. 
+4933.83) and R.C. 4905.22, and by failing to impose penalties on AEP for its illegal 
+actions. 
+The PUCO erred by unjustly, unreasonably, and unlawfully sanctioning AEP’s 
+unprecedented, self-imposed, and unilaterally enforced moratorium on connecting a particular type 
+of customer based solely on its business function and its end-use of electricity, which is a plain 
+violation of the CTA (R.C. 4933.83) and R.C. 4905.22.  Moreover, sufficient rationale was not 
+provided for this decision, in violation of R.C. 4903.09. 
+Pursuant to R.C. 4905.22, R.C. 4933.83, and R.C. 4928.02(A), AEP has a statutory 
+obligation to serve the customers in its service territory.  Specifically, R.C. 4933.83(B) provides 
+AEP with the exclusive right to provide electric service to all electric load centers located within 
+its certified territory, and along with that right to serve, comes the obligation that AEP “shall 
+furnish adequate facilities to meet the reasonable needs of the consumers and inhabitants in the 
+certified territories that they are authorized and required to serve.”  R.C. 4905.22 further states that 
+ 
+15 
+ 
+AEP “shall furnish necessary and adequate service and facilities, and every public utility shall 
+furnish and provide with respect to its business such instrumentalities and facilities, as are adequate 
+and in all respects just and reasonable.”  And R.C. 4928.02(A) sets forth the state policy to 
+“[e]nsure the availability to consumers of adequate, reliable, safe, efficient, nondiscriminatory, and 
+reasonably priced retail electric service.” 
+The plain language of these statutes is clear—AEP does not have the discretion to simply 
+refuse to serve a type of customer on a whim.  Yet that is precisely what AEP chose to do in 2023.  
+AEP’s unauthorized moratorium and unilateral decision to cease connecting a particular type of 
+customer cannot logically be interpreted as providing adequate service in a reasonably timely 
+manner, or as deploying adequate facilities to handle new load.  Therefore, AEP’s moratorium was 
+unlawful and should have been treated as such by the PUCO. 
+But it was not. 
+When asked in discovery to produce the studies that underpinned or justified its 
+unprecedented decision to refuse to connect a certain type of customer, AEP produced only a two-
+page summary of three load scenarios that AEP’s transmission planning group performed in early 
+2023.  See Sidecat Ex. 9 (Response to Staff-DR 2-2) (Appx. 796); Sidecat Ex. 10 (Response to 
+Staff DR 2-2 Attachment 1) (Appx. 797).  And during the evidentiary hearing, no additional 
+evidence was submitted indicating or describing any subsequent analyses performed that would 
+justify its moratorium.  Consequently, there is no evidence in the record that demonstrates that 
+AEP conducted any studies before or during the moratorium to justify its unprecedented maneuver.  
+Rather, all AEP offered by way of justification was its continued insistence that there is a 
+transmission capacity constraint in Ohio.  Yet this claim is also dubious since AEP’s own long-
+term forecast reports (“LTFR”) do not reflect the unprecedented growth that AEP claims is nigh.  
+ 
+16 
+ 
+AEP’s 2023 LTFR showed negligible load growth over the next ten years, and AEP’s 2024 
+LTFR—which was filed one month before this case was initiated—included nothing close to the 
+amount of customer load that AEP now claims will come on line.  RESA Ex. 2 (2023 LTFR) 
+(Appx. 857); OMAEG Ex. 35 at 15 (Seryak August Testimony) (Appx. 475). 
+Astonishingly, the PUCO showed little concern for AEP’s flagrant flouting of the law.  In 
+response to OMAEG and other parties’ concerns about AEP’s failure to perform any sort of 
+quantitative analysis to justify the moratorium, the PUCO stated that it was “unconcerned that AEP 
+Ohio did not conduct a study during its moratorium period,” because “it seems obvious” why the 
+moratorium was put in place.  Order at ¶ 130 (Appx. 221–22).  See also Entry on Rehearing at ¶ 
+51 (stating the PUCO “is indifferent to the fact that AEP Ohio did not conduct a study during its 
+moratorium period”) (Appx. 260).  However, AEP’s motive for implementing the moratorium is 
+only “obvious” if one accepts AEP’s own, self-serving representations at face value, since there is 
+no record evidence justifying the moratorium.  Under R.C. 4903.09, “[i]n all contested cases heard 
+by the public utilities commission, a complete record of all of the proceedings shall be made, 
+including . . . opinions setting forth the reasons prompting the decisions arrived at, based upon said 
+findings of fact.”  R.C. 4903.09 (Appx. 304).  See also In re Comm. Rev. of Capacity Charges of 
+Ohio Power Co., 147 Ohio St.3d 59, 2016-Ohio-1607, ¶ 53; MCI Telecommunications Corp. v. 
+Pub. Util. Comm., 32 Ohio St. 3d 306, 312, 513 N.E.2d 337 (1987); Indus. Energy Users-Ohio v. 
+Pub. Util. Comm., 117 Ohio St.3d 486, 2008-Ohio-990, 885 N.E.2d 195, ¶ 30.  However, since 
+there was no record evidence provided to support the implementation or continuation of AEP’s 
+moratorium, the PUCO could not have made findings of fact in accordance with the requirements 
+of R.C. 4903.09.  For that reason alone, the PUCO’s decision to accept AEP’s moratorium is 
+unlawful and should be reversed. 
+ 
+17 
+ 
+Moreover, the PUCO’s explicit lack of concern over AEP not conducting any transmission 
+studies before or during the moratorium is itself highly concerning.  As a matter of law and for the 
+sake of precedent, the PUCO should not be condoning a monopoly utility making a unilateral, 
+illegal, and factually unsupported decision to simply refuse to serve certain kinds of customers.  
+As a result of erroneously accepting the imposition of an illegal moratorium, the PUCO Orders 
+fail to impose any kind of penalty on AEP, further signaling to both AEP and other utilities that 
+breaking the law, discriminating against customers, and simply choosing not to serve certain 
+customers can and will go unpunished. 
+Prior to initiating its moratorium, AEP should have gone to the PUCO to request 
+permission to not serve certain customers and/or request to treat those customers differently by 
+demonstrating that those customers required a different service or caused the system to incur 
+different or more costs than other customers.  But it did not.  And the PUCO failed to require AEP 
+to follow the law and the PUCO’s own rules. 
+As a creature of statute, the PUCO must give full effect to the statutory language of R.C. 
+4905.22, R.C. 4933.83, and R.C. 4928.02(A).  Penn Central Transportation Co. v. Pub. Util. 
+Comm., 35 Ohio St.2d 97, 298 N.E.2d 97 (1973).  Additionally, the PUCO is prohibited from 
+adding or removing words, meanings, or requirements from statutes.  State ex rel. Colvin v. 
+Brunner, 120 Ohio St.3d 110, 2008-Ohio-5041, 896 N.E.2d 979, ¶ 45; Wachendorf v. Shaver, 149 
+Ohio St. 231, 237, 78 N.E.2d 370 (1948); see also Tongren v. Pub. Util. Comm., 85 Ohio St.3d 87, 
+88, 706 N.E.2d 1255 (1999).  This Court has also held that “[n]o part of the statute should be 
+treated as superfluous unless that is manifestly required, and the court should avoid that 
+construction which renders a provision meaningless or inoperative.”  State ex rel. Carna v. Teays 
+ 
+18 
+ 
+Valley Local School Dist. Bd. of Edn., 131 Ohio St.3d 478, 2012-Ohio-1484, 967 N.E.2d 193, ¶ 
+19.  
+Allowing AEP to unilaterally impose a moratorium that has prevented (and is still 
+preventing) a particular type of customer from interconnecting since March 2023 without 
+consequence is directly adverse to the requirements and statutory obligations set forth in R.C. 
+4905.22, R.C. 4933.83, and R.C. 4928.02(A).  As such, the PUCO had an obligation to impose 
+penalties on AEP for its illegal actions, and the PUCO’s failure to do so was unjust, unreasonable, 
+and unlawful. 
+For these reasons set forth above, the PUCO’s Orders unjustly, unreasonably, and 
+unlawfully failed to find that the moratorium was unlawful and failed to impose sanctions and 
+forfeitures on AEP accordingly.  As such, the PUCO Orders should be reversed. 
+PROPOSITION OF LAW NO. 3:  The PUCO Erred by Unjustly, Unreasonably, 
+and Unlawfully finding that AEP’s load forecasts were accurate and that AEP 
+demonstrated an actual transmission constraint or need that was not supported 
+by sufficient evidence in the record in violation R.C. 4903.09. 
+The PUCO erred by unjustly, unreasonably, and unlawfully finding that AEP demonstrated 
+an actual transmission constraint that required a remedy without any record evidence in support of 
+the purported constraint or speculative load forecasts in violation of R.C. 4903.09. 
+Similar to the above, the PUCO’s finding that AEP demonstrated the existence of an actual 
+transmission capacity constraint was supported only by AEP’s own assertions and a single page 
+document summarizing studies that AEP ostensibly performed two years prior.  Order at ¶ 121–
+22 (Appx. 215–16); Sidecat Ex. 10 (Response to Staff DR 2-2 Attachment 1) (Appx. 797).  The 
+PUCO’s decision to simply accept AEP’s representation that a transmission capacity constraint 
+exists and that there is unprecedented future load growth expected at some time in the future solely 
+ 
+19 
+ 
+originating from one particular type of customer was not supported by sufficient findings of fact 
+as required by R.C. 4903.09.   
+The PUCO’s decision to accept AEP’s own speculative assertions regarding the existence 
+of a hypothetical transmission capacity constraint completely ignored AEP’s own contrary 
+admissions regarding the existence of said constraint.  Specifically, AEP admitted on several 
+occasions that it lacked a rigorous quantitative analysis regarding key matters in this case, such as 
+its purported need to force a certain type of customer into an industry-specific tariff, the specific 
+projects or costs that would be involved in this transmission buildout, the potential transmission 
+investment to be built in the future and who would build it, and the current amount of reserve 
+capacity for additional load growth in Central Ohio.  See OMAEG Ex. 22 (Response to OMAEG-
+INT-01-041) (Appx. 457); DCC Ex. 5 (OEG-INT-1-2) (Appx. 867); OMAEG Ex. 23 (Response 
+to DCC-INT-02-001) (Appx. 459); Tr. Vol. I at 262 (Appx. 361); Tr. Vol. VII at 1504 (Appx. 
+395).  For example, AEP conceded that it does not have a way of knowing if there is actually a 
+transmission capacity constraint, responding in a discovery request that “AEP Ohio cannot 
+speculate about what specific projects or costs would be involved in this transmission buildout.”  
+OMAEG Ex. 22 (OMAEG-INT-01-041) (Appx. 457).  When asked during the hearing about the 
+current amount of transmission capacity available on AEP’s transmission system for additional 
+load to be added, AEP witness McKenzie admitted that “you can’t really say X amount of 
+transmission capacity in a large geographic area. It’s a case-by-case analysis.”  Tr. Vol. VII at 
+1508 (Appx. 399).  AEP further admitted that it had not conducted any specific analysis of potential 
+transmission investment to be built in the future, nor had AEP quantified the amount of reserve 
+capacity for additional load growth in Central Ohio.  DCC Ex. 5 (OEG-INT-1-2) (Appx. 867); 
+OMAEG Ex. 23 (Response to DCC-INT-02-001) (Appx. 459); Tr. Vol. I at 262 (Appx. 361). 
+ 
+20 
+ 
+As to the “series of studies run by the AEP Transmission Planning organization” that the 
+Order cites as evidence supporting AEP’s claims regarding the existence of a capacity constraint, 
+this is referring to Sidecat Ex. 10, which is both unreliable and entirely insufficient to support 
+AEP’s claim about an existing transmission capacity constraint.  First, as noted above, this series 
+of studies was conducted by one of AEP’s own affiliates, and there is no indication that the results 
+were ever verified by an independent, uninterested third party (PUCO Staff never conducted any 
+of its own studies or analysis).  Second, the actual studies themselves and their results are not 
+introduced into the record evidence.  While the Order cites Sidecat Ex. 10 when discussing this 
+series of studies, Sidecat Ex. 10 is not actually a series of transmission studies.  Rather, the exhibit 
+is a narrative response written by AEP describing a series of transmission studies that the Company 
+claims were conducted in 2023.  Sidecat Ex. 10 (Response to Staff DR 2-2 Attachment 1) (Appx. 
+797).  As explained above, this narrative summary was all that AEP provided in response to PUCO 
+Staff’s request for “the results of any such study or studies [supporting AEP’s unlawful 
+moratorium and discriminatory tariff], including all calculations with formulas intact.”  Sidecat 
+Ex. 9 (Response to Staff-DR 2-2) (Appx. 796).  No additional evidence, support, or studies were 
+submitted to PUCO Staff in response to its data request, and no other evidence, support, or studies 
+were entered into the record at the hearing. 
+It should also be noted that AEP witness Ali admitted that AEP’s existing peak demand in 
+the Central Ohio area makes up only 4,000 MW (only 600 MW of which is attributed to the 
+particular type of customer that AEP refused to connect) of the Company’s 9,388 MW of 2023 
+peak load (including wholesale interconnections), which indicates that AEP still has available 
+capacity.  Order at ¶ 122 (Appx. 215–16).  Similarly, Mr. Ali testified that AEP’s “system could 
+support 10,000 megawatts of capacity in central Ohio before needing, . . . significant infrastructure 
+ 
+21 
+ 
+enhancements,” and that AEP currently projected that its system “would reach 10,000 megawatt 
+by 2030.”  Tr. Vol. I at 117 (Appx. 344); Tr. Vol. II at 372 (emphasis added) (Appx. 392). 
+Throughout this case, AEP refused to provide any actual transmission studies to support 
+its claim that a transmission capacity constraint exists, meaning that the PUCO essentially chose 
+to rely solely on AEP’s own representations regarding this integral matter, instead of actual 
+evidence.  AEP’s unsupported claims are not sufficient evidence upon which to base a decision.  
+Moreover, the PUCO Order offered no explanation for why the PUCO rejected the Customer 
+Coalition Stipulation Signatories’ counterarguments beyond the single sentence, “we are not 
+persuaded by [Customer Coalition] Stipulation signatories that claim the Company has not 
+provided sufficient record evidence to demonstrate the transmission constraints AEP Ohio faces.”  
+Order at ¶ 122 (Appx. 215–16).  The Entry on Rehearing was similarly sparse, simply repeating 
+that the PUCO believed AEP had “provided a real, pending transmission constraint concern” and 
+once again pointing to the same testimony and “evidence” cited in the Order.  Entry on Rehearing 
+at ¶ 39 (Appx. 252).  These barebones and ultimately unsupported statements do not satisfy the 
+requirements of R.C. 4903.09, which requires the PUCO to provide “findings of fact and written 
+opinions setting forth the reasons prompting the decisions arrived at, based upon said findings of 
+fact.” 
+It should also be noted that the PUCO failed to address OMAEG’s salient arguments 
+regarding the significant threat of corporate separation violations posed by the implementation of 
+this tariff, as well as the fact that AEP (the electric distribution utility) is not the appropriate entity 
+to address a purported transmission issue.  Even if one accepts AEP’s unsupported claim that a 
+transmission capacity constraint exists, at no point during this case did AEP provide sufficient 
+justification for why AEP—an electric distribution utility—has assumed responsibility for 
+ 
+22 
+ 
+resolving a purported transmission problem.  AEP has a transmission affiliate—AEP Transmission 
+Company (“AEP TransCo”).  This transmission affiliate was created back in 2010 for the explicit 
+“purpose of planning, constructing, owning, and operating transmission assets in Ohio.”  In the 
+Matter of the Joint Application of AEP Ohio Transmission Company, Inc. and Columbus Southern 
+Power Company and Ohio Power Company for Approval of Proposed Transfers, PUCO Case No. 
+10-246-EL-UNC, Application at ¶ 1 (May 2, 2010) (hereinafter, AEP TransCo Application).  
+According to the AEP TransCo Application filed in Case Nos. 10-245-EL-UNC, et al., to establish 
+AEP TransCo, AEP TransCo “will develop, construct, own and operate some new transmission 
+facilities interconnected to existing AEP Ohio facilities within the PJM territory,” and AEP 
+TransCo “will also be able to rely on the financial resources of its ultimate parent, [American 
+Electric Power Company, Inc.], and its ability to supply, or cause to be supplied, capital.”  AEP 
+TransCo Application at ¶¶ 5, 9.  While AEP retains ownership of some transmission assets, in 
+accordance with the AEP TransCo Application, “AEP TransCo will develop and own new 
+transmission assets within the state of Ohio and [AEP TransCo] will not acquire from [AEP] assets 
+currently in-service and owned by [AEP].”  AEP TransCo Application at ¶ 12.  In other words, the 
+responsibility for building new transmission infrastructure for any additional large load customers 
+should be on AEP TransCo’s shoulders, not AEP’s.  
+Moreover, by AEP’s own admission, “[i]t cannot be determined which entity would 
+construct any transmission investment needed to serve the more than 30,000 megawatts of data 
+center projects on AEP Ohio’s queue of potential future projects.”  OMAEG Ex. 22 (Response to 
+OMAEG-INT-01-041) (Appx. 457); Tr. Vol. VII at 1504 (Appx. 395).  Yet, the AEP Stipulation 
+authorizes an electric distribution company to collect money from distribution customers to resolve 
+a purported transmission constraint that AEP keeps to bolster its bottom line, or that AEP may 
+ 
+23 
+ 
+provide to its transmission company affiliate to fund the construction of new transmission facilities 
+or that AEP may use to support the construction or funding, thereby subsidizing its transmission 
+affiliate.  This subsidization would violate Ohio’s corporate separation policies as well as the 
+important regulatory principle of avoiding cross-subsidization.  These issues should have been 
+addressed by the PUCO, but they were not, creating yet another reason for finding the PUCO 
+Orders deficient in violation of R.C. 4909.09. 
+For all the reasons set forth above, AEP failed to provide sufficient evidence demonstrating 
+the existence of a transmission capacity constraint, meaning that the PUCO’s decision to accept 
+AEP’s claim is not and cannot be supported by sufficient record evidence as required by R.C. 
+4903.09.  Therefore, OMAEG respectfully requests that the Court find that the PUCO’s 
+determination was unlawful pursuant to R.C. 4903.09 and against the manifest weight of the 
+evidence, and reverse the PUCO Orders. 
+PROPOSITION OF LAW NO. 4:  The PUCO Erred by Unjustly, Unreasonably, 
+and Unlawfully concluding that AEP’s Application was not an application for an 
+increase in rates in violation of PUCO precedent. 
+The PUCO erred by failing to find that AEP’s Application was an application for an 
+increase in rates that did not comply with the requirements set forth in R.C. 4909.18 for such 
+applications. 
+AEP does not dispute that its Application in this case was filed pursuant to R.C. 4909.18.  
+Nor does it dispute that the express purpose for this filing, as set forth in the Application, was to 
+create two new customer classes and two new corresponding tariffs.  AEP Ex. 1 at 1 (Application) 
+(Appx. 329).  Previously, the PUCO has found that rate case reviews are applicable when utilities 
+seek to impose new charges on customers for distribution, transmission, and ancillary services that 
+would result in some customers paying rates higher than those currently authorized by an EDU’s 
+tariffs.  In the Matter of the Application of The Cincinnati Gas & Electric Company to Modify its 
+ 
+24 
+ 
+Nonresidential Generation Rates to Provide for Market-Based Standard Service Offer Pricing and 
+to Establish an Alternative Competitive-Bid Service Rate Option Subsequent to the Market 
+Development Period, PUCO Case Nos. 03-93-EL-ATA, et al., Second Entry on Rehearing at ¶ 28 
+(January 19, 2005); In the Matter of the Application of Columbia Gas of Ohio, Inc. for Authority 
+to Revise its Rules and Regulations to Provide for a Delayed Payment Penalty Filed not for an 
+Increase Pursuant to Section 4909.18, Revised Code, PUCO Case No. 80-370-GA-ATA, Entry at 
+¶ 3 (May 14, 1980) (hereinafter, “1980 Columbia Gas Case”). 
+This Court has held on numerous occasions that “‘[i]t is the policy of courts to stand by 
+precedent and not to disturb a point once settled.’”  Dayton v. State, 151 Ohio St.3d 168, 2017-
+Ohio-6909, 87 N.E.3d 176 at ¶ 30, quoting Clark v. Snapper Power Equip., Inc., 21 Ohio St.3d 
+58, 60, 488 N.E.2d 138 (1986).  Similarly, this Court has previously instructed the PUCO to 
+“respect its own precedents in its decisions to assure the predictability which is essential in all 
+areas of the law, including administrative law.”  In the Matter of the Complaint of Suburban Nat. 
+Gas Co. v. Columbia Gas of Ohio, Inc., 162 Ohio St.3d 162, 2020-Ohio-5221, 164 N.E.3d 425 at 
+¶ 29. 
+While the doctrine of stare decisis “is limited to circumstances where the facts of a 
+subsequent case are substantially the same as a former case,” that doctrine is applicable here given 
+the similarities between this case and the 1980 Columbia Gas Case (PUCO Case No. 80-370-GA-
+ATA) cited above.  Acuity, A Mut. Ins. Co. v. Progressive Specialty Ins. Co., 2023-Ohio-3780, ¶ 
+21.  Specifically, in the 1980 Columbia Gas Case, Columbia sought to revise its tariffs to impose 
+a late payment charge on customers that “would result in some customers paying rates higher than 
+those currently authorized by Applicant’s tariffs.”  In the Matter of the Application of Columbia 
+Gas of Ohio, Inc. for Authority to Revise its Rules and Regulations to Provide for a Delayed 
+ 
+25 
+ 
+Payment Penalty Filed not for an Increase Pursuant to Section 4909.18, Revised Code, Case No. 
+80-370-GA-ATA, Entry at ¶ 3.  Upon review of Columbia’s application, the PUCO held that “such 
+a proposal is more appropriately the subject of a rate case . . . wherein revenue levels and tariff 
+modifications affecting revenue levels are fully litigated.” 
+Similarly, in the case at bar, AEP’s proposed tariffs were intended to impose new financial 
+requirements and additional charges on a particular type of customer that would result in those 
+customers paying rates higher than those currently authorized by an EDU’s tariffs.  Specifically, 
+AEP proposed imposing an increased minimum billing demand of 90%, an initial contract of no 
+fewer than 10 years, an increased exit fee, and significantly more stringent collateral requirements 
+on a certain type of customer (including existing customers already being served by AEP under an 
+existing tariff).  AEP Ex. 1 at 8–9 (Application) (Appx. 336–37).  Based on these proposals, the 
+PUCO should have followed its own precedent and found that AEP’s Application was for an 
+increase in rates.  Moreover, the PUCO should have rejected AEP’s Application because it did not 
+satisfy the requirements set forth in R.C. 4909.18 for applications for an increase in rates.  This 
+rejection could have been accompanied by a directive for AEP to file a rate case if the Company 
+wanted to create two new classifications of customers and establish new tariffs for a new type of 
+service.  Had this been done, a proper COSS would have been performed, which would have 
+provided much-needed insights into exactly how much it would cost AEP to serve a particular type 
+of customer it claims are placing additional strain on AEP’s system. 
+In addition to failing to follow its own precedent, the PUCO’s decision to deem AEP’s 
+Application not an application for an increase in rates was not supported by sufficient record 
+evidence, in violation of R.C. 4903.09.  Rather, the PUCO offered only a singular sentence 
+“explanation,” stating that “the Company’s application did not propose an increase in rates 
+ 
+26 
+ 
+pursuant to R.C. 4909.18.”  Order at ¶ 25 (Appx. 148).  The Entry on Rehearing similarly simply 
+reiterated the Order’s prior filing without elaborating further.  Entry on Rehearing at ¶ 45 (Appx. 
+256).  Once again, the PUCO seemingly chose to simply accept AEP’s representations without 
+sufficient record evidence to support those representations.  As such, the PUCO Orders were 
+unlawful pursuant to R.C. 4903.09. 
+For the aforementioned reasons, OMAEG respectfully requests that the Court find that the 
+PUCO unjustly, unreasonably, and unlawfully failed to find that the AEP’s Application was an 
+application for an increase in rates that failed to meet the requirements set forth in R.C. 4909.18.  
+As such, the PUCO Orders should be reversed. 
+PROPOSITION OF LAW NO. 5:  The PUCO Erred by Unjustly, Unreasonably, 
+and Unlawfully failing to reverse the ALJs’ unlawful decision to ignore statutory 
+notice requirements and to commence the evidentiary hearing in violation of 
+statutory due process and the plain language of R.C. 4909.18. 
+The PUCO erred by unjustly, unreasonably, and unlawfully failing to address and rule on 
+the ALJs’ unlawful decision to ignore statutory notice requirements and to commence the 
+evidentiary hearing in violation of the plain language of R.C. 4909.18 and statutory due process.  
+R.C. 4909.18 requires that public notice of an evidentiary hearing be published prior to the start 
+of the hearing.  However, such notice was not published in any of the approximately 60 counties 
+in which it was required.  Accordingly, the hearing should not have commenced on December 3, 
+2024. 
+Applications filed pursuant to R.C. 4909.18 are either for an increase in rates or not.  As 
+discussed above, while AEP claimed that its Application was not for an increase in rates, the stated 
+purpose of the Application and its contents demonstrate otherwise.  That being said, regardless of 
+whether the Application was for an increase in rates, the statutory notice requirement applies.  As 
+set forth in R.C. 4909.18, the PUCO could have proceeded one of two ways, assuming AEP’s 
+ 
+27 
+ 
+Application was not for an increase in rates—either (1) by permitting AEP to file its proposed 
+tariffs and fixing the time when those tariffs would take effect, or (2) if the proposed tariffs 
+appeared unjust or unreasonable, by setting the matter for hearing and publishing notice of such 
+hearing.  R.C. 4909.18 (Appx. 314). 
+Rather than allowing AEP to simply file its proposed tariffs and fixing the time when those 
+tariffs would take effect, the PUCO set the matter for hearing.  Thus, notice of said hearing should 
+have been published as required by R.C. 4909.18.  However, despite the hearing start date being 
+moved no fewer than four times, at no point did the PUCO direct AEP to publish notice of the 
+hearing.  As such, the evidentiary hearing was never properly noticed and should not have been 
+allowed to commence when it did. 
+This matter was raised on the first day of the hearing by OMAEG and other Customer 
+Coalition Stipulation Signatories, but the ALJs declined to continue the hearing, stating that the 
+hearing had been set at the PUCO’s discretion.  Tr. Vol. I at 37 (Appx. 343).  This same 
+unsupported, barebones rationale was later echoed by the PUCO itself in its Entry on Rehearing 
+(notably, this matter was not addressed or even referenced in the PUCO’s initial Order).  Entry on 
+Rehearing at ¶ 57 (Appx. 265).  See also Order (Appx. 142).  However, this Court has long 
+recognized that a “hearing is required [under R.C. 4909.18] in two instances: (1) when an 
+application for an increase in an existing rate is filed or (2) if the application is not for an increase 
+in an existing rate, if the proposals in the application appear ‘unjust or unreasonable.’”  Ohio 
+Consumers’ Counsel v. Pub. Util. Comm., 111 Ohio St.3d 300, 2006-Ohio-5789, ¶ 19.  In other 
+words, assuming AEP’s Application was not to be for an increase of rates, the only reason that a 
+hearing should have been set is because “the proposals in the application appear ‘unjust or 
+unreasonable,’” which then triggers the mandatory notice requirement set forth in R.C. 4909.18.  
+ 
+28 
+ 
+Alternatively, if the Application was for an increase in rates (as OMAEG contends), the PUCO 
+was required to set the matter for hearing, and the mandatory notice requirement still applies.  R.C. 
+4909.19 (Appx. 317). 
+As discussed above, the PUCO is a creature of statute and thus required to give full effect 
+to the plain language of R.C. 4909.18.  The PUCO is not permitted to add, delete, or substitute 
+words into or out of the statute, and, as written, R.C. 4909.18 is clear and unambiguous.  If AEP’s 
+Application was not for an increase in rates, and since the matter was set for hearing, the PUCO 
+should have “give[n] notice of such hearing by sending written notice of the date set for the hearing 
+to the public utility and publishing notice of the hearing one time in a newspaper of general 
+circulation in each county in the service area affected by the application.”  R.C. 4909.18 (Appx. 
+314). 
+As required by the plain language of R.C. 4909.18, the ALJs should have continued the 
+hearing until after notice was properly published, but they declined to do so, which constitutes 
+reversible error.  Rather than reversing, however, the PUCO ignored this matter in its Order, and 
+in its Entry on Rehearing, the PUCO merely reiterated the ALJs’ singular, unsupported ground 
+that notice was not required because the PUCO “set this matter for hearing at our discretion.”  Tr. 
+Vol. I at 37 (Appx. 343); Entry on Rehearing at ¶ 57 (Appx. 265).  But, as discussed above, there 
+are only two reasons to set an application filed pursuant to R.C. 4909.18 for hearing.  As such, the 
+ALJs’ and PUCO’s one-sentence “reasoning” by no means justifies ignoring a statutory mandate, 
+nor does it satisfy the requirements of R.C. 4903.09, which requires that the PUCO’s decisions in 
+a contested case be supported by sufficient findings of fact from the evidentiary record.  R.C. 
+4903.09.  This was undoubtedly a contested case, which requires the PUCO to set forth its findings 
+ 
+29 
+ 
+of fact and written opinions and its reasons prompting the decisions arrived at, based upon said 
+findings of fact, but this was not done. 
+As a matter of law, the ALJs’ decision not to continue the hearing until after the statutory 
+notice requirements were satisfied violated R.C. 4909.18, and the PUCO’s failure to address this 
+issue in its Order and barebones “explanation” offered in its Entry on Rehearing violate R.C. 
+4903.09.  For these reasons and those set forth above, OMAEG respectfully requests that the Court 
+find that the PUCO’s decision to ignore statutory notice requirements violated statutory due 
+process, R.C. 4909.18, and R.C. 4903.09.  As such, the PUCO Orders should be reversed. 
+PROPOSITION OF LAW NO. 6:  The PUCO Erred by Unjustly, Unreasonably, 
+and Unlawfully upholding the ALJs’ rulings that precluded OMAEG from 
+questioning AEP witnesses about matters directly relevant and material to this 
+case in violation of due process rights and R.C. 4903.09. 
+The PUCO erred by unjustly, unreasonably, and unlawfully upholding the ALJs’ rulings 
+that precluded OMAEG from fully questioning AEP witnesses about matters directly relevant and 
+material to this case in violation of OMAEG’s due process rights.  Specifically, the ALJs’ improper 
+narrowing of the scope of OMAEG’s cross prevented OMAEG from asking questions and fully 
+developing the record regarding (1) whether AEP considered other solutions to mitigate the alleged 
+transmission capacity constraint aside from a discriminatory tariff, and (2) whether AEP was even 
+acting in good faith when it initiated this case.  This in turn denied the PUCO a full review and 
+examination of facts and matters key to the disposition of this case.  See Tr. Vol. I at 216–20 
+(Appx. 348–52); Tr. Vol. VIII at 1645–47 (Appx. 404–06). 
+This Court has previously held that due process in a PUCO proceeding occurs when parties 
+are given: (1) “ample notice;” (2) “permitted to present evidence through the calling of its own 
+witnesses;” (3) permitted to “cross-examin[e] the other parties’ witnesses;” (4) introduce exhibits; 
+(5) “argue its position through the filing of posthearing briefs;” and (6) “challenge the PUCO’s 
+ 
+30 
+ 
+findings through an application for rehearing.  Vectren Energy Delivery of Ohio, Inc. v. Pub. Util. 
+Comm., 113 Ohio St.3d 180, 863 N.E.2d 599, 2006-Ohio-1386 at ¶ 53 (emphasis added).  Further, 
+this Court has held that the PUCO must, in order to comply with the law, provide “in sufficient 
+detail, the facts in the record upon which the order is based, and the reasoning followed by the 
+PUCO in reaching its conclusion.”  Tongren v. Pub. Util. Comm., 85 Ohio St.3d 87, 89 (1999).  
+Here, OMAEG was denied the right to fully cross-examine AEP’s witnesses, despite the 
+fact that OMAEG’s excluded lines of questioning were directly relevant to the PUCO’s ultimate 
+determination of whether the AEP Stipulation satisfied the PUCO’s three-prong test, and involved 
+matters at the very heart of this proceeding. 
+As explained by OMAEG’s counsel during the hearing, OMAEG’s line of questions for 
+Mr. Ali were relevant to this case because “it’s important for the record to know whether [Mr. Ali] 
+did or did not include in his modeling generation resources that are PJM RTO controlled, . . . which 
+he said would affect transmission constraints and could solve the problem,” and since “he didn’t 
+provide his model to us, . . . it’s important to know what is included or is not included in his 
+model.”  Tr. Vol. I at 215 (Appx. 347).  Determining whether AEP even considered solutions other 
+than constructing a 765 kV line or having its transmission affiliate construct the line and 
+implementing discriminatory tariffs with increased costs to certain customers would have aided 
+the PUCO in determining whether the AEP Stipulation and Schedule DCT actually benefits 
+customers and the public interest.  Moreover, had OMAEG been given the opportunity to do so, 
+OMAEG would have further examined Mr. Ali’s credibility and his underlying modeling 
+assumptions, as well as the credibility of said assumptions.  Specifically, Mr. Ali’s inability to 
+testify about the underlying assumptions of his own modeling, as well as what projects he actually 
+factored into the modeling went directly to his credibility, which is certainly a matter that the 
+ 
+31 
+ 
+PUCO should be considering as part of its deliberations regarding the competing stipulations in 
+this case and the facts of the case.  
+Similarly, OMAEG’s questions to Mr. McKenzie about both his own contradictory 
+statements, and AEP’s contradictory actions with regard to AEP unlawfully instituting a 
+moratorium on connecting a particular type of customer in Central Ohio, while at the same time 
+courting these same types of customers and encouraging them to locate in AEP’s service territory 
+were also directly relevant to this case.  As discussed previously, AEP filed its Application 
+ostensibly in response to an existing transmission capacity constraint.  But if it could be 
+demonstrated that (1) this constraint simply does not exist, as possibly evidenced by AEP 
+encouraging these supposedly burdensome customers to locate in its service territory, or (2) that 
+the constraint was of AEP’s own making, this would have provided significant facts and evidence 
+that should be taken into account by the PUCO when evaluating the reasonableness of AEP’s 
+Stipulation, whether AEP’s Stipulation was in the best interest of customers, whether AEP’s 
+Stipulation violated any regulatory principle, and, of course, which of the competing stipulations 
+at issue was the most reasonable under the circumstances.  OMAEG should have been permitted 
+to further flesh out these issues on cross-examination so that additional facts could be added to the 
+record for the PUCO’s review.  As such, the ALJs’ ruling ending this line of questioning and 
+precluding OMAEG from fully examining the witnesses resulted in the effective exclusion of facts 
+and evidence relevant and material to this case, causing prejudice to OMAEG and other parties. 
+Additionally, as has been true throughout the PUCO Orders, the PUCO’s decision to 
+uphold the ALJs’ rulings were not properly supported by “written opinions setting forth the reasons 
+prompting the decisions arrived at, based upon said findings of fact,” in violation of R.C. 4903.09.  
+Without citing relevant findings of fact supported by record evidence, the PUCO declared (and 
+ 
+32 
+ 
+later affirmed on rehearing) that OMAEG’s line of questioning for Mr. Ali had no bearing on the 
+points OMAEG was attempting to make, and that OMAEG was given “significant leeway” to 
+question Mr. McKenzie.  Order at ¶¶ 28, 31 (Appx. 149–51); Entry on Rehearing at ¶ 61 (Appx. 
+267).  But being ordered to terminate two relevant and material lines of questioning without 
+sufficient explanation can hardly be called leeway—significant or otherwise.  Since the PUCO 
+failed to provide record evidence that supports the PUCO’s decision, in violation of R.C. 4903.09, 
+the PUCO’s decision to uphold the ALJs’ rulings was unjust, unreasonable, and unlawful.  As 
+such, the PUCO Orders should be reversed. 
+V. 
+CONCLUSION 
+As set forth above, the PUCO Orders approving Schedule DCT were unjust, unreasonable, 
+unlawful, and against the manifest weight of the evidence.  The hearing itself should not have 
+proceeded when it did given the lack of statutorily mandated published notice, and once the hearing 
+was underway, OMAEG was improperly prevented from developing a fulsome and robust record.  
+What evidence was entered into the record failed to demonstrate that an actual transmission 
+capacity constraint exists, and in fact indicates that AEP failed to conduct the necessary analysis 
+to determine if a transmission constraint actually exists.  As such, there is no justification for 
+creating a new classification of customers without a COSS or proper rate case filing and there is 
+no justification authorizing a new tariff that is discriminatory on its face.  The PUCO’s approval 
+of the AEP Stipulation and Schedule DCT was unjust, unreasonable, and unlawful, and against the 
+manifest weight of the evidence in violation R.C. 4903.09.  For these reasons, OMAEG 
+respectfully requests that the Court find that the PUCO’s July 9, 2025 Order and September 3, 
+2025 Entry on Rehearing are unjust, unreasonable, and unlawful and reverse the PUCO’s 
+decisions. 
+ 
+33 
+ 
+ 
+Respectfully submitted, 
+/s/ Kimberly W. Bojko  
+ 
+ 
+Kimberly W. Bojko (0069402) 
+(Counsel of Record) 
+Emma Y. Easley (0102144) 
+Carpenter Lipps LLP 
+280 North High Street, Suite 1300 
+Columbus, Ohio 43215 
+Telephone:  (614) 365-4100  
+Facsimile:  (614) 365-9145 
+bojko@carpenterlipps.com 
+easley@carpenterlipps.com  
+ 
+COUNSEL FOR APPELLANT, 
+THE OHIO MANUFACTURERS’ ASSOCIATION 
+ENERGY GROUP 
+ 
+Dated:  February 2, 2026 
+ 
+ 
+ 
+CERTIFICATE OF SERVICE 
+ 
+I hereby certify that a copy of the foregoing Merit Brief of the Ohio Manufacturers’ 
+Association Energy Group was served in accordance with S.Ct.Prac.R. 3.11(D)(1) and R.C. 
+4903.13 upon all parties of record via electronic transmission on February 2, 2026. 
+ 
+ 
+ 
+ 
+ 
+ 
+/s/ Kimberly W. Bojko ______ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Kimberly W. Bojko 
+ 
+COUNSEL FOR APPELLANT, 
+THE 
+OHIO 
+MANUFACTURERS’ 
+ASSOCIATION ENERGY GROUP 
+ 
+ 
+ 
+PARTIES OF RECORD 
+ 
+Amy.BotschnerOBrien@OhioAGO.gov 
+Thomas.Lindgren@OhioAGO.gov 
+Lori.Keating@OhioAGO.gov 
+stnourse@aep.com 
+talexander@beneschlaw.com 
+khehmeyer@beneschlaw.com 
+smeng@beneschlaw.com 
+mkurtz@BKLlawfirm.com 
+jkylercohn@BKLlawfirm.com 
+Maureen.willis@occ.ohio.gov 
+William.michael@occ.ohio.gov 
+John.varanese@occ.ohio.gov  
+ 

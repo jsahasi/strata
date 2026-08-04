@@ -1,0 +1,1146 @@
+Leah J. Wellborn 
+Page 1 
+ 
+ 
+ 
+BEFORE THE 
+PUBLIC UTILITIES COMMISSION OF OHIO 
+ 
+In the Matter of the Application of Ohio Power Company for 
+New Tariffs Related To Data Centers and Mobile Data 
+Centers. 
+) 
+) 
+) 
+ 
+Case No. 24-508-EL-ATA 
+ 
+ 
+ 
+TESTIMONY AND EXHIBIT OF LEAH J. WELLBORN 
+ON BEHALF OF THE OHIO ENERGY GROUP 
+IN OPPOSITION TO THE FIRST STIPULATION 
+ 
+ 
+Q. 
+Please state your name and business address. 
+1 
+A. 
+My name is Leah J. Wellborn.  My business address is J. Kennedy and Associates, Inc. 
+2 
+("Kennedy and Associates"), 570 Colonial Park Drive, Suite 305, Roswell, Georgia 30075. 
+3 
+ 
+4 
+Q. 
+What is your occupation and by whom are you employed? 
+5 
+A. 
+I am a Manager of Consulting at J. Kennedy and Associates, a firm of utility rate, planning, 
+6 
+and economic consultants in Roswell, Georgia. 
+7 
+ 
+8 
+Q. 
+Please describe the nature of the consulting services provided by Kennedy and 
+9 
+Associates. 
+10 
+A. 
+Kennedy and Associates provides consulting services in the electric and gas utility 
+11 
+industries.  Our clients include state agencies and industrial electricity consumers.  The 
+12 
+firm provides expertise in system planning, load forecasting, financial analysis, cost-of-
+13 
+service, and rate design.  Current clients include the Georgia and Louisiana Public Service 
+14 
+Commissions, the South Carolina Office of Regulatory Staff, the Utah Office of Consumer 
+15 
+AEP Ohio Supp. Page 116 of 330
+Leah J. Wellborn 
+Page 2 
+ 
+ 
+ 
+Services, the Kentucky Office of the Attorney General, as well as industrial and 
+1 
+commercial customers throughout the United States.  
+2 
+ 
+3 
+Q. 
+Please state your educational background and experience. 
+4 
+A. 
+I received an undergraduate degree in Mathematics from Georgia Southern University and 
+5 
+a Master of Science Degree in Operations Research from the Georgia Institute of 
+6 
+Technology, with coursework in energy policy and technology, regression analysis, 
+7 
+simulation, optimization, and economic decision analysis.  
+8 
+ 
+ 
+I began my electric utility industry consulting career at Kennedy and Associates in 
+9 
+2013, performing data analysis and testimony support services through December 2018. In 
+10 
+2019, I began work at Accenture, where I supported the global regulated energy team. The 
+11 
+team was located within Accenture’s procurement practice and provided consulting 
+12 
+services to large commercial and industrial clients in the management of their energy costs 
+13 
+and energy related initiatives pertaining to regulated utility tariffs, economic dispatch, 
+14 
+planning, and market risk. I rejoined Kennedy and Associates in late 2021 and have worked 
+15 
+since then on numerous resource planning projects, including some that required economic 
+16 
+cost/benefit analysis of new data center loads. I have filed testimony in Georgia, Louisiana, 
+17 
+and South Carolina, and have worked on projects in other states, including Ohio, Kentucky, 
+18 
+and Utah. A summary of my education, experience, and expert testimony appearances is 
+19 
+included in Exhibit LJW-1 
+20 
+ 
+21 
+Q. 
+Have you previously presented testimony before the Public Utilities Commission of 
+22 
+Ohio? 
+23 
+A. 
+No.  
+24 
+AEP Ohio Supp. Page 117 of 330
+Leah J. Wellborn 
+Page 3 
+ 
+ 
+ 
+Q. 
+On whose behalf are you testifying in this proceeding? 
+1 
+A. 
+I am testifying on behalf of the Ohio Energy Group (“OEG”) a group of large industrial 
+2 
+customers of Ohio Power Company (“AEP Ohio” or “the Company”).  I previously 
+3 
+provided direct testimony in this proceeding on behalf of OEG on August 29, 2024.   
+4 
+ 
+5 
+Q. 
+What is the purpose of this testimony?   
+6 
+A. 
+The purpose of this testimony is to provide arguments in opposition to the approval of the 
+7 
+joint stipulation entered into by various parties on October 10, 2024 (“First Stipulation”) 
+8 
+and to provide a discussion of the three-part test traditionally used by the Commission to 
+9 
+consider stipulations.  I explain that because the signatory parties only represent 
+10 
+complementary business interests that all seek to financially benefit from the First 
+11 
+Stipulation, the settlement was not the product of serious bargaining, thus failing the first 
+12 
+part of the three-part test.  I also explain how the First Stipulation primarily benefits the 
+13 
+data center industry and related businesses, does not benefit ratepayers and the public 
+14 
+interest, thus failing the second part of the three-part test.  Finally, I explain that by hurting 
+15 
+economic development and Ohio’s effectiveness in the global economy, the First 
+16 
+Stipulation violates important regulatory principles.  
+17 
+ 
+18 
+Three-Part Test for Consideration of First Stipulation 
+19 
+Q. 
+What is the three-part test? 
+20 
+A. 
+I understand that a stipulation could be approved or approved with modifications if it: 
+21 
+1) is the product of serious bargaining among capable, knowledgeable parties; 
+22 
+2) benefits ratepayers and the public interest; and 
+23 
+3) does not violate any important regulatory principle or practice. 
+24 
+AEP Ohio Supp. Page 118 of 330
+Leah J. Wellborn 
+Page 4 
+ 
+ 
+ 
+Q. 
+Is the First Stipulation the product of serious bargaining among capable, 
+1 
+knowledgeable parties? 
+2 
+A. 
+No.  I was not directly involved in the negotiations, but the First Stipulation appears to 
+3 
+narrowly consider the concerns of parties with an economic interest related to large data 
+4 
+center customers. These signatory parties include Data Center / Cryptocurrency interests, 
+5 
+Competitive Retail Electric Service (CRES) providers/suppliers, Behind-the-Meter 
+6 
+Solutions Providers, and User Groups.  
+7 
+• Data Centers / Cryptocurrency – Amazon Data Services, Inc, the Data Center 
+8 
+Coalition, Google LLC, Microsoft Corporation, the Ohio Blockchain Council, and 
+9 
+Sidecat, LLC  
+10 
+• CRES providers/suppliers – Constellation, Interstate Gas Supply (IGS), Retail 
+11 
+Energy Supply Association (RESA) 
+12 
+• Behind-The Meter Solutions Providers – Enchanted Rock, LLC and One Energy 
+13 
+Enterprises. 
+14 
+• User Groups – Ohio Manufacturers Association Energy Group (OMAEG), and 
+15 
+Ohio Energy Leadership Council (OELC). 
+16 
+Large data center users could be a customer and growing sales demographic for 
+17 
+competitive supply solutions (either market-based retail supply, like CRES providers, or 
+18 
+behind-the-meter solutions companies, such as Enchanted Rock or One Energy).  
+19 
+Furthermore, data centers may participate as members in large user groups. As such, I 
+20 
+would consider the four groups of interests representing the signatory parties to be 
+21 
+complimentary.  They all seek to financially benefit from the First Stipulation.  Because all 
+22 
+of the signatory parties have similar financial motivations, the bargaining was not serious.  
+23 
+The lack of serious bargaining is highlighted by the fact that neither Commission Staff nor 
+24 
+the applicant utility agreed to the settlement.   
+ 
+25 
+AEP Ohio Supp. Page 119 of 330
+Leah J. Wellborn 
+Page 5 
+ 
+ 
+ 
+Q. 
+Do you have concerns with the First Stipulation regarding whether it benefits 
+1 
+ratepayers and the public interest? 
+2 
+A. 
+Yes.  The First Stipulation does not adequately address the risk of cost shifting between 
+3 
+the customers driving significant transmission investment (new data centers) and existing 
+4 
+ratepayers.  There is a significant risk of stranded transmission investment and higher 
+5 
+transmission rates under the First Stipulation.  Therefore, the First Stipulation primarily 
+6 
+benefits data centers and businesses that seek to financially benefit from data centers, not 
+7 
+ratepayers or the public interest.   
+8 
+ 
+9 
+Q. 
+Do you have concerns with the First Stipulation regarding whether it violates any 
+10 
+important regulatory principle or practice? 
+11 
+A. 
+Yes.  The First Stipulation shifts a large amount of risk away from data center customers 
+12 
+that are causing the significant change in planning and transmission investment to existing 
+13 
+ratepayers, including large manufacturing and industrial customers.  This could hurt job 
+14 
+retention.  The risk of stranded transmission investment could lead to higher transmission 
+15 
+rates and limit the ability of Ohio to attract large new customers with significant jobs.  This 
+16 
+hurts Ohio’s effectiveness in the global economy, thus violating an important regulatory 
+17 
+principle. 
+18 
+ 
+19 
+Tariff Applicability and Contract Renewal 
+20 
+Q. 
+Is the creation of a new tariff appropriate to address the new load growth in AEP 
+21 
+Ohio service territory (Paragraph 2)? 
+22 
+A. 
+Yes. The creation of a new tariff to address load growth is reasonable, as new load growth 
+23 
+requires significant infrastructure investment and estimating the load commitment is 
+24 
+AEP Ohio Supp. Page 120 of 330
+Leah J. Wellborn 
+Page 6 
+ 
+ 
+ 
+critical to planning.  The parties to the First Stipulation also appear to agree that there is a 
+1 
+need for a new tariff to address the unprecedented load growth by proposing the stipulated 
+2 
+Schedule EIC (Electricity-Intensive Customer). 
+3 
+ 
+4 
+Q. 
+Is a general large energy intensive customer tariff more appropriate than a data 
+5 
+center specific tariff?  (Paragraph 2.d) 
+6 
+A. 
+No.  Data centers are a key customer segment driving the new load growth. Given that data 
+7 
+centers are a significant and identified subset of the proposed EIC group with similar load 
+8 
+shapes (those dependent on computational and cooling needs), it would be reasonable to 
+9 
+group data centers together into a single schedule tariff.  As tariffs are reviewed and revised 
+10 
+following cost-of-service studies, grouping data centers together would reasonably assure 
+11 
+that the cost assigned to the class was reflective of the cost-to-serve that class.  Creating a 
+12 
+data center specific tariff would provide additional non-data center customer protection in 
+13 
+the event that data center load does not materialize and would reduce the risk of non-data 
+14 
+center load subsidizing data center load.  The creation of a specific data center tariff is not 
+15 
+unduly discriminatory in part because a separate tariff would allow for the cost allocation 
+16 
+and rate design to match the cost-to-serve those unique customers.  Additionally, if the data 
+17 
+center load does in fact materialize, then the charges assessed would be the same as if they 
+18 
+were served under existing tariffs. 
+19 
+ 
+20 
+Q. 
+How does the applicability of the proposed EIC tariff to all energy intensive customers 
+21 
+impact manufacturers and economic development? 
+22 
+A. 
+Large industrial customers considering new or expanded operations in AEP Ohio’s 
+23 
+territory evaluate the cost of electricity in making decisions for potential investments.  The 
+24 
+AEP Ohio Supp. Page 121 of 330
+Leah J. Wellborn 
+Page 7 
+ 
+ 
+ 
+applicability of the EIC tariff to all customers over 50 MW, including manufacturers and 
+1 
+industry, could impact economic development in growth segments separate from data 
+2 
+centers and cryptocurrency.  Such a result would be contrary to state policy to facilitate 
+3 
+Ohio’s competitiveness in the global economy. 
+4 
+ 
+5 
+Q. 
+Are separate tariffs for unique loads common in Ohio?   
+6 
+A. 
+Yes.  AEP Ohio has special tariffs for plug-in electric vehicles, residential energy storage, 
+7 
+outdoor lighting, street lighting, electric heating, schools, church and school service, 
+8 
+county fairs, hospital net metering, cogeneration, and generation station power.1  The 
+9 
+FirstEnergy electric operating companies have separate tariffs for street lighting, traffic 
+10 
+lighting, private outdoor lighting, experimental company-owned LED lighting, 
+11 
+commercial high load factor customers, schools, hospitals, county fairs, and residential 
+12 
+electric heating.2  Duke Energy Ohio has separate tariffs for electric heating, street lighting, 
+13 
+traffic lighting, outdoor lighting, low-income residential service, residential three-phase 
+14 
+service, small fixed loads, and hospitals.3  
+15 
+ 
+16 
+Q. 
+Do data centers have similar electric usage patterns? 
+17 
+A. 
+Yes.  Data centers use electricity primarily to operate computers to process and store data, 
+18 
+as well as for cooling the computers.  Data centers also typically operate around-the-clock 
+19 
+at very high load factors.  
+ 
+20 
+ 
+1 https://www.aepohio.com/lib/docs/ratesandtariffs/Ohio/July2024AEPOhioTariffBook.pdf  
+2 https://www.firstenergycorp.com/customer_choice/ohio_/ohio_tariffs.html 
+3 https://www.duke-energy.com/-/media/pdfs/for-your-home/rates/electric-oh/sheet-no-10-index-oh-e.pdf 
+AEP Ohio Supp. Page 122 of 330
+Leah J. Wellborn 
+Page 8 
+ 
+ 
+ 
+Q. 
+Could the usage profile of data centers change significantly over time? 
+1 
+A. 
+Yes. By its nature, developments and technological advancement in cloud computing and 
+2 
+artificial intelligence applications could lead to increased transmission demand as the 
+3 
+economy adopts these new technologies, or decreased transmission demand because of 
+4 
+improved computing efficiency.  Significant increases or decreases in transmission usage 
+5 
+over time due to technological advancements in cloud computing and artificial intelligence 
+6 
+are uniquely concentrated with data centers.   
+7 
+ 
+8 
+Q. 
+Is the increase in the applicable size to 50 MW at a single location appropriate to 
+9 
+mitigate risk of load materialization (Paragraph 2.a)? 
+10 
+A. 
+No.  This relaxation goes too far.  In an aggressive interpretation, this clause could allow 
+11 
+for a significant amount of data center demand to be introduced to AEP Ohio’s territory, 
+12 
+and not subjected to the tariff requirements if these facilities were spread over facilities 
+13 
+across multiple locations at 49.5 MW each.  An aggregation requirement and smaller size 
+14 
+thresholds would be more appropriate to mitigate the risk of load materialization. 
+15 
+ 
+16 
+Q. 
+Should the EIC tariff be temporary as proposed in the First Stipulation (Paragraph 
+17 
+14)? 
+18 
+A. 
+No.  The First Stipulation paragraph 14 assumes the EIC tariff would act as a bridge until 
+19 
+the electric service agreement (ESA) term is satisfied, and the customer would then be 
+20 
+served under an alternative existing/successor tariff such as a general service rate (Tariff 
+21 
+Schedule GS).  Therefore, the proposed EIC tariff is temporary.  The temporary EIC tariff 
+22 
+would allow for a data center customer to move from a tariff with a higher minimum 
+23 
+demand requirement to a lower 60% minimum demand requirement, which would increase 
+24 
+AEP Ohio Supp. Page 123 of 330
+Leah J. Wellborn 
+Page 9 
+ 
+ 
+ 
+the risk exposure to other customers.   
+1 
+ 
+2 
+Contract Term, Minimum Demand, Load Ramp, and Exit Fees 
+3 
+Q. 
+Are the contract term, minimum demand, load ramp and exit fee provisions 
+4 
+appropriate (Paragraphs 3 and 5)?    
+5 
+A. 
+No.  Contract term, minimum demand, load ramp and exit fee provisions aid in proper 
+6 
+transmission planning by disincentivizing unnecessary transmission build so that a 
+7 
+minimum contribution to transmission recovery is maintained.  The provisions should be 
+8 
+strong enough to send a proper signal to potential customers signing ESAs.  The following 
+9 
+table describes the options afforded to data center customers under the First Stipulation. 
+10 
+Table 1: Comparison of First Stipulation Term Options 
+11 
+ 
+Data Center Stipulation 
+Tariff Options 
+Term A 
+Term B 
+Term C 
+Ramp Period 
+0-4 years 
+0-4 years 
+0-4 years 
+Contract Term at Full Capacity  
+8 years 
+10 years 
+12 years 
+Total Term Commitment  
+8-12 years 
+10-14 years 
+12-16 years 
+Exit Eligible 
+Year 5 
+Year 7 
+Year 9 
+Exit Fee 
+1-year 
+N/A 
+N/A 
+Min. Demand (Contract 50 MW) 
+65% 
+65% 
+65% 
+Min. Demand (Contract 75 MW) 
+72% 
+72% 
+72% 
+Min. Demand (Contract 150+ MW) 
+85% 
+80% 
+75% 
+ 
+12 
+Q. 
+Are the minimum demand provisions appropriate?  
+13 
+A. 
+No. First Stipulation paragraph 5 addresses minimum demand charges and introduces a 
+14 
+contract capacity and billing demand formula, which provides for the minimum demand 
+15 
+billing determinant to be a sliding percentage of contract capacity depending on the size of 
+16 
+the customer and term selected.  Terms A, B, and C each require contract demands below 
+17 
+the 85% proposed in the October 23, 2024 Stipulation supported by AEP Ohio, 
+18 
+AEP Ohio Supp. Page 124 of 330
+Leah J. Wellborn 
+Page 10 
+ 
+ 
+ 
+Commission Staff, Ohio Consumers’ Counsel (OCC), OEG, Walmart and Ohio Partners 
+1 
+For Affordable Energy (OPEA) (Second Stipulation). 
+2 
+ 
+3 
+Q. 
+Are the requirements for minimum demand and initial load ramp included in the 
+4 
+First Stipulation reasonable (Paragraph 7)? 
+5 
+A. 
+No.  The First Stipulation allows for the minimum demand to be set at a fraction of contract 
+6 
+capacity over the ramp period years one through four.  This provision would allow data 
+7 
+centers to avoid paying the full cost associated with the new transmission built to 
+8 
+accommodate their full contract capacity load until year five.  This would unreasonably 
+9 
+shift significant costs to AEP Ohio’s 1.3 million residential, 182,000 commercial, 9,100 
+10 
+industrial and 2,400 governmental customers in years one through four.  
+11 
+ 
+12 
+Q. 
+Are the contract term and exit fee provisions in the First Stipulation appropriate?  
+13 
+A. 
+No.  Because the exit fee follows the minimum demand charges, it acts as an extension of 
+14 
+the contract term and minimum demand provisions.  Per the First Stipulation, the exit fee 
+15 
+is only paid under Term A Agreements (not Term B or C Agreements), and the exit fee 
+16 
+reflects only a single year of minimum charges.  This means that the cost of terminating an 
+17 
+Agreement early is either small or nonexistent.   
+18 
+ 
+19 
+Behind-the-Meter Generation 
+20 
+Q. 
+Are the Behind-the-Meter Generation (BTMG) provisions in the First Stipulation 
+21 
+appropriate (Paragraph 12)? 
+22 
+A. 
+No.  The language introduced in First Stipulation paragraph 12 that states, “the minimum 
+23 
+demand calculation will allow netting to include consideration of the customer’s firm 
+24 
+AEP Ohio Supp. Page 125 of 330
+Leah J. Wellborn 
+Page 11 
+ 
+ 
+ 
+commitments to reduce load with behind-the-meter generation” is vague and possibly 
+1 
+problematic, if the BTMG is not actually utilized to reduce transmission usage.  Under 
+2 
+AEP Ohio’s tariffs, a customer’s billing demand reflects its peak demand during the highest 
+3 
+30-minute window at any hour in the month.   If the BTMG is not utilized to reduce that 
+4 
+peak demand, then the billing demand should not be reduced.  To the extent that BTMG 
+5 
+solutions are utilized to reduce actual peak billing demand and transmission usage, it would 
+6 
+be appropriate to consider the reduced demand level for billing.  But there is a significant 
+7 
+difference between BTMG that has the ability to reduce peak demand, and BTMG that 
+8 
+does in fact reduce peak demand. 
+9 
+ 
+10 
+Q. 
+Does that complete your testimony?  
+11 
+A. 
+Yes. 
+12 
+AEP Ohio Supp. Page 126 of 330
+RESUME OF LEAH JUSTIN WELLBORN, MANAGER OF CONSULTING 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+J. KENNEDY AND ASSOCIATES, INC. 
+ 
+ 
+EDUCATION 
+M.S. Operations Research, Georgia Institute of Technology, 2017 
+B.S. Mathematics, Georgia Southern University, 2012 
+ 
+PROFESSIONAL AFFILIATIONS 
+Women’s Energy Network, Greater Atlanta Chapter – Board Member (2019 – 2023) 
+Women’s Energy Network, Greater Atlanta Chapter – Member (2016 – Present) 
+ 
+ 
+EXPERIENCE 
+ 
+Ms. Wellborn has been working in regulated energy markets since early 2013.  She has an 
+undergraduate degree in mathematics and graduate degree in operations research.  She started her 
+career working at J. Kennedy and Associates, Inc., and sub-contracting to Hayet Power Systems 
+Consulting.  For these companies, she provided critical support in the areas of production cost 
+modeling and data analysis through 2018. Ms. Wellborn then spent nearly 3 years at Accenture, 
+supporting its global regulated energy team within the procurement practice, helping large 
+commercial and industrial clients manage their energy spend and energy related initiatives, as they 
+related to regulated utility tariffs, economic dispatch, planning, and market risk (energy efficiency, 
+green tariffs, PPA/VPPA, etc.).  Ms. Wellborn rejoined J. Kennedy and Associates in late 2021, 
+and currently provides analytical support to clients in the areas of utility resource planning and 
+market modeling. 
+ 
+2021 to 
+J. Kennedy and Associates, Inc. 
+ 
+Present:  
+Manager, Consulting 
+ 
+ 
+ 
+Performs analysis and prepares expert witness testimony on utility planning studies 
+and economic evaluations in review of electric utility regulatory filings. Clients 
+included State Public Service Commissions, Industrial Users Groups, and 
+Consumer Advocacy Groups. 
+ 
+2019 to 
+Accenture, LLP 
+ 
+2021:   
+Associate Manager, Global Lead - Regulated Energy Procurement 
+ 
+As a part of Accenture Operations’ Energy Management and Procurement practice, 
+the Regulated Energy team helps clients identify opportunities for electricity and 
+natural gas cost savings through data analysis and deep industry experience. Clients 
+include large industrial and commercial end-use customers with locations spread 
+across multiple geographies and utility service territories. 
+ 
+• Conducts tariff optimization analysis and ad hoc economic decision analysis for 
+AEP Ohio Supp. Page 127 of 330
+RESUME OF LEAH JUSTIN WELLBORN, MANAGER OF CONSULTING 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+J. KENNEDY AND ASSOCIATES, INC. 
+ 
+ 
+clients with operations and energy spend in areas served by regulated electricity and 
+natural gas distribution utilities. 
+• Leads cross functional international delivery team of 10, providing career 
+counseling and project oversight. Supports international energy procurement 
+functions as they relate to regulated utilities/energy markets of Australia, Southeast 
+Asia, and Latin America. 
+• Manages project assessments and economic studies as they relate to resource 
+planning or capacity/energy market risk and dispatch pricing (renewables, time-of-
+use tariffs, real-time-pricing/avoided cost, PPA, VPPA, etc.) 
+• Collaborates with all energy management work streams - including utility bill 
+management, renewable energy procurement, deregulated markets competitive 
+sourcing, market intelligence, and project management/technology development 
+initiatives to manage customer spend end to end. 
+ 
+2013 to 
+J. Kennedy and Associates, Inc. 
+ 
+2019:   
+Senior Consultant 
+ 
+ 
+ 
+Responsible for conducting research, performing data analysis, developing 
+production-cost model input assumptions and running production-cost studies, 
+analyzing model output, and conducting related economic studies.   
+ 
+ 
+CERTIFICATIONS 
+ 
+Energy Exemplar – Aurora Core Certification Course (March 2022) 
+Energy Exemplar – PLEXOS Power Core Certification Course (June 2023) 
+ 
+ 
+CLIENTS SERVED 
+ 
+Georgia Public Service Commission Staff 
+Louisiana Public Service Commission Staff 
+Kentucky Industrial Utility Customers, Inc. 
+Ohio Energy Group 
+South Carolina Office of Regulatory Staff 
+Utah Office of Consumer Services 
+Wisconsin Industrial Energy Group 
+ 
+ 
+AEP Ohio Supp. Page 128 of 330
+RESUME OF LEAH JUSTIN WELLBORN, MANAGER OF CONSULTING 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+J. KENNEDY AND ASSOCIATES, INC. 
+ 
+ 
+TESTIMONY AND EXPERT WITNESS APPEARANCES 
+ 
+Date 
+Case 
+Jurisdict 
+Party 
+Utility 
+Subject 
+06/18 
+29849 
+GA 
+Georgia Public 
+Service 
+Commission Staff 
+Georgia Power 
+Eighteenth Semi-Annual Vogtle 
+Construction Monitoring Report 
+ 
+11/18 
+29849 
+GA 
+Georgia Public 
+Service 
+Commission Staff 
+Georgia Power 
+Nineteenth Semi-Annual Vogtle 
+Construction Monitoring Report 
+ 
+5/22 
+44160 
+GA 
+Georgia Public 
+Service 
+Commission Staff 
+Georgia Power 
+2022 Integrated Resource Plan 
+(Supply Side Resource Plan, Aurora) 
+ 
+10/22 
+44280 
+GA 
+Georgia Public 
+Service 
+Commission Staff 
+Georgia Power 
+2022 Rate Case  
+(Revenue Forecast) 
+8/23 
+2023-9-E 
+SC 
+South Carolina 
+Office of 
+Regulatory Staff 
+Dominion 
+Energy South 
+Carolina, Inc. 
+2023 Integrated Resource Plan 
+ 
+12/23 
+2023-154-E 
+SC 
+South Carolina 
+Office of 
+Regulatory Staff 
+South Carolina 
+Public Service 
+Authority 
+(Santee Cooper) 
+2023 Integrated Resource Plan 
+ 
+12/23 
+U-36974 
+LA 
+Louisiana Public 
+Service 
+Commission Staff 
+1803 Electric 
+Cooperative, 
+Inc. 
+Certification of a Capacity Purchase 
+Agreement 
+2/24 
+55378 
+GA 
+Georgia Public 
+Service 
+Commission Staff 
+Georgia Power 
+2023 Integrated Resource Plan Update 
+(Supply Side Resource Plan, Aurora) 
+ 
+7/24 
+2023-8-E 
+SC 
+South Carolina 
+Office of 
+Regulatory Staff 
+Duke Energy 
+Progress, LLC 
+2023 Integrated Resource Plan  
+7/24 
+2023-10-E 
+SC 
+South Carolina 
+Office of 
+Regulatory Staff 
+Duke Energy 
+Carolinas, LLC 
+2023 Integrated Resource Plan 
+8/24 
+24-0508-EL-
+ATA 
+OH 
+Ohio Energy Group 
+Ohio Power 
+Company 
+Application of Ohio Power Company for 
+New Tariffs Related to Data Centers and 
+Mobile Data Centers 
+ 
+ 
+AEP Ohio Supp. Page 129 of 330
+RESUME OF LEAH JUSTIN WELLBORN, MANAGER OF CONSULTING 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+J. KENNEDY AND ASSOCIATES, INC. 
+ 
+ 
+REPORTS AND INDUSTRY PUBLICATIONS 
+ 
+Date 
+Title 
+Author(s) 
+8/23 
+Review of EPA’s Section 111 May 23, 2023 Proposed Rule for 
+the State of South Carolina 
+J. Kennedy and Associates, Inc. 
+(On behalf of the South Carolina 
+Office of Regulatory Staff) 
+7/24 
+Review of Dominion Energy South Carolina, Inc.’s 2024 
+Integrated Resource Plan Update Docket No. 2024-9-E 
+South Carolina Office of 
+Regulatory Staff and J. Kennedy 
+and Associates, Inc. 
+ 
+ 
+AEP Ohio Supp. Page 130 of 330
+- 4 –
+CERTIFICATE OF SERVICE 
+In accordance with Rule 4901-1-05, Ohio Administrative Code, the PUCO’s e-filing 
+system will electronically serve notice of the filing of this document on the parties referenced on 
+the service list of the docket card who have electronically subscribed to this case.  In addition, 
+the undersigned certifies that a courtesy copy of the foregoing document is also being served (via 
+electronic mail) on the 31st day of October 2024 to the following: 
+/s/ Michael L. Kurtz 
+Michael L. Kurtz, Esq. 
+Jody Kyler Cohn, Esq. 
+*NOURSE, STEVEN T. MR.
+AMERICAN ELECTRIC POWER SERVICE
+CORPORATION
+1 RIVERSIDE PLAZA, 29TH FLOOR
+COLUMBUS OH  43215
+BOBB, NICHOLAS S. 
+KEGLER BROWN HILL + RITTER CO LPA 
+ 65 E STATE ST STE 1800 
+ COLUMBUS OH  43215 
+*WALTERS, DENISE
+OCC
+65 E. STATE ST. SUITE 700
+COLUMBUS OH  43215
+*EASLEY, EMMA Y. MS.
+CARPENTER LIPPS LLP
+280 N HIGH ST STE 1300
+COLUMBUS OH  43215
+*PETRUCCI, GRETCHEN L. MRS.
+VORYS, SATER, SEYMOUR AND PEASE
+52 EAST GAY STREET, P.O. BOX 1008
+COLUMBUS OH  43216-1008
+*DUNN, JAMES MR.
+ONE ENERGY ENTERPRISES INC.
+12385 TWP RD 215
+FINDLAY OH  45840
+*MAINS, RACHAEL MS.
+BRICKER GRAYDON
+100 S THIRD ST
+COLUMBUS OH  43215
+*CHMIEL, STEPHANIE M. MS.
+THOMPSON HINE
+41 S. HIGH STREET, SUITE 1700
+COLUMBUS OH  43215
+*IMBROGNO, AMILY A. MS.
+MEYERS, ROMAN, FRIEDBERG & LEWIS 
+28601 CHAGRIN BLVD SUITE 6000 
+CLEVELAND OH  44122 
+*HERRNSTEIN, KARA MS.
+BRICKER GRAYDON LLP
+100 S THIRD ST
+COLUMBUS OH  43215
+*CATHCART, STACIE E. MRS.
+INTERSTATE GAS SUPPLY
+6100 EMERALD PARKWAY
+DUBLIN OH  43016
+*ORAHOOD, TERESA
+BRICKER & ECKLER LLP
+100 SOUTH THIRD STREET
+COLUMBUS OH  43215-4291
+*PIRIK, CHRISTINE M.T.
+DICKINSON WRIGHT, PLLC
+180 E BROAD ST STE 3400
+COLUMBUS OH  43215
+*DOVE, ROBERT MR.
+KEGLER BROWN HILL RITTER CO LPA
+65 E STATE ST STE 1800
+COLUMBUS OH  43215-4295
+*PROANO, DAVID F. MR.
+BAKER & HOSTETLER LLP
+127 PUBLIC SQUARE SUITE 2000
+CLEVELAND OH  44114
+*GRUNDMANN, CARRIE H.
+SPILMAN THOMAS & BATTLE PLLC
+110 OAKWOOD DRIVE, SUITE 500
+WINSTON-SALEM NC  27103
+*BOJKO, KIMBERLY W. MRS.
+CARPENTER LIPPS LLP
+AEP Ohio Supp. Page 131 of 330
+ 
+- 5 – 
+280 NORTH HIGH STREET 280 PLAZA 
+SUITE 1300 
+COLUMBUS  OH  43215 
+ 
+*FISCHER, MARY E. MS. 
+PUBLIC UTILITIES COMMISSION OF OHIO 
+180 E. BROAD ST.   
+COLUMBUS OH  43215 
+ 
+*PRITCHARD, MATTHEW R. MR. 
+MCNEES WALLACE & NURICK 
+250 WEST STREET SUITE 550 
+COLUMBUS OH  43215 
+PHONE: 614-719-2840 
+ 
+*LANG, JAMES F. MR. 
+CALFEE HALTER & GRISWOLD LLP 
+1200 HUNTINGTON CENTER 41 SOUTH 
+HIGH STREET 
+COLUMBUS OH  43215 
+ 
+*SCHULER, MICHAEL J. MR. 
+AMERICAN ELECTRIC POWER 
+1 RIVERSIDE PLAZA 29TH FL  
+COLUMBUS OH  43215 
+ 
+*HUNTER, DONIELLE M. MS. 
+PUCO 
+180 EAST BROAD STREET 12TH FLOOR 
+COLUMBUS OH  43215 
+ 
+BORCHERS, DYLAN F. MR. 
+BRICKER GRAYDON LLP 
+100 S THIRD ST  
+COLUMBUS OH  43215 
+ 
+HELFRICH, KURT P. ATTORNEY 
+OHIO RURAL ELECTRIC COOPERATIVES 
+6677 BUSCH BLVD  
+COLUMBUS OHIO  43229 
+  
+*KALEPS-CLARK, LIJA MS. 
+BEN WILSON  
+BUCKEYE POWER, INC./ 
+OHIO RURAL ELECTRIC COOPERATIVE 
+6677 BUSCH BLVD.  
+COLUMBUS OH  43229 
+ 
+*SETTINERI, MICHAEL J. MR. 
+VORYS, SATER, SEYMOUR AND PEASE LLP 
+52 EAST GAY STREET PO BOX 1008 
+COLUMBUS OH  43215 
+ 
+ECKERT, JOSHUA R. 
+VORYS, SATER, SEYMOUR AND PEASE LLP 
+52 EAST GAY STREET  
+COLUMBUS OH  43215 
+  
+O'DONNELL, TERRENCE ATTORNEY 
+DICKINSON WRIGHT PLLC 
+180 E BROAD ST STE 3400  
+COLUMBUS OH  43215 
+ 
+DOUGHERTY, TRENT A. 
+HUBAY/DOUGHERTY 
+1391 GRANDVIEW AVE #12460  
+COLUMBUS OH  43212 
+ 
+*PARRAM, DEVIN D. MR. 
+BRICKER GRAYDON LLP 
+100 S THIRD ST  
+COLUMBUS OH  43215 
+ 
+KATIE JOHNSON TREADWAY 
+ 
+12385 TOWNSHIP ROAD 215  
+  
+FINDLAY OH 45840     
+ 
+*COCKRELL, VERNITA E. MRS. 
+WHITT STURTEVANT, LLP 
+THE KEYBANK BUILDING 88 E BROAD 
+STREET, SUITE 1590 
+COLUMBUS OH  43215 
+ 
+*KENNEDY, CHRISTOPHER T. MR. 
+WHITT STURTEVANT LLP 
+88 EAST BROAD STREET SUITE 1590 
+COLUMBUS OH  43215 
+ 
+THOMPSON HINE LLP 
+ 
+CAROLYN S FLAHIVE 
+ 
+10 W BROAD ST SUITE 700    
+COLUMBUS OH 43215-3435  
+ 
+*CHMIEL, STEPHANIE M. MS. 
+THOMPSON HINE 
+41 S. HIGH STREET, SUITE 1700 
+COLUMBUS OH  43215
+  
+AEP Ohio Supp. Page 132 of 330
+This foregoing document was electronically filed with the Public Utilities
+Commission of Ohio Docketing Information System on
+10/31/2024 11:44:31 AM
+in
+Case No(s). 24-0508-EL-ATA
+Summary: Testimony OHIO ENERGY GROUP (OEG) TESTIMONY/EXHIBIT OF
+LEAH J. WELLBORN IN OPPOSITION TO THE FIRST STIPULATION
+electronically filed by Mr. Michael L. Kurtz on behalf of Ohio Energy Group.
+AEP Ohio Supp. Page 133 of 330

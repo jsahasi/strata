@@ -1,0 +1,650 @@
+COMMISSIONERS:
+
+JASON SHAW, Chairman 
+FITZ JOHNSON, Vice-Chairman
+TIM G. ECHOLS	   
+LAUREN “BUBBA” McDONALD                                  
+TRICIA PRIDEMORE                          
+
+	    
+
+REECE McALISTER 
+EXECUTIVE DIRECTOR
+ 
+SALLIE TANNER
+EXECUTIVE SECRETARY
+		       Georgia Public Service Commission
+(404) 656-4501
+(800) 282-5813
+244 WASHINGTON STREET, SW
+ATLANTA, GEORGIA 30334-5701
+AX: (404) 656-2341                   
+psc.ga.gov
+
+	
+
+Docket No. 56002:	Georgia Power Company's 2025 Integrated Resource Plan;
+                                       and
+
+Docket No. 56003:	Georgia Power Company's 2025 Application for the Certification, Decertification, and Amended Demand-Side Management Plan
+	
+	
+	ORDER ADOPTING STIPULATION
+	
+APPEARANCES:
+On behalf of Georgia Public Service Commission:
+JUSTIN PAWLUK, Esq.
+CHRIS COLLADO, Esq.
+On behalf of Georgia Power Company:
+BRANDON MARZO, Esq. 
+STEVE J. HEWITSON, Esq. 
+ALLISON W. PRYOR, Esq.
+JOSHUA W. COMBS, Esq.
+	On behalf of Advanced Power Alliance:
+WILLIAM BRADLEY CARVER, Esq.
+On behalf of Americans for Affordable Clean Energy:
+NEWTON GALLOWAY, Esq.
+TERRI LYNDALL, Esq.
+DAVID E. PENLAND, Esq.
+On behalf of Clean Energy Buyers:
+SCOTT F. DUNBNAR, Esq.
+On behalf of Capital Good Fund
+ALICIA BROWN, Esq.
+On behalf of Fermata Energy
+ANNA BELLA KORBATOV
+STEVE LETENDRE
+On behalf of Georgia Association of Manufacturers and Georgia Industrial Group:
+CHARLES B. JONES, III, Esq.
+LLOYD AVRAM
+JEFFRY POLLOCK
+On behalf of Georgia Center for Energy Solutions:
+PETER HUBBARD
+On behalf of Georgia Coalition of Local Governments:
+BENJAMIN L. SNOWDEN, Esq.
+CORDON M. SMART, Esq.
+GERALD T. CHICHESTER, Esq.
+On behalf of Georgias Conservation Voters Education Fund:
+JUAN ESTRADA, Esq.
+On behalf of Interfaith Power & Light and Southface Energy Institute 
+JENNIFER WHITFIELD, Esq.
+BOB SHERRIER, Esq.
+AMITOV KAMANI, Esq.
+On behalf of Georgia Solar Energy Industries Association:
+STEVEN L. JONES, Esq.
+MATHEW P. MCKAGEN, Esq.
+STEPHEN BUTLER
+On behalf of Georgia Solar Energy Association (GA SOLAR):
+DONALD MORELAND
+
+On behalf of Georgia Watch:
+LIZ COYLE
+On behalf of Georgia WAND Education Fund, Inc., and Vote Solar:
+JUAN ESTRADA, Esq.
+On behalf of Metropolitan Atlanta Rapid Transit Authority (MARTA)
+KIMBERLY (KASEY) A. STRUM
+JONATHAN HUNT, Esq.
+On behalf of Microsoft Corporation: 
+CHIMERA N. THOMPSON, Esq
+KIMBERLY B. FRANK
+TYLER MAULDIN
+On behalf of Resource Supply Management:
+JAMES CLARKSON
+ROBERT B. BAKER, Esq.
+On behalf of Southern Renewable Energy Association:
+SIMON MAHAN
+WHIT COX
+On Behalf of Sierra Club, Southern Alliance for Clean Energy (SACE) and The Natural Resources Defense Council:
+ZACHERY M. FABISH, Esq.
+CURT THOMPSON
+ISABELLA ARIZA
+On behalf of Southern Renewal Energy Association:
+SIMON MAHAN
+WHIT COX
+On behalf of Walmart:
+STEPHANIE U. EATON, Esq.
+CARRIE H. GRUNDMANN, Esq.
+STEVEN W. LEE, Esq.
+
+
+	__________________________________________________________________________
+	BY THE COMMISSION:
+	On January 31, 2025, Georgia Power Company (“Georgia Power,” “GPC”, or “Company”) submitted to the Georgia Public Service Commission (“Commission”) its 2025 Integrated Resource Plan ("IRP" or “Plan”) for approval pursuant to O.C.G.A. § 46-3A-1 through 11 (“IRP Act”), Docket No. 56002. The Company simultaneously filed its 2025 Application for the Certification, Decertification, and Amended Demand-Side Management Plan (“DSM Application” or “DSM Plan”) Docket No. 56003.
+	JURISDICTION AND AUTHORITY
+Georgia Power is a public electric utility serving retail customers within the State of Georgia.  Georgia Power is one of the retail operating companies of which the Southern Company system is comprised. This Commission has jurisdiction over Georgia Power’s IRP and DSM Application pursuant to O.C.G.A. §§ 46-2-20, 46-2-21, 46-2-23 generally, and the IRP Act in particular. 
+The IRP Act requires the Company to file an Integrated Resource Plan at least every three years. A “plan” is defined in the Act as an Integrated Resource Plan that contains the utility’s electric demand and energy forecast for at least a 20-year period; program for meeting the requirements shown in its forecast in an economical and reliable manner; the analysis of all capacity resource options, including both demand-side and supply-side options; and the assumptions used and the conclusions reached with respect to the effect of each capacity resource option on the future cost and reliability of electric service. The Plan also must:
+(A)	Contain the size and type of facilities which are expected to be owned or operated in whole or in part by such utility and the construction of which is expected to commence during the ensuing ten years or such longer period as the Commission deems necessary and shall identify all existing facilities intended to be removed from service during such period or upon completion of such construction,
+(B)	Contain practical alternatives to the fuel type and method of generation of the proposed electric generating facilities and set forth in detail the reasons for selecting the fuel type and method of generation,
+(C)	Contain a statement of the estimated impact of proposed and alternative generating plants on the environment and the means by which potential adverse impacts will be avoided or minimized,
+(D)	Indicate, in detail, the projected demand for electric energy for a 20-year period and the basis for determining the projected demand,
+(E)	Describe the utility's relationship to other utilities in regional associations, power pools, and networks,
+(F)	Identify and describe all major research projects and programs which will continue or commence in the succeeding three years and set forth the reasons for selecting specific areas of research,
+(G)	Identify and describe existing and planned programs and policies to discourage inefficient and excessive power use; and
+(H)	Provide any other information as may be required by the Commission.
+Pursuant to the IRP Act, the Commission promulgated rules that further detail the information that the Company is required to include in its Plan. 
+The Commission is required under O.C.G.A. § 46-3A-2 to make determinations as to the adequacy of the IRP and to ensure that the utility’s Plan has appropriately addressed numerous matters. For instance, the Commission must determine whether the forecast requirements contained in the Plan are based on substantially accurate data and adequate method of forecasting. The Commission must also make a finding as to whether the Plan identifies and considers any present and projected reductions in the demand for energy that may result from measures to improve energy efficiency in the industrial, commercial, residential, and energy-producing sectors of the state.
+After hearings have been conducted on a Plan, the Commission may approve the IRP; approve it subject to stated conditions; approve it with modifications; approve it in part and reject it in part; reject the Plan as filed; or provide an alternate Plan, upon determining that this is in the public interest.
+An electric utility is entitled to recover the approved or actual cost, whichever is less, of any certificated demand-side capacity option in rates, along with an additional sum. In determining the additional sum, the Commission "shall consider lost revenues, if any, changed risks, and an equitable sharing of benefits between the utility and its retail customer." Georgia Power’s 2025 IRP requested approval of the following:
+The Reserve Margin Study, as provided in Technical Appendix Volume 1, and the Company’s recommended System long-term winter Target Reserve Margin value of 26%, long-term summer Target Reserve Margin value of 20%, and the short-term Target Reserve Margins associated with each season.
+A certificate of public convenience and necessity for one new DSM program, decertification of three DSM programs, amended certificates for four DSM programs, amended certificates and waiver of the total resource cost (“TRC”) requirement for four previously certified DSM programs, and approval of updated program economics for all other previously certified DSM programs, for the Proposed Case as specified in the Company’s Application for Certification, Decertification, and Amended Demand-Side Management Plant (“2025 DSM Application”), Docket No. 56003.
+The revised calculation of the additional sum collected through DSM programs certified in the 2025 DSM Application, Docket No. 56003.
+Approval of proposed modifications to the existing DER programs as described in Chapter 10.
+Approval of a new large Customer Owned Resiliency program as described in Chapter 10.
+Approval of the levelized additional sum of $4.00 / kilowatt (“kW”) alternating current (“AC”) of the total capacity amount from new demand response and new DER programs, including the large Customer Owned Resiliency Program, Solar Plus Storage Pilot Program, and modified Customer Connected Solar Program (“CCSP”).
+Extended operation of Plant Scherer Unit 3 and Plant Gaston Units 1-4 and A beyond December 31, 2028, as described in Chapter 8.
+Certification of wholesale capacity from Plant Scherer Unit 3 to be placed in retail rate base, as specified in Attachment A.
+Amendment to the certificate at Plant McIntosh Units 10-11 and 1A-8A for incremental capacity, as specified in Attachment B.
+Approval of incremental capacity at Plant Hatch Units 1-2 and Plant Vogtle Units 1-2, as specified in Chapter 8.
+The capital and operations and maintenance (“O&M”) costs (but not yet the recovery of such costs) the Company will incur for the modernization of Plants Tallulah, Yonah, Lloyd Shoals, Wallace, Bartletts Ferry Units 5-6, Goat Rock, North Highlands, Morgan Falls, and Flint River hydro facilities, as specified in the Hydro Modernization section of Technical Appendix Volume 1.
+Authority to develop, own, and operate incremental capacity at Plant Goat Rock Units 3-6, as specified in Chapter 8 and the Hydro Modernization section of Technical Appendix Volume 1.
+The capital, O&M, and coal combustion residual asset retirement obligation (“CCR ARO”) costs (but not yet the recovery of such costs) and associated measures taken to comply with government-imposed environmental mandates, as specified in the ECS in Technical Appendix Volume 1 and the Environmental Compliance Cost Recovery (“ECCR”) and CCR ARO tables in the Selected Supporting Information section of Technical Appendix Volume 2.
+The authority to pursue the natural gas co-firing compliance pathway as the 111 GHG Rule strategy for Plant Bowen and Plant Scherer.
+The updated Utility Scale RFP process to procure energy from 1,000 MW of new Utility Scale renewable energy resources, along with the ability to procure additional resources above the initial MW target to meet the needs of subscribing customers, as described in Chapter 8 and Chapter 10.
+The updated Distributed Generation RFP process to procure energy from 100 MW of new Distributed Generation solar resources through two separate RFPs (50 MW each), along with the ability to procure additional resources above the initial MW targets to meet the needs of subscribing customers, as described in Chapter 8 and Chapter 10.
+The levelized additional sum of $4.00 / kW-yr AC of the total capacity amount from which renewable energy is procured from the Utility Scale and DG RFPs proposed in this IRP, annually for the term of each PPA.
+The updated Renewable Integration Study and its use in planning processes, as specified in Technical Appendix Volume 2.
+The updated Renewable Cost Benefit (“RCB”) Framework, including incorporation of locational value in DG procurement evaluations, as specified in Technical Appendix Volume 2.
+The enhanced Clean and Renewable Energy Subscription (“CARES”) program, including the ability for participating customers to subscribe to smaller, distributed generation resources; the opportunity for Residential customers to subscribe through the Distributed Generation Community Solar Program; more flexible participation provisions; an updated subscription methodology; and the ability for customers to identify renewable resources to be considered for procurement, as described in Chapter 10.
+The small commercial and residential customer Solar Plus Storage Pilot Program, as described in Chapter 8 and Chapter 10.
+Modifications to CCSP, including the ability to add storage resources, as described in Chapter 10.
+Enhanced control of DER assets through the Company’s DERMS to ensure grid reliability, enable, and optimize DER grid support functions, as described in Chapter 10.
+Approval of the Electric Transportation Vehicle-to-Everything (“V2X”) Pilot, as described in Chapter 10. (Georgia Power’s 2025 Integrated Resource Plan, Main Document, p. 4-6.)
+
+	BACKGROUND AND STATEMENT OF PROCEEDINGS
+On January 28, 2025, the Commission issued its Procedural and Scheduling Order (“PSO”) in both Docket Nos. 56002 and 56003 setting forth the dates for filing testimony and briefs, as well as the dates for the hearings in this matter. These proceedings were declared to be contested cases as the term is defined in O.C.G.A. § 50-13-13 and were also held to encompass complex litigation pursuant to O.C.G.A. § 9-11-33(a). The two proceedings were assigned Docket Nos. 56002, Georgia Power Company’s 2025 Integrated Resource Plan and 56003, Georgia Power Company’s 2025 Application for the Certification, Decertification and Amended Demand-Side Management Plan, respectively, and combined for purposes of administrative efficiency and convenience.
+Pursuant to O.C.G.A. § 46-3A-5(c), the Commission established the fee for review of the IRP within sixty days of the filing of the applications. On February 12, 2025, the Commission issued an Order Setting Scope and Budget for Specialized Testimony and Assistance concluding that the appropriate fee for review and analysis of the Company's filing was up to $873,847 for the IRP and up to $291,282 for DSM Certification.
+The Commission held three rounds of hearings in accordance with the Procedural and Scheduling Order. On March 25-28, 2025, the Commission heard direct testimony of Georgia Power's three panels of witnesses:
+Jeffery R. Grubb, J. Randy Hubbert, M. Brandon Looney, Micheal B. Robinson and Franciso Valle; 
+Dr. Ross Beppler, Carley Goff, A. Wilson Mallard and Andy Phillips; and 
+Jennifer S. McNelly and Robert Mitchell.
+The Commission conducted hearings on the direct cases of the Public Interest Advocacy Staff ("PIA Staff') and intervening parties in both dockets on May 27-30, 2025. The PIA Staff sponsored the following witnesses and witness panels:
+Jamie Barber, Nick Cooper and Richard Spellman;
+Jamie Barber, John Kaduk and Jeffrey Bower;
+Michael Goggin;
+Tom Newsom, Philip Hayet, Anthony Sandonato and                  Leah Welborn;
+Ralph Smith and Jason Forsythe;
+Douglas Smith and Sasikumar Kannan;
+Robert Stevens; and
+Robert Trokey, Dylan Drugan and Karen Pol.
+The following intervenors sponsored the following witness and witness panels:
+Advanced Power Alliance: Andy White Panel Ryan Sanders and Jeff Clark
+Clean Energy Buyers Association: Priya Barua, R. Brent Alderfer, Ted Thomas 
+Capital Good Fund: Russ Bates
+Georgia Center for Energy Solutions: Peter Hubbard 
+Georgia Coalition of Local Governments: Blake F. Richetta, David A. Nifong
+Georgia Conservation Voters: Maria Roumpani
+Georgia Interfaith Power & Light and Southface Energy Institute: Chelsea Hotaling, Anjali Patel and Stacy Sherwood 
+Georgia Solar Energy Industries Association, Inc.: Ani Backa, Tully Blalock and Johnathan Roberts
+Beginning on June 23rd through the 26th, the Commission concluded with Georgia Power witness panels:
+		Jeffrey R. Grubb, J. Randy Hubbert, M. Brandon Looney, 
+	                                   Michael B. Robinson and Francisco Valle; and 
+	
+	                                   Dr. Ross Beppler, Carley Goff and A. Wilson Mallard
+	
+	On July 8, 2025, PIA Staff and Georgia Power submitted a Stipulation intended to resolve all issues in theses dockets. Since the original filing, Advanced Power Alliance ("APA"), Capital Good Fund, Georgia Association of Manufacturers (“GAM"), Georgia Solar Energy Industries Association ("GSEIA"), Southern Renewable Energy Association (“SREA"), United States Department of Defense and all other Federal Executive Agencies (“DOD/FEA”) and Walmart have added their signatures in support of the Stipulation. 
+	
+	Also on May 21, 2015, the Southern Environmental Law Center (“SELC”) filed a Motion Challenging Georgia Power Company’s Trade Secret Assertions on behalf of Georgia Interfaith Power and Light (“GIPL”) and Southface Energy Institute (“Southface”). A separate notice of hearing and oral argument was issued to address this motion and the Commission shall make its determination in a separate Special Administrative Session.
+	
+	On July 10, 2025, GIPL and Southface submitted a Motion to Enforce Vogtle Settlement asserting that Georgia Power violated the Commission’s Vogtle Prudency Order, which incorporates the settlement entered into by Georgia Power and GIPL, Partnership for Southern Equity, Georgia Watch, and others.
+	
+	             GIPL and Southface claimed that “…[T]he Vogtle Stipulation stated: ‘Georgia Power agrees to propose and support in the 2025 [IRP and DSM dockets] … a base case of DSM performance savings targets of at least .75% of annual retail sales.’”  GIPL and Southface argued that “[t]he stipulation filed yesterday supports the wholesale rejection of that target, recommending instead a status-quo energy savings target of 0.51% of annual retail sales. By signing a stipulation counseling against the Vogtle DSM terms, Georgia Power has abandoned its ‘support’ of its proposed case, in egregious violation of the Vogtle Stipulation.” (Motion to Enforce Vogtle Settlement (“Motion”) p.1). GIPL and Southface requested the Commission modify the Stipulation to strike paragraphs 5, 8 and 9, thereby adopting the savings target in the Company’s Proposed DSM Case. However, GIPL and Southface did not support the cost portion of Georgia Power’s proposed case and simultaneously requested that the Commission reduce the funding available to DSM to a level below the funding level proposed in the Stipulation.
+	
+	             Georgia Power countered by noting that it had both proposed the 0.75% DSM savings target and supported that same target throughout the 2025 IRP proceeding. The Company claimed that 0.75% DSM savings target was part of the Company’s Proposed Case, which was included in the Company’s initial filing (Motion p.3).
+	
+	During July 10, 2025, Energy Committee, the Commission heard from all parties wishing to comment. The Commission adopted the Stipulation during its Administrative Session on July 15, 2025.
+	
+	                
+FINDINGS OF FACT AND CONCLUSIONS OF LAW
+
+To ensure that the competing interests of all parties were properly considered, the Commission has carefully analyzed the Stipulation entered into by the Company and Staff, and all evidence of record including the testimony given and the various exhibits entered by the parties. The Commission finds and concludes that the terms of the Stipulation are supported by the evidence in the record and is a fair and reasonable resolution that appropriately strikes the balances of interest of the parties. Therefore, the Commission approves and adopts the Stipulation as detailed below. 
+
+Supply Side Plan
+
+The 2025 IRP shall be approved as filed unless amended by this Stipulation. 
+
+2. The Company's Load Forecast, as updated through the February 2025 Load and Energy Forecast in Figure 2 and Exhibit 1 of the Rebuttal Testimony of the panel of Grubb, Hubbert, Looney, Robinson, and Valle, is based on substantially accurate data and an adequate method of forecasting. However, the Parties are aware that the Load Forecast is largely driven by the anticipated growth from only one customer class, for which there is a lack of historic information to inform many of the assumptions used in the forecast. Therefore, the Company and Staff shall work collaboratively to modify or refine the Load Forecast, including methodologies, as additional experience and information is received. For those reasons, and independent of any conclusions stipulated in this paragraph, for the purposes of the 2029-2031 All-Source Certification Proceeding, the Company and Staff shall update the methodologies as they each determine to be appropriate, and Staff may propose that the Commission modify the methodology to include the materialization of executed Contracts for Electric Service in determining the Load Forecast. Further, the Parties agree to the following:
+
+The Company will continue its quarterly filings of Large Load Economic Development Reports and will include in each quarterly report as additional information the date that any new project enters the large load pipeline, the announced load of any new project entering the large load pipeline, and new large load projects that have entered into a Contract for Electric Service.
+
+Georgia Power shall update the capacity need in the 2029-2031 All-Source Certification Proceeding in October 2025 with the B2026 Load Forecast, shall file additional Load Forecast updates in February 2027 with the B2027 Load Forecast, and as part of the 2028 IRP.
+
+с. 	The Company shall be authorized to seek certification of up to 8,500 MW of capacity from the 2029-2031 All Source Capacity RFP. The Company agrees to provide generation procurement options to meet generation needs of at least 6,000 MW and up to 8,500 MW necessary to meet Georgia Power system demand. Upon consideration of the Company's updated October 2025 Load Forecast, as well as consideration of any Staff-proposed Load Forecast, the Commission can then appropriately determine necessary generation resources to certify as part of the 2029-2031 All-Source Capacity RFP certification proceeding.
+
+The Company's recommended System long-term winter Target Reserve Margin value of 26%, long-term summer Target Reserve Margin value of 20%, and the short-term Target Reserve Margins associated with each season shall be approved for the purposes of current capacity procurement needs. The designation of a 26% winter Target Reserve Margin does not preclude the Parties from using a different reserve margin in subsequent proceedings. As additional large load customers are added to the system, the Company will collect data regarding their load patterns and behaviors. Prior to June 30, 2027, the Company and PIA Staff will meet to discuss and collaborate on the appropriate method to model data center loads in the Reserve Margin Study.
+
+The Company will meet semi-annually with PIA Staff to provide updates on the Strategic Transmission Projects identified in Table 11.3 of the 2025 IRP to improve power transfer from South Georgia to North Georgia, prepare the transmission system for generation fleet transitions, and maintain System reliability. The Stipulation Docket No. 56002, GPC 2025 IRP Docket No. 56003, GPC 2025 DSM Application Page 2 of 13 5. 6. 7. The Company will continue to identify alternative solutions considered for each project and the associated costs and benefits of the alternatives. The Company will continue to investigate and consider the use of emerging grid technologies as described in Technical Appendix Volume 3 of the 2025 IRP.
+
+ Staff’s transmission recommendations will be adopted as follows:
+
+Georgia Power shall adopt a formal process to evaluate Grid Enhancing Technologies ("GETs") as potential solutions for all major Georgia Power transmission projects and will include in the 2028 IRP a report on the planning assumptions, criteria, and outcomes associated with its GETs evaluations.
+
+ Georgia Power will continue to incorporate Non-Wires Alternatives screening into its standard project development process. If future BESS applications, configurations, and operations demonstrate that BESS can be deployed reliably and economically as transmission solutions, Georgia Power will continue to consider this technology as a solution. Georgia Power will continue to work through the existing Southeastern Regional Transmission Planning ("SERTP") process and through the modifications forthcoming in the Company's June 2026 FERC Order 1920 compliance filing to coordinate regional transmission needs and subsequent projects with neighboring utilities. The Company will report on these efforts through the SERTP scheduled quarterly meetings. As part of its 2028 IRP Transmission Plan, Georgia Power will identify the regional transmission expansion projects evaluated through calendar year 2027 by Georgia Power, and through the SERTP process, and will identify the economic costs and benefits of each.
+
+The extended operation of Plant Scherer Unit 3 and Plant Gaston Units 1-4 and A beyond December 31, 2028, shall be approved.
+
+ The request to certify wholesale capacity from Plant Scherer Unit 3 to be placed in retail rate base shall be approved with the market differential adjustments as filed.
+
+The incremental capacity upgrades and certificate amendment for Plant McIntosh Units 10-11 and 1A-8A shall be approved.
+
+The incremental capacity uprates at Plant Vogtle Units 1-2 shall be approved as filed. The incremental capacity uprates at Plant Hatch Units 1-2 shall not be approved at this time. The Company may proceed with preliminary planning, licensing and engineering for the capacity uprate at Plant Hatch Units 1-2. The Company agrees to provide a semi-annual report on the status of engineering and finalizing of contracts for the incremental capacity uprates at Plant Hatch Units 2 and Plant Vogtle Units 1-2.
+
+The capital and operations and maintenance (“O&M") costs (but not yet the recovery of such costs) for the modernization of Plants Tallulah, Yonah, Bartletts Ferry Units 5-6, and North Highlands hydro facilities shall be approved.
+
+ The request to develop, own, and operate incremental capacity at Plant Goat Rock Units 3-6 shall not be approved at this time. Georgia Power shall be allowed to spend up to $25 million to undertake engineering studies to determine the most effective way to address water flow imbalance at Plant Goat Rock and to replace the horizontal units at Plant Morgan Falls. The Company shall provide the results of the engineering studies to PIA Staff. The Company's plans and comprehensive and complete cost estimates for modernization at Plants Goat Rock, Lloyd Shoals, Flint River, and Wallace, as well as those to replace horizontal units at Plant Morgan Falls, will be filed in the 2028 IRP for Commission consideration.
+
+The Environmental Compliance Strategy ("ECS") shall be approved as updated in the 2025 IRP. This approval includes the Company's plans to address coal combustion residual ("CCR") at the Company's ash ponds and landfills and associated measures taken to comply with environmental mandates. The existing government-imposed environmental mandates are necessary for the Company to implement its ECS as presented in Technical Appendix Volume 1 and Environmental Compliance Cost Recovery ("ECCR") and CCR ARO tables in the Selected Supporting Information section of Technical Appendix Volume 2 of the 2025 IRP have been reviewed in this proceeding and acknowledged. The Company will continue to provide CCR ARO semi-annual reports to the Commission. In addition, the Company will continue to file the ECS annually with the Commission no later than March 31 of each year.
+
+The Company shall have the authority to pursue the natural gas co-firing compliance pathway as the 111 GHG Rule strategy for Plant Bowen and Plant Scherer. The Company will provide semi-annual reports on the status of 111 GHG Rule compliance starting with the semi-annual period ending December 31, 2025, with the report to be submitted by March 31 and September 30 of each year. These reports will identify the Company's assessment of the current legal status of 111 GHG Rule and impact on the continued operation of Plants Bowen and Scherer, the Company's actions and efforts to comply with 111 GHG Rule and any deferred cost incurred by the Company, and summary of technical solutions and the technical solutions capital and O&M cost estimates to comply with 111 GHG Rule for Plants Bowen and Scherer. The Company will include in the semi-annual reports any significant capital investment or capital investment commitments expected over the next reporting period at Plants Bowen and Scherer for 111 GHG Rule compliance. Should the 111 GHG Rule repeal be finalized by EPA and the Company's compliance preparations conclude, the semi-annual reports shall no longer be required.
+
+The Company shall issue an All-Source RFP for capacity needs in 2032-2033 in the first quarter of 2026. At least twelve months in advance of issuing any subsequent All-Source RFP, the Company will coordinate with Staff on the selection of an Independent Evaluator.
+
+ The Company's enhanced Utility Scale Renewable Resource Request for Proposals (“US RFP") process shall be approved. The Company shall be authorized to procure energy from up to 1,000 MW of new Utility Scale renewable energy resources. In addition, the Company shall be allowed to procure up to 3,000 MW of new Utility Scale renewable energy resources through US RFPs to meet the needs of subscribing customers. The Stipulating Parties agree that any unfulfilled MW in the RFPs will be carried over to future US RFPs.
+
+ The Company's revised Distributed Generation (“DG") RFP process to procure energy from up to 100 MW of new DG solar and solar plus storage resources through two separate RFPs (50 MW each), shall be approved, along with the ability to procure additional resources above the initial MW targets to meet the needs of subscribing customers. The DG RFPs should target DG solar and solar plus storage resources and will be available for energy subscription. The Stipulating Parties agree that any unfulfilled MW in the DG RFPs will be carried over to future DG RFPs. The DG Working Group shall reconvene with the goal to provide feedback to the Company and Staff on DG RFPs and PPA terms.
+
+The Company shall be allowed to use the updated Renewable Integration Study ("RIS") for planning purposes. The Company and Staff shall meet prior to the next RFP to determine how the specific Integration Costs and Flex Credits will be determined using the results of the 2024 RIS. Prior to December 31, 2025, Georgia Power and PIA Staff shall meet to review and discuss PIA Staff's suggested changes to the RIS. After this meeting, the parties shall file a compliance filing to provide the timeline for completion of the RIS prior to the next IRP and the process to be used by Georgia Power to determine the integration costs and the Flex Credit for each procurement. This filing will also address the methodology for calculating the RIS and any areas of disagreement between the Staff and the Company.
+
+The updated Renewable Cost Benefit ("RCB") Framework, including incorporation of locational value in DG procurement evaluations shall be approved.
+
+The enhanced Clean and Renewable Energy Subscription (“CARES") program shall be approved, including the ability for participating customers up to 3 MW to subscribe to DG resources smaller than 6 MW and the opportunity for residential customers to subscribe through the DG Community Solar Program. The Company will make quarterly filings which will provide the current level of DG Community Solar Program subscriptions, by month
+
+ The Company's proposed enhancements to the CARES Utility Scale Program, including the option to procure from customer-identified renewable resources, shall be approved. The customer-identified renewable resource option shall begin in Phase 2 of the CARES 2025 RFP and multiple customers will be allowed to bring forward a single customer-identified resource for procurement.
+
+The Company's Customer-Sited Solar Plus Storage Pilot Program shall be modified such that participants will not be restricted from receiving service on the R and GS rate schedules. MUSH customers and churches will be allowed to participate with projects up to 1 MW. The Company shall hold up to two collaborative meetings, after an implementation partner has been selected, with PIA Staff and other Stipulating Parties prior to filing the program documents. Issues to be addressed prior to filing the program documents include determining how potential participants will be made aware of the remaining capacity for each pilot program option and formalizing the process for increasing the target capacity. Within six months from the date of the Final Order, the Company shall work with PIA Staff and other Stipulating Parties to determine whether and how multifamily premises can participate.
+
+The modifications to the existing Customer Connected Solar Program, including increasing the facility size criteria to 250 kW minimum and 6 MW maximum and expanding resource types to include battery storage co-located with solar shall be approved.
+
+The continuation and proposed modifications of the Company's Distributed Energy Resources (“DER") Customer Program portfolio shall be approved.
+
+The Large Customer Owned Resiliency Program shall be approved.
+
+The Company is approved to further develop and deploy a Distributed Energy Resource Management System ("DERMS") to enhance the control and operational capabilities of DERs to ensure reliability and enable and optimize grid support functions. The Company shall file annual reports on implementation status and budget versus actual costs.
+
+The Electric Transportation Vehicle-to-Everything ("V2X") Pilot shall be approved. The Company shall include annual reports on implementation status and budget versus actual costs within the Company's annual Electric Transportation Summary Report.
+
+The Company is approved to collect a levelized additional sum of $3.00 / kilowatt ("kW") alternating current (“AC") of the total capacity amount from new demand response and new DER programs, including the Large Customer Owned Resiliency Program, Customer-Sited Solar Plus Storage Pilot Program, and modified Customer Connected Solar Program.
+
+The Company is approved to collect a levelized additional sum of $3.50 / kW-yr AC of the total capacity amount from which renewable energy is procured from the Utility Scale and DG RFPs proposed in this IRP, annually for the term of each PPA.
+
+ In conjunction with the ongoing level of review and analysis required by this agreement, Georgia Power will agree to pay for any reasonably necessary specialized assistance to PIA Staff in an amount not to exceed $500,000 annually. This amount paid by Georgia Power under this Paragraph shall be deemed as a necessary cost of providing service and the Company shall be entitled to recover the full amount of any costs charged to the utility.
+
+Demand Side Plan
+
+1.   The Company's 2025 DSM Plan is approved as filed with the following adjustments proposed         by the Staff and agreed to by the Company.
+
+The Company will include an additional sensitivity in its 2028 IRP development and resource optimization process. In this additional sensitivity case, DSM resources, including demand response and energy efficiency, will be allowed to compete head-to-head with supply-side options in the Company's IRP model as a selectable resource. This new sensitivity will replace the Aggressive Case scenario in the DSM Program Planning Process. The Commission will authorize the Company to recover the additional costs required to complete this new sensitivity through the DSM rider after review and approval by Commission Staff. To implement this change:
+
+Step 8 in the DSM Program Planning Process will be revised to state: "The Company will also produce an additional sensitivity in its 2028 IRP development and resource optimization process, where DSM is allowed to compete head-to-head with supply-side options in the Company's IRP model as a selectable resource. This sensitivity will be called the Integrated DSM Change Case."
+Step 9 in the DSM Program Planning Process will be revised to state: "The Company will use the difference in costs between the base case and the Proposed DSM change case configuration to determine the avoided generation cost impact of the DSM measures in the Proposed DSM change case. As the final step, the cost effectiveness tests mentioned in item 6 (above) will be calculated based on the inputs and adjustments from the system tools. Revenue impacts will be based on current rates and escalations based on the Company's financial projections adjusted for the DSM cost impacts. The avoided generation costs from the system tools and the avoided Transmission and Distribution (“T&D") revenue requirements as estimated by PRICEM will be used to calculate the benefits of the RIM, TRC and Program Administrator test for the Proposed DSM change case. The projected deadline for including new programs in the system planning process is October 1, 2027."
+
+The Demand Side Management Working Group (“DSMWG") will continue in its current form and be involved in the development of future DSM programs in the same manner it has operated in past IRP cycles.
+
+The Commission shall approve the Company's request for decertification of the Refrigerator Recycling Plus, Residential Specialty Lighting, and Commercial Behavioral programs.
+
+The Company's proposed Residential Products Program will not be certified. The Company's waiver request for Commission Rule 515-3-4-.04(4)(a)(3) for the Residential Home Energy Improvement, Residential Energy Assistance for Savings and Efficiency, and Residential HopeWorks Programs shall be approved.
+
+The amended Certificates for the Residential Behavioral, Residential Demand Response, Residential Home Energy Improvement, Residential Energy Assistance for Savings and Efficiency, Residential Hope Works, Commercial Custom, Commercial Prescriptive, and Small Commercial Direct Install Programs shall be approved.
+
+The Automated Benchmarking Tool (“ABT") will continue for the 2026-2028 program cycle as approved in the 2019 and 2022 IRPs at a preapproved cost of no more than $600,000.
+
+Georgia Power will implement Staff's Recommended Case for the 2026 through 2028 IRP cycle. Staff's Recommended Case energy savings targets in Exhibit_BCS-9 of the Direct Testimony of Jamie Barber, Nick Cooper, and Richard F. Spellman shall be approved.
+
+The approved program budget is as provided in Attachment A to this Order Adopting Stipulation.
+
+Georgia Power will implement an online residential energy audit tool, small team of residential energy experts (auditors), and/or other similar emerging technologies to help customers understand their energy usage and address and alleviate affordability concerns. The budget for this tool will be $2.2 million per year for the three-year cycle.
+
+The Education Initiative-Learning Power budget will be $4 million annually for 2026-2028. 
+
+The annual Residential and Commercial Energy Efficiency Consumer Awareness budgets will be $4.5 million and $1.1 million, respectively, during the 2026-2028 program cycle.
+
+The DSM pilot budget will be $3 million per year, to be split evenly between Residential and Commercial classes. The Company will seek Staff's input regarding any proposed pilots before they are implemented and throughout the course of the pilot. 
+
+The current methodology approved for the DSM additional sum mechanism will continue at 9.5% of shared savings for all programs except for residential income qualified programs, and the Company's additional sum will continue to be based on net energy savings rather than gross energy savings. For residential income qualified programs, the additional sum will be based on $.02 per first-year kilowatt hour ("kWh") saved, based on net savings.
+
+Once the Company selects program implementers and program plans are developed, these plans will be provided to PIA Staff for review and input prior to implementation of the corresponding programs. The Company should provide PIA Staff with at least 15 days for review of the Final Program Plans.
+
+The current DSM true-up process will continue, including not allowing the rollover of unspent annual budget dollars or unrealized savings targets. Additional details of actual incentive and non-incentive costs compared with budgeted costs for each program will be provided in the true-up filing.
+
+The three-year program Evaluation Measurement & Verification ("EM&V") cycle will continue from 2026 to 2028
+
+ As set forth in Staff's testimony, the 2024 EM&V results will be used as recommended by the independent program evaluators. 
+
+The Company will evaluate income-qualified savings in a manner consistent with the remainder of the Residential sector to confirm whether the Net-to-Gross (NTG) assumption is appropriate.
+
+The current policy to implement the EM&V results in the first year of the next IRP cycle will continue by using the 2024 EM&V results as the basis for DSM measure and program savings for the 2026-2028 cycle. The Company will implement new EM&V results of the first year of the next IRP cycle in 2029.
+
+The current Commission policy that requires the Company to provide detailed evaluation plans for each of the approved DSM programs within 90 days of the selection of the Program Implementers for each of the certified programs will continue. However, Staff will work with the Company to extend the 90 days on as-needed basis as it has in prior IRP cycles
+
+If EM&V findings or results show errors with reporting of program or measure kWh and kW savings or costs during the program cycle, such errors will be immediately corrected for the reporting of results in the next program cycle.
+
+The Company will use the NTG ratios from the 2024 EM&V report for the 2026- 2028 program cycle.
+
+The Company will include an assessment of potential demand savings from demand response measures in the potential study that will be filed in January 2027. The cost of this additional assessment will be recovered through the DSM rider after review and approval by Commission Staff. The Company will work with Staff on input regarding the scope of this study prior to issuance of a request for proposals for both studies.
+
+The Commission finds that and concludes that the Vogtle Prudence Stipulation is not justification to interpret “propose” and “support” to mean that the Company cannot reach reasonable compromises for DSM, or any other matter the Company supported, through the constructive settlement process that has been the hallmark of IRPs over the past several decades. GIPL and Southface’s Motion is hereby denied.  Further, the Vogtle Prudence Stipulation did not compel Staff to propose or support a plan with a 0.75% target.  Indeed, it expressly provided that Staff could recommend a case that was lower.  Similarly, the Vogtle Prudence Stipulation did not purport to commit the Commission to adopting a plan with a 0.75% target.  Finally, while GIPL and Southface argue that the Commission should order the plan that Georgia Power filed, they simultaneously argue that the Commission should not approve the funding portion of that plan. Brief of GIPL and Southface, pp. 12-14. Instead, they argue that DSM should be funded at a dramatically lower amount than either the Company’s 0.75% target proposal or the amount approved by this Stipulation.  Staff’s proposal adopted herein provides $70 million more for DSM projects than GIPL and Southface’s request.  Setting a higher target goal for savings is mere sophistry if cannot be met because it is not properly funded.  Actually, achieving savings for ratepayers by actually implementing DSM is what really matters and that is what the higher funding level approved here will do.  The Commission denies the Motion to Enforce the Vogtle Prudence Stipulation.
+
+	                         
+ORDERING PARGRAPHS
+
+ WHEREFORE, IT IS ORDERED, the Commission adopts all terms and conditions contained in the attached Stipulation as described above.
+	
+		ORDERED FURTHER, that all findings, conclusions, and decisions contained within the preceding sections of this Order are hereby adopted as findings of fact, conclusions of law, and decisions of regulatory policy of this Commission.
+	
+ORDERED FURTHER, that a motion for reconsideration, rehearing, oral argument, or any other motion shall not stay the effective date of this Order, unless otherwise ordered by the Commission.
+
+ORDERED FURTHER, that jurisdiction over this matter is expressly retained for the purpose of entering such further Order(s) as this Commission may deem just and proper.
+
+	The above action by the Commission in Administrative Session on the 15th day of July 2025.
+
+
+_________________________ 				_________________________
+Sallie Tanner							Jason Shaw
+Executive Secretary						Chairman
+
+
+__________________________				___________________________
+Date								Date
+
+STATE OF GEORGIA
+BEFORE THE GEORGIA PUBLIC SERVICE COMMISSION
+In Re:
+Georgia Power Company's 
+2025 Integrated Resource Plan
+                                                       Docket No. 56002
+In the Matter of:
+Georgia Power Company's 2025Docket Docket No. 56003
+Application for the Certification,
+Decertification, and Amended
+Demand Side Plan
+Stipulation
+The Georgia Public Service Commission ("Commission") Public Interest Advocacy Staff ("PIA Staff' or "Staff'), Georgia Power Company ("Georgia Power" or "Company") and the undersigned Intervenors (collectively, "Stipulating Parties" or "Parties") hereby agree to the following Stipulation as a resolution of the above-styled proceedings to consider the Company's 2025 Integrated Resource Plan ("2025 IRP") and Application for the Certification, Decertification, and Amended Demand Side Management Plan ("2025 DSM Plan"). This Stipulation is intended to resolve all issues in these Dockets. The Stipulating Parties agree as follows:
+Supply Side Plan
+The 2025 IRP shall be approved as filed unless amended by this Stipulation.
+The Company's Load Forecast, as updated through the February 2025 Load and Energy Forecast in Figure 2 and Exhibit 1 of the Rebuttal Testimony of the panel of Grubb, Hubbert, Looney, Robinson, and Valle, is based on substantially accurate data and an adequate method of forecasting. However, the Parties are aware that the Load Forecast is largely driven by the anticipated growth from only one customer class for which there is a lack of historic information to inform many of the assumptions used in the forecast. Therefore, the Company and Staff shall work collaboratively to modify or refine the Load Forecast, including methodologies, as additional experience and information is received. For those reasons, and independent of any conclusions stipulated in this paragraph, for the purposes of the 2029-2031 All-Source Certification Proceeding, the Company and Staff shall update the methodologies as they each determine to be appropriate, and Staff may propose that the Commission modify the methodology to include the materialization of executed Contracts for Electric Service in determining the Load Forecast. Further, the Parties agree to the following:
+The Company will continue its quarterly filings of Large Load Economic Development Reports and will include in each quarterly report as additional information the date that any new project enters the large load pipeline, the announced load of any new project entering the large load pipeline, and new large load projects that have entered into a Contract for Electric Service.
+Georgia Power shall update the capacity need in the 2029-2031 All-Source Certification Proceeding in October 2025 with the B2026 Load Forecast, shall file additional Load Forecast updates in February 2027 with the B2027 Load Forecast, and as part of the 2028 IRP.
+The Company shall be authorized to seek certification of up to 8,500 MW of capacity from the 2029-2031 All Source Capacity RFP. The Company agrees to provide generation procurement options to meet generation needs of at least 6,000 MW and up to 8,500 MW necessary to meet Georgia Power system demand. Upon consideration of the Company's updated October 2025 Load Forecast, as well as consideration of any Staff-proposed Load Forecast, the Commission can then appropriately determine necessary generation resources to certify as part of the 2029-2031 All-Source Capacity RFP certification proceeding.
+The Company's recommended System long-term winter Target Reserve Margin value of 26%, long-term summer Target Reserve Margin value of 20%, and the short-term Target Reserve Margins associated with each season shall be approved for the purposes of current capacity procurement needs. The designation of a 26% winter Target Reserve Margin does not preclude the Parties from using a different reserve margin in subsequent proceedings. As additional large load customers are added to the system, the Company will collect data regarding their load patterns and behaviors. Prior to June 30, 2027, the Company and PIA Staff will meet to discuss and collaborate on the appropriate method to model data center loads in the Reserve Margin Study.
+The Company will meet semi-annually with PIA Staff to provide updates on the Strategic Transmission Projects identified in Table 1 1.3 of the 2025 IRP to improve power transfer from South Georgia to North Georgia, prepare the transmission system for generation fleet transitions, and maintain System reliability. The Company will continue to identify alternative solutions considered for each project and the associated costs and benefits of the alternatives. The Company will continue to investigate and consider the use of emerging grid technologies as described in Technical Appendix Volume 3 of the 2025 IRP.
+Staffs transmission recommendations will be adopted as follows:
+Georgia Power shall adopt a formal process to evaluate Grid Enhancing Technologies ("GETs") as potential solutions for all major Georgia Power transmission projects and will include in the 2028 IRP a report on the planning assumptions, criteria, and outcomes associated with its GETs evaluations.
+Georgia Power will continue to incorporate Non-Wires Alternatives screening into its standard project development process. If future BESS applications, configurations, and operations demonstrate that BESS can be deployed reliably and economically as transmission solutions, Georgia Power will continue to consider this technology as a solution.
+Georgia Power will continue to work through the existing Southeastern Regional Transmission Planning ("SERTP") process and through the modifications forthcoming in the Company's June 2026 FERC Order 1920 compliance filing to coordinate regional transmission needs and subsequent projects with neighboring utilities. The Company will report on these efforts through the SERTP scheduled quarterly meetings. As part of its 2028 IRP Transmission Plan, Georgia Power will identify the regional transmission expansion projects evaluated through calendar year 2027 by Georgia Power, and through the SERTP process, and will identify the economic costs and benefits of each.
+The extended operation of Plant Scherer Unit 3 and Plant Gaston Units 1-4 and A beyond December 31, 2028, shall be approved.
+The request to certify wholesale capacity from Plant Scherer Unit 3 to be placed in retail rate base shall be approved with the market differential adjustments as filed.
+The incremental capacity upgrades and certificate amendment for Plant McIntosh Units 10-11 and IA-8A shall be approved.
+The incremental capacity uprates at Plant Vogtle Units 1-2 shall be approved as filed. The incremental capacity uprates at Plant Hatch Units 1-2 shall not be approved at this time. The Company may proceed with preliminary planning, licensing and engineering for the capacity uprate at Plant Hatch Units 1-2. The Company agrees to provide a semi-annual report on the status of engineering and finalizing of contracts for the incremental capacity uprates at Plant Hatch Units 12 and Plant Vogtle Units 1-2.
+The capital and operations and maintenance ("O&M") costs (but not yet the recovery of such costs) for the modernization of Plants Tallulah, Yonah, Bartletts Ferry Units 5-6, and North Highlands hydro facilities shall be approved.
+The request to develop, own, and operate incremental capacity at Plant Goat Rock Units 3-6 shall not be approved at this time. Georgia Power shall be allowed to spend up to $25 million to undertake engineering studies to determine the most effective way to address water flow imbalance at Plant Goat Rock and to replace the horizontal units at Plant Morgan Falls. The Company shall provide the results of the engineering studies to PIA Staff. The Company's plans and comprehensive and complete cost estimates for modernization at Plants Goat Rock, Lloyd Shoals, Flint River, and Wallace, as well as those to replace horizontal units at Plant Morgan Falls, will be filed in the 2028 IRP for Commission consideration.
+The Environmental Compliance Strategy ("ECS") shall be approved as updated in the 2025 IRP. This approval includes the Company's plans to address coal combustion residual ("CCR") at the Company's ash ponds and landfills and associated measures taken to comply with environmental mandates. The existing government-imposed environmental mandates necessary for the Company to implement its ECS as presented in Technical Appendix Volume 1 and Environmental Compliance Cost Recovery ("ECCR") and CCR ARO tables in the Selected Supporting Information section of Technical Appendix Volume 2 of the 2025 IRP have been reviewed in this proceeding and acknowledged. The Company will continue to provide CCR ARO semi-annual reports to the Commission. In addition, the Company will continue to file the ECS annually with the Commission no later than March 3 1 of each year.
+The Company shall have the authority to pursue the natural gas co-firing compliance pathway as the 111 GHG Rule strategy for Plant Bowen and Plant Scherer. The Company will provide semi-annual reports on the status of 1 1 1 GHG Rule compliance starting with the semi-annual period ending December 3 1, 2025, with the report to be submitted by March 31 and September 30 of each year. These reports will identify the Company's assessment of the current legal status of 1 1 1 GHG Rule and impact on the continued operation of Plants Bowen and Scherer, the Company's actions and efforts to comply with 111 GHG Rule and any deferred cost incurred by the Company, and summary of technical solutions and the technical solutions capital and O&M cost estimates to comply with 1 1 1 GHG Rule for Plants Bowen and Scherer. The Company will include in the semi-annual reports any significant capital investment or capital investment commitments expected over the next reporting period at Plants Bowen and Scherer for 1 1 1 GHG Rule compliance. Should the 1 11 GHG Rule repeal be finalized by EPA and the Company's compliance preparations conclude, the semi-annual reports shall no longer be required.
+The Company shall issue an All-Source RFP for capacity needs in 2032-2033 in the first quarter of 2026. At least twelve months in advance of issuing any subsequent All-Source RFP, the Company will coordinate with Staff on the selection of an Independent Evaluator.
+The Company's enhanced Utility Scale Renewable Resource Request for Proposals ("US RFP") process shall be approved. The Company shall be authorized to procure energy from up to 1,000 MW of new Utility Scale renewable energy resources. In addition, the Company shall be allowed to procure up to 3,000 MW of new Utility Scale renewable energy resources through US RFPs to meet the needs of subscribing customers. The Stipulating Parties agree that any unfulfilled MW in the RFPs will be carried over to future US RFPs.
+The Company's revised Distributed Generation ("DG") RFP process to procure energy from up to 100 MW of new DG solar and solar plus storage resources through two separate RFPs (50 MW each), shall be approved, along with the ability to procure additional resources above the initial MW targets to meet the needs of subscribing customers. The DG RFPs should target DG solar and solar plus storage resources and will be available for energy subscription. The Stipulating Parties agree that any unfulfilled MW in the DG RFPs will be carried over to future DG RFPs. The DG Working Group shall reconvene with the goal to provide feedback to the Company and Staff on DG RFPs and PPA terms.
+The Company shall be allowed to use the updated Renewable Integration Study ("RIS") for planning purposes. The Company and Staff shall meet prior to the next RFP to determine how the specific Integration Costs and Flex Credits will be determined using the results of the 2024 RIS. Prior to December 3 1, 2025, Georgia Power and PIA Staff shall meet to review and discuss PIA Staffs suggested changes to the RIS. After this meeting, the parties shall file a compliance filing to provide the timeline for completion of the RIS prior to the next IRP and the process to be used by Georgia Power to determine the integration costs and the Flex Credit for each procurement. This filing will also address the methodology for calculating the RIS and any areas of disagreement between the Staff and the Company.
+The updated Renewable Cost Benefit ("RCB") Framework, including incorporation of locational value in DG procurement evaluations shall be approved.
+The enhanced Clean and Renewable Energy Subscription ("CARES") program shall be approved, including the ability for participating customers up to 3 MW to subscribe to DG resources smaller than 6 MW and the opportunity for residential customers to subscribe through the DG Community Solar Program. The Company will make quarterly filings which will provide the current level of DG Community Solar Program subscriptions, by month.
+The Company's proposed enhancements to the CARES Utility Scale Program, including the option to procure from customer-identified renewable resources, shall be approved. The customer-identified renewable resource option shall begin in Phase 2 of the CARES 2025 RFP and multiple customers will be allowed to bring forward a single customer-identified resource for procurement.
+The Company's Customer-Sited Solar Plus Storage Pilot Program shall be modified such that participants will not be restricted from receiving service on the R and GS rate schedules. MUSH customers and churches will be allowed to participate with projects up to 1 MW. The Company shall hold up to two collaborative meetings, after an implementation partner has been selected, with PIA Staff and other Stipulating Parties prior to filing the program documents. Issues to be addressed prior to filing the program documents include determining how potential participants will be made aware of the remaining capacity for each pilot program option and formalizing the process for increasing the target capacity. Within six months from the date of the Final Order, the Company shall work with PIA Staff and other Stipulating Parties to determine whether and how multifamily premises can participate.
+The modifications to the existing Customer Connected Solar Program, including increasing the facility size criteria to 250 kW minimum and 6 MW maximum and expanding resource types to include battery storage co-located with solar shall be approved.
+The continuation and proposed modifications of the Company's Distributed Energy Resources ("DER") Customer Program portfolio shall be approved.
+The Large Customer Owned Resiliency Program shall be approved.
+The Company is approved to further develop and deploy a Distributed Energy Resource Management System ("DERMS") to enhance the control and operational capabilities of DERs to ensure reliability and enable and optimize grid support functions. The Company shall file annual reports on implementation status and budget versus actual costs.
+The Electric Transportation Vehicle-to-Everything ("V2X") Pilot shall be approved. The Company shall include annual reports on implementation status and budget versus actual costs within the Company's annual Electric Transportation Summary Report.
+The Company is approved to collect a levelized additional sum of $3.00 / kilowatt ("kW") alternating current ("AC") of the total capacity amount from new demand response and new DER programs, including the Large Customer Owned Resiliency Program, Customer-Sited Solar Plus Storage Pilot Program, and modified Customer Connected Solar Program.
+The Company is approved to collect a levelized additional sum of $3.50 / kW-yr AC of the total capacity amount from which renewable energy is procured from the Utility Scale and DG RFPs proposed in this IRP, annually for the term of each PPA.
+In conjunction with the ongoing level of review and analysis required by this agreement, Georgia Power will agree to pay for any reasonably necessary specialized assistance to PIA Staff in an amount not to exceed $500,000 annually. This amount paid by Georgia Power under this Paragraph shall be deemed as a necessary cost of providing service and the Company shall be entitled to recover the full amount of any costs charged to the utility.
+Demand Side Plan
+The Company's 2025 DSM Plan is approved as filed with the following adjustments proposed by the Staff and agreed to by the Company.
+The Company will include an additional sensitivity in its 2028 IRP development and resource optimization process. In this additional sensitivity case, DSM resources, including demand response and energy efficiency, will be allowed to compete head-to-head with supply-side options in the Company's IRP model as a selectable resource. This new sensitivity will replace the Aggressive Case scenario in the DSM Program Planning Process. The Commission will authorize the Company to recover the additional costs required to complete this new sensitivity through the DSM rider after review and approval by Commission Staff. To implement this change:
+Step 8 in the DSM Program Planning Process will be revised to state: "The Company will also produce an additional sensitivity in its 2028 IRP development and resource optimization process, where DSM is allowed to compete head-to-head with supply-side options in the Company's IRP model as a selectable resource. This sensitivity will be called the Integrated DSM Change Case."
+Step 9 in the DSM Program Planning Process will be revised to state: "The Company will use the difference in costs between the base case and the Proposed DSM change case configuration to determine the avoided generation cost impact of the DSM measures in the Proposed DSM change case. As the final step, the cost effectiveness tests mentioned in item 6 (above) will be calculated based on the inputs and adjustments from the system tools. Revenue impacts will be based on current rates and escalations based on the Company's financial projections adjusted for the DSM cost impacts. The avoided generation costs from the system tools and the avoided Transmission and Distribution ("T&D") revenue requirements as estimated by PRICEM will be used to calculate the benefits of the RIM, TRC and Program Administrator test for the Proposed DSM change case. The projected deadline for including new programs in the system planning process is October 1, 2027."
+The Demand Side Management Working Group ("DSMWG") will continue in its current form and be involved in the development of future DSM programs in the same manner it has operated in past IRP cycles.
+The Commission shall approve the Company's request for decertification of the Refrigerator Recycling Plus, Residential Specialty Lighting, and Commercial Behavioral programs.
+The Company's proposed Residential Products Program will not be certified. The Company's waiver request for Commission Rule 515-3-4-.04(4)(a)(3) for the Residential Home Energy Improvement, Residential Energy Assistance for Savings and Efficiency, and Residential HopeWorks Programs shall be approved.
+The amended Certificates for the Residential Behavioral, Residential Demand Response, Residential Home Energy Improvement, Residential Energy Assistance for Savings and Efficiency, Residential HopeWorks, Commercial Custom, Commercial Prescriptive, and Small Commercial Direct Install Programs shall be approved.
+The Automated Benchmarking Tool ("AB T") will continue for the 2026-2028 program cycle as approved in the 2019 and 2022 IRPs at a preapproved cost of no more than $600,000.
+Georgia Power will implement Staff's Recommended Case for the 2026 through 2028 IRP cycle. Staff's Recommended Case energy savings targets in Exhibit BCS-9 of the Direct Testimony of Jamie Barber, Nick Cooper, and Richard F. Spellman shall be approved.
+The approved program budget is as provided in Attachment A to this Stipulation.
+Georgia Power will implement an online residential energy audit tool, small team of residential energy experts (auditors), and/or other similar emerging technologies to help customers understand their energy usage and address and alleviate affordability concerns. The budget for this tool will be $2.2 million per year for the three-year cycle.
+The Education Initiative-Learning Power budget will be $4 million annually for 2026-2028.
+The annual Residential and Commercial Energy Efficiency Consumer Awareness budgets will be $4.5 million and $1.1 million, respectively, during the 2026-2028 program cycle.
+The DSM pilot budget will be $3 million per year, to be split evenly between Residential and Commercial classes. The Company will seek Staffs input regarding any proposed pilots before they are implemented and throughout the course of the pilot.
+The current methodology approved for the DSM additional sum mechanism will continue at 9.5% of shared savings for all programs except for residential income-qualified programs, and the Company's additional sum will continue to be based on net energy savings rather than gross energy savings. For residential income-qualified programs, the additional sum will be based on $.02 per first-year kilowatt hour ("kWh") saved, based on net savings.
+Once the Company selects program implementers and program plans are developed, these plans will be provided to PIA Staff for review and input prior to implementation of the corresponding programs. The Company should provide PIA Staff with at least 15 days for review of the Final Program Plans.
+The current DSM true-up process will continue, including not allowing the rollover of unspent annual budget dollars or unrealized savings targets. Additional details of actual incentive and non-incentive costs compared with budgeted costs for each program will be provided in the true-up filing.
+The three-year program Evaluation Measurement & Verification ("EM&V") cycle will continue from 2026 to 2028.
+As set forth in Staff's testimony, the 2024 EM&V results will be used as recommended by the independent program evaluators.
+The Company will evaluate income-qualified savings in a manner consistent with the remainder of the Residential sector to confirm whether the Net-to-Gross (NTG) assumption is appropriate.
+The current policy to implement the EM&V results in the first year of the next IRP cycle will continue by using the 2024 EM&V results as the basis for DSM measure and program savings for the 2026-2028 cycle. The Company will implement new EM&V results of the first year of the next IRP cycle in 2029.
+The current Commission policy that requires the Company to provide detailed evaluation plans for each of the approved DSM programs within 90 days of the selection of the Program Implementers for each of the certified programs will continue. However, Staff will work with the Company to extend the 90 days on an as-needed basis as it has in prior IRP cycles.
+If EM&V findings or results show errors with reporting of program or measure kWh and kW savings or costs during the program cycle, such errors will be immediately corrected for the reporting of results in the next program cycle.
+The Company will use the NTG ratios from the 2024 EM&V report for the 2026-2028 program cycle.
+The Company will include an assessment of potential demand savings from demand response measures in the potential study that will be filed in January 2027. The cost of this additional assessment will be recovered through the DSM rider after review and approval by Commission Staff. The Company will work with Staff on input regarding the scope of this study prior to issuance of a request for proposals for both studies.
+Agreed to this 8th day of July 2025.
+
+Chris Collado
+On Behalf of the Georgia Public Service Commission
+Public Interest Advocacy Staff
+Brandon F. Marzo On Behalf of Georgia Power Company Brandon F. Marzo On Behalf of Georgia Power Company 
+Brandon F. Marzo 
+On Behalf of Georgia Power Company 
+Brandon F. Marzo 
+On Behalf of Georgia Power Company 
+
+Attachment A
+DSM Budget
+DSM Programs (annual budgets)
+Staff's
+Recommendations/Case
+GPC's Recommendations
+(To Staff's case)
+HEIP
+Program Budget
+
+
+
+Incentives
+
+
+
+Administrative
+
+
+
+Contracting/Delivery
+
+
+
+Marketing
+$541,105
+$991,105
+Res DR
+Program Budget
+
+
+
+Incentives
+
+
+
+Administrative
+$217,000
+$217,000
+
+Contracting/Delivery
+
+
+
+Marketing
+$16,700
+$16,700
+Res
+Behavioral
+Program Budget
+
+
+
+Incentives
+$0
+$0
+
+Administrative
+$516,409
+$516,409
+
+Contracting/Delivery
+$818,076
+
+
+Marketing
+$34,475
+$34,475
+EASE
+Program Budget
+
+
+
+Incentives
+
+
+
+Administrative
+$604,812
+$604,812
+
+Contracting/Delivery
+
+
+
+Marketing
+$611,176
+$611,176
+HopeWorks
+Program Budget
+
+
+
+Incentives
+$846,065
+$846,065
+
+Administrative
+$169,354
+$169,354
+
+Contracting/Delivery
+$127,567
+$127,567
+
+Marketing
+$13,082
+$13,082
+Custom
+Program Budget
+
+
+
+Incentives
+$7,448,429
+$7,448,429
+
+Administrative
+$530,843
+$530,843
+
+Contracting/Delivery
+$2,732,280
+
+
+Marketing
+
+
+Prescriptive
+Program Budget
+
+
+
+Incentives
+$35,205,942
+
+
+Administrative
+
+
+
+
+Contracting/Delivery
+
+
+
+Marketing
+
+
+SCDI
+Program Budget
+
+
+
+Incentives
+
+
+
+Administrative
+$675,099
+$675,099
+
+Contracting/Delivery
+
+
+
+Marketing
+
+
+
+Staff's
+Recommendations/Case
+GPC's Recommendations
+(To Staff's Case)
+Crosscutting (3-year total)
+
+
+Residential Crosscutting (3-year total)
+
+
+Commercial Crosscutting (3 -year total)
+
+
+Evaluations (3-year total)
+
+
+Residential Evaluations (3-year total)
+
+
+Commercial Evaluations (3-year total)
+
+$2,494,434
+Other DSM Activities annual
+
+
+Residential Pilot Pro rams
+
+
+Commercial Pilot Pro rams
+
+
+Residential - EE Consumer Awareness
+
+
+Commercial - EE Consumer Awareness
+
+
+Education Initiative — Learning Power
+
+$4,000,000
+Automatic Benchmarking Tool ABT
+
+$200,000
+Residential Audit tool and auditors
+
+$2,200,00
+

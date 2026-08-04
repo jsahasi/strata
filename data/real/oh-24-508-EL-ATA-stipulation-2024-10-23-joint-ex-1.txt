@@ -1,0 +1,1676 @@
+ 
+ 
+                    Legal Department                                                            American Electric Power 
+                                                                                                                                                  1 Riverside Plaza 
+                                                                                                                                         Columbus, Ohio 43215-2373 
+                                                                                                                                         AEP.com 
+ 
+ 
+October 23, 2024 
+ 
+The Honorable Greta See 
+The Honorable David Hicks 
+Isabel Marcelletti 
+Attorney Examiners 
+Public Utilities Commission of Ohio 
+180 East Broad Street 
+Columbus Ohio 43215-3793 
+ 
+ 
+Re: In the Matter of the Application of Ohio Power 
+Company for New Tariffs Related To Data Centers and 
+Mobile Data Centers, Case No. 24-508-EL-ATA 
+ 
+ 
+ 
+ 
+ 
+Dear Examiners: 
+ 
+I am pleased to submit the enclosed Joint Stipulation and Recommendation for the 
+Commission’s consideration in resolving this case.  The Signatory Parties request 
+consideration and approval by the Commission.  As previously mentioned during 
+the October 17 prehearing conference, the Signatory Parties request a prehearing 
+conference to update the schedule in light of this Stipulation being filed; we request 
+the conference be schedule as soon as practical and recommend either during the 
+afternoon of October 24 or the morning of October 25.   
+ 
+Thank you for your attention to this matter. 
+ 
+Respectfully Submitted, 
+ 
+ 
+ 
+ 
+ 
+cc: Parties of Record 
+Steven T. Nourse 
+Vice President - Legal  
+ (614) 716-1608 (P) 
+(614) 716-2014 (F) 
+stnourse@aep.com 
+Appx. Page 408 of 867
+ 
+ 
+ 
+BEFORE 
+THE PUBLIC UTILITIES COMMISSION OF OHIO 
+ 
+In the Matter of the Application of 
+Ohio Power Company for New 
+Tariffs Related To Data Centers 
+and Mobile Data Centers 
+) 
+) 
+) 
+) 
+ 
+Case No. 24-508-EL-ATA 
+ 
+ 
+ 
+ 
+JOINT STIPULATION AND RECOMMENDATION 
+ I. 
+Introduction 
+Rule 4901-1-30, Ohio Administrative Code (OAC), provides that any two or more parties 
+to a proceeding may enter into a written stipulation covering the issues presented in such a 
+proceeding. This document sets forth the understanding and agreement of the parties who have 
+signed below (“Signatory Parties”) and jointly present to the Public Utilities Commission of 
+Ohio (“Commission”) this Joint Stipulation and Recommendation (“Stipulation”) in order to 
+resolve for consumers’ and others’ benefit all of the issues raised in this proceeding by the 
+Application and supporting testimony filed by Ohio Power Company (“AEP Ohio” or the 
+“Company”) on May 13, 2024 through modifications to that Application. 
+This Stipulation is a product of lengthy, serious, arm’s-length bargaining among the 
+Signatory Parties and other parties who chose not to sign the Stipulation (all of whom are 
+capable, knowledgeable parties), which negotiations were undertaken by the Signatory Parties to 
+settle this proceeding to consumers’ and others’ benefit.  All intervenors were invited to discuss 
+and negotiate this Stipulation, and it was openly negotiated among those stakeholders who 
+responded and chose to participate. This Stipulation is supported by adequate data and 
+information. As a package, the Stipulation: benefits customers and the public interest; represents 
+a just and reasonable resolution of all issues in this proceeding; violates no regulatory principle 
+or practice; and complies with and promotes the policies and requirements of Title 49 of the 
+Appx. Page 409 of 867
+ 
+ 
+ 
+ 
+2
+Ohio Revised Code.  This Stipulation represents an accommodation of the diverse interests 
+represented by the Signatory Parties and, though not binding, is entitled to careful consideration 
+by the Commission. For purposes of resolving the issues raised by these proceedings, the 
+Signatory Parties agree to fully support adoption of the Stipulation without modification in this 
+proceeding.   
+II. 
+Recitals 
+WHEREAS, on May 13, 2024, AEP Ohio filed an Application not for an increase in 
+rates, seeking to establish two new classifications of customers going forward: (1) the Data 
+Center Power Tariff for new data center customers that will use a monthly maximum demand of 
+greater than 25 MW at a single location; and (2) the Mobile Data Center Tariff for new mobile 
+data center customers (e.g., cryptocurrency miners) that will use a monthly maximum demand of 
+greater than 1 MW at a single location; 
+WHEREAS, twenty parties have been granted intervention in this matter; 
+WHEREAS, all parties were afforded an opportunity to file comments and reply 
+comments on June 25, 2024 and July 8, 2024, respectively; 
+WHEREAS, the parties engaged in extensive discovery in this proceeding;  
+WHEREAS, on August 29, 2024, fifteen parties filed testimony in response to the 
+Company’s Application; 
+WHEREAS, the Company held ten all-party settlement meetings and countless 
+breakout/individual settlement discussions and phone calls over the course of multiple months; 
+WHEREAS, the Signatory Parties found common ground through the issues developed 
+during the discovery process and settlement discussions commenced concerning those 
+developing issues; 
+Appx. Page 410 of 867
+ 
+ 
+ 
+ 
+3
+WHEREAS, this Stipulation is the result of serious discussion and compromise of 
+complex issues and involves substantial benefits for consumers and others that might not 
+otherwise have been achievable, and is not intended to reflect the views or proposals that any 
+individual party may have advanced acting unilaterally; 
+NOW, THEREFORE, the Signatory Parties agree and recommend resolution of the 
+Application and related issues through the modifications agreed to in this Stipulation. 
+III. 
+Joint Recommendations of Signatory Parties 
+A. 
+Tariff Applicability 
+The Mobile Data Center Tariff will be merged into the Data Center Tariff (“Schedule 
+DCT”) and will apply to any electric service agreement signed after the tariff effective 
+date for a new load (or expansion of an existing load) greater in the aggregate than 25 
+MW as calculated in this Paragraph III.A.  The final version of Schedule DCT being 
+recommended by the Signatory Parties through this Stipulation is attached as Exhibit A; 
+any perceived conflict or ambiguity between the Stipulation terms (modifying the 
+Application) and Exhibit A shall be resolved in favor of the Stipulation terms.  Schedule 
+DCT will only apply to Data Center load and Mobile Data Center load and customers 
+eligible under Schedule DCT may only be served under that tariff.  As reflected in 
+Exhibit A, the following additional parameters apply (all of which only encompasses 
+Data Center and Mobile Data Center load): 
+1.  “‘Data Center’ means a centralized facility (a) used primarily or exclusively for 
+electronic information services such as the management, storage, processing, and 
+dissemination of electronic data and information through the use of computer 
+systems, servers, networking equipment, and related components that (b) has an 
+Appx. Page 411 of 867
+ 
+ 
+ 
+ 
+4
+aggregate monthly maximum demand of greater than 25,000 kW. Unless 
+otherwise specified, the term ‘Data Center’ shall include ‘Mobile Data Center.’”  
+2. “Mobile Data Center” means a centralized facility (a) used primarily or 
+exclusively for electronic information services such as the management, storage, 
+processing, and dissemination of electronic data and information (including 
+mining of cryptocurrency) through the use of computer systems, servers, 
+networking equipment, and related components that (b) has an aggregate monthly 
+maximum demand of greater than 25,000 kW and has load that is portable and/or 
+distributable, including but not limited to structures that are not affixed to the 
+ground or are easily removed from a location.” 
+3. Loads above 25 MW that have already signed a Letter of Agreement (“LOA”) or 
+Electric Service Agreement (“ESA”) by the effective date of the tariff are 
+“grandfathered”1 (i.e., Schedule DCT will not apply), so long as the load does not 
+expand by more than 25 MW above contracted capacity under the existing ESA 
+following the effective date of Schedule DCT.  
+4. Schedule DCT will apply to a grandfathered load that signs a new ESA to expand 
+its load by more than 25 MW above contracted capacity under the existing ESA 
+after the effective date of the tariff. At the customer’s request, AEP Ohio will use 
+reasonable efforts to separately meter the new (non-grandfathered) load to which 
+ 
+1 All provisions of the term sheet that “grandfather” customers or loads as those concepts relate 
+to the new Schedule DCT being adopted in this case, but that “grandfathered” status is subject to 
+change in the next base distribution case or any other future proceeding.  All parties reserve the 
+right to oppose any future tariff change that proposes to alter such “grandfather” status. 
+ 
+Appx. Page 412 of 867
+ 
+ 
+ 
+ 
+5
+Schedule DCT applies but it may not be technically feasible to do so. If it is 
+technically feasible to separately meter, the customer will pay all costs reasonably 
+incurred by AEP Ohio to complete such separate metering. If the load is not 
+separately metered, then the grandfathered load will lose its grandfathering status 
+and become subject to Schedule DCT. 
+5. All new load of affiliated companies and companies with common ownership will 
+be considered in the aggregate for purposes of calculating the minimum demand 
+charge that will be included for the full term of each ESA for new projects under 
+this tariff (load being served or under a signed contract to be served prior to the 
+effective date of the new tariff is grandfathered).  All affiliated projects will be 
+stacked in order of the energization date so the minimum demand matrix can be 
+applied based on multiple ESAs, as applicable.  Finally, if there are multiple new 
+(i.e., non-grandfathered) facilities at a Single Location of less than 25 MW (but 
+the aggregate total load is greater than 25 MW), all of those facilities will be 
+subject to Schedule DCT. 
+6. Schedule DCT customers are not eligible to participate in AEP Ohio’s 1CP or 6 
+CP BTCR Programs or any successor programs (subject to same grandfathering 
+of current participation outlined above for the new tariff).   
+B. 
+Schedule DCT Contract Term 
+As reflected in Exhibit A, the initial term of the Contract2 will equal the Load Ramp 
+Period (no greater than four years, as described below) plus eight years.  The Contract 
+ 
+2 Capitalized terms have the same meaning as the defined terms in AEP Ohio’s proposed Schedule DCT 
+(Exhibit A), including but not limited to “Data Center” and “Mobile Data Center.”    
+Appx. Page 413 of 867
+ 
+ 
+ 
+ 
+6
+will reflect AEP Ohio’s best good faith estimate of the customer’s in-service date, but if 
+regional transmission upgrades are needed, the in-service date estimate will be high-level 
+and contingent on numerous factors outside of AEP Ohio’s control (e.g., a PJM 
+competitive window).  If electric infrastructure is not in place to serve the customer by 
+the estimated in-service date, the customer may petition the Commission for an 
+adjustment to the contract term based on the facts and circumstances presented at that 
+time (but the Contract term will otherwise remain the Load Ramp Period plus eight 
+years). 
+C. 
+Collateral and Other Tariff Requirements 
+As reflected in Exhibit A, the collateral/credit requirements in the Company’s original 
+tariff proposal (Exhibit MSM-1) will remain in place for Data Center and Mobile Data 
+Center load.  Although the Mobile Data Center tariff is generally being merged into 
+Schedule DCT, the foreign adversary attestation will be retained from the Application 
+and reflected in Schedule DCT. 
+D. 
+Minimum Demand Charges 
+As reflected in Exhibit A, for the new set of Schedule DCT customers, the monthly 
+billing demand will be no less than the greater of: (a) 85% of the customer’s highest 
+previously established monthly billing demand during the past 11 months; or (b) a 
+percentage of the customer’s Contract Capacity according to the following load 
+“brackets”:3 
+ 
+3 Exhibit B to this Stipulation reflects the full schedule of effective minimum demand rates with increasing 
+increments of 1 MW of demand. 
+Appx. Page 414 of 867
+ 
+ 
+ 
+ 
+7
+Total Customer 
+Contract Capacity in 
+Service Territory 
+Minimum Demand 
+25,001 kW to 75,000 kW 
+15,000 kW plus 85% of marginal amount over 25,000 
+kW 
+75,001 kW and above 
+57,500 kW plus 100% of marginal amount over 75,000 
+kW; provided, however, that the minimum demand will 
+not exceed 85% of the total contract capacity. 
+ 
+With Commission approval, service may be suspended by AEP Ohio if customer usage 
+exceeds its Contract Capacity by more than 1,000 kW.  If additional capacity is available 
+from AEP Ohio to serve additional load at the customer site, the Company may also seek 
+mutual agreement to adjust the Contract Capacity and reserves the right to raise the issue 
+before the Commission if there is no agreement.  Nothing in this paragraph affects 
+Paragraph III.I below regarding behind-the-meter generation or is intended to preclude 
+the Company from disconnecting service or curtailing load to a Schedule DCT customer 
+without Commission approval if that disconnection/curtailment activity is done in 
+accordance with Section 26 of the Terms and Conditions of Service in the Company’s 
+tariff and Ohio Administrative Code 4901:1-10-16. 
+E. 
+Load Ramp Period 
+As reflected in Exhibit A, the Load Ramp Period for a specific customer site will not 
+exceed four years, and the Load Ramp Contract Capacity will be no less than: 
+In Year 1 
+50% of Contract Capacity 
+In Year 2 
+65% of Contract Capacity 
+In Year 3 
+80% of Contract Capacity 
+In Year 4 
+90% of Contract Capacity 
+Appx. Page 415 of 867
+ 
+ 
+ 
+ 
+8
+ 
+F. Process for Signing Up for New Schedule DCT Customers 
+Until Schedule DCT becomes effective and is implemented as described below, 
+prospective data center customers will remain in AEP Ohio’s Central Ohio queue, and the 
+moratorium will continue.   The following process applies to a new facility or expansion 
+of an existing facility under Schedule DCT: 
+1. Step One: Request for Load Study – Each customer from the Central Ohio data 
+center queue will be given an opportunity to request that AEP Ohio conduct a 
+formal study of their prospective load.  The customer must control the property 
+(e.g., own, lease or have an option) and provide a specific location, load ramp, 
+and final load.  AEP Ohio will charge a one-time fee for each load study to cover 
+the study cost (i.e., $10,000-$100,000 fee schedule commensurate with the scale 
+of load and complexity of the service request).  Customers currently in AEP 
+Ohio’s Central Ohio data center queue must submit a study request and pay the 
+fee within 45 days of the effective date of Schedule DCT or lose their spot in the 
+queue. 
+2. Step Two: AEP Ohio Determines Service Plan – AEP Ohio will conduct the load 
+study and determine a service plan for each customer in the AEP Ohio Central 
+Ohio queue that timely paid the load study fee.  AEP Ohio will make reasonable 
+efforts to complete the load study within: (i) 60 days if regional transmission 
+upgrades are needed to serve the customer; or (ii) 45 days (for all other 
+situations).  If regional transmission upgrades are necessary before AEP Ohio can 
+serve the customer, AEP Ohio will group customers from the queue into tranches 
+based on the expected capacity increase associated with each regional upgrade 
+Appx. Page 416 of 867
+ 
+ 
+ 
+ 
+9
+project (after first reserving an allocation of the expected capacity increase to non-
+DCT manufacturing load as described below).  AEP Ohio will make reasonable 
+efforts to prioritize customers on a “first come, first served” basis, but it is 
+acknowledged that strict adherence to this principle may be impossible based on 
+regional and local transmission grid conditions, location of customer property, the 
+grid location of the upgrades, etc.   
+3. Step Three:  Presentation of Customer Contracts – AEP Ohio will present two 
+contracts to the customer for signature: 
+a. LOA – Consistent with AEP Ohio’s current practice, AEP Ohio will 
+provide the customer an LOA that requires the customer to reimburse 
+AEP Ohio for 100% of its buildout costs to serve the customer 
+(including local transmission upgrades but excluding regional 
+transmission upgrades such as a new 765 kV line) if the customer 
+cancels or delays its project (by more than 12 months) prior to the target 
+energization date; once the project is completed and service is energized 
+to the customer, the LOA obligation covering 100% of the buildout costs 
+will expire.  The LOA will also require the customer to sign a CIAC 
+agreement in accordance with the normal tariff and rule provisions.  The 
+CIAC agreement will be signed closer to the in-service date when final 
+CIAC costs are known. 
+b. ESA – AEP Ohio will present the customer an ESA (called a “Contract” 
+in the tariff) according to the terms of the Schedule DCT.  The ESA will 
+Appx. Page 417 of 867
+ 
+ 
+ 
+ 
+10 
+include a good faith estimate of the energization date of service, and the 
+contract term will run from that date. 
+4. Step Four:  Customer Signature – The customer will have 60 days to sign the 
+LOA and ESA presented by AEP Ohio.  If the customer declines to sign within 
+this time, the contracts will be automatically withdrawn.  If the customer’s 
+decision not to sign the LOA and ESA leaves available capacity for AEP Ohio to 
+serve additional customer(s) in the queue more quickly, AEP Ohio will provide a 
+new or revised ESA to those customer(s) that reflects this earlier in-service date 
+(which customers will also be required to sign within 60 days). 
+5. Step Five:  Construction and Energization – AEP Ohio will include the Schedule 
+DCT customer’s load in its PJM forecast, and the necessary transmission 
+infrastructure, if any, to serve the customer will be constructed pursuant to the 
+PJM transmission planning process.  Once all infrastructure is in place to begin 
+service, AEP Ohio will energize the customer and the Contract will begin.  
+Nothing in this Stipulation changes AEP Ohio’s load forecast and planning 
+process: AEP Ohio continually strives to update its retail load growth forecast for 
+inclusion of future load growth, including residential, commercial and industrial 
+load growth.  With this plan for addressing the Central Ohio queue for data center 
+load in place, AEP Ohio fully anticipates being able to timely meet the increasing 
+demands of its customers going forward.   
+G. 
+Assigning Retail Capacity to Another Customer 
+If a customer (“Assigning Customer”) wishes to reduce its Contract Capacity under 
+Schedule DCT during the term of the Contract, it may request that AEP Ohio assign up to 
+Appx. Page 418 of 867
+ 
+ 
+ 
+ 
+11 
+25% of its Contract Capacity (“Reallocated Capacity”) to another Schedule DCT 
+customer (“Receiving Customer”) in lieu of paying some or all of its exit fee associated 
+with the Reallocated Capacity (some of the exit fee if only a portion of the unused 
+capacity is successfully assigned or all of the exit fee for that 25% if all of the unused 
+capacity is assigned but the customer continues to utilize the remaining portion under its 
+contract).  If a successful assignment is made, the Assigning Customer would be relieved 
+of its contractual obligations going forward relating to the Reallocated Capacity and shall 
+continue to be responsible for any remaining unused contract capacity.  Moreover, the 
+Assigning Customer cannot sign up for replacement capacity until a reasonable period 
+after assigning capacity passes or circumstances demonstrably change.  Consistent with 
+any applicable legal or regulatory requirements, AEP Ohio will make a good faith effort 
+to accommodate this request so long as all the following conditions are met: 
+1. The Receiving Customer signs an ESA for the Reallocated Capacity under 
+Schedule DCT, as follows:  
+a. If the Reallocated Capacity will be used to build a new Data Center that 
+does not currently have an ESA, the Receiving Customer will sign a new 
+ESA under Schedule DCT with Contract Capacity equal to or greater 
+than the Reallocated Capacity. 
+b. If the Reallocated Capacity will be added to a Data Center for which 
+AEP Ohio and the Receiving Customer have already signed an ESA, the 
+ESA will be amended to increase the Contract Capacity by no less than 
+the amount of the Reallocated Capacity.  This will constitute an 
+“expansion” of “current contract capacity” under the “Availability of 
+Appx. Page 419 of 867
+ 
+ 
+ 
+ 
+12 
+Service” section of Schedule DCT, and therefore the amended ESA will 
+be subject to Schedule DCT.  
+2. AEP Ohio determines that the transfer is electrically feasible, from the perspective 
+of the transmission and distribution grid, to transfer the Reallocated Capacity 
+from the Assigning Customer to the Receiving Customer. 
+3. The Receiving Customer pays for all equipment and any other incremental costs 
+required to transfer the Reallocated Capacity. 
+4. The Receiving Customer satisfies all collateral requirements under Schedule 
+DCT. 
+5. Transferring the Reallocated Capacity would not result in any stranded investment 
+being recovered from other ratepayers (or, if it would, the Assigning Customer 
+pays for the full cost of the stranded equipment so that the stranded asset is offset 
+on AEP Ohio’s accounting records and would no longer be recovered from other 
+ratepayers). 
+6. Both parties attest in writing to AEP Ohio that no money or other compensation 
+beyond covering the cost items listed above in this paragraph is exchanged or 
+provided as consideration for the Reallocated Capacity (i.e., there will be no 
+secondary market for AEP Ohio’s transmission capacity).  The Company will 
+monitor the assignment requests and consult with Staff on any transactions that 
+appear to involve additional compensation between the parties; the Company 
+reserves the right to deny or cancel any assignment based on a false attestation or 
+discovery of such additional compensation.   
+ 
+Appx. Page 420 of 867
+ 
+ 
+ 
+ 
+13 
+H. 
+Opportunity for Contract Capacity Reduction 
+To explore potential solutions to alleviating transmission constraints, AEP Ohio shall 
+communicate a one-time opportunity to General Service customers whose contract 
+demand exceeds 25 MW the opportunity to reduce their existing Contract Capacity 
+provided: (1) doing so does not create a stranded asset related to plant-in-service that was 
+installed to serve the customer’s larger load request, and (2) the customer agrees not to 
+request additional capacity at that location for three years after the reduction absent a 
+demonstrated change in circumstances. 
+I. 
+Behind-the-Meter Generation 
+As reflected in Exhibit A, the first sentence under the “Customer-Owned Generation and 
+Emergency Conditions” heading shall be modified and read as follows: “Consistent with 
+Ohio Administrative Code Chapter 4901:1-22, Schedule DCT Customers shall enter into 
+an interconnection agreement between the Company and the Customer in advance of 
+connecting any source of power other than the delivery point specified in the Contract.” 
+As further reflected in Exhibit A, Schedule DCT clarifies that if the customer elects to 
+use its behind-the-meter generation to offset the customer’s Contract Capacity (either in 
+initially establishing service or in the context of a subsequent load expansion or behind-
+the-meter generation expansion at the same site, as reflected in a new or updated Contract 
+Capacity), the following requirements will apply.  In order to ensure that the Customer’s 
+election to net does not result in it exceeding its Contract Capacity, equipment must be in 
+place and maintained through the term of the Electric Service Agreement to  
+instantaneously curtail load equal to or greater than the behind-the-meter generation 
+output, subject to the then-current technical requirements of the transmission provider. If 
+Appx. Page 421 of 867
+ 
+ 
+ 
+ 
+14 
+the equipment fails and results in the customer exceeding its contract capacity, the 
+Customer will be obligated to promptly repair and successfully test the equipment.  If the 
+equipment fails and results in the customer exceeding its contract capacity, the Company 
+reserves the right to raise before the Commission any unresolved reliability or safety 
+concerns based on the facts and circumstances presented at that time.  Nothing in this 
+paragraph is intended to restrict or limit Ohio’s energy policy of fostering behind-the-
+meter generation.  Nothing in this paragraph affects AEP Ohio’s right to disconnect or 
+curtail load in accordance with Section 26 of the Terms and Conditions of Service in the 
+Company’s tariff and Ohio Administrative Code 4901:1-10-16. 
+J. 
+Exit Fees 
+The proposal for exit fees in the Application shall be adopted, with the following 
+modifications: 
+1. Data centers will be eligible to pay the applicable exit fee after the completion 
+of the fifth year of the contract, excluding any load ramp period (e.g. if there is 
+a 3-year load ramp, the customer may exit after year 8). 
+2. Because the new tariff is focused on the retail impacts of major transmission 
+investment, and to avoid any over-recovery of transmission costs by AEP 
+Ohio, AEP Ohio will create a regulatory liability, with carrying costs at AEP 
+Ohio’s Weighted Average Cost of Capital, for any exit fee revenue or any 
+revenue collected from customer collateral. Within 6 months of receiving such 
+exit fee revenue (including through the conversion of collateral/security), AEP 
+Ohio will advance a proposal for Commission approval to flow the funds back 
+Appx. Page 422 of 867
+ 
+ 
+ 
+ 
+15 
+to the benefit of its retail customers over the remaining term of the contract of 
+the data center customer that paid the exit fee or posted the collateral.4 
+K. 
+Standard Service Offer (“SSO”) Supply for Schedule DCT Customers 
+AEP Ohio’s SSO proposal in its Application will be dismissed without prejudice, and 
+AEP Ohio reserves the right to file an application in a separate docket for the 
+Commission’s consideration of the SSO issues presented. All parties reserve all rights 
+with respect to any such separate application. 
+IV.   Procedural Matters 
+A. 
+The Company and Staff will file testimony in support of the Stipulation pursuant 
+to the procedural schedule established by the Commission. 
+B. 
+Except for enforcement purposes or to establish that the terms of the Stipulation 
+are lawful, neither this Stipulation nor the information and data contained herein or attached 
+hereto shall be cited as a precedent in any future proceeding for or against any Signatory Party, 
+if the Commission approves the Stipulation.  Nor shall the acceptance of any provision within 
+this Stipulation be cited by any party or the Commission in any forum so as to imply or state 
+that any other Signatory Party agrees with any specific provision of the Stipulation.  More 
+specifically, no specific element or item contained in or supporting this Stipulation shall be 
+construed or applied to attribute the results set forth in this Stipulation as the results that any 
+Signatory Party might support or seek, but for this Stipulation in these proceedings or in any 
+other proceeding.  This Stipulation contains a combination of outcomes that reflects an overall 
+compromise involving a balance of competing positions, and it does not necessarily reflect the 
+ 
+4 All Parties reserve their right to contest the Company’s future application and/or advance an alternative proposal 
+for the Commission’s consideration at that time.     
+Appx. Page 423 of 867
+ 
+ 
+ 
+ 
+16 
+position that one or more of the Signatory Parties would have taken on any individual issue.  
+Rather the Stipulation represents a package that, taken as a whole, is acceptable for the purposes 
+of resolving all contested issues without resorting to litigation.  Moreover, all parties reserve all 
+positions, rights and remedies regarding matters not resolved by this Stipulation that are either 
+beyond the scope of this proceeding or beyond the scope of the Commission’s jurisdiction.    
+The Signatory Parties believe that this Stipulation, taken as a whole, represents a reasonable 
+compromise of varying interests. 
+C. 
+By their signatures, the Signatory Parties indicate their support for the 
+Stipulation.  The Signatory Parties agree not to oppose this Stipulation.  If the Stipulation is 
+contested, no Signatory Party will oppose an application for rehearing designed to defend or 
+restore the terms of this Stipulation. 
+D. 
+This Stipulation is conditioned upon adoption of the Stipulation by the 
+Commission in its entirety and without material modification. Each Signatory Party has the 
+right, in its sole discretion, to determine whether the Commission’s approval of this Settlement 
+constitutes a “material modification” thereof. If the Commission rejects or materially modifies 
+all or any part of this Stipulation, any Signatory Party shall have the right within thirty days of 
+issuance of the Commission’s order to apply for rehearing. The Signatory Parties agree that they 
+will not oppose or argue against any other Party’s application for rehearing that seeks to uphold 
+the original unmodified Stipulation.  If the Commission does not adopt the Stipulation without 
+material modification upon any rehearing ruling, then within thirty days of such Commission 
+rehearing ruling any Signatory Party may terminate its Signatory Party status and withdraw 
+from the Stipulation by filing a notice with the Commission. No Signatory Party shall file a 
+Notice of Withdrawal without first negotiating in good faith with the other Signatory Parties to 
+Appx. Page 424 of 867
+ 
+ 
+ 
+ 
+17 
+achieve an outcome that substantially satisfies the intent of the Settlement. If a new agreement 
+achieves such an outcome, the Signatory Parties will file the new agreement for Commission 
+review and approval. If the discussions to achieve an outcome that substantially satisfies the 
+intent of the Settlement are unsuccessful, and a Signatory Party files a Notice of Withdrawal, 
+then the Commission will convene an evidentiary hearing to afford that Signatory Party the 
+opportunity to contest the Settlement by presenting evidence through witnesses, to cross 
+examine witnesses, to present rebuttal testimony, and to brief all issues that the Commission 
+shall decide based upon the record and briefs. If the discussions to achieve an outcome that 
+substantially satisfies the intent of the Settlement are successful, then some or all of the 
+Signatory Parties shall submit the amended Settlement to the Commission for approval after a 
+hearing if necessary.  
+E. 
+Unless the Signatory Party exercises its right to terminate its Signatory Party 
+status or withdraw as described above, each Signatory Party shall act in good faith and use 
+reasonable efforts to support the reasonableness of this Stipulation before the Commission in 
+this proceeding, and to cause its counsel to do the same, and in any appeal it participates in from 
+the Commission's adoption and/or enforcement of this Stipulation. The Signatory Parties also 
+agree to urge the Commission to accept and approve the terms hereof as promptly as possible.  
+IN WITNESS WHEREOF, this Stipulation and Recommendation has been signed by the 
+authorized agents of the undersigned Signatory Parties as of this 23rd day of October 2024. 
+ 
+__/s/ Steven T. Nourse____________ 
+Steven T. Nourse 
+Michael J. Schuler 
+On Behalf of Ohio Power Company 
+/s/ Ambrosia E. Wilson by STN per authority 
+Ambrosia E. Wilson 
+On Behalf of the Staff of the Public 
+Utilities Commission of Ohio 
+ 
+ 
+Appx. Page 425 of 867
+ 
+ 
+ 
+ 
+18 
+ 
+ 
+/s/ Michael L. Kurtz   by STN per authority 
+Michael L. Kurtz 
+Jody Kyler Cohn 
+On Behalf of the Ohio Energy Group 
+ 
+ 
+ 
+/s/ William Michael  by STN per authority 
+ William Michael 
+On Behalf of the Office of the Ohio 
+Consumers’ Counsel 
+ 
+ 
+/s/ Carrie H. Grundmann by STN per authority 
+Carrie H. Grundmann 
+On Behalf of Walmart Inc. 
+ 
+/s/ Robert Dove  by STN per authority 
+ Robert Dove 
+On Behalf of the Ohio Partners For 
+Affordable Energy  
+ 
+ 
+ 
+ 
+Appx. Page 426 of 867
+Appx. Page 427 of 867
+EXHIBIT A
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Exhibit MSM-1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Page 1 of 7 
+ 
+ 
+OHIO POWER COMPANY 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Original Sheet No. ###-1 
+ 
+ 
+P.U.C.O. NO. 21 
+ 
+Schedule DCT 
+(Data Center Tariff) 
+ 
+ 
+Filed pursuant to Order dated _____________, 2024 in Case No. 24-508-EL-ATA 
+ 
+Issued: ___________ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Effective: ___________ 
+Issued By 
+Marc Reitter, President 
+AEP Ohio 
+Definitions 
+ 
+For purposes of this schedule: 
+ 
+“Contract” means the service agreement entered into by the customer and the Company in accordance with this 
+schedule. 
+ 
+“Contract Capacity” means the mutually agreed amount of monthly peak load requirements for each month during 
+the remaining term after the Load Ramp Period as set forth in the contract for service, whereby the Company 
+agrees to provide all of the components of retail electric service (which could include either default SSO supply or 
+access to CRES provider supply of generation service) subject to the terms and conditions in its tariffs and the 
+customer agrees to purchase service at that level for the stated term of the contract under the same terms and 
+conditions.”   
+ 
+“Data Center” means a centralized facility (a) used primarily or exclusively for electronic information services such 
+as the management, storage, processing, and dissemination of electronic data and information through the use of 
+computer systems, servers, networking equipment, and related components that (b) has an aggregate monthly 
+maximum demand of greater than 25,000 kW.  Unless otherwise specified, the term “Data Center” shall include 
+“Mobile Data Center.” 
+ 
+“Mobile Data Center” means a centralized facility (a) used primarily or exclusively for electronic information 
+services such as the management, storage, processing, and dissemination of electronic data and information 
+(including mining of cryptocurrency) through the use of computer systems, servers, networking equipment, and 
+related components that (b) has an aggregate monthly maximum demand of greater than 25,000 kW and has 
+load that is portable and/or distributable, including but not limited to structures that are not affixed to the ground or 
+are easily removed from a location. 
+ 
+“Single Location” refers to an area that is owned, operated, or leased by the Data Center customer with the 
+metering point for the customer’s metering point.  A contiguous lot (or lots) to the area with the customer’s 
+metering point may be considered the customer’s premises regardless of easements, public thoroughfares, 
+transportation rights-of-way, or utility rights-of-way, so long as it would not create an unsafe or hazardous 
+condition. 
+ 
+“Load Ramp Contract Capacity” means the mutually agreed monthly peak load requirements associated with the 
+Load Ramp Period.  The Load Ramp Contract Capacity shall not be less than: 
+ 
+In Year 1, 50% of Contract Capacity. 
+In Year 2, 65% of Contract Capacity. 
+In Year 3, 80% of Contract Capacity. 
+In Year 4, 90% of Contract Capacity. 
+ 
+Appx. Page 428 of 867
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Exhibit MSM-1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Page 2 of 7 
+ 
+ 
+OHIO POWER COMPANY 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Original Sheet No. ###-2 
+ 
+ 
+P.U.C.O. NO. 21 
+ 
+Schedule DCT 
+(Data Center Tariff) 
+ 
+ 
+Filed pursuant to Order dated _____________, 2024 in Case No. 24-508-EL-ATA 
+ 
+Issued: ___________ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Effective: ___________ 
+Issued By 
+Marc Reitter, President 
+AEP Ohio 
+“Load Ramp Period” refers to the time of commencement of service until the customer reaches full contract 
+capacity, which shall not exceed four years. 
+ 
+“Existing Load” means Data Center load for which a letter of agreement or electric service agreement has already 
+been signed by the effective date of Schedule DCT. 
+ 
+“New Load” means Data Center load for which a letter of agreement or electric service agreement has not been 
+signed before the effective date of Schedule DCT. 
+ 
+Availability of Service 
+ 
+Service pursuant to this schedule is available for general service to customers that operate a Data Center that will use, 
+within the initial contract term, a monthly maximum demand of greater than 25,000 kW at a Single Location or an 
+aggregated Total Customer Contract Capacity in Service Territory of greater than 25,000 kW as described below.  
+Customers qualifying for this schedule that execute an electric service agreement with the Company or expand their 
+current contracted capacity after the effective date of this tariff are required to take service under this schedule and will not 
+be permitted to take service under other general service tariffs.   
+ 
+Schedule DCT does not apply to Existing Load above 25,000 kW that has already signed a letter of agreement or electric 
+service agreement by the effective date of Schedule DCT, so long as the Existing Load does not expand by more than 
+25,000 kW above the contracted capacity under the existing electric service agreement following the effective date of 
+Schedule DCT.  Schedule DCT will apply to an Existing Load that signs a new electric service agreement to expand its 
+Existing Load by more than 25,000 kW of New Load above the contract capacity under the existing electric service 
+agreement after the effective date of Schedule DCT.  At the customer’s request, AEP Ohio will use reasonable efforts to 
+separately meter the New Load to which Schedule DCT applies, but it may not be technically feasible to do so.  If it is 
+technically feasible to separately meter, the customer will pay all costs reasonably incurred by AEP Ohio to complete such 
+separate metering.  If the load is not separately metered, then the Existing Load will lose its Existing Load status and 
+become subject to Schedule DCT. 
+ 
+If the customer facility operates one or more Data Centers with a monthly maximum demand of greater than 25,000 kW 
+and has non-Data Center load (that would otherwise be billed under the General Service or other applicable Schedule) at 
+a Single Location, Schedule DCT will apply to all electric distribution service to that customer, provided, however, that the 
+customer shall have the option of separately metering its Data Center and non-Data Center loads (if technically feasible) 
+and paying for those loads through separate customer accounts.  In such situation, the customer shall be responsible for 
+all metering and other costs necessary to separate its load into separate customer accounts. 
+ 
+The terms and conditions of service under this this schedule shall apply upon a request for service by an eligible customer 
+but service to customers under this schedule will not commence until the Company has sufficient capacity to meet the 
+contractual load requirements. 
+ 
+With Commission approval, service to a Schedule DCT customer may be suspended by AEP Ohio if customer usage 
+exceeds its Contract Capacity by more than 1,000 kW.  If the Company determines that additional capacity is available 
+Appx. Page 429 of 867
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Exhibit MSM-1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Page 3 of 7 
+ 
+ 
+OHIO POWER COMPANY 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Original Sheet No. ###-3 
+ 
+ 
+P.U.C.O. NO. 21 
+ 
+Schedule DCT 
+(Data Center Tariff) 
+ 
+ 
+Filed pursuant to Order dated _____________, 2024 in Case No. 24-508-EL-ATA 
+ 
+Issued: ___________ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Effective: ___________ 
+Issued By 
+Marc Reitter, President 
+AEP Ohio 
+from AEP Ohio to serve additional load at the customer site, the Company may also seek mutual agreement to adjust the 
+Contract Capacity and reserves the right to raise the issue before the Commission if there is no agreement.   
+ 
+Monthly Rate 
+ 
+Schedule 
+Code 
+Service 
+Voltage 
+Distribution 
+Demand 
+Charge 
+($/kW) 
+Excess 
+Reactive 
+Demand 
+($/kVA) 
+Customer 
+Charge 
+($) 
+### 
+Secondary 
+$7.01 
+$1.25 
+$9.40 
+### 
+Primary 
+Ohio Power Rate Zone 
+Columbus Southern Power Rate Zone 
+ 
+$6.46 
+$6.17 
+ 
+$1.21 
+$1.21 
+ 
+$138.50 
+$138.50 
+ 
+ 
+Schedule 
+Code 
+Service 
+Voltage 
+Distribution 
+Demand 
+Charge 
+($/kW) 
+Excess 
+Reactive 
+Demand* 
+($/kVAR) 
+Customer 
+Charge 
+($) 
+### 
+Transmission 
+-- 
+$0.70 
+$3,600 
+*For each kVAR of reactive demand, leading or lagging, in excess of 50% of the kW metered demand. 
+ 
+Minimum Charges 
+ 
+The minimum monthly charge under this schedule shall be the sum of the customer charge, the product of the 
+distribution demand charge and the monthly distribution billing demand, and all Commission-approved riders shown 
+on Sheet Number 104-1. 
+ 
+Monthly Billing Demand 
+ 
+Billing demand in kW shall be taken each month as the single highest 30-minute integrated peak in kW as registered 
+during the month by a 30-minute integrating demand meter or indicator, or at the Company’s option, as the highest 
+registration of a thermal-type demand meter.  The customer will have no more than the Load Ramp Period to reach full 
+contract capacity, during which time monthly billing demand shall not be less than 85% of the customer’s Load Ramp 
+Contract Capacity.  After the Load Ramp Period, monthly billing demand established hereunder shall not be less than the 
+greater of (a) 85% of the customer’s highest previously established monthly billing demand during the past 11 months or 
+(b) the customer’s “Minimum Demand” as set forth below:     
+ 
+Total Customer Contract 
+Capacity in Service Territory 
+Minimum Demand 
+Appx. Page 430 of 867
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Exhibit MSM-1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Page 4 of 7 
+ 
+ 
+OHIO POWER COMPANY 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Original Sheet No. ###-4 
+ 
+ 
+P.U.C.O. NO. 21 
+ 
+Schedule DCT 
+(Data Center Tariff) 
+ 
+ 
+Filed pursuant to Order dated _____________, 2024 in Case No. 24-508-EL-ATA 
+ 
+Issued: ___________ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Effective: ___________ 
+Issued By 
+Marc Reitter, President 
+AEP Ohio 
+25,001 kW to 75,000 kW 
+15,000 kW plus 85% of marginal amount over 25,000 kW 
+75,001 kW and above 
+57,500 kW plus 100% of marginal amount over 75,000 kW; provided, however, that 
+the minimum demand will not exceed 85% of the total contract capacity. 
+ 
+All New Loads of affiliated companies and companies with common ownership greater than 25,000 kW will be considered 
+in the aggregate for purposes of determining the “Total Customer Contract Capacity in Service Territory” and calculating 
+the “Minimum Demand” in the chart above that will be included for the full term of each Contract for New Load under this 
+Schedule DCT.  Existing Load will not be considered as part of the “Total Customer Contract Capacity in Service 
+Territory.”  All affiliated New Load will be stacked in order of the energization date so the Minimum Demand can be 
+applied based on multiple Contracts, as applicable.  If there are multiple New Loads at a Single Location of less than 
+25,000 kW (but the aggregate total load is greater than 25,000 kW), all of those New Loads will be subject to Schedule 
+DCT. 
+ 
+Unless otherwise mutually agreed by the Company and the customer, the customer shall be billed under the provisions of 
+this tariff using the Contract Capacity during all months of the initial term of contract should the customer fail to energize 
+service. The monthly billing demand defined hereunder shall apply for purposes of billing under all applicable riders, 
+regardless of any conflicting provision in the rider. 
+ 
+Delayed Payment Charge 
+ 
+Bills are due and payable in full by mail, checkless payment plan, electronic payment plan or at an authorized payment 
+agent of the Company within 21 days after the mailing of the bill. On all accounts not paid by the due date, an additional 
+charge of 2.5% of the unpaid balance will be due.   
+ 
+Applicable Riders 
+ 
+Monthly Charges computed under this schedule shall be adjusted in accordance with the Commission-approved riders 
+on Sheet Number 104-1 that apply to Demand Metered commercial and industrial service.  Nothing in this tariff excepts 
+eligible customers from other riders or applicable tariffs. 
+ 
+Generation Service 
+ 
+Customers receiving service under this schedule may select competitive service from a CRES Provider or Standard 
+Offer Service.  The Company requires that Company-owned metering be installed to monitor the customer's load.  
+ 
+ 
+Transmission Service 
+ 
+Appx. Page 431 of 867
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Exhibit MSM-1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Page 5 of 7 
+ 
+ 
+OHIO POWER COMPANY 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Original Sheet No. ###-5 
+ 
+ 
+P.U.C.O. NO. 21 
+ 
+Schedule DCT 
+(Data Center Tariff) 
+ 
+ 
+Filed pursuant to Order dated _____________, 2024 in Case No. 24-508-EL-ATA 
+ 
+Issued: ___________ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Effective: ___________ 
+Issued By 
+Marc Reitter, President 
+AEP Ohio 
+Customers receiving service under this schedule shall pay the charges established for Demand Metered Service under 
+the Basic Transmission Cost Rider (“BTCR”).  New Loads receiving service under this schedule are not eligible to 
+participate in the 1CP or 6CP BTCR Programs or any successor programs. 
+ 
+Terms of Contract 
+ 
+Contracts under the Schedule shall be made for an initial period of not less than the Load Ramp Period plus 8 years.  
+By way of example, the initial period of a Contract for a Data Center with a 4-year Load Ramp Period will be 12 years.  
+If electric infrastructure is not in place to serve the customer by the Contract’s estimated in-service date, the customer 
+may petition the Commission for an adjustment to the contract term based on the facts and circumstances presented at 
+that time (but will otherwise remain the Load Ramp Period plus 8 years). 
+ 
+After the initial term, Contracts shall remain in effect unless terminated by either party by providing written notice to the 
+other party no later than three (3) years prior to the requested date of termination.  After the initial term, either party 
+may request a modification to the Contract Capacity by providing written notice to the other party no later than three (3) 
+years prior to the requested modification date.  During the initial term of the Contract, the customer will be financially 
+responsible to pay the minimum charges regardless of the customer choosing to curtail, reduce, suspend, or terminate 
+service.  If after completion of the fifth year of the Contract after the Load Ramp Period the customer chooses to pay 
+an exit fee equal to minimum charges for 36 months after notice of termination, the customer can thereafter terminate 
+the contract.  By way of example, a customer with a 3-year Load Ramp Period may pay the exit fee and terminate the 
+contract only after Year 8 of the Contract. 
+ 
+The customer shall agree with the Company in advance its Load Ramp Contract Capacity and a final Contract 
+Capacity value to be used for the remaining initial term of the contract.  A new contract will be required for any load 
+additions in excess of 100 kW. 
+ 
+The Company shall not be required to supply capacity in excess of the Contract Capacity except by mutual agreement.   
+ 
+Nothing in this Schedule limits the requirement that a customer sign a Letter of Agreement for network and customer-
+specific investment prior to energization or Contribution in Aid of Construction agreement for customer-specific 
+investment. 
+ 
+To sign a contract under this Schedule, the customer must designate a specific site at which its Data Center project will 
+be constructed and served by the Company, and the customer must own or have the exclusive right to use the land for 
+this purpose. 
+ 
+Collateral Requirement 
+ 
+The customer, if not having both (a) a credit rating of at least A- from S&P Global Inc. (“S&P”) and A3 from Moody’s 
+Corporation (“Moody’s”) and (b) cash and cash equivalents on an audited balance sheet prepared in accordance with 
+Generally Accepted Accounting Principles (“GAAP”) (“Liquidity”) greater than ten times the Collateral Requirement, must 
+provide a guarantee or collateral at the time of signing the contract equal to 50% of the total minimum charges for the full 
+Appx. Page 432 of 867
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Exhibit MSM-1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Page 6 of 7 
+ 
+ 
+OHIO POWER COMPANY 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Original Sheet No. ###-6 
+ 
+ 
+P.U.C.O. NO. 21 
+ 
+Schedule DCT 
+(Data Center Tariff) 
+ 
+ 
+Filed pursuant to Order dated _____________, 2024 in Case No. 24-508-EL-ATA 
+ 
+Issued: ___________ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Effective: ___________ 
+Issued By 
+Marc Reitter, President 
+AEP Ohio 
+term of the contract (“Collateral Requirement”), calculated based on AEP Ohio’s rates in effect at the time the Collateral 
+Requirement is provided.  The Collateral Requirement must be provided in one or more of the following forms: 
+  
+1. A guarantee from the ultimate parent or a corporate affiliate of the customer for the full Collateral Requirement, 
+so long as the guarantor has both (a) a credit rating of at least A- from S&P and A3 from Moody’s and (b) 
+Liquidity greater than ten times the Collateral Requirement; or  
+  
+2. A standby irrevocable letter of credit (“Letter of Credit”) for the full Collateral Requirement.  The Letter of Credit 
+must be issued by a U.S. bank or the U.S. branch of a foreign bank, which is not affiliated with the customer or 
+its guarantor, with a Credit Rating of at least A- from S&P and A3 from Moody’s.  Such security must be issued 
+for a minimum term of 360 days.  The customer must cause the renewal or extension of the security for 
+additional consecutive terms of 360 days or more no later than 30 days prior to each expiration date of the 
+security.  If the security is not renewed or extended as required herein, the Company will have the right to draw 
+immediately upon the Letter of Credit and be entitled to hold the amounts so drawn as security.  The Letter of 
+Credit must be in a format acceptable to and approved by the Company. 
+ 
+3. Cash for the full Collateral Requirement. 
+ 
+The amount of the Collateral Requirement will be reduced by one year’s minimum charges for each year the customer is 
+energized and makes on-time electric service payments under the contract. 
+  
+If the financial condition of the customer or guarantor changes – or market conditions (including ownership/structural 
+changes) change – over the term of the contract, the Company may request updated information to reevaluate the 
+customer and its collateral requirements, which may be adjusted accordingly. 
+ 
+Customer-Owned Generation and Emergency Conditions 
+ 
+Consistent with Ohio Administrative Code Chapter 4901:1-22, Schedule DCT Customers shall enter into an 
+interconnection agreement between the Company and the Customer in advance of connecting any source of power 
+other than the delivery point specified in the Contract. Emergency or backup generation that is not designed to operate in 
+parallel with the Company’s system is not subject to the additional requirements in this section. 
+ 
+With Commission approval, service to any customer using behind-the-meter generation to serve some or all of its 
+demand that elects not to offset its Contract Capacity with output from its behind-the-meter generation may be 
+suspended by AEP Ohio if customer usage exceeds its Contract Capacity by more than 1,000 kW.   
+ 
+If the customer elects to use its behind-the-meter generation to offset the customer’s Contract Capacity (either in initially 
+establishing service or in the context of a subsequent load expansion or behind-the-meter generation expansion at the 
+same site, as reflected in a new or updated Contract Capacity), the following requirements will apply.  In order to ensure 
+that the Customer’s election to net does not result in it exceeding its Contract Capacity, equipment must be in place and 
+maintained through the term of the Electric Service Agreement to instantaneously curtail load equal to or greater than the 
+behind-the-meter generation output, subject to the then-current technical requirements of the transmission provider.  If 
+Appx. Page 433 of 867
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Exhibit MSM-1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Page 7 of 7 
+ 
+ 
+OHIO POWER COMPANY 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Original Sheet No. ###-7 
+ 
+ 
+P.U.C.O. NO. 21 
+ 
+Schedule DCT 
+(Data Center Tariff) 
+ 
+ 
+Filed pursuant to Order dated _____________, 2024 in Case No. 24-508-EL-ATA 
+ 
+Issued: ___________ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Effective: ___________ 
+Issued By 
+Marc Reitter, President 
+AEP Ohio 
+the equipment fails and results in the customer exceeding its Contract Capacity, the Company reserves the right to raise 
+before the Commission any unresolved reliability or safety concerns based on the facts and circumstances presented at 
+that time. 
+ 
+Nothing in this paragraph affects AEP Ohio’s right to disconnect or curtail load in accordance with Section 26 of the 
+Terms and Conditions of Service in the Company’s tariff and Ohio Administrative Code 4901:1-10-16. 
+ 
+Special Terms and Conditions 
+ 
+This schedule is subject to the Company's Terms and Conditions of Service.  
+ 
+Customers served under this tariff agree to written attestation as part of its Contract that the customer will follow all 
+applicable technical operating requirements, such as not intentionally or unintentionally cycling load in a way that creates 
+an imbalanced or unacceptable system frequency, and other requirements that will be maintained and periodically 
+updated for the safety of the larger system.  Upon detection of any activities outside of the technical requirements, the 
+Company has the right to disconnect. 
+ 
+With Commission approval, service may be suspended by AEP Ohio to a customer under Schedule DCT (including a 
+customer with behind-the-meter generation that has elected not to net its Contract Capacity) if the customer usage 
+exceeds its Contract Capacity by more than 1,000 kW.  If additional capacity is available at the customer site, the 
+Company may also seek mutual agreement to adjust the Contract Capacity and reserves the right to raise the issue 
+before the Commission if there is no resolution. Nothing in this paragraph affects the provision above regarding behind-
+the-meter generation or is intended to preclude the Company from disconnecting service or curtailing load to a Schedule 
+DCT customer without Commission approval in accordance with Section 26 of the Terms and Conditions of Service in 
+the Company’s tariff and Ohio Administrative Code 4901:1-10-16. 
+ 
+Prior to receiving service, Mobile Data Center customers will be required to provide a sworn statement, under penalty of 
+perjury, that neither the customer nor its corporate parent or affiliates are affiliated with or acting on behalf of any foreign 
+adversary as defined in 15 C.F.R. § 7.4.  If AEP Ohio has a good faith belief that a Mobile Data Center customer has 
+provided false information in response to this requirement, AEP Ohio has the right to immediately disconnect service to 
+the Mobile Data Center permanently or until adequate proof is shown to satisfy AEP Ohio that the Mobile Data Center 
+customer meets this requirement. 
+Appx. Page 434 of 867
+Appx. Page 435 of 867
+EXHIBIT B
+Exhibit B 
+1 
+Total Contract 
+Cap. (MW) 
+Min. Demand 
+(MW) 
+Percentage 
+25 
+15.00 
+60.00% 
+26 
+15.85 
+60.96% 
+27 
+16.70 
+61.85% 
+28 
+17.55 
+62.68% 
+29 
+18.40 
+63.45% 
+30 
+19.25 
+64.17% 
+31 
+20.10 
+64.84% 
+32 
+20.95 
+65.47% 
+33 
+21.80 
+66.06% 
+34 
+22.65 
+66.62% 
+35 
+23.50 
+67.14% 
+36 
+24.35 
+67.64% 
+37 
+25.20 
+68.11% 
+38 
+26.05 
+68.55% 
+39 
+26.90 
+68.97% 
+40 
+27.75 
+69.38% 
+41 
+28.60 
+69.76% 
+42 
+29.45 
+70.12% 
+43 
+30.30 
+70.47% 
+44 
+31.15 
+70.80% 
+45 
+32.00 
+71.11% 
+46 
+32.85 
+71.41% 
+47 
+33.70 
+71.70% 
+48 
+34.55 
+71.98% 
+49 
+35.40 
+72.24% 
+50 
+36.25 
+72.50% 
+51 
+37.10 
+72.75% 
+52 
+37.95 
+72.98% 
+53 
+38.80 
+73.21% 
+54 
+39.65 
+73.43% 
+55 
+40.50 
+73.64% 
+56 
+41.35 
+73.84% 
+57 
+42.20 
+74.04% 
+58 
+43.05 
+74.22% 
+59 
+43.90 
+74.41% 
+60 
+44.75 
+74.58% 
+61 
+45.60 
+74.75% 
+62 
+46.45 
+74.92% 
+63 
+47.30 
+75.08% 
+64 
+48.15 
+75.23% 
+65 
+49.00 
+75.38% 
+66 
+49.85 
+75.53% 
+67 
+50.70 
+75.67% 
+68 
+51.55 
+75.81% 
+Total Contract 
+Cap. (MW) 
+Min. Demand 
+(MW) 
+Percentage 
+69 
+52.40 
+75.94% 
+70 
+53.25 
+76.07% 
+71 
+54.10 
+76.20% 
+72 
+54.95 
+76.32% 
+73 
+55.80 
+76.44% 
+74 
+56.65 
+76.55% 
+75 
+57.50 
+76.67% 
+76 
+58.50 
+76.97% 
+77 
+59.50 
+77.27% 
+78 
+60.50 
+77.56% 
+79 
+61.50 
+77.85% 
+80 
+62.50 
+78.13% 
+81 
+63.50 
+78.40% 
+82 
+64.50 
+78.66% 
+83 
+65.50 
+78.92% 
+84 
+66.50 
+79.17% 
+85 
+67.50 
+79.41% 
+86 
+68.50 
+79.65% 
+87 
+69.50 
+79.89% 
+88 
+70.50 
+80.11% 
+89 
+71.50 
+80.34% 
+90 
+72.50 
+80.56% 
+91 
+73.50 
+80.77% 
+92 
+74.50 
+80.98% 
+93 
+75.50 
+81.18% 
+94 
+76.50 
+81.38% 
+95 
+77.50 
+81.58% 
+96 
+78.50 
+81.77% 
+97 
+79.50 
+81.96% 
+98 
+80.50 
+82.14% 
+99 
+81.50 
+82.32% 
+100 
+82.50 
+82.50% 
+101 
+83.50 
+82.67% 
+102 
+84.50 
+82.84% 
+103 
+85.50 
+83.01% 
+104 
+86.50 
+83.17% 
+105 
+87.50 
+83.33% 
+106 
+88.50 
+83.49% 
+107 
+89.50 
+83.64% 
+108 
+90.50 
+83.80% 
+109 
+91.50 
+83.94% 
+110 
+92.50 
+84.09% 
+111 
+93.50 
+84.23% 
+112 
+94.50 
+84.38% 
+Appx. Page 436 of 867
+Exhibit B 
+2 
+Total Contract 
+Cap. (MW) 
+Min. Demand 
+(MW) 
+Percentage 
+113 
+95.50 
+84.51% 
+114 
+96.50 
+84.65% 
+115 
+97.50 
+84.78% 
+116 
+98.50 
+84.91% 
+117 
+99.45 
+85.00% 
+117+ 
+85.00% 
+ 
+Appx. Page 437 of 867
+This foregoing document was electronically filed with the Public Utilities
+Commission of Ohio Docketing Information System on
+10/23/2024 3:57:58 PM
+in
+Case No(s). 24-0508-EL-ATA
+Summary: Stipulation Joint Stipulation and Recommendation for the Commission’s
+consideration in resolving this case. electronically filed by Mr. Steven T. Nourse on
+behalf of Ohio Power Company.
+Appx. Page 438 of 867

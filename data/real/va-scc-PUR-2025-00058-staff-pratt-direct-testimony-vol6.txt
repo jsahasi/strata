@@ -1,0 +1,1830 @@
+
+===PAGE 1===
+250750005
+COMMONWEALTH OF VIRGINIA
+STATE CORPORATION COMMISSION
+PREFILED STAFF TESTIMONY
+VIRGINIA ELECTRIC AND POWER COMPANY
+Case No. PUR-2025-00058
+Volume VI of IX
+Public Version Only
+July 30, 2025
+For a 2025 biennial review of the rates, terms 
+and conditions for the provision of generation, 
+distribution and transmission services pursuant 
+to § 56-585.1 A of the Code of Virginia
+
+===PAGE 2===
+250750005
+TABLE OF CONTENTS
+EXECUTIVE SUMMARY
+PART A
+PARTB
+PARTC
+PARTD
+PARTE
+PARTF
+Arwen F. Otwell
+Division of Utility Accounting and Finance
+Cameron T. Hunt
+Division of Utility Accounting and Finance
+Phillip M. Gereaux
+Division of Utility Accounting and Finance
+Anna L. Clayton
+Division of Utility Accounting and Finance
+Carol B. Myers
+Division of Utility Accounting and Finance
+Daniel M. Long
+Division of Utility Accounting and Finance
+VOLUME I - COMBINED CASES 
+PUR-2025-00058 & PUR-2025-00059
+Confidential and Public Versions
+VOLUME II
+PUR-2025-00058
+Confidential and Public Versions
+VOLUME IV
+PUR-2025-00058
+Confidential and Public Versions
+VOLUME III
+PUR-2025-00058
+Confidential and Public Versions
+VOLUME V
+PUR-2025-00058
+Public Version Only
+
+===PAGE 3===
+250750005
+PARTG
+PART H
+PARTI
+PART J
+PARTK
+PARTL
+Brian S. Pratt
+Division of Public Utility7 Regulation
+Ruben S. Blevins
+Division of Public Utility Regulation
+Steven E. Smith
+Division of Public Utility Regulation
+Neil J. Joshipura
+Division of Public Utility7 Regulation
+John A. Ellis
+Division of Public Utility7 Regulation
+Glenn Watkins
+Division of Public Utility7 Regulation
+VOLUME VIII
+PUR-2025-00058
+Extraordinarily Sensitive and Public Versions
+VOLUME IX
+PUR-2025-00058
+Confidential and Public Versions
+VOLUME VI
+PUR-2025-00058
+Public Version Only
+VOLUME VII 
+PUR-2025-00058
+Public Version Only
+
+===PAGE 4===
+250750005
+PARTG
+
+===PAGE 5===
+250750005
+1 Direct Testimony - Brian S. Pratt
+My testimony provides the following findings and recommendations:2
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+9
+10
+11
+12
+16
+17
+3
+4
+5
+6
+7
+8
+Staff takes no position on DEV’s proposals to assess a minimum generation billing demand to 
+customers who purchase electric energy from a competitive service provider. Rather, Staff 
+believes this to be a policy decision for the Commission in this proceeding.
+Staff does not oppose the Company’s proposal to assess new, or increased, minimum billing 
+demands on generation, transmission, or distribution service to its full retail customers.
+Staff does not oppose the Company's collateral requirement proposals, if the Commission finds 
+that such proposals are not subject to the Commission's customer deposit rules in 20 VAC 5- 
+10-20 (“Customer Deposit Rules”).
+If the Commission finds that any aspect of the Company's collateral proposals are subject to 
+the Customer Deposit Rules, then Staff submits that any such collateral provisions should 
+comply with the amount limitations, interest, and refund provisions within the Customer 
+Deposit Rules.
+In conjunction with its proposed plan, DEV should study, present, and address each of the 
+alternative allocation methodologies presented by Staff in this case, and any other allocation 
+methodologies that DEV believes should be appropriately considered.
+If the use of exits fees is approved, Staff recommends that the Company be directed to 
+specifically identify exit fee payments within its cost of service, along with DEV's proposed 
+ratemaking treatment and impact to Company earnings.
+13
+14
+15
+Class Cost Allocation
+Staff recommends that the Commission direct DEV to develop and propose a plan, either in its 
+next biennial review proceeding, or another appropriate proceeding, to gradually transition 
+away from the A&E methodology for the purpose of allocating generation plant costs to its 
+customer classes.
+High Load Customer Proposals
+The Company proposes new rates, terms, and conditions applicable to certain large load 
+customers (“High Load Customers”) (collectively, “High Load Customer Proposals”). Among 
+these proposals, Staff supports the proposed GS-5 customer class. Likewise, Staff does not 
+oppose the proposed contract term, including load ramping, capacity resizing, and exit fees.
+Cost of Service Study Presentation
+State Corporation Commission (“Commission”) Staff (“Staff”) recommends that the 
+Commission direct Virginia Electric and Power Company (“DEV” or “Company”) to develop 
+and implement jurisdictional and class cost of service studies in its next biennial review that 
+are less complex and fully executable.
+Customer Classifications
+Staff finds that the Company is using rates, tolls, charges, and schedules that contain reasonable 
+classifications of customers.
+
+===PAGE 6===
+250750005
+PREFILED TESTIMONY
+OF
+BRIAN S. PRATT
+VIRGINIA ELECTRIC AND POWER COMPANY
+CASE NO. PUR-2025-00058
+JULY 30,2025
+1 Q. PLEASE STATE YOUR NAME AND POSITION WITH THE STATE
+2 CORPORATION COMMISSION (“COMMISSION”).
+My name is Brian S. Pratt. I am a Deputy Director within the Commission's Division of3 A.
+Public Utility Regulation.4
+5 Q. WHAT ARE YOUR PRESENT DUTIES AND RESPONSBILITIES?
+In addition to managing staff, my duties include reviewing and analyzing public utility rate6 A.
+increase and certificate applications regarding cost of service, rate design, and terms and7
+conditions of service. I am also responsible for presenting testimony as a Commission8
+Staff (“Staff”) witness and proposing alternatives to the Commission when appropriate.9
+10 Q. WHAT IS THE PURPOSE OF YOUR TESTIMONY IN THIS PROCEEDING?
+My testimony will address Virginia Electric and Power Company's (“DEV” or “Company”)11 A.
+application (“Application”) for a 2025 biennial review of the rates, terms and conditions12
+for the provision of generation, distribution and transmission services pursuant to13
+§56-585.1 A of the Code of Virginia (“Code”). Specifically, my testimony will provide the14
+following:15
+1
+
+===PAGE 7===
+250750005
+12 COST OF SERVICE STUDY COMMENTS
+13 Q. HAS STAFF REVIEWED THE COMPANY’S JURISDICTIONAL AND CLASS
+14 COST OF SERVICE STUDIES IN THIS PROCEEDING?
+Yes. Staff witness Glenn A. Watkins has performed a comprehensive examination of the15 A.
+Company's jurisdictional and class COS studies in this proceeding and presents Staffs16
+findings and recommendations regarding the Company's cost allocation methodologies. I17
+will provide certain preliminary comments regarding the structure and presentation of the18
+Company's COS studies in this proceeding, however.19
+20 Q. BEFORE DISCUSSING YOUR COMMENTS, CAN YOU FIRST EXPLAIN THE
+21 ROLE THAT JURISDICTIONAL AND CLASS COS STUDIES SERVE IN STAFF’S
+22 REVIEW OF UTILITY BASE RATE FILINGS?
+Yes. COS studies are foundational to Staffs review of a utility's revenue requirement, class23 A.
+revenue appointment, and rate design proposals. More specifically, a jurisdictional COS24
+study is used to determine the share of a utility's revenues, expenses, and rate base that is25
+related to providing service to utility customers that are under the Commission's26
+2
+1
+2
+6
+7
+8
+9
+10
+11
+Staffs observations and comments regarding the allocation of generation, 
+transmission, and distribution costs to certain High Load Customers and resulting 
+recommendations regarding class cost allocation.
+Staffs findings and recommendations regarding the Company's proposed rates, 
+terms, and conditions applicable to certain large load customers (“High Load 
+Customers”) (collectively, “High Load Customer Proposals”); and
+Staffs assessment as to whether the Company is using rates, tolls, charges, or 
+schedules that contain reasonable classifications of customers as directed by 
+Chapter 395 of the 2025 Va. Acts of Assembly (“Chapter 395”);
+3
+4
+5
+Certain critical observations and recommendations regarding the jurisdictional 
+and class cost of service (“COS”) studies presented by DEV in this proceeding;
+
+===PAGE 8===
+250750005
+jurisdiction. This information is used to support a utility's rate year revenue and costs 1
+estimates, and the utility's requested revenue requirement. Therefore, Staffs review of the 2
+jurisdictional COS study is foundational to Staff's revenue requirement analysis.3
+A class COS study allocates or assigns a utility's jurisdictional cost of service 4
+among its various customer classes. This information is used by the utility to apportion its 5
+requested revenue requirement among its customer classes and develop customer billing 6
+rates. Thus, Staffs review of the class COS study is foundational to Staff's class revenue 7
+apportionment and rate design analysis.8
+Staff reviews jurisdictional and class COS studies by critically evaluating allocation9
+10
+independently replicating the COS study in its entirety.11
+12 Q. WHAT ARE YOUR COMMENTS REGARDING THE STRUCTURE AND
+13 PRESENTATION OF THE COMPANY’S COST OF SERVICE STUDIES?
+As discussed by Staff witness Watkins, Staff finds the Company's jurisdictional and class14 A.
+COS studies to be very complex. Due to this complexity, the Company has historically not15
+provided its jurisdictional and class COS models to Staff in a fully executable format,16
+which means that Staff has been unable to fully replicate these COS studies and their results17
+18
+independently verify the accuracy of the Company's COS study and its results.19
+Furthermore, and equally importantly, this also limits Staff's ability to perform alternative20
+COS analyses for the Commission's consideration, as Staff must rely, in part, on DEV to21
+reproduce its COS models on Staffs behalf.22
+3
+in previous biennial reviews, and in the instant case. This limits Staffs ability to
+methods and verifying COS study results. This review is typically performed by
+
+===PAGE 9===
+250750005
+1 Q. HAS DEV BEEN HELPFUL IN ATTEMPTING TO ADDRESS STAFF’S
+2 CONCERNS IN THIS AREA?
+Yes. The Company has been more than willing to perform COS model reproductions at3 A.
+Staffs request and appears to have worked very diligently to do so. Staff very much4
+appreciates the Company's cooperation in this regard. Nonetheless, Staff submits that the5
+limitations previously identified remain and will continue in future biennial reviews unless6
+addressed by the Commission.7
+8 Q. IS THIS ISSUE TYPICAL AMONG OTHER COMMISSION REGULATED
+9 UTILITIES?
+No. Staff submits that all other investor-owned electric utilities, natural gas utilities, and10 A.
+water/wastewater utilities that are regulated by the Commission perform COS studies that11
+are simpler, and which are provided to Staff in a fully executable format which Staff can12
+fully replicate and verify.13
+14 Q. DO YOU HAVE ANY RECOMMENDATIONS FOR FUTURE BASE RATE
+15 PROCEEDINGS RELATING TO THE STRUCTURE AND PRESENTATION OF
+16 DEV’S JURISDICTIONAL AND CLASS COS STUDIES?
+Yes. As further discussed by Staff witness Watkins, Staff recommends that the Commission17 A.
+direct the Company to develop and implement jurisdictional and class COS studies in its18
+next biennial review that are less complex, and which may be provided in a fully executable19
+format that can be replicated and verified by Staff and other parties. Staff commits to20
+meeting with the Company, prior to its next biennial review, to discuss ways in which this21
+recommendation can be implemented, and to work with DEV as appropriate in that regard.22
+4
+
+===PAGE 10===
+250750005
+1 CHAPTER 395 AND CUSTOMER CLASSIFICATIONS
+2 Q. PLEASE DISCUSS THE DIRECTIVES SET FORTH IN CHAPTER 395 OF THE
+3 ACTS.
+Chapter 395 directs the Commission to make certain determinations with respect to the4 A.
+Company's customer classifications, either in this proceeding or another appropriate5
+proceeding. Specifically, Chapter 395 states as follows:6
+16 Q. FOR BACKGROUND, WHAT ARE CUSTOMER CLASSIFICATIONS AND HOW
+17 ARE THEY USED IN THE RATE SETTING PROCESS?
+Customer classifications, also referred to as “customer classes,” represent broad general18 A.
+groups of utility customers that are typically separated and organized based upon the19
+service characteristics of the customer. Customer classes form the basis of a utility's class20
+COS study and represent the starting point for developing customer rates. Specifically, a21
+utility's costs and revenues are first assigned to each customer class within the utility's class22
+COS study. A utility's revenue requirement is then apportioned to each customer class,23
+based upon principles of cost causation, from which customer billing rates are developed24
+to recover this class apportioned revenue.25
+5
+7
+8
+9
+10
+11
+12
+13
+14
+15
+In at least one biennial review proceeding or other appropriate proceeding 
+for a Phase I or Phase II Utility, as those terms are defined in subdivision A 
+1 of § 56-585.1 of the Code of Virginia, filed after January 1, 2025, but no 
+later than July 1, 2027, the State Corporation Commission (the 
+Commission) shall, under its existing authority, determine whether the 
+Phase I or Phase II Utility is using rates, tolls, charges, or schedules that 
+contain reasonable classifications of customers. In making this 
+determination, the Commission shall consider whether new or separate 
+customer classifications are reasonable.
+
+===PAGE 11===
+250750005
+1 Q. DOES THE CODE PROVIDE GUIDANCE FOR THE COMMISSION’S REVIEW
+2 OF CUSTOMER CLASSIFICATIONS?
+Yes. The Commission's review of customer classifications is addressed in Code § 56-235.23 A.
+A which states, in relevant part, as follows:4
+9 Q. HOW DOES STAFF EXAMINE WHETHER CUSTOMER CLASSIFICATIONS
+10 ARE “REASONABLE”?
+When examining customer classifications, Staff generally relies upon Code § 56-234 B,11 A.
+which states, in part, as follows:12
+As previously mentioned, customer classes are used to support the development of utility16
+rates for different types of utility customers. Therefore, Staff examines whether the utility17
+has appropriately grouped customers according to whether such customers are “using such18
+service under like conditions.” Such examination considers the service characteristics of19
+the various customers served and is informed by the unique circumstances of each utility20
+and its customers, the facts of each case, and general cost allocation principles such as21
+those provided by the National Association of Regulatory Commissioners (“NARUC”) in22
+its Electric Utility Cost Allocation Manual and the Regulatory Assistance Project (“RAP”)23
+1in its manual titled Electric Cost Allocation for a New Era.24
+6
+13
+14
+15
+5
+6
+7
+8
+It shall be the duty of every public utility to charge uniformly therefor all 
+persons, corporations or municipal corporations using such service under 
+like conditions.
+Any rate, toll, charge or schedule of any public utility operating in this 
+Commonwealth shall be considered to be just and reasonable only if...(2) 
+the public utility has demonstrated that such rates, tolls, charges or 
+schedules contain reasonable classifications of customers.
+1 See generally NARUC, Electric Utility Cost Allocation Manual (1992 ed.) [hereinafter NARUC Manual]; 
+RAP, Electric Cost Allocation for a New Era: A Manual (2020) [hereinafter RAP Manual].
+
+===PAGE 12===
+250750005
+1 Q. PLEASE IDENTIFY THE COMPANY’S EXISTING CUSTOMER
+2 CLASSIFICATIONS.
+The Company's existing customer classifications are identified and summarized in Table 1 3 A.
+below.4
+5
+GS-1
+GS-2
+GS-3
+GS-4
+Church
+6 Q. DOES STAFF BELIEVE THE COMPANY IS USING RATES, TOLLS, CHARGES,
+7 OR SCHEDULES THAT CONTAIN REASONABLE CLASSIFICATIONS OF
+8 CUSTOMERS?
+Yes, Staff believes so. The Company's existing customer classes, which are shown in9 A.
+Table 1 above, distinguish between residential customers, small commercial customers.10
+7
+Outdoor
+Lighting
+Table 1
+DEV’s Existing Customer Classifications
+Large General Sendee (Secondary)
+Non-residential customers served at secondary
+voltage with demand of 500 kW or greater
+Large General Service (Primary)
+Non-residential customers served at primary voltage 
+with demand of 500 kW or greater
+Church Service
+Synagogues and churches of all denominations
+Outdoor Lighting
+Customers with separately maintained outdoor 
+lighting facilities
+Customer
+Class_____
+Residential
+_______________Customers Served______________
+Residential Customers
+Single family residence, flat, or apartment
+Small General Sendee
+Non-residential customers wdth demand of 30 
+kilowatts (“kW”) or less
+Intermediate General Service
+Non-residential customers with demand greater than 
+30 kW but less than 500 kW
+
+===PAGE 13===
+250750005
+large commercial customers, industrial customers and outdoor lighting customers, and1
+further separates large non-residential customers by voltage level. Staff notes that such2
+classifications are consistent with general cost allocation principles2 and are substantively3
+similar to the customer classifications used by Virginia's other investor-owned electric4
+utilities, Appalachian Power Company and Kentucky Utilities.35
+6 Q. HAS THE COMPANY PROPOSED ANY NEW CUSTOMER CLASSES IN THIS
+7 PROCEEDING?
+Yes. As part of the Company's High Load Customer Proposals, the Company has proposed8 A.
+a new customer class, the GS-5 class.9
+10 Q. DOES STAFF SUPPORT COMMISSION APPROVAL OF A NEW GS-5
+11 CUSTOMER CLASS IN THIS PROCEEDING?
+Yes. I will provide further comments regarding this proposed customer class in the12 A.
+following sections of my testimony. For reasons that I will further discuss, Staff supports13
+the approval of the GS-5 customer class and believes that the Commission should find this14
+customer class to be reasonable pursuant to Chapter 395 of the Acts.15
+16 HIGH LOAD CUSTOMER PROPOSALS
+17 Q. HOW DOES THE COMPANY DEFINE A “HIGH LOAD CUSTOMER”?
+The Company defines a “High Load Customer” as a non-residential customer with one or18 A.
+more accounts on contiguous property, “whose maximum measured demand has reached19
+2 NARUC Manual at 22: RAP Manual at 61-64.
+8
+3 For comparison, Staff Attachment BSP-1 identifies and describes the current customer classifications used by 
+Appalachian Power Company and Kentucky Utilities.
+
+===PAGE 14===
+250750005
+or exceeded 25 megawatts (“‘MW’”) during at least three billing months within the current1
+„4or previous billing months or has a contracted demand of 25 MW or more.2
+3 Q. DOES THE COMPANY PROPOSE TO APPLY EACH OF ITS HIGH LOAD
+4 CUSTOMER PROPOSALS TO ALL OF ITS HIGH LOAD CUSTOMERS THAT
+5 MEET THIS DEFINITION?
+No. As proposed, several of the Company's proposals would apply to some High Load6 A.
+Customers, but not all High Load Customers. In addition, some of the Company's7
+proposals may only be applied under certain conditions. As I discuss each of the8
+Company's High Load Customer Proposals, I will further clarify for the Commission which9
+proposals apply to which High Load Customers, and under what conditions.10
+11 Q. PLEASE IDENTIFY THE COMPANY’S HIGH LOAD CUSTOMER PROPOSALS.
+The Company submitted the following four proposals which, if approved, would apply to12 A.
+various High Load Customers:13
+(1)
+(2)
+(3)
+(4)
+4 Application at 11.
+9
+20
+21
+22
+23
+24
+25
+14
+15
+16
+17
+18
+19
+Collateral Requirements. The Company proposes to require certain High Load 
+Customers to post collateral in the amount $1.5 million per MW of requested 
+capacity.
+Fixed Contract Term & Exit Fee. A fixed 14-year minimum contract term. The 
+customer must commit to receiving service for no less than 14 years, subject to an 
+“exit fee” for early termination.
+New GS-5 Customer Class. A new customer class and rate schedule, which is 
+intended to serve certain High Load Customers who have “load factors” of 75% or 
+greater.
+Minimum Billing Demand. High Load Customers would be subject to new or 
+increased minimum demand charges for distribution, transmission, and generation 
+service.
+
+===PAGE 15===
+250750005
+Staff notes that these proposals are contained within the Company’s revisions to Section1
+XXII of the Company’s Terms and Conditions of Service (“Ts & Cs”), revisions to the2
+Company’s Agreement for Electric Sendee, and a newly proposed Section XXVII of the3
+Ts & Cs. I will discuss each of these proposals in further detail in the following pages of4
+my testimony.5
+6 Q. PLEASE SUMMARIZE YOUR FINDINGS AND RECOMMENDATIONS
+7 REGARDING THE HIGH LOAD CUSTOMER PROPOSALS.
+Staff submits the following summary findings and recommendations regarding the8 A.
+Company’s High Load Customer proposals:9
+10
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+15
+16
+17
+18
+19
+Staff supports the approval of the proposed GS-5 customer class. It appears to Staff 
+that placing GS-5 Customers in a distinct class would better isolate the Company's 
+various types of large non-residential customers, which may allow the Company (and 
+the Commission) to better assess whether costs are properly allocated to and recovered 
+from non-residential customers, according to principles of cost causation;
+Staff does not oppose the Company's proposed 14-year contract term, or the proposal 
+to charge an exit fee. These proposals would effectively ‘lock-in” the customer's 
+revenue, which Staff believes would help to recover a High Load Customer’s cost of 
+sendee from the High Load Customer, thus reasonably mitigating cost shifting 
+concerns;
+If the Commission does approve the use of an exit fee, Staff recommends that the 
+Company be directed to specifically identify exit fee payments within its cost of 
+sendee, along with DEV's proposed ratemaking treatment and impact to Company 
+earnings;
+Staff does not oppose the Company's proposed minimum billing demand for 
+distribution, transmission, or generation, for High Load Customers who receive fall 
+retail service from the Company. For such customers, the Company's proposed 
+minimum billing demand would limit revenue reductions, thereby “locking-in” a 
+portion of the customer's revenue, thus reasonably mitigating cost shifting concerns;
+10
+11
+12
+13
+14
+Staff takes no position on the Company's proposal to apply its minimum generation 
+billing demand to customers who purchase electric energy through a competitive 
+service provider (“CSP”) (“CSP Customer”), as this appears to be a policy 
+determination for the Commission;
+
+===PAGE 16===
+250750005
+Proposed GS-5 Customer Class22
+23 Q. PLEASE DESCRIBE THE COMPANY’S PROPOSED GS-5 CUSTOMER CLASS.
+As previously identified, the Company proposes to create a new customer class, GS-5,24 A.
+which is intended to serve new and existing customers with a contracted demand of 25 MW25
+or greater and a monthly load factor of at least 75% (“GS-5 Customers”). The Company26
+additionally proposes to serve its GS-5 Customers under a new rate schedule, Rate27
+Schedule GS-5, beginning January 1, 2027.528
+11
+16
+17
+18
+19
+20
+21
+8
+9
+10
+11
+12
+13
+14
+15
+1
+2
+3
+4
+5
+6
+7
+5 The Company further clarified that qualifying GS-5 Customers may elect to take service under Rate Schedule 
+MBR. In that regard, Rate Schedule GS-5 and Rate Schedule MBR would be the only rate schedules available to 
+GS-5 Customers. See Company’s Response to Data Center Coalition Interrogatory No. 2-5, which is included in 
+Attachment BSP-2.
+• Regarding CSP Customers, Staff acknowledges that the Company may incur sizeable 
+investments in new generation facilities or additional purchased capacity costs to serve 
+those customers prior to their exercise of retail choice, which could create cost shifting 
+concerns. However, these customers generally pay for generation capacity and energy 
+through their CSPs. In that regard, billing generation rates to such customers would be 
+a departure from historical Company practice, which could disincentivize customers 
+from exercising retail choice.
+• If the Commission finds that acceptance of cash, or any other aspect of the Company's 
+collateral requirement, is subject to the Customer Deposit Rules, then Staff submits that 
+such collateral amount should be limited to the customer's estimated liability for two 
+months usage, and further finds that the Company should be required to accrue interest 
+on deposits held longer than 90 days until the deposit has been refunded, consistent 
+with the Customer Deposit Rules.
+• Staff submits that the Commission may need to decide whether cash received, or other 
+aspects of the Company's proposed collateral requirement, would be subject to the 
+Commission's customer deposit rules in 20 VAC 5-10-20 (“Customer Deposit Rules”) 
+as the Company's proposed collateral would exceed certain limitations specified in the 
+Customer Deposit Rules;
+• If the Commission finds that the Company's collateral requirement is not subject to the 
+Customer Deposit Rules, then Staff does not oppose the Company's collateral 
+requirement, including its proposed collateral amount of $1.5 million per MW;
+
+===PAGE 17===
+250750005
+1 Q. HOW MANY EXISTING CUSTOMERS WOULD BE TRANSITIONED TO THE
+2 GS-5 CUSTOMER CLASS IF THIS CUSTOMER CLASS IS APPROVED BY THE
+3 COMMISSION IN THIS PROCEEDING?
+According to DEV, its proposed GS-5 class would encompass 139 existing accounts, which4 A.
+includes 131 data center customers and 8 non-data center customers.6 Staff notes that these5
+existing customers are currently served in customer classes GS-3 and GS-4, which6
+currently encompass all non-residential customers with a demand of 500 kW or greater.77
+8 Q. WHY IS THE COMPANY PROPOSING TO CREATE THIS NEW CUSTOMER
+9 CLASS?
+The Company states that its proposed GS-5 customer class is intended to ensure that costs10 A.
+will continue to be allocated fairly among its customer classes in light of significant load11
+Specifically, the Company states that it has12
+experienced recent and ongoing growth in the number and size of large load, high load13
+14
+comprise approximately 20% of total GS-3 class energy usage and 70% of total GS-4 class15
+energy usage.10 The Company claims that GS-5 Customers have a different cost causation16
+profile relative to other GS-3 and GS-4 customers because they exert, or can exert, very17
+high levels of demand and also because they use energy more consistently throughout the18
+6 Direct Testimony of Company witness Paul B. Haynes (“Haynes Direct”) at 5.
+7 Id.
+9 Direct Testimony of Company witness Robert E. Miller at 25.
+10 Id. at 26.
+12
+* Id. at 3.
+factor customers (z.e., the GS-5 Customers).9 According to DEV, such customers now
+growth among its largest customers.8
+
+===PAGE 18===
+250750005
+year, thus placing different demands on the Company's generation fleet compared to other1
+large customers.112
+3 Q. DID STAFF EVALUATE THE COMPANY’S CLAIM THAT GS-5 CUSTOMERS
+4 HAVE A DIFFERENT COST CAUSATION PROFILE COMPARED TO OTHER
+5 GS-3 AND GS-4 CUSTOMERS?
+Yes. Staff examined the annual energy consumption, peak demand, and load factors of the6 A.
+Company's existing GS-5 Customers (z.e., those customers that would be migrated to the7
+GS-5 class) in comparison to the Company's remaining GS-3 and GS-4 customers during8
+calendar year 2024.12 The results of Staffs comparison are shown in Table 2 below.9
+10
+Energy Consumption
+Peak Demand 1.4 MW 9.3 MW 35.4 MW
+Load Factor 67.7 % 81.8% 89.0%
+As observed in Table 2 above, on average, a GS-5 Customer's annual energy11
+consumption, peak demand, and load factor were each notably higher than those of other12
+GS-3 and GS-4 customers. For example, on a relative basis, an average GS-5 Customer's13
+11 Id. at 26-27.
+13
+12 Staff notes that there are multiple competing theories and opinions among cost analysts as to what precisely 
+“causes” a utility's costs to be incurred and the corresponding customer metrics that best reflect these cost causative 
+relationships. However, Staff submits that most cost allocation methodologies generally rely on measures of peak 
+demand, energy usage, or some combination thereof (z.e., load factor). Therefore, Staff focused on these three 
+measures for the purpose of its analysis in Table 2.
+GS-4
+Customer
+66,623,061 kWh
+Table 2
+Per Customer Energy Consumption, Demand, and Load Factor
+GS-3
+Customer
+8,445,787 kWh
+GS-5
+Customer
+277,123,680 kWh
+
+===PAGE 19===
+250750005
+peak demand was approximately 25 times greater than the peak demand of an average GS-31
+customer and 4 times greater than an average GS-4 customer.2
+3 Q. DOES THIS POSE ISSUES FOR THE ALLOCATION OF COSTS TO GS-3 AND
+4 GS-4 CUSTOMERS?
+Potentially. Class cost allocation factors, which are used to allocate costs to customer5 A.
+classes, are typically calculated based on measures of customer demand and/or energy. If6
+one group of customers within a class uses notably more energy or has higher demand (e.g.,7
+the large load, high load factor customers), this would increase the allocation factor for that8
+class, which would correspondingly increase the amount of costs allocated to the class.9
+This could potentially be the case for the current GS-3 and GS-4 classes, given the10
+differences in demand and energy observed by Staff in Table 2 above. Furthermore,11
+because both GS-5 and non-GS-5 loads are fully comingled for the purpose of setting12
+billing rates, it is unknown whether the GS-5 Customers within the current GS-3 and GS-13
+4 classes (or the non-GS-5 Customers) would ultimately pay these costs through their14
+billing rates.15
+16 Q. DOES STAFF RECOMMEND THAT THE COMMISSION APPROVE THE
+17 PROPOSED GS-5 CUSTOMER CLASS?
+Yes. Staff supports the approval of the proposed GS-5 customer class in this proceeding,18 A.
+for the reasons previously discussed. Specifically, it appears to Staff that placing GS-519
+Customers in a distinct class would better isolate the Company's various types of large non-20
+residential customers according to their unique service characteristics. This may allow the21
+Company (and the Commission) to better assess whether costs are properly allocated to22
+and recovered from non-residential customers, according to principles of cost causation.23
+14
+
+===PAGE 20===
+250750005
+In that regard, Staff submits that separating GS-5 Customers into a distinct class may1
+further support the establishment of customer rates that reflect the unique service2
+conditions of customers, consistent with Code § 56-234 B.3
+4 Q. TO BE CLEAR, WOULD THE APPROVAL OF THE GS-5 CUSTOMER CLASS
+5 ENSURE THAT COSTS ARE ALLOCATED FAIRLY AMONG THE CUSTOMER
+6 CLASSES AS THE COMPANY CLAIMS?
+No. Determining customer classifications is only one step in the cost allocation process.7 A.
+The other (and equally important) step in this process is the determination of the cost8
+allocation methodologies that will be used to assign costs to each customer class.9
+Therefore, both customer classifications and cost allocation methodologies should be10
+considered when determining whether a utility's costs are properly allocated among its11
+customers. I will provide further comments regarding the allocation of costs to GS-512
+Customers later in my testimony.13
+14 Q. HAS STAFF REVIEWED THE COMPANY’S PROPOSED NEW RATE
+15 SCHEDULE GS-5?
+Yes. Staff has reviewed the Company's proposed Rate Schedule GS-5 and finds that its16 A.
+rate design, terms, and conditions are generally consistent with the rate design, terms and17
+conditions of the Company's existing large non-residential rate schedules, Rate Schedule18
+GS-3 and Rate Schedule GS-4, albeit including certain High Load Customer Proposals19
+such as DEV's proposed minimum billing demand. Staff does not oppose the Company's20
+Rate Schedule GS-5 rate design. Furthermore, should the Commission approve the21
+Company's proposed High Load Customer proposals, Staff does not oppose their22
+application to Rate Schedule GS-5.23
+15
+
+===PAGE 21===
+250750005
+Proposed Fixed Contract Term & Exit Fees1
+2 Q. PLEASE DISCUSS THE COMPANY’S PROPOSED FIXED CONTRACT TERM
+3 FOR HIGH LOAD CUSTOMERS.
+The Company proposes to establish a fixed 14-year contract term which, if approved,4 A.
+would apply to High Load Customers that request capacity of 25 MW or greater on a single5
+property or contiguous properties.11 According to the Company, when initiating this6
+contract, the customer may elect to take service at 100% of their total requested demand or7
+alternatively may elect a 4-year “load ramp” where the customer's contracted demand is8
+increased at an incremental rate of 20% per year over 4 years.14 The Company states that9
+the total contract term will remain fixed at 14 years regardless of the option the customer10
+selects.1511
+12 Q. WHICH OF THE COMPANY’S CUSTOMERS WOULD BE REQUIRED TO
+13 ENTER INTO A FIXED 14 YEAR CONTRACT?
+The Company states that only new High Load Customers who initiate service and sign an14 A.
+Electric Service Agreement with DEV on or after January 1, 2027, would be subject to the15
+14-year fixed contract.16 13 Existing customers would not be required to enter into a fixed16
+14-year contract.1717
+13 Direct Testimony of Stan Blackwell (“Blackwell Direct”) at 21.
+14 Id.
+15 Id.
+16 Id. at 22.
+17 Id.
+16
+
+===PAGE 22===
+250750005
+1 Q. WOULD A CUSTOMER BE ABLE TO ADJUST THE TERMS OF THEIR
+2 CONTRACT AFTER BEGINNING SERVICE?
+Yes. The Company proposes to include a “capacity resizing” provision within its terms3 A.
+and conditions, which would permit the customer to make a one-time election, with 364
+months' notice, to reduce their contracted demand by up to 20%.18 The customer would5
+also be permitted to request a second reduction, again with 36 months' notice, by up to an6
+additional 30%, for a total maximum reduction of 50%. However, this second request7
+would be subject to Company approval, which the Company states is contingent upon its8
+ability to find a new High Load Customer that can be served from the same infrastructure9
+previously constructed to serve the initial customer and that is willing to take the initial10
+customer's contracted demand.1911
+12 Q. WHAT HAPPENS IF A CUSTOMER TERMINATES SERVICE PRIOR TO THE
+13 END OF THEIR 14-YEAR CONTRACT TERM?
+The Company proposes to charge an exit fee if the customer terminates service within their14 A.
+initial 14-year contract term.20 As proposed, the exit fee would equal the value of the15
+customer's minimum monthly demand charges over the remainder of the contract term. If16
+an exit fee is paid by a customer, the Company states that these funds may either be used17
+18 Id. at 20.
+19 Id.
+20 Id.
+17
+
+===PAGE 23===
+250750005
+to reduce generation and distribution rate base or treated as revenue during the rate year in1
+which it occurs or over some extended period, subject to Commission approval.212
+3 Q. WHAT SPECIFIC ISSUE IS THE COMPANY ATTEMPTING TO ADDRESS BY
+4 REQUIRING A FIXED 14-YEAR CONTRACT AND EXIT FEES?
+The Company states that this proposal is intended to address the risk of “stranded costs”5 A.
+associated with significant future infrastructure.22 More specifically, the Company states6
+that it will need to make significant investments in generation, transmission, and7
+distribution infrastructure to meet its load growth forecast.23 The Company further states8
+that if the customers driving the need for these investments later close their business or9
+relocate to another service territory, then remaining customers may bear the burden of10
+paying for these investments.2411
+12 Q. DOES STAFF AGREE THAT THERE COULD BE COST SHIFTING RISKS TO
+13 OTHER CUSTOMERS IF A HIGH LOAD CUSTOMER CLOSES ITS BUSINESS
+14 OR RELOCATES?
+Generally, yes. Staff is aware that the Company plans to undertake sizeable investments15 A.
+in new infrastructure, such as transmission lines and generating facilities, specifically to16
+provide service to High Load Customers. This was evidenced in the Company's 202417
+Integrated Resource Plan (“IRP”), filed in Case No. PUR-2024-00184. For example, in18
+22 Blackwell Direct at 15.
+23 Id. at 26.
+24 Id.
+18
+21 See Company's Response to Amazon Data Services, Inc. Interrogatory No. 2-3, which is included in Attachment 
+BSP-3.
+
+===PAGE 24===
+250750005
+the supplement to its 2024 IRP, the Company identified 89 planned transmission projects1
+which were specifically intended to serve new data center customers, with a total estimated2
+cost of $2.43 billion (approximately 38% of DEV's total planned projects).25 The Company3
+additionally modeled its generation resource portfolios both including and excluding data4
+center load growth, which can be used to calculate the incremental cost of providing5
+generation service to data center customers, as shown in Table 3 below.6
+7
+$102.9 billion $80.8 billion $22.1 billionVCEAwithEPA
+As shown in Table 3 above, the Company estimates that that it will incur between $22.18
+and $22.9 billion in new generation costs to serve expected data center load over its9
+forecasted IRP period.2710
+11 Q. HOW PRECISELY COULD THESE ADDITIONAL INVESTMENTS RESULT IN
+12 A COST SHIFTING CONCERN?
+Company investments in generation, transmission, and distribution cost-of-service are13 A.
+largely comprised of fixed costs, which may still be unavoidable even after the customer14
+26 See Id. at 5.
+19
+27 As further discussed by Staff witness Daniel M. Long, the Company has additionally forecasted, in this instant 
+proceedmg, data center capital spend between 2025-2027, totaling $1.5 billion and consisting of 114 total projects.
+25 See Commonwealth of Virginia, ex rel. State Corporation Commission, In re: Virginia Electric and Power 
+Company’s 2024 Integrated Resource Plan fding pursuant to Va. Code § 56-597 et seq.. Case No. PUR-2024-00184,
+Doc. Con. Cen. No. 241130032, SCC Directed 2024 IRP Supplement at Appendix 2C-2, pp.1-4 (Nov. 15, 2024).
+NPV Cost
+With Data 
+Center Load 
+$100.2 billion
+NPV Cost 
+Without Data 
+Center Load 
+$77.2 billion
+NPV Cost
+Of Data
+Centers
+$22.9 billion
+Plan Scenario
+REC RPS Only 
+with EPA
+Table 326
+DEV's 2024 IRP Plans - With and Without Data Centers
+
+===PAGE 25===
+250750005
+leaves. If a customer relocates or otherwise terminates service, this reduces the kW and1
+kWh across which the utility's fixed generation, transmission, and distribution costs are2
+allocated to customers. All else being equal, this may increase the amount of costs that are3
+allocated to DEV's remaining customers.284
+5 Q. DOES STAFF HAVE A POSITION ON THE APPROVAL OF THE 14-YEAR
+6 CONTRACT TERM AND EXIT FEE?
+Yes. Staff does not oppose the Company's proposed 14-year contract term, inclusive of the7 A.
+proposed “load ramp” and “capacity resizing” provisions, or the proposed exit fee. Staff8
+generally believes that utility rates, terms and conditions should align with principles of9
+cost causation. In other words, to the extent practicable and feasible, a utility should aim10
+to recover its costs from those customers who cause the costs to be incurred. The11
+Company's proposed 14-year contract would effectively “lock-in” the customer's revenue12
+for a period of time, either through 14 years of service or an exit fee in the event of early13
+termination, which Staff believes would help to recover the customer's cost of service, thus14
+reasonably mitigating cost shifting concerns. Given the sizeable nature, and amount, of15
+capital investments required to serve High Load Customers, this safeguard appears16
+reasonable to Staff.17
+20
+28 It is important to note that there are a multitude of factors that would ultimately influence whether there are rate 
+impacts, as well as the amount and timing of any rate impacts, such as (i) the impact on DEV's average cost of fuel, 
+and resulting fuel factor rates, due to the loss of the new customer's load, (ii) changes in DEV's wholesale generation 
+and transmission costs and revenues resulting from both the loss of the new customer's load and any additional 
+transmission or generation facilities constructed by DEV to serve the customer, and (ni) whether any additional
+customers would be available to utilize the customer's unused capacity, thus offsetting the revenue shortfall.
+
+===PAGE 26===
+250750005
+1 Q. DOES STAFF HAVE ANY ADDITIONAL RECOMMENDATIONS REGARDING
+2 THE PROPOSED “EXIT FEE”?
+Yes. To the extent that a customer pays an exit fee, Staff believes that such exit fee3 A.
+payments should be fully disclosed in the Company's following biennial review4
+application. Specifically, Staff recommends that the Company be directed to identify the5
+exit fee payments within its cost of service, along with DEV's proposed ratemaking6
+treatment and impact to Company earnings. This recommendation is intended to ensure7
+that the Commission has a fully developed record upon to which to evaluate exit fee8
+payments and decide how such payments should be treated for ratemaking purposes.9
+Proposed Minimum Billins Demand10
+11 Q. PLEASE DISCUSS THE COMPANY’S PROPOSED MINIMUM DEMAND.
+The Company proposes to apply new or increased minimum billing demand provisions to12 A.
+High Load Customers for distribution, transmission, and generation service. If approved,13
+the Company proposes to apply its minimum billing demand for as long as the customer14
+receives service from the Company.29 The Company's proposed minimum demand15
+provisions are summarized in Table 4 below in comparison to the Company's current16
+minimum demand charge policy:17
+29 Blackwell Direct at 19.
+21
+
+===PAGE 27===
+250750005
+1
+Distribution Transmission
+None None
+2 Q. WHICH OF THE COMPANY’S CUSTOMERS WOULD BE SUBJECT TO THESE
+3 NEW MINIMUM DEMAND PROVISIONS?
+The Company states that its proposed minimum demand provisions, if approved, would4 A.
+apply to all High Load Customers, including customers served under any rate schedule in5
+the GS-3 or GS-4 classes and CSP Customers, with certain limited exceptions/10 All other6
+non-residential customers would continue to be subject to the Company's existing7
+minimum demand charge policy. 308
+22
+Table 4
+Proposed Minimum Billing Demand
+Current
+Minimum
+Billing
+Demand
+Proposed
+Minimum
+Billing
+Demand
+Minimum billing 
+demand (kW) equal to 
+85 % of the customer's 
+contracted demand
+Minimum billing
+demand (kW) equal 
+to 85 % of the 
+customer's
+contracted demand
+30 Haynes Direct at 19-20. Specifically, the Company proposes to exempt High Load Customers who either take 
+service under Rate Schedule 10 or from a CSP as of January 1, 2025, or who provided notice of taking service from 
+a CSP by January 1, 2025, from the Company's minimum demand charge for generation. Such customers would 
+continue to be assessed minimum demand charges for distribution and transmission.
+Generation
+Minimum billing 
+demand (kW) 
+equal to 60 % of 
+the customer's
+contracted 
+demand
+Minimum billing 
+demand (kW) equal to 
+70% of the kVA 
+capacity of the normal 
+service transformer 
+required to serve the 
+customer's projected 
+load
+
+===PAGE 28===
+250750005
+1 Q. WOULD THE CUSTOMER HAVE ANY FLEXIBILITY TO REDUCE OR AVOID
+2 MINIMUM DEMAND CHARGES?
+Yes. As proposed, the customer may be able to reduce or avoid minimum demand charges3 A.
+by utilizing the “load ramp” or “capacity resizing” provisions previously discussed. If the4
+customer elects a “load ramp”, then the customer's minimum billing demand would be5
+based on the lower load ramp demand during the load ramp period, rather than the6
+customer's full contracted demand. If the customer reduces their contracted demand under7
+the proposed “capacity resizing” provision, then the new billing demand would be based8
+on this revised (lower) contracted demand.9
+10 Q. WHAT SPECIFIC CONCERN IS THE COMPANY ATTEMPTING TO ADDRESS
+11 THROUGH ITS PROPOSED MINIMUM DEMAND PROVISIONS?
+Similar to the contract term, the Company states that this proposal is intended to address12 A.
+the risk of “stranded costs” associated with significant future infrastructure.01 In this13
+instance however, the Company states that its minimum demand provisions are intended14
+to prevent customers from requesting “excess unused capacity” and associated15
+infrastructure, which the Company states would be subsidized by other customers absent a16
+minimum billing demand.32 In that regard, the Company states that its proposed minimum17
+demand provisions will ensure that High Load Customers are allocated their share of18
+distributed, transmission, and generation costs in proportion to their contracted capacity.0019
+31 Blackwell Direct at 15.
+“Id.
+23
+32 See Company's Response to Amazon Data Services, Inc. Interrogatory No. 3-3, which is included in Attachment 
+BSP-3.
+
+===PAGE 29===
+250750005
+1 Q. DOES STAFF AGREE THAT THERE COULD BE POTENTIAL COST RISKS TO
+2 OTHER CUSTOMERS RESULTING FROM “EXCESS UNUSED CAPACITY,”
+3 ABSENT SUFFICIENT PROTECTIONS?
+Potentially. If the Company constructs new facilities to serve a new customer, such as a4 A.
+transmission line or substation, the costs of those facilities are included in the Company's5
+cost of service, which is paid for by all customers. On the other hand, the Company would6
+also receive additional revenue from this new customer through the customer's monthly7
+bills. If a large non-residential customer's actual demand proves to be less than its8
+contracted demand however, then the customer's bills (and DEV's revenue) would be lower9
+than anticipated, yet the cost of the facilities (which were designed to meet the higher10
+contracted demand) would remain unchanged.34 35 Depending on the size of the customer11
+and the amount of new capital investments incurred by the Company to serve the customer,12
+it is possible that DEV could experience lower earnings, which could result in higher rates13
+for other customers when rates are reset in future rate cases.1514
+15 Q. WHAT IS STAFF’S POSITION ON THE APPROVAL OF THE PROPOSED
+16 MINIMUM BILLING DEMAND?
+Staff does not oppose the Company's proposed minimum billing demand for distribution,17 A.
+transmission, or generation for High Load Customers who receive full retail service from18
+24
+35 As previously mentioned, there are a multitude of factors that would ultimately influence whether there are rate 
+impacts, as well as the amount and timing of any rate impacts, such as (i) the impact on DEV's average cost of fuel, 
+and resulting fuel factor rates, due to the loss of the new customer's load, (ii) changes in DEV's wholesale generation 
+and transmission costs and revenues resulting from both the loss of the new customer's load and any additional 
+transmission or generation facilities constructed by DEV to serve the customer, and (iii) whether any additional
+customers would be available to utilize the customer's unused capacity, thus offsetting the revenue shortfall.
+34 It should be further noted that the Company's large non-residential rate schedules are largely “demand-driven”
+meaning that these large customers are principally billed using demand charges.
+
+===PAGE 30===
+250750005
+the Company. For such customers, the Company's proposed minimum demand provisions1
+would limit revenue reductions, thereby “locking-in” a portion of the customer's revenue,2
+while permitting some flexibility to reduce or avoid minimum charges in certain situations.3
+Given the sizeable nature, and amount, of capital investments required to serve High Load4
+Customers, this safeguard appears reasonable to Staff as it may help to reasonably mitigate5
+cost shifting concerns. Staffs recommendation is expressly limited to High Load6
+Customers who receive full retail service from DEV, however. Staff has further comments7
+regarding the Company's proposal to apply its minimum generation demand provision to8
+CSP Customers, which are provided below.9
+10 Q.
+11 PROPOSAL TO APPLY ITS MINIMUM GENERATION DEMAND PROVISION
+12 TO CSP CUSTOMERS?
+Staff notes that CSP Customers do not currently pay DEV's generation base rates or riders,13 A.
+with the limited exception of certain generation riders that have been approved by the14
+Commission as “non-bypassable” charges pursuant to Code § 56-585.5.36 Rather, CSP15
+Customers pay for generation capacity and energy through their CSP. If the Company's16
+proposal in this instant proceeding is approved, however, Staff submits that it would result17
+in CSP Customers paying generation rates to DEV in addition to their CSP. This would be18
+a significant departure from the manner in which CSP Customers have historically been19
+billed by DEV.20
+36 In addition, DEV’s Rider CCR is non-bypassable pursuant to Code § 10.1-1402.03.
+25
+WHAT ARE STAFF’S COMMENTS REGARDING THE COMPANY’S
+
+===PAGE 31===
+250750005
+1 Q. HAS THE COMPANY PROVIDED ANY RATIONALE FOR ITS PROPOSAL TO
+2 BILL CSP CUSTOMERS FOR GENERATION BASE RATES IN THIS
+3 PROCEEDING?
+Yes. The Company states that CSP Customers can migrate to and from full retail service4 A.
+with DEV, and therefore the Company must plan to potentially meet their generation5
+needs.37 In that regard, the Company states that its proposed minimum generation demand6
+charge is designed to allocate those generation costs to the customers who cause them to7
+be incurred, in order to prevent other customers from bearing those costs.388
+9 Q. DOES CODE § 56 577 ADDRESS WHETHER DOMINION MAY CHARGE
+10 GENERATION BASE RATES TO CSP CUSTOMERS?
+On advice of counsel, neither Code § 56-577 nor the Commission’s Rules Governing Retail11 A.
+Access to Competitive Energy Service, 20 VAC 5-312-10 et seq., specifically address this12
+13
+PUR-2017-00117, the Commission resolves these types of unanswered questions regarding14
+retail access as part of its duty to implement the relevant provision of the Code using its15
+sound discretion.* 3916
+37 Blackwell Direct at 19.
+26
+38 See the Company's response to Retail Energy Advancement League Interrogatory No. 1-16, which is included in
+Attachment BSP-4.
+39 Petition of English Biomass Partners-Ferrum, LLC, For a declaratory judgment, Case No. PUR-2017-00117,
+2018 S.C.C. Ann. Rept. 263, Fmal Order (Apr. 20, 2018).
+issue. On further advice of counsel, based on the Commission’s decision in Case No.
+
+===PAGE 32===
+250750005
+1 Q. DOES STAFF HAVE A POSITION ON THE APPROVAL OF THE PROPOSAL
+2 TO BILL ITS GENERATION DEMAND CHARGE TO CSP CUSTOMERS?
+Staff takes no position on the Company's proposal in this regard as this appears to be a3 A.
+policy determination for the Commission. Staff acknowledges that the Company may incur4
+either sizeable investments in new generation facilities or additional purchased capacity5
+costs to serve large CSP Customers. If such customers then elect to purchase electric6
+energy from a CSP, as they are permitted to do pursuant to Code § 56-577, Staff agrees7
+that this could result in cost shifting.40 However, as previously mentioned, CSP Customers8
+generally pay for generation capacity and energy through their CSP. If such customers are9
+additionally required to pay DEV's generation base rates, this could disincentivize10
+customers from exercising retail choice.11
+Proposed Collateral Requirement12
+13 Q. WHAT IS THE COMPANY’S EXISTING CREDIT POLICY?
+Under DEV's existing Terms and Conditions of Service, the Company may require a cash14 A.
+deposit from customers to secure the Company from loss. The amount of such deposit is15
+limited to no more than the estimated liability for two times the average monthly usage at16
+the customer's premise. Staff notes that this existing policy generally applies to all17
+customers, both residential and non-residential.18
+27
+40 Staff notes that the Company, due to its participation in PJM, generally has the ability to monetize the capacity 
+and energy output of its generation facilities through PJM's capacity and energy markets, the proceeds of which 
+represent a ratepayer benefit that may help to mitigate stranded cost concerns.
+
+===PAGE 33===
+250750005
+1 Q. PLEASE DISCUSS THE COMPANY’S PROPOSED COLLATERAL
+2 REQUIREMENT.
+The Company proposes to require certain High Load Customers to post collateral in the3 A.
+amount $1.5 million per MW of contracted demand, which the Company states is intended4
+to ensure the customer's financial commitment to their 14-year fixed contract.41 According5
+to the Company, this collateral would be claimed and collected if the customer discontinues6
+service during the contract period, or if the customer reduces their capacity beyond the7
+amounts allowable in the customer's contract. 42 43 The Company states that the funds from8
+collection would be used to satisfy the customer's outstanding minimum demand charges9
+for the remainder of the contract term (z.e., the exit fee).4110
+ll Q. WHICH HIGH LOAD CUSTOMERS WOULD BE SUBJECT TO THIS
+12 COLLATERAL REQUIREMENT?
+The Company's proposed collateral requirement, if approved, would apply to all new High13 A.
+Load Customers who begin service on or after January l, 2027. However, as proposed, if14
+any such customer has either a credit rating of at least BBB- from S&P or Baa from15
+Moody's, a parental guarantee, or maintains liquidity greater than 10 times the collateral16
+requirement, then the customer would be permitted to reduce their collateral requirement17
+by 70%.4418
+41 Blackwell Direct at 23.
+43 Id.
+44 Stuller Direct at Schedule 2, p.2.
+28
+42 Id. See also Company's Response to Amazon Data Services, Inc. Interrogatory No. 2-9, which is included in
+Attachment BSP-3.
+
+===PAGE 34===
+250750005
+1 Q. HOW DID THE COMPANY DETERMINE THE PROPOSED COLLATERAL
+AMOUNT OF $1.5 MILLION PER MW?2
+The Company's collateral amount of $1.5 million per MW of demand is designed to3 A.
+represent approximately 60% of a customer's minimum demand charges over the life of the4
+14-year contract term.45 According to the Company, this amount is intended to strike a5
+balance between requiring adequate credit to cover a large portion of the contract while not6
+being overly burdensome to the High Load Customer.46 The Company further states that7
+it established its proposed collateral amount as a fixed dollar amount per MW to be simple,8
+47transparent, and scalable to each customer's requested contract demand.9
+10 Q. DO THE COMMISSION’S CUSTOMER DEPOSIT RULES PROVIDE ANY
+11 GUIDANCE ON UTILITY CREDIT PRACTICES?
+Yes, with respect to customer deposits for uncollectible accounts. Specifically, utility12 A.
+customer deposit requirements are governed by the Commission's Customer Deposit Rules,13
+which state, in part:14
+46 Id.
+47 Id.
+29
+19
+20
+21
+22
+23
+24
+15
+16
+17
+18
+Each utility may require deposits from customers to protect against 
+uncollectible accounts. The maximum amount of any deposit shall not 
+exceed the equivalent of the customer’s estimated liability for two months 
+usage.... (emphasis added)
+Each utility shall be liable for interest on deposits held longer than 90 
+days, to accrue from the date the deposit is made until it has been 
+refunded, or until a reasonable effort has been made to effect refund. All 
+investor-owned utilities will pay interest on deposits at a rate established 
+annually. The interest rate for such deposits in a given year will be 
+established in December of the preceding year to equal the average of the
+45 See Company's Response to Amazon Data Services, Inc. Interrogatory No. 2-7, which is included in Attachment
+BSP-3.
+
+===PAGE 35===
+250750005
+3 Q. IS THE PROPOSED COLLATERAL REQUIREMENT A “CUSTOMER
+4 DEPOSIT” TO “PROTECT AGAINST UNCOLLECTIBLE ACCOUNTS?”
+When collateral is received by the Company, this could be considered a customer deposit5 A.
+under a broad definition of collateral. Specifically, the Company intends to accept cash as6
+one permissible option for the customer to satisfy the collateral requirement. In response7
+to Staff Interrogatory No. 17-310, the Company states that it intends to treat cash collateral8
+48as a “customer deposit” for both accounting and ratemaking purposes. Furthermore, it9
+appears to Staff that both the Company's collateral requirement and traditional customer10
+deposits address substantially the same risk, albeit under different circumstances.11
+Specifically, a customer deposit protects the Company against past uncollectible amounts12
+when the customer does not pay their bill. The proposed collateral requirement would13
+protect the Company against future amounts which are now uncollectible because the14
+customer terminated their contract prematurely.15
+16 Q. DOES THIS RAISE A POTENTIAL LEGAL QUESTION FOR THE
+17 COMMISSION’S CONSIDERATION IN THIS CASE?
+Yes, Staff believes so. Staff notes that the Company's proposed collateral requirement18 A.
+would far exceed the cap specified in the Customer Deposit Rules, which is limited to the19
+“customer's estimated liability for two months' usage.” Consequently, the Commission20
+48See Company's Response to Staff Interrogatory No. 17-310, which is included in Attachment BSP-5.
+30
+1
+2
+one year Constant Maturity Treasury rate for September, October, and 
+November of the preceding year.. ..(emphasis added)
+
+===PAGE 36===
+250750005
+may need to consider whether the receipt of cash as a form of collateral, or other aspects1
+of the Company's proposal, would be subject to the Customer Deposit Rules.2
+3 Q. WHAT ARE STAFF’S RECOMMENDATIONS REGARDING THE APPROVAL
+4 OF THE PROPOSED COLLATERAL REQUIREMENT?
+Given the sizeable nature, and amount, of capital investments required to serve High Load5 A.
+Customers, as previously discussed, Staff agrees that collateral would serve as a safeguard6
+to help reasonably mitigate cost shifting concerns in the event a customer is not willing or7
+able to fulfill their contract. However, Staff believes the Commission's finding on whether8
+cash received, or any aspect of the Company's proposal, would be subject to the Customer9
+Deposit Rules is a threshold issue. In that regard, Staff submits the following10
+recommendations:11
+22 Q. HAS THE COMPANY MADE ANY ADDITIONAL DEPOSIT REQUIREMENT
+23 REQUESTS IN THIS PROCEEDING?
+24 A.
+proposes to require equipment deposits, whereby a High Load Customers may be required25
+to submit a deposit to DEV which is intended to fund the Company’s cost of certain26
+31
+16
+17
+18
+19
+20
+21
+12
+13
+14
+15
+• If the Commission finds that the Company's collateral requirement is not subject to the 
+Customer Deposit Rules, then Staff does not oppose the Company's collateral 
+requirement in the amount of $1.5 million per MW of contracted demand, as proposed 
+by DEV in this proceeding.
+• If the Commission finds that acceptance of cash, or any other aspect of the Company's 
+collateral requirement, is subject to the Customer Deposit Rules, then Staff submits that 
+such collateral amount should be limited to the customer's estimated liability for two- 
+months usage, and further finds that the Company should be required to accrue interest 
+on deposits held longer than 90 days until the deposit is refunded, consistent with the 
+Customer Deposit Rules.
+Yes. Similar to the Company’s proposed collateral requirement, the Company also
+
+===PAGE 37===
+250750005
+equipment necessary to initiate the customer’s service. The Company states that, once the1
+equipment is energized and placed into service, the deposit will be refunded to the2
+customer.49 Staff submits that, in this instance, the customer’s deposit is specifically3
+intended to cover direct costs to DEV, prior to service initiation, associated with customer-4
+specific equipment. Staff does not view this as a customer deposit to “protect against5
+uncollectible accounts” and furthermore Staff does not oppose this proposal.6
+7 CLASS COST ALLOCATION
+8 Q. HAS STAFF EVALUATED THE COMPANY’S CLASS COST ALLOCATION
+9 METHODOLOGIES IN THIS PROCEEDING?
+Yes. Staff witness Glenn A. Watkins comprehensively examined the Company's class COS10 A.
+studies and provides Staff’s findings and recommendations regarding the accuracy and11
+reasonableness of Company's cost allocation methods. As part of his review, Staff witness12
+Watkins conducted additional class COS studies using four separate, alternative methods13
+to allocate generation plant costs to the Company’s customer classes.14
+15 Q. WHY DID STAFF UNDERTAKE A COMPREHENSIVE EXAMINATION OF THE
+16 COMPANY’S CLASS COS METHODOLGIES IN THIS PROCEEDING?
+DEV's system is in a state of transformation, in two important ways. First, due to certain17 A.
+requirements in the Virginia Clean Economy Act, the Company's generation fleet has18
+undergone, and will continue to undergo, a gradual transformation away from dispatchable19
+generation resources toward non-dispatchable renewable generation. Second, DEV is20
+49 Blackwell Direct at 23.
+32
+
+===PAGE 38===
+250750005
+currently facing a substantial increase in demand due to the growth of large load, high load1
+factor customers in Virginia. This later transformative factor, in particular, has raised2
+questions concerning the costs, benefits, and risks of DEV’s existing cost allocation3
+methods.50 Therefore, Staff sought to examine these costs, benefits, and risks in this4
+proceeding.5
+6 Q. DOES STAFF BELIEVE IT IS ESPECIALLY IMPORTANT TO EXAMINE THE
+7 ALLOCATION OF COSTS TO THE GS-5 CUSTOMER CLASS?
+Yes. Staff believes it is imperative to thoroughly examine how costs are allocated to GS-58 A.
+Customers to ensure that allocation methods best reflect their cost of service. If the9
+revenues received from GS-5 Customers through their billing rates do not align with their10
+cost of service, this misalignment can result in subsidies that would be borne by DEV's11
+other customer classes. Given the very significant load growth forecasted by DEV among12
+large load, high load factor customers (i.e., GS-5 Customers), Staff notes that such13
+misalignments could become highly amplified as GS-5 Customer load continues to grow.14
+15 Q. WHAT ARE STAFF’S OBSERVATIONS REGARDING THE ALLOCATION OF
+16 GENERATION COSTS TO DEV’S GS-5 CUSTOMERS?
+As discussed by Staff witness Watkins, one limitation of the Company’s existing allocation17 A.
+methodology is that it does not reflect the planning, structure, and operations of the18
+Company’s generation resources. Therefore, as previously mentioned, Staff conducted19
+additional class COS studies using four separate, alternative methods to allocate generation20
+33
+50 Commonwealth of Virginia, ex rel. State Corporation Commission, Ex Parte: Electric Utilities and Load Growth, 
+Case No. PUR-2024-00144, Doc. Con. Cen. No. 241130067, Supplemental Order And Notice Of Agenda For 
+Technical Conference (Nov. 18, 2024).
+
+===PAGE 39===
+250750005
+plant costs to the Company’s customer classes. The results of these alternative class COS1
+studies are shown in Table 5 below.512
+3
+0.69% 9%
+3.67% 49%
+4.46% 59%
+5.97% 79%
+4
+As observed in Table 5 above, when compared to other allocation methods, DEV's A&E5
+method produces, by far, the highest RORs (and relative RORs) for the GS-5 class.6
+Furthermore, the A&E method is the only method that shows GS-5 Customers paying their7
+full cost of service for the 2027 rate year. All other methods show significant subsidies8
+being provided to GS-5 Customers for the 2027 rate year, ranging from $29.6 million to9
+$172.5 million.10
+34
+Staff - Summer/Winter Peak & Average 
+Staff- 12-Coincident Peak
+51 Specifically, Table 5 shows the rate of return (“ROR”) on rate base produced by each customer class based on 
+each class's revenues, allocated operating expenses, and allocated rate base. Each class's ROR is then presented 
+relative to the utility's overall ROR on rate base for its total jurisdiction, which is referred to as a “relative ROR”. A 
+relative ROR equal to 100% indicates that the utility is earning the same ROR for both the class and its total 
+jurisdiction. This is referred to as “parity” and indicates that no subsidy exists. A relative ROR above (or below)
+100% indicates that the customer class is producing a ROR above (or below) the total jurisdiction and thus may be 
+subsidizing (or receiving subsidies from) other classes. The subsidy that is provided to (or received from) each class 
+is then calculated using each class's relative ROR.
+Class
+ROR
+8.27%
+Relative
+ROR
+110%
+Table 5
+GS-5 Relative RORs and Revenue Excess/(Subsidy) - 2027 Rate Year - Proposed Rates
+Revenue 
+Excess/ 
+(Subsidy) 
+$12,401,746 
+($172,497,647) 
+($81,705,956) 
+($62,613,690) 
+($29,617,277)
+Cost Allocation Methodology 
+DEV -Average & Excess
+Staff - Probability of Dispatch 
+Staff - Base-Intermediate Peak
+
+===PAGE 40===
+250750005
+1 Q. ARE THERE POTENTIAL CONCERNS WITH THE COMPANY’S USE OF THE
+2 A&E METHODOLOGY TO ALLOCATE GENERATION COST TO GS-5
+3 CUSTOMERS?
+4 A.
+reasonableness of the A&E methodology, Staff additionally finds it concerning that all four5
+of the alternative allocation methodologies it reviewed in this proceeding uniformly show6
+large subsidies being provided to the GS-5 class by other customer classes. Furthermore,7
+Staff notes that the results in Table 5 above occur because the A&E method allocates far8
+less generation plant costs to GS-5 Customers than any of the other methods reviewed by9
+Staff In light of these observations, Staff is concerned that the costs allocated to GS-510
+Customers under the A&E method do not sufficiently reflect the cost to serve GS-511
+12 Customers.
+13 Q. WHAT ARE STAFF’S RECOMMENDATIONS REGARDING GENERATION
+14 COST ALLOCATION, PARTICULARLY GIVEN YOUR OBSERVERATIONS
+15 FOR THE GS-5 CLASS?
+Staff recommends that the Commission direct DEV to develop and propose a plan, either16 A.
+in its next biennial review proceeding or another appropriate proceeding, to gradually17
+transition away from the A&E methodology for the purpose of allocating generation plant18
+costs to its customer classes. In conjunction with its proposed plan, DEV should study.19
+present, and address each of the alternative allocation methodologies presented by Staff in20
+this case, and any other allocation methodologies that DEV believes should be21
+appropriately considered.22
+35
+Yes. In addition to the concerns discussed by Staff witness Watkins regarding the
+
+===PAGE 41===
+250750005
+1 Q. WHY DOES STAFF BELIEVE IT IS APPROPRIATE TO ADOPT ANY CHANGES
+2 TO COST ALLOCATION IN A FUTURE PROCEEDING RATHER THAN IN THE
+3 INSTANT PROCEEDING?
+Staff submits that deferring the approval and implementation of a transition plan until a4 A.
+future proceeding may mitigate possible rate shock for GS-5 Customers. Specifically, Staff5
+acknowledges that the Company has already proposed several revisions to the rates, terms,6
+and conditions applicable to High Load Customers (i.e., the High Load Customer7
+Proposals), some of which, if approved, would apply to 139 existing customers. Staff8
+further notes that the Company has already proposed a rather significant total revenue9
+increase to its GS-5 Customers of approximately 60% in this proceeding, for the 2027 rate10
+year. Furthermore, deferring the approval and implementation until a future proceeding11
+would provide the Commission, Staff, and other parties with an opportunity to fully review,12
+evaluate, and comment on the Company's proposed transition plan.13
+14 Q. IF THE COMMISSION DOES DIRECT THE SUBMISSION OF A TRANSITION
+15 PLAN IN THE NEXT BIENNIAL REVEW, OR OTHER PROCEEDING, WHAT
+16 INFORMATION WOULD ASSIST THE COMMISSION IN DECIDING WHICH
+17 ALLOCATION METHODOLOGY IS THE MOST APPROPRIATE?
+Staff believes the following information may assist the Commission in deciding which18 A.
+alternative cost methodology is most appropriate for allocating DEV’s generation plant19
+20 costs:
+36
+21
+22
+23
+24
+• Class COS study results for all customer classes for each alternative cost allocation 
+methodology presented;
+• The class revenue apportionment and resulting rates for all customer classes for each 
+alternative cost allocation methodology presented;
+
+===PAGE 42===
+250750005
+Q. DOES STAFF HAVE ANY COMMENTS REGARDING THE ALLOCATION OF
+9 DISTRIBUTION COSTS TO GS-5 CUSTOMERS?
+Yes. As discussed by Staff witness Watkins, Staff generally finds that the Company's10 A.
+classification and allocation of distribution costs are reasonable. Therefore, Staff does not11
+take issue with the manner in which distribution costs are allocated to GS-5 Customers for12
+the 2027 rate year at this time. However, Staff will continue to monitor the allocation of13
+distribution cost to all customer classes, including the GS-5 class, in future biennial review14
+proceedings.15
+16 Q. DOES STAFF HAVE ANY COMMENTS REGARDING THE ALLOCATION OF
+17 TRANSMISSION COSTS TO GS-5 CUSTOMERS?
+Yes. The recovery of transmission costs and the allocation of such costs to customer classes18 A.
+are reviewed in the context of the Company's annual transmission rider proceedings, Rider19
+Tl. For background, in its Final Order in Case No. PUR-2021-00102, the Commission, in20
+part, directed the Company to transition from using a 1-CP allocation method to a 12-CP21
+allocation method to allocate costs for most components of the Company’s transmission22
+23
+37
+1
+2
+3
+4
+5
+6
+7
+8
+• A long-term revenue requirement analysis both including and excluding GS-5 
+Customer load growth; and
+• A bill analysis, based on the long-term revenue requirement analysis, for each 
+alternative methodology, that provides the projected bill impacts for residential 
+customers, small commercial customers, large customers (non-GS-5), and GS-5 
+Customer bills;
+52 Application of Virginia Electric and Power Company, For approval of a rate adjustment clause pursuant to 
+§ 56-585.1A 4 of the Code of Virginia, Case No. PUR-2021-00102, 2021 S.C.C. Ann. Rept. 486, Final Order (Aug. 
+16, 2021).
+revenue requirement.52 This transition to the 12-CP method was completed in the
+
+===PAGE 43===
+250750005
+Company’s 2023 Rider T1 proceeding, which was docketed as Case No. PUR-2023-1
+00065.53 Staff will continue to monitor the allocation of transmission costs to all customer2
+classes, including the GS-5 class, in future Rider T1 proceedings.3
+4 Q. DOES THIS CONCLUDE YOUR TESTIMONY?
+Yes, it does.5 A.
+38
+53 Application of Virginia Electric and Power Company, For approval of a rate adjustment clause pursuant to 
+§ 56-585.1 A 4 of the Code of Virginia, Case No. PUR-2023-00065, 2023 S.C.C. Ann. Rept. 437, Final Order (July 
+24, 2023).
+
+===PAGE 44===
+250750005
+ATTACHMENT BSP-1
+VIRGININA
+INVESTOR-OWNED ELECTRIC UTILITY
+CUSTOMER CLASSIFICATIONS
+
+===PAGE 45===
+GS-1
+GS-2
+GS-3
+GS-4
+Church
+Outdoor
+Lighting
+Virginia Electric and Power
+Existing Customer Classifications
+Attach2Sty^J^)5
+Page 1 of3
+Large General Sendee (Secondary)
+Non-residential customers sened at secondary 
+voltage with demand of 500 kW or greater
+Large General Service (Primary)
+Non-residential customers served at primary voltage 
+with demand of 500 kW or greater
+Church Service
+Synagogues and churches of all denominations
+Outdoor Lighting
+Customers with separately maintained outdoor 
+lighting facilities
+Customer
+Class_____
+Residential
+_______________Customers Served______________
+Residential Customers
+Single family residence, flat, or apartment
+Small General Sendee
+Non-residential customers with demand of 30 
+kilowatts (“kW”) or less
+Intermediate General Service
+Non-residential customers with demand greater than 
+30 kW but less than 500 kW
+
+===PAGE 46===
+SGS
+GS
+LPS
+SWS
+Outdoor
+Lighting
+Attachjiggt^J^
+Page 2 of3
+Customer
+Class_____
+Residential
+_______________Customers Served______________
+Residential Customers
+Individual residential customers, including 
+agricultural customers
+Small General Service
+Non-residential customers with demand of 25 
+kilowatts (kW) or less
+General Service
+Non-residential customers with demand greater than 
+25 kWbut less than 1,000 kW (separated by voltage) 
+Large Power Service
+Non-residential customers served with demand of
+1,000 kW or greater (separated by voltage)
+Sanctuary Worship Service
+Synagogues and church buildings
+Outdoor Lighting
+Customers with separately maintained outdoor 
+lighting facilities
+Appalachian Power Company
+Existing Customer Classifications
+
+===PAGE 47===
+GS
+PS
+TODS
+TOPS
+RTS
+POLT
+Kentucky Utilities
+Existing Customer Classes
+Attachjiggt^J^
+Page 3 of3
+Customer
+Class_____
+Residential
+_______________Customers Served______________
+Residential Customers
+Single family residence and churches
+General Service
+Non-residential customers served at secondary 
+voltage with demand of 50 kW or less
+Power Service
+Non-residential customers served at secondary 
+voltage with demand greater than 50 kW but less 
+than 250 kW
+Non-residential customers served at primary voltage 
+with demand of 250 kW or less
+Time-of-Day Secondary Service
+Non-residential customers served at secondary 
+voltage with demand greater than 250 kW
+Time-of-Day Primary Service
+Non-residential customers served at primary voltage 
+with demand greater than 250 kW
+Retail Transmission Service
+Any customer who receives service at transmission 
+voltage with demand greater than 250 kVA
+Private Outdoor Lighting
+Customers with separately maintained outdoor 
+lighting facilities
+
+===PAGE 48===
+250750005
+ATTACHMENT BSP-2
+Interrogatory Responses
+To
+Data Center Coalition
+
+===PAGE 49===
+Question No. 5
+Response:
+The following response to Question No. 5 of the Second Set of Interrogatories and Requests for 
+Production of Documents propounded by Data Center Coalition received on May 27, 2025, was 
+prepared by or under the supervision of:
+Please refer to Company Witness Stuller’s Direct Testimony at page 15, lines 12-14: “(T]he 
+Company proposes to make Rate Schedule MBR available to qualifying customers who would 
+otherwise take sendee under Rate Schedule GS-3 or Rate Schedule GS-4.”
+a. Please clarify whether the Company also intends for Schedule MBR to be available to 
+qualifying customers wrho would otherwise take sendee on the proposed Rate 
+Schedule GS-5? If not, please explain why.
+Attach2Sty^J^)5
+Page 1 of 1
+Yes. Customers who are subject to Rate Schedule GS-5 may only choose Rate Schedule GS-5 or 
+Rate Schedule MBR. To clarify, the Company proposes for Rate Schedule MBR to be effective 
+January 1, 2026, and Rate Schedule GS-5 to be effective January 1, 2027.
+Timothy P. Stuller
+Manager - Regulation
+Virginia Electric and Power Company
+Virginia Electric and Power Company
+Case No. PUR-2025-00058
+Data Center Coalition
+Second Set
+
+===PAGE 50===
+250750005
+ATTACHMENT BSP-3
+Interrogatory Responses
+To
+Amazon Data Services
+
+===PAGE 51===
+Question No. 3
+When Dominion collects exit fees, what happens to the money collected?
+Response:
+The following response to Question No. 3 of the Second Set of Interrogatories and Requests for 
+Production of Documents propounded by Amazon Data Services, Inc. received on May 23, 2025, 
+was prepared by or under the supervision of:
+In the event an exit fee is paid by a customer, that one-time revenue may either be used to reduce 
+generation and distribution rate base or treated as revenue within the cost of service either in the 
+rate year in which it occurs or over some extended period, subject to the Commission approval.
+Attach2Sty^J^)5
+Page 1 of 6
+J. Scott Gaskill
+Vice President - Regulatory Affairs
+Dominion Energy Services, Inc.
+Virginia Electric and Power Company
+Case No. PUR-2025-00058
+Amazon Data Services, Inc.
+Second Set
+
+===PAGE 52===
+Question No. 7
+Response:
+The following response to Question No. 7 of the Second Set of Interrogatories and Requests for 
+Production of Documents propounded by Amazon Data Services, Inc. received on May 23, 2025, 
+was prepared by or under the supervision of:
+Please provide all analyses that supports a collateral requirement of $1.5 million per megawatt of 
+the contracted capacity.
+Please see Attachment Amazon Set 02-07 (JSG) for an estimate of the minimum demand charges 
+over a 14-year contract period for a hypothetical customer with 100 MW of contracted demand. 
+The collateral requirement of $1.5 million per megawatt represents approximately 60% of those 
+minimum demand charges over the life of the contract, which is intended to strike a balance 
+between requiring adequate credit to cover a large portion of the contracted demand costs and 
+not being overly burdensome to the high load customers.
+Attach2Sty^J^)5
+Page 2 of 6
+J. Scott Gaskill
+Vice President - Regulatory Affairs
+Dominion Energy Services, Inc.
+Virginia Electric and Power Company
+Case No. PUR-2025-00058
+Amazon Data Services, Inc.
+Second Set
+
+===PAGE 53===
+Question No. 9
+Response:
+The following response to Question No. 9 of the Second Set of Interrogatories and Requests for 
+Production of Documents propounded by Amazon Data Services, Inc. received on May 23, 2025, 
+was prepared by or under the supervision of:
+What are the specific situations wrhere Dominion would use collateral or make a claim against 
+collateral to satisfy an obligation of a customer?
+The collateral will be used by the Company to satisfy the outstanding contract minimum values 
+within the 14-year contract if the customer defaults, reduces the size of its capacity beyond the 
+allowable percentage, or does not otherwise fulfill its financial obligations under the contract.
+Attach2Sty^J^)5
+Page 3 of 6
+Stan Blackwell
+Director - Data Center Practice 
+Virginia Electric and Power Company
+Virginia Electric and Power Company
+Case No. PUR-2025-00058
+Amazon Data Services, Inc.
+Second Set
+
+===PAGE 54===
+Question No. 3
+Regarding Distribution:
+a.
+b.
+c.
+d.
+Regarding Transmission:
+e.
+The following response to Question No. 3 of the Third Set of Interrogatories and Requests for 
+Production of Documents propounded by Amazon Data Services, Inc. received on May 23, 2025, 
+was prepared by or under the supervision of:
+What are the specific risks that Dominion is seeking to mitigate via an 85% 
+minimum demand charge on distribution?
+At what stage of development or operations does Dominion typically commit to 
+these specific risks?
+WTiat are the specific risks that Dominion is seeking to mitigate via an 85% 
+minimum demand charge on transmission?
+At what stage are these specific risks transferred to the customer via the 
+Construction Service Agreement or ESA+GS5 agreement?
+Attach25ty^J^)5
+Page 4 of 6
+J. Scott Gaskill [subparts (i) through (1)] 
+Vice President - Regulatory Affairs 
+Dominion Energy Services, Inc.
+On pages 17-18 of his direct testimony, Company Witness Blackwell highlights the need to start 
+charging an 85% minimum billing on distribution and transmission, and 60% minimum on 
+generation. Blackwell recognizes the difference in fungibility and design obligations between the 
+three categories and points to this as justification for the different minimum demand thresholds.
+On average, payment 85% minimum distribution demand, how long would a GS- 
+5 typical customer need to operate to ensure that it contributes an amount of 
+distribution revenue that equals or exceeds the direct costs it causes to serve said 
+load?
+Stan Blackwell [subparts (a) through (h)] 
+Director — Data Center Practice 
+Virginia Electric and Power Company
+Virginia Electric and Power Company
+Case No. PUR-2025-00058
+Amazon Data Services, Inc.
+Third Set
+
+===PAGE 55===
+f.
+g.
+h.
+i.
+J-
+k.
+1.
+Response:
+Regarding Distribution:
+Regarding Generation, via (a) GS-5 account, (b) Competitive Energy Supplier, and (iii) 
+Market Based Rate Customer:
+At what stage are these specific risks transferred to the customer via the 
+Construction Service Agreement or ESA+GS5 agreement?
+What are the specific risks that Dominion is seeking to mitigate via a 60 minimum 
+demand charge on generation?
+At what stage of development or operations does Dominion typically commit to 
+these specific risks?
+At what stage of development or operations does Dominion typically commit to 
+these specific risks?
+At what stage are these specific risks transferred to the customer via the 
+Construction Service Agreement or ESA+GS5 agreement?
+Attach25ty^J^)5
+Page 5 of 6
+On average, payment at 60% minimum generation demand, how long would a GS- 
+5 typical customer need to operate to ensure that it contributes an amount of 
+generation revenue that equals or exceeds the direct costs it causes to serve said 
+load?
+On average, payment at 85% minimum transmission demand, how long would a 
+GS-5 typical customer need to operate to ensure that it contributes an amount of 
+transmission revenue that equals or exceeds the direct costs it causes to serve said 
+load?
+b. The risk of stranded costs commences when the Company first begins to incur costs in 
+order to plan to serve a customer.
+a. The Company has filed the 85% distribution minimum to prevent one customer from 
+requesting excess unused capacity and the associated infrastructure that is subsidized by 
+other customers.
+c. Once the customer decides to proceed with a project, it is obligated to sign a construction 
+contract (CLOA). This contract obligates the interconnecting customer to reimburse the 
+Company for any incurred distribution costs if it cancels the project. This contract also 
+requires the customer to execute an ESA at the installed capacity value once construction 
+is complete. Once the ESA is signed, the distribution costs become part of the general 
+rate base and all customers assume the risk of stranded costs if the large load customer
+
+===PAGE 56===
+Regarding Transmission:
+f. See the Company’s response to subpart (b).
+Regarding Generation:
+See the Company’s response to subpart (b).J-
+k. The generation risks would be transferred through the ESA.
+d. The Company is not proposing to direct-assign specific distribution costs on a per- 
+customer basis and the requested calculation would be customer-specific. That said, 
+distribution assets typically have a useful life of 30-50 years. The distribution minimum 
+is designed to ensure that large load customers are allocated their share of system 
+distribution costs in proportion to their contracted capacity.
+does not utilize their contracted capacity, hence the proposed minimum revenue 
+requirement.
+Attach25ty^J^)5
+Page 6 of 6
+h. The Company is not proposing to direct-assign specific transmission costs on a per- 
+customer basis and the requested calculation would be customer-specific. That said, 
+transmission assets typically have a useful life of 50 years. The transmission minimum is 
+designed to ensure that large load customers are allocated their share of system 
+transmission costs in proportion to their contracted capacity.
+e. The Company has filed the 85% transmission minimum to prevent one customer from 
+requesting excess unused capacity and associated infrastructure that is subsidized by 
+other customers.
+g. See the Company’s response to subpart (c) for the direct connect transmission assets from 
+the transmission system to the customer’s property. For broader system reliability 
+projects, the risks are transferred through the ESA.
+i. The Company has filed the 60% generation minimum to prevent one customer from 
+requesting excess unused capacity and associated infrastructure that is subsidized by 
+other customers.
+1. The Company is not proposing to direct-assign specific generation costs on a per- 
+customer basis and the requested calculation would be customer-specific. That said,
+generation assets typically have long useful lives. The generation minimum is designed 
+to ensure that large load customers are allocated their share of system generation costs in 
+proportion to their contracted capacity.
+
+===PAGE 57===
+250750005
+ATTACHMENT BSP-4
+Real Energy Advancement League
+Interrogatory Responses
+To
+
+===PAGE 58===
+Question No. 16
+Response:
+The following response to Question No. 16 of the First Set of Interrogatories and Requests for 
+Production of Documents propounded by Retail Energy Advancement League received on June 
+13, 2025, was prepared by or under the supervision of:
+Does your proposed application of GS-5 generation demand charge to CSP customers create the 
+potential for discrimination, in that the charge recovers capacity costs for which the CSP 
+customer is already paying its CSP supplier? Explain the rationale for your answer.
+J. Scott Gaskill
+Vice President - Regulatory Affairs 
+Dominion Energy Services, Inc.
+The Company’s proposed minimum demand charge is reasonable, uniform, and non- 
+discriminatory as required by Virginia law. The minimum generation charge is designed to 
+reasonably allocate costs to customers that cause such costs to be incurred and to ensure that 
+those costs are not borne by other customers.
+Virginia Electric and Power Company 
+Case No. PUR-2025-00058
+Retail Energy Advancement League
+First Set
+Attach250t^(J^)5
+Page 1 of 1
+
+===PAGE 59===
+250750005
+ATTACHMENT BSP-5
+Interrogatory Responses
+To
+Commission Staff
+
+===PAGE 60===
+Question No. 310
+Response:
+Journal Entries
+If cash is elected to meet collateral requirements
+Dr. FERC Account 131 Cash
+Cr. FERC Account 235 Customer Deposit
+When cash is used to settle terminated agreements
+Dr. FERC Account 235 Customer Deposit
+Jackie H. Harvin
+Accounting Supervisor
+Dominion Energy Services. Inc.
+Please refer to page 24, lines 7-8, of the direct testimony of Company witness Stan Blackwell. 
+How does the Company intend to treat this collateral from an accounting perspective? For 
+example, will the collateral received, or pledged, be used to offset rate base additions associated 
+with the customer's cost of service?
+Collateral is not expected to have accounting or rate making implications until received and/or 
+drawn. Pursuant to line 8 of the referenced testimony, customers may satisfy collateral 
+requirements by posting cash. If cash is utilized, the customer deposit liability will offset rate 
+base. If non-cash alternatives are elected to meet collateral requirements (Parental guarantees, 
+letters of credit, or surety bonds) when drawn, the proceeds will be credited to base rate cost of 
+service.
+The following response to Question No. 310 of the Seventeenth Set of Interrogatories and Requests 
+for Production of Documents propounded by Virginia State Corporation Commission Staff 
+received on June 30, 2025, was prepared by or under the supervision of:
+Attach25ty^J^)5
+Page 1 of2
+Virginia Electric and Power Company
+Case No. PUR-2025-00058
+Virginia State Corporation Commission Staff
+Seventeenth Set
+Paul M. McLeod
+Director, Regulatory Accounting 
+Dominion Energy Services, Inc.
+
+===PAGE 61===
+Cr. Combination of operating accounts (400 series) or FERC Account 400
+When non-cash alternatives are drawn to settle terminated agreements
+Dr. FERC Account 131 Cash
+Cr. Combination of operating accounts (400 series) or FERC Account 400
+Page 2 of2

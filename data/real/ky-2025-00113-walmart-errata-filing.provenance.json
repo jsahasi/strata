@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Kentucky",
+  "commission": "Kentucky Public Service Commission",
+  "docket": "2025-00113",
+  "proceeding": "Electronic Application of Kentucky Utilities Company for an Adjustment of its Electric Rates, and Approval of Certain Regulatory and Accounting Treatments",
+  "how_obtained": "Downloaded the PDF with curl from the Kentucky PSC public electronic case filing path (psc.ky.gov/pscecf/...), which serves case documents without a login. Extracted text with PyMuPDF using sorted-block extraction (page.get_text('text', sort=True)) so the margin line numbers stay on the same line as the testimony text they number. Pages are joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation was applied; the spacing, running heads and word-spacing artefacts are exactly what the extractor produced.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://psc.ky.gov/pscecf/2025-00113/lisom%40spilmanlaw.com/11052025034301/2025-00113_-_Walmart_Errata_Filing_%28Perry_Direct_Testimony%29.pdf",
+  "document_title": "Walmart Inc.'s Errata Filing (Perry Direct Testimony)",
+  "filing_date": "2025-11-05",
+  "filer": "Walmart Inc. (counsel: Spilman Thomas & Battle, PLLC)",
+  "witness": null,
+  "document_type": "Errata notice with certificate of service",
+  "pages": 3,
+  "version_role": "errata cover notice",
+  "version_pair_with": "ky-2025-00113-perry-direct-testimony-errata-clean.txt",
+  "notes": "States the correction in machine-checkable form: 'Page 20, Line 14: Replace \"intraclass\" with \"interclass\".' This is the ground truth a version-diff can be graded against.",
+  "sha256": "b76ed4a6b81353e595160cc8fac50ba3806620d3cb3d7dbb55c13eb3d56f074b",
+  "bytes": 5621,
+  "retrieved_at": "2026-08-04T16:46:09Z",
+  "source_pdf_sha256": "8fd550636c173377551db901c90e43cddad4d8811aae51b936eaea2550ce4e87",
+  "source_pdf_bytes": 53802
+}

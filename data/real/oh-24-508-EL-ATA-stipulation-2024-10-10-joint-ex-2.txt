@@ -1,0 +1,631 @@
+David F. Proaño 
+direct dial: 216.861.7834 
+dproano@bakerlaw.com 
+ 
+ 
+ 
+October 10, 2024 
+The Honorable Gregory Price 
+The Honorable David Hicks 
+The Honorable Isabel Marcelletti 
+Attorney Examiners 
+Public Utilities Commission of Ohio 
+180 East Broad Street, 11th Floor 
+Columbus, OH 43215-3793 
+Re: 
+In the Matter of the Application of Ohio Power Company For New Tariffs Related To 
+Data Centers And Mobile Data Centers - Case No. 24-508-EL-ATA 
+   
+Dear Examiners, 
+I am pleased to submit the enclosed Joint Stipulation and Recommendation for the 
+Commission’s consideration in resolving this case, which is supported by a majority of the 
+parties in this case. The Signatory Parties remain open to including other parties willing to join 
+the Joint Stipulation and Recommendation, and in the meantime request consideration and 
+approval by the Commission.  
+ 
+Should you have any questions concerning this submission, please contact me at the information 
+above. 
+Respectfully submitted, 
+/s/ David F. Proaño 
+David F. Proaño 
+Counsel of Amazon Data Services, Inc. 
+cc:  All Counsel of Record 
+ 
+Appx. Page 439 of 867
+1 
+ 
+BEFORE THE 
+PUBLIC UTILITIES COMMISSION OF OHIO 
+ 
+ 
+In the Matter of the Application of Ohio 
+Power Company for New Tariffs Related to 
+Data Centers and Mobile Data Centers  
+) 
+) 
+) 
+) 
+ 
+Case No. 24-0508-EL-ATA 
+ 
+ 
+ 
+JOINT STIPULATION AND RECOMMENDATION 
+ I. 
+Introduction 
+Rule 4901-1-30, Ohio Administrative Code (OAC), provides that any two or more 
+parties to a proceeding may enter into a written stipulation covering the issues presented in 
+such a proceeding. This document sets forth the understanding and agreement of the parties 
+who have signed below (“Signatory Parties”) and jointly present to the Public Utilities 
+Commission of Ohio (“Commission”) this Joint Stipulation and Recommendation 
+(“Stipulation”) in order to resolve all of the issues raised in this proceeding through the 
+Application filed by Ohio Power Company (“AEP Ohio” or the “Company”) on May 13, 
+2024, proposing new tariffs related to data centers and mobile data centers. 
+This Stipulation is a product of lengthy, serious, arm’s-length bargaining among the 
+Signatory Parties and other parties who chose not to sign the Stipulation (all of whom are 
+capable, knowledgeable parties).  All parties were invited to discuss and negotiate this 
+Stipulation, and all parties participated in negotiations. This Stipulation is supported by 
+adequate data and information. As a package, the Stipulation: benefits customers and the 
+public interest; represents a just and reasonable resolution of all issues in this proceeding; 
+violates no regulatory principle or practice; and complies with and promotes the policies 
+and requirements of Title 49 of the Ohio Revised Code.  This Stipulation represents an 
+accommodation of the diverse interests represented by the Signatory Parties and, though not 
+Appx. Page 440 of 867
+2 
+ 
+binding, is entitled to careful consideration by the Commission. For purposes of resolving 
+the issues raised by these proceedings, the Signatory Parties agree to fully support adoption 
+of the Stipulation without modification in this proceeding.   
+II. 
+Recitals 
+WHEREAS, on May 13, 2024, AEP Ohio filed an Application in this proceeding 
+seeking to establish new tariffs related to data centers and mobile data centers; 
+WHEREAS, the parties engaged in extensive discovery in this proceeding;  
+WHEREAS, the Signatory Parties found common ground through the issues 
+developed during the discovery process and settlement discussions commenced concerning 
+those developing issues; and 
+WHEREAS, this Stipulation is the result of serious discussion and compromise of 
+complex issues and involves substantial benefits that would not otherwise have been 
+achievable, and is not intended to reflect the views or proposals which any individual party 
+may have advanced acting unilaterally. 
+NOW, THEREFORE, the Signatory Parties agree and recommend resolution of the 
+Application and related issues through this Stipulation. 
+III. 
+Joint Recommendations of Signatory Parties 
+A. AEP Ohio’s Application 
+1. The Signatory Parties recommend that the Commission adopt the Application in 
+this case as modified by this Stipulation. 
+B. Tariff Applicability 
+2. The name of Schedule DCP (Data Center Power) will be changed to Schedule EIC 
+(Electricity-Intensive Customer) and will apply to any electric service agreement 
+Appx. Page 441 of 867
+3 
+ 
+(ESA) signed after the tariff effective date for new load greater than 50 MW at a 
+Single Location if AEP Ohio provides Proof of a Transmission Capacity 
+Constraint.  Schedule EIC will not apply to loads greater than 50 MW at a Single 
+Location that have already signed an LOA or ESA by the effective date of the new 
+tariff.  
+a. For purposes of Schedule EIC, “Single Location” shall mean an area that is 
+owned, operated, or leased by the customer, which can include a contiguous 
+lot to the area with the customer’s metering point, regardless of easements, 
+public thoroughfares, transportation rights-of-way, or utility rights-of-way. 
+b. Transmission Capacity Constraint shall mean existing AEP transmission 
+infrastructure (above 100 kV) is unable to serve the customer while still 
+complying with FERC/NERC reliability requirements. 
+c. Proof of a Transmission Capacity Constraint shall be established through 
+the completion of a study by AEP Ohio which identifies the transmission 
+load capacity at the proposed customer location, and confirms that the 
+proposed customer location has insuffiction transmission load capacity, 
+thereby requiring significant transmission system upgrades. Such study 
+shall be shared with the customer or its authorized third party consultant to 
+verify the study’s conclusions.  
+d. Schedule EIC shall not be limited in its application to specific customer 
+types, industries, businesses or operational profiles. 
+e. “ESA” or “Contract” means the service agreement entered into by the 
+customer and AEP Ohio. 
+ 
+ 
+Appx. Page 442 of 867
+4 
+ 
+C. Contract Term 
+3. Customers taking service under Schedule EIC will have the option of selecting one 
+of the following three options for the term of ESA: 
+a. Term A: Term of the ESA will equal the Load Ramp Period (no greater than 
+four years as further defined below in Section G) plus 8 years, with an option 
+to exit after year 5, with a 1-year exit fee. 
+b.  Term B: Term of the ESA will equal the Load Ramp Period plus 10 years, 
+with an option to exit after year 7, with no exit fee. 
+c. Term C: Term of the ESA will equal the Load Ramp Period plus 12 years, 
+with an option to exit after year 9, with no exit fee. 
+D. Collateral 
+4. All customers served under Schedule EIC with a Contract Capacity of less than 75 
+MW for a Single Location will remain subject to the security/collateral requirements 
+under the then existing GS tariff (or successor tariff). 
+a. For purposes of Schedule EIC, the terms “Data Center” and “Mobile Data 
+Center” proposed in the Application will be eliminated. 
+b. Any customer served under Schedule EIC with a Contract Capacity of 75 
+MW or more for a Single Location will be subject to the security/collateral 
+requirements proposed in the Application if the customer does not have 
+either (a) a credit rating of at least A- from S&P Global Inc. and A3 from 
+Moody’s Corporation or (b) cash and cash equivalents on an audited balance 
+sheet prepared in accordance with Generally Accepted Accounting Principles 
+greater than ten times the collateral requirement. 
+ 
+Appx. Page 443 of 867
+5 
+ 
+E. Minimum Demand 
+5. For Schedule EIC customers, the monthly minimum billing demand will be no less 
+than the greater of (a) X% of the customer’s highest previously established monthly 
+billing demand during the prior 11 months, where X refers to the maximum 
+minimum demand corresponding to the Term (A through C) the customer selects, or 
+(b) a percentage of the customer’s Contract Capacity according to the following 
+schedule: 
+Contract Capacity 
+Minimum Demand 
+50,001 kW to 75,000 kW 
+32,500 kW plus 85% of marginal amount over 
+50,000 kW 
+75,001 kW and above 
+53,750 kW plus 100% of marginal amount over 
+75,000 kW; provided, however, that the minimum 
+demand will not exceed: 
+• 85% of the total Contract Capacity for Term 
+A customers; 
+• 80% of the total Contract Capacity for Term 
+B customers; or 
+• 75% of the total Contract Capacity for Term 
+C customers. 
+ 
+a. For purposes of Schedule EIC, the “Contract Capacity” shall mean the 
+customer specified amount of monthly peak load requirements for each 
+month as set forth in the ESA. 
+F. Public Posting of Contract Forms   
+6. AEP Ohio shall post the standard contract and form applications and contracts it 
+uses for all primary and transmission customers (whether served under Schedule 
+EIC or otherwise) on a publicly available website, including load study applications, 
+Appx. Page 444 of 867
+6 
+ 
+CIAC agreements, LOAs, new service applications, ramp-up agreements, ESAs and 
+any other form documents. These publicly available forms shall comply with the 
+terms of AEP Ohio’s Commission-approved tariffs. Further, AEP Ohio shall post its 
+standard Schedule EIC contracting process on a publicly available website. 
+G. Load Ramp Period 
+7. The “Load Ramp Period” will commence upon energization and will not exceed 
+four years, and the capacity used for determining minimum monthly billing demand 
+will be no less than: 
+a. In Year 1, 30% of Contract Capacity. 
+b. In Year 2, 50% of Contract Capacity. 
+c. In Year 3, 70% of Contract Capacity. 
+d. In Year 4, 90% of Contract Capacity. 
+The definition of “Load Ramp Period” in the Application will be modified 
+accordingly, and the definition of “Load Ramp Contract Capacity” in the 
+Application will be eliminated. 
+H. Resizing Capacity for Existing Customers   
+8. To assist in alleviating transmission constraints, AEP Ohio shall initiate a program 
+that will allow existing customers (i.e., those customers with an ESA executed prior 
+to the effective date of Schedule EIC) the opportunity to reduce or “right size” their 
+existing Contract Capacity upon implementation of the new Schedule EIC, and 
+conduct annual reviews to allow customers to reduce their existing Contract 
+Capacity to ensure that they have not contracted for too much capacity, without 
+triggering the application of the new tariffs. 
+ 
+Appx. Page 445 of 867
+7 
+ 
+I. Process for Signing Up New EIC Customers 
+9. Until Schedule EIC becomes effective and is implemented, prospective large load 
+customers will remain in AEP Ohio’s Central Ohio queue, unless such customer 
+load can be served by existing transmission system capacity. The following process 
+applies to a new facility served under Schedule EIC: 
+a. Step One: Request for Load Study. The customer will request that AEP 
+Ohio conduct a formal study of the prospective load. The customer must 
+demonstrate it is making reasonable efforts to gain possession and control of 
+land (through an MOU or other showing) and provide a specific location, 
+proposed load ramp, and proposed final Contract Capacity load. AEP Ohio 
+will charge a one-time fee of $10,000 for each load study to cover the study 
+cost. Customers currently in AEP Ohio’s Central Ohio queue must submit a 
+study request and pay the fee within 120 days of the effective date of Tariff 
+EIC or lose their spot in the queue. 
+b. Step Two: AEP Ohio Determines Service Plan. AEP Ohio will conduct the 
+load study and determine a service plan for the customer. AEP Ohio will 
+make reasonable efforts to complete the load study within (i) 60 days if 
+regional transmission upgrades are needed to serve the customer or (ii) 45 
+days (for all other situations). AEP Ohio will make reasonable efforts to 
+prioritize customers on a “first come, first served” basis, but strict adherence 
+to this principle may be impossible based on regional and local transmission 
+grid conditions, location of customer property, the grid location of the 
+upgrades, etc. 
+Appx. Page 446 of 867
+8 
+ 
+c. Step Three: Contracting. Any buildout costs and CIAC will be addressed 
+through an LOA consistent with AEP’s then-existing tariff provisions that 
+apply to all customers (the “CIAC Amount”). The LOA will not require 
+credit security in an amount greater than the CIAC Amount. AEP Ohio will 
+also present the customer an ESA under the EIC tariff that will include a 
+good faith estimate of the energization date of service, but if regional 
+transmission upgrades are needed, the in-service date estimate will be high-
+level and contingent on numerous factors outside of AEP Ohio’s control 
+(e.g., a PJM competitive window). The ESA Contract Capacity during the 
+Load Ramp Period will be set at 0 MW and only become effective upon 
+energization. Once the customer and AEP Ohio agree to the terms of an LOA 
+and ESA, the customer will have 90 days to sign the LOA and ESA. 
+Customer must demonstrate control over the property (e.g. own, lease or 
+have an option) before contracts are executed. If the customer declines to 
+sign within this time, the contracts will be automatically withdrawn and the 
+customer will lose their spot in the queue. 
+d. Step Four: Construction and Energization. AEP Ohio will include the 
+customer’s load in its PJM forecast, and the necessary transmission 
+infrastructure to serve the customer will be constructed pursuant to the PJM 
+transmission planning process. Once all infrastructure is in place to begin 
+service, AEP Ohio will energize the customer and the ESA will begin. If 
+electric infrastructure is not in place to serve the customer by the estimated 
+in-service date in the ESA, the end date of the ESA will not change, and 
+Contract Capacity for the Load Ramp Period will remain at 0 MW until AEP 
+Appx. Page 447 of 867
+9 
+ 
+Ohio has demonstrated that the customer can be served by available 
+transmission facilities and the customer is energized. 
+J. Assigning Retail Capacity to Another Customer 
+10. If a customer (“Assigning Customer”) wishes to reduce its Contract Capacity under 
+Schedule EIC during the term of the ESA, it may request that AEP Ohio assign up to 
+50% of its Contract Capacity (“Reallocated Capacity”) to another Schedule EIC 
+customer (“Receiving Customer”) in lieu of continuing minimum demand charges 
+for that Reallocated Capacity and/or paying some or all of its exit fee. If a successful 
+assignment is made, the Assigning Customer would be relieved of its contractual 
+obligations going forward relating to the assigned load. Consistent with any 
+applicable legal or regulatory requirements, AEP Ohio will make a good faith effort 
+to accommodate capacity assignments. 
+K. Emergency Interruption 
+11. Customers taking service under Schedule EIC may be interrupted during grid 
+emergencies under the same circumstances as any other customer, including any 
+applicable new regulation or future rule changes. 
+L. Behind-the-Meter Generation 
+12. Schedule EIC will expressly state that customers taking service under that schedule 
+may interconnect behind-the-meter generation and/or co-located load on the same 
+terms and under the applicable interconnection rules (PUCO, PJM OATT and PJM 
+Manuals) as any other customer, including any applicable new regulation or future 
+rule changes. AEP Ohio’s language in the section titled Customer-Owned 
+Generation and Emergency Conditions will not be included in any schedule. The 
+Appx. Page 448 of 867
+10 
+ 
+minimum demand calculation will allow netting to include consideration of the 
+customer’s firm commitments to reduce load with behind-the-meter generation. 
+M. Exit Fee and Minimum Demand Charge Revenue 
+13.  All exit fee and minimum demand charge revenue collected by AEP Ohio under 
+Schedule EIC shall be credited to the BTCR revenue requirement or deferred as a 
+regulatory liability with a carrying charge at AEP Ohio’s weighted average cost of 
+capital. 
+N. Contract Renewal 
+14.  Following the conclusion of a Schedule EIC ESA, the Customer will be served 
+under the terms of AEP Ohio’s then existing GS tariff (or any successor tariff). 
+O. SSO 
+15. AEP Ohio’s SSO proposal will be modified by the following provision:  Customers 
+served under Schedule EIC and all other customers having an existing ESA with 
+Contract Capacity over 25 MW that are part of the 5,000 MW expansion currently 
+under ESA will not be eligible to return to the existing default SSO auction product. 
+Instead, the customers that fall under these tariff requirements and those that have an 
+existing ESA with Contract Capacity over 25 MW will be served by a separate yet 
+to be determined competitive and transparent process where competitive suppliers, 
+subject to qualifying criteria approved by the Commission, will provide electric 
+power and energy that is based on real time energy and a pass through of capacity 
+plus an adder for ancillary costs and the supplier’s cost. 
+ 
+ 
+Appx. Page 449 of 867
+11 
+ 
+P. MDC/FLT Tariff 
+16. The proposed Schedule MDC/FLT (Mobile Data Center/Flexible Load Tariff) will 
+be eliminated, without prejudice to AEP Ohio’s ability to propose tariff provisions 
+related specifically to mobile data centers in a future proceeding, which any party to 
+this proceeding may oppose or support. 
+Q. Initiation of Commission-Ordered Investigation (“COI”) 
+17. The Signatory Parties request that the Commission initiate a COI that will evaluate 
+opportunities that could positively impact near term transmission capacity constraint 
+issues on AEP Ohio’s system including utility-side opportunities such as utility data 
+transparency, operational efficiencies, reconductoring and market-driven 
+opportunities such as battery storage, surplus interconnection of distribution-level 
+generation and storage, and virtual power plants, and grid-enhancing technologies 
+from both utility and market driven opportunities. 
+R. The Three-Part Test for Commission Approval  
+18. The Signatory Parties agree that the Stipulation satisfies the three-part test 
+traditionally used by the Commission to consider stipulations.  Specifically, the 
+Signatory Parties agree that: 
+a. The Stipulation is a product of serious bargaining among capable, 
+knowledgeable parties representing diverse interests.  
+b. The Stipulation does not violate any important regulatory principle or 
+practice. 
+c. The Stipulation, as a whole, benefits customers and the public interest. 
+ 
+ 
+Appx. Page 450 of 867
+12 
+ 
+IV.   Procedural Matters 
+A. 
+Certain of the Signatory Parties will file testimony in support of the 
+Stipulation, subject to the Commission’s ruling on the Signatory Parties’ motion for a 
+continuance of the scheduled evidentiary hearing, which is being submitted concurrently 
+with the Stipulation. 
+B. 
+Except for enforcement purposes or to establish that the terms of the 
+Stipulation are lawful, neither this Stipulation nor the information and data contained herein 
+or attached hereto shall be cited as a precedent in any future proceeding for or against any 
+Signatory Party, if the Commission approves the Stipulation.  Nor shall the acceptance of 
+any provision within this Stipulation be cited by any party or the Commission in any forum 
+so as to imply or state that any Signatory party agrees with any specific provision of the 
+Stipulation.  More specifically, no specific element or item contained in or supporting this 
+Stipulation shall be construed or applied to attribute the results set forth in this Stipulation 
+as the results that any Signatory Party might support or seek, but for this Stipulation in these 
+proceedings or in any other proceeding.  This Stipulation contains a combination of 
+outcomes that reflects an overall compromise involving a balance of competing positions, 
+and it does not necessarily reflect the position that one or more of the Signatory Parties 
+would have taken on any individual issue.  Rather the Stipulation represents a package that, 
+taken as a whole, is acceptable for the purposes of resolving all contested issues without 
+resorting to litigation.  The Signatory Parties believe that this Stipulation, taken as a whole, 
+represents a reasonable compromise of varying interests.      
+C. 
+By their signatures, the Signatory Parties indicate their support for the 
+Stipulation.  The Signatory Parties agree not to oppose this Stipulation.  If the Stipulation is 
+Appx. Page 451 of 867
+13 
+ 
+contested, no Signatory Party will oppose an application for rehearing designed to defend or 
+restore the terms of this Stipulation. 
+D. 
+This Stipulation is conditioned upon adoption of the Stipulation by the 
+Commission in its entirety and without material modification. Each Signatory Party has the 
+right, in its sole discretion, to determine whether the Commission’s approval of this 
+Stipulation constitutes a “material modification” thereof. If the Commission rejects or 
+materially modifies all or any part of this Stipulation, any Signatory Party shall have the 
+right within thirty days of issuance of the Commission’s order to apply for rehearing. The 
+Signatory Parties agree that they will not oppose or argue against any other Party’s 
+application for rehearing that seeks to uphold the original unmodified Stipulation.  If the 
+Commission does not adopt the Stipulation without material modification upon any 
+rehearing ruling, then within thirty days of such Commission rehearing ruling any Signatory 
+Party may terminate its Signatory Party status and withdraw from the Stipulation by filing a 
+notice with the Commission. No Signatory Party shall file a Notice of Withdrawal without 
+first negotiating in good faith with the other Signatory Parties to achieve an outcome that 
+substantially satisfies the intent of the Stipulation. If a new agreement achieves such an 
+outcome, the Signatory Parties will file the new agreement for Commission review and 
+approval. If the discussions to achieve an outcome that substantially satisfies the intent of 
+the Stipulation are unsuccessful, and a Signatory Party files a Notice of Withdrawal, then 
+the Commission will convene an evidentiary hearing to afford that Signatory Party the 
+opportunity to contest the Stipulation by presenting evidence through witnesses, to cross 
+examine witnesses, to present rebuttal testimony, and to brief all issues that the Commission 
+shall decide based upon the record and briefs. If the discussions to achieve an outcome that 
+substantially satisfies the intent of the Stipulation are successful, then some or all of the 
+Appx. Page 452 of 867
+14 
+ 
+Signatory Parties shall submit the amended Stipulation to the Commission for approval after 
+a hearing if necessary. 
+E. 
+Unless the Signatory Party exercises its right to terminate its Signatory Party 
+status or withdraw as described above, each Signatory Party shall act in good faith and use 
+reasonable efforts to support the reasonableness of this Stipulation before the Commission 
+in this proceeding, and to cause its counsel to do the same, and in any appeal it participates 
+in from the Commission's adoption and/or enforcement of this Stipulation. The Signatory 
+Parties also agree to urge the Commission to accept and approve the terms hereof as 
+promptly as possible. 
+ 
+ 
+ 
+ 
+[space intentionally blank – signature page follows] 
+ 
+ 
+Appx. Page 453 of 867
+15 
+ 
+IN WITNESS WHEREOF, this Stipulation and Recommendation has been signed 
+by the authorized agents of the undersigned Signatory Parties as of this 10th day of October 
+2024. 
+ 
+/s/David F. Proano 
+ 
+ 
+ 
+ 
+David F. Proaño 
+On Behalf of Amazon Data Services, Inc. 
+ 
+ 
+ 
+/s/Amily A. Imbrogno** 
+ 
+ 
+ 
+Amily A. Imbrogno 
+On Behalf of Ohio Energy Leadership 
+Council 
+ 
+ 
+/s/Trent A. Dougherty** 
+ 
+ 
+ 
+Trent A. Dougherty 
+On Behalf of Enchanted Rock, LLC 
+ 
+ 
+/s/Matthew R. Pritchard** 
+ 
+ 
+ 
+Matthew R. Pritchard 
+On Behalf of the Retail Energy Supply 
+Association 
+ 
+ 
+/s/Christopher T. Kennedy**  
+ 
+ 
+Christopher T. Kennedy 
+On Behalf of Sidecat LLC, an Affiliate of 
+Meta Platforms, Inc. 
+ 
+ 
+ 
+/s/James  F. Lang**  
+ 
+ 
+ 
+James F. Lang 
+On Behalf of Microsoft Corporation 
+ 
+ 
+ 
+/s/Stacie Cathcart**  
+ 
+ 
+ 
+Stacie Cathcart 
+On Behalf of Interstate Gas Supply 
+ 
+ 
+/s/Michael J. Settineri** 
+ 
+ 
+ 
+Michael J. Settineri 
+On Behalf of Constellation Energy Generation, 
+LLC and Constellation NewEnergy, Inc. 
+ 
+ 
+/s/Kimberly A. Bojko** 
+ 
+ 
+ 
+Kimberly A. Bojko 
+On Behalf of the Ohio Manufacturers’ 
+Association Energy Group 
+ 
+ 
+/s/Nikhil Vijayka** 
+ 
+ 
+ 
+ 
+Nikhil Vijaykar 
+On Behalf of the Data Center Coalition 
+ 
+ 
+/s/Devin D. Parram** 
+ 
+ 
+ 
+Devin D. Parram 
+On Behalf of Google LLC 
+ 
+ 
+ 
+/s/Angela Paul Whitfield** 
+ 
+ 
+ 
+Angela Paul Whitfield 
+On Behalf of the Ohio Blockchain Council 
+ 
+ 
+ 
+ 
+/s/James Dunn ** 
+ 
+ 
+ 
+James Dunn 
+On Behalf of One Energy Enterprises Inc. 
+ 
+ 
+ 
+** by signature means by DFP with authority 
+from counsel of record for Signatory Party 
+Appx. Page 454 of 867
+16 
+ 
+CERTIFICATE OF SERVICE 
+ 
+ 
+I certify that the foregoing was filed electronically through the Docketing 
+Information System of the Public Utilities Commission of Ohio on this 10th day of October, 
+2024. In accordance with Rule 4901-1-05, Ohio Administrative Code, the PUCO’s e-filing 
+system will electronically serve notice of the filing of this document upon the following 
+parties. In addition, I hereby certify that a service copy of the foregoing was sent by, or on 
+behalf of, the undersigned counsel to the following parties of record, via email. 
+/s David F. Proaño___________________ 
+David F. Proaño (0078838) 
+Counsel for Amazon Data Services, Inc. 
+ 
+SERVICE LIST 
+ 
+lmkurtz@BKLlawfirm.com; 
+khelfrich@ohioec.org; 
+jkylercohn@BKLlawfirm.com; 
+lkaleps@ohioec.org; 
+Stacie.Cathcart@igs.com; 
+glpetrucci@vorys.com; 
+Natalia.Messenger@igs.com; 
+mjsettineri@vorys.com; 
+dproano@bakerlaw.com; 
+jreckert@vorys.com; 
+tathompson@bakerlaw.com; 
+cynthia.brady@constellation.com; 
+CPirik@dickinson-wright.com; 
+jesse.rodriguez@constellation.com; 
+todonnell@dickinsonwright.com; 
+mark.hayden@constellation.com; 
+nvijaykar@keyesfox.com; 
+slee@spilmanlaw.com;  
+kennedy@whitt-sturtevant.com; 
+dparram@brickergraydon.com; 
+cockrell@whitt-sturtevant.com; 
+dborchers@brickergraydon.com; 
+rdove@keglerbrown.com; 
+john.gomoll@constellation.com; 
+cgrundmann@spilmanlaw.com; 
+jlang@calfee.com; 
+dwilliamson@spilmanlaw.com; 
+mbarbara@calfee.com; 
+kherrnstein@brickergraydon.com; 
+lmcalister@amppartners.org; 
+trent@hubaydougherty.com;  
+ghull@amppartners.org; 
+bojko@carpenterlipps.com; 
+paul@carpenterlipps.com; 
+easley@carpenterlipps.com; 
+rebekah@gloverlegalservices.com; 
+william.michael@occ.ohio.gov; 
+John.varanese@occ.ohio.gov; 
+jdunn@oneenergyllc.com; 
+ktreadway@oneenergyllc.com; 
+mwarnock@oneenergyllc.com; 
+mpritchard@mcneeslaw.com; 
+stephanie.chmiel@thompsonhine.com; 
+rmains@brickergraydon.com; 
+nbobb@keglerbrown.com; 
+lappaya@brickergraydon.com; 
+aimbrogno@meyersroman.com; 
+stnourse@aep.com;  
+mjschuler@aep.com; 
+talexander@beneschlaw.com 
+khehmeyer@beneschlaw.com  
+smeng@beneschlaw.com 
+vanessa.boddy@thompsonhine.com 
+ 
+Appx. Page 455 of 867
+This foregoing document was electronically filed with the Public Utilities
+Commission of Ohio Docketing Information System on
+10/10/2024 11:20:50 AM
+in
+Case No(s). 24-0508-EL-ATA
+Summary: Stipulation Joint Stipulation and Recommendation electronically filed by
+Mr. David F. Proano on behalf of Amazon Data Services, Inc..
+Appx. Page 456 of 867

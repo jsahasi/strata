@@ -1,0 +1,1423 @@
+                                  Ellis Phase III OCS – 6D
+
+
+       BEFORE THE PUBLIC SERVICE COMMISSION OF UTAH
+
+
+
+
+In the Matter of the Application of           )  Docket No. 24-035-04
+Rocky Mountain Power for Authority to   )
+Increase Its Retail Electric Utility Service )  Phase III Direct Testimony
+Rates In Utah and for Approval of Its      )  of Mark Ellis
+Proposed Electric Service Schedules      )  For the Office of
+And Electric Service Regulations           )  Consumer Services
+                                                           )
+
+
+
+
+
+                               February 7, 2025                               Table of Contents
+
+                                                         Page
+
+INTRODUCTION AND PURPOSE OF TESTIMONY ........................................... 1
+
+WITNESS BACKGROUND AND EXPERIENCE.................................................. 2
+
+TESTIMONY OVERVIEW AND KEY FINDINGS .................................................. 3
+
+WILDFIRE LOSS PROBABILITY DISTRIBUTION ANALYSIS ........................... 8
+
+ALTERNATIVE APPROACH TO SELF-INSURANCE ....................................... 21
+
+CONCLUSION .................................................................................................... 28     Phase III OCS-6D Ellis           24-035-04                     Page 1
+
+
+ 1       INTRODUCTION AND PURPOSE OF TESTIMONY
+
+ 2   Q.   WHAT IS YOUR NAME, OCCUPATION AND BUSINESS ADDRESS?
+
+ 3   A.   My name is Mark Ellis. I am a self-employed independent consultant and
+
+ 4           testifying expert on finance and economics in utility regulatory
+
+ 5         proceedings. My address is 8595 Nottingham Place, La Jolla, California
+
+ 6         92037.
+
+ 7   Q.   HAVE YOU PREVIOUSLY SUBMITTED TESTIMONY IN THIS
+
+ 8       DOCKET?
+
+ 9   A.    No. This is my first time testifying both in this docket and before the Public
+
+10         Service Commission of Utah.
+
+11   Q.   HAVE YOU PREPARED ANY EXHIBITS IN SUPPORT OF YOUR
+
+12       DIRECT TESTIMONY?
+
+13   A.    Yes. I have prepared Exhibits OCS 6.1D through 6.2D, which are attached
+
+14           to this testimony.
+
+15   Q.   WHAT IS THE PURPOSE OF YOUR TESTIMONY?
+
+16   A.       I will be testifying on the topic of utility wildfire liability self-insurance. I will
+
+17          provide an overview of issues I believe the Commission should take into
+
+18          consideration in investigating the potential implementation of wildfire
+
+19              liability self-insurance for PacifiCorp. I will also describe an alternative
+
+20         design for a wildfire liability self-insurance program I recommend the
+
+21        Commission explore in its consideration of self-insurance.     Phase III OCS-6D Ellis           24-035-04                     Page 2
+
+22       WITNESS BACKGROUND AND EXPERIENCE
+
+23   Q.   PLEASE DESCRIBE YOUR RELEVANT BACKGROUND AND
+
+24       EXPERIENCE ON THIS TOPIC.
+
+25   A.       I have over 30 years of experience in the energy industry, in various roles
+
+26          related to finance, risk management, strategy, and economics. I have
+
+27        been working as an independent consultant and testifying expert in utility
+
+28          regulatory proceedings since 2020. Previously, I held several senior
+
+29          positions over 15 years at Sempra, including Chief of Corporate Strategy
+
+30        and Chief Economist.
+
+31         Before Sempra, I worked as a consultant in McKinsey’s energy practice, in
+
+32           international project development for ExxonMobil, and in industrial
+
+33         demand-side management for Southern California Edison. I have an M.S.
+
+34         from MIT’s Technology and Policy Program, where I focused on utility
+
+35           policy and conducted research in the MIT Energy Lab, and a B.S. in
+
+36         mechanical engineering from Harvard.
+
+37         With respect to the topic of wildfire liability self-insurance, I provided
+
+38           written direct testimony for The Utility Reform Network (TURN) in PG&E’s
+
+39        2023 general rate case. In that proceeding, TURN, the California Public
+
+40             Utilities Commission, and PG&E adopted my recommendation to
+
+41         implement a wildfire liability self-insurance program.1
+
+
+
+
+                   1 https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M500/K984/500984866.docx.     Phase III OCS-6D Ellis           24-035-04                     Page 3
+
+42                I am including in this testimony, as Exhibit 6.1D, a statement of
+
+43           qualifications containing additional details about my background.
+
+44       TESTIMONY OVERVIEW AND KEY FINDINGS
+
+45   Q.   PLEASE PROVIDE AN OVERVIEW OF YOUR TESTIMONY.
+
+46   A.       I am testifying on the topic of utility wildfire liability self-insurance. In my
+
+47          testimony, I provide an overview of issues I believe the Commission
+
+48         should take into consideration in investigating the potential implementation
+
+49           of wildfire liability self-insurance for PacifiCorp. I then explain an analysis I
+
+50         conducted of PacifiCorp’s wildfire liability probability distribution that
+
+51          provides insight into the nature of PacifiCorp’s wildfire liability risk and the
+
+52           relative merits of self- and commercial insurance. Finally, I explore a form
+
+53           of self-insurance that could potentially enable PacifiCorp to implement
+
+54          self-insurance more cost-effectively than the reserve-based structure
+
+55           currently under consideration.
+
+56   Q.   WHY IS WILDFIRE LIABILITY SELF-INSURANCE AN IMPORTANT
+
+57       TOPIC?
+
+58   A.    Across the Western US, the risk of catastrophic wildfires is increasing. At
+
+59          times, utilities have been found liable for damages and injuries arising
+
+60         from wildfires caused by their equipment or operations. The costs
+
+61         associated with these liabilities can approach levels commensurate with a
+
+62              utility’s enterprise value, sufficient to put them into bankruptcy, which can
+
+63        be costly and disruptive not just for the utility’s shareholders, but its
+
+64         customers, as well.     Phase III OCS-6D Ellis           24-035-04                     Page 4
+
+65        As a matter of prudency in protecting the interests of both sets of
+
+66          stakeholders, Western utilities are increasingly seeking to procure
+
+67         commercial wildfire liability insurance. The costs of that insurance have
+
+68        been rising rapidly over the last several years, driven by a number of
+
+69           factors, partly because utility-caused wildfires have been increasing in
+
+70         frequency and severity, but also because insured catastrophic losses have
+
+71        been increasing in general, resulting in price increases for numerous types
+
+72           of insurance.
+
+73          Self-insurance can provide a cost-effective alternative to commercial
+
+74          insurance. Self-insurance’s lower cost can afford the utility to procure
+
+75          higher level of coverage. Self-insurance has several additional benefits
+
+76         over commercial insurance. The coverage and terms can be tailored for
+
+77          the specific needs of the utility and its customers, investors, and
+
+78          regulators. For example, a prudency review process, not typically found in
+
+79         commercial insurance, can be incorporated.
+
+80        Perhaps the biggest benefit of self-insurance is that it reduces regret. For
+
+81          catastrophic risk coverage, the cost of insurance is, inevitably, based on a
+
+82          highly uncertain, and typically conservative, estimate of the true risk.
+
+83        Commercial insurance is an annual cost that is paid regardless of whether
+
+84        a claim is ever filed. While, if there is a claim, the utility and its customers
+
+85             will be glad the utility purchased insurance, if there are no claims, there
+
+86             will undoubtedly be questions about whether the insurance was
+
+87          worthwhile.      Phase III OCS-6D Ellis           24-035-04                     Page 5
+
+ 88          Self-insurance can reduce the potential for regret. Self-insurance typically
+
+ 89           entails building a reserve, equal to the level of desired coverage, in an
+
+ 90          interest-bearing account. While there is some cost entailed in building the
+
+ 91          reserve, if it is never used, the funds can be returned to their provider.
+
+ 92             Utility wildfire liability costs are on the order of $0.40 per dollar of
+
+ 93         coverage.2 If the utility’s actual risk is materially lower, it could be possible
+
+ 94           to fund an equivalent insurance reserve fund in under three years. There
+
+ 95             is an up-front cost to establish the reserve, but afterward, as long as the
+
+ 96          actual risk is lower than what is implied in the cost of commercial
+
+ 97         insurance – 40% – self-insurance will be more cost-effective.
+
+ 98           In short, given how material wildfire liability insurance costs are to overall
+
+ 99           rates, self-insurance is a compelling win-win-win opportunity for the utility,
+
+100              its customers, and state regulators.
+
+101   Q.   WHAT ARE YOUR MOST IMPORTANT FINDINGS AND
+
+102       RECOMMENDATIONS?
+
+103   A.   My testimony contains three key findings and recommendations:
+
+104            First, PacifiCorp and the PSC can design a utility wildfire liability self-
+
+105         insurance program that is more cost-effective and provides greater
+
+106             flexibility in allocating risk than commercial insurance. Doing so will entail
+
+107          considering a number of issues. Fortunately, Utah is not the only or first
+
+
+
+
+                     2 See California Public Utilities Commission, “Decision Authorizing Southern California
+                      Edison to Recover Specific Insurance Costs Recorded in Its Wildfire Expense
+                  Memorandum Account,” May 30, 2023;
+                       https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M510/K285/510285936
+                         .docx.      Phase III OCS-6D Ellis           24-035-04                     Page 6
+
+108          state to consider wildfire liability self-insurance, and it can leverage others’
+
+109         experience and insight.
+
+110         Second, I conducted an illustrative hypothetical probabilistic analysis to
+
+111          explore and characterize the nature of PacifiCorp’s wildfire liability risk.
+
+112         While stylized, this analysis provides a number of insights I believe will be
+
+113           helpful in assessing the relative merits of commercial and self-insurance
+
+114         and, if pursued, the design of a self-insurance program.
+
+115           Third, if self-insurance is pursued, utilities’ unique business model –
+
+116          regulated monopolies with captive customers and cost-of-service-based
+
+117          rates – offers unusual flexibility in the timing of payments for self-
+
+118         insurance coverage. This flexibility has the potential to significantly reduce
+
+119          the cost and potential regret of self-insurance (in the sense of raising
+
+120         customer rates to build a reserve that is never drawn) and increase its
+
+121              liability coverage.
+
+122                I am including in this testimony, as Exhibit 6.2D, a white paper
+
+123        commissioned by the Utah Office of Consumer Services that explores in
+
+124          greater detail each of these three topics, as well as my responses to the
+
+125         questions that follow.
+
+126   Q.   WHAT ARE THE MOST IMPORTANT CONSIDERATIONS IN DECIDING
+
+127      WHETHER TO IMPLEMENT SELF-INSURANCE?
+
+128   A.    The most important considerations in deciding whether to implement self-
+
+129         insurance include:      Phase III OCS-6D Ellis           24-035-04                     Page 7
+
+130        Economic comparison of self-insurance and commercial insurance: While
+
+131          self-insurance can lead to long-term savings, initial setup costs and the
+
+132           potential for large, unanticipated wildfire events need to be considered.
+
+133        Coverage and terms: Self-insurance may offer more tailored coverage
+
+134          aligned with a utility’s specific risks and mitigation strategies. In particular,
+
+135          the PSC might consider incorporating a prudency review process, a key
+
+136        component of catastrophic wildfire funds that is not typically included in
+
+137         commercial insurance, to ensure accountability and a balanced allocation
+
+138           of risks and costs between shareholders and ratepayers.
+
+139          Organizational and institutional requirements: Implementing self-insurance
+
+140          necessitates developing internal risk assessment and management
+
+141           capabilities within the utility and establishing regulatory frameworks for
+
+142          oversight and consumer protection by the PSC.
+
+143         Prudency review process: Commercial insurance typically does not
+
+144          require a prudency review or wildfire risk management plan. State-
+
+145         sponsored catastrophic insurance programs sometimes include such
+
+146          provisions, and they may be worthwhile incorporating into self-insurance,
+
+147        as well.
+
+148        The interplay between self- and commercial insurance, and their optimal
+
+149          mix: Detailed and rigorous analysis of RMP’s wildfire risk exposure and
+
+150          the costs of each of these types of insurance will be critical in determining
+
+151          the most cost-effective solution and an equitable allocation of risk between
+
+152         customers and shareholders.      Phase III OCS-6D Ellis           24-035-04                     Page 8
+
+153        The allocation of wildfire liability costs across PacifiCorp’s six-state service
+
+154            territories: Due to differences in both their physical risks (e.g., local
+
+155          climate, environment, and development) and legal environments, wildfire
+
+156              liability costs can vary dramatically across the six states in PacifiCorp’s
+
+157          service territory. Conventional cost-allocation methodologies, which tend
+
+158           to scale with physical plant and overall revenue, by themselves are not an
+
+159          appropriate mechanism to allocate wildfire insurance costs across
+
+160          PacifiCorp’s state utilities.
+
+161   Q.   WHAT ARE THE MOST IMPORTANT DIFFERENCES BETWEEN
+
+162       COMMERCIAL AND SELF-INSURANCE FOR PACIFICORP AND THE
+
+163       PSC TO KEEP IN MIND WHEN CONSIDERING SELF-INSURANCE?
+
+164   A.    The most important potential differences between commercial and self-
+
+165         insurance include their costs (and predictability of those costs), flexibility
+
+166            (e.g., incorporating prudency review), and the potential for regret (i.e.,
+
+167         paying for insurance that is never needed).
+
+168       WILDFIRE LOSS PROBABILITY DISTRIBUTION ANALYSIS
+
+169   Q.   PLEASE DESCRIBE YOUR PROBABILISTIC ANALYSIS OF
+
+170        PACIFICORP’S WILDFIRE LOSS DISTRIBUTION.
+
+171   A.     In order to better understand and investigate some of the questions
+
+172          involved in assessing the potential benefits of self-insurance, I created a
+
+173           probabilistic analytical model, based on public sources, of PacifiCorp’s
+
+174            wildfire liability risk. The purpose of the model is not to put a precise figure
+
+175        on PacifiCorp’s liability. Rather, it is intended to help identify key      Phase III OCS-6D Ellis           24-035-04                     Page 9
+
+176          considerations in comparing self- and commercial insurance and in
+
+177         designing a self-insurance program.
+
+178   Q.  HOW DID YOU CONSRUCT THE MODEL?
+
+179   A.    The model was built in an Excel spreadsheet. It starts with a hypothetical,
+
+180            illustrative probabilistic distribution of expected wildfire liability costs in
+
+181        each of PacifiCorp’s six states.
+
+182   Q.   WHAT IS A PROBABILISTIC DISTRIBUTION?
+
+183   A.   A probabilistic distribution expresses the likelihood, in percentage terms,
+
+184           of a loss of a given size in a given year. For the type of illustrative
+
+185          catastrophic risk modeling entailed in my analysis, a commonly used
+
+186           distribution is the generalized Pareto distribution (GPD).3 It is simple to
+
+187         implement, with only a handful of required parameters. The required input
+
+188         parameters were estimated from publicly available sources on past utility
+
+189            wildfire losses and general understanding of catastrophic risk’s “thick
+
+190            tailed” nature.
+
+191   Q.   WHAT DO YOU MEAN BY “THICK-TAILED”?
+
+192   A.    Catastrophic risk is characterized by infrequent but extreme events that
+
+193          drive up the overall expected (or average) loss. The GPD has a parameter
+
+194            for the degree of this “thickness,” which makes it useful in assessing
+
+195          catastrophic risk like wildfire liability.
+
+196
+
+
+
+
+                     3 https://en.wikipedia.org/wiki/Generalized_Pareto_distribution.      Phase III OCS-6D Ellis           24-035-04                    Page 10
+
+197   Q.  HOW DID YOU IMPLEMENT THE GPD?
+
+198   A.    Separate distributions were developed for each state then aggregated into
+
+199        a PacifiCorp composite. This composite was then used in a Monte Carlo
+
+200          simulation of a hypothetical self-insurance program: funding terms (e.g.,
+
+201         annual budget), losses, and the resulting fund inflows, outflows, and
+
+202         balances.
+
+203   Q.   WHAT IS A MONTE CARLO SIMULATION?
+
+204   A.    Monte Carlo simulation is an analytical technique that can be used to
+
+205          investigate how various factors can affect a self-insurance reserve fund’s
+
+206            ability to pay claims. Monte Carlo simulation is used to understand the
+
+207         impact of risk and uncertainty in a process that cannot easily be predicted
+
+208        due to the interactions of random variables. It entails repeatedly assigning
+
+209        random sets of values to the key uncertain variables under consideration
+
+210           to generate multiple sets of results and then aggregating those results to
+
+211          obtain a probability distribution for the resulting outcomes.4
+
+212   Q.   WHAT DOES YOUR MODEL ALLOW YOU TO DO?
+
+213   A.    Analyzing the probabilistic wildfire liability distribution in a Monte Carlo
+
+214          simulation can provide insights to help inform the PSC and PacifiCorp on
+
+215          several critical design considerations for self-insurance program,
+
+216           including:
+
+217             •  Risk characterization
+
+
+
+                     4 See, e.g., Will Kenton, “Monte Carlo Simulation: What It Is, How It Works, History, 4 Key
+                        Steps,” Investopedia (June 27, 2024);
+                        https://www.investopedia.com/terms/m/montecarlosimulation.asp.      Phase III OCS-6D Ellis           24-035-04                    Page 11
+
+218             •  Cost allocation among states
+
+219             •  Coverage limit vs. expected coverage
+
+220             •  Annual payment cap vs. expected coverage
+
+221             •  Coverage limit and risk allocation
+
+222             •  Self-sustaining financing
+
+223             •  Alternative approach: securitized revolving credit facility
+
+224             •  Maximizing coverage subject to a customer payment cap
+
+225                I will discuss what my analysis revealed about each of these topics in turn.
+
+226   Q.   WHAT ARE YOUR KEY FINDINGS ABOUT RISK
+
+227       CHARACTERIZATION?
+
+228   A.    The key finding is that, even though the risk of a major wildfire loss
+
+229         exceeding any reasonable proposed coverage limit in an individual year is
+
+230          low, the probability of exceeding the coverage limit at least once in a multi-
+
+231         year period (e.g., 10-15 years) is quite high.
+
+232   Q.   THAT’S A LITTLE COUNTERINTUITIVE. PLEASE EXPLAIN FURTHER.
+
+233   A.     Wildfire is characterized by infrequent but very large losses. Risk is often
+
+234         expressed in terms of average time between events – once-per-x-years –
+
+235            or, equivalently, with 1/x% probability or 1 at the – 1/x% percentile. For
+
+236         example, a loss expected to occur once every 20 years occurs with a 5%
+
+237           probability or at the 95th percentile.
+
+238        Even though the probability of a loss in a single year is low, the risk that a
+
+239           low-probability, large-loss event can occur at least once over a multi-year
+
+240          period, which is the risk against which a self-insurance fund is intended to      Phase III OCS-6D Ellis           24-035-04                    Page 12
+
+241          insure, can be significantly higher, depending on the length of the forecast
+
+242          horizon.
+
+243          Building on the previous example, the probability that a once-in-20-years
+
+244         event will occur at least once over a 2-year period can be expressed as
+
+245       100% minus the probability of no events occurring over two years, or
+
+246       100% – (100 – 5%) x (100 – 5%) = 9.75%. Over a 5-year period, the risk is
+
+247       100% – (100 – 5%)5 = 22.6%; that is, even for a risk as low as 5%, the
+
+248           probability that it will occur at least once over a five-year period is 23%,
+
+249           rising to 40%, 54%, and 64% over 10, 15, and 20 years, respectively.
+
+250   Q.   WHAT ARE THE IMPLICATIONS FOR SELF-INSURANCE?
+
+251   A.    What this means for self-insurance is that, if, for example, PacifiCorp
+
+252        wanted to insure for a once-in-20-years loss, and that 5% loss probability
+
+253         corresponded to $1 billion, over a 15-year forecast horizon, the probability
+
+254           of a loss exceeding the fund would be 54%. Given a greater than even
+
+255        chance of exhausting the fund, the PSC and PacifiCorp will want to
+
+256          proactively plan for such an eventuality.
+
+257   Q.   WHAT ARE YOUR KEY FINDINGS ABOUT COST ALLOCATION
+
+258      AMONG STATES?
+
+259   A.   Due to their differing physical and legal environments, the six PacifiCorp
+
+260           states’ relative contributions to the aggregate risk profile differ significantly
+
+261         from typical cost allocation methods. Commonly used cost allocation      Phase III OCS-6D Ellis           24-035-04                    Page 13
+
+262        methods tend to scale with physical plant, costs, or revenue.5 Although the
+
+263      GPD model is illustrative, it demonstrates that just a few key factors that
+
+264         are not captured in traditional cost allocation methodologies result in
+
+265           relative risk contributions dramatically different than what would occur
+
+266         under traditional methods – with differences varying by as much as a
+
+267           factor of 3.5x.
+
+268                It would be more fair to customers to allocate the cost of self-insurance –
+
+269         both initial fund contributions and replenishment after a loss – based on
+
+270            risk instead of the typical utility cost allocation methodologies. After a loss,
+
+271                  it might be thought that the state that incurred the loss should bear sole
+
+272           responsibility for replenishing the fund. But this both runs counter to the
+
+273           risk-pooling objective of insurance and could be simply unaffordable for
+
+274          the customers of the state in question.
+
+275         Risk-based allocation would help address potential moral hazard
+
+276         concerns. Moral hazard can arise if a utility in one state, recognizing that it
+
+277             is paying into the insurance fund less than its expected losses,
+
+278          underinvests in wildfire mitigation in the knowledge that utilities in other
+
+279          states will bear a disproportionate share of a potential loss.
+
+280   Q.   YOUR WHITEPAPER DISCUSSES THE DIFFERENCE BETWEEN
+
+281      COVERAGE LIMIT AND EXPECTED COVERAGE. PLEASE EXPLAIN.
+
+
+
+
+
+                     5 See, e.g., https://libertyutilities.com/uploads/CAM%20January%201%202017.pdf.      Phase III OCS-6D Ellis           24-035-04                    Page 14
+
+282   A.    Coverage limit is the more familiar. It’s the maximum amount the insurer
+
+283             will pay out, typically per event or per year.
+
+284         Expected coverage is a probabilistic concept. When insurance is bought
+
+285        and sold, neither party expects the actual coverage to equal the coverage
+
+286             limit every year. If that were so, the insurer would need to charge a
+
+287        premium equal to at least 100% of the premium just to cover the cost of
+
+288          claims.
+
+289          Rather, both parties expect most years to have few or no claims. As a
+
+290            result, the expected coverage – the amount of claims actually paid – is
+
+291           typically a fraction of the coverage limit.
+
+292   Q.   WHY IS THAT IMPORTANT FOR WILDFIRE LIABILITY INSURANCE?
+
+293   A.    There is an additional consideration with insurance for catastrophic risks
+
+294            like wildfire liability. For these risks, the probability distribution is skewed
+
+295          (not symmetrical), with zero losses below the 50th percentile and
+
+296         extremely large losses at the very highest percentiles (99%+). The dollar
+
+297        amounts of losses increase dramatically as their frequency declines.
+
+298         Consequently, expected losses are small relative to the large losses
+
+299         insurance is intended to cover. For example, in my illustrative model, the
+
+300          99th-percentile loss, $1.66 billion, is 61% larger than the 98th percentile,
+
+301         $1.03 billion.
+
+302   Q.   WHAT ARE THE IMPLICATIONS OF THIS SKEWNESS FOR WILDFIRE
+
+303        LIABILITY INSURANCE.      Phase III OCS-6D Ellis           24-035-04                    Page 15
+
+304   A.    The loss probability’s skewness has two important implications. The first is
+
+305           that insurance, whether commercial or self-, will go unused most of the
+
+306          time. When there is a loss, though, it will likely exceed the coverage limit.
+
+307        As a result, the expected loss covered by insurance will vary with the
+
+308         coverage limit. Second, for self-insurance to fulfill its intended purpose of
+
+309          insuring against rare but extreme losses, the coverage limit will need to be
+
+310           significantly greater than the mean (or expected) loss.
+
+311          This phenomenon has two opposing effects. As just explained, as the fund
+
+312           target increases, a greater share of expected losses is covered; insurance
+
+313             is doing more of its job. On the flip side, as the target increases, the
+
+314         expected drawdown, as a share of the fund target, declines. The fund is
+
+315          increasingly idle with respect to its intended purpose of covering wildfire
+
+316          losses (although it would earn investment income). At the same time,
+
+317         though, because the expected drawdown is low, the expected effective
+
+318          cost of insurance, as a percentage of coverage (the average rate on line,
+
+319          or ROL), declines.
+
+320   Q.   ASIDE FROM POTENTIAL COST SAVINGS, ARE THERE ANY
+
+321       IMPORTANT DIFFERENCES BETWEEN SELF- AND COMMERCIAL
+
+322       INSURANCE?
+
+323   A.    Perhaps the most important difference between self- and commercial
+
+324         insurance is the availability of funds for coverage. When a commercial
+
+325         insurance policy is bought, the insurer is expected, and is required by      Phase III OCS-6D Ellis           24-035-04                    Page 16
+
+326           regulation, to have the funds available to pay claims up to the coverage
+
+327         amount.
+
+328         With self-insurance, there are circumstances under which the funds
+
+329          available may fall short of the intended coverage limit. This can happen if
+
+330        a cap is imposed on annual payments to the fund that is lower than the
+
+331         coverage target – both in the first few years of the fund, when the
+
+332         cumulative sum of annual payments is less than the target, and later, if
+
+333          there are losses that exceed the annual customer payment cap plus
+
+334         investment gains. The probability that the reserve fund will fall short of an
+
+335          insured loss – i.e., below the target coverage limit – depends on a number
+
+336           of factors beyond the distribution of losses, including:
+
+337             •  Fund coverage target
+
+338             •  Annual payment cap relative to fund target (i.e., the replenishment
+
+339                  rate)
+
+340             •  Fund balance investment returns
+
+341             •  Increase (or decrease) in expected losses over time, due to cost
+
+342                 escalation, utility risk-reduction efforts, changes in law, etc.
+
+343   Q.  HOW BIG ARE THESE POTENTIAL COVERAGE SHORTFALLS?
+
+344   A.    The Monte Carlo simulation was used to examine a reserve fund’s ability
+
+345           to cover insured losses at different annual payment caps. Intuitively, if
+
+346          there’s a commitment to fully replenish the fund after every loss, then
+
+347       100% of insured claims (i.e., claims less than the target in a given year)
+
+348         would be covered by the fund. As the annual payment limit is reduced –      Phase III OCS-6D Ellis           24-035-04                    Page 17
+
+349            to, say, annual payments capped at 1/3, ¼, or 1/5 of the target (equivalent
+
+350           to filling the initial fund over 3 to 5 years) – the probability of such
+
+351           shortfalls increases, and the expected insured losses that are covered by
+
+352          the fund declines.
+
+353         For example, in my simulation, with 2-year funding, the expected coverage
+
+354            in the first 2 years is about 8% less than the coverage target. With 5-year
+
+355          funding, the expected shortfall is 21% reduction. These are expected
+
+356            shortfalls, based on a probabilistic assessment. It is far more likely than
+
+357          not that there will be no shortfall with the first five years.
+
+358        The erosion in expected coverage with slower funding rates will differ
+
+359          during the fund’s initial build-up phase – the number of years it would take
+
+360           to fill the fund at the annual payment cap, assuming no losses – and
+
+361          afterward.
+
+362   Q.   WHAT ARE THE IMPLICATIONS OF THIS EXPECTED COVERAGE
+
+363       EROSION WHEN CONSIDERING SELF-INSURANCE?
+
+364   A.    The erosion in coverage arising from a cap on annual payments below the
+
+365           target means that a pre-funded self-insurance reserve is not a complete
+
+366           substitute for commercial insurance. Commercial insurance pays up to the
+
+367         coverage limit every year, even if there are losses in successive years.6
+
+368           Full replenishment would replicate commercial insurance. But full
+
+369         replenishment is essentially committing to pay losses, up to the cap, as
+
+
+
+                     6 In practice, the cost of commercial insurance coverage often increases following a loss,
+                     as insurers seek to recoup their losses from claims paid. This effect was not
+                       captured in the Monte Carlo analysis.      Phase III OCS-6D Ellis           24-035-04                    Page 18
+
+370         they are incurred. From the perspective of customer payments into the
+
+371          fund, full replenishment is equivalent to having no insurance (“paying as
+
+372        you go”), but with the additional burden of paying, up-front, for the initial
+
+373         fund balance. It is more costly than no insurance, with no financial benefit.
+
+374   Q.   PLEASE EXPLAIN HOW THE COVERAGE LIMIT AND CUSTOMER
+
+375      PAYMENT CAP AFFECT THE ALLOCATION OF WILDFIRE LIABILITY
+
+376        RISK.
+
+377   A.    Self-insurance does not change the underlying risk exposure. It only
+
+378        changes the allocation of that risk among various parties, as well as the
+
+379         charges associated with managing that risk (e.g., insurance company
+
+380            profits and the time-value-of-money for shifting the incidence of that risk
+
+381         across time). According to the illustrative model probability distribution,
+
+382         annual losses can far exceed any feasible reserve, and expected losses
+
+383         are $170 million/year, equivalent to approximately 3% of PacifiCorp’s total
+
+384         revenue, whether they are commercially insured, self-insured, or not
+
+385          insured at all7.
+
+386        To self-insure to these levels of expected losses implies that PacifiCorp’s
+
+387         customers would be expected to pay at least $170 million, on average,
+
+388         every year. Conversely, capping annual payments at a level below this
+
+389        amount necessarily implies that PacifiCorp customers are not expected to
+
+
+
+
+
+                     7 In no way are these estimates intended to reflect PacifiCorp’s actual costs. As stated,
+                       they are the result of an illustrative model.      Phase III OCS-6D Ellis           24-035-04                    Page 19
+
+390         bear the full burden of the wildfire liability risk incurred in consuming
+
+391          PacifiCorp’s services.
+
+392                It may be the case that, for policy reasons, Utah and other Western states
+
+393        do not want utility customers to bear the full amount of utility-related
+
+394            wildfire liability risk. Such decisions should be taken, though, with full
+
+395        knowledge of their expected effects and consequences: somebody else
+
+396             will need to step in to cover any shortfall.
+
+397        The trade-off between annual payment cap and expected coverage I just
+
+398         described means the annual payment cap is an important consideration in
+
+399        a self-insurance reserve fund’s design. Even a 2-year build-up would
+
+400           materially reduce the initial effective coverage compared to commercial
+
+401         insurance with the same coverage limit, making the benefit of a self-
+
+402         insurance reserve fund less compelling.
+
+403   Q.   WHAT IF WE WANTED TO MAKE THE FUND SELF-SUSTAINING?
+
+404      HOW MUCH WOULD CUSTOMERS NEED TO CONTRIBUTE TO MAKE
+
+405      SURE THE FUND’S INVESTMENT RETURNS COVERED EXPECTED
+
+406      ANNUAL LOSSES UP TO THE COVERAGE TARGET?
+
+407   A.   A self-financing fund, large enough to generate investment income
+
+408           sufficient to cover expected insured losses, could, in principle, more
+
+409          closely replicate commercial insurance. To be self-financing, the fund’s
+
+410         annual investment proceeds would need to cover expected annual losses,
+
+411          plus any expected growth in those losses over time. There is a
+
+412         mathematical formula to calculate the size of the fund required, assuming      Phase III OCS-6D Ellis           24-035-04                    Page 20
+
+413          the investment return and growth rates are constant, and that losses grow
+
+414           at the same rate every year:
+
+415        Fund size =annual insured losses / (investment return rate – loss growth
+
+416            rate). To illustrate, this formula can be applied to a hypothetical proposed
+
+417         fund target of $1 billion with expected insured losses of $100 million.
+
+418         Expected investment returns for property and casualty insurers are on the
+
+419          order of 4.0%.8 For the loss growth rate, given the increasing frequency
+
+420        and severity of wildfires and the shifting legal landscape, it is reasonable
+
+421           to assume growth faster than overall inflation, say 1% more than assumed
+
+422            inflation of 2.5%.The fund size would therefore be $100 million / (4.0% –
+
+423         3.5%) = $20 billion.
+
+424       A fund this size is larger than PacifiCorp’s equity capitalization so is likely
+
+425          unaffordable.9 Also, there is no guarantee the fund will perform as
+
+426         expected: actual losses might exceed the average (as is expected, with
+
+427       some probability, in any probabilistic forecast) or investment returns might
+
+428        be lower.
+
+429       On the plus side, a $20-billion reserve fund would be able to cover over a
+
+430          very high percentage of all expected losses, not just those up to the $1-
+
+431            billion coverage limit.
+
+
+
+
+
+                     8 See, e.g., Thomas Holzheu and James Finucane, “US Property & Casualty outlook:
+                        strong winds, smoother sailing,” Swiss Re Group (September 27, 2024);
+                        https://www.swissre.com/institute/research/sigma-research/Insurance-
+                        Monitoring/us-property-casualty-outlook-september-2024.html.
+                     9 $9.97 billion as of the end of 2023, per FERC Form 1 data.      Phase III OCS-6D Ellis           24-035-04                    Page 21
+
+432       A final consideration with such a pre-financed fund (even a smaller one) is
+
+433         customer equity, depending on how the fund is financed. For example, the
+
+434          cost of a fund raised through a one-time surcharge on current customers
+
+435         would fall on then-current customers, who may not benefit if they move out
+
+436           of PacifiCorp’s service territory or otherwise no longer require the utility’s
+
+437          service. Conversely, future new customers would benefit from the fund
+
+438          without having paid into it.
+
+439       ALTERNATIVE APPROACH TO SELF-INSURANCE
+
+440   Q.   WHAT ARE YOUR KEY CONCERNS ABOUT A SELF-INSURANCE
+
+441       RESERVE FUND?
+
+442   A.    The goal of self-insurance is to replicate commercial insurance as closely
+
+443        as possible: exchanging a fixed annual payment for coverage of
+
+444          infrequent, unpredictable large losses. A self-insurance reserve fund isn’t
+
+445        an ideal substitute, though, because it can be exhausted when there are
+
+446          sequential large losses over two or more years, materially eroding its
+
+447           effective coverage, particularly in the initial years as the reserve is being
+
+448            built up.
+
+449           Ideally, the potential early-year shortfall could be bridged by continuing to
+
+450         purchase commercial insurance for the gap between the reserve fund
+
+451         balance and coverage target. Commercial insurance costs on the order of
+
+452         $0.40 per dollar of coverage.10 Assuming a $1-billion coverage target with
+
+
+
+                     10 See, e.g., California Public Utilities Commission, “Decision Authorizing Southern
+                          California Edison to Recover Specific Insurance Costs Recorded in Its Wildfire      Phase III OCS-6D Ellis           24-035-04                    Page 22
+
+453        an annual customer payment cap of $250 million, the cost of commercial
+
+454          insurance, $0.40 per dollar of coverage x $1 billion = $400 million, would
+
+455        exceed the $250-million dollar customer payment cap, leaving nothing to
+
+456          contribute to the reserve fund.
+
+457       An additional shortcoming of a self-insurance reserve fund is that,
+
+458        because of the skewness in the distribution of losses, expected loss
+
+459         coverage at typical coverage levels is a relatively small fraction of the
+
+460          fund’s total size, so the fund mostly sits idle.
+
+461   Q.   PLEASE EXPLAIN YOUR IDEA FOR AN ALTERNATIVE APPROACH
+
+462      TO SELF-INSURANCE.
+
+463   A.   An alternative approach could address both the early-year coverage
+
+464          erosion and idle capital shortcomings of a self-insurance reserve fund: a
+
+465          revolving credit facility (RCF) that can be drawn upon to cover insurance
+
+466          claims as they are incurred, repaid over time, and redrawn as needed.11
+
+467        To reduce the financing cost of the RCF and remove the liability from the
+
+468              utilities’ balance sheet, the RCF could be backed by a dedicated customer
+
+469          surcharge, similar to how a reserve fund would be held outside the
+
+470             utility.12 Once drawn, the RCF could be repaid through a securitized bond,
+
+
+
+
+                    Expense Memorandum Account,” May 30, 2023;
+                       https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M510/K285/510285936
+                         .docx.
+                     11 See, e.g., Tom Vipond, “Revolving Credit Facility,” Corporate Finance Institute;
+                         https://corporatefinanceinstitute.com/resources/commercial-lending/revolving-
+                               credit-facility/.
+                     12 Kevin Ryan and Gabe Grosberg, “Credit FAQ: The Rationale Behind U.S. Utility
+                          Securitization And Reasons For Recent Growth,” S&P Global (March 4, 2024);
+                         https://www.spglobal.com/ratings/en/research/articles/240304-credit-faq-the-      Phase III OCS-6D Ellis           24-035-04                    Page 23
+
+471            like the recovery bonds that have been used to pay for damage to
+
+472           infrastructure caused by hurricanes.13
+
+473           Essentially, an RCF reverses the timing of customer self-insurance
+
+474        payments and removes the uncertainty in the reserve fund’s actual use:
+
+475          rather than paying up-front, albeit over several years, to build a reserve
+
+476         fund which might not be used, customers pay claims over time only after
+
+477         they have actually been incurred. An RCF can function as an insurance
+
+478        mechanism for utilities because of utilities’ unique regulated monopoly
+
+479         business model. Unlike an ordinary business – whose ability to raise
+
+480          prices to recover idiosyncratic, one-off costs like wildfire liability losses
+
+481         would be limited by competitive pressures – a utility can seek
+
+482          authorization to increase rates to recover wildfire liability losses after the
+
+483           fact without risk of losing customers or profits.
+
+484   A.    IS SECURITIZATION NECESSARY TO IMPLEMENT AN RCF?
+
+485   A.    No. Securitization is a potential opportunity to reduce the ultimate cost of
+
+486          the RCF. An RCF could be based on the utilities’ standalone credit as
+
+487           well. The key thing, regardless of whether the RCF is securitized, is a
+
+488          regulatory commitment to allow PacifiCorp to recover insurable losses in
+
+489           rates.
+
+
+
+
+
+                          rationale-behind-u-s-utility-securitization-and-reasons-for-recent-growth-
+                     12609481.
+                     13 See [Error! Bookmark not defined.], p. 19-20.      Phase III OCS-6D Ellis           24-035-04                    Page 24
+
+490   A.   WHY SHOULD THE PSC PRE-COMMIT TO ALLOWING PACIFICORP
+
+491      TO RECOVER INSURABLE LOSSES IN RATES?
+
+492   A.    There is really no difference in the PSC’s commitment with a pre-funded
+
+493         reserve or an RCF. In the case of a reserve, the PSC commits to allowing
+
+494          PacifiCorp to recover potential future costs in advance, even though those
+
+495          costs may never be incurred.
+
+496           In contrast, with an RCF, the PSC is committing to allowing PacifiCorp to
+
+497         recover insurable losses only after they’ve been incurred.
+
+498   Q.   WHAT ARE THE COSTS OF AN RCF?
+
+499   A.    The cost of a revolving credit facility has two components: the interest rate
+
+500        on the outstanding balance (whether in the RCF or in a separate
+
+501           securitization), tied to the credit quality of the securitized customer
+
+502        payment stream; and a lower reservation or commitment fee on the
+
+503        undrawn balance. Utility securitizations typically have very high credit
+
+504           ratings, so the interest rate and reservation fee are assumed to be
+
+505           relatively low: 5.1% and 0.2%, respectively, with the former reflecting
+
+506        Secured Overnight Financing Rate (4.8% as of October 202414) plus a
+
+507        0.3% margin.
+
+508   Q.   ARE THERE ANY PRECEDENTS FOR WHAT YOU’RE PROPOSING?
+
+509   A.    There is industry precedent for securitizing utility wildfire liability costs after
+
+510          the fact. For example, in California, Pacific Gas & Electric has issued $7.5
+
+
+
+
+                     14 “Secured Overnight Financing Rate Data,” Federal Reserve Bank of New York;
+                        https://www.newyorkfed.org/markets/reference-rates/sofr.      Phase III OCS-6D Ellis           24-035-04                    Page 25
+
+511            billion of securitized wildfire liability cost recovery bonds,15 and Southern
+
+512           California Edison has received preliminary approval to issue $1.6 billion of
+
+513         such bonds.16
+
+514   Q.   CAN AN RCF INCORPORATE A PRUDENCY REVIEW?
+
+515   A.    Yes. As explained in “Financing Third Party Wildfire Damages,” published
+
+516        by the University of Pennsylvania’s Wharton Risk Management and
+
+517         Decision Processes Center, if, after the RCF is drawn, it is determined that
+
+518          the utility’s actions were not prudent or its costs not just and reasonable,
+
+519          the regulator may disallow a portion of the utility’s revenue requirement
+
+520          proportional to the utility’s conduct while leaving the dedicated rate
+
+521        component servicing the securitization intact.17
+
+522   Q.  HOW DO THE COSTS AND COVERAGE OF AN RCF COMPARE TO A
+
+523       RESERVE FUND?
+
+524   A.   An RCF-funded self-insurance program would not require any capital
+
+525          outlay until there is an actual insurance claim. Given the various measures
+
+526             utilities are taking to reduce wildfire risk, whether and to what extent a self-
+
+527         insurance fund would be drawn upon remain highly uncertain. An RCF can
+
+528         reduce the potential for regret: Why increase customer rates to raise a
+
+529         fund that may never be needed?
+
+
+
+
+                     15 “Securitizations,” PG&E Corporation; https://investor.pgecorp.com/-PGE-Investors-
+                         Fixed-Income/Securitizations/default.aspx.
+                     16 “Fitch Affirms Edison International and Southern California Edison’s IDRs at ‘BBB’;
+                      Outlook Stable,” Fitch Ratings (January 17, 2025);
+                         https://www.fitchratings.com/research/corporate-finance/fitch-affirms-edison-
+                         international-southern-california-edison-idrs-at-bbb-outlook-stable-17-01-2025.
+                     17 See [Error! Bookmark not defined.], p. 20.      Phase III OCS-6D Ellis           24-035-04                    Page 26
+
+530        Because the full amount of the RCF can be drawn immediately, an RCF
+
+531          eliminates the early-year erosion caused by a reserve fund’s multi-year
+
+532           build-up. In addition to addressing the build-up period coverage erosion
+
+533          issue, effectively providing more insurance coverage during the initial
+
+534         years of a self-insurance program, an RCF could significantly reduce the
+
+535         program’s cost to utility customers.
+
+536       An RCF does not have a build-up period, so the full coverage limit is
+
+537          available immediately. Consequently, an RCF can pay a higher share of
+
+538         expected insured losses than a reserve fund.
+
+539        The most noticeable difference, to customers, between an RCF and a
+
+540         reserve fund is in their coverage per dollar paid by customers. A reserve
+
+541          fund’s customer payments are front-loaded, in order to build the reserve.
+
+542         With an RCF, there are no significant payments until there is an actual
+
+543           loss. When there is a loss, it is repaid over many years, potentially a
+
+544        decade or more.
+
+545   Q.   WHAT IS THE MOST IMPORTANT ADVANTAGE OF AN RCF?
+
+546   A.   A reserve fund requires relatively high customer payments in the first few
+
+547          years, in order to build up the fund so it is available in the event of a major
+
+548           loss. In contrast, with an RCF, customers pay for losses after the fact, so
+
+549          the payments can be spread out over a longer period of time. An RCF
+
+550          therefore allows for a higher coverage target given a maximum annual
+
+551        payment cap. As explained above, the higher the target, the higher the
+
+552         share of total losses that can be insured.      Phase III OCS-6D Ellis           24-035-04                    Page 27
+
+553                If we assume PacifiCorp has an annual budget for insurance, a higher
+
+554           target can be maintained by setting a longer replenishment period. A
+
+555          longer replenishment period reduces the RCF’s ability to cover multiple
+
+556          sequential losses, but the Monte Carlo analysis reveals that this effect is
+
+557         outweighed by the higher coverage limit.
+
+558        The Monte Carlo analysis was used to determine the expected coverage
+
+559        and customer cost at different insurance targets, given a maximum annual
+
+560        payment constraint.18 From this analysis, several observations emerge.
+
+561        The first is that longer replenishment periods (i.e., RCF repayment
+
+562         schedules) allow a higher target. In practice, the replenishment period will
+
+563            likely be dictated by the financial institution(s) providing the facility or the
+
+564          tenor of the securitization bond. The key implication is that the amount of
+
+565         coverage can vary, even subject to an annual payment cap. As discussed
+
+566         above, the higher the coverage target, the greater the share of total losses
+
+567           that can be self-insured.
+
+568         Nonetheless, as the RCF and replenishment period increase, the share of
+
+569          insured losses that are not covered increases as well. An RCF is not a
+
+570         complete substitute for commercial insurance. Whenever there is a claim
+
+571          paid by the RCF that exceeds the annual payment cap, the RCF will not
+
+572        be able to cover a future claim that exceeds the undrawn balance on the
+
+573       RCF until the RCF is fully repaid.
+
+
+
+                     18 The maximum possible payment (P) is equal to the coverage limit (L) divided by the
+                       replenishment period (Y) plus interest (i) on the undrawn RCF (equal to L at
+                        most). The coverage limit can therefore be calculated as L = P / (1/Y + i).      Phase III OCS-6D Ellis           24-035-04                    Page 28
+
+574        The expected shortfall when using an RCF should be put into perspective,
+
+575         though. A shortfall only occurs when there are substantial losses in
+
+576         successive years. If such a scenario were to arise, commercial insurance
+
+577          rates would almost certainly increase substantially, and perhaps become
+
+578          unavailable altogether. Payments to the RCF could be accelerated, if
+
+579         necessary, to create financial capacity to cover future potential losses.
+
+580        Perhaps the most intriguing aspect of an RCF is that, because customers
+
+581          only pay for actual losses, it removes much of the potential regret of
+
+582          establishing a self-insurance reserve fund that may never be used. An
+
+583       RCF can be a cost-effective way to insure wildfire liability risk.
+
+584       KEY CONSIDERATIONS, NEXT STEPS, AND CONCLUSION
+
+585   Q.   WHAT SHOULD THE PSC AND PACIFICORP DO NEXT IN THEIR
+
+586       CONSIDERATION OF SELF-INSURANCE?
+
+587   A.     Wildfire liability risk for regulated utilities has some unique characteristics
+
+588           that both raise concerns about insuring this risk and create opportunities
+
+589           to do so more cost-effectively than in other industries. Unlike other types
+
+590           of catastrophic risk, like earthquakes or storms, utilities may sometimes be
+
+591          the cause of wildfires, which amplifies their potential financial exposure, in
+
+592          the form of liability for third-party damages and associated penalties. The
+
+593           potential for moral hazard, always present in risk-pooling, is therefore
+
+594          correspondingly greater.
+
+595          At the same time, utilities’ unique ability to pass through legitimate wildfire
+
+596              liability costs after the fact means they need not pay in advance for risks      Phase III OCS-6D Ellis           24-035-04                    Page 29
+
+597           that may never materialize to effectively insure against them. They can
+
+598          instead choose to finance only their actual wildfire liability costs as they
+
+599         are incurred. This unusual financial flexibility creates opportunities for
+
+600             utilities to pool and insure risk at much lower cost.
+
+601   Q.   WHAT SHOULD THE PSC AND PACIFICORP DO NEXT IN THEIR
+
+602       CONSIDERATION OF SELF-INSURANCE?
+
+603   A.    Self-insurance is a promising vehicle to manage PacifiCorp’s wildfire
+
+604              liability risk in a manner the protects the interests of both customers and
+
+605          shareholders. The PSC and PacifiCorp will want to research and address
+
+606        a variety of critical issues in assessing and designing a wildfire liability
+
+607          self-insurance program. Fortunately, most of the qualitative issues have
+
+608        been previously examined elsewhere – for utilities specifically or within the
+
+609         insurance industry more generally – from risk-pooling and moral hazard to
+
+610        managing an insurance captive to utility and regulatory organizational
+
+611        demands. In contrast, the quantitative and financial considerations will be
+
+612         unique to PacifiCorp’s risk profile and financial position, as well as the
+
+613        PSC’s and other state regulators’ view on how, and how much, wildfire
+
+614              liability risk should be allocated to customers.
+
+615                I recommend three broad areas for further research and investigation:
+
+616             •  Whether to incorporate prudency review and, if so, its design, with
+
+617             a focus on implementation and execution considerations: To the
+
+618                 extent possible, visualize how it would work in practice, particularly      Phase III OCS-6D Ellis           24-035-04                    Page 30
+
+619            how it might fail or malfunction, and proactively address those
+
+620                  potential failure modes in advance.19
+
+621             •  Detailed analysis and quantification of PacifiCorp’s wildfire liability
+
+622                     risk: My illustrative hypothetical model was created to help identify
+
+623             and understand some of the key dynamics at work. It was
+
+624               developed “outside-in” with no proprietary information about
+
+625                PacifiCorp or its operations. More detailed and rigorous analysis
+
+626                      will provide the critical foundation and fact base for any insurance
+
+627              program design, commercial, pre-funded reserve, or RCF.
+
+628             •  RCF feasibility: The RCF is an idea that emerged to me in the
+
+629               course of the Monte Carlo simulation analysis. There are ample
+
+630               precedents for the key ingredients – revolving credit facility, post-
+
+631               event wildfire cost recovery, securitization – but they have never
+
+632             been assembled in the manner proposed here in. PacifiCorp and
+
+633                the PSC will want to work closely with financial institutions and risk
+
+634             management professionals to explore the RCF’s feasibility and on
+
+635                       its eventual design.
+
+636   Q.   DOES THIS COMPLETE YOUR PREFILED PHASE III DIRECT
+
+637       TESTIMONY?
+
+638   A.    Yes. Thank you for the opportunity to contribute to this proceeding.
+
+
+
+
+
+                     19 This process is sometimes called a “pre-mortem.” See, e.g.,
+                        https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-
+                         insights/bias-busters-premortems-being-smart-at-the-start.

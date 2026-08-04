@@ -1,0 +1,24 @@
+STATE OF GEORGIA
+
+BEFORE THE 
+GEORGIA PUBLIC SERVICE COMMISSION
+
+
+In Re:
+
+Georgia Power Company’s			) 		Docket No. 56002
+2025 Integrated Resource Plan		) 		
+							
+
+
+ERRATA TO GEORGIA POWER’S 2025 IRP
+
+Georgia Power respectfully submits the following corrections to its 2025 Integrated Resource Plan (“IRP”) in Docket No. 56002.
+
+IRP Technical Appendix Volume 1, Section 3 (DSM Program Documentation TRADE SECRET), Item 3 (2025 IRP DSM Case Summary Data 111-MG0): Several cells in the data tables on the Supply-Side Case tab have been updated. These changes are necessary because an incorrect summary table from the cost-effectiveness analysis done in Aurora for the 111-MG0 scenario was provided to the follow-on analysis conducted to prepare these tables. Differences in the version of Aurora used resulted in small differences in what resources – DSM and others – were identified as cost-effective and in what years. For example, the Home Energy Improvement Program was identified as cost-effective in two years (2026 and 2027 instead of 2028 only) and the Products Program was identified as cost-effective in 2028 rather than 2026. The changes are reflected in the corrected table below and in the revised DSM Program Documentation enclosed. 
+
+
+
+The changes in these data do not affect the Company’s conclusions or recommendations regarding the Supply-Side Case as presented in the 2025 IRP Main Document.
+
+Technical Appendix Volume 1, Section 5 (Unit Upgrade Analyses - 2025 IRP McIntosh Upgrades TRADE SECRET). Table 7 (Thermal Upgrade Cost-Benefit Results) has been updated due to an error identified that caused additional capacity value to be credited to the evaluated upgrade. This error does not impact the projected cost of the upgrade or the forecasted capacity increase. There is no change to the Company’s recommendation to pursue this upgrade. The Public Disclosure version of Table 7 in the Unit Upgrade Analyses remains unchanged. 

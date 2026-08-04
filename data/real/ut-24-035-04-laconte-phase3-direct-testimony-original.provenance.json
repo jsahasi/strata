@@ -1,0 +1,23 @@
+{
+  "jurisdiction": "Utah",
+  "commission": "Public Service Commission of Utah",
+  "docket": "24-035-04",
+  "proceeding": "Application of Rocky Mountain Power for Authority to Increase its Retail Electric Utility Service Rates in Utah and for Approval of its Proposed Electric Service Schedules and Electric Service Regulations",
+  "how_obtained": "Found the docket page on psc.utah.gov (a WordPress site: /<yyyy>/<mm>/<dd>/docket-no-<docket>/), read its raw HTML and pulled the pscdocs.utah.gov links out of it. Utah serves every document at a flat, guessable path: https://pscdocs.utah.gov/<utility>/<yy>docs/<docketdigits>/<docid><AbbreviatedTitle><m-d-yyyy>.pdf, with no login and no session. Downloaded with curl and extracted text with PyMuPDF sorted-block extraction (page.get_text('text', sort=True)), pages joined with a form feed (\\x0c). No cleaning, reflow, de-hyphenation or whitespace normalisation.",
+  "extraction_tool": "PyMuPDF (fitz) get_text('text', sort=True)",
+  "source_url": "https://pscdocs.utah.gov/electric/24docs/2403504/338126PhsIIIDirTstmnyBillieSLaConteUTLCG2-7-2025.pdf",
+  "document_title": "Phase III Direct Testimony of Billie S. LaConte Submitted on behalf of the Utah Large Customer Group",
+  "filing_date": "2025-02-07",
+  "filer": "Utah Large Customer Group (counsel: Holland & Hart LLP)",
+  "witness": "Billie S. LaConte",
+  "document_type": "Direct testimony with exhibits",
+  "pages": 33,
+  "version_role": "original",
+  "version_pair_with": "ut-24-035-04-laconte-phase3-amended-direct-testimony-clean.txt",
+  "notes": "Pages 26 onward are wide exhibit spreadsheets, which is why the character count is far larger than the page count suggests. Recommends reducing the excess liability insurance expense by $30.9 million; the amendment cuts that to $5.8 million.",
+  "sha256": "a587f22038ce1da31769ae1fbcf2f63a600eee1920ce3b0d43092314e5bcda61",
+  "bytes": 349710,
+  "retrieved_at": "2026-08-04T16:59:54Z",
+  "source_pdf_sha256": "a5e52f09d445de92b0069355f86d70e4b15b971d927f97a14d4001404111b573",
+  "source_pdf_bytes": 433700
+}

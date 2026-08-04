@@ -1,0 +1,20 @@
+{
+  "source_url": "https://www.supremecourt.ohio.gov/pdf_viewer/pdf_viewer.aspx?pdf=1000491.pdf&subdirectory=2025-1458%5CDocketItems&source=DL_Clerk",
+  "retrieved_at": "2026-08-04T16:53:33Z",
+  "sha256": "75503edc5f4263ae1696a8a83b78123ea6a4a284f718b9b327e97f938bc71853",
+  "jurisdiction": "Ohio",
+  "docket": "2025-1458",
+  "document_title": "Merit Brief of Appellee Office of the Ohio Consumers' Counsel",
+  "filing_date": "2026-03-24",
+  "filer": "Office of the Ohio Consumers' Counsel (Appellee)",
+  "how_obtained": "Fetched the PDF over HTTPS from the Supreme Court of Ohio public docket document handler (pdf_viewer.aspx), then extracted the embedded text layer with PyMuPDF 1.26.5 page.get_text(\"text\"), concatenating pages in order. No cleaning, reflowing, de-hyphenation, encoding repair or page markers were applied; marginal line numbers, running heads, Q/A markers and blank image-only (redacted) pages appear exactly as the extractor produced them. Appeal from PUCO case 24-508-EL-ATA.",
+  "source_pdf_sha256": "31e7c721b0ea69230fb4e8e580440d860a0c2b8ed13907b5648b55f82cb32059",
+  "source_pdf_bytes": 388783,
+  "source_pdf_pages": 36,
+  "source_page_range_0indexed": null,
+  "pages_extracted": 36,
+  "text_bytes": 66959,
+  "publisher": "Supreme Court of Ohio, Clerk of Court public docket (ECMS), case 2025-1458",
+  "access": "public record; no login, no paywall; redacted public versions only",
+  "extractor": "PyMuPDF 1.26.5 (MuPDF 1.26.10) page.get_text(\"text\")"
+}

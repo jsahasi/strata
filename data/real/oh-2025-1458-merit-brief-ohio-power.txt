@@ -1,0 +1,1804 @@
+IN THE SUPREME COURT OF OHIO 
+ 
+In the Matter of the Application of Ohio 
+Power Company for New Tariffs Related to 
+Data Centers and Mobile Data Centers. 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+CASE NO.  2025-1458 
+Appeal From the Public Utilities Commission 
+of Ohio 
+PUCO Case No. 24-508-EL-ATA 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+______ 
+ 
+MERIT BRIEF OF INTERVENING APPELLEE OHIO POWER COMPANY 
+ 
+SUPPORTED BY OHIO ENERGY GROUP 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+______ 
+ 
+Kimberly W. Bojko (0069402) 
+(Counsel of Record) 
+Emma Y. Easley (0102144) 
+Carpenter Lipps LLP 
+280 North High Street, Suite 1300 
+Columbus, OH 43215 
+Telephone: (614) 365-4100 
+Facsimile: (614) 365-9145 
+bojko@carpenterlipps.com  
+easley@carpenterlipps.com  
+ 
+Counsel for Appellant,  
+The Ohio Manufacturers’ Association Energy 
+Group 
+ 
+Michael L. Kurtz (0033350) 
+(Counsel of Record) 
+Jody Kyler Cohn (1185402) 
+Boehm, Kurtz & Lowry 
+435 Walnut Street, Suite 2400 
+Cincinnati, OH  45202 
+Telephone: (513) 421-2255 
+Facsimile: (513) 421-2255 
+mkurtz@BKLlawfirm.com 
+jkylercohn@BKLlawfirm.com 
+ 
+Counsel for Intervening Appellee,  
+The Ohio Energy Group 
+ 
+Maureen R. Willis (0020847) 
+David Yost (0056290)    
+Ohio Attorney General  
+ 
+John Jones (0051913)  
+Section Chief, Public Utilities 
+ 
+Amy Botschner O'Brien (0074423) 
+Thomas Lindgren (0039210) 
+Lori Keating (0070183) 
+30 East Broad Street, 16th Floor  
+Columbus, OH 43215  
+Telephone: (614) 466-4397  
+Telecopier: (614) 644-8764  
+John.Jones@OhioAGO.gov  
+Amy.BotschnerOBrien@OhioAGO.gov 
+ 
+Counsel for Appellee,  
+The Public Utilities Commission of Ohio 
+ 
+Steven T. Nourse (0046705) 
+(Counsel of Record) 
+American Electric Power Service Corporation 
+1 Riverside Plaza, 29th Floor 
+Columbus, OH 43215-2373 
+Telephone: (614) 716-1608 
+stnourse@aep.com  
+ 
+N. Trevor Alexander (0080713) 
+Kari D. Hehmeyer (0096284) 
+Samantha R. Meng (0103524) 
+Supreme Court of Ohio Clerk of Court - Filed March 24, 2026 - Case No. 2025-1458
+ii 
+ 
+Ohio Consumers’ Counsel 
+William J. Michael (0070921) 
+(Counsel of Record) 
+John Varanese (0044176) 
+Assistant Consumers’ Counsel 
+Office of the Ohio Consumers’ Counsel 
+65 East State Street, Suite 700 
+Columbus, OH 43215 
+Telephone [Michael): (614) 466-1291 
+Maureen.willis@occ.ohio.gov 
+William.michael@occ.ohio.gov 
+John.varanese@occ.ohio.gov 
+ 
+Counsel for Intervening Appellee,  
+Office of the Ohio Consumers’ Counsel 
+ 
+Benesch Friedlander Coplan and Aronoff LLP 
+41 South High Street, Suite 2600 
+Columbus, Ohio 43215 
+Telephone: (614) 223-9363 
+Facsimile: (614) 223-9330 
+talexander@beneschlaw.com  
+khehmeyer@beneschlaw.com  
+smeng@beneschlaw.com  
+ 
+Counsel for Intervening Appellee,  
+Ohio Power Company 
+ 
+ 
+ 
+iii 
+ 
+TABLE OF CONTENTS 
+INTRODUCTION .......................................................................................................................... 1 
+STATEMENT OF FACTS ............................................................................................................. 3 
+I. 
+Unprecedented data center demand threatens Central Ohio's 
+transmission system for all customers .................................................................... 3 
+II. 
+AEP Ohio's response: the temporary moratorium and the Schedule 
+DCT solution ........................................................................................................... 6 
+III. 
+Procedural history ................................................................................................... 7 
+STANDARD OF REVIEW ............................................................................................................ 8 
+ARGUMENT ................................................................................................................................ 10 
+I. 
+Response to Proposition of Law 1: The Commission reasonably 
+and lawfully approved Schedule DCT as part of the 10/23 
+Stipulation ............................................................................................................. 10 
+A. 
+Schedule DCT is not unduly discriminatory but is based on 
+specific, material differences in the cost of serving large 
+data centers................................................................................................ 10 
+B. 
+Schedule DCT does not violate the Equal Protection Clause 
+or due process ........................................................................................... 18 
+II. 
+Response to Proposition of Law 2: The Commission’s 
+determination that the temporary moratorium did not violate either 
+the Certified Territory Act or R.C. 4905.22 was reasonable, lawful, 
+and supported by the record .................................................................................. 21 
+A. 
+AEP Ohio initiated the temporary moratorium to comply 
+with—not violate—the Certified Territory Act and R.C. 
+4905.22...................................................................................................... 22 
+B. 
+Precedent prohibits the Commission from ordering an 
+extension of facilities if the utility is not receiving adequate 
+compensation for the services it is already providing ............................... 24 
+C. 
+The Commission’s findings regarding the temporary 
+moratorium were sufficiently supported by the record ............................. 25 
+III. 
+Response to Proposition of Law 3: The record evidence 
+demonstrates the existence of a transmission constraint justifying 
+the need for Schedule DCT ................................................................................... 27 
+iv 
+ 
+A. 
+OMAEG misrepresents the evidence presented and relied 
+on by the Commission .............................................................................. 28 
+B. 
+OMAEG’s corporate separation claims were correctly 
+rejected by the Commission ...................................................................... 32 
+IV. 
+Response to Proposition of Law 4: The Commission correctly 
+found that AEP Ohio’s application was not for an increase in rates .................... 35 
+A. 
+AEP Ohio’s application qualifies as a “first filing,” and 
+therefore was “not for an increase” in rates .............................................. 35 
+B. 
+The cases relied on by OMAEG are clearly distinguishable 
+from AEP Ohio’s application in this case ................................................. 38 
+V. 
+Response to Proposition of Law 5: Notice of the hearing was not 
+required under R.C. 4909.18 and, even if it was, any insufficiency 
+in the notice provided was harmless error ............................................................ 40 
+A. 
+OMAEG cannot demonstrate any prejudice caused by the 
+manner in which the Commission noticed the hearing ............................. 41 
+B. 
+The hearing in this proceeding was set pursuant to the 
+Commission’s discretion—not because the Commission 
+found the Company’s application “may be unjust or 
+unreasonable” ............................................................................................ 42 
+C. 
+Even if notice was required as asserted by OMAEG, the 
+supplemental notice and public hearing ordered by the 
+Commission was sufficient to satisfy R.C. 4909.18 ................................. 44 
+VI. 
+Response to Proposition of Law 6: The Commission properly 
+affirmed the ALJs’ rulings limiting irrelevant and duplicate lines of 
+questioning from OMAEG counsel at hearing ..................................................... 45 
+A. 
+OMAEG misrepresents the true extent of the ALJs’ ruling 
+limiting certain lines of questioning by OMAEG counsel........................ 46 
+B. 
+The record demonstrates that OMAEG was afforded all 
+seven opportunities for due process to which it claims it 
+was entitled ............................................................................................... 48 
+C. 
+The Commission’s decision was explained in sufficient 
+detail pursuant to R.C. 4903.09 ................................................................ 49 
+CONCLUSION ............................................................................................................................. 50 
+ 
+v 
+ 
+TABLE OF AUTHORITIES 
+ 
+Page(s) 
+Cases 
+AK Steel Corp. v. Pub. Util. Comm., 
+95 Ohio St.3d 81 (2002).............................................................................................................8 
+Allnet Communications Servs., Inc. v. Pub. Util. Comm., 
+70 Ohio St.3d 202 (1994).........................................................................................................11 
+In re Application of Firelands Wind, LLC, 
+2023-Ohio-2555 ...................................................................................................................9, 46 
+In re Application of Ohio Power Co., 
+2025-Ohio-3034 .......................................................................................................................41 
+Canton v. Pub. Util. Comm., 
+72 Ohio St.3d 1 (1995).............................................................................................................17 
+Cincinnati v. Pub. Util. Comm., 
+151 Ohio St. 353 (1949)...........................................................................................................19 
+City of Cleveland v. Pub. Util. Comm., 
+67 Ohio St.2d 446 ....................................................................................................................36 
+In re Compl. of Suburban Natural Gas Co. v. Columbia Gas of Ohio, Inc., 
+2020-Ohio-5221 .......................................................................................................................13 
+Conneaut Tel. Co. v. Pub. Util. Comm., 
+10 Ohio St.2d 269 (1967).........................................................................................................19 
+Consumers' Counsel v. Pub. Util. Comm., 
+70 Ohio St.3d 244 (1994).............................................................................................19, 20, 33 
+Discount Cellular, Inc. v. Pub. Util. Comm., 
+112 Ohio St.3d 360 (2007).......................................................................................................19 
+Forest Hills Util. Co. v. Pub. Util. Comm., 
+31 Ohio St.2d 46 (1972)...........................................................................................................24 
+Marion v. Pub. Util. Comm., 
+161 Ohio St. 276 (1954)...........................................................................................................19 
+Meyers v. Pub. Util. Comm., 
+64 Ohio St.3d 299 (1992)...................................................................................................12, 15 
+Migden-Ostrander v. Pub. Util. Comm., 
+vi 
+ 
+102 Ohio St.3d 451 (2004).......................................................................................................12 
+Monongahela Power Co. v. Pub. Util. Comm., 
+2004-Ohio-6896 .........................................................................................................................9 
+Office of Consumers' Counsel v. Pub. Util. Comm., 
+58 Ohio St.2d 108 (1979)...........................................................................................................8 
+In re Ohio Power Co., 
+2018-Ohio-4697 .......................................................................................................................41 
+Ohio Partners for Affordable Energy v. Pub. Util. Comm., 
+115 Ohio St.3d 208, 2007-Ohio-4790......................................................................................33 
+Parma v. Pub. Util. Comm., 
+86 Ohio St.3d 144 (1999).........................................................................................................45 
+Schaffter v. Ward, 
+17 Ohio St.3d 79 (1985)...........................................................................................................46 
+State v. Proffitt, 
+2017-Ohio-1236 (12th Dist.) ...................................................................................................46 
+State v. Sage, 
+31 Ohio St.3d 173 (1987).........................................................................................................46 
+State v. Thompson, 
+2014-Ohio-4751 .......................................................................................................................46 
+Tongren v. Pub. Util. Comm., 
+85 Ohio St.3d 87 (1999)...........................................................................................................17 
+TriHealth, Inc. v. Bd. of Commrs. Hamilton Co., 
+430 F.3d 783 (6th Cir. 2005) ...................................................................................................21 
+TWISM Ents., LLC v. State Bd. of Registration for Professional Engineers & 
+Surveyors, 
+2022-Ohio-4677 .........................................................................................................................9 
+Vectren Energy Delivery of Ohio, Inc. v. Pub. Util. Comm., 
+2006-Ohio-1386 .......................................................................................................................48 
+Weiss v. Pub. Util. Comm., 
+90 Ohio St.3d 15 (2000)...............................................................................................11, 42, 46 
+People of State of New York ex rel. Woodhaven Gaslight Co. v. Pub. Serv. 
+Comm., 
+269 U.S. 244 (1925) .................................................................................................................24 
+vii 
+ 
+Statutes & Regulations 
+Ohio Admin. Code 4901-1-27(B) ..................................................................................................46 
+Ohio Admin. Code 4901-7-01 .......................................................................................................36 
+R.C. 4903.09 ..................................................................................................................................13 
+R.C. 4903.10 ............................................................................................................................18, 32 
+R.C. 4903.13 ....................................................................................................................................8 
+R.C. 4905.09 ..................................................................................................................................45 
+R.C. 4905.22 ..................................................................................................................................22 
+R.C. 4905.32 ..................................................................................................................................11 
+R.C. 4905.33 ..................................................................................................................................11 
+R.C. 4905.35 ..................................................................................................................................11 
+R.C. 4905.35(A) .............................................................................................................................11 
+R.C. 4909.18 ......................................................................................................................35, 36, 42 
+R.C. 4909.19 ..................................................................................................................................36 
+R.C. 4928.02 ..................................................................................................................................22 
+R.C. 4928.14 ..................................................................................................................................39 
+R.C. 4928.15 ..................................................................................................................................39 
+R.C. 4933.81 ..................................................................................................................................22 
+R.C. 4933.83 ..................................................................................................................................22 
+Other Authorities 
+In re Application of The Cincinnati Gas & Elec. Co., 
+PUCO No. 82-622-EL-ATA, 1982 WL 973411 (May 12, 1982) ............................................37 
+In re Application of Columbia Gas of Ohio, Inc. for an Adjustment to Rider IRP, 
+PUCO No. 09-06-GA-UNC, 2009 WL 1917789 (June 24, 2009) ..........................................43 
+In re Application of Columbia Gas of Ohio, Inc., 
+PUCO No. 80-370-GA-ATA, 1980 WL 624968 (May 14, 1980) .....................................39, 40 
+viii 
+ 
+In re Application of Columbus Southern Power Co., 
+PUCO No. 11-1355-EL-ATA, 2011 WL 2644117 (June 29, 2011) ........................................36 
+In re Application of Duke Energy Ohio for Tariff Approval, 
+PUCO No. 08-1251-GA-ATA, et al., 2009 WL 1174788 (Apr. 29, 2009) .............................43 
+In re Application of Duke Energy Ohio, Inc. for the Approval of a Tariff for a New 
+Service, 
+PUCO No. 12-2402-EL-ATA, et. al., 2012 WL 4803493 (Oct. 3, 2012) ...............................43 
+In re Application of Ohio Edison Co., 
+PUCO No. 85-792-EL-ATA, 1985 WL 1171277 (Aug. 20, 1985) .........................................36 
+In re Application of Ohio Power Co., 
+PUCO No. 18-1313-EL-ATA, 2019 WL 1116703 (Mar. 6, 2019) .........................................36 
+In re Cincinnati Gas & Elec. Co., 
+PUCO No. 03-93-EL-ATA, 2005 WL 293629 (Jan. 19, 2005) ...............................................39 
+In re Columbia Gas of Ohio, Inc., 
+PUCO No. 02-2903-GA-ATA, 2004 WL 1803543 (Apr. 29, 2004) .......................................37 
+In re Compl. of Gary S. Bohn, 
+PUCO No. 85-127-GE-CSS, 1985 WL 1171359 (July 16, 1985) ...........................................44 
+In re Duke Energy Ohio, 
+PUCO No. 07-626-EL-ATA, 2007 WL 2141947 (July 25, 2007) ..........................................37 
+In re Application of AEP Ohio Transm. Co., Inc.,  
+ 
+PUCO No. 10-245-EL-UNC, et. al., 2010 WL 5525171 (Dec. 29, 2010) ..............................34 
+In re Application of Ohio Edison Co., The Cleveland Elec. Illum. Co., & The 
+Toledo Edison Co. for Authority to Modify Certain Accounting Practices and 
+for Tariff Approvals,  
+ 
+PUCO No. 08-124-EL-ATA, et al., 2008 WL 596092 (Feb. 29, 2008) ..................................43 
+In re Long-Term Forecast Report of Ohio Power Co., 
+PUCO No. 10-501-EL-FOR, et al., 2013 WL 175238 (Jan. 9, 2013) .....................................46 
+In re Ohio Power Co., 
+PUCO No. 96-999-EL-AEC, et al., 2006 WL 1637303 (June 14, 2006) ................................23 
+In re Regulation of the Purchased Gas Adjustment Clause Contained 
+within the Rate Schedules of Columbia Gas of Ohio, Inc.,  
+ 
+PUCO No. 93-22-GA-GCR, 1993 WL 13742118 (Dec. 23, 1993) .........................................44 
+In re Request by the Ohio Dept. of Transp., 
+PUCO No. 22-324-RR-RCP, 2023 WL 396913 (Jan. 20, 2023) .............................................44 
+ix 
+ 
+In re Review of the Power Purchase Agreement Rider of Ohio Power Co., 
+PUCO No. 18-1004-EL-RDR, et al., 2024 WL 4039778 (Aug. 21, 2024) .............................46 
+See In re Cincinnati Gas & Elec. Co., 
+PUCO No. 03-93-EL-ATA, 2004 WL 2781939 (Nov. 23, 2004) ...........................................39 
+ 
+ 
+1 
+ 
+INTRODUCTION 
+This case presents a straightforward question: whether the Public Utilities Commission of 
+Ohio (the “Commission”) acted reasonably and lawfully when it approved a new tariff 
+framework—Schedule DCT—to manage an unprecedented surge in data center demand that 
+threatened to overwhelm the electric transmission infrastructure serving 1.5 million customers in 
+Central Ohio.  The Commission concluded that the new tariff was an appropriate response to this 
+unprecedented growth, and the record amply supports that conclusion. 
+The facts are not seriously in dispute.  Beginning in 2023, AEP Ohio was inundated with 
+requests from data center customers seeking to connect loads so massive that they would more 
+than double the existing peak demand in Central Ohio within just a few years.  Engineering 
+studies confirmed what common sense suggests: the existing transmission system cannot absorb 
+demand of such magnitudes without billions of dollars in new infrastructure that will take years 
+to build.  Without firm and financially-backed contractual commitments from the customers 
+driving this demand, there was a material risk that those investments could go underutilized—
+leaving AEP Ohio's other customers to bear the cost. 
+Schedule DCT was designed to address this problem.  It requires large data center 
+customers to make firm commitments regarding their anticipated load before investments to 
+serve that load are made, ensuring that AEP Ohio can accurately forecast demand and that the 
+massive infrastructure investments that would have been needed to serve these load requests are 
+right-sized from the outset.  The Commission approved Schedule DCT after a thirteen-day 
+evidentiary hearing, extensive post-hearing briefing, and careful consideration of two competing 
+stipulations—finding that the settlement presented by Ohio Power Company (“AEP Ohio” or the 
+“Company”), Commission Staff, and several other parties, struck the best balance to 
+accommodate data center growth while protecting existing customers and grid reliability. 
+2 
+ 
+AEP Ohio’s Schedule DCT proposal and the resulting settlement supporting it was 
+opposed by data center and cryptocurrency business interests, including Amazon Data Services, 
+Inc., Google LLC, Microsoft Corporation, the Data Center Coalition, The Ohio Blockchain 
+Council, Sidecat LLC (an affiliate of Meta), and Enchanted Rock, LLC.  The Ohio 
+Manufacturers Association Energy Group (“OMAEG”) is the only party to challenge the 
+Commission decision before this Court, despite the acquiescence of the above-listed parties that 
+directly represent data center interests.  OMAEG takes a “shotgun” approach before this Court 
+and challenges the Commission's Order on six separate grounds, none of which has merit.  
+OMAEG first contends that Schedule DCT is unduly discriminatory, but the record demonstrates 
+that large data centers are materially different from other customers in ways that directly affect 
+the cost and risk of providing service—and Ohio law has long permitted rate distinctions 
+grounded in such differences.  OMAEG also claims that the Company's temporary moratorium 
+on new data center service requests violates Ohio law.  This assertion disregards that the 
+moratorium was a reasonable, temporary measure to protect system reliability—exactly the kind 
+of prudent grid management the governing statutes contemplate.  Third, OMAEG asserts there is 
+no evidence of a transmission constraint justifying Schedule DCT.  Yet again, as noted by the 
+Commission, the engineering evidence in the record establishes otherwise.  And, finally, 
+OMAEG leaves no aspect of its displeasure with the Commission decision unchallenged and 
+raises a series of procedural objections that are clearly within the Commission’s discretion over 
+its proceedings—regarding the classification of the application, notice of the hearing, and the 
+Administrative Law Judges’ (“ALJs”) management of cross-examination—that are either legally 
+incorrect, harmless, or both. 
+At bottom, OMAEG asks this Court to second-guess the Commission's expert judgment 
+3 
+ 
+on complex factual questions involving technical aspects of regulatory matters—precisely the 
+type of determination to which this Court has consistently deferred.  As further demonstrated 
+below, the Commission's Order was reasonable, lawful, and supported by substantial evidence.  
+As such, AEP Ohio, with the support of Ohio Energy Group (“OEG”),1 respectfully requests that 
+this Court affirm the Commission’s decision approving Schedule DCT and dismiss OMAEG’s 
+appeal in its entirety. 
+STATEMENT OF FACTS 
+AEP Ohio is an electric distribution utility that serves approximately 1.5 million 
+customers across a large portion of Ohio.  This case arises from AEP Ohio's efforts to address an 
+unprecedented surge in demand for electric service driven by the data center industry—a surge 
+so large that it threatened to overwhelm the transmission infrastructure that delivers electricity to 
+homes, businesses, and industries throughout Central Ohio. 
+I. 
+Unprecedented data center demand threatens Central Ohio's transmission system for 
+all customers 
+Beginning in 2023, AEP Ohio experienced tremendous growth in customer demand for 
+electric service, driven by data center customers seeking to locate in Central Ohio.  To appreciate 
+the magnitude of this growth—and the challenge it presents—it is helpful to understand how the 
+transmission system that serves Central Ohio operates. 
+Electricity is delivered through a network of high-voltage transmission lines that carry 
+ 
+1 OEG is an organization of large energy-intensive utility customers in Ohio, comprised of the 
+following members: Air Products and Chemicals, Inc.; Amsted Rail Company, Inc.; ArcelorMittal 
+Tubular Products Shelby; Cargill, Incorporated; Charter Steel; Cleveland-Cliffs Inc.; Ford Motor 
+Company; GE Aviation; General Motors LLC; Howmet Aerospace, Inc.; Intel Corporation; JSW 
+Steel USA Ohio, Inc.; Linde Inc.; Martin Marietta Magnesia Specialties, LLC; Materion 
+Corporation; Messer, LLC; Metallus, Inc.; Molson Coors Beverage Company; Nature Fresh Farms 
+USA Inc.; North Star BlueScope Steel LLC; One MWHub; POET – Bioprocessing; PTC Alliance 
+Holding Corp.; Stellantis; The Worthington Steel Company; and Three Rivers Energy LLC. 
+4 
+ 
+power from generating sources to local distribution networks.  Central Ohio has no large-scale 
+generation resources of its own, meaning that all electricity consumed in the region must be 
+imported through this extra-high-voltage transmission network.  (ICN 2, AEP Ohio Ex. 2 at 7-8, 
+Supp. at 8-9.)   Because the transmission system is highly integrated and changes in one area can 
+affect reliability across the region, decisions about what facilities to build, where, and by whom 
+are governed by the FERC-jurisdictional transmission planning process overseen by PJM 
+Interconnection LLC (“PJM”), the regional transmission organization that coordinates the 
+electric grid across much of the eastern United States.  (See id. at 3-5, Supp. at 4-6; see also Tr. 
+at 60-61, 65-66, Supp. at 207-210.)  As part of that process, AEP Ohio updates the PJM load 
+forecast with new loads that have signed agreements for transmission service.  (Id.; see also 
+Sidecat Ex. 10, Supp. at 202.) 
+Against this backdrop, the scale of data center demand seeking service in Central Ohio is 
+extraordinary.  As of 2024, Central Ohio's peak electric demand was approximately 4,000 
+MW—of which only about 600 MW was attributable to existing data center usage.  (ICN 142, 
+AEP Ohio Ex. 3 at 3-4, Supp. at 19-20; AEP Ohio Ex. 2 at 4, Supp. at 5.)  Between 2023 and 
+2024 when the moratorium started and this case was filed, AEP Ohio entered into agreements to 
+serve approximately 5,000 MW of new customer load expected to connect by 2030, all but 
+approximately 400 MW of which was data center load.  (See AEP Ohio Ex. 3 at 3-4, Supp. at 19-
+20; ICN 177, Staff Ex. 1, Attachment CMH-1, Supp. at 197.)  In other words, contracted data 
+center demand alone was poised to more than double the existing peak load in Central Ohio 
+between 2024 and 2030.   
+Beyond that contracted load, over 50 prospective customers at more than 90 project sites 
+had expressed interest in adding load in Central Ohio that could exceed 30,000 MW—more than 
+5 
+ 
+seven times the 2024 peak Central Ohio load.  (AEP Ohio Ex. 3 at 4, Supp. at 20; Tr. at 789, 
+Supp. at 297.)  This unsigned load is inherently speculative because not every customer who 
+expresses interest will ultimately proceed to contract.  For this unsigned load, AEP Ohio 
+provided PJM with a preliminary estimate of approximately 6,700 MW for use in long-term 
+directional forecasting.  (Tr. at 875-876, 924, Supp. at 298-299, 302.)  It is essential that AEP 
+Ohio be able to accurately forecast load growth within its service territory, because accurate 
+forecasting promotes right-sizing of transmission infrastructure from the outset and avoids costly 
+over-investment. 
+AEP Ohio's engineering analyses demonstrated that the existing Central Ohio 
+transmission system can support a total peak load of approximately 10,000 MW—a threshold the 
+Company was rapidly approaching.  (AEP Ohio Ex. 2 at 6, Supp. at 7.)  Beyond that point, 
+significant infrastructure enhancements will be required.  (Id. at 8, Supp. at 9; Sidecat Ex. 10; Tr. 
+at 117, Supp. at 222.)  Even an additional 1,500 MW above the 10,000 MW threshold would 
+result in numerous overload and voltage violations throughout the Central Ohio region, risking 
+brownouts, blackouts, and equipment failures.  (Sidecat Ex. 10; Tr. at 227-229, Supp. at 278-
+280.)  At higher levels of additional load, AEP Ohio's studies indicate that the construction of 
+large extra-high-voltage transmission lines into Central Ohio will likely be necessary—
+potentially including up to three 765 kV lines at 4,500 MW above the 10,000 MW threshold.  
+(AEP Ohio Ex. 2 at 8-10, Supp. at 9-11; Sidecat Ex. 10; Tr. at 394-395, Supp. at 289-290.)  
+These infrastructure investments will not only be extraordinarily costly but will also require 
+significant time to design, permit, and build.  (AEP Ohio Ex. 2 at 8, Supp. at 9.) 
+Based on this evidence, the Commission rejected OMAEG’s “claim that the Company 
+has not provided sufficient record evidence to demonstrate the transmission constraints AEP 
+6 
+ 
+Ohio faces” and made a factual finding that AEP Ohio “has proved that its transmission network 
+will not be able to reliably serve any amount of load beyond the 4,400 MW load comprised of 
+data center and non-data center customers that signed ESAs before the moratorium.”  (ICN 231, 
+Order at ¶¶ 122, 129.) 
+II. 
+AEP Ohio's response: the temporary moratorium and the Schedule DCT solution 
+Faced with this unprecedented volume of demand, AEP Ohio took two steps.  First, in 
+March 2023, the Company temporarily paused accepting new service requests from data center 
+customers and executing agreements to serve that load, in order to give its transmission planning 
+group time to study the impacts of the additional requests and ensure that the grid could continue 
+to reliably serve both new and existing customers.  (AEP Ohio Ex. 2 at 6-7, Supp. at 7-8.)  After 
+the load study was completed and indicated that the data center load requests could not be served 
+by the existing transmission network, the moratorium was continued until the Commission made 
+a determination regarding Schedule DCT.  During the moratorium period, prospective customers 
+were placed in a first-come, first-served queue, and the moratorium was intended to remain in 
+place only until the Commission decided the tariff case that AEP Ohio subsequently filed.  (Id.)  
+Second, AEP Ohio initiated this proceeding to establish a new tariff framework—Schedule 
+DCT—designed to create a balanced solution for the core problem underlying the moratorium.  
+(Id.) 
+Data centers differ from other large-load customers in ways that directly affect the cost, 
+risk, and complexity of providing electric service.  The industry is experiencing exponential 
+growth with no parallel among other industries, individual campuses can require extraordinary 
+volumes of electricity at a single location, and data center operations can be scaled up or down—
+or relocated entirely—far more readily than traditional industrial operations.  (Id. at 8, Supp. at 9; 
+AEP Ohio Ex. 3 at 6, Supp. at 22.)   These characteristics make it uniquely important—and 
+7 
+ 
+uniquely difficult—for AEP Ohio to forecast how much data center load will actually materialize 
+and plan the corresponding infrastructure investments accordingly. 
+AEP Ohio's prior tariff framework compounded this issue, providing insufficient 
+incentives for data center customers to accurately predict their load needs and follow through 
+with their service plans.  (AEP Ohio Ex. 3 at 6-7, Supp. at 22-23.)  This uncertainty posed a 
+direct threat to all of AEP Ohio's customers.  Without firm commitments from data centers, there 
+was a material risk that billions of dollars in transmission infrastructure investments—built to 
+serve data center demand—could go underutilized if that demand failed to materialize.  
+Underutilized infrastructure would result in significantly higher rates for all other customers.  
+(Id.; AEP Ohio Ex. 2 at 8, Supp. at 9.)  In response to AEP Ohio’s proposed solution, the 
+Commission agreed “that right-sizing buildout and encouraging accurate forecasting are critical 
+goals for preventing wastefulness and stranded investment costs, and thus unfairly imposing 
+these costs onto non-data center customers.”  (ICN 231, Order at ¶ 123.) 
+AEP Ohio filed this case to establish firm commitments from data center customers to 
+ensure they are accurately estimating their power needs and will follow through with their plans.  
+These commitments, in turn, enable AEP Ohio to provide accurate load estimates to PJM for use 
+in its FERC-jurisdictional transmission planning process—ensuring that the right amount of 
+infrastructure is built in the right places at the right time.  (Id.; Tr. at 917-918, Supp. at 300-301.) 
+III. 
+Procedural history 
+AEP Ohio filed its application and initial testimony on May 13, 2024, after which all 
+parties filed comments on the Company’s proposal and engaged in settlement negotiations.  
+(AEP Ohio Ex. 3 at 7, Supp. at 23.)  While the all-party settlement negotiations were pending, a 
+subset of parties (including OMAEG) predominately representing data center interests filed their 
+own stipulation (the "10/10 Stipulation").  (Id.)  All-party negotiations continued, ultimately 
+8 
+ 
+producing a competing stipulation that AEP Ohio submitted with the support of Staff and other 
+customer interest groups (the "10/23 Stipulation").  (Id.) 
+Following a thirteen-day evidentiary hearing and extensive post-hearing briefing, the 
+Commission ultimately found that the 10/23 Stipulation represented a better balance between 
+preserving flexibility for data center customers while also ensuring adequate protection for other 
+customers and the reliability of the grid.  As a result, the Commission approved the 10/23 
+Stipulation subject to certain modifications.  (ICN 231, Order at ¶ 121; ICN 242, Entry on 
+Rehearing at ¶ 36.) 
+STANDARD OF REVIEW 
+Under R.C. 4903.13, a Commission order may be reversed, vacated, or modified only 
+when, upon consideration of the record, this Court finds the order to be unlawful or 
+unreasonable.  The scope of the Court's review depends on whether the issue appealed presents a 
+question of law or one of fact.  Office of Consumers' Counsel v. Pub. Util. Comm., 58 Ohio St.2d 
+108, 110 (1979). 
+On questions of fact, the Court will not disturb a Commission decision where the record 
+contains sufficient probative evidence to show that the Commission's determination is not 
+manifestly against the weight of the evidence and is not so clearly unsupported by the record as 
+to show misapprehension, mistake, or willful disregard of duty.  Id.  Consistent with this 
+principle, the Court has repeatedly declined to substitute its judgment for that of the Commission 
+on evidentiary matters, and has recognized that the burden falls on the appellant to demonstrate 
+that the Commission's decision is against the manifest weight of the evidence or is clearly 
+unsupported by the record—a heavy burden that is difficult to satisfy.  AK Steel Corp. v. Pub. 
+Util. Comm., 95 Ohio St.3d 81, 84-86 (2002).  This deference is particularly appropriate where 
+the factual questions at issue require the Commission's specialized expertise and discretion.  
+9 
+ 
+Monongahela Power Co. v. Pub. Util. Comm., 2004-Ohio-6896, ¶ 29; see also TWISM Ents., 
+LLC v. State Bd. of Registration for Professional Engineers & Surveyors, 2022-Ohio-4677, ¶ 42; 
+In re Application of Firelands Wind, LLC, 2023-Ohio-2555, ¶ 17. 
+This Court reviews questions of law de novo.  See, e.g., TWISM at ¶ 50.  In doing so, 
+however, the Court should “keep in mind the respective competencies of the agency and the 
+judiciary,” particularly “in a specialized matter that involves technical meaning uniquely within 
+the competency of the agency” where “the agency's expertise might prove helpful to a court in its 
+interpretive task.”  See id. at ¶¶ 45, 47. 
+The heightened deference owed to the Commission's factual determinations is of 
+particular importance here.  The majority of OMAEG's challenges do not rest on textual statutory 
+interpretation questions but second-guess the Commission's resolution of technical factual 
+questions pertaining to the management of the Ohio distribution grid and its interaction with the 
+transmission system—issues that are complex, that carry direct implications for the safety and 
+reliability of electric service in Central Ohio, and that fall squarely within the Commission's 
+specialized expertise.  As demonstrated throughout this brief, OMAEG has failed to meet that 
+burden in its Propositions of Law 1, 2, 3, and 6. 
+OMAEG's Propositions of Law 4 and 5, while framed as legal challenges, likewise 
+implicate the Commission's specialized regulatory expertise.  These Propositions of Law both 
+require the Court to interpret statutory provisions governing how public utility rate filings are 
+classified, processed, and noticed.  Although this Court reviews such questions of law de novo, 
+that does not mean it cannot consider the Commission's legal determinations persuasive, 
+particularly where the statutory provisions at issue carry technical meaning uniquely within the 
+Commission's expertise.  The classification of a tariff application under R.C. 4909.18 is a 
+10 
+ 
+determination the Commission has made hundreds of times across decades of regulatory 
+practice, and one that requires an understanding of how tariff structures operate within the 
+broader framework of utility ratemaking.  As set forth in greater detail below, the Commission's 
+longstanding and consistent interpretation of these provisions, as applied to AEP Ohio's 
+proposal, is correct and entitled to respectful consideration by this Court. 
+ARGUMENT 
+I. 
+Response to Proposition of Law 1: The Commission reasonably and lawfully 
+approved Schedule DCT as part of the 10/23 Stipulation 
+A. 
+Schedule DCT is not unduly discriminatory but is based on specific, material 
+differences in the cost of serving large data centers 
+OMAEG first contends that Schedule DCT is unduly discriminatory under R.C. 4905.32, 
+4905.33, and 4905.35 because, in OMAEG's view, it treats similarly situated customers 
+differently, and that disparate treatment is not justified by the record evidence.  (OMAEG Merit 
+Br. at 10.)  That argument is incorrect at every level.  Whether large data centers are “similarly 
+situated” to other large-load customers—and whether the differences between them justify a 
+distinct tariff classification—is fundamentally a factual question, and one the Commission 
+resolved after weighing extensive evidence about the cost, risk, and complexity of serving these 
+customers.  Ohio law does not prohibit all rate distinctions among customer classes—it prohibits 
+only unreasonable discrimination that lacks a legitimate basis.  The Commission found that the 
+distinctions drawn by Schedule DCT rest on specific, material differences supported by 
+substantial, reliable, and probative evidence.  OMAEG merely disagrees with the Commission 
+and has not come anywhere close to showing those findings are manifestly against the weight of 
+the record. 
+1. 
+Ohio law supports reasonable distinctions based on material 
+differences in providing service 
+11 
+ 
+Ohio's statutory framework governing public utility rates does not prohibit all distinctions 
+among customer classes.  Rather, it prohibits only unreasonable discrimination that is unjustified 
+by the record.  The relevant statutes make this clear.  R.C. 4905.32 requires that the terms 
+specified in a utility's tariffs be "regularly and uniformly extended to all persons, firms, and 
+corporations under like circumstances for like, or substantially similar, service."  R.C. 
+4905.33(A) similarly prohibits a utility from charging different compensation for "doing a like 
+and contemporaneous service under substantially the same circumstances and conditions."  And 
+R.C. 4905.35(A) forbids a utility from making or giving "any undue or unreasonable preference 
+or advantage to any person, firm, corporation, or locality."  Read together, these provisions 
+establish a consistent principle: rate differentiation is permissible so long as it is grounded in 
+legitimate, material differences in the service being provided or the circumstances under which it 
+is provided.  Critically, this Court has long interpreted these statutes to mandate only that 
+customers receiving like service under like conditions be treated alike—not to mandate uniform 
+pricing across all customers regardless of circumstance. 
+This Court has held that, under R.C. 4905.35(A), "discrimination is not prohibited per se 
+but is prohibited only if without a reasonable basis."  Allnet Communications Servs., Inc. v. Pub. 
+Util. Comm., 70 Ohio St.3d 202, 207 (1994).  Similarly, R.C. 4905.33 prohibits discriminatory 
+pricing only for "like and contemporaneous service" rendered "under substantially the same 
+circumstances and conditions," and does not prohibit differences in prices charged or collected 
+where the services rendered are different or where they are rendered under different 
+circumstances or conditions.  Weiss v. Pub. Util. Comm., 90 Ohio St.3d 15, 16 (2000).  Thus, 
+"[d]ifferences reasonably affecting the expense or difficulty of performing the same or similar 
+service in different areas or circumstances may be reflected in differences in cost recovery rates, 
+12 
+ 
+and . . . such differences are neither unlawful nor discriminatory."  Migden-Ostrander v. Pub. 
+Util. Comm., 102 Ohio St.3d 451, 459 (2004) (citing Buckeye Lake Chamber of Commerce v. 
+Pub. Util. Comm., 161 Ohio St. 306, 312 (1954).  Consistent with these long-standing principles, 
+the Court has regularly found that a utility's residential and general service classifications—and 
+their corresponding rates—are based upon actual and measurable differences in the furnishing of 
+services to customers and are therefore not unduly discriminatory.  See, e.g., Meyers v. Pub. Util. 
+Comm., 64 Ohio St.3d 299, 302 (1992). 
+In line with this well-established authority, AEP Ohio has long recognized different 
+classes of customers subject to different tariff schedules, where those classifications are based on 
+tangible, reasonable, and justifiable distinctions.  (ICN 146, AEP Ohio Ex. 4, at 35-36, Supp. at 
+108-109.)  AEP Ohio's existing tariff schedules, for example, draw distinctions among residential 
+customers, county and independent fairs, lighting customers, schools, churches, power plants, 
+customers utilizing behind-the-meter generation, customers with electric vehicles, automakers, 
+and electric heating customers, among others.  (Id.)  These schedules lawfully differentiate 
+among customer classes based not only on how much power the customer uses and at what 
+voltage level service is delivered, but also on who the customers are and what they use electric 
+service for. 
+Schedule DCT operates on the same principle: it establishes a new tariff classification for 
+large data centers based on the specific, material differences in the cost of serving those 
+customers.  Indeed, even OMAEG itself appears to acknowledge that differences in the cost of 
+service can serve as the basis for different criteria or classifications.  (See OMAEG Merit Br. at 
+13.)  That concession effectively undermines the foundation of OMAEG's undue discrimination 
+argument, because the record in this proceeding amply demonstrates that the cost of serving 
+13 
+ 
+large data centers differs materially from the cost of serving other large-load customers. 
+2. 
+Large data centers subject to Schedule DCT are not similarly situated 
+to other large load customers 
+OMAEG asserts that it is "undisputed" that Schedule DCT treats similarly situated large-
+load customers disparately and contends that the Commission's Order was not based upon 
+sufficient findings supported by the record, in violation of R.C. 4903.09.  (Id. at 11).  Both 
+contentions are wrong.  R.C. 4903.09 requires the Commission to file "findings of fact and 
+written opinions setting forth the reasons prompting the decisions arrived at."  Although strict 
+compliance with this requirement is not demanded, a Commission order "must contain sufficient 
+detail for [the] Court to determine the factual basis and reasoning relied on by the Commission."  
+In re Compl. of Suburban Natural Gas Co. v. Columbia Gas of Ohio, Inc., 2020-Ohio-5221, ¶ 
+19.  The Commission's Order and Entry on Rehearing in this proceeding readily satisfy that 
+standard—and the record evidence they rely upon overwhelmingly supports the conclusion that 
+large data centers are not similarly situated to other large-load customers. 
+The Order fully discussed the evidence and arguments presented by each party—
+including OMAEG—and, based on that evidence, found that Schedule DCT was not unduly 
+discriminatory.  (ICN 231, Order at ¶¶ 106-109.)  In doing so, the Commission acknowledged 
+that the 10/23 Stipulation is specifically tailored to data center load but found that AEP Ohio 
+provided a "reasonable basis for its tailored proposal" that justifies the distinction.  (Id. at ¶ 128.)  
+Drawing on the extensive evidentiary record developed over a thirteen-day hearing, the 
+Commission identified a detailed array of material differences between large data centers and 
+other large-load customers—differences that directly affect the cost, complexity, and risk of 
+providing electric service.  (Id. at ¶ 129.) 
+First, the data center industry is experiencing a unique and unprecedented level of 
+14 
+ 
+hypergrowth that has no parallel among other types of large-load customers.  This explosive 
+growth is driving the creation of material transmission capacity constraints that will require 
+costly infrastructure investments to resolve—investments that would not be necessary but for the 
+extraordinary pace and scale of data center demand. (AEP Ohio Ex. 4 at 37-39, Supp. at 110-
+112.)  Second, the sheer amount and geographic concentration of electric demand that a single 
+large data center imposes on the system far exceeds what is typical of other large-load customers.  
+(Id.)  Indeed, a single data center campus may require upwards of 1,000 MW of capacity, 
+compared to the 100 to 150 MW that might be required by even the largest traditional industrial 
+customers.  (Id.)  Serving loads of that magnitude at a single point of delivery requires 
+significant, dedicated infrastructure that is qualitatively different from the infrastructure needed 
+to serve other large customers. 
+Third, large data centers present systematic, industry-wide risks that are not present for 
+other types of customers.  (Id.)  As discussed above, existing Central Ohio peak load was 4,000 
+MW before the data center related increase of an additional 5,000 MW under contract to be 
+delivered by 2030.  On top of that, there was 30,000 MW of load which had expressed interest, 
+more than 7 times the prior peak load in Central Ohio.  There is a material risk that this demand 
+could diminish for a variety of reasons—including shifts in technology, changes in market 
+conditions, or the relocation of computing operations.  (Id.)  Because data center load is 
+concentrated in a single industry with a uniform type of usage profile, the risks associated with 
+that load cannot be mitigated by the natural diversification that occurs when a utility serves 
+customers across a broad range of industries, where downturns in one sector are often offset by 
+growth in others.  (Id.)  Fourth, data center customers are not only unique in the volume and 
+highly intensive pattern of their electric usage, but also in the fact that they operate at near-
+15 
+ 
+continuous capacity—running at or near full load every hour of every day.  (ICN 144, OEG Ex. 1 
+at 7, Supp. at 122.)  Unlike many other large-load customers, data centers cannot meaningfully 
+shift their usage to off-peak times, further distinguishing their impact on the system from that of 
+other large customers.  (Id.) 
+The Commission expressly found each of these distinctions in its Order, relying on a 
+combination of AEP Ohio, OEG, and Staff witness testimony as well as Sidecat Ex. 10.  (ICN 
+231, Order at ¶ 129.)  The Entry on Rehearing affirmed these findings on those same factual 
+bases.  (ICN 242, Entry on Rehearing at ¶¶ 40-45.)  Taken together, this evidence demonstrates 
+precisely the kind of "actual and measurable differences in the furnishing of services" that this 
+Court has recognized as a legitimate basis for rate classification.  See Meyers, 64 Ohio St.3d at 
+302.  Without the financial commitments required under Schedule DCT, there is a material risk 
+that billions of dollars in infrastructure investments—made solely to serve data center demand—
+could go underutilized if that demand fails to materialize or subsequently declines, resulting in 
+significantly higher rates for all of AEP Ohio's other customers.  Schedule DCT is designed to 
+mitigate that risk and to ensure that the customers driving the need for these extraordinary 
+investments bear a fair share of the costs and consequences. 
+3. 
+OMAEG's attempts to discredit the record evidence are unavailing 
+Rather than engage with the detailed record demonstrating the material differences 
+between large data centers and other large-load customers, OMAEG offers only broad, 
+unsupported assertions that data centers should be treated exactly the same as all other large-load 
+customers—and attempts to dismiss the evidence the Commission relied upon through a series of 
+arguments that are each without merit. 
+OMAEG first characterizes the evidence as "mere representations," but this 
+characterization ignores the nature and quality of the record.  AEP Ohio's witness testimony was 
+16 
+ 
+based on the Company's actual, firsthand experience serving—and receiving requests to serve—
+data center customers.  Those witnesses were subject to cross-examination at hearing, an 
+opportunity that all opposing parties, including OMAEG, took full advantage of—as 
+demonstrated by the extensive hearing transcript developed in this case.  Moreover, OMAEG's 
+characterization disregards the fact that the Commission's findings were also supported by the 
+testimony of other witnesses, each of which were consistent with AEP Ohio's evidence.  (See 
+ICN 231, Order at ¶ 129 (citing OEG Ex. 1 at 7, Supp. at 122; Staff Ex. 1 at 17, Supp. at 151.)  
+In sum, OMAEG merely disagrees with the Commission and improperly asks this Court to 
+second-guess the Commission’s factual findings. 
+OMAEG next argues that the Commission could not have found material differences in 
+the cost of serving large data centers absent a formal cost-of-service study.  (See OMAEG Merit 
+Br. at 13.)  This argument fails for multiple reasons.  AEP Ohio presented substantial and 
+unrebutted evidence of the material cost differences associated with serving large data centers—
+evidence that OMAEG never meaningfully challenged.  OMAEG's insistence on a cost-of-
+service study also disregards the practical reality that the detailed cost information necessary to 
+conduct such a study is simply not available at this time.  The unsigned load requests from data 
+centers remain speculative.  As such, without accurate information regarding the actual load 
+seeking to connect and the specific locations of that load, specific transmission solutions cannot 
+be developed.  At bottom, AEP Ohio filed its application to proactively address the risk of 
+stranded investments needed to support future data center load growth within Ohio—not to 
+recover costs.  Under these circumstances, demanding a formal cost-of-service study as a 
+prerequisite to any tariff differentiation would effectively prevent a utility from taking 
+reasonable, forward-looking steps to protect its existing customers from foreseeable harm. 
+17 
+ 
+Finally, the cases cited by OMAEG in support of its sufficiency-of-evidence argument 
+are not relevant to this proceeding.  In Tongren v. Pub. Util. Comm., 85 Ohio St.3d 87 (1999), 
+the Court did not address a claim of discriminatory rates at all.  Rather, the Court considered 
+whether the Commission had adequately supported its decision approving a merger, consistent 
+with the requirements of R.C. 4903.09.  The Court found the Commission had not met this 
+burden, emphasizing that the Commission had failed to reference any record support for its 
+findings—which adopted findings from Staff that were based on facts not in the record.  In 
+support of that determination, the Court specifically noted that "no hearing was held and no 
+written testimony was filed on behalf of the companies or any other interested party" and that 
+"[t]he Commission's staff filed no comments, testimony, or report."  Id. at 90.  That situation 
+bears no resemblance to this proceeding, where numerous parties filed testimony and comments, 
+a thirteen-day hearing was held, and the Commission's Order included explicit references to the 
+evidentiary record in support of its findings. 
+Similarly, in Canton v. Pub. Util. Comm., 72 Ohio St.3d 1 (1995), the Court found that 
+the Commission had erred in granting twenty-two CPCN applications based on insufficient 
+evidence.  The Court noted, among other things, that many applicants had failed to support their 
+applications with the testimony of more than one witness as required by law and several 
+applicants had not presented any witnesses at all.  Moreover, the Commission had failed to cite 
+any facts supporting its finding that the applicants could not be adequately served through 
+contract authority.  Ultimately, due to these evidentiary gaps in the underlying proceeding, the 
+Court held that the Commission had improperly lowered the burden of proof for eighteen of the 
+twenty-two applications.  Id. at 7-10.  Once again, this case is clearly distinguishable.  AEP Ohio 
+presented two witnesses of its own in support of the Application and the subsequent 10/23 
+18 
+ 
+Stipulation, and three other signatories—including Staff—also presented witnesses, each of 
+whom was made available for cross-examination. 
+The evidentiary record before the Commission was robust, the Commission's findings 
+were detailed and well-supported, and OMAEG's attempt to analogize this proceeding to cases 
+involving wholesale evidentiary failures is simply unavailing.  OMAEG's position ignores the 
+record, disregards the testimony of multiple witnesses, and is contrary to the well-established 
+legal principle—which OMAEG itself has conceded—that differences in the cost of service can 
+justify different rate classifications. 
+B. 
+Schedule DCT does not violate the Equal Protection Clause or due process 
+Also as part of its first proposition of law, OMAEG contends that Schedule DCT is 
+discriminatory in violation of the Equal Protection Clause and that the Commission's Order 
+violates due process because the Commission purportedly failed to respect the rights afforded to 
+data center customers and ensure their fair treatment by AEP Ohio.  (OMAEG Merit Br. at 10, 
+12).  These constitutional claims are meritless.  They fail at the outset for lack of the specificity 
+required by R.C. 4903.10, they are foreclosed by this Court's longstanding recognition that 
+ratepayer rights in the ratemaking process are statutory rather than constitutional, and they fail on 
+the merits in any event because Schedule DCT easily satisfies rational basis review. 
+1. 
+OMAEG’s constitutional claims fail for lack of specificity under R.C. 
+4903.10 
+As a threshold matter, OMAEG's constitutional arguments should be rejected because 
+they lack the specificity required by R.C. 4903.10.  That statute requires an appellant challenging 
+a Commission order to set forth specifically the grounds on which it considers the order to be 
+unreasonable or unlawful.  R.C. 4903.10.  This Court has consistently enforced that requirement, 
+holding that a party's failure to specifically allege in what respect an order is unreasonable or 
+19 
+ 
+unlawful is fatal to its claim.  Discount Cellular, Inc. v. Pub. Util. Comm., 112 Ohio St.3d 360 
+(2007); Marion v. Pub. Util. Comm., 161 Ohio St. 276, 278–279 (1954); Cincinnati v. Pub. Util. 
+Comm., 151 Ohio St. 353, 378 (1949); Conneaut Tel. Co. v. Pub. Util. Comm., 10 Ohio St.2d 
+269, 270 (1967).  This  specificity requirement is strictly construed.  Consumers' Counsel v. Pub. 
+Util. Comm., 70 Ohio St.3d 244, 248 (1994). 
+OMAEG's equal protection and due process claims fail to satisfy this standard.  These 
+arguments lack any discrete support or basis separate from its statutory discrimination 
+argument—they are, in substance, nothing more than a cursory repackaging of the same undue-
+discrimination claim already addressed above, now dressed in constitutional language.  OMAEG 
+does not identify any specific constitutional provision that the Commission's Order allegedly 
+violates in a manner distinct from its statutory claims, nor does it explain with any particularity 
+how the Order is unreasonable or unlawful on constitutional grounds as opposed to the 
+regulatory grounds it has already asserted.  This kind of generalized, undifferentiated 
+constitutional challenge fails R.C. 4903.10's specificity requirement and this Court should 
+decline to reach it on that basis alone. 
+2. 
+The comprehensive statutory framework for utility ratemaking 
+controls 
+Even setting aside the specificity deficiency, OMAEG's constitutional claims fail on the 
+merits because Ohio's comprehensive statutory framework for utility ratemaking displaces the 
+general constitutional principles that OMAEG invokes.  At common law, a utility had the same 
+right as any other business to set the rate for its services.  Consumers' Counsel v. Pub. Util. 
+Comm., 70 Ohio St.3d 244 (1994).  The General Assembly, however, chose to supplant that 
+common-law regime with a detailed statutory process governing how utility rates are established, 
+modified, and reviewed.  That statutory framework—not the general guarantees of due process 
+20 
+ 
+or equal protection—defines the rights and obligations of utilities, ratepayers, and the 
+Commission in the ratemaking context. 
+This Court has squarely addressed this issue, holding that customers have no substantive 
+constitutional right to a fixed rate, and therefore possess no independent due process or 
+procedural rights in the ratemaking process apart from those conferred by statute.  Consumers’ 
+Counsel, 70 Ohio St.3d at 248.  It has "repeatedly held that the right to participate in a 
+ratemaking proceeding is statutory, not constitutional, and that absent express statutory 
+provision, a ratepayer has no right to notice and hearing under the Due Process Clauses of the 
+Ohio and United States Constitutions."  Id. at 249. 
+This principle is controlling and directly fatal to OMAEG's constitutional claims.  
+Because the rights of ratepayers in the ratemaking process are creatures of statute rather than 
+constitutional guarantees, OMAEG cannot bootstrap a statutory discrimination argument into a 
+constitutional one simply by invoking the Equal Protection Clause or the Due Process Clause.  
+The proper framework for evaluating whether Schedule DCT impermissibly discriminates 
+among customer classes is the one the General Assembly established, not the general 
+constitutional provisions that OMAEG cites without meaningful differentiation from its statutory 
+claims.  As demonstrated above, Schedule DCT satisfies all applicable statutory requirements, 
+and OMAEG's attempt to recast that same challenge in constitutional terms does not change the 
+analysis or the result. 
+3. 
+Even if the Equal Protection Clause is applied, Schedule DCT easily 
+satisfies rational basis review 
+Even if this Court were to look past the specificity deficiency and the controlling 
+statutory framework and evaluate OMAEG's equal protection claim on the merits, Schedule DCT 
+easily withstands scrutiny.  The Equal Protection Clause, like the statutory anti-discrimination 
+21 
+ 
+provisions discussed above, prohibits discrimination only between "similarly situated" parties 
+"without any rational basis for the difference."  TriHealth, Inc. v. Bd. of Commrs. Hamilton Co., 
+430 F.3d 783 (6th Cir. 2005).  Under rational basis review, a classification need only be 
+rationally related to a legitimate governmental interest or purpose to survive constitutional 
+challenge.  Id. 
+As demonstrated at length above, the record in this proceeding establishes that large data 
+centers subject to Schedule DCT are not similarly situated to other large-load customers.  The 
+unprecedented scale and concentration of data center demand, the massive infrastructure 
+investments required to serve that demand, the systematic industry-wide risks that cannot be 
+naturally hedged, and the near-continuous capacity usage patterns that distinguish data centers 
+from all other large-load customers collectively provide far more than a rational basis for the 
+classification embodied in Schedule DCT.  The Commission found that this new customer 
+classification was not only appropriate but was necessary to protect other customers from being 
+harmed by the costs associated with meeting data center load requirements without proper 
+safeguards.  OMAEG's equal protection claim therefore fails on the merits, just as it fails on 
+procedural and structural grounds. 
+II. 
+Response to Proposition of Law 2: The Commission’s determination that the 
+temporary moratorium did not violate either the Certified Territory Act or R.C. 
+4905.22 was reasonable, lawful, and supported by the record 
+In its second proposition of law, OMAEG argues that AEP Ohio's temporary moratorium 
+on processing new data center service requests violated the Certified Territory Act (“CTA”), 
+R.C. 4933.83, and the duty to furnish adequate service under R.C. 4905.22, and that the 
+Commission erred in declining to penalize the Company for this alleged violation.  (OMAEG 
+Merit Br. at 14-17.)  This argument fundamentally misconstrues both Ohio law and the facts of 
+this case.  The governing statutes require utilities to furnish adequate and reliable service, and 
+22 
+ 
+AEP Ohio's own studies demonstrated that accepting additional unsigned data center load 
+without substantial grid reinforcement would have jeopardized the reliability of service to 
+existing customers.  Far from warranting a penalty, AEP Ohio's conduct reflected exactly the 
+kind of responsible, forward-looking grid management that Ohio law demands.  The 
+Commission's findings on this issue—rooted in its record-based evaluation of complex questions 
+of grid reliability and transmission planning—fall squarely within its specialized expertise and 
+are entitled to this Court's deference. 
+A. 
+AEP Ohio initiated the temporary moratorium to comply with—not violate—
+the Certified Territory Act and R.C. 4905.22 
+OMAEG’s argument rests on a fundamentally flawed reading of Ohio law—one that 
+treats a utility's obligation to serve as absolute and unlimited, with no regard for the practical 
+constraints on a utility's ability to provide reliable service.  That is not what the law requires. 
+AEP Ohio acknowledges that it has a general obligation to serve customers within its 
+certified territory.  But the governing statutes frame that obligation in terms of reasonableness 
+and adequacy—not as an unqualified mandate to accept any and all load regardless of 
+consequences.  R.C. 4933.83(B) requires electric suppliers to "furnish adequate facilities to meet 
+the reasonable needs of the consumers and inhabitants" in their certified territories.  The statute 
+further defines "adequate facilities" as distribution lines or facilities having "sufficient capacity 
+to meet the maximum estimated electric service requirements of its existing customers and of 
+any new customer occurring during the year following the commencement of permanent electric 
+service, and to assure all such customers of reasonable continuity and quality of service."  R.C. 
+4933.81(B).  Similarly, R.C. 4905.22 requires every public utility to "furnish necessary and 
+adequate service and facilities" that are "in all respects just and reasonable."  And R.C. 
+4928.02(A) establishes it as the policy of the State of Ohio to "[e]nsure the availability to 
+23 
+ 
+consumers of adequate, reliable, safe, efficient, nondiscriminatory, and reasonably priced retail 
+electric service."  Contrary to OMAEG’s theory, each of these provisions conditions the duty to 
+serve on reasonableness, adequacy, and reliability—not on blind acceptance of unlimited 
+demand or the immediate provision of service for such challenging requests. 
+The Commission has previously recognized that “physically adequate service” means 
+more than simply providing reliable service without outages—it requires supplying a sufficient 
+quantity of electricity to meet customer load.  In re Ohio Power Co., PUCO No. 96-999-EL-
+AEC, et al., 2006 WL 1637303, 11 (June 14, 2006).  In Ohio Power, the Commission found that 
+where an electric utility could not serve a customer’s full load without posing an unreasonable 
+risk to its other customers, the utility was not providing physically adequate service.  Id.  That is 
+precisely the situation AEP Ohio confronted here.  Studies conducted by the Company 
+demonstrated that it could not serve the additional, unsigned data center load without substantial 
+reinforcement of the transmission grid, and that attempting to serve that load immediately would 
+have led to brownouts or blackouts, jeopardizing service to its existing customers.  (Sidecat Ex. 
+10; Tr. at 149-151, 265, 581, Supp. at 227-229, 287, 296.)  By the same token, AEP Ohio would 
+not have been providing adequate service if it had committed to serve only a portion of the 
+incoming data center load while lacking the infrastructure to do so reliably.   
+Consistent with the objectives of the CTA and R.C. 4905.22, AEP Ohio instituted the 
+temporary moratorium and proactively filed its application to establish a solution that would 
+enable it to provide physically adequate service to both new data center customers and its 
+existing customer base.  AEP Ohio was fully transparent about the moratorium throughout this 
+process.  Importantly, the Company had already agreed to serve 5,000 MW of new data center 
+load before the moratorium was implemented, and it has never indicated any intent to 
+24 
+ 
+permanently refuse service to the remaining 30,000 MW of requested data center load.  The 
+moratorium was a temporary, good-faith measure designed to preserve system reliability while 
+the Company worked with the Commission and stakeholders to develop an appropriate 
+framework for accommodating this extraordinary volume of new demand.  
+Beyond the absence of any legal violation, imposing penalties under these circumstances 
+also would have produced deeply counterproductive consequences.  Penalizing a utility for 
+exercising reasonable caution when confronted with conditions that threaten the safety and 
+reliability of the electric grid would send precisely the wrong signal to Ohio's regulated utilities, 
+discouraging them from taking the very precautionary steps that responsible grid management 
+demands.  The result would be a regulatory framework that punishes prudence and rewards 
+recklessness—an outcome that serves no one, least of all the ratepayers whom OMAEG purports 
+to represent. 
+B. 
+Precedent prohibits the Commission from ordering an extension of facilities if 
+the utility is not receiving adequate compensation for the services it is already 
+providing 
+OMAEG's position—that AEP Ohio should have simply begun extending its facilities 
+and providing service to the tremendous volume of incoming data center load without any 
+safeguards in place—is also foreclosed by well-established precedent recognizing that a utility 
+cannot be compelled to extend its facilities when it is not receiving adequate compensation for 
+the services it is already providing.  The United States Supreme Court recognized this principle 
+over a century ago in People of State of New York ex rel. Woodhaven Gaslight Co. v. Pub. Serv. 
+Comm., 269 U.S. 244 (1925), holding that a commission may not order a utility to extend service 
+under conditions that would be financially confiscatory.  This Court has embraced the same 
+principle, affirming that the Commission may not order an extension of facilities where the 
+utility is not receiving adequate compensation for the services it already renders.  Forest Hills 
+25 
+ 
+Util. Co. v. Pub. Util. Comm., 31 Ohio St.2d 46, 56–57 (1972) (quoting Elyria Tel. Co. v. Pub. 
+Util. Comm., 158 Ohio St. 441 (1958)). 
+This precedent applies directly here.  It is reasonable—indeed, it is expected—that a 
+utility will receive just compensation for an extension of facilities required to serve new 
+customers.  The data center load seeking service on AEP Ohio's system is not merely large; it is 
+unprecedented in scale, requiring billions of dollars in transmission infrastructure investments.  
+Requiring AEP Ohio to simply begin building out its system and providing service to this 
+extraordinary volume of load—without the necessary precautions to ensure that the load will 
+actually materialize and that the Company will be adequately compensated for the investments 
+required to serve it—would run directly afoul of the principles established in Woodhaven, Elyria 
+Telephone, and Forest Hills.  The temporary moratorium and the proposed tariff at issue in this 
+proceeding were precisely the kind of reasonable, protective measures that this precedent 
+contemplates.  They ensured that AEP Ohio would not be forced to make massive capital 
+commitments without any assurance that the customers driving those investments would follow 
+through on their service requests or bear an appropriate share of the associated costs. 
+C. 
+The Commission’s findings regarding the temporary moratorium were 
+sufficiently supported by the record 
+OMAEG contends that the Commission failed to provide a sufficient rationale for its 
+decision regarding the temporary moratorium, in violation of R.C. 4903.09.  This argument is 
+unpersuasive.  The Commission clearly explained its decision and the factual bases supporting it, 
+as required by R.C. 4903.09.  The Order set forth the positions of the parties on the moratorium 
+issue and, based on the evidence presented, found that the moratorium was reasonable, 
+incorporating explicit references to the testimony presented by AEP Ohio regarding the reasons 
+for the moratorium.  (ICN 231, Order at ¶¶ 110-114, 130.) 
+26 
+ 
+OMAEG's attempts to undermine the sufficiency of the Commission's reasoning are 
+unavailing.  First, OMAEG points to AEP Ohio's Long-Term Forecast Report ("LTFR") filings, 
+claiming that they do not reflect the unprecedented growth discussed in this case and instead 
+show negligible load growth over the next ten years.  (OMAEG Merit Br. at 15-16.)  But this 
+argument fundamentally misrepresents the purpose of the respective filings.  AEP Ohio has 
+consistently reported critical load growth information relevant to the transmission system as part 
+of the PJM planning process and in its LTFR reports to the Commission.  That reporting 
+methodology appropriately avoids including overly speculative load projections that could lead 
+to overinvestment in the transmission system (a policy an organization purporting to represent 
+manufacturing customers would appreciate).  The LTFR filings, in other words, are designed to 
+reflect reasonably foreseeable demand—not the full universe of speculative service requests that 
+a utility may have received.  By contrast, this proceeding was specifically designed to develop a 
+solution for processing and filtering out speculative projects from the more than 30,000 MW of 
+potential data center load growth that AEP Ohio currently faces.  The fact that AEP Ohio’s 
+LTFR reporting in an entirely separate case with a separate purpose is conservative in no way 
+undermines the record evidence demonstrating that data center demand presents an 
+unprecedented challenge to the Company's system. 
+Second, OMAEG attempts to take the Commission's findings out of context, pointing to 
+the Commission's statement that it was "unconcerned" that no formal study was conducted 
+during the moratorium period because "it seems obvious" why the moratorium was put in place.  
+(See ICN 231, Order at ¶ 130; see also ICN 242, Entry on Rehearing at ¶ 151.)  This statement is 
+misleading, omitting the Commission's full reasoning.  The Commission explained that the 
+evidence "obviously" demonstrated that "the moratorium was implemented to mitigate the 
+27 
+ 
+Company's load from escalating too quickly, which indicates that either the Company studied or 
+was aware of triggers for load constraint problems."  (ICN 231, Order at ¶ 130; ICN 242, Entry 
+on Rehearing at ¶ 151.)  That is not an absence of reasoning—it is a straightforward finding that 
+the record evidence made the justification for the moratorium self-evident.  In fact, Sidecat Ex. 
+10—which was subject to cross-examination at hearing—demonstrates that AEP Ohio conducted 
+studies before implementing the moratorium that justified the decision to pause new service 
+requests. 
+More broadly, OMAEG once again dismisses the evidence presented as insufficient 
+without supporting that contention with any rebutting evidence of its own.  OMAEG offers no 
+contrary evidence establishing that the moratorium was unjustified or that the Company's 
+concerns about system reliability were unfounded.  And even if there were any remaining 
+question about the sufficiency of the Commission's reasoning, any alleged error would be 
+harmless: the Commission ordered AEP Ohio to cease the moratorium and process the queue of 
+customer service requests, and AEP Ohio has done so. (ICN 231, Order at ¶ 130.)  The 
+moratorium has ended, the queue is being processed, and OMAEG has not demonstrated any 
+actual harm or prejudice resulting from the temporary pause.  In the absence of any demonstrated 
+injury—and in light of the ample record support for the Commission's findings—OMAEG's 
+challenge to the sufficiency of the Commission's rationale is without merit. 
+III. 
+Response to Proposition of Law 3: The record evidence demonstrates the existence of 
+a transmission constraint justifying the need for Schedule DCT 
+OMAEG’s third proposition of law argues that the Commission erred in finding that AEP 
+Ohio demonstrated a transmission constraint warranting a remedy, that the Commission's Order 
+failed to satisfy the requirements of R.C. 4903.09, and that AEP Ohio as an electric distribution 
+utility is not the appropriate entity to address a transmission issue.  (OMAEG Merit Br. at 18-
+28 
+ 
+22.)  These arguments rest on a persistent mischaracterization of the record evidence and a 
+fundamental misunderstanding of how transmission planning and construction are governed in 
+Ohio—and they ask this Court to override the Commission's judgment on quintessentially 
+technical engineering questions at the very core of its specialized expertise.  The record before 
+the Commission contained substantial engineering evidence establishing that the unprecedented 
+volume of data center load seeking service in Central Ohio will exceed the capacity of the 
+existing transmission system, and OMAEG offered no contrary evidence to rebut those findings. 
+A. 
+OMAEG misrepresents the evidence presented and relied on by the 
+Commission 
+The Commission's Order clearly set forth the factual bases for its finding that a 
+transmission constraint exists, and that Schedule DCT is a reasonable response to it.  (ICN 231, 
+Order at ¶ 122.)  The record evidence on this point was substantial and unrefuted.  Once again, 
+OMAEG just disagrees with the Company’s decisions and seeks to second-guess the 
+Commission’s record-based findings in support. 
+As detailed above, contracted data center demand from 2023 and 2024 alone was poised 
+to more than double Central Ohio’s then-existing load by 2030.  Beyond that contracted load, 
+over 30,000 megawatts of unsigned data center load requests were seeking to connect to the 
+transmission system in the greater Columbus area.  Engineering Studies conducted by the AEP 
+Transmission Planning organization confirmed that even a fraction of that additional load would 
+result in numerous overload and voltage violations throughout central Ohio, risking brownouts, 
+blackouts, and equipment failures.  (Sidecat Ex. 10; Tr. at 227-228, Supp. at 278-279.) 
+Despite this substantial evidence, OMAEG claims that AEP Ohio made "contrary 
+admissions regarding the existence of [a] constraint."  (OMAEG Merit Br. at 19.)  OMAEG's 
+approach in making this argument is to cherry-pick isolated statements by AEP Ohio or its 
+29 
+ 
+witnesses—principally acknowledging that the Company had not yet identified the specific 
+transmission projects, costs, or responsible entities involved in the required buildout, or 
+quantified the current reserve capacity for additional load growth in Central Ohio—and present 
+them as though they disprove the existence of a constraint.  But each of these purported 
+"admissions" reflects the inherent nature of transmission planning, not the absence of a genuine 
+problem, and OMAEG ignores the context that makes this clear. 
+The reason why AEP Ohio has not yet identified specific projects and costs is based in 
+how the transmission infrastructure is planned and built.  Unlike many utility investments, 
+transmission planning does not occur in isolation.  Decisions about what transmission facilities to 
+construct, where to build them, and which entity is responsible for constructing them are 
+governed by FERC-jurisdictional PJM planning—a federally regulated process that assigns 
+construction responsibilities based on a range of factors, including the capacity of the 
+infrastructure being built, the reason for the project, and its location.  (OMAEG Ex. 22, OMAEG 
+Appx. 457-458.)  That process cannot even begin until the utility knows how much load it will 
+actually need to serve and where that load will be located.  As AEP Ohio witness McKenzie 
+explained at hearing, the Company cannot identify specific projects until this proceeding is 
+resolved, the 30,000 MW queue of service requests is processed, and it becomes clear which data 
+center customers will actually commit to service and how much load they will need.  (Tr. at 
+1504-1505, Supp. at 303-304.)  Only then can a definitive load figure be run through the PJM 
+planning process to produce specific transmission project proposals.  (Id.)  Nevertheless, Mr. 
+McKenzie testified that even without knowing the specific projects, the Company can "estimate 
+the magnitude of what will be needed if we have very much more, if at all, data center load in 
+central Ohio."  (Id.)  He further clarified that transmission capacity inherently cannot be assessed 
+30 
+ 
+in the abstract for a large geographic area—it is "a case-by-case analysis" that depends on the 
+specific load and where on the system it must connect.  (Id. at 1508, Supp. at 305.)  In short, the 
+absence of a specific project list does not mean there is no constraint—it means the constraint 
+has not yet been translated into specific construction plans because the necessary preconditions 
+for doing so have not been met. 
+OMAEG's reliance on testimony about reserve capacity is equally misleading.  OMAEG 
+points to Mr. Ali's testimony that "AEP Ohio has not quantified the current amount of reserve 
+capacity that's available for load growth in central Ohio."  (Id. at 262, Supp. at 286.)  But 
+OMAEG omits the immediately preceding question and answer establishing that OMAEG's 
+counsel was asking about reserve capacity for generation (i.e., whether there are enough power 
+plants to produce the electricity), not transmission (i.e., whether the power lines can carry it to 
+where it is needed).  In response to that line of questioning, Mr. Ali explained that AEP Ohio has 
+no role in planning market generation supply and therefore had not conducted that particular 
+analysis.  (Id. at 261, Supp. at 285.)  OMAEG also references the Company's discovery response 
+stating that it has not quantified the current amount of reserve capacity for additional load growth 
+in Central Ohio (OMAEG Ex. 23, OMAEG Appx. 459), but that same discovery response 
+affirmatively states that "AEP Ohio's distribution planning team currently estimates that known 
+and expected Central Ohio load growth from customers other than data center customers 
+between 2024 and 2030 is approximately 400 megawatts."  (Tr. at 2038-2039, Supp. at 329-330.)  
+Far from undermining AEP Ohio's position, this evidence confirms the extraordinary scale of 
+data center demand relative to all other sources of load growth—the 5,000 MW of contracted 
+data center load dwarfs the 400 MW of non-data-center growth by a factor of ten. 
+OMAEG also emphasizes statements by Mr. Ali suggesting that AEP Ohio currently has 
+31 
+ 
+available capacity and would likely not need additional transmission investment until 2030.  
+(OMAEG Merit Br. at 20-21.)  This argument misses the point entirely.  AEP Ohio has already 
+acknowledged that the existing grid can handle a total peak load of approximately 10,000 MW.  
+The transmission capacity constraints that the Company initiated this proceeding to address will 
+emerge only once that threshold is exceeded—which, given the contracted and unsigned data 
+center load in the pipeline, is a near certainty absent proactive measures.  The purpose of 
+Schedule DCT is to prepare for that eventuality before it arrives, not to react after the system has 
+already failed.  OMAEG's suggestion that AEP Ohio should have waited until brownouts or 
+blackouts actually occurred before seeking a solution is fundamentally at odds with sound utility 
+planning and the statutory obligation to ensure adequate and reliable service. 
+OMAEG's attacks on Sidecat Ex. 10 are similarly unwarranted and misleading.  (See 
+OMAEG Merit Br. at 20.)  While OMAEG may question the format in which the evidence was 
+presented, the format of the exhibit itself has no bearing on the merits of the studies it 
+summarizes.  Sidecat Ex. 10 is factual evidence based on actual engineering studies conducted 
+by AEP Ohio's transmission planning organization.  The fact that the exhibit presents a summary 
+of those studies does not mean the studies did not take place and does not render their 
+conclusions suspect.  OMAEG offers no evidence that the studies were unreliable or that their 
+methodology was flawed—only baseless speculation.  Moreover, Mr. Ali testified extensively 
+about the highly technical studies that AEP Transmission conducted on behalf of AEP Ohio, and 
+the parties—including OMAEG—had ample opportunity to cross-examine Mr. Ali regarding the 
+methodology, content, and results of those studies.  (See, e.g., Tr. at 106-121, 153-179, 206-233, 
+393-395, 468-472, Supp. at 211-284, 288-295.) 
+Finally, OMAEG incorrectly claims that the Order and Entry on Rehearing did not 
+32 
+ 
+explain the Commission's rejection of the 10/10 Signatory Parties' counterarguments on this 
+issue. (OMAEG Merit Br. at 21.)  To the contrary, the Order discusses all party arguments and 
+evidence presented regarding the existence of a transmission capacity constraint.  (ICN 231, 
+Order at ¶¶ 104-105.)  After walking through the affirmative evidence supporting its conclusions, 
+the Commission found that it was "not persuaded by 10/10 Stipulation signatories that claim the 
+Company has not provided sufficient record evidence to demonstrate the transmission constraints 
+AEP Ohio faces."  (Id.)  OMAEG cannot quote this statement in isolation as though the 
+Commission offered no reasoning—the statement is the conclusion of a detailed analysis that 
+considered and weighed the competing arguments and evidence.  Accordingly, the Commission's 
+findings on this issue were thorough, well-reasoned, and supported by substantial, reliable, and 
+probative evidence in the record. 
+B. 
+OMAEG’s corporate separation claims were correctly rejected by the 
+Commission 
+As part of its third proposition of law, OMAEG also argues that the Commission failed to 
+address its arguments regarding the threat of corporate separation violations, contending that 
+AEP Ohio, as an electric distribution utility, is not the appropriate entity to address a purported 
+transmission issue—and that this failure provides yet another basis for finding the Order 
+deficient under R.C. 4903.09.  (OMAEG Merit Br. at 21-22.)  This argument lacks merit. 
+As an initial matter, OMAEG's corporate separation and cross-subsidization arguments 
+should not be considered by this Court because OMAEG failed to raise them in its Application 
+for Rehearing, as required by R.C. 4903.10.  Indeed, OMAEG's Application for Rehearing made 
+no mention of corporate separation or cross-subsidization concerns.  R.C. 4903.10 provides that 
+an application for rehearing must "set forth specifically the ground or grounds on which the 
+applicant considers the order to be unreasonable or unlawful," and further mandates that "[n]o 
+33 
+ 
+party shall in any court urge or rely on any ground for reversal, vacation, or modification not so 
+set forth in the application."  This Court has strictly construed this specificity requirement, 
+holding that it demands a "rifle" rather than a "shotgun" approach—a party must identify its 
+specific objections with precision, not simply raise generalized complaints and hope that one 
+finds its mark.  Consumers' Counsel v. Pub. Util. Comm., 70 Ohio St.3d 244, 247-248 (1994); 
+Ohio Partners for Affordable Energy v. Pub. Util. Comm., 115 Ohio St.3d 208, 2007-Ohio-4790, 
+¶ 15.  Because OMAEG did not preserve the argument for appellate review, the Court lacks 
+jurisdiction to consider it. 
+Regardless, the Commission explicitly addressed and rejected OMAEG's corporate 
+separation arguments on the merits.  After discussing OMAEG's position and the 
+counterarguments presented by the other parties, the Commission found "OMAEG's assertions 
+over improper cross-subsidization . . . to be premature and without merit."  (ICN 231, Order at ¶¶ 
+139-140, 156.)  In doing so, the Commission acknowledged Mr. McKenzie's testimony that it 
+could not yet be determined which entity—AEP Ohio or AEP Transco—would construct any 
+particular component of the transmission buildout necessary to accommodate data center 
+customers.  But the Commission concluded that this uncertainty did not give rise to a cross-
+subsidization concern, because the regulatory framework governing both entities already 
+contains multiple layers of protection designed to prevent precisely that outcome. 
+Both AEP Ohio and AEP Transco are transmission providers in Ohio with Open Access 
+Transmission Tariffs ("OATTs") in PJM.  When the Commission established AEP Ohio Transco 
+in 2010, it did so "within strict regulatory confines to prevent any such improper cross-
+subsidization between the two entities."  (Id. at  ¶ 156.)  The application in that proceeding 
+included Project Selection Guidelines to determine which facilities would be developed by AEP 
+34 
+ 
+Ohio and which by AEP Ohio Transco, with the process coordinated by AEP Transmission 
+personnel who provide technical support for both entities.  See In re Application of AEP Ohio 
+Transm. Co., Inc., PUCO No. 10-245-EL-UNC, et. al., 2010 WL 5525171 (Dec. 29, 2010).  AEP 
+Ohio Transco's facility investments are recovered through FERC-approved OATT rates via the 
+PJM billing process for Load Serving Entities, including AEP Ohio, along with allocated costs 
+from outside the AEP Zone.  All OATT charges paid by AEP Ohio are then passed through to 
+retail customers through AEP Ohio's Base Transmission Cost Recovery ("BTCR") rider, which 
+is trued up annually to ensure no over- or under-collection.  As the Commission observed, should 
+OMAEG wish to challenge any perceived cross-subsidization issues, it has the opportunity to do 
+so in those annual true-up proceedings.  (ICN 231, Order at ¶ 156.)  This layered regulatory 
+structure—encompassing FERC oversight, PJM billing processes, Commission-approved Project 
+Selection Guidelines, and annual true-up proceedings—provides precisely the kind of 
+comprehensive safeguards against cross-subsidization that OMAEG claims are absent. 
+The Commission further noted that the 10/23 Stipulation itself includes additional 
+protections, requiring AEP Ohio to create a regulatory liability for exit fee and customer 
+collateral revenue and, within six months of receiving such revenue, advance a proposal for 
+Commission approval to flow those funds back to customers.  (Id.)  This provision mirrors a 
+similar commitment in the 10/10 Stipulation that OMAEG itself supported.  Notably, OMAEG 
+itself appears to acknowledge that the 10/23 Stipulation's regulatory liability provision will help 
+offset any purported risk of cross-subsidization, taking issue only with the proposed timeline for 
+implementation.  (See ICN 195, OMAEG Init. Br. at 46-47, Supp. at 204-205.)  That concession 
+further undermines OMAEG's claim that the Commission's Order is deficient on this ground. 
+The Commission considered OMAEG's corporate separation arguments, rejected them 
+35 
+ 
+based on the existing regulatory safeguards and the protections built into the 10/23 Stipulation, 
+and explained its reasoning.  Nothing more is required under R.C. 4903.09. 
+IV. 
+Response to Proposition of Law 4: The Commission correctly found that AEP Ohio’s 
+application was not for an increase in rates 
+OMAEG contends that the Commission erred in finding that AEP Ohio's application was 
+not for an increase in rates, arguing that Schedule DCT's provisions will impose new charges that 
+would result in some customers paying rates higher than those currently authorized under AEP 
+Ohio's existing tariffs.  (OMAEG Merit Br. at 23–24.)  This argument reflects a fundamental 
+misunderstanding of the governing legal standard.  R.C. 4909.18 distinguishes between 
+applications to establish a new rate or classification for the first time and applications to increase 
+an existing rate—and the critical question is whether the proposal would raise rates for existing 
+customers currently being served under the utility's tariffs.  The Schedule DCT adopted by the 
+Commission does not do so—it applies exclusively to new customer load and expressly exempts 
+existing load from its requirements.  As such, Schedule DCT is a classic "first filing" that 
+establishes an entirely new tariff classification for a new type of customer, without altering the 
+rates paid by any existing customer.  The Commission correctly recognized this, both this Court's 
+precedent and decades of consistent Commission practice support that determination, and the 
+cases OMAEG cites in opposition are readily distinguishable. 
+A. 
+AEP Ohio’s application qualifies as a “first filing,” and therefore was “not for 
+an increase” in rates 
+R.C. 4909.18 authorizes a public utility to file either of two types of rate applications.  
+The first is an application "to establish any rate, . . . classification, charge, or rental, . . . or any 
+regulation or practice affecting the same."  The second is an application "to modify, amend, 
+change, increase, or reduce any existing rate, . . . classification, charge, or rental, or any 
+regulation or practice affecting the same."  The key procedural distinction between these two 
+36 
+ 
+categories is whether the application involves a proposed increase to rates charged to existing 
+customers.  If approval of the application would raise rates for existing customers currently being 
+served under a utility's tariffs, it could constitute a rate increase proposal under the second prong 
+of R.C. 4909.18, triggering the notice and filing requirements of R.C. 4909.19 and the 
+Commission's Standard Filing Requirements.  See Ohio Admin. Code 4901-7-01.  If, on the 
+other hand, the application will not increase rates of existing customers, it is not for an increase 
+in rates. 
+One well-established category of applications that fall within the "not for an increase" 
+classification are "first filings"—applications to establish a new rate, tariff, or service 
+classification for the first time.  City of Cleveland v. Pub. Util. Comm., 67 Ohio St.2d 446, 448 
+(citing Cookson Pottery v. Pub. Util. Comm., 161 Ohio St. 498, 504–505 (1954)).  The 
+Commission has consistently applied this principle across a wide range of contexts, approving 
+new tariff classifications as "not for an increase" filings whenever the proposed tariff establishes 
+a new service offering without altering the rates paid by existing customers.  For example, the 
+Commission has treated as first filings, among others, new metering and billing procedures for 
+generation facilities; a new optional controlled service rider for customers agreeing to install 
+metering and control devices for certain energy systems; a voluntary experimental real-time 
+pricing option for residential customers; tariff revisions establishing rates for the first time for 
+services previously provided under the gas choice program; and new residential three-phase 
+service to address unique circumstances of certain multi-unit residential complexes.  In re 
+Application of Ohio Power Co., PUCO No. 18-1313-EL-ATA, 2019 WL 1116703 (Mar. 6, 
+2019); In re Application of Ohio Edison Co., PUCO No. 85-792-EL-ATA, 1985 WL 1171277 
+(Aug. 20, 1985); In re Application of Columbus Southern Power Co., PUCO No. 11-1355-EL-
+37 
+ 
+ATA, 2011 WL 2644117 (June 29, 2011); In re Columbia Gas of Ohio, Inc., PUCO No. 02-
+2903-GA-ATA, 2004 WL 1803543 (Apr. 29, 2004); In re Duke Energy Ohio, PUCO No. 07-
+626-EL-ATA, 2007 WL 2141947 (July 25, 2007).  Particularly instructive is In re Application of 
+The Cincinnati Gas & Elec. Co., PUCO No. 82-622-EL-ATA, 1982 WL 973411 (May 12, 
+1982), where the Commission found that a new high-pressure sodium lighting service was "not 
+an increase" application under R.C. 4909.18 even though the new service carried higher rates 
+than the existing lighting tariff—because the application grandfathered existing streetlighting 
+customers, ensuring that no customer currently being served would experience a rate increase. 
+The principle that emerges from this body of authority is straightforward: when a utility 
+proposes to establish a new tariff classification for a new type of service without altering the 
+rates paid by its existing customers, that application is "not for an increase" in rates under R.C. 
+4909.18, regardless of the specific terms or conditions that the new tariff may impose on 
+customers who prospectively take service under it. 
+AEP Ohio's application fits comfortably within this framework.  Schedule DCT 
+establishes an entirely new tariff classification for a new and distinct type of customer—large 
+data centers—that did not previously exist as a separate customer class under AEP Ohio's tariff 
+schedules.  The Commission recognized as much, finding that "this proceeding does not involve 
+a request to increase rates for existing customers because the proposed tariff involves the 
+emergence of a prominent, new type of customer," and that the proposal would "not impact 
+customer rates, but rather require heightened commitments prior to interconnection and service." 
+(ICN 231, Order at ¶ 25.)  Critically, Schedule DCT does not alter rates or service terms for any 
+existing customer.  The tariff expressly “grandfathers” all loads above 25 MW that contracted for 
+service before the tariff's effective date—meaning Schedule DCT simply does not apply to 
+38 
+ 
+them—unless the customer subsequently seeks to add 25 MW or more to the same site through a 
+separate application.  (ICN 135, Joint Ex. 1, at 4, OMAEG Appx. at 412.)  In other words, all 
+previously contracted load—including that which would otherwise qualify as data center load 
+under the new tariff—is exempt from its requirements.  This provision ensures that no customer 
+currently served by AEP Ohio will experience any change in rates or service terms as a result of 
+Schedule DCT. 
+OMAEG's argument to the contrary conflates the establishment of new service conditions 
+with a rate increase.  To be clear, nothing in this case changes any existing rate paid by any 
+existing or future data center customer.  The provisions OMAEG points to—minimum billing 
+demand, initial contract terms, exit fees, and collateral requirements—are not increases to any 
+existing rate.  They are conditions of service applicable to a new tariff classification, designed to 
+protect AEP Ohio's existing customers from the risk that the extraordinary infrastructure 
+investments required to serve data center load will become stranded.  Indeed, the Commission 
+confirmed that data center customers who accurately forecast and utilize their load as estimated 
+"should pay the same rates as they would under Schedule GS."  (ICN 231, Order at ¶ 125.)  The 
+underlying commodity rates are not being increased—the new tariff simply establishes additional 
+commitments appropriate to the unprecedented scale of service being requested.  The 
+Commission's finding that AEP Ohio's application was "not for an increase" in rates was 
+therefore consistent with the governing statute, supported by decades of Commission precedent, 
+and should be affirmed. 
+B. 
+The cases relied on by OMAEG are clearly distinguishable from AEP Ohio’s 
+application in this case 
+The two cases OMAEG relies on in support of its claims are readily distinguishable and, 
+upon closer examination, actually reinforce the correctness of the Commission's determination 
+39 
+ 
+here. 
+OMAEG first cites In re Cincinnati Gas & Elec. Co., PUCO No. 03-93-EL-ATA, 2005 
+WL 293629 (Jan. 19, 2005), but in doing so, overstates its holding.  That case did not establish a 
+broad rule about when new tariff provisions constitute a rate increase.  Rather, the Commission's 
+analysis in that proceeding was narrowly focused on whether certain market-based rate 
+components qualified as charges on "distribution or transmission and . . . ancillary services"—a 
+distinction rooted in the Commission's interpretation of R.C. 4928.15, which requires that 
+noncompetitive retail electric distribution, transmission, or ancillary services be provided 
+pursuant to a schedule filed under R.C. 4909.18, and R.C. 4928.14, which provides that 
+competitive retail electric services shall be provided at market-based rates rather than through the 
+traditional rate-based approach.  See In re Cincinnati Gas & Elec. Co., PUCO No. 03-93-EL-
+ATA, 2004 WL 2781939, ¶ 19 (Nov. 23, 2004).  The Commission found that the market-based 
+rate components at issue did not require full rate case review because they were competitive 
+services falling outside the scope of those statutes.  That narrow holding—concerning the 
+boundary between competitive and noncompetitive services—has no bearing on whether AEP 
+Ohio's application to establish a new tariff classification for a new type of customer constitutes a 
+first filing under R.C. 4909.18. 
+OMAEG also relies heavily on In re Application of Columbia Gas of Ohio, Inc., PUCO 
+No. 80-370-GA-ATA, 1980 WL 624968 (May 14, 1980), in which the Commission found that 
+Columbia Gas of Ohio’s (“Columbia”) proposal to impose a delayed payment penalty on 
+overdue accounts could not be filed as an application "not for an increase in rates."  But that case 
+is distinguishable on its facts in a manner that underscores exactly why AEP Ohio's application 
+was properly classified.  Columbia's proposal was to revise its tariff rules and regulations to 
+40 
+ 
+impose a two percent per month charge on overdue customer accounts exceeding $2,000.  (Id.)  
+That charge was generally applicable to all of Columbia's existing customers—meaning that 
+customers already being served under the utility's existing tariffs could, for the first time, be 
+subjected to a new monetary penalty simply by paying their bills late.  (Id.)  The Commission 
+found that this proposal would result in some existing customers paying rates higher than those 
+currently authorized and therefore could not proceed as a "not for an increase" filing.  (Id.)  AEP 
+Ohio's proposal presents the opposite situation.  Schedule DCT does not impose any new charge 
+on customers currently being served under AEP Ohio's existing tariffs, including current 
+customers that would otherwise be classified as data center customers (since they are 
+grandfathered).  Rather, it establishes an entirely new tariff classification applicable only to a 
+new class of customers—large data centers—that did not previously exist as a distinct customer 
+class.  No existing customer rates are affected.  The Columbia Gas decision thus confirms the 
+very principle that supports the Commission's finding here: the determinative question is whether 
+the proposal would increase rates for existing customers, and Schedule DCT plainly does not. 
+V. 
+Response to Proposition of Law 5: Notice of the hearing was not required under R.C. 
+4909.18 and, even if it was, any insufficiency in the notice provided was harmless error 
+OMAEG’s fifth proposition of law contends that the Commission erred in failing to 
+address and rule on the ALJs’ decision to commence the evidentiary hearing without the notice 
+that OMAEG claims was required under R.C. 4909.18.  (OMAEG Merit Br. at 26.)  OMAEG's 
+argument fails for multiple reasons: OMAEG cannot demonstrate any prejudice from the manner 
+in which the hearing was noticed; the hearing was set pursuant to the Commission's broad 
+discretionary authority rather than because the Commission found the application may be unjust 
+or unreasonable; and, in any event, the supplemental notice and public hearing the Commission 
+ordered were more than sufficient to satisfy the purposes of R.C. 4909.18. 
+41 
+ 
+A. 
+OMAEG cannot demonstrate any prejudice caused by the manner in which 
+the Commission noticed the hearing 
+Regardless of which notice requirements OMAEG believes should have applied to this 
+proceeding, its argument fails at the threshold because OMAEG cannot demonstrate any 
+prejudice resulting from the notice the Commission actually provided.  This Court has long held 
+that it will not reverse a Commission order unless the party seeking reversal demonstrates that it 
+was harmed or prejudiced by the order.  In re Ohio Power Co., 2018-Ohio-4697, ¶ 9.  Moreover, 
+a party seeking reversal cannot meet its burden of establishing prejudicial error without 
+furnishing an argument or citing evidence showing that it has suffered a particularized harm—
+generalized claims of harm are insufficient.  In re Application of Ohio Power Co., 2025-Ohio-
+3034, ¶¶ 16-18. 
+OMAEG makes no attempt to satisfy this standard.  It does not identify a single instance 
+in which its ability to prepare for or participate in this proceeding was restricted by the manner in 
+which the Commission noticed the hearing, let alone explain how a different form of notice 
+would have changed the outcome.  Nor could it.  As the Commission repeatedly observed, the 
+high-profile nature of this proceeding ensured that any interested entity had ample notice well 
+before the hearing took place.  The Commission noted in its Order that this proceeding was one 
+of first impression for the state of Ohio, that all procedural steps were taken publicly, and that the 
+case received extensive coverage from multiple media outlets.  (ICN 231, Order at ¶ 25.)  The 
+Commission reiterated this finding in its September 2, 2025 Entry, observing that public interest 
+in the case had been robust, as evidenced by the number of public comments filed and parties 
+that intervened.  (ICN 241, Entry (Sept. 2, 2025) at ¶ 10, Appx. at 10-12.)  The Commission 
+addressed this issue yet again on rehearing, affirming that no party was prejudiced by the notice, 
+filings, or hearing dates and emphasizing that generalized claims of harm do not suffice.  (ICN 
+42 
+ 
+242, Entry on Rehearing at ¶ 58.) 
+B. 
+The hearing in this proceeding was set pursuant to the Commission’s 
+discretion—not because the Commission found the Company’s application 
+“may be unjust or unreasonable” 
+OMAEG's notice argument also rests on a misreading of the plain language of R.C. 
+4909.18.  That statute provides that when the Commission determines an application is “not for 
+an increase” in rates, it may permit the filing of the proposed schedule and fix the time when 
+such schedule shall take effect.  If, however, it appears to the Commission that the proposals in 
+the application may be unjust or unreasonable, the Commission shall set the matter for hearing 
+and give notice of such hearing by sending written notice to the public utility and publishing 
+notice one time in a newspaper of general circulation in each county in the affected service area.  
+OMAEG reads the statute to mean that the Commission's decision to schedule a hearing in this 
+proceeding necessarily reflected a determination that AEP Ohio's application may be unjust or 
+unreasonable, thereby triggering the publication requirement.  That reading is incorrect. 
+This Court has recognized that the Commission has broad discretion to regulate its 
+proceedings.  See, e.g., Weiss v. Pub. Util. Comm., 90 Ohio St.3d 15, 19 (2000).  The 
+Commission may choose to hold a hearing on an application not for an increase in rates for any 
+number of reasons—including the novel nature of the proposal, the level of public interest, or a 
+request by signatory parties to a stipulation—without thereby concluding that the application 
+may be unjust or unreasonable.  Both the ALJ and the Commission confirmed this interpretation 
+in this proceeding.  The ALJ explained on the record at the outset of the evidentiary hearing that 
+the hearing was set at the Commission's discretion.  (Tr. at 37, Supp. at 206.)  The Commission 
+affirmed this reasoning in its September 2, 2025 Entry, observing that this was not the first 
+proceeding in which the Commission exercised its discretion to hold a hearing for an application 
+not for an increase in rates without prior publication, and that doing so has been, and continues to 
+43 
+ 
+be, consistent with the requirements of R.C. 4909.18.  (ICN 241, Entry (Sept. 2, 2025) at ¶ 10.)  
+The Commission reiterated on rehearing that the evidentiary hearing was held at the 
+Commission's discretion for this novel proposed tariff, not because the application was deemed 
+unjust or unreasonable.  (ICN 242, Entry on Rehearing at ¶ 58.) 
+This finding is consistent with well-established Commission practice.  As indicated 
+above, the Commission has on multiple occasions exercised its discretion to set a matter for 
+hearing on an application not for an increase in rates without making a determination that the 
+application may be unjust or unreasonable—and without requiring legal notice publication.  For 
+example, in In re Application of Duke Energy Ohio for Tariff Approval, PUCO No. 08-1251-
+GA-ATA, et al., 2009 WL 1174788, 7-8 (Apr. 29, 2009), and In re Application of Columbia Gas 
+of Ohio, Inc. for an Adjustment to Rider IRP, PUCO No. 09-06-GA-UNC, 2009 WL 1917789, 7 
+(June 24, 2009), the Commission held that no legal notice publication was required where the 
+associated hearing was ordered for reasons outside of any conclusion by the Commission as to 
+the justness or reasonableness of the application, such as a request for hearing by signatory 
+parties to a stipulation.  See also In re Application of Duke Energy Ohio, Inc. for the Approval of 
+a Tariff for a New Service, PUCO No. 12-2402-EL-ATA, et. al., 2012 WL 4803493 (Oct. 3, 
+2012); In re Application of Ohio Edison Co., The Cleveland Elec. Illum. Co., & The Toledo 
+Edison Co. for Authority to Modify Certain Accounting Practices and for Tariff Approvals, 
+PUCO No. 08-124-EL-ATA, et al., 2008 WL 596092 (Feb. 29, 2008).  These prior cases confirm 
+that the Commission's decision to schedule a hearing on an application not for an increase in 
+rates does not, standing alone, trigger the notice-by-publication requirement of R.C. 4909.18.  
+OMAEG's contrary reading of the statute finds no support in the text, in Commission practice, or 
+in this Court's precedent. 
+44 
+ 
+C. 
+Even if notice was required as asserted by OMAEG, the supplemental notice 
+and public hearing ordered by the Commission was sufficient to satisfy R.C. 
+4909.18 
+Even assuming, for the sake of argument, that the notice provisions of R.C. 4909.18 
+applied to this proceeding (they did not), any alleged deficiency in the initial notice was cured by 
+the supplemental notice and public hearing the Commission ordered during the course of this 
+proceeding.  During an extended continuance of the evidentiary hearing, the Commission 
+scheduled a local public hearing, which was held on January 3, 2025, at which members of the 
+public were invited to provide comments on the then-pending proposals.  (ICN 187, Entry (Dec. 
+11, 2024) at ¶ 15, Appx. at 3-4.)  The Commission directed AEP Ohio to publish notice of the 
+local hearing and the date upon which the evidentiary hearing would reconvene.  (Id.)  This 
+supplemental notice and public hearing provided precisely the kind of public participation 
+opportunity that R.C. 4909.18 is designed to ensure. 
+The Commission has regularly cured alleged notice defects in this same manner.  See, 
+e.g.  In re Regulation of the Purchased Gas Adjustment Clause Contained within the Rate 
+Schedules of Columbia Gas of Ohio, Inc., PUCO No. 93-22-GA-GCR, 1993 WL 13742118 
+(Dec. 23, 1993) (directing publication of supplemental notice after initial notice was not 
+published as required); In re Compl. of Gary S. Bohn, PUCO No. 85-127-GE-CSS, 1985 WL 
+1171359 (July 16, 1985) (explaining how the ALJ had scheduled and required published notice 
+for an additional hearing to allow public witnesses the opportunity to present testimony); In re 
+Request by the Ohio Dept. of Transp., PUCO No. 22-324-RR-RCP, 2023 WL 396913 (Jan. 20, 
+2023) (same).  The Commission's actions in this proceeding were entirely consistent with this 
+established practice of curing any potential notice deficiency by ordering supplemental notice 
+and an additional public hearing. 
+Moreover, OMAEG disregards the doctrine of substantial compliance, which is codified 
+45 
+ 
+in R.C. 4905.09.  That statute provides that substantial compliance by the Commission with the 
+requirements of Chapter 4909 of the Revised Code is sufficient to give effect to all of its rules 
+and orders, and that those rules and orders shall not be declared inoperative, illegal, or void for 
+an omission of a technical nature.  R.C. 4905.09.  This Court has consistently applied this 
+principle, holding that it will not reverse the Commission for error when there has been 
+substantial compliance with statutory notice requirements and the complaining party has not 
+shown that it was prejudiced by the lack of strict compliance.  Parma v. Pub. Util. Comm., 86 
+Ohio St.3d 144, 149 (1999) (citing Ohio Bus Line, Inc. v. Pub. Util. Comm., 29 Ohio St.2d 222 
+(1972), and Valley Greyhound Lines, Inc. v. Pub. Util. Comm., 148 Ohio St. 603 (1947)).  Here, 
+the Commission's actions—including the publication of notice, the scheduling of a local public 
+hearing, and the extensive public participation that occurred throughout this proceeding—more 
+than satisfy the substantial compliance standard.   And as demonstrated above, OMAEG has 
+failed to show any prejudice from the manner in which notice was provided.  Under these 
+circumstances, OMAEG's notice challenge provides no basis for reversal of the Commission's 
+Order. 
+VI. 
+Response to Proposition of Law 6: The Commission properly affirmed the ALJs’ 
+rulings limiting irrelevant and duplicate lines of questioning from OMAEG counsel 
+at hearing 
+In its final proposition of law, OMAEG contends that the Commission erred in upholding 
+the ALJs' rulings limiting the scope of cross-examination of AEP Ohio witnesses Ali and 
+McKenzie.  (OMAEG Merit Br. at 29.)  According to OMAEG, these rulings prevented it from 
+exploring whether AEP Ohio had considered alternative solutions to the identified transmission 
+constraint, whether the Company was acting in good faith in initiating this proceeding, and 
+various other topics relating to the moratorium, modeling assumptions, and witness credibility.  
+(Id. at 30-31.)  OMAEG's characterization of the ALJs' rulings bears little resemblance to what 
+46 
+ 
+actually occurred at hearing.  The transcript reveals that the ALJs exercised their well-established 
+discretionary authority to curtail only narrow, repetitive, and foundationally deficient lines of 
+questioning—while affording OMAEG extensive latitude to cross-examine both witnesses on the 
+very subjects it now claims were foreclosed. 
+A. 
+OMAEG misrepresents the true extent of the ALJs’ ruling limiting certain 
+lines of questioning by OMAEG counsel 
+ALJs have broad discretion to govern the course of hearings, prevent cumulative or 
+irrelevant evidence, and ensure an orderly and efficient proceeding.  Ohio Admin. Code 4901-1-
+27(B); Weiss v. Pub. Util. Comm., 90 Ohio St.3d 15, 19 (2000).  Commission precedent 
+consistently affirms that ALJs may limit lines of questioning that are duplicative, lack proper 
+foundation, or bear questionable relevance to the underlying proceeding, and that mere 
+disagreement with such rulings is not grounds for reversal.  See, e.g., In re Review of the Power 
+Purchase Agreement Rider of Ohio Power Co., PUCO No. 18-1004-EL-RDR, et al., 2024 WL 
+4039778, ¶¶ 45-46 (Aug. 21, 2024); In re Long-Term Forecast Report of Ohio Power Co., 
+PUCO No. 10-501-EL-FOR, et al., 2013 WL 175238, 6 (Jan. 9, 2013).  The Commission has 
+also regularly upheld ALJ rulings excluding evidence where the proponent fails to establish a 
+proper foundation.  See, e.g., Id.  More broadly, the trier of fact is routinely accorded deference 
+regarding its decisions on the admission or exclusion of evidence, and such determinations 
+should not be disturbed absent an abuse of discretion.  See, e.g., State v. Sage, 31 Ohio St.3d 173, 
+180 (1987); State v. Proffitt, 2017-Ohio-1236, ¶ 41 (12th Dist.); State v. Thompson, 2014-Ohio-
+4751, ¶ 114; Schaffter v. Ward, 17 Ohio St.3d 79, 80 (1985); Firelands, 2023-Ohio-2555, ¶ 17. 
+Measured against this deferential standard, the ALJs' rulings in this proceeding were well 
+within their discretion—and OMAEG's portrayal of those rulings is fundamentally misleading.  
+With respect to Mr. Ali, the ALJs limited only repetitive, project-specific questions about 
+47 
+ 
+prospective generation resources in Central Ohio—questions that had already been addressed in 
+Mr. Ali's testimony.  The ALJs did not foreclose OMAEG from probing the assumptions 
+underlying Mr. Ali's modeling, the treatment of potential generation resources, the feasibility of 
+alternative technologies, or possible solutions other than the proposed tariff.  To the contrary, the 
+transcript demonstrates that OMAEG was permitted to question Mr. Ali on precisely those 
+topics, including whether he had studied or modeled any generation resources not already 
+included in the PJM queue, whether certain types of generation resources could be used to 
+address constraint issues identified by AEP Ohio, and whether the Company had considered 
+alternatives to Schedule DCT.  (See Tr. at 209-212, 221, Supp. at 260-263, 272.) 
+With respect to Mr. McKenzie, the limitation was even narrower.  The ALJs curtailed 
+questions relating to a single document—OMAEG Ex. 26—for which OMAEG failed to 
+establish any foundation whatsoever.  Mr. McKenzie repeatedly testified that he was entirely 
+unfamiliar with the document and was seeing it for the first time.  (See id. at 1622, 1630, 1631, 
+1633, 1634, 1635, Supp. at 306-312.)  Despite the witness' complete lack of personal knowledge 
+regarding the document's content, OMAEG's counsel persisted in questioning him about it, 
+essentially reading key excerpts into the record rather than eliciting testimony from a witness 
+who could speak to the document's substance.  It was this clearly inappropriate line of 
+questioning that the ALJs ultimately and properly curtailed.  OMAEG's failure to properly 
+authenticate documents in accordance with basic evidentiary standards is entirely OMAEG's own 
+responsibility, and it does not give rise to a cognizable claim of error by the Commission. 
+The relevance of OMAEG Ex. 26 was also questionable at best.  The document relied on 
+data and information predating 2019, yet the circumstances giving rise to AEP Ohio's application 
+in this proceeding did not arise until 2023.  Thus, even if OMAEG had laid an appropriate 
+48 
+ 
+foundation for the document, its bearing on the current proceeding was extremely limited given 
+the intervening years and the dramatically changed circumstances that prompted the Company to 
+file its application.  This is yet another basis supporting the Commission’s decision. 
+Even more critical to OMAEG’s claims is the fact that, even after the ALJs curtailed 
+questions based on OMAEG Ex. 26, OMAEG was permitted to—and in fact did—question Mr. 
+McKenzie extensively on related topics, including economic development, transmission 
+capacity, and the data center industry's impact on the transmission system.  (See Tr. at 1631-
+1639, 1649-1660, Supp. at 308-328.)  The record thus demonstrates that the ALJs' rulings were 
+surgically narrow—targeted at specific, foundationally deficient or repetitive lines of 
+questioning—while leaving OMAEG with broad latitude to examine both witnesses on the 
+substantive issues it now claims were placed off-limits. 
+B. 
+The record demonstrates that OMAEG was afforded all seven opportunities 
+for due process to which it claims it was entitled 
+OMAEG's due process argument is further undermined by the very authority it cites in 
+support.  In Vectren Energy Delivery of Ohio, Inc. v. Pub. Util. Comm., 2006-Ohio-1386, ¶ 53, 
+this Court discussed several considerations supporting its determination that a party was afforded 
+full due process in the underlying Commission proceeding.  Applying those same considerations 
+here, the record demonstrates that OMAEG received every procedural protection it claims it was 
+entitled to. 
+First, OMAEG received ample notice of this proceeding.  OMAEG intervened shortly 
+after AEP Ohio filed its application, and—as discussed above—the high-profile nature of this 
+case ensured that all interested parties were well aware of the proceeding and its significance.  
+Second, OMAEG was permitted to present evidence through the calling of its own witnesses, 
+and it did so.  Third, OMAEG had the ability to cross-examine other parties' witnesses, and it 
+49 
+ 
+exercised that right fully.  Fourth, OMAEG was permitted to introduce exhibits at hearing, and it 
+introduced numerous exhibits throughout the proceeding.  Fifth, OMAEG argued its position 
+through the filing of post-hearing briefing, as evidenced by its filed initial and reply briefs, 
+through which OMAEG raised all of the same issues it now presents to this Court.  Sixth, 
+OMAEG was permitted to challenge the Commission's findings through an Application for 
+Rehearing, which it filed, and through this appeal.  Seventh, OMAEG presented its own 
+settlement and supporting evidence.  Based on the foregoing, OMAEG's due process claim 
+amounts to nothing more than dissatisfaction with the ALJs' exercise of their well-established 
+discretion to manage the hearing—and dissatisfaction with an evidentiary ruling, without more, 
+does not constitute a denial of due process. 
+C. 
+The Commission’s decision was explained in sufficient detail pursuant to R.C. 
+4903.09 
+Contrary to OMAEG’s claims, the Commission's Order and Entry on Rehearing 
+explained the bases for affirming the ALJs’ evidentiary rulings in sufficient detail to satisfy R.C. 
+4903.09.  With respect to Mr. Ali, the Commission found that "OMAEG's current request for the 
+Commission to reverse the ALJ's ruling has no bearing on the points that OMAEG purports it 
+was trying to make during the cross-examination of Mr. Ali," and that "in the interest of 
+administrative efficiency and clarity for the record, the ALJ properly stopped OMAEG's counsel 
+from continuing to ask AEP Ohio witness Ali whether or not he was aware of an extensive list of 
+generation projects in AEP Ohio's service territory."  (ICN 231, Order at ¶ 28.)  With respect to 
+Mr. McKenzie, the Commission found that the ALJ had "placed reasonable parameters on 
+OMAEG's counsel which would allow counsel to ask about the document's substance while 
+balancing the concern that Mr. McKenzie was not familiar with the document," and concluded 
+that "the ALJ's decision on this issue [was] reasonable," emphasizing "that OMAEG was given 
+50 
+ 
+significant leeway to ask questions about the substance contained in the document with the 
+specific instruction to not read the document into the record."  (Id. at ¶ 31.)  On rehearing, the 
+Commission affirmed its decision on the same basis and further concluded that OMAEG had 
+demonstrated no prejudice, "especially when considering the ample latitude afforded to it during 
+its extensive cross-examination of both witnesses."  (ICN 242, Entry on Rehearing at ¶ 61.) 
+OMAEG may disagree with these conclusions, but disagreement with a Commission 
+ruling does not render it insufficiently explained.  The Commission identified the specific rulings 
+at issue, articulated the reasons supporting them, and concluded that OMAEG suffered no 
+prejudice—that is all R.C. 4903.09 requires. 
+CONCLUSION 
+For the foregoing reasons, AEP Ohio, with the support of OEG, respectfully requests that 
+this Court affirm the Commission’s decision and deny OMAEG’s appeal in its entirety. 
+ 
+ 
+ 
+ 
+ 
+ 
+       Respectfully submitted, 
+ 
+       /s/ Steven T. Nourse             
+ 
+  
+ 
+Counsel for Intervening Appellee,  
+Ohio Power Company 
+ 
+Michael L. Kurtz (0033350) 
+(Counsel of Record) 
+Jody Kyler Cohn (1185402) 
+Boehm, Kurtz & Lowry 
+435 Walnut Street, Suite 2400 
+Cincinnati, OH  45202 
+Telephone: (513) 421-2255 
+Facsimile: (513) 421-2255 
+mkurtz@BKLlawfirm.com 
+jkylercohn@BKLlawfirm.com 
+ 
+Counsel for Intervening Appellee,  
+The Ohio Energy Group 
+ 
+Steven T. Nourse (0046705) 
+(Counsel of Record) 
+American Electric Power Service Corporation 
+1 Riverside Plaza, 29th Floor 
+Columbus, OH 43215-2373 
+Telephone: (614) 716-1608 
+stnourse@aep.com 
+ 
+N. Trevor Alexander (0080713) 
+Kari D. Hehmeyer (0096284) 
+Samantha R. Meng (0103524) 
+Benesch Friedlander Coplan and Aronoff LLP 
+41 South High Street, Suite 2600 
+Columbus, Ohio 43215 
+Telephone: (614) 223-9363 
+Facsimile: (614) 223-9330 
+talexander@beneschlaw.com  
+khehmeyer@beneschlaw.com  
+smeng@beneschlaw.com 
+ 
+51 
+ 
+CERTIFICATE OF SERVICE 
+The undersigned certifies that on March 24, 2026, the foregoing Merit Brief of Intervening 
+Appellee Ohio Power Company was served via electronic mail upon the following counsel of 
+record: 
+Kimberly W. Bojko (0069402) 
+(Counsel of Record) 
+Emma Y. Easley (0102144) 
+Carpenter Lipps LLP 
+280 North High Street, Suite 1300 
+Columbus, OH 43215 
+Telephone: (614) 365-4100 
+Facsimile: (614) 365-9145 
+bojko@carpenterlipps.com  
+easley@carpenterlipps.com  
+ 
+Counsel for Appellant,  
+The Ohio Manufacturers’ Association Energy 
+Group 
+ 
+Michael L. Kurtz (0033350) 
+(Counsel of Record) 
+Jody Kyler Cohn (1185402) 
+Boehm, Kurtz & Lowry 
+435 Walnut Street, Suite 2400 
+Cincinnati, OH  45202 
+Telephone: (513) 421-2255 
+Facsimile: (513) 421-2255 
+mkurtz@BKLlawfirm.com 
+jkylercohn@BKLlawfirm.com 
+ 
+Counsel for Intervening Appellee,  
+The Ohio Energy Group 
+ 
+ 
+David Yost (0056290)    
+Ohio Attorney General  
+ 
+John Jones (0051913)  
+Section Chief, Public Utilities 
+ 
+Amy Botschner O'Brien (0074423) 
+Thomas Lindgren (0039210) 
+Lori Keating (0070183) 
+30 East Broad Street, 16th Floor  
+Columbus, OH 43215  
+Telephone: (614) 466-4397  
+Telecopier: (614) 644-8764  
+John.Jones@OhioAGO.gov  
+Amy.BotschnerOBrien@OhioAGO.gov 
+ 
+Counsel for Appellee,  
+The Public Utilities Commission of Ohio 
+ 
+Maureen R. Willis (0020847) 
+Ohio Consumers’ Counsel 
+William J. Michael (0070921) 
+(Counsel of Record) 
+John Varanese (0044176) 
+Assistant Consumers’ Counsel 
+Office of the Ohio Consumers’ Counsel 
+65 East State Street, Suite 700 
+Columbus, OH 43215 
+Telephone [Michael): (614) 466-1291 
+Maureen.willis@occ.ohio.gov 
+William.michael@occ.ohio.gov 
+John.varanese@occ.ohio.gov 
+ 
+Counsel for Intervening Appellee, Office of 
+the Ohio Consumers’ Counsel 
+ 
+ 
+/s/ Steven T. Nourse  ________ 
+Counsel for Intervening Appellee,  
+Ohio Power Company 
+ 

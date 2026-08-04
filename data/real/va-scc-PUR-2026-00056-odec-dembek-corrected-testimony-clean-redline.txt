@@ -1,0 +1,992 @@
+
+===PAGE 1===
+260710187
+PUR-2026-00056Case Number (if already assigned)
+Case Name (if known)
+EXTEDocument Type
+Document Description Summary Corrected Pre-Filed Direct Testimony of Eric R. Dembek
+Total Number of Pages 35
+38531Submission ID
+7/9/2026 1:30:13PMeFiling Date Stamp
+Application of Virginia Electric and Power Company, For 
+approval of a rate adjustment clause pursuant to §
+56-585.1 A 4 of the Code of Virginia
+Virginia State Corporation Commission 
+eFiling CASE Document Cover Sheet
+
+===PAGE 2===
+260710187
+ODEC
+July 9, 2026
+VIA ELEC TRONIC FILING
+RE:
+Case No. PUR-2026-00056
+Dear Mr. Logan,
+Sincerely,
+cc:
+Please do not hesitate to call if you have any questions regarding this filing. Thank you for 
+your assistance.
+Application of Virginia Electric and Power Company, For approval of a rate 
+adjustment clause pursuant to § 56-585.1 A 4 of the Code of Virginia
+Old Dominion
+Electric Cooperative®
+Mr. Bernard Logan, Clerk 
+c/o Document Control Center 
+State Corporation Commission 
+Tyler Building - First Floor 
+1300 East Main Street 
+Richmond, Virginia 23219
+On June 11, 2026, Old Dominion Electric Cooperative (“ODEC”) filed the pre-filed 
+testimony of Eric R. Dembek in Case No. PUR-2026-00056. After filing this testimony, ODEC 
+determined that a correction was necessary. Please find enclosed for electronic filing in the above­
+captioned proceeding the corrected pre-filed direct testimony of Eric R. Dembek, in clean and 
+redlined versions. The clean version should replace the original version in its entirety.
+Enclosures
+Jack Robb, Esq. 
+Service List
+■S'.
+F. Garland Slaughter
+odec.com
+VIFF
+4201 Dominion Blvd, Glen Allen, VA 23060 (804) 747-0592
+
+===PAGE 3===
+260710187
+CLEAN VERSION
+
+===PAGE 4===
+260710187
+Summary of the Pre-Filed Direct Testimony of Eric R. Dembek
+NITS is a type of transmission service offered under the PJM Open Access Transmission Tariff 
+and is a demand-based charge designed to recover the costs of new connections, upgrading 
+common grid facilities, and maintaining and operating all high-voltage transmission infrastructure 
+used to transmit power across the grid to customer facilities. The NITS charge is determined by 
+each utility within PJM, subject to approval by FERC.
+To ensure that the large-load customer pays for all the transmission facility costs it causes, the 
+Commission should require the customer to pay for ongoing O&M costs associated with the 
+transmission facilities the customer requires for service. This could be accomplished through an 
+adjustment to the customer’s NITS charge, or another payment mechanism, to be determined in a 
+new proceeding.
+My testimony, filed on behalf of Old Dominion Electric Cooperative (“ODEC”), describes how 
+large-load customers can pay for all electric facilities required to sen e them through contributions 
+in aid of construction (“CIAC”). I also explain how CIAC payments could impact the Network 
+Integration Transmission Sendee ("NITS”) rates that large-load customers will pay.
+CIAC is a payment, asset, or other contribution provided to the utility by a customer, developer, 
+governmental entity, or other third party to fund all or a portion of utility infrastructure necessary 
+to provide service. CIAC treatment is widely recognized and utilized across regulated utility 
+industries, including electric, natural gas, and water utilities. Large-load customers generally 
+require substantial utility investments that exceed the level contemplated in standard utility rates. 
+CIAC treatment ensures that the costs associated with those customer-specific facilities are borne 
+by the customer creating the need for the investment rather than existing ratepayers that are not 
+causing the need for the investment.
+The Pennsylvania Public Utility Commission ("PA PUC”) recently issued a Final Order approving 
+a model tariff for large-load customers ("PA Model Tariff’). The PA Model Tariff requires the 
+utility to assess CIAC to recover al] distribution and transmission costs necessary to interconnect 
+the large-load customer. Further, the PA Model Tariff provides that, “[i]f a Network Improvement 
+would not have been needed ‘but for’ the interconnection of the Large Load Customer, then the 
+costs of the upgrade will be allocated to that customer irrespective of whether other customers will 
+benefit from it.”
+
+===PAGE 5===
+260710187
+PRE-FILED DIRECT TESTIMONY OF
+ERIC R. DEMBEK
+BEFORE THE VIRGINIA STATE CORPORATION COMMISSION
+CASE NO. PlJR-2026-00056
+JUNE 11,2026
+1 Ql. PLEASE STATE YOUR NAME AND BUSINESS ADDRESS.
+My name is Eric R. Dembek. My business address is 1850 Parkway Place, Suite 800,2 A.
+Marietta, GA 30067.1 am a Director at GDS Associates, Inc. ("GDS").3
+4 Q2. PLEASE DESCRIBE GDS ASSOCIATES, INC.
+GDS is an engineering and consulting firm with offices in Marietta, Georgia; Austin,5 A.
+Texas; Auburn, Alabama; Bedford, New Hampshire; Augusta, Maine; Orlando, Florida;6
+Folsom, California; Redmond, Washington; and Madison, Wisconsin. GDS has over7
+200 employees with backgrounds in engineering, accounting, management, economics,8
+finance, and statistics. GDS provides rate and regulatory consulting services in the electric,9
+natural gas, water, and telephone utility industries. GDS also provides consulting services10
+for electric utilities including power supply planning, generation support services, financial11
+analysis, load forecasting, engineering and design services. Our clients are primarily12
+publicly owned utilities, municipalities, customers of privately owned utilities, groups or13
+associations of customers, and government agencies.14
+ON BEHALF OF
+OLD DOMINION ELECTRIC COOPERATIVE
+
+===PAGE 6===
+260710187
+1 Q3. PLEASE SUMMARIZE YOUR EDUCATION EXPERIENCE.
+I earned a Bachelor of Science degree in Accounting and Finance from the University of2 A.
+Illinois at Chicago in Chicago, Illinois, in 2008. Additionally, I earned a Master of Science3
+in Taxation degree from DePaul University, Kellstadt Graduate School of Business in4
+Chicago, Illinois in 2012.1 am a Certified Public Accountant licensed in Illinois.5
+6 Q4. PLEASE BRIEFLY DESCRIBE YOUR PROFESSIONAL EXPERIENCE.
+I am an accounting and rate specialist with 15 years of experience in regulatory accounting7 A.
+and cost-of-service (“COS”) ratemaking matters within the electric and natural gas8
+industries. I joined GDS in April 2026 as a Director in the Rates & Regulatory department.9
+Since joining GDS, I have provided expert accounting and tax analysis, as well as rate10
+reviews of costs included in the revenue requirements of electric utility companies for11
+purposes of retail and wholesale ratemaking.12
+Prior to joining GDS, I worked for CenterPoint Energy (“CenterPoint”) as a Tax13
+Director from 2024 through 2026, serving in a leadership role within the tax department14
+supporting multiple electric and natural gas utilities. CenterPoint owns and operates six15
+regulated utilities across Texas, Indiana, Minnesota, and Ohio.16
+Prior to CenterPoint, I worked for Exelon Corporation (“Exelon”) from 201117
+through 2024 within the tax department supporting multiple electric and natural gas18
+utilities. Exelon owns and operates six regulated utilities across Illinois, Pennsylvania, New19
+Jersey, Delaware, Maryland, and Washington, D.C.20
+Throughout my career at CenterPoint and Exelon, I supported transmission revenue21
+requirement filings and distribution rate proceedings, including matters involving historical22
+2
+
+===PAGE 7===
+260710187
+test years, fully projected test years and multi-year rate plans. A statement of my1
+background and qualifications and is attached to my testimony as Attachment ERD-1.2
+3 Q5. ON WHOSE BEHALF ARE YOU TESTIFYING IN THIS PROCEEDING?
+I am testifying on behalf of Old Dominion Electric Cooperative (“ODEC”).4 A.
+5 Q6. PLEASE PROVIDE AN OVERVIEW OF OLD DOMINION ELECTRIC
+6 COOPERATIVE.
+ODEC was incorporated in 1948 as a not-for-profit wholesale power supply cooperative.7 A.
+ODEC is organized for the purpose of supplying the power its Members require to serve8
+their member-customers (“Member-Customers”) on a cost-effective basis. ODEC has9
+eleven distribution cooperative members (“Members”) that serve Member-Customers in10
+70 Counties in Virginia, Delaware, and Maryland. Through its Members. ODEC serves11
+approximately 630,000 retail electric customers (meters), representing a total population12
+of approximately 1.5 million people. ODEC is subject to the jurisdiction of the Federal13
+Energy Regulatory Commission (“FERC”).14
+Eight of ODEC’s Members have certificated sendee territories within the15
+Dominion Zone (“DOM Zone”): BARC Electric Cooperative, Community Electric16
+Cooperative, Mecklenburg Electric Cooperative, Northern Neck Electric Cooperative,17
+Prince George Electric Cooperative, Rappahannock Electric Cooperative (“REC”),18
+Shenandoah Valley Electric Cooperative, and Southside Electric Cooperative19
+(collectively, “DOM Zone Members”). ODEC’s DOM Zone Members are subject to the20
+jurisdiction of the State Corporation Commission (“Commission”).21
+3
+
+===PAGE 8===
+260710187
+1 Q7. WHAT IS THE SCOPE AND PURPOSE OF YOUR TESTIMONY IN THIS
+2 PROCEEDING?
+The scope of my testimony is to describe how large-load customers can pay for all electric3 A.
+facilities required to serve them through contributions in aid of construction (“CIAC”). I4
+will also explain how CIAC payments impact the Network Integration Transmission5
+Service ("NITS”) rates that large-load customers will pay.6
+7 Q8. WAS YOUR TESTIMONY PREPARED BY YOU OR UNDER YOUR DIRECT
+8 SUPERVISION AND CONTROL?
+9 A. Yes.
+CONTRIBUTION IN AID OF CONSTRUCTION10
+11 Q9. WHAT IS CIAC?
+CIAC is a payment, asset, or other contribution provided to a utility by a customer,12 A.
+developer, governmental entity, or other third party to fund all or a portion of the utility13
+infrastructure necessary to provide sendee. CIAC commonly arises in situations involving14
+service to new developments, line extensions, system upgrades, relocations, or special-15
+purpose facilities.16
+17 Q10. WHY ARE CIACS REQUIRED?
+CIACs are required when the cost to serve a specific customer exceeds the level that can18 A.
+be economically justified through standard utility rates. In such cases, requiring a19
+4
+
+===PAGE 9===
+260710187
+contribution ensures that existing ratepayers do not subsidize infrastructure constructed1
+1primarily to serve new or incremental load.2
+3 Qll. IN WHAT SITUATIONS ARE CIACS TYPICALLY APPLIED?
+CIACs are commonly applied to extensions of electric, natural gas, or water systems4 A.
+serving new developments or customers, requests for capacity increases beyond standard5
+service levels, and infrastructure constructed specifically to accommodate a customer or6
+group of customers.7
+8 Q12. IS CIAC TREATMENT COMMONLY UTILIZED WITHIN REGULATED
+9 UTILITIES?
+Yes. CIAC treatment is widely recognized and utilized across regulated utility industries,10 A.
+including electric, natural gas, and water utilities.11
+12 Q13. HOW IS THE CIAC AMOUNT DETERMINED?
+CIAC generally represents the total cost of constructing the required facilities, including,13 A.
+but not limited to, design, engineering, construction, materials, labor, overheads, and other14
+associated costs necessary to provide service, plus any income tax related gross-up charges15
+the utility expects to incur as a result of receiving the CIAC, if it is determined to be16
+taxable.217
+i
+5
+See, e.g., Pricing Policy for New and Existing Facilities Constructed by Interstate Natural Gas Pipelines, 71 
+FERCH 61,241 (1995).
+2 San Diego Gas & Electric Company, 180 FERC H 61,095 at P. 15 (2022).
+
+===PAGE 10===
+260710187
+1 Q14. WHAT IS THE ACCOUNTING TREATMENT OF THE UTILITIES UPFRONT
+2 COSTS PRIOR TO THE RECEIPT OF CIAC?
+When the utility incurs upfront construction costs, it generally records a debit to Account3 A.
+107, Construction Work in Progress (“CWIP”), and a corresponding credit to Account 131,4
+Cash, or Account 232, Accounts Payable.5
+6 Q15. WHAT IS THE ACCOUNTING TREATMENT FOR CIACS?
+Upon receipt of the CIAC reimbursement, the utility generally records a debit to Account7 A.
+131, Cash or Account 143, Other Account Receivable, and a corresponding credit to8
+Account 107 CWIP, resulting in no remaining CWIP balance associated with the specific9
+project. This reduces the total cost of the project to the utility and complies with the federal10
+requirement that Electric Plant in Service be recorded at cost.311
+12 Q16. WHAT IS THE RATEMAKING TREATMENT THAT FOLLOWS FROM THE
+13 ACCOUNTING TREATMENT FOR CIACS?
+The accounting treatment of CIACs results in corresponding ratemaking treatment under14 A.
+which CIAC-funded plant is excluded from rate base. Accordingly, the utility does not earn15
+a return on facilities funded through CIAC because shareholders did not provide the capital16
+supporting those assets.417
+6
+3 18 C.F.R. Part 101, Electric Plant Instruction No. 2(D).
+4 “Since the CIAC represents construction and property acquisition at no cost to the company it does not seem
+equitable that customers should pay, as now allowed through depreciation, a recovery of investment not belonging 
+to stockholders. This elimination does nothing to prevent such stockholders from earning upon the actual dollars that 
+they invested.” AMENDMENTS TO THE UNIFORM SYSTEM OF ACCOUNTS FOR PUBLIC UTILITIES AND 
+LICENSEES AND NATURAL GAS COMPANIES (ALL CLASSES) AND TO RELATED REPORT FORMS
+CONCERNING CONTRIBUTIONS IN AID OF CONSTRUCTION. 50 F.P.C. 540, 541 (1973).
+
+===PAGE 11===
+260710187
+1 Q17. WHY IS THIS RATEMAKING TREATMENT APPROPRIATE?
+This treatment is appropriate because utility rates are intended to compensate utilities for2 A.
+prudently incurred investments financed by investors. If the investors do not provide the3
+funding for utility infrastructure, no shareholder investment exists to justify the recovery4
+of a regulated return. 5 Excluding third-party-funded investments from rate base prevents5
+over-recovery from customers.6
+7 Q18. WHY IS CIAC APPROPRIATE FOR LARGE-LOAD CUSTOMERS?
+Large-load customers generally require substantial utility investments that exceed the level8 A.
+contemplated in standard utility rates. CIAC treatment ensures that the costs associated9
+with those customer-specific facilities are borne by the customer creating the need for the10
+investment rather than existing ratepayers that are not causing the need for the investment.611
+12 Q19. HAVE ANY OTHER JURISDICTIONS RECENTLY APPROVED CIAC
+13 TREATMENT FOR TRANSMISSION FACILITIES SERVING LARGE-LOAD
+14 CUSTOMERS?
+Yes. On May 12, 2026, the Pennsylvania Public Utility Commission (“PA PUC”) issued a15 A.
+Final Order approving a model tariff for large load customers at or over 50 MW16
+individually or 100 MW in the aggregate (“PA Model Tariff’).7 The PA PUC stated that,17
+7
+5 “Time-honored precedent recognizes a utility's right to earn a fair return on investor-contributed capital (rate base). 
+It follows then that a utility is not entitled to earn a return on that portion of rate base financed by sources other than 
+the owner's capital.” Distrigas of Massachusetts Corp. Distrigas Corp., 18 FERC 63,036, 65,112 (1982).
+6 This assumes the large-load customer will pay the correct portion of Network Integration Transmission Service 
+charges, as discussed later in my testimony.
+7 Interconnection and Tariffs for Large Load Customers, Docket No. M-2025-3054271, Final Order (May 12, 2026) 
+(“PA PUC Final Order”). See Attachment ERD-2 for the PA PUC Fmal Order.
+
+===PAGE 12===
+260710187
+“[gjiven the unprecedented nature of this load growth, we find that the [PA PUCJ’s1
+approach to cost allocation must adapt to shield ratepayers from socialization of costs that2
+are properly attributed to Large Load Customers.”8 The PA Model Tariff assesses CIAC3
+on large-load customers based on a “but for” causation methodology.94
+5 Q20. PLEASE DESCRIBE THE REQUIREMENTS OF THE PA MODEL TARIFF.
+The PA Model Tariff requires large-load customers to pay a fee for interconnection6 A.
+facilities costs and network improvement costs through CIAC:7
+The PA Model Tariff requires the utility to assess CIAC to recover all distribution and16
+transmission costs necessary to interconnect the large-load customer.11 Like the PA PUC,17
+the Commission should require Dominion to assess CIAC to each large-load customer for18
+all transmission facilities required to interconnect the customer.19
+8
+8
+9 
+10
+11
+12
+13
+14
+15
+Large Load Customers are subject to a fee for Interconnection Facilities 
+costs and Network Improvement Costs through CIAC. The Company will 
+assess CIAC for Large Load Customer additions to recover all distribution 
+and transmission costs necessary to interconnect the new Large Load 
+Customer. If a Network Improvement would not have been needed “but for” 
+the interconnection of the Large Load Customer, then the costs of the 
+upgrade will be allocated to that customer irrespective of whether other 
+customers will benefit from it.10
+8 PA PUC Final Order at 42-43.
+9 PA PUC Final Order at 42 (“The only exception to this is for any upgrades or additions that were already planned 
+by the EDC pursuant to a Commission-approved Long-Term Infrastructure Improvement Plan (LTIIP) before the 
+Large Load Customer requested service.”).
+10 PA Model Tariff at Other Matters, (b) Contributions in Aid of Construction (CIAC), page 129 of the PA PUC 
+Final Order.
+11 PA PUC Final Order at 42 (“The only exception to this is for any upgrades or additions that were already planned 
+by the EDC pursuant to a Commission-approved Long-Term Infrastructure Improvement Plan (LTIIP) before the 
+Large Load Customer requested service.”).
+
+===PAGE 13===
+260710187
+1 Q21. COULD THE VIRGINIA STATE CORPORATION COMMISSION
+2 (“COMMISSION”) IMPLEMENT THE SAME OR SIMILAR METHODOLOGY
+3 FOR LARGE-LOAD CUSTOMERS IN VIRGINIA?
+Yes. The Commission can assess CIAC on large-load customers in Virginia for the electric4 A.
+facilities required to serve them and should assess CIAC- as discussed in the pre-filed5
+testimony of ODEC witness Miller.6
+NETWORK INTEGRATION TRANSMISSION SER VICE1
+8 Q22. WHAT IS NETWORK INTEGRATION TRANSMISSION SERVICE?
+NITS is a type of transmission service offered under the PJM Interconnection, L.L.C.9 A.
+(“PJM”) Open Access Transmission Tariff (“OATT”). The NITS charge is a demand-based10
+charge to recover the costs of interconnecting new customers, costs for general capital11
+improvements of the grid, and costs of maintaining and operating all high-voltage12
+transmission infrastructure used to transmit power across the grid to facilities. Therefore,13
+the NITS charge recovers (i) capital costs, both embedded and prospective, and (ii) ongoing14
+operation and maintenance (“O&M”) expenses.15
+16 Q23. WHO IS RESPONSIBLE FOR SETTING THE NITS CHARGE WITHIN PJM?
+Each utility in the PJM region determines its NITS charge pursuant to a Federal Power Act17 A.
+Section 205 or 206 filing before the Federal Energy Regulatory Commission (“FERC”).18
+9
+
+===PAGE 14===
+260710187
+1 Q24. HOW IS THE NITS CHARGE DETERMINED?
+The charge is determined by multiplying the peak demand (kW) by the applicable NITS2 A.
+rate ($/kW).3
+4 Q25. HOW IS THE NITS RATE DETERMINED?
+In any PJM zone, the NITS rate for a given utility’s NITS service will be its NITS revenue5 A.
+requirement, which is based upon the Annual Transmission Revenue Requirement6
+(“ATRR”), divided by the Network Service Peak Load (“NSPL”).12 NSPL is updated7
+annually by transmission zone and is determined by measuring the highest actual metered8
+hourly demand of that specific zone over the previous twelve months from November 19
+through October 31.1310
+11 Q26. WHAT IS THE ATRR AND HOW IS IT DETERMINED?
+The ATRR is the annual amount a transmission-owning utility is permitted to recover12 A.
+through transmission rates under FERC-regulated tariffs. The ATRR is designed to allow13
+utilities to recover prudently-incurred transmission-related costs, including but not limited14
+to a return on transmission investment (i.e., rate base), depreciation, O&M, administrative15
+and general expenses, and taxes. Many utilities have formulaic rates on file with the FERC,16
+and each such utility follows its specific FERC-approved protocols and templates to17
+compute its ATRR. The ATRR and supporting schedules are publicly posted, and the18
+applicable protocols establish procedures and timelines for submitting interrogatory19
+10
+12 See https://www.pim.eom/-/media/DotCom/markets-ops/settlements/network-integration-trans-service-ian.-
+2025.pdf: https://www.pim.eom/-/media/DotCom/markets-ops/settlements/network-service-peak-loads-2025.pdf. 
+13See https://www.pim.eom/-/media/DotCom/markets-ops/settlements/network-service-peak-loads-2025.pdf
+
+===PAGE 15===
+260710187
+requests, as well as preliminary and formal challenges to the utility’s implementation of its1
+formula rate update.2
+3 Q27. WHAT HAPPENS IF A LARGE-LOAD CUSTOMER PAYS CIAC FOR THE NEW
+4 TRANSMISSION FACILITIES AND DOES NOT PAY NITS CHARGES?
+If a large-load customer only pays CIAC, and not NITS charges, then the NITS charges5 A.
+that would have otherwise been charged to the large-load customer will be paid by other6
+ratepayers. Over time, the NITS charges paid by other customers could exceed the amount7
+of the CIAC payments, resulting in other ratepayers subsidizing a large portion of the cost8
+of the large-load customer’s transmission facilities.9
+10 Q28. PLEASE DISCUSS THE RECENT WHITE PAPER FILED AT FERC BY WIRES
+11 ON MARCH 30, 2026.
+On March 30, 2026 WIRES filed supplemental comments with FERC to include a12 A.
+whitepaper in the record titled, “The Risks of Cost Shifts in Serving Large Loads Under a13
+Framework with Direct Allocation of Transmission Costs,” which was recently released14
+by Concentric Energy Advisers (“CEA”) and undertaken on behalf of Exelon Corporation.15
+The Whitepaper asserts that retail customers will end up paying more for transmission16
+services if the cost of transmission facilities are directly allocated to large-load customers.1417
+11
+14 See Concentric Energy Advisors, The Risks of Cost Shifts in Serving Large Loads Under a Framework with Direct 
+Allocation of Transmission Costs (March 30, 2026) (“Whitepaper”)-
+
+===PAGE 16===
+260710187
+1 Q29. DO YOU AGREE WITH THE CONCLUSION OF THE WHITEPAPER?
+No, I do not agree with the conclusion of the White Paper. At a high level, CEA asserts2 A.
+that when transmission costs are directly allocated to large-use customers, the large-use3
+customers never pay ongoing transmission service charges (the fixed costs of the4
+transmission system, including both capital costs, upfront and prospective, and ongoing5
+O&M through NITS charges for the facilities).15 CEA then asserts that retail customers6
+necessarily end up paying increased NITs charges for those facilities, resulting in retail7
+customers paying more over the lifetime of the facilities than if the costs of the facilities8
+had been socialized to begin with. This is true only under the assumption that when a9
+customer pays CIAC, they never have to pay NITS.10
+11 Q30. IF THE COMMISSION REQUIRES A LARGE-LOAD CUSTOMER TO PAY FOR
+12 THE TRANSMISSION FACILITIES IT NEEDS FOR SERVICE THROUGH
+13 CIAC, WILL ANY ADJUSTMENTS TO THE CUSTOMER’S NITS CHARGE BE
+14 REQUIRED?
+To ensure that the large-load customer pays for all the transmission facility costs it causes,15 A.
+the Commission should require the customer to pay for ongoing O&M costs associated16
+with the transmission facilities the customer requires for service. This could be17
+accomplished through an adjustment to the customer’s NITS charge, or another payment18
+mechanism, to be determined in a new proceeding.19
+20 Q31. DOES THIS CONCLUDE YOUR PRE FILED DIRECT TESTIMONY?
+Yes, it does.21 A.
+15 Id.
+12
+
+===PAGE 17===
+260710187
+REDLINED VERSION
+
+===PAGE 18===
+260710187
+REDLINED VERSION
+Summary of the Pre-Filed Direct Testimony of Eric R. Dembek
+My testimony, filed on behalf of Old Dominion Electric Cooperative (“ODEC”), describes how 
+large-load customers can pay for all electric facilities required to serve them through contributions 
+in aid of construction (“CIAC”). I also explain how CIAC payments could impact the Network 
+Integration Transmission Service (“NITS”) rates that large-load customers will pay.
+The Pennsylvania Public Utility Commission (“PA PUC”) recently issued a Final Order approving 
+a model tariff for large-load customers (“PA Model Tariff’). The PA Model Tariff requires the 
+utility to assess CIAC to recover all distribution and transmission costs necessary to interconnect 
+the large-load customer. Further, the PA Model Tariff provides that, “[i]f a Network Improvement 
+would not have been needed ‘but for’ the interconnection of the Large Load Customer, then the 
+costs of the upgrade will be allocated to that customer irrespective of whether other customers will 
+benefit from it.”
+CIAC is a payment, asset, or other contribution provided to the utility by a customer, developer, 
+governmental entity, or other third party to fund all or a portion of utility infrastructure necessary 
+to provide sendee. CIAC treatment is widely recognized and utilized across regulated utility 
+industries, including electric, natural gas, and water utilities. Large-load customers generally 
+require substantial utility investments that exceed the level contemplated in standard utility rates. 
+CIAC treatment ensures that the costs associated with those customer-specific facilities are borne 
+by the customer creating the need for the investment rather than existing ratepayers that are not 
+causing the need for the investment.
+NITS is a type of transmission service offered under the PJM Open Access Transmission Tariff 
+and is a demand-based charge designed to recover the costs of new connections, upgrading 
+common grid facilities, and maintaining and operating all high-voltage transmission infrastructure 
+used to transmit power across the grid to customer facilities. The NITS charge is determined by 
+each utility within PJM, subject to approval by FERC.
+To ensure that the large-load customer pays for all the transmission facility costs it causes, the 
+Commission should require the customer to pay for ongoing O&M costs associated with the 
+transmission facilities the customer requires for service. This could be accomplished through an 
+adjustment to the customer’s NITS charge, or another payment mechanism, to be determined in a 
+new proceeding.FERC has recognized that the NITS charges include charges for new facilities 
+intended to connect new customers. As a result, FERC determined that if a customer pays CIAC 
+and the full NITS charge, the customer will pay for the capital cost of the new facilities twice. This 
+double payment is known as ‘and’ pricing. Therefore, when a customer pays for facilities through 
+CIAC, the customer^iusE-alse-p-ay-a NITS charge that is adjusted to remove the capital cost of the 
+new facilities being constructed for the customer. This avoids ‘and’ pricing and ensures the 
+customer pays all the costs the customer causes.
+
+===PAGE 19===
+PRE FILED DIRECT TESTIMONY OF
+ERIC R. DEMBEK
+BEFORE THE VIRGINIA STATE CORPORATION COMMISSION
+CASE NO. PUR-2026 00056
+JUNE 11,2026
+1 Ql. PLEASE STATE YOUR NAME AND BUSINESS ADDRESS.
+My name is Eric R. Dembek. My business address is 1850 Parkway Place, Suite 800,2 A.
+Marietta, GA 30067.1 am a Director at GDS Associates, Inc. (“GDS”).3
+4 Q2. PLEASE DESCRIBE GDS ASSOCIATES, INC.
+GDS is an engineering and consulting firm with offices in Marietta, Georgia; Austin,5 A.
+Texas; Auburn, Alabama; Bedford, New Hampshire; Augusta, Maine; Orlando, Florida;6
+Folsom, California; Redmond, Washington; and Madison, Wisconsin. GDS has over7
+200 employees with backgrounds in engineering, accounting, management, economics,8
+finance, and statistics. GDS provides rate and regulatory consulting services in the electric,9
+natural gas, water, and telephone utility industries. GDS also provides consulting services10
+for electric utilities including power supply planning, generation support services, financial11
+analysis, load forecasting, engineering and design services. Our clients are primarily12
+publicly owned utilities, municipalities, customers of privately owned utilities, groups or13
+associations of customers, and government agencies.14
+ON BEHALF OF
+OLD DOMINION ELECTRIC COOPERATIVE
+260710187
+REDLINED VERSION
+
+===PAGE 20===
+1 Q3. PLEASE SUMMARIZE YOUR EDUCATION EXPERIENCE.
+I earned a Bachelor of Science degree in Accounting and Finance from the University of2 A.
+Illinois at Chicago in Chicago, Illinois, in 2008. Additionally, I earned a Master of Science3
+in Taxation degree from DePaul University, Kellstadt Graduate School of Business in4
+Chicago, Illinois in 2012.1 am a Certified Public Accountant licensed in Illinois.5
+6 Q4. PLEASE BRIEFLY DESCRIBE YOUR PROFESSIONAL EXPERIENCE.
+I am an accounting and rate specialist with 15 years of experience in regulatory accounting7 A.
+and cost-of-service (“COS”) ratemaking matters within the electric and natural gas8
+industries. I joined GDS in April 2026 as a Director in the Rates & Regulatory department.9
+Since joining GDS, I have provided expert accounting and tax analysis, as well as rate10
+reviews of costs included in the revenue requirements of electric utility companies for11
+purposes of retail and wholesale ratemaking.12
+Prior to joining GDS, I worked for CenterPoint Energy (“CenterPoint”) as a Tax13
+Director from 2024 through 2026, serving in a leadership role within the tax department14
+supporting multiple electric and natural gas utilities. CenterPoint owns and operates six15
+regulated utilities across Texas, Indiana, Minnesota, and Ohio.16
+Prior to CenterPoint, I worked for Exelon Corporation (“Exelon”) from 201117
+through 2024 within the tax department supporting multiple electric and natural gas18
+utilities. Exelon owns and operates six regulated utilities across Illinois, Pennsylvania, New19
+Jersey, Delaware, Maryland, and Washington, D.C.20
+Throughout my career at CenterPoint and Exelon, I supported transmission revenue21
+requirement filings and distribution rate proceedings, including matters involving historical22
+2
+260710187
+REDLINED VERSION
+
+===PAGE 21===
+test years, fully projected test years and multi-year rate plans. A statement of my1
+background and qualifications and is attached to my testimony as Attachment ERD-1.2
+3 Q5. ON WHOSE BEHALF ARE YOU TESTIFYING IN THIS PROCEEDING?
+I am testifying on behalf of Old Dominion Electric Cooperative (“ODEC”).4 A.
+5 Q6. PLEASE PROVIDE AN OVERVIEW OF OLD DOMINION ELECTRIC
+6 COOPERATIVE.
+ODEC was incorporated in 1948 as a not-for-profit wholesale power supply cooperative.7 A.
+ODEC is organized for the purpose of supplying the power its Members require to serve8
+their member-customers (“Member-Customers”) on a cost-effective basis. ODEC has9
+eleven distribution cooperative members (“Members”) that serve Member-Customers in10
+70 Counties in Virginia, Delaware, and Maryland. Through its Members, ODEC serves11
+approximately 630,000 retail electric customers (meters), representing a total population12
+of approximately 1.5 million people. ODEC is subject to the jurisdiction of the Federal13
+Energy Regulatory Commission (“FERC”).14
+Eight of ODEC’s Members have certificated service territories within the15
+Dominion Zone (“DOM Zone”): BARC Electric Cooperative, Community Electric16
+Cooperative, Mecklenburg Electric Cooperative, Northern Neck Electric Cooperative,17
+Prince George Electric Cooperative, Rappahannock Electric Cooperative (“REC”),18
+Shenandoah Valley Electric Cooperative, and Southside Electric Cooperative19
+(collectively, “DOM Zone Members”). ODEC’s DOM Zone Members are subject to the20
+jurisdiction of the State Corporation Commission (“Commission”).21
+3
+260710187
+REDLINED VERSION
+
+===PAGE 22===
+1 Q7. WHAT IS THE SCOPE AND PURPOSE OF YOUR TESTIMONY IN THIS
+2 PROCEEDING?
+The scope of my testimony is to describe how large-load customers can pay for all electric3 A.
+facilities required to serve them through contributions in aid of construction (“CIAC”). I4
+will also explain how CIAC payments impact the Network Integration Transmission5
+Service (“NITS”) rates that large-load customers will pay.6
+7 Q8. WAS YOUR TESTIMONY PREPARED BY YOU OR UNDER YOUR DIRECT
+8 SUPERVISION AND CONTROL?
+9 A. Yes.
+CONTRIBUTION IN AID OF CONSTRUCTION10
+11 Q9. WHAT IS CIAC?
+CIAC is a payment, asset, or other contribution provided to a utility by a customer,12 A.
+developer, governmental entity, or other third party to fund all or a portion of the utility13
+infrastructure necessary to provide service. CIAC commonly arises in situations involving14
+service to new developments, line extensions, system upgrades, relocations, or special-15
+purpose facilities.16
+17 Q10. WHY ARE CIACS REQUIRED ?
+CIACs are required when the cost to serve a specific customer exceeds the level that can18 A.
+be economically justified through standard utility rates. In such cases, requiring a19
+4
+260710187
+REDLINED VERSION
+
+===PAGE 23===
+contribution ensures that existing ratepayers do not subsidize infrastructure constructed1
+1primarily to serve new or incremental load.2
+3 Qll. IN WHAT SITUATIONS ARE CIACS TYPICALLY APPLIED?
+CIACs are commonly applied to extensions of electric, natural gas, or water systems4 A.
+serving new developments or customers, requests for capacity increases beyond standard5
+service levels, and infrastructure constructed specifically to accommodate a customer or6
+group of customers.7
+8 Q12. IS CIAC TREATMENT COMMONLY UTILIZED WITHIN REGULATED
+9 UTILITIES?
+Yes. CIAC treatment is widely recognized and utilized across regulated utility industries,10 A.
+including electric, natural gas, and water utilities.11
+12 Q13. HOW IS THE CIAC AMOUNT DETERMINED?
+CIAC generally represents the total cost of constructing the required facilities, including,13 A.
+but not limited to, design, engineering, construction, materials, labor, overheads, and other14
+associated costs necessary to provide service, plus any income tax related gross-up charges15
+the utility expects to incur as a result of receiving the CIAC, if it is determined to be16
+taxable.217
+i
+5
+See, e.g., Pricing Policy for New and Existing Facilities Constructed by Interstate Natural Gas Pipelines, 71 
+FERCH 61,241 (1995).
+2 San Diego Gas & Electric Company, 180 FERC H 61,095 at P. 15 (2022).
+260710187
+REDLINED VERSION
+
+===PAGE 24===
+1 Q14. WHAT IS THE ACCOUNTING TREATMENT OF THE UTILITIES UPFRONT
+2 COSTS PRIOR TO THE RECEIPT OF CIAC?
+When the utility incurs upfront construction costs, it generally records a debit to Account3 A.
+107, Construction Work in Progress (“CWIP”), and a corresponding credit to Account 131,4
+Cash, or Account 232, Accounts Payable.5
+6 Q15. WHAT IS THE ACCOUNTING TREATMENT FOR CIACS?
+Upon receipt of the CIAC reimbursement, the utility generally records a debit to Account7 A.
+131, Cash or Account 143, Other Account Receivable, and a corresponding credit to8
+Account 107 CWIP, resulting in no remaining CWIP balance associated with the specific9
+project. This reduces the total cost of the project to the utility and complies with the federal10
+requirement that Electric Plant in Service be recorded at cost.311
+12 Q16. WHAT IS THE RATEMAKING TREATMENT THAT FOLLOWS FROM THE
+13 ACCOUNTING TREATMENT FOR CIACS?
+The accounting treatment of CIACs results in corresponding ratemaking treatment under14 A.
+which CIAC-funded plant is excluded from rate base. Accordingly, the utility does not earn15
+a return on facilities funded through CIAC because shareholders did not provide the capital16
+supporting those assets.417
+6
+3 18 C.F.R. Part 101, Electric Plant Instruction No. 2(D).
+4 “Since the CIAC represents construction and property acquisition at no cost to the company it does not seem
+equitable that customers should pay, as now allowed through depreciation, a recovery of investment not belonging 
+to stockholders. This elimination does nothing to prevent such stockholders from earning upon the actual dollars that 
+they invested.” AMENDMENTS TO THE UNIFORM SYSTEM OF ACCOUNTS FOR PUBLIC UTILITIES AND 
+LICENSEES AND NATURAL GAS COMPANIES (ALL CLASSES) AND TO RELATED REPORT FORMS
+CONCERNING CONTRIBUTIONS IN AID OF CONSTRUCTION, 50 F.P.C. 540, 541 (1973).
+260710187
+REDLINED VERSION
+
+===PAGE 25===
+1 Q17. WHY IS THIS RATEMAKING TREATMENT APPROPRIATE?
+This treatment is appropriate because utility rates are intended to compensate utilities for2 A.
+prudently incurred investments financed by investors. If the investors do not provide the3
+funding for utility infrastructure, no shareholder investment exists to justify the recovery4
+of a regulated return.5 Excluding third-party-funded investments from rate base prevents5
+over-recovery from customers.6
+7 Q18. WHY IS CIAC APPROPRIATE FOR LARGE-LOAD CUSTOMERS?
+Large-load customers generally require substantial utility investments that exceed the level8 A.
+contemplated in standard utility rates. CIAC treatment ensures that the costs associated9
+with those customer-specific facilities are borne by the customer creating the need for the10
+investment rather than existing ratepayers that are not causing the need for the investment.611
+12 Q19. HAVE ANY OTHER JURISDICTIONS RECENTLY APPROVED CIAC
+13 TREATMENT FOR TRANSMISSION FACILITIES SERVING LARGE-LOAD
+14 CUSTOMERS?
+Yes. On May 12, 2026, the Pennsylvania Public Utility Commission (“PA PUC”) issued a15 A.
+Final Order approving a model tariff for large load customers at or over 50 MW16
+individually or 100 MW in the aggregate (“PA Model Tariff’).7 The PA PUC stated that,17
+7
+5 “Time-honored precedent recognizes a utility's right to earn a fair return on investor-contributed capital (rate base). 
+It follows then that a utility is not entitled to earn a return on that portion of rate base financed by sources other than 
+the owner's capital.” Distrigas of Massachusetts Corp. Distrigas Corp., 18 FERC 63,036, 65,112 (1982).
+6 This assumes the large-load customer will pay the correct portion of Network Integration Transmission Service 
+charges, as discussed later in my testimony.
+7 Interconnection and Tariffs for Large Load Customers, Docket No. M-2025-3054271, Final Order (May 12, 2026) 
+(“PA PUC Final Order”). See Attachment ERD-2 for the PA PUC Fmal Order.
+260710187
+REDLINED VERSION
+
+===PAGE 26===
+“[gjiven the unprecedented nature of this load growth, we find that the [PA PUCJ’s1
+approach to cost allocation must adapt to shield ratepayers from socialization of costs that2
+are properly attributed to Large Load Customers.”8 The PA Model Tariff assesses CIAC3
+on large-load customers based on a “but for” causation methodology.94
+5 Q20. PLEASE DESCRIBE THE REQUIREMENTS OF THE PA MODEL TARIFF.
+The PA Model Tariff requires large-load customers to pay a fee for interconnection6 A.
+facilities costs and network improvement costs through CIAC:7
+The PA Model Tariff requires the utility to assess CIAC to recover all distribution and16
+transmission costs necessary to interconnect the large-load customer.11 Like the PA PUC,17
+the Commission should require Dominion to assess CIAC to each large-load customer for18
+all transmission facilities required to interconnect the customer.19
+8
+8
+9 
+10
+11
+12
+13
+14
+15
+Large Load Customers are subject to a fee for Interconnection Facilities 
+costs and Network Improvement Costs through CIAC. The Company will 
+assess CIAC for Large Load Customer additions to recover all distribution 
+and transmission costs necessary to interconnect the new Large Load 
+Customer. If a Network Improvement would not have been needed “but for” 
+the interconnection of the Large Load Customer, then the costs of the 
+upgrade will be allocated to that customer irrespective of whether other 
+customers will benefit from it.10
+260710187
+REDLINED VERSION
+8 PA PUC Final Order at 42-43.
+9 PA PUC Final Order at 42 (“The only exception to this is for any upgrades or additions that were already planned 
+by the EDC pursuant to a Commission-approved Long-Term Infrastructure Improvement Plan (LTIIP) before the 
+Large Load Customer requested service.”).
+10 PA Model Tariff at Other Matters, (b) Contributions in Aid of Construction (CIAC), page 129 of the PA PUC 
+Final Order.
+11 PA PUC Final Order at 42 (“The only exception to this is for any upgrades or additions that were already planned 
+by the EDC pursuant to a Commission-approved Long-Term Infrastructure Improvement Plan (LTIIP) before the 
+Large Load Customer requested service.”).
+
+===PAGE 27===
+1 Q21. COULD THE VIRGINIA STATE CORPORATION COMMISSION
+2 (“COMMISSION”) IMPLEMENT THE SAME OR SIMILAR METHODOLOGY
+3 FOR LARGE-LOAD CUSTOMERS IN VIRGINIA?
+Yes. The Commission can assess CIAC on large-load customers in Virginia for the electric4 A.
+facilities required to serve them and should assess CIAC- as discussed in the pre-filed5
+testimony of ODEC witness Miller.6
+NETWORK INTEGRA TION TRANSMISSION SER VICE7
+8 Q22. WHAT IS NETWORK INTEGRATION TRANSMISSION SERVICE?
+NITS is a type of transmission service offered under the PJM Interconnection, L.L.C.9 A.
+(“PJM”) Open Access Transmission Tariff (“OATT”). The NITS charge is a demand-based10
+charge to recover the costs of interconnecting new customers, costs for general capital11
+improvements of the grid, and costs of maintaining and operating all high-voltage12
+transmission infrastructure used to transmit power across the grid to facilities. Therefore,13
+the NITS charge recovers (i) capital costs, both embedded and prospective, and (ii) ongoing14
+operation and maintenance (“O&M”) expenses.15
+16 Q23. WHO IS RESPONSIBLE FOR SETTING THE NITS CHARGE WITHIN PJM?
+Each utility in the PJM region determines its NITS charge pursuant to a Federal Power Act17 A.
+Section 205 or 206 filing before the Federal Energy Regulatory Commission (“FERC”).18
+9
+260710187
+REDLINED VERSION
+
+===PAGE 28===
+1 Q24. HOW IS THE NITS CHARGE DETERMINED?
+The charge is determined by multiplying the peak demand (kW) by the applicable NITS2 A.
+rate ($/kW).3
+4 Q25. HOW IS THE NITS RATE DETERMINED?
+In any PJM zone, the NITS rate for a given utility’s NITS service will be its NITS revenue5 A.
+requirement, which is based upon the Annual Transmission Revenue Requirement6
+(“ATRR”), divided by the Network Service Peak Load (“NSPL”).12 NSPL is updated7
+annually by transmission zone and is determined by measuring the highest actual metered8
+hourly demand of that specific zone over the previous twelve months from November 19
+through October 31.1310
+11 Q26. WHAT IS THE ATRR AND HOW IS IT DETERMINED?
+The ATRR is the annual amount a transmission-owning utility is permitted to recover12 A.
+through transmission rates under FERC-regulated tariffs. The ATRR is designed to allow13
+utilities to recover prudently-incurred transmission-related costs, including but not limited14
+to a return on transmission investment (i.e., rate base), depreciation, O&M, administrative15
+and general expenses, and taxes. Many utilities have formulaic rates on file with the FERC,16
+and each such utility follows its specific FERC-approved protocols and templates to17
+compute its ATRR. The ATRR and supporting schedules are publicly posted, and the18
+applicable protocols establish procedures and timelines for submitting interrogatory19
+10
+12 See https://www.pim.eom/-/media/DotCom/markets-ops/settlements/network-integration-trans-service-ian.-
+2025.pdf; https://www.pim.eom/-/media/DotCom/markets-ops/settlements/network-service-peak-loads-2025.pdf. 
+13See https://www.pim.eom/-/media/DotCom/markets-ops/settlements/network-service-peak-loads-2025.pdf.
+260710187
+REDLINED VERSION
+
+===PAGE 29===
+requests, as well as preliminary and formal challenges to the utility’s implementation of its1
+formula rate update.2
+3 Q27. WHEN A LOAD CUSTOMER
+4 FACILITIES, WILL THE LARGE LOAD CUSTOMER ALSO PAY THE FULL
+5 NITS CHARGE?
+When a large-load customer is assessed CIAC for the capital cost of the new transmission6 At
+facilities, the customer must also pay & portion oi the NITS charge. FERC determined that7
+tf-a-customer pays-CEAC—and the full NITS charge, the customer will pay for the capital8
+cost of the new facilities twice. This double payment is known as ‘and’ pricing. Therefore,9
+when a customer pays for facilities through CIAC, the-customer must also pay a NITS10
+charge that is adjusted to remove the capital cost of the-nev^Eaeilities being constructed for11
+the customer. This avoids ‘and’ pricing and ensures the customer pays12
+13 customer causes:
+14 G2SQ27. WHAT HAPPENS IF A LARGE-LOAD CUSTOMER PAYS CIAC FOR
+15 THE NEW TRANSMISSION FACILITIES AND DOES NOT PAY ANY PORTION
+16 OF^NITS CHARGES?
+If a large-load customer only pays CIAC, and not any portion of NITS charges, then the17 A.
+NITS charges that would have otherwise been charged to the large-load customer will be18
+paid by other ratepayers. Over time, the NITS charges paid by other customers could19
+exceed the amount of the CIAC payments, resulting in other ratepayers subsidizing a large20
+portion of the cost of the large-load customer’s transmission facilities.21
+11
+260710187
+REDLINED VERSION
+
+===PAGE 30===
+1 Q2N29. PLEASE DISCUSS THE RECENT WHITE PAPER FILED AT FERC BY
+2 WIRES ON MARCH 30, 2026.
+On March 30, 2026 WIRES filed supplemental comments with FERC to include a3 A.
+whitepaper in the record titled, “The Risks of Cost Shifts in Serving Large Loads Under a4
+Framework with Direct Allocation of Transmission Costs,” which was recently released5
+by Concentric Energy Advisers (“CEA”) and undertaken on behalf of Exelon Corporation.6
+The Whitepaper asserts that retail customers will end up paying more for transmission7
+services if the cost of transmission facilities are directly allocated to large-load customers.148
+9 Q2930. DO YOU AGREE WITH THE CONCLUSION OF THE WHITEPAPER?
+No, I do not agree with the conclusion of the White Paper for the reasons I just discussed.10 A.
+At a high level, CEA asserts that when transmission costs are directly allocated to large-11
+use customers, the large-use customers never pay ongoing transmission service charges12
+(the fixed costs of the transmission system, including both capital costs, upfront and13
+prospective, and ongoing O&M through NITS charges for the facilities).15 CEA then14
+asserts that retail customers necessarily end up paying increased NITs charges for those15
+facilities, resulting in retail customers paying more over the lifetime of the facilities than if16
+the costs of the facilities had been socialized to begin with. This is true only under the17
+assumption that when a customer pays CIAC, they never have to pay NITS.18
+12
+260710187
+REDLINED VERSION
+14 See Concentric Energy Advisors, The Risks of Cost Shifts in Serving Large Loads Under a Framework with Direct 
+Allocation of Transmission Costs (March 30, 2026) (“Whitepaper”).
+15Z<7.
+
+===PAGE 31===
+The rationale in the white paper is based on the concept of ‘-and’ pricing, which1
+originated from FERC’s 1994 transmission pricing policy.16 Absent CIAC, Dominion2
+recovers the cost of transmission facilities through NITS, which includes recovery of the3
+cost of the facilities themselves as well as ongoing maintenance and other ancillary4
+charges. Thus, if a customer paid C-IAC ‘and’ the full NITS charges, the customer would5
+pay for the capital cost of-the-faerlhies-hv-iee, which 4s-4nherently unfair. But the-feh-acy6
+inherent in C-EA’s argument is that there is no way for a customer to pay for the facilities7
+through CIAC and pay the ongoing portion of costs embedded into the NITS charges. If8
+the capital cost associated with the CIAC is removed from the NITS charge, then the9
+modified NITS charge is not in conflict with the ‘and’ pricing prohibition.10
+The Commission should require Dominion to adjust its NITS rate to eliminate the11
+annual CIAC payment related to the upfront capital costs from the annual NITS charges on12
+a per large-load customer basis throughout the life of the new transmission facilities, and13
+then revert back to the standard NITS- rate afterward. This would allow transmission costs14
+caused by large-load customers to be allocated directly to the large-load customers,15
+including the ongoing O&M charges embedded in the NITS rate without ‘and’ pricing16
+17 concerns.
+18
+19 030. IF THE C OMMISSION REQUIRES A LARGE LOAD CUSTOMER TO PAY FOR
+20 THE TRANSMISSION FACILITIES IT NEEDS FOR SERVICE THROUGH
+13
+wAeeA9TERGA47086-and4^UTER^-^7334PHGffig^ekey4er4faHSffHssieH-seFaee&-pfevided-ttHdeF4he-FedeFal
+Pewers-Aefir
+260710187
+REDLINED VERSION
+
+===PAGE 32===
+1 CIAC, WILL ANY ADJUSTMENTS TO THE CUSTOMER’S NITS CHARGE BE
+2 REQUIRED?
+To ensure that the large-load customer pays for all the transmission facility costs it causes,3 A.
+the Commission should require the customer to pay for ongoing Q&M costs associated4
+with the transmission facilities the customer requires for service. This could be5
+accomplished through an adjustment to the customer’s NITS charge, or another payment6
+mechanism, to be determined in a new proceeding.7
+8
+9 Q31. DOES THIS CONCLUDE YOUR PRE FILED DIRECT TESTIMONY?
+Yes, it does.A.
+14
+260710187
+REDLINED VERSION
+
+===PAGE 33===
+260710187
+CERTIFICATE OF SERVICE
+Counsel for Dominion
+Counsel for Virginia 
+Committee for Fair 
+Utility Rates
+David J. DePippo
+Annie C. Larson
+Dominion Energy Services, Inc.
+120 Tredegar Street, RS-2 
+Richmond, Virginia 23219 
+david.j.depippo@dominionenergy.com 
+annie.c.larson@dominionenergy.com
+Joseph K. Reid, III
+Jontille D. Ray
+Briana M. Jackson 
+Etahjayne J. Harris
+MCGUIREWOODS LLP
+Gateway Plaza
+800 East Canal St. 
+Richmond, VA 23219 
+jreid@mcguirewoods.com 
+jray@mcguirewoods.com 
+bmjackson@mcguirewoods.com 
+eharris@mcguirewoods.com
+Timothy G. McCormick 
+Christian F. Tucker 
+Shianne R. Randolph
+Christian & Barton, L.L.P.
+901 East Cary Street, Suite 1800 
+Richmond, VA 23219-4037 
+tmccormick@cblaw.com 
+ctucker@cblaw.com 
+srando lph@cb law .com
+I hereby certify that, on July 9, 2026, the following have been served with a true and 
+accurate copy of the foregoing via electronic mail:
+William H. Chambliss
+William H. Harrison, IV
+OFFICE OF GENERAL COUNSEL
+STATE CORPORATION COMMISSION
+P.O. Box 1197
+Richmond, VA 23218
+william.chambliss@scc.virginia.gov
+william.harrison@scc.virginia.gov
+Counsel for Commission 
+Staff
+
+===PAGE 34===
+260710187
+Appalachian Voices
+Counsel for Microsoft
+Counsel for Piedmont 
+Environmental Council
+Counsel for the 
+Attorney General
+Cliona Mary Robb 
+Michael J. Quinan 
+Catherine Chapman 
+THOMPSON MCMULLAN
+100 Shockoe Slip, 3rd Floor 
+Richmond, VA 23219 
+crobb@t-mlaw.com 
+mquinan@t-mlaw.com 
+cchapman@t-mlaw.com
+John E. Farmer, Jr. 
+Carew S. Bartley
+R. Cooper Vaughan 
+OFFICE OF THE ATTORNEY 
+GENERAL DIVISION OF 
+CONSUMER COUNSEL
+202 North 9th St., 8th Floor 
+Richmond, VA 23219 
+j farmer@oag. state. va .us 
+cbartley@oag. state. va .us 
+cvaughan@oag.state.va.us
+William T. Reisinger
+ReisingerGooch PLC
+1108 East Main Street, Suite 1102 
+Richmond, Virginia 23219 
+will@reisingergooch.com
+Nathaniel Benforado
+Katherine King
+Southern Environmental Law Center
+120 Garrett Street, Suite 400
+Charlottesville, VA 22902
+nbenforado@selc.org
+kking@selc.org
+
+===PAGE 35===
+260710187
+Counsel for Amazon
+Counsel for STACK
+Counsel for Google
+Counsel for Sierra Club 
+and NRDC
+Claire Marie Horan
+Appalachian Mountain Advocates
+Post Office Box 403
+Charlottesville, Virginia 22902 
+choran@appalmad.org
+Evan Dimond Johns
+Appalachian Mountain Advocates
+6101 Penn Avenue, Suite No. 402 
+Pittsburgh, Pennsylvania 15206 
+eiohns@appalmad. org
+Bradley J. Nowak, Esq. 
+Williams Mullen
+8350 Broad Street, Suite 1600 
+Tysons, Virginia 22102 
+Telephone: (202) 293-8143 
+bnowak@williamsmullen.com
+Max A. So, Esq.
+Williams Mullen
+200 South 10th Street, Suite 1600 
+Richmond, Virginia 23219 
+Telephone: (804) 420-6267 
+mso@williamsmullen. com
+William C. Cleveland
+LIGHTHOUSE POLICY & LAW, PLC
+240 West Main Street, Suite 100 
+Charlottesville, VA 22902 
+wcleveland@lighthousepl.com
+Brian R. Greene
+Eric J. Wallace
+Claire M. Gardner
+GreeneHurlocker, PLC
+4908 Monument Avenue, 2nd Floor 
+Richmond, VA 23230
+BGreene@GreeneHurlocker.com
+EWallace@GreeneHurlocker.com
+
+===PAGE 36===
+260710187
+Counsel for Scout 
+Development, LLC
+Aditya Patel
+adi.patel@nelsonmullins.com
+Nelson Mullins Riley & Scarborough LLP 
+1111 Bagby Street, Suite 2100
+Houston, TX 77002
+Counsel for the Virginia, 
+Maryland & Delaware 
+Association of Electric 
+Cooperatives
+Weston Adams, III
+weston.adams@nelsomnullins.com
+Nelson, Mullins, Riley & Scarborough LLP 
+1320 Main Street, Suite 1700
+Columbia, SC 29201
+Robert B. Josey
+robert.j osey@nelsonmullins. com
+Nelson, Mullins, Riley & Scarborough LLP 
+301 Hillsborough Street, Suite 1400 
+Raleigh, NC 27603
+Samuel R. Brumberg
+Alexander S. Jones
+Virginia, Maryland & Delaware
+Association of Electric Cooperatives
+4201 Dominion Boulevard, Suite 101 
+Glen Allen, VA 23060
+sbrumberg@vmdaec. c om
+aj ones@vmdaec. com
+Counsel for Loudoun County Leo P. Rogers, Esquire
+Jonathan M. Zator, Esquire 
+LOUDOUN COUNTY ATTORNEY
+1 Harrison Street, S.E.
+Leesburg, Virginia 20177
+leo .rogers@loudoun.gov
+j onathan. zator@loudoun. gov
+^7
+F. Garland Slaughter

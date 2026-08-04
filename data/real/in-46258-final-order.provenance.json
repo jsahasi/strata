@@ -1,0 +1,15 @@
+{
+  "source_url": "https://iurc.portal.in.gov/_entity/sharepointdocumentlocation/334e2333-686a-f111-a824-001dd804183b/bb9c6bba-fd52-45ad-8e64-a444aef13c39?file=ord_46258_061726.pdf",
+  "retrieved_at": "2026-08-04T16:54:02Z",
+  "sha256": "8dad9affb71f0f2119b6fcb04468913c3c17f9147c0727199044674b0f64718b",
+  "sha256_source_pdf": "31968953188796ca391c374964126832db2e502d0c366b1864410c12969da39d",
+  "jurisdiction": "Indiana (IURC)",
+  "docket": "46258",
+  "document_title": "Order of the Commission (final order approving the Stipulation and Settlement Agreement with modifications)",
+  "filing_date": "2026-06-17",
+  "filer": "Indiana Utility Regulatory Commission",
+  "source_pdf_bytes": 1003322,
+  "text_bytes": 255657,
+  "pages": 77,
+  "how_obtained": "Fetched the PDF over HTTPS with curl (no login, no cookies; the IURC portal serves these documents anonymously). Converted to text with PyMuPDF page.get_text() using default settings, concatenating pages in order with no separator inserted and no other change: line breaks, spacing, hyphenation, running heads, margin line numbers and any OCR errors are left exactly as the extractor produced them."
+}

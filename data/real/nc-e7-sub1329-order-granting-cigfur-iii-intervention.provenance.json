@@ -1,0 +1,19 @@
+{
+  "jurisdiction": "North Carolina Utilities Commission (NCUC)",
+  "docket": "E-7 Sub 1329",
+  "filer": "North Carolina Utilities Commission",
+  "source_url": "https://starw1.ncuc.gov/NCUC/ViewFile.aspx?Id=2b8f88f3-e9d9-4082-81c2-e711642dce84",
+  "source_detail_page": "https://starw1.ncuc.gov/NCUC/PSC/PSCDocumentDetailsPageNCUC.aspx?DocumentId=d9e83bdb-58df-41a0-a003-6796704b0dec&Class=Order",
+  "ncuc_document_number": "E-20251010-49348",
+  "ncuc_record_document_id": "d9e83bdb-58df-41a0-a003-6796704b0dec",
+  "ncuc_file_id": "2b8f88f3-e9d9-4082-81c2-e711642dce84",
+  "document_title": "Order Granting Petition to Intervene of the Carolina Industrial Group for Fair Utility Rates III",
+  "filing_date": "2025-10-10",
+  "how_obtained": "Downloaded the PDF from the NCUC STAR document handler https://starw1.ncuc.gov/NCUC/ViewFile.aspx?Id=<file-guid>, which is the link the commission's own document-detail page points at. starw1.ncuc.gov sits behind a Cloudflare managed challenge that refuses plain HTTP clients (403 for curl and for the plain fetch tool), so the session was driven with a real Chrome browser under Playwright, which passes the challenge normally; the PDF bytes were then read out of that same browser session. Converted the PDF to text with pdfminer.six extract_text(). The text is saved exactly as pdfminer emitted it - no reflow, no de-hyphenation, no ligature or soft-hyphen repair, form feeds, margin line numbers, column-split Q/A markers and OCR noise all left in place.",
+  "corpus_note": "Ruling half of the second pair: the order on the CIGFUR III petition filed three days earlier. Short document, useful as a citation-verification negative control.",
+  "sha256": "451403786950e4e35d557419a5e8f52aba5f8115598f6bfb8bf85f49c00e1936",
+  "bytes": 1467,
+  "source_pdf_sha256": "beaa8dbe26720c2331c33ea60268b5d75282ecd647f1d88e6d46c5aa3c4dcc36",
+  "source_pdf_bytes": 91159,
+  "retrieved_at": "2026-08-04T17:13:51Z"
+}

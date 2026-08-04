@@ -1,0 +1,19 @@
+{
+  "source_url": "https://www.scc.virginia.gov/DocketSearch/Home/Document/12/380177",
+  "retrieved_at": "2026-08-04T16:51:43Z",
+  "sha256": "3f8106a9d1b70f95f77396d8cc33d5ad5a14c5586c5d0d344094e07fc5ef55bd",
+  "jurisdiction": "US-VA (Virginia State Corporation Commission)",
+  "docket": "PUR-2025-00058",
+  "matter_no": 146025,
+  "scc_doc_id": "380177",
+  "document_title": "Errata filing to Company Witness Blackwell's Direct Testimony",
+  "filing_date": "2025-05-05",
+  "filer": "Virginia Electric and Power Company (McGuireWoods LLP, Timothy D. Patterson)",
+  "content_type_served": "application/pdf",
+  "source_pdf_sha256": "918f980858b33d71ddb1a6695164d76895bd552e026de43136cb62dc176282c5",
+  "source_pdf_bytes": 975026,
+  "saved_text_bytes": 8081,
+  "extraction_tool": "pypdf 6.14.2 page.extract_text()",
+  "note": "Version-pair B, direct/errata half. Corrects Figure 1 'Billed Sales (MWh)' 2024 value: '4,248,543' -> '24,248,543'; includes clean+redline of page 5 of Blackwell Direct Testimony.",
+  "how_obtained": "Fetched the PDF from the Virginia SCC DocketSearch document handler (https://www.scc.virginia.gov/DocketSearch/Home/Document/12/<DocID>) with curl -L, following the site's 307 redirect to the lowercase /docketsearch/home/document/12/<DocID> path, which returned Content-Type application/pdf. The DocID was obtained from the DocketSearchAPI Breeze endpoint GetDocuments (?$filter=MATTER_NO eq <matter>) for this case. Converted the PDF to text with pypdf 6.14.2 using page.extract_text() concatenated per page with '===PAGE n===' separators. The text is saved exactly as pypdf produced it: not cleaned, not reflowed, not de-hyphenated; soft hyphens, ligature artefacts, transposed line-number/Q-A ordering and OCR-style noise are left intact."
+}

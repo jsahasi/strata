@@ -1,0 +1,19 @@
+{
+  "jurisdiction": "North Carolina Utilities Commission (NCUC)",
+  "docket": "E-100 Sub 208",
+  "filer": "Virginia Electric and Power Company, d/b/a Dominion Energy North Carolina",
+  "source_url": "https://starw1.ncuc.gov/NCUC/ViewFile.aspx?Id=eb6a4923-2f74-4f5d-b1f1-afb86b1f99f6",
+  "source_detail_page": "https://starw1.ncuc.gov/NCUC/PSC/PSCDocumentDetailsPageNCUC.aspx?DocumentId=20ec768a-4096-4cd8-b54c-818c8da7d196&Class=Filing",
+  "ncuc_document_number": "F-E-20250724-044",
+  "ncuc_record_document_id": "20ec768a-4096-4cd8-b54c-818c8da7d196",
+  "ncuc_file_id": "eb6a4923-2f74-4f5d-b1f1-afb86b1f99f6",
+  "document_title": "DENC Responses to Commission Questions Regarding Large Load Customers",
+  "filing_date": "2025-07-24",
+  "how_obtained": "Downloaded the PDF from the NCUC STAR document handler https://starw1.ncuc.gov/NCUC/ViewFile.aspx?Id=<file-guid>, which is the link the commission's own document-detail page points at. starw1.ncuc.gov sits behind a Cloudflare managed challenge that refuses plain HTTP clients (403 for curl and for the plain fetch tool), so the session was driven with a real Chrome browser under Playwright, which passes the challenge normally; the PDF bytes were then read out of that same browser session. Converted the PDF to text with pdfminer.six extract_text(). The text is saved exactly as pdfminer emitted it - no reflow, no de-hyphenation, no ligature or soft-hyphen repair, form feeds, margin line numbers, column-split Q/A markers and OCR noise all left in place.",
+  "corpus_note": "The other half of the divergence pair: a different utility's answers to the SAME Commission question set from the same 2025-06-06 order, filed the same day in the same docket as Duke's. This is the multi-state divergence case in a single jurisdiction's record.",
+  "sha256": "49681320ce63e43452d5892fa3ac06f5385015a53939da3df45ed2e0aade04ff",
+  "bytes": 27145,
+  "source_pdf_sha256": "896ebd2db933aafc7995787a26c301eade22071565971193b044731a7c5ae66c",
+  "source_pdf_bytes": 510021,
+  "retrieved_at": "2026-08-04T17:13:51Z"
+}

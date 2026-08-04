@@ -1,0 +1,23 @@
+{
+  "source_url": "https://www.supremecourt.ohio.gov/pdf_viewer/pdf_viewer.aspx?pdf=1000456.pdf&subdirectory=2025-1458%5CDocketItems&source=DL_Clerk",
+  "retrieved_at": "2026-08-04T16:53:33Z",
+  "sha256": "f3ada226a732757c7a2140555b3fbb06e457f00caca61e7cbfbfc7ea7e0b56be",
+  "jurisdiction": "Ohio",
+  "docket": "24-508-EL-ATA",
+  "document_title": "Staff Ex. 1: Direct Testimony of Christopher Healey in Support of October 23, 2024 Stipulation & Recommendation and in Opposition to October 10, 2024 Stipulation & Recommendation",
+  "filing_date": "2024-11-26",
+  "filer": "Staff of the Public Utilities Commission of Ohio",
+  "how_obtained": "Fetched the PDF over HTTPS from the Supreme Court of Ohio public docket document handler (pdf_viewer.aspx), then extracted the embedded text layer with PyMuPDF 1.26.5 page.get_text(\"text\"), concatenating pages in order. No cleaning, reflowing, de-hyphenation, encoding repair or page markers were applied; marginal line numbers, running heads, Q/A markers and blank image-only (redacted) pages appear exactly as the extractor produced them. This file is a page-range extract of a larger compiled PDF: only the pages listed in source_page_range were extracted, and their text is unmodified. Supplement pages 134-201 of 330. Commission Staff testimony that compares the two competing stipulations directly.",
+  "source_pdf_sha256": "09019e605e551205d823ca5df0c45d44dd94a5705e22e4bad38e1eff43f95bd9",
+  "source_pdf_bytes": 6592857,
+  "source_pdf_pages": 333,
+  "source_page_range_0indexed": [
+    136,
+    203
+  ],
+  "pages_extracted": 68,
+  "text_bytes": 104089,
+  "publisher": "Supreme Court of Ohio, Clerk of Court public docket (ECMS), case 2025-1458",
+  "access": "public record; no login, no paywall; redacted public versions only",
+  "extractor": "PyMuPDF 1.26.5 (MuPDF 1.26.10) page.get_text(\"text\")"
+}

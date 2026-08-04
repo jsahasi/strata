@@ -1,0 +1,538 @@
+      BEFORE THE PUBLIC SERVICE COMMISSION OF UTAH
+
+
+IN THE MATTER OF THE APPLICATION
+OF ROCKY MOUNTAIN POWER FOR
+APPROVAL OF LARGE-LOAD SERVICE         Docket No. 26-035-05
+CONTRACT  BETWEEN  PACIFICORP
+AND A LARGE-LOAD CUSTOMER
+
+
+
+
+
+                   DIRECT TESTIMONY
+
+                        OF
+
+                       JUSTIN BIEBER
+
+
+
+                     On Behalf of the
+
+                    Utah Association of Energy Users
+
+                         March 3, 2026                      TABLE OF CONTENTS
+
+
+1         I.  INTRODUCTION .................................................................................................. 1
+
+2         II. OVERVIEW & CONCLUSIONS .......................................................................... 3
+
+3        III. PROPOSED LLSC ACCOUNTING TREATMENT ............................................. 4
+
+
+
+    UAE Exhibit 1.0                                   Direct Testimony of Justin Bieber                                                            Direct Testimony of Justin Bieber
+                                              UAE Exhibit 1.0
+                                                             Docket No. 26-035-05
+
+
+ 4                 DIRECT TESTIMONY OF JUSTIN BIEBER
+
+ 5                                              I. INTRODUCTION
+
+ 6   Q.    Please state your name and business address.
+
+ 7   A.   My name is Justin Bieber. My business address is 111 E Broadway, Suite 1200,
+
+ 8            Salt Lake City, Utah, 84111.
+
+ 9   Q.   By whom are you employed and in what capacity?
+
+10   A.      I am a Principal for Energy Strategies, LLC. Energy Strategies  is a private
+
+11           consulting firm specializing in economic and policy analysis applicable to energy
+
+12           production, transportation, and consumption.
+
+13   Q.   On whose behalf are you testifying in this proceeding?
+
+14   A.   My testimony  is being sponsored by the Utah Association of Energy Users
+
+15         (“UAE”).
+
+16   Q.    Please describe your professional experience and qualifications.
+
+17   A.   My academic background is in business and engineering. I earned a Bachelor of
+
+18          Science in Mechanical Engineering from Duke University in 2006 and a Master of
+
+19          Business Administration from the University of Southern California in 2012. I am
+
+20           also a registered Professional Civil Engineer in the state of California. I joined
+
+21         Energy Strategies in 2017, where I provide regulatory and technical support on a
+
+22           variety of energy issues, including regulatory services, transmission and renewable
+
+23          development, and financial and economic analyses. While at Energy Strategies, I
+
+24          have filed and supported the development of testimony before various state utility
+
+25           regulatory commissions.
+
+
+
+
+                                     BIEBER/1                                                            Direct Testimony of Justin Bieber
+                                              UAE Exhibit 1.0
+                                                             Docket No. 26-035-05
+
+
+26                   Prior to joining Energy Strategies, I held three positions at Pacific Gas and
+
+27            Electric Company (“PG&E”) as Manager of Transmission Project Development,
+
+28        ISO Relations and Federal Energy Regulatory Commission (“FERC”) Policy
+
+29            Principal, and Supervisor of Electric Generator Interconnections. During my career
+
+30            at PG&E, I supported multiple facets of utility operations, and led efforts in policy,
+
+31           regulatory, and strategic  initiatives, including supporting the development of
+
+32          testimony before and submitting comments to the FERC, California Independent
+
+33         System Operator, and the California Public Utilities Commission.
+
+34   Q.    Have you testified previously before this Commission?
+
+35   A.    Yes. I testified in the following proceedings before this Commission:
+
+36             •  Dominion Energy Utah’s (“DEU”) request for approval to construct an LNG
+
+37                Facility, Docket No. 19-057-13;
+
+38             •  Rocky Mountain Power’s (“RMP”) 2020 general rate case, Docket No. 20-035-
+
+39              04;
+
+40             •  RMP’s application for alternative cost recovery for major plant additions,
+
+41            Docket No. 21-035-42;
+
+42             •  RMP’s application for a certificate of public convenience and necessity for the
+
+43            Gateway South Transmission Project, Docket No. 21-035-54;
+
+44             •  RMP’s 2024 general rate case, Docket No. 24-035-04;
+
+45             •   Enbridge Gas Utah’s 2025 general rate case, Docket No. 25-057-06; and
+
+46             •  RMP’s application for approval of the 2026 Inter-jurisdictional cost allocation
+
+47               protocol, Docket No. 25-035-47.
+
+
+
+
+                                     BIEBER/2                                                            Direct Testimony of Justin Bieber
+                                              UAE Exhibit 1.0
+                                                             Docket No. 26-035-05
+
+
+48   Q.    Have you filed testimony previously before any other state utility regulatory
+
+49         commissions?
+
+50   A.    Yes. I have testified in more than 80 regulatory proceedings on the subjects of
+
+51             utility rates and regulatory policy before state  utility regulators in Colorado,
+
+52           Indiana, Kansas, Kentucky, Michigan, Montana, Nevada, New Mexico, North
+
+53           Carolina, Ohio, Oklahoma, Oregon, Pennsylvania, Texas, Virginia, Washington,
+
+54         West Virginia, and Wisconsin.
+
+55
+
+56                                  II. OVERVIEW & CONCLUSIONS
+
+57   Q.   What is the purpose of your direct testimony in this proceeding?
+
+58   A.     In my testimony  I address Rocky Mountain Power’s (“RMP’s”) request for
+
+59          approval of its proposed accounting treatment associated with the proposed Large
+
+60         Load Service Contract (“LLSC”).
+
+61   Q.   What are your primary conclusions and recommendations?
+
+62   A.    To be clear, I am not taking a position on RMP’s request for approval of the LLSC
+
+63          with a  large load customer. However,  in  its Application RMP  also seeks
+
+64         Commission approval of its proposed accounting treatment associated with the
+
+65         LLSC,1 which has cost allocation and ratemaking implications for RMP’s existing
+
+66             retail customers.
+
+67           RMP asserts that its proposed accounting treatment will protect existing
+
+68          customers from subsidizing the new large load, ensure transparency, and comply
+
+
+
+         1 Direct Testimony of Craig M. Eller, p. 2.
+
+
+                                     BIEBER/3                                                            Direct Testimony of Justin Bieber
+                                              UAE Exhibit 1.0
+                                                             Docket No. 26-035-05
+
+
+69          with  applicable laws and Commission  rules.2 However,  the documentation
+
+70           supporting RMP’s Application is heavily redacted. UAE has been coordinating
+
+71          with RMP to obtain access to targeted and specific details that have been designated
+
+72           as Highly Confidential that are necessary to evaluate RMP’s claim that its proposed
+
+73          accounting treatment will protect existing customers from subsidizing the new large
+
+74           load. As of the date that I have drafted this testimony, UAE has not been granted
+
+75           access to certain key details necessary to validate this claim.
+
+76                 Accordingly, I recommend that the Commission refrain from approving
+
+77        RMP’s proposed accounting treatment until intervening parties such as UAE have
+
+78          been provided a meaningful opportunity to review the relevant details of the
+
+79          proposed accounting treatment and respond on the record, whether in rebuttal
+
+80          testimony or through another appropriate procedural mechanism.
+
+81
+
+82                         III. PROPOSED LLSC ACCOUNTING TREATMENT
+
+83   Q.    Please describe the general structure of the LLSC.
+
+84   A.   RMP witness Mr. Craig Eller explains that the proposed LLSC provides the
+
+85           conditions under which RMP would provide full-requirements retail service to a
+
+86           single large load customer. The proposed LLSC includes (1) a Reservation Charge
+
+87          designed to recover fixed-costs; (2) an Energy Charge to recover variable costs
+
+88          based on energy usage; and (3) applicable surcharges and taxes.3
+
+89
+
+
+         2 Direct Testimony of Ramon J. Mitchell, p. 2.
+         3 Direct Testimony of Craig M. Eller, p. 4.
+
+
+                                     BIEBER/4                                                             Direct Testimony of Justin Bieber
+                                               UAE Exhibit 1.0
+                                                              Docket No. 26-035-05
+
+
+ 90   Q.    Please describe the Reservation Charge.
+
+ 91   A.    Mr. Eller explains that the Reservation Charge is designed to recover the capital
+
+ 92           costs associated with the customer’s load facilities allowance (i.e., metering costs),
+
+ 93           bridging market capacity purchases, incremental generation resources, and the
+
+ 94         Company’s return on its investment at a level intended to prevent any subsidization
+
+ 95         by existing customers.4
+
+ 96   Q.   How does RMP propose to prevent subsidization from existing customers for
+
+ 97           costs and revenues associated with the Reservation Charge?
+
+ 98   A.    Mr. Eller explains that the Company is responsible for constructing the customer’s
+
+ 99          load facilities and identifying and procuring new resources necessary to support
+
+100          system reliability, and that those costs will be borne by the Company and recovered
+
+101          through the Reservation Charge. He states that revenue from the Reservation
+
+102         Charge will be removed from the Company’s revenue requirement and net power
+
+103           costs (“NPC”). In addition, the associated costs of the load facilities, bridging
+
+104          market capacity purchases, incremental generation resources, and the Company’s
+
+105           return will likewise be excluded from revenue requirements to ensure that existing
+
+106          customers are not subsidizing the new load. Mr. Eller further states that no
+
+107          incremental transmission costs are incurred as a result of the Proposed LLSC.5
+
+108   Q.    Please describe the Energy Charge.
+
+109   A.    The details of the Energy Charge have been redacted, and as of the time that I have
+
+110           drafted this testimony, I have not had access to this information. However, Mr.
+
+
+           4 Id. p. 4.
+           5 Id.
+
+
+                                      BIEBER/5                                                             Direct Testimony of Justin Bieber
+                                               UAE Exhibit 1.0
+                                                              Docket No. 26-035-05
+
+
+111            Eller asserts that the design of the Energy Charge will provide opportunities for
+
+112           existing resources to be economically dispatched to meet the new large customer’s
+
+113           load, providing margin benefits to other system customers as well as accounting for
+
+114           losses and the payment for the use of transmission paths.6
+
+115   Q.   How does RMP propose to prevent subsidization from existing customers for
+
+116           costs and revenues associated with the Energy Charge?
+
+117   A.   RMP witness Ramon Mitchell explains that in each of the Company’s rate cases
+
+118          going forward, the Company proposes to apply a credit equal to the total forecasted
+
+119           large load customer’s Energy Charge against the forecasted net power costs, which
+
+120             is intended offset incremental costs associated with the customer’s energy usage
+
+121         and ensure that these costs are removed from the net power costs calculation used
+
+122            to set rates for other customers. Similarly, in Utah Energy Balancing Account
+
+123         (“EBA”) filings, the Company proposes to apply a credit equal to the actual
+
+124          invoiced Energy Charges against the actual net power costs, which is intended to
+
+125          ensure that incremental costs related to meeting the customer’s load are excluded
+
+126         from the EBA recovery mechanism.7
+
+127   Q.   What load interconnection, transmission, and shared  facilities costs are
+
+128          required to provide service under the LLSC?
+
+129   A.    The details of the interconnection, transmission, and shared facilities requirements
+
+130          have been redacted, and as of the time that I have drafted this testimony, I have not
+
+131         had access to this information.  However, Mr. Eller states that the large load
+
+
+           6 Id. pp. 4-5.
+           7 Direct Testimony of Ramon J. Mitchell, p. 4.
+
+
+                                      BIEBER/6                                                             Direct Testimony of Justin Bieber
+                                               UAE Exhibit 1.0
+                                                              Docket No. 26-035-05
+
+
+132          customer’s interconnection improvements have been  fully paid and  that no
+
+133           transmission upgrades were identified as necessary for the Company to provide
+
+134         Network  Integration Transmission Service (“NITS”)  to  the new  large load
+
+135          customer. Additionally, Mr. Eller states that the large load customer has agreed to
+
+136         pay  its proportionate share of the cost for shared  facilities funded by other
+
+137          customers.
+
+138   Q.    Please explain why you are unable to review and validate RMP’s assertion that
+
+139          the proposed accounting treatment will prevent existing retail customers from
+
+140          subsidizing the new large load?
+
+141   A.      I am unable to review and validate RMP’s assertion because, as of the time of
+
+142           drafting this testimony, I have not been granted access to review key components
+
+143           of the proposed accounting treatment and supporting analyses which have been
+
+144           designated as Highly  Confidential. Although RMP  describes  its accounting
+
+145         framework at a high level, additional details are necessary to independently perform
+
+146          a substantive review.
+
+147                For example, as I explain above, the Company proposes to apply a credit
+
+148          equal to the total forecasted large load customer’s Energy Charge revenues against
+
+149           the forecasted NPC, which is intended to offset incremental costs associated with
+
+150           the large load customer’s energy usage. Thus the energy credits that are removed
+
+151         from the NPC must be at least equal to or greater than then incremental costs
+
+152            attributable to the large load customer. However, I cannot validate whether the
+
+153          proposed energy credits would be equal to or greater than the incremental cost
+
+
+
+
+                                      BIEBER/7                                                             Direct Testimony of Justin Bieber
+                                               UAE Exhibit 1.0
+                                                              Docket No. 26-035-05
+
+
+154          without having access to sufficient detail to compare the credits to the incremental
+
+155            cost.
+
+156                  Additionally,  it is unclear how the proposed accounting treatment will
+
+157           prevent existing retail customers from subsidizing the cost of shared facilities. For
+
+158          example, even though RMP states that the Customer has agreed to pay  its
+
+159           proportionate share of the cost for shared facilities funded by other customers, the
+
+160           redacted record does not allow me to assess whether those facilities also provide
+
+161           benefits to existing customers or whether any portion of the associated costs will
+
+162           ultimately be borne by retail ratepayers.
+
+163                   Similarly, RMP states that no transmission upgrades were required for the
+
+164        Company to provide NITS on behalf of the large load customer. However, even
+
+165          though no new transmission upgrades are required, the large load customer will
+
+166             utilize capacity on the existing transmission system, capacity that would otherwise
+
+167          be available for other purposes, and will increase the coincident peak loads used to
+
+168          determine the cost of NITS. An increase in coincident peak load may increase the
+
+169           portion  of  PacifiCorp  Transmission’s  revenue  requirement  allocated  to
+
+170           PacifiCorp’s  merchant  function,  relative  to  other  wholesale  transmission
+
+171          customers. Based on the redacted information that has been provided to me, it is
+
+172        unknown to what extent the large load customer will utilize existing transmission
+
+173            infrastructure or to what extent  it will pay for embedded transmission costs
+
+174         commensurate with its contribution to the Company’s overall transmission revenue
+
+175           requirement.
+
+
+
+
+                                      BIEBER/8                                                             Direct Testimony of Justin Bieber
+                                               UAE Exhibit 1.0
+                                                              Docket No. 26-035-05
+
+
+176           RMP also represents that interconnection improvements have been fully
+
+177           paid, and that the Customer has agreed to pay its proportionate share of the cost for
+
+178          shared facilities funded by other customers. However, the redacted record does not
+
+179          provide enough information to evaluate the accounting treatment of those assets for
+
+180          ratemaking purposes. It is unclear whether the Company will require contributions
+
+181            in aid of construction (“CIAC”) or other direct payments such that the assets will
+
+182           not be placed into rate base, or whether certain costs have already been, or will be,
+
+183          included in rate base and offset through contractual revenues, or whether some
+
+184           other mechanism will be used.
+
+185                Without clarity on these issues or access to sufficiently detailed workpapers,
+
+186              I cannot verify that the proposed accounting treatment will ensure that existing
+
+187          customers are held harmless.
+
+188   Q.   Do you have a recommendation for the Commission?
+
+189   A.    As indicated above, I do not oppose the Company’s request to approve the LLSC.
+
+190         However, in its Application RMP also seeks Commission approval of its proposed
+
+191          accounting treatment associated with the LLSC,8 which has cost allocation and
+
+192          ratemaking implications for RMP’s existing retail customers.
+
+193           RMP asserts that its proposed accounting treatment will protect existing
+
+194          customers from subsidizing the new large load, ensure transparency, and comply
+
+195          with  applicable laws and Commission  rules.9 However,  the documentation
+
+196           supporting RMP’s Application is heavily redacted. UAE has been coordinating
+
+
+           8 Direct Testimony of Craig M. Eller, p. 2.
+           9 Direct Testimony of Ramon J. Mitchell, p. 2.
+
+
+                                      BIEBER/9                                                             Direct Testimony of Justin Bieber
+                                               UAE Exhibit 1.0
+                                                              Docket No. 26-035-05
+
+
+197          with RMP to obtain access to targeted and specific details that have been designated
+
+198           as Highly Confidential that are necessary to evaluate RMP’s claim that its proposed
+
+199          accounting treatment will protect existing customers from subsidizing the new large
+
+200           load. As of the date that I have drafted this testimony, UAE has not been granted
+
+201           access to certain key details necessary to validate this claim.
+
+202                 Accordingly, I recommend that the Commission refrain from approving
+
+203        RMP’s proposed accounting treatment until intervening parties such as UAE have
+
+204          been provided a meaningful opportunity to review the relevant details of the
+
+205          proposed accounting treatment and respond on the record, whether in rebuttal
+
+206          testimony or through another appropriate procedural mechanism.
+
+207   Q.    Does this conclude your direct testimony?
+
+208   A.    Yes, it does.
+
+
+
+
+
+                                      BIEBER/10

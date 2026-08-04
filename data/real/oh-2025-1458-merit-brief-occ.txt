@@ -1,0 +1,1127 @@
+ 
+IN THE SUPREME COURT OF OHIO 
+ 
+In the Matter of the Application of Ohio 
+Power Company for New Tariffs Related 
+to Data Centers and Mobile Data Centers. 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+Case No. 2025-1458 
+ 
+On Appeal from the Public Utilities 
+Commission of Ohio 
+ 
+Pub. Util. Comm. Case No. 24-508-
+EL-ATA 
+ 
+ 
+MERIT BRIEF OF INTERVENING APPELLEE, 
+OFFICE OF THE OHIO CONSUMERS’ COUNSEL 
+ 
+ 
+Kimberly W. Bojko  
+(Reg. No. 0069402)  
+Counsel of Record  
+ 
+Emma Y. Easley  
+(Reg. No. 0102144)  
+ 
+Carpenter Lipps LLP  
+280 North High Street, Suite 1300  
+Columbus, Ohio 43215 
+Telephone: (614) 365-4100  
+bojko@carpenterlipps.com 
+easley@carpenterlipps.com  
+ 
+Counsel for Appellant,  
+The Ohio Manufacturers’ Association Energy 
+Group 
+ 
+March 24, 2026 
+ 
+ 
+ 
+Maureen R. Willis 
+(Reg. No. 0020847) 
+Ohio Consumers’ Counsel 
+ 
+William J. Michael  
+(Reg. No. 0070921) 
+Counsel of Record 
+Senior Counsel 
+ 
+John R. Varanese 
+(Reg. No. 0044176) 
+Assistant Consumers’ Counsel 
+ 
+Office of the Ohio Consumers’ Counsel 
+65 East State Street, Suite 700 
+Columbus, Ohio 43215 
+Telephone [Michael]: (614) 466-1291 
+Telephone [Varanese]: (614) 387-2965 
+william.michael@occ.ohio.gov 
+john.varanese@occ.ohio.gov 
+ 
+Counsel for Intervening Appellee, 
+Office of the Ohio Consumers’ Counsel 
+ 
+ 
+ 
+Supreme Court of Ohio Clerk of Court - Filed March 24, 2026 - Case No. 2025-1458
+ 
+ 
+David A. Yost 
+(Reg. No. 0056290) 
+Attorney General of Ohio 
+ 
+John H. Jones 
+(Reg. No. 0051913) 
+Section Chief, Public Utilities Section 
+Assistant Attorneys General  
+Public Utilities Section  
+30 East Broad Street, 16th Floor 
+Columbus, Ohio 43215 
+Telephone: (614) 466-4397 
+john.jones@ohioAGO.gov 
+ 
+Counsel for Appellee, 
+Public Utilities Commission of Ohio 
+ 
+Michael L. Kurtz, Esq.  
+(Reg. No. 0033350)  
+Counsel of Record  
+ 
+Jody Kyler Cohn, Esq.  
+(Reg. No. 0085402)  
+Boehm, Kurtz & Lowry  
+425 Walnut Street, Suite 2400  
+Cincinnati, Ohio 45202  
+Telephone: (513) 421-2255  
+mkurtz@BKLlawfirm.com 
+jkylercohn@BKLlawfirm.com 
+ 
+Counsel for Intervening Appellee,  
+The Ohio Energy Group 
+ 
+Steven T. Nourse  
+(Reg. No. 0046705) 
+Counsel of Record 
+  
+Michael J. Schuler  
+(Reg. No. 0082390)  
+American Electric Power Service Corporation  
+1 Riverside Plaza, 29th Floor  
+Columbus, Ohio 43215-2373  
+Telephone: (614) 716-1608 (Nourse) 
+Telephone: (614) 716-2928 (Schuler)  
+stnourse@aep.com  
+mjschuler@aep.com  
+ 
+N. Trevor Alexander  
+(Reg. No. 0080713)  
+ 
+Kari D. Hehmeyer  
+(Reg. No. 0096284)  
+ 
+Samantha R. Meng  
+(Reg. No. 0103524)  
+Benesch Friedlander Coplan & Aronoff 
+41 South High Street, Suite 2600  
+Columbus, Ohio 43215  
+Telephone: (614) 223-9363  
+talexander@beneschlaw.com  
+khehmeyer@beneschlaw.com 
+smeng@beneschlaw.com  
+ 
+Counsel for Intervening Appellee, 
+Ohio Power Company 
+ 
+ 
+i 
+TABLE OF CONTENTS 
+PAGE 
+ 
+TABLE OF AUTHORITIES ......................................................................................................... iv 
+ 
+I. 
+INTRODUCTION ...............................................................................................................1 
+II. 
+STANDARD OF REVIEW .................................................................................................1 
+III. 
+STATEMENT OF FACTS ..................................................................................................4 
+A. 
+AEP Ohio is facing unprecedented load growth from data centers. ........................5 
+B. 
+The need for transmission grid investment to serve the coming data center load 
+demand. ....................................................................................................................6 
+C. 
+AEP Ohio’s current tariffs were not designed to address the challenges posed by 
+new data centers. ......................................................................................................7 
+D. 
+AEP Ohio’s Application for Approval of New Tariffs and the proceedings below.
+..................................................................................................................................7 
+IV. 
+ARGUMENT .....................................................................................................................10 
+Proposition of Law No. 1: Differences reasonably affecting the expense or difficulty 
+of performing the same or similar service in different areas or circumstances may 
+be reflected in differences in cost recovery rates, and such differences are neither 
+unlawful nor discriminatory. Migden-Ostrander v. Pub. Util. Comm., 2004-Ohio-3924 
+at ¶ 31. (Response to Appellant’s Proposition of Law No. 1, at 10-14). ......................10 
+A. 
+The Consumer Settlement’s data center tariff is not unduly discriminatory to data 
+centers merely because it treats data centers differently. A reasonable basis exists 
+for the differing treatment approved by the PUCO. ..............................................10 
+B. 
+Appellant’s equal protection claim was waived due to its failure to raise the issue 
+prior to its application for rehearing. City of Parma v. Pub. Util. Comm., 86 Ohio 
+St.3d 144, 148 (1999)). If decided on the merits, the equal protection claim fails 
+because there is a rational basis for treating data centers differently than other 
+consumers. .............................................................................................................14 
+Proposition of Law No. 2: An order of the Public Utilities Commission will not be 
+overturned when it is supported by reliable, probative, and substantial evidence and 
+is in accordance with law. Motor Freight Inc. v. Pub. Util. Comm., 120 Ohio St. 1, 6 
+(1929). (Response to Appellant’s Proposition of Law No. 2 at 14-18). ........................15 
+Proposition of Law No. 3: An order of the Public Utilities Commission will not be 
+overturned so long as its findings and conclusions permit the Court to review the 
+factual basis and reasoning for its decision and is otherwise in accordance with law. 
+ii 
+In re Application of Ohio Power Co. for an Increase in Elec. Distrib. Rates, 2024-
+Ohio-2890. (Response to Appellant’s Proposition of Law No. 3, at 18-23). ................17 
+Proposition of Law No. 4: An order of the Public Utilities Commission will not be 
+overturned when its determination that AEP Ohio’s Application was not an 
+application for an increase in rates under R.C. 4909.18 (Appellant Appx. 314) is 
+supported by reliable, probative, and substantial evidence and is in accordance with 
+law. In re Application of Ohio Power Co. for an Increase in Elec. Distrib. Rates, 2024-
+Ohio-2890. (Response to Appellant’s Proposition of Law No. 4, at 23-26). ................20 
+Proposition of Law No. 5: An order of the Public Utilities Commission determining 
+that no hearing notice was required under R.C. 4909.18 (Appellant Appx. 314) 
+because AEP Ohio’s Application was not an application to increase rates, will not be 
+overturned when it is supported by reliable, probative, and substantial evidence and 
+is in accordance with law. Ohio Consumers’ Counsel v. PUC, 2006-Ohio-5789, ¶ 18. 
+(Response to Appellant’s Proposition of Law No. 5, at 26-29).....................................23 
+Proposition of Law No. 6: The Public Utilities Commission has discretion to control 
+its proceedings and mere disagreement with the administrative law judge’s 
+evidentiary rulings is not grounds for reversal. (Adm.Code 4901-1-27(B) (OCC 
+Appx. 55)), See Chesapeake & Ohio Ry. Co. v. Pub. Util. Comm., 163 Ohio St. 252, 
+263 (1955). (Response to Appellant’s Proposition of Law No. 6, at 29-32). ................24 
+V. 
+CONCLUSION ..................................................................................................................25 
+CERTIFICATE OF SERVICE ......................................................................................................27 
+ 
+ 
+iii 
+TABLE OF CONTENTS - cont’d 
+ 
+APPENDIX 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PAGE 
+ 
+STATUTES: 
+ 
+R.C. 4905.02 ..............................................................................................................000001 
+ 
+R.C. Ch. 4901.............................................................................................................000003 
+ 
+R.C. Ch. 4911.............................................................................................................000031 
+ 
+ 
+RULES: 
+ 
+Adm.Code 4901-1-27 ................................................................................................000055 
+ 
+Adm.Code 4901-7-01 ................................................................................................000057 
+ 
+ 
+CONSTITUTIONAL PROVISIONS: 
+ 
+U.S. Const. amend. XIV, § 1 (Equal Protection Clause) ...........................................000058 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+iv 
+TABLE OF AUTHORITIES 
+ 
+CASES: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PAGE 
+ 
+AK Steel Corp. v. PUC of Ohio,  
+95 Ohio St.3d 81 (2002)...................................................................................................................2 
+ 
+Akron v. Pub. Util. Comm.,  
+55 Ohio St.2d 155 (1978)...............................................................................................................20 
+ 
+Allnet Communications Serv., Inc. v. Pub. Util. Comm.,  
+70 Ohio St.3d 202 (1994)...............................................................................................................11 
+ 
+Chesapeake & Ohio Ry. Co. v. Pub. Util. Comm.,  
+163 Ohio St. 252 (1955).................................................................................................................24 
+ 
+Cincinnati v. Pub. Util. Comm.,  
+151 Ohio St. 353 (1949).................................................................................................................20 
+ 
+City of Parma v. Pub. Util. Comm.,  
+86 Ohio St.3d 144 (1999)...............................................................................................................14 
+ 
+Consumers’ Counsel v. Pub. Util. Comm.,  
+58 Ohio St.2d 108 (1979).................................................................................................................2 
+ 
+Elyria Telephone Co. v. Pub. Util. Comm.,  
+158 Ohio St. 441 (1953).................................................................................................................24 
+ 
+Holladay Corp. v. Pub. Util. Comm.,  
+61 Ohio St.2d 335 (1980)...............................................................................................................20 
+ 
+In re Application of Columbus S. Power Co.,  
+2011-Ohio-1788 .............................................................................................................................19 
+ 
+In re Application of Ohio Power Co. for an Increase in Elec. Distrib. Rates,  
+2024-Ohio-2890 ...........................................................................................................17, 18, 20, 22 
+ 
+In re Buckeye Wind, LLC,  
+2016-Ohio-5664 .............................................................................................................................14 
+ 
+Migden-Ostrander v. Pub. Util. Comm.,  
+2004-Ohio-3924 ...........................................................................................................10, 12, 13, 19 
+ 
+Monongahela Power Co. v. PUC,  
+2004-Ohio-6896 ...............................................................................................................................2 
+ 
+v 
+Motor Freight Inc. v. Pub. Util. Comm.,  
+120 Ohio St. 1 (1929).............................................................................3, 13, 15, 17, 19, 22, 23, 25 
+ 
+Myers v. Pub. Util. Comm.,  
+64 Ohio St.3d 299 (1992)...............................................................................................2, 11, 20, 23 
+ 
+Ohio Consumers’ Counsel v. PUC,  
+2006-Ohio-5789 .............................................................................................................................23 
+ 
+Ohio Edison Co. v. Pub. Util. Comm.,  
+173 Ohio St. 478 (1962).................................................................................................................20 
+ 
+Ohio Edison Co. v. Pub. Util. Comm.,  
+78 Ohio St.3d 466 (1997).................................................................................................................2 
+ 
+TriHealth, Inc. v. Bd. of Commr’s Hamilton Co.,  
+430 F.3d 783 (6th Cir. 2005) ..........................................................................................................15 
+ 
+Weiss v. Pub. Util. Comm.,  
+2000-Ohio-5 ...................................................................................................................................11 
+ 
+ 
+ENTRIES AND ORDERS OF THE PUBLIC UTILITIES COMMISSION OF OHIO:  
+ 
+In the Matter of the Application of Duke Energy Ohio, Inc., for Approval of an Alternative Rate 
+Plan Pursuant to R.C. 4929.05 for an Accelerated Service Line Replacement Program,  
+Pub. Util. Comm. No. 14-1622-GA-ALT,  
+ 
+Opinion and Order, 2016 Ohio PUC LEXIS 965 (Oct. 26, 2016) .....................................24 
+ 
+In the Matter of the Complaint of Forest Hills Supermarket, Inc. d/b/a Konnis Family Foods v. 
+The Cleveland Elec. Illum. Co.,  
+Pub. Util. Comm. No. 18-785-EL-CSS,  
+ 
+Opinion and Order, 2020 Ohio PUC LEXIS 1288 (Apr. 8, 2020) ....................................24 
+ 
+In the Matter of the Long-Term Forecast Report of Ohio Power Co.,  
+Pub. Util. Comm. No. 10-501-EL-FOR, et al.,  
+Opinion and Order, 2013 Ohio PUC LEXIS 3 (Jan. 9, 2013) .....................................24, 25 
+ 
+In the Matter of the Review of the Power Purchase Agreement Rider of Ohio Power Co.,  
+Pub. Util. Comm. No. 18-1004-EL-RDR, et al.,  
+ 
+Opinion and Order, 2024 Ohio PUC LEXIS 992 (Aug. 21, 2024) ....................................24 
+ 
+ 
+STATUTES: 
+ 
+R.C. 4903.09 ........................................................................................................3, 4, 17, 18, 19, 22 
+vi 
+R.C. 4903.13 ....................................................................................................................................1 
+ 
+R.C. 4905.02 ....................................................................................................................................4 
+ 
+R.C. 4905.22 ........................................................................................................................3, 15, 16 
+ 
+R.C. 4905.32 ..............................................................................................................................3, 11 
+ 
+R.C. 4905.33 ..............................................................................................................................3, 11 
+ 
+R.C. 4905.35 ..............................................................................................................................3, 11 
+ 
+R.C. 4909.18 ............................................................................................................4, 20, 21, 22, 23 
+ 
+R.C. 4909.19 ..................................................................................................................................21 
+ 
+R.C. 4933.83 ........................................................................................................................3, 15, 16 
+ 
+R.C. Ch. 4901...................................................................................................................................4 
+ 
+R.C. Ch. 4911...................................................................................................................................5 
+ 
+ 
+RULES: 
+ 
+Adm.Code 4901-1-27 ....................................................................................................................24 
+ 
+Adm.Code 4901-7-01 ....................................................................................................................21 
+ 
+ 
+CONSTITUTIONAL PROVISIONS 
+ 
+U.S. Const. amend. XIV, § 1 (Equal Protection Clause) ...........................................................3, 14 
+ 
+ 
+ 
+ 
+1 
+I. 
+INTRODUCTION 
+The demand for energy from Ohio Power Company (“AEP Ohio”) is skyrocketing due to 
+the energy needs of power-hungry data centers and crypto-currency miners moving into central 
+Ohio. (R. Trans. (Jan. 13, 2025), at 117). This case is about who should pay for and bear the risk 
+of the enormous investment necessary to serve these large load customers. Should it be the 
+residential utility consumers who are already saddled with non-stop rate increases for essential 
+utility service? Or should the trillion-dollar companies building the data centers (e.g., Microsoft, 
+Meta, Amazon, and Google) take primary responsibility for paying for grid infrastructure needed 
+to service their power needs?.  
+OCC, the PUCO Staff, AEP Ohio, and others (R. 231) resoundingly agreed – it should be 
+those trillion-dollar companies – the cost causers – that bear the cost of distribution and 
+transmission investment being driven by their energy needs. Not other consumers, including 
+residential consumers. A settlement, creating “skin in the game” for data centers, was reached to 
+accomplish this agreed upon objective. The PUCO agreed and approved that settlement 
+(“Consumer Settlement”). The Consumer Settlement is protective of consumers, fair to data 
+centers, and consistent with the well-established regulatory principle of cost causation.  
+The Ohio Manufacturers’ Association Energy Group (“Appellant”) appealed the PUCO’s 
+order approving the Consumer Settlement. Appellant has presented no grounds for reversing the 
+PUCO’s decision. For consumer protection, and consistent with the prevailing laws of Ohio, the 
+Court should affirm the PUCO’s order approving the Consumer Settlement. 
+ 
+II. 
+STANDARD OF REVIEW 
+The Court’s review of final orders by the PUCO is governed by R.C. 4903.13. (Appellant 
+Appx. 308). It provides that a PUCO order shall be reversed, vacated, or modified by this Court 
+ 
+2 
+only when, upon consideration of the record, the Court finds the order to be unlawful or 
+unreasonable. Id. The Court will not reverse or modify a PUCO decision as to questions of fact 
+when the record contains sufficient probative evidence to show that the PUCO’s decision was 
+not manifestly against the weight of the evidence and was not so clearly unsupported by the 
+record as to show misapprehension, mistake, or willful disregard of duty. Monongahela Power 
+Co. v Pub. Util. Comm., 2004-Ohio-6896, ¶ 29. This Court has consistently refused to substitute 
+its judgment for that of the PUCO on evidentiary matters when the record supports either of two 
+opposing positions. AK Steel Corp. v. PUC of Ohio, 95 Ohio St.3d 81, 84 (2002).  
+ The Appellant bears the burden of demonstrating that the PUCO’s decision is against the 
+manifest weight of the evidence or is clearly unsupported by the record. Id. This burden is 
+difficult to sustain because the Court has consistently found it proper to defer to the PUCO’s 
+judgment in matters that require the PUCO to apply its specialized expertise and discretion with 
+regard to factual matters. Monongahela Power Co. v. PUC, 2004-Ohio-6896, ¶ 29. Furthermore, 
+this Court will not reverse a PUCO order absent a showing by the Appellant that it has been or 
+will be harmed or prejudiced by the order. Myers v. Pub. Util. Comm., 64 Ohio St.3d 299, 302 
+(1992). 
+Although the Court has “complete and independent power of review as to all questions of 
+law” in appeals from the PUCO, Ohio Edison Co. v. Pub. Util. Comm., 78 Ohio St.3d 466, 469 
+(1997), the Court may rely on the expertise of a state agency in interpreting a law where “highly 
+specialized issues” are involved and “where agency expertise would, therefore, be of assistance 
+in discerning the presumed intent of our General Assembly.” Consumers’ Counsel v. Pub. Util. 
+Comm., 58 Ohio St.2d 108, 110 (1979). 
+ 
+3 
+With mixed questions of law and fact, the Court must review the evidence to determine 
+whether the findings of fact are reasonable and whether the legal principles have been properly 
+applied. Motor Freight Inc. v. Pub. Util. Comm., 120 Ohio St. 1, 6 (1929). 
+Appellant’s Propositions of Law raise mixed questions of law and fact. Appellant’s First 
+Proposition of Law raises the question of whether the PUCO’s order approving AEP Ohio’s 
+Schedule DCT was contrary to the manifest weight of the evidence, and violated R.C. 4905.32, 
+4905.33, 4905.35, due process, and the Equal Protection Clause. The answer is no. The Court 
+will have to apply the law (R.C. 4905.32 (Appellant Appx. 310), R.C. 4905.33 (Appellant Appx. 
+311), R.C. 4905.35 (Appellant Appx. 312)) to the facts to determine whether the PUCO’s 
+decision is supported by the record.  
+ 
+Appellant’s Second Proposition of Law asks whether the PUCO erred when it found that 
+AEP Ohio’s moratorium did not violate the Ohio’s Certified Territories Act (R.C. 4933.83) and 
+R.C. 4905.22. Again, the answer is no. The Court will have to apply the law (R.C. 4933.83 
+(Appellant Appx. 324) and R.C. 4905.22 (Appellant Appx. 309)) to the facts to determine 
+whether AEP Ohio’s moratorium violated Ohio’s Certified Territories Act. 
+ 
+Appellant’s Third Proposition of Law asks whether the PUCO sufficiently explained the 
+rationale for its decision that AEP Ohio’s load forecasts were accurate and that AEP Ohio 
+demonstrated an actual transmission constraint or need. Here, the answer is yes. The Court will 
+have to apply the law (R.C. 4903.09 (Appellant Appx. 304)) to the facts to determine whether the 
+PUCO’s decision is supported by the record. 
+ 
+Appellant’s Fourth Proposition of Law asks whether PUCO erred when it concluded that 
+AEP Ohio’s Application was not an application for an increase in rates. Again, the answer is no. 
+ 
+4 
+The Court will have to apply the law (R.C. 4909.18 (Appellant Appx. 314)) to the facts to 
+determine whether AEP Ohio’s Application was not an application for an increase in rates. 
+ 
+Appellant’s Fifth Proposition of Law asks whether the PUCO erred by failing to reverse 
+the ALJs’ decision to commence the evidentiary hearing in violation of statutory due process and 
+R.C. 4909.18. Again, the answer is no. The Court will have to apply the law (R.C. 4909.18 
+(Appellant Appx. 314)) to the facts to determine whether the PUCO violated Appellant’s due 
+process rights. 
+ 
+Appellant’s Sixth Proposition of Law asks whether the PUCO erred by upholding the 
+ALJs’ rulings precluding Appellant from questioning AEP Ohio’s witnesses about matters it 
+claims were directly relevant and material to this case in violation of its due process rights and 
+R.C. 4903.09. Again, the answer is no. The Court will have to apply the law (R.C. 4903.09 
+(Appellant Appx. 304)) to the facts to determine whether the PUCO violated Appellant’s due 
+process rights. 
+ 
+It is with these standards in mind that the Court should resolve the issues in favor of Ohio 
+consumers, upholding the PUCO’s pro-consumer data center order.  
+ 
+III. 
+STATEMENT OF FACTS 
+ 
+Appellant is a non-profit entity whose members are customers of AEP Ohio and 
+consumers of energy in AEP Ohio’s service territory. (R. 14, at 4). Appellee Public Utilities 
+Commission of Ohio (“PUCO”) is a state agency with authority to regulate investor-owned 
+utilities under R.C. Ch. 4901. (OCC Appx. 3). Intervening Appellee AEP Ohio is a public utility 
+subject to the jurisdiction of the PUCO under R.C. 4905.02. (OCC Appx. 1). Intervening 
+Appellee Office of the Ohio Consumers’ Counsel (“OCC”) is the statutory representative of 
+Ohio’s residential utility consumers including the 1.3 million residential utility consumers of 
+ 
+5 
+AEP Ohio under R.C. Ch. 4911. (OCC Appx. 31). Intervening Appellee Ohio Energy Group 
+(“OEG”) is a non-profit entity organized to represent the interests of large industrial and 
+commercial customers in electric and gas regulatory proceedings before the PUCO. (R. 6, at 2). 
+A. 
+AEP Ohio is facing unprecedented load growth from data centers. 
+ 
+AEP Ohio has operated in Ohio since the early 1900s. (R. 142, at 3, AEP Ohio Ex. 3, 
+McKenzie Supp. Test.). Since 1994 and until recently, AEP Ohio experienced minimal load 
+growth with a compound annual growth rate of 0.2%. Id. But demand in AEP Ohio’s central 
+Ohio service territory has begun to climb due to data centers and is primed to skyrocket. Data 
+centers are centralized facilities housing computer systems, servers, networking equipment, and 
+related components necessary for the efficient operation of IT infrastructure used for the 
+management, storage, processing, and dissemination of data and information. (R. 5, at 2). 
+In 2018, the central Ohio portion of AEP Ohio’s service territory had 4,000 MW in peak 
+demand. Id. at 4. That amount is projected to more than double by 2030 based on new data 
+center customers alone. Id. New or expanding data center customers have signed binding electric 
+service agreements (“ESAs”) with AEP Ohio for approximately 5,000 MW of load by 2030. Id. 
+AEP Ohio has also received more than 50 preliminary requests for new or expanded data center 
+service at over 90 sites in central Ohio representing more than 30,000 MW of load. Id.  
+The load expected from the ESAs and preliminary requests is almost nine times the peak 
+demand AEP Ohio took more than 100 years to reach – driven entirely by the rapid proliferation 
+of data centers. Meeting such a dramatic increase in demand will require time and significant 
+transmission investment. Id. at 5. 
+ 
+6 
+B. 
+The need for transmission grid investment to serve the coming data center load 
+demand. 
+ 
+Because no regional transmission organization (“RTO”) controlled generation is located 
+in Ohio, AEP Ohio must import energy through an EHV transmission network to meet customer 
+demand. (R. 2, at 8, AEP Ohio Ex. 2, Ali Dir. Test.). AEP Ohio believes its transmission grid can 
+support the 5,000 MW of load for data centers who have signed ESAs. Id. But AEP Ohio does 
+not have enough EHV transmission infrastructure to support the 30,000 MW of load identified 
+from the preliminary requests for new or expanded data center service in its central Ohio service 
+area. Id.  
+ 
+In March of 2023, AEP Ohio implemented a moratorium on taking new service requests 
+from data centers. Id. at 6. AEP Ohio initiated the pause to allow its transmission planning group 
+to analyze the impacts data center load requests will have on the electrical delivery system in 
+central Ohio. Id. at 6-7. AEP Ohio’s analysis included an assessment of whether its EHV 
+infrastructure can safely and reliably serve the requested new and existing load. Id. 
+ 
+AEP Ohio’s analysis also considered the reliability requirements of the National Energy 
+Regulatory Commission (“NERC”). Id. at 8. Under these requirements, AEP Ohio must plan for 
+two simultaneous outages on the system to study how its transmission system would react. Id. 
+When AEP Ohio input loads that exceeded the current load from customers that have executed 
+ESAs, there were certain outage combinations that could cause transmission line overloads and 
+voltage problems in the central Ohio region. Id. 
+Overall, AEP Ohio’s analysis demonstrated that major investments in additional EHV 
+lines would be needed if demand exceeded approximately 10,000 MW in Central Ohio. Id. at 6. 
+And construction of new EHV lines will likely take seven to ten years given the distance, siting 
+process, and material sourcing. Id. at 9. Investment in additional EHV lines would create new 
+ 
+7 
+opportunities for out-of-state generation to reach the central Ohio area to serve the new data 
+center load. Id. 
+C. 
+AEP Ohio’s current tariffs were not designed to address the challenges posed by 
+new data centers. 
+The recent, unprecedented load growth in AEP Ohio’s central Ohio service territory has 
+been driven by data centers, not other large loads. (R. 142, at 5, AEP Ohio Ex. 3, McKenzie 
+Supp. Test.). Data centers are unique customers because of the potential size of the load at one 
+location. Id. Data centers are also easily scalable in a way that large industrial facilities are not. 
+Id. As a result, data center loads could grow even larger in the future. Id. Conversely, data center 
+efficiency is constantly improving, so the large loads data centers are currently projecting may be 
+diminished in the future by efficiency gains. Id. at 5-6. 
+AEP Ohio’s current tariffs were not designed to address the challenges posed by new data 
+centers. AEP Ohio’s general service tariffs allow for one-year electric service contracts, with an 
+option for AEP Ohio to mandate a longer initial term. Id. at 6. These tariffs also require contracts 
+to specify a “contract capacity,” which is the maximum power AEP Ohio will supply, and 
+impose minimum demand charges set at 60% of that capacity. Id. If these tariff provisions 
+remain unchanged, future data center customers could significantly overestimate their power 
+needs without facing serious financial consequences. Id. Moreover, there would be minimal 
+guaranteed revenue from the data centers if they underutilize their projected power usage. Id. 
+This would shift the costs of new EHV transmission investment caused by the data centers to 
+other retail customers. Id. 
+D. 
+AEP Ohio’s Application for Approval of New Tariffs and the proceedings below. 
+On May 13, 2024, AEP Ohio filed its Application for Approval of New Tariffs 
+(“Application”) with the PUCO. (R. 5, at 2, Appellant Appx. 329, AEP Ohio Ex. 1, Application). 
+ 
+8 
+AEP Ohio also filed witness testimony in support of the Application. (R. 2, 3, 4). AEP Ohio’s 
+Application proposed new tariffs for data center load. Id. at 8. AEP Ohio initiated the 
+Application proceedings to strengthen tariff requirements and ensure data centers have a greater 
+financial commitment to the EHV transmission assets that will need to be built to serve them. (R. 
+142, at 6, AEP Ohio Ex. 3, McKenzie Supp. Test.).  
+The need for more transmission infrastructure to serve the oncoming data center load, 
+coupled with the expense in both time and money to build such transmission infrastructure, was 
+the impetus for AEP Ohio to file the Application. Id. AEP Ohio sought to reduce the risk of 
+building infrastructure for data center projects that may be canceled or underutilized, which 
+would shift costs to AEP Ohio’s retail consumers, including residential consumers, from the cost 
+causing data centers. Id. at 7. AEP Ohio’s Application furthers this goal by requiring long-term 
+financial commitments from data centers to support new transmission investment in Ohio. Id. 
+AEP Ohio also sought to keep its service territory open for broader economic development, 
+ensuring there is sufficient transmission capacity to support both data center growth and 
+traditional job-creating economic activities. Id. 
+ 
+On May 31, 2024, OCC filed a motion to intervene and memorandum in support. (R. 17). 
+On June 25, 2024, in accordance with the PUCO’s modified procedural schedule, OCC filed 
+comments (R. 44) and reply comments (R. 63) on AEP Ohio’s Application. On August 29, 2024, 
+OCC filed the direct testimony of James Wilson. (R. 97). On September 23, 2024, the PUCO 
+granted OCC’s and other intervenors’ motions to intervene (R. 107). 
+ 
+After intervenors filed comments and reply comments on AEP Ohio’s Application, all 
+parties engaged in settlement negotiations. (R. 207, at 1-2). While the all-party settlement 
+negotiations were pending, the Data Center Coalition (“DCC”), individual data center parties, 
+ 
+9 
+Appellant, Ohio Energy Leadership Council (“OELC”), and certain competitive suppliers 
+conducted separate negotiations resulting in a stipulation filed with the PUCO on October 10, 
+2024 (“the Data Center Settlement”). (R. 117, Appellant Appx. 439, R. 142, at 7, AEP Ohio Ex. 
+3, McKenzie Supp. Test.). At the conclusion of the all-party settlement negotiations AEP Ohio, 
+PUCO Staff, OCC, OEG, Ohio Partners for Affordable Energy (“OPAE”), and Walmart, Inc. 
+(“Walmart”), filed the Consumer Settlement with the PUCO on October 23, 2024. (R. 135). 
+(Appellant Appx. 408). 
+The PUCO heard in-person testimony and received numerous pre-filed testimonies on the 
+Data Center Settlement and the Consumer Settlement over 13 days of hearings. The evidentiary 
+record in this case is extensive, due to the participation of no less than 26 parties and their 
+counsel. The parties consisted of AEP Ohio, representatives from the data center and bitcoin 
+technology industries, energy marketers, various trade group organizations, manufacturing and 
+retail organizations, and groups representing consumer interests such as OCC.  
+On July 9, 2025, the PUCO issued its Opinion and Order (“Order”) approving the 
+Consumer Settlement, including AEP Ohio’s data center tariff. (“Schedule DCT”).1 (R. 231). 
+Rejecting the Data Center Settlement, the PUCO found that the Consumer Settlement “benefits 
+ratepayers and the public interest, striking the better balance of various interests between the two 
+stipulations presented in this proceeding.” Id. at ¶ 121. 
+The PUCO thoroughly reviewed the entire record and found that a capacity constraint 
+driven by data center load exists in AEP Ohio’s Central Ohio’s service territory, and that the 
+Consumer Settlement, as a package, presented the best framework to address that constraint. The 
+ 
+1 Schedule DCT contains the terms and provisions of the Consumer Settlement’s data center 
+tariff approved by the PUCO in the Order. 
+ 
+10 
+reasons for approving the Consumer Settlement rather than the Data Center Settlement were 
+fully and carefully explained in the PUCO’s Order. (R. 231, at ¶ 121). The PUCO articulated the 
+basis for determining that the Consumer Settlement, and not the Data Center Settlement, furthers 
+state policies and comports with regulatory principles. (R. 231 at ¶¶ 123, 151-152). 
+ 
+On August 8, 2025, five Data Center Settlement parties2 filed applications for rehearing 
+of the PUCO’s Order. (R. 234-238). AEP Ohio and OCC filed memoranda contra those 
+applications for rehearing. (R. 239, 240). On September 3, 2025, the PUCO denied the 
+applications for rehearing. (R. 242). Thereafter, Appellant filed its notice of appeal to this Court 
+on November 3, 2025. (R. 244). OCC filed a motion to intervene as an appellee on December 4, 
+2025. The Court granted OCC’s motion on December 18, 2025. 
+ 
+IV. 
+ARGUMENT 
+Proposition of Law No. 1: Differences reasonably affecting the expense or difficulty 
+of performing the same or similar service in different areas or circumstances may 
+be reflected in differences in cost recovery rates, and such differences are neither 
+unlawful nor discriminatory. Migden-Ostrander v. Pub. Util. Comm., 2004-Ohio-3924 
+at ¶ 31. (Response to Appellant’s Proposition of Law No. 1, at 10-14). 
+A. 
+The Consumer Settlement’s data center tariff is not unduly discriminatory to data 
+centers merely because it treats data centers differently. A reasonable basis exists 
+for the differing treatment approved by the PUCO.  
+Appellant challenges the PUCO’s Order approving the Consumer Settlement’s Schedule 
+DCT (R. 329), arguing that it unlawfully and unreasonably discriminates against data center 
+consumers. Appellant brief, at 10. In support of its argument, Appellant cites three closely 
+related utility statutes. 
+ 
+2 These parties are: ADS, One Power, DCC, Appellant, and OBC. 
+ 
+11 
+R.C. 4905.32 prohibits utilities from providing service “except as uniformly extended to 
+all persons, firms, and corporations under like circumstances for like, or substantially similar, 
+service.” (Appellant Appx. 310). R.C. 4905.33 prohibits utilities from charging different rates for 
+customers who receive “like and contemporaneous service under substantially the same 
+circumstances and conditions.” (Appellant Appx. 310). R.C. 4905.35 prohibits utilities from 
+providing service in a manner that would create “any undue or unreasonable prejudice or 
+disadvantage.” (Appellant Appx. 312). 
+While these statutes prohibit unreasonable and undue discrimination in utility service 
+and rates, they do not prohibit all discrimination. The Ohio Supreme Court has held that 
+customers can be treated differently if there is a reasonable basis for the differing treatment. See 
+Allnet Communications Serv., Inc. v. Pub. Util. Comm., 70 Ohio St.3d 202, 207 (1994) (under 
+R.C. 4905.35(A), “discrimination is not prohibited per se but is prohibited only if without a 
+reasonable basis.”). See also, Weiss v. Pub. Util. Comm., 2000-Ohio-5, 16-17 (holding that R.C. 
+4905.33 prohibits discriminatory pricing for “like and contemporaneous service” rendered 
+“under substantially the same circumstances and conditions,” but does not prohibit differences in 
+prices charged or collected where the utility services rendered are different or if they are 
+rendered under different circumstances or conditions); see also Myers v. Pub. Util. Comm., 64 
+Ohio St.3d 299, 302 (1992) (emphasizing that a utility’s residential and general service 
+classifications and their corresponding rates are based upon actual and measurable differences in 
+the furnishing of services to customers, and therefore, are not unduly discriminatory). Thus, 
+“[d]ifferences reasonably affecting the expense or difficulty of performing the same or similar 
+service in different areas or circumstances may be reflected in differences in cost recovery rates, 
+ 
+12 
+and . . . such differences are neither unlawful nor discriminatory.” Migden-Ostrander v. Pub. 
+Util. Comm., 2004-Ohio-3924 at ¶ 31 (Migden-Ostrander).  
+The PUCO correctly observed that data centers are, in fact and effect, unique, emerging 
+customers. (R. 231, at ¶ 25) The PUCO supported its finding citing ample record evidence. Id. at 
+¶¶ 124-129. The PUCO was persuaded that data center customers presented differences that 
+“impact AEP Ohio’s difficulty of delivering service to data center customers compared to other 
+large energy-intensive customers.” (R. 231, at ¶ 129) The PUCO cited AEP Ohio’s expert 
+testimony that AEP Ohio had received service requests of 30,000 MW of data center loads, 
+which justified the temporary pause in customer enrollment so that it could adequately plan for 
+such a load growth. Id. Based on AEP Transmission Planning organization studies, the PUCO 
+agreed that taking on even a fraction of the anticipated 30,000 MW load would result in 
+numerous overload and voltage violations throughout central Ohio. Id. The PUCO found that in 
+order to serve data center customers’ unique concentrated load, AEP Ohio must construct 
+significant infrastructure, making data centers more risky customers. Id. Unlike other high 
+intensive energy customers, like large manufacturers, the PUCO found that data centers can run 
+at near capacity all day and every day and as such, they cannot shift their usage to off-peak times 
+to ease the strain on the grid during peak usage times. Id. The PUCO also found that the unique 
+transient features of mobile data center facilities – where some data centers can move from 
+location to another – necessitate a more tailored solution to prevent non-cost causing customers 
+from paying to overbuild the AEP Ohio’s transmission system. Id. And, unlike non-data center 
+load, which comprises a diverse group of customer end uses, data center load cannot be naturally 
+hedged by other industries in AEP Ohio’s service territory. Id. 
+ 
+13 
+The PUCO was also persuaded that data centers bring with them systematic, data center 
+industry-wide risks that are not present with other types of customers. Id. The PUCO recognized 
+that technology breakthroughs in efficiency, market changes, and capacity underestimation are 
+among other factors that differentiate the risk of serving a data center-only customer load from 
+other high capacity customers. Id.  
+In Migden-Ostrander, the Court ruled that “[d]ifferences reasonably affecting the 
+expense or difficulty of performing the same or similar service in different areas or 
+circumstances may be reflected in differences in cost recovery rates, and . . . such differences are 
+neither unlawful nor discriminatory.” 2004-Ohio-3924 at ¶ 31. Utility regulators routinely 
+establish different classes of customers and subject them to different tariff schedules based on 
+tangible, reasonable, and justifiable distinctions.  
+The facts presented on the record indicate reasonable concerns and distinctions in the 
+costs and risks to serve data center customers compared to other customers. (R. 231, at ¶¶ 124-
+129). These facts underpinned the PUCO’s finding that the creation of Schedule DCT was 
+consistent with the Ohio Supreme Court’s reasonable discrimination ruling in Migden-
+Ostrander. (R. 231, at 130). The Court should find that the Consumer Settlement’s Schedule 
+DCT makes reasonable, and therefore permissible, distinctions between data centers and other 
+high-capacity customers. 
+The PUCO’s findings of fact are reasonable and lawful. Moreover, the PUCO properly 
+applied the legal principles. Motor Freight Inc. v. Pub. Util. Comm., 120 Ohio St. 1, 6 (1929). 
+The Court should affirm the PUCO’s Order which is supported by reliable, probative, and 
+substantial evidence and is in accordance with law.  
+ 
+ 
+14 
+B. 
+Appellant’s equal protection claim was waived due to its failure to raise the issue 
+prior to its application for rehearing. City of Parma v. Pub. Util. Comm., 86 Ohio 
+St.3d 144, 148 (1999)). If decided on the merits, the equal protection claim fails 
+because there is a rational basis for treating data centers differently than other 
+consumers.  
+Appellant claims that the data center tariff violates its rights under the Equal Protection 
+Clause of the United States Constitution (OCC Appx. 58). Appellant brief, at 10-13. Although 
+Appellant argued that the data center tariff was discriminatory in its initial (R. 195, at 32) and 
+reply (R. 214) post-hearing briefs at the PUCO, it did not assert an equal protection claim in its 
+pre-decision briefs. Appellant raised this constitutional claim for the first time in its application 
+for rehearing at the PUCO. (R. 236). (Appellant Appx. 276). 
+The PUCO’s Entry on Rehearing confirmed this when it noted, “. . . Appellant raised 
+issues pursuant to the Equal Protection Clause which will not be addressed in this Entry on 
+Rehearing. We note that no such arguments were brought to the Commission’s attention during 
+the evidentiary hearing or briefed arguments. As such, the Commission will not comment on 
+these arguments as they were raised for the first time at the rehearing stage of this proceeding. In 
+re the Complaint of Suburban Natural Gas Co. v. Columbia Gas of Ohio, Inc., Case No. 17-
+2168-GA-CSS, Second Entry on Rehearing (Oct. 23, 2019) at ¶ 23; In re the Application of the 
+Power Purchase Agreement Rider of Ohio Power Co., Case No. 18-1003-EL-RDR, Second 
+Entry on Rehearing (Aug. 21, 2024) at ¶ 22.” (R. 242, at p. 12, footnote 7). 
+This Court and the PUCO do not permit parties to assert new arguments for the first time 
+in applications for rehearing. See, e.g., In re Buckeye Wind, LLC, 2016-Ohio-5664, ¶ 14 (citing 
+City of Parma v. Pub. Util. Comm., 86 Ohio St.3d 144, 148 (1999)) (“By failing to raise an 
+objection until the filing of an application for rehearing, Parma deprived the [Commission] of an 
+opportunity to redress any injury or prejudice that may have occurred.”). The Court should find 
+ 
+15 
+that Appellant has waived its equal protection argument for failure to argue this specific issue at 
+the PUCO evidentiary hearing or in post-hearing briefing. 
+Even if the Court decides to address Appellant’s equal protection claim, it still fails 
+because all that is required is that the governmental action have a rational basis for unequal 
+treatment. TriHealth, Inc. v. Bd. of Commr’s Hamilton Co., 430 F.3d 783 (6th Cir. 2005). In 
+TriHealth, both the trial court and the appellate court fully rejected the equal protection claim 
+because the plaintiff was not similarly situated to the other party that allegedly benefitted from 
+the alleged discriminatory treatment and because the involved parties differed in material 
+respects. TriHealth, 430 F.3d at 790-791. The data center tariff is not unduly discriminatory 
+because the PUCO’s Order contains numerous rational bases to support and justify the data 
+center tariff’s provisions applicable to data center customers. (R. 231, at ¶¶ 124-129). 
+The PUCO’s findings of fact are reasonable and lawful. Moreover, the PUCO properly 
+applied the legal principles. Motor Freight Inc. v. Pub. Util. Comm., 120 Ohio St. 1, 6 (1929). 
+The Court should affirm the PUCO’s Order which is supported by reliable, probative, and 
+substantial evidence and is in accordance with law.  
+Proposition of Law No. 2: An order of the Public Utilities Commission will not be 
+overturned when it is supported by reliable, probative, and substantial evidence and 
+is in accordance with law. Motor Freight Inc. v. Pub. Util. Comm., 120 Ohio St. 1, 6 
+(1929). (Response to Appellant’s Proposition of Law No. 2 at 14-18). 
+Appellant argues that AEP Ohio’s moratorium on data center service violated R.C. 
+4905.22 (Appellant Appx. 309) and R.C. 4933.83 (Appellant Appx. 324). The Court should 
+reject that argument. R.C. 4905.22 requires AEP Ohio to furnish “necessary and adequate service 
+and facilities” and “furnish and provide with respect to its business such instrumentalities and 
+facilities, as are adequate and in all respects just and reasonable.” (Appellant Appx. 309). R.C. 
+4933.83 requires AEP Ohio to furnish “furnish adequate facilities to meet the reasonable needs 
+ 
+16 
+of the consumers and inhabitants in the certified territories that they are authorized and required 
+to serve.” (Appellant Appx. 324).  
+Appellant flatly states that “[t]he plain language of these statutes is clear – AEP Ohio 
+does not have the discretion to simply refuse to serve a type of customer on a whim.” Appellant 
+brief, at 15. The evidence before the PUCO demonstrated that AEP Ohio did not institute the 
+moratorium on a whim.  
+At the time the moratorium was put into place, AEP Ohio could not reliably and 
+adequately take on all new data center load within its service territory. As noted by the PUCO, 
+“[b]ased on a series of studies run by the AEP Ohio Transmission Planning organization, even a 
+fraction of the anticipated 30,000 MW load would result in numerous overload and voltage 
+violations throughout central Ohio.” (R. 231 at ¶ 122). 
+AEP Ohio’s statutory obligation to serve is expressly limited to reasonable service. R.C. 
+4905.22 requires service to be “in all respects just and reasonable,” while R.C. 4933.83 
+contemplates AEP Ohio deploying facilities to meet “the reasonable needs of the consumers and 
+inhabitants in the certified territory.” R.C. 4933.83 also requires AEP Ohio to provide 
+“physically adequate service.” Thus, Ohio law does not require a utility to serve in a manner that 
+is unreasonable or that exposes the utility and its other customers to inadequate and unreliable 
+service. 
+In 2023, if AEP Ohio had committed to serving the full extent of additional data center 
+load seeking to locate within its service territory, then it would have jeopardized its ability to 
+provide reliable and sufficient service to the rest of its customers, including residential 
+consumers. (R. 240 at 33). Similarly, had AEP Ohio instead only committed to serving a portion 
+ 
+17 
+of the requested data center load, then it would not have been providing physically adequate 
+service to those customers. Id.  
+Instead, AEP Ohio proactively initiated the tariff proceeding to craft a solution that 
+allows it to provide physically adequate service to both new data center customers and existing 
+customers. Id. Appellant’s arguments disregard the extraordinary and unprecedented scale of 
+data center growth that forced AEP Ohio into this situation. Due to this transmission constraint, 
+the PUCO reasonably found based on the record evidence that AEP Ohio’s self-imposed 
+moratorium was reasonable and within the public interest. (R. 231 at ¶ 130). 
+The PUCO’s findings of fact are reasonable and lawful. Moreover, the PUCO properly 
+applied the legal principles. Motor Freight Inc. v. Pub. Util. Comm., 120 Ohio St. 1, 6 (1929). 
+The Court should affirm the PUCO’s Order which is supported by reliable, probative, and 
+substantial evidence and is in accordance with law.  
+Proposition of Law No. 3: An order of the Public Utilities Commission will not be 
+overturned so long as its findings and conclusions permit the Court to review the 
+factual basis and reasoning for its decision and is otherwise in accordance with law. 
+In re Application of Ohio Power Co. for an Increase in Elec. Distrib. Rates, 2024-
+Ohio-2890. (Response to Appellant’s Proposition of Law No. 3, at 18-23). 
+ 
+Appellant asserts that the PUCO did not provide adequate support for its findings 
+regarding AEP Ohio’s real transmission constraint concerns, violating R.C. 4903.09 (Appellant 
+Appx. 304). Appellant Brief, at 18. That is simply incorrect. The PUCO’s order thoroughly 
+details the evidence, the parties’ arguments, and the reasons why the PUCO ruled the way it did. 
+The Court should reject Appellant’s arguments and affirm the PUCO’s order. 
+ 
+R.C. 4903.09 (Appellant Appx. 304) provides that in contested cases, “a complete record 
+of all of the proceedings shall be made, including a transcript of all testimony and of all exhibits, 
+and the commission shall file, with the records of such cases, findings of fact and written 
+ 
+18 
+opinions setting forth the reasons prompting the decisions arrived at, based upon said findings of 
+fact.” Contrary to Appellant’s claims, the PUCO order does not violate this statute. 
+ 
+The Court recently addressed the PUCO’s duty under R.C. 4903.09 and how it can be 
+met in In re Application of Ohio Power Co. for an Increase in Elec. Distrib. Rates, 2024-Ohio-
+2890 (Ohio Power). Ohio Power concerned an appeal by Interstate Gas Supply, L.L.C. (“IGS”) 
+of the PUCO’s order in AEP Ohio’s most recent electric distribution rate case. Ohio Power, at ¶ 
+1. IGS argued that the PUCO should have required AEP Ohio to remove $4.7 million in costs 
+from AEP Ohio’s distribution rates (through a rider) that were purportedly incurred to provide 
+the standard service offer.3 Ohio Power, at ¶ 6. IGS argued that those costs should then be 
+reallocated to non-shopping customers (i.e., consumers who receive the standard service offer) 
+through the “retail reconciliation rider.” Id. at ¶ 18. The PUCO rejected IGS’s arguments, and 
+approved a settlement among AEP Ohio, the PUCO Staff, OCC, and others that kept the riders 
+set at zero. Id. at ¶ 13. IGS appealed, arguing that there was no evidence to support the PUCO’s 
+decision and thus, the PUCO’s order violated R.C. 4903.09. Id. at ¶ 29. 
+ 
+The Court rejected IGS’s argument. Ohio Power, at ¶¶ 29-33. According to the Court, 
+IGS misunderstood the test for PUCO compliance under R.C. 4903.09. Id. at ¶ 32. 
+The question under R.C. 4903.09 is not whether the record 
+contained sufficient evidence to support a particular finding by the 
+commission. * * * Rather, R.C. 4903.09 requires the commission 
+to provide this court with an adequate record so that we may 
+determine how the commission reached its decision. * * * The 
+commission’s orders must contain sufficient detail for us to 
+determine the factual basis and reasoning relied on by the 
+commission. (Citations omitted.) Id.  
+ 
+ 
+3 The “standard service offer” (or “SSO”) is the generation charge to electric utility consumers 
+who do not “shop” for electricity supply service from a competitive retail electric service 
+provider like IGS. Ohio Power at ¶ 6. 
+ 
+19 
+The Court determined that the PUCO’s order approving the rate case settlement had “ample 
+record citations for this court to determine the factual basis for the commission’s findings.” Id. 
+The PUCO’s Order approving the Consumer Settlement’s data center tariff also details 
+the evidence and discusses the parties’ arguments. R. 231 at ¶¶ 94, 104-105, 111-112. The 
+PUCO explained its findings and why it rejected Appellant’s and the other Data Center 
+Settlement parties’ positions on the capacity constraint issue. R. 231, at ¶¶ 121-122. The PUCO 
+plainly satisfied the requirement in R.C. 4903.09 to set forth the reasons for its finding based on 
+the evidentiary record. 
+In this case, the PUCO fully “explain[s] its rationale, respond[s] to contrary positions, 
+and support[s] its decision with appropriate evidence.” In re Application of Columbus S. Power 
+Co., 2011-Ohio-1788, ¶ 30. The Order in this case provides a sufficient record for the Court “to 
+determine whether the decision is lawful and reasonable.” Migden-Ostrander v. Pub. Util. 
+Comm., 2004-Ohio-3924, ¶ 17. 
+ 
+In sum, the PUCO satisfied its obligations under R.C. 4903.09 to provide a rationale and 
+supporting evidence for its findings regarding AEP Ohio’s real transmission constraint concerns. 
+There is no basis for Appellant’s claims to the contrary. 
+The PUCO’s findings of fact are reasonable and lawful. Moreover, the PUCO properly 
+applied the legal principles. Motor Freight Inc. v. Pub. Util. Comm., 120 Ohio St. 1, 6 (1929). 
+The Court should affirm the PUCO’s Order which is supported by reliable, probative, and 
+substantial evidence and is in accordance with law.  
+ 
+ 
+ 
+20 
+Proposition of Law No. 4: An order of the Public Utilities Commission will not be 
+overturned when its determination that AEP Ohio’s Application was not an 
+application for an increase in rates under R.C. 4909.18 (Appellant Appx. 314) is 
+supported by reliable, probative, and substantial evidence and is in accordance with 
+law. In re Application of Ohio Power Co. for an Increase in Elec. Distrib. Rates, 2024-
+Ohio-2890. (Response to Appellant’s Proposition of Law No. 4, at 23-26). 
+Appellant argues that AEP Ohio’s Application was for an increase in rates. Appellant 
+brief, at 23. Appellant incorrectly reasons that the data center tariff imposes new financial 
+charges and rates on data center customers resulting in those customers paying higher rates than 
+those authorized under current tariffs. Id., at 25. Therefore, according to Appellant, AEP Ohio’s 
+Application was subject to the R.C. 4909.18 provisions applicable to applications for an increase 
+in rates. Id. Appellant further argues that the PUCO should have rejected AEP Ohio’s 
+Application because it did not satisfy the requirements set forth in R.C. 4909.18 for applications 
+for an increase in rates. Id.  
+At the outset, it must be noted that Appellant has not demonstrated that it was harmed or 
+prejudiced in any way by the PUCO’s determination that AEP Ohio’s Application was not for an 
+increase in rates. It is well settled that this Court will not reverse an order of the PUCO absent a 
+showing of prejudice by the party seeking reversal. Myers v. Pub. Util. Comm., 64 Ohio St.3d 
+299, 302 (1992) (Myers) citing Cincinnati v. Pub. Util. Comm., 151 Ohio St. 353 (1949), ¶ 6 of 
+the syllabus; Ohio Edison Co. v. Pub. Util. Comm., 173 Ohio St. 478 (1962), ¶ 10 of the 
+syllabus; Akron v. Pub. Util. Comm., 55 Ohio St.2d 155, 161 (1978), 484; Holladay Corp. v. 
+Pub. Util. Comm., 61 Ohio St.2d 335 (1980), syllabus. The PUCO found that no party was 
+prejudiced by the notice, filings, and hearing dates set during this proceeding. (R. 242 at ¶ 58). 
+Appellant has not demonstrated otherwise and the Court should reject Appellant’s argument on 
+this basis alone. 
+ 
+21 
+AEP Ohio’s Application and the Consumer Settlement do not increase existing data 
+center customer rates. (R. 231, at ¶ 25). Under R.C. 4909.18, a public utility may file either of 
+two types of rate applications (1) an application “to establish any rate, . . . classification, charge, 
+or rental, . . . or any regulation or practice affecting the same” (as AEP Ohio did here); or (2) an 
+application “to modify, amend, change, increase, or reduce any existing rate, . . . classification, 
+charge, or rental, or any regulation or practice affecting the same . . .” (Appellant Appx. 314). 
+The key difference between the two types of applications is whether the application involves a 
+rate increase or is not for an increase in rates. If the approval of the application would raise 
+rates for existing customers, it could be for an increase in rates under the latter scenario. Under 
+this latter scenario, AEP Ohio would be required to file notice under R.C. 4909.19 (Appellant 
+Appx. 317) and abide by other filing requirements, including the PUCO’s Standard Filing 
+Requirements under Adm.Code 4901-7-01. (OCC Appx. 57). Contrary to Appellant’s misguided 
+argument, the Application was not for an increase in rates and therefore not subject to the notice 
+and filing requirements of R.C. 4909.19. (R. 231 at ¶ 25). 
+Appellant’s reliance on individual provisions of the data center tariff – under which new 
+data center customers could pay more than existing Schedule GS customers – conflates the 
+analysis of whether AEP Ohio’s Application is one for an “increase in rates.” AEP Ohio is not 
+seeking to “increase . . . any existing rate.” (Appellant Appx. 314). While the data center tariff 
+incorporates certain terms and provisions of Schedule GS, it applies only to a new class of 
+customers and establishes new rates and terms for them on a prospective basis. 
+The PUCO found that this case established new rates, rather than increased existing rates. 
+(R. 231 at ¶ 25). The PUCO stated that the data center tariff does not increase the rates of 
+existing consumers, but rather is a new tariff that “involves the emergence of a prominent, new 
+ 
+22 
+type of customer.” Id. Further, the PUCO agreed there would likely be no impact on existing 
+customer rates due to the Consumer Settlement’s grandfathering provisions. Id. The Consumer 
+Settlement’s grandfather clause excepts existing data center customers from the data center tariff 
+and provides a buffer for such customers to expand up to 25 MW, before having to transition to 
+the new data center tariff customer class. (R. 231 at ¶ 124, R. 408 at 411). The PUCO also noted 
+that rather than impacting customer rates, the data center tariff carries “heightened commitments 
+prior to interconnection and service.” Id. The PUCO properly concluded that these features of the 
+Consumer Settlement and the data center tariff demonstrate that AEP Ohio’s Application was not 
+for an increase in rates under R.C. 4909.18.  
+Appellant again argues that the PUCO’s decision on this issue lacked specificity and 
+detail in violation of R.C. 4903.09. Appellant brief, at 39. This argument fails for the same 
+reasons its Proposition of Law No. 3 fails. Here, Appellant’s claims are contradicted by the 
+express language of the PUCO’s Order. (R. 231 at ¶¶ 21-25). The Order provides ample 
+evidentiary record citations and reasoning to inform this Court of the basis for the PUCO’s 
+findings and conclusions, meeting the low bar of R.C. 4903.09. Ohio Power at ¶ 32. 
+The PUCO’s findings of fact are reasonable and lawful. Moreover, the PUCO properly 
+applied the legal principles. Motor Freight Inc. v. Pub. Util. Comm., 120 Ohio St. 1, 6 (1929). 
+The Court should affirm the PUCO’s Order which is supported by reliable, probative, and 
+substantial evidence and is in accordance with law.  
+ 
+ 
+23 
+Proposition of Law No. 5: An order of the Public Utilities Commission determining 
+that no hearing notice was required under R.C. 4909.18 (Appellant Appx. 314) 
+because AEP Ohio’s Application was not an application to increase rates, will not be 
+overturned when it is supported by reliable, probative, and substantial evidence and 
+is in accordance with law. Ohio Consumers’ Counsel v. PUC, 2006-Ohio-5789, ¶ 18. 
+(Response to Appellant’s Proposition of Law No. 5, at 26-29). 
+ 
+Appellant argues that the PUCO erred because it did not publish notice of hearing under 
+R.C. 4909.18. (Appellant brief, at 26). Here, again, Appellant has not shown how it was 
+prejudiced by the lack of a hearing notice under R.C. 4909.18. The PUCO approved the ALJ’s 
+finding that Appellant failed to demonstrate any harm or prejudice due to the lack of a hearing 
+notice. (R. 242 at ¶ 58). The PUCO noted that all procedural steps taken in the proceedings were 
+made publicly, in addition to being covered by several media outlets, and that public interest in 
+the case had been robust, exhibited by the number of filed public comments and intervening 
+parties. (R. 231 at ¶ 25). The Court should reject Appellant’s argument on the basis of its ruling 
+in Myers, supra. 
+Moreover, as explained previously, the notice and procedural requirements of R.C. 
+4909.18 (Appellant Appx. 314) do not apply because AEP Ohio’s Application (Appellant Appx. 
+29) was not for an increase in rates. “[T]hey apply only upon application for a rate increase 
+pursuant to R.C. 4909.18.” Ohio Consumers’ Counsel v. PUC, 2006-Ohio-5789, ¶ 18.  
+The PUCO’s findings of fact are reasonable and lawful. Moreover, the PUCO properly 
+applied the legal principles. Motor Freight Inc. v. Pub. Util. Comm., 120 Ohio St. 1, 6 (1929). 
+The Court should affirm the PUCO’s Order which is supported by reliable, probative, and 
+substantial evidence and is in accordance with law.  
+ 
+ 
+ 
+24 
+Proposition of Law No. 6: The Public Utilities Commission has discretion to control 
+its proceedings and mere disagreement with the administrative law judge’s 
+evidentiary rulings is not grounds for reversal. (Adm.Code 4901-1-27(B) (OCC 
+Appx. 55)), See Chesapeake & Ohio Ry. Co. v. Pub. Util. Comm., 163 Ohio St. 252, 
+263 (1955). (Response to Appellant’s Proposition of Law No. 6, at 29-32). 
+Appellant argues that the PUCO unreasonably and unlawfully upheld the Administrative 
+Law Judges’(“ALJs”) decisions regarding cross-examination and the presentation of evidence 
+during the hearing. (Appellant brief, at 29). This assertion is incorrect.  
+It is not an abuse discretion for the presiding ALJs to make rulings regarding the 
+admissibility of evidence or the probative value of direct and cross-examination. In fact, it is 
+their duty to make those types of determinations. Adm.Code 4901-1-27(B) (OCC Appx. 55). The 
+PUCO is not strictly bound by the rules of evidence. See Chesapeake & Ohio Ry. Co. v. Pub. 
+Util. Comm., 163 Ohio St. 252, 263 (1955); In the Matter of the Complaint of Forest Hills 
+Supermarket, Inc. d/b/a Konnis Family Foods v. The Cleveland Elec. Illum. Co., Pub. Util. 
+Comm. No. 18-785-EL-CSS, Opinion and Order, 2020 Ohio PUC LEXIS 1288 (Apr. 8, 2020) at 
+¶ 33, citing Elyria Telephone Co. v. Pub. Util. Comm., 158 Ohio St. 441, 444 (1953); In the 
+Matter of the Application of Duke Energy Ohio, Inc., for Approval of an Alternative Rate Plan 
+Pursuant to R.C. 4929.05 for an Accelerated Service Line Replacement Program, Pub. Util. 
+Comm. No. 14-1622-GA-ALT, Opinion and Order, 2016 Ohio PUC LEXIS 965 (Oct. 26, 2016) 
+at ¶ 20.  
+Additionally, PUCO precedent consistently affirms that ALJs may limit lines of 
+questioning that are duplicative, lack proper foundation, and bear questionable relevance to the 
+underlying proceeding. Mere disagreement with such rulings is not grounds for reversal. See e.g., 
+In the Matter of the Review of the Power Purchase Agreement Rider of Ohio Power Co., Pub. 
+Util. Comm. No. 18-1004-EL-RDR, et al., Opinion and Order, 2024 Ohio PUC LEXIS 992 
+(Aug. 21, 2024) at ¶¶ 45-46; see also, e.g., In the Matter of the Long-Term Forecast Report of 
+ 
+25 
+Ohio Power Co., Pub. Util. Comm. No. 10-501-EL-FOR, et al., Opinion and Order, 2013 Ohio 
+PUC LEXIS 3 (Jan. 9, 2013) at 6. As noted in the Order, the ALJs gave ample opportunity to 
+cross-examine Mr. McKenzie and Mr. Ali. (R. 231 at, ¶¶ 11, 28, 31). Appellant provides no valid 
+reasons for overturning the ALJs’ evidentiary rulings. It simply disagrees with them.  
+The PUCO’s findings of fact are reasonable and lawful. Moreover, the PUCO properly 
+applied the legal principles. Motor Freight Inc. v. Pub. Util. Comm., 120 Ohio St. 1, 6 (1929). 
+The Court should affirm the PUCO’s Order which is supported by reliable, probative, and 
+substantial evidence and is in accordance with law.  
+ 
+V. 
+CONCLUSION 
+ 
+AEP Ohio’s residential consumers need protection from unfair and unjust utility rate 
+increases. The Consumer Settlement and the data center tariff will ensure that consumers won’t 
+be left holding the bag when the bills come due for the cost causing billion-dollar data center 
+industry’s transmission infrastructure improvements. The Consumer Settlement is a fair and 
+balanced accommodation of consumer and data center interests that addresses one of the most 
+pressing issues in America today – the costs to serve the power-hungry data enter industry. 
+ The PUCO’s Order approving the Consumer Settlement and data center tariff is firmly 
+rooted in the evidentiary record and is in accordance with law. Appellant has not shown 
+otherwise. The Court should affirm the PUCO’s order.  
+ 
+ 
+ 
+26 
+Respectfully submitted, 
+Maureen R. Willis (0020847) 
+Ohio Consumers’ Counsel 
+ 
+/s/ William J. Michael 
+William J. Michael (0070921) 
+Counsel of Record 
+Senior Counsel 
+John R. Varanese (0044176) 
+Assistant Consumers’ Counsel 
+ 
+Office of the Ohio Consumers’ Counsel 
+65 East State Street, Suite 700 
+Columbus, Ohio 43215 
+Telephone [Michael]: (614) 466-1291 
+Telephone [Varanese]: (614) 387-2965 
+william.michael@occ.ohio.gov 
+john.varanese@occ.ohio.gov 
+ 
+Counsel for Intervening Appellee, 
+Office of the Ohio Consumers’ Counsel 
+ 
+ 
+ 
+27 
+CERTIFICATE OF SERVICE 
+I hereby certify that a copy of the foregoing Merit Brief of Intervening Appellee, 
+Office of the Ohio Consumers’ Counsel, was served upon all parties of record via electronic 
+transmission this 24th day of March 2026. 
+/s/ William J. Michael 
+ 
+William J. Michael 
+ 
+Senior Counsel 
+ 
+PARTIES OF RECORD 
+john.jones@ohioattorneygeneral.gov 
+stnourse@aep.com  
+mjschuler@aep.com  
+talexander@beneschlaw.com  
+khehmeyer@beneschlaw.com 
+smeng@beneschlaw.com  
+ 
+ 
+ 
+bojko@carpenterlipps.com 
+easley@carpenterlipps.com  
+mkurtz@BKLlawfirm.com 
+jkylercohn@BKLlawfirm.com 
+ 
+ 

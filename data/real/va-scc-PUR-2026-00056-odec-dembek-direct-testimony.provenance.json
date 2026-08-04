@@ -1,0 +1,19 @@
+{
+  "source_url": "https://www.scc.virginia.gov/DocketSearch/Home/Document/12/389750",
+  "retrieved_at": "2026-08-04T16:51:43Z",
+  "sha256": "98e15aa64880c2184fb42514b69a83bff52c998243cb78e406f4d9f25099a03b",
+  "jurisdiction": "US-VA (Virginia State Corporation Commission)",
+  "docket": "PUR-2026-00056",
+  "matter_no": 146917,
+  "scc_doc_id": "389750",
+  "document_title": "Prefiled Direct Testimony of Eric R. Dembek (Old Dominion Electric Cooperative)",
+  "filing_date": "2026-06-11",
+  "filer": "Old Dominion Electric Cooperative (witness Eric R. Dembek)",
+  "content_type_served": "application/pdf",
+  "source_pdf_sha256": "4675080e1db74c7291219dbe6aede028e556fff0f17b95d0e826971b29bd98fc",
+  "source_pdf_bytes": 56178184,
+  "saved_text_bytes": 281957,
+  "extraction_tool": "pypdf 6.14.2 page.extract_text()",
+  "note": "ORIGINAL of version-pair D (cross-docket). Corrected in DocID 390523.",
+  "how_obtained": "Fetched the PDF from the Virginia SCC DocketSearch document handler (https://www.scc.virginia.gov/DocketSearch/Home/Document/12/<DocID>) with curl -L, following the site's 307 redirect to the lowercase /docketsearch/home/document/12/<DocID> path, which returned Content-Type application/pdf. The DocID was obtained from the DocketSearchAPI Breeze endpoint GetDocuments (?$filter=MATTER_NO eq <matter>) for this case. Converted the PDF to text with pypdf 6.14.2 using page.extract_text() concatenated per page with '===PAGE n===' separators. The text is saved exactly as pypdf produced it: not cleaned, not reflowed, not de-hyphenated; soft hyphens, ligature artefacts, transposed line-number/Q-A ordering and OCR-style noise are left intact."
+}

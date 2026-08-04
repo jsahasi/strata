@@ -1,0 +1,19 @@
+{
+  "jurisdiction": "North Carolina Utilities Commission (NCUC)",
+  "docket": "E-100 Sub 208A",
+  "filer": "Duke Energy Carolinas, LLC and Duke Energy Progress, LLC (Jason A. Higginbotham, Associate General Counsel)",
+  "source_url": "https://starw1.ncuc.gov/NCUC/ViewFile.aspx?Id=5f5f6c97-a842-4f65-93a0-0de6faf994a1",
+  "source_detail_page": "https://starw1.ncuc.gov/NCUC/PSC/PSCDocumentDetailsPageNCUC.aspx?DocumentId=ca0b9889-4494-4752-a8b9-4255eefa223f&Class=Filing",
+  "ncuc_document_number": "F-E-20260409-061",
+  "ncuc_record_document_id": "ca0b9889-4494-4752-a8b9-4255eefa223f",
+  "ncuc_file_id": "5f5f6c97-a842-4f65-93a0-0de6faf994a1",
+  "document_title": "Letter Re-Filing Spring 2025 and Fall 2025 Semi-Annual Large Load Reports",
+  "filing_date": "2026-04-09",
+  "how_obtained": "Downloaded the PDF from the NCUC STAR document handler https://starw1.ncuc.gov/NCUC/ViewFile.aspx?Id=<file-guid>, which is the link the commission's own document-detail page points at. starw1.ncuc.gov sits behind a Cloudflare managed challenge that refuses plain HTTP clients (403 for curl and for the plain fetch tool), so the session was driven with a real Chrome browser under Playwright, which passes the challenge normally; the PDF bytes were then read out of that same browser session. Converted the PDF to text with pdfminer.six extract_text(). The text is saved exactly as pdfminer emitted it - no reflow, no de-hyphenation, no ligature or soft-hyphen repair, form feeds, margin line numbers, column-split Q/A markers and OCR noise all left in place.",
+  "corpus_note": "Cover letter that explains why the Spring 2025 and Fall 2025 reports were re-filed into Docket E-100 Sub 208A. This is the provenance record for the two 2025 instalments.",
+  "sha256": "2d24e7e3fc041946287ad26632c66bf1becf86fae6385a44e8561612ab6b1d59",
+  "bytes": 2540,
+  "source_pdf_sha256": "91d31132813f80faa8a914c8f88be5e4da3fdcd8f9861ca5842a5e14525646f3",
+  "source_pdf_bytes": 193229,
+  "retrieved_at": "2026-08-04T17:13:51Z"
+}
