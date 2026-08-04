@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Strata</title>
+<meta name="description" content="Regulatory change intelligence for regulatory affairs teams at multi-state utilities. A claim that cannot be verified does not assert itself.">
+<meta name="robots" content="noindex">
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --ink: #14181f;
+    --muted: #5d6773;
+    --rule: #e2e0da;
+    --accent: #1d4ed8;
+    --withheld: #b45309;
+    --measure: 34rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1116;
+      --ink: #e8e6e1;
+      --muted: #949daa;
+      --rule: #262b33;
+      --accent: #7aa2f7;
+      --withheld: #d99a3f;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 17px/1.65 ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+    padding: clamp(2rem, 8vw, 6rem) 1.25rem 4rem;
+    display: flex;
+    justify-content: center;
+  }
+  main { width: 100%; max-width: var(--measure); }
+  .mark {
+    font: 600 13px/1 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+  h1 {
+    font-size: clamp(1.9rem, 5.5vw, 2.6rem);
+    line-height: 1.18;
+    font-weight: 500;
+    letter-spacing: -.015em;
+    margin: 0 0 1.4rem;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 1.15rem; }
+  .lede { font-size: 1.06rem; }
+  .quiet { color: var(--muted); }
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 2.6rem 0; }
+  /* The two states, shown rather than described. Structure differs, not shade. */
+  .demo {
+    font: 400 14.5px/1.6 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+    margin: 0 0 1.6rem;
+  }
+  .claim {
+    border-left: 3px solid var(--accent);
+    padding: .1rem 0 .1rem 1rem;
+    margin-bottom: 1.4rem;
+  }
+  .claim--withheld { border-left-color: var(--withheld); }
+  .claim p { margin: 0; }
+  .cite {
+    display: inline-block;
+    margin-top: .45rem;
+    font: 500 12.5px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: .02em;
+    color: var(--accent);
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    padding: .28rem .45rem;
+  }
+  .reason {
+    font: 500 12.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: var(--withheld);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+  .source {
+    margin-top: .5rem;
+    padding: .5rem .7rem;
+    border: 1px dashed var(--rule);
+    border-radius: 3px;
+    font: 400 13px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: var(--muted);
+    overflow-x: auto;
+  }
+  footer {
+    margin-top: 3rem;
+    font: 400 13.5px/1.6 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+    color: var(--muted);
+  }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+
+  <p class="mark">Strata</p>
+
+  <h1>Regulatory change, carried through to a citation you can check.</h1>
+
+  <p class="lede">A platform for regulatory affairs teams at multi-state utilities. It reads
+  successive versions of a proceeding, establishes exactly what changed, maps each change to the
+  obligations and filings it touches, and routes an action to a named reviewer.</p>
+
+  <p>The part worth explaining is what it refuses to do. Every statement is bound to an exact
+  character span in the source filing and re-checked against that text before it reaches a screen.
+  A statement whose citation fails that check is withheld — not greyed out, not shown with a
+  confidence score and a disclaimer. Withheld.</p>
+
+  <hr>
+
+  <div class="demo">
+    <div class="claim">
+      <p>The compliance date for the updated load forecast moved from March&nbsp;1,&nbsp;2027 to
+      June&nbsp;1,&nbsp;2027.</p>
+      <span class="cite">Sec 7.1, v2 &nbsp;·&nbsp; verified</span>
+    </div>
+
+    <div class="claim claim--withheld">
+      <p class="reason">Withheld — quoted text does not match the source at the cited offsets</p>
+      <div class="source">v1 : 1970&ndash;2066 reads<br>&ldquo;&hellip;equals or exceeds 20 megawatts (MW).&rdquo;</div>
+    </div>
+  </div>
+
+  <p class="quiet">Two claims. The second has no statement to show you, because the system could not
+  substantiate one. What sits in its place is the reason, and what the source actually says at those
+  offsets.</p>
+
+  <hr>
+
+  <footer>
+    <p>Not yet open. Built by Jayesh Sahasi.
+    <a href="mailto:jsahasi@gmail.com">jsahasi@gmail.com</a></p>
+  </footer>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,991 @@
+/* Strata — one stylesheet. Tokens first, then components.
+ *
+ * Three type registers, each standing for a different kind of truth:
+ *   --face-ui    the product's own voice. Interface text, labels, actions.
+ *   --face-doc   the document speaking. Quoted regulatory prose, and only that.
+ *   --face-data  the coordinates that make a quote checkable: version, offsets.
+ * A reader must never mistake a quotation for the product's own words, so the
+ * two never share a face. All three ship with the operating system: no web
+ * font, no icon font, no framework, no build step (ADR-012).
+ *
+ * Greyscale carries structure. Exactly two hues exist: --accent for anything
+ * you can act on, --alarm for escalation. The greys are --accent desaturated,
+ * so the page reads as one family rather than a neutral with a colour dropped
+ * on it.
+ *
+ * Meaning never rests on colour alone. Draft, final, material and withheld are
+ * carried by label, weight and shape first, so they survive colour blindness
+ * and a black-and-white screenshot. There is a print block at the bottom that
+ * proves it.
+ */
+
+/* ---------------------------------------------------------------- tokens -- */
+
+:root {
+  color-scheme: light dark;
+
+  /* Type. Interface text is small and tight; document text is larger and
+     looser, because the analyst reads it rather than scans it. The document
+     outranking the chrome is the point, not an accident of scale. */
+  --face-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --face-doc: "Iowan Old Style", Charter, "Palatino Linotype", Palatino,
+    "Book Antiqua", Georgia, "Times New Roman", serif;
+  --face-data: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  --t-micro: 0.6875rem;   /* 11px — uppercase labels, codes, coordinates */
+  --t-small: 0.8125rem;   /* 13px — secondary interface text */
+  --t-ui: 0.9375rem;      /* 15px — interface base */
+  --t-ui-lg: 1.0625rem;   /* 17px — section headings */
+  --t-doc: 1.125rem;      /* 18px — quoted source text */
+  --t-claim: 1.1875rem;   /* 19px — a claim's statement */
+  --t-h1: 1.5rem;         /* 24px — page title. The page does not shout. */
+
+  --lh-ui: 1.5;
+  --lh-doc: 1.72;         /* generous leading: this text gets read closely */
+  --track-label: 0.09em;
+  --measure: 66ch;        /* the reading measure for document prose */
+
+  /* Space, on a 4px grid. */
+  --s1: 0.25rem;
+  --s2: 0.5rem;
+  --s3: 0.75rem;
+  --s4: 1rem;
+  --s5: 1.5rem;
+  --s6: 2rem;
+  --s7: 3rem;
+  --s8: 4rem;
+
+  --r: 3px;               /* a printed form field, not a pill */
+  --r-sm: 2px;
+  --shell: 76rem;
+
+  /* Colour — light. */
+  --bg: #eef1f2;
+  --surface: #fbfcfc;
+  --surface-sunk: #e3e8ea;
+  --rule: #d2d9db;
+  --rule-strong: #a4afb3;
+  --ink: #101a1e;
+  --ink-2: #414d52;
+  --ink-3: #67747a;
+
+  --accent: #0d5c6b;
+  --accent-strong: #084451;
+  --accent-wash: #d8eaee;
+
+  --alarm: #8f3418;
+  --alarm-strong: #6d2610;
+  --alarm-wash: #f7e4dd;
+
+  /* The hatch that fills a withheld claim's statement slot. */
+  --hatch: rgba(16, 26, 30, 0.16);
+  --focus: var(--accent);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0c1316;
+    --surface: #121b1f;
+    --surface-sunk: #080e11;
+    --rule: #243238;
+    --rule-strong: #3c4e55;
+    --ink: #e7eeef;
+    --ink-2: #a9b7ba;
+    --ink-3: #7e8c90;
+
+    --accent: #6ccddc;
+    --accent-strong: #a6e6f0;
+    --accent-wash: #0f333c;
+
+    --alarm: #ef9d80;
+    --alarm-strong: #ffc2ac;
+    --alarm-wash: #3a1a11;
+
+    --hatch: rgba(231, 238, 239, 0.18);
+  }
+}
+
+/* ------------------------------------------------------------------ base -- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: var(--t-ui) / var(--lh-ui) var(--face-ui);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+}
+
+/* A hidden thing stays hidden, whatever display a component sets. The citation
+   viewer toggles [hidden] on the source panel and must not be second-guessed. */
+[hidden] {
+  display: none !important;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.008em;
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: var(--t-h1);
+}
+
+h2 {
+  font-size: var(--t-ui-lg);
+}
+
+h3 {
+  font-size: var(--t-ui);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--accent-strong);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+/* A filled control would swallow an accent ring. The ring sits outside the
+   control, so ink against the page is the reading that always works. */
+.btn--primary:focus-visible,
+.citation-chip:focus-visible,
+.skip:focus-visible {
+  outline-color: var(--ink);
+}
+
+code {
+  font: var(--t-small) / 1.5 var(--face-data);
+}
+
+hr {
+  height: 0;
+  margin: var(--s5) 0;
+  border: 0;
+  border-top: 1px solid var(--rule);
+}
+
+/* ---------------------------------------------------------------- layout -- */
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10;
+  padding: var(--s2) var(--s4);
+  background: var(--accent);
+  color: var(--surface);
+  font-weight: 600;
+}
+
+.skip:focus {
+  left: var(--s4);
+  top: var(--s2);
+}
+
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 0 var(--s5);
+}
+
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  background: var(--surface);
+}
+
+.masthead__bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s5);
+  flex-wrap: wrap;
+  padding: var(--s5) 0 var(--s4);
+}
+
+/* The wordmark sits on three bars of falling width: layers, newest on top.
+   Drawn in CSS, because an icon font would be a dependency (ADR-012). */
+.wordmark {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  color: var(--ink);
+  font-size: var(--t-ui-lg);
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+}
+
+.wordmark:hover {
+  color: var(--ink);
+}
+
+.wordmark__mark {
+  display: block;
+  width: 4.6rem;
+  height: 8px;
+  background-image: linear-gradient(var(--ink) 0 0),
+    linear-gradient(var(--ink-3) 0 0), linear-gradient(var(--rule-strong) 0 0);
+  background-size: 100% 2px, 66% 2px, 38% 2px;
+  background-position: 0 0, 0 3px, 0 6px;
+  background-repeat: no-repeat;
+}
+
+.masthead__company {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s2);
+  flex-wrap: wrap;
+}
+
+.masthead__name {
+  font-weight: 600;
+}
+
+/* Nav — four screens. Two of them need a proceeding or a change in hand, and
+   when there is none the item is plainly not a link. A nav item that leads to
+   a 404 is a small lie, and this product's argument is that it does not tell
+   those. */
+.nav__list {
+  display: flex;
+  gap: var(--s5);
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: var(--s2) 0 var(--s3);
+  border-bottom: 2px solid transparent;
+  color: var(--ink-2);
+  font-size: var(--t-ui);
+  text-decoration: none;
+}
+
+a.nav__link:hover {
+  color: var(--ink);
+  border-bottom-color: var(--rule-strong);
+}
+
+.nav__link--current {
+  color: var(--ink);
+  font-weight: 600;
+  border-bottom-color: var(--accent);
+}
+
+.nav__link--off {
+  color: var(--ink-3);
+  cursor: default;
+}
+
+.nav__count {
+  padding: 0.1em 0.4em;
+  border: 1px solid var(--alarm);
+  border-radius: var(--r-sm);
+  background: var(--alarm-wash);
+  color: var(--alarm-strong);
+  font: 700 var(--t-micro) / 1.4 var(--face-data);
+}
+
+.main {
+  display: block;
+  padding: var(--s7) 0 var(--s8);
+}
+
+.page-head {
+  margin-bottom: var(--s6);
+  padding-bottom: var(--s4);
+  border-bottom: 1px solid var(--rule);
+}
+
+.page-head__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s3);
+  flex-wrap: wrap;
+}
+
+.page-head__note {
+  margin-top: var(--s2);
+  color: var(--ink-2);
+  max-width: 60ch;
+}
+
+.colophon {
+  border-top: 1px solid var(--rule);
+  padding: var(--s5) 0 var(--s7);
+  color: var(--ink-3);
+  font-size: var(--t-small);
+}
+
+.colophon p + p {
+  margin-top: var(--s1);
+}
+
+/* Change detail: the claim column, and the source beside it. The source panel
+   holds its place while the claim column scrolls, so opening a citation never
+   costs the reader their position. */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(22rem, 26rem);
+  gap: var(--s6);
+  align-items: start;
+}
+
+.split__aside {
+  position: sticky;
+  top: var(--s4);
+}
+
+@media (max-width: 62rem) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .split__aside {
+    position: static;
+  }
+}
+
+.stack > * + * {
+  margin-top: var(--s5);
+}
+
+.stack--tight > * + * {
+  margin-top: var(--s3);
+}
+
+/* ------------------------------------------------------------ primitives -- */
+
+/* The micro-label. Names the field beside it and does nothing else. */
+.label {
+  color: var(--ink-3);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+/* A coordinate: version, section, character range. Monospace because it is
+   machine-checkable, and looking checkable is the honest signal here. */
+.coord {
+  font: var(--t-micro) / 1.5 var(--face-data);
+  color: var(--ink-3);
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.card {
+  padding: var(--s5);
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  background: var(--surface);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-ui);
+}
+
+.table th {
+  padding: var(--s2) var(--s3);
+  border-bottom: 1px solid var(--rule-strong);
+  color: var(--ink-3);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: var(--s3);
+  border-bottom: 1px solid var(--rule);
+  vertical-align: baseline;
+}
+
+.table tr:last-child td {
+  border-bottom: 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: var(--s2) var(--s4);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--ink);
+  font: 600 var(--t-small) / 1.4 var(--face-ui);
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.btn:hover {
+  border-color: var(--ink-3);
+  background: var(--bg);
+}
+
+.btn--primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--surface);
+}
+
+.btn--primary:hover {
+  border-color: var(--accent-strong);
+  background: var(--accent-strong);
+  color: var(--surface);
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn--primary,
+  .btn--primary:hover {
+    color: var(--surface-sunk);
+  }
+}
+
+/* Badges. Shape and weight carry the meaning; colour only agrees with it.
+   Dashed outline = provisional. Solid fill = binding. Barred = material. */
+.badge {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 0.4em;
+  padding: 0.28em 0.5em;
+  border-radius: var(--r-sm);
+  font: var(--t-micro) / 1.35 var(--face-ui);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.badge--draft {
+  border: 1px dashed var(--rule-strong);
+  background: transparent;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+.badge--final {
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--surface);
+  font-weight: 700;
+}
+
+.badge--material {
+  border: 1px solid var(--alarm);
+  background: var(--alarm-wash);
+  color: var(--alarm-strong);
+  font-weight: 700;
+}
+
+.badge--material::before {
+  content: "";
+  width: 3px;
+  background: currentColor;
+}
+
+/* The counterpart to material. It exists so that materiality is read by
+   contrast rather than by remembering what one colour means. */
+.badge--routine {
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+/* --------------------------------------------------- the document register -- */
+
+/* Anything set in .doc is the document talking, not Strata. */
+.doc {
+  max-width: var(--measure);
+  font: var(--t-doc) / var(--lh-doc) var(--face-doc);
+  color: var(--ink);
+}
+
+.quote {
+  max-width: var(--measure);
+  margin: 0;
+  padding: var(--s3) 0 var(--s3) var(--s4);
+  border-left: 2px solid var(--rule-strong);
+  font: var(--t-doc) / var(--lh-doc) var(--face-doc);
+  color: var(--ink-2);
+}
+
+.source-panel {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.source-panel__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  padding: var(--s3) var(--s4);
+  border-bottom: 1px solid var(--rule);
+  background: var(--surface-sunk);
+}
+
+.source-panel__title {
+  font-size: var(--t-small);
+  font-weight: 600;
+}
+
+.source-panel__body {
+  max-height: 62vh;
+  overflow: auto;
+  padding: var(--s4) var(--s5) var(--s6);
+  /* The source is preformatted text with real line breaks. Keep them: the
+     shape of a filing is part of what the analyst reads. */
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  font: var(--t-doc) / var(--lh-doc) var(--face-doc);
+  color: var(--ink-2);
+  scroll-behavior: smooth;
+}
+
+.source-panel__close {
+  padding: var(--s1) var(--s2);
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--ink-2);
+  font: 600 var(--t-micro) / 1.4 var(--face-ui);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.source-panel__close:hover {
+  border-color: var(--rule-strong);
+  color: var(--ink);
+}
+
+/* The marked span: exactly the characters the citation covers. Weight and a
+   rule under every line do the work, so the extent survives a monochrome
+   screenshot. No character is inserted into the source, because annotating a
+   quotation by altering it is the habit this product exists to remove.
+
+   No side edges: a wrapped span would then draw an edge at each line break and
+   read as several marks instead of one. The tint starts and stops at the true
+   offsets, which is the boundary that matters. */
+.source-mark {
+  padding: 0.06em 0.1em;
+  background: var(--accent-wash);
+  box-shadow: inset 0 -2px 0 var(--accent);
+  color: var(--ink);
+  font-weight: 600;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* ------------------------------------------------------------- the claim -- */
+
+/* Two states that must not read as two shades of one treatment.
+ *
+ * .claim--verified   an assertion. Solid left rule, flush to the column, the
+ *                    statement set in the document register, a citation chip
+ *                    at the foot.
+ *
+ * .claim--withheld   not an assertion, and structurally not one. The statement
+ *                    position is occupied by a hatched slot naming the reason.
+ *                    Broken left rule instead of solid, inset from the column
+ *                    so it does not sit on the assertion axis, sunk instead of
+ *                    raised, no chip, and a quoted-against-source pair that a
+ *                    verified claim never carries. Six differences, none of
+ *                    them colour, so it survives a monochrome screenshot and
+ *                    needs no legend.
+ */
+.claim {
+  padding: var(--s4) 0 var(--s4) var(--s5);
+}
+
+.claim__head {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  flex-wrap: wrap;
+  margin-bottom: var(--s3);
+}
+
+.claim__state {
+  font-size: var(--t-micro);
+  font-weight: 700;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+/* The statement is Strata talking, so it stays in the interface face. Setting
+   a finding in the document face would be the register mistake this stylesheet
+   exists to prevent: the reader could no longer tell, at a glance, which words
+   the commission wrote and which words the product did. It earns its weight by
+   size, not by borrowing the document's clothes. */
+.claim__statement {
+  max-width: 58ch;
+  font: 500 var(--t-claim) / 1.55 var(--face-ui);
+  letter-spacing: -0.006em;
+  color: var(--ink);
+}
+
+.claim__foot {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  margin-top: var(--s4);
+}
+
+.claim--verified {
+  border-left: 3px solid var(--ink-3);
+  background: var(--surface);
+  border-top: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding-right: var(--s5);
+}
+
+.claim--verified .claim__state {
+  color: var(--ink-2);
+}
+
+.claim--withheld {
+  margin-left: var(--s5);
+  padding-right: var(--s5);
+  border: 1px solid var(--rule);
+  border-left: 0;
+  border-radius: 0 var(--r) var(--r) 0;
+  background: var(--surface-sunk);
+  /* A broken rule where a verified claim has a solid one. */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--alarm) 0 6px,
+    transparent 6px 12px
+  );
+  background-size: 3px 100%;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+.claim--withheld .claim__state {
+  color: var(--alarm-strong);
+}
+
+/* The slot. Whatever a reader's eye reaches for in the statement position, it
+   finds this: a filled block that plainly is not a sentence, and the reason. */
+.withheld {
+  max-width: var(--measure);
+  padding: var(--s4);
+  border: 1px dashed var(--rule-strong);
+  border-radius: var(--r-sm);
+  background-color: transparent;
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--hatch) 0 1px,
+    transparent 1px 7px
+  );
+}
+
+.withheld__label {
+  font-size: var(--t-micro);
+  font-weight: 700;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* The reason is the product speaking, so it stays in the interface face. Set
+   it in the document face and it would start to look like the claim it
+   replaces. */
+.withheld__reason {
+  margin-top: var(--s2);
+  max-width: 56ch;
+  font-size: var(--t-ui);
+  color: var(--ink-2);
+}
+
+/* What was quoted, against what the source actually says at those offsets.
+   Only a withheld claim carries this. */
+.mismatch {
+  max-width: var(--measure);
+  margin: var(--s4) 0 0;
+  border-top: 1px solid var(--rule);
+}
+
+.mismatch__term {
+  margin-top: var(--s3);
+  color: var(--ink-3);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.mismatch__value {
+  margin: var(--s1) 0 0;
+  font: var(--t-small) / 1.6 var(--face-data);
+  color: var(--ink-2);
+  overflow-wrap: break-word;
+}
+
+.claim__route {
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+
+/* Tripwire, not a safety net. A withheld claim must not carry a statement in
+   the HTML at all (ADR-003), and a render test asserts that. Hiding one here
+   would make a template mistake invisible, which is the exact failure the rule
+   exists to prevent -- so if one ever appears, make it look broken. */
+.claim--withheld .claim__statement {
+  outline: 2px solid var(--alarm);
+  background: var(--alarm-wash);
+  color: var(--alarm-strong);
+  text-decoration: line-through;
+}
+
+.claim--withheld .claim__statement::before {
+  content: "Template error: a withheld claim must not carry a statement. ";
+  display: block;
+  font: 700 var(--t-micro) / 1.4 var(--face-ui);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* The citation chip. The one interactive element on a claim, and the place the
+   hard bet becomes visible (ADR-013). Two cells: the reference an analyst
+   cites, and the coordinates a machine re-reads. The hairline between them is
+   the whole argument in one detail. */
+.citation-chip {
+  display: inline-flex;
+  align-items: stretch;
+  padding: 0;
+  border: 1px solid var(--accent);
+  border-radius: var(--r);
+  background: var(--accent-wash);
+  color: var(--accent-strong);
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.citation-chip:hover {
+  background: var(--accent);
+  color: var(--surface);
+}
+
+.citation-chip[aria-expanded="true"] {
+  background: var(--accent);
+  color: var(--surface);
+}
+
+@media (prefers-color-scheme: dark) {
+  .citation-chip:hover,
+  .citation-chip[aria-expanded="true"] {
+    color: var(--surface-sunk);
+  }
+}
+
+.citation-chip__ref {
+  padding: 0.32em 0.6em;
+  font: 600 var(--t-micro) / 1.4 var(--face-ui);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.citation-chip__coord {
+  padding: 0.32em 0.6em;
+  border-left: 1px solid currentColor;
+  font: var(--t-micro) / 1.4 var(--face-data);
+  white-space: nowrap;
+}
+
+/* ----------------------------------------------------- escalation queue -- */
+
+/* A queue row is a withheld claim in list form, and it looks like one on
+   purpose: the same broken rule, the same hatch, the reason in the position
+   where a claim would be. One refusal, one visual language. */
+.queue {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.queue__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--s4);
+  align-items: start;
+  margin-bottom: var(--s3);
+  padding: var(--s4) var(--s5);
+  border: 1px solid var(--rule);
+  border-left: 0;
+  border-radius: 0 var(--r) var(--r) 0;
+  background-color: var(--surface);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--alarm) 0 6px,
+    transparent 6px 12px
+  );
+  background-size: 3px 100%;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+.queue__row:hover {
+  background-color: var(--bg);
+}
+
+.queue__code {
+  display: inline-block;
+  margin-bottom: var(--s2);
+  padding: 0.2em 0.45em;
+  border: 1px solid var(--alarm);
+  border-radius: var(--r-sm);
+  color: var(--alarm-strong);
+  font: 700 var(--t-micro) / 1.4 var(--face-ui);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.queue__reason {
+  max-width: 62ch;
+  font-size: var(--t-ui);
+  color: var(--ink);
+}
+
+.queue__meta {
+  margin-top: var(--s2);
+  font: var(--t-micro) / 1.6 var(--face-data);
+  color: var(--ink-3);
+}
+
+.queue__actions {
+  display: flex;
+  gap: var(--s2);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 40rem) {
+  .queue__row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* An empty screen states what it means. "Nothing here" and "nothing loaded"
+   are different facts, and the product does not blur them. */
+.empty {
+  padding: var(--s6);
+  border: 1px dashed var(--rule-strong);
+  border-radius: var(--r);
+  color: var(--ink-2);
+  text-align: left;
+}
+
+.empty__title {
+  margin-bottom: var(--s2);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------- printing -- */
+
+/* The withheld state has to survive being screenshotted in black and white.
+   Print is the honest test of that, so it is styled rather than left to the
+   browser: tokens forced light, hatch and broken rule kept, colour removed. */
+@media print {
+  :root {
+    --bg: #fff;
+    --surface: #fff;
+    --surface-sunk: #f2f2f2;
+    --rule: #bbb;
+    --rule-strong: #666;
+    --ink: #000;
+    --ink-2: #222;
+    --ink-3: #444;
+    --accent: #000;
+    --accent-strong: #000;
+    --accent-wash: #fff;
+    --alarm: #000;
+    --alarm-strong: #000;
+    --alarm-wash: #fff;
+    --hatch: rgba(0, 0, 0, 0.45);
+  }
+
+  .masthead,
+  .claim,
+  .queue__row,
+  .withheld,
+  .source-panel {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .nav__list,
+  .skip,
+  .queue__actions,
+  .source-panel__close {
+    display: none;
+  }
+
+  .source-panel__body {
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
