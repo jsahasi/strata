@@ -62,7 +62,12 @@ router = APIRouter()
 templates = Jinja2Templates(directory=TEMPLATES_DIR)
 
 # Where a person lands with nothing else asked for.
-HOME_URL = "/"
+# Where a person lands after signing in. NOT "/": in the deployed setup the
+# marketing site owns the root and the application sits behind it, so a redirect
+# to "/" would sign somebody in and then show them the sales page. /projects is
+# the same screen the app serves at "/" anyway -- the project board took the
+# landing path when the router collision was resolved (ADR-23).
+HOME_URL = "/projects"
 
 # Shown when the database has no users at all. A login form with no accounts
 # behind it is a wall, and telling somebody which command fixes it is the same

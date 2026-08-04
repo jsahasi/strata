@@ -1,0 +1,64 @@
+# Strata: the marketing site in front, the application behind it, one hostname.
+#
+# Traefik labels match the convention already in use on this host (entrypoints
+# http/https, certresolver letsencrypt over the HTTP challenge), so the
+# certificate is issued by the same proxy that serves everything else here.
+#
+# ONLY THE NGINX CONTAINER IS ROUTED. strata-app has no Traefik labels and no
+# published port: it is reachable on the coolify network by name and nowhere
+# else. That is the boundary -- the application is never addressable from the
+# internet except through nginx, which decides which paths reach it.
+services:
+  strata-site:
+    image: nginx:alpine
+    container_name: strata-site
+    restart: unless-stopped
+    depends_on: [strata-app]
+    networks: [coolify]
+    volumes:
+      - /data/strata/site:/usr/share/nginx/html:ro
+      - /data/strata/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: coolify
+      traefik.http.routers.http-strata.entryPoints: http
+      traefik.http.routers.http-strata.rule: Host(`strata.sudama.ai`)
+      traefik.http.routers.http-strata.middlewares: redirect-to-https
+      traefik.http.routers.https-strata.entryPoints: https
+      traefik.http.routers.https-strata.rule: Host(`strata.sudama.ai`)
+      traefik.http.routers.https-strata.tls: "true"
+      traefik.http.routers.https-strata.tls.certresolver: letsencrypt
+      traefik.http.routers.https-strata.middlewares: gzip
+      traefik.http.services.strata.loadbalancer.server.port: "80"
+
+  strata-app:
+    build:
+      context: /data/strata/src
+      dockerfile: deploy/Dockerfile
+    image: strata-app:local
+    container_name: strata-app
+    restart: unless-stopped
+    networks: [coolify]
+    # The database is a file on the host. A redeploy replaces the image and
+    # keeps the data, which for this product means keeping the audit chain --
+    # the one thing that cannot be regenerated, because regenerating it is
+    # indistinguishable from rewriting it.
+    volumes:
+      - /data/strata/db:/data
+    environment:
+      # app/state/db.py reads STRATA_DATABASE_URL and nothing else.
+      STRATA_DATABASE_URL: sqlite:////data/strata.db
+      STRATA_DB_FILE: /data/strata.db
+      # Read by app/config.py only if the name is not already set here; an
+      # explicit value in this file always wins over the .env on disk.
+      STRATA_COMPANY_ID: MEP
+    # The key is passed in rather than baked into the image. Absent, every
+    # model path announces itself as off and every screen still serves.
+    env_file:
+      - /data/strata/app.env
+    expose:
+      - "8000"
+
+networks:
+  coolify:
+    external: true

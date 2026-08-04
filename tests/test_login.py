@@ -28,6 +28,8 @@ ships rather than with the flag turned off for the convenience of the test.
 from datetime import datetime, timedelta, timezone
 
 import pytest
+
+from app.web.views.auth import HOME_URL
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.testclient import TestClient
@@ -165,7 +167,7 @@ def test_a_good_password_signs_in_and_the_cookie_is_locked_down(client):
     response = _sign_in(client)
 
     assert response.status_code == 303
-    assert response.headers["location"] == "/"
+    assert response.headers["location"] == HOME_URL
 
     raw = response.headers["set-cookie"]
     assert raw.startswith(f"{SESSION_COOKIE}=")
@@ -244,7 +246,7 @@ def test_a_signed_in_person_is_not_shown_the_form_again(client):
 
     response = client.get(LOGIN_URL, follow_redirects=False)
     assert response.status_code == 303
-    assert response.headers["location"] == "/"
+    assert response.headers["location"] == HOME_URL
 
 
 # ------------------------------------------------------------------ refusals
@@ -595,7 +597,7 @@ def test_the_next_parameter_cannot_send_anyone_off_site(client):
         follow_redirects=False,
     )
     assert response.status_code == 303
-    assert response.headers["location"] == "/"
+    assert response.headers["location"] == HOME_URL
 
 
 def test_a_forged_cookie_is_not_a_session(client):

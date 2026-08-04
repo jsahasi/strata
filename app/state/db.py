@@ -18,10 +18,28 @@ def get_engine():
     return _engine
 
 
-def init_db(engine=None) -> None:
-    """Create tables. Drops first when running against an in-memory test database."""
+def init_db(engine=None, *, drop_first: bool = True) -> None:
+    """Create the tables. DROPS THEM FIRST unless told not to.
+
+    THE DOCSTRING USED TO SAY "drops first when running against an in-memory
+    test database". It did not: it dropped always, against whatever engine it
+    was handed. Nothing checked, and 480 test call sites depend on the drop for
+    isolation -- so the default stays, and this sentence is the correction.
+
+    THAT DEFAULT IS SHARP, and in this product it is sharper than usual. The
+    audit chain is append-only and hash-linked precisely so that no row can be
+    removed without the removal being obvious; drop_all removes every row and
+    leaves nothing behind to notice, which is the one outcome the whole design
+    exists to prevent. A single init_db() in a production path destroys the
+    evidence and looks like a clean install.
+
+    So a caller that means "make sure the tables exist" must say
+    drop_first=False and get exactly that. deploy/entrypoint.sh does, and only
+    when there is no database file at all.
+    """
     target = engine or _engine
-    Base.metadata.drop_all(target)
+    if drop_first:
+        Base.metadata.drop_all(target)
     Base.metadata.create_all(target)
 
 
