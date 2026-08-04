@@ -23,43 +23,56 @@
 <h1>Build Board</h1>
 <p class="sub">48 hours from 2026-08-03. Ordered so that the thing reviewers execute exists early and improves, rather than arriving at the end.</p>
 
-<div class="crit"><strong>Verified against <code>app/</code> at commit <code>45c408c</code>, not
+<div class="crit"><strong>Verified against <code>app/</code> at commit <code>c7d6e00</code>, not
 against memory and not against <code>state.json</code>.</strong> Every status below was checked by
-reading the module that would implement it and running the test file that would guard it. Three
+reading the module that would implement it, running the test file that would guard it, and — for
+anything a reviewer would click — starting <code>app.main:app</code> and requesting the route. Three
 rules were applied: a task is not done because a related one shipped; a task whose mechanism exists
 but whose behaviour does not is <em>partly</em>, not done; and a task nobody has run on a fresh clone
 is not done however green it looks here.
+<br><br><span class="lbl">Bound to that commit, and it expires.</span> Parallel workstreams were
+writing during the check. By the end of it the tree carried uncommitted changes to
+<code>app/text/normalize.py</code>, <code>app/verification/verifier.py</code>,
+<code>app/state/audit.py</code> and <code>app/web/deps.py</code>, plus a new <code>app/auth/</code>
+and three new test files. Re-verify against HEAD before acting on any row here.
 <br><br><span class="lbl">Read this before trusting <code>state.json</code>.</span> That file is
-generated and therefore cannot lie — but it was last generated at commit <code>2374381</code>, and
-reports 12 commits, 56 tests, and the web UI, review queue and workspace as designed and not built.
-All four statements were true then and none are true now. Generated is not the same as regenerated.
-Run <code>make status</code>.</div>
+generated and therefore cannot lie — but it was last generated at commit <code>45c408c</code> and
+reports 16 commits, 284 tests, <code>app/evals/run.py</code> at nine lines, and the evals as designed
+and not built. The repository has 19 commits, 296 tests, and an eval harness of roughly 1,200 lines
+across four modules that passes 5 of 5 metrics. Every one of those statements was true when <code>make status</code> last ran.
+<span class="lbl">This is the second time this file has gone stale and been recorded as stale.</span>
+The fix is one command and nobody runs it, which means the fix is a commit hook, not a command.</div>
 
-<div class="crit"><strong>Start these two now — they have external latency and everything else waits on nothing.</strong>
-<br>1. <strong>Book the user interviews</strong> (T1). Two or three regulatory-affairs people. The prep guide calls this the single most useful thing you can do, and it is the only task you cannot compress by working harder. Send the requests before you write a line of code.
-<br>2. <strong>Confirm the DeepInterview window.</strong> The assignment expires 72 hours after the challenge email — 24 hours after the build deadline. The interview starts within 30 minutes of submitting, so plan submission and interview as one sitting.
-<br><br><span class="lbl">Hours 0-42 are spent and neither is done.</span> T1 is still the highest-value
-unstarted task on this board.</div>
+<div class="crit"><strong>The two things still worth doing before anything else.</strong>
+<br>1. <strong>The interviews</strong> (T1). Seven messages are out. Nobody has been interviewed. This
+is the only task that cannot be compressed by working harder, and it is a full quarter of the rubric.
+<br>2. <strong>Mount the two screens the product does not serve</strong> (T2). The navigation on
+every page links to <code>/projects</code>, and <code>/projects</code> is a 404. That is the first
+thing a reviewer clicks.</div>
 
 <h2>Phase 0 — hours 0-2: the spine</h2>
 <table>
 <tr><th>#</th><th>Task</th><th>Why it is first</th><th>Status, and the evidence</th></tr>
 
 <tr><td>T1</td><td><strong>Send user-interview requests</strong> (LinkedIn, ex-colleagues, utility regulatory affairs). Target 3, expect 2. Script in <code>docs/user-research.html</code></td><td>External latency. Everything else is under your control; this is not.</td>
-<td class="s-now">still do first. <code>docs/mrd.html</code> records the first target, Chad A. Rogers at AES Indiana, as "Drafted 2026-08-03. Not yet sent." Zero interviews have happened. The drafts also need re-checking: a batch produced four fabricated facts about real people before anything was sent (<code>docs/submission.html</code>).</td></tr>
+<td class="s-part">partly, and the half that is done is the half that was easy. <code>docs/.ai/resume.md</code> records seven messages sent, one per organisation, and 38 more drafted and corrected. <strong>Zero interviews have happened</strong>, so T20 is still blocked and the rubric's user-empathy quarter is still empty. Two cautions attached: the batch produced four fabricated facts about real people before anything went out (<code>docs/submission.html</code>), and <code>docs/mrd.html</code> — the document that is supposed to hold attempts and outcomes — still shows one target at "Drafted 2026-08-03. Not yet sent." The outreach log a reviewer reads disagrees with what happened.</td></tr>
 
 <tr><td>T2</td><td><code>make run</code> and <code>make test</code> exist and work on a clean checkout, even against an empty app</td><td>Reviewers execute both before scheduling a panel. If this breaks, nothing else is read.</td>
-<td class="s-part">partly. Both targets exist in the <code>Makefile</code> with <code>fresh-check</code> beside them, and the committed suite passes (222 tests, offline, no key). But at <code>45c408c</code> <code>app/main.py</code> called no <code>include_router</code>, so <code>make run</code> served <code>/healthz</code> and nothing else. Fixed in the working tree and uncommitted at the time of this check. Not done until that lands and <code>fresh-check</code> is run against it.</td></tr>
+<td class="s-part">partly, and the reason changed. The router mount landed: <code>app/main.py</code> includes <code>proceedings</code>, <code>changes</code> and <code>review</code> plus the static directory, and <code>tests/test_app_wiring.py</code> (4) asserts the object <code>make run</code> starts is the one the screen tests exercise. <strong>Two routers are still unmounted</strong> — <code>app/web/views/projects.py</code> (five routes) and <code>app/web/views/review_centre.py</code> (four) — so <code>/projects</code> returns 404 while <code>base.html</code> links to it as reachable. Mounting them is blocked on a path collision: <code>projects.py</code> also claims <code>/</code> and <code>review_centre.py</code> also claims <code>/review</code>. <code>make fresh-check</code> has not been run at this commit.</td></tr>
 
 <tr><td>T3</td><td>Synthetic corpus: one proceeding, three versions (draft &rarr; revised draft &rarr; final) with deliberate material and immaterial edits; plus a company context of ~8 obligations, 3 projects, 4 documents</td><td>Every later task needs data with KNOWN answers, so tests can assert against ground truth.</td>
-<td class="s-done">done. <code>data/v1..v3</code>, <code>data/company_context.json</code>, and <code>data/manifest.json</code> carrying 11 change spans and 9 boilerplate spans, computed independently and re-read against the bytes. Commit <code>dcb04af</code>.</td></tr>
+<td class="s-done">done. <code>data/v1..v3</code>, <code>data/company_context.json</code>, and <code>data/manifest.json</code> carrying 11 change spans and 9 boilerplate spans, computed independently and re-read against the bytes. Commit <code>dcb04af</code>. <code>make eval</code> now prints the SHA-256 of each version it scored, so a verdict is bound to the bytes that produced it.</td></tr>
 </table>
 
 <div class="note"><strong>On the corpus:</strong> make the edits deliberate and write down what they are. You need a change that is material, one that is cosmetic, one that only appears in the final version, and one that moves a deadline. Those four are the demo and the test fixtures at once.
 <br><br><span class="lbl">Delivered, plus one more that turned out to matter most:</span> a section
 restructure (Section 6 becoming subsection 5.4) that broke the diff's confidence scoring on first
 contact, and one sentence repeated nine times, which is what makes the wrong-occurrence citation
-failure testable rather than theoretical.</div>
+failure testable rather than theoretical.
+<br><br><span class="lbl">The limit found later:</span> the manifest labels five changes, not every
+change. That is enough for recall counts and not enough for precision, because there are no negative
+labels. <code>make eval</code> refuses to print a precision figure rather than building a denominator
+by hand.</div>
 
 <h2>Phase 1 — hours 2-12: the hard bet, working</h2>
 <table>
@@ -69,16 +82,16 @@ failure testable rather than theoretical.</div>
 <td class="s-done">done. <code>app/ingestion/ingest.py</code>, <code>source_sha256</code> on <code>DocumentVersion</code>. <code>tests/test_ingestion.py</code>, 4 tests asserting against the manifest.</td></tr>
 
 <tr><td>T5</td><td><strong>Citation verifier</strong>: given (version, start, end, quote), re-read source and confirm. Normalisation rules explicit and tested (whitespace, quotes, ligatures)</td><td>ADR-003. The depth area. Test it against deliberately corrupted citations before wiring anything to it.</td>
-<td class="s-done">done. <code>app/verification/verifier.py</code> compares for equality after normalization, never similarity, and a repeated quote must name its occurrence. <code>tests/test_verification.py</code> (7), <code>tests/test_occurrence.py</code> (6), <code>tests/test_normalize.py</code> (6). Four open defects sit inside this module — findings #5 to #8 — all reachable only on inputs the corpus does not contain.</td></tr>
+<td class="s-done">done, and the four defects that sat inside it are now closed in code. <code>app/verification/verifier.py</code> compares for equality after normalization, never similarity, and a repeated quote must name its occurrence. <code>_spans_of</code> runs over a normalized projection carrying an index map back to raw offsets, which replaced a fixed-width window scan that assumed normalization preserves length (finding #5). <code>normalize()</code> skips NFKC on <code>&lt;super&gt;</code>, <code>&lt;sub&gt;</code> and <code>&lt;fraction&gt;</code> decompositions (#6), deletes soft hyphens and rewrites hyphenated line breaks (#7). <code>verify_citation_for_version()</code> loads the version the citation names through the tenant chokepoint instead of trusting the caller (#8). <code>tests/test_verification.py</code> (7), <code>tests/test_occurrence.py</code> (6), <code>tests/test_normalize.py</code> (18, up from 6). <span class="lbl">Caveat that is not this board's to fix:</span> <code>docs/.ai/findings.html</code> still marks #5 to #8 open.</td></tr>
 
 <tr><td>T6</td><td>Deterministic version diff producing typed changes (added / removed / modified) with passage references</td><td>ADR-004. Unit-testable against the corpus's known edits.</td>
-<td class="s-done">done. <code>app/diff/engine.py</code>. Alignment confidence is capped when the section label disagrees, so the restructure escalates instead of scoring 0.944. <code>tests/test_diff.py</code>, 11 tests.</td></tr>
+<td class="s-done">done. <code>app/diff/engine.py</code>. Alignment confidence is capped when the section label disagrees, so the restructure escalates instead of scoring 0.944. <code>tests/test_diff.py</code>, 11 tests, plus the diff-completeness metric in <code>make eval</code>.</td></tr>
 
 <tr><td>T7</td><td>Draft-vs-final handling threaded through change records</td><td>ADR-005. Separate code paths, separate action vocabulary.</td>
-<td class="s-done">done. <code>app/interpretation/action.py</code> holds the vocabulary and the effective-date rule; <code>Change.status</code> is copied from the to-version at write time rather than joined at read time, so the status a decision was taken under stays beside it. <code>tests/test_draft_final.py</code>, 5 tests.</td></tr>
+<td class="s-done">done. <code>app/interpretation/action.py</code> holds the vocabulary and the effective-date rule; <code>Change.status</code> is copied from the to-version at write time rather than joined at read time, so the status a decision was taken under stays beside it. <code>tests/test_draft_final.py</code>, 5 tests, plus the draft-versus-final routing metric in <code>make eval</code>.</td></tr>
 
 <tr><td>T8</td><td><strong>Multi-tenant isolation CI test</strong>: instantiate two company contexts, seed each with distinct data, assert that every read scoped to company A returns zero rows of company B's data</td><td>Security model (ADR-007) promises company_id as a chokepoint for isolation, verified by test not by inspection. This test is that guarantee. Without it, the isolation claim is design on paper, not fact in code.</td>
-<td class="s-done">done, and it is the task with the sharpest lesson attached. <code>tests/test_isolation.py</code> (3) passed while <code>passage_refs</code> read passages with no company scope at all, because no test asked that question (finding #1). <code>tests/test_passage_isolation.py</code> (5) closes it, and <code>tests/test_screens.py::test_every_route_refuses_another_tenant</code> extends the question to the web layer.</td></tr>
+<td class="s-done">done, and it is the task with the sharpest lesson attached. <code>tests/test_isolation.py</code> (3) passed while <code>passage_refs</code> read passages with no company scope at all, because no test asked that question (finding #1). <code>tests/test_passage_isolation.py</code> (5) closes it; <code>tests/test_screens.py::test_every_route_refuses_another_tenant</code> extends the question to the web layer, and <code>tests/test_app_wiring.py::test_the_whole_app_answers_to_one_tenant</code> extends it to the assembled application, where it caught the tenant being answered by two different functions.</td></tr>
 </table>
 
 <h2>Phase 2 — hours 12-24: change to action</h2>
@@ -86,19 +99,19 @@ failure testable rather than theoretical.</div>
 <tr><th>#</th><th>Task</th><th>Notes</th><th>Status, and the evidence</th></tr>
 
 <tr><td>T9</td><td>Obligation extraction with evidence links; every extracted obligation carries verified citations or is escalated</td><td>Extraction is the model's job; verification is not.</td>
-<td class="s-todo">not done. No obligation table exists in <code>app/state/models.py</code> and nothing extracts one. <code>app/seed.py</code> reads the obligations in <code>data/company_context.json</code> as a source of names and owners, and its docstring says the gap is left visible rather than papered over with a half-table. No model call exists anywhere in <code>app/</code>.</td></tr>
+<td class="s-todo">not done. There is no <code>Obligation</code> class among the 27 tables in <code>app/state/models.py</code> and nothing extracts one. <code>app/seed.py</code> reads the obligations in <code>data/company_context.json</code> as a source of names and owners, and its docstring says the gap is left visible rather than papered over with a half-table. No model call exists anywhere in <code>app/</code>; <code>anthropic</code> is declared in <code>requirements.txt</code> and imported by nothing.</td></tr>
 
 <tr><td>T10</td><td>Impact mapping: change &rarr; affected obligations / projects / documents, with confidence</td><td>The product's core join. Semantic matching earns its place here (ADR-008).</td>
 <td class="s-todo">not done. <span class="lbl">Do not read this as done because claims carry <code>confidence_bp</code> and projects carry attached changes.</span> Those are different things: <code>attach_change()</code> records a mapping a person made, and the seed reads the change-to-obligation mapping straight out of the manifest. Nothing computes a mapping, so nothing has a confidence to report.</td></tr>
 
 <tr><td>T11</td><td>Action recommendation + reviewer routing by role</td><td>Draft &rarr; monitor/comment. Final &rarr; comply, with effective date.</td>
-<td class="s-part">partly. The vocabulary half is built and tested (T7): <code>action_vocabulary()</code> and <code>requires_effective_date()</code>. The routing half is not — no code turns a change into a recommended action or routes it to a named reviewer. Roles exist as rows (<code>ROLE_OBLIGATION_OWNER</code> and the permission tables) from the identity work in flight, but nothing routes by them.</td></tr>
+<td class="s-part">partly, unchanged in substance. The vocabulary half is built, tested and now scored: <code>action_vocabulary()</code> and <code>requires_effective_date()</code>, plus the draft-versus-final routing metric in <code>make eval</code>. <span class="lbl">That metric scores the vocabulary table, not reviewer routing</span> — the names are close and the things are not. The routing half is still absent: no function in <code>app/</code> turns a change into a recommended action or hands it to a named reviewer. Roles now exist properly (<code>ROLE_ANALYST</code>, <code>ROLE_OBLIGATION_OWNER</code>, <code>ROLE_ADMIN</code> with their permission sets in <code>app/state/identity.py</code>) and nothing routes by them; <code>ensure_system_roles()</code> is not even called from the seed.</td></tr>
 
 <tr><td>T12</td><td>Confidence thresholds and the escalation queue</td><td>ADR-006. Below threshold never enters project state.</td>
 <td class="s-done">done, with one number stated honestly. The queue is real: <code>Escalation</code> rows carry a reason code for branching and reason text for the analyst, and <code>app/state/claims.py</code> withholds rather than shows. The threshold is configuration per ADR-006 — <code>MIN_CONFIDENCE_BP</code>, read from the environment — and <span class="lbl">it ships at 0</span>, so today nothing is withheld for confidence alone. That is deliberate: there is no evidence for where the line sits, and a number chosen to look rigorous is worse than an honest zero. <code>tests/test_claims.py</code>, 19 tests.</td></tr>
 
 <tr><td>T13</td><td>Project state + audit history; rollback to a prior state</td><td>Decide event-fold vs snapshots (open question in the ADR log) and record the choice.</td>
-<td class="s-part">partly. Project state is built (<code>app/state/projects.py</code>, 26 tests) and audit history is built with two independent mechanisms — a <code>before_flush</code> guard and a SHA-256 chain (<code>app/state/audit.py</code>, 8 tests). <strong>Rollback is not built</strong>, and the event-fold-versus-snapshots question is still listed as open in <code>decisions.html</code>. It was on the cut list; the cut is now taken and should be said out loud rather than left ambiguous.</td></tr>
+<td class="s-part">partly. Project state is built (<code>app/state/projects.py</code>, 26 tests) and audit history is built with two independent mechanisms — a <code>before_flush</code> guard and a SHA-256 chain (<code>app/state/audit.py</code>, 8 + 25 tests), now carrying actor attribution. <strong>Rollback is not built</strong>: no function in <code>app/state/</code> restores a prior state. The event-fold-versus-snapshots question is still listed as open in <code>decisions.html</code>. It was on the cut list; the cut is taken and should be written into the ADR log rather than left as an open question nobody is answering.</td></tr>
 </table>
 
 <h2>Phase 3 — hours 24-34: the surface</h2>
@@ -106,13 +119,13 @@ failure testable rather than theoretical.</div>
 <tr><th>#</th><th>Task</th><th>Notes</th><th>Status, and the evidence</th></tr>
 
 <tr><td>T14</td><td>Analyst workspace: proceedings, changes with materiality, and the action queue</td><td>Simple enough to use without a walkthrough. That is the stated bar.</td>
-<td class="s-part">partly, on two counts. <code>app/web/views/proceedings.py</code> renders the list and the version timeline, ordered by the edges the diff recorded rather than by sorting ids. But <strong>materiality is NULL on every change</strong> — the model would fill it and no model call exists — and at <code>45c408c</code> nothing mounted the router into <code>app/main.py</code>, so the screen existed and the product did not serve it.</td></tr>
+<td class="s-part">partly, on one count now rather than two. <code>app/web/views/proceedings.py</code> renders the list and the version timeline, ordered by the edges the diff recorded rather than by sorting ids, and it is mounted and reachable — <code>/</code> and <code>/proceedings/{id}</code> both answer 200 on the assembled application. <strong>Materiality is still NULL on every change</strong>, because the model would fill it and no model call exists. The screen shows the field's absence rather than a default that would read like a judgement.</td></tr>
 
 <tr><td>T15</td><td><strong>Citation visible in the UI</strong>: click a claim, see the exact source span highlighted; unverified claims held in review with the reason shown</td><td>The prep guide requires the hardest technical decision to be visible in the product rather than buried in the stack. This task IS that requirement.</td>
-<td class="s-part">built and tested; not yet reachable from <code>make run</code> at <code>45c408c</code>. <code>app/web/templates/change.html</code> and <code>app/web/static/citation.js</code>: the panel is server-rendered into the page, so it works without a round trip and without a framework. The strongest guard is <code>tests/test_change_view.py</code> asserting a withheld claim's statement string is <em>absent from the response body</em> — not greyed out, absent — because withheld claims render from a dataclass with no statement field. Move to done when the router mount is committed and checked on a fresh clone.</td></tr>
+<td class="s-done">done, and checked by starting the real application rather than by reading the suite. <code>/changes/{id}</code> answers 200 on <code>app.main:app</code>, and the paired demonstration is on it: one claim whose citation verifies and opens the stored source scrolled to the cited offsets, one whose quote was corrupted and never renders as a claim at all. <code>app/web/templates/change.html</code> and <code>app/web/static/citation.js</code>: the panel is server-rendered into the page, so it works without a round trip and without a framework. The strongest guard is <code>tests/test_change_view.py</code> (18) asserting a withheld claim's statement string is <em>absent from the response body</em> — not greyed out, absent — because withheld claims render from a dataclass with no statement field.</td></tr>
 
 <tr><td>T16</td><td>Reviewer view: escalation queue, approve / reject / amend, and the audit trail behind each</td><td></td>
-<td class="s-part">partly. <code>app/web/views/review.py</code> ships approve and reject, each writing an audit event whose chain still verifies afterwards, refusing an unsigned resolution, refusing a rejection with no reason, and conflicting on a double resolve. <strong>Amend is not built</strong> — ADR-013 permitted that cut explicitly, keeping the third path unused in the module rather than rewriting the architecture around a temporary UI limit. Same mount caveat as T14 and T15.</td></tr>
+<td class="s-part">partly. <code>app/web/views/review.py</code> is mounted and <code>/review</code> answers 200. It ships approve and reject, each writing an audit event whose chain still verifies afterwards, refusing an unsigned resolution, refusing a rejection with no reason, and conflicting on a double resolve. <strong>Amend is not built</strong> — ADR-013 permitted that cut explicitly, keeping the third path unused in the module rather than rewriting the architecture around a temporary UI limit. <span class="lbl">Second, sharper caveat:</span> the navigation labels <code>/review</code> "Review centre", and the router serving it is the older escalation queue. <code>app/web/views/review_centre.py</code> claims the same path and is not mounted, so the nav promises one screen and delivers another.</td></tr>
 </table>
 
 <h2>Phase 4 — hours 34-42: evidence it works</h2>
@@ -120,13 +133,13 @@ failure testable rather than theoretical.</div>
 <tr><th>#</th><th>Task</th><th>Notes</th><th>Status, and the evidence</th></tr>
 
 <tr><td>T17</td><td>Eval set: labelled obligations over the corpus; report precision and recall</td><td>Numbers you can defend beat adjectives you cannot.</td>
-<td class="s-todo">not done. <code>app/evals/run.py</code> is nine lines and prints <code>eval: no evals defined yet</code>, so <code>make eval</code> reports nothing. Blocked behind T9 in any case — there is no extraction to score. Note when it is built: the corpus has five labelled changes, and no percentage over five items is a measurement.</td></tr>
+<td class="s-part">partly, and read the split carefully rather than the headline. <span class="lbl">A harness now exists</span>: <code>make eval</code> runs <code>app/evals/</code> — <code>corpus.py</code>, <code>metrics.py</code>, <code>report.py</code>, <code>run.py</code> — scores five metrics against <code>data/manifest.json</code> with no model, no network and no database, and exits 1 on any blocking failure so it gates rather than reports. It passes 5 of 5 today. <span class="lbl">What the task asked for is still not there</span>: the eval set is over the deterministic spine, not over <em>labelled obligations</em>, because T9 does not exist and there is no extraction to score. Precision is not reported and cannot be — the manifest labels five changes rather than every change, so the corpus carries no negative labels, and <code>report.py</code> refuses to invent a denominator. <span class="lbl">And at this commit the harness had no tests of its own</span>: nothing in <code>tests/</code> imported <code>app.evals</code>, so <code>make test</code> would not have noticed it breaking. An uncommitted <code>tests/test_evals.py</code> appeared from a parallel workstream minutes after this check; re-read the row against HEAD rather than trusting it forward.</td></tr>
 
 <tr><td>T18</td><td>Citation-verification pass rate, and a deliberate-corruption test proving the verifier rejects a fabricated quote</td><td>The single most persuasive demo in the submission.</td>
-<td class="s-part">half done, and it is the persuasive half. The corruption tests exist and pass: <code>test_rejects_a_fabricated_quote_at_real_offsets</code>, offsets past the end, negative and inverted offsets, empty spans, and the ambiguous-occurrence cases in <code>tests/test_occurrence.py</code>. The <em>pass rate</em> is not computed, because T17's harness does not exist.</td></tr>
+<td class="s-done">done. Both halves exist now. The corruption tests pass — <code>test_rejects_a_fabricated_quote_at_real_offsets</code>, offsets past the end, negative and inverted offsets, empty spans, and the ambiguous-occurrence cases in <code>tests/test_occurrence.py</code> — and <code>make eval</code> reports the two matching metrics with their denominators: citation verification over the manifest's recorded offsets, and deliberate-corruption rejection. The caveat printed underneath is part of the deliverable: the largest independent sample is 20 recorded offsets, so the harness prints counts and withholds a rate below a sample of ten.</td></tr>
 
 <tr><td>T19</td><td>Failure-mode notes: where retrieval misses, where diffing breaks on restructuring, where the model misreads. Written down, not discovered live at the panel</td><td>"Where modern AI fails and how you designed around it" is an explicit evaluation dimension.</td>
-<td class="s-done">done, in three places that agree with each other. <code>docs/tdd.html</code> holds the failure modes and the 100% corruption-rejection bar; <code>docs/.ai/findings.html</code> holds eleven defects with how each was found and seven judgements with their reversal conditions; <code>state.json</code> holds four known gaps, the sharpest being that the verifier confirms a passage exists at the cited offsets, not that it supports the claim attached to it.</td></tr>
+<td class="s-done">done, in four places that agree with each other on the substance. <code>docs/tdd.html</code> holds the failure modes and the 100% corruption-rejection bar; <code>docs/.ai/findings.html</code> holds eleven defects with how each was found and seven judgements with their reversal conditions; <code>docs/submission.html</code> holds eight more defects found since, including the three that cost the most; and <code>make eval</code> prints a caveat naming what its numbers cannot support. <span class="lbl">They disagree on status, not on substance</span> — <code>findings.html</code> still calls #5 to #8 open after the code closed them.</td></tr>
 </table>
 
 <h2>Phase 5 — hours 42-48: the documents and the submission</h2>
@@ -134,19 +147,19 @@ failure testable rather than theoretical.</div>
 <tr><th>#</th><th>Task</th><th>Notes</th><th>Status, and the evidence</th></tr>
 
 <tr><td>T20</td><td><strong>Fold user-interview findings into the PRD and the prototype.</strong> What they misread, what they ignored, what you changed</td><td>The PRD is explicitly read for how user feedback shaped the build. Without this the PRD fails its own rubric.</td>
-<td class="s-block">still blocked on T1. Nothing to fold. <code>docs/user-research.html</code> states hypotheses H1 to H3 as open and falsifiable, which is the right shape and is not evidence.</td></tr>
+<td class="s-block">still blocked on T1. Seven messages sent, no conversation held, nothing to fold. <code>docs/user-research.html</code> states hypotheses H1 to H3 as open and falsifiable, which is the right shape and is not evidence.</td></tr>
 
 <tr><td>T21</td><td>Finish PRD and TDD; confirm the prototype tells the same story they do</td><td>Reviewers read PRD and TDD first, then verify against the code.</td>
-<td class="s-part">partly. Both documents exist, are long, and were attacked by three adversarial reviews that found a real contradiction — the MRD and the roadmap answered the moat question in opposite directions, now settled (verifier is the floor; the obligation graph is the durable advantage, and it does not exist at launch). What is unfinished is the second half of the task: the prototype and the documents do not yet tell the same story, because the README and <code>state.json</code> both describe a smaller build than the one in <code>app/</code>.</td></tr>
+<td class="s-part">partly, and the second half got worse rather than better. Both documents exist, are long, and were attacked by three adversarial reviews that found a real contradiction — the MRD and the roadmap answered the moat question in opposite directions, now settled (verifier is the floor; the obligation graph is the durable advantage, and it does not exist at launch). What is unfinished is the reconciliation. <span class="lbl">Five documents now disagree with the code</span>, all in the safe direction: the README says the directories are empty; <code>state.json</code> is three commits behind; <code>findings.html</code> calls four closed defects open; <code>mrd.html</code> says no outreach has been sent; and no ADR records the five decisions taken since ADR-014, because two parallel agents each declined to race on the number.</td></tr>
 
 <tr><td>T22</td><td>README with the exact run and test commands; verify on a clean clone</td><td>Do this on a fresh clone in a temp directory. Not "it works on my machine".</td>
-<td class="s-todo">not done, and the README is now actively wrong. It states that <code>app/</code>, <code>tests/</code> and <code>data/</code> are empty directories and that both targets are unimplemented. True at <code>634d559</code>, false since <code>dcb04af</code>. Finding #10 covers it. It is the first file a reviewer opens and it understates the build by the entire build. <code>make fresh-check</code> exists and has not been run since <code>45c408c</code>.</td></tr>
+<td class="s-todo">not done, and the README is still actively wrong. It states that <code>app/</code>, <code>tests/</code> and <code>data/</code> are empty directories and that both targets are unimplemented. True at <code>634d559</code>, false since <code>dcb04af</code>. Finding #10 covers it. It is the first file a reviewer opens and it understates the build by the entire build. <code>make fresh-check</code> exists and has not been run at this commit.</td></tr>
 
 <tr><td>T23</td><td>Fill <code>docs/submission.html</code>: what you built, what you reused, what the AI wrote and what you rewrote or rejected, what broke and how you debugged it</td><td>Keep this current as you go. Reconstructing it at hour 47 produces a worse and less honest answer.</td>
-<td class="s-done">done, with the note the task itself predicted. It was reconstructed in one pass at <code>45c408c</code> from primary sources — 17 commit messages, <code>findings.html</code>, <code>decisions.html</code>, <code>demo-notes.html</code>, <code>state.json</code> and the code — and the page says so at the top rather than implying it was kept live. Three defects are recorded there for the first time, including the two that cost the most. Re-read it after anything lands.</td></tr>
+<td class="s-done">done, in two passes, and the page says so at the top rather than implying it was kept live. Assembled at <code>45c408c</code> from primary sources and re-verified at <code>c7d6e00</code> by running each test file, starting the assembled application and requesting each route, and executing <code>make eval</code>. The second pass found four defects the first could not have known about — the unmounted project and review-centre routers, the untested eval harness, <code>findings.html</code> lagging the code, and <code>state.json</code> going stale a second time — and confirmed that the task's own warning was right: reconstruction finds less than a live log would have. Re-read it after anything lands.</td></tr>
 
 <tr><td>T24</td><td>Repo public or reviewer access granted; commit history intact, NOT squashed</td><td>They read the commit history. It is part of the submission.</td>
-<td class="s-part">half confirmed. History is intact and unsquashed: 17 commits, each message carrying its reasoning, including the note in <code>dcb04af</code> that the corpus files were swept into the previous commit by a broad <code>git add</code> — recorded rather than rewritten. <strong>Repository visibility is unverified</strong>; the remote is <code>github.com/jsahasi/strata</code>. Check it before sending, not after.</td></tr>
+<td class="s-part">half confirmed, and the unconfirmed half now points the wrong way. History is intact and unsquashed: 19 commits, each message carrying its reasoning, including the note in <code>dcb04af</code> that the corpus files were swept into the previous commit by a broad <code>git add</code> — recorded rather than rewritten. <strong>Visibility is still unverified from this working copy, and <code>docs/.ai/resume.md</code> records the remote as private.</strong> A private repository at interview time loses the part of the rubric this history was kept for.</td></tr>
 
 <tr><td>T25</td><td>90-second pitch written and said out loud: who, what, why, what is hard about it</td><td>Required for the panel; also a good test of whether the product has a point of view.</td>
 <td class="s-part">written, not rehearsed. The pitch is in <code>docs/.ai/briefing.html</code> along with the scripts for the moments that go wrong. Ninety seconds is shorter than it feels, and a pitch that has only been read is not a pitch that has been timed.</td></tr>
@@ -155,35 +168,43 @@ failure testable rather than theoretical.</div>
 <h2>Where the hours went, against the plan</h2>
 
 <p>Worth reading before planning the remaining hours, because the shape of the overrun is consistent.
-Phases 0 and 1 — the corpus and the deterministic engine — came in close to plan and are done.
-Phase 2 split: the state and audit machinery landed, the model-dependent half (T9, T10, T11's
-routing) did not, because the deterministic gate was built first on purpose and the model layer was
-always second. Phase 3 was rebuilt wider than planned after <code>docs/.ai/demo-notes.html</code>
-landed: projects, threads, work plans, scheduled runs, knowledge and a full review centre, which is
-where the extra 166 tests went. Phase 4 was skipped almost entirely. Phase 5 is where the debt sits.</p>
+Phases 0 and 1 — the corpus and the deterministic engine — came in close to plan and are done, and
+the four defects that sat inside the verifier are now closed. Phase 2 split: the state and audit
+machinery landed, the model-dependent half (T9, T10, T11's routing) did not, because the
+deterministic gate was built first on purpose and the model layer was always second. Phase 3 was
+rebuilt wider than planned after <code>docs/.ai/demo-notes.html</code> landed: projects, threads,
+work plans, scheduled runs, knowledge and a full review centre, which is where most of the extra
+tests went — and where the two unmounted routers came from. Phase 4 came back from the dead in the
+last hours: the eval harness exists and gates. Phase 5 is where the debt sits, and it is all
+documents.</p>
 
-<p><span class="lbl">The cheapest remaining work, in order:</span> the README (T22, minutes, and it is
-the first thing read); <code>make status</code> to regenerate <code>state.json</code> (one command);
-committing the router mount and running <code>fresh-check</code> (T2); confirming repository
-visibility (T24). None of these is engineering. All four change what a reviewer sees first.</p>
+<p><span class="lbl">The cheapest remaining work, in order:</span> mount the two routers and give
+each router its own paths (T2, and it is the first thing a reviewer clicks); rewrite the README
+(T22, minutes); run <code>make status</code> (one command); close findings #5 to #8; update the MRD
+outreach log; confirm repository visibility (T24). Only the first is engineering. All six change
+what a reviewer sees before they read a line of code.</p>
 
 <h2>Cut list — if time runs short</h2>
 <p>Sacrifice in this order, and say so in the submission rather than hiding it: multi-jurisdiction taxonomy, rollback (keep audit history, drop the restore), the reviewer role model (one reviewer role instead of several), UI polish. <strong>Never cut:</strong> citation verification, the deterministic diff, draft-versus-final, or the user interviews. Those four are the submission's argument.</p>
 
 <div class="note"><span class="lbl">Cuts actually taken, so the list is a record and not just an
 intention:</span> rollback is cut (T13). Amend in the review queue is cut (T16), which ADR-013
-permitted in advance. The evals are cut (T17, T18's pass rate). Multi-jurisdiction taxonomy was never
-started. <span class="lbl">The user interviews are on the never-cut list and have not happened.</span>
-That is the one cut nobody decided to take, which is the worst way to take one.</div>
+permitted in advance. Multi-jurisdiction taxonomy was never started. <span class="lbl">One cut came
+back:</span> the evals were on this list and the harness shipped anyway, which is worth noting
+because a cut that reverses quietly is the same failure as a decision nobody wrote down.
+<span class="lbl">The user interviews are on the never-cut list and no interview has happened.</span>
+Seven messages are out, which is not the same thing. That is the one cut nobody decided to take,
+which is the worst way to take one.</div>
 
 <h2>Standing risks</h2>
 <table>
 <tr><th>Risk</th><th>Mitigation</th><th>How it played out</th></tr>
-<tr><td>No user interviews land in time</td><td>Ask tonight; offer 20 minutes at their convenience; if only one lands, say so honestly in the PRD and report what it changed. One real conversation reported honestly beats three invented ones.</td><td><span class="lbl">Materialised.</span> Nothing was asked on the first night. The mitigation was written and not executed, and the fabricated-facts incident in the drafted batch then cost a further rewrite.</td></tr>
-<tr><td>Scope creep into a platform</td><td>The cut list above. One user, one workflow, one depth area.</td><td><span class="lbl">Partly materialised, deliberately.</span> The workspace and review centre were built after <code>demo-notes.html</code> landed, which is breadth. The rule that makes it defensible is that every synthesising surface must display its own coverage: <code>compose_take()</code> refuses to compose a take that does not record its withheld count.</td></tr>
-<tr><td>Prototype does not start on a reviewer's machine</td><td>T2 early, T21 on a clean clone, no service dependencies (ADR-007).</td><td><span class="lbl">Nearly materialised in the worst way.</span> It started — and served only <code>/healthz</code>, because nothing mounted the screen routers. 222 tests passed because each screen test builds its own application. A fresh-clone check would have caught in one minute what the suite could not.</td></tr>
-<tr><td>Docs written last, contradicting the code</td><td>PRD and TDD updated as decisions are made. The ADR log is the running record.</td><td><span class="lbl">Materialised in the opposite direction to the one feared.</span> The docs do not overstate the build, they understate it — README, <code>state.json</code>. Safer, and still a contradiction a reviewer reads before anything else.</td></tr>
-<tr><td class="lbl">New: a passing suite that never asked the question</td><td>Adversarial review of the data inventory and of the wiring, not only of the code under test. Seven of eleven defects were found this way.</td><td>Two instances so far, both serious: the unscoped passage read, and the unmounted routers. Both had full green suites at the time.</td></tr>
+<tr><td>No user interviews land in time</td><td>Ask tonight; offer 20 minutes at their convenience; if only one lands, say so honestly in the PRD and report what it changed. One real conversation reported honestly beats three invented ones.</td><td><span class="lbl">Materialised.</span> Nothing was asked on the first night. The mitigation was written and not executed, and the fabricated-facts incident in the drafted batch then cost a further rewrite. Seven messages are now out with no reply.</td></tr>
+<tr><td>Scope creep into a platform</td><td>The cut list above. One user, one workflow, one depth area.</td><td><span class="lbl">Materialised, deliberately, and it has a bill.</span> The workspace and review centre were built after <code>demo-notes.html</code> landed. The rule that makes the breadth defensible holds — <code>compose_take()</code> refuses to compose a take that does not record its withheld count. The cost is that the two widest modules it produced, 2,021 lines, are the two the product does not serve and no test file covers.</td></tr>
+<tr><td>Prototype does not start on a reviewer's machine</td><td>T2 early, T21 on a clean clone, no service dependencies (ADR-007).</td><td><span class="lbl">Materialised twice.</span> First it started and served only <code>/healthz</code>, because nothing mounted the screen routers, and 222 tests passed because each screen test builds its own application. Now it starts, serves four screens, and 404s on the link its own navigation shows first. A fresh-clone check and one click would have caught in a minute what 296 tests cannot.</td></tr>
+<tr><td>Docs written last, contradicting the code</td><td>PRD and TDD updated as decisions are made. The ADR log is the running record.</td><td><span class="lbl">Materialised in the opposite direction to the one feared, and spread.</span> The docs do not overstate the build, they understate it — README, <code>state.json</code>, <code>findings.html</code>, <code>mrd.html</code>, and no ADR since 014. Safer, and still five contradictions a reviewer reads before anything else. They survive precisely because modesty costs nothing until someone checks.</td></tr>
+<tr><td class="lbl">A passing suite that never asked the question</td><td>Adversarial review of the data inventory and of the wiring, not only of the code under test. Seven of eleven logged defects were found this way.</td><td><span class="lbl">Three instances now, and the third is the worst.</span> The unscoped passage read, the unmounted routers, and the unmounted routers again one layer up. <code>tests/test_app_wiring.py</code> was written for the second and misses the third, because it asserts a hand-written list of five paths instead of deriving the question from <code>app.routes</code>. That is a line fix wearing a class fix's name.</td></tr>
+<tr><td class="lbl">New: a fix that depends on somebody remembering</td><td>Turn the command into a hook. If the correction is "run X", X belongs in the commit path, not in a document.</td><td><code>state.json</code> was recorded as stale at <code>45c408c</code> with the fix named as one command. Eight hours later it was stale by three commits, twelve tests and a whole subsystem. The build agent's warning about the shared test-database path failed the same way: read, written down, not acted on, 39 phantom failures later.</td></tr>
 </table>
 
 </body>

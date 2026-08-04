@@ -1,15 +1,15 @@
 {
   "_generated_by": "scripts/status.py via `make status`. Do not hand-edit.",
   "_why": "Every other file in docs/.ai/ is prose and can go stale. This one is read from the repository, so where it disagrees with prose, it is right.",
-  "generated_at": "2026-08-04T07:18:53.611942+00:00",
+  "generated_at": "2026-08-04T15:48:25.052014+00:00",
   "git": {
-    "head": "45c408c",
+    "head": "62007a3",
     "branch": "main",
-    "commits": 16,
+    "commits": 20,
     "dirty": true
   },
   "tests": {
-    "passed": 284,
+    "passed": 413,
     "failed": 0,
     "files": [
       "test_app_wiring.py",
@@ -19,13 +19,17 @@
       "test_claims.py",
       "test_diff.py",
       "test_draft_final.py",
+      "test_evals.py",
       "test_identity.py",
       "test_ingestion.py",
       "test_isolation.py",
+      "test_login.py",
       "test_normalize.py",
       "test_occurrence.py",
       "test_passage_isolation.py",
+      "test_pdf_text.py",
       "test_pipeline.py",
+      "test_policy.py",
       "test_projects.py",
       "test_review.py",
       "test_screens.py",
@@ -38,6 +42,14 @@
     "requires_api_key": false
   },
   "modules": {
+    "app/auth/policy.py": {
+      "lines": 647,
+      "calls_a_model": false
+    },
+    "app/auth/sessions.py": {
+      "lines": 582,
+      "calls_a_model": false
+    },
     "app/diff/engine.py": {
       "lines": 126,
       "calls_a_model": false
@@ -46,12 +58,16 @@
       "lines": 196,
       "calls_a_model": false
     },
+    "app/evals/metrics.py": {
+      "lines": 681,
+      "calls_a_model": false
+    },
     "app/evals/report.py": {
       "lines": 107,
       "calls_a_model": false
     },
     "app/evals/run.py": {
-      "lines": 9,
+      "lines": 196,
       "calls_a_model": false
     },
     "app/ingestion/ingest.py": {
@@ -63,7 +79,7 @@
       "calls_a_model": false
     },
     "app/main.py": {
-      "lines": 94,
+      "lines": 112,
       "calls_a_model": false
     },
     "app/pipeline.py": {
@@ -71,11 +87,11 @@
       "calls_a_model": false
     },
     "app/seed.py": {
-      "lines": 1754,
+      "lines": 1924,
       "calls_a_model": false
     },
     "app/state/audit.py": {
-      "lines": 576,
+      "lines": 591,
       "calls_a_model": false
     },
     "app/state/claims.py": {
@@ -87,7 +103,7 @@
       "calls_a_model": false
     },
     "app/state/identity.py": {
-      "lines": 1017,
+      "lines": 1018,
       "calls_a_model": false
     },
     "app/state/models.py": {
@@ -107,15 +123,19 @@
       "calls_a_model": false
     },
     "app/text/normalize.py": {
-      "lines": 197,
+      "lines": 216,
       "calls_a_model": false
     },
     "app/verification/verifier.py": {
-      "lines": 123,
+      "lines": 177,
       "calls_a_model": false
     },
     "app/web/deps.py": {
-      "lines": 87,
+      "lines": 458,
+      "calls_a_model": false
+    },
+    "app/web/views/auth.py": {
+      "lines": 311,
       "calls_a_model": false
     },
     "app/web/views/changes.py": {
@@ -279,6 +299,66 @@
       "revisits": null,
       "is_hard_bet": false,
       "title": "Secrets live in one gitignored file, copied at the narrowest possible width"
+    },
+    {
+      "id": "ADR-015",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "security",
+      "depends_on": "ADR-007",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Local password authentication on the standard library, and no new dependency for it"
+    },
+    {
+      "id": "ADR-016",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "security",
+      "depends_on": "ADR-015",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Login events join the existing hash chain rather than a second log"
+    },
+    {
+      "id": "ADR-017",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "security",
+      "depends_on": "ADR-016",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Two digest schemes, and the old rows are never re-hashed"
+    },
+    {
+      "id": "ADR-018",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "security",
+      "depends_on": "ADR-017",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Segregation of duties is enforced from the audit chain, not from a static permission"
+    },
+    {
+      "id": "ADR-019",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "security",
+      "depends_on": "ADR-018",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "The demo may waive segregation of duties, and the waiver writes itself into the record"
+    },
+    {
+      "id": "ADR-020",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "security",
+      "depends_on": "ADR-015",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "A session is a server-side row and a random bearer token, not a signed cookie"
     }
   ],
   "built": {
@@ -294,13 +374,13 @@
     "project_workspace": true,
     "review_centre": true,
     "web_surface": true,
-    "roles_and_permissions": true
+    "authentication": true,
+    "roles_and_permissions": true,
+    "segregation_of_duties": true,
+    "evals": true
   },
   "designed_not_built": {
-    "authentication": "docs/security.html - Authentication and authorization",
-    "segregation_of_duties": "docs/security.html - the analyst never approves their own reading",
-    "model_interpretation": "docs/architecture.html - the only stage permitted to call a model",
-    "evals": "docs/.ai/tasks.html T17/T18 - labelled set, precision and recall"
+    "model_interpretation": "docs/architecture.html - the only stage permitted to call a model"
   },
   "known_gaps": [
     "The verifier confirms a quoted passage EXISTS at the cited offsets. It does not confirm the passage supports the claim attached to it. Named in docs/security.html.",
