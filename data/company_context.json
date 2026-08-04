@@ -1,0 +1,152 @@
+{
+  "_synthetic_disclaimer": "All entities, people, obligations, projects, and documents below are fictional, created for the Strata prototype test corpus. No resemblance to a real company or employee is intended.",
+  "company": {
+    "name": "Meridian Electric & Power Company",
+    "short_name": "MEP",
+    "type": "investor-owned multi-state electric utility",
+    "jurisdictions": [
+      "State of Meridian (primary; regulator: Meridian Public Utilities Commission, MPUC)",
+      "State of Ashford (regulator: Ashford Utility Board, AUB)"
+    ],
+    "note": "The docket in this corpus (MPUC-2026-0142) is a Meridian-jurisdiction proceeding. MEP's regulatory affairs team also tracks an analogous but separate Ashford proceeding, not included in this corpus, which is why company obligations are written in MEP's own internal, cross-jurisdictional wording rather than in the Meridian docket's wording."
+  },
+  "obligations": [
+    {
+      "id": "OBL-001",
+      "internal_wording": "Post security for new large-load interconnection work before construction starts.",
+      "owner_name": "Priya Nandakumar",
+      "owner_title": "Manager, Interconnection Engineering",
+      "source_document_id": "DOC-3",
+      "related_project_id": "PRJ-1",
+      "note_for_semantic_join": "Internal wording says 'post security', the docket says 'post collateral'. No shared vocabulary with docket Sections 6.1/5.4.1 beyond the concept itself; this is deliberately a paraphrase, not a lexical match.",
+      "maps_to_docket_sections": ["6.1 (v1/v2)", "5.4.1 (v3)"]
+    },
+    {
+      "id": "OBL-002",
+      "internal_wording": "Refresh demand forecasts for major accounts on an annual cycle.",
+      "owner_name": "Marcus Whitfield",
+      "owner_title": "Director, Load Forecasting",
+      "source_document_id": "DOC-1",
+      "related_project_id": "PRJ-2",
+      "note_for_semantic_join": "Internal cadence is described as an annual cycle with no fixed calendar date; the docket ties the same underlying activity to a specific compliance date (March 1, 2027 in v1, moved to June 1, 2027 in v2/v3). The deadline move is invisible to a lexical match against this obligation's wording.",
+      "maps_to_docket_sections": ["7.1 (v1/v2)", "6.1 (v3)"]
+    },
+    {
+      "id": "OBL-003",
+      "internal_wording": "Screen every new large-hookup request against the current company MW cutoff at intake, before opening an interconnection file.",
+      "owner_name": "Denise Okoro",
+      "owner_title": "Senior Analyst, Interconnection Standards",
+      "source_document_id": "DOC-3",
+      "related_project_id": "PRJ-1",
+      "note_for_semantic_join": "Maps to the docket's Large Load Customer definition and applicability sections. The docket's cosmetic restatement of the 20 MW definition between v1 and v2 (Section 2.1) should NOT trigger a change action against this obligation, since the 20 MW threshold itself does not move.",
+      "maps_to_docket_sections": ["2.1", "3.1"]
+    },
+    {
+      "id": "OBL-004",
+      "internal_wording": "Keep engineering study files for large-load projects on record for six years after project close.",
+      "owner_name": "Priya Nandakumar",
+      "owner_title": "Manager, Interconnection Engineering",
+      "source_document_id": "DOC-3",
+      "related_project_id": "PRJ-1",
+      "note_for_semantic_join": "Internal retention period (six years, measured from project close) deliberately does not match the docket's stated retention period (five years, measured from the date of the Order) in the repeated boilerplate sentence. A correct semantic join must not assume the numbers agree; flagging the discrepancy is itself a useful output, not a bug.",
+      "maps_to_docket_sections": ["4.4", "6.3 (v1/v2)", "7.3 (v1/v2)", "5.4.3 (v3)", "6.3 (v3)"]
+    },
+    {
+      "id": "OBL-005",
+      "internal_wording": "Charge network-upgrade costs tied to a specific large customer's request to that customer's project budget; do not spread those costs into general rate base.",
+      "owner_name": "Sarah Lindqvist",
+      "owner_title": "VP, Regulatory Affairs",
+      "source_document_id": "DOC-2",
+      "related_project_id": "PRJ-1",
+      "note_for_semantic_join": "This obligation states MEP's OLD internal cost-allocation practice, matching docket v1 Section 5.2 (100% customer-pays). It goes stale the moment the docket's material change lands in v2 Section 5.2/5.3 (shared allocation, customer floor of 50%). This is the flagship case for the impact-mapping step: a document that was correct against v1 becomes wrong against v2 without anyone editing it.",
+      "maps_to_docket_sections": ["5.2 (v1)", "5.2/5.3 (v2, v3)"]
+    },
+    {
+      "id": "OBL-006",
+      "internal_wording": "File a yearly interconnection activity summary with each state commission MEP is regulated by.",
+      "owner_name": "Alicia Ferreira",
+      "owner_title": "Regulatory Filings Manager",
+      "source_document_id": "DOC-1",
+      "related_project_id": "PRJ-2",
+      "note_for_semantic_join": "Generic, cross-jurisdiction wording ('each state commission') versus the docket's single-jurisdiction wording ('the Commission'). Correct join requires recognizing this docket's Section 7.2/6.2 as one instance of the broader internal obligation.",
+      "maps_to_docket_sections": ["7.2 (v1/v2)", "6.2 (v3)"]
+    },
+    {
+      "id": "OBL-007",
+      "internal_wording": "Be able to cut large-customer load on short notice when the system is stressed.",
+      "owner_name": "Tom Baptiste",
+      "owner_title": "Director, System Operations",
+      "source_document_id": "DOC-4",
+      "related_project_id": "PRJ-3",
+      "note_for_semantic_join": "Before v3 this is an informal operational capability with no docket-level obligation behind it. The final order's new Section 6.5 (Curtailment During Capacity Emergencies) is the first time a Commission-enforceable duty attaches to it, and it adds a payment obligation MEP did not have flagged internally. This is the final-only test case's impact-mapping target.",
+      "maps_to_docket_sections": ["6.5 (v3 only, no v1/v2 counterpart)"]
+    },
+    {
+      "id": "OBL-008",
+      "internal_wording": "Give large customers their posted funds back, plus interest, as soon as their connection is energized.",
+      "owner_name": "David Kwarteng",
+      "owner_title": "Treasury Manager",
+      "source_document_id": "DOC-3",
+      "related_project_id": "PRJ-1",
+      "note_for_semantic_join": "Maps to the docket's collateral-return provision and, incidentally, to one occurrence of the repeated recordkeeping boilerplate sentence that sits in the same subsection. A citation for this obligation that points at the boilerplate sentence rather than the collateral-return sentence would be textually valid but reasoned about the wrong clause -- an instance of the wrong-occurrence trap described in manifest.json.",
+      "maps_to_docket_sections": ["6.3 (v1/v2)", "5.4.3 (v3)"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "PRJ-1",
+      "name": "Riverbend Data Center Campus Interconnection",
+      "description": "Active interconnection project for a 140 MW data center campus in the Riverbend service area; currently in the Facilities Study stage under MEP's interconnection process. Directly exposed to the docket's cost-allocation and collateral provisions.",
+      "status": "active",
+      "related_obligation_ids": ["OBL-001", "OBL-003", "OBL-004", "OBL-005", "OBL-008"]
+    },
+    {
+      "id": "PRJ-2",
+      "name": "Multi-State Load Forecast Modernization",
+      "description": "Internal initiative to standardize how MEP collects and files updated load forecasts for major accounts across Meridian and Ashford, replacing a spreadsheet-based process with a shared forecasting tool.",
+      "status": "active",
+      "related_obligation_ids": ["OBL-002", "OBL-006"]
+    },
+    {
+      "id": "PRJ-3",
+      "name": "Emergency Curtailment Program Buildout",
+      "description": "System Operations initiative to formalize MEP's ability to curtail large-load customers during capacity emergencies, including notice procedures and a compensation methodology. Was a low-priority internal capability project until the docket's final order attached a Commission-enforceable duty and compensation rate to it.",
+      "status": "active, reprioritized after v3",
+      "related_obligation_ids": ["OBL-007"]
+    }
+  ],
+  "documents": [
+    {
+      "id": "DOC-1",
+      "type": "compliance_policy",
+      "title": "MEP Regulatory Compliance Policy -- Interconnection & Cost Recovery",
+      "owner_name": "Sarah Lindqvist",
+      "owner_title": "VP, Regulatory Affairs",
+      "summary": "Company-wide policy setting recordkeeping, forecasting-cadence, and cross-jurisdiction filing expectations for large-load interconnection matters. Source document for OBL-002 and OBL-006."
+    },
+    {
+      "id": "DOC-2",
+      "type": "filed_tariff",
+      "title": "MEP Rate Schedule LL-1: Large Load Interconnection Service",
+      "owner_name": "Sarah Lindqvist",
+      "owner_title": "VP, Regulatory Affairs",
+      "summary": "MEP's currently filed tariff governing large-load interconnection service in the State of Meridian, referenced directly by docket Section 1.3. States MEP's cost-allocation practice as 100% customer-pays for network upgrades, i.e. consistent with docket v1 but not with the v2/v3 material change. Source document for OBL-005 and the flagship stale-obligation case."
+    },
+    {
+      "id": "DOC-3",
+      "type": "internal_procedure",
+      "title": "Interconnection Study & Collateral Handling Procedure",
+      "owner_name": "Priya Nandakumar",
+      "owner_title": "Manager, Interconnection Engineering",
+      "summary": "Step-by-step internal procedure for running feasibility, system impact, and facilities studies, and for collecting, holding, and returning customer collateral. Source document for OBL-001, OBL-003, OBL-004, and OBL-008."
+    },
+    {
+      "id": "DOC-4",
+      "type": "board_memo",
+      "title": "Memo to the Board: Data Center Interconnection Demand and Regulatory Exposure",
+      "owner_name": "Sarah Lindqvist",
+      "owner_title": "VP, Regulatory Affairs",
+      "summary": "Quarterly memo to MEP's board flagging the volume of pending large-load interconnection requests and the open regulatory questions in the Meridian docket, including system reliability concerns that later surface in the final order's curtailment section. Source document for OBL-007."
+    }
+  ]
+}

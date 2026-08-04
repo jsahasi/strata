@@ -1,0 +1,243 @@
+{
+  "_synthetic_disclaimer": "This entire corpus -- the proceeding, the commission, the utility, the docket number, and the company context -- is invented for the Strata prototype test corpus. No text is copied from a real regulatory filing. Character offsets below were computed programmatically from the committed files in this directory (Python str indexing, UTF-8, end-exclusive) and verified by reading the bytes back at each offset; see data/README.md for the verification method.",
+  "offset_convention": "All (start, end) pairs are zero-based Python string offsets into the file's full text, decoded as UTF-8, with end exclusive: file_text[start:end] == exact_text. Files were read in binary mode and decoded, not opened in text mode, so no newline translation occurred between what was written and what was measured.",
+  "docket": {
+    "commission": "Meridian Public Utilities Commission (MPUC) -- fictional",
+    "utility": "Meridian Electric & Power Company (MEP) -- fictional",
+    "docket_number": "MPUC-2026-0142 -- invented",
+    "subject": "Interconnection standards and cost allocation for large load (data center) customers"
+  },
+  "versions": [
+    {
+      "id": "v1",
+      "file": "v1_notice_of_proposed_rulemaking.txt",
+      "label": "Notice of Proposed Rulemaking",
+      "status": "DRAFT"
+    },
+    {
+      "id": "v2",
+      "file": "v2_revised_proposed_rule.txt",
+      "label": "Revised Proposed Rule",
+      "status": "DRAFT"
+    },
+    {
+      "id": "v3",
+      "file": "v3_final_order.txt",
+      "label": "Final Order",
+      "status": "FINAL"
+    }
+  ],
+  "changes": [
+    {
+      "id": "CHG-1",
+      "type": "material",
+      "version_pair": ["v1", "v2"],
+      "section": "5.2-5.3 (Cost Allocation / Cost-Causation Methodology)",
+      "description": "The Utility's cost-allocation obligation shifts from requiring the Large Load Customer to bear 100% of Network Upgrade costs, to a shared allocation under a new cost-causation methodology in which the customer bears a floor of 50% and the Utility recovers the remainder from general ratepayers subject to a reliability-benefit finding. This changes who bears the cost and by how much -- a substantive change to an obligation, not a wording change.",
+      "before": {
+        "version": "v1",
+        "file": "v1_notice_of_proposed_rulemaking.txt",
+        "start": 5649,
+        "end": 5914,
+        "exact_text": "5.2 Allocation of Network Upgrade Costs. Except as provided in Section 5.3, the Utility shall allocate 100% of Network Upgrade costs identified in the System Impact Study and the Facilities Study to the Large Load Customer requesting interconnection.\n\n5.3 Reserved."
+      },
+      "after": {
+        "version": "v2",
+        "file": "v2_revised_proposed_rule.txt",
+        "start": 5849,
+        "end": 6583,
+        "exact_text": "5.2 Allocation of Network Upgrade Costs. Except as provided in Section 5.3, the Utility shall allocate Network Upgrade costs identified in the System Impact Study and the Facilities Study between the Large Load Customer and general ratepayers in accordance with the cost-causation methodology described in Section 5.3.\n\n5.3 Cost-Causation Methodology. The Large Load Customer shall bear not less than fifty percent (50%) of Network Upgrade costs allocated under Section 5.2. The Utility shall bear the remaining Network Upgrade costs as a cost of service recoverable from general ratepayers, provided that the Commission finds the resulting Network Upgrades provide demonstrable reliability benefit to the Utility's system as a whole."
+      },
+      "maps_to_obligation_id": "OBL-005",
+      "exercises": "Materiality classification in the model-interpretation layer (ADR-004); impact mapping flags OBL-005 and DOC-2 (the filed tariff) as stale against v2/v3 (ADR-006, T9)."
+    },
+    {
+      "id": "CHG-2",
+      "type": "cosmetic",
+      "version_pair": ["v1", "v2"],
+      "section": "2.1 (Definitions -- \"Large Load Customer\")",
+      "description": "The defined term is restated in different words (\"equals or exceeds\" becomes \"is equal to or greater than\") with no change to the 20 MW threshold or to any obligation that depends on it. This is text difference without substance difference; the diff must find it, and the materiality step must call it immaterial. The wording introduced in v2 is unchanged in v3.",
+      "before": {
+        "version": "v1",
+        "file": "v1_notice_of_proposed_rulemaking.txt",
+        "start": 1970,
+        "end": 2066,
+        "exact_text": "\"Large Load Customer\" means a Customer whose Requested Load equals or exceeds 20 megawatts (MW)."
+      },
+      "after": {
+        "version": "v2",
+        "file": "v2_revised_proposed_rule.txt",
+        "start": 2160,
+        "end": 2266,
+        "exact_text": "\"Large Load Customer\" means a Customer whose Requested Load is equal to or greater than 20 megawatts (MW)."
+      },
+      "also_present_unchanged_in": {
+        "version": "v3",
+        "file": "v3_final_order.txt",
+        "start": 2081,
+        "end": 2187,
+        "exact_text": "\"Large Load Customer\" means a Customer whose Requested Load is equal to or greater than 20 megawatts (MW)."
+      },
+      "maps_to_obligation_id": "OBL-003",
+      "exercises": "The materiality classifier must NOT flag this as material and must NOT trigger a change action against OBL-003, even though the text changed. False positive avoidance test."
+    },
+    {
+      "id": "CHG-3",
+      "type": "deadline",
+      "version_pair": ["v1", "v2"],
+      "section": "7.1 (Compliance Timeline and Reporting -- Updated Load Forecasts)",
+      "description": "The compliance date for submitting an updated load forecast moves from March 1, 2027 to June 1, 2027. Everything else in the sentence is identical. This wording is carried unchanged into v3 (renumbered to Section 6.1); the deadline itself does not move again between v2 and v3.",
+      "before": {
+        "version": "v1",
+        "file": "v1_notice_of_proposed_rulemaking.txt",
+        "start": 6908,
+        "end": 7082,
+        "exact_text": "Each Large Load Customer with an executed Interconnection Agreement as of the Effective Date shall submit an updated load forecast to the Utility no later than March 1, 2027."
+      },
+      "after": {
+        "version": "v2",
+        "file": "v2_revised_proposed_rule.txt",
+        "start": 7577,
+        "end": 7750,
+        "exact_text": "Each Large Load Customer with an executed Interconnection Agreement as of the Effective Date shall submit an updated load forecast to the Utility no later than June 1, 2027."
+      },
+      "also_present_unchanged_in": {
+        "version": "v3",
+        "file": "v3_final_order.txt",
+        "start": 7504,
+        "end": 7677,
+        "exact_text": "Each Large Load Customer with an executed Interconnection Agreement as of the Effective Date shall submit an updated load forecast to the Utility no later than June 1, 2027."
+      },
+      "maps_to_obligation_id": "OBL-002",
+      "exercises": "The change type an analyst most fears missing: a single date token changes inside an otherwise-identical sentence. Tests that the diff is sensitive at sub-sentence granularity and that the deadline-move is surfaced distinctly from a generic 'modified' change."
+    },
+    {
+      "id": "CHG-4",
+      "type": "final-only",
+      "version_pair": ["v2", "v3"],
+      "section": "6.5 (Compliance Timeline and Reporting -- Curtailment During Capacity Emergencies)",
+      "description": "An entirely new obligation -- mandatory load curtailment during Utility-declared capacity emergencies, with a compensation duty running the other way -- appears for the first time in the Final Order. It has no counterpart in v1 or v2; the text itself states this explicitly ('was not proposed in the Notice of Proposed Rulemaking or the Revised Proposed Rule').",
+      "before": {
+        "version": null,
+        "file": null,
+        "start": null,
+        "end": null,
+        "exact_text": null,
+        "note": "Confirmed absent: the string 'Curtailment During Capacity Emergencies' does not occur in v1_notice_of_proposed_rulemaking.txt or v2_revised_proposed_rule.txt."
+      },
+      "after": {
+        "version": "v3",
+        "file": "v3_final_order.txt",
+        "start": 8418,
+        "end": 9294,
+        "exact_text": "6.5 Curtailment During Capacity Emergencies. Upon declaration of a capacity emergency by the Utility under its Commission-approved emergency operating procedures, a Large Load Customer shall curtail its load at the Point of Interconnection to the level specified in the Utility's curtailment notice within the time specified in that notice, which shall not be less than fifteen (15) minutes. The Utility shall compensate a Large Load Customer for curtailment performed under this Section 6.5 at the rate specified in the Utility's Commission-approved curtailment tariff. This Section 6.5 was not proposed in the Notice of Proposed Rulemaking or the Revised Proposed Rule in this docket and is adopted on the record developed in response to comments raising system reliability concerns associated with the aggregate size of pending Large Load Customer interconnection requests."
+      },
+      "maps_to_obligation_id": "OBL-007",
+      "exercises": "ADR-005: draft-versus-final handling. A change with no draft-stage precedent must still produce a comply action (not monitor-and-comment), because it originates directly in a FINAL-status version. Also the clearest new impact-mapping target: OBL-007 existed informally with no obligation-register linkage to this docket before v3."
+    },
+    {
+      "id": "CHG-5",
+      "type": "restructure",
+      "version_pair": ["v2", "v3"],
+      "section": "Section 6 (v2, standalone) becomes Section 5.4 (v3, subsection of Cost Allocation)",
+      "description": "The entire Collateral and Financial Assurance section relocates from its own top-level Section 6 in v2 to become subsection 5.4 under Section 5 (Cost Allocation) in v3, with subsections renumbered 6.1/6.2/6.3 to 5.4.1/5.4.2/5.4.3 and internal cross-references updated to match (e.g. 'Section 6.1' becomes 'Section 5.4.1'). The substantive obligations -- collateral amount, timing, and return -- are unchanged; only the section's position, number, and internal cross-references differ.",
+      "before": {
+        "version": "v2",
+        "file": "v2_revised_proposed_rule.txt",
+        "start": 6585,
+        "end": 7501,
+        "exact_text": "SECTION 6. COLLATERAL AND FINANCIAL ASSURANCE\n\n6.1 Amount of Collateral. A Large Load Customer shall post collateral in an amount equal to 100% of the binding cost estimate produced by the Facilities Study, prior to the Utility's commencement of construction of Interconnection Facilities or Network Upgrades.\n\n6.2 Timing of Collateral Posting. Collateral required under Section 6.1 shall be posted no later than thirty (30) days following the Large Load Customer's receipt of the Facilities Study.\n\n6.3 Return of Collateral. Collateral posted under this Section 6 shall be returned to the Large Load Customer, with interest at the Commission-approved rate, upon energization of the Point of Interconnection, less any amounts properly drawn to satisfy costs incurred by the Utility. The Utility shall maintain records sufficient to demonstrate compliance with this Order for a period of not less than five (5) years."
+      },
+      "after": {
+        "version": "v3",
+        "file": "v3_final_order.txt",
+        "start": 6508,
+        "end": 7428,
+        "exact_text": "5.4 Collateral and Financial Assurance.\n\n5.4.1 Amount of Collateral. A Large Load Customer shall post collateral in an amount equal to 100% of the binding cost estimate produced by the Facilities Study, prior to the Utility's commencement of construction of Interconnection Facilities or Network Upgrades.\n\n5.4.2 Timing of Collateral Posting. Collateral required under Section 5.4.1 shall be posted no later than thirty (30) days following the Large Load Customer's receipt of the Facilities Study.\n\n5.4.3 Return of Collateral. Collateral posted under this Section 5.4 shall be returned to the Large Load Customer, with interest at the Commission-approved rate, upon energization of the Point of Interconnection, less any amounts properly drawn to satisfy costs incurred by the Utility. The Utility shall maintain records sufficient to demonstrate compliance with this Order for a period of not less than five (5) years."
+      },
+      "maps_to_obligation_id": "OBL-001",
+      "also_related_obligation_ids": ["OBL-008"],
+      "exercises": "ADR-004's disclosed alignment-fallback failure mode: naive sequential/positional alignment will see this as Section 6 deleted and a new Section 5.4 added, since the section number, heading, and every internal cross-reference changed even though the collateral-amount and collateral-timing sentences are verbatim identical. A content-aware alignment (e.g. near-duplicate detection ignoring the renumbered tokens) should instead report this as one moved/renumbered section with zero materiality. Also note the ripple: Section 4.5's cross-reference ('collateral later required under Section 6' in v1/v2) becomes 'under Section 5.4' in v3 -- a second, smaller textual effect of the same restructure, not separately itemized here."
+    }
+  ],
+  "repeated_boilerplate": {
+    "sentence": "The Utility shall maintain records sufficient to demonstrate compliance with this Order for a period of not less than five (5) years.",
+    "purpose": "Wrong-occurrence citation trap (per the corpus brief and the TDD's failure-mode list): this exact sentence appears three times per version, in three different sections, about three different subject matters (study records, collateral records, general compliance records). A citation with correct quoted_text and correct char_start/char_end for occurrence B, but reasoning that actually describes occurrence A or C, is textually verifiable yet substantively wrong. The offset-verifier alone cannot catch this; it is the reason ADR-003's verifier is necessary-but-not-sufficient and why occurrence identity must be checked, not just text equality.",
+    "occurrences": [
+      {
+        "version": "v1",
+        "file": "v1_notice_of_proposed_rulemaking.txt",
+        "section": "4.4 (Study Timelines)",
+        "start": 4930,
+        "end": 5063
+      },
+      {
+        "version": "v1",
+        "file": "v1_notice_of_proposed_rulemaking.txt",
+        "section": "6.3 (Return of Collateral)",
+        "start": 6699,
+        "end": 6832
+      },
+      {
+        "version": "v1",
+        "file": "v1_notice_of_proposed_rulemaking.txt",
+        "section": "7.3 (Recordkeeping)",
+        "start": 7395,
+        "end": 7528
+      },
+      {
+        "version": "v2",
+        "file": "v2_revised_proposed_rule.txt",
+        "section": "4.4 (Study Timelines)",
+        "start": 5130,
+        "end": 5263
+      },
+      {
+        "version": "v2",
+        "file": "v2_revised_proposed_rule.txt",
+        "section": "6.3 (Return of Collateral)",
+        "start": 7368,
+        "end": 7501
+      },
+      {
+        "version": "v2",
+        "file": "v2_revised_proposed_rule.txt",
+        "section": "7.3 (Recordkeeping)",
+        "start": 8063,
+        "end": 8196
+      },
+      {
+        "version": "v3",
+        "file": "v3_final_order.txt",
+        "section": "4.4 (Study Timelines)",
+        "start": 5051,
+        "end": 5184
+      },
+      {
+        "version": "v3",
+        "file": "v3_final_order.txt",
+        "section": "5.4.3 (Return of Collateral)",
+        "start": 7295,
+        "end": 7428
+      },
+      {
+        "version": "v3",
+        "file": "v3_final_order.txt",
+        "section": "6.3 (Recordkeeping)",
+        "start": 7990,
+        "end": 8123
+      }
+    ],
+    "maps_to_obligation_id": "OBL-004",
+    "note": "OBL-004's internal wording (six-year retention, measured from project close) deliberately does not match the docket's five-year retention (measured from the date of the Order), so a naive exact-text join between OBL-004 and any of these nine occurrences will correctly fail to find a verbatim match -- the join has to be semantic, per ADR-008, and the mismatch in duration should itself be surfaced, not silently reconciled."
+  },
+  "change_type_counts": {
+    "material": 1,
+    "cosmetic": 1,
+    "final-only": 1,
+    "deadline": 1,
+    "restructure": 1,
+    "repeated_boilerplate_sentence_sets": 1,
+    "repeated_boilerplate_total_occurrences": 9
+  }
+}
