@@ -105,6 +105,25 @@ footer{border-top:1px solid var(--rule);padding:2.2rem 0 3.5rem;font:400 14px/1.
 footer a{color:var(--muted)}
 .foot{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:baseline}
 .foot .sep{margin-left:auto}
+
+/* ---- the film ---------------------------------------------------------
+   The video is the argument, so it gets the width. Constrained by max-width
+   rather than a pixel width, and height:auto, because the app's own tests
+   refuse a fixed width wider than a phone.
+   Reduced motion is respected by not autoplaying at all: the poster frame is
+   the withheld claim, so a reader who never presses play has still seen the
+   point. That is why there is no autoplay attribute and no script to disable
+   one. ------------------------------------------------------------------ */
+.film{margin:2rem 0 0;max-width:100%}
+.film video{display:block;width:100%;height:auto;max-width:100%;
+  border:1px solid var(--rule);border-radius:10px;background:var(--paper)}
+.film figcaption{margin-top:1rem;max-width:38rem}
+.film figcaption p{margin:.55rem 0;font-size:.95rem;line-height:1.65;color:var(--muted)}
+.film figcaption b{color:var(--ink);font-weight:650}
+@media (max-width:40rem){
+  .film{margin-top:1.25rem}
+  .film video{border-radius:6px}
+}
 </style>
 </head>
 <body>
@@ -113,6 +132,7 @@ footer a{color:var(--muted)}
 <header>
   <div class="bar">
     <a class="brand" href="/">Strat<span>a</span></a>
+    <a class="navlink" href="#watch">Watch</a>
     <a class="navlink" href="#how">How it works</a>
     <a class="navlink" href="#refuses">What it refuses</a>
     <a class="navlink" href="#who">Who it is for</a>
@@ -151,6 +171,41 @@ footer a{color:var(--muted)}
       </div>
     </div>
   </div>
+</section>
+
+<section id="watch">
+  <div class="wrap"><div class="lined" data-line="2">
+    <h2>Thirty seconds of the real thing</h2>
+    <div class="narrow">
+      <p>No slides and no mock-up. This is the application running against its corpus. It ends
+      where it should end &mdash; on a claim that will not assert itself, showing the source beside
+      the citation that misquoted it.</p>
+    </div>
+
+    <figure class="film">
+      <video controls muted loop playsinline preload="metadata"
+             poster="/strata-poster.jpg" width="1280" height="800"
+             aria-describedby="film-transcript">
+        <source src="/strata-30s.webm" type="video/webm">
+        <source src="/strata-30s.mp4" type="video/mp4">
+        <p>Your browser will not play this video.
+        <a href="/strata-30s.mp4">Download it instead</a>, or read what it shows below.</p>
+      </video>
+      <figcaption id="film-transcript">
+        <p><b>What it shows, for anyone who would rather read it.</b> The project board, with each
+        line of work carrying its open questions and its next re-run. A proceeding holding three
+        versions of one docket. Then a single change: section&nbsp;2.1 rewritten between the notice
+        and the revised rule, with the exact character offsets on both sides.</p>
+        <p>Two claims hang off that change. The first is asserted, because its quoted text is really
+        in the source at the offsets it names. The second is not. Where its statement would be there
+        is a hatched panel reading <b>no claim made</b>, and beneath it the reason: the source says
+        <b>20 megawatts</b>, the citation quoted <b>10</b>. One digit, and the meaning reverses. The
+        claim goes to the review queue instead of onto the page.</p>
+        <p class="muted">Recorded from the running application. The corpus is synthetic, and the
+        citation check runs with no model and no network.</p>
+      </figcaption>
+    </figure>
+  </div></div>
 </section>
 
 <section id="how">
