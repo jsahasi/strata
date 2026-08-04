@@ -227,6 +227,24 @@ def _source_text_by_version(session: Session, company_id: str) -> dict[str, str]
     second thing to get wrong, and one of the two would eventually be the one
     nobody audited. A version belonging to another company is simply absent from
     this map, and an absent source withholds the claim.
+
+    WHY NOT verify_citation_for_version(). That function makes the same pairing
+    and adds a check this path does not have: it hashes the version's text and
+    refuses when the digest disagrees with the one ingest recorded. It is not
+    called here because it finds its version by reading every version the
+    company owns, so adopting it would repeat that read once per claim instead
+    of once per change. app/state/queries.py holds no read that returns a single
+    scoped version; adding one belongs there, not here.
+
+    WHAT THAT COSTS, PLAINLY. The bytes under a citation are re-read here every
+    time, so an edit that lands on a cited span withholds the claim on the next
+    render. An edit somewhere else in the same version does not: the quote still
+    matches at its offsets, and the claim still asserts itself against a
+    document that is no longer the one ingested. That is best-practices.html
+    principle 28, unfixed on the path the product actually uses. Closing it
+    means reporting the drift under its own reason code rather than as a quote
+    mismatch, which changes what the change view and the review centre show for
+    an edited source -- a decision wider than this module.
     """
     return {
         version.id: version.source_text
