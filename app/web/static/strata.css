@@ -41,6 +41,7 @@
   --t-doc: 1.125rem;      /* 18px — quoted source text */
   --t-claim: 1.1875rem;   /* 19px — a claim's statement */
   --t-h1: 1.5rem;         /* 24px — page title. The page does not shout. */
+  --t-count: 1.375rem;    /* 22px — a count read across a grid of cards */
 
   --lh-ui: 1.5;
   --lh-doc: 1.72;         /* generous leading: this text gets read closely */
@@ -533,6 +534,38 @@ a.nav__link:hover {
   font-weight: 500;
 }
 
+/* Project status. The three names are PROJECT_STATUSES in app/state/models.py
+   and this file follows them rather than inventing prettier ones -- a class the
+   template has to translate is a class that will be translated wrongly.
+   They sit on the axis the other badges already use: dashed is provisional,
+   solid outline is in force, filled is settled. Monitoring is watching without
+   acting, which is the same kind of fact as a draft not binding anything, so it
+   borrows the dashed edge rather than a new shape. */
+.badge--active {
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.badge--monitoring {
+  border: 1px dashed var(--rule-strong);
+  background: transparent;
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+/* Filled, like final, because a closed project is settled -- but filled in
+   ink-3 rather than ink, so it reads as retired rather than binding. Not
+   rule-strong: white on rule-strong falls under 3:1 in both schemes, and a
+   label nobody can read is not a quiet label, it is a broken one. */
+.badge--closed {
+  border: 1px solid var(--ink-3);
+  background: var(--ink-3);
+  color: var(--surface);
+  font-weight: 600;
+}
+
 /* --------------------------------------------------- the document register -- */
 
 /* Anything set in .doc is the document talking, not Strata. */
@@ -731,6 +764,16 @@ a.nav__link:hover {
   );
 }
 
+/* Both sit on a solid plate, so the hatch never crosses a word. The plate is
+   also the reading: a note laid on struck ground, not text written over it. */
+.withheld__label,
+.withheld__reason {
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.15em 0.45em;
+  background: var(--surface);
+}
+
 .withheld__label {
   font-size: var(--t-micro);
   font-weight: 700;
@@ -744,7 +787,6 @@ a.nav__link:hover {
    replaces. */
 .withheld__reason {
   margin-top: var(--s2);
-  max-width: 56ch;
   font-size: var(--t-ui);
   color: var(--ink-2);
 }
@@ -917,6 +959,1037 @@ a.nav__link:hover {
   }
 }
 
+/* ------------------------------------------------------------- coverage -- */
+
+/* The strip every surface that synthesises or counts must render: how many
+ * findings it rests on, and how many it withheld. It is the workspace-scale
+ * restatement of the claim rule. One claim refuses to assert itself; one
+ * synthesis refuses to hide what it could not substantiate.
+ *
+ * The design problem is that "N included, M withheld" reads as a headline and
+ * a footnote unless the two are built as equals, so they are:
+ *
+ *   same cell, same padding, same size, same weight, same numeric face, and
+ *   the same ink. The withheld number is NOT set in the alarm colour. An alarm
+ *   number becomes an error badge, and people learn to dismiss error badges.
+ *   Equal standing is stated by equal treatment.
+ *
+ * What differs is the mark and the word. A filled square counts; a hatched
+ * square is the same hatch a withheld claim's slot carries. The reader who has
+ * seen one screen of this product already knows what it means.
+ *
+ * The strip renders at every count, including zero withheld and zero findings.
+ * A coverage strip that disappears when it is convenient is worth nothing.
+ */
+.coverage {
+  /* The share the template supplies. It defaults to the whole bar, not to
+     none: a template that forgets to pass it has told this strip nothing about
+     what verified, and a strip that answers "nothing was withheld" on no
+     information is the lie this component exists to stop. Absence is denial
+     here as well. */
+  --withheld-share: 100%;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.coverage__scope {
+  padding: var(--s2) var(--s4);
+  border-bottom: 1px solid var(--rule);
+  background: var(--surface-sunk);
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+
+/* The 1px gap over a ruled background draws the divider, and keeps drawing it
+   when the pair stacks on a narrow screen. The same hairline the citation chip
+   puts between the human reference and the machine coordinates. */
+.coverage__pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule-strong);
+}
+
+.coverage__cell {
+  padding: var(--s4);
+  background: var(--surface);
+}
+
+.coverage__n {
+  display: block;
+  font: 700 var(--t-count) / 1.1 var(--face-data);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.coverage__label {
+  display: flex;
+  align-items: center;
+  gap: 0.45em;
+  margin-top: var(--s2);
+  color: var(--ink);
+  font-size: var(--t-micro);
+  font-weight: 700;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.coverage__note {
+  max-width: 36ch;
+  margin-top: var(--s1);
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+
+/* Two squares of one size. Filled counts, hatched does not. */
+.coverage__mark {
+  flex: 0 0 auto;
+  width: 0.72em;
+  height: 0.72em;
+  border: 1px solid var(--ink-3);
+  background: var(--ink-3);
+}
+
+.coverage__mark--withheld {
+  border-color: var(--alarm);
+  background-color: transparent;
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--hatch) 0 1px,
+    transparent 1px 4px
+  );
+}
+
+/* The ratio, drawn once. Counts tell you the numbers; this tells you the share
+   at a glance, which is the thing a reader otherwise has to work out and
+   usually does not. Width comes from --withheld-share on the element. */
+.coverage__bar {
+  display: flex;
+  height: 4px;
+  border-top: 1px solid var(--rule-strong);
+  background: var(--ink-3);
+}
+
+.coverage__bar-withheld {
+  width: var(--withheld-share);
+  margin-left: auto;
+  background-color: var(--alarm-wash);
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--alarm) 0 1px,
+    transparent 1px 4px
+  );
+}
+
+/* What the synthesis read, split the way app/state/review.py splits it. A take
+   resting only on internal sources has read nothing the regulator actually
+   wrote, and a single total hides that completely. The marks are the ones the
+   .source component uses, so this line needs no legend for anyone who has seen
+   the sources section. */
+.coverage__basis {
+  display: flex;
+  gap: var(--s5);
+  flex-wrap: wrap;
+  padding: var(--s2) var(--s4);
+  border-top: 1px solid var(--rule);
+  font: var(--t-micro) / 1.6 var(--face-data);
+  color: var(--ink-2);
+}
+
+.coverage__basis-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.coverage__rule {
+  flex: 0 0 auto;
+  width: 3px;
+  height: 0.9em;
+}
+
+.coverage__rule--external {
+  background: var(--ink);
+}
+
+.coverage__rule--internal {
+  background-image: linear-gradient(
+    to right,
+    var(--ink-3) 0 1px,
+    transparent 1px 2px,
+    var(--ink-3) 2px 3px
+  );
+}
+
+/* Nothing has been synthesised yet. That is not the same as a clean sheet, so
+   the bar carries no included portion at all. */
+.coverage--empty .coverage__bar {
+  background-color: transparent;
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--hatch) 0 1px,
+    transparent 1px 4px
+  );
+}
+
+@media (max-width: 34rem) {
+  .coverage__pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------- projects -- */
+
+/* Three per row at the shell width, two on a tablet, one on a phone. auto-fill
+   rather than auto-fit on purpose: with two projects, auto-fit would stretch
+   them across the whole shell and a card would change size as the account
+   grows. A card is a fixed thing; it should not resize because a colleague
+   added a project. */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18.5rem, 1fr));
+  gap: var(--s4);
+  align-items: stretch;
+}
+
+/* A column, not a row template. The count row is pushed to the foot with an
+   auto margin rather than a named grid row, so a card renders correctly whether
+   or not the project carries a summary line. A template with one fewer child
+   should not move the thing the analyst scans for. */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  padding: var(--s4) var(--s4) 0;
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 120ms ease;
+}
+
+a.project-card:hover {
+  border-color: var(--ink-3);
+  color: inherit;
+}
+
+a.project-card:hover .project-card__name {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.project-card__head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--s3);
+}
+
+.project-card__name {
+  font-size: var(--t-ui-lg);
+  font-weight: 600;
+  letter-spacing: -0.008em;
+  line-height: 1.3;
+}
+
+/* Where the work sits: jurisdiction in the product's voice, docket reference in
+   the coordinate face, because a docket number is a reference someone else can
+   look up rather than a phrase this product composed. */
+.project-card__where {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+
+.project-card__note {
+  max-width: 40ch;
+  color: var(--ink-3);
+  font-size: var(--t-small);
+}
+
+/* The row the analyst scans. Numbers first and large, labels small underneath,
+   all on one baseline grid so four cards in a row can be read down a column
+   instead of one at a time. No rules between the cells: alignment does that
+   work, and hairlines here would be decoration. */
+.project-card__counts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(4.25rem, 1fr));
+  gap: var(--s3) var(--s4);
+  margin-top: auto;
+  padding: var(--s3) 0 var(--s4);
+  border-top: 1px solid var(--rule);
+}
+
+/* min-width:0 so a long value wraps inside its track instead of widening the
+   whole row and breaking the alignment the scan depends on. */
+.tally {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.tally__n {
+  display: block;
+  font: 700 var(--t-count) / 1.1 var(--face-data);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.tally__label {
+  display: block;
+  margin-top: 3px;
+  color: var(--ink-3);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+/* A count that means a person has to do something. The solid bar is the same
+   mark a material change carries, and it means the same thing in both places:
+   this one needs a human. Colour agrees with the bar, it does not carry it. */
+.tally--waiting {
+  padding-left: var(--s2);
+  border-left: 3px solid var(--alarm);
+}
+
+.tally--waiting .tally__n {
+  color: var(--alarm-strong);
+}
+
+/* A date, not a count. Smaller and lighter than a number because it is a
+   different kind of fact, and pretending otherwise would break the scan. */
+.tally--date .tally__n {
+  font-size: var(--t-ui);
+  font-weight: 600;
+}
+
+/* Zero, or nothing scheduled. Rendered in words and never as a dash: a dash in
+   a count row is the same lie as a blank table. */
+.tally--none .tally__n {
+  color: var(--ink-3);
+  font-size: var(--t-small);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* The add-a-project tile. It reads as an action through the verb, the accent,
+   and one behaviour: the dashed edge goes solid on hover and focus, which is
+   what the tile itself does when you use it. No icon, because the icon would be
+   a dependency and the verb is clearer than a plus sign anyway. */
+.card--new {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-style: dashed;
+  border-color: var(--rule-strong);
+  background: transparent;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.card--new .card__verb {
+  color: var(--accent);
+  font-size: var(--t-ui-lg);
+  font-weight: 650;
+}
+
+.card--new .card__note {
+  max-width: 32ch;
+  margin-top: var(--s2);
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+
+a.card--new:hover,
+a.card--new:focus-visible {
+  border-style: solid;
+  border-color: var(--accent);
+  background: var(--accent-wash);
+  color: inherit;
+}
+
+/* ------------------------------------------------------------------ tabs -- */
+
+/* The project's sections and the review centre's sections. These are links to
+ * server-rendered URLs, so they are keyboard reachable because they are links,
+ * not because JavaScript was persuaded to make them so. The CSS also matches
+ * aria-selected, so a real tablist is styled the same if one is ever used.
+ *
+ * A sunk rail with the current section lifted out of it, deliberately unlike
+ * the masthead's underlined nav: those are screens, these are sections of one
+ * screen, and two different jobs should not share one look.
+ */
+.tabs {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  background: var(--surface-sunk);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--s2);
+  flex: 0 0 auto;
+  padding: var(--s2) var(--s4);
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  color: var(--ink-2);
+  font: 600 var(--t-small) / 1.4 var(--face-ui);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+a.tab:hover {
+  color: var(--ink);
+  background: var(--bg);
+}
+
+/* The ring must sit inside: the rail scrolls, and an outset ring would be
+   clipped at the first and last section. */
+.tab:focus-visible {
+  outline-offset: -2px;
+}
+
+.tab--current,
+.tab[aria-selected="true"] {
+  border-color: var(--rule);
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* Where the work is, before anyone clicks. */
+.tab__count {
+  font: var(--t-micro) / 1.4 var(--face-data);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+}
+
+.tab--current .tab__count {
+  color: var(--ink-2);
+}
+
+.tab__count--waiting {
+  padding: 0.1em 0.4em;
+  border: 1px solid var(--alarm);
+  border-radius: var(--r-sm);
+  background: var(--alarm-wash);
+  color: var(--alarm-strong);
+  font-weight: 700;
+}
+
+.tabpanel {
+  padding-top: var(--s5);
+  scroll-margin-top: var(--s4);
+}
+
+.tabpanel:focus {
+  outline: none;
+}
+
+/* --------------------------------------------------------------- threads -- */
+
+/* A research thread is a sequence, so it is set on a timeline and the order
+ * carries the meaning. The marker says who spoke: hollow is the system, filled
+ * is the analyst. Filled is the heavier mark on purpose — human input is the
+ * thing this product wants more of, not the thing it tolerates. The head names
+ * the speaker in words as well, so the shape never carries it alone.
+ *
+ * The two names are TURN_AUTHOR_KINDS in app/state/models.py.
+ */
+.thread {
+  --rail: 1.75rem;
+  margin: 0;
+  padding: 0 0 0 var(--rail);
+  list-style: none;
+  position: relative;
+}
+
+.thread::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: var(--rule);
+}
+
+.turn {
+  position: relative;
+  padding-bottom: var(--s5);
+}
+
+.turn::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--rail));
+  top: 4px;
+  width: 11px;
+  height: 11px;
+  border: 1px solid var(--rule-strong);
+  background: var(--bg);
+}
+
+.turn--system::before {
+  border-color: var(--ink-3);
+  background: var(--surface);
+}
+
+.turn--analyst::before {
+  border-color: var(--ink);
+  background: var(--ink);
+}
+
+.turn__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  margin-bottom: var(--s2);
+}
+
+.turn__who {
+  font-size: var(--t-small);
+  font-weight: 600;
+}
+
+.turn__body {
+  max-width: 62ch;
+  color: var(--ink);
+}
+
+/* ----------------------------------------------------------- work plans -- */
+
+/* Numbered, because a plan genuinely is a sequence and the analyst refers to
+ * step three out loud. The number gives position; the marker on the rail gives
+ * state, and the two are different facts.
+ *
+ * Four states, exactly STEP_STATES in app/state/models.py. The marker alphabet
+ * is monochrome-safe and none of it is an icon:
+ *   empty      todo
+ *   half full  doing
+ *   barred     blocked — a gate drawn across the step
+ *   full       done
+ *
+ * Blocked is where the product's rule reaches the plan. A step blocked because
+ * a finding it rests on did not verify carries a .withheld slot in its body
+ * saying so, which is the treatment a withheld claim already uses. The state
+ * says the step cannot proceed; the slot says why. Two facts, two components,
+ * and no fifth state invented to hold the pair.
+ */
+.plan {
+  --rail: 2.25rem;
+  counter-reset: step;
+  margin: 0;
+  padding: 0 0 0 var(--rail);
+  list-style: none;
+}
+
+.plan-step {
+  position: relative;
+  padding: var(--s4) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.plan-step:first-child {
+  border-top: 0;
+}
+
+.plan-step::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--rail));
+  top: calc(var(--s4) + 2px);
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--ink-3);
+  background-color: transparent;
+}
+
+.plan-step__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  margin-bottom: var(--s2);
+}
+
+.plan-step__n {
+  counter-increment: step;
+  font: var(--t-micro) / 1.4 var(--face-data);
+  color: var(--ink-3);
+}
+
+.plan-step__n::before {
+  content: counter(step, decimal-leading-zero);
+}
+
+.plan-step__state {
+  font-size: var(--t-micro);
+  font-weight: 700;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.plan-step__what {
+  max-width: 62ch;
+  color: var(--ink);
+}
+
+.plan-step__owner {
+  margin-top: var(--s2);
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+
+/* Stated rather than left to the base rule. Every state in the alphabet has a
+   line here, so reading the sheet tells you the whole set. */
+.plan-step--todo::before {
+  background-color: transparent;
+}
+
+.plan-step--doing::before {
+  border-color: var(--ink);
+  background-image: linear-gradient(to top, var(--ink) 50%, transparent 50%);
+}
+
+.plan-step--blocked::before {
+  border-color: var(--alarm);
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0 40%,
+    var(--alarm) 40% 60%,
+    transparent 60% 100%
+  );
+}
+
+.plan-step--blocked .plan-step__state {
+  color: var(--alarm-strong);
+}
+
+.plan-step--done::before {
+  border-color: var(--ink);
+  background-color: var(--ink);
+}
+
+.plan-step--done .plan-step__what {
+  color: var(--ink-2);
+}
+
+/* ---------------------------------------------------------------- runs -- */
+
+/* A schedule that shows only the next run hides the question that matters,
+ * which is whether the last one was clean. Stale derived state looks exactly
+ * like fresh derived state, so this strip states three things at once: when it
+ * last ran, what came back, and when it runs next.
+ *
+ * Overdue takes the broken alarm rule, because an overdue run means the state
+ * on screen may no longer be current and the product cannot assert that it is.
+ * Same rule as a withheld claim, one stage earlier.
+ */
+.run-schedule {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 1px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  background: var(--rule);
+  overflow: hidden;
+}
+
+.run-schedule__cell {
+  padding: var(--s3) var(--s4);
+  background: var(--surface);
+}
+
+.run-schedule__value {
+  margin-top: var(--s1);
+  font: var(--t-ui) / 1.45 var(--face-data);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.run-schedule__value--degraded {
+  color: var(--alarm-strong);
+  font-weight: 700;
+}
+
+.run-schedule--overdue {
+  border-left: 0;
+  border-radius: 0 var(--r) var(--r) 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--alarm) 0 6px,
+    transparent 6px 12px
+  );
+  background-size: 3px 100%;
+  background-repeat: no-repeat;
+  background-position: left top;
+  padding-left: 3px;
+}
+
+/* Switched off. It keeps its last run and its result, and it is sunk rather
+   than raised — the same axis a withheld claim uses. A disabled schedule that
+   looks exactly like a running one is how a project goes quiet for a month and
+   nobody notices. */
+.run-schedule--off .run-schedule__cell {
+  background: var(--surface-sunk);
+}
+
+.run-schedule--off .run-schedule__value {
+  color: var(--ink-2);
+}
+
+/* No schedule at all. Said in words inside the same frame, so the absence is a
+   statement rather than an empty strip. */
+.run-schedule--none {
+  display: block;
+  padding: var(--s3) var(--s4);
+  border-style: dashed;
+  border-color: var(--rule-strong);
+  background: transparent;
+  color: var(--ink-2);
+}
+
+/* ------------------------------------------------------------ knowledge -- */
+
+/* What the company has taught the product, and what the product has kept. The
+ * mark is the wordmark's three bars: layers, newest on top. It appears in this
+ * one component and nowhere else, and it means one thing — this is accumulated
+ * company knowledge rather than something read off a filing today.
+ *
+ * Provenance is not optional here. Knowledge with no stated origin is folklore,
+ * and folklore in a compliance tool is how a wrong assumption outlives the
+ * person who made it.
+ */
+.knowledge-item {
+  position: relative;
+  padding: var(--s4) 0 var(--s4) var(--s6);
+  border-top: 1px solid var(--rule);
+}
+
+.knowledge-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(var(--s4) + 5px);
+  width: 1.5rem;
+  height: 8px;
+  background-image: linear-gradient(var(--ink-3) 0 0),
+    linear-gradient(var(--rule-strong) 0 0), linear-gradient(var(--rule) 0 0);
+  background-size: 100% 2px, 66% 2px, 38% 2px;
+  background-position: 0 0, 0 3px, 0 6px;
+  background-repeat: no-repeat;
+}
+
+/* A person vouched for this — confirmed_by is set. The top layer goes to full
+   ink, because knowledge a colleague stood behind is the kind this product is
+   trying to collect, and it outranks what the pipeline inferred on its own. */
+.knowledge-item--confirmed::before {
+  background-image: linear-gradient(var(--ink) 0 0),
+    linear-gradient(var(--ink-3) 0 0), linear-gradient(var(--rule-strong) 0 0);
+}
+
+.knowledge-item__title {
+  font-weight: 600;
+}
+
+.knowledge-item__body {
+  max-width: 62ch;
+  margin-top: var(--s2);
+  color: var(--ink-2);
+}
+
+.knowledge-item__from {
+  margin-top: var(--s3);
+  font: var(--t-micro) / 1.6 var(--face-data);
+  color: var(--ink-3);
+}
+
+/* ------------------------------------------------------------ questions -- */
+
+/* An open question the research raised. A blocking one is the same species as
+ * an escalation — work stopped, waiting for a person — so it wears the same
+ * broken rule and the same code chip rather than inventing a second language
+ * for the same event.
+ */
+.question {
+  padding: var(--s4) var(--s5);
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  background: var(--surface);
+}
+
+.question__text {
+  max-width: 58ch;
+  font: 500 var(--t-ui-lg) / 1.5 var(--face-ui);
+  color: var(--ink);
+}
+
+.question__why {
+  max-width: 62ch;
+  margin-top: var(--s2);
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+
+.question__actions {
+  display: flex;
+  gap: var(--s2);
+  flex-wrap: wrap;
+  margin-top: var(--s4);
+}
+
+.question--blocking {
+  border-left: 0;
+  border-radius: 0 var(--r) var(--r) 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--alarm) 0 6px,
+    transparent 6px 12px
+  );
+  background-size: 3px 100%;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+/* Same treatment as .queue__code, and the repetition is deliberate rather than
+   shared: renaming the queue's class to cover both would rewrite a component
+   this file already ships. */
+.question__flag {
+  display: inline-block;
+  margin-bottom: var(--s2);
+  padding: 0.2em 0.45em;
+  border: 1px solid var(--alarm);
+  border-radius: var(--r-sm);
+  color: var(--alarm-strong);
+  font: 700 var(--t-micro) / 1.4 var(--face-ui);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------- steer -- */
+
+/* A directive a person gave to shift the research. The accent rail is the rule
+ * this stylesheet already keeps: accent means something acted on. A steer is a
+ * person acting on the system.
+ *
+ * The rail is also the state. In force, the rail is there; revoked, it is gone
+ * and the words say when and by whom. A steer whose force is assumed rather than
+ * shown is a one-turn illusion, which is why the provenance line — who set it,
+ * when, and how many runs have obeyed it — is part of the component and not an
+ * optional extra a template may drop.
+ */
+.steer {
+  padding: var(--s4) var(--s5);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--r) var(--r) 0;
+  background: var(--surface);
+}
+
+.steer__directive {
+  max-width: 58ch;
+  font: 500 var(--t-ui-lg) / 1.55 var(--face-ui);
+  color: var(--ink);
+}
+
+.steer__provenance {
+  margin-top: var(--s3);
+  padding-top: var(--s3);
+  border-top: 1px solid var(--rule);
+  font: var(--t-micro) / 1.6 var(--face-data);
+  color: var(--ink-3);
+}
+
+.steer--revoked {
+  border-left: 1px solid var(--rule);
+  border-radius: var(--r);
+  background: var(--surface-sunk);
+}
+
+.steer--revoked .steer__directive {
+  color: var(--ink-3);
+}
+
+/* --------------------------------------------------------- deliverables -- */
+
+/* What leaves the building: a memo, a filing, a briefing, a register. Three
+ * states, exactly DELIVERABLE_STATES in app/state/models.py, on the axis the
+ * badges already use — dashed is provisional, solid is with a person, filled is
+ * settled.
+ *
+ * There is no "blocked" state here on purpose. Whether a document is safe to
+ * send is not a stage in its life, it is a fact about what it rests on, and
+ * that fact belongs in the coverage strip where the numbers are. Folding the
+ * two together would let a deliverable read as fine because nobody marked it
+ * otherwise.
+ *
+ * A deliverable must state its coverage. That is the governing rule of this
+ * whole surface: a document that summarises eleven findings and quietly omits
+ * three is the exact failure this product exists to prevent, and it is worse on
+ * paper than on screen because paper leaves the building.
+ */
+.deliverable {
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.deliverable__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  padding: var(--s3) var(--s4);
+  border-bottom: 1px solid var(--rule);
+  background: var(--surface-sunk);
+}
+
+.deliverable__title {
+  font-size: var(--t-ui);
+  font-weight: 600;
+}
+
+.deliverable__body {
+  padding: var(--s4);
+  color: var(--ink-2);
+}
+
+.deliverable__foot {
+  padding: var(--s4);
+  border-top: 1px solid var(--rule);
+}
+
+.deliverable__actions {
+  display: flex;
+  gap: var(--s2);
+  flex-wrap: wrap;
+  margin-top: var(--s4);
+}
+
+.deliverable--draft {
+  border-style: dashed;
+  border-color: var(--rule-strong);
+}
+
+.deliverable--in-review {
+  border-color: var(--ink-3);
+}
+
+.deliverable--final .deliverable__head {
+  border-bottom-color: var(--ink);
+  background: var(--ink);
+  color: var(--surface);
+}
+
+@media (prefers-color-scheme: dark) {
+  .deliverable--final .deliverable__head {
+    color: var(--surface-sunk);
+  }
+}
+
+/* Tripwire, the same kind this file already uses on a withheld claim carrying a
+   statement. A deliverable with no coverage strip is a template mistake that
+   would otherwise be invisible — the page would look finished and be dishonest.
+   Make it look broken instead. Browsers without :has() drop the rule and lose
+   the warning; none of them gain the wrong page. */
+.deliverable:not(:has(.coverage)) {
+  outline: 2px solid var(--alarm);
+}
+
+.deliverable:not(:has(.coverage))::before {
+  content: "Template error: this deliverable does not state its coverage.";
+  display: block;
+  padding: var(--s2) var(--s4);
+  background: var(--alarm-wash);
+  color: var(--alarm-strong);
+  font: 700 var(--t-micro) / 1.4 var(--face-ui);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+/* -------------------------------------------------------------- sources -- */
+
+/* Where a finding came from. Two kinds, and confusing them is expensive: an
+ * external filing is the public record everyone will be held to, an internal
+ * document is the company's own account of itself, which can be out of date and
+ * carries no authority with a regulator.
+ *
+ * One solid rule is the outside authority. Two hairlines are ours — a doubled
+ * line, not a dashed or broken one, so it never collides with provisional or
+ * withheld. An external source also shows the frozen hash of what was read,
+ * because that is the claim the citation rests on and it is checkable.
+ */
+.source {
+  position: relative;
+  padding: var(--s4) 0 var(--s4) var(--s5);
+  border-top: 1px solid var(--rule);
+}
+
+.source::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: var(--s4);
+  bottom: var(--s4);
+  width: 3px;
+}
+
+.source--external::before {
+  background: var(--ink);
+}
+
+.source--internal::before {
+  background-image: linear-gradient(
+    to right,
+    var(--ink-3) 0 1px,
+    transparent 1px 2px,
+    var(--ink-3) 2px 3px
+  );
+}
+
+.source__kind {
+  color: var(--ink-3);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.source__name {
+  margin-top: var(--s1);
+  font-weight: 600;
+}
+
+.source__meta {
+  display: flex;
+  gap: var(--s4);
+  flex-wrap: wrap;
+  margin-top: var(--s2);
+  font: var(--t-micro) / 1.6 var(--face-data);
+  color: var(--ink-3);
+}
+
 /* An empty screen states what it means. "Nothing here" and "nothing loaded"
    are different facts, and the product does not blur them. */
 .empty {
@@ -931,6 +2004,48 @@ a.nav__link:hover {
   margin-bottom: var(--s2);
   color: var(--ink);
   font-weight: 600;
+}
+
+/* The two halves an empty state owes the reader: what this means, and what to
+   do next. A list that renders nothing and says nothing reads as "nothing has
+   changed", which is a claim, and one the product has not checked. */
+.empty__body {
+  max-width: 56ch;
+}
+
+.empty__actions {
+  display: flex;
+  gap: var(--s2);
+  flex-wrap: wrap;
+  margin-top: var(--s4);
+}
+
+/* "There is nothing" and "we could not find out" are different facts, and only
+   one of them is reassuring. The second takes the broken alarm rule that every
+   other refusal in this product wears, so a reader never mistakes a failed read
+   for a clean sheet. */
+.empty--none {
+  border-style: dashed;
+}
+
+.empty--unloaded {
+  border: 1px solid var(--rule);
+  border-left: 0;
+  border-radius: 0 var(--r) var(--r) 0;
+  padding-left: calc(var(--s6) + 3px);
+  background-color: var(--surface);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--alarm) 0 6px,
+    transparent 6px 12px
+  );
+  background-size: 3px 100%;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+.empty--unloaded .empty__title {
+  color: var(--alarm-strong);
 }
 
 /* ------------------------------------------------------------- printing -- */
@@ -954,23 +2069,48 @@ a.nav__link:hover {
     --alarm: #000;
     --alarm-strong: #000;
     --alarm-wash: #fff;
-    --hatch: rgba(0, 0, 0, 0.45);
+    --hatch: rgba(0, 0, 0, 0.34);
   }
 
   .masthead,
   .claim,
   .queue__row,
   .withheld,
-  .source-panel {
+  .source-panel,
+  .coverage,
+  .coverage__mark,
+  .coverage__bar,
+  .coverage__bar-withheld,
+  .plan-step::before,
+  .question,
+  .deliverable,
+  .run-schedule,
+  .source::before,
+  .empty--unloaded {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
+  /* Navigation does not print. Coverage always does: the count of what was
+     withheld has to survive onto the page that leaves the building, which is
+     the copy someone will read without the product beside them. */
   .nav__list,
   .skip,
+  .tabs,
+  .card--new,
   .queue__actions,
+  .question__actions,
+  .deliverable__actions,
+  .empty__actions,
   .source-panel__close {
     display: none;
+  }
+
+  .coverage,
+  .deliverable,
+  .plan-step,
+  .project-card {
+    break-inside: avoid;
   }
 
   .source-panel__body {

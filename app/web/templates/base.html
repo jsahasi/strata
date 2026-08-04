@@ -6,16 +6,23 @@
     page_title        str   appended to "Strata" in the browser title
     company_name      str   the company whose data is on screen
     company_id        str   the tenant id that scoped every read on this page
-    nav_active        str   one of: proceedings | proceeding | change | review
+    nav_active        str   one of: projects | proceedings | proceeding |
+                            change | review
+    nav_projects_url  str   the project list, default /projects
+    nav_review_url    str   the review centre, default /review
     nav_proceeding_url str  set when a proceeding is in hand, else omitted
     nav_change_url    str   set when a change is in hand, else omitted
     review_count      int   items the system refused to assert, shown on the nav
 
   Blocks: title, head, content, foot.
 
-  The nav lists four screens. Two of them need a proceeding or a change in
+  The nav lists five screens. Two of them need a proceeding or a change in
   hand; without one they render as plain text, not as links that would 404.
   Absence is denial here too.
+
+  Projects and the review centre carry their URLs as context with a default,
+  so whoever owns routing sets the real path in one place rather than this
+  template guessing it.
 #}<!doctype html>
 <html lang="en">
 <head>
@@ -32,13 +39,16 @@
 
 {% set proceeding_url = nav_proceeding_url | default(none, true) %}
 {% set change_url = nav_change_url | default(none, true) %}
+{% set projects_url = nav_projects_url | default('/projects', true) %}
+{% set review_url = nav_review_url | default('/review', true) %}
 {% set screens = [
+  ('projects', 'Projects', projects_url, true, ''),
   ('proceedings', 'Proceedings', '/', true, ''),
   ('proceeding', 'This proceeding', proceeding_url, proceeding_url is not none,
    'Open a proceeding to reach this screen'),
   ('change', 'This change', change_url, change_url is not none,
    'Open a change to reach this screen'),
-  ('review', 'Review queue', '/review', true, ''),
+  ('review', 'Review centre', review_url, true, ''),
 ] %}
 
 <header class="masthead">
