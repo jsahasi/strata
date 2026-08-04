@@ -32,6 +32,9 @@
   .sw { display:inline-block; width:1.1em; height:1.1em; vertical-align:-.15em;
         border:1px solid #94a3b8; border-radius:2px; margin-right:.35em; }
   .win { background:#ecfdf5; border:1px solid #6ee7b7; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  /* A token name broken across three lines is a token name someone copies
+     wrongly. The cell may wrap; the name in it may not. */
+  td > code:only-child, th > code:only-child { white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -257,7 +260,7 @@ and its twin in <code>tests/test_tour.py</code> assert that <code>clerk.css</cod
 <code>tour.css</code> contain <strong>no hex literal and no <code>rgba(</code> followed by a digit</strong>,
 outside comments. So a translucent value cannot be written in either file. Every alpha, every blur, every
 shadow below is declared once in <code>strata.css</code> as a custom property, and the other two sheets
-reference it with <code>var()</code> and nothing else. Break this and the suite goes red at 1256.</p>
+reference it with <code>var()</code> and nothing else. Break this and the suite goes red at 1256.
 </div>
 
 <h2 id="colour">Colour</h2>
@@ -323,9 +326,9 @@ frosted rather than as a slightly see-through card. In dark it is a genuine step
 <td><strong>The fallback every pane gets before any filter is considered.</strong> It is
 <code>--glass-tint</code> already composited over <code>--bg</code>, computed rather than guessed, so a
 browser with no <code>backdrop-filter</code> lands on the colour the filter would have produced instead
-of on the raw tint. <code>--ink-3</code> reads 4.55:1 against it in light and 4.60:1 in dark; every other
-ink is far above. This is the value that makes the "grey text on a grey rectangle" failure impossible
-rather than unlikely.</td></tr>
+of on the raw tint. <code>--ink-3</code>, the palest ink in the product, reads 4.56:1 against it in light
+and 4.61:1 in dark; every other ink is far above. This is the value that makes the "grey text on a grey
+rectangle" failure impossible rather than unlikely.</td></tr>
 
 <tr><td><code>--glass-edge</code></td>
 <td><span class="sw" style="background:#ffffff"></span><code>#ffffff</code></td>
@@ -373,12 +376,32 @@ See the paragraph below.</td></tr>
 </table>
 
 <p><span class="lbl">The fallback collapses all three levels into one, and that is correct.</span>
-Composited over <code>--bg</code>, the three alphas land within one point of each other — there is no
-useful difference to preserve. Without the filter there is no <em>material</em> difference between the
-levels, only a difference in depth, and depth is carried by the shadow ladder and the edge highlight,
-neither of which needs <code>backdrop-filter</code> to exist. So a browser that drops the filter loses
-translucency and keeps the whole hierarchy. Do not invent three fallback greys to preserve a
-distinction that was never in the greys.</p>
+Composited over <code>--bg</code>, the three alphas land two points apart at most — in light
+<code>#f4f7f8</code>, <code>#f6f9fa</code>, <code>#f6f9fa</code>; in dark <code>#162125</code>,
+<code>#182328</code>, <code>#192429</code>. There is no useful difference to preserve, so
+<code>--glass-solid</code> takes the middle value and serves all three. Without the filter there is no
+<em>material</em> difference between the levels anyway, only a difference in depth, and depth is carried
+by the shadow ladder and the edge highlight, neither of which needs <code>backdrop-filter</code> to
+exist. So a browser that drops the filter loses translucency and keeps the whole hierarchy. Do not
+invent three fallback greys to preserve a distinction that was never in the greys.</p>
+
+<p><span class="lbl">Measured, not asserted.</span> Every pairing that will actually occur, computed
+against WCAG relative luminance. The worst case in the product is the palest ink on a pane composited
+over white paper — a masthead scrolling over a claim card — and it clears 4.5:1 with room to spare.</p>
+
+<table>
+<tr><th>Pairing</th><th>Light</th><th>Dark</th></tr>
+<tr><td><code>--ink</code> on <code>--glass-solid</code></td><td>16.70:1</td><td>13.65:1</td></tr>
+<tr><td><code>--ink-2</code> on <code>--glass-solid</code></td><td>8.24:1</td><td>7.76:1</td></tr>
+<tr><td><code>--ink-3</code> on <code>--glass-solid</code></td><td>4.56:1</td><td>4.61:1</td></tr>
+<tr><td><code>--accent</code> on <code>--glass-solid</code></td><td>7.19:1</td><td>8.71:1</td></tr>
+<tr><td><code>--ink-3</code> on a G1 pane over <code>--paper</code> <em>(worst case)</em></td>
+<td>4.64:1</td><td>4.56:1</td></tr>
+<tr><td><code>--ink-3</code> on <code>--paper</code></td><td>4.82:1</td><td>4.87:1</td></tr>
+<tr><td><code>--focus</code> ring on <code>--surface-sunk</code> <em>(the withheld surface)</em></td>
+<td>6.16:1</td><td>10.55:1</td></tr>
+<tr><td><code>--alarm-strong</code> on <code>--surface-sunk</code></td><td>8.78:1</td><td>12.55:1</td></tr>
+</table>
 
 <p><span class="lbl">The shape every glass rule takes.</span> Solid first, unconditionally. Glass only
 inside <code>@supports</code>. Written the other way round — declare the alpha and hope — a browser
@@ -782,7 +805,8 @@ of them already surviving a monochrome screenshot and the print block.</td></tr>
  */</span>
 .claim--withheld, .claim--withheld *,
 .queue__row,      .queue__row *,
-.withheld,        .withheld * {
+.withheld,        .withheld *,
+.withheld__label, .withheld__reason {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
   box-shadow: none;
@@ -799,6 +823,15 @@ of them already surviving a monochrome screenshot and the print block.</td></tr>
 <span class="c">/* There is deliberately no :hover, :active or :focus-within rule for any
    of the three. Do not add one that "does nothing" -- an empty rule is an
    invitation, and the next person will fill it. */</span></pre></div>
+
+<div class="crit"><strong>One existing rule must be deleted, not overridden.</strong>
+<code>strata.css</code> currently carries <code>.queue__row:hover { background-color: var(--bg); }</code>.
+Leaving it and cancelling it elsewhere would satisfy the letter and lose the point: the next person to
+open the file finds a hover rule on the refusal surface and assumes it is meant to be there. Remove the
+rule. The last two lines of <code>.withheld__label</code> and <code>.withheld__reason</code> are listed
+separately in the selector above because <code>shares_admin.html</code> and <code>integrations.html</code>
+use <code>.withheld__reason</code> without a <code>.withheld</code> parent — a descendant selector alone
+would miss them, and the refusal must look the same on an admin screen as on a change page.</div>
 
 <h3>Why this encodes the product rather than decorating it</h3>
 
@@ -826,8 +859,8 @@ is an addition and may be lost without harm.</p>
   border-radius: var(--r-sm);
   <span class="c">/* The halo separates the ring from a busy or translucent backdrop. It is
      a box-shadow, so the withheld surface drops it -- which is fine, because
-     that surface is opaque --surface-sunk and the ring already reads 6.1:1
-     against it in light and 10.6:1 in dark. Measured, not assumed. */</span>
+     that surface is opaque --surface-sunk and the ring already reads 6.16:1
+     against it in light and 10.55:1 in dark. Measured, not assumed. */</span>
   box-shadow: 0 0 0 4px var(--focus-halo);
 }</pre></div>
 

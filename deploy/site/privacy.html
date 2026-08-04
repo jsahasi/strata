@@ -84,7 +84,7 @@ section:first-of-type{border-top:0}
 /* ---- labelled rows ---- */
 .stage{display:grid;grid-template-columns:auto 1fr;gap:.9rem 1rem;align-items:baseline;padding:.85rem 0;border-bottom:1px solid var(--rule)}
 .stage:last-child{border-bottom:0}
-.stage b{font:500 12px/1.6 var(--mono);color:var(--muted);white-space:nowrap}
+.stage>b{font:500 12px/1.6 var(--mono);color:var(--muted);white-space:nowrap}
 .stage b.no{color:var(--withheld)}
 .stage p{margin:.2rem 0 0;font:400 15px/1.55 var(--sans)}
 .stage em{font-style:normal;color:var(--withheld);font-weight:600}
@@ -330,7 +330,7 @@ footer a{color:var(--muted)}
       <p>Nobody, today.</p>
       <ul>
         <li>No analytics, no trackers, no advertising, no tag manager, no session recorder.</li>
-        <li>No content delivery network, no external fonts, no external stylesheets, no external
+        <li>No content delivery network, no third-party fonts, no third-party stylesheets, no third-party
         scripts. This site and the application load nothing from another host. The only web
         address in the application's front-end code is the SVG namespace identifier, which is a
         name rather than a request.</li>

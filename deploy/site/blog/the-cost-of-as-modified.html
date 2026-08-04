@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Approved as modified: the language you have to file exists in no filing — Strata</title>
+<meta name="description" content="In Ohio 24-508 the term that governs the compliance tariff appears once in a 99-page order and never in the stipulation it modifies. In Georgia 44280 the tracked-changes copy reports the effective date and stays silent about the clause that changed it.">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --paper:#f7f8fa; --ink:#10141c; --muted:#5a6373; --rule:#dfe3ea;
+  --stamp:#1b3a8f; --withheld:#a8620e; --panel:#ffffff;
+  --measure:33rem;
+  --serif:ui-serif,"Iowan Old Style",Charter,Palatino,"Book Antiqua",Georgia,serif;
+  --sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#0d1017; --ink:#e6e8ec; --muted:#98a1b2; --rule:#242a35;
+         --stamp:#8fa9e8; --withheld:#d99a45; --panel:#131822; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.62 var(--serif)}
+
+a{color:var(--stamp)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--stamp);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;background:var(--panel);padding:.6rem .9rem;z-index:20;border:1px solid var(--rule)}
+
+.wrap{max-width:52rem;margin:0 auto;padding:0 1.25rem}
+.lined{position:relative;padding-left:3.25rem}
+.lined::before{
+  content:attr(data-line);
+  position:absolute;left:0;top:.34em;width:2.1rem;text-align:right;
+  font:500 12px/1 var(--mono);color:var(--muted);opacity:.62;
+  font-variant-numeric:tabular-nums;
+}
+.lined::after{content:"";position:absolute;left:2.6rem;top:0;bottom:0;width:1px;background:var(--rule)}
+@media (max-width:640px){
+  .lined{padding-left:0}
+  .lined::before,.lined::after{display:none}
+  .bar{flex-wrap:nowrap}
+  .navlink{display:none}
+}
+
+/* ---- header, matching the rest of the site ---- */
+header{border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:10}
+.bar{max-width:52rem;margin:0 auto;padding:.85rem 1.25rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.brand{font:600 15px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none;margin-right:auto}
+.brand span{color:var(--stamp)}
+.navlink{font:500 14px/1 var(--sans);color:var(--muted);text-decoration:none}
+.navlink:hover{color:var(--ink)}
+.signin{font:600 14px/1 var(--sans);text-decoration:none;color:var(--panel);background:var(--stamp);
+  padding:.62rem 1.05rem;border-radius:3px;white-space:nowrap}
+.signin:hover{filter:brightness(1.12)}
+@media (prefers-color-scheme:dark){.signin{color:#0d1017}}
+
+/* ---- type ---- */
+h1{font:400 clamp(1.85rem,4.6vw,2.6rem)/1.14 var(--serif);letter-spacing:-.018em;margin:0 0 1rem;text-wrap:balance}
+h2{font:600 12px/1.35 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--stamp);margin:2.6rem 0 1rem}
+h3{font:500 1.1rem/1.35 var(--serif);margin:2rem 0 .5rem}
+p{margin:0 0 1.05rem}
+.lede{font-size:1.1rem}
+.muted{color:var(--muted)}
+article{padding:2.6rem 0 1rem}
+.narrow{max-width:var(--measure)}
+.dateline{font:500 12px/1.5 var(--sans);letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin:0 0 1.2rem}
+
+/* ---- quotation from the record. Paper: opaque, square, still. ----
+   Every one names its file and links the commission's own copy. The <pre>
+   holds the characters as the extractor produced them, double spaces and
+   line breaks included, because normalising them here would be the exact
+   thing this article says not to do. */
+.q{margin:1.5rem 0;border:1px solid var(--rule);border-left:3px solid var(--stamp);
+   background:var(--panel);border-radius:2px;padding:1rem 1.1rem}
+.q--held{border-left-color:var(--withheld)}
+.q pre{margin:0;font:400 13.5px/1.62 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;color:var(--ink)}
+.q pre mark{background:color-mix(in srgb,var(--withheld) 26%,transparent);color:inherit;padding:0 .1em}
+.q cite{display:block;margin-top:.75rem;font:400 12.5px/1.5 var(--sans);font-style:normal;color:var(--muted)}
+.q cite b{font-weight:600;color:var(--ink);font-family:var(--mono);font-size:.95em}
+.q cite a{overflow-wrap:anywhere}
+
+/* ---- the two-column comparison ---- */
+.vs{display:grid;grid-template-columns:1fr;gap:.7rem;margin:1.5rem 0}
+@media (min-width:44rem){.vs{grid-template-columns:1fr 1fr}}
+.vs .q{margin:0}
+
+/* ---- a plain fact list ---- */
+.facts{list-style:none;margin:1.4rem 0;padding:0}
+.facts li{border-bottom:1px solid var(--rule);padding:.7rem 0;font:400 15px/1.55 var(--sans);
+  display:grid;grid-template-columns:auto 1fr;gap:.3rem 1rem;align-items:baseline}
+.facts li:last-child{border-bottom:0}
+.facts b{font:500 12px/1.6 var(--mono);color:var(--muted);white-space:nowrap}
+@media (max-width:34rem){.facts li{grid-template-columns:1fr}}
+
+/* ---- what to do ---- */
+.do{border-left:2px solid var(--rule);padding-left:1.1rem;margin-bottom:1.4rem}
+.do h3{font:600 15px/1.4 var(--sans);margin:0 0 .35rem}
+.do p{font:400 15px/1.58 var(--sans);color:var(--muted);margin:0}
+
+.note{background:var(--panel);border:1px solid var(--rule);border-radius:3px;padding:1.1rem 1.2rem;
+  font:400 15px/1.58 var(--sans);color:var(--muted);margin:2.4rem 0 0}
+.note b{color:var(--ink)}
+
+footer{border-top:1px solid var(--rule);padding:2.2rem 0 3.5rem;font:400 14px/1.6 var(--sans);color:var(--muted);margin-top:3rem}
+footer a{color:var(--muted)}
+.foot{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:baseline}
+.foot .sep{margin-left:auto}
+
+/* =======================================================================
+   FIGURES. The vocabulary is docs/diagrams.css, reproduced here because
+   that file lives under docs/ and is not served from this site. Same class
+   names, same meanings, so a reader who has seen the architecture diagrams
+   does not learn a second language:
+     .box         a thing that exists in the record
+     .box--gate   a thing that can refuse or condition
+     .box--absent designed and NOT PRESENT. Dashed, muted, says so in its
+                  own label.
+     .flow / .flow--refuse   amber is always "this was not asserted".
+   ======================================================================= */
+.fig-defs{position:absolute;width:0;height:0;overflow:hidden}
+#arrow path{fill:var(--fig-arrow,#64748b)}
+#arrow-refuse path{fill:var(--fig-arrow-refuse,#b45309)}
+@media (prefers-color-scheme:dark){:root{--fig-arrow:#94a3b8;--fig-arrow-refuse:#fbbf24}}
+
+.fig{margin:2rem 0;padding:0;border:1px solid var(--fig-rule,#e2e8f0);border-radius:8px;
+  background:var(--fig-paper,#ffffff);overflow:hidden}
+.fig__frame{overflow-x:auto;padding:1rem 1.1rem .5rem}
+@media (max-width:34rem){.fig__frame{padding:.7rem .6rem .4rem}}
+.fig svg{display:block;width:100%;height:auto;min-width:24rem;
+  font:13px/1.35 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.fig figcaption{border-top:1px solid var(--fig-rule,#e2e8f0);background:var(--fig-panel,#f8fafc);
+  color:var(--fig-muted,#475569);padding:.65rem 1.1rem;font-size:.85rem;line-height:1.55}
+.fig figcaption strong{color:var(--fig-ink,#0f172a)}
+
+.fig .box rect,.fig rect.box{fill:var(--fig-panel,#f8fafc);stroke:var(--fig-rule-strong,#94a3b8);stroke-width:1.25;rx:6}
+.fig .box--gate rect,.fig rect.box--gate{fill:var(--fig-gate-fill,#ecfeff);stroke:var(--fig-gate,#0369a1);stroke-width:2}
+.fig .box--absent rect,.fig rect.box--absent{fill:none;stroke:var(--fig-muted,#94a3b8);stroke-width:1.25;stroke-dasharray:5 4}
+.fig .box--absent text{fill:var(--fig-muted,#64748b)}
+
+.fig text{fill:var(--fig-ink,#0f172a)}
+.fig .t-title{font-weight:650}
+.fig .t-sub{fill:var(--fig-muted,#64748b);font-size:11px}
+.fig .t-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px}
+.fig .t-edge{fill:var(--fig-muted,#64748b);font-size:11px}
+.fig .t-refuse{fill:var(--fig-refuse,#b45309);font-size:11px;font-weight:600}
+
+.fig .flow{fill:none;stroke:var(--fig-rule-strong,#64748b);stroke-width:1.4;marker-end:url(#arrow)}
+.fig .flow--refuse{fill:none;stroke:var(--fig-refuse,#b45309);stroke-width:1.6;marker-end:url(#arrow-refuse)}
+.fig .rule{stroke:var(--fig-rule,#e2e8f0);stroke-width:1}
+.fig .seg-noise{fill:var(--fig-panel,#f8fafc);stroke:var(--fig-rule-strong,#94a3b8);stroke-width:1.25}
+.fig .seg-real{fill:var(--fig-gate-fill,#ecfeff);stroke:var(--fig-gate,#0369a1);stroke-width:1.5}
+.fig .mark-refuse{fill:var(--fig-refuse,#b45309)}
+.fig .stroke-refuse{stroke:var(--fig-refuse,#b45309);fill:none;stroke-width:1.5}
+
+.fig__key{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;padding:.55rem 1.1rem;
+  border-top:1px solid var(--fig-rule,#e2e8f0);font-size:.78rem;color:var(--fig-muted,#475569)}
+.fig__key span{display:inline-flex;align-items:center;gap:.35rem}
+.fig__key i{width:.85rem;height:.85rem;border-radius:3px;flex:none;
+  border:1.25px solid var(--fig-rule-strong,#94a3b8);background:var(--fig-panel,#f8fafc)}
+.fig__key i.k-gate{border-color:var(--fig-gate,#0369a1);background:var(--fig-gate-fill,#ecfeff)}
+.fig__key i.k-absent{border-style:dashed;background:none}
+.fig__key i.k-refuse{border:none;height:0;border-top:2px solid var(--fig-refuse,#b45309);border-radius:0}
+
+@media (prefers-color-scheme:dark){
+  .fig{--fig-paper:#0f172a;--fig-panel:#1e293b;--fig-ink:#e2e8f0;--fig-muted:#94a3b8;
+       --fig-rule:#334155;--fig-rule-strong:#64748b;--fig-gate:#7dd3fc;--fig-gate-fill:#082f49;
+       --fig-refuse:#fbbf24}
+}
+@media print{.fig{break-inside:avoid}}
+</style>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<svg class="fig-defs" aria-hidden="true" focusable="false"><defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="arrow-refuse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z"/></marker>
+</defs></svg>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="/">Strat<span>a</span></a>
+    <a class="navlink" href="/#how">How it works</a>
+    <a class="navlink" href="/#refuses">What it refuses</a>
+    <a class="navlink" href="/#who">Who it is for</a>
+    <a class="signin" href="/login">Sign in</a>
+  </div>
+</header>
+
+<main id="main">
+<article>
+  <div class="wrap"><div class="lined" data-line="1">
+
+    <p class="dateline">Read from the record &middot; Ohio 24-508-EL-ATA &middot; Georgia 44280</p>
+    <div class="narrow">
+      <h1>Approved as modified: the language you have to file exists in no filing</h1>
+      <p class="lede">Two commissions, two dockets, one shape. The text a company must put in a
+      compliance tariff is not in the filing and not in the order. It is the difference between
+      them, and nobody writes it down.</p>
+    </div>
+
+    <p>On 9 July 2025 the Public Utilities Commission of Ohio closed a fourteen-month case with
+    this ordering paragraph.</p>
+
+    <div class="q">
+      <pre>ORDERED, That the 10/23 Stipulation be approved and adopted, subject to
+modifications consistent with this Order.</pre>
+      <cite>&para;&thinsp;171, Opinion and Order, 9 July 2025 &middot;
+      <b>oh-24-508-EL-ATA-opinion-and-order.txt</b> &middot;
+      <a href="https://www.supremecourt.ohio.gov/pdf_viewer/pdf_viewer.aspx?pdf=993580.pdf&amp;subdirectory=2025-1458%5CDocketItems&amp;source=DL_Clerk">commission's copy</a></cite>
+    </div>
+
+    <p>That is all of it. The ordering section runs from &para;&thinsp;170 to &para;&thinsp;176 and
+    not one of those seven paragraphs says what the modifications are. AEP Ohio has to file a
+    tariff. The text of that tariff is the stipulation plus something, and the something is
+    somewhere in the ninety-five pages in front.</p>
+
+    <p>It is in &para;&thinsp;126.</p>
+
+    <div class="q">
+      <pre>the Commission modifies the 10/23 Stipulation’s collateral
+provisions.  We find that, the collateral requirements must either be met by the data center
+customer or the customer’s financial sponsor, so long as the sponsor is a co-signer on the
+contract with AEP Ohio.</pre>
+      <cite>&para;&thinsp;126, same order &middot;
+      <b>oh-24-508-EL-ATA-opinion-and-order.txt</b> &middot;
+      <a href="https://www.supremecourt.ohio.gov/pdf_viewer/pdf_viewer.aspx?pdf=993580.pdf&amp;subdirectory=2025-1458%5CDocketItems&amp;source=DL_Clerk">commission's copy</a></cite>
+    </div>
+
+    <p>Now look for that in the stipulation. Its Exhibit&nbsp;A sets out the Collateral Requirement
+    and gives three ways to satisfy it: a parent or affiliate guarantee, a letter of credit, or
+    cash. Here is the first.</p>
+
+    <div class="q">
+      <pre>1. A guarantee from the ultimate parent or a corporate affiliate of the customer for the full Collateral Requirement,
+so long as the guarantor has both (a) a credit rating of at least A- from S&amp;P and A3 from Moody’s and (b)
+Liquidity greater than ten times the Collateral Requirement; or</pre>
+      <cite>Joint Stipulation and Recommendation, 23 October 2024, Exhibit&nbsp;A, Schedule DCT &middot;
+      <b>oh-24-508-EL-ATA-stipulation-2024-10-23-joint-ex-1.txt</b> lines 1232&ndash;1234 &middot;
+      <a href="https://www.supremecourt.ohio.gov/pdf_viewer/pdf_viewer.aspx?pdf=997942.pdf&amp;subdirectory=2025-1458%5CDocketItems&amp;source=DL_Clerk">commission's copy</a></cite>
+    </div>
+
+    <p>No sponsor. No co-signer. I counted both terms across both documents:
+    <b>co-signer</b> appears once in the ninety-nine pages of the order and never in the thirty-one
+    pages of the stipulation it modifies. <b>Financial sponsor</b>, the same &mdash; once, and never.
+    So the operative words of the compliance tariff, the ones that will bind a data centre customer
+    and its parent, sit in neither document. They are the difference between the two.</p>
+
+    <figure class="fig">
+      <div class="fig__frame">
+      <svg viewBox="0 0 640 246" role="img"
+           aria-label="The Ohio order as a strip of 176 paragraphs. The single paragraph that modifies the stipulation, paragraph 126, sits at about seventy-eight per cent of the way through. The ordering section, paragraphs 170 to 176, is the last thin sliver on the right and names no modification.">
+
+        <text class="t-sub" x="56" y="20">Opinion and Order, Case 24-508-EL-ATA &middot; 99 pages &middot; 176 paragraphs</text>
+
+        <!-- callout for the one paragraph that modifies -->
+        <text class="t-refuse" x="447" y="48" text-anchor="end">¶126 — the only paragraph in which</text>
+        <text class="t-refuse" x="447" y="62" text-anchor="end">the Commission modifies the stipulation</text>
+        <path class="stroke-refuse" d="M454 68 L454 84"/>
+
+        <!-- the strip -->
+        <g class="box"><rect x="56" y="86" width="560" height="26"/></g>
+        <!-- section divisions I verified in the text -->
+        <path class="rule" d="M555.5 86 L555.5 112"/>
+        <path class="rule" d="M593.7 86 L593.7 112"/>
+        <!-- the modifying paragraph -->
+        <rect class="mark-refuse" x="452.4" y="82" width="3.2" height="34"/>
+
+        <!-- scale -->
+        <path class="rule" d="M56 112 L56 118 M211.9 112 L211.9 118 M371 112 L371 118 M530.1 112 L530.1 118 M616 112 L616 118"/>
+        <text class="t-mono" x="56" y="132" text-anchor="start">¶1</text>
+        <text class="t-mono" x="211.9" y="132" text-anchor="middle">¶50</text>
+        <text class="t-mono" x="371" y="132" text-anchor="middle">¶100</text>
+        <text class="t-mono" x="530.1" y="132" text-anchor="middle">¶150</text>
+        <text class="t-mono" x="616" y="132" text-anchor="end">¶176</text>
+
+        <!-- the ordering section, which is where a reader looks -->
+        <path class="rule" d="M593.7 146 L593.7 152 M616 146 L616 152 M593.7 152 L616 152"/>
+        <path class="rule" d="M604.8 152 L604.8 168"/>
+        <text class="t-title" x="616" y="184" text-anchor="end" font-size="12">VII. ORDER &middot; ¶170–176</text>
+        <text class="t-sub" x="616" y="199" text-anchor="end">the seven paragraphs that order anything.</text>
+        <text class="t-sub" x="616" y="213" text-anchor="end">None of them names a modification.</text>
+
+        <path class="rule" d="M56 228 L616 228"/>
+        <text class="t-mono" x="56" y="242">co-signer — 1 occurrence in the order, 0 in the stipulation it modifies</text>
+      </svg>
+      </div>
+      <figcaption><strong>Where the binding change actually sits.</strong> Read the ordering
+      paragraphs and you learn that something was modified. To learn what, you read the other
+      169. Counted by splitting the extracted text on the paragraph marks the Commission itself
+      prints.</figcaption>
+      <div class="fig__key">
+        <span><i></i>the order, paragraph by paragraph</span>
+        <span><i class="k-refuse"></i>the modification</span>
+      </div>
+    </figure>
+
+    <h2>This is not a reading problem I invented</h2>
+
+    <p>The Ohio Blockchain Council filed for rehearing and asked the Commission what it had meant.</p>
+
+    <div class="q q--held">
+      <pre>requests
+clarification on the meaning of “financial sponsor.”</pre>
+      <cite>&para;&thinsp;53, Entry on Rehearing, 3 September 2025 &middot;
+      <b>oh-24-508-EL-ATA-entry-on-rehearing.txt</b> &middot;
+      <a href="https://www.supremecourt.ohio.gov/pdf_viewer/pdf_viewer.aspx?pdf=993581.pdf&amp;subdirectory=2025-1458%5CDocketItems&amp;source=DL_Clerk">commission's copy</a></cite>
+    </div>
+
+    <p>Fifty-six days after the order, the Commission answered.</p>
+
+    <div class="q">
+      <pre>we agree with the Company that the term “financial
+sponsor” is a well-known legal term of art that does not require further clarification, we will
+provide additional context for OBC, as requested.</pre>
+      <cite>&para;&thinsp;55, Entry on Rehearing &middot;
+      <b>oh-24-508-EL-ATA-entry-on-rehearing.txt</b> &middot;
+      <a href="https://www.supremecourt.ohio.gov/pdf_viewer/pdf_viewer.aspx?pdf=993581.pdf&amp;subdirectory=2025-1458%5CDocketItems&amp;source=DL_Clerk">commission's copy</a></cite>
+    </div>
+
+    <p>Then it supplied a definition that had appeared in neither document.</p>
+
+    <div class="q">
+      <pre>As contemplated in the Order, “financial
+sponsor” is meant to include any entity that co-signs a LOA or ESA alongside a data center
+customer and serves to satisfy the data center customer’s creditworthiness criteria and/or
+posts either all, or a portion of, the collateral requirement for the data center customer.</pre>
+      <cite>&para;&thinsp;55, Entry on Rehearing &middot;
+      <b>oh-24-508-EL-ATA-entry-on-rehearing.txt</b> &middot;
+      <a href="https://www.supremecourt.ohio.gov/pdf_viewer/pdf_viewer.aspx?pdf=993581.pdf&amp;subdirectory=2025-1458%5CDocketItems&amp;source=DL_Clerk">commission's copy</a></cite>
+    </div>
+
+    <p>The term needed no clarification, and here is the clarification. Whatever you make of that,
+    the practical point stands: anyone drafting the compliance tariff between 9&nbsp;July and
+    3&nbsp;September was drafting against a term with no definition on the record, and the parties
+    to the case could not agree what it meant.</p>
+
+    <h2>Georgia 44280 fails the same reconciliation somewhere else</h2>
+
+    <p>On 28 January 2025 the Georgia Public Service Commission approved Georgia Power's large-load
+    rules with five requirements attached. The fourth was the compliance filing.</p>
+
+    <div class="q">
+      <pre>The Company shall make a compliance filing of the relevant tariffs for applicable customers to reflect the changes to the rules and regulations.</pre>
+      <cite>Order on Georgia Power Company's Revision to Rules and Regulations Tariff Compliance
+      Filing, 17 April 2025, reciting the 28 January order &middot;
+      <b>ga-44280-order-rules-regs-tariff-compliance.txt</b> line 43 &middot;
+      <a href="https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/222325/103475">commission's copy</a></cite>
+    </div>
+
+    <p>The company filed on 28 February: ten tariffs, twenty-five sheets, a clean copy and a
+    tracked-changes copy in one ZIP on the commission's server. The tracked copy is the one you
+    would open, because it is the company telling you what it changed.</p>
+
+    <p>Extract both to text and diff them word by word and you get eighty-seven changed regions.
+    Eighty-two are the effective date, the revision number, or a heading that the extractor placed
+    somewhere else on the page. Line&nbsp;9 of each file, the pair that carries a real edit:</p>
+
+    <div class="vs">
+      <div class="q">
+        <pre>With Bills Rendered for the Billing Month of April, 2025</pre>
+        <cite>clean &middot; <b>ga-44280-rules-regs-tariff-compliance-clean.txt</b> line 9</cite>
+      </div>
+      <div class="q q--held">
+        <pre>With Bills Rendered for the Billing Month of <mark>JanuaryApril</mark>, 2025</pre>
+        <cite>tracked &middot; <b>ga-44280-rules-regs-tariff-compliance-tracked.txt</b> line 9 &middot;
+        both from <a href="https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/221656/102762">the same ZIP</a></cite>
+      </div>
+    </div>
+
+    <p>January struck, April inserted, fused by the extractor because struck and inserted text sit
+    next to each other on the page. Ugly, but legible, and a real change reported.</p>
+
+    <p>Now the change the filing exists to make. Lines 25 to 26 of the clean copy:</p>
+
+    <div class="q">
+      <pre>This  tariff  is  not
+applicable  to  customers  with  an  expected  total  peak  demand  of  100  MW  or  greater  at  one  or  more
+premises located on one tract or contiguous tracts of land.</pre>
+      <cite>Schedule OGS-22, page 1 of 2, APPLICABILITY &middot;
+      <b>ga-44280-rules-regs-tariff-compliance-clean.txt</b> lines 25&ndash;26 &middot;
+      <a href="https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/221656/102762">commission's copy</a></cite>
+    </div>
+
+    <p>Lines 26 to 27 of the tracked copy are those characters exactly. Not similar &mdash;
+    identical, double spaces and all. The clause appears eleven times in each file, and not one of
+    the eighty-seven changed regions touches the string <b>100</b> or the string <b>MW</b>.</p>
+
+    <figure class="fig">
+      <div class="fig__frame">
+      <svg viewBox="0 0 640 268" role="img"
+           aria-label="A bar of 87 changed regions between the clean and tracked-changes copies. 82 are the effective date, revision number or a moved heading. 5 carry any other words. None touches the 100 MW clause, which is identical in both copies.">
+
+        <text class="t-sub" x="56" y="20">87 changed regions &middot; clean copy against tracked-changes copy, word by word</text>
+
+        <rect class="seg-noise" x="56" y="34" width="527.8" height="26"/>
+        <rect class="seg-real" x="583.8" y="34" width="32.2" height="26"/>
+
+        <text class="t-title" x="64" y="51" font-size="12">82</text>
+        <text class="t-sub" x="82" y="51">effective date, revision number, a heading the extractor moved</text>
+        <text class="t-title" x="616" y="78" text-anchor="end" font-size="12">5 carry any other words</text>
+
+        <path class="stroke-refuse" d="M56 96 L616 96"/>
+        <text class="t-refuse" x="56" y="114">0 of the 87 regions touch the clause the filing was made to add</text>
+
+        <!-- what the redline says -->
+        <g class="box"><rect x="56" y="130" width="560" height="62"/></g>
+        <text class="t-title" x="68" y="149" font-size="12">line 9 · EFFECTIVE DATE</text>
+        <text class="t-mono" x="68" y="167">clean    With Bills Rendered for the Billing Month of April, 2025</text>
+        <text class="t-mono" x="68" y="183">tracked  With Bills Rendered for the Billing Month of <tspan class="t-refuse" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">JanuaryApril</tspan>, 2025</text>
+
+        <!-- what it does not say -->
+        <g class="box--absent"><rect x="56" y="204" width="560" height="52"/>
+          <text class="t-title" x="68" y="223" font-size="12">lines 25–26 clean, 26–27 tracked · APPLICABILITY · the 100 MW clause</text>
+          <text x="68" y="243" class="t-refuse">identical, character for character. The redline reports the date and says nothing about the sentence.</text>
+        </g>
+      </svg>
+      </div>
+      <figcaption><strong>A redline announces a replacement and hides an insertion.</strong> Struck
+      text and its replacement land next to each other, so extraction fuses them and you see the
+      change. Inserted text has nothing beside it, so once flattened it is indistinguishable from
+      text that was always there.</figcaption>
+      <div class="fig__key">
+        <span><i></i>extraction noise</span>
+        <span><i class="k-gate"></i>carries other words</span>
+        <span><i class="k-absent"></i>reported by neither copy</span>
+        <span><i class="k-refuse"></i>the change itself</span>
+      </div>
+    </figure>
+
+    <p>That generalises, and it is worth holding on to. The tracked copy reports the month the
+    tariff takes effect and stays silent about the sentence that made it a new revision. All
+    twenty-five sheets go from revision Original to revision First. The clause is why.</p>
+
+    <h2>The Georgia order does not agree with itself</h2>
+
+    <p>The 17 April order adopts Staff's recommendations wholesale &mdash; <i>WHEREFORE IT IS
+    ORDERED, that Staff&rsquo;s recommendations &hellip; are hereby adopted</i> &mdash; and then
+    restates them as ordering clauses. The restatement is not the same text.</p>
+
+    <div class="vs">
+      <div class="q">
+        <pre>… will apply this framework.</pre>
+        <cite>Staff recommendation 3, FINDINGS OF FACT &middot;
+        <b>ga-44280-order-rules-regs-tariff-compliance.txt</b> line 67</cite>
+      </div>
+      <div class="q q--held">
+        <pre>… will apply the framework <mark>in the same manner as provided and demonstrated to Staff</mark>.</pre>
+        <cite>ORDERED FURTHER &middot; same file, line 98 &middot;
+        <a href="https://services.psc.ga.gov/api/v1/External/Public/Get/Document/DownloadFile/222325/103475">commission's copy</a></cite>
+      </div>
+    </div>
+
+    <p>Both sentences are in one order, four pages apart. The second adds a compliance standard the
+    first does not have. Which one binds the contract language? Somebody has to choose, and the
+    order does not help them.</p>
+
+    <ul class="facts">
+      <li><b>OH 24-508</b><span>Two rival stipulations settled the same case thirteen days apart. They share 1,953 words &mdash; 22&nbsp;per&nbsp;cent of the one that was adopted.</span></li>
+      <li><b>OH 24-508</b><span>259 days from the adopted stipulation to the order. 56 more to the definition of the term the order turned on.</span></li>
+      <li><b>GA 44280</b><span>The sheets took effect with April 2025 bills. The order approving them is dated 17 April.</span></li>
+      <li><b>GA 44280</b><span>Two further revisions of one tariff, TOU-SC-15, were filed on 19 March and 4 April &mdash; after the compliance filing, before the order.</span></li>
+    </ul>
+
+    <h2>What you can do on Monday, with nothing you have to buy</h2>
+
+    <div class="do">
+      <h3>Read the order backwards</h3>
+      <p>Start at the ordering section, because that is what binds, then search the body for
+      <i>modif</i>, <i>we direct</i>, <i>we find that</i>. In Ohio that is one hit out of 176
+      paragraphs. The ordering paragraphs will not point you to it.</p>
+    </div>
+    <div class="do">
+      <h3>Keep a three-column sheet before you touch tariff text</h3>
+      <p>Filed language, the paragraph that changes it, resulting language. One row per provision.
+      The third column is the one nobody has written yet, and writing it is the job. Carry the
+      paragraph number next to every line you draft, so that when staff asks why, you answer in
+      one move.</p>
+    </div>
+    <div class="do">
+      <h3>Never diff a clean copy against a redline</h3>
+      <p>Diff clean against the previous clean. A redline shows you replacements and hides
+      insertions, which is the wrong half. Open the redline with your eyes for the insertions;
+      it is a document for reading, not for comparing.</p>
+    </div>
+    <div class="do">
+      <h3>Ask early, in writing</h3>
+      <p>Where an order's operative clause differs from the recommendation it says it adopts, or
+      turns on a term that appears nowhere else, file for clarification before the effective date.
+      In Ohio somebody did, and it took 56 days to come back. That is a schedule you can plan
+      around only if you start it on day one.</p>
+    </div>
+
+    <h2>How the numbers were made</h2>
+
+    <p>Every count here came from Python's <b>difflib.SequenceMatcher</b> over whitespace-normalised
+    word lists, run against the extracted text of the filings named above, each of which carries a
+    provenance record with its source URL and a SHA-256 that recomputes. The Georgia figure is the
+    count of non-equal opcodes between the clean and tracked word lists, then split by whether a
+    region's tokens are drawn only from the effective-date, revision and heading vocabulary. The
+    Ohio paragraph positions come from splitting on the pilcrow marks the Commission prints. Term
+    counts are plain regular expressions, case-insensitive. Open the files and repeat it; if a
+    number here is wrong I would rather hear it than not.</p>
+
+    <div class="note">
+      <p><b>A disclosure, not a pitch.</b> I build Strata, which reads successive versions of a
+      proceeding and refuses to assert a claim whose citation does not verify. This article exists
+      because the Ohio and Georgia dockets beat the first version of that check, and I would rather
+      publish the failure than the feature. Nothing above needs software. The three-column sheet is
+      a spreadsheet, and it works.</p>
+    </div>
+
+  </div></div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap"><div class="foot">
+    <span>Strata</span>
+    <a href="/">Home</a>
+    <a href="/login">Sign in</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/security.html">Security</a>
+    <a href="mailto:jsahasi@gmail.com">Contact</a>
+    <span class="sep muted">Built by Jayesh Sahasi</span>
+  </div></div>
+</footer>
+
+</body>
+</html>

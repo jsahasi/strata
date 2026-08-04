@@ -157,3 +157,106 @@ def test_no_template_hardcodes_a_width_the_stylesheet_cannot_override(css):
                 if int(width) >= 400:
                     offenders.append(f"{template.name}: {match.group(1)[:60]}")
     assert not offenders, f"inline widths that beat the breakpoints: {offenders}"
+
+
+# ------------------------------------------------- the marketing site too
+
+# THE GAP THIS SECTION CLOSES. Everything above reads app/web/. The marketing
+# site under deploy/site/ was never guarded, and it was scrolling sideways at
+# 390px on two pages -- security.html at 414 and subprocessors.html at 477 --
+# while these tests sat green. A guard that covers the half of the product you
+# were thinking about is how the other half goes wrong quietly.
+#
+# These cannot lay out a page any more than the ones above can. They catch the
+# two things that actually caused it: a fixed width wider than a phone, and
+# white-space:nowrap reaching prose through a descendant selector.
+
+SITE = Path(__file__).resolve().parents[1] / "deploy" / "site"
+
+#: Elements that normally hold prose. `nowrap` on one of these, reached by a
+#: descendant selector, is the bug that broke security.html: `.stage b` was
+#: written for a short status label and also caught the <b> opening every
+#: row's sentence, holding a whole paragraph on one line.
+_PROSE_ELEMENTS = ("b", "strong", "em", "i", "span", "p", "li", "td")
+
+
+def _site_pages() -> list[Path]:
+    return sorted(SITE.glob("*.html"))
+
+
+def test_the_site_has_pages_to_check():
+    """Guard the guard: a glob that matches nothing passes everything."""
+    assert len(_site_pages()) >= 5
+
+
+def _without_comments_and_at_rules(text: str) -> str:
+    """CSS with comments and at-rule preludes removed.
+
+    Both produce false positives here. A comment explaining a past bug can quote
+    the rule that caused it, and `@media (max-width: 640px)` is a breakpoint --
+    the opposite of a fixed element width. My first version of this test flagged
+    all seven pages for their own media query.
+    """
+    text = re.sub(r"/\*.*?\*/", " ", text, flags=re.S)
+    return re.sub(r"@media[^{]*\{", "{", text)
+
+
+def test_no_site_page_hardcodes_a_width_wider_than_a_phone():
+    offenders = []
+    for page in _site_pages():
+        clean = _without_comments_and_at_rules(page.read_text())
+        for match in re.finditer(r"(?<!max-)(?:min-)?width:\s*([0-9]{3,})px", clean):
+            if int(match.group(1)) >= 400:
+                offenders.append(f"{page.name}: {match.group(0)}")
+    # The <video width="1280"> attribute is not CSS and is overridden by
+    # .film video { width: 100% }, so it is not matched by the pattern above.
+    assert not offenders, f"fixed widths wider than a phone: {offenders}"
+
+
+def test_every_site_page_declares_a_viewport():
+    for page in _site_pages():
+        text = page.read_text()
+        assert 'name="viewport"' in text, f"{page.name} has no viewport tag"
+        assert "width=device-width" in text, f"{page.name} does not size to the device"
+
+
+def test_nowrap_never_reaches_prose_through_a_descendant_selector():
+    """The rule that broke two live pages, stated so it cannot come back.
+
+    A short label may be nowrap. A paragraph may not: it sets the page's minimum
+    width to the length of its longest sentence, and the whole document then
+    scrolls sideways on a phone.
+    """
+    offenders = []
+    sources = list(_site_pages()) + list(SITE.glob("*.css"))
+    for source in sources:
+        text = _without_comments_and_at_rules(source.read_text())
+        for block in re.finditer(r"([^{}]+)\{([^{}]*)\}", text):
+            selector, body = block.group(1).strip(), block.group(2)
+            if "nowrap" not in body:
+                continue
+            for part in selector.split(","):
+                part = part.strip()
+                if " " not in part:          # not a descendant selector
+                    continue
+                last = part.split()[-1]
+                if last in _PROSE_ELEMENTS:
+                    offenders.append(f"{source.name}: {part}")
+    assert not offenders, (
+        "white-space:nowrap reaching a prose element through a descendant "
+        f"selector: {offenders}. Give the label its own class."
+    )
+
+
+def test_the_site_loads_nothing_from_another_host():
+    """privacy.html tells the reader this, so a test has to hold it true."""
+    offenders = []
+    for source in list(_site_pages()) + list(SITE.glob("*.css")):
+        text = source.read_text()
+        for match in re.finditer(r'(?:src|href)="(https?://[^"]+)"', text):
+            url = match.group(1)
+            if "strata.sudama.ai" not in url:
+                offenders.append(f"{source.name}: {url}")
+        for match in re.finditer(r"@import|url\(\s*['\"]?https?://", text):
+            offenders.append(f"{source.name}: {match.group(0)}")
+    assert not offenders, f"the site reaches another host: {offenders}"

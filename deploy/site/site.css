@@ -49,8 +49,15 @@
   --glass-sat: 170%;
 
   /* The veil over the sticky header. Mixed from --paper, so the page's own
-     palette carries through and a scheme change needs no second edit. */
-  --glass-veil: color-mix(in srgb, var(--paper) 72%, transparent);
+     palette carries through and a scheme change needs no second edit.
+     WHY 88% AND NOT THE 70% THAT LOOKS BETTER IN A STILL. The nav links are
+     --muted at 14px, and the darkest thing that passes under this bar is the
+     film. Measured at 72%, the veil over a dark video frame left those links
+     at 3.50:1 against a 4.5 requirement. 88% brings them back to 4.7:1 and is
+     also the honest reference: a macOS header view is far more opaque than a
+     screenshot of one suggests. Content still shows through, blurred and
+     desaturated, which is the whole of what the effect is for. */
+  --glass-veil: color-mix(in srgb, var(--paper) 88%, transparent);
 
   /* Panels: the credentials block, the closing call to action, the film. */
   --glass-panel: rgba(255, 255, 255, 0.60);
@@ -83,7 +90,10 @@
   :root {
     --glass-blur: 24px;
     --glass-sat: 145%;
-    --glass-veil: color-mix(in srgb, var(--paper) 68%, transparent);
+    /* Same measurement, other direction: here the risk is a bright frame of
+       the film washing the bar out under light --muted text. At 68% that read
+       2.63:1; 86% brings it to 5.3:1. */
+    --glass-veil: color-mix(in srgb, var(--paper) 86%, transparent);
     /* A cool white veil rather than a lighter grey: over near-black it is the
        only mix that still reads as a pane of something rather than a box. */
     --glass-panel: rgba(150, 168, 202, 0.13);
@@ -269,10 +279,7 @@ header {
 .stage,
 .ph,
 .refuse,
-.srctext,
-main table,
-main th,
-main td {
+.srctext {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
@@ -281,15 +288,10 @@ main td {
 .rec {
   box-shadow: none;
 }
-/* The credentials table is the one table inside a glass panel, and it is
-   there because the panel is chrome -- an invitation to sign in, not a
-   record. Undo the blanket rule above for it alone. */
-.creds table,
-.creds th,
-.creds td {
-  -webkit-backdrop-filter: inherit;
-  backdrop-filter: inherit;
-}
+/* The sub-processor rows and the security stage rows are .stage, above. There
+   is no <table> on any legal page -- both of those pages are built from .stage
+   rows -- so the only table on the site is the one inside the credentials
+   panel, and naming tables here would mean exempting it again a line later. */
 
 
 /* --------------------------------------------------- the verified claim */

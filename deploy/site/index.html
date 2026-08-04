@@ -96,7 +96,7 @@ mark{background:color-mix(in srgb,var(--stamp) 18%,transparent);color:inherit;pa
 /* ---- pipeline ---- */
 .stage{display:grid;grid-template-columns:auto 1fr;gap:.9rem 1rem;align-items:baseline;padding:.85rem 0;border-bottom:1px solid var(--rule)}
 .stage:last-child{border-bottom:0}
-.stage b{font:500 12px/1.6 var(--mono);color:var(--muted);white-space:nowrap}
+.stage>b{font:500 12px/1.6 var(--mono);color:var(--muted);white-space:nowrap}
 .stage p{margin:.2rem 0 0;font:400 15px/1.55 var(--sans)}
 .stage em{font-style:normal;color:var(--withheld);font-weight:600}
 
@@ -252,7 +252,7 @@ footer a{color:var(--muted)}
     </div>
 
     <div class="creds">
-      <p class="creds__lead">Four roles, so the permission boundaries are visible rather than
+      <p class="creds__lead">Three roles, so the permission boundaries are visible rather than
       described. The same password for all of them.</p>
       <table>
         <thead><tr><th>Role</th><th>Sign in as</th><th>What it can reach</th></tr></thead>
