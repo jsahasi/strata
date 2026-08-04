@@ -1,0 +1,427 @@
+{#
+  project_detail.html — one project: what has landed on it, what is being asked,
+  what is planned, what keeps it current, and what the company has learned.
+
+  Context, from app/web/views/projects.py:
+    project          dict(id, name, docket_ref, jurisdiction, status, badge,
+                          status_word, owner, summary, created, updated)
+    card             ProjectTile      the same derived counts the grid shows
+    coverage         Coverage         from app/state/review.py
+    withheld_share   int              percentage, for the coverage bar
+    sections         list[Section]    the index at the top
+    changes          list[ChangeRow]
+    threads          list[ThreadPanel]
+    plans            list[PlanPanel]
+    runs             list[RunRow]
+    knowledge        list[KnowledgeRow]
+    superseded_count int              earlier versions, counted and not shown
+
+  Three rules for anyone editing this file.
+
+  1. The coverage strip renders at every count, including zero. A strip that
+     disappears when it is inconvenient is worth nothing, and a page that counts
+     findings while hiding the ones it could not substantiate is the failure the
+     whole product is built against.
+
+  2. A turn's citation renders only when TurnCite.verifies is true. The other
+     branch has no source text to show and no statement to show -- it carries a
+     reason and a link to the review queue. Never add a quote to it.
+
+  3. Every section that can be empty says which fact it found. "Nothing is
+     attached" and "nothing was read" are different, and only one of them is
+     reassuring.
+#}{% extends "base.html" %}
+
+{% block content %}
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>{{ project.name }}</h1>
+    <span class="badge {{ project.badge }}">{{ project.status_word }}</span>
+  </div>
+  <p class="page-head__note">
+    <span class="label">Jurisdiction</span> {{ project.jurisdiction }}
+    <span class="label">Owner</span> {{ project.owner }}
+    {% if project.docket_ref %}
+    <span class="label">Docket</span> <span class="coord">{{ project.docket_ref }}</span>
+    {% else %}
+    <span class="label">Docket</span> <span class="coord">none. This is internal work, not a proceeding.</span>
+    {% endif %}
+  </p>
+  {% if project.summary %}
+  <p class="page-head__note">{{ project.summary }}</p>
+  {% endif %}
+  <p class="coord">{{ project.id }} opened {{ project.created }}, last change {{ project.updated }}</p>
+</div>
+
+<div class="stack">
+
+  <section class="coverage{% if not coverage.findings_total %} coverage--empty{% endif %}"
+           style="--withheld-share: {{ withheld_share }}%"
+           aria-label="What this project rests on">
+    <p class="coverage__scope">
+      {% if coverage.findings_total %}
+      Built from {{ coverage.findings_total }} finding{{ '' if coverage.findings_total == 1 else 's' }} recorded on this project. Every citation was re-checked on this request.
+      {% else %}
+      No finding has been recorded on this project yet. That is not the same as nothing to report, so nothing here is counted as substantiated.
+      {% endif %}
+    </p>
+    <div class="coverage__pair">
+      <div class="coverage__cell">
+        <span class="coverage__n">{{ coverage.findings_verified }}</span>
+        <span class="coverage__label"><span class="coverage__mark" aria-hidden="true"></span>Included</span>
+        <p class="coverage__note">
+          Each names a claim whose citation verified against the stored source
+          just now.
+        </p>
+      </div>
+      <div class="coverage__cell">
+        <span class="coverage__n">{{ coverage.findings_withheld }}</span>
+        <span class="coverage__label"><span class="coverage__mark coverage__mark--withheld" aria-hidden="true"></span>Withheld</span>
+        <p class="coverage__note">
+          Uncited, or the citation did not verify. Nothing on this page rests on
+          them, and their wording is not shown anywhere.
+        </p>
+      </div>
+    </div>
+    <div class="coverage__bar" aria-hidden="true"><span class="coverage__bar-withheld"></span></div>
+    <p class="coverage__basis">
+      <span class="coverage__basis-item">
+        <span class="coverage__rule coverage__rule--external" aria-hidden="true"></span>
+        {{ coverage.sources_external }} external
+      </span>
+      <span class="coverage__basis-item">
+        <span class="coverage__rule coverage__rule--internal" aria-hidden="true"></span>
+        {{ coverage.sources_internal }} internal
+      </span>
+      <span class="coverage__basis-item">
+        {{ coverage.open_questions }} question{{ '' if coverage.open_questions == 1 else 's' }} open,
+        {{ coverage.blocking_questions }} blocking
+      </span>
+    </p>
+  </section>
+
+  <nav class="tabs" aria-label="Sections of this project">
+    {%- for section in sections %}
+    <a class="tab" href="#{{ section.anchor }}">{{ section.label }}
+      <span class="tab__count">{{ section.count }}</span>
+      {%- if section.waiting %}
+      <span class="tab__count tab__count--waiting">{{ section.waiting }} waiting</span>
+      {%- endif %}
+    </a>
+    {%- endfor %}
+  </nav>
+
+  {# ------------------------------------------------------------ changes -- #}
+  <section class="tabpanel" id="changes" aria-labelledby="changes-title">
+    <h2 id="changes-title">Changes attached</h2>
+    <p>
+      What has landed on this project. A change can be attached to several
+      projects at once, and attaching it is a judgement somebody made, so it is
+      kept even after the work is done.
+    </p>
+
+    {% if changes %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Change</th>
+          <th scope="col">Type</th>
+          <th scope="col">Section</th>
+          <th scope="col">Materiality</th>
+          <th scope="col">Status</th>
+          <th scope="col">Claims</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in changes %}
+        <tr>
+          <td><a href="{{ row.url }}">{{ row.change_id }}</a></td>
+          <td>{{ row.change_type }}</td>
+          <td>{{ row.section }}</td>
+          <td>
+            {% if row.materiality == materiality_unassessed %}
+            <span class="coord">{{ row.materiality }}</span>
+            {% else %}
+            <span class="badge badge--material">{{ row.materiality }}</span>
+            {% endif %}
+          </td>
+          <td><span class="badge {{ row.badge }}">{{ row.status }}</span></td>
+          <td>
+            {% if row.claims %}
+            <span class="coord">{{ row.claims }}</span>
+            {% if row.held %}<a href="/review">{{ row.held }} held</a>{% endif %}
+            {% else %}
+            <span class="coord">none</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p class="coord">
+      Materiality reads "{{ materiality_unassessed }}" on every row because this
+      build makes no model call. Nothing has judged how much these changes
+      matter, and the column says so rather than leaving a blank.
+    </p>
+
+    {% else %}
+    <div class="empty empty--none">
+      <p class="empty__title">No change is attached to this project.</p>
+      <div class="empty__body">
+        <p>
+          The project is open and nothing from a proceeding has been bound to it
+          yet. This is not a failed read: attaching a change is a judgement
+          somebody makes, and nobody has made one here.
+        </p>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+  {# ------------------------------------------------------------ threads -- #}
+  <section class="tabpanel" id="threads" aria-labelledby="threads-title">
+    <h2 id="threads-title">Research threads</h2>
+    <p>
+      Open questions against this project, and the record of chasing them. A
+      thread is enquiry, not a finding: it is worth what the claims cited in it
+      are worth, and a turn citing a claim that does not verify says so.
+    </p>
+
+    {% if threads %}
+    {% for thread in threads %}
+    <article class="card stack--tight">
+      <h3>{{ thread.question }}</h3>
+      <p>
+        <span class="label">{{ thread.status }}</span>
+        opened by {{ thread.opened_by }} on {{ thread.opened_at }}, last active
+        {{ thread.last_activity }}
+        <span class="coord">{{ thread.thread_id }}</span>
+      </p>
+      {% if thread.is_open %}
+      <p>This one is still open. No answer has been recorded against it.</p>
+      {% endif %}
+
+      <ol class="thread">
+        {% for turn in thread.turns %}
+        <li class="turn turn--{{ turn.author_kind }}">
+          <div class="turn__head">
+            <span class="turn__who">{{ turn.who }}</span>
+            <span class="coord">{{ turn.when }}</span>
+          </div>
+          <p class="turn__body">{{ turn.body }}</p>
+
+          {% if turn.cite %}
+          {% if turn.cite.verifies %}
+          <p>
+            <a class="citation-chip" href="{{ turn.cite.url }}">
+              <span class="citation-chip__ref">Cited</span>
+              <span class="citation-chip__coord">{{ turn.cite.coordinate }}</span>
+            </a>
+          </p>
+          <blockquote class="quote">{{ turn.cite.source_text }}</blockquote>
+          {% else %}
+          <div class="withheld">
+            <p class="withheld__label">Citation held</p>
+            <p class="withheld__reason">
+              {{ turn.cite.reason }}
+              {% if turn.cite.url %}
+              The turn stands as written. What it cites does not, so it is
+              <a href="{{ turn.cite.url }}">held for review</a>.
+              {% endif %}
+            </p>
+          </div>
+          {% endif %}
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ol>
+    </article>
+    {% endfor %}
+
+    {% else %}
+    <div class="empty empty--none">
+      <p class="empty__title">Nothing has been asked against this project.</p>
+      <div class="empty__body">
+        <p>
+          No thread has been opened. A thread appears here the moment somebody
+          asks a question the changes do not answer on their own.
+        </p>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+  {# -------------------------------------------------------------- plans -- #}
+  <section class="tabpanel" id="plans" aria-labelledby="plans-title">
+    <h2 id="plans-title">Work plan</h2>
+
+    {% if plans %}
+    {% for plan in plans %}
+    <article class="card stack--tight">
+      <h3>{{ plan.title }}</h3>
+      <p>
+        <span class="label">started</span> {{ plan.created }}
+        {% if plan.due %}<span class="label">due</span> {{ plan.due }}{% endif %}
+        <span class="coord">{{ plan.plan_id }}</span>
+      </p>
+
+      {% if plan.steps %}
+      <ol class="plan">
+        {% for step in plan.steps %}
+        <li class="plan-step plan-step--{{ step.state }}">
+          <div class="plan-step__head">
+            <span class="plan-step__n" aria-hidden="true"></span>
+            <span class="plan-step__state">{{ step.state }}</span>
+            {% if step.due %}<span class="coord">due {{ step.due }}</span>{% endif %}
+          </div>
+          <p class="plan-step__what">{{ step.description }}</p>
+
+          {% if step.blocked_reason %}
+          <div class="withheld">
+            <p class="withheld__label">Blocked</p>
+            <p class="withheld__reason">{{ step.blocked_reason }}</p>
+          </div>
+          {% endif %}
+
+          <p class="plan-step__owner">
+            {{ step.owner }}
+            {%- if step.change_url %}, from
+            <a href="{{ step.change_url }}">{{ step.change_id }}</a>
+            {%- else %}, no change behind it{% endif %}
+          </p>
+        </li>
+        {% endfor %}
+      </ol>
+      {% else %}
+      <div class="empty empty--none">
+        <p class="empty__title">The plan has no steps yet.</p>
+        <div class="empty__body">
+          <p>Somebody opened it and has not written the first step.</p>
+        </div>
+      </div>
+      {% endif %}
+    </article>
+    {% endfor %}
+
+    {% else %}
+    <div class="empty empty--none">
+      <p class="empty__title">No plan has been written for this project.</p>
+      <div class="empty__body">
+        <p>
+          Nothing here is overdue and nothing is late, because nothing has been
+          committed to. A plan appears when somebody writes the first step.
+        </p>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+  {# --------------------------------------------------------------- runs -- #}
+  <section class="tabpanel" id="runs" aria-labelledby="runs-title">
+    <h2 id="runs-title">Scheduled re-runs</h2>
+    <p>
+      What keeps this project current. Each strip says when it last ran, what
+      came back, and when it runs next, because stale state looks exactly like
+      fresh state unless the screen says otherwise.
+    </p>
+
+    {% if runs %}
+    {% for run in runs %}
+    <div class="stack--tight">
+      <div class="run-schedule{% if run.overdue %} run-schedule--overdue{% endif %}{% if not run.enabled %} run-schedule--off{% endif %}">
+        <div class="run-schedule__cell">
+          <span class="label">Cadence</span>
+          <p class="run-schedule__value">{{ run.cadence }}</p>
+        </div>
+        <div class="run-schedule__cell">
+          <span class="label">Last run</span>
+          <p class="run-schedule__value{% if not run.last_run %} run-schedule__value--degraded{% endif %}">
+            {{ run.last_run or 'never run' }}
+          </p>
+        </div>
+        <div class="run-schedule__cell">
+          <span class="label">What came back</span>
+          <p class="run-schedule__value">{{ run.last_result or 'nothing recorded' }}</p>
+        </div>
+        <div class="run-schedule__cell">
+          <span class="label">Next run</span>
+          <p class="run-schedule__value{% if run.overdue %} run-schedule__value--degraded{% endif %}">
+            {% if run.enabled %}{{ run.next_run }}{% else %}switched off{% endif %}
+          </p>
+        </div>
+      </div>
+      <p class="coord">
+        {{ run.run_id }}.
+        {%- if not run.enabled %}
+        Switched off, so nothing on this project is being re-checked. It keeps
+        its last run and its result.
+        {%- elif run.overdue %}
+        Overdue. What is on this page may no longer be current, and the product
+        cannot say that it is.
+        {%- elif not run.last_run %}
+        It has never fired, so nothing has been re-checked yet.
+        {%- endif %}
+      </p>
+    </div>
+    {% endfor %}
+
+    {% else %}
+    <div class="run-schedule run-schedule--none">
+      <p>
+        Nothing re-checks this project. Every number on this page is as old as
+        the last time somebody loaded a version by hand, and nothing will tell
+        you when that stops being true.
+      </p>
+    </div>
+    {% endif %}
+  </section>
+
+  {# ---------------------------------------------------------- knowledge -- #}
+  <section class="tabpanel" id="knowledge" aria-labelledby="knowledge-title">
+    <h2 id="knowledge-title">Knowledge</h2>
+    <p>
+      What the company has taught this project, newest first. Nothing here is
+      edited in place: a revised belief is a new row, and the old one stays
+      readable by its id.
+    </p>
+
+    {% if knowledge %}
+    {% for item in knowledge %}
+    <article class="knowledge-item{% if item.confirmed_by %} knowledge-item--confirmed{% endif %}">
+      <p class="knowledge-item__title">{{ item.title }}</p>
+      <p class="knowledge-item__body">{{ item.body }}</p>
+      <p class="knowledge-item__from">
+        {% if item.confirmed_by %}confirmed by {{ item.confirmed_by }}
+        {%- else %}nobody has put their name to this
+        {%- endif %}, recorded {{ item.created }}
+        {%- if item.source_claim_id %}, from claim {{ item.source_claim_id }}{% endif %}.
+        {{ item.item_id }}
+      </p>
+    </article>
+    {% endfor %}
+
+    {% if superseded_count %}
+    <p class="coord">
+      {{ superseded_count }} earlier version{{ '' if superseded_count == 1 else 's' }}
+      sit{{ 's' if superseded_count == 1 else '' }} behind these and
+      {{ 'is' if superseded_count == 1 else 'are' }} not shown here. The wording
+      is kept, so what the company believed before is still answerable.
+    </p>
+    {% endif %}
+
+    {% else %}
+    <div class="empty empty--none">
+      <p class="empty__title">Nothing has been recorded against this project.</p>
+      <div class="empty__body">
+        <p>
+          The store is empty for this project, which is a fact about this
+          project and not about the company. Knowledge is what somebody wrote
+          down, and nobody has written anything here yet.
+        </p>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+</div>
+{% endblock %}
