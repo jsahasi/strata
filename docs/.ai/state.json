@@ -1,0 +1,247 @@
+{
+  "_generated_by": "scripts/status.py via `make status`. Do not hand-edit.",
+  "_why": "Every other file in docs/.ai/ is prose and can go stale. This one is read from the repository, so where it disagrees with prose, it is right.",
+  "generated_at": "2026-08-04T06:08:39.881133+00:00",
+  "git": {
+    "head": "58cfc68",
+    "branch": "main",
+    "commits": 11,
+    "dirty": true
+  },
+  "tests": {
+    "passed": 56,
+    "failed": 0,
+    "files": [
+      "test_audit.py",
+      "test_diff.py",
+      "test_draft_final.py",
+      "test_ingestion.py",
+      "test_isolation.py",
+      "test_normalize.py",
+      "test_occurrence.py",
+      "test_passage_isolation.py",
+      "test_smoke.py",
+      "test_verification.py"
+    ],
+    "requires_network": false,
+    "requires_api_key": false
+  },
+  "modules": {
+    "app/diff/engine.py": {
+      "lines": 126,
+      "calls_a_model": false
+    },
+    "app/evals/run.py": {
+      "lines": 9,
+      "calls_a_model": false
+    },
+    "app/ingestion/ingest.py": {
+      "lines": 81,
+      "calls_a_model": false
+    },
+    "app/interpretation/action.py": {
+      "lines": 35,
+      "calls_a_model": false
+    },
+    "app/main.py": {
+      "lines": 15,
+      "calls_a_model": false
+    },
+    "app/seed.py": {
+      "lines": 9,
+      "calls_a_model": false
+    },
+    "app/state/audit.py": {
+      "lines": 212,
+      "calls_a_model": false
+    },
+    "app/state/db.py": {
+      "lines": 38,
+      "calls_a_model": false
+    },
+    "app/state/models.py": {
+      "lines": 96,
+      "calls_a_model": false
+    },
+    "app/state/queries.py": {
+      "lines": 50,
+      "calls_a_model": false
+    },
+    "app/text/normalize.py": {
+      "lines": 38,
+      "calls_a_model": false
+    },
+    "app/verification/verifier.py": {
+      "lines": 108,
+      "calls_a_model": false
+    }
+  },
+  "decisions": [
+    {
+      "id": "ADR-001",
+      "status": "accepted",
+      "date": "2026-08-03",
+      "area": "product",
+      "depends_on": null,
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "One user: the regulatory affairs analyst at a multi-state utility"
+    },
+    {
+      "id": "ADR-002",
+      "status": "accepted",
+      "date": "2026-08-03",
+      "area": "product",
+      "depends_on": "ADR-001",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "The wedge is change-to-action, not search and not alerts"
+    },
+    {
+      "id": "ADR-003",
+      "status": "accepted",
+      "date": "2026-08-03",
+      "area": "hard-bet",
+      "depends_on": "ADR-002",
+      "revisits": null,
+      "is_hard_bet": true,
+      "title": "Citations are verified against source offsets, and an unverified claim cannot assert itself"
+    },
+    {
+      "id": "ADR-004",
+      "status": "accepted",
+      "date": "2026-08-03",
+      "area": "hard-bet",
+      "depends_on": "ADR-002",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Deterministic diff first, model interpretation second"
+    },
+    {
+      "id": "ADR-005",
+      "status": "accepted",
+      "date": "2026-08-03",
+      "area": "hard-bet",
+      "depends_on": "ADR-002",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Draft versus final is a first-class field, never inferred at read time"
+    },
+    {
+      "id": "ADR-006",
+      "status": "accepted",
+      "date": "2026-08-03",
+      "area": "hard-bet",
+      "depends_on": "ADR-003",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Confidence is explicit and low confidence escalates rather than guesses"
+    },
+    {
+      "id": "ADR-007",
+      "status": "accepted",
+      "date": "2026-08-03",
+      "area": "stack",
+      "depends_on": null,
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Python, FastAPI, SQLite, server-rendered UI"
+    },
+    {
+      "id": "ADR-008",
+      "status": "accepted",
+      "date": "2026-08-03",
+      "area": "stack",
+      "depends_on": null,
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Retrieval: lexical BM25 first, embeddings only where they earn it"
+    },
+    {
+      "id": "ADR-009",
+      "status": "accepted",
+      "date": "2026-08-03",
+      "area": "delivery",
+      "depends_on": null,
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "The hosted instance at strata.sudama.ai is the primary surface; the local run remains the contract"
+    },
+    {
+      "id": "ADR-010",
+      "status": "accepted",
+      "date": "2026-08-03",
+      "area": "delivery",
+      "depends_on": "ADR-009",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Strata gets its own disposable droplet, not the existing shared one"
+    },
+    {
+      "id": "ADR-011",
+      "status": "accepted",
+      "date": "2026-08-03",
+      "area": "delivery",
+      "depends_on": "ADR-010",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Caddy and Docker Compose, not Coolify"
+    },
+    {
+      "id": "ADR-012",
+      "status": "accepted",
+      "date": "2026-08-03",
+      "area": "stack",
+      "depends_on": null,
+      "revisits": "ADR-007",
+      "is_hard_bet": false,
+      "title": "ADR-007 reaffirmed: server-rendered templates with a hand-built design system"
+    },
+    {
+      "id": "ADR-013",
+      "status": "accepted",
+      "date": "2026-08-03",
+      "area": "delivery",
+      "depends_on": "ADR-003",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Four screens, and the citation chip is where the hard bet becomes visible"
+    },
+    {
+      "id": "ADR-014",
+      "status": "accepted",
+      "date": "2026-08-03",
+      "area": "delivery",
+      "depends_on": null,
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Secrets live in one gitignored file, copied at the narrowest possible width"
+    }
+  ],
+  "built": {
+    "ingestion": true,
+    "normalization": true,
+    "citation_verifier": true,
+    "occurrence_disambiguation": true,
+    "deterministic_diff": true,
+    "draft_final_split": true,
+    "tenant_scoped_reads": true,
+    "audit_log_hash_chained": true
+  },
+  "designed_not_built": {
+    "authentication": "docs/security.html \u2014 no identity provider; roles are a design",
+    "model_interpretation": "docs/architecture.html \u2014 app/interpretation/ has the draft/final split only; no model call exists",
+    "web_ui": "docs/web-design.html \u2014 four screens specified, none built",
+    "review_queue": "ADR-006 \u2014 escalation is designed; no queue surface",
+    "deployment": "ADR-009/010/011 \u2014 strata.sudama.ai has no DNS record yet",
+    "evals": "app/evals/run.py is a stub",
+    "approval_workflow": "designed in this session; not in app/",
+    "feedback_loop": "designed in this session; not in app/"
+  },
+  "known_gaps": [
+    "The verifier confirms a quoted passage EXISTS at the cited offsets. It does not confirm the passage supports the claim attached to it. Named in docs/security.html.",
+    "The audit hash chain detects tampering; it does not prevent it. Closing that needs the chain head published outside the host.",
+    "_spans_of in app/verification/verifier.py falls back to fixed-width window scanning, which breaks once normalization changes length -- i.e. on real PDF text.",
+    "The eval corpus has five labelled changes. No percentage computed over five items should be reported as a measurement."
+  ]
+}

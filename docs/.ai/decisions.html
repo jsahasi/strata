@@ -24,7 +24,7 @@
 
 <h2>Product shape</h2>
 
-<div class="d"><h3>ADR-001 — One user: the regulatory affairs analyst at a multi-state utility</h3>
+<div class="d" id="adr-001" data-adr="ADR-001" data-status="accepted" data-date="2026-08-03" data-area="product"><h3>ADR-01 — One user: the regulatory affairs analyst at a multi-state utility</h3>
 <p class="meta">2026-08-03 · accepted</p>
 <p><span class="lbl">Decision.</span> The product is built for one person: a regulatory affairs analyst at an investor-owned utility operating in several jurisdictions. Not counsel, not the compliance officer, not the executive. The analyst is the one who reads the docket, works out what changed, and tells the business what it must do.
 <span class="lbl">Alternatives considered.</span> (a) Compliance officer — owns the obligation register but consumes analysis rather than producing it; (b) outside counsel — bills for exactly this work and has the opposite incentive; (c) "regulated enterprises" generically — which is not a user at all.
@@ -32,7 +32,7 @@
 <span class="lbl">Second role, load-bearing, not a second user.</span> The product also names one load-bearing second role: the obligation owner, who approves the action the analyst recommends. The analyst who interprets a change is never the person who approves the resulting action — that separation is a security control, not an org-chart detail. Where the demo permits self-approval for convenience, that is a disclosed downgrade, not the design.
 <span class="lbl">Open.</span> This persona is a hypothesis until the user interviews (see <code>docs/user-research.html</code>). If two of three interviews say the real reader is counsel, this ADR gets rewritten and the PRD with it.</p></div>
 
-<div class="d"><h3>ADR-002 — The wedge is change-to-action, not search and not alerts</h3>
+<div class="d" id="adr-002" data-adr="ADR-002" data-status="accepted" data-date="2026-08-03" data-area="product" data-depends-on="ADR-001"><h3>ADR-02 — The wedge is change-to-action, not search and not alerts</h3>
 <p class="meta">2026-08-03 · accepted</p>
 <p><span class="lbl">Decision.</span> The unit of work is a <em>change</em> between two versions of a proceeding, carried through to a recommended action with a named reviewer. Not a document, not a query, not a notification.
 <span class="lbl">Why alerts and search fail.</span> An alert says something moved; the analyst still has to open both versions, find the delta, judge whether it is material, decide whether it binds yet, and work out which of their obligations it touches. Search is worse: it assumes the analyst already knows what to look for. The expensive part is the interpretation, and neither tool does any of it.
@@ -40,7 +40,7 @@
 
 <h2>The hard technical bet</h2>
 
-<div class="d"><h3>ADR-003 — Citations are verified against source offsets, and an unverified claim cannot assert itself</h3>
+<div class="d" id="adr-003" data-adr="ADR-003" data-status="accepted" data-date="2026-08-03" data-area="hard-bet" data-depends-on="ADR-002" data-hard-bet="true"><h3>ADR-03 — Citations are verified against source offsets, and an unverified claim cannot assert itself</h3>
 <p class="meta">2026-08-03 · accepted · <strong>this is the depth area</strong></p>
 <p><span class="lbl">Decision.</span> Every claim the system makes carries a citation of <code>(document_version_id, char_start, char_end, quoted_text)</code>. Before that claim is shown as fact, a verifier re-reads the stored source at those offsets and confirms the quote matches. A claim whose citation does not verify is never displayed as established — it is routed to expert review, labelled as unverified.
 <span class="lbl">Why this and not something else.</span> "Citation-grade" is the word in the challenge title, and in this domain a confident wrong answer is worse than no answer: an analyst who cannot trust the citation must re-read the source, which is the work the product claims to remove. Language models produce fluent, plausible, subtly wrong quotations, and no amount of prompting fixes it — so the design assumes the model will misquote and makes that survivable.
@@ -48,19 +48,19 @@
 <span class="lbl">Trade-off accepted.</span> Exact-offset verification is brittle against whitespace, ligatures, and PDF extraction noise, so normalisation has to be defined carefully and will still reject some legitimate quotes. Rejecting a good citation costs a review; accepting a bad one costs the product's reason to exist. We fail toward review.
 <span class="lbl">Visible in the product.</span> Per the prep guide, the hardest decision must be visible rather than buried: the UI shows verified claims with a source span the user can open, and shows unverified ones held back in a review queue with the reason.</p></div>
 
-<div class="d"><h3>ADR-004 — Deterministic diff first, model interpretation second</h3>
+<div class="d" id="adr-004" data-adr="ADR-004" data-status="accepted" data-date="2026-08-03" data-area="hard-bet" data-depends-on="ADR-002"><h3>ADR-04 — Deterministic diff first, model interpretation second</h3>
 <p class="meta">2026-08-03 · accepted</p>
 <p><span class="lbl">Decision.</span> Structural differences between two versions are computed deterministically (segment alignment, then per-segment diff). The model is asked only to interpret the materiality of a change it is shown, never to find the changes.
 <span class="lbl">Why.</span> Diffing is a solved, testable problem with exact answers; materiality is a judgement. Asking a model to do both means you cannot test either, and it is precisely the thin-wrapper shape the challenge warns against. Splitting them means the diff has unit tests with known answers, and the model's job is small enough to evaluate.
 <span class="lbl">Alternatives considered.</span> (a) Ask the model to compare two documents end to end — cheap to build, impossible to test, and it silently drops changes in long documents; (b) embedding-similarity change detection — finds drift, not edits, and cannot tell you the words that changed.
 <span class="lbl">Trade-off accepted.</span> Deterministic alignment struggles when a document is restructured wholesale (sections renumbered, text moved). That is a known failure mode; the design escalates low-confidence alignments rather than guessing.</p></div>
 
-<div class="d"><h3>ADR-005 — Draft versus final is a first-class field, never inferred at read time</h3>
+<div class="d" id="adr-005" data-adr="ADR-005" data-status="accepted" data-date="2026-08-03" data-area="hard-bet" data-depends-on="ADR-002"><h3>ADR-05 — Draft versus final is a first-class field, never inferred at read time</h3>
 <p class="meta">2026-08-03 · accepted</p>
 <p><span class="lbl">Decision.</span> Every document version carries an explicit status. A draft change produces monitor-and-comment actions; a final change produces comply actions with an effective date. The two never share a code path.
 <span class="lbl">Why.</span> Conflating them is the error with the highest cost in this domain, in both directions: acting on a draft wastes money on something that may not survive comment, and treating a final order as a draft misses a binding deadline. It is also the one distinction an analyst will check first when deciding whether to trust the tool.</p></div>
 
-<div class="d"><h3>ADR-006 — Confidence is explicit and low confidence escalates rather than guesses</h3>
+<div class="d" id="adr-006" data-adr="ADR-006" data-status="accepted" data-date="2026-08-03" data-area="hard-bet" data-depends-on="ADR-003"><h3>ADR-06 — Confidence is explicit and low confidence escalates rather than guesses</h3>
 <p class="meta">2026-08-03 · accepted</p>
 <p><span class="lbl">Decision.</span> Every extraction and every impact mapping carries a confidence. Below a threshold it goes to a review queue instead of into the project state. The threshold is configuration, not a constant buried in code.
 <span class="lbl">Why.</span> Carried directly from the peer project's hardest-won lesson: a fallback that returns something plausible hides its own failure. There, an embedding provider silently degraded and ranking ran on noise for months while every check passed. Here the equivalent is an impact mapping the model was unsure about, presented as settled.
@@ -68,14 +68,14 @@
 
 <h2>Stack</h2>
 
-<div class="d"><h3>ADR-007 — Python, FastAPI, SQLite, server-rendered UI</h3>
+<div class="d" id="adr-007" data-adr="ADR-007" data-status="accepted" data-date="2026-08-03" data-area="stack"><h3>ADR-07 — Python, FastAPI, SQLite, server-rendered UI</h3>
 <p class="meta">2026-08-03 · accepted</p>
 <p><span class="lbl">Decision.</span> Python 3.12 + FastAPI + SQLAlchemy over SQLite, with a server-rendered interface. One command to run, one to test.
 <span class="lbl">Why.</span> The submission is executed on a reviewer's machine before a panel is scheduled — so the primary risk is not elegance, it is failing to start. SQLite has no service to install. SQLAlchemy keeps Postgres a configuration change rather than a rewrite. Server-rendered pages remove a build step and a second language from the critical path of a 48-hour build.
 <span class="lbl">Alternatives considered.</span> (a) Postgres + pgvector + Docker Compose — what the peer project runs, better at scale, but adds a container runtime to the reviewer's critical path; (b) React SPA — a build step, a second toolchain, and no user-visible benefit at this size; (c) Jupyter notebook — fastest to write, and explicitly not what "the implementation must run" means.
 <span class="lbl">Trade-off accepted.</span> SQLite will not carry real multi-tenant volume, and the architecture doc must say what changes at that point rather than pretending it scales.</p></div>
 
-<div class="d"><h3>ADR-008 — Retrieval: lexical BM25 first, embeddings only where they earn it</h3>
+<div class="d" id="adr-008" data-adr="ADR-008" data-status="accepted" data-date="2026-08-03" data-area="stack" data-evidence="reasoning-only"><h3>ADR-08 — Retrieval: lexical BM25 first, embeddings only where they earn it</h3>
 <p class="meta">2026-08-03 · accepted</p>
 <p><span class="lbl">Decision.</span> Passage retrieval starts lexical. Semantic retrieval is added only for the specific step where paraphrase matters — matching a regulatory change to an internally-worded obligation.
 <span class="lbl">Why.</span> Regulatory text is quotation-heavy and citation-bearing; exact terms matter and lexical search is strong, debuggable and free. Company obligations, by contrast, are written in the company's own words and will not lexically match the docket's.
@@ -85,7 +85,7 @@
 
 <h2>Surface and delivery</h2>
 
-<div class="d"><h3>ADR-009 — The hosted instance at strata.sudama.ai is the primary surface; the local run remains the contract</h3>
+<div class="d" id="adr-009" data-adr="ADR-009" data-status="accepted" data-date="2026-08-03" data-area="delivery"><h3>ADR-09 — The hosted instance at strata.sudama.ai is the primary surface; the local run remains the contract</h3>
 <p class="meta">2026-08-03 · accepted</p>
 <p><span class="lbl">Decision.</span> Strata is deployed to <code>strata.sudama.ai</code> and that URL is how a reviewer is expected to see the product first. <code>make run</code> and <code>make test</code> continue to work on a clean checkout and are still guaranteed; they move from headline to fallback, not from true to false.</p>
 <p><span class="lbl">Why.</span> A link a reviewer opens in ten seconds gets looked at. A repository that must be cloned, installed and run gets looked at later, or by someone else, or not at all. The submission competes for attention before it competes on merit.</p>
@@ -93,28 +93,28 @@
 <p><span class="lbl">Trade-off accepted, and it cuts against the rubric.</span> The prep guide says the exact run command and test command must work on a reviewer's machine, and that they execute both before scheduling a panel. Leading with a hosted URL is a decision taken against that grain: it adds uptime, TLS and a DNS record to the list of things that can lose the submission, none of which existed before. The mitigation is that the local path stays green and is verified on a fresh clone (task T22), so the hosted instance can fail without taking the submission with it. If only one survives to the deadline, the local one is the one that matters.</p>
 <p><span class="lbl">Open.</span> Whether the hosted instance carries seeded demo data only, or accepts an uploaded proceeding. Upload is a far larger surface — file parsing, size limits, an untrusted document reaching the ingestion path — and is out of scope until the seeded path works.</p></div>
 
-<div class="d"><h3>ADR-010 — Strata gets its own disposable droplet, not the existing shared one</h3>
+<div class="d" id="adr-010" data-adr="ADR-010" data-status="accepted" data-date="2026-08-03" data-area="delivery" data-depends-on="ADR-009"><h3>ADR-10 — Strata gets its own disposable droplet, not the existing shared one</h3>
 <p class="meta">2026-08-03 · accepted</p>
 <p><span class="lbl">Decision.</span> A second, cheap DigitalOcean droplet, holding nothing sensitive, destroyable after the panel. Not the host that already serves the author's other projects.</p>
 <p><span class="lbl">Why.</span> That host is documented in its own runbook as "a single private trust domain" because it stores real family PII and PHI, encrypted at rest. Its firewall, its closed control-plane port and its edge auth gate all follow from that premise. Putting a day-old application on it — one whose URL is about to be handed to reviewers at an investment firm — ends the premise. The containers would isolate the data; the trust domain would no longer be private, and that was the property being protected.</p>
 <p><span class="lbl">Alternatives considered.</span> (a) Same droplet behind the existing Traefik basic-auth gate — hours faster and genuinely isolated at the container level, rejected because "isolated at the container level" is precisely the assurance the original posture declined to rely on; (b) same droplet, fully public — removes the edge gate protecting everything else on the box, for the sake of saving reviewers a password; (c) a managed host such as Fly or Render — a clean boundary too, rejected only because it introduces an unfamiliar build pipeline on the last night.</p>
 <p><span class="lbl">Trade-off accepted.</span> Thirty to forty-five minutes that could have gone to the product, plus a few dollars a month, plus a second machine to keep patched. Bought: a hole in Strata reaches nothing that matters, and the box can be deleted rather than cleaned.</p></div>
 
-<div class="d"><h3>ADR-011 — Caddy and Docker Compose, not Coolify</h3>
+<div class="d" id="adr-011" data-adr="ADR-011" data-status="accepted" data-date="2026-08-03" data-area="delivery" data-depends-on="ADR-010"><h3>ADR-11 — Caddy and Docker Compose, not Coolify</h3>
 <p class="meta">2026-08-03 · accepted</p>
 <p><span class="lbl">Decision.</span> Two containers on the new droplet: the application, and Caddy as the reverse proxy terminating TLS. Compose brings them up. No platform-as-a-service layer.</p>
 <p><span class="lbl">Why.</span> Caddy obtains and renews Let's Encrypt certificates from a three-line configuration file with no further setup. Coolify is the tool already in use on the other host and is genuinely better for many applications over time — it is a worse fit for one container on a box that will be destroyed in a week, because installing and onboarding it costs more than it returns at this scale.</p>
 <p><span class="lbl">Alternatives considered.</span> (a) Coolify, matching the peer project — familiar, and the familiarity is worth real money at 2am, rejected on install and onboarding cost for a single-container deployment; (b) Traefik, matching the other droplet exactly — more configuration than Caddy for the same outcome here; (c) nginx with certbot — more moving parts and a renewal cron to forget about.</p>
 <p><span class="lbl">Trade-off accepted.</span> Two deployment mechanisms now exist across the author's projects rather than one. That is a real cost to consistency, accepted because this droplet is explicitly temporary and will not survive to become the thing anyone has to maintain.</p></div>
 
-<div class="d"><h3>ADR-012 — ADR-007 reaffirmed: server-rendered templates with a hand-built design system</h3>
+<div class="d" id="adr-012" data-adr="ADR-012" data-status="accepted" data-date="2026-08-03" data-area="stack" data-revisits="ADR-007"><h3>ADR-12 — ADR-007 reaffirmed: server-rendered templates with a hand-built design system</h3>
 <p class="meta">2026-08-03 · accepted · revisits ADR-007</p>
 <p><span class="lbl">Decision.</span> The move to a hosted web application does <em>not</em> change the stack. FastAPI with Jinja templates, one stylesheet holding the design tokens, and a small amount of vanilla JavaScript for the citation viewer. No Node, no build step, no framework.</p>
 <p><span class="lbl">Why this is recorded rather than assumed.</span> The request that prompted it was for a modern designed interface, which usually implies a component framework. The reasoning is that it does not have to: design quality here is typography, hierarchy, spacing, restraint and colour under both themes — judgements that apply identically to a Jinja template. ADR-007 rejected a single-page application on cost, and wanting the product to look considered does not touch that reasoning. Reaffirming a decision under new pressure is worth writing down, because at the panel it will look like a decision that was never revisited unless the record shows otherwise.</p>
 <p><span class="lbl">Alternatives considered.</span> (a) FastAPI plus a React single-page app — the highest interaction ceiling and the conventional answer, rejected because it adds a Node toolchain to the image, CORS across two origins, and a written reversal to defend, on a night where the citation verifier does not yet exist; the plausible outcome is a polished shell with no product behind it. (b) Templates plus HTMX — no build step and smoother partial updates, held in reserve for the review queue if hours permit, so the dependency is taken only against evidence rather than in anticipation.</p>
 <p><span class="lbl">Trade-off accepted.</span> Interactions that a framework gives free — optimistic updates, client-side routing, rich state — have to be hand-written or done without. The wager is that this product needs exactly one rich interaction, and that one is small.</p></div>
 
-<div class="d"><h3>ADR-013 — Four screens, and the citation chip is where the hard bet becomes visible</h3>
+<div class="d" id="adr-013" data-adr="ADR-013" data-status="accepted" data-date="2026-08-03" data-area="delivery" data-depends-on="ADR-003"><h3>ADR-13 — Four screens, and the citation chip is where the hard bet becomes visible</h3>
 <p class="meta">2026-08-03 · accepted</p>
 <p><span class="lbl">Decision.</span> Proceedings list, proceeding detail with the version timeline, change detail, and the review queue. Four. On change detail every claim carries a citation chip; opening it shows the source document beside the claim, scrolled to the cited offsets with the exact span marked.</p>
 <p><span class="lbl">Why four and not more.</span> Each screen has to earn a named user pain, and an unearned screen is something a panel will challenge. A settings page, a dashboard of counts, an admin view — none of them are anything the analyst asked for, and each would dilute the one path the demo depends on.</p>
@@ -122,7 +122,7 @@
 <p><span class="lbl">Constraint this places on the visual design.</span> Verified and unverified must not read as two shades of one treatment. A greyed-out version of an assertion is still an assertion. The unverified state has to differ in structure, not only in colour, so that it plainly declines to say anything — and it has to do so without a legend explaining what the colours mean.</p>
 <p><span class="lbl">Open, and stated precisely to avoid contradicting the architecture.</span> <code>app/review/</code> is specified in <code>docs/architecture.html</code> as supporting approve, reject and amend, and that stands — amend is an event appended to the log like any other. What is open is narrower: whether the 48-hour <em>interface</em> exposes amend, since it implies an editing surface on a claim and a way to show what was changed. If hours run short the queue ships with approve and reject only, and the module keeps the third path unused rather than the architecture being rewritten around a temporary UI limit.</p></div>
 
-<div class="d"><h3>ADR-014 — Secrets live in one gitignored file, copied at the narrowest possible width</h3>
+<div class="d" id="adr-014" data-adr="ADR-014" data-status="accepted" data-date="2026-08-03" data-area="delivery"><h3>ADR-14 — Secrets live in one gitignored file, copied at the narrowest possible width</h3>
 <p class="meta">2026-08-03 · accepted</p>
 <p><span class="lbl">Decision.</span> A single <code>.env</code>, gitignored before it was created, holding five values: one model API key and four Gmail OAuth values used by the user-research outreach. A committed <code>.env.example</code> documents the shape without the secrets.</p>
 <p><span class="lbl">Why the width matters more than the location.</span> The credentials were available as a complete file from a peer project holding roughly fifty values — production brokerage API keys, a health-data encryption key, a database password, a signing secret, a source-control token. Copying the file wholesale would have been one command and would have widened the blast radius of this repository by every one of them, for no gain: none are needed here.</p>

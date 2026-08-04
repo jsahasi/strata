@@ -12,7 +12,7 @@ PY := .venv/bin/python
 PIP := .venv/bin/pip
 PORT ?= 8000
 
-.PHONY: help venv install run test eval seed clean fresh-check
+.PHONY: help venv install run test eval seed clean fresh-check status
 
 help:
 	@echo "make run    - start the workspace at http://localhost:$(PORT)"
@@ -20,6 +20,7 @@ help:
 	@echo "make eval   - run the extraction and citation evals, print the scores"
 	@echo "make seed   - load the synthetic proceeding and company context"
 	@echo "make fresh-check - clone this repo to a temp dir and prove run+test work there"
+	@echo "make status - regenerate docs/.ai/state.json from the repo itself"
 
 .venv:
 	python3.12 -m venv .venv || python3 -m venv .venv
@@ -42,6 +43,10 @@ eval: install seed
 
 seed: install
 	$(PY) -m app.seed
+
+# The one file in docs/.ai/ nobody writes by hand, so it cannot go stale.
+status: install
+	$(PY) scripts/status.py
 
 # The check that matters: does this work for someone who is not you?
 # Clones HEAD into a temp directory and runs the suite there.
