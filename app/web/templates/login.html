@@ -1,0 +1,173 @@
+{#
+  login.html — the one page a signed-out person can reach.
+
+  Deliberately NOT extending base.html. The shell carries a nav to five screens
+  that all redirect straight back here, and a menu of links that bounce is worse
+  than no menu. This page is its own document, on the same stylesheet.
+
+  Context, from app/web/views/auth.py:
+    company_id     str            the tenant this deployment authenticates against
+    company_name   str            its display name, or the id
+    email          str            what was typed, returned after a refusal
+    error          str | None     the one refusal sentence
+    notice         str | None     "You are signed out."
+    no_accounts    str | None     set when the database holds no users at all
+    next_url       str            where to go after signing in, already checked
+    next_param     str            the query-parameter name for the above
+    post_url       str            where the form posts
+    demo_accounts  tuple          seeded accounts that exist in this database
+    demo_password  str            their shared password
+    demo_env       str            the variable that turns the panel off
+    cookie_secure  bool           whether this response marks the cookie Secure
+    cookie_local   bool           whether this is plain http to the local machine
+
+  The error is one sentence and never says which half was wrong. Nothing on this
+  page reports whether an address exists.
+#}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex">
+<title>Sign in · Strata</title>
+<link rel="stylesheet" href="/static/strata.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="shell">
+    <div class="masthead__bar">
+      <span class="wordmark">
+        Strata
+        <span class="wordmark__mark" aria-hidden="true"></span>
+      </span>
+      <p class="masthead__company">
+        <span class="label">Signing in to</span>
+        <span class="masthead__name">{{ company_name }}</span>
+        {%- if company_name != company_id %}<span class="coord">{{ company_id }}</span>{% endif %}
+      </p>
+    </div>
+  </div>
+</header>
+
+<main class="main" id="main">
+  <div class="shell">
+
+    <div class="page-head">
+      <div class="page-head__title"><h1>Sign in</h1></div>
+      <p class="page-head__note">
+        Every decision this workspace records carries the name of the person who
+        took it. That is what the sign-in is for: an approval nobody can be
+        named for is not an approval.
+      </p>
+    </div>
+
+    {% if notice %}
+    <p class="coord" role="status">{{ notice }}</p>
+    {% endif %}
+
+    <section class="card stack" aria-labelledby="sign-in-title">
+      <h2 id="sign-in-title" class="label">Your account</h2>
+
+      {% if error %}
+      <div class="empty empty--unloaded" role="alert">
+        <p class="empty__title">{{ error }}</p>
+        <div class="empty__body">
+          <p>
+            The page does not say which of the two was wrong, and it will not.
+            A form that tells you an address is unknown tells anyone else the
+            same thing.
+          </p>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if no_accounts %}
+      <div class="empty empty--unloaded" role="alert">
+        <p class="empty__title">There is nobody to sign in as.</p>
+        <div class="empty__body"><p>{{ no_accounts }}</p></div>
+      </div>
+      {% endif %}
+
+      <form method="post" action="{{ post_url }}" class="stack--tight">
+        {% if next_url %}
+        <input type="hidden" name="{{ next_param }}" value="{{ next_url }}">
+        {% endif %}
+        <p>
+          <label class="label" for="email">Email</label><br>
+          <input id="email" name="email" type="email" size="40" required
+                 autocomplete="username" autocapitalize="none" spellcheck="false"
+                 value="{{ email }}">
+        </p>
+        <p>
+          <label class="label" for="password">Password</label><br>
+          <input id="password" name="password" type="password" size="40" required
+                 autocomplete="current-password">
+        </p>
+        <p>
+          <button class="btn btn--primary" type="submit">Sign in</button>
+        </p>
+      </form>
+    </section>
+
+    {% if demo_accounts %}
+    <section class="card stack" aria-labelledby="demo-title">
+      <h2 id="demo-title" class="label">Demo accounts</h2>
+      <p>
+        This build ships with the accounts below, all sharing the password
+        <code>{{ demo_password }}</code>. They exist because the corpus is
+        synthetic and a reviewer has to get in. They are also a real weakness:
+        set <code>{{ demo_env }}=0</code> and seed your own people before this
+        is put anywhere that is not a demo.
+      </p>
+      <table class="table">
+        <thead>
+          <tr><th>Email</th><th>Role</th><th>Who that is</th></tr>
+        </thead>
+        <tbody>
+          {%- for account in demo_accounts %}
+          <tr>
+            <td><code>{{ account.email }}</code></td>
+            <td>{{ account.role }}</td>
+            <td>{{ account.display_name }} <span class="coord">{{ account.title }}</span></td>
+          </tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+      <p class="coord">
+        The analyst cannot approve an action. The obligation owner can, and
+        cannot propose one. That separation is the control, not a convenience.
+      </p>
+    </section>
+    {% endif %}
+
+    {% if not cookie_secure %}
+    <p class="coord" role="alert">
+      {%- if cookie_local %}
+      This is plain http to your own machine, so the session cookie is not
+      marked Secure -- some browsers drop a Secure cookie here and you would
+      never get past this page. Served over https, or to any other host, it is
+      marked Secure.
+      {%- else %}
+      The session cookie is not marked Secure on this deployment, so it travels
+      in the clear over plain http. That is a setting somebody chose; it is
+      named here rather than left silent.
+      {%- endif %}
+    </p>
+    {% endif %}
+
+  </div>
+</main>
+
+<footer class="colophon">
+  <div class="shell">
+    <p>The corpus is synthetic. Citation checks run with no model and no network.</p>
+    <p>Failed sign-ins are recorded, with the address tried and never the password.</p>
+  </div>
+</footer>
+
+</body>
+</html>

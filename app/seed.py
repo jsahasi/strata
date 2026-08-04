@@ -81,7 +81,16 @@ from app.state.claims import (
     verified_claims,
 )
 from app.state.db import get_engine, session_scope
+from app.state.identity import (
+    create_user,
+    ensure_system_roles,
+    grant_role,
+    user_by_email,
+)
 from app.state.models import (
+    ROLE_ADMIN,
+    ROLE_ANALYST,
+    ROLE_OBLIGATION_OWNER,
     Base,
     Change,
     Claim,
@@ -1531,6 +1540,156 @@ def _load_workspace(session: Session, loaded: _Loaded) -> WorkspaceReport:
     return _count_workspace(session, loaded.company_id, docket_project)
 
 
+# ---------------------------------------------------------------------------
+# Demo accounts
+#
+# There is a login now (app/auth/sessions.py), so a database with no users is a
+# product a reviewer cannot get into. These accounts are what `make run` puts
+# there, and every one of them is derived from data/company_context.json rather
+# than invented -- the same rule the rest of this file follows.
+#
+# THEY SHARE A PUBLISHED PASSWORD, AND THAT IS A DOWNGRADE. It is written below
+# in plain text, printed by the seed, and shown on the login page. That is
+# correct for a demo of a synthetic corpus and wrong for anything else, which is
+# why the login page says so on the page rather than in a comment nobody reads.
+# A deployment that is not a demo seeds its own accounts and sets
+# STRATA_DEMO_ACCOUNTS=0.
+#
+# ONE ROLE EACH, EVEN WHERE THE CORPUS GIVES A PERSON TWO. Denise Okoro owns
+# OBL-003 and her title says Analyst; Sarah Lindqvist owns OBL-005 and runs
+# regulatory affairs. Left alone, both would hold the analyst role and the
+# obligation owner role, and a person holding both is exactly what segregation
+# of duties forbids -- the demo would ship with its own load-bearing control
+# switched off. So the rule is one role per person, title first, and it is
+# stated here rather than discovered by a reviewer reading the grants.
+# ---------------------------------------------------------------------------
+
+# Twelve characters is the floor app/state/identity.py enforces. This is over
+# it and is not a password anybody should reuse anywhere.
+DEMO_PASSWORD = "strata-demo-2026"
+
+# .example is reserved by RFC 2606 and resolves nowhere, so no seeded address
+# can send or receive real mail by accident.
+DEMO_EMAIL_DOMAIN = "example"
+
+
+@dataclass(frozen=True, slots=True)
+class DemoAccount:
+    """One seeded account: a person from the corpus, and the role they hold."""
+
+    email: str
+    display_name: str
+    title: str
+    role: str
+
+
+def _account_email(display_name: str, company_id: str) -> str:
+    """first.last@<tenant>.example, lower-cased, from the name in the corpus."""
+    parts = [
+        "".join(character for character in word.lower() if character.isalnum())
+        for word in display_name.split()
+    ]
+    local = ".".join(part for part in parts if part)
+    return f"{local}@{company_id.lower()}.{DEMO_EMAIL_DOMAIN}"
+
+
+def _role_for_title(title: str) -> str:
+    """Title to role. Analyst first, then the regulatory lead, then owners.
+
+    Deterministic and readable off the data file: a title saying Analyst is the
+    ADR-001 persona; the VP of regulatory affairs is who would manage accounts
+    in a real team, so admin lands there rather than on an invented service
+    account; everyone else named on an obligation owns one.
+    """
+    lowered = title.lower()
+    if "analyst" in lowered:
+        return ROLE_ANALYST
+    if lowered.startswith("vp"):
+        return ROLE_ADMIN
+    return ROLE_OBLIGATION_OWNER
+
+
+def demo_accounts(context: dict, company_id: str) -> tuple[DemoAccount, ...]:
+    """The accounts the corpus implies, in the order the corpus names them.
+
+    Obligation owners first, then document owners, each person once. Pure: it
+    reads the context and writes nothing, so the login page can call it to show
+    what to type without touching the database.
+    """
+    seen: dict[str, DemoAccount] = {}
+    people = [
+        (row["owner_name"], row["owner_title"])
+        for row in context.get("obligations", [])
+    ] + [
+        (row["owner_name"], row["owner_title"]) for row in context.get("documents", [])
+    ]
+    for name, title in people:
+        email = _account_email(name, company_id)
+        if email in seen:
+            continue
+        seen[email] = DemoAccount(
+            email=email,
+            display_name=name,
+            title=title,
+            role=_role_for_title(title),
+        )
+    return tuple(seen.values())
+
+
+def demo_account_list(*, data_dir: Path = DATA_DIR) -> tuple[DemoAccount, ...]:
+    """The accounts the corpus implies, read from the data file. Writes nothing.
+
+    The login page calls this to know which addresses it may offer, and then
+    checks each one against the database before showing it. Reading the file
+    and reporting what it says would produce a panel of addresses that do not
+    work on a database nobody seeded.
+    """
+    context = _read_json(data_dir / "company_context.json")
+    return demo_accounts(context, context["company"]["short_name"])
+
+
+def ensure_accounts(
+    session: Session, *, data_dir: Path = DATA_DIR
+) -> tuple[DemoAccount, ...]:
+    """Create the demo accounts and their roles. Idempotent, like everything here.
+
+    Also the only caller of ensure_system_roles() on the application path: the
+    permission grid has to exist before a grant can name a role, and until this
+    ran the three system roles were a table nothing wrote.
+
+    Deliberately NOT called from load(). load() is the corpus, and it runs in
+    every screen test's fixture; eight scrypt hashes per fixture is twelve
+    seconds on the suite for accounts those tests do not use. `python -m
+    app.seed` calls both, which is what `make run` runs, so the product a
+    reviewer starts has its people. A test that needs them calls this.
+    """
+    context = _read_json(data_dir / "company_context.json")
+    company_id = context["company"]["short_name"]
+
+    ensure_system_roles(session)
+    accounts = demo_accounts(context, company_id)
+    for account in accounts:
+        if user_by_email(session, company_id, account.email) is None:
+            create_user(
+                session,
+                company_id,
+                email=account.email,
+                display_name=account.display_name,
+                password=DEMO_PASSWORD,
+                actor=ACTOR,
+            )
+        user = user_by_email(session, company_id, account.email)
+        grant_role(
+            session,
+            company_id,
+            user_id=user.id,
+            role_name=account.role,
+            actor=ACTOR,
+        )
+    session.flush()
+    return accounts
+
+
 def ensure_tables(engine=None) -> None:
     """Create any missing tables. Never drops.
 
@@ -1722,6 +1881,9 @@ def main() -> None:
     ensure_tables()
     with session_scope() as session:
         report = load(session)
+        # The corpus, then the people who may read it. Both in one transaction,
+        # so a half-seeded database is not a state anyone can start from.
+        accounts = ensure_accounts(session)
 
     print(f"seed: company {report.company_id} ({report.company_name})")
     print(
@@ -1746,6 +1908,14 @@ def main() -> None:
     print(
         f"seed: the collective take rests on {workspace.take_included} findings "
         f"and states {workspace.take_withheld} it could not verify"
+    )
+    print(f"seed: {len(accounts)} accounts, all with the password {DEMO_PASSWORD!r}")
+    for account in accounts:
+        print(f"seed:   {account.email} -- {account.role} ({account.title})")
+    print(
+        "seed: those passwords are published on the login page. Set "
+        "STRATA_DEMO_ACCOUNTS=0 and seed your own accounts before this faces "
+        "anyone."
     )
     print("seed: run it again and these numbers do not move.")
 

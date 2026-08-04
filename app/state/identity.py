@@ -38,10 +38,11 @@ permission set. An authorisation read has exactly one safe direction to fail
 in, and it is not "probably fine".
 
 **What this module does NOT protect against.** It has no login path, no
-throttling and no session issuing -- User.failed_attempts and
-User.locked_until are storage waiting for the code that writes them, and until
-that exists an attacker gets unlimited guesses at whatever rate the transport
-allows. It enforces a length floor on passwords and nothing else: no reuse
+throttling and no session issuing. User.failed_attempts and User.locked_until
+are storage this module never writes; app/auth/sessions.py writes them, and a
+caller that verifies a password through this module directly, without going
+through login(), gets unlimited guesses at whatever rate the transport allows.
+It enforces a length floor on passwords and nothing else: no reuse
 check against a breach corpus, no second factor, no rotation. And an admin
 holds `user.manage`, so an admin can grant themselves the obligation owner
 role and approve their own work. The audit chain records that grant, which

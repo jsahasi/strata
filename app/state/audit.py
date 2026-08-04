@@ -120,6 +120,19 @@ ACTION_ACTION_APPROVED = "action.approved"
 ACTION_ACTION_REJECTED = "action.rejected"
 ACTION_ESCALATION_RESOLVED = "escalation.resolved"
 
+# Authorisation. A refusal is a decision the system made about a person, so it
+# belongs in the same chain as the approvals it withholds -- "who was turned
+# away, and from what" is asked in the same breath as "who approved this".
+#
+# approval.waived is the demo downgrade recording itself. It is a separate code
+# from action.approved on purpose: action.approved means an obligation owner
+# signed off, approval.waived means the check that should have stopped them was
+# switched off by configuration. Reading the second as the first would make a
+# waived separation of duties look like a clean approval a year later, which is
+# the one reading a log must never allow.
+ACTION_ACCESS_DENIED = "access.denied"
+ACTION_APPROVAL_WAIVED = "approval.waived"
+
 # Work that changes what the system looks for or asserts.
 ACTION_STEER_ISSUED = "steer.issued"
 ACTION_THRESHOLD_CHANGED = "threshold.changed"
@@ -564,6 +577,8 @@ __all__ = [
     "ACTION_ACTION_APPROVED",
     "ACTION_ACTION_REJECTED",
     "ACTION_ESCALATION_RESOLVED",
+    "ACTION_ACCESS_DENIED",
+    "ACTION_APPROVAL_WAIVED",
     "ACTION_STEER_ISSUED",
     "ACTION_THRESHOLD_CHANGED",
     "ACTION_KNOWLEDGE_SUPERSEDED",
