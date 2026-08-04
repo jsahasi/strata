@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Strata — Findings and Judgements</title>
+<meta name="description" content="Every defect found during the build, how it was found, and what was done. Plus every judgement call, its alternatives, and what would reverse it.">
+<style>
+  body { font: 15px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 1000px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.8rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.2rem; }
+  h3 { font-size:1rem; color:#1d4ed8; margin:1.2rem 0 .3rem; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  .lbl { font-weight:600; color:#334155; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.9rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .5rem .6rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .crit { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .fixed { color:#15803d; font-weight:600; }
+  .open { color:#b45309; font-weight:600; }
+  .d { border:1px solid #e2e8f0; border-radius:8px; padding:.9rem 1.2rem; margin:.9rem 0; }
+</style>
+</head>
+<body>
+
+<h1>Findings and judgements</h1>
+<p class="sub">Every defect found during the build, how it was found and what was done about it;
+then every judgement call, with its alternatives and what would reverse it. Written as the work
+happened, not reconstructed.</p>
+
+<div class="note"><span class="lbl">Why this file exists.</span> A repository that only shows its
+finished state teaches a reader nothing about how carefully it was built. The interesting
+information is in what went wrong and what was decided under pressure. Two patterns in the table
+below are worth naming up front: <strong>most defects were found by adversarial review rather than
+by a failing test</strong>, and <strong>three of them were false claims in documents rather than
+bugs in code</strong> — which matters for a product whose entire thesis is that a claim must not
+assert itself without evidence.</p></div>
+
+<h2>Defects in code</h2>
+
+<table>
+<tr><th>#</th><th>Defect</th><th>How found</th><th>Why it mattered</th><th>Resolution</th><th>Guard</th></tr>
+
+<tr id="f-01">
+<td>1</td>
+<td><code>passage_refs</code> read the passages table with no company scope. <code>Passage</code> carries no <code>company_id</code>.</td>
+<td>Adversarial review of the data inventory. No test failed.</td>
+<td>Knowing a version id was enough to read another tenant's source text, and version ids are short and guessable. It also contradicted the docstring in <code>models.py</code> and <code>security.html</code>'s claim that every read passes through one chokepoint — the exact doc-versus-code mismatch this project's thesis forbids.</td>
+<td><span class="fixed">Fixed.</span> Join <code>Passage</code> to <code>DocumentVersion</code> and filter on the version's company. Routed through <code>app/state/queries.py</code>. <code>company_id</code> is keyword-only with no default so it cannot be omitted or mispositioned.</td>
+<td><code>tests/test_passage_isolation.py</code>, 5 tests including one asserting offsets survive the scoped read</td>
+</tr>
+
+<tr id="f-02">
+<td>2</td>
+<td>Diff alignment confidence was raw text similarity.</td>
+<td>A test in the plan failed against the plan's own implementation.</td>
+<td>Backwards in the dangerous direction. The corpus restructure — Section 6 becoming subsection 5.4 — scored 0.944 and presented itself as a confident match. A renumbering is dangerous <em>because</em> the words barely move, so similarity runs high exactly when structural identity has changed.</td>
+<td><span class="fixed">Fixed.</span> Confidence is capped at 0.5 when the leading section label disagrees, so the one case ADR-004 says must escalate does escalate.</td>
+<td>3 regression tests, including one proving an ordinary in-section edit keeps its true score rather than escalating everything</td>
+</tr>
+
+<tr id="f-03">
+<td>3</td>
+<td>Audit timestamps came back naive.</td>
+<td>A test asserting <code>tzinfo is not None</code>, written before the implementation.</td>
+<td>SQLite ignores <code>DateTime(timezone=True)</code>. A naive timestamp in an audit record cannot be compared across systems, and "what did we know, and when" is the question the table exists to answer.</td>
+<td><span class="fixed">Fixed.</span> A <code>UtcDateTime</code> TypeDecorator storing ISO 8601 UTC text, which refuses a naive value at the boundary.</td>
+<td><code>tests/test_audit.py</code></td>
+</tr>
+
+<tr id="f-04">
+<td>4</td>
+<td><code>conftest.py</code> would have destroyed the developer's <code>strata.db</code> on every <code>make test</code>.</td>
+<td>Self-review of the written plan, before any code ran.</td>
+<td><code>app/state/db.py</code> builds its engine at import time and <code>init_db()</code> drops tables. A test suite that damages the thing it tests.</td>
+<td><span class="fixed">Fixed before it shipped.</span> The scratch database URL is set before any <code>app.</code> import, with the ordering requirement written into the file so a later editor cannot undo it by accident.</td>
+<td>The ordering is documented in the conftest docstring</td>
+</tr>
+
+<tr id="f-05">
+<td>5</td>
+<td><code>_spans_of</code> falls back to fixed-width window scanning.</td>
+<td>Adversarial review during integration design.</td>
+<td>It only works while normalization preserves length, and normalization collapses whitespace. On real PDF text the occurrence check silently stops finding spans, which disables the boilerplate-trap guard — one of the product's strongest ideas, failing quietly.</td>
+<td><span class="open">Open.</span> Fix is a normalized projection of the source carrying an index map back to raw offsets: normalize once, search in normalized space, map hits back.</td>
+<td>None yet. Needs a PDF-shaped fixture.</td>
+</tr>
+
+<tr id="f-06">
+<td>6</td>
+<td><code>normalize()</code> folds superscripts and fractions via NFKC.</td>
+<td>A build agent reading its own implementation against its docstring.</td>
+<td><code>normalize("20²")</code> returns <code>"202"</code> and <code>"½"</code> becomes <code>"1⁄2"</code>. The docstring promises digits and units are never folded. A footnote marker or a fraction in tariff text can change value under normalization.</td>
+<td><span class="open">Open.</span> Either narrow the NFKC application or amend the docstring. Not yet reached by the corpus.</td>
+<td>None</td>
+</tr>
+
+<tr id="f-07">
+<td>7</td>
+<td><code>normalize()</code> has no rule for soft hyphens or line-break hyphenation.</td>
+<td>Inbound-integration research into PDF extraction.</td>
+<td>PDF text carries <code>U+00AD</code> and <code>-\n</code> word breaks. Both defeat exact citation matching, which is the product's foundation.</td>
+<td><span class="open">Open.</span> Delete <code>U+00AD</code> unconditionally; rewrite <code>-\n\s*</code> to <code>-</code>. Do not attempt to rejoin true end-of-line word breaks.</td>
+<td>None</td>
+</tr>
+
+<tr id="f-08">
+<td>8</td>
+<td><code>Citation.version_id</code> is carried but never checked against the source text passed in.</td>
+<td>A build agent reporting on the plan it was given.</td>
+<td>A citation naming v2, verified against v1's text, passes if the quote matches at those offsets. The repeated boilerplate sentence across versions makes this reachable in this corpus.</td>
+<td><span class="open">Open.</span> The two-argument signature gives the function no way to check it, so the caller currently holds that guarantee. Needs a version-aware entry point.</td>
+<td>None</td>
+</tr>
+</table>
+
+<h2>Defects in documents</h2>
+
+<div class="crit">These matter more than they look. Strata's thesis is that a claim must not assert
+itself without evidence. A document that overstates its own controls is that failure, committed by
+the authors rather than by the model — so each is corrected in place with its reasoning visible,
+never quietly deleted.</div>
+
+<table>
+<tr><th>#</th><th>False claim</th><th>The truth</th><th>Resolution</th></tr>
+
+<tr id="f-09">
+<td>9</td>
+<td><code>security.html</code>: "the database user the application runs as should have no <code>UPDATE</code> or <code>DELETE</code> grant on that table".</td>
+<td>Unavailable on SQLite, which has no users, no roles and no <code>GRANT</code> statement. An agent ran <code>REVOKE</code> against SQLite and got a syntax error. The sentence was only ever true of a Postgres deployment.</td>
+<td><span class="fixed">Corrected in place</span>, with the retraction left visible and the actual enforcement named: a <code>before_flush</code> guard for application code, a SHA-256 chain for out-of-band rewrites.</td>
+</tr>
+
+<tr id="f-10">
+<td>10</td>
+<td><code>README.md</code> stated <code>data/</code> was empty.</td>
+<td>The corpus landed in commit <code>dcb04af</code>.</td>
+<td><span class="open">Open.</span> The file's own rule is that it says only what is true at each commit.</td>
+</tr>
+
+<tr id="f-11">
+<td>11</td>
+<td>An outreach address recorded as verified: <code>tnyhart@btlaw.com</code>.</td>
+<td>Verified, sworn, and correct — in a July 2021 certificate of service. The April 2026 filing in the same docket family gives <code>tnyhart@taftlaw.com</code>. Same person, same role, different firm; nothing announced the change.</td>
+<td><span class="fixed">Corrected</span>, and generalised into <code>best-practices.html</code> principle 28: a verified fact has a shelf life, so bind the verdict to the version. This is now the real-world example behind ADR-004 and ADR-005.</td>
+</tr>
+</table>
+
+<h2>Judgements made</h2>
+
+<p>Each of these was a choice between defensible options, taken under time pressure. Recorded with
+what would reverse it, because a judgement without a reversal condition is just a preference.</p>
+
+<div class="d" id="j-01">
+<h3>SQLite now, Postgres at a named trigger</h3>
+<p><span class="lbl">Judgement.</span> Keep SQLite. Do not switch tonight.</p>
+<p><span class="lbl">Why.</span> ADR-007's reasoning holds: a reviewer runs <code>make run</code>
+before scheduling a panel, and every service they must install first is a way for the submission to
+fail on a machine nobody has seen. The README calls <code>make run</code> breaking the only bug here
+that is fatal rather than embarrassing.</p>
+<p><span class="lbl">What SQLite genuinely cannot do,</span> stated so the limit is not hidden: row-level
+security, so tenant isolation stays an application-layer promise enforced by tests rather than an
+engine guarantee — and finding #1 above is exactly what that costs. And revoking
+<code>UPDATE</code>/<code>DELETE</code> on the audit table, per finding #9.</p>
+<p><span class="lbl">Reversal condition.</span> A second tenant, or any real customer data. Not a
+date — a trigger. The intended path keeps SQLite as the default so <code>make run</code> stays
+dependency-free, and points the hosted instance at Postgres with RLS, which SQLAlchemy already makes
+a configuration change rather than a rewrite.</p>
+</div>
+
+<div class="d" id="j-02">
+<h3>The hosted instance leads, and this cuts against the rubric</h3>
+<p><span class="lbl">Judgement.</span> <code>strata.sudama.ai</code> is the primary surface; the local
+run stays guaranteed. Recorded as ADR-009.</p>
+<p><span class="lbl">Why it is uncomfortable.</span> The prep guide says reviewers execute both
+commands before scheduling a panel. Leading with a URL adds uptime, TLS and DNS to the list of
+things that can lose the submission, none of which existed before.</p>
+<p><span class="lbl">Mitigation.</span> The local path stays green and is verified on a fresh clone,
+so the hosted instance can fail without taking the submission with it. If only one survives, the
+local one is the one that matters.</p>
+</div>
+
+<div class="d" id="j-03">
+<h3>A separate droplet, not the one already running other projects</h3>
+<p><span class="lbl">Judgement.</span> Spend 30–45 minutes and a few dollars a month on a disposable
+box. Recorded as ADR-010.</p>
+<p><span class="lbl">Why.</span> The existing host's own runbook keeps it as a single private trust
+domain because it stores real family PII and PHI. Container isolation would probably have held. It is
+precisely the assurance that posture declined to rely on, and a day-old application whose URL is
+going to reviewers is not the thing to test it with.</p>
+</div>
+
+<div class="d" id="j-04">
+<h3>Real names and work addresses stay in the outreach log</h3>
+<p><span class="lbl">Judgement.</span> Keep them. Add the provenance note.</p>
+<p><span class="lbl">Why.</span> Every person named filed something in a public proceeding, and every
+address came from a certificate of service — a document the parties file, under oath, so that others
+can reach them about that docket. None came from a contact-data broker. Removing them would leave the
+outreach claims unverifiable, which is the failure this product exists to prevent.</p>
+<p><span class="lbl">Reversal condition.</span> A request from anyone named.</p>
+</div>
+
+<div class="d" id="j-05">
+<h3>"Founder, Strata" rather than a borrowed title</h3>
+<p><span class="lbl">Judgement.</span> Outreach goes out under a truthful founder framing.</p>
+<p><span class="lbl">Why.</span> To a utility deputy general counsel, a programme title reads like a
+placement; "building this" reads like a company. The truthful claim is also the stronger one, and it
+needs nobody's permission. A third party's name is used only with that party's agreement, and never
+in messages to commission staff or consumer advocates who sit opposite that party in live dockets.</p>
+</div>
+
+<div class="d" id="j-06">
+<h3>99% test coverage is the wrong target</h3>
+<p><span class="lbl">Judgement.</span> Decline the number; propose a stronger standard.</p>
+<p><span class="lbl">Why.</span> Line coverage measures execution, not verification. The line that
+rejects a fabricated quote can be green while nothing asserts that it rejects anything. The
+substitute: total branch coverage on the four deterministic load-bearing modules, mutation testing to
+prove the tests catch defects, property-based tests for invariants, and evals rather than coverage for
+the model path.</p>
+</div>
+
+<div class="d" id="j-07">
+<h3>Outreach goes one person per organisation first</h3>
+<p><span class="lbl">Judgement.</span> Do not send 45 near-identical emails in one evening.</p>
+<p><span class="lbl">Why.</span> The targets cluster into about twelve organisations — four at Duke,
+five at the OUCC, three at Georgia PSC. Regulatory affairs is a small, connected world and colleagues
+forward things. Three people at one firm receiving the same message reads as a blast, and that
+impression is hard to undo with the exact audience whose trust the product needs.</p>
+</div>
+
+<h2>What this list says about the build</h2>
+
+<p>Eleven defects. <strong>Seven were found by review rather than by a failing test</strong>, and three
+were false statements in documents rather than bugs in code. Two conclusions follow, and both are
+worth defending rather than hiding.</p>
+
+<p>First, the test suite is not the safety net it looks like. Fifty-six passing tests did not catch an
+unscoped tenant read, because no test asked the question. That is the argument for mutation testing
+over a coverage percentage, and it is why finding #1 is described here rather than quietly fixed.</p>
+
+<p>Second, a document is a claim, and this project holds claims to a standard. The three false
+statements above were all written in good faith by people describing what they intended to build.
+That is exactly how a model produces a confident wrong answer, and it is why the product's own
+answer — verify, and withhold what does not verify — is applied to its own prose.</p>
+
+</body>
+</html>

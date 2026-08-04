@@ -1,11 +1,11 @@
 {
   "_generated_by": "scripts/status.py via `make status`. Do not hand-edit.",
   "_why": "Every other file in docs/.ai/ is prose and can go stale. This one is read from the repository, so where it disagrees with prose, it is right.",
-  "generated_at": "2026-08-04T06:08:39.881133+00:00",
+  "generated_at": "2026-08-04T06:11:07.656915+00:00",
   "git": {
-    "head": "58cfc68",
+    "head": "2374381",
     "branch": "main",
-    "commits": 11,
+    "commits": 12,
     "dirty": true
   },
   "tests": {
