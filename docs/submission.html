@@ -5,74 +5,609 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Strata — Submission Record</title>
 <style>
-  body { font: 15px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 900px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  body { font: 15px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 980px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
   h1 { font-size: 1.8rem; margin-bottom:.2rem; } .sub { color:#475569; }
   h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.2rem; }
+  h3 { font-size:1rem; color:#1d4ed8; margin:1.3rem 0 .3rem; }
   code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
-  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.92rem; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.9rem; }
   th, td { border: 1px solid #e2e8f0; padding: .45rem .6rem; text-align: left; vertical-align: top; }
   th { background:#f8fafc; }
   .crit { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
   .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .lbl { font-weight:600; color:#334155; }
+  .yes { color:#15803d; font-weight:600; }
+  .part { color:#b45309; font-weight:600; }
+  .no { color:#b91c1c; font-weight:600; }
 </style>
 </head>
 <body>
 <h1>Submission Record</h1>
-<p class="sub">Kept current as the build proceeds. The reply template AI Fund asks for, plus the working notes behind each line.</p>
+<p class="sub">The reply template AI Fund asks for, plus the running logs behind each line: what was
+built, what was reused, what the AI wrote versus what was rewritten or rejected, and what broke.</p>
 
-<div class="crit"><strong>Write these entries as they happen, not at hour 47.</strong> The AI interview asks you to name exact files, functions and commands, and AI Fund reconciles your answers against the repository afterwards. A log written from memory at the end is both weaker and less accurate, and the gap shows.</div>
+<div class="crit"><strong>How this file was assembled, stated first because it changes how much
+weight it carries.</strong> The template says write these entries as they happen. Some were: the
+defects and judgements were written into <code>docs/.ai/findings.html</code> as the work happened,
+and the commit messages carry their own reasoning at the time of the commit. This page, though,
+was assembled in one pass at commit <code>45c408c</code> from those primary sources —
+<code>git log</code> (17 commits), <code>findings.html</code>, <code>decisions.html</code>,
+<code>demo-notes.html</code>, <code>state.json</code>, and the code itself. Every row below names a
+file, a commit or a test that can be checked. Nothing here is recalled; where a claim could not be
+checked against the repository it is marked unverified rather than asserted.</div>
 
 <h2>The reply template</h2>
 <table>
 <tr><th>Field</th><th>Value</th></tr>
-<tr><td>PRD</td><td>&mdash;</td></tr>
-<tr><td>TDD</td><td>&mdash;</td></tr>
-<tr><td>Prototype</td><td>&mdash;</td></tr>
-<tr><td>Source code</td><td>&mdash;</td></tr>
-<tr><td>Access notes / credentials</td><td>&mdash;</td></tr>
-<tr><td>What I personally built</td><td>&mdash;</td></tr>
-<tr><td>What I reused</td><td>&mdash;</td></tr>
-<tr><td>What the AI wrote, and what I rewrote or rejected</td><td>&mdash;</td></tr>
-<tr><td>What broke and how I debugged it</td><td>&mdash;</td></tr>
+<tr><td>PRD</td><td><code>docs/prd.html</code>. Living document. The user-research section is the
+weak one and says so: no interview has happened, so the persona in ADR-001 is still a hypothesis.</td></tr>
+<tr><td>TDD</td><td><code>docs/tdd.html</code>, with <code>docs/architecture.html</code> for module
+boundaries and <code>docs/security.html</code> for the threat model. Decisions and their rejected
+alternatives are in <code>docs/.ai/decisions.html</code> (14 ADRs).</td></tr>
+<tr><td>Prototype</td><td>Local: <code>make run</code>, then <code>http://localhost:8000</code>.
+Hosted: <code>strata.sudama.ai</code> currently serves the marketing site and a real
+<code>/login</code> page, <strong>not the workspace</strong> — see the gaps table.</td></tr>
+<tr><td>Source code</td><td><code>https://github.com/jsahasi/strata</code>. 17 commits, not
+squashed. Repository visibility has not been confirmed from this working copy and must be checked
+before sending.</td></tr>
+<tr><td>Access notes / credentials</td><td>None needed. The whole deterministic path — ingestion,
+normalization, citation verification, occurrence identity, diff, draft-versus-final, tenant scoping
+— runs with no API key and no network. <code>make test</code> passes on a machine with no
+credentials at all. Secrets live in one gitignored <code>.env</code> (ADR-014);
+<code>.env.example</code> documents the shape.</td></tr>
+<tr><td>What I personally built</td><td>The decisions and the plan; the AI wrote most of the lines.
+See the two sections below, which split it honestly rather than claiming either extreme.</td></tr>
+<tr><td>What I reused</td><td><code>docs/best-practices.html</code> (27 principles carried from a
+peer project; §28 was born here), the append-only-audit and escalate-rather-than-guess patterns
+from that same project, and eight runtime packages. No code was copied from it.</td></tr>
+<tr><td>What the AI wrote, and what I rewrote or rejected</td><td>Table below. The rejections are
+the rows worth reading: a similarity threshold in the verifier, raw similarity as diff confidence,
+a 99% coverage target, an analytics screen, and a fifty-value secrets file.</td></tr>
+<tr><td>What broke and how I debugged it</td><td>Table below. Eleven defects are logged in
+<code>docs/.ai/findings.html</code>; three more are recorded here for the first time, including the
+two that cost the most.</td></tr>
+</table>
+
+<h2>What I personally built</h2>
+
+<p>The honest split: I chose the architecture and wrote the plan; an AI coding tool wrote most of
+the lines under it, in TDD waves against tests that were specified before the implementation. The
+defensible claim is not that I typed it — it is that every load-bearing decision has an ADR written
+before the code, with its rejected alternatives, and that I can name where the tool was wrong.</p>
+
+<table>
+<tr><th>Module</th><th>What it does</th><th>Guarded by</th></tr>
+<tr><td><code>app/ingestion/ingest.py</code></td><td>Segments a version into passages with stable
+character offsets; retains a SHA-256 of the source.</td><td><code>tests/test_ingestion.py</code> (4)</td></tr>
+<tr><td><code>app/text/normalize.py</code></td><td>The single normalization used on both sides of
+every citation comparison. Folds quotes, dashes, ligatures, whitespace. Never folds digits, units,
+dates or case.</td><td><code>tests/test_normalize.py</code> (6)</td></tr>
+<tr><td><code>app/verification/verifier.py</code></td><td>ADR-003, the depth area. Re-reads the
+stored source at the cited offsets and compares for <em>equality after normalization</em>, not
+similarity. A repeated quote must state which occurrence it relies on.</td><td><code>tests/test_verification.py</code> (7),
+<code>tests/test_occurrence.py</code> (6)</td></tr>
+<tr><td><code>app/diff/engine.py</code></td><td>ADR-004. Deterministic alignment and typed changes.
+Alignment confidence is capped when the section label disagrees, so a renumbering escalates.</td><td><code>tests/test_diff.py</code> (11)</td></tr>
+<tr><td><code>app/interpretation/action.py</code></td><td>ADR-005. Draft and final have separate
+action vocabularies and separate code paths; <code>Change.status</code> is copied at write time, not
+joined at read time.</td><td><code>tests/test_draft_final.py</code> (5)</td></tr>
+<tr><td><code>app/state/queries.py</code>, <code>app/state/claims.py</code></td><td>Every read that
+returns content is tenant-scoped through one auditable place. Claims are verified at read time and
+withheld rather than shown when they fail.</td><td><code>tests/test_isolation.py</code> (3),
+<code>tests/test_passage_isolation.py</code> (5), <code>tests/test_claims.py</code> (19)</td></tr>
+<tr><td><code>app/state/audit.py</code></td><td>Append-only audit with two independent mechanisms: a
+<code>before_flush</code> guard against application code, and a SHA-256 chain against out-of-band
+rewrites. Each is honest about what it does not do.</td><td><code>tests/test_audit.py</code> (8)</td></tr>
+<tr><td><code>app/pipeline.py</code>, <code>app/seed.py</code></td><td>Ingest and diff end to end;
+load the corpus and the workspace from the two data files, inventing nothing.</td><td><code>tests/test_pipeline.py</code> (17),
+<code>tests/test_seed.py</code> (20), <code>tests/test_seed_workspace.py</code> (23)</td></tr>
+<tr><td><code>app/state/projects.py</code>, <code>app/state/review.py</code></td><td>The workspace
+AI Fund demoed: projects, threads, work plans, scheduled runs, superseded-never-edited knowledge,
+and a review centre whose synthesis refuses to compose a take that does not record its withheld
+count.</td><td><code>tests/test_projects.py</code> (26), <code>tests/test_review.py</code> (19)</td></tr>
+<tr><td><code>app/web/views/</code>, <code>app/web/templates/</code></td><td>Four screens plus the
+review centre. The citation chip opens the stored source beside the claim, scrolled to the cited
+offsets with the span marked.</td><td><code>tests/test_change_view.py</code> (18),
+<code>tests/test_screens.py</code> (24)</td></tr>
+<tr><td><code>data/</code></td><td>A synthetic three-version proceeding with the traps built in: a
+material change, a cosmetic one, a final-only addition, a moved deadline, a section restructure, and
+one sentence repeated nine times. <code>manifest.json</code> is ground truth, computed
+independently and re-read against the bytes.</td><td>Every test above asserts against the manifest
+rather than against whatever the code produces.</td></tr>
+</table>
+
+<p>222 tests at commit <code>45c408c</code>, offline, no API key. The counts above sum to exactly
+that number.</p>
+
+<h2>What I reused</h2>
+
+<table>
+<tr><th>Reused</th><th>From where</th><th>What was <em>not</em> taken, and why</th></tr>
+<tr><td><code>docs/best-practices.html</code> — 27 engineering principles, each with the failure
+that taught it</td><td>A peer project of the author's</td><td>Nothing was dropped, and §28 was added
+here from this build's own mistake. Sections 26 and 27 are load-bearing for Strata: a fallback must
+announce itself, and a derived corpus migrates all at once.</td></tr>
+<tr><td>Two design patterns: the append-only audit with a hash chain, and escalate-rather-than-guess
+(ADR-006)</td><td>Same project</td><td>Patterns, not code. ADR-006 exists because that project's
+embedding provider degraded silently and ranking ran on noise for months while every check passed.
+The equivalent here would be an impact mapping the model was unsure about, presented as settled.</td></tr>
+<tr><td>Five secrets: one model key, four Gmail OAuth values</td><td>Same project's
+<code>.env</code></td><td>The other forty-five. That file carries production brokerage keys, a
+health-data encryption key, a database password and a source-control token. Copying it wholesale
+was one command and would have widened this repository's blast radius by every one of them, for no
+gain (ADR-014).</td></tr>
+<tr><td>Eight runtime packages: FastAPI, uvicorn, SQLAlchemy, pydantic, Jinja2, python-multipart,
+httpx, anthropic</td><td>PyPI, pinned to minor versions</td><td>No vector database (SQLite ships
+FTS5 and retrieval is lexical first, ADR-008), no migrations tool (one schema version), no frontend
+toolchain (ADR-012). <code>requirements.txt</code> lists each omission with its reason.</td></tr>
+<tr><td>Nothing in <code>data/</code></td><td>—</td><td>The corpus is authored. Every name, docket
+number and commission is invented and flagged as invented in the manifest; no real order's text is
+reproduced.</td></tr>
 </table>
 
 <h2>Running log: AI use</h2>
-<p>The rubric is explicit — using an AI coding tool is expected; letting it choose the architecture is not. The defensible answer has the shape <em>"I chose this approach because X, and asked the AI to implement it."</em> Record the decisions you made yourself, and the places you rejected what the tool proposed. The rejections are the most valuable rows here: they are evidence of judgement rather than acceptance.</p>
+
+<p>Using an AI coding tool is expected; letting it choose the architecture is not. Each row names
+who decided the approach. The rows where the tool was overruled are the ones that carry
+information.</p>
+
 <table>
-<tr><th>What</th><th>Who decided the approach</th><th>What the AI produced</th><th>What you changed or rejected, and why</th></tr>
-<tr><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><th>What</th><th>Who decided the approach</th><th>What the AI produced</th><th>What I changed or rejected, and why</th></tr>
+
+<tr>
+<td>Citation verification (ADR-003)</td>
+<td>Me, in <code>decisions.html</code>, before any code existed (commit <code>634d559</code>)</td>
+<td><code>app/verification/verifier.py</code> as specified: re-read the source at the offsets,
+compare after normalization.</td>
+<td><span class="lbl">Rejected the obvious implementation.</span> The reflex answer — and the one a
+model reaches for — is a similarity threshold. A threshold accepts paraphrase, and a paraphrase is
+exactly what an auditor will not accept, so it defeats the point of having a gate. The verifier
+compares for equality. The module docstring says so, so a later editor cannot soften it by
+accident.</td>
+</tr>
+
+<tr>
+<td>Occurrence disambiguation</td>
+<td>Me, written into the plan as task 5 before implementation (<code>b70d688</code>)</td>
+<td>A verifier that passed a citation quoting the right words at real offsets while describing a
+different occurrence of them.</td>
+<td><span class="lbl">Caught by design, not by luck.</span> The corpus was built with one sentence
+repeated three times per version, nine in all, precisely so this hole is testable rather than
+theoretical. Text equality is necessary and not sufficient: a repeated quote must now state which
+occurrence it relies on or it does not verify.</td>
+</tr>
+
+<tr>
+<td>Diff alignment confidence (ADR-004)</td>
+<td>Me: low confidence must escalate</td>
+<td>Confidence reported as raw text similarity.</td>
+<td><span class="lbl">Rejected and inverted.</span> The corpus restructure — Section 6 becoming
+subsection 5.4 — scored 0.944 and presented itself as a confident match. That is backwards in the
+dangerous direction: a renumbering is dangerous <em>because</em> the words barely move, so
+similarity runs high exactly when structural identity has changed. Confidence is now capped at 0.5
+when the leading section label disagrees. Three regression tests, one of them proving an ordinary
+in-section edit keeps its true score rather than escalating everything.</td>
+</tr>
+
+<tr>
+<td>Test standard</td>
+<td>Me</td>
+<td>A proposed 99% line-coverage target.</td>
+<td><span class="lbl">Declined the number, proposed a stronger standard.</span> Line coverage
+measures execution, not verification: the line that rejects a fabricated quote can be green while
+nothing asserts that it rejects anything. Substitute: total branch coverage on the four
+deterministic load-bearing modules, mutation testing to prove the tests catch defects,
+property-based tests for invariants, and evals rather than coverage for the model path. Recorded as
+judgement j-06 in <code>findings.html</code>. The substitute is a standard, not a shipped fact —
+mutation testing is not built.</td>
+</tr>
+
+<tr>
+<td>Analytics screen</td>
+<td>Me, against the demo</td>
+<td>Would have built one on request; it is the kind of screen a tool produces happily.</td>
+<td><span class="lbl">Cut, with the reason written down.</span> An analytics screen for a regulatory
+analyst is a feature engineers want, and the prep guide names that exact trap. The honest answer is
+that it serves no pain we identified. When the review centre later needed counts, the compromise was
+recorded too: analytics reports raw counts and <em>refuses percentages under ten items</em>, because
+the corpus has five labelled changes and "80% precision" from four of five is false precision.</td>
+</tr>
+
+<tr>
+<td>Breadth versus depth, after seeing what AI Fund demoed</td>
+<td>Me (<code>demo-notes.html</code>, then <code>5fa9fc4</code>)</td>
+<td>Projects, threads, work plans, scheduled runs, knowledge, review centre — the demoed surface.</td>
+<td><span class="lbl">Accepted the breadth, added the rule that makes it safe.</span> Every surface
+that synthesises or counts must display its own coverage. <code>compose_take()</code> refuses to
+compose a take that does not record how many findings were withheld for failing verification, and
+the withheld count renders at equal visual weight to the count it rests on. A synthesis that hides
+what it could not substantiate is the exact failure this product exists to prevent.</td>
+</tr>
+
+<tr>
+<td>Withheld claims in the UI</td>
+<td>Me: an unverified claim must not be a greyed-out assertion</td>
+<td>A withheld claim carried its statement into the template, styled as disabled.</td>
+<td><span class="lbl">Changed the data, not the stylesheet.</span> Withheld claims now render from a
+dataclass with <em>no statement field</em>, so a template cannot show one even by mistake. The test
+asserts the fabricated statement string is absent from the response body entirely — not greyed out,
+absent — because "it looked disabled" is not a guarantee and a stylesheet change could otherwise
+reveal it.</td>
+</tr>
+
+<tr>
+<td>Confidence threshold (ADR-006)</td>
+<td>Me</td>
+<td>The mechanism: <code>MIN_CONFIDENCE_BP</code>, basis points, read from the environment.</td>
+<td><span class="lbl">Shipped at zero, deliberately.</span> Nothing is withheld for confidence alone
+today, because there is no evidence for where the line sits and a number picked to look rigorous is
+worse than an honest zero. The mechanism is present so that setting it is configuration rather than
+a code change, which is what ADR-006 actually requires. The comment in
+<code>app/state/claims.py</code> says all of this at the constant.</td>
+</tr>
+
+<tr>
+<td>Secrets</td>
+<td>Me</td>
+<td>Offered to copy the peer project's <code>.env</code>, which would have worked.</td>
+<td><span class="lbl">Rejected on width, and the gitignore rule landed first.</span> Five values
+copied, not fifty. The ignore rule was committed before the file existed
+(<code>7086cf2</code>) because this repository is published with history intact, and a secret
+committed here cannot be withdrawn by deleting it later.</td>
+</tr>
+
+<tr>
+<td>Documents</td>
+<td>Me: the ADRs. The AI: the prose.</td>
+<td>Seven documents written from the ADRs — PRD, TDD, architecture, security, MRD, roadmap,
+README.</td>
+<td><span class="lbl">Attacked by three adversarial reviews, and they found real things.</span> Two
+documents answered the moat question in opposite directions: the MRD claimed the verifier and diff
+engine were the defensible advantage, the roadmap said a competent team rebuilds both in weeks. That
+is the question every partner asks and the submission had two answers. The verifier is now stated as
+the floor — necessary, table stakes — and the durable advantage is the accumulated obligation graph,
+with an explicit admission that it does not exist at launch.</td>
+</tr>
+
+<tr>
+<td>Outreach to real people</td>
+<td>Me: real names, from public filings only</td>
+<td>A drafted outreach batch containing <strong>four fabricated facts about real, named people</strong>.</td>
+<td><span class="lbl">Nothing was sent.</span> The worst entry on this page. See below.</td>
+</tr>
 </table>
 
 <h2>Running log: what broke</h2>
-<p>Debugging stories are asked about directly. Capture the symptom, the wrong hypothesis you held first, the evidence that corrected you, and the fix. The wrong hypothesis is the interesting part — it shows how you reason when the obvious answer is wrong.</p>
+
+<p>The wrong hypothesis is the interesting column. Eleven of these are logged with their guards in
+<code>docs/.ai/findings.html</code>; the last three appear here first.</p>
+
 <table>
 <tr><th>Symptom</th><th>First hypothesis (and why it was wrong)</th><th>What the evidence showed</th><th>Fix</th></tr>
-<tr><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+
+<tr>
+<td>None. No test failed, and 56 were passing.</td>
+<td>That tenant isolation was proved. <code>tests/test_isolation.py</code> existed and passed, so
+the chokepoint claim in <code>security.html</code> read as verified.</td>
+<td>Reading the data inventory rather than the test output:
+<code>app/diff/engine.py::passage_refs</code> selected passages on <code>version_id</code> alone, and
+<code>Passage</code> carries no <code>company_id</code>. Knowing a version id was enough to read
+another tenant's source text, and version ids are short and guessable. The isolation test passed
+because it never asked this question.</td>
+<td>Join <code>Passage</code> to <code>DocumentVersion</code> and filter on the version's company,
+routed through <code>app/state/queries.py</code> so scoping lives in one auditable place.
+<code>company_id</code> is keyword-only with no default, so it cannot be omitted or passed
+positionally into the wrong slot. Five tests, one asserting the offsets everything depends on survive
+the scoped read. (<code>58cfc68</code>, finding #1.)</td>
+</tr>
+
+<tr>
+<td>A section restructure scored 0.944 and presented itself as a confident alignment.</td>
+<td>That high text similarity means a reliable match — the assumption inside every diff tool.</td>
+<td>The corpus was built with Section 6 becoming subsection 5.4 precisely to break this. The words
+barely move in a renumbering, so similarity peaks exactly when structural identity has changed.</td>
+<td>Cap alignment confidence when the leading section label disagrees, so the one case ADR-004 says
+must escalate does escalate. (<code>9c3d621</code>, finding #2.)</td>
+</tr>
+
+<tr>
+<td>A test asserting <code>tzinfo is not None</code> on an audit timestamp failed.</td>
+<td>That <code>DateTime(timezone=True)</code> does what its name says.</td>
+<td>SQLite ignores it. Timestamps came back naive, and a naive timestamp in an audit record cannot
+be compared across systems — "what did we know, and when" is the only question that table exists to
+answer.</td>
+<td>A <code>UtcDateTime</code> TypeDecorator storing ISO 8601 UTC text, which refuses a naive value
+at the boundary rather than storing it and hoping. (<code>9c3d621</code>, finding #3.)</td>
+</tr>
+
+<tr>
+<td>Caught before it ran: <code>make test</code> would have destroyed the developer's
+<code>strata.db</code> on every invocation.</td>
+<td>That a test suite is harmless to run.</td>
+<td>Self-review of the written plan. <code>app/state/db.py</code> builds its engine at import time
+and <code>init_db()</code> drops tables, so any suite importing <code>app.</code> before pointing at
+a scratch database destroys the real one.</td>
+<td><code>STRATA_DATABASE_URL</code> is set in <code>tests/conftest.py</code> before any
+<code>app.</code> import, with the ordering requirement written into the file so a later editor
+cannot undo it by accident. (<code>b70d688</code>, finding #4.)</td>
+</tr>
+
+<tr>
+<td>A parallel run of nine agents produced <strong>39 failures</strong> — assertion errors deep
+inside unrelated modules.</td>
+<td>That the new workspace code had broken something badly. The failures looked like real defects and
+were triaged as real defects.</td>
+<td>They moved between runs. <code>tests/conftest.py</code> pointed every process at one fixed
+scratch path while <code>init_db()</code> drops tables, so concurrent runs were deleting each other's
+schema mid-test. <span class="lbl">A build agent had flagged exactly this during the engine work.
+The warning was read and not acted on.</span></td>
+<td>The scratch path carries <code>os.getpid()</code>. One integer removes the whole class, and the
+conftest docstring now names every way it is reachable — several agents in one tree, pytest-xdist, a
+watcher alongside a manual run. (<code>5fa9fc4</code>.)</td>
+</tr>
+
+<tr>
+<td><code>/healthz</code> reported the corpus as loaded on a machine where nothing was loaded.</td>
+<td>That a liveness endpoint returning <code>ok</code> tells you the system is working.</td>
+<td>It returned a hardcoded zero and a fixed status — a check reporting what is configured rather
+than what is there. That is the shape best-practices §26 warns about: a fallback that does not
+announce itself.</td>
+<td>Real row counts, plus a truthful <code>corpus_loaded</code> flag and the exact command to run
+when it is false. A missing database answers plainly rather than raising a 500 at a reviewer who has
+just cloned the repository.</td>
+</tr>
+
+<tr>
+<td><code>security.html</code> described an access control that cannot exist.</td>
+<td>That the control was implemented, because the document said so in the present tense.</td>
+<td>An agent ran <code>REVOKE</code> against SQLite and got a syntax error. SQLite has no users, no
+roles and no <code>GRANT</code>. The sentence was only ever true of a Postgres deployment.</td>
+<td>Corrected in place with the retraction left visible, and the actual enforcement named: a
+<code>before_flush</code> guard for application code, a SHA-256 chain for out-of-band rewrites.
+Deleting the sentence would have hidden the lesson. (<code>58cfc68</code>, finding #9.)</td>
+</tr>
+
+<tr>
+<td>An outreach address recorded as verified bounced conceptually: two public filings gave two
+different addresses for the same person.</td>
+<td>That "verified against a public filing" is a permanent property of a fact.</td>
+<td>A July 2021 certificate of service gives counsel as <code>tnyhart@btlaw.com</code> — sworn,
+verified, correct at the time. The April 2026 filing in the same docket family gives
+<code>tnyhart@taftlaw.com</code>. Same person, same role, different firm. Nothing announced the
+change, and nothing on our side threw.</td>
+<td>Corrected, and generalised into best-practices §28: a verified fact has a shelf life, so bind the
+verdict to the version. This is now the real-world argument behind ADR-004 and ADR-005 scoping every
+citation to a proceeding <em>version</em> rather than to a proceeding. (<code>3fccb50</code>,
+finding #11.)</td>
+</tr>
+
+<tr>
+<td>Commit <code>45c408c</code> says the four screens exist and 222 tests pass. Both true. A reviewer
+running <code>make run</code> at that commit reached <code>/healthz</code> and nothing else.</td>
+<td>That 24 passing screen tests mean the screens are in the product.</td>
+<td><code>tests/test_screens.py</code> and <code>tests/test_change_view.py</code> assemble their own
+<code>FastAPI</code> object around the routers — deliberately, so a screen can be tested before
+anything wires it in. <code>app/main.py</code> at that commit called no
+<code>include_router</code>. Every test passed because each one built the application the product
+did not.</td>
+<td>Fixed after that commit and not yet committed at the time of writing:
+<code>app/main.py</code> now mounts the three routers and the static directory, and a new
+<code>tests/test_app_wiring.py</code> asserts the object <code>make run</code> starts is the one the
+screen tests exercise. <span class="lbl">This is the same class as the isolation defect</span>: a
+passing suite that never asked the question. It is not yet in
+<code>findings.html</code>.</td>
+</tr>
+
+<tr>
+<td>A drafted outreach batch contained four fabricated facts about real, named people.</td>
+<td>That the outreach path was low-risk prose and did not need the product's own discipline applied
+to it.</td>
+<td>Checking each claim against the filings before sending: a jurisdiction count borrowed from a
+different company, a docket attributed to the wrong party, and a client name confused with another.
+A model wrote them, fluently and plausibly — <strong>inside outreach for a product built to catch
+exactly that</strong>.</td>
+<td>Nothing was sent. Every factual claim in an outreach message is now checked against the filing it
+came from, the same rule the product enforces on itself. The uncomfortable part is that the product's
+answer — verify, and withhold what does not verify — existed and was not applied here, because the
+outreach path had no verifier in front of it. Not yet in <code>findings.html</code>; it belongs there
+as a twelfth defect.</td>
+</tr>
+
+<tr>
+<td><code>docs/.ai/state.json</code> — the one file in the project that "cannot be stale" — is
+stale.</td>
+<td>That generating a fact from the repository is enough to keep it true.</td>
+<td>It reports HEAD <code>2374381</code>, 12 commits and 56 tests. HEAD is <code>45c408c</code>, 17
+commits, 222 tests. It also lists the web UI, the review queue and the workspace as designed and not
+built. All of that was true when <code>make status</code> last ran and none of it is true now.
+Generated is not the same as regenerated.</td>
+<td>Mechanical: run <code>make status</code>. Recorded rather than quietly fixed because it is
+best-practices §28 landing on the file written to embody it — the verdict was bound to a version and
+then read as though it were current.</td>
+</tr>
+
+<tr>
+<td><code>README.md</code> states that <code>app/</code>, <code>tests/</code> and <code>data/</code>
+are empty directories, and that <code>make run</code> and <code>make test</code> are
+unimplemented.</td>
+<td>That a file whose own stated rule is "say only what is true at each commit" would be updated at
+each commit.</td>
+<td>All three directories are full. The claim was true at <code>634d559</code> and has been false
+since <code>dcb04af</code>. It is the first file a reviewer opens, and it currently understates the
+build by the entire build.</td>
+<td><span class="no">Still open.</span> Logged as finding #10 and unfixed — the file is outside this
+pass's ownership. It is the highest-value ten minutes left in the submission.</td>
+</tr>
 </table>
+
+<h2>The four entries that cost the most</h2>
+
+<h3>1. A passing suite is not a safety net</h3>
+<p>Two of the defects above have the same shape: 56 tests did not catch an unscoped tenant read, and
+222 tests did not catch that the product served none of its screens. In both cases every test passed
+and no test asked the question. Seven of the eleven logged defects were found by adversarial review
+rather than by a failing test. That is the argument for mutation testing over a coverage percentage,
+and it is why both are described here rather than quietly fixed.</p>
+
+<h3>2. A warning that is read and not acted on costs more than one that is missed</h3>
+<p>The shared test-database path was flagged by a build agent during the engine work, in writing,
+before it caused anything. It was read and deferred. It later produced 39 failures that were triaged
+as real defects during a nine-agent run. The fix was one integer. The lesson is not "listen to the
+tool" — it is that a warning about a <em>class</em> of failure, filed when nothing is broken, is the
+cheapest information available and the easiest to discount.</p>
+
+<h3>3. The product's own rule was not applied to the product's own outreach</h3>
+<p>Four fabricated facts about real people, written by a model, inside messages selling a system
+whose entire thesis is that a claim must not assert itself without evidence. Nothing was sent, which
+is the only thing that makes it a story rather than an incident. The general failure is worth stating
+plainly: a verification gate protects what passes through it and nothing else. Strata verifies claims
+about a docket. It had no opinion about claims in an email, and neither did anyone else until the
+messages were checked line by line.</p>
+
+<h3>4. Three of eleven defects were false claims in documents, not bugs in code</h3>
+<p>A security document describing a control that cannot exist on SQLite. A README describing empty
+directories that are full. An address verified in 2021 and wrong by 2026. All three were written in
+good faith by people describing what they intended to build — which is exactly how a model produces
+a confident wrong answer. Each correction stays visible with its reasoning rather than being
+deleted.</p>
 
 <h2>Pre-submission checklist</h2>
+
+<p>Status as checked against the repository at commit <code>45c408c</code>. Where something could not
+be verified from this working copy, it says so rather than claiming a pass.</p>
+
 <table>
-<tr><th>Check</th><th>Done</th></tr>
-<tr><td><code>make run</code> works from a <strong>fresh clone in a clean directory</strong>, not just your working copy</td><td>&mdash;</td></tr>
-<tr><td><code>make test</code> works from that same fresh clone, and the output is legible to a stranger</td><td>&mdash;</td></tr>
-<tr><td>Repository is public, or reviewer access is granted, BEFORE the AI interview begins</td><td>&mdash;</td></tr>
-<tr><td>Commit history intact and not squashed — they read it</td><td>&mdash;</td></tr>
-<tr><td>PRD and prototype tell the same story; no capability promised that is not built</td><td>&mdash;</td></tr>
-<tr><td>User-interview findings folded into the PRD, with what changed as a result</td><td>&mdash;</td></tr>
-<tr><td>Citation verification is visible in the running product, not only in the code</td><td>&mdash;</td></tr>
-<tr><td>Every doc link is viewable by anyone with the link</td><td>&mdash;</td></tr>
-<tr><td>90-second pitch said out loud, timed</td><td>&mdash;</td></tr>
-<tr><td>DeepInterview started within 30 minutes of sending the submission, repo open alongside</td><td>&mdash;</td></tr>
+<tr><th>Check</th><th>Status</th></tr>
+<tr><td><code>make run</code> works from a <strong>fresh clone in a clean directory</strong>, not just
+your working copy</td><td><span class="no">Not verified.</span> <code>make fresh-check</code> exists
+and has not been run since <code>45c408c</code>. At that commit <code>make run</code> served
+<code>/healthz</code> only; the router mount that fixes it is in the working tree and uncommitted.
+Must be re-run after it lands.</td></tr>
+<tr><td><code>make test</code> works from that same fresh clone, and the output is legible to a
+stranger</td><td><span class="part">Passes locally, fresh clone unverified.</span> 222 tests at HEAD,
+offline, no API key. The working tree carries uncommitted work from a parallel workstream and one of
+its new tests currently fails, so the tree is not green even though HEAD is.</td></tr>
+<tr><td>Repository is public, or reviewer access is granted, BEFORE the AI interview
+begins</td><td><span class="no">Not confirmed.</span> Remote is
+<code>github.com/jsahasi/strata</code>; visibility has not been checked from here.</td></tr>
+<tr><td>Commit history intact and not squashed — they read it</td><td><span class="yes">Yes.</span> 17
+commits, each message carrying its reasoning. One note is recorded rather than rewritten: the three
+corpus files were swept into <code>d614f7d</code> by a broad <code>git add</code> while a docs agent
+was committing, and <code>dcb04af</code> says so.</td></tr>
+<tr><td>PRD and prototype tell the same story; no capability promised that is not
+built</td><td><span class="no">No.</span> The README understates the build; <code>state.json</code>
+understates it further. Neither overstates it, which is the safer direction, but they disagree with
+the code and a reviewer reads them first.</td></tr>
+<tr><td>User-interview findings folded into the PRD, with what changed as a
+result</td><td><span class="no">No — and this is the exposure.</span> Zero interviews have happened.
+Outreach is drafted and unsent. This is a full quarter of the rubric and no further engineering
+recovers it.</td></tr>
+<tr><td>Citation verification is visible in the running product, not only in the
+code</td><td><span class="part">Built and tested; reachable only after the uncommitted router mount
+lands.</span> The paired demonstration works: one claim whose citation verifies and renders with an
+openable source span, one whose quote was corrupted and never renders as a claim at all.</td></tr>
+<tr><td>Every doc link is viewable by anyone with the link</td><td><span class="no">Not
+checked.</span></td></tr>
+<tr><td>90-second pitch said out loud, timed</td><td><span class="part">Written in
+<code>docs/.ai/briefing.html</code>. Not timed aloud on the record.</span></td></tr>
+<tr><td>DeepInterview started within 30 minutes of sending the submission, repo open
+alongside</td><td><span class="no">Not yet.</span> Plan submission and interview as one sitting; the
+assignment expires 72 hours after the challenge email.</td></tr>
 </table>
 
-<div class="note"><strong>On the 48-hour deadline.</strong> If the build needs longer, the instructions say to flag it and give an ETA. Flagging early with a specific ETA reads as judgement; going silent and arriving late reads as neither. Decide by hour 30, not hour 47.</div>
+<div class="note"><strong>On the 48-hour deadline.</strong> If the build needs longer, the
+instructions say to flag it and give an ETA. Flagging early with a specific ETA reads as judgement;
+going silent and arriving late reads as neither. Decide by hour 30, not hour 47.</div>
 
 <h2>Known gaps to state plainly</h2>
-<p>List what you did not build and why. A submission that names its own limits is stronger than one that hopes they go unnoticed, and the interview will find them regardless. Saying "I don't know" is described in the prep guide as a positive signal.</p>
+
+<p>Saying "I don't know" is described in the prep guide as a positive signal. These are ordered by
+how much they matter, not by how comfortable they are.</p>
+
 <table>
-<tr><th>Gap</th><th>Why it was cut</th><th>What you would do with more time</th></tr>
-<tr><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><th>Gap</th><th>Why it is this way</th><th>What I would do with more time</th></tr>
+
+<tr><td><strong>Zero user interviews.</strong> ADR-001's persona is a hypothesis, and the PRD says
+so.</td><td>Outreach was drafted on day one and held: the first batch had to be rewritten after four
+fabricated facts were found in it, and regulatory affairs is a small connected world where a bad
+first message is hard to undo.</td><td>Send one message per organisation, not five. Twenty minutes
+each. Report what changed even if the answer is that ADR-001 was wrong — especially then.</td></tr>
+
+<tr><td><strong>"Verified" means the quote is real, not that the interpretation is
+right.</strong></td><td>Offset verification proves the words exist where claimed. It proves nothing
+about whether the reasoning drawn from them is sound.</td><td>Nothing closes this fully. The
+direction is an adjacency check on governing qualifiers, and a second model asked to argue the
+opposite reading — both mitigation, neither proof. Volunteer this before being asked.</td></tr>
+
+<tr><td><strong>No model call exists anywhere in <code>app/</code>.</strong>
+<code>Change.materiality</code> stays NULL rather than defaulting to a value that reads like a
+judgement.</td><td>Deliberate ordering: the deterministic gate had to work first, because it is the
+part a reviewer can audit without trusting anything about the AI. <code>anthropic</code> is declared
+in <code>requirements.txt</code> and imported by nothing — a dependency ahead of its
+code.</td><td>Wire the interpretation layer, and remove the unused dependency until it is used. A
+declared dependency that nothing imports is a small version of the same sin this repository keeps
+catching.</td></tr>
+
+<tr><td><strong>Obligation extraction and impact mapping are designed, not built (T9, T10).</strong>
+Obligations, projects and documents in <code>data/company_context.json</code> have no tables of
+their own.</td><td>They are read by <code>app/seed.py</code> as the source of names, owners and the
+obligation-to-change mapping. The seed docstring says the gap is left visible rather than papered
+over with a half-table.</td><td>Build the obligation table and the semantic join. This is the
+product's core join and the place ADR-008's embeddings earn their place.</td></tr>
+
+<tr><td><strong><code>app/evals/run.py</code> prints "no evals defined yet".</strong> No pass rate,
+no precision, no recall.</td><td>Ran out of hours. The deliberate-corruption test exists and passes;
+the harness that would report a rate does not.</td><td>Build it. But the eval corpus has five
+labelled changes, and no percentage over five items is a measurement — the honest report is counts,
+which is also what the analytics panel already enforces.</td></tr>
+
+<tr><td><strong>Four open code defects, logged and unfixed:</strong>
+<code>_spans_of</code> falls back to fixed-width window scanning (breaks on real PDF text);
+<code>normalize()</code> folds superscripts and fractions via NFKC against its own docstring;
+no soft-hyphen or line-break-hyphenation rule; <code>Citation.version_id</code> is carried but never
+checked against the source text passed in.</td><td>All four are reachable only on inputs the
+synthetic corpus does not contain. Each is written up in <code>findings.html</code> (#5 to #8) with
+the fix direction.</td><td>The version-id check first — it is reachable in this corpus through the
+repeated boilerplate, and it needs a version-aware entry point rather than a two-argument
+signature.</td></tr>
+
+<tr><td><strong>The hosted instance is a marketing site, not the product.</strong>
+<code>strata.sudama.ai</code> serves <code>deploy/site/</code> through nginx, with a real
+<code>/login</code> page instead of a 404.</td><td>ADR-009 made the hosted instance the primary
+surface. What is deployed today is the front door. ADR-011 specified Caddy and Docker Compose; the
+repository ships an nginx config and no compose file, so the ADR and the artefact
+disagree.</td><td>Deploy the application, or amend ADR-011 to say nginx. The local path stays the
+contract either way, which is what ADR-009's mitigation promised.</td></tr>
+
+<tr><td><strong>No authentication.</strong> <code>app/web/deps.py</code> returns the seeded demo
+tenant.</td><td><code>security.html</code> says so plainly. The dependency is written as the exact
+seam authentication will replace, and it is overridable in tests — which is what lets
+<code>tests/test_change_view.py</code> ask a handler for another company's change and prove the
+answer is a 404.</td><td>In flight in a parallel workstream at the time of writing.</td></tr>
+
+<tr><td><strong>Rollback is not built (T13);</strong> the review queue has approve and reject, not
+amend (T16).</td><td>Both were on the cut list. ADR-013 permitted the amend cut explicitly: the
+module keeps the third path unused rather than the architecture being rewritten around a temporary
+UI limit.</td><td>Amend is an event appended to the log like any other, so the work is the editing
+surface, not the model.</td></tr>
+
+<tr><td><strong>SQLite cannot do row-level security</strong>, so tenant isolation is an
+application-layer promise enforced by tests rather than an engine guarantee.</td><td>ADR-007:
+a reviewer runs <code>make run</code> before scheduling a panel, and every service they must install
+first is a way for the submission to fail on a machine nobody has seen. Finding #1 is exactly what
+that choice costs.</td><td>Reversal condition is a trigger, not a date: a second tenant, or any real
+customer data. SQLAlchemy already makes Postgres with RLS a configuration change.</td></tr>
+
+<tr><td><strong>The audit hash chain detects tampering; it does not prevent it.</strong></td><td>Two
+independent mechanisms because they fail differently, and both are honest in the module docstring
+about what they do not do. Anyone who can write the whole file can recompute the chain
+forward.</td><td>Publish the chain head where the same attacker cannot reach it.</td></tr>
+
 </table>
+
+<p class="sub">Last reconstructed at commit <code>45c408c</code>. Anything landing after that commit
+is not reflected here — including the router mount and the authentication work that were in the
+working tree while this page was written.</p>
 
 </body>
 </html>

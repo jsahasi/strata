@@ -91,7 +91,7 @@
       </p>
       {% endif %}
 
-      {% if item.quoted or item.source_readable %}
+      {% if not item.now_verifies and (item.quoted or item.source_readable) %}
       <dl class="mismatch">
         <dt class="mismatch__term">Quoted by the claim</dt>
         <dd class="mismatch__value">{{ item.quoted }}</dd>

@@ -83,6 +83,72 @@ def decisions() -> list:
     return out
 
 
+CAPABILITIES = {
+    # capability -> (module path, a symbol that must exist in it)
+    "ingestion": ("app/ingestion/ingest.py", "def ingest_version"),
+    "normalization": ("app/text/normalize.py", "def normalize"),
+    "citation_verifier": ("app/verification/verifier.py", "def verify_citation"),
+    "occurrence_disambiguation": ("app/verification/verifier.py", "def occurrence_index"),
+    "deterministic_diff": ("app/diff/engine.py", "def diff"),
+    "draft_final_split": ("app/interpretation/action.py", "def action_vocabulary"),
+    "tenant_scoped_reads": ("app/state/queries.py", "def passages_for_company"),
+    "audit_log_hash_chained": ("app/state/audit.py", "def verify_chain"),
+    "audit_actor_attribution": ("app/state/audit.py", "actor_user_id"),
+    "project_workspace": ("app/state/projects.py", "def create_project"),
+    "review_centre": ("app/state/review.py", "def coverage_for_project"),
+    "web_surface": ("app/web/views", ""),
+    "authentication": ("app/auth/sessions.py", "def login"),
+    "roles_and_permissions": ("app/state/identity.py", "def permissions_for_user"),
+    "segregation_of_duties": ("app/auth/policy.py", "def can_approve"),
+    "model_interpretation": ("app/interpretation", "anthropic"),
+    "evals": ("app/evals/run.py", "manifest"),
+}
+
+# Where each capability is specified, so a false entry points at its design rather
+# than just reporting an absence.
+DESIGNED_IN = {
+    "authentication": "docs/security.html - Authentication and authorization",
+    "roles_and_permissions": "docs/security.html - roles: analyst, obligation owner, admin",
+    "segregation_of_duties": "docs/security.html - the analyst never approves their own reading",
+    "model_interpretation": "docs/architecture.html - the only stage permitted to call a model",
+    "evals": "docs/.ai/tasks.html T17/T18 - labelled set, precision and recall",
+    "review_centre": "docs/.ai/demo-notes.html - what AI Fund demoed",
+    "project_workspace": "docs/.ai/demo-notes.html - project list with running changes",
+    "web_surface": "docs/web-design.html - four screens",
+}
+
+
+def capabilities() -> dict:
+    """Read each capability off the filesystem instead of asserting it.
+
+    Everything else in state.json is derived, so a hand-written dict of what is
+    built was the one claim in the file that could quietly go out of date -- the
+    precise failure the file exists to prevent. A capability is present when its
+    module exists and contains the symbol that implements it; a stub file with the
+    right name is therefore not enough to claim the capability.
+    """
+    out = {}
+    for name, (rel, symbol) in CAPABILITIES.items():
+        target = ROOT / rel
+        if not target.exists():
+            out[name] = False
+            continue
+        if target.is_dir():
+            files = [p for p in target.rglob("*.py") if p.name != "__init__.py"]
+            # A directory with a symbol must still contain it. Checking only that the
+            # folder is non-empty reported model_interpretation as built while no model
+            # call existed anywhere -- the exact false claim this file exists to prevent.
+            out[name] = bool(files) and (
+                not symbol
+                or any(symbol in p.read_text(encoding="utf-8") for p in files)
+            )
+            continue
+        out[name] = (
+            True if not symbol else symbol in target.read_text(encoding="utf-8")
+        )
+    return out
+
+
 def main() -> None:
     state = {
         "_generated_by": "scripts/status.py via `make status`. Do not hand-edit.",
@@ -100,25 +166,11 @@ def main() -> None:
         "tests": tests(),
         "modules": modules(),
         "decisions": decisions(),
-        "built": {
-            "ingestion": True,
-            "normalization": True,
-            "citation_verifier": True,
-            "occurrence_disambiguation": True,
-            "deterministic_diff": True,
-            "draft_final_split": True,
-            "tenant_scoped_reads": True,
-            "audit_log_hash_chained": True,
-        },
+        "built": {k: v for k, v in capabilities().items() if v},
         "designed_not_built": {
-            "authentication": "docs/security.html — no identity provider; roles are a design",
-            "model_interpretation": "docs/architecture.html — app/interpretation/ has the draft/final split only; no model call exists",
-            "web_ui": "docs/web-design.html — four screens specified, none built",
-            "review_queue": "ADR-006 — escalation is designed; no queue surface",
-            "deployment": "ADR-009/010/011 — strata.sudama.ai has no DNS record yet",
-            "evals": "app/evals/run.py is a stub",
-            "approval_workflow": "designed in this session; not in app/",
-            "feedback_loop": "designed in this session; not in app/",
+            k: DESIGNED_IN.get(k, "specified in docs/")
+            for k, present in capabilities().items()
+            if not present
         },
         "known_gaps": [
             "The verifier confirms a quoted passage EXISTS at the cited offsets. It does not "

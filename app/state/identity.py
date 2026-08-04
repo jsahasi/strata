@@ -58,12 +58,24 @@ from datetime import datetime, timezone
 from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
-from app.state.audit import record_event
+# The action codes are imported, not restated. Two modules holding constants of
+# the same name with different strings is the drift these constants exist to
+# prevent: the row lands under one spelling and every query for the other misses
+# it, silently, because a wrong action code is still a valid row.
+from app.state.audit import (
+    ACTION_ROLE_GRANTED,
+    ACTION_ROLE_REVOKED,
+    ACTION_USER_CREATED,
+    ACTION_USER_REINSTATED,
+    ACTION_USER_SUSPENDED,
+    record_event,
+)
 from app.state.models import (
     PERMISSION_CODES,
     ROLE_ADMIN,
     ROLE_ANALYST,
     ROLE_OBLIGATION_OWNER,
+    STATUS_ACTIVE,
     SYSTEM_ROLE_NAMES,
     USER_STATUSES,
     Permission,
@@ -192,9 +204,10 @@ PERMISSION_DESCRIPTIONS: dict[str, str] = {
     "audit.read": "Read the audit chain and verify it.",
 }
 
-ACTION_USER_CREATED = "user.created"
-ACTION_ROLE_GRANTED = "user.role_granted"
-ACTION_ROLE_REVOKED = "user.role_revoked"
+# The action codes this module writes come from app/state/audit.py, which holds
+# the whole audited vocabulary. They are imported at the top and are not
+# re-exported below: one import path per string, so there is nowhere for a
+# second spelling to appear.
 
 
 # ---------------------------------------------------------------------------
@@ -223,7 +236,9 @@ def _require_one_of(value: str, allowed: tuple[str, ...], field: str) -> str:
 
 def _require_aware(moment: datetime, field: str) -> datetime:
     if moment.tzinfo is None:
-        raise ValueError(f"{field} must carry a timezone; a naive timestamp is a defect")
+        raise ValueError(
+            f"{field} must carry a timezone; a naive timestamp is a defect"
+        )
     return moment
 
 
@@ -451,22 +466,41 @@ def ensure_system_roles(session: Session) -> list[Role]:
     grid answers every check plausibly and wrongly. Roles a tenant defined for
     itself are never touched.
     """
+    unknown = sorted(
+        {
+            code
+            for codes in SYSTEM_ROLE_PERMISSIONS.values()
+            for code in codes
+            if code not in PERMISSION_CODES
+        }
+    )
+    if unknown:
+        # SQLite does not enforce foreign keys unless asked, so writing a grid
+        # row for a code with no permission behind it would succeed and then
+        # vanish at the join in permissions_for_user. The role would look
+        # granted and check as denied, and nothing would say why.
+        raise ValueError(
+            f"the role grid names permissions that do not exist: {unknown}. "
+            "Add them to PERMISSION_CODES or correct the grid."
+        )
+
     for code in PERMISSION_CODES:
+        wording = PERMISSION_DESCRIPTIONS.get(code, "")
         existing = (
             session.query(Permission).filter(Permission.code == code).one_or_none()
         )
         if existing is None:
-            session.add(
-                Permission(
-                    id=code,
-                    code=code,
-                    description=PERMISSION_DESCRIPTIONS.get(code, ""),
-                )
-            )
+            session.add(Permission(id=code, code=code, description=wording))
+        elif existing.description != wording:
+            # The wording in this module is the definition. A row still
+            # carrying last release's sentence describes a permission that no
+            # longer means quite that, and it is the row a reviewer reads.
+            existing.description = wording
     session.flush()
 
     roles: list[Role] = []
     for name in SYSTEM_ROLE_NAMES:
+        wording = SYSTEM_ROLE_DESCRIPTIONS.get(name, "")
         role = (
             session.query(Role)
             .filter(Role.company_id.is_(None))
@@ -475,13 +509,12 @@ def ensure_system_roles(session: Session) -> list[Role]:
         )
         if role is None:
             role = Role(
-                id=f"role-{name}",
-                company_id=None,
-                name=name,
-                description=SYSTEM_ROLE_DESCRIPTIONS.get(name, ""),
+                id=f"role-{name}", company_id=None, name=name, description=wording
             )
             session.add(role)
             session.flush()
+        elif role.description != wording:
+            role.description = wording
         roles.append(role)
 
         wanted = set(SYSTEM_ROLE_PERMISSIONS[name])
@@ -643,8 +676,10 @@ def create_user(
     _require_one_of(status, USER_STATUSES, "status")
     cleaned = normalise_email(email)
     if not display_name:
-        raise ValueError("a user needs a display name; an account nobody can name "
-                         "in a review is not attributable")
+        raise ValueError(
+            "a user needs a display name; an account nobody can name in a "
+            "review is not attributable"
+        )
 
     if user_by_email(session, company_id, cleaned) is not None:
         raise ValueError(f"{cleaned} already has an account in this company")
@@ -691,6 +726,15 @@ def set_user_status(
     resolves their id. permissions_for_user returns nothing for a user who is
     not active, so suspension takes effect everywhere at once rather than
     depending on each call site remembering to check.
+
+    Setting the status the account already holds writes nothing and appends no
+    event. Re-stating a fact is not a decision, and a chain full of them is a
+    chain nobody reads.
+
+    Losing authority and regaining it get separate action codes from the
+    vocabulary in app/state/audit.py. One code with the direction buried in the
+    reason text would make "who was let back in, and by whom" a question that
+    needs prose parsed rather than rows filtered.
     """
     _require_scope(company_id)
     who = _require_actor(actor)
@@ -708,7 +752,11 @@ def set_user_status(
         session,
         company_id=company_id,
         actor=who,
-        action="user.status_changed",
+        action=(
+            ACTION_USER_REINSTATED
+            if status == STATUS_ACTIVE
+            else ACTION_USER_SUSPENDED
+        ),
         subject_type="user",
         subject_id=user.id,
         reason=f"status moved from {was} to {status}",
@@ -748,9 +796,18 @@ def role_grants_for_user(
     return query.order_by(UserRole.granted_at, UserRole.id).all()
 
 
-def _active_grant(
+def _active_grants(
     session: Session, company_id: str, user_id: str, role_id: str
-) -> UserRole | None:
+) -> list[UserRole]:
+    """Every live grant of one role to one user. Normally none or one.
+
+    Returns a list rather than a row because the schema cannot make it one:
+    there is no unique index over the pair, by design, so a direct write or a
+    future bug could leave two. revoke_role closes all of them. Revoking the
+    newest and leaving an older one would take the permission away in the
+    interface and leave it in place in the check -- a failure that reads as
+    fixed.
+    """
     return (
         session.query(UserRole)
         .join(User, UserRole.user_id == User.id)
@@ -760,7 +817,7 @@ def _active_grant(
         .filter(UserRole.role_id == role_id)
         .filter(UserRole.revoked_at.is_(None))
         .order_by(UserRole.granted_at.desc(), UserRole.id.desc())
-        .first()
+        .all()
     )
 
 
@@ -794,9 +851,9 @@ def grant_role(
     if role is None:
         raise ValueError(f"no role {role_name!r} available to this company")
 
-    existing = _active_grant(session, company_id, user_id, role.id)
-    if existing is not None:
-        return existing
+    existing = _active_grants(session, company_id, user_id, role.id)
+    if existing:
+        return existing[0]
 
     stamp = _require_aware(granted_at or _utcnow(), "granted_at")
     grant = UserRole(
@@ -852,12 +909,13 @@ def revoke_role(
     if role is None:
         raise ValueError(f"no role {role_name!r} available to this company")
 
-    grant = _active_grant(session, company_id, user_id, role.id)
-    if grant is None:
+    grants = _active_grants(session, company_id, user_id, role.id)
+    if not grants:
         raise ValueError(f"{user.email} does not hold the role {role.name!r}")
 
     stamp = _require_aware(revoked_at or _utcnow(), "revoked_at")
-    grant.revoked_at = stamp
+    for grant in grants:
+        grant.revoked_at = stamp
     record_event(
         session,
         company_id=company_id,
@@ -869,7 +927,7 @@ def revoke_role(
         occurred_at=stamp,
     )
     session.flush()
-    return grant
+    return grants[0]
 
 
 def permissions_for_user(
@@ -905,7 +963,7 @@ def permissions_for_user(
         .join(User, User.id == UserRole.user_id)
         .filter(User.company_id == company_id)
         .filter(User.id == user_id)
-        .filter(User.status == "active")
+        .filter(User.status == STATUS_ACTIVE)
         .filter(UserRole.company_id == company_id)
         .filter(UserRole.revoked_at.is_(None))
         .filter(or_(Role.company_id.is_(None), Role.company_id == company_id))
@@ -924,10 +982,10 @@ def user_has_permission(
     return code in permissions_for_user(session, company_id, user_id)
 
 
+# The action codes are deliberately absent. They belong to app/state/audit.py,
+# which owns the vocabulary; re-exporting them here would give a caller two
+# import paths to the same string and one of them would eventually move.
 __all__ = [
-    "ACTION_ROLE_GRANTED",
-    "ACTION_ROLE_REVOKED",
-    "ACTION_USER_CREATED",
     "KDF_DKLEN",
     "KDF_N",
     "KDF_P",

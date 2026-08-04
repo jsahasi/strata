@@ -1,6 +1,18 @@
-"""FastAPI application. Thin by design: no business logic lives here."""
+"""FastAPI application. Thin by design: no business logic lives here.
+
+The one thing this module decides is what the running product is made of: three
+routers and one static mount, named once. `make run` starts this object and a
+reviewer typing `uvicorn app.main:app` starts the same one, so a screen that
+works in its own test file and a screen that works in the product cannot be two
+different questions.
+
+Each screen is still mountable on its own -- tests/test_screens.py and
+tests/test_change_view.py build their own applications around the routers -- and
+this file adds nothing they do not have. It only puts them together.
+"""
 
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from sqlalchemy import func, select
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -12,8 +24,20 @@ from app.state.models import (
     Escalation,
     Proceeding,
 )
+from app.web import STATIC_DIR, STATIC_URL_PATH
+from app.web.views import changes, proceedings, review
 
 app = FastAPI(title="Strata", docs_url=None, redoc_url=None)
+
+# The stylesheet and the citation script. base.html links them at fixed absolute
+# paths under STATIC_URL_PATH, so this mount point is not a free choice.
+app.mount(STATIC_URL_PATH, StaticFiles(directory=STATIC_DIR), name="static")
+
+# Screens, in the order an analyst meets them. No prefixes: each router owns its
+# own paths, and a prefix here would put the URLs in two files.
+app.include_router(proceedings.router)
+app.include_router(changes.router)
+app.include_router(review.router)
 
 # Counted, in this order, into the health body.
 _TABLES = {

@@ -35,14 +35,20 @@ from app.state.db import session_scope
 from app.state.models import Change, DocumentVersion, Proceeding
 from app.state.queries import versions_for_company
 from app.web import TEMPLATES_DIR
+from app.web.deps import (
+    COMPANY_ENV,
+    COMPANY_NAME_ENV,
+    DEMO_COMPANY_ID,
+    current_company,
+)
 
 router = APIRouter()
 templates = Jinja2Templates(directory=TEMPLATES_DIR)
 
-# The tenant, and the display name beside it in the masthead.
-COMPANY_ENV = "STRATA_COMPANY_ID"
-COMPANY_NAME_ENV = "STRATA_COMPANY_NAME"
-DEFAULT_COMPANY_ID = "MEP"
+# The tenant and the masthead name are decided in app/web/deps.py and re-exported
+# here under the names these screens already used. One answer, two spellings, no
+# second copy to drift.
+DEFAULT_COMPANY_ID = DEMO_COMPANY_ID
 
 # What a screen found when it looked. Three different facts, three different
 # sentences: the schema is absent, the schema is there and empty, or there is
@@ -63,15 +69,14 @@ _STATUS_BADGE = {"DRAFT": "badge--draft", "FINAL": "badge--final"}
 def current_company_id() -> str:
     """The tenant every read on these screens is scoped by.
 
-    There is no identity provider -- authentication is designed and not built,
-    and docs/security.html says so rather than implying otherwise -- so the
-    tenant comes from the environment instead of from a signed-in person.
-
-    Read on every call and never cached. A deployment can move it without a
-    restart, and a test can act as another company and watch these screens
-    refuse, which is the only way the tenant guard gets exercised end to end.
+    Delegates to app.web.deps.current_company() rather than reading the
+    environment a second time. The change screen resolves its tenant through
+    that same function as a FastAPI dependency, and when this module answered
+    the question on its own the two disagreed the moment a deployment named a
+    company: these screens showed nothing and the change screen still served the
+    demo tenant's source text.
     """
-    return os.environ.get(COMPANY_ENV, "").strip() or DEFAULT_COMPANY_ID
+    return current_company()
 
 
 def company_display_name() -> str:

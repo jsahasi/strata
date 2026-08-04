@@ -34,6 +34,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from app.state.audit import record_event
 from app.state.claims import (
     REASON_CODE_AMBIGUOUS_OCCURRENCE,
+    VerifiedClaim,
     WithheldClaim,
     change_for_company,
     escalations_for_company,
@@ -288,7 +289,7 @@ def _page(session, company_id: str) -> ReviewPage:
             change_url=f"/changes/{change.id}" if change else None,
             section=(change.section if change and change.section else "not numbered"),
             claim_readable=row.claim_id in owners,
-            now_verifies=row.claim_id in verified_ids,
+            now_verifies=fixed is not None,
             occurrences=occurrences,
             occurrence_position=position,
             resolved_at=_stamp(row.resolved_at),

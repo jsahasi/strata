@@ -903,7 +903,10 @@ Index(
 # ---------------------------------------------------------------------------
 
 
-USER_STATUSES = ("active", "suspended", "invited")
+STATUS_ACTIVE = "active"
+STATUS_SUSPENDED = "suspended"
+STATUS_INVITED = "invited"
+USER_STATUSES = (STATUS_ACTIVE, STATUS_SUSPENDED, STATUS_INVITED)
 
 ROLE_ANALYST = "analyst"
 ROLE_OBLIGATION_OWNER = "obligation_owner"
@@ -1013,7 +1016,9 @@ class Role(Base):
 
     id: Mapped[str] = mapped_column(String(64), primary_key=True)
     # NULL means a system role, shared by every tenant.
-    company_id: Mapped[str | None] = mapped_column(String(64), nullable=True, index=True)
+    company_id: Mapped[str | None] = mapped_column(
+        String(64), nullable=True, index=True
+    )
 
     name: Mapped[str] = mapped_column(String(64))
     description: Mapped[str] = mapped_column(Text, default="")

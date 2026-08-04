@@ -99,11 +99,20 @@ ACTION_LOGOUT = "session.logout"
 ACTION_SESSION_EXPIRED = "session.expired"
 
 # Accounts and permission. Every grant is a decision somebody made.
-ACTION_ROLE_GRANTED = "role.granted"
-ACTION_ROLE_REVOKED = "role.revoked"
+#
+# All six sit in the user. namespace, including the two about roles. A role
+# grant is a fact about an account, and the person asking "what happened to this
+# account" wants one prefix to search rather than three. app/state/identity.py
+# imports these rather than restating them.
 ACTION_USER_CREATED = "user.created"
 ACTION_USER_SUSPENDED = "user.suspended"
-ACTION_PASSWORD_CHANGED = "password.changed"
+# Suspension needs a way back, and the way back is a separate code rather than
+# a second "suspended" row with a reason nobody parses. Reinstating somebody is
+# the decision an investigation asks about, so it is searchable on its own.
+ACTION_USER_REINSTATED = "user.reinstated"
+ACTION_ROLE_GRANTED = "user.role_granted"
+ACTION_ROLE_REVOKED = "user.role_revoked"
+ACTION_PASSWORD_CHANGED = "user.password_changed"
 
 # The approval model. Segregation of duties is only checkable afterwards if the
 # approval names an actor distinct from the one that raised the work.
@@ -490,6 +499,10 @@ def migrate_audit_schema(engine) -> tuple[str, ...]:
     present = {column["name"] for column in inspector.get_columns("audit_events")}
     added: list[str] = []
     with engine.begin() as connection:
+        # The names and types are the module constants above, never anything a
+        # caller supplied. A column name cannot be a bind parameter, so DDL has
+        # to be built as text; keeping the values in one frozen tuple is what
+        # makes that safe rather than a habit.
         for name, ddl_type in _ADDED_COLUMNS:
             if name in present:
                 continue
@@ -546,6 +559,7 @@ __all__ = [
     "ACTION_ROLE_REVOKED",
     "ACTION_USER_CREATED",
     "ACTION_USER_SUSPENDED",
+    "ACTION_USER_REINSTATED",
     "ACTION_PASSWORD_CHANGED",
     "ACTION_ACTION_APPROVED",
     "ACTION_ACTION_REJECTED",

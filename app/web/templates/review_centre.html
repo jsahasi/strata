@@ -1,0 +1,634 @@
+{#
+  review_centre.html — the whole review centre, for every project this company
+  has. review_project.html extends this file and overrides only the two scope
+  blocks, so the two pages cannot drift into showing different sections.
+
+  Context, from app/web/views/review_centre.py:
+    coverage            CoverageView          leads the page
+    sources             [SourceRow]
+    analytics           [AnalyticsGroup]      counts, each with its denominator
+    waiting, settled    [QueueItem]           the expert-review queue
+    verified_findings   [VerifiedFinding]     carry a headline
+    unsubstantiated     [UnsubstantiatedFinding]  carry NO headline field at all
+    questions_open, questions_answered  [QuestionRow]
+    takes               [TakeCard]
+    deliverables        [DeliverableRow]
+    steers, steers_revoked  [SteerRow]
+    projects            [ProjectRef]
+    state               "ok" | "no-rows" | "no-tables"
+    error               dict(title, body, subject) | None
+
+  THE RULE THIS TEMPLATE EXISTS TO KEEP. Every surface here that synthesises or
+  counts renders its own coverage: the page, each take, each deliverable. The
+  withheld number sits in the same cell shape, at the same size, in the same
+  ink as the included one. It is not a footnote.
+
+  An UnsubstantiatedFinding has no headline and no detail. There is nothing on
+  it for a template mistake to leak, and slots=True means nothing can be
+  attached to it later either. If you find yourself wanting to print what one of
+  those findings would have said, that is the product working.
+#}{% extends "base.html" %}
+
+{% macro coverage_strip(included, withheld, share, scope, note_in, note_out, empty=false) %}
+{#
+  The signature component. Both cells are built identically on purpose: same
+  padding, same numeral size, same ink. The withheld number is not set in the
+  alarm colour, because an alarm number becomes an error badge and people learn
+  to dismiss error badges. Equal standing is stated by equal treatment.
+#}
+<div class="coverage{% if empty %} coverage--empty{% endif %}" style="--withheld-share: {{ share }}">
+  {%- if scope %}<p class="coverage__scope">{{ scope }}</p>{% endif %}
+  <div class="coverage__pair">
+    <div class="coverage__cell">
+      <span class="coverage__n">{{ included }}</span>
+      <span class="coverage__label"><span class="coverage__mark" aria-hidden="true"></span>Findings included</span>
+      <p class="coverage__note">{{ note_in }}</p>
+    </div>
+    <div class="coverage__cell">
+      <span class="coverage__n">{{ withheld }}</span>
+      <span class="coverage__label"><span class="coverage__mark coverage__mark--withheld" aria-hidden="true"></span>Findings withheld</span>
+      <p class="coverage__note">{{ note_out }}</p>
+    </div>
+  </div>
+  <div class="coverage__bar" aria-hidden="true"><span class="coverage__bar-withheld"></span></div>
+</div>
+{% endmacro %}
+
+{% block content %}
+
+{% block scope_head %}
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>Review centre</h1>
+    <span class="coord">{{ projects | length }} projects</span>
+  </div>
+  <p class="page-head__note">
+    What this company's research rests on, and what it does not. Every count on
+    this page was taken from the rows on this request. Nothing is stored and
+    read back.
+  </p>
+</div>
+{% endblock %}
+
+{% if error %}
+<div class="empty empty--unloaded" role="alert">
+  <p class="empty__title">{{ error.title }}</p>
+  <div class="empty__body"><p>{{ error.body }}</p></div>
+</div>
+{% endif %}
+
+{% if state == 'no-tables' %}
+<div class="empty empty--unloaded">
+  <p class="empty__title">The database has no tables yet.</p>
+  <div class="empty__body">
+    <p>
+      Nothing is counted because nothing has been loaded. Run
+      <code>{{ seed_command }}</code>, or <code>{{ make_command }}</code>, then
+      reload this page.
+    </p>
+  </div>
+</div>
+
+{% elif state == 'no-rows' %}
+<div class="empty empty--none">
+  <p class="empty__title">No project is open for {{ tenant }}.</p>
+  <div class="empty__body">
+    <p>
+      This was checked: the tables are there and this company owns no project.
+      A review centre with no project has nothing to review, which is different
+      from a review centre that found nothing.
+    </p>
+  </div>
+</div>
+
+{% else %}
+
+<nav class="tabs" aria-label="Sections">
+  <a class="tab" href="#coverage">Coverage</a>
+  <a class="tab" href="#sources">Sources <span class="tab__count">{{ sources | length }}</span></a>
+  <a class="tab" href="#analytics">Analytics</a>
+  <a class="tab" href="#expert-review">Expert review
+    {%- if waiting %} <span class="tab__count tab__count--waiting">{{ waiting | length }}</span>{% endif %}</a>
+  <a class="tab" href="#findings">Findings <span class="tab__count">{{ verified_findings | length + unsubstantiated | length }}</span></a>
+  <a class="tab" href="#questions">Questions
+    {%- if questions_open %} <span class="tab__count{% if coverage.blocking_questions %} tab__count--waiting{% endif %}">{{ questions_open | length }}</span>{% endif %}</a>
+  <a class="tab" href="#take">Collective take</a>
+  <a class="tab" href="#deliverables">Deliverables <span class="tab__count">{{ deliverables | length }}</span></a>
+  <a class="tab" href="#steer">Steer <span class="tab__count">{{ steers | length }}</span></a>
+</nav>
+
+{% block scope_switch %}
+{% if projects | length > 1 %}
+<section class="stack" aria-label="Projects">
+  <p class="label">Scope</p>
+  <ul class="nav__list">
+    {%- for project in projects %}
+    <li><a class="nav__link" href="{{ project.url }}">{{ project.name }}</a></li>
+    {%- endfor %}
+  </ul>
+</section>
+{% endif %}
+{% endblock %}
+
+{# ------------------------------------------------------------- coverage -- #}
+<section class="stack" id="coverage" aria-labelledby="coverage-h">
+  <h2 id="coverage-h">Coverage</h2>
+  <p>
+    This page leads with what it could not substantiate. A finding counts as
+    included only when it names a claim whose citation was re-checked against
+    the stored source on this request. A finding with no claim, and a finding
+    whose quote does not match, count as withheld — and nothing they would have
+    said appears anywhere below.
+  </p>
+  {{ coverage_strip(
+       coverage.included, coverage.withheld, coverage.withheld_share, coverage.scope,
+       "Each names a claim whose citation held when this page was built.",
+       "Nothing these would assert is printed on this page, in any field.",
+       coverage.empty) }}
+  <p class="coverage__basis">
+    <span class="coverage__basis-item"><span class="coverage__rule coverage__rule--external" aria-hidden="true"></span>{{ coverage.sources_external }} external sources</span>
+    <span class="coverage__basis-item"><span class="coverage__rule coverage__rule--internal" aria-hidden="true"></span>{{ coverage.sources_internal }} internal sources</span>
+    <span class="coverage__basis-item">{{ coverage.claims_verified }} claims verify, {{ coverage.claims_withheld }} withheld</span>
+    <span class="coverage__basis-item">{{ coverage.open_questions }} questions open, {{ coverage.blocking_questions }} blocking</span>
+  </p>
+</section>
+
+{# -------------------------------------------------------------- sources -- #}
+<section class="stack" id="sources" aria-labelledby="sources-h">
+  <h2 id="sources-h">Sources</h2>
+  <p>
+    Where the evidence came from. External is the public record the company will
+    be held to; internal is the company's own account of itself, which can be out
+    of date and carries no authority with a regulator. A source marked as
+    vouched for is a person's judgement about the document. It is not a
+    verification result and never stands in for one.
+  </p>
+  {% if sources %}
+  <div>
+    {%- for source in sources %}
+    <article class="source source--{{ source.kind }}">
+      <p class="source__kind">{{ source.kind }}</p>
+      <p class="source__name">{{ source.label }}</p>
+      <p class="source__meta">
+        <span class="coord">{{ source.locator }}</span>
+        <span>{% if source.version_id %}ingested as {{ source.version_id }}, citable at an offset{% else %}pointed at, not ingested — no claim can cite it{% endif %}</span>
+        <span>{% if source.retrieved_at %}read {{ source.retrieved_at }}{% else %}retrieval time not recorded{% endif %}</span>
+        <span>{% if source.trusted %}vouched for by a person{% else %}not vouched for{% endif %}</span>
+        {%- if show_project %}<span>{{ source.project_name }}</span>{% endif %}
+      </p>
+    </article>
+    {%- endfor %}
+  </div>
+  {% else %}
+  <div class="empty empty--none">
+    <p class="empty__title">No source is recorded.</p>
+    <div class="empty__body">
+      <p>Nothing has been filed against this scope, internal or external.</p>
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+{# ------------------------------------------------------------ analytics -- #}
+<section class="stack" id="analytics" aria-labelledby="analytics-h">
+  <h2 id="analytics-h">Analytics</h2>
+  <p>
+    Raw counts, each stating what it was counted out of. There are no shares and
+    no trend lines here on purpose: a share taken over a handful of items is
+    false precision, and it reads as insight. If the denominator is small, the
+    honest thing is to print the two numbers.
+  </p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Count</th>
+        <th scope="col">Of</th>
+        <th scope="col">Breakdown</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for group in analytics %}
+      <tr>
+        <td>{{ group.title }}</td>
+        <td>{{ group.basis }}</td>
+        <td>
+          {%- for row in group.rows %}
+          <span class="coord">{{ row.n }} {{ row.label }}</span>{% if not loop.last %} &middot; {% endif %}
+          {%- endfor %}
+          {%- if not group.rows %}<span class="coord">none</span>{% endif %}
+        </td>
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+</section>
+
+{# -------------------------------------------------------- expert review -- #}
+<section class="stack" id="expert-review" aria-labelledby="expert-h">
+  <h2 id="expert-h">Expert review</h2>
+  <p>
+    Everything the product refused to assert, with the reason in its own words,
+    the citation address, and the bytes the source really holds at those offsets.
+    Resolving an item does not publish a claim. Approve records that the refusal
+    was right. Reject records that you dispute it, and needs a reason. Neither
+    makes an unverified citation verify, so the coverage above does not move.
+  </p>
+
+  {% if waiting %}
+  <ul class="queue">
+    {%- for item in waiting %}
+    <li class="queue__row">
+      <div>
+        <span class="queue__code">{{ item.reason_code }}</span>
+        <p class="queue__reason">{{ item.reason_text }}</p>
+        <p class="queue__meta">
+          {{ item.claim_id }} &middot; {{ item.citation }} &middot; section {{ item.section }}
+          {%- if item.change_url %} &middot; <a href="{{ item.change_url }}">{{ item.change_id }}</a>{% endif %}
+        </p>
+
+        {% if item.now_verifies %}
+        <p class="queue__reason">
+          This citation verifies on re-check now. The source was corrected after
+          the refusal was raised, so the claim is no longer withheld.
+        </p>
+        {% elif not item.claim_readable %}
+        <p class="queue__reason">
+          The claim behind this escalation cannot be read under this company's
+          scope. What follows is what the refusal recorded when it was raised.
+        </p>
+        {% endif %}
+
+        {% if not item.now_verifies and (item.quoted or item.source_readable) %}
+        <dl class="mismatch">
+          <dt class="mismatch__term">Quoted by the claim</dt>
+          <dd class="mismatch__value">{{ item.quoted }}</dd>
+          <dt class="mismatch__term">The source at those offsets</dt>
+          <dd class="mismatch__value">
+            {%- if item.source_readable %}{{ item.source_marked }}
+            {%- else %}nothing could be read at {{ item.citation }}{% endif -%}
+          </dd>
+          {% if item.occurrences > 1 %}
+          <dt class="mismatch__term">Times it appears in {{ item.version_id }}</dt>
+          <dd class="mismatch__value">
+            {{ item.occurrences }}
+            {%- if item.occurrence_position %}, and this citation points at number
+            {{ item.occurrence_position }}. The claim did not say which one it means.
+            {%- else %}. This citation does not land on any of them.{% endif %}
+          </dd>
+          {% endif %}
+        </dl>
+        {% endif %}
+
+        {% if item.source_readable %}
+        <section class="source-panel">
+          <header class="source-panel__head">
+            <p class="source-panel__title">{{ item.version_label or item.version_id }}</p>
+            <span class="coord">{{ item.citation }}</span>
+          </header>
+          <div class="source-panel__body">{% if item.lead_clipped %}[...] {% endif %}{{ item.source_lead }}<mark class="source-mark">{{ item.source_marked }}</mark>{{ item.source_tail }}{% if item.tail_clipped %} [...]{% endif %}</div>
+        </section>
+        {% endif %}
+      </div>
+
+      <form class="queue__actions" method="post" action="{{ centre_url }}/escalations/{{ item.escalation_id }}/resolve">
+        <input type="hidden" name="back" value="{{ back }}">
+        <p>
+          <label class="label" for="who-{{ item.escalation_id }}">Your name</label><br>
+          <input id="who-{{ item.escalation_id }}" name="reviewer" type="text" size="16" autocomplete="off">
+        </p>
+        <p>
+          <label class="label" for="why-{{ item.escalation_id }}">Reason, required to reject</label><br>
+          <input id="why-{{ item.escalation_id }}" name="reason" type="text" size="16" autocomplete="off">
+        </p>
+        <button class="btn btn--primary" type="submit" name="decision" value="{{ decision_approve }}">Approve</button>
+        <button class="btn" type="submit" name="decision" value="{{ decision_reject }}">Reject</button>
+      </form>
+    </li>
+    {%- endfor %}
+  </ul>
+  {% else %}
+  <div class="empty empty--none">
+    <p class="empty__title">Nothing is waiting on a person.</p>
+    <div class="empty__body">
+      <p>
+        This was checked on this request: every claim behind these findings had
+        its citation re-read against the stored source.
+      </p>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if settled %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Escalation</th>
+        <th scope="col">Claim</th>
+        <th scope="col">Reason</th>
+        <th scope="col">Resolved by</th>
+        <th scope="col">When</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for item in settled %}
+      <tr>
+        <td><span class="coord">{{ item.escalation_id }}</span></td>
+        <td><span class="coord">{{ item.claim_id }}</span></td>
+        <td>{{ item.reason_code }}</td>
+        <td><span class="coord">{{ item.resolved_by }}</span></td>
+        <td><span class="coord">{{ item.resolved_at }}</span></td>
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</section>
+
+{# ------------------------------------------------------------- findings -- #}
+<section class="stack" id="findings" aria-labelledby="findings-h">
+  <h2 id="findings-h">Findings</h2>
+  <p>
+    Every finding raised, in two groups. The first group names a claim whose
+    citation held. The second names nothing that verifies, and so it is printed
+    without what it would have said — the row carries no such field for this
+    template to reach. Status is a separate axis from verification: a reviewer
+    may reject a finding whose citation is perfect.
+  </p>
+
+  {% if verified_findings %}
+  <ul class="stack stack--tight">
+    {%- for finding in verified_findings %}
+    <li class="claim claim--verified">
+      <div class="claim__head">
+        <span class="claim__state">{{ finding.status }}</span>
+        <span class="coord">{{ finding.finding_id }}</span>
+      </div>
+      <p class="claim__statement">{{ finding.headline }}</p>
+      {%- if finding.detail %}<p class="claim__foot">{{ finding.detail }}</p>{% endif %}
+      <p class="claim__foot">
+        <span class="coord">{{ finding.claim_id }}</span>
+        <span class="coord">{{ finding.citation }}</span>
+        {%- if finding.change_url %} <a href="{{ finding.change_url }}">{{ finding.change_id }}</a>{% endif %}
+        &middot; raised by {{ finding.raised_by }}{% if finding.raised_at %}, {{ finding.raised_at }}{% endif %}
+        {%- if show_project %} &middot; {{ finding.project_name }}{% endif %}
+      </p>
+    </li>
+    {%- endfor %}
+  </ul>
+  {% endif %}
+
+  {% if unsubstantiated %}
+  <ul class="stack stack--tight">
+    {%- for finding in unsubstantiated %}
+    <li class="claim claim--withheld">
+      <div class="claim__head">
+        <span class="claim__state">{{ finding.status }}, nothing verifies it</span>
+        <span class="coord">{{ finding.finding_id }}</span>
+      </div>
+      <div class="withheld">
+        <p class="withheld__label">{{ finding.reason_code }}</p>
+        <p class="withheld__reason">{{ finding.reason_text }}</p>
+      </div>
+      <p class="claim__foot">
+        <span class="coord">{{ finding.claim_id or 'no claim' }}</span>
+        <span class="coord">{{ finding.citation }}</span>
+        {%- if finding.change_url %} <a href="{{ finding.change_url }}">{{ finding.change_id }}</a>{% endif %}
+        &middot; raised by {{ finding.raised_by }}{% if finding.raised_at %}, {{ finding.raised_at }}{% endif %}
+        {%- if show_project %} &middot; {{ finding.project_name }}{% endif %}
+      </p>
+    </li>
+    {%- endfor %}
+  </ul>
+  {% endif %}
+
+  {% if not verified_findings and not unsubstantiated %}
+  <div class="empty empty--none">
+    <p class="empty__title">No finding has been raised.</p>
+    <div class="empty__body"><p>Nothing has been asserted, so nothing was withheld.</p></div>
+  </div>
+  {% endif %}
+</section>
+
+{# ------------------------------------------------------------ questions -- #}
+<section class="stack" id="questions" aria-labelledby="questions-h">
+  <h2 id="questions-h">Questions</h2>
+  <p>
+    Open questions first, and the blocking ones before the rest. A blocking
+    question is the same species as an escalation: work stopped, waiting on a
+    person. A list that buries them among the rest has handed the sorting back
+    to the analyst.
+  </p>
+
+  {% if questions_open %}
+  <ul class="stack stack--tight">
+    {%- for question in questions_open %}
+    <li class="question{% if question.blocking %} question--blocking{% endif %}">
+      {%- if question.blocking %}<span class="question__flag">Blocking</span>{% endif %}
+      <p class="question__text">{{ question.body }}</p>
+      <p class="question__why">
+        Asked by {{ question.asked_by }}{% if question.asked_at %}, {{ question.asked_at }}{% endif %}.
+        {%- if question.blocking %} The deliverable cannot honestly be written until this is answered.{% endif %}
+        {%- if show_project %} On {{ question.project_name }}.{% endif %}
+      </p>
+    </li>
+    {%- endfor %}
+  </ul>
+  {% else %}
+  <div class="empty empty--none">
+    <p class="empty__title">Nothing is open.</p>
+    <div class="empty__body"><p>Every question raised on this scope has an answer against it.</p></div>
+  </div>
+  {% endif %}
+
+  {% if questions_answered %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Answered</th>
+        <th scope="col">Answer</th>
+        <th scope="col">By</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for question in questions_answered %}
+      <tr>
+        <td>{{ question.body }}</td>
+        <td>{{ question.answer }}</td>
+        <td><span class="coord">{{ question.answered_by }}</span><br><span class="coord">{{ question.answered_at }}</span></td>
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</section>
+
+{# ------------------------------------------------------- collective take -- #}
+<section class="stack" id="take" aria-labelledby="take-h">
+  <h2 id="take-h">Collective take</h2>
+  <p>
+    The synthesis, and directly above it the coverage it was composed against.
+    A take that says "rests on nine findings" and a take that says "rests on
+    nine, excludes four that failed verification" are different documents, and
+    only the second one can be handed to a regulator. The counts are the ones
+    written when the take was composed, not recomputed now.
+  </p>
+
+  {% if takes %}
+  {%- for take in takes %}
+  <article class="card">
+    {{ coverage_strip(
+         take.included, take.withheld, take.withheld_share,
+         "This take rests on " ~ take.included ~ " findings and excludes " ~ take.withheld ~ ".",
+         "Counted when the take was composed.",
+         "Excluded when the take was composed. Nothing they say is in the body below.") }}
+    <p class="claim__foot">
+      Composed by {{ take.composed_by }}{% if take.composed_at %}, {{ take.composed_at }}{% endif %}
+      {%- if show_project %} &middot; <a href="{{ take.url }}">{{ take.project_name }}</a>{% endif %}
+    </p>
+    {% if take.moved %}
+    <p class="claim__foot">
+      Coverage has moved since. On this request the same project counts
+      {{ take.live_included }} included and {{ take.live_withheld }} withheld.
+      The take is a statement about the earlier moment and has not been rewritten.
+    </p>
+    {% endif %}
+    <div class="doc"><p>{{ take.body }}</p></div>
+  </article>
+  {%- endfor %}
+  {% else %}
+  <div class="empty empty--none">
+    <p class="empty__title">Nothing has been composed.</p>
+    <div class="empty__body">
+      <p>
+        No take exists for this scope. That is not the same as a take with
+        nothing in it, so none is shown.
+      </p>
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+{# --------------------------------------------------------- deliverables -- #}
+<section class="stack" id="deliverables" aria-labelledby="deliverables-h">
+  <h2 id="deliverables-h">Deliverables</h2>
+  <p>
+    What leaves the building. Each carries the same two counts as a take, and
+    for a heavier reason: this is the artefact somebody outside the system
+    reads, and the last place a silent omission can still be caught.
+  </p>
+
+  {% if deliverables %}
+  <div class="stack stack--tight">
+    {%- for item in deliverables %}
+    <article class="deliverable {{ item.state_class }}">
+      <header class="deliverable__head">
+        <p class="deliverable__title">{{ item.title }}</p>
+        <span class="coord">{{ item.kind }} &middot; {{ item.state }}
+          {%- if show_project %} &middot; {{ item.project_name }}{% endif %}</span>
+      </header>
+      <div class="deliverable__body">
+        <p>{{ item.body }}</p>
+        <p class="claim__foot">
+          {% if item.approved_by %}Approved by {{ item.approved_by }}.
+          {%- else %}Nobody has put their name to this. Unapproved is not the same as final.{% endif %}
+          {%- if item.created_at %} Written {{ item.created_at }}.{% endif %}
+        </p>
+      </div>
+      <div class="deliverable__foot">
+        {{ coverage_strip(
+             item.included, item.withheld, item.withheld_share,
+             "This document rests on " ~ item.included ~ " findings and excludes " ~ item.withheld ~ ".",
+             "Counted when the document was written.",
+             "Excluded when the document was written, and absent from it.") }}
+      </div>
+    </article>
+    {%- endfor %}
+  </div>
+  {% else %}
+  <div class="empty empty--none">
+    <p class="empty__title">Nothing has been drafted.</p>
+    <div class="empty__body"><p>No memo, filing, briefing or register exists for this scope.</p></div>
+  </div>
+  {% endif %}
+</section>
+
+{# ---------------------------------------------------------------- steer -- #}
+<section class="stack" id="steer" aria-labelledby="steer-h">
+  <h2 id="steer-h">Steer</h2>
+  <p>
+    Standing instructions that shift what the research looks for. Each is a row
+    with an issuer and a time, not a setting, so the findings a directive
+    produced can be reconciled afterwards with the instruction behind them.
+    Issuing one writes an audit entry.
+  </p>
+
+  {% if steers %}
+  <div class="stack stack--tight">
+    {%- for directive in steers %}
+    <article class="steer">
+      <p class="steer__directive">{{ directive.instruction }}</p>
+      <p class="steer__provenance">
+        {{ directive.issued_by }} &middot; {{ directive.issued_at }}
+        {%- if show_project %} &middot; {{ directive.project_name }}{% endif %}
+        <br>
+        {% if directive.applied_at %}Applied {{ directive.applied_at }}.
+          {%- if directive.effect %} {{ directive.effect }}{% endif %}
+        {%- else %}Not yet applied. No effect has been recorded, which is not the same as no effect.{% endif %}
+      </p>
+    </article>
+    {%- endfor %}
+  </div>
+  {% else %}
+  <div class="empty empty--none">
+    <p class="empty__title">Nothing is steering this research.</p>
+    <div class="empty__body"><p>The system is looking for whatever the corpus puts in front of it.</p></div>
+  </div>
+  {% endif %}
+
+  {% if steers_revoked %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Withdrawn directive</th>
+        <th scope="col">Issued by</th>
+        <th scope="col">Withdrawn</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for directive in steers_revoked %}
+      <tr>
+        <td>{{ directive.instruction }}</td>
+        <td><span class="coord">{{ directive.issued_by }}</span></td>
+        <td><span class="coord">{{ directive.revoked_at }}</span></td>
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+  <form class="card" method="post" action="{{ centre_url }}/steer">
+    <input type="hidden" name="back" value="{{ back }}">
+    <p>
+      <label class="label" for="steer-instruction">New directive</label><br>
+      <input id="steer-instruction" name="instruction" type="text" size="60" autocomplete="off">
+    </p>
+    <p>
+      <label class="label" for="steer-by">Your name</label><br>
+      <input id="steer-by" name="issued_by" type="text" size="24" autocomplete="off">
+    </p>
+    {% block steer_project_field %}
+    <p>
+      <label class="label" for="steer-project">Project</label><br>
+      <select id="steer-project" name="project_id">
+        {%- for project in projects %}
+        <option value="{{ project.project_id }}">{{ project.name }}</option>
+        {%- endfor %}
+      </select>
+    </p>
+    {% endblock %}
+    <button class="btn btn--primary" type="submit">Issue steer</button>
+  </form>
+</section>
+
+{% endif %}
+{% endblock %}

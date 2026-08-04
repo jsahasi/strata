@@ -531,7 +531,6 @@ class _Loaded:
 
     company_id: str
     docket: str
-    proceeding_id: str
     manifest: dict
     context: dict
     anchors: dict[str, Change]
@@ -1694,7 +1693,6 @@ def load(session: Session, *, data_dir: Path = DATA_DIR) -> SeedReport:
         _Loaded(
             company_id=company_id,
             docket=docket,
-            proceeding_id=proceeding_id,
             manifest=manifest,
             context=context,
             anchors=anchors,

@@ -1,25 +1,36 @@
 {
   "_generated_by": "scripts/status.py via `make status`. Do not hand-edit.",
   "_why": "Every other file in docs/.ai/ is prose and can go stale. This one is read from the repository, so where it disagrees with prose, it is right.",
-  "generated_at": "2026-08-04T06:11:07.656915+00:00",
+  "generated_at": "2026-08-04T07:18:53.611942+00:00",
   "git": {
-    "head": "2374381",
+    "head": "45c408c",
     "branch": "main",
-    "commits": 12,
+    "commits": 16,
     "dirty": true
   },
   "tests": {
-    "passed": 56,
+    "passed": 284,
     "failed": 0,
     "files": [
+      "test_app_wiring.py",
       "test_audit.py",
+      "test_audit_v2.py",
+      "test_change_view.py",
+      "test_claims.py",
       "test_diff.py",
       "test_draft_final.py",
+      "test_identity.py",
       "test_ingestion.py",
       "test_isolation.py",
       "test_normalize.py",
       "test_occurrence.py",
       "test_passage_isolation.py",
+      "test_pipeline.py",
+      "test_projects.py",
+      "test_review.py",
+      "test_screens.py",
+      "test_seed.py",
+      "test_seed_workspace.py",
       "test_smoke.py",
       "test_verification.py"
     ],
@@ -29,6 +40,14 @@
   "modules": {
     "app/diff/engine.py": {
       "lines": 126,
+      "calls_a_model": false
+    },
+    "app/evals/corpus.py": {
+      "lines": 196,
+      "calls_a_model": false
+    },
+    "app/evals/report.py": {
+      "lines": 107,
       "calls_a_model": false
     },
     "app/evals/run.py": {
@@ -44,35 +63,79 @@
       "calls_a_model": false
     },
     "app/main.py": {
-      "lines": 15,
+      "lines": 94,
+      "calls_a_model": false
+    },
+    "app/pipeline.py": {
+      "lines": 260,
       "calls_a_model": false
     },
     "app/seed.py": {
-      "lines": 9,
+      "lines": 1754,
       "calls_a_model": false
     },
     "app/state/audit.py": {
-      "lines": 212,
+      "lines": 576,
+      "calls_a_model": false
+    },
+    "app/state/claims.py": {
+      "lines": 372,
       "calls_a_model": false
     },
     "app/state/db.py": {
       "lines": 38,
       "calls_a_model": false
     },
+    "app/state/identity.py": {
+      "lines": 1017,
+      "calls_a_model": false
+    },
     "app/state/models.py": {
-      "lines": 96,
+      "lines": 1155,
+      "calls_a_model": false
+    },
+    "app/state/projects.py": {
+      "lines": 1058,
       "calls_a_model": false
     },
     "app/state/queries.py": {
       "lines": 50,
       "calls_a_model": false
     },
+    "app/state/review.py": {
+      "lines": 575,
+      "calls_a_model": false
+    },
     "app/text/normalize.py": {
-      "lines": 38,
+      "lines": 197,
       "calls_a_model": false
     },
     "app/verification/verifier.py": {
-      "lines": 108,
+      "lines": 123,
+      "calls_a_model": false
+    },
+    "app/web/deps.py": {
+      "lines": 87,
+      "calls_a_model": false
+    },
+    "app/web/views/changes.py": {
+      "lines": 455,
+      "calls_a_model": false
+    },
+    "app/web/views/proceedings.py": {
+      "lines": 502,
+      "calls_a_model": false
+    },
+    "app/web/views/projects.py": {
+      "lines": 872,
+      "calls_a_model": false
+    },
+    "app/web/views/review.py": {
+      "lines": 464,
+      "calls_a_model": false
+    },
+    "app/web/views/review_centre.py": {
+      "lines": 1149,
       "calls_a_model": false
     }
   },
@@ -226,17 +289,18 @@
     "deterministic_diff": true,
     "draft_final_split": true,
     "tenant_scoped_reads": true,
-    "audit_log_hash_chained": true
+    "audit_log_hash_chained": true,
+    "audit_actor_attribution": true,
+    "project_workspace": true,
+    "review_centre": true,
+    "web_surface": true,
+    "roles_and_permissions": true
   },
   "designed_not_built": {
-    "authentication": "docs/security.html \u2014 no identity provider; roles are a design",
-    "model_interpretation": "docs/architecture.html \u2014 app/interpretation/ has the draft/final split only; no model call exists",
-    "web_ui": "docs/web-design.html \u2014 four screens specified, none built",
-    "review_queue": "ADR-006 \u2014 escalation is designed; no queue surface",
-    "deployment": "ADR-009/010/011 \u2014 strata.sudama.ai has no DNS record yet",
-    "evals": "app/evals/run.py is a stub",
-    "approval_workflow": "designed in this session; not in app/",
-    "feedback_loop": "designed in this session; not in app/"
+    "authentication": "docs/security.html - Authentication and authorization",
+    "segregation_of_duties": "docs/security.html - the analyst never approves their own reading",
+    "model_interpretation": "docs/architecture.html - the only stage permitted to call a model",
+    "evals": "docs/.ai/tasks.html T17/T18 - labelled set, precision and recall"
   },
   "known_gaps": [
     "The verifier confirms a quoted passage EXISTS at the cited offsets. It does not confirm the passage supports the claim attached to it. Named in docs/security.html.",

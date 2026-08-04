@@ -257,6 +257,13 @@ def test_a_corrected_citation_stops_being_withheld_on_the_next_read(client, seed
     assert MISQUOTE in body
     assert "verifies on re-check now" in body
 
+    # It keeps its citation and its source, so the correction is checkable.
+    # Both rows now show the marked span; neither says the source is unreadable.
+    assert body.count('class="source-mark"') == 2
+    assert "not readable" not in body
+    # No mismatch pair on a citation that matches: there is nothing to contrast.
+    assert body.count("Quoted by the claim") == 1
+
 
 def test_no_withheld_statement_reaches_the_review_queue(client, seeded):
     """ADR-003, asserted against the HTML rather than against a CSS class."""

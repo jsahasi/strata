@@ -1,0 +1,164 @@
+{#
+  project_list.html — every live project as a card, and the form that opens one.
+
+  Context, from app/web/views/projects.py:
+    tiles     list[ProjectTile]
+    state     "ok" | "no-rows" | "no-tables"
+    form      FormState | None   present on /projects/new and on a refused post
+    new_url   str                where the "New project" tile points
+    post_url  str                where the form posts
+    plus everything base.html reads.
+
+  Two things worth knowing before editing.
+
+  Every number on a card is derived by project_card() on this request. None of
+  them is stored, so a tile cannot disagree with the rows it counts. A count of
+  zero is written as a word rather than a dash: a dash in a count row reads as
+  "not applicable", and what it would actually mean here is "none".
+
+  The empty case names which of two facts it found. No tables is not the same as
+  no projects, and only one of them is fixed by loading the corpus.
+#}{% extends "base.html" %}
+
+{% block content %}
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>Projects</h1>
+    {% if tiles %}<span class="coord">{{ tiles | length }} open</span>{% endif %}
+  </div>
+  <p class="page-head__note">
+    The work {{ tenant }} has in hand. Each project carries the changes attached
+    to it, the questions still open against it, its plan, its re-runs, and what
+    the company has learned.
+  </p>
+</div>
+
+{% if form %}
+<section class="card stack" id="new-project" aria-labelledby="new-project-title">
+  <h2 id="new-project-title">New project</h2>
+
+  {% if form.error %}
+  <div class="empty empty--unloaded" role="alert">
+    <p class="empty__title">The project was not created.</p>
+    <div class="empty__body"><p>{{ form.error }}</p></div>
+  </div>
+  {% endif %}
+
+  <form method="post" action="{{ post_url }}" class="stack--tight">
+    <p>
+      <label class="label" for="name">Name</label><br>
+      <input id="name" name="name" type="text" size="52" autocomplete="off"
+             value="{{ form.name }}" required>
+    </p>
+    <p>
+      <label class="label" for="jurisdiction">Jurisdiction</label><br>
+      <input id="jurisdiction" name="jurisdiction" type="text" size="32"
+             autocomplete="off" value="{{ form.jurisdiction }}" required>
+    </p>
+    <p>
+      <label class="label" for="owner">Owner</label><br>
+      <input id="owner" name="owner" type="text" size="32" autocomplete="off"
+             value="{{ form.owner }}" required>
+    </p>
+    <p>
+      <label class="label" for="docket_ref">Docket reference</label><br>
+      <input id="docket_ref" name="docket_ref" type="text" size="32"
+             autocomplete="off" value="{{ form.docket_ref }}">
+      <span class="coord">optional. An internal programme tracks no docket.</span>
+    </p>
+    <p>
+      <label class="label" for="summary">Summary</label><br>
+      <input id="summary" name="summary" type="text" size="52" autocomplete="off"
+             value="{{ form.summary }}">
+    </p>
+    <p>
+      <button class="btn btn--primary" type="submit">Open the project</button>
+      <a class="btn" href="{{ nav_projects_url }}">Cancel</a>
+    </p>
+  </form>
+
+  <p class="coord">
+    There is no sign-in on this build. The owner named above is the name written
+    into the audit chain as the person who opened the project, and nothing has
+    checked it.
+  </p>
+</section>
+{% endif %}
+
+{% if state == 'ok' %}
+<div class="card-grid">
+  {% for tile in tiles %}
+  <a class="project-card" href="{{ tile.url }}">
+    <div class="project-card__head">
+      <span class="project-card__name">{{ tile.name }}</span>
+      <span class="badge {{ tile.badge }}">{{ tile.status_word }}</span>
+    </div>
+    <p class="project-card__where">
+      <span>{{ tile.jurisdiction }}</span>
+      {% if tile.docket_ref %}
+      <span class="coord">{{ tile.docket_ref }}</span>
+      {% else %}
+      <span class="coord">no docket</span>
+      {% endif %}
+    </p>
+    <p class="project-card__note">Last activity {{ tile.last_activity }}</p>
+    <div class="project-card__counts">
+      <span class="tally{% if not tile.change_count %} tally--none{% endif %}">
+        <span class="tally__n">{% if tile.change_count %}{{ tile.change_count }}{% else %}none{% endif %}</span>
+        <span class="tally__label">Changes</span>
+      </span>
+      <span class="tally{% if tile.unreviewed_count %} tally--waiting{% else %} tally--none{% endif %}">
+        <span class="tally__n">{% if tile.unreviewed_count %}{{ tile.unreviewed_count }}{% else %}none{% endif %}</span>
+        <span class="tally__label">Waiting on a person</span>
+      </span>
+      <span class="tally{% if not tile.open_thread_count %} tally--none{% endif %}">
+        <span class="tally__n">{% if tile.open_thread_count %}{{ tile.open_thread_count }}{% else %}none{% endif %}</span>
+        <span class="tally__label">Open threads</span>
+      </span>
+      <span class="tally {% if tile.next_run %}tally--date{% else %}tally--none{% endif %}">
+        <span class="tally__n">{% if tile.next_run %}{{ tile.next_run }}{% else %}not scheduled{% endif %}</span>
+        <span class="tally__label">Next re-run</span>
+      </span>
+    </div>
+  </a>
+  {% endfor %}
+
+  <a class="card card--new" href="{{ new_url }}">
+    <span class="card__verb">New project</span>
+    <span class="card__note">
+      Open a line of work and attach changes to it as they arrive.
+    </span>
+  </a>
+</div>
+
+{% elif state == 'no-tables' %}
+<div class="empty empty--unloaded">
+  <p class="empty__title">The database has no tables yet.</p>
+  <div class="empty__body">
+    <p>
+      This screen is not telling you that {{ tenant }} has no work in hand. It
+      has not been told anything: the corpus is not loaded, so there is nothing
+      to read.
+    </p>
+    <p>
+      Load it with <code>{{ seed_command }}</code>, or
+      <code>{{ make_command }}</code>, then reload this page.
+    </p>
+  </div>
+</div>
+
+{% else %}
+<div class="empty empty--none">
+  <p class="empty__title">No project is open for {{ tenant }}.</p>
+  <div class="empty__body">
+    <p>
+      The tables are there and they hold no project. That is a real answer, not
+      a failed read: nobody has opened one yet.
+    </p>
+  </div>
+  <div class="empty__actions">
+    <a class="btn btn--primary" href="{{ new_url }}">New project</a>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
