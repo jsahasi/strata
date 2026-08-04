@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — Rubric Briefing and Panel Preparation</title>
+<style>
+  body { font: 15px/1.65 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 940px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.85rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.4rem; }
+  h3 { font-size:1.02rem; color:#1d4ed8; margin:1.4rem 0 .35rem; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.92rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .5rem .6rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+  .q { background:#f8fafc; border-left:3px solid #1d4ed8; padding:.6rem .9rem; margin:.7rem 0; }
+  .q .ask { font-weight:600; color:#0f172a; }
+  .q .ans { color:#334155; margin-top:.35rem; }
+  .crit { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .good { color:#15803d; font-weight:600; } .weak { color:#b45309; font-weight:600; } .bad { color:#b91c1c; font-weight:600; }
+  blockquote { border-left:3px solid #cbd5e1; margin:.6rem 0; padding:.15rem 0 .15rem .9rem; color:#334155; font-style:italic; }
+</style>
+</head>
+<body>
+<h1>Rubric Briefing</h1>
+<p class="sub">What AI Fund evaluates, what they have told us they ask, and what your answer is. Source: AI Fund's own preparation guide, <a href="https://www.send.co/a/qzke21Yv">Preparing for the Build Challenge</a> (updated 2026-06-05), read in full.</p>
+
+<div class="crit"><strong>The one line that reframes everything:</strong> <em>"The Build Challenge is not a coding test. It is a compressed simulation of the first two weeks of the residency."</em> They are not scoring a deliverable. They are watching how you work, and inferring whether they want you in the room for four weeks and possibly on the founding team after. Every rule below follows from that.</div>
+
+<h2>The four dimensions, and where you actually stand</h2>
+<table>
+<tr><th>Dimension</th><th>What they are testing</th><th>Your position today</th></tr>
+<tr><td><strong>AI excellence and technical depth</strong></td><td>Depth on every architectural choice, at code level. Where modern AI fails and how you designed around it.</td><td class="good">Strong, if you write the core yourself. The decision log carries alternatives and trade-offs for all eight choices, and the failure-modes section names holes most candidates will not have noticed.</td></tr>
+<tr><td><strong>Product instinct</strong></td><td>A specific point of view on the user and the pain, defended under questioning.</td><td class="good">Strong. One named user, a wedge argued from the analyst's workflow rather than from features, and an explicit list of what the product refuses to do.</td></tr>
+<tr><td><strong>User empathy</strong></td><td>Did you talk to real users. Did their feedback change the build. Can you describe the user's day.</td><td class="bad">The exposure. Zero conversations so far. This is a whole dimension and it cannot be recovered by better engineering.</td></tr>
+<tr><td><strong>Founder behaviour</strong></td><td>Energy for the market, urgency on hard problems, someone others want to join.</td><td class="weak">Unproven to them. They have met you once. This is carried by how you talk about the problem, not by the repo.</td></tr>
+</table>
+
+<div class="note"><strong>Act on the weak column, not the strong one.</strong> Two twenty-minute calls with regulatory affairs people move you from "no evidence" to "evidence" on a full quarter of the rubric. No amount of additional code does that. The guide says it outright: getting real user feedback on your prototype is <em>"the most useful thing you can do before submitting."</em></div>
+
+<h2>The hard rules, stated as rules</h2>
+<table>
+<tr><th>Rule</th><th>How it is tested</th></tr>
+<tr><td><strong>One user, not two</strong></td><td>"If your answer to <em>who is this for</em> includes more than one type of person, you have not finished the work." Your answer is the regulatory affairs analyst at a multi-state investor-owned utility. The obligation owner is a role in the workflow, not a second user you designed for — say it that way if pressed.</td></tr>
+<tr><td><strong>Every feature maps to a named pain</strong></td><td>They will pick a feature and ask which user pain it serves. The named trap in the guide is an internal eval dashboard built for a non-technical user. If a feature has no answer, cut it before submitting or have the honest reason ready.</td></tr>
+<tr><td><strong>The hardest decision must be visible in the product</strong></td><td>Not buried in the stack. For you that is citation verification: a reviewer must be able to watch a claim refuse to assert itself when its citation fails. If that is invisible in the UI, the depth area does not count.</td></tr>
+<tr><td><strong>Every technology choice carries alternatives, trade-offs, constraints</strong></td><td>"A diagram without the reasoning behind it tells us very little." This is why the decision log exists and why it was written before the code.</td></tr>
+<tr><td><strong>"I don't know" is a positive signal</strong></td><td>Explicitly stated. Confident bluffing is the red flag. This is permission — use it rather than reaching.</td></tr>
+</table>
+
+<h2>Questions they have told us they ask</h2>
+<p>These are close to verbatim from the guide. Have an answer for each, in your own words, out loud, before the panel.</p>
+
+<h3>Technical</h3>
+<div class="q"><p class="ask">Why this retrieval method over that one?</p>
+<p class="ans">Lexical first, semantic only where paraphrase matters. Regulatory text is quotation-heavy and citation-bearing, so exact terms carry meaning and lexical search is strong, debuggable and free. Company obligations are written in the company's own words and will never lexically match the docket's — that specific join is where embeddings earn their place. <strong>Concede without being asked:</strong> the corpus is far too small to demonstrate a retrieval difference, so this is accepted on reasoning, not measurement (ADR-008).</p></div>
+
+<div class="q"><p class="ask">What happens when retrieval fails on some kind of query?</p>
+<p class="ans">This is the strongest structural answer in the design, so do not rush it. Retrieval does not enumerate changes — the <em>deterministic diff</em> does. Retrieval only ranks context for interpretation. So a retrieval miss degrades explanation quality, it does not lose a change. That separation was the point of ADR-004. Then distinguish a retrieval <em>miss</em> from a retrieval <em>service failure</em>: a dead provider or corrupt index escalates to review rather than silently degrading, because a degraded impact mapping that announces nothing is the failure mode this whole design exists to prevent.</p></div>
+
+<div class="q"><p class="ask">What is your fallback when the model is wrong?</p>
+<p class="ans">The design assumes the model will be wrong and makes that survivable. A misquotation is caught by offset verification and never reaches the user as fact. A misjudged materiality is caught by confidence thresholds and escalates. What is <em>not</em> caught: a fluent, correctly-cited, wrong interpretation of a passage the model quoted accurately. Say that plainly — it is the honest limit, and naming it is worth more than pretending the verifier covers it.</p></div>
+
+<div class="q"><p class="ask">How would you handle a 10x increase in latency?</p>
+<p class="ans">The user-facing path is not the model path. Ingestion, diffing and verification are deterministic and fast; the model runs on interpretation, which is asynchronous work producing review items rather than a blocking request. So a 10x model latency lengthens the queue, it does not freeze the workspace. At that point the levers are batching interpretations per change set, caching by content hash so an unchanged passage is never re-interpreted, and degrading to diff-only output with everything escalated.</p></div>
+
+<div class="q"><p class="ask">Where does modern AI fail here, and how did you design around it?</p>
+<p class="ans">Three, and they are documented rather than improvised. <strong>Fluent misquotation</strong> — models produce plausible, subtly wrong quotes and prompting does not fix it; answered by verifying against source offsets. <strong>Silent degradation</strong> — a provider falls back or a signal becomes meaningless and everything downstream still returns confident output; answered by refusing to score a signal that cannot be computed. <strong>False precision</strong> — a 0.87 confidence implies calibration nobody has done; answered with coarse ordinal buckets, calibrated against eval outcomes rather than taken on faith.</p></div>
+
+<div class="q"><p class="ask">Attack the citation verifier. Where does exact-offset matching break?</p>
+<p class="ans">Lead with the one they may not find: <strong>wrong-occurrence citations</strong>. Regulatory documents repeat boilerplate, so a citation can carry exact offsets landing on occurrence A while the model reasoned about occurrence B. The verifier confirms the quote matches at those offsets and passes it — green, and wrong. The corpus contains that trap deliberately (nine occurrences of one sentence) so it can be demonstrated and fixed rather than merely described. Then the rest: tables lose row structure when flattened and a cell offset is not gradable without its header; footnotes have no anchor to the clause they qualify; PDF extraction introduces ligatures and column bleed that the synthetic corpus does not contain, so the golden-file tests do not cover the risk they appear to.</p></div>
+
+<h3>Product</h3>
+<div class="q"><p class="ask">Who is this for, specifically?</p>
+<p class="ans">One sentence, no hedging: a regulatory affairs analyst at a multi-state investor-owned utility. Then their day — how change reaches them, what they do with two versions of a docket, who they must convince, and where the record of that work currently lives.</p></div>
+
+<div class="q"><p class="ask">Why are alerts and search insufficient?</p>
+<p class="ans">An alert says something moved; the analyst still opens both versions, finds the delta, judges materiality, decides whether it binds yet, and works out which of their own obligations it touches. Search is worse — it assumes they already know what to look for. The expensive part is interpretation, and neither tool does any of it.</p></div>
+
+<div class="q"><p class="ask">What did users tell you, and what changed because of it?</p>
+<p class="ans">The one you cannot fake. Whatever happens, answer with specifics: what they misread, what they ignored, what they asked for that was not there. If only one conversation lands, say so and report it honestly — one real conversation reported accurately beats three implied ones, and they can spot an unfilled template instantly.</p></div>
+
+<div class="q"><p class="ask">What does this become in 12 weeks, and in six months?</p>
+<p class="ans">Explicitly asked for. 12 weeks: live docket ingestion instead of uploaded files, and a second jurisdiction proving the taxonomy generalises. Six months: the obligation graph as the compounding asset — the mapping between how a regulator words a requirement and how a specific company words its own, which is per-customer, cannot be bought, and is the actual moat. The verifier and the diff are the floor, not the moat; say that before they say it to you.</p></div>
+
+<h3>AI fluency and founder-market fit</h3>
+<div class="q"><p class="ask">What did you use AI to build, and what did you decide yourself?</p>
+<p class="ans">The defensible shape is <em>"I chose this approach because X, and asked the AI to implement it."</em> The disqualifying shape is <em>"the AI picked it and I shipped it"</em> — and the guide says the panel finds out quickly. Keep <code>docs/submission.html</code> current as you build; the rejections are the most valuable rows in it, because rejecting a proposal is evidence of judgement in a way accepting one is not.</p></div>
+
+<div class="q"><p class="ask">Why are you drawn to this problem?</p>
+<p class="ans">Founder-market fit is a named thread. Your honest answer is not domain love — you are not an energy person, and claiming otherwise with AES in the room would be a mistake. It is that this is a trust-engineering problem in a domain where being confidently wrong is expensive, and you have spent the last year building systems whose hardest lessons were exactly that. Say the true thing.</p></div>
+
+<h2>What to have ready before the panel</h2>
+<table>
+<tr><th>Item</th><th>Why</th></tr>
+<tr><td><strong>A 90-second pitch</strong>: who, what, why, what is hard about it</td><td>Explicitly listed in the guide's preparation section. Time it.</td></tr>
+<tr><td><strong>Your hardest technical choice explained to a non-expert</strong></td><td>Also explicitly listed. Practise citation verification without using the words offset, index or embedding.</td></tr>
+<tr><td><strong>The repo open</strong>, and the ability to name exact files, functions and commands</td><td>The AI interview asks for these and AI Fund reconciles your answers against the repository afterwards.</td></tr>
+<tr><td><strong>Reread the PRD and TDD the morning of the panel</strong></td><td>Their advice, not ours. Each anchors a thread of the conversation.</td></tr>
+<tr><td><strong>Your list of what you would change</strong></td><td>"Defend the choices you made and acknowledge the ones you would change." Having none reads worse than having several.</td></tr>
+</table>
+
+<h2>Concede these before you are asked</h2>
+<p>Volunteering a limit converts it from a hole they found into discipline you showed. Each of these is true, and each will be found.</p>
+<ul>
+<li><strong>"Verified" means the quote is real, not that the interpretation is right.</strong> Offset verification proves the words exist where claimed. It does not prove the model reasoned about them correctly.</li>
+<li><strong>The eval set is small and self-labelled.</strong> It is a sanity check, not an accuracy claim. Do not defend the number.</li>
+<li><strong>Retrieval is architecturally present, not demonstrated.</strong> The corpus is too small to show a difference.</li>
+<li><strong>Ordinal confidence is not inherently more trustworthy than a decimal.</strong> It is a coarser bucket that resists false precision, and it needs calibrating against eval outcomes.</li>
+<li><strong>The moat does not exist at launch.</strong> The verifier and diff are table stakes; the obligation graph has to be earned customer by customer.</li>
+<li><strong>Cold start is a real weakness of a change-centric product.</strong> One version of a proceeding produces nothing yet.</li>
+</ul>
+
+<h2>The panel itself</h2>
+<p>A conversation with AI Fund partners, usually onsite, moving through three threads: <strong>your TDD</strong>, <strong>your PRD</strong>, and <strong>AI fluency plus founder-market fit</strong>. Clear communication is stated as part of the evaluation — speak slowly, and ask a panelist to rephrase rather than guessing at the question.</p>
+
+<div class="note"><strong>Role fit, stated in the guide:</strong> "Engineer in Residence is an engineering role. If your primary background is product or business rather than engineering, talk to your recruiter before submitting." Your background is genuinely both, and your recent work is hands-on code. Lead with the engineering — the 200,000 lines shipped this year, the systems you debugged this week — and let the operating history be the second thing they learn, not the first.</div>
+
+</body>
+</html>

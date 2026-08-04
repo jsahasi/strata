@@ -44,6 +44,14 @@ decision in this repo is answerable against them.
 - **"I don't know" is a positive signal.** Bluffing is a red flag. Where a doc is uncertain,
   say so in the doc.
 
+**`docs/.ai/briefing.html` is the rubric brief and panel prep — keep it current.** It holds the four
+evaluation dimensions with an honest assessment of where this submission stands on each, the
+questions AI Fund has told us they ask with your actual answers, and the limits to concede before
+being asked. Update it whenever: a decision changes an answer in it, a user interview lands (the
+user-empathy row is the weak one and should move), a conceded limit stops being true because you
+fixed it, or a new failure mode is found. A brief that still describes last night's state is worse
+than none, because you will rehearse from it.
+
 **Submission mechanics:** keep the full commit history, do not squash — they read it. The exact
 run command and the exact test command must work on a reviewer's machine; they execute both
 before scheduling a panel.
