@@ -112,6 +112,67 @@
 <li><strong>Cold start is a real weakness of a change-centric product.</strong> One version of a proceeding produces nothing yet.</li>
 </ul>
 
+<h2>The 90-second pitch, written out</h2>
+<p>They ask for this directly. Adapt the words, keep the shape: who, what, why, what is hard. Time it — 90 seconds is roughly 220 words, which is shorter than it feels.</p>
+<blockquote>Regulatory affairs analysts at multi-state utilities live inside a problem nobody has solved for them. A commission publishes a revised order. Somewhere in eighty pages, three things changed that matter to them and forty that do not. They open both versions side by side and read, because that is genuinely the state of the art. Then they work out which of their own obligations each change touches, decide whether it binds yet or is still a proposal, and chase down the person who has to approve doing something about it. That takes days, and the cost of missing one is a penalty or a stranded project.<br><br>
+Strata turns a regulatory change into tracked work. It reads successive versions of a proceeding, computes exactly what changed, tells you whether it is draft or final, maps each change to the specific obligations and projects it affects, and routes a recommended action to the person who owns it.<br><br>
+The hard part is trust. An analyst cannot act on a machine reading of a docket unless they can see the exact words behind every claim. So every claim in Strata carries a citation into the source, and the system verifies that citation against the original text before it will show the claim as fact. If it does not verify, the claim does not get asserted — it goes to review. That constraint is the product.</blockquote>
+
+<h2>Your hardest technical choice, explained to a non-expert</h2>
+<p>Also asked for directly. Practise this until no jargon survives — no offsets, no indices, no embeddings.</p>
+<blockquote>Language models are fluent liars about quotations. Ask one what a document says and it will give you a sentence that sounds exactly right, is mostly right, and has a word changed in the middle that reverses the meaning. You cannot prompt that away, and in this domain it is fatal — an analyst who cannot trust the quote has to go and read the source, which is the work we claimed to remove.<br><br>
+So Strata does not trust the model's quotation. When the system makes a claim, it records precisely where in the original document that claim came from — which document, which version, which stretch of text. Before showing the claim, it goes back to the original and checks that the words are actually there, exactly as quoted. If they are not, the claim never appears as established fact. It goes into a review queue with the reason.<br><br>
+The cost is that we sometimes reject a quotation that was fine, because a stray line break or a curly quote made the check fail. That is a review someone did not need to do. I chose that direction deliberately: a rejected good citation costs a minute, and an accepted bad one costs the reason anyone would use the product.</blockquote>
+
+<h2>Scripts for the hard moments</h2>
+
+<h3>When you do not know</h3>
+<p>The guide says this reads as a positive signal. Do not reach — reaching is the thing that fails. The shape that works:</p>
+<blockquote>I have not worked with that. Here is how I would approach finding out — I would start by [concrete first step], because the thing I would need to know first is [the actual unknown].</blockquote>
+<p>What makes this strong is the second clause. Anyone can say "I don't know." Naming what you would need to learn, and why that is the thing that matters, shows you understand the shape of the problem even where you lack the answer.</p>
+
+<h3>When they find a real hole</h3>
+<p>They will. Some you have already listed to concede; some you will not have seen. Do not defend, and do not collapse either — both read badly. Take it, say what it costs, say what you would do:</p>
+<blockquote>That is a real gap, and I had not thought about [X]. What it would break is [specific consequence]. The fix is probably [direction], and the reason I would not have caught it in 48 hours is [honest reason]. Is that the failure you were pointing at, or is there a worse version of it?</blockquote>
+<p>The last question is the move. It converts being caught into working the problem with them, which is what the residency actually is.</p>
+
+<h3>When they ask about the energy domain</h3>
+<p>You are not an energy person, and AES will be in the room. Claiming domain depth is the one bluff certain to be caught.</p>
+<blockquote>I am not an energy person, and I would not pretend to be with AES sitting here. What I know is the shape of the problem — a regulated enterprise, external rules changing faster than anyone can read them, and a workflow where being confidently wrong is more expensive than being slow. The domain expertise is on your side of the table, and that is the right way round: I would rather learn the docket structure from someone who lives in it than tell them what their job is.</blockquote>
+
+<h3>When they ask what the AI wrote</h3>
+<p>The defensible answer names decisions you made and proposals you rejected. Keep <code>docs/submission.html</code> current so this is recall, not reconstruction.</p>
+<blockquote>I decided the architecture and used Claude Code as an implementer. The decisions in the log are mine — splitting the deterministic diff from the model interpretation, verifying citations against source offsets, letting confidence escalate rather than guess. Where I rejected what it produced: [specific example]. The place it genuinely improved on my plan was [specific example], and I took that.</blockquote>
+<p>Have two real examples ready in each direction. Vague answers here are read as evasion.</p>
+
+<h3>When they push on "one user" versus the obligation owner</h3>
+<blockquote>One user, one workflow. The analyst is who the product is designed for. The obligation owner exists because approval needs a second human — the person who interprets a change should not be the person who signs off acting on it. That is a control, not a second product. If I designed for both, I would satisfy neither.</blockquote>
+
+<h3>When they ask why you, and why now</h3>
+<p>Founder-market fit is a named thread and it is not about the domain.</p>
+<blockquote>I spent 25 years building software people rely on, took one company from nothing to the NYSE, and shipped a generative-AI product line into an installed base last year. This year I have been building AI systems hands-on again, and the lessons that stuck were all about trust: a fallback that quietly returned plausible garbage for months while every check passed, a score nobody recomputed that went stale invisibly. That is the same failure this product exists to prevent, in a domain where it costs real money. I am drawn to it because I have paid for that mistake and I know how to design against it.</blockquote>
+
+<h2>What you would change — have this list ready</h2>
+<p>"Defend the choices you made and acknowledge the ones you would change." Having no answer reads worse than having several. These are honest ones for this build:</p>
+<table>
+<tr><th>What</th><th>Why you would change it</th></tr>
+<tr><td>Verify citations with surrounding context, not offsets alone</td><td>Offset-only verification passes a citation that lands on the wrong occurrence of repeated boilerplate. It is the sharpest hole in the depth area and it is architectural, not a bug.</td></tr>
+<tr><td>Build the corpus from a real docket with real PDF artefacts</td><td>The synthetic corpus has none of the ligatures, multi-column layout or scanned exhibits that the extraction risk is actually about, so the golden-file tests do not cover the risk they appear to.</td></tr>
+<tr><td>Label the eval set with someone who does the job</td><td>Self-labelled ground truth measures agreement with yourself. It is a sanity check wearing the clothes of an accuracy claim.</td></tr>
+<tr><td>Design cold start before the change-centric model</td><td>A product whose unit is a change produces nothing from a proceeding with one version. That is a real adoption barrier and it was discovered rather than designed for.</td></tr>
+</table>
+
+<h2>The AI interview — mechanics worth knowing</h2>
+<p>60 minutes, voice, started within 30 minutes of submitting, with your repository open in front of you.</p>
+<table>
+<tr><th>What happens</th><th>What to do</th></tr>
+<tr><td>You are asked to name exact files, functions and commands</td><td>They reconcile these against the repo afterwards. Have it open. If you cannot remember a name, say so and look — that is honest and fast, and guessing a filename that does not exist is the worst possible outcome.</td></tr>
+<tr><td>You are asked to produce a small piece of new logic out loud</td><td>Think out loud deliberately. The reasoning is what is being scored, not the syntax. State your assumptions, name the edge case you are worried about, then write it.</td></tr>
+<tr><td>AI tools are welcome on NEW questions if you narrate the use</td><td>Say what you are doing and why: "I would reach for a tool here, and what I would ask it is X." Silent use on a question about your own build is the failure mode.</td></tr>
+<tr><td>Questions about your own build must come from your own head</td><td>This is the reason to write the verifier, the diff engine and the escalation logic yourself. Nothing else in the preparation substitutes for having typed it.</td></tr>
+<tr><td>No additional preparation is needed, "and none helps"</td><td>Take them at their word. Rest beats cramming; the interview tests recall of work you did, not knowledge you revised.</td></tr>
+</table>
+
 <h2>The panel itself</h2>
 <p>A conversation with AI Fund partners, usually onsite, moving through three threads: <strong>your TDD</strong>, <strong>your PRD</strong>, and <strong>AI fluency plus founder-market fit</strong>. Clear communication is stated as part of the evaluation — speak slowly, and ask a panelist to rephrase rather than guessing at the question.</p>
 
