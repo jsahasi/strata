@@ -29,6 +29,7 @@
 <p><span class="lbl">Decision.</span> The product is built for one person: a regulatory affairs analyst at an investor-owned utility operating in several jurisdictions. Not counsel, not the compliance officer, not the executive. The analyst is the one who reads the docket, works out what changed, and tells the business what it must do.
 <span class="lbl">Alternatives considered.</span> (a) Compliance officer — owns the obligation register but consumes analysis rather than producing it; (b) outside counsel — bills for exactly this work and has the opposite incentive; (c) "regulated enterprises" generically — which is not a user at all.
 <span class="lbl">Trade-off accepted.</span> Narrowing to one persona means the demo will not impress a compliance officer or a lawyer on their own terms. That is the point. The prep guide is explicit: naming more than one type of person means the work is unfinished.
+<span class="lbl">Second role, load-bearing, not a second user.</span> The product also names one load-bearing second role: the obligation owner, who approves the action the analyst recommends. The analyst who interprets a change is never the person who approves the resulting action — that separation is a security control, not an org-chart detail. Where the demo permits self-approval for convenience, that is a disclosed downgrade, not the design.
 <span class="lbl">Open.</span> This persona is a hypothesis until the user interviews (see <code>docs/user-research.html</code>). If two of three interviews say the real reader is counsel, this ADR gets rewritten and the PRD with it.</p></div>
 
 <div class="d"><h3>ADR-002 — The wedge is change-to-action, not search and not alerts</h3>
@@ -75,10 +76,11 @@
 <span class="lbl">Trade-off accepted.</span> SQLite will not carry real multi-tenant volume, and the architecture doc must say what changes at that point rather than pretending it scales.</p></div>
 
 <div class="d"><h3>ADR-008 — Retrieval: lexical BM25 first, embeddings only where they earn it</h3>
-<p class="meta">2026-08-03 · proposed</p>
-<p><span class="lbl">Decision (provisional).</span> Passage retrieval starts lexical. Semantic retrieval is added only for the specific step where paraphrase matters — matching a regulatory change to an internally-worded obligation.
+<p class="meta">2026-08-03 · accepted</p>
+<p><span class="lbl">Decision.</span> Passage retrieval starts lexical. Semantic retrieval is added only for the specific step where paraphrase matters — matching a regulatory change to an internally-worded obligation.
 <span class="lbl">Why.</span> Regulatory text is quotation-heavy and citation-bearing; exact terms matter and lexical search is strong, debuggable and free. Company obligations, by contrast, are written in the company's own words and will not lexically match the docket's.
 <span class="lbl">Alternatives considered.</span> (a) Embeddings everywhere — one mechanism, but it obscures why a passage was retrieved, and "why did it pick that passage" is a question the panel will ask; (b) lexical only — fails the obligation-matching step, which is the product's core join.
+<span class="lbl">Accepted on reasoning, not measurement.</span> This is settled by argument, not by an eval. The synthetic corpus is far too small to show a measured difference between lexical and semantic retrieval on the obligation-matching step, so this ADR is accepted on the reasoning above, not on evidence. That is worth stating plainly rather than letting the "accepted" status imply a measurement that was never taken.
 <span class="lbl">Expected question, and the honest answer.</span> "What happens when retrieval fails?" — a missed passage means a missed change, which is the failure mode that matters most here. Mitigation is that the deterministic diff, not retrieval, is what enumerates changes; retrieval only ranks context. A retrieval miss therefore degrades explanation quality, not change coverage. This separation is deliberate and is the strongest answer this design has.</p></div>
 
 <h2>To be decided</h2>

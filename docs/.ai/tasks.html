@@ -43,43 +43,44 @@
 <tr><td>T5</td><td><strong>Citation verifier</strong>: given (version, start, end, quote), re-read source and confirm. Normalisation rules explicit and tested (whitespace, quotes, ligatures)</td><td>ADR-003. The depth area. Test it against deliberately corrupted citations before wiring anything to it.</td><td class="s-todo">todo</td></tr>
 <tr><td>T6</td><td>Deterministic version diff producing typed changes (added / removed / modified) with passage references</td><td>ADR-004. Unit-testable against the corpus's known edits.</td><td class="s-todo">todo</td></tr>
 <tr><td>T7</td><td>Draft-vs-final handling threaded through change records</td><td>ADR-005. Separate code paths, separate action vocabulary.</td><td class="s-todo">todo</td></tr>
+<tr><td>T8</td><td><strong>Multi-tenant isolation CI test</strong>: instantiate two company contexts, seed each with distinct data, assert that every read scoped to company A returns zero rows of company B's data</td><td>Security model (ADR-007) promises company_id as a chokepoint for isolation, verified by test not by inspection. This test is that guarantee. Without it, the isolation claim is design on paper, not fact in code.</td><td class="s-todo">todo</td></tr>
 </table>
 
 <h2>Phase 2 — hours 12-24: change to action</h2>
 <table>
 <tr><th>#</th><th>Task</th><th>Notes</th><th>Status</th></tr>
-<tr><td>T8</td><td>Obligation extraction with evidence links; every extracted obligation carries verified citations or is escalated</td><td>Extraction is the model's job; verification is not.</td><td class="s-todo">todo</td></tr>
-<tr><td>T9</td><td>Impact mapping: change &rarr; affected obligations / projects / documents, with confidence</td><td>The product's core join. Semantic matching earns its place here (ADR-008).</td><td class="s-todo">todo</td></tr>
-<tr><td>T10</td><td>Action recommendation + reviewer routing by role</td><td>Draft &rarr; monitor/comment. Final &rarr; comply, with effective date.</td><td class="s-todo">todo</td></tr>
-<tr><td>T11</td><td>Confidence thresholds and the escalation queue</td><td>ADR-006. Below threshold never enters project state.</td><td class="s-todo">todo</td></tr>
-<tr><td>T12</td><td>Project state + audit history; rollback to a prior state</td><td>Decide event-fold vs snapshots (open question in the ADR log) and record the choice.</td><td class="s-todo">todo</td></tr>
+<tr><td>T9</td><td>Obligation extraction with evidence links; every extracted obligation carries verified citations or is escalated</td><td>Extraction is the model's job; verification is not.</td><td class="s-todo">todo</td></tr>
+<tr><td>T10</td><td>Impact mapping: change &rarr; affected obligations / projects / documents, with confidence</td><td>The product's core join. Semantic matching earns its place here (ADR-008).</td><td class="s-todo">todo</td></tr>
+<tr><td>T11</td><td>Action recommendation + reviewer routing by role</td><td>Draft &rarr; monitor/comment. Final &rarr; comply, with effective date.</td><td class="s-todo">todo</td></tr>
+<tr><td>T12</td><td>Confidence thresholds and the escalation queue</td><td>ADR-006. Below threshold never enters project state.</td><td class="s-todo">todo</td></tr>
+<tr><td>T13</td><td>Project state + audit history; rollback to a prior state</td><td>Decide event-fold vs snapshots (open question in the ADR log) and record the choice.</td><td class="s-todo">todo</td></tr>
 </table>
 
 <h2>Phase 3 — hours 24-34: the surface</h2>
 <table>
 <tr><th>#</th><th>Task</th><th>Notes</th><th>Status</th></tr>
-<tr><td>T13</td><td>Analyst workspace: proceedings, changes with materiality, and the action queue</td><td>Simple enough to use without a walkthrough. That is the stated bar.</td><td class="s-todo">todo</td></tr>
-<tr><td>T14</td><td><strong>Citation visible in the UI</strong>: click a claim, see the exact source span highlighted; unverified claims held in review with the reason shown</td><td>The prep guide requires the hardest technical decision to be visible in the product rather than buried in the stack. This task IS that requirement.</td><td class="s-todo">todo</td></tr>
-<tr><td>T15</td><td>Reviewer view: escalation queue, approve / reject / amend, and the audit trail behind each</td><td></td><td class="s-todo">todo</td></tr>
+<tr><td>T14</td><td>Analyst workspace: proceedings, changes with materiality, and the action queue</td><td>Simple enough to use without a walkthrough. That is the stated bar.</td><td class="s-todo">todo</td></tr>
+<tr><td>T15</td><td><strong>Citation visible in the UI</strong>: click a claim, see the exact source span highlighted; unverified claims held in review with the reason shown</td><td>The prep guide requires the hardest technical decision to be visible in the product rather than buried in the stack. This task IS that requirement.</td><td class="s-todo">todo</td></tr>
+<tr><td>T16</td><td>Reviewer view: escalation queue, approve / reject / amend, and the audit trail behind each</td><td></td><td class="s-todo">todo</td></tr>
 </table>
 
 <h2>Phase 4 — hours 34-42: evidence it works</h2>
 <table>
 <tr><th>#</th><th>Task</th><th>Notes</th><th>Status</th></tr>
-<tr><td>T16</td><td>Eval set: labelled obligations over the corpus; report precision and recall</td><td>Numbers you can defend beat adjectives you cannot.</td><td class="s-todo">todo</td></tr>
-<tr><td>T17</td><td>Citation-verification pass rate, and a deliberate-corruption test proving the verifier rejects a fabricated quote</td><td>The single most persuasive demo in the submission.</td><td class="s-todo">todo</td></tr>
-<tr><td>T18</td><td>Failure-mode notes: where retrieval misses, where diffing breaks on restructuring, where the model misreads. Written down, not discovered live at the panel</td><td>"Where modern AI fails and how you designed around it" is an explicit evaluation dimension.</td><td class="s-todo">todo</td></tr>
+<tr><td>T17</td><td>Eval set: labelled obligations over the corpus; report precision and recall</td><td>Numbers you can defend beat adjectives you cannot.</td><td class="s-todo">todo</td></tr>
+<tr><td>T18</td><td>Citation-verification pass rate, and a deliberate-corruption test proving the verifier rejects a fabricated quote</td><td>The single most persuasive demo in the submission.</td><td class="s-todo">todo</td></tr>
+<tr><td>T19</td><td>Failure-mode notes: where retrieval misses, where diffing breaks on restructuring, where the model misreads. Written down, not discovered live at the panel</td><td>"Where modern AI fails and how you designed around it" is an explicit evaluation dimension.</td><td class="s-todo">todo</td></tr>
 </table>
 
 <h2>Phase 5 — hours 42-48: the documents and the submission</h2>
 <table>
 <tr><th>#</th><th>Task</th><th>Notes</th><th>Status</th></tr>
-<tr><td>T19</td><td><strong>Fold user-interview findings into the PRD and the prototype.</strong> What they misread, what they ignored, what you changed</td><td>The PRD is explicitly read for how user feedback shaped the build. Without this the PRD fails its own rubric.</td><td class="s-block">blocked on T1</td></tr>
-<tr><td>T20</td><td>Finish PRD and TDD; confirm the prototype tells the same story they do</td><td>Reviewers read PRD and TDD first, then verify against the code.</td><td class="s-todo">todo</td></tr>
-<tr><td>T21</td><td>README with the exact run and test commands; verify on a clean clone</td><td>Do this on a fresh clone in a temp directory. Not "it works on my machine".</td><td class="s-todo">todo</td></tr>
-<tr><td>T22</td><td>Fill <code>docs/submission.html</code>: what you built, what you reused, what the AI wrote and what you rewrote or rejected, what broke and how you debugged it</td><td>Keep this current as you go. Reconstructing it at hour 47 produces a worse and less honest answer.</td><td class="s-todo">todo</td></tr>
-<tr><td>T23</td><td>Repo public or reviewer access granted; commit history intact, NOT squashed</td><td>They read the commit history. It is part of the submission.</td><td class="s-todo">todo</td></tr>
-<tr><td>T24</td><td>90-second pitch written and said out loud: who, what, why, what is hard about it</td><td>Required for the panel; also a good test of whether the product has a point of view.</td><td class="s-todo">todo</td></tr>
+<tr><td>T20</td><td><strong>Fold user-interview findings into the PRD and the prototype.</strong> What they misread, what they ignored, what you changed</td><td>The PRD is explicitly read for how user feedback shaped the build. Without this the PRD fails its own rubric.</td><td class="s-block">blocked on T1</td></tr>
+<tr><td>T21</td><td>Finish PRD and TDD; confirm the prototype tells the same story they do</td><td>Reviewers read PRD and TDD first, then verify against the code.</td><td class="s-todo">todo</td></tr>
+<tr><td>T22</td><td>README with the exact run and test commands; verify on a clean clone</td><td>Do this on a fresh clone in a temp directory. Not "it works on my machine".</td><td class="s-todo">todo</td></tr>
+<tr><td>T23</td><td>Fill <code>docs/submission.html</code>: what you built, what you reused, what the AI wrote and what you rewrote or rejected, what broke and how you debugged it</td><td>Keep this current as you go. Reconstructing it at hour 47 produces a worse and less honest answer.</td><td class="s-todo">todo</td></tr>
+<tr><td>T24</td><td>Repo public or reviewer access granted; commit history intact, NOT squashed</td><td>They read the commit history. It is part of the submission.</td><td class="s-todo">todo</td></tr>
+<tr><td>T25</td><td>90-second pitch written and said out loud: who, what, why, what is hard about it</td><td>Required for the panel; also a good test of whether the product has a point of view.</td><td class="s-todo">todo</td></tr>
 </table>
 
 <h2>Cut list — if time runs short</h2>

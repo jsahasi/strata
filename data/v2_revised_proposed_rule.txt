@@ -1,0 +1,88 @@
+[SYNTHETIC DOCUMENT -- created for the Strata prototype test corpus. Not a real regulatory filing. The commission, utility, docket number, and state named below are invented and any resemblance to an actual docket is coincidental.]
+
+BEFORE THE MERIDIAN PUBLIC UTILITIES COMMISSION
+
+In the Matter of Interconnection Standards and
+Cost Allocation for Large Load Customers
+
+Docket No. MPUC-2026-0142
+
+REVISED PROPOSED RULE
+
+STATUS: DRAFT -- Revised Proposed Rule (Version 2), issued following review of comments received on the Notice of Proposed Rulemaking in this docket
+
+The Meridian Public Utilities Commission ("Commission") issues this revised proposed rule to establish interconnection standards and cost allocation methodology applicable to Large Load Customers seeking to interconnect with the transmission or distribution system of Meridian Electric & Power Company ("Utility"). This revised proposed rule responds to comments filed on the Notice of Proposed Rulemaking in this docket. Interested persons may submit further written comments as provided in Section 8.
+
+SECTION 1. PURPOSE AND SCOPE
+
+1.1 This rulemaking establishes standards governing the interconnection of Large Load Customers to the Utility's system, including the study process, cost allocation, and financial assurance applicable to such interconnections.
+
+1.2 This rulemaking is adopted in response to a substantial increase in requests to interconnect large, flexible, and rapidly-developed loads, including data centers, to the Utility's system, and the Commission's finding that existing tariff provisions do not adequately address the cost allocation and reliability questions such loads present.
+
+1.3 This rulemaking supersedes Section 4 of the Utility's Rate Schedule LL-1 to the extent that Rate Schedule LL-1 is inconsistent with the requirements adopted in this Order. Nothing in this Order relieves the Utility of any obligation imposed by a separate Commission order or by the Utility's general interconnection tariff, except to the extent expressly stated.
+
+SECTION 2. DEFINITIONS
+
+For purposes of this Order, the following terms have the meanings set forth below.
+
+2.1 "Large Load Customer" means a Customer whose Requested Load is equal to or greater than 20 megawatts (MW).
+
+2.2 "Requested Load" means the maximum electric demand, expressed in MW, that a Customer requests the Utility to make available at a single Point of Interconnection.
+
+2.3 "Interconnection Facilities" means the equipment and facilities required to physically and electrically connect a Large Load Customer's facility to the Utility's system at the Point of Interconnection.
+
+2.4 "Network Upgrades" means additions, modifications, or upgrades to the Utility's transmission or distribution system that are required to accommodate a Large Load Customer's Requested Load, beyond the Interconnection Facilities themselves.
+
+2.5 "Point of Interconnection" means the point at which a Large Load Customer's facility connects electrically to the Utility's system.
+
+SECTION 3. APPLICABILITY
+
+3.1 This Order applies to any Customer seeking to interconnect a Large Load Customer facility to the Utility's system on or after the Effective Date.
+
+3.2 A Customer's classification as a Large Load Customer is determined at the time the Customer submits an Interconnection Request and is fixed for the duration of the resulting Interconnection Agreement.
+
+3.3 Aggregation of Multiple Loads. Where a single Customer submits more than one Interconnection Request for facilities located within the same Utility service territory within any twelve (12) month period, the Utility shall aggregate the Requested Load of those facilities for purposes of determining whether the Customer meets the threshold in Section 2.1, unless the Customer demonstrates to the Utility's reasonable satisfaction that the facilities will operate under independent and unrelated ownership.
+
+SECTION 4. INTERCONNECTION STUDY PROCESS
+
+4.1 Feasibility Study. Upon receipt of a complete Interconnection Request from a Large Load Customer, the Utility shall commence a Feasibility Study to identify potential adverse system impacts and to provide a preliminary, non-binding estimate of Network Upgrade costs.
+
+4.2 System Impact Study. Following completion of the Feasibility Study, and upon the Large Load Customer's written election to proceed, the Utility shall commence a System Impact Study to identify the Network Upgrades required to accommodate the Requested Load and to refine the cost estimate developed in the Feasibility Study.
+
+4.3 Facilities Study. Following completion of the System Impact Study, and upon the Large Load Customer's written election to proceed, the Utility shall commence a Facilities Study to produce a final engineering design and a binding cost estimate for the Interconnection Facilities and Network Upgrades.
+
+4.4 Study Timelines. The Utility shall complete the Feasibility Study within forty-five (45) days, the System Impact Study within ninety (90) days, and the Facilities Study within one hundred twenty (120) days of the applicable trigger described in this Section 4. The Utility shall maintain records sufficient to demonstrate compliance with this Order for a period of not less than five (5) years.
+
+4.5 Study Deposit and Cost Responsibility During Study Process. The Utility may require a Large Load Customer to pay a deposit, not to exceed the Utility's good-faith estimate of its own labor and third-party costs, before commencing any study described in this Section 4. A deposit collected under this Section 4.5 shall be credited against, and is not in addition to, any collateral later required under Section 6.
+
+SECTION 5. COST ALLOCATION
+
+5.1 General Principle. Costs associated with interconnecting a Large Load Customer shall be allocated in accordance with this Section 5.
+
+5.2 Allocation of Network Upgrade Costs. Except as provided in Section 5.3, the Utility shall allocate Network Upgrade costs identified in the System Impact Study and the Facilities Study between the Large Load Customer and general ratepayers in accordance with the cost-causation methodology described in Section 5.3.
+
+5.3 Cost-Causation Methodology. The Large Load Customer shall bear not less than fifty percent (50%) of Network Upgrade costs allocated under Section 5.2. The Utility shall bear the remaining Network Upgrade costs as a cost of service recoverable from general ratepayers, provided that the Commission finds the resulting Network Upgrades provide demonstrable reliability benefit to the Utility's system as a whole.
+
+SECTION 6. COLLATERAL AND FINANCIAL ASSURANCE
+
+6.1 Amount of Collateral. A Large Load Customer shall post collateral in an amount equal to 100% of the binding cost estimate produced by the Facilities Study, prior to the Utility's commencement of construction of Interconnection Facilities or Network Upgrades.
+
+6.2 Timing of Collateral Posting. Collateral required under Section 6.1 shall be posted no later than thirty (30) days following the Large Load Customer's receipt of the Facilities Study.
+
+6.3 Return of Collateral. Collateral posted under this Section 6 shall be returned to the Large Load Customer, with interest at the Commission-approved rate, upon energization of the Point of Interconnection, less any amounts properly drawn to satisfy costs incurred by the Utility. The Utility shall maintain records sufficient to demonstrate compliance with this Order for a period of not less than five (5) years.
+
+SECTION 7. COMPLIANCE TIMELINE AND REPORTING
+
+7.1 Updated Load Forecasts. Each Large Load Customer with an executed Interconnection Agreement as of the Effective Date shall submit an updated load forecast to the Utility no later than June 1, 2027.
+
+7.2 Annual Compliance Reports. The Utility shall file an annual compliance report with the Commission summarizing all Large Load Customer interconnection activity, including the status of pending Interconnection Requests and the results of any studies completed during the reporting period.
+
+7.3 Recordkeeping. The Utility shall maintain records sufficient to demonstrate compliance with this Order for a period of not less than five (5) years.
+
+7.4 Notice of Material Change in Load. A Large Load Customer shall notify the Utility in writing within thirty (30) days of any change to its Requested Load that would increase or decrease that Requested Load by ten percent (10%) or more from the value stated in its Interconnection Request.
+
+SECTION 8. MISCELLANEOUS
+
+8.1 Effective Date. This Order shall become effective thirty (30) days after publication in the Commission's official register, subject to the comment period described below. Written comments on this revised proposed rule are due no later than thirty (30) days after publication.
+
+8.2 Severability. If any provision of this Order is held invalid, the remainder shall continue in full force and effect.

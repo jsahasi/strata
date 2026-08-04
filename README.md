@@ -120,18 +120,17 @@ README does not have room for.
 |---|---|
 | [`docs/.ai/decisions.html`](docs/.ai/decisions.html) | Decision log (ADR-001 through ADR-008). Every choice with its alternatives and the trade-off accepted. Written when the decision is made. |
 | [`docs/.ai/tasks.html`](docs/.ai/tasks.html) | The 48-hour build board. Current state of every task. |
-| `docs/prd.html` | Product requirements. Not yet written. |
-| `docs/mrd.html` | Market requirements. Not yet written. |
-| `docs/tdd.html` | Technical design. Not yet written. |
-| `docs/architecture.html` | System architecture, and what changes past SQLite/single-node. Not yet written. |
-| `docs/security.html` | Security posture. Not yet written. |
+| [`docs/prd.html`](docs/prd.html) | Product requirements. One analyst, one workflow, citation-grade change intelligence. |
+| [`docs/mrd.html`](docs/mrd.html) | Market requirements. Why investor-owned utilities are the beachhead, and why now. |
+| [`docs/tdd.html`](docs/tdd.html) | Technical design. How the hard bet is built, alternative rejected, trade-off accepted at each step. |
+| [`docs/architecture.html`](docs/architecture.html) | System architecture and data flow. Components, module boundaries under `app/`, and what changes past SQLite/single-node. |
+| [`docs/security.html`](docs/security.html) | Security posture. Threat model, tenant isolation via company_id chokepoint, data minimisation to models, the audit trail. |
 | [`docs/user-research.html`](docs/user-research.html) | Who was interviewed, what they said, what changed in the build because of it. Interview requests are the first task in the build plan (T1) — check this file for how many have landed. |
-| `docs/future-enhancements.html` | What is deliberately out of scope for 48 hours. Not yet written. |
-| `docs/submission.html` | What was built, what was reused, what the AI wrote versus what got rewritten or rejected. Kept current as the build proceeds, not reconstructed at the end. Not yet written. |
+| [`docs/future-enhancements.html`](docs/future-enhancements.html) | What is deliberately out of scope for 48 hours. Roadmap preconditions and unlocks past the build. |
+| [`docs/submission.html`](docs/submission.html) | What was built, what was reused, what the AI wrote versus what got rewritten or rejected. Kept current as the build proceeds, not reconstructed at the end. |
 | [`docs/best-practices.html`](docs/best-practices.html) | Portable engineering playbook carried over from the peer project. Sections 26 and 27 are directly load-bearing here. |
 
-A doc marked "not yet written" above and a green link below it will be true at different times —
-this table is kept in sync with the repository, not with the plan.
+All documents listed above exist in the repository.
 
 ---
 

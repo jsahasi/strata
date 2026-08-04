@@ -1,0 +1,36 @@
+# Strata dependencies.
+#
+# Deliberately short. Every package here is one more thing that can fail to
+# install on a reviewer's machine before they ever see the product, so each
+# entry has to earn its place (ADR-007).
+#
+# Pinned to minor versions: a submission that worked yesterday and breaks today
+# because a transitive dependency moved is indistinguishable, to a reviewer,
+# from a submission that never worked.
+
+fastapi==0.115.*
+uvicorn[standard]==0.32.*
+sqlalchemy==2.0.*
+pydantic==2.9.*
+jinja2==3.1.*
+python-multipart==0.0.*        # form uploads for the ingestion screen
+httpx==0.27.*                  # model provider calls, and the test client
+
+# Model provider. The interpretation layer is the only place that calls it
+# (see the architecture doc); everything else stays deterministic and testable
+# without a key, which is what lets `make test` pass on a machine with no
+# credentials at all.
+anthropic==0.39.*
+
+pytest==8.3.*
+pytest-asyncio==0.24.*
+
+# Deliberately NOT here, and why:
+#   - no vector database: passage retrieval is lexical first (ADR-008), and
+#     SQLite's FTS5 ships with Python. A vector store would add a service to
+#     the reviewer's critical path for a corpus of this size.
+#   - no ORM migrations tool: the schema is created from the models at startup.
+#     A 48-hour prototype with one schema version does not need Alembic, and
+#     saying so is more honest than adding it for appearances.
+#   - no frontend toolchain: server-rendered Jinja templates, so there is no
+#     build step between `git clone` and a running product.
