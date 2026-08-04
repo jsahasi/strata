@@ -1,0 +1,301 @@
+{#
+  feedback_review.html — the triage queue, and the refusal page for somebody
+  who may not open it.
+
+  ONE TEMPLATE, TWO ANSWERS, following workflow_list.html. A separate forbidden
+  page would be a second file describing the same screen, and the thing a
+  refused reader most needs -- the name of the permission -- is the same
+  sentence in both. The view sets `reason` only when it refused.
+
+  NO NEW STYLESHEET. Every class here is already in strata.css. A screen that
+  needs its own CSS file to be legible is a screen that breaks when the file
+  fails to load, and this one is read by whoever is deciding whether the product
+  told somebody a falsehood.
+
+  The template prints. Every judgement -- the flag, the ordering, the sentence
+  standing in for a missing count -- is made in app/web/views/feedback_review.py
+  and app/state/feedback.py, so there is one place to check that no column value
+  leaks into prose.
+
+  Context, from app/web/views/feedback_review.py:
+    reason          str | None   why this person was refused, from policy.py
+    rows            list[Row]    already ranked: referred, flagged, open, closed
+    items           list[Item]   the backlog, for attaching a second complaint
+    state           "ok" | "no-tables"
+    permission      str          the gate as built
+    wanted_permission str        the gate this wants, once it exists
+    refused, stand_in, suspect_banner, screen_is_not_a_verdict,
+    referral_note, nothing_yet    str
+    truncated       str          set when the page is capped, "" when it is not
+    categories, priorities, closed_statuses   tuple[(value, label), ...]
+    referred_triage, referred_category, referred_priority   str
+    plus everything base.html reads.
+#}{% extends "base.html" %}
+
+{% block content %}
+
+{% if reason %}
+<div class="page-head">
+  <div class="page-head__title"><h1>Feedback</h1></div>
+</div>
+
+<div class="empty empty--none">
+  <p class="empty__title">You cannot open this screen.</p>
+  <div class="empty__body">
+    <p>{{ reason }}.</p>
+    <p>{{ refused }}</p>
+    <p>
+      This is a refusal, not a blank page. The queue exists and
+      <code>{{ permission }}</code> is what opens it. {{ stand_in }}
+    </p>
+  </div>
+</div>
+
+{% elif state != 'ok' %}
+
+<div class="page-head">
+  <div class="page-head__title"><h1>Feedback</h1></div>
+</div>
+<div class="empty empty--unloaded">
+  <p class="empty__title">The database has no tables yet.</p>
+  <div class="empty__body">
+    <p>
+      Load the corpus with <code>{{ seed_command }}</code>, or
+      <code>{{ make_command }}</code>, then reload this page.
+    </p>
+  </div>
+</div>
+
+{% else %}
+
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>Feedback</h1>
+    {% if rows %}<span class="coord">{{ rows | length }} in the queue</span>{% endif %}
+  </div>
+  <p class="page-head__note">
+    Suspected wrongly-asserted claims are at the top. {{ screen_is_not_a_verdict }}
+  </p>
+  <p class="page-head__note">
+    <span class="label">Gate</span>
+    <code>{{ permission }}</code> &middot; wanted: <code>{{ wanted_permission }}</code>.
+    {{ stand_in }}
+  </p>
+  {% if truncated %}<p class="page-head__note">{{ truncated }}</p>{% endif %}
+</div>
+
+{% if not rows %}
+<div class="empty empty--none">
+  <p class="empty__title">{{ nothing_yet }}</p>
+  <div class="empty__body">
+    <p>
+      A thumb on one of Clerk's answers, or a bug report from any screen, lands
+      here with the exchange frozen beside it.
+    </p>
+  </div>
+</div>
+{% endif %}
+
+<div class="stack">
+{% for row in rows %}
+  <article class="card stack">
+
+    <header class="stack--tight">
+      {% if row.referred or row.flag %}
+      <div class="withheld">
+        <p class="withheld__label">{{ suspect_banner }}</p>
+        <p class="withheld__reason">
+          {%- if row.referred %}
+          Referred by a person for a citation re-check. {{ row.resolution }}
+          {%- else %}
+          Flagged by the word search on: &ldquo;{{ row.flag }}&rdquo;. Nothing has
+          been decided.
+          {%- endif %}
+        </p>
+      </div>
+      {% endif %}
+
+      <h2>{{ row.heading }}</h2>
+      <p>
+        <span class="badge">{{ row.kind_words }}</span>
+        <span class="badge">{{ row.status_words }}</span>
+      </p>
+      <p>
+        <span class="label">Looking at</span>
+        <span class="coord">{{ row.surface }}</span>
+        <span class="label">Sent</span>
+        <span class="coord">{{ row.when }}</span>
+        <span class="coord">{{ row.feedback_id }}</span>
+      </p>
+      {% if row.comment %}<blockquote class="quote">{{ row.comment }}</blockquote>{% endif %}
+    </header>
+
+    {# What the person was looking at, and what Clerk said. A reviewer who
+       cannot see this cannot judge the complaint. #}
+    {% if row.recovered %}
+    <div class="withheld">
+      <p class="withheld__label">The record is short</p>
+      <p class="withheld__reason">{{ row.recovered }}</p>
+    </div>
+    {% endif %}
+
+    {% if row.turns %}
+    <section class="stack--tight">
+      <p class="label">The exchange, as it stood when they sent this</p>
+      {% for turn in row.turns %}
+      <div class="stack--tight">
+        <p><span class="label">{{ turn.role }}</span></p>
+        <blockquote class="quote">{{ turn.text }}</blockquote>
+        {% if turn.is_clerk %}
+        <p>
+          <span class="label">Consulted</span>
+          <span class="coord">{{ turn.tools }}</span>
+        </p>
+        <p>
+          <span class="label">Withheld</span>
+          <span class="coord">{{ turn.withheld }}</span>
+        </p>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </section>
+    {% else %}
+    <p class="page-head__note">{{ row.no_context }}</p>
+    {% endif %}
+
+    {% if row.item_id %}
+    <p>
+      <span class="label">Triaged into</span>
+      <span class="coord">{{ row.item_id }}</span>
+    </p>
+    {% endif %}
+
+    {% if row.closed %}
+    <p>
+      <span class="label">Closed</span>
+      {{ row.resolution }}
+    </p>
+    {% else %}
+
+    {# Three decisions, folded so the evidence above stays readable. #}
+    {% if not row.referred %}
+    <details>
+      <summary>Refer for a citation re-check</summary>
+      <p class="page-head__note">{{ referral_note }}</p>
+      <form method="post" action="{{ feedback_url }}/{{ row.feedback_id }}/refer">
+        <label class="label" for="note-{{ row.feedback_id }}">
+          What must somebody re-read, and against which source
+        </label>
+        <input id="note-{{ row.feedback_id }}" name="note" type="text"
+               maxlength="500" autocomplete="off">
+        <button class="btn" type="submit">Refer</button>
+      </form>
+    </details>
+    {% endif %}
+
+    <details>
+      <summary>Raise backlog work</summary>
+      <form method="post" action="{{ feedback_url }}/{{ row.feedback_id }}/triage">
+        <label class="label" for="title-{{ row.feedback_id }}">
+          Item title. Required, and yours to write -- a thumb brought no title
+          and this screen will not invent one from somebody's comment.
+        </label>
+        <input id="title-{{ row.feedback_id }}" name="title" type="text"
+               maxlength="256" autocomplete="off" value="{{ row.suggested_title }}">
+
+        <label class="label" for="detail-{{ row.feedback_id }}">Detail</label>
+        <input id="detail-{{ row.feedback_id }}" name="detail" type="text"
+               maxlength="2000" autocomplete="off">
+
+        {% if row.referred %}
+        {# A referred row has exactly one honest outcome if it becomes work at
+           all, so the form offers exactly that rather than four choices the
+           store would refuse. The sentence says why. #}
+        <p class="page-head__note">{{ referred_triage }}</p>
+        <input type="hidden" name="category" value="{{ referred_category }}">
+        <input type="hidden" name="priority" value="{{ referred_priority }}">
+        {% else %}
+        <label class="label" for="category-{{ row.feedback_id }}">Category</label>
+        <select id="category-{{ row.feedback_id }}" name="category">
+          {% for value, words in categories %}
+          <option value="{{ value }}"
+            {%- if value == default_category %} selected{% endif %}>{{ words }}</option>
+          {% endfor %}
+        </select>
+
+        <label class="label" for="priority-{{ row.feedback_id }}">Priority</label>
+        <select id="priority-{{ row.feedback_id }}" name="priority">
+          {% for value, words in priorities %}
+          <option value="{{ value }}"
+            {%- if value == default_priority %} selected{% endif %}>{{ words }}</option>
+          {% endfor %}
+        </select>
+        {% endif %}
+
+        {% if items and not row.referred %}
+        <label class="label" for="item-{{ row.feedback_id }}">
+          Or attach to work already raised
+        </label>
+        <select id="item-{{ row.feedback_id }}" name="item_id">
+          <option value="">Raise a new item</option>
+          {% for item in items %}
+          <option value="{{ item.item_id }}">{{ item.title }} ({{ item.category }}, {{ item.priority }}, {{ item.status }})</option>
+          {% endfor %}
+        </select>
+        {% endif %}
+
+        <button class="btn" type="submit">Raise it</button>
+      </form>
+    </details>
+
+    <details>
+      <summary>Close it</summary>
+      <form method="post" action="{{ feedback_url }}/{{ row.feedback_id }}/resolve">
+        <label class="label" for="resolution-{{ row.feedback_id }}">
+          What was done, or why nothing will be. Required.
+        </label>
+        <input id="resolution-{{ row.feedback_id }}" name="resolution" type="text"
+               maxlength="2000" autocomplete="off">
+        <label class="label" for="status-{{ row.feedback_id }}">Closing as</label>
+        <select id="status-{{ row.feedback_id }}" name="status">
+          {% for value, words in closed_statuses %}
+          <option value="{{ value }}">{{ words }}</option>
+          {% endfor %}
+        </select>
+        <button class="btn" type="submit">Close</button>
+      </form>
+    </details>
+
+    {% endif %}
+  </article>
+{% endfor %}
+</div>
+
+{% if items %}
+<div class="page-head">
+  <div class="page-head__title"><h2>The backlog this fed</h2></div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Item</th>
+      <th scope="col">Category</th>
+      <th scope="col">Priority</th>
+      <th scope="col">State</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <td>{{ item.title }}<p><span class="coord">{{ item.item_id }}</span></p></td>
+      <td>{{ item.category }}</td>
+      <td>{{ item.priority }}</td>
+      <td><span class="badge">{{ item.status }}</span></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+{% endif %}
+{% endblock %}

@@ -10,18 +10,26 @@ A second table for "security events" would drift from this one, and the log
 nobody reads is the one that goes wrong first -- silently, because nothing
 compares them. Attribution is columns on this row, not a parallel record.
 
-TWO DIGEST SCHEMES, ON PURPOSE. Version 1 hashes the ten original fields.
-Version 2 hashes those ten plus the four attribution fields. Rows written
-before attribution existed keep their v1 hashes and verify under v1 forever;
-nothing rewrites them. This is best-practices.html section 27 pointed the other
-way round: a derived corpus migrates all at once or not at all, and here the
-derived data IS the evidence, so the answer is "not at all". Re-hashing the old
-rows under v2 would produce a chain that verifies and proves nothing, because
-the process that verifies it would be the process that rewrote it. Each row
+THREE DIGEST SCHEMES, ON PURPOSE. Version 1 hashes the ten original fields.
+Version 2 hashes those ten plus the four attribution fields. Version 3 hashes
+those fourteen plus the reversal pointer. Rows written before attribution
+existed keep their v1 hashes and verify under v1 forever; nothing rewrites them.
+This is best-practices.html section 27 pointed the other way round: a derived
+corpus migrates all at once or not at all, and here the derived data IS the
+evidence, so the answer is "not at all". Re-hashing the old rows under a newer
+scheme would produce a chain that verifies and proves nothing, because the
+process that verifies it would be the process that rewrote it. Each row
 therefore states its own scheme in digest_version and verify_chain dispatches
-per row. A chain with v1 rows followed by v2 rows verifies end to end: the
-prev_hash linkage is a value copied forward and does not care which scheme
-computed it.
+per row. A chain that mixes all three verifies end to end: the prev_hash linkage
+is a value copied forward and does not care which scheme computed it.
+
+ROLLBACK IS A ROW. A decision somebody later took back is recorded by appending
+an event that names the one it reverses, in reverts_event_id. The reverted row
+is not edited, not deleted and not flagged, because the record of a correction
+is exactly what an auditor asks for. The undo itself -- which decisions can be
+taken back, and what state goes back with them -- lives in app/state/rollback.py.
+This file owns only the chain: the pointer, its hash, and the two refusals that
+stop a second row undoing the same decision or a row undoing another tenant's.
 
 What this does NOT claim. The hash chain detects a record that was altered or
 removed after the fact. It does not prevent it. Anyone who can write the whole
@@ -71,10 +79,31 @@ ACTOR_KINDS = (ACTOR_USER, ACTOR_SYSTEM, ACTOR_MODEL)
 #    existed hashes under it, so changing it by a byte would report tampering
 #    on records nobody touched.
 # 2: those ten plus actor_user_id, actor_kind, session_id and ip.
+# 3: those fourteen plus reverts_event_id.
+#
+# WHY 3 IS CHOSEN PER ROW RATHER THAN BY DATE. CURRENT_DIGEST_VERSION stays at
+# 2, and a row is hashed under 3 only when it carries a reversal pointer.
+# Scheme 3 exists to cover one nullable column, so an ordinary row has nothing
+# extra to cover and gains nothing from the wider payload. Every row already in
+# the log stays exactly as it is.
+#
+# THE HOLE THAT LEAVES, AND HOW IT IS CLOSED. Schemes 1 and 2 do not cover
+# reverts_event_id, so a pointer written onto one of their rows out of band
+# would not break its hash -- the log would assert, with a valid hash, that a
+# decision had been taken back by a row nobody wrote that way. _digest_for_row
+# therefore REFUSES a v1 or v2 row that carries a pointer instead of verifying
+# it. Under those schemes the column is storage the chain does not defend, and
+# a field the chain does not defend is not evidence.
+#
+# DIGEST_V3 belongs here, beside its siblings. app/state/models.py declares the
+# same number next to the column, because the column landed first and this file
+# was being written elsewhere at the time; that line is meant to be deleted, not
+# kept in step by hand. tests/test_rollback.py pins the two together until it is.
 # ---------------------------------------------------------------------------
 
 DIGEST_V1 = 1
 DIGEST_V2 = 2
+DIGEST_V3 = 3
 CURRENT_DIGEST_VERSION = DIGEST_V2
 
 
@@ -119,6 +148,36 @@ ACTION_PASSWORD_CHANGED = "user.password_changed"
 ACTION_ACTION_APPROVED = "action.approved"
 ACTION_ACTION_REJECTED = "action.rejected"
 ACTION_ESCALATION_RESOLVED = "escalation.resolved"
+
+# The two codes the review queue actually writes when somebody closes a refusal:
+# approved means the refusal was right, rejected means a person disputes it.
+# Neither publishes the claim.
+#
+# THEY LIVE HERE BECAUSE THEY WERE ALREADY DRIFTING. app/web/views/review.py
+# declares its own copies of these two strings and review_centre.py imports them
+# from there, so the vocabulary this file is supposed to hold has a second home
+# with the same two words in it. That is the failure the ACTION_ constants were
+# consolidated to stop, and it bites harder here than usual: rollback matches a
+# resolution by its action code, so a resolution written under a code this file
+# does not know is a decision nobody can take back, with nothing saying so.
+# review.py must import these rather than restate them;
+# tests/test_rollback.py pins the two copies together until it does.
+ACTION_ESCALATION_APPROVED = "escalation.approved"
+ACTION_ESCALATION_REJECTED = "escalation.rejected"
+
+# Undo, and the two ways it goes.
+#
+# decision.reverted -- somebody took back a decision, and the state that
+# decision changed went back with it.
+#
+# decision.reversal_withdrawn -- somebody took back a REVERSAL. Nothing is
+# reinstated: the subject stays where the reversal left it and needs a fresh
+# decision. It is a separate code from the first on purpose, so that a reader
+# scanning for undone decisions is never handed a row that undid an undo and
+# restored nothing. Reading the second as the first would put a decision back in
+# force that nobody re-made, which is the one thing a log must never allow.
+ACTION_DECISION_REVERTED = "decision.reverted"
+ACTION_REVERSAL_WITHDRAWN = "decision.reversal_withdrawn"
 
 # Authorisation. A refusal is a decision the system made about a person, so it
 # belongs in the same chain as the approvals it withholds -- "who was turned
@@ -247,6 +306,67 @@ def _digest_v2(
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
+def _digest_v3(
+    *,
+    prev_hash: str,
+    seq: int,
+    company_id: str,
+    actor: str,
+    action: str,
+    subject_type: str,
+    subject_id: str,
+    reason: str,
+    citation: str,
+    occurred_at: datetime,
+    actor_user_id: str | None,
+    actor_kind: str | None,
+    session_id: str | None,
+    ip: str | None,
+    reverts_event_id: int | None,
+) -> str:
+    """Scheme 3: the scheme-2 fields, plus the event this row takes back.
+
+    The pointer is INSIDE the hash for the same reason attribution is. A column
+    beside the hash could be re-pointed by anyone with write access, and the
+    chain would still verify while the log said a different decision had been
+    undone -- or that this row had undone nothing at all, leaving a decision
+    somebody took back apparently standing. Both readings are the log asserting,
+    with a valid hash, something nobody wrote.
+
+    Written verbatim rather than by extending _digest_v2, and the repetition is
+    deliberate: v2 is frozen evidence for every row already in the log, and a
+    shared helper is a single edit away from moving all of them at once.
+
+    What this does NOT do. It fixes the pointer the writer supplied. It does not
+    prove the target exists, that it sits in the same company, or that reverting
+    it was right. record_event checks the first two on write; nothing checks the
+    third, because nothing can.
+    """
+    payload = json.dumps(
+        {
+            "prev_hash": prev_hash,
+            "seq": seq,
+            "company_id": company_id,
+            "actor": actor,
+            "action": action,
+            "subject_type": subject_type,
+            "subject_id": subject_id,
+            "reason": reason,
+            "citation": citation,
+            "occurred_at": occurred_at.astimezone(timezone.utc).isoformat(),
+            "actor_user_id": actor_user_id,
+            "actor_kind": actor_kind,
+            "session_id": session_id,
+            "ip": ip,
+            "reverts_event_id": reverts_event_id,
+        },
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=False,
+    )
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
 def _digest_for_row(entry: AuditEvent) -> str:
     """Recompute one row's hash under the scheme that row says wrote it.
 
@@ -254,8 +374,23 @@ def _digest_for_row(entry: AuditEvent) -> str:
     Absence is denial: a row that cannot say how it was hashed cannot be
     verified, and answering "true" for it would let anyone bypass the chain by
     writing a version number nobody has implemented.
+
+    The same rule applied to a field rather than a row: a v1 or v2 row carrying
+    a reversal pointer is refused outright. Those schemes do not hash that
+    column, so the pointer on such a row is an assertion nothing covers, and
+    verifying the row would report the chain as sound while it carried a claim
+    the chain never defended. Application code cannot produce one -- record_event
+    writes scheme 3 the moment a pointer is present -- so a row in that state
+    arrived out of band.
     """
     version = entry.digest_version
+    if version in (DIGEST_V1, DIGEST_V2) and entry.reverts_event_id is not None:
+        raise AuditTamperError(
+            f"{entry.company_id}: seq {entry.seq} says it was hashed under scheme "
+            f"{version} yet carries a reversal of event {entry.reverts_event_id}. "
+            "Neither scheme covers that field, so the pointer is not evidence and "
+            "the row is refused rather than verified."
+        )
     if version == DIGEST_V1:
         return _digest(
             prev_hash=entry.prev_hash,
@@ -286,11 +421,58 @@ def _digest_for_row(entry: AuditEvent) -> str:
             session_id=entry.session_id,
             ip=entry.ip,
         )
+    if version == DIGEST_V3:
+        return _digest_v3(
+            prev_hash=entry.prev_hash,
+            seq=entry.seq,
+            company_id=entry.company_id,
+            actor=entry.actor,
+            action=entry.action,
+            subject_type=entry.subject_type,
+            subject_id=entry.subject_id,
+            reason=entry.reason,
+            citation=entry.citation,
+            occurred_at=entry.occurred_at,
+            actor_user_id=entry.actor_user_id,
+            actor_kind=entry.actor_kind,
+            session_id=entry.session_id,
+            ip=entry.ip,
+            reverts_event_id=entry.reverts_event_id,
+        )
     raise AuditTamperError(
         f"{entry.company_id}: seq {entry.seq} claims digest scheme "
         f"{version!r}, which this build cannot compute. Refusing to verify it "
         "under another scheme."
     )
+
+
+# The two refusals a reversal pointer can hit on write. Constants because
+# app/state/rollback.py raises the same words earlier, before it touches any
+# state, and two spellings of one refusal are two messages a caller has to
+# match separately.
+NO_SUCH_EVENT = "no such audit event for this company"
+ALREADY_REVERTED = (
+    "this event was already reverted; a second reversal would leave two rows "
+    "undoing one decision with nothing saying which of them governs"
+)
+
+
+def _reversing_row(
+    session: Session, company_id: str, event_id: int
+) -> AuditEvent | None:
+    """The row in this company that reverts event_id, or None. One query, one home.
+
+    Scoped, so a reversal written in another tenant's chain does not count as
+    one here. audit_events.id is unique across tenants and nothing in the schema
+    stops a cross-company pointer, so this filter is the check, not decoration.
+    """
+    return session.execute(
+        select(AuditEvent)
+        .where(AuditEvent.company_id == company_id)
+        .where(AuditEvent.reverts_event_id == event_id)
+        .order_by(AuditEvent.seq)
+        .limit(1)
+    ).scalar_one_or_none()
 
 
 def record_event(
@@ -308,12 +490,21 @@ def record_event(
     actor_kind: str = ACTOR_SYSTEM,
     session_id: str | None = None,
     ip: str | None = None,
+    reverts_event_id: int | None = None,
 ) -> AuditEvent:
     """Append one decision to the company's chain. The only way in.
 
-    Always writes scheme 2. There is no way to append a scheme-1 row from
-    application code, and there should not be: the old scheme exists to read the
-    past, not to write more of it.
+    Writes scheme 2, or scheme 3 when the row takes another event back. There is
+    no way to append a scheme-1 row from application code, and there should not
+    be: the old scheme exists to read the past, not to write more of it.
+
+    reverts_event_id is checked here as well as in app/state/rollback.py, and
+    the repetition is the point: this is the chokepoint every write goes
+    through, so a caller that never heard of the rollback module still cannot
+    write a pointer into another tenant's chain or stack a second undo on one
+    decision. What this does NOT check is whether the state that decision
+    changed went back with it. That is rollback's job, and a pointer written
+    from here alone records an undo that never happened.
 
     NEVER PASS A SECRET. reason, citation and subject_id are stored verbatim and
     are readable by anyone who can read the log, which is the point of a log. A
@@ -351,6 +542,25 @@ def record_event(
             "instead, and name the person in subject_id if they are the subject."
         )
 
+    if reverts_event_id is not None:
+        if not isinstance(reverts_event_id, int) or isinstance(reverts_event_id, bool):
+            raise ValueError(
+                f"reverts_event_id must be an audit event id; got "
+                f"{reverts_event_id!r}. A value SQLite cannot match points at "
+                "nothing, and the row would claim an undo of no event at all."
+            )
+        target = session.execute(
+            select(AuditEvent)
+            .where(AuditEvent.company_id == company_id)
+            .where(AuditEvent.id == reverts_event_id)
+        ).scalar_one_or_none()
+        # One message for "not here" and "not yours". Which of the two it is
+        # would itself tell a caller that another tenant holds that id.
+        if target is None:
+            raise ValueError(NO_SUCH_EVENT)
+        if _reversing_row(session, company_id, reverts_event_id) is not None:
+            raise ValueError(ALREADY_REVERTED)
+
     tail = session.execute(
         select(AuditEvent)
         .where(AuditEvent.company_id == company_id)
@@ -361,6 +571,34 @@ def record_event(
     seq = 1 if tail is None else tail.seq + 1
     prev_hash = "" if tail is None else tail.entry_hash
     stamp = occurred_at or datetime.now(timezone.utc)
+
+    fields = {
+        "prev_hash": prev_hash,
+        "seq": seq,
+        "company_id": company_id,
+        "actor": actor,
+        "action": action,
+        "subject_type": subject_type,
+        "subject_id": subject_id,
+        "reason": reason,
+        "citation": citation,
+        "occurred_at": stamp,
+        "actor_user_id": actor_user_id,
+        "actor_kind": actor_kind,
+        "session_id": session_id,
+        "ip": ip,
+    }
+
+    # The scheme follows the row's own content. A row with no pointer has
+    # nothing scheme 3 would add, so it stays where every other row is; a row
+    # with one is hashed under the scheme that covers it. Nothing here can write
+    # a pointer that the row's own digest does not fix.
+    if reverts_event_id is None:
+        digest_version = CURRENT_DIGEST_VERSION
+        entry_hash = _digest_v2(**fields)
+    else:
+        digest_version = DIGEST_V3
+        entry_hash = _digest_v3(**fields, reverts_event_id=reverts_event_id)
 
     entry = AuditEvent(
         company_id=company_id,
@@ -377,23 +615,9 @@ def record_event(
         session_id=session_id,
         ip=ip,
         prev_hash=prev_hash,
-        digest_version=CURRENT_DIGEST_VERSION,
-        entry_hash=_digest_v2(
-            prev_hash=prev_hash,
-            seq=seq,
-            company_id=company_id,
-            actor=actor,
-            action=action,
-            subject_type=subject_type,
-            subject_id=subject_id,
-            reason=reason,
-            citation=citation,
-            occurred_at=stamp,
-            actor_user_id=actor_user_id,
-            actor_kind=actor_kind,
-            session_id=session_id,
-            ip=ip,
-        ),
+        digest_version=digest_version,
+        entry_hash=entry_hash,
+        reverts_event_id=reverts_event_id,
     )
     session.add(entry)
     session.flush()
@@ -479,6 +703,14 @@ _ADDED_COLUMNS = (
     ("session_id", "VARCHAR(64)"),
     ("ip", "VARCHAR(45)"),
     ("digest_version", "INTEGER NOT NULL DEFAULT 1"),
+    # The reversal link (models.py::AuditEvent.reverts_event_id). Added here
+    # because the ORM names every mapped column in every SELECT: without this
+    # line, one new column makes every audit read on an existing database fail
+    # with "no such column", which is the whole reason this migration exists.
+    # Plain INTEGER and no REFERENCES clause, matching actor_user_id above:
+    # SQLite does not enforce foreign keys unless asked, and ALTER TABLE is not
+    # the place to start.
+    ("reverts_event_id", "INTEGER"),
 )
 
 
@@ -530,6 +762,17 @@ def migrate_audit_schema(engine) -> tuple[str, ...]:
                     "ON audit_events (company_id, actor_user_id)"
                 )
             )
+            # "Was this decision taken back" is asked of every decision the
+            # review queue shows, so it cannot be a table scan. The name is the
+            # one SQLAlchemy generates from index=True on the column, so a
+            # migrated database and a freshly created one carry the same index
+            # under the same name rather than two that only a DBA can tell apart.
+            connection.execute(
+                text(
+                    "CREATE INDEX IF NOT EXISTS ix_audit_events_reverts_event_id "
+                    "ON audit_events (reverts_event_id)"
+                )
+            )
     return tuple(added)
 
 
@@ -563,7 +806,10 @@ __all__ = [
     "ACTOR_KINDS",
     "DIGEST_V1",
     "DIGEST_V2",
+    "DIGEST_V3",
     "CURRENT_DIGEST_VERSION",
+    "NO_SUCH_EVENT",
+    "ALREADY_REVERTED",
     "ACTION_LOGIN_SUCCEEDED",
     "ACTION_LOGIN_FAILED",
     "ACTION_LOGOUT",
@@ -577,6 +823,10 @@ __all__ = [
     "ACTION_ACTION_APPROVED",
     "ACTION_ACTION_REJECTED",
     "ACTION_ESCALATION_RESOLVED",
+    "ACTION_ESCALATION_APPROVED",
+    "ACTION_ESCALATION_REJECTED",
+    "ACTION_DECISION_REVERTED",
+    "ACTION_REVERSAL_WITHDRAWN",
     "ACTION_ACCESS_DENIED",
     "ACTION_APPROVAL_WAIVED",
     "ACTION_STEER_ISSUED",

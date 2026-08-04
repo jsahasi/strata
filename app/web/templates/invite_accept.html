@@ -1,0 +1,133 @@
+{#
+  invite_accept.html — the page somebody with no account sets a password on.
+
+  IT DOES NOT EXTEND base.html, FOR THE REASON shared_claim.html GIVES. That
+  shell renders a masthead, a company name and six screens' worth of links. Every
+  one of them would bounce an anonymous visitor to /login, and a menu of links
+  that bounce is worse than no menu. On the one page nobody had to sign in to
+  reach, inheriting the shell would also be an access-control decision that
+  looked like a styling one.
+
+  Three states, one file:
+
+    state = "form"    a live invitation. The rule is shown before the boxes.
+    state = "dead"    expired, revoked, superseded or never issued -- ONE answer
+                      for all four, rendering NOTHING derived from the request.
+    state = "done"    the password is set.
+
+  THE DEAD STATE HAS NO CONTEXT TO LEAK. It reads three constants and nothing
+  else: no token, no id, no timestamp, no address, no workspace. Three responses
+  that differed by a byte would let a caller tell a withdrawn link from one that
+  never existed, which is a probe for which tokens are real.
+
+  NO STATE NAMES THE ADDRESS. Not the form, not the success page. "Is there an
+  account for this address" is a question about somebody else.
+
+  Context, state = "form":
+    heading workspace post_url password_rule minimum   str/int
+    problem                                            str  what to fix, or ""
+
+  Context, state = "dead":
+    heading dead_text dead_next                        str
+
+  Context, state = "done":
+    heading workspace done_text login_url              str
+
+  From app/web/views/invite_accept.py. The form posts to the same URL it was
+  fetched from, so the token stays in the path and never becomes a hidden field
+  that a page cached anywhere would carry.
+#}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>{% if page_title %}{{ page_title }} · Strata{% else %}Strata{% endif %}</title>
+<link rel="stylesheet" href="/static/strata.css">
+<style>
+  /* Scoped to this page. It is not a screen of the product and must not look
+     like one: no masthead, no nav, one column and one decision. Every value is
+     an existing token and no width is set in pixels anywhere. */
+  .invite { max-width: 34rem; margin: 0 auto; padding: var(--s7) var(--s4) var(--s8); }
+  .invite__mark { font-weight: 600; letter-spacing: var(--track-label); text-transform: uppercase; font-size: var(--t-micro); color: var(--ink-3); }
+  .invite__title { margin: var(--s3) 0 var(--s4); }
+  .invite__lede { margin: 0 0 var(--s5); max-width: var(--measure); }
+  .invite__rule { margin: 0 0 var(--s2); font-size: var(--t-small); color: var(--ink-2); }
+  .invite__field { margin: 0 0 var(--s4); }
+  .invite__field input { width: 100%; box-sizing: border-box; }
+  .invite__foot { margin-top: var(--s7); padding-top: var(--s4); border-top: 1px solid var(--rule); font-size: var(--t-small); color: var(--ink-3); }
+</style>
+</head>
+<body>
+
+<main class="invite" id="main">
+
+{%- if state == 'dead' %}
+
+  {# Nothing here comes from the request. See the head of this file. #}
+  <p class="invite__mark">Strata</p>
+  <h1 class="invite__title">{{ heading }}</h1>
+  <p class="invite__lede">{{ dead_text }}</p>
+  <p class="invite__lede">{{ dead_next }}</p>
+
+{%- elif state == 'done' %}
+
+  <p class="invite__mark">Strata</p>
+  <h1 class="invite__title">{{ heading }}</h1>
+  <p class="invite__lede">{{ done_text }}</p>
+  <p><a class="btn btn--primary" href="{{ login_url }}">Sign in</a></p>
+  <p class="invite__foot">
+    You are not signed in yet. Setting a password and starting a session are two
+    decisions, and holding this link was never a way to obtain the second.
+  </p>
+
+{%- else %}
+
+  <p class="invite__mark">Strata{% if workspace %} · {{ workspace }}{% endif %}</p>
+  <h1 class="invite__title">{{ heading }}</h1>
+  <p class="invite__lede">
+    Somebody at {{ workspace | default('this workspace', true) }} has made you an
+    account. Choose a password and it is yours. This link works once and runs out
+    a day after it was sent; after that ask them for a fresh one, because a new
+    link is issued rather than this one extended.
+  </p>
+
+  {% if problem %}
+  <div class="empty empty--unloaded" role="alert">
+    <p class="empty__title">{{ problem }}</p>
+  </div>
+  {% endif %}
+
+  <form method="post" action="{{ post_url }}" class="stack--tight">
+    <p class="invite__field">
+      <label class="label" for="password">New password</label><br>
+      {# The rule is here, above the box, and not in a message after a refusal. #}
+      <span class="invite__rule">{{ password_rule }}</span><br>
+      <input id="password" name="password" type="password" required
+             minlength="{{ minimum }}" autocomplete="new-password"
+             autocapitalize="none" spellcheck="false">
+    </p>
+    <p class="invite__field">
+      <label class="label" for="confirm">Type it again</label><br>
+      <input id="confirm" name="confirm" type="password" required
+             minlength="{{ minimum }}" autocomplete="new-password"
+             autocapitalize="none" spellcheck="false">
+    </p>
+    <p>
+      <button class="btn btn--primary" type="submit">Set my password</button>
+    </p>
+  </form>
+
+  <p class="invite__foot">
+    Your password is hashed with scrypt and a salt of its own before it is
+    stored. Nobody here can read it back, including whoever sent you this link.
+  </p>
+
+{%- endif %}
+
+</main>
+
+</body>
+</html>

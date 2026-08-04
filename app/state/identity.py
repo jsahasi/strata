@@ -171,6 +171,23 @@ SYSTEM_ROLE_PERMISSIONS: dict[str, tuple[str, ...]] = {
         "threshold.set",
         "user.manage",
         "audit.read",
+        # user.invite sits on admin and NOWHERE ELSE, and the reason is the same
+        # argument the approval column makes. The land-and-expand case wants an
+        # analyst to pull a colleague in without filing a ticket, so analyst was
+        # the obvious home for it. It is a segregation-of-duties hole: an invited
+        # person is granted obligation_owner, so an analyst holding user.invite
+        # could invite an address they control at their own company's domain and
+        # approve their own action through it. The grid would then grant by
+        # omission exactly what it refuses by column. Keeping it here means the
+        # expansion loop needs an admin in it, which is slower and is the only
+        # version a regulated buyer would accept.
+        "user.invite",
+        # Drawing the approval route is configuration, like the threshold, and
+        # it lands on the role that already holds the configuration. It is kept
+        # off obligation_owner on purpose: an approver who could redraw the
+        # route could route the approval to themselves, and the grid would then
+        # grant by omission what it refuses by column.
+        "workflow.manage",
     ),
 }
 
@@ -203,6 +220,7 @@ PERMISSION_DESCRIPTIONS: dict[str, str] = {
     "threshold.set": "Change the confidence threshold (ADR-006).",
     "user.manage": "Create users and grant or revoke their roles.",
     "audit.read": "Read the audit chain and verify it.",
+    "workflow.manage": "Draw the approval route and make it the live one.",
 }
 
 # The action codes this module writes come from app/state/audit.py, which holds

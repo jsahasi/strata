@@ -55,6 +55,7 @@ from starlette.responses import RedirectResponse
 from app.auth.sessions import SESSION_TTL, resolve_session
 from app.seed import DATA_DIR
 from app.state.db import session_scope
+from app.state.sharing import SHARE_PATH_PREFIX
 from app.web import STATIC_URL_PATH
 
 # The one tenant in data/company_context.json. Everything in the corpus is
@@ -114,6 +115,20 @@ HEALTH_URL = "/healthz"
 # broken login page. /logout is NOT here: signing out is something a signed-in
 # person does, and an anonymous POST to it has nothing to end.
 PUBLIC_PATHS = (LOGIN_URL, HEALTH_URL)
+
+#: Prefixes an anonymous caller may reach, each stored WITH its trailing slash.
+#: The slash is the control, not decoration: startswith("/s") would make every
+#: root path beginning with the letter s public, and a guard list that widens
+#: itself by accident is worse than none.
+#:
+#: The share prefix is here because a share link is meant to work for somebody
+#: who has no account -- that is the whole feature. Leaving it out did not make
+#: it private, it made it leak: the guard answered 303 to
+#: /login?next=%2Fs%2F<token> and put a live bearer token into a query string,
+#: where it reaches the access log, the referrer header and browser history.
+#: A redirect that carries the credential it was protecting is worse than no
+#: guard at all, because it looks like a guard working.
+PUBLIC_PREFIXES = (STATIC_URL_PATH + "/", SHARE_PATH_PREFIX + "/")
 
 # The query parameter carrying where the person was going before they were sent
 # to sign in.
@@ -268,11 +283,14 @@ def cookie_settings(request: Request | None = None) -> dict:
 def is_public_path(path: str) -> bool:
     """True for the paths an anonymous caller may reach.
 
-    Exact matches, plus the static prefix. Prefix matching on the rest would
-    make /login-as-somebody-else public by accident, which is the shape of
-    mistake a guard list is supposed to prevent rather than introduce.
+    Exact matches, plus the prefixes in PUBLIC_PREFIXES. Prefix matching on the
+    rest would make /login-as-somebody-else public by accident, which is the
+    shape of mistake a guard list is supposed to prevent rather than introduce
+    -- which is why every prefix carries its trailing slash.
     """
-    return path in PUBLIC_PATHS or path.startswith(STATIC_URL_PATH + "/")
+    return path in PUBLIC_PATHS or any(
+        path.startswith(prefix) for prefix in PUBLIC_PREFIXES
+    )
 
 
 def safe_next(target: str | None) -> str | None:
@@ -441,6 +459,7 @@ __all__ = [
     "LOGOUT_URL",
     "NEXT_PARAM",
     "PUBLIC_PATHS",
+    "PUBLIC_PREFIXES",
     "Principal",
     "SESSION_COOKIE",
     "company_name",

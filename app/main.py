@@ -16,6 +16,14 @@ from fastapi.staticfiles import StaticFiles
 from sqlalchemy import func, select
 from sqlalchemy.exc import SQLAlchemyError
 
+# Before anything that reads os.environ. app/auth/policy.py resolves
+# APPROVAL_MODE at import time, and the chat, proposer and mail transports each
+# decide at first use whether they have a key -- so .env has to be in the
+# environment before any of them is imported, not after.
+from app.config import load_env
+
+load_env()
+
 from app.state.db import session_scope
 from app.state.models import (
     Change,
@@ -27,12 +35,20 @@ from app.state.models import (
 from app.web import STATIC_DIR, STATIC_URL_PATH
 from app.web.deps import install_auth
 from app.web.views import (
+    admin,
     auth,
     changes,
+    chat,
+    feedback_review,
     proceedings,
     projects,
     review,
     review_centre,
+    share,
+    shares_admin,
+    users_admin,
+    invite_accept,
+    workflow,
 )
 
 app = FastAPI(title="Strata", docs_url=None, redoc_url=None)
@@ -49,6 +65,28 @@ app.include_router(proceedings.router)
 app.include_router(changes.router)
 app.include_router(review.router)
 app.include_router(review_centre.router)
+# The public share page and its admin registry. share.router carries the only
+# unauthenticated route in the product; see app/web/views/share.py.
+app.include_router(share.router)
+app.include_router(shares_admin.router)
+# Admin account provisioning, and the token page a new person sets a
+# password on. invite_accept carries the second unauthenticated route.
+app.include_router(users_admin.router)
+app.include_router(invite_accept.router)
+# The approval route. Two routers, not one, because they answer two questions:
+# workflow.py serves GET /workflow to anybody signed in, and admin.py serves the
+# five /admin/workflows paths behind workflow.manage. Merging them would put the
+# open screen in the same module as the gated ones, which is how a screen ends up
+# gated by accident.
+app.include_router(workflow.router)
+app.include_router(admin.router)
+# The chat surface and the feedback queue. Mounted here rather than by the
+# modules that wrote them, because this file is the one place that says what the
+# running product is made of -- tests/test_app_wiring.py fails the moment a
+# router in app/web/views is not on this list, which is how these two were
+# found.
+app.include_router(chat.router)
+app.include_router(feedback_review.router)
 
 # The session guard, in front of all of them. Installed here rather than
 # decorated onto each route, so a screen added next month is protected by

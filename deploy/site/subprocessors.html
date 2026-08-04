@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sub-processors — Strata</title>
+<meta name="description" content="Whose machines Strata runs on, what reaches each one, and why the list of companies handling customer data is empty today.">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --paper:#f7f8fa; --ink:#10141c; --muted:#5a6373; --rule:#dfe3ea;
+  --stamp:#1b3a8f; --withheld:#a8620e; --panel:#ffffff;
+  --measure:33rem;
+  --serif:ui-serif,"Iowan Old Style",Charter,Palatino,"Book Antiqua",Georgia,serif;
+  --sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#0d1017; --ink:#e6e8ec; --muted:#98a1b2; --rule:#242a35;
+         --stamp:#8fa9e8; --withheld:#d99a45; --panel:#131822; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.62 var(--serif)}
+
+a{color:var(--stamp)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--stamp);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;background:var(--panel);padding:.6rem .9rem;z-index:20;border:1px solid var(--rule)}
+
+/* ---- the signature: a testimony line-number margin ---- */
+.wrap{max-width:52rem;margin:0 auto;padding:0 1.25rem}
+.lined{position:relative;padding-left:3.25rem}
+.lined::before{
+  content:attr(data-line);
+  position:absolute;left:0;top:.34em;width:2.1rem;text-align:right;
+  font:500 12px/1 var(--mono);color:var(--muted);opacity:.62;
+  font-variant-numeric:tabular-nums;
+}
+.lined::after{
+  content:"";position:absolute;left:2.6rem;top:0;bottom:0;width:1px;background:var(--rule);
+}
+@media (max-width:640px){
+  .lined{padding-left:0}
+  .lined::before,.lined::after{display:none}
+}
+
+/* ---- header ---- */
+header{border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:10}
+.bar{max-width:52rem;margin:0 auto;padding:.85rem 1.25rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.brand{font:600 15px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none;margin-right:auto}
+.brand span{color:var(--stamp)}
+.navlink{font:500 14px/1 var(--sans);color:var(--muted);text-decoration:none}
+.navlink:hover{color:var(--ink)}
+.signin{
+  font:600 14px/1 var(--sans);text-decoration:none;color:var(--panel);background:var(--stamp);
+  padding:.62rem 1.05rem;border-radius:3px;white-space:nowrap;
+}
+.signin:hover{filter:brightness(1.12)}
+@media (prefers-color-scheme:dark){.signin{color:#0d1017}}
+
+/* ---- type ---- */
+h1{font:400 clamp(2rem,5.4vw,3.05rem)/1.1 var(--serif);letter-spacing:-.018em;margin:0 0 1.1rem;text-wrap:balance}
+h2{font:600 12px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--stamp);margin:0 0 1.15rem}
+h3{font:500 1.16rem/1.35 var(--serif);margin:0 0 .5rem}
+p{margin:0 0 1.05rem}
+.lede{font-size:1.1rem}
+.muted{color:var(--muted)}
+section{padding:4.2rem 0;border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0}
+.narrow{max-width:var(--measure)}
+
+/* ---- rows of record ---- */
+.rec{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--stamp);
+     padding:1rem 1.1rem;margin-bottom:.85rem;border-radius:2px}
+.rec--held{border-left-color:var(--withheld)}
+.rec p{margin:0}
+.chip{display:inline-block;margin-top:.6rem;font:500 12px/1 var(--mono);color:var(--stamp);
+      border:1px solid currentColor;border-radius:2px;padding:.3rem .45rem}
+.held-label{font:600 11px/1.4 var(--sans);letter-spacing:.11em;text-transform:uppercase;color:var(--withheld);display:block;margin-bottom:.5rem}
+.caption{font:400 14px/1.55 var(--sans);color:var(--muted);margin-top:.9rem}
+
+/* ---- labelled rows ---- */
+.stage{display:grid;grid-template-columns:auto 1fr;gap:.9rem 1rem;align-items:baseline;padding:.85rem 0;border-bottom:1px solid var(--rule)}
+.stage:last-child{border-bottom:0}
+.stage b{font:500 12px/1.6 var(--mono);color:var(--muted);white-space:nowrap}
+.stage b.no{color:var(--withheld)}
+.stage p{margin:.2rem 0 0;font:400 15px/1.55 var(--sans)}
+.stage em{font-style:normal;color:var(--withheld);font-weight:600}
+
+/* ---- refusals ---- */
+.refuse{border-left:2px solid var(--rule);padding-left:1.1rem;margin-bottom:1.5rem}
+.refuse h3{font:600 15px/1.4 var(--sans)}
+.refuse p{font:400 15px/1.58 var(--sans);color:var(--muted);margin:0}
+
+/* ---- policy pages ---- */
+.stamp{font:500 12px/1.5 var(--mono);color:var(--muted);letter-spacing:.04em;margin:0 0 1.7rem}
+.note{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--withheld);
+      border-radius:2px;padding:1rem 1.1rem;margin:0 0 1.8rem;font:400 15px/1.58 var(--sans)}
+.note p{margin:0 0 .6rem}
+.note p:last-child{margin:0}
+.plain{font:400 15px/1.58 var(--sans)}
+code{font:400 .9em/1.4 var(--mono);background:color-mix(in srgb,var(--stamp) 9%,transparent);padding:0 .22em;border-radius:2px}
+ul{margin:0 0 1.05rem;padding-left:1.1rem;font:400 15px/1.58 var(--sans)}
+li{margin:0 0 .5rem}
+.ph{border:1px dashed var(--withheld);border-radius:2px;padding:.85rem .95rem;margin:0 0 1.05rem;
+    font:400 14px/1.55 var(--sans);color:var(--withheld)}
+.ph b{display:block;font:600 11px/1.4 var(--sans);letter-spacing:.11em;text-transform:uppercase;margin-bottom:.45rem}
+
+/* ---- closing ---- */
+footer{border-top:1px solid var(--rule);padding:2.2rem 0 3.5rem;font:400 14px/1.6 var(--sans);color:var(--muted)}
+footer a{color:var(--muted)}
+.foot{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:baseline}
+.foot .sep{margin-left:auto}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="/">Strat<span>a</span></a>
+    <a class="navlink" href="/privacy.html">Privacy</a>
+    <a class="navlink" href="/terms.html">Terms</a>
+    <a class="navlink" href="/security.html">Security</a>
+    <a class="signin" href="/login">Sign in</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section>
+  <div class="wrap"><div class="lined" data-line="1">
+    <div class="narrow">
+      <h1>Whose machines this runs on, and what reaches them.</h1>
+      <p class="stamp">Sub-processors · 2026-08-04</p>
+      <p class="lede">A sub-processor is a company Strata hands your data to so that Strata can
+      run. There are none, because there is no customer data to hand anyone. This page names the
+      companies whose machines the site sits on anyway, says what each one gets, and says which of
+      them becomes a sub-processor on the day a customer loads a document.</p>
+      <div class="note">
+        <p>Strata is a pre-production build by one person. It has no customers, and the data in
+        the demonstration is invented.</p>
+        <p>Nothing here is a contract. No data processing agreement is signed with any company
+        named below, because there is no legal entity to sign one.</p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="2">
+    <h2>The short answer</h2>
+    <div class="narrow">
+      <p><b>No company processes customer data for Strata today.</b> Two facts hold that up, and
+      both are checkable in about a minute.</p>
+      <p>First, the application is not deployed. What answers at
+      <code>strata.sudama.ai</code> is a handful of static pages served by nginx — the landing
+      page, the policy pages including this one, and a sign-in page that says access is by
+      invitation. Ask that host
+      for <code>/health</code>, <code>/projects</code> or <code>/chat</code> and it returns a 404,
+      because there is no application behind it to answer. The
+      <a href="/privacy.html">privacy page</a> describes tables that exist in the code and run on a
+      developer's own machine.</p>
+      <p>Second, nobody has an account with real documents in it. Every document in the
+      demonstration is invented.</p>
+      <p class="muted">Why write the page at all, then. Because a buyer's procurement team asks
+      for this list, and "we have not written one" is a worse answer than a short one. And because
+      the list is about to change: the section below says what each company gets today and what it
+      would get the day the application ships.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="3">
+    <h2>The companies that run the site</h2>
+    <div class="narrow">
+      <p>Three. None of them receives customer data today, because there is none. Each would be a
+      sub-processor the moment the application is deployed, and each is listed now so that day
+      does not need a new page.</p>
+    </div>
+
+    <div class="stage"><b>DigitalOcean</b><p><b>What they hold.</b> The whole machine. The static
+      pages, the video on the landing page, the certificate's private key, and the request log
+      nginx writes. <b>Why.</b> The site runs on a virtual machine rented from them. <b>Where.</b>
+      DigitalOcean, LLC is a United States company; the address is <code>143.198.140.28</code>,
+      which their own registration record shows as theirs. Which region the machine sits in is not
+      stated here, because it was not checked.</p></div>
+
+    <div class="stage"><b>shared host</b><p><b>Two things a buyer should know about that machine.</b>
+      It is shared. The original plan gave Strata its own disposable box; no credential existed to
+      create one, so it went onto a droplet that already serves another of the author's projects,
+      alongside that project's commercial data. That is a smaller boundary than the plan asked
+      for, and ADR-10 in the decision record sets out what was traded and what would move it back.
+      And nginx logs every request by default — the address it came from, the page asked for, the
+      time and the browser's user-agent line. How long the host keeps that log is not claimed here,
+      because the host's log settings were not read.</p></div>
+
+    <div class="stage"><b>GoDaddy</b><p><b>What they hold.</b> The domain <code>sudama.ai</code>
+      and the name servers that answer for it, <code>ns29</code> and
+      <code>ns30.domaincontrol.com</code>. <b>What reaches them.</b> The lookups that turn
+      <code>strata.sudama.ai</code> into an address: the name asked for and the resolver that asked.
+      Not the page you then read, and nothing you type into it. <b>Why.</b> The domain was
+      registered there. <b>Where.</b> GoDaddy.com, LLC is a United States company.</p></div>
+
+    <div class="stage"><b>Let's Encrypt</b><p><b>What they hold.</b> The certificate that makes
+      this page arrive over HTTPS, issued to the name <code>strata.sudama.ai</code> and to nothing
+      else. <b>What reaches them.</b> The host name, and a proof that this server controls it. No
+      person's data goes into a certificate request. <b>Worth saying out loud.</b> Every
+      certificate is published to public transparency logs, so the host name is public whether or
+      not anything on it is. <b>Where.</b> Issued by the Internet Security Research Group, a
+      United States non-profit.</p></div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="4">
+    <h2>Anthropic, and why it is not on that list</h2>
+    <div class="narrow">
+      <p>Strata is built to call a model, and the code for it exists. A buyer should expect to see
+      the model vendor named here. It is not named as a sub-processor because nothing is sent to
+      it — and the reason is worth reading, because "we plan to" and "it is off" are different
+      claims and only one of them is true.</p>
+      <p><b>Two modules can make the call.</b> <code>app/interpretation/propose.py</code> asks a
+      model what changed between two versions of a filing.
+      <code>app/chat/agent.py</code> runs one turn of the assistant. Both were written against
+      Anthropic's API.</p>
+      <p><b>Neither of them runs.</b> Not on the deployed site, which has no application at all.
+      Not on a local run either: nothing in the application calls the proposer, the assistant's
+      agent is imported only by its own test, and the chat screen looks for
+      <code>app/chat/engine.py</code>, which has not been written. The screen answers that the part
+      of it which reads the record is not wired in.</p>
+      <p><b>And there is no key.</b> Both modules need <code>ANTHROPIC_API_KEY</code> in the
+      running process, and nothing in the repository loads the environment file into it. Without
+      the key, both refuse and say so on the page — they do not fall back to canned text dressed up
+      as an answer. That refusal is tested.</p>
+      <p><b>What would be sent, when it is wired.</b> Passage text from regulatory filings, which
+      carries no new exposure where it bears no confidentiality marking, because the docket has
+      already published it. At the one step that matches a change to an internally worded obligation,
+      only the specific obligation lines being compared — never the whole obligation register as
+      background, never a raw uploaded file with its author and revision history inside it, and
+      never text carrying a confidentiality marking until a person clears it.
+      <code>docs/security.html</code> in the repository sets that scope out line by line, and this
+      page does not widen it.</p>
+      <p><b>What is missing before Anthropic can be listed for real.</b> Commercial terms, a data
+      processing agreement, and an answer on retention — whether the calls run with no training on
+      inputs and a stated retention window. None of that is agreed with anyone. Until it is, the
+      minimisation described above is a design and not a running system.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="5">
+    <h2>What is not a sub-processor, and where the line is</h2>
+    <div class="narrow">
+      <p>The line is this: a sub-processor handles <em>your</em> data so that Strata can run for
+      you. A tool the operator uses for his own work is not one, however much it holds about him.
+      Padding this page with the second kind would make it longer and less useful, and it would
+      blur the question a procurement team is actually asking.</p>
+    </div>
+
+    <div class="stage"><b class="no">not one</b><p><b>Gmail.</b> Mail sent to the address at the
+      foot of these pages lands in an ordinary personal Gmail mailbox, and Google's terms govern
+      it — the <a href="/privacy.html">privacy page</a> says the same. That is the operator's
+      mailbox for correspondence, not somewhere Strata puts your documents. The environment file
+      also names Gmail credentials for a user-research outreach script; no such script exists in
+      the repository, and no code in it sends mail.</p></div>
+
+    <div class="stage"><b class="no">not one</b><p><b>GitHub.</b> The source lives in a private
+      repository at <code>github.com/jsahasi/strata</code>. It holds the code, the invented corpus
+      and a set of public filings downloaded from state commissions' own document systems. It
+      holds nobody's documents.</p></div>
+
+    <div class="stage"><b class="no">not one</b><p><b>Traefik and Coolify.</b> These appear in the
+      decision record and they are programs on the same rented machine, not companies that receive
+      anything. The repository's nginx configuration listens on plain HTTP only, and the public
+      address answers over HTTPS, so a proxy in front of nginx holds the certificate; ADR-11
+      records which one and why it is not the one originally chosen. Nothing leaves the machine
+      through them except the certificate request already listed above.</p></div>
+
+    <div class="stage"><b class="no">not one</b><p><b>The software libraries.</b> FastAPI,
+      uvicorn, SQLAlchemy, Pydantic, Jinja, httpx and the Anthropic SDK run inside the process on
+      the same machine. A library is not a company receiving data. The only one of them that can
+      send anything anywhere is the Anthropic SDK, and the section above says what that would
+      be.</p></div>
+
+    <div class="stage"><b class="no">none</b><p><b>Things that are simply absent.</b> No
+      analytics, no error tracking, no content delivery network, no external fonts or scripts, no
+      customer support tool, no marketing platform, no payment processor — nothing is for sale —
+      and no off-host backup: the repository's backup script writes a verified snapshot to a
+      directory on the same disk and has no remote destination anywhere in it. No page here
+      fetches anything from another host, which is checkable by reading the source.</p></div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="6">
+    <h2>What changes on the day the application ships</h2>
+    <div class="narrow">
+      <p>This page is short because the product is not running. The honest version of it after
+      launch is longer, and the changes are predictable enough to write down now.</p>
+      <ul>
+        <li><b>DigitalOcean stops holding static pages and starts holding everything.</b> The SQLite
+        file with every uploaded document, every claim, every audit row. One company, one disk, no
+        encryption at rest beyond what the disk gives — the
+        <a href="/security.html">security page</a> says so and does not soften it.</li>
+        <li><b>Anthropic becomes a real sub-processor</b> the first time a key is set and a call is
+        wired, and gets filing text under the scope above.</li>
+        <li><b>Anything else appears here before it runs, not after.</b> Mail sending, error
+        tracking, a backup target, a payment processor: added to this page first.</li>
+      </ul>
+      <div class="ph"><b>Placeholder — required before production use</b>
+      A signed data processing agreement with each company named above, a way to tell customers
+      before this list changes rather than after, and a legal entity to hold the contracts. None
+      of those exist.</div>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="7">
+    <h2>How this list was checked</h2>
+    <div class="narrow">
+      <p>Every row above came from a command or a file, not from memory. Run them yourself; they
+      are all read-only.</p>
+      <ul>
+        <li><code>dig +short strata.sudama.ai A</code> returns <code>143.198.140.28</code>, and
+        <code>whois 143.198.140.28</code> names DigitalOcean.</li>
+        <li><code>dig +short sudama.ai NS</code> returns the <code>domaincontrol.com</code> name
+        servers, and <code>whois sudama.ai</code> names GoDaddy as registrar.</li>
+        <li><code>openssl s_client -connect strata.sudama.ai:443</code> shows the issuer as Let's
+        Encrypt and the subject as this host name.</li>
+        <li><code>curl -I https://strata.sudama.ai/health</code> returns 404, which is what a host
+        with no application behind it returns.</li>
+        <li>The claim that no model call runs was checked by searching the code for callers of the
+        two modules that can make one, and by reading the chat screen's own note that its engine
+        does not exist yet.</li>
+      </ul>
+      <p>Where a check was not run, this page says so instead of rounding up — the machine's
+      region and the request log's retention are both marked that way above.</p>
+      <p>Questions to
+      <a href="mailto:jsahasi@gmail.com?subject=Strata%20sub-processors">jsahasi@gmail.com</a>.
+      This page changes when the list does, and the date at the top moves with it.</p>
+    </div>
+  </div></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap"><div class="foot">
+    <span>Strata</span>
+    <a href="/login">Sign in</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/security.html">Security</a>
+    <a href="/subprocessors.html">Sub-processors</a>
+    <a href="mailto:jsahasi@gmail.com">Contact</a>
+    <span class="sep muted">Built by Jayesh Sahasi</span>
+  </div></div>
+</footer>
+
+</body>
+</html>

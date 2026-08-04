@@ -1,0 +1,135 @@
+{#
+  workflow_list.html — every approval route this company has drawn, and the
+  refusal page for somebody who may not see them.
+
+  ONE TEMPLATE, TWO ANSWERS, on purpose. A separate "forbidden" page would be a
+  second file describing the same screen, and the thing a refused reader most
+  needs -- the name of the permission and the way to the read-only route -- is
+  the same sentence in both. The view sets `reason` only when it refused.
+
+  Context, from app/web/views/admin.py:
+    reason        str | None     why this person was refused, from policy.py
+    refused       str            what to do about it
+    permission    str            "workflow.manage"
+    rows          list[WorkflowRow]
+    state         "ok" | "no-tables"
+    route_url     str            the read-only screen
+    workflows_url str            this screen
+    plus everything base.html reads.
+#}{% extends "base.html" %}
+
+{% block head %}<link rel="stylesheet" href="/static/workflow.css">{% endblock %}
+
+{% block content %}
+
+{% if reason %}
+<div class="page-head">
+  <div class="page-head__title"><h1>Approval routes</h1></div>
+</div>
+
+<div class="empty empty--none">
+  <p class="empty__title">You cannot open this screen.</p>
+  <div class="empty__body">
+    <p>{{ reason }}.</p>
+    <p>{{ refused }}</p>
+    {# Says nothing about whether this company has any routes. A refusal that
+       leaked the count would tell somebody who may not read the screen how much
+       is on it. #}
+    <p>
+      This is a refusal, not a blank page. The screen exists, and
+      <code>{{ permission }}</code> is what opens it.
+    </p>
+  </div>
+  <div class="empty__actions">
+    <a class="btn" href="{{ route_url }}">Read the live route</a>
+  </div>
+</div>
+
+{% else %}
+
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>Approval routes</h1>
+    {% if rows %}<span class="coord">{{ rows | length }} drawn</span>{% endif %}
+  </div>
+  <p class="page-head__note">
+    One route is live at a time. Editing happens while a route is a draft;
+    activating it freezes it, so a run already in flight cannot change under it.
+    To change a live route, open a new draft and activate that.
+  </p>
+</div>
+
+<form class="wf-new" method="post" action="{{ workflows_url }}">
+  <label class="label" for="wf-new-name">New draft route</label>
+  <div class="wf-new__row">
+    <input id="wf-new-name" name="name" type="text" maxlength="256"
+           placeholder="Large load tariff review" autocomplete="off">
+    <button class="btn btn--primary" type="submit">Open a draft</button>
+  </div>
+</form>
+
+{% if state == 'ok' and rows %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Route</th>
+      <th scope="col">State</th>
+      <th scope="col">Steps</th>
+      <th scope="col">Drawn</th>
+      <th scope="col">Went live</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr>
+      <td>
+        <a href="{{ row.url }}">{{ row.name }}</a>
+        <p><span class="coord">{{ row.workflow_id }}</span></p>
+        {% if row.supersedes_id %}
+        <p><span class="coord">replaces {{ row.supersedes_id }}</span></p>
+        {% endif %}
+      </td>
+      <td><span class="badge {{ row.badge }}">{{ row.status }}</span></td>
+      <td>{{ row.steps }}</td>
+      <td><span class="coord">{{ row.created_at }}</span></td>
+      <td>
+        {%- if row.activated_at %}<span class="coord">{{ row.activated_at }}</span>
+        {%- else %}<span class="coord">never</span>{% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p class="page-head__note">
+  Everybody signed in can read the live route in plain words at
+  <a href="{{ route_url }}">Approval route</a>. That screen is what an analyst
+  chasing an item looks at, so what you draw here is what they read.
+</p>
+
+{% elif state == 'ok' %}
+<div class="empty empty--none">
+  <p class="empty__title">No approval route has been drawn for this company.</p>
+  <div class="empty__body">
+    <p>
+      Nothing is routed for approval until one is drawn and activated. An item
+      handed off today would sit wherever it was left, which is the state
+      <a href="{{ route_url }}">the route screen</a> reports to everybody else.
+    </p>
+  </div>
+</div>
+
+{% else %}
+<div class="empty empty--unloaded">
+  <p class="empty__title">The database has no tables yet.</p>
+  <div class="empty__body">
+    <p>
+      Load the corpus with <code>{{ seed_command }}</code>, or
+      <code>{{ make_command }}</code>, then reload this page.
+    </p>
+  </div>
+</div>
+{% endif %}
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,22 @@
+# Strata -- vulnerability disclosure.
+#
+# A pre-production build by one person, with no legal entity behind it. Read the
+# policy before you spend time on this: some of what looks broken here is
+# published on purpose, and most of what is missing is already written down.
+
+Contact: mailto:jsahasi@gmail.com
+Expires: 2027-02-04T23:59:59Z
+Preferred-Languages: en
+Canonical: https://strata.sudama.ai/.well-known/security.txt
+Policy: https://strata.sudama.ai/security.html#disclosure
+
+# Six months, not a year. If that date has passed, this file is stale and so is
+# the person maintaining it -- treat both as unverified and write anyway.
+#
+# There is no bounty. It would need money to pay it, somebody to triage what it
+# brought in, and an entity to stand behind the safe harbour. None of the three
+# exists. The policy says so in full rather than leaving you to guess.
+#
+# There is no OpenPGP key, so this file is unsigned and nothing in it proves
+# whose file it is. An Encryption field pointing at a key nobody holds would be
+# worse than the gap.

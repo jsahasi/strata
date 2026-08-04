@@ -1,0 +1,641 @@
+/* workflow.css — the approval route: the admin's canvas and the screen everybody
+ * else reads.
+ *
+ * A SECOND FILE, AGAINST ADR-012, AND HERE IS THE ARGUMENT. That decision says
+ * the product has one stylesheet, and it is right for the reasons it gives. What
+ * it did not have in front of it was a canvas: roughly two hundred rules that
+ * exist for two screens out of eight, half of them absolute positioning that
+ * belongs to nothing else in the product. Putting them in strata.css would grow
+ * the file every page loads by a tenth for a screen most people never open. So
+ * this file is loaded by the three workflow screens and by nothing else, and it
+ * is a departure to be argued about rather than a habit -- if a third screen
+ * ever needs a canvas, these rules go into strata.css and this file goes away.
+ *
+ * IT DEFINES NO COLOUR. Every value here is a custom property from strata.css.
+ * The palette, the type scale, the spacing steps and the radii are already
+ * named; naming them again is how two blues end up in one product. The one
+ * thing this file adds is a geometry -- node size and canvas height -- which
+ * strata.css has no reason to hold.
+ *
+ * THE THREE TIMEOUT ACTIONS DO NOT LOOK ALIKE, and bypass does not look safe.
+ * Remind is the quiet one: a plain border. Escalate is drawn with the accent,
+ * because something happens and it is orderly. Bypass takes the alarm treatment
+ * the product already uses for a withheld claim -- alarm border, alarm wash, and
+ * a hatched bar down the left edge -- because it is the one action that lets an
+ * item past a step nobody approved. Same argument as showing a withheld claim in
+ * amber rather than hiding it: the reader must not scan past the thing that
+ * skipped a check. Colour is never the only signal; the bar, the border style
+ * and the words carry it too, so it survives a monochrome screen and a reader
+ * who does not see the hue.
+ */
+
+/* --------------------------------------------------------------- shared -- */
+
+.wf-who-changes {
+  margin-bottom: var(--s5);
+  padding: var(--s3) var(--s4);
+  border-left: 3px solid var(--accent);
+  background: var(--accent-wash);
+  color: var(--ink);
+  font-size: var(--t-small);
+  max-width: var(--measure);
+}
+
+.wf-who-changes code {
+  font: var(--t-micro) / 1.5 var(--face-data);
+}
+
+/* ------------------------------------------------- the read-only route -- */
+
+.wf-route__name {
+  margin-top: var(--s1);
+  font-size: var(--t-ui-lg);
+}
+
+.wf-plan {
+  margin-top: var(--s5);
+}
+
+.wf-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s6);
+  margin: var(--s2) 0 0;
+}
+
+.wf-facts__pair dd {
+  margin: 0;
+  font-size: var(--t-ui);
+}
+
+/* A rule that resolves to nobody. Not a styling flourish: a live step assigned
+   to a role this company does not have is a step an item stops at, and a reader
+   deciding whether to trust the process has to see it. */
+.wf-uncertain {
+  color: var(--alarm-strong);
+  font-weight: 600;
+}
+
+.wf-timeout {
+  margin-top: var(--s3);
+  padding: var(--s2) var(--s3);
+  border-left: 2px solid var(--rule-strong);
+  background: var(--surface-sunk);
+  color: var(--ink-2);
+  font-size: var(--t-small);
+  max-width: var(--measure);
+}
+
+.wf-timeout--skip {
+  border-left-color: var(--alarm);
+  background: var(--alarm-wash);
+  color: var(--alarm-strong);
+  font-weight: 600;
+}
+
+/* A step that skips on timeout, marked on the step itself and not only on its
+   sentence. Somebody scanning the route for the weak point should find it
+   without reading every line -- which is the whole reason the amber treatment
+   exists on a withheld claim. */
+.wf-step--bypass::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--rail) + 5px);
+  top: calc(var(--s4) + 18px);
+  bottom: var(--s4);
+  width: 4px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--alarm) 0 4px,
+    transparent 4px 8px
+  );
+}
+
+.wf-next {
+  margin-top: var(--s2);
+  color: var(--ink-3);
+  font-size: var(--t-small);
+}
+
+/* A step that was skipped renders at the same weight as one that was approved,
+   never quieter. Hiding it would be the route lying about what happened. */
+.wf-state--skip {
+  color: var(--alarm-strong);
+}
+
+.wf-item {
+  margin-bottom: var(--s5);
+  padding: var(--s4);
+  border: 1px solid var(--accent);
+  border-radius: var(--r);
+  background: var(--accent-wash);
+}
+
+.wf-item--unknown {
+  border-color: var(--rule-strong);
+  background: var(--surface-sunk);
+}
+
+.wf-item__id {
+  margin-top: var(--s1);
+}
+
+.wf-item__note {
+  margin-top: var(--s2);
+  font-size: var(--t-small);
+  color: var(--ink-2);
+  max-width: var(--measure);
+}
+
+/* ------------------------------------------------------------ the list -- */
+
+.wf-new {
+  margin-bottom: var(--s6);
+  padding: var(--s4);
+  border: 1px dashed var(--rule-strong);
+  border-radius: var(--r);
+}
+
+.wf-new__row {
+  display: flex;
+  gap: var(--s3);
+  margin-top: var(--s2);
+  flex-wrap: wrap;
+}
+
+.wf-new input {
+  flex: 1 1 18rem;
+  min-width: 0;
+  padding: var(--s2) var(--s3);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--ink);
+  font: var(--t-ui) / var(--lh-ui) var(--face-ui);
+}
+
+/* ---------------------------------------------------------- the editor -- */
+
+.wf-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  margin-bottom: var(--s4);
+  padding-bottom: var(--s3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.wf-bar__name {
+  flex: 0 1 20rem;
+  min-width: 0;
+  padding: var(--s2) var(--s3);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--ink);
+  font: var(--t-ui) / var(--lh-ui) var(--face-ui);
+}
+
+.wf-bar__name:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.wf-bar__status {
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+
+.wf-bar__status--bad {
+  color: var(--alarm-strong);
+  font-weight: 600;
+}
+
+.wf-graph-errors {
+  margin-bottom: var(--s4);
+  padding: var(--s3) var(--s4);
+  border: 1px solid var(--alarm);
+  border-left-width: 3px;
+  border-radius: var(--r);
+  background: var(--alarm-wash);
+  color: var(--alarm-strong);
+  font-size: var(--t-small);
+}
+
+.wf-graph-errors ul {
+  margin: 0;
+  padding-left: var(--s4);
+}
+
+.wf-split {
+  grid-template-columns: minmax(0, 1fr) minmax(19rem, 22rem);
+}
+
+.wf-canvas {
+  position: relative;
+  height: 32rem;
+  overflow: auto;
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  background-color: var(--surface);
+  /* A grid, drawn rather than pictured: two gradients, no image file, nothing
+     to fetch. It exists so a dragged node has something to line up against. */
+  background-image:
+    linear-gradient(to right, var(--rule) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--rule) 1px, transparent 1px);
+  background-size: 40px 40px;
+  touch-action: none;
+}
+
+/* Top-left rather than inset: 0. The canvas scrolls, so these two layers have
+   to cover the whole graph and not just the visible box -- the script sets
+   their width and height from the furthest node, and `inset: 0` would pin them
+   to the viewport instead and leave the wires clipped at the fold. */
+.wf-wires,
+.wf-nodes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.wf-wires {
+  pointer-events: none;
+}
+
+.wf-wire {
+  fill: none;
+  stroke: var(--rule-strong);
+  stroke-width: 2;
+}
+
+.wf-wire--live {
+  stroke: var(--accent);
+  stroke-dasharray: 5 4;
+}
+
+.wf-nodes {
+  pointer-events: none;
+}
+
+/* A real button. Focusable by Tab, focus-ringed by the browser, announced as a
+   control -- none of which an SVG <g> gives reliably. The SVG behind it draws
+   the wires and nothing else. */
+.wf-node {
+  position: absolute;
+  width: 13rem;
+  min-height: 5rem;
+  padding: var(--s3);
+  border: 1px solid var(--rule-strong);
+  border-left-width: 3px;
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--ink);
+  font: var(--t-small) / var(--lh-ui) var(--face-ui);
+  text-align: left;
+  cursor: grab;
+  pointer-events: auto;
+}
+
+.wf-node:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.wf-node--selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-wash);
+}
+
+.wf-node__label {
+  display: block;
+  font-weight: 600;
+}
+
+.wf-node__label--empty {
+  color: var(--ink-3);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.wf-node__who,
+.wf-node__rule {
+  display: block;
+  margin-top: var(--s1);
+  color: var(--ink-2);
+  font-size: var(--t-micro);
+}
+
+.wf-node__rule {
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* The three actions, told apart at a glance. Border style and a left bar carry
+   it as well as colour. */
+.wf-node--undecided {
+  border-left-style: dashed;
+  border-left-color: var(--rule-strong);
+}
+
+.wf-node--undecided .wf-node__rule {
+  color: var(--ink-3);
+}
+
+.wf-node--remind {
+  border-left-color: var(--ink-3);
+}
+
+.wf-node--escalate {
+  border-left-color: var(--accent);
+}
+
+.wf-node--escalate .wf-node__rule {
+  color: var(--accent-strong);
+}
+
+/* Bypass is the one that lets an item past a step nobody approved. It gets the
+   treatment a withheld claim gets, for the same reason. */
+.wf-node--bypass {
+  border-color: var(--alarm);
+  border-left-width: 6px;
+  border-left-color: var(--alarm);
+  background-color: var(--alarm-wash);
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0 7px,
+    var(--hatch) 7px 8px
+  );
+}
+
+.wf-node--bypass .wf-node__rule,
+.wf-node--bypass .wf-node__who {
+  color: var(--alarm-strong);
+}
+
+/* A node activation refused. The message sits on the node, where the eye
+   already is, rather than in a list at the bottom of the canvas. */
+.wf-node--bad {
+  border-color: var(--alarm);
+  box-shadow: 0 0 0 2px var(--alarm-wash);
+}
+
+.wf-node__errors {
+  display: block;
+  margin: var(--s2) 0 0;
+  padding: var(--s2) 0 0 1.1em;
+  border-top: 1px solid var(--alarm);
+  color: var(--alarm-strong);
+  font-size: var(--t-micro);
+  font-weight: 600;
+}
+
+.wf-node__errors li + li {
+  margin-top: var(--s1);
+}
+
+/* The output handle: where a connection is dragged from. Its own button so it
+   is reachable and does not fight the drag-to-move on the node body. */
+.wf-handle {
+  position: absolute;
+  width: 1.1rem;
+  height: 1.1rem;
+  padding: 0;
+  border: 1px solid var(--rule-strong);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink-2);
+  font: 700 var(--t-micro) / 1 var(--face-ui);
+  cursor: crosshair;
+  pointer-events: auto;
+}
+
+.wf-handle:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.wf-handle--armed {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--surface);
+}
+
+/* Deleting an arrow. A button rather than a click target on the path, so it can
+   be reached by Tab and named. */
+.wf-cut {
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  border: 1px solid var(--rule-strong);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink-2);
+  font: 700 var(--t-micro) / 1 var(--face-ui);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.wf-cut:hover,
+.wf-cut:focus-visible {
+  border-color: var(--alarm);
+  color: var(--alarm-strong);
+}
+
+.wf-keys {
+  margin-top: var(--s3);
+  color: var(--ink-3);
+  font-size: var(--t-small);
+  max-width: var(--measure);
+}
+
+.wf-keys kbd {
+  padding: 0 0.3em;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-sm);
+  font: var(--t-micro) / 1.4 var(--face-data);
+}
+
+/* ----------------------------------------------------------- the panel -- */
+
+.wf-panel__id {
+  margin-top: var(--s1);
+  margin-bottom: var(--s4);
+}
+
+.wf-panel__errors {
+  margin-bottom: var(--s4);
+  padding: var(--s2) var(--s3);
+  border-left: 3px solid var(--alarm);
+  background: var(--alarm-wash);
+  color: var(--alarm-strong);
+  font-size: var(--t-small);
+  font-weight: 600;
+}
+
+/* The same list, in the panel rather than on the node. The rule above the node
+   version separates it from the node's own text; in the panel there is nothing
+   above it to separate from. */
+.wf-panel__errors .wf-node__errors {
+  margin: 0;
+  padding-top: 0;
+  border-top: 0;
+  font-size: var(--t-small);
+}
+
+.wf-field + .wf-field {
+  margin-top: var(--s4);
+}
+
+.wf-field input,
+.wf-field select {
+  display: block;
+  width: 100%;
+  margin-top: var(--s1);
+  padding: var(--s2) var(--s3);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--ink);
+  font: var(--t-ui) / var(--lh-ui) var(--face-ui);
+}
+
+.wf-field input:focus-visible,
+.wf-field select:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.wf-hint {
+  margin-top: var(--s1);
+  color: var(--ink-3);
+  font-size: var(--t-micro);
+}
+
+.wf-hint--warn {
+  color: var(--alarm-strong);
+  font-weight: 600;
+}
+
+.wf-panel__actions {
+  margin-top: var(--s5);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--rule);
+}
+
+.wf-panel__empty {
+  color: var(--ink-3);
+  font-size: var(--t-small);
+}
+
+/* ---------------------------------------------------------- the phone -- */
+
+/* Below 52rem the canvas goes and the list arrives. A drag-and-drop canvas on a
+   phone is not a smaller canvas, it is a control nobody can use, and shipping
+   one that silently does not work is worse than not shipping it. The list is
+   the same model rendered as steps in order; every field stays editable and
+   only the two operations that need a pointer -- moving a node, drawing an
+   arrow -- are missing, which the note in the page says out loud. */
+.wf-small {
+  display: none;
+}
+
+.wf-small__note {
+  margin-bottom: var(--s4);
+  padding: var(--s3);
+  border-left: 3px solid var(--rule-strong);
+  background: var(--surface-sunk);
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+
+.wf-small__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wf-small__list li + li {
+  margin-top: var(--s3);
+}
+
+.wf-small__step {
+  display: block;
+  width: 100%;
+  padding: var(--s3);
+  border: 1px solid var(--rule-strong);
+  border-left-width: 3px;
+  border-radius: var(--r);
+  /* background-color, not the background shorthand: the shorthand resets
+     background-image, and .wf-node--bypass is a hatch drawn with one. The
+     bypass step would have lost its treatment here and looked like the safe
+     ones -- on the screen a phone actually shows. */
+  background-color: var(--surface);
+  color: var(--ink);
+  font: var(--t-small) / var(--lh-ui) var(--face-ui);
+  text-align: left;
+  cursor: pointer;
+}
+
+.wf-small__step:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Which one the panel below is editing. On the canvas the selected node is
+   next to the panel and the connection is obvious; in a single column the
+   panel is a scroll away, and without this the admin edits one step while
+   looking at another. */
+.wf-small__step[aria-pressed="true"] {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-wash);
+}
+
+@media (max-width: 52rem) {
+  .wf-canvas,
+  .wf-keys,
+  /* The drag-and-connect instructions go with the canvas they describe. Left
+     on a phone they tell somebody to do a thing the screen cannot do. */
+  .wf-pointer-only {
+    display: none;
+  }
+
+  .wf-small {
+    display: block;
+  }
+
+  .wf-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wf-split .split__aside {
+    position: static;
+  }
+}
+
+/* Somebody who has asked for less movement gets none. The only transitions here
+   are on the wires and the panel, and neither carries meaning. */
+@media (prefers-reduced-motion: reduce) {
+  .wf-node,
+  .wf-wire {
+    transition: none;
+  }
+}
+
+/* Printed, the canvas is a picture of nothing useful and the list is the route.
+   Same choice strata.css makes elsewhere: print what can be read. */
+@media print {
+  .wf-canvas,
+  .wf-bar,
+  .wf-keys {
+    display: none;
+  }
+
+  .wf-small {
+    display: block;
+  }
+}

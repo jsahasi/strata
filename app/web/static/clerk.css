@@ -1,0 +1,368 @@
+/* The assistant dock. A rail on a wide screen, the whole screen on a phone.
+ *
+ * WHY A SECOND FILE AT ALL. strata.css is one file by decision (ADR-012) and
+ * this is the exception that proves it rather than a fork of it: the dock is
+ * loaded on every screen but drawn on none of them until somebody opens it, and
+ * it introduces no colour, no type face and no spacing step of its own. Every
+ * value below is a custom property that file already defines -- the filing-stamp
+ * blue, the withheld amber, the 4px space grid, the three type registers. There
+ * is no hex literal in this file and there must not be one: a second palette is
+ * a second product, and the withheld treatment in particular has to be the same
+ * amber a person already learned on the review queue.
+ *
+ * WHAT THE LAYOUT HAS TO SURVIVE. A rail 26rem wide beside a 20rem phone is a
+ * page the person cannot read behind a panel they cannot close. So the dock is
+ * width: min(...) rather than a fixed width, and below the app's own 40rem
+ * breakpoint it takes the whole viewport. No fixed pixel width appears here at
+ * all; tests/test_responsive.py guards the same class of mistake in the main
+ * stylesheet and tests/test_chat_surface.py guards it here.
+ *
+ * Nothing in this file has been opened on a handset. It is a real fix for a
+ * real class of defect and it is not a substitute for a device.
+ */
+
+/* ------------------------------------------------------------- the launch -- */
+
+/* The slot in the masthead the launcher moves into, when base.html offers one.
+   It is styled here rather than in strata.css because it exists for this dock
+   and nothing else will ever put anything in it -- and because base.html
+   belongs to another agent in this build, so the one line it grows should need
+   no second edit anywhere else. */
+.masthead__tools {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  margin-left: auto;
+}
+
+/* Two controls, side by side. They sit in the masthead when base.html offers a
+   slot for them, and pin to the corner of the viewport when it does not -- see
+   clerk.js, which says which of the two happened. */
+.clerk-launch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+}
+
+.clerk-launch--floating {
+  position: fixed;
+  right: var(--s4);
+  bottom: var(--s4);
+  z-index: 40;
+  padding: var(--s2);
+  border-radius: var(--r);
+  background: var(--surface);
+  box-shadow: 0 1px 3px var(--hatch);
+}
+
+/* --------------------------------------------------------------- the dock -- */
+
+.clerk-dock {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  width: min(26rem, 100vw);
+  max-width: 100vw;
+  border-left: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink);
+  font: var(--t-ui) / var(--lh-ui) var(--face-ui);
+}
+
+.clerk-dock__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding: var(--s4) var(--s4) var(--s3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.clerk-dock__title {
+  font-size: var(--t-ui-lg);
+  font-weight: 650;
+}
+
+.clerk-dock__tagline {
+  margin-top: var(--s1);
+  color: var(--ink-3);
+  font-size: var(--t-small);
+}
+
+.clerk-dock__close {
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  padding: var(--s1) var(--s3);
+  background: var(--surface);
+  color: var(--ink-2);
+  font: 600 var(--t-micro) / 1.4 var(--face-ui);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* The transcript scrolls itself, never the page. A person reading an answer
+   must not lose the screen behind the dock. */
+.clerk-dock__transcript {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: var(--s4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+}
+
+/* ---------------------------------------------------------------- a turn -- */
+
+.clerk-turn__body {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.clerk-turn--person {
+  align-self: flex-end;
+  max-width: 90%;
+  padding: var(--s2) var(--s3);
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  background: var(--surface-sunk);
+}
+
+/* A reply is the product speaking. It carries a rule on the left, the same
+   axis a verified claim uses, so an answer and an assertion read as the same
+   kind of statement -- and a withheld block inside it plainly does not. */
+.clerk-turn--clerk {
+  padding-left: var(--s3);
+  border-left: 3px solid var(--rule-strong);
+}
+
+.clerk-turn--note {
+  color: var(--ink-3);
+  font-size: var(--t-small);
+}
+
+/* What the turn consulted. One quiet line, because a compliance product owes a
+   person the provenance of an answer without shouting it over the answer. */
+.clerk-used {
+  margin-top: var(--s2);
+  color: var(--ink-3);
+  font: var(--t-micro) / 1.5 var(--face-data);
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+/* The withheld slot reuses .withheld, .withheld__label and .withheld__reason
+   from strata.css unchanged. Only the spacing inside the dock is set here: the
+   hatch, the dashed rule and the amber come from the file that already teaches
+   them on the review queue, so a person meets one treatment and not two. */
+.clerk-turn .withheld {
+  margin-top: var(--s3);
+}
+
+/* ---------------------------------------------------------------- thumbs -- */
+
+.clerk-turn__marks {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  margin-top: var(--s3);
+}
+
+.clerk-mark {
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  padding: var(--s1) var(--s3);
+  background: var(--surface);
+  color: var(--ink-2);
+  font: 600 var(--t-micro) / 1.4 var(--face-ui);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.clerk-mark[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.clerk-mark[disabled] {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.clerk-said {
+  margin-top: var(--s2);
+  color: var(--ink-3);
+  font-size: var(--t-small);
+}
+
+/* ----------------------------------------------------------------- pills -- */
+
+.clerk-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  padding: 0 var(--s4) var(--s3);
+}
+
+.clerk-pill {
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  padding: var(--s2) var(--s3);
+  background: var(--surface);
+  color: var(--ink);
+  font: 500 var(--t-small) / 1.4 var(--face-ui);
+  text-align: left;
+  cursor: pointer;
+}
+
+.clerk-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+/* ------------------------------------------------------------- the input -- */
+
+.clerk-ask {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--s2);
+  padding: var(--s3) var(--s4) var(--s4);
+  border-top: 1px solid var(--rule);
+}
+
+.clerk-ask__field {
+  flex: 1 1 auto;
+  min-width: 0;
+  resize: vertical;
+  padding: var(--s2) var(--s3);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--ink);
+  font: var(--t-ui) / var(--lh-ui) var(--face-ui);
+}
+
+.clerk-note {
+  padding: 0 var(--s4) var(--s3);
+  color: var(--ink-3);
+  font-size: var(--t-small);
+}
+
+/* ----------------------------------------------------------- the comment -- */
+
+.clerk-comment {
+  margin-top: var(--s3);
+  padding: var(--s3);
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  background: var(--surface-sunk);
+}
+
+.clerk-comment__label {
+  display: block;
+  margin-bottom: var(--s2);
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+
+.clerk-comment__field,
+.clerk-bug__field {
+  width: 100%;
+  padding: var(--s2) var(--s3);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--ink);
+  font: var(--t-ui) / var(--lh-ui) var(--face-ui);
+}
+
+.clerk-comment__actions,
+.clerk-bug__actions {
+  display: flex;
+  gap: var(--s2);
+  margin-top: var(--s3);
+}
+
+/* ------------------------------------------------------- the bug report -- */
+
+/* A sheet rather than a rail: a bug report is a short errand from any screen,
+   not a conversation, and it is reachable without opening the dock at all. */
+.clerk-bug {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  width: min(26rem, 100vw);
+  max-width: 100vw;
+  overflow-y: auto;
+  padding: var(--s4);
+  border-left: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink);
+  font: var(--t-ui) / var(--lh-ui) var(--face-ui);
+}
+
+.clerk-bug__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s3);
+  margin-bottom: var(--s3);
+}
+
+.clerk-bug__row {
+  margin-bottom: var(--s3);
+}
+
+.clerk-bug__label {
+  display: block;
+  margin-bottom: var(--s1);
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+
+.clerk-bug__where {
+  color: var(--ink-3);
+  font: var(--t-micro) / 1.5 var(--face-data);
+  overflow-wrap: anywhere;
+}
+
+/* --------------------------------------------------------- on a handset -- */
+
+/* Below the app's own 40rem breakpoint the rail becomes the screen. left: 0 is
+   what does it -- the panel is already pinned top, right and bottom, so the
+   fourth edge is the whole difference between a rail and a sheet. */
+@media (max-width: 40rem) {
+  .clerk-dock,
+  .clerk-bug {
+    left: 0;
+    width: auto;
+    border-left: 0;
+  }
+
+  .clerk-launch--floating {
+    right: var(--s2);
+    bottom: var(--s2);
+  }
+
+  .clerk-turn--person {
+    max-width: 100%;
+  }
+}
+
+/* A dock is chrome. It has no business on a printed page, and the review queue
+   is where a withheld item is read on paper. */
+@media print {
+  .clerk-launch,
+  .clerk-dock,
+  .clerk-bug {
+    display: none;
+  }
+}

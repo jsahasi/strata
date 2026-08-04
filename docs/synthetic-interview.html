@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — SYNTHETIC Interview (nobody said any of this)</title>
+<style>
+  body { font: 15px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 900px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.8rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.2rem; }
+  h3 { font-size:1.02rem; color:#1d4ed8; margin:1.1rem 0 .3rem; }
+  .d { border:1px solid #e2e8f0; border-radius:8px; padding:.9rem 1.2rem; margin:.9rem 0; }
+  .meta { color:#64748b; font-size:.85rem; margin:.1rem 0 .5rem; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  .lbl { font-weight:600; color:#334155; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .crit { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .pitch { background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.92rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .45rem .6rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+  ol, ul { padding-left: 1.3rem; }
+  li { margin: .3rem 0; }
+  blockquote { border-left:3px solid #cbd5e1; margin:.6rem 0; padding:.2rem 0 .2rem .9rem; color:#334155; }
+  .tag { font-size:.72rem; font-weight:700; letter-spacing:.06em; padding:.05rem .35rem; border-radius:3px; vertical-align:.08em; }
+  .tag-s { background:#fee2e2; color:#991b1b; border:1px solid #fca5a5; }
+  .tag-u { background:#fef3c7; color:#92400e; border:1px solid #fcd34d; }
+  .qa { border:1px solid #e2e8f0; border-radius:8px; padding:.9rem 1.2rem; margin:1.1rem 0; }
+  .qa.undercut { border-left:4px solid #b91c1c; }
+  .q { font-weight:600; color:#0f172a; margin:0 0 .6rem; }
+  .q::before { content:"Q "; color:#0369a1; font-weight:700; letter-spacing:.08em; }
+  .a { margin:.4rem 0; }
+  .who { display:block; font-size:.72rem; font-weight:700; letter-spacing:.07em; color:#991b1b; margin:.7rem 0 .25rem; }
+  .foot { font: 12px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:.45rem .6rem; margin:.6rem 0 0; color:#475569; white-space:pre-wrap; }
+  .src { font-size:.86rem; color:#475569; }
+</style>
+</head>
+<body>
+
+<h1>SYNTHETIC Interview — Corinne Halloran</h1>
+<p class="sub"><strong>Nobody said any of this. This is not a user interview, not a recording, and not evidence.</strong> Both parts below were written by the same model, in one sitting, on behalf of the same person who built the product. Real conversations live in <code>docs/user-research.html</code>, and no line from this page may be moved there, quoted in the PRD or the MRD as a finding, or shown at a panel as research.</p>
+
+<div class="crit">
+<p style="margin-top:0"><strong>What this is.</strong> A rehearsal. The persona is defined in <code>docs/synthetic-user.html</code> and consulted through <code>.claude/agents/regulatory-analyst.md</code>; both are built from the 102 public filings in <code>data/real/</code>. The point of running it is not to learn what a regulatory analyst thinks. It is to find out which questions are wasted before spending a real person's twenty minutes on them, and to generate candidate pains to go and check.</p>
+<p style="margin-bottom:0"><strong>Every answer carries the synthetic tag and the two-line provenance footer.</strong> No human being ends a sentence with <code>GROUNDED IN:</code>. That footer is there so that a paragraph lifted out of this page and pasted anywhere else arrives still wearing its label.</p>
+</div>
+
+<h2>The rule this page breaks on purpose</h2>
+<p><code>.claude/agents/regulatory-analyst.md</code> says plainly: <em>never produce anything that reads as an interview transcript.</em> That rule exists because a convincing fake transcript is the single artefact that could do this submission real damage. This page is a transcript. The rule is broken deliberately, and here is what holds in its place:</p>
+<ul>
+<li>The speaker label is <strong>SYNTHETIC ANSWER</strong>, not a person's name. Nothing here reads as "Corinne said".</li>
+<li>Every answer keeps the provenance footer the agent file requires, which is a thing no interviewee does.</li>
+<li>The file is <code>docs/synthetic-interview.html</code>, never <code>docs/user-research.html</code>, and the two are not merged.</li>
+<li>No date, no duration, no medium, no consent line, no "when we spoke". Nothing that would let this be read as a record of an event.</li>
+</ul>
+<p>If a future edit removes any of those four, the edit is wrong and the page should be deleted rather than shipped.</p>
+
+<h2>How it was run</h2>
+<p>One interviewer, one persona, both played here. The questions are past-tense and behavioural — what happened, not what would be nice. One question deliberately breaks that rule, so that the failure is on the page and can be studied rather than described. The persona was left free to be unhelpful, and used the freedom seven times.</p>
+<p><strong>The bias to hold in mind while reading.</strong> The persona was assembled by the person who built Strata, from filings that person chose. So its agreement is worth nothing. Its <em>disagreement</em> is worth slightly more, but not much, because the agent file instructs it to push back — which means an undercut on this page may be the costume talking rather than the evidence. Where an objection traces to a filing, the footer says so. Where it does not, the objection is a guess wearing a confident voice, and it is marked.</p>
+
+<h2>The run</h2>
+
+<div class="qa">
+<p class="q">Start with last Tuesday. What did you actually do?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span></span>
+<p class="a">I cannot answer that and you should notice how badly I cannot. I have no Tuesday. I am assembled from documents that were filed, and a filing is the residue of a day, not the day. Nothing in what I am built from records a morning.</p>
+<p class="a">What I can give you is the shape a week takes on the record, and you should treat it as invention: filings cluster at month ends and around order dates, corrections land weeks after the thing they correct — thirty-five days in the Virginia sales figure, sixty-eight days in the Walmart word swap, twenty-one in the Kentucky plant name. So a week has a deadline in it and a piece of somebody else's old work in it. That is a guess dressed as a fact and you should ask a person.</p>
+<p class="foot">GROUNDED IN: correction lag dates across va-scc-PUR-2025-00058, ky-2025-00113
+GUESSING ABOUT: everything about an actual day. This question needs a diary and I do not have one.</p>
+</div>
+
+<div class="qa">
+<p class="q">What did you have open on your screen at the same time?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span></span>
+<p class="a">I do not know, and I would not guess at a list of software. Two things are provable rather than assumed. Workpapers are Excel and the tabs disagree with each other — the Georgia error happened because the redaction step used to make the public copy disturbed a formula, so the public numbers were wrong and the confidential ones were right. And everything arrives as email against a service list, not from a portal anyone logs into on a schedule.</p>
+<p class="a">That means at least two windows on the same document at all times, one public and one confidential. Which of them is authoritative depends on what you are being asked. Beyond that you are asking me to describe a desk I have never sat at.</p>
+<p class="foot">GROUNDED IN: ga-55378-large-load-econ-dev-report-q3-q4-2025-revised-pd.txt:25; certificates of service by electronic mail throughout in-44688
+GUESSING ABOUT: any named application. I have no evidence for Outlook, SharePoint, or a tracker.</p>
+</div>
+
+<div class="qa">
+<p class="q">An order lands. What is the first thing you do with it?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span></span>
+<p class="a">Check the caption and the docket number against what I think it is, before reading a word of the body. The docket number is not a stable key and treating it as one loses things quietly. Georgia's large-load report cites Docket 55378 in Q1 and 56002 from Q2 onward. When the correction letter for two of those reports was filed, it named 55378 and said the reports were filed "in the above-referenced docket". Both reports it corrects name 56002. The string 56002 appears nowhere in the correction.</p>
+<p class="a">Then the ordering paragraphs and the dates, because that is what creates work. Not the reasoning. I read the reasoning when somebody argues with me about it.</p>
+<p class="foot">GROUNDED IN: ga-55378-...-q1-2025-pd.txt vs -q3-2025-pd.txt; ga-55378-...-q3-q4-2025-revised-pd.txt:17
+GUESSING ABOUT: the order of my own steps. The docket-drift fact is solid; "caption first" is me narrating.</p>
+</div>
+
+<div class="qa undercut">
+<p class="q">Tell me about the last time you had to work out what changed between two versions. In order, what did you do?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span> <span class="tag tag-u">UNDERCUTS THE PRODUCT</span></span>
+<p class="a">Compare Documents in Word, if I have both as text. Or I open the redline the filer sent, because filers do send them — the Utah errata came with one. That gets me most of the way most of the time and I am not going to pretend otherwise. You have solved the easy half.</p>
+<p class="a">Where it stops working is worth your time, though. That Utah redline showed three changes to a table of contents that never happened — it printed "86" where both the original and the clean errata read "8" — and silently passed over a real edit, "infrequent-but-extreme" losing its hyphens. The cover notice listed ten corrections and missed the same one. Three accounts of what changed, no two agreeing. So my problem is not that I cannot produce a redline. It is that I have one, it looks authoritative, and it is wrong in both directions at once.</p>
+<p class="foot">GROUNDED IN: ut-24-035-04-ellis-...-errata-redline.txt:33 vs -original.txt:31 and -errata-clean.txt:31; line 192 in each
+GUESSING ABOUT: that Word is what I reach for. Word is a plausible tool, not an observed one. The redline being untrustworthy is observed.</p>
+</div>
+
+<div class="qa">
+<p class="q">So the redline is fine.</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span></span>
+<p class="a">It is fine as a place to start and it is not a record. Nobody signs it. When the Kentucky witness reissued 378 pages, the cover letter said the corrections are on page 95 and change "Brown BESS" to "Cane Run BESS". One sentence. The reissue also carried something like 1,370 lines of pure re-layout churn. A mechanical comparison hands me 1,370 lines and one of them matters. That is not a redline problem, it is a ranking problem, and it is the part nobody does for me.</p>
+<p class="foot">GROUNDED IN: ky-2025-00113-kollen-correction-cover-letter.txt and the provenance note on the corrected copy
+GUESSING ABOUT: nothing material here.</p>
+</div>
+
+<div class="qa">
+<p class="q">What do you check twice, and why that thing?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span></span>
+<p class="a">Any number that has a basis, because the sentence rarely says which basis. "On a total-Company basis, PacifiCorp seeks $185.7 million, which is $82 million on a Utah-allocated basis using the System Overhead allocation factor from the 2020 Multi-State Cost Allocation Protocol." Both numbers are correct. Using the wrong one is not an arithmetic mistake, it is a jurisdiction mistake, and nothing about the digits flags it. In the same testimony a recommendation went from a $30.9 million reduction to a $5.8 million one for exactly that reason, and the fix had to be chased to two places ten pages apart.</p>
+<p class="a">The other thing is anything that says the same thing twice. Summaries drift from bodies. In the Kentucky filing the body said "Brown BESS" and the stipulation bound into the same PDF as an exhibit said the utilities would withdraw the Cane Run BESS. The evidence that would have caught it was inside the same document, and nobody compared the summary against the thing it summarised for twenty-one days.</p>
+<p class="foot">GROUNDED IN: ut-24-035-04-laconte-phase3-amended-direct-testimony-clean.txt:315 and :527; ky-2025-00113-kollen-direct-testimony-original.txt
+GUESSING ABOUT: that I personally do this check. The failures are real; the habit is attributed.</p>
+</div>
+
+<div class="qa">
+<p class="q">What did you build yourself in Excel, and why did you build it?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span></span>
+<p class="a">Heavy guessing ahead and I want that said first. What is provable is the reason such a thing would get built: the obligations I have to track are born inside orders and then outlive them. One Georgia order creates an annual filing due no later than 31 March each year, semi-annual reports that continue, and detailed evaluation plans due within 90 days of selecting implementers. Three different clocks, three different owners, from one document, and after that they have nothing to do with the docket that made them.</p>
+<p class="a">Nothing hands you that list. Somebody types it out. The type-out is the spreadsheet, and the spreadsheet is where it then rots, because the next order amends one of the three and the amendment arrives as a PDF in an inbox.</p>
+<p class="foot">GROUNDED IN: ga-56002-order-adopting-stipulation-2025-irp.txt:234 and :315
+GUESSING ABOUT: that I built a spreadsheet, what is on it, and who else opens it. All invented.</p>
+</div>
+
+<div class="qa">
+<p class="q">Tell me about the last time something got missed. What happened next?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span></span>
+<p class="a">"It recently came to my attention that there is an error in the public disclosure version." That sentence is the whole answer. Two quarterly reports, filed 21 November and 11 February, wrong in the public copy because the redaction process broke a formula. Corrected 4 March. No control caught it. A person mentioned it.</p>
+<p class="a">What happens next is a letter, signed by the Director of Regulatory Affairs in his own name with his own email address on it, refiling both. And then a second obligation nobody talks about: you have to state on the record what the error did not touch. Across three Georgia errata that claim appears eight times in identical words — "The changes in these data do not affect the Company's conclusions or recommendations in the 2025 IRP." Behind it is somebody's judgement and nothing else.</p>
+<p class="foot">GROUNDED IN: ga-55378-...-q3-q4-2025-revised-pd.txt; ga-56002-irp-2025-errata-1/2/3-description.txt
+GUESSING ABOUT: nothing. This one is quoted.</p>
+</div>
+
+<div class="qa undercut">
+<p class="q">Who do you have to chase, and what does chasing look like?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span> <span class="tag tag-u">UNDERCUTS THE PRODUCT</span></span>
+<p class="a">Internal chasing is invisible to me — it never becomes a document, so I never saw it. I do know which outsider's question works. Five items across two Georgia errata exist because Commission Staff asked a data request about one specific number: STF-PIA-1-2 turned up a 14 that should have been 12 and a 68 that should have been 61. Self-review did not find them. Somebody asking about a figure did.</p>
+<p class="a">On your approval routes screen: I would not use it. Routing is three people and I know their names. Drawing the graph is not the hard part — the hard part is that one of them is in hearings all week and the answer I need is a judgement, not a click. A tool that models the route has automated the part I could already do on a sticky note.</p>
+<p class="foot">GROUNDED IN: ga-56002-irp-2025-errata-2-description.txt, -errata-3-description.txt
+GUESSING ABOUT: the whole second paragraph. I have never seen an approval chain — internal process is not filed. Treat "three people" as invented and the objection as a hypothesis.</p>
+</div>
+
+<div class="qa undercut">
+<p class="q">Would it help if the tool told you which changes were material?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span> <span class="tag tag-u">UNDERCUTS THE PRODUCT</span></span>
+<p class="a">That is the wrong question and it is also the wrong word. "Material" is a word that gets quoted back at you. I would not put a machine's materiality judgement in writing next to a docket number, and I would not want the word on the screen at all, because the moment it is on the screen it is in the file, and the file is discoverable.</p>
+<p class="a">Look at what the label already does when a human writes it. A Virginia errata announced "certain non-substantive corrections" on pages 2-5, 33, 36, 39, 47, 50-51, 53, 58-59 and 77-78, and said nothing about what changed on any of them. Fourteen pages, one adjective, no evidence. To rely on that I have to either trust the filer or do the work anyway. Your product would be doing the same thing with better manners. Show me it changed, show me where, and let me own the word.</p>
+<p class="foot">GROUNDED IN: va-scc-PUR-2025-00058-company-miller-rebuttal-errata-correcting.txt
+GUESSING ABOUT: the discoverability argument. That is how I imagine a lawyer would put it, and I am not counsel. Whether a real analyst would refuse the word or welcome it is exactly the thing a synthetic persona cannot tell you — the agent file tells me to push back, so this may be the instruction talking.</p>
+</div>
+
+<div class="qa">
+<p class="q">Fair. Let me ask it properly. When did you last write the word "non-substantive" or "material" about somebody else's change?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span></span>
+<p class="a">Better question, and the record answers it. People write it constantly and they write it as a conclusion, never with a demonstration attached. The same Virginia witness filed two errata nineteen days apart covering completely different pages — 22 to 23 on 15 August, fourteen other pages on 3 September — and neither mentions the other exists. So if I am reconstructing what a witness has corrected, the corrections do not gather themselves. That is a real job and it is nobody's job.</p>
+<p class="foot">GROUNDED IN: va-scc-PUR-2025-00058-company-miller-rebuttal-errata-p22-23.txt (15 Aug) and -errata-correcting.txt (3 Sept)
+GUESSING ABOUT: whether reconstructing a witness's full correction history is something anyone is actually asked to do.</p>
+</div>
+
+<div class="qa undercut">
+<p class="q">The last dashboard someone built for your team. Did you open it?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span> <span class="tag tag-u">UNDERCUTS THE PRODUCT</span></span>
+<p class="a">I am going to answer the version of this about your evaluation screen, because that is what you are asking. A citation pass rate is a number about your software. It is not a number about my filing. If you tell me 96 per cent, my next question is which four per cent, and the honest answer is that you do not know, or you would have fixed them. So the number tells me to distrust everything at a rate of one in twenty-five without telling me which one.</p>
+<p class="a">The queue is the same shape of problem. I will work a review queue while it is short. The first week it has forty items in it I will stop opening it, and after that it is a place where things go to be not-dealt-with. That is not a criticism of the queue, it is what happens to queues.</p>
+<p class="foot">GROUNDED IN: nothing. This is opinion.
+GUESSING ABOUT: all of it. I have never seen a dashboard. Two of the three sentences about queues are a general prejudice, not a regulatory fact.</p>
+</div>
+
+<div class="qa undercut">
+<p class="q">Of the things that reached you last quarter, how many had a previous version to compare against?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span> <span class="tag tag-u">UNDERCUTS THE PRODUCT</span></span>
+<p class="a">I refuse the number and you should not accept one from me. Everything I am built from was selected because it contained a correction or a version pair. Any rate I gave you would be inflated by construction, and it would end up in your document as a statistic.</p>
+<p class="a">What I will say is the shape. Most things arrive once. An order arrives, a report arrives, a data request arrives, and there is no earlier copy to hold it against. Your product's first move needs two versions. So the question I would put to a real person is not "how do you diff" but "what fraction of what lands on you has anything to diff against", and if the answer is small, the interesting product is the one that reads the single document you just got.</p>
+<p class="foot">GROUNDED IN: the corpus selection bias documented in docs/synthetic-user.html
+GUESSING ABOUT: "most things arrive once". That is an intuition and it is the single most damaging claim on this page. Go and check it.</p>
+</div>
+
+<div class="qa undercut">
+<p class="q">When was it last unclear to you whether something was binding?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span> <span class="tag tag-u">UNDERCUTS THE PRODUCT</span></span>
+<p class="a">Never, in the sense you mean. It says ORDER on the front. I do not need a tool to tell me a final order is a final order, and if a tool announced that to me I would wonder what else it thought I did not know.</p>
+<p class="a">The thing that is genuinely open is different and quieter: whether the order stays. A party has thirty days to seek rehearing, responses come within fifteen, the Commission has sixty to act. For those weeks the order is binding and also might not survive. And in Missouri the Commission's own order misdescribed the settlement it had just approved, and the utility that has to operate the mechanism was the one who caught it. Nine days between the order and the correction. Final is not the same as settled.</p>
+<p class="foot">GROUNDED IN: ut-26-035-05-order-approving-settlement.txt:641, :671, :729-734; mo-ET-2025-0184-order-nunc-pro-tunc.txt
+GUESSING ABOUT: that draft-versus-final is never ambiguous for me. I have only seen filed documents, which are captioned. A draft circulating before filing might well be ambiguous and I would not see it.</p>
+</div>
+
+<div class="qa">
+<p class="q">Two versions of one stipulation, thirteen days apart. What does comparing them actually involve?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span></span>
+<p class="a">Not section numbers, which is the first thing everyone tries. In the Ohio data-centre case the same subject sits at III.E in one and III.G in the other, and III.J means exit fees in one and capacity assignment in the other. Staff would not even use the parties' names for the documents — "To avoid unnecessary disputes about naming, Staff recommends using the neutral terms '10/10 Stipulation' and '10/23 Stipulation.'"</p>
+<p class="a">And here is what the comparison costs. A Commission Staff witness whose entire assignment was comparing those two documents wrote twice that a provision "differs from the 10/23 Stipulation" without saying how. Somebody paid to do the diff gave up on the diff, in writing, twice. That is the strongest thing I have for you and it did not come from a utility.</p>
+<p class="foot">GROUNDED IN: oh-24-508-EL-ATA-healey-staff-testimony-comparing-stipulations.txt:168, :450 onward
+GUESSING ABOUT: whether "gave up" is fair. He may have had a reason. It reads as cost.</p>
+</div>
+
+<div class="qa">
+<p class="q">What would a licence cost, in your world?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span></span>
+<p class="a">Nothing in what I am built from touches that. Not a price, not a budget line, not who signs, not whether this is bought by the department or by IT. Ask a real person. Any number I gave you would end up in your MRD and you would have to defend it.</p>
+<p class="foot">GROUNDED IN: nothing.
+GUESSING ABOUT: nothing. Refused.</p>
+</div>
+
+<div class="qa">
+<p class="q">What did I not ask that I should have?</p>
+<span class="who">SYNTHETIC ANSWER <span class="tag tag-s">SYNTHETIC</span></span>
+<p class="a">You did not ask what happens to the document after I am finished with it. Every question you asked was about reading. The corrections in front of me exist because somebody had to write something and file it, and the writing is where the errors got in — a formula disturbed by a redaction step, a digit dropped from 24,248,543 down to 4,248,543, "intraclass" typed where "interclass" was meant and correct twice elsewhere in the same document. Your product ends at a routed recommendation. The record says the damage happens after that.</p>
+<p class="a">You also asked me about tools four times and about people once. That ratio is wrong for this job.</p>
+<p class="foot">GROUNDED IN: ga-55378 correction letter; va-scc-PUR-2025-00058-company-blackwell-errata-direct.txt:53; ky-2025-00113-walmart-errata-filing.txt
+GUESSING ABOUT: the advice. I am a document telling you how to interview a person, which is not a role I should be trusted in.</p>
+</div>
+
+<h2>What this would change, if it were real</h2>
+<p>None of it is real. Each row is written as though it were, so that the size of the change is visible, and each is gated on the real question that would license it. Nothing below may be actioned on this page's authority alone.</p>
+<table>
+<tr><th style="width:20%">The claim</th><th style="width:44%">What would change in the build</th><th style="width:36%">The gate</th></tr>
+
+<tr><td>A text diff misses a missing attachment</td>
+<td>A structural pass before the text diff, reporting page and exhibit counts as a first-class change type. The Missouri stipulation is the case: 27 pages of prose identical, a changed title, a changed date, and a twenty-eighth page carrying the rate table. A text comparison reports two trivia. The document that sets the prices had been filed without the prices. Today ADR-04's diff would call that pair near-identical.</td>
+<td>Nothing. This one is a defect in the diff, provable against <code>mo-ET-2025-0184</code> without asking anybody. It should be a failing test before it is a feature.</td></tr>
+
+<tr><td>The summary drifts from the body of the same document</td>
+<td>An intra-document consistency check, running inside one version rather than across two. Kentucky: the body said "Brown BESS", the stipulation bound into the same PDF said "Cane Run BESS". Virginia: a correction hedged a verb in the Summary and left the same claim unhedged in the body, under a cover letter promising a complete replacement. Both are inside a single file. Strata only looks between versions, so it would catch neither.</td>
+<td>Also nothing — the corpus proves the failure. But it is a new axis of work, not a tweak, and it competes with the cold-start gap the PRD already admits.</td></tr>
+
+<tr><td>Ranking, not detection, is the unsolved half</td>
+<td>ADR-04's diff is right and its output is the wrong shape. 1,370 diff lines with one plant name in them is a worse artefact than no diff. The change would be to rank by whether an edit crosses a defined term, a number, or an obligation, and to say plainly how many changes were suppressed — which is ADR-22's withheld-count discipline applied to the diff itself, where it does not currently run.</td>
+<td>H2 in the PRD. If real analysts already have a trusted redline, the wedge moves from producing the diff to ranking one they already have, and the PRD's second paragraph is wrong.</td></tr>
+
+<tr><td>Every number has a basis and the sentence rarely says which</td>
+<td>A jurisdiction-basis check as a named change type: flag a figure whose basis is unstated, and find every other place the same figure appears. The Utah case needed a fix in two places ten pages apart, and at the second site the derived total was dropped rather than recomputed. This is impact mapping pointed inward at the document rather than outward at the obligation register.</td>
+<td>Nothing, for the detection. Everything, for whether it matters more than the diff — that needs a person to say which of these they would open first.</td></tr>
+
+<tr><td>The word "material" is a liability, not a feature</td>
+<td>If this held, the interpretation step keeps its judgement and loses its vocabulary: "changed", "affects an obligation", "crosses a date" instead of "material". ADR-02 names materiality as the interpretive core, so the change is to the surface, not the engine — but the surface is what the user signs their name under.</td>
+<td>A real answer to "when did you last write that word, and what happened". This is the single most reversible-looking change with the most product surface behind it. Do not touch it on synthetic authority.</td></tr>
+
+<tr><td>Final is not the same as settled</td>
+<td>ADR-05's draft-or-final field stays, and the screen stops treating it as the headline. What earns the space is the rehearing clock: thirty days to seek, fifteen to respond, sixty for the Commission to act, and whether anyone has moved. A final order inside its rehearing window is binding and unsettled at once, and neither the data model nor the change screen carries that state.</td>
+<td>One question to a real person: "when did you last act on something that was later reopened". If the answer is never, this is a rare event and stays out.</td></tr>
+
+<tr><td>Correction letters land in the wrong docket</td>
+<td>The docket number is treated as a key in ingestion. Georgia's series moved from 55378 to 56002 mid-flight, and North Carolina ordered a whole back catalogue refiled at a new address, with one sentence naming three docket numbers for one obligation. An obligation identity that survives a docket change is a data-model change, not a screen.</td>
+<td>Nothing for the fact; it is in the filings. Everything for the priority.</td></tr>
+</table>
+
+<h2>What it cannot settle</h2>
+<p>Longer than the list above, and that is the correct ratio. Each row names the real question it hands off to.</p>
+<table>
+<tr><th style="width:32%">Unsettled</th><th style="width:32%">Why this page cannot close it</th><th style="width:36%">The real question</th></tr>
+
+<tr><td><strong>H1 — analyst or counsel</strong></td>
+<td>The persona was written to be the analyst. Asking it whether the analyst does the work is asking a definition to confirm itself. The corpus genuinely cuts both ways: a Director of Regulatory Affairs signs the Georgia correction himself, and the Utah amendment cover letter comes from Holland &amp; Hart while the Indiana joint motion comes from Taft Stettinius &amp; Hollister.</td>
+<td>"Take the last correction your company filed. Who wrote it, who signed it, and who decided it needed filing?" Three names, not a job title.</td></tr>
+
+<tr><td><strong>H2 — does anyone diff today</strong></td>
+<td>The persona named a tool it has no evidence for. Word's Compare is a plausible guess, not an observation, and it is exactly the kind of plausible guess that would land in a PRD as a finding.</td>
+<td>"Open your sent mail. What was the last version comparison you sent anyone, and what was attached to it?"</td></tr>
+
+<tr><td><strong>H3 — what earns trust</strong></td>
+<td>Not asked here, deliberately, because a synthetic persona will always say it wants the source span — the product is built on that belief and the persona was built by the same hand. Its agreement would be worthless and its disagreement would be theatre.</td>
+<td>"The last time you accepted someone else's summary of a document without opening the document — what made that all right?" Then watch, in a live session, whether they open the PDF anyway.</td></tr>
+
+<tr><td><strong>H4 — detection or interpretation</strong></td>
+<td>Partly moved, not settled. The Ohio witness who twice declined to say how two stipulations differ is the best evidence in the corpus that interpretation is expensive, and he is Commission Staff, not the user.</td>
+<td>"Last time you knew a filing had changed but not how — how long until you knew how, and what were you doing in between?"</td></tr>
+
+<tr><td><strong>How often any of this happens</strong></td>
+<td>The corpus was assembled by hunting for errata. Every rate is inflated by construction and the persona correctly refused to give one.</td>
+<td>"How many corrections crossed your desk last quarter?" Ask three people; treat the smallest answer as the real one.</td></tr>
+
+<tr><td><strong>What fraction of arrivals have a prior version</strong></td>
+<td>The persona guessed "most things arrive once" and flagged its own guess. If that guess is right, the cold-start gap the PRD already admits is not a gap, it is the main road.</td>
+<td>"Of the last ten things that landed on you, how many had an earlier version you had already read?"</td></tr>
+
+<tr><td><strong>Whether the undercuts are real</strong></td>
+<td>The agent file instructs the persona to push back by default. So an objection here may be the instruction talking. The approval-routes objection and the dashboard objection both admit they are grounded in nothing.</td>
+<td>Do not test the objections directly. Ask what the person actually opened last week and let the absence do the work.</td></tr>
+
+<tr><td><strong>Price, budget, buyer</strong></td>
+<td>Refused outright, correctly. No public filing touches it.</td>
+<td>Not an analyst question at all. Wrong interview.</td></tr>
+
+<tr><td><strong>Anything that never became a document</strong></td>
+<td>Structural, not fixable. The meeting where materiality was argued, the mail that routed it, the deadline nearly missed and not missed — none of it is filed, so none of it reached the persona. If the biggest pain in the job never produces a filing, this method cannot see it.</td>
+<td>The whole reason to hold the call.</td></tr>
+</table>
+
+<h2>The questions this rehearsal sharpened</h2>
+<p>The highest-value output of the exercise. Twenty minutes buys about eight questions with follow-ups. This is the eight.</p>
+<table>
+<tr><th style="width:6%">#</th><th style="width:48%">Ask</th><th style="width:46%">Why it survived, and what it decides</th></tr>
+
+<tr><td>1</td><td>Walk me through last Tuesday. What did you actually do, in order?</td>
+<td>Kept precisely because the persona could not answer it. Any question needing a diary is wasted on a synthetic and therefore has to be spent on a real person. Opens the call with facts rather than opinions.</td></tr>
+
+<tr><td>2</td><td>Take the last correction your company filed. Who wrote it, who signed it, and who decided it needed filing?</td>
+<td>Three names. Settles H1 in one question by asking about an artefact instead of a role. Replaces "who else had to look at it", which invites an org chart.</td></tr>
+
+<tr><td>3</td><td>Open your sent mail. What was the last version comparison you sent anyone, and what was attached?</td>
+<td>Settles H2 with an object rather than a claim. The persona showed how easily "we do it by hand" turns into a named tool nobody has seen.</td></tr>
+
+<tr><td>4</td><td>Of the last ten things that landed on you, how many had an earlier version you had already read?</td>
+<td>The question this rehearsal created and the one that could hurt most. If the honest answer is two, the change-diff wedge is a minority case and the cold start is the product.</td></tr>
+
+<tr><td>5</td><td>Tell me about the last time something got missed. How was it found?</td>
+<td>The Georgia answer — "it recently came to my attention" — is the strongest hypothesis on this page: the control that works is an outsider asking about a specific number. Ask how it was found, not what went wrong.</td></tr>
+
+<tr><td>6</td><td>What do you check twice, and why that thing and not the thing next to it?</td>
+<td>The second half is the whole question. It forces a comparison and gets at where they think risk lives, which is where the product has to sit.</td></tr>
+
+<tr><td>7</td><td>When did you last write, or read, the words "non-substantive" or "material" about somebody else's change?</td>
+<td>Replaces "how do you judge materiality", which produced a definition rather than a behaviour. Decides whether the interpretation layer may use the word at all.</td></tr>
+
+<tr><td>8</td><td>The last time you accepted someone else's summary without opening the document — what made that all right?</td>
+<td>The only honest route to H3. Asking what would earn trust gets a wish list; asking when trust was actually extended gets a condition.</td></tr>
+</table>
+
+<h3>Hold in reserve, if the call runs long</h3>
+<ul>
+<li>Last time you knew a filing had changed but not how — how long until you knew how?</li>
+<li>What did you type out by hand because nothing gave it to you as a list?</li>
+<li>Last time you acted on something that was later reopened on rehearing.</li>
+<li>What happens to the document after you are finished with it?</li>
+</ul>
+
+<h3>Cut, and why</h3>
+<table>
+<tr><th style="width:44%">Question</th><th style="width:56%">What the rehearsal showed</th></tr>
+
+<tr><td>"Would you use a tool that…" and its polite cousin, "would it help if…"</td>
+<td>Asked once here on purpose. It got the premise attacked, which is the best possible outcome, and from a real person it would get a yes that means nothing. The follow-up that rescued it — "when did you last write that word" — should be the question in the first place.</td></tr>
+
+<tr><td>"What would you need to see before you trusted a machine reading of a docket?" (currently in <code>docs/user-research.html</code>)</td>
+<td>Invites a feature list from someone who has not used the thing. Every answer will be reasonable and none will be predictive. Question 8 above asks the same thing about the past.</td></tr>
+
+<tr><td>"How do you decide whether something is material to you?"</td>
+<td>Produces a definition. People describe a policy they do not follow. Question 7 gets the behaviour.</td></tr>
+
+<tr><td>"Who else had to look at it before anything happened?"</td>
+<td>Returns the org chart, not the routing. Question 2 gets three real names attached to one real artefact.</td></tr>
+
+<tr><td>"How often does this happen?"</td>
+<td>Not cut from the real call — cut from any synthetic run. The persona refused it correctly. Base rates only come from people, and only when tied to a countable window like "last quarter".</td></tr>
+
+<tr><td>Anything describing Strata before the last five minutes</td>
+<td>The rehearsal did not test this and it does not need to. Once the tool is on screen the answers turn agreeable. Demo last, then stay quiet and record what they misread, what they ignored, and what they asked for that is not there.</td></tr>
+</table>
+
+<div class="crit"><strong>The standing test.</strong> Could a reader landing on this page cold mistake it for a record of a conversation? The title, the first line, the tag beside every answer, the provenance footer under every answer, and the absence of any date or duration exist to make the answer no. Two things follow. Nothing here enters <code>docs/user-research.html</code>. And where any of it informs a decision, the ADR says the persona was synthetic and names the filing the claim was then checked against — "the synthetic run flagged X, which we checked against <em>[filing]</em>" is legitimate; "users told us X" is a lie.</div>
+
+</body>
+</html>

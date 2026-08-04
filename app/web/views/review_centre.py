@@ -850,7 +850,7 @@ def review_centre(request: Request) -> HTMLResponse:
         "review_centre.html",
         _context(
             company_id,
-            page_title="Review centre",
+            page_title="Review",
             scope_project=None,
             body=body,
             state=state,
@@ -950,7 +950,7 @@ def _rerender(
         template,
         _context(
             company_id,
-            page_title="Review centre",
+            page_title="Review",
             scope_project=scope_project,
             body=body,
             state=state,

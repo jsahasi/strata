@@ -44,6 +44,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--stamp);outline-offs
 @media (max-width:640px){
   .lined{padding-left:0}
   .lined::before,.lined::after{display:none}
+
+  /* The bar holds a wordmark, four jump links and Sign in. Below 640px that
+     wraps to two rows and pushes the page down by a whole header. The four are
+     anchors into a page you are already scrolling, so on a phone they cost
+     more than they give -- the scroll IS the navigation. Sign in stays,
+     because it is the only link that goes anywhere. */
+  .bar{flex-wrap:nowrap}
+  .navlink{display:none}
 }
 
 /* ---- header ---- */
@@ -124,6 +132,19 @@ footer a{color:var(--muted)}
   .film{margin-top:1.25rem}
   .film video{border-radius:6px}
 }
+
+/* ---- credentials and access ---- */
+.creds{margin:1.6rem 0 0;max-width:100%}
+.creds__lead{font-size:.95rem;color:var(--muted);margin:0 0 .8rem}
+.creds table{border-collapse:collapse;width:100%;font-size:.9rem;margin:0 0 .9rem}
+.creds th,.creds td{border:1px solid var(--rule);padding:.5rem .65rem;text-align:left;vertical-align:top}
+.creds th{background:var(--panel);font-weight:650}
+.creds code{font:500 .88em/1.4 var(--mono,ui-monospace,SFMono-Regular,Menlo,monospace);
+  background:var(--panel);padding:.1rem .35rem;border-radius:3px}
+.creds__pw{margin:.2rem 0 .9rem;font-size:.95rem}
+@media (max-width:40rem){
+  .creds table{display:block;width:max-content;min-width:100%;max-width:100%;overflow-x:auto}
+}
 </style>
 </head>
 <body>
@@ -133,6 +154,7 @@ footer a{color:var(--muted)}
   <div class="bar">
     <a class="brand" href="/">Strat<span>a</span></a>
     <a class="navlink" href="#watch">Watch</a>
+    <a class="navlink" href="#try">Try it</a>
     <a class="navlink" href="#how">How it works</a>
     <a class="navlink" href="#refuses">What it refuses</a>
     <a class="navlink" href="#who">Who it is for</a>
@@ -175,7 +197,7 @@ footer a{color:var(--muted)}
 
 <section id="watch">
   <div class="wrap"><div class="lined" data-line="2">
-    <h2>Thirty seconds of the real thing</h2>
+    <h2>A minute inside the product</h2>
     <div class="narrow">
       <p>No slides and no mock-up. This is the application running against its corpus. It ends
       where it should end &mdash; on a claim that will not assert itself, showing the source beside
@@ -186,10 +208,10 @@ footer a{color:var(--muted)}
       <video controls muted loop playsinline preload="metadata"
              poster="/strata-poster.jpg" width="1280" height="800"
              aria-describedby="film-transcript">
-        <source src="/strata-30s.webm" type="video/webm">
-        <source src="/strata-30s.mp4" type="video/mp4">
+        <source src="/strata-demo.webm" type="video/webm">
+        <source src="/strata-demo.mp4" type="video/mp4">
         <p>Your browser will not play this video.
-        <a href="/strata-30s.mp4">Download it instead</a>, or read what it shows below.</p>
+        <a href="/strata-demo.mp4">Download it instead</a>, or read what it shows below.</p>
       </video>
       <figcaption id="film-transcript">
         <p><b>What it shows, for anyone who would rather read it.</b> The project board, with each
@@ -201,10 +223,64 @@ footer a{color:var(--muted)}
         is a hatched panel reading <b>no claim made</b>, and beneath it the reason: the source says
         <b>20 megawatts</b>, the citation quoted <b>10</b>. One digit, and the meaning reverses. The
         claim goes to the review queue instead of onto the page.</p>
-        <p class="muted">Recorded from the running application. The corpus is synthetic, and the
-        citation check runs with no model and no network.</p>
+        <p>Then the parts that decide what happens next. <b>The approval route</b> — who has to
+        sign, how long they have, and what happens when the clock runs out: a step can remind, it
+        can escalate, or it can be <b>skipped rather than approved</b>, and a run carrying a skipped
+        step never reports itself as fully approved. <b>Steering</b> — disagree with the reading and
+        redirect it, with the instruction on the record. And <b>Clarke</b>, the assistant, asked what
+        is withheld: it answers from the record, names the tool it consulted, and states that the
+        withheld statements are not shown and not summarised, because they did not verify.</p>
+        <p class="muted">Recorded from the running application, in one take, with no edits. The
+        demonstration corpus is synthetic and the citation check runs with no network.</p>
       </figcaption>
     </figure>
+  </div></div>
+</section>
+
+<section id="try">
+  <div class="wrap"><div class="lined" data-line="3">
+    <h2>Sign in and try it</h2>
+    <div class="narrow">
+      <p>The demonstration workspace is open. It runs on a synthetic corpus &mdash; one docket, three
+      versions, with the traps built in on purpose &mdash; so nothing you do here touches anybody's
+      real filings.</p>
+    </div>
+
+    <div class="creds">
+      <p class="creds__lead">Four roles, so the permission boundaries are visible rather than
+      described. The same password for all of them.</p>
+      <table>
+        <thead><tr><th>Role</th><th>Sign in as</th><th>What it can reach</th></tr></thead>
+        <tbody>
+          <tr><td>Analyst</td><td><code>denise.okoro@mep.example</code></td>
+              <td>Reads, proposes, resolves escalations, steers. Cannot approve.</td></tr>
+          <tr><td>Obligation owner</td><td><code>priya.nandakumar@mep.example</code></td>
+              <td>Approves and rejects the actions the analyst proposes. Cannot propose them.</td></tr>
+          <tr><td>Administrator</td><td><code>sarah.lindqvist@mep.example</code></td>
+              <td>Users, the approval route, the share registry. Cannot approve a claim.</td></tr>
+        </tbody>
+      </table>
+      <p class="creds__pw">Password for all three: <code>strata-demo-2026</code></p>
+      <p class="muted">Printed on purpose. These accounts hold nothing but the synthetic corpus, and
+      an account whose password is on a public page is not a secret being kept badly &mdash; it is a
+      door held open. Sign in as the analyst, then as the owner, and watch the same screen refuse a
+      different thing.</p>
+      <p><a class="signin" href="/login">Sign in</a></p>
+    </div>
+  </div></div>
+</section>
+
+<section id="access">
+  <div class="wrap"><div class="lined" data-line="4">
+    <h2>Ask for access</h2>
+    <div class="narrow">
+      <p>If you carry regulatory obligations across more than one commission and want a workspace of
+      your own with your own dockets in it, write and say so. Tell me which jurisdictions and what
+      you are tracking; that is enough to know whether this is any use to you.</p>
+      <p><a class="signin" href="mailto:jsahasi@gmail.com?subject=Strata%20-%20request%20for%20access&amp;body=Jurisdictions%20I%20work%20in%3A%0A%0AWhat%20I%20am%20tracking%3A%0A%0AWhat%20I%20do%20today%20when%20a%20new%20version%20lands%3A%0A">Request access</a></p>
+      <p class="muted">It reaches one person, and one person answers it. There is no waiting list
+      being managed and no drip sequence behind that link.</p>
+    </div>
   </div></div>
 </section>
 
@@ -300,6 +376,7 @@ footer a{color:var(--muted)}
     <a href="/privacy.html">Privacy</a>
     <a href="/terms.html">Terms</a>
     <a href="/security.html">Security</a>
+    <a href="/subprocessors.html">Sub-processors</a>
     <a href="mailto:jsahasi@gmail.com">Contact</a>
     <span class="sep muted">Built by Jayesh Sahasi</span>
   </div></div>

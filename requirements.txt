@@ -16,11 +16,19 @@ jinja2==3.1.*
 python-multipart==0.0.*        # form uploads for the ingestion screen
 httpx==0.27.*                  # model provider calls, and the test client
 
-# Model provider. The interpretation layer is the only place that calls it
-# (see the architecture doc); everything else stays deterministic and testable
-# without a key, which is what lets `make test` pass on a machine with no
-# credentials at all.
-anthropic==0.39.*
+# Model provider. app/interpretation/propose.py is the only place that imports
+# it, and it imports it inside a function so that nothing pays for the SDK at
+# import time. Everything else stays deterministic and testable without a key,
+# which is what lets `make test` pass on a machine with no credentials at all.
+#
+# THE PIN MOVED, AND WHY. This read 0.39.* while nothing in app/ imported the
+# package at all -- a declared dependency no code exercised, which is a claim
+# the repo could not back. Now that a caller exists the pin has to match what it
+# sends: 0.39 predates adaptive thinking and structured outputs, so
+# `thinking={"type": "adaptive"}` and `output_config=` would both be rejected as
+# unknown arguments before a request was ever built. A pin that cannot run the
+# code beside it is worse than no pin, because it reads as tested.
+anthropic==0.120.*
 
 pytest==8.3.*
 pytest-asyncio==0.24.*

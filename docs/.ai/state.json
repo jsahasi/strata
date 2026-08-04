@@ -1,11 +1,11 @@
 {
   "_generated_by": "scripts/status.py via `make status`. Do not hand-edit.",
   "_why": "Every other file in docs/.ai/ is prose and can go stale. This one is read from the repository, so where it disagrees with prose, it is right.",
-  "generated_at": "2026-08-04T16:58:29.892069+00:00",
+  "generated_at": "2026-08-04T17:42:12.710158+00:00",
   "git": {
-    "head": "69f7518",
+    "head": "516ae98",
     "branch": "main",
-    "commits": 30,
+    "commits": 32,
     "dirty": true
   },
   "tests": {
@@ -19,10 +19,15 @@
       "test_audit.py",
       "test_audit_v2.py",
       "test_change_view.py",
+      "test_chat_agent.py",
+      "test_chat_schema.py",
+      "test_chat_surface.py",
+      "test_chat_tools.py",
       "test_claims.py",
       "test_diff.py",
       "test_draft_final.py",
       "test_evals.py",
+      "test_feedback.py",
       "test_identity.py",
       "test_ingestion.py",
       "test_isolation.py",
@@ -61,8 +66,20 @@
       "lines": 582,
       "calls_a_model": false
     },
+    "app/chat/agent.py": {
+      "lines": 885,
+      "calls_a_model": true
+    },
     "app/chat/persona.py": {
       "lines": 211,
+      "calls_a_model": false
+    },
+    "app/chat/pills.py": {
+      "lines": 398,
+      "calls_a_model": false
+    },
+    "app/chat/tools.py": {
+      "lines": 1525,
       "calls_a_model": false
     },
     "app/diff/engine.py": {
@@ -98,7 +115,7 @@
       "calls_a_model": true
     },
     "app/main.py": {
-      "lines": 121,
+      "lines": 130,
       "calls_a_model": false
     },
     "app/pipeline.py": {
@@ -121,12 +138,16 @@
       "lines": 38,
       "calls_a_model": false
     },
+    "app/state/feedback.py": {
+      "lines": 864,
+      "calls_a_model": false
+    },
     "app/state/identity.py": {
       "lines": 1025,
       "calls_a_model": false
     },
     "app/state/models.py": {
-      "lines": 1766,
+      "lines": 2591,
       "calls_a_model": false
     },
     "app/state/projects.py": {
@@ -162,7 +183,7 @@
       "calls_a_model": false
     },
     "app/web/views/admin.py": {
-      "lines": 1357,
+      "lines": 1432,
       "calls_a_model": false
     },
     "app/web/views/auth.py": {
@@ -171,6 +192,14 @@
     },
     "app/web/views/changes.py": {
       "lines": 455,
+      "calls_a_model": false
+    },
+    "app/web/views/chat.py": {
+      "lines": 794,
+      "calls_a_model": false
+    },
+    "app/web/views/feedback_review.py": {
+      "lines": 734,
       "calls_a_model": false
     },
     "app/web/views/proceedings.py": {
@@ -190,7 +219,7 @@
       "calls_a_model": false
     },
     "app/web/views/workflow.py": {
-      "lines": 643,
+      "lines": 687,
       "calls_a_model": false
     }
   },
@@ -654,6 +683,176 @@
       "revisits": "ADR-045",
       "is_hard_bet": false,
       "title": "The signature is a name and an address: no borrowed title, no third party named, and the disclosure line stays verbatim"
+    },
+    {
+      "id": "ADR-047",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "delivery",
+      "depends_on": "ADR-012",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Tables are made to scroll in the stylesheet, not by wrapping every table"
+    },
+    {
+      "id": "ADR-048",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "workflow",
+      "depends_on": "ADR-023",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "The approval route gets two screens and two routers: what the route is, and what it shall be"
+    },
+    {
+      "id": "ADR-049",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "workflow",
+      "depends_on": "ADR-036",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "A saved route may be incomplete; it may not be wrong. Activation is where absence becomes denial"
+    },
+    {
+      "id": "ADR-050",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "hard-bet",
+      "depends_on": "ADR-003",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "The assistant is a records clerk, not a guide"
+    },
+    {
+      "id": "ADR-051",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "security",
+      "depends_on": "ADR-029",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "The model never holds an identity, and the guard is an allowlist"
+    },
+    {
+      "id": "ADR-052",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "hard-bet",
+      "depends_on": "ADR-022",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "A tool that can withhold must return the count, and a missing count stops the turn from claiming zero"
+    },
+    {
+      "id": "ADR-053",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "security",
+      "depends_on": "ADR-032",
+      "revisits": "ADR-032",
+      "is_hard_bet": false,
+      "title": "Digest scheme 3 is chosen by what a row carries, and a scheme that cannot cover the pointer refuses it"
+    },
+    {
+      "id": "ADR-054",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "security",
+      "depends_on": "ADR-053",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Taking back a decision is a row; taking back a reversal reinstates nothing"
+    },
+    {
+      "id": "ADR-055",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "hard-bet",
+      "depends_on": "ADR-003",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "A complaint is referred, never escalated"
+    },
+    {
+      "id": "ADR-056",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "workflow",
+      "depends_on": "ADR-036",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "A routing failure has a code, and the shared queue re-derives it on every read"
+    },
+    {
+      "id": "ADR-057",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "stack",
+      "depends_on": "ADR-037",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "The model SDK pin moves to the version the code beside it can actually call"
+    },
+    {
+      "id": "ADR-058",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "testing",
+      "depends_on": "ADR-040",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Retrieving real filings: an empty haul is a successful run"
+    },
+    {
+      "id": "ADR-059",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "testing",
+      "depends_on": "ADR-040",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "What a real filing is fetched for, and why it is stored dirty"
+    },
+    {
+      "id": "ADR-060",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "docs",
+      "depends_on": "ADR-042",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "The status script reports no test count rather than a false one"
+    },
+    {
+      "id": "ADR-061",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "process",
+      "depends_on": "ADR-044",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Writing the decision log is a serialised stage that runs after the builders, not beside them"
+    },
+    {
+      "id": "ADR-062",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "process",
+      "depends_on": "ADR-007",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Playwright installs into a scratch virtualenv, not the project's"
+    },
+    {
+      "id": "ADR-063",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "research",
+      "depends_on": "ADR-046",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Guessed addresses send last, after every address read off a filing"
     }
   ],
   "built": {

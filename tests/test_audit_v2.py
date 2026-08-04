@@ -725,6 +725,7 @@ def test_migrating_a_pre_attribution_database_leaves_its_rows_verifying(tmp_path
             "session_id",
             "ip",
             "digest_version",
+            "reverts_event_id",
         )
 
         session = sessionmaker(bind=engine, future=True)()

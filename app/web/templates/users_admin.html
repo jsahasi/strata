@@ -1,0 +1,325 @@
+{#
+  users_admin.html — every login in this workspace, and the form that adds one.
+
+  ONE TEMPLATE, TWO ANSWERS, exactly as shares_admin.html and invites_admin.html
+  do it. The view sets `reason` only when it refused.
+
+  THE COLUMN THIS SCREEN IS BUILT AROUND IS "LAST SIGNED IN", AND IT IS NEVER
+  BLANK. An administrator reading this list is looking for two things: an account
+  nobody uses any more, and an invitation nobody ever took up. Both are accounts
+  with no login behind them, and a template that printed an empty cell for both
+  would collapse them into one and answer neither.
+
+  So the branch is `row.signed_in`, and every arm of it prints something:
+
+    signed in            a relative time and the exact stamp beside it, plus a
+                         flag when it was long enough ago to be worth acting on
+    never                the words NEVER_SIGNED_IN, and then WHICH of the four
+                         never-cases it is -- the account works and nobody used
+                         it, the link is still good, the link ran out, or there
+                         is no invitation at all
+
+  The words come from app/web/views/users_admin.py as constants, not from this
+  file, because the tests assert on them: a meaning that lives only in a Jinja
+  string is a meaning that can be edited away in a diff nobody reads. This
+  template chooses layout and nothing else.
+
+  THE ONE-TIME LINK IS RENDERED, NOT LINKED TO. It is shown as text for copying
+  rather than as an anchor, because an administrator's job here is to paste it
+  into an email, and a click from this page would open somebody else's
+  invitation in this browser.
+
+  Context, from app/web/views/users_admin.py:
+    reason            str | None  why this reader was refused
+    refused permission            what opens the screen
+    rows              list[PersonRow]
+    roles             tuple[str]  what THIS administrator may hand on
+    stranded_count unused_count dormant_count   int   three counts, three jobs
+    outcome_code outcome_heading outcome_text  str   what the last click did
+    outcome_ok        bool
+    link link_expires guard_note  str   the one-time link and its warnings
+    typed             dict  what was in the form when it was refused
+    never_signed_in dormant_word dormant_days
+    ceiling_note no_roles link_once no_mail_sent ttl_hours
+    users_url provision_url
+    plus everything base.html reads.
+#}{% extends "base.html" %}
+
+{% block head %}
+{#
+  Scoped to this screen. Every value is an existing token and no width is set in
+  pixels anywhere -- the table scrolls itself on a narrow screen through the rule
+  in strata.css, which targets `table`, so this stays a plain table.
+#}
+<style>
+.users-warn {
+  margin: var(--s5) 0;
+  padding-left: var(--s4);
+  border-left: 3px solid var(--alarm);
+  max-width: 62ch;
+}
+.users-warn strong { color: var(--alarm-strong); }
+.users-note { margin: var(--s5) 0; max-width: 62ch; }
+.users-row--stranded > td:first-child { border-left: 3px solid var(--alarm); }
+.users-never { font-weight: 600; }
+.users-because {
+  display: block;
+  margin-top: var(--s1);
+  font-size: var(--t-small);
+  color: var(--ink-2);
+}
+.users-because--stranded { color: var(--alarm-strong); }
+.users-flag {
+  display: block;
+  margin-top: var(--s1);
+  font-size: var(--t-small);
+  color: var(--alarm-strong);
+}
+.users-link {
+  display: block;
+  margin: var(--s2) 0;
+  padding: var(--s3);
+  background: var(--surface-sunk);
+  border-radius: var(--r);
+  overflow-wrap: anywhere;
+}
+.users-form { max-width: 34rem; }
+.users-form input, .users-form select { width: 100%; box-sizing: border-box; }
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% if reason %}
+<div class="page-head">
+  <div class="page-head__title"><h1>Logins</h1></div>
+</div>
+
+<div class="empty empty--none">
+  <p class="empty__title">You cannot open this screen.</p>
+  <div class="empty__body">
+    <p>{{ reason }}.</p>
+    <p>{{ refused }}</p>
+    <p>
+      This is a refusal, not a blank page. The screen exists, and
+      <code>{{ permission }}</code> is what opens it.
+    </p>
+  </div>
+</div>
+
+{% else %}
+
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>Logins</h1>
+    <span class="coord">{{ rows | length }} account(s)</span>
+  </div>
+  <p class="page-head__note">
+    Every account in this workspace and when each one was last used. An account
+    nobody has ever signed in as says so in words rather than leaving the cell
+    empty, and then says which kind it is: somebody who can sign in and never
+    has, somebody who has not got round to their link yet, or somebody whose
+    link ran out and who cannot get in at all. Those want different actions from
+    you, and a blank cell would be the same for all three.
+  </p>
+</div>
+
+{# Three counts, three different jobs. They are not one "never signed in"
+   number, because the fix for the first is a resend and the fix for the other
+   two is a suspension, and a screen that merged them would send an
+   administrator to the wrong button. #}
+
+{% if stranded_count %}
+<div class="users-warn">
+  <p>
+    <strong>{{ stranded_count }} account(s) have no way in.</strong>
+    Nobody has ever signed in as them and there is no live link for them to use.
+    Resend it, or the account sits here for ever holding a role nobody can
+    reach.
+  </p>
+</div>
+{% endif %}
+
+{% if unused_count %}
+<div class="users-warn">
+  <p>
+    <strong>{{ unused_count }} account(s) can sign in and never have.</strong>
+    Nothing is blocking them; the credential simply sits there unused. That is a
+    sharper suspension candidate than a dormant account, because nobody would
+    notice it being used either.
+  </p>
+</div>
+{% endif %}
+
+{% if dormant_count %}
+<div class="users-warn">
+  <p>
+    <strong>{{ dormant_count }} account(s) have not been used in {{ dormant_days }} days.</strong>
+    Somebody used these once. Suspend the ones that should be gone.
+  </p>
+</div>
+{% endif %}
+
+{# ---------------------------------------------------- what the last click did #}
+
+{% if outcome_code %}
+<div class="{% if outcome_ok %}users-note{% else %}users-warn{% endif %}">
+  <p>
+    <strong>{{ outcome_heading }}</strong>
+    <code>{{ outcome_code }}</code>
+  </p>
+  {# The write layer's own sentence. Why a role exceeds a ceiling, why an
+     address already has an account, why a handoff cannot be resent -- those are
+     decisions this screen did not make and must not paraphrase. #}
+  {% if outcome_text %}<p>{{ outcome_text }}</p>{% endif %}
+</div>
+{% endif %}
+
+{% if link %}
+<section class="card stack" aria-labelledby="link-title">
+  <h2 id="link-title" class="label">The link, and this is the only time it exists</h2>
+  {# Text, not an anchor. See the head of this file. #}
+  <code class="users-link">{{ link }}</code>
+  <p>
+    Runs out {{ link_expires }}. A provisioned link lives {{ ttl_hours }} hours
+    and nothing outside app/state/models.py can lengthen that -- not this
+    screen, and not a resend, which writes a new link instead.
+  </p>
+  <p>{{ link_once }}</p>
+  {# The mail layer's own sentence, on every outcome including success. A screen
+     that had to branch to find out whether there was anything to say would
+     eventually forget on one path, and the path it forgot would be the one
+     where nobody was told. #}
+  {% if mail_note %}<p>{{ mail_note }}</p>{% endif %}
+  {% if guard_note %}
+  <p role="alert"><strong>{{ guard_note }}</strong></p>
+  {% endif %}
+</section>
+{% endif %}
+
+{# ------------------------------------------------------------- add a login #}
+
+<section class="card stack" aria-labelledby="add-title">
+  <h2 id="add-title" class="label">Add a login</h2>
+
+  {% if roles %}
+  <form method="post" action="{{ provision_url }}" class="stack--tight users-form">
+    <p>
+      <label class="label" for="display_name">Their name</label><br>
+      <input id="display_name" name="display_name" type="text" required
+             autocomplete="off" value="{{ typed.display_name | default('', true) }}">
+    </p>
+    <p>
+      <label class="label" for="email">Their email</label><br>
+      <input id="email" name="email" type="email" required
+             autocomplete="off" autocapitalize="none" spellcheck="false"
+             value="{{ typed.email | default('', true) }}">
+      <span class="users-because">
+        Typed by you, never built out of their name. An address guessed from a
+        name pattern is the one guess here that would email a credential link to
+        a stranger.
+      </span>
+    </p>
+    <p>
+      <label class="label" for="role">Their role</label><br>
+      <select id="role" name="role" required>
+        <option value="">Choose one</option>
+        {%- for name in roles %}
+        <option value="{{ name }}"{% if typed.role == name %} selected{% endif %}>{{ name }}</option>
+        {%- endfor %}
+      </select>
+      <span class="users-because">{{ ceiling_note }}</span>
+    </p>
+    <p>
+      <button class="btn btn--primary" type="submit">Add this login</button>
+    </p>
+  </form>
+  {% else %}
+  <div class="empty empty--none">
+    <p class="empty__title">You have no role to hand on.</p>
+    <div class="empty__body"><p>{{ no_roles }}</p></div>
+  </div>
+  {% endif %}
+</section>
+
+{# ---------------------------------------------------------------- the list #}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Person</th>
+      <th scope="col">Roles</th>
+      <th scope="col">Status</th>
+      <th scope="col">Last signed in</th>
+      <th scope="col">Invitation</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr class="users-row{% if row.stranded %} users-row--stranded{% endif %}">
+      <td>
+        {{ row.display_name }}
+        <p><span class="coord">{{ row.email }}</span></p>
+      </td>
+      <td>
+        {%- if row.roles %}
+        {%- for name in row.roles %}
+        <span class="badge badge--routine">{{ name }}</span>
+        {%- endfor %}
+        {%- else %}
+        <span class="coord">no role granted</span>
+        {%- endif %}
+      </td>
+      <td><span class="badge {{ row.status_badge }}">{{ row.status }}</span></td>
+
+      {# THE COLUMN. Never empty, on any branch. #}
+      <td>
+        {%- if row.signed_in %}
+        <time datetime="{{ row.last_login_iso }}" title="{{ row.last_login_exact }}">{{ row.last_login_relative }}</time>
+        <p><span class="coord">{{ row.last_login_exact }}</span></p>
+        {%- if row.dormant %}
+        <span class="users-flag">{{ dormant_word }} &mdash; over {{ dormant_days }} days</span>
+        {%- endif %}
+        {%- else %}
+        <span class="users-never">{{ never_signed_in }}</span>
+        <span class="users-because{% if row.stranded %} users-because--stranded{% endif %}">{{ row.never_because }}</span>
+        {%- endif %}
+      </td>
+
+      <td>
+        {%- if row.invitation_id %}
+        <span class="coord">{{ row.invitation_id }}</span>
+        <p><span class="badge badge--draft">{{ row.invitation_status }}</span></p>
+        <p>
+          <span class="coord">
+            {%- if row.invitation_live %}runs out {{ row.invitation_expires_relative }}
+            {%- else %}ran out {{ row.invitation_expires_relative }}{% endif %}
+          </span>
+        </p>
+        <p><span class="coord">{{ row.invitation_expires_exact }}</span></p>
+        {%- if row.can_resend %}
+        {# A new token every time. The previous link stops working at that
+           instant rather than at its own expiry, which is the whole reason
+           there is no "extend" button anywhere on this page. #}
+        <form method="post" action="{{ users_url }}/{{ row.invitation_id }}/resend">
+          <button class="btn" type="submit">Resend, with a new link</button>
+        </form>
+        {%- endif %}
+        {%- else %}
+        <span class="coord">none</span>
+        {%- endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p class="users-note">
+  A resend never extends a link. It writes a new invitation and the previous one
+  stops working immediately, so at most one link for one person is ever live. A
+  link that leaked into an inbox or a helpdesk ticket would otherwise gain
+  another day every time somebody pressed the button.
+</p>
+
+{% endif %}
+{% endblock %}

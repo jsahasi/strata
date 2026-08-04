@@ -7,18 +7,26 @@
     company_name      str   the company whose data is on screen
     company_id        str   the tenant id that scoped every read on this page
     nav_active        str   one of: projects | proceedings | proceeding |
-                            change | review
+                            change | review | workflow
     nav_projects_url  str   the project list, default /projects
     nav_review_url    str   the review centre, default /review
+    nav_workflow_url  str   the approval route, default /workflow
     nav_proceeding_url str  set when a proceeding is in hand, else omitted
     nav_change_url    str   set when a change is in hand, else omitted
     review_count      int   items the system refused to assert, shown on the nav
 
   Blocks: title, head, content, foot.
 
-  The nav lists five screens. Two of them need a proceeding or a change in
+  The nav lists six screens. Two of them need a proceeding or a change in
   hand; without one they render as plain text, not as links that would 404.
   Absence is denial here too.
+
+  The approval route is here rather than behind an admin menu on purpose. It is
+  read by everybody and drawn by almost nobody, and an analyst who cannot find
+  the route goes back to chasing the item by email -- which is the workflow the
+  product claims to replace. It never renders as an admin link: the screen it
+  points at is open to any signed-in person and says on itself who may change
+  it.
 
   Projects and the review centre carry their URLs as context with a default,
   so whoever owns routing sets the real path in one place rather than this
@@ -31,6 +39,7 @@
 <meta name="color-scheme" content="light dark">
 <title>{% block title %}{% if page_title %}{{ page_title }} · Strata{% else %}Strata{% endif %}{% endblock %}</title>
 <link rel="stylesheet" href="/static/strata.css">
+  <link rel="stylesheet" href="/static/clerk.css">
 {% block head %}{% endblock %}
 </head>
 <body>
@@ -41,6 +50,7 @@
 {% set change_url = nav_change_url | default(none, true) %}
 {% set projects_url = nav_projects_url | default('/projects', true) %}
 {% set review_url = nav_review_url | default('/review', true) %}
+{% set workflow_url = nav_workflow_url | default('/workflow', true) %}
 {% set screens = [
   ('projects', 'Projects', projects_url, true, ''),
   ('proceedings', 'Proceedings', '/proceedings', true, ''),
@@ -48,7 +58,8 @@
    'Open a proceeding to reach this screen'),
   ('change', 'This change', change_url, change_url is not none,
    'Open a change to reach this screen'),
-  ('review', 'Review centre', review_url, true, ''),
+  ('review', 'Review', review_url, true, ''),
+  ('workflow', 'Approval route', workflow_url, true, ''),
 ] %}
 
 <header class="masthead">
@@ -67,6 +78,7 @@
         <span class="masthead__name">No company selected</span>
         {%- endif %}
       </p>
+      <div class="masthead__tools" data-clerk-slot></div>
     </div>
     <nav aria-label="Screens">
       <ul class="nav__list">
@@ -103,5 +115,6 @@
 </footer>
 
 {% block foot %}{% endblock %}
+{% include "_clerk.html" %}
 </body>
 </html>

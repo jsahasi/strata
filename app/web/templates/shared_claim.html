@@ -1,0 +1,172 @@
+{#
+  shared_claim.html — the page somebody with no account sees.
+
+  IT DOES NOT EXTEND base.html, AND THAT IS THE POINT. base.html renders a
+  masthead, a company name and six screens' worth of links. A share is one
+  artifact, and a reader must not be able to walk from it into a proceeding, a
+  project or a sibling claim. Inheriting the shell would put every one of those
+  links on the one page nobody had to sign in to reach, and the failure would
+  look like a styling decision rather than an access-control one.
+
+  Two states, one file:
+
+    available = true    the artifact, re-verified a moment ago
+    available = false   expired, revoked or unknown -- one answer for all three
+
+  The refusal state renders NOTHING derived from the request. No token, no id,
+  no timestamp, no count. Three responses that differ by a byte would let a
+  caller tell a withdrawn link from one that never existed, which is a probe for
+  which tokens are real.
+
+  Context, available = true:
+
+    watermark, watermark_note   str        what this page is
+    heading                     str        the artifact, e.g. "Section 2.1"
+    source_label                str        the document the quote came from
+    shared_by                   str        who sent it
+    shared_at, expires_at       datetime   when, and until when
+    opened_at                   datetime   when the check below ran
+    verified                    ClaimPanel[]    claims that may be asserted
+    withheld                    RefusalPanel[] claims the product refuses to make
+    nothing_to_show             str        shown when both lists are empty
+    call_to_action(_note)       str        the one way in
+
+  Context, available = false:
+
+    unavailable_heading, unavailable_text, call_to_action
+
+  The two lists are iterated separately and there is no flag to branch on.
+  WithheldClaim has no statement field and cannot be given one, so a mistake in
+  this file cannot leak an assertion -- it can only fail to render.
+#}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>{% if page_title %}{{ page_title }} · Strata{% else %}Strata{% endif %}</title>
+<link rel="stylesheet" href="/static/strata.css">
+<style>
+  /* Scoped to this page. The shared view is not a screen of the product and
+     must not look like one: no masthead, no nav, and a band across the top
+     that says what the reader is holding. */
+  .share { max-width: 60rem; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+  .share__band {
+    border: 1px solid currentColor; border-radius: 0.25rem;
+    padding: 0.85rem 1rem; margin-bottom: 1.75rem; opacity: 0.85;
+  }
+  .share__stamp { font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.75rem; }
+  .share__meta { margin: 0.35rem 0 0; font-size: 0.9rem; }
+  .share__meta span + span::before { content: " · "; }
+  .share__note { margin: 0.35rem 0 0; font-size: 0.85rem; opacity: 0.8; }
+  .share__title { margin: 0 0 0.25rem; }
+  .share__source { margin: 0 0 1.5rem; font-size: 0.9rem; opacity: 0.8; }
+  .share__lede { margin: 0 0 1.5rem; max-width: 44rem; }
+  .share__cta { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid currentColor; }
+  .share__cta p { margin: 0.6rem 0 0; font-size: 0.9rem; opacity: 0.8; }
+  .share__panel { margin-top: 0.75rem; }
+</style>
+</head>
+<body>
+
+<main class="share" id="main">
+
+{%- if not available %}
+
+  <div class="share__band">
+    <p class="share__stamp">{{ watermark | default('Shared view', true) }}</p>
+  </div>
+  <h1 class="share__title">{{ unavailable_heading }}</h1>
+  <p class="share__lede">{{ unavailable_text }}</p>
+  <div class="share__cta">
+    <a class="btn btn--primary" href="/login">{{ call_to_action }}</a>
+  </div>
+
+{%- else %}
+
+  <div class="share__band">
+    <p class="share__stamp">{{ watermark }}</p>
+    <p class="share__meta">
+      <span>Shared by {{ shared_by }}</span>
+      <span>{{ shared_at.strftime('%d %B %Y') }}</span>
+      <span>Expires {{ expires_at.strftime('%d %B %Y') }}</span>
+    </p>
+    <p class="share__note">{{ watermark_note }} Checked {{ opened_at.strftime('%d %B %Y at %H:%M UTC') }}.</p>
+  </div>
+
+  <h1 class="share__title">{{ heading }}</h1>
+  {%- if source_label %}
+  <p class="share__source">{{ source_label }}</p>
+  {%- endif %}
+
+  <div class="stack">
+
+    {%- for item in verified %}
+    <article class="claim claim--verified">
+      <header class="claim__head">
+        <span class="claim__state">Verified</span>
+      </header>
+      <p class="claim__statement">{{ item.claim.statement }}</p>
+      <blockquote class="quote">{{ item.claim.actual_text }}</blockquote>
+      <footer class="claim__foot">
+        <span class="label">{{ item.source_label }}</span>
+        <span class="coord">{{ item.coordinate }}</span>
+      </footer>
+      <section class="source-panel share__panel" tabindex="-1"
+               aria-label="Source for this quotation: {{ item.window.version_label }}, characters {{ item.claim.citation_start }} to {{ item.claim.citation_end }}">
+        <header class="source-panel__head">
+          <div>
+            <p class="source-panel__title">{{ item.window.version_label }}</p>
+            <p class="coord">{{ item.coordinate }}{% if item.window.partial %} · extract{% endif %}</p>
+          </div>
+        </header>
+        <div class="source-panel__body">{{ item.window.before }}<mark class="source-mark">{{ item.window.marked }}</mark>{{ item.window.after }}</div>
+      </section>
+    </article>
+    {%- endfor %}
+
+    {%- for item in withheld %}
+    <article class="claim claim--withheld">
+      <header class="claim__head">
+        <span class="claim__state">Withheld</span>
+      </header>
+      <div class="withheld">
+        <p class="withheld__label">No claim made</p>
+        <p class="withheld__reason">{{ item.claim.reason_text }}</p>
+      </div>
+      <dl class="mismatch">
+        <dt class="mismatch__term">What the source says now</dt>
+        <dd class="mismatch__value">{{ item.source_reads }}</dd>
+        <dt class="mismatch__term">What the citation quoted</dt>
+        <dd class="mismatch__value">{{ item.claim.citation_quote }}</dd>
+      </dl>
+      <footer class="claim__foot">
+        <span class="coord">{{ item.coordinate }}</span>
+        <span class="claim__route">Refused as {{ item.claim.reason_code }}.</span>
+      </footer>
+    </article>
+    {%- endfor %}
+
+    {%- if not verified and not withheld %}
+    <div class="withheld">
+      <p class="withheld__label">No claim made</p>
+      <p class="withheld__reason">{{ nothing_to_show }}</p>
+    </div>
+    {%- endif %}
+
+  </div>
+
+  <div class="share__cta">
+    <a class="btn btn--primary" href="/login">{{ call_to_action }}</a>
+    <p>{{ call_to_action_note }}</p>
+    <p>A claim whose citation does not verify is not shown. The reason takes its place.</p>
+  </div>
+
+{%- endif %}
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+{#
+  workflow_route.html — the approval route in words. Any signed-in user.
+
+  Context, from app/web/views/workflow.py:
+    state         "ok" | "no-route" | "no-tables"
+    route_name    str            the live route's name
+    steps         list[RouteStep]  already in prose; this file prints, it does
+                                   not translate
+    ordered       bool           False when the walk fell back to numbering
+    order_fallback str           the sentence saying so
+    no_route      str            the sentence for a company with no live route
+    item          ItemState      where the viewer's item has reached, or why not
+    can_edit      bool           does the viewer hold workflow.manage
+    permission    str            "workflow.manage"
+    workflows_url str            where the editor lives
+    plus everything base.html reads.
+
+  THE TEMPLATE HOLDS NO VOCABULARY. Not one column value reaches this file:
+  every sentence about who is asked and what happens on a timeout was built in
+  the view, so there is one place to check that "on_timeout: escalate" never
+  reaches a person's eye. A `{{ step.on_timeout }}` added here would undo that
+  quietly, which is why the field is not in the context at all.
+
+  A BYPASS IS DRAWN AS AN ALARM, both as a rule of the route and as something
+  that already happened to this item. Same treatment as a withheld claim: the
+  thing that skipped a check is the thing a reader must not scan past.
+#}{% extends "base.html" %}
+
+{% block head %}<link rel="stylesheet" href="/static/workflow.css">{% endblock %}
+
+{% block content %}
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>Approval route</h1>
+    {% if state == 'ok' %}<span class="coord">{{ steps | length }} step{{ '' if steps | length == 1 else 's' }}</span>{% endif %}
+  </div>
+  <p class="page-head__note">
+    {% if state == 'ok' %}
+    Where an item goes for approval, who is asked at each step, how long they
+    have, and what happens if nobody answers.
+    {% else %}
+    What this company does with an item that needs approval.
+    {% endif %}
+  </p>
+</div>
+
+{# Who can change this. Shown to everyone, on purpose: somebody who thinks a
+   rule is hard-coded stops asking for the rule they need. A link only for
+   somebody it would not refuse. #}
+<p class="wf-who-changes">
+  {% if can_edit %}
+  You hold <code>{{ permission }}</code>, so you can change this route:
+  <a href="{{ workflows_url }}">Admin, Approval routes</a>.
+  {% else %}
+  An administrator sets this route in Admin, Approval routes. It needs the
+  <code>{{ permission }}</code> permission, which you do not hold. Ask whoever
+  administers Strata for your company to change it.
+  {% endif %}
+</p>
+
+{% if state == 'ok' %}
+
+{% if item.escalation_id or item.run_id %}
+<div class="wf-item{% if not item.known %} wf-item--unknown{% endif %}">
+  <p class="label">Following</p>
+  <p class="wf-item__id"><span class="coord">{{ item.escalation_id or item.run_id }}</span></p>
+  {% if item.known %}
+  <p class="wf-item__note">Its position is marked against the steps below.</p>
+  {% else %}
+  <p class="wf-item__note">{{ item.note }}</p>
+  {% endif %}
+</div>
+{% endif %}
+
+<div class="card">
+  <p class="label">The live route</p>
+  <h2 class="wf-route__name">{{ route_name }}</h2>
+  {% if not ordered %}
+  <p class="withheld__reason">{{ order_fallback }}</p>
+  {% endif %}
+</div>
+
+<ol class="plan wf-plan">
+  {% for step in steps %}
+  <li class="plan-step wf-step
+      {%- if step.is_current %} plan-step--doing{% elif step.state_is_skip %} plan-step--blocked{% elif step.state %} plan-step--done{% else %} plan-step--todo{% endif %}
+      {%- if step.timeout_is_skip %} wf-step--bypass{% endif %}">
+    <div class="plan-step__head">
+      <span class="plan-step__n"></span>
+      <span class="plan-step__what"><strong>{{ step.label }}</strong></span>
+      {% if step.state %}
+      <span class="plan-step__state{% if step.state_is_skip %} wf-state--skip{% endif %}">{{ step.state }}</span>
+      {% endif %}
+    </div>
+
+    <dl class="wf-facts">
+      <div class="wf-facts__pair">
+        <dt class="label">Who is asked</dt>
+        <dd{% if not step.who_certain %} class="wf-uncertain"{% endif %}>{{ step.who }}</dd>
+      </div>
+      <div class="wf-facts__pair">
+        <dt class="label">How long they have</dt>
+        <dd>{{ step.window }}</dd>
+      </div>
+    </dl>
+
+    <p class="wf-timeout{% if step.timeout_is_skip %} wf-timeout--skip{% endif %}">
+      {{ step.timeout_sentence }}
+    </p>
+
+    {% if step.state %}
+    {# holder and when already carry their own words -- see RouteStep. Nothing
+       here turns a bare timestamp into a claim about who did what. #}
+    <p class="plan-step__owner">
+      {%- if step.holder %}{{ step.holder }}{% endif %}
+      {%- if step.when %} · <span class="coord">{{ step.when }}</span>{% endif %}
+      {%- if step.attempts > 1 %} · <span class="coord">asked {{ step.attempts }} times</span>{% endif %}
+    </p>
+    {% endif %}
+
+    <p class="wf-next">
+      {%- if step.next_labels %}
+      Then: {{ step.next_labels | join(', ') }}
+      {%- else %}
+      Last step. Nothing follows it.
+      {%- endif %}
+    </p>
+  </li>
+  {% endfor %}
+</ol>
+
+{% elif state == 'no-route' %}
+<div class="empty empty--none">
+  <p class="empty__title">{{ no_route }}</p>
+  <div class="empty__body">
+    <p>
+      This screen is not hiding a route from you. There is none: no approval
+      route for this company has been drawn and activated, so nothing routes an
+      item to anybody and nothing times out.
+    </p>
+    {% if can_edit %}
+    <p>You can draw one: <a href="{{ workflows_url }}">Admin, Approval routes</a>.</p>
+    {% endif %}
+  </div>
+</div>
+
+{% else %}
+<div class="empty empty--unloaded">
+  <p class="empty__title">The database has no tables yet.</p>
+  <div class="empty__body">
+    <p>
+      This screen is not telling you there is no approval route. It has not been
+      told anything.
+    </p>
+    <p>
+      Load the corpus with <code>{{ seed_command }}</code>, or
+      <code>{{ make_command }}</code>, then reload this page.
+    </p>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

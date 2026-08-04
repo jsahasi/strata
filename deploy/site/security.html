@@ -86,6 +86,7 @@ section:first-of-type{border-top:0}
 .stage b.no{color:var(--withheld)}
 .stage p{margin:.2rem 0 0;font:400 15px/1.55 var(--sans)}
 .stage em{font-style:normal;color:var(--withheld);font-weight:600}
+.stage + .narrow{margin-top:1.8rem}
 
 /* ---- refusals ---- */
 .refuse{border-left:2px solid var(--rule);padding-left:1.1rem;margin-bottom:1.5rem}
@@ -253,15 +254,32 @@ footer a{color:var(--muted)}
       full breach. Row-level security needs a database that has it, and this build does not use
       one.</p></div>
 
-    <div class="stage"><b class="no">not built</b><p><b>Deletion.</b> Nothing in the product deletes
-      anything. No retention schedule is written down, and no code enforces one. The
-      <a href="/privacy.html">privacy page</a> sets out what that means for an erasure
-      request.</p></div>
+    <div class="stage"><b class="no">not running</b><p><b>Deletion.</b> A retention schedule now
+      exists in code, covering every table with a window and a reason, and the purges are tested.
+      Nothing calls them. There is no scheduler in this product, so no row has ever been deleted on
+      a clock, and there is still no erasure path for a user, a document or a claim. Two email
+      addresses cannot be reached by any purge at all: a failed sign-in records the address that
+      was tried, and an invitation records the address it was sent to, and both sit inside the hash
+      chain, which cannot be rewritten. The <a href="/privacy.html">privacy page</a> sets out the
+      schedule and what it means for an erasure request.</p></div>
 
-    <div class="stage"><b class="no">not built</b><p><b>Operational safety net.</b> No backups, no
-      incident-response plan, no breach-notification process, no logging pipeline, no monitoring,
-      no dependency scanning, no security team and nobody on call. There is one person and one
-      mailbox.</p></div>
+    <div class="stage"><b class="no">not running</b><p><b>Backups.</b> A script exists and is
+      tested. <code>scripts/backup.py</code> snapshots the database through SQLite's own backup
+      call rather than copying the file, so a copy taken while the product is being written to is
+      still consistent; it then opens that copy, runs <code>PRAGMA integrity_check</code>, counts
+      the audit table and re-verifies every hash chain in it. A copy that fails any of those is
+      renamed so nobody can restore it by mistake, and the command exits non-zero. Nothing
+      schedules it — no cron entry, no timer, no hosted job — so no backup exists until a person
+      runs it, and none has been taken of any deployment. It writes to a local directory you
+      name, and nothing configures an off-host destination anywhere, so the copy lands on the
+      same disk as the database: that survives a bad deploy and not a lost host. Nothing encrypts
+      the copy, and no restore into a running system has ever been practised. A working script,
+      not disaster recovery.</p></div>
+
+    <div class="stage"><b class="no">not built</b><p><b>The rest of the operational safety net.</b>
+      No incident-response plan, no breach-notification process, no logging pipeline, no
+      monitoring, no dependency scanning, no security team and nobody on call. There is one person
+      and one mailbox.</p></div>
 
     <div class="stage"><b class="no">not built</b><p><b>A safe demonstration deployment.</b> The
       seeded demonstration accounts share one password that the setup script prints and the login
@@ -271,7 +289,7 @@ footer a{color:var(--muted)}
   </div></div>
 </section>
 
-<section>
+<section id="disclosure">
   <div class="wrap"><div class="lined" data-line="4">
     <h2>Reporting a vulnerability</h2>
     <div class="narrow">
@@ -280,14 +298,82 @@ footer a{color:var(--muted)}
       "security" in the subject. One person reads it, and you will get a reply from a human.</p>
       <p>Useful to include: what you did, what happened, what you expected, and the commit or the
       page you were on. A short reproduction beats a scanner report.</p>
-      <p>There is no bug bounty and no reward, because there is no company to pay one. There is no
-      promised response time — an honest "I read this within a day or two, usually" is worth more
-      than a service level nobody staffs.</p>
-      <p>Please test against your own local run rather than against anything of mine or anyone
-      else's, and do not use somebody else's data to make a point.</p>
+      <p>The same policy in machine-readable form sits at
+      <a href="/.well-known/security.txt">/.well-known/security.txt</a>, in the format RFC 9116
+      sets out.</p>
+      <p>Read the scope rows before you start. Most of what a scanner flags on this build is either
+      published on purpose or already listed above as not built, and reporting it costs you an
+      afternoon and tells me nothing I have not written down myself.</p>
+    </div>
+
+    <div class="stage"><b>in scope</b><p>Two things. The static site at
+      <code>strata.sudama.ai</code>, which is these pages and nothing else — the application is not
+      deployed behind that name. And the application code in this repository, run on your own
+      machine, which is where the product actually is. What is worth your time: a way
+      past the sign-in guard, a way to read or write another company's rows, a way to alter an audit
+      row or a chain without the check catching it, anything that leaks a session token, and
+      anything that makes the citation check assert a claim its source does not support. That last
+      one is the product, so treat it as a security bug even though it does not look like one. Test
+      against your own run, not against mine and not against anyone else's.</p></div>
+
+    <div class="stage"><b class="no">out of scope</b><p>Everything the section above names as not
+      built — the missing rate limiting, the missing cross-site request token, the missing
+      permission check on the review and approval screens, and the rest of that list. Those are not
+      findings; they are the page you have just read. The list is not copied down here on purpose:
+      a second copy would drift from the first, and the section above is the one of record. Two
+      more, which are true of this static site and not on that list: it sends no HSTS, no content
+      security policy and no frame-ancestors header, and it carries no script and sets no cookie
+      for one to protect. Also out: anything needing physical access or a machine you already
+      control, anything aimed at a third party's host, and any test that works by volume.</p></div>
+
+    <div class="stage"><b class="no">published on purpose</b><p>Where the application runs, the
+      demonstration accounts are real accounts sharing one password:
+      <code>strata-demo-2026</code>. The login page prints it —
+      <code>app/web/templates/login.html</code> renders it from the context
+      <code>app/web/views/auth.py</code> builds, and the value comes from
+      <code>app/seed.py</code>, which prints it again when it seeds. That is the right answer for a
+      demonstration of invented data and the wrong one everywhere else, it is named above as a
+      weakness, and <code>STRATA_DEMO_ACCOUNTS=0</code> turns the panel off. The corpus is invented
+      too — a fictional commission, a fictional docket, fictional people. Finding either is not a
+      finding.</p></div>
+
+    <div class="stage"><b>safe harbour</b><p>Research in good faith, inside this policy, and I will
+      not pursue you for it and will not ask anyone else to. If a question of authorised access
+      comes up, this paragraph is the authorisation; ask and I will put it in writing over my own
+      name. The <a href="/terms.html">terms of use</a> say not to probe the service; this policy is
+      the exception to that sentence, and the scope rows above are its edge. Now the limits, stated
+      rather than buried. There is no company here, so this is one person's undertaking and it binds
+      one person. It cannot bind the host the site sits on, the
+      registrar, or anyone else whose terms you break on the way. And it stops covering you if you
+      take data that is not yours, degrade the service for somebody else, or hold a finding back for
+      payment.</p></div>
+
+    <div class="stage"><b>timing, as a target</b><p>A target is what one person aims at. It is not a
+      service level, nobody is on call, and no clock runs. I aim to acknowledge inside three working
+      days, and to tell you what I think it is inside ten. You get a decision — fixed, will not fix,
+      or already known — and the reason for it. No fix date is promised, because there is nobody to
+      promise it against. If the acknowledgement does not arrive, send it again: one person and one
+      mailbox is exactly the failure you would expect.</p></div>
+
+    <div class="stage"><b>publishing</b><p>Yours to decide. I would rather you waited for a fix or
+      ninety days, whichever comes first, and I will tell you when the fix is out. That is a
+      request, not a condition. Nothing here asks for your silence and there is nothing to
+      sign.</p></div>
+
+    <div class="stage"><b class="no">no bounty</b><p>There is none, and there will not be one until
+      the three things it needs exist: money to pay it, somebody to triage what it brings in, and a
+      legal entity to stand behind the safe harbour above. This build has none of the three, and a
+      reward announced without them is a debt rather than a programme. Credit is what can actually
+      be given: say so in your mail and you are named in the fix commit and on this page, or left
+      out if you would rather be.</p></div>
+
+    <div class="narrow">
       <div class="ph"><b>Placeholder — required before production use</b>
-      A security contact on a domain the company owns, a written disclosure policy with a stated
-      timeline, and a named legal entity behind both. None exist yet.</div>
+      A security contact on a domain the company owns, and a named legal entity behind the safe
+      harbour above. Neither exists. The address is an ordinary Gmail mailbox and the undertaking is
+      one person's word, which is worth exactly what one person's word is worth. The written policy
+      is no longer missing — it is the rows above, and
+      <a href="/.well-known/security.txt">/.well-known/security.txt</a> points at them.</div>
     </div>
   </div></div>
 </section>

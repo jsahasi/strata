@@ -1,0 +1,315 @@
+{#
+  shares_admin.html — every link this company has shared, and the refusal page
+  for somebody who may not read them.
+
+  ONE TEMPLATE, TWO ANSWERS, following workflow_list.html. A separate forbidden
+  page would be a second file describing the same screen, and the thing a
+  refused reader most needs -- the name of the permission -- is the same
+  sentence in both. The view sets `reason` only when it refused.
+
+  THE ROW BELOW A ROW IS THE POINT OF THE SCREEN. Each link's opens are listed
+  under it, one line each, with what the page showed at that open. A link opened
+  three times where the third open showed a refusal is a compliance event, and
+  folding it into a count would hide the one thing this register exists to
+  surface.
+
+  Context, from app/web/views/shares_admin.py:
+    reason       str | None    why this person was refused, from policy.py
+    refused      str           what to do about it
+    permission   str           "user.manage"
+    rows         list[ShareRow]  live first, then expired, then revoked
+    states       tuple[str]    the three group names, in order
+    live_count   int
+    refused_links int          links where the last open showed a refusal
+    switch_on    bool          sharing_enabled() for this company
+    switch_source str          who decided it: nobody, or this company
+    switch_note  str           that module's own sentence about the answer
+    outcome      dict          what the last revoke did: revoked/already/unknown
+    shares_url invites_url revoke_url
+    plus everything base.html reads.
+#}{% extends "base.html" %}
+
+{% block head %}
+{#
+  These rules belong in app/web/static/shares.css, beside workflow.css and
+  clerk.css. They are here because adding a static file was outside this change,
+  and they are repeated in invites_admin.html rather than shared for the same
+  reason. Every value is an existing token, so both colour schemes and the print
+  block in strata.css still apply, and no width is set anywhere: the narrow
+  screen rule in strata.css scrolls the table on its own.
+#}
+<style>
+.registry-warn {
+  margin: var(--s5) 0;
+  padding-left: var(--s4);
+  border-left: 3px solid var(--alarm);
+  max-width: 62ch;
+}
+.registry-warn strong { color: var(--alarm-strong); }
+.registry-outcome { margin: var(--s5) 0; max-width: 62ch; }
+.share-group { margin-top: var(--s6); }
+.share-row--refused > td:first-child { border-left: 3px solid var(--alarm); }
+.share-opens { margin: 0; padding: 0; list-style: none; }
+.share-open {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  align-items: center;
+  padding: var(--s2) var(--s2);
+  border-top: 1px solid var(--rule);
+  font: var(--t-small) / 1.5 var(--face-data);
+  color: var(--ink-2);
+}
+.share-open--refused {
+  background-image: repeating-linear-gradient(
+    135deg, var(--hatch) 0 1px, transparent 1px 7px
+  );
+}
+.verdict {
+  padding: 0.1em 0.45em;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-sm);
+  font: 700 var(--t-micro) / 1.4 var(--face-ui);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: var(--surface);
+}
+.verdict--refused {
+  border-color: var(--alarm);
+  background: var(--alarm-wash);
+  color: var(--alarm-strong);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% if reason %}
+<div class="page-head">
+  <div class="page-head__title"><h1>Share register</h1></div>
+</div>
+
+<div class="empty empty--none">
+  <p class="empty__title">You cannot open this screen.</p>
+  <div class="empty__body">
+    <p>{{ reason }}.</p>
+    <p>{{ refused }}</p>
+    {# Says nothing about whether this company has shared anything. A refusal
+       that leaked the count would tell somebody who may not read the screen how
+       much is on it. #}
+    <p>
+      This is a refusal, not a blank page. The screen exists, and
+      <code>{{ permission }}</code> is what opens it.
+    </p>
+  </div>
+</div>
+
+{% else %}
+
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>Share register</h1>
+    <span class="coord">{{ live_count }} live</span>
+  </div>
+  <p class="page-head__note">
+    Every link this company has sent outside it. A share link opens with no
+    account, so this page is the whole of the answer to "what can somebody read
+    without signing in". Verification runs again each time a link is opened, and
+    what the visitor was shown is recorded under the link, open by open.
+    <a href="{{ invites_url }}">Invitations</a> are the other half of that
+    answer.
+  </p>
+</div>
+
+{# The value and its source, never the value alone. A missing setting is not
+   off and not on, it is nobody having decided, and rendering a default the
+   same way as a decision hides which of the two a reviewer is looking at. The
+   sentence is the write layer's own, so this screen does not describe a switch
+   it does not read. #}
+<div class="registry-warn">
+  <p>
+    <strong>
+      Sharing is {% if switch_on %}ON{% else %}OFF{% endif %} for this company.
+    </strong>
+    <span class="coord">{{ switch_source }}</span>
+  </p>
+  <p>{{ switch_note }}</p>
+  <p>
+    Revoking a link below stops it at once, and stops it for anybody already
+    holding it.
+  </p>
+</div>
+
+{% if refused_links %}
+<div class="registry-warn">
+  <p>
+    <strong>{{ refused_links }} link(s) last opened on a refusal.</strong>
+    Somebody outside this company was shown the reason a statement was withheld
+    rather than the statement. That is the product working, and it is worth
+    reading before anyone else asks about it.
+  </p>
+</div>
+{% endif %}
+
+{% if outcome.revoked or outcome.already or outcome.unknown %}
+<p class="registry-outcome">
+  {% if outcome.revoked %}{{ outcome.revoked }} link(s) revoked.{% endif %}
+  {% if outcome.already %}{{ outcome.already }} were already revoked and were
+  left alone -- re-stating a fact is not a decision, so nothing was written for
+  those.{% endif %}
+  {% if outcome.unknown %}{{ outcome.unknown }} id(s) matched no link in this
+  company.{% endif %}
+  The table below is read from the rows and is the answer; this line only
+  reports the last click.
+</p>
+{% endif %}
+
+{% if rows %}
+{# One form around all three groups. A form cannot contain another, so the
+   per-row button posts `only` and the checkboxes post `share_ids` -- see the
+   note on revoke_shares(). Without that split, a click on one row's button
+   while another row happened to be ticked would revoke both. #}
+<form method="post" action="{{ revoke_url }}">
+
+{% for state in states %}
+{% set group = rows | selectattr('state', 'equalto', state) | list %}
+{% if group %}
+<section class="share-group">
+  <h2>{{ state | capitalize }}</h2>
+  <p class="page-head__note">
+    {%- if state == 'live' %}
+    Open to anybody holding the link, until the date in the expires column.
+    {%- elif state == 'expired' %}
+    The clock ran out. These no longer open, and they are kept because the
+    opens under them are the record of who read what.
+    {%- else %}
+    Stopped by a person. Revocation outranks expiry, so a link that was revoked
+    reads as revoked here even if its date had also passed.
+    {%- endif %}
+  </p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <span class="label">Pick</span>
+        </th>
+        <th scope="col">Link</th>
+        <th scope="col">Shows</th>
+        <th scope="col">Shared by</th>
+        <th scope="col">Expires</th>
+        <th scope="col">Opens</th>
+        <th scope="col">State</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in group %}
+      <tr class="share-row{% if row.last_open_refused %} share-row--refused{% endif %}">
+        <td>
+          {%- if row.state != 'revoked' %}
+          <input type="checkbox" name="share_ids" value="{{ row.share_id }}"
+                 aria-label="Select {{ row.share_id }} for revocation">
+          {%- else %}
+          <span class="coord">—</span>
+          {%- endif %}
+        </td>
+        <td>
+          <span class="coord">{{ row.share_id }}</span>
+          {% if row.state != 'revoked' %}
+          <p>
+            <button class="btn" type="submit" name="only" value="{{ row.share_id }}">
+              Revoke
+            </button>
+          </p>
+          {% endif %}
+        </td>
+        <td>
+          {{ row.subject_type }}
+          {%- if row.subject_url %}
+          <a href="{{ row.subject_url }}"><span class="coord">{{ row.subject_id }}</span></a>
+          {%- else %}
+          <span class="coord">{{ row.subject_id }}</span>
+          {# True of a row that has gone and of a kind of subject this screen
+             cannot resolve. Both mean the same thing to an administrator:
+             nothing here can say what the recipient will be shown. #}
+          <p class="withheld__reason">
+            This screen could not find that row in this company. The link still
+            opens for whoever holds it, and what it shows them is decided when
+            they open it.
+          </p>
+          {%- endif %}
+        </td>
+        <td>
+          {{ row.created_by }}
+          <p><span class="coord">made {{ row.created_at }}</span></p>
+          {% if row.revoked_at %}
+          <p><span class="coord">revoked {{ row.revoked_at }}{% if row.revoked_by %} by {{ row.revoked_by }}{% endif %}</span></p>
+          {% endif %}
+        </td>
+        <td><span class="coord">{{ row.expires_at }}</span></td>
+        <td>
+          {%- if row.open_count %}
+          {{ row.open_count }} open(s)
+          {%- if row.refused_opens %}, {{ row.refused_opens }} refused{% endif %}
+          <p><span class="coord">last {{ row.last_open }}</span></p>
+          {%- else %}
+          Not opened
+          {%- endif %}
+          {% if row.counter_disagrees %}
+          <p class="withheld__reason">{{ row.counter_disagrees }}</p>
+          {% endif %}
+        </td>
+        <td><span class="badge {{ row.badge }}">{{ row.state }}</span></td>
+      </tr>
+      {% if row.opens %}
+      <tr class="share-opens-row">
+        <td colspan="7">
+          <ul class="share-opens">
+            {% for open in row.opens %}
+            <li class="share-open{% if not open.verified %} share-open--refused{% endif %}">
+              <span class="verdict{% if not open.verified %} verdict--refused{% endif %}">
+                {%- if open.verified %}Verified{% else %}Refused{% endif -%}
+              </span>
+              <span>{{ open.opened_at }}</span>
+              <span>from {{ open.ip }}</span>
+              <span>
+                {%- if open.verified -%}
+                the citation verified and the statement was shown
+                {%- else -%}
+                the citation did not verify, so the reason was shown and the
+                statement was withheld
+                {%- endif -%}
+              </span>
+            </li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+{% endfor %}
+
+<div class="empty__actions">
+  <button class="btn btn--primary" type="submit">Revoke everything ticked</button>
+</div>
+</form>
+
+{% else %}
+<div class="empty empty--none">
+  <p class="empty__title">Nothing has been shared out of this company.</p>
+  <div class="empty__body">
+    <p>
+      No link exists that opens without an account. When one is made it appears
+      here, with who made it, what it shows and every time it was opened.
+    </p>
+  </div>
+</div>
+{% endif %}
+
+{% endif %}
+{% endblock %}

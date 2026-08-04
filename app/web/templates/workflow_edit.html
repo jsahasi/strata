@@ -1,0 +1,211 @@
+{#
+  workflow_edit.html — the canvas. Drawn by app/web/static/workflow.js.
+
+  Context, from app/web/views/admin.py:
+    graph          dict   the wire contract's JSON for this route
+    workflow_id    str
+    editable       bool   True only while the route is a draft
+    graph_url      str    POST here to save, GET here to reload
+    activate_url   str    POST here to go live
+    roles          list[str]              role names this company can grant
+    users          list[{id, name}]       accounts in this company
+    timeout_*, assignee_*, role_prefix, user_prefix, draft_status
+                          the vocabularies, passed rather than typed here
+    route_url      str    the read-only screen
+    plus everything base.html reads.
+
+  THE GRAPH IS IN THE PAGE, not fetched. Same argument as citation.js: opening
+  the editor must not depend on a second request succeeding. Saving needs the
+  network and says so when it fails; drawing does not.
+
+  THE VOCABULARIES COME FROM THE SERVER. Not one of the eight words below is
+  typed into this file or into the script. app/state/models.py owns them, the
+  view passes them, and the editor builds its menus from what it was given -- so
+  a word added there appears here without anyone remembering to add it, and a
+  word removed there stops being offerable rather than staying as a dead option
+  that saves and then fails validation.
+
+  WHAT HAPPENS WITH NO SCRIPT. The canvas does not draw. That is stated in the
+  page rather than left as a blank rectangle, with a link to the read-only route,
+  which is server-rendered and needs nothing.
+#}{% extends "base.html" %}
+
+{% block head %}<link rel="stylesheet" href="/static/workflow.css">{% endblock %}
+
+{% block content %}
+<div class="page-head">
+  <div class="page-head__title">
+    <h1 id="wf-name">{{ graph.name }}</h1>
+    <span class="badge {{ 'badge--active' if graph.status == 'active' else ('badge--closed' if graph.status == 'archived' else 'badge--draft') }}">{{ graph.status }}</span>
+    <span class="coord">{{ workflow_id }}</span>
+  </div>
+  <p class="page-head__note">
+    {% if editable %}
+    {# The drag instructions describe the canvas, so they go when it does. On a
+       narrow screen the list replaces it and carries its own note; leaving
+       these here would tell somebody to do a thing their screen cannot do. #}
+    <span class="wf-pointer-only">Drag a step to move it. Drag from a step's
+    right edge to another step to connect them.</span>
+    Select a step to set who is asked and what happens when their time runs
+    out. Activating freezes this route: a run in flight must not change under
+    it.
+    {% else %}
+    This route is {{ graph.status }} and cannot be edited. Activation freezes a
+    route so a run already walking it reads the graph it started under. To change
+    it, open a new draft from <a href="{{ workflows_url }}">Approval routes</a>
+    and activate that.
+    {% endif %}
+  </p>
+</div>
+
+<noscript>
+  <div class="empty empty--none">
+    <p class="empty__title">The canvas needs JavaScript, and it is not running.</p>
+    <div class="empty__body">
+      <p>
+        This editor draws a graph, so it cannot be a form. Nothing here is
+        hidden from you by choice: with no script there is nothing to draw with.
+      </p>
+      <p>
+        The route itself is readable without any script at
+        <a href="{{ route_url }}">Approval route</a>, which is the screen every
+        other person in your company uses.
+      </p>
+    </div>
+  </div>
+</noscript>
+
+{# The graph, and the vocabularies to edit it with. Read once, on load. #}
+<script id="wf-graph" type="application/json">{{ graph | tojson }}</script>
+<script id="wf-config" type="application/json">{{ {
+  "graph_url": graph_url,
+  "activate_url": activate_url,
+  "editable": editable,
+  "timeout_actions": timeout_actions,
+  "timeout_remind": timeout_remind,
+  "timeout_escalate": timeout_escalate,
+  "timeout_bypass": timeout_bypass,
+  "assignee_literals": assignee_literals,
+  "role_prefix": role_prefix,
+  "user_prefix": user_prefix,
+  "roles": roles,
+  "users": users,
+} | tojson }}</script>
+
+<div class="wf-editor" data-editable="{{ 'yes' if editable else 'no' }}">
+
+  <div class="wf-bar" role="toolbar" aria-label="Route">
+    {# The name is a property of the route, not of a step, so it belongs here
+       and not in the step panel. Without it a route opened from the list keeps
+       whatever it was called on the day it was made, for ever. #}
+    <label class="label" for="wf-route-name">Name</label>
+    <input class="wf-bar__name" id="wf-route-name" type="text" maxlength="256"
+           autocomplete="off" value="{{ graph.name }}"
+           {{ '' if editable else 'disabled' }}>
+    <button class="btn" type="button" id="wf-add" {{ '' if editable else 'disabled' }}>Add a step</button>
+    <button class="btn" type="button" id="wf-save" {{ '' if editable else 'disabled' }}>Save draft</button>
+    <button class="btn btn--primary" type="button" id="wf-activate" {{ '' if editable else 'disabled' }}>Activate</button>
+    <p class="wf-bar__status" id="wf-status" role="status" aria-live="polite"></p>
+  </div>
+
+  {# Graph-level refusals: two starting points, a loop, a frozen route. They
+     belong to no node, so they go where the buttons are rather than on a step
+     that is not at fault. #}
+  <div class="wf-graph-errors" id="wf-graph-errors" hidden></div>
+
+  <div class="split wf-split">
+    <div>
+      {# The canvas. Wires in SVG behind, nodes as real buttons in front: a
+         <g> is not reliably focusable, and a button is reachable by Tab, has a
+         focus ring, and reads as a control to a screen reader without any
+         role juggling. #}
+      <div class="wf-canvas" id="wf-canvas" tabindex="-1">
+        <svg class="wf-wires" id="wf-wires" aria-hidden="true" focusable="false"></svg>
+        <div class="wf-nodes" id="wf-nodes"></div>
+      </div>
+
+      <p class="wf-keys">
+        Keyboard: Tab reaches each step. Arrow keys move the selected step,
+        Shift with an arrow moves it further. Enter or Space selects it for
+        editing. <kbd>c</kbd> starts a connection and <kbd>c</kbd> on a second
+        step finishes it; Escape cancels. Delete removes the selected step and
+        its arrows.
+      </p>
+
+      {# The small-screen answer. A drag-and-drop canvas is not usable on a
+         phone, so below 52rem the canvas is replaced by this list -- the same
+         model, rendered as steps in order, each one selectable and editable.
+         Positions and connections need a pointer and are not offered here,
+         which the note says rather than leaving a control that does nothing. #}
+      <div class="wf-small" id="wf-small">
+        <p class="wf-small__note">
+          This screen is too narrow for the canvas, so the steps are listed in
+          order instead. You can select and edit any of them. Moving a step and
+          drawing a connection need a wider screen and a pointer.
+        </p>
+        <ol class="wf-small__list" id="wf-small-list"></ol>
+      </div>
+    </div>
+
+    <aside class="split__aside">
+      <form class="card wf-panel" id="wf-panel" hidden>
+        <p class="label">Selected step</p>
+        <p class="wf-panel__id"><span class="coord" id="wf-panel-id"></span></p>
+
+        <p class="wf-panel__errors" id="wf-panel-errors" hidden></p>
+
+        <div class="wf-field">
+          <label class="label" for="wf-label">Label</label>
+          <input id="wf-label" name="label" type="text" maxlength="256"
+                 placeholder="Obligation owner review" autocomplete="off">
+          <p class="wf-hint">
+            This is what everybody who is not an admin reads on the route screen.
+          </p>
+        </div>
+
+        <div class="wf-field">
+          <label class="label" for="wf-assignee">Who is asked</label>
+          <select id="wf-assignee" name="assignee_rule"></select>
+        </div>
+
+        <div class="wf-field">
+          <label class="label" for="wf-hours">How long they have, in hours</label>
+          <input id="wf-hours" name="approval_hours" type="number" min="1" step="1"
+                 inputmode="numeric" placeholder="24">
+          <p class="wf-hint">
+            Left blank while you decide. Activation refuses a step with no
+            deadline rather than filling one in.
+          </p>
+        </div>
+
+        <div class="wf-field">
+          <label class="label" for="wf-timeout">When that time runs out</label>
+          <select id="wf-timeout" name="on_timeout"></select>
+          <p class="wf-hint" id="wf-timeout-hint"></p>
+        </div>
+
+        <div class="wf-field" id="wf-remind-field" hidden>
+          <label class="label" for="wf-remind">Remind every, in hours</label>
+          <input id="wf-remind" name="remind_every_hours" type="number" min="1"
+                 step="1" inputmode="numeric" placeholder="4">
+        </div>
+
+        <div class="wf-field" id="wf-escalate-field" hidden>
+          <label class="label" for="wf-escalate">Escalate to</label>
+          <select id="wf-escalate" name="escalate_to"></select>
+        </div>
+
+        <div class="wf-panel__actions">
+          <button class="btn" type="button" id="wf-delete">Delete this step</button>
+        </div>
+      </form>
+
+      <p class="wf-panel__empty" id="wf-panel-empty">
+        Nothing is selected. Choose a step to edit it, or add one.
+      </p>
+    </aside>
+  </div>
+</div>
+
+<script src="/static/workflow.js"></script>
+{% endblock %}

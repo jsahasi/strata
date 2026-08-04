@@ -214,24 +214,116 @@ footer a{color:var(--muted)}
       <p><b>What stays.</b> Your email address as the actor on rows you caused. Your account id,
       your session id and the IP address on the rows the sign-in path wrote. What each decision
       was and why.</p>
-      <p><b>What a design with erasure could reach.</b> Account details, uploaded documents,
-      passages, claims, project work and chat turns — everything in the section above that is not
-      the trail.</p>
-      <p><b>What is true today.</b> The product implements no erasure at all. There is no delete
-      path for a user, a document, a claim or a session anywhere in the code. Suspending an
-      account keeps the row. Revoking a role keeps the row. Signing out keeps the session row and
-      marks it revoked with a reason. That is a limit of an unfinished build, not a policy anyone
-      chose.</p>
+      <p><b>What the trail still says about a record after that record is deleted.</b> The audit
+      row naming a thing outlives it, and goes on pointing at an id that no longer resolves. A
+      reader still learns that a record with that id existed, what kind of thing it was, when each
+      decision about it was taken, who took it, from which address, and the reason given. They do
+      not learn what it said — the words of a chat turn, the text of a complaint, the address a
+      share link was opened from. Those live only in the row that went. That is the honest shape
+      of erasure against a log that cannot forget, and it is less than erasure; calling it
+      anything else would be the failure this product exists to stop.</p>
+      <p><b>Two addresses no deletion can reach at all.</b> A failed sign-in writes the address
+      that was tried into the trail as the actor, and as the subject too when no account matched
+      it. An invitation's row quotes the invited address in its reason. Both sit inside the hash.
+      Every other table in the database could be emptied and those two lines would still be
+      there.</p>
+      <p><b>What is true today.</b> Six purge functions exist, in
+      <code>app/state/retention.py</code>, and they are tested. They cover the tables holding an
+      address, an email or a person's own words: sessions, share opens, chat transcripts,
+      feedback and invitations. <b>Nothing calls them.</b> There is still no erasure path for a
+      user, a document, a claim or a proceeding: suspending an account keeps the row, revoking a
+      role keeps the row, and signing out keeps the session row and marks it revoked with a
+      reason. The next section sets out the whole schedule and where it stops.</p>
       <div class="ph"><b>Placeholder — required before production use</b>
-      A written retention and erasure procedure: what a lawful erasure request can and cannot
-      reach, who decides, and how the answer is given. It does not exist. No retention schedule
-      is written down, and nothing in the code deletes anything on a clock.</div>
+      A written erasure procedure: what a lawful request can and cannot reach, who decides, how
+      the answer is given, and in what time. The schedule below is code; it is not that
+      procedure, and it does not answer a request from a person.</div>
     </div>
   </div></div>
 </section>
 
 <section>
   <div class="wrap"><div class="lined" data-line="5">
+    <h2>How long each thing is kept</h2>
+    <div class="narrow">
+      <p>A retention schedule is usually a table in a document, which is to say a set of claims
+      nobody can check. This one is code. Every table in the database carries a window and a
+      reason beside it in <code>app/state/retention.py</code>, and a test walks the schema and
+      fails on a table nobody has given a window — so a table added next week cannot arrive
+      quietly with no answer. A window with no reason is a number somebody changes without
+      thinking, so the reason is part of the rule rather than a note about it.</p>
+      <p>The rows holding an address, an email or a person's own words get the shortest windows.
+      The rows holding your filings get no clock at all, and the reason is below.</p>
+    </div>
+
+    <div class="stage"><b>the trail</b><p><em>Never.</em> Every row's hash covers the row before
+      it, so removing one does not delete a record — it destroys the evidence value of every
+      record after it, and a gap in the numbering is itself read as a deletion. The section above
+      says what that costs.</p></div>
+
+    <div class="stage"><b>sessions</b><p><b>90 days</b> after the session expires. An expired
+      session row answers one question — was this sign-in used, from which address, on which
+      browser — and after a quarter no investigation is still asking it. It holds an IP address
+      and a browser line, so it gets the shortest window of anything kept at all. Measured from
+      the expiry rather than from a sign-out, because the expiry is the last moment the token
+      could have worked.</p></div>
+
+    <div class="stage"><b>share opens</b><p><b>90 days</b> for the address, <b>365 days</b> for
+      the row. Two different things sit in it: the address of somebody who never signed in, and
+      the record of what a recipient was shown and whether the citation held at that moment. The
+      address comes out at ninety days and the row stays; the row goes at a year. Where the
+      address has been taken out the field says so rather than going blank, because blank on that
+      column already means the server never recorded one.</p></div>
+
+    <div class="stage"><b>chat</b><p><b>365 days</b> after the last thing said, or after it was
+      opened where nobody ever spoke. What you typed is yours. One exception, and it announces
+      itself: a conversation holding a turn somebody complained about waits until the complaint
+      goes, so that a reviewer never opens a complaint and finds the thing complained about
+      missing. The report names the row doing the holding.</p></div>
+
+    <div class="stage"><b>feedback</b><p><b>365 days</b> after it was written, whether or not
+      anybody triaged it. Keeping untriaged rows for ever would turn the queue nobody worked into
+      an archive nobody agreed to. The backlog item it was triaged into survives and carries the
+      substance without your words.</p></div>
+
+    <div class="stage"><b>invitations</b><p><b>90 days</b> after it stops being acceptable. It
+      holds the email address of somebody who may never have had an account here, which makes it
+      the row least likely to belong to a customer at all. The trail row saying they were invited
+      outlives it, and quotes that address.</p></div>
+
+    <div class="stage"><b>everything else</b><p>No clock. Documents, passages, proceedings,
+      changes, claims, escalations, projects, findings, deliverables, obligations, approval
+      routes, accounts and role grants are kept while the account is open. They are what the
+      product is for — verification re-reads the stored bytes every time it checks a citation, so
+      discarding them would turn every claim into an unverifiable assertion. There is no
+      account-closure event anywhere in this build, so there is nothing for a clock to start from,
+      and no code here pretends otherwise.</p></div>
+
+    <div class="narrow">
+      <p>Every purge is a dry run unless the caller asks for the other thing, and the dry run
+      reports exactly what would go. Every real purge writes a trail row naming the rule, the
+      table, the count and the cutoff <em>before</em> it removes anything, because a deletion
+      nobody recorded cannot be told apart from a breach. That row names nothing out of the rows
+      it deleted: an address copied into an append-only log to record its own deletion has been
+      moved rather than removed. Running the purge twice is safe, and the second pass writes
+      nothing.</p>
+      <p class="muted"><b>Where the schedule stops.</b> It reaches the rows in Strata's own
+      database and nothing else. Whatever web server sits in front of the application keeps its
+      own request log, and no code here reads or removes that. Nor does a purge reach a copy of
+      the database taken before it ran.</p>
+      <div class="ph"><b>Placeholder — required before production use</b>
+      Something to run it. The functions exist and are tested, and nothing calls them: there is no
+      scheduler in this product — no cron entry, no worker, no startup hook — so no row has ever
+      been deleted on a clock here. In production this would be a daily job for each company: a
+      dry run whose report goes to whoever is accountable, then the destructive run. That
+      difference, between a control and a promise, is why this is a box and not a sentence saying
+      the schedule is enforced.</div>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="6">
     <h2>Who else sees it</h2>
     <div class="narrow">
       <p>Nobody, today.</p>
@@ -257,7 +349,7 @@ footer a{color:var(--muted)}
 </section>
 
 <section>
-  <div class="wrap"><div class="lined" data-line="6">
+  <div class="wrap"><div class="lined" data-line="7">
     <h2>The cookie</h2>
     <div class="narrow">
       <p>One cookie, named <code>strata_session</code>. It carries a random 256-bit token and
@@ -275,7 +367,7 @@ footer a{color:var(--muted)}
 </section>
 
 <section>
-  <div class="wrap"><div class="lined" data-line="7">
+  <div class="wrap"><div class="lined" data-line="8">
     <h2>What the demonstration contains</h2>
     <div class="narrow">
       <p>The corpus the product loads is invented: a fictional commission, a fictional docket, a
@@ -290,7 +382,7 @@ footer a{color:var(--muted)}
 </section>
 
 <section>
-  <div class="wrap"><div class="lined" data-line="8">
+  <div class="wrap"><div class="lined" data-line="9">
     <h2>Where it runs, and who to ask</h2>
     <div class="narrow">
       <p>The data sits in a single SQLite file on whichever machine runs the product. There is no

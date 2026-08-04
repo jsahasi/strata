@@ -1,0 +1,241 @@
+{#
+  invites_admin.html — every person this company has asked to join, and the
+  queue of the ones an administrator has to decide on.
+
+  ONE TEMPLATE, TWO ANSWERS, exactly as shares_admin.html and workflow_list.html
+  do it. The view sets `reason` only when it refused.
+
+  WHAT THE QUEUE IS. An analyst working an escalation can pull in the person who
+  owns the obligation. Same email domain as the company, and a holder of
+  user.invite may do it directly. Any other domain, and it waits here. That is
+  the line a regulated buyer cares about: nobody outside the organisation gets
+  an account without somebody accountable saying yes.
+
+  THE FLAG ON A ROW IS NOT DECORATION. An invitation that claims a live account
+  and has none is somebody the waiting work cannot be routed to. The analyst
+  must never see a silent gap, so neither may the administrator.
+
+  Context, from app/web/views/shares_admin.py:
+    reason         str | None   why this person was refused
+    refused        str          what to do about it
+    permission     str          "user.manage"
+    rows           list[InviteRow]  awaiting approval first
+    awaiting_count int
+    unrouted_count int
+    decided        str          "yes" or "refused", from the last click
+    code           str          the invite layer's reason code for that answer
+    refusal_text   str          its own sentence, on a refusal it rendered
+    blocked        str          why no decision can be made at all, or ""
+    shares_url invites_url
+    plus everything base.html reads.
+#}{% extends "base.html" %}
+
+{% block head %}
+{#
+  The same eight rules as shares_admin.html, repeated rather than shared: both
+  belong in app/web/static/shares.css, and adding a static file was outside this
+  change. Every value is an existing token, and no width is set anywhere.
+#}
+<style>
+.registry-warn {
+  margin: var(--s5) 0;
+  padding-left: var(--s4);
+  border-left: 3px solid var(--alarm);
+  max-width: 62ch;
+}
+.registry-warn strong { color: var(--alarm-strong); }
+.registry-outcome { margin: var(--s5) 0; max-width: 62ch; }
+.invite-row--unrouted > td:first-child { border-left: 3px solid var(--alarm); }
+.invite-gap {
+  display: block;
+  margin-top: var(--s2);
+  font-size: var(--t-small);
+  color: var(--alarm-strong);
+}
+.invite-decide {
+  display: inline-flex;
+  gap: var(--s2);
+  flex-wrap: wrap;
+  margin: 0;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% if reason %}
+<div class="page-head">
+  <div class="page-head__title"><h1>Invitations</h1></div>
+</div>
+
+<div class="empty empty--none">
+  <p class="empty__title">You cannot open this screen.</p>
+  <div class="empty__body">
+    <p>{{ reason }}.</p>
+    <p>{{ refused }}</p>
+    <p>
+      This is a refusal, not a blank page. The screen exists, and
+      <code>{{ permission }}</code> is what opens it.
+    </p>
+  </div>
+</div>
+
+{% else %}
+
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>Invitations</h1>
+    <span class="coord">{{ awaiting_count }} awaiting approval</span>
+  </div>
+  <p class="page-head__note">
+    Somebody inside this company asked for each of these, because a piece of
+    work is waiting on the person named. An address on another domain waits for
+    you. An invited person is granted the obligation owner role and nothing
+    else, whatever the item is. The other half of what leaves this company is
+    the <a href="{{ shares_url }}">share register</a>.
+  </p>
+</div>
+
+{% if blocked %}
+<div class="registry-warn">
+  <p><strong>This queue cannot be decided, and nothing below was read.</strong></p>
+  <p>{{ blocked }}</p>
+  <p>
+    Both the list and the two decisions come from that one module, so this page
+    is showing you nothing rather than showing you a stale list. The share
+    register is a separate screen and is unaffected.
+  </p>
+</div>
+{% endif %}
+
+{% if unrouted_count %}
+<div class="registry-warn">
+  <p>
+    <strong>{{ unrouted_count }} invitation(s) have no account behind them.</strong>
+    The work that pulled each of those people in cannot be routed to anybody.
+    It is visible here and on the item; it is never silent.
+  </p>
+</div>
+{% endif %}
+
+{% if decided == 'refused' %}
+<div class="registry-warn">
+  <p>
+    <strong>Nothing was changed.</strong>
+    The invite layer refused that decision
+    {%- if code %} <code>{{ code }}</code>{% endif %}.
+  </p>
+  {# Its words, not this screen's. An invitation that is not queued, one that
+     has expired, and one this account may not release are all refused there
+     rather than here, and rewriting the sentence would be this screen
+     explaining a decision it did not make. #}
+  {% if refusal_text %}<p>{{ refusal_text }}</p>{% endif %}
+</div>
+{% elif decided == 'yes' %}
+<p class="registry-outcome">
+  Decision recorded{% if code %} (<code>{{ code }}</code>){% endif %}.
+  The row below carries the outcome, and it is read from the row rather than
+  from what the write layer returned.
+</p>
+{% endif %}
+
+{% if rows %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Invitation</th>
+      <th scope="col">Person</th>
+      <th scope="col">Why</th>
+      <th scope="col">Asked by</th>
+      <th scope="col">State</th>
+      <th scope="col">Account</th>
+      <th scope="col">Decide</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr class="invite-row{% if row.unrouted %} invite-row--unrouted{% endif %}">
+      <td>
+        <span class="coord">{{ row.invitation_id }}</span>
+        <p><span class="coord">expires {{ row.expires_at }}</span></p>
+      </td>
+      <td>
+        {{ row.email }}
+        {% if row.accepted_at %}
+        <p><span class="coord">accepted {{ row.accepted_at }}</span></p>
+        {% endif %}
+      </td>
+      {# Every invitation is justified and the kind says by what: an item for a
+         handoff, a named administrator for a provision. An empty cell on half
+         the rows would read as a gap in the record rather than as the other
+         half of that rule. #}
+      <td>
+        <span class="badge badge--routine">{{ row.kind }}</span>
+        {%- if row.subject_type and row.subject_id %}
+        <p>
+          {{ row.subject_type }}
+          <span class="coord">{{ row.subject_id }}</span>
+        </p>
+        {%- else %}
+        <p>{{ row.justification }}</p>
+        {%- endif %}
+      </td>
+      <td>
+        {{ row.invited_by }}
+        <p><span class="coord">asked {{ row.invited_at }}</span></p>
+        {% if row.approved_by %}
+        <p><span class="coord">approved by {{ row.approved_by }}</span></p>
+        {% endif %}
+      </td>
+      <td><span class="badge {{ row.badge }}">{{ row.status }}</span></td>
+      <td>
+        {%- if row.invited_user %}
+        {{ row.invited_user }}
+        {%- elif row.unrouted %}
+        <span class="invite-gap">
+          No account yet, so nothing can be routed to this person.
+        </span>
+        {%- else %}
+        <span class="coord">none, and none is due yet</span>
+        {%- endif %}
+      </td>
+      <td>
+        {%- if row.awaiting %}
+        {# Two small forms in one cell rather than one form with two buttons:
+           an approval and a refusal are different acts and each posts to its
+           own path, so neither can be reached by changing a value. #}
+        <span class="invite-decide">
+          <form method="post" action="{{ invites_url }}/{{ row.invitation_id }}/approve">
+            <button class="btn btn--primary" type="submit">Approve</button>
+          </form>
+          <form method="post" action="{{ invites_url }}/{{ row.invitation_id }}/reject">
+            <button class="btn" type="submit">Reject</button>
+          </form>
+        </span>
+        {%- else %}
+        <span class="coord">nothing to decide</span>
+        {%- endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% elif not blocked %}
+{# Only when the list was READ and came back empty. With the invite module
+   unreachable there is no list, and saying "nobody has been invited" would be
+   a different statement from "nothing could be read", and a false one. #}
+<div class="empty empty--none">
+  <p class="empty__title">Nobody has been invited into this company.</p>
+  <div class="empty__body">
+    <p>
+      An invitation is made from an item somebody is waiting on, never on its
+      own. Creating an account with no work behind it is a different act and it
+      goes through <code>{{ permission }}</code>.
+    </p>
+  </div>
+</div>
+{% endif %}
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,113 @@
+{#
+  _clerk.html — the assistant dock, included by base.html on every screen.
+
+  IT CARRIES NO WORDS THE ASSISTANT SPEAKS. The name, the tagline, the greeting
+  and the opening actions all arrive from GET /chat/opening, which reads them
+  out of app/chat/persona.py. That file is the one home for how this thing
+  speaks, and a greeting copied into this template would drift the day somebody
+  edits the persona -- with nothing failing. The placeholder below says
+  "Assistant", a role noun and not a name, and it is replaced within a
+  same-origin request of the page loading. tests/test_chat_surface.py refuses a
+  build where any of the persona's own strings appear in this file.
+
+  IT SHIPS WITH THE CONTROLS HIDDEN, which is the opposite of what
+  app/web/static/citation.js does and for the same reason. A citation panel
+  holds evidence that must survive a script that never ran, so it ships open and
+  is closed by script. This panel IS a script -- every button here needs a fetch
+  to do anything -- so a button rendered without one would be a control that
+  lies. clerk.js reveals them. The noscript block says what to do instead.
+
+  Context: none. Deliberately. base.html is shared by six screens whose views
+  build their context in three different modules, and a dock that needed a key
+  from each of them would be a dock that renders on five screens and not the
+  sixth. Every path it needs is a data attribute below, written once.
+
+  WHAT base.html HAS TO ADD (three lines, and it is not this agent's file):
+    in <head>   <link rel="stylesheet" href="/static/clerk.css">
+    in the masthead bar, after the company paragraph:
+                <div class="masthead__tools" data-clerk-slot></div>
+    before </body>   {% include "_clerk.html" %}
+  Without the slot the controls pin to the corner of the viewport instead, and
+  clerk.js says so in the console rather than moving silently.
+#}
+<div class="clerk"
+     data-clerk
+     data-clerk-turn="/chat"
+     data-clerk-opening="/chat/opening"
+     data-clerk-thumb="/chat/feedback"
+     data-clerk-bug="/feedback/bug"
+     data-clerk-review="/escalations">
+
+  <div class="clerk-launch" data-clerk-launch hidden>
+    <button type="button" class="btn" data-clerk-open
+            aria-expanded="false" aria-controls="clerk-dock">
+      <span data-clerk-name>Assistant</span>
+    </button>
+    <button type="button" class="btn" data-clerk-bug-open
+            aria-expanded="false" aria-controls="clerk-bug">Report a bug</button>
+  </div>
+
+  <noscript>
+    <p class="clerk-note">
+      The assistant needs JavaScript, and this page is running without it. The
+      record is still on the screens: the project list, the proceedings, and
+      <a href="/escalations">the review queue</a>, which holds everything the
+      product refused to assert.
+    </p>
+  </noscript>
+
+  <section class="clerk-dock" id="clerk-dock" hidden
+           role="dialog" aria-modal="false" aria-labelledby="clerk-title">
+    <header class="clerk-dock__head">
+      <div>
+        <h2 class="clerk-dock__title" id="clerk-title" data-clerk-name>Assistant</h2>
+        <p class="clerk-dock__tagline" data-clerk-tagline></p>
+      </div>
+      <button type="button" class="clerk-dock__close" data-clerk-close>Close</button>
+    </header>
+
+    {# role=log with aria-live: a reply that arrives while the person is looking
+       elsewhere is read out rather than appearing in silence. #}
+    <div class="clerk-dock__transcript" data-clerk-transcript
+         role="log" aria-live="polite" tabindex="0"></div>
+
+    <div class="clerk-pills" data-clerk-pills></div>
+
+    <form class="clerk-ask" data-clerk-form>
+      <label class="clerk-comment__label" for="clerk-input">Ask</label>
+      <textarea class="clerk-ask__field" id="clerk-input" name="message" rows="2"
+                data-clerk-input autocomplete="off"
+                placeholder="Ask about a project, a change, or what is waiting"></textarea>
+      <button class="btn btn--primary" type="submit" data-clerk-send>Send</button>
+    </form>
+  </section>
+
+  <section class="clerk-bug" id="clerk-bug" hidden
+           role="dialog" aria-modal="false" aria-labelledby="clerk-bug-title">
+    <div class="clerk-bug__head">
+      <h2 class="clerk-dock__title" id="clerk-bug-title">Report a bug</h2>
+      <button type="button" class="clerk-dock__close" data-clerk-bug-close>Close</button>
+    </div>
+    <form data-clerk-bug-form>
+      <div class="clerk-bug__row">
+        <label class="clerk-bug__label" for="clerk-bug-title-field">What went wrong</label>
+        <input class="clerk-bug__field" id="clerk-bug-title-field" name="title"
+               type="text" maxlength="256" required>
+      </div>
+      <div class="clerk-bug__row">
+        <label class="clerk-bug__label" for="clerk-bug-detail">What you were doing</label>
+        <textarea class="clerk-bug__field" id="clerk-bug-detail" name="detail"
+                  rows="5"></textarea>
+      </div>
+      <p class="clerk-bug__where">
+        Screen: <span data-clerk-surface>this one</span>
+      </p>
+      <div class="clerk-bug__actions">
+        <button class="btn btn--primary" type="submit">Send the report</button>
+      </div>
+      <p class="clerk-note" data-clerk-bug-said role="status"></p>
+    </form>
+  </section>
+</div>
+
+<script src="/static/clerk.js" defer></script>
