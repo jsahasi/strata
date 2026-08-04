@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Terms — Strata</title>
+<meta name="description" content="The terms of using Strata: a pre-production build, offered as is, that gives no legal advice and makes no regulatory determination. Your documents stay yours.">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --paper:#f7f8fa; --ink:#10141c; --muted:#5a6373; --rule:#dfe3ea;
+  --stamp:#1b3a8f; --withheld:#a8620e; --panel:#ffffff;
+  --measure:33rem;
+  --serif:ui-serif,"Iowan Old Style",Charter,Palatino,"Book Antiqua",Georgia,serif;
+  --sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#0d1017; --ink:#e6e8ec; --muted:#98a1b2; --rule:#242a35;
+         --stamp:#8fa9e8; --withheld:#d99a45; --panel:#131822; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.62 var(--serif)}
+
+a{color:var(--stamp)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--stamp);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;background:var(--panel);padding:.6rem .9rem;z-index:20;border:1px solid var(--rule)}
+
+/* ---- the signature: a testimony line-number margin ---- */
+.wrap{max-width:52rem;margin:0 auto;padding:0 1.25rem}
+.lined{position:relative;padding-left:3.25rem}
+.lined::before{
+  content:attr(data-line);
+  position:absolute;left:0;top:.34em;width:2.1rem;text-align:right;
+  font:500 12px/1 var(--mono);color:var(--muted);opacity:.62;
+  font-variant-numeric:tabular-nums;
+}
+.lined::after{
+  content:"";position:absolute;left:2.6rem;top:0;bottom:0;width:1px;background:var(--rule);
+}
+@media (max-width:640px){
+  .lined{padding-left:0}
+  .lined::before,.lined::after{display:none}
+}
+
+/* ---- header ---- */
+header{border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:10}
+.bar{max-width:52rem;margin:0 auto;padding:.85rem 1.25rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.brand{font:600 15px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none;margin-right:auto}
+.brand span{color:var(--stamp)}
+.navlink{font:500 14px/1 var(--sans);color:var(--muted);text-decoration:none}
+.navlink:hover{color:var(--ink)}
+.signin{
+  font:600 14px/1 var(--sans);text-decoration:none;color:var(--panel);background:var(--stamp);
+  padding:.62rem 1.05rem;border-radius:3px;white-space:nowrap;
+}
+.signin:hover{filter:brightness(1.12)}
+@media (prefers-color-scheme:dark){.signin{color:#0d1017}}
+
+/* ---- type ---- */
+h1{font:400 clamp(2rem,5.4vw,3.05rem)/1.1 var(--serif);letter-spacing:-.018em;margin:0 0 1.1rem;text-wrap:balance}
+h2{font:600 12px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--stamp);margin:0 0 1.15rem}
+h3{font:500 1.16rem/1.35 var(--serif);margin:0 0 .5rem}
+p{margin:0 0 1.05rem}
+.lede{font-size:1.1rem}
+.muted{color:var(--muted)}
+section{padding:4.2rem 0;border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0}
+.narrow{max-width:var(--measure)}
+
+/* ---- rows of record ---- */
+.rec{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--stamp);
+     padding:1rem 1.1rem;margin-bottom:.85rem;border-radius:2px}
+.rec--held{border-left-color:var(--withheld)}
+.rec p{margin:0}
+.held-label{font:600 11px/1.4 var(--sans);letter-spacing:.11em;text-transform:uppercase;color:var(--withheld);display:block;margin-bottom:.5rem}
+.caption{font:400 14px/1.55 var(--sans);color:var(--muted);margin-top:.9rem}
+
+/* ---- labelled rows ---- */
+.stage{display:grid;grid-template-columns:auto 1fr;gap:.9rem 1rem;align-items:baseline;padding:.85rem 0;border-bottom:1px solid var(--rule)}
+.stage:last-child{border-bottom:0}
+.stage b{font:500 12px/1.6 var(--mono);color:var(--muted);white-space:nowrap}
+.stage b.no{color:var(--withheld)}
+.stage p{margin:.2rem 0 0;font:400 15px/1.55 var(--sans)}
+.stage em{font-style:normal;color:var(--withheld);font-weight:600}
+
+/* ---- refusals ---- */
+.refuse{border-left:2px solid var(--rule);padding-left:1.1rem;margin-bottom:1.5rem}
+.refuse h3{font:600 15px/1.4 var(--sans)}
+.refuse p{font:400 15px/1.58 var(--sans);color:var(--muted);margin:0}
+
+/* ---- policy pages ---- */
+.stamp{font:500 12px/1.5 var(--mono);color:var(--muted);letter-spacing:.04em;margin:0 0 1.7rem}
+.note{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--withheld);
+      border-radius:2px;padding:1rem 1.1rem;margin:0 0 1.8rem;font:400 15px/1.58 var(--sans)}
+.note p{margin:0 0 .6rem}
+.note p:last-child{margin:0}
+.plain{font:400 15px/1.58 var(--sans)}
+code{font:400 .9em/1.4 var(--mono);background:color-mix(in srgb,var(--stamp) 9%,transparent);padding:0 .22em;border-radius:2px}
+ul{margin:0 0 1.05rem;padding-left:1.1rem;font:400 15px/1.58 var(--sans)}
+li{margin:0 0 .5rem}
+.ph{border:1px dashed var(--withheld);border-radius:2px;padding:.85rem .95rem;margin:0 0 1.05rem;
+    font:400 14px/1.55 var(--sans);color:var(--withheld)}
+.ph b{display:block;font:600 11px/1.4 var(--sans);letter-spacing:.11em;text-transform:uppercase;margin-bottom:.45rem}
+
+/* ---- closing ---- */
+footer{border-top:1px solid var(--rule);padding:2.2rem 0 3.5rem;font:400 14px/1.6 var(--sans);color:var(--muted)}
+footer a{color:var(--muted)}
+.foot{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:baseline}
+.foot .sep{margin-left:auto}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="/">Strat<span>a</span></a>
+    <a class="navlink" href="/#how">How it works</a>
+    <a class="navlink" href="/privacy.html">Privacy</a>
+    <a class="navlink" href="/security.html">Security</a>
+    <a class="signin" href="/login">Sign in</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section>
+  <div class="wrap"><div class="lined" data-line="1">
+    <div class="narrow">
+      <h1>Terms of use, in words you can read once.</h1>
+      <p class="stamp">Terms · 2026-08-04</p>
+      <p class="lede">Using Strata means agreeing to what follows. It is short on purpose. Terms
+      nobody can read protect nobody.</p>
+      <div class="note">
+        <p>Strata is a pre-production build by one person. It has no customers and no service
+        level, and it may stop working or be switched off without notice.</p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="2">
+    <h2>What the service is</h2>
+    <div class="narrow">
+      <p>Strata reads successive versions of a regulatory proceeding, works out what changed,
+      maps each change to the obligations it touches, and routes an action to a reviewer. Every
+      claim it makes carries a citation, and it withholds any claim whose citation does not match
+      the stored source.</p>
+      <p>That is the whole of it. Nothing else is promised.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="3">
+    <h2>It is not legal advice, and it is not a determination</h2>
+    <div class="narrow">
+      <p>This matters more here than anywhere else on the page, so read it twice.</p>
+      <p>Strata is a reading aid. It is not a lawyer, not counsel, and not a regulator. Nothing it
+      outputs is legal advice, a legal opinion, or a determination about what any rule requires of
+      you. It does not decide whether you comply with anything.</p>
+      <ul>
+        <li>A claim the product shows is a statement backed by a quotation it checked. It is not a
+        ruling on what that quotation means for your business.</li>
+        <li>A claim the product withholds means it could not substantiate one. It does not mean
+        nothing changed, and it never means you have nothing to do.</li>
+        <li>A date, a threshold or an obligation shown on a screen is a reading of a document, not
+        a deadline anyone owes you.</li>
+      </ul>
+      <p>Check the source and take professional advice before you act, file, or decide not to. You
+      remain responsible for every filing you make and every deadline you meet or miss.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="4">
+    <h2>Your documents stay yours</h2>
+    <div class="narrow">
+      <p>You keep every right you had in whatever you upload. Nothing here transfers ownership,
+      and nothing here takes a licence beyond what running the service needs.</p>
+      <p><b>What the operator may do with your documents:</b> store them, cut them into passages,
+      compare versions of them, re-read them to check a citation, and show them back to you and to
+      the people in your company who hold an account.</p>
+      <p><b>What the operator may not do:</b> train a model on them. Sell them. Share them with
+      anyone outside your company. Use them for any purpose other than running the service for
+      you. No model call happens today at all — the <a href="/privacy.html">privacy page</a> says
+      exactly what leaves the machine, which is nothing.</p>
+      <p>You are responsible for what you upload. Do not put in documents you have no right to
+      put in.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="5">
+    <h2>Offered as it is</h2>
+    <div class="narrow">
+      <p>The service is provided as it stands, with no warranty of any kind: not that it will be
+      available, not that it will be correct, not that it will be fit for your purpose. It is an
+      unfinished build.</p>
+      <p>It may lose data. It has no backups. It may be taken offline. Its behaviour may change
+      between one day and the next without notice.</p>
+      <p>Nobody here accepts liability for a decision you take on what the product showed you, for
+      a deadline you miss, or for a filing you make or fail to make. That is not a lawyer's flourish
+      — it follows from the section above. A tool that is explicitly not a determination cannot
+      carry the risk of one.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="6">
+    <h2>Accounts, and using it fairly</h2>
+    <div class="narrow">
+      <p>An account belongs to one person. Keep your password to yourself, and say so promptly if
+      you think somebody else has it. Every action you take is written to a trail that names your
+      account, your session and the address you came from, and that trail cannot be edited or
+      removed.</p>
+      <p>Do not:</p>
+      <ul>
+        <li>upload material you have no right to upload;</li>
+        <li>upload sealed, protected or confidential filings into a build that has no controls for
+        them — the <a href="/security.html">security page</a> lists what is missing;</li>
+        <li>attack, overload or probe the service, or try to reach another company's data;</li>
+        <li>use it to break a law, or to mislead a regulator.</li>
+      </ul>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="7">
+    <h2>Ending it</h2>
+    <div class="narrow">
+      <p>You may stop using Strata at any time and ask for your account to be closed. Access can
+      be withdrawn at any time, for any reason, including none — it is a pre-production build and
+      it may simply be switched off.</p>
+      <p>Closing an account does not remove the audit rows it caused. The trail is append-only by
+      design, and a deleted row would break the chain that makes the rest of it evidence. The
+      <a href="/privacy.html">privacy page</a> sets out that tension in full rather than hiding
+      it here.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="8">
+    <h2>Changes, and what is still missing</h2>
+    <div class="narrow">
+      <p>These terms change when the product changes. The date at the top moves with them. Using
+      the service after a change means accepting the version then published.</p>
+      <div class="ph"><b>Placeholder — required before production use</b>
+      A named legal entity to contract with, its registered address, the law that governs this
+      agreement, and where a dispute would be heard. None of those exist yet. Writing a company
+      and a jurisdiction here that nobody has registered would be inventing a fact, which is
+      precisely what this product refuses to do.</div>
+      <p>Questions to
+      <a href="mailto:jsahasi@gmail.com?subject=Strata%20terms">jsahasi@gmail.com</a>.</p>
+    </div>
+  </div></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap"><div class="foot">
+    <span>Strata</span>
+    <a href="/login">Sign in</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/security.html">Security</a>
+    <a href="mailto:jsahasi@gmail.com">Contact</a>
+    <span class="sep muted">Built by Jayesh Sahasi</span>
+  </div></div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy — Strata</title>
+<meta name="description" content="What Strata stores, field by field, what its audit trail records about who did what and from where, and the one record a deletion request cannot reach.">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --paper:#f7f8fa; --ink:#10141c; --muted:#5a6373; --rule:#dfe3ea;
+  --stamp:#1b3a8f; --withheld:#a8620e; --panel:#ffffff;
+  --measure:33rem;
+  --serif:ui-serif,"Iowan Old Style",Charter,Palatino,"Book Antiqua",Georgia,serif;
+  --sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#0d1017; --ink:#e6e8ec; --muted:#98a1b2; --rule:#242a35;
+         --stamp:#8fa9e8; --withheld:#d99a45; --panel:#131822; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.62 var(--serif)}
+
+a{color:var(--stamp)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--stamp);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;background:var(--panel);padding:.6rem .9rem;z-index:20;border:1px solid var(--rule)}
+
+/* ---- the signature: a testimony line-number margin ---- */
+.wrap{max-width:52rem;margin:0 auto;padding:0 1.25rem}
+.lined{position:relative;padding-left:3.25rem}
+.lined::before{
+  content:attr(data-line);
+  position:absolute;left:0;top:.34em;width:2.1rem;text-align:right;
+  font:500 12px/1 var(--mono);color:var(--muted);opacity:.62;
+  font-variant-numeric:tabular-nums;
+}
+.lined::after{
+  content:"";position:absolute;left:2.6rem;top:0;bottom:0;width:1px;background:var(--rule);
+}
+@media (max-width:640px){
+  .lined{padding-left:0}
+  .lined::before,.lined::after{display:none}
+}
+
+/* ---- header ---- */
+header{border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:10}
+.bar{max-width:52rem;margin:0 auto;padding:.85rem 1.25rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.brand{font:600 15px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none;margin-right:auto}
+.brand span{color:var(--stamp)}
+.navlink{font:500 14px/1 var(--sans);color:var(--muted);text-decoration:none}
+.navlink:hover{color:var(--ink)}
+.signin{
+  font:600 14px/1 var(--sans);text-decoration:none;color:var(--panel);background:var(--stamp);
+  padding:.62rem 1.05rem;border-radius:3px;white-space:nowrap;
+}
+.signin:hover{filter:brightness(1.12)}
+@media (prefers-color-scheme:dark){.signin{color:#0d1017}}
+
+/* ---- type ---- */
+h1{font:400 clamp(2rem,5.4vw,3.05rem)/1.1 var(--serif);letter-spacing:-.018em;margin:0 0 1.1rem;text-wrap:balance}
+h2{font:600 12px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--stamp);margin:0 0 1.15rem}
+h3{font:500 1.16rem/1.35 var(--serif);margin:0 0 .5rem}
+p{margin:0 0 1.05rem}
+.lede{font-size:1.1rem}
+.muted{color:var(--muted)}
+section{padding:4.2rem 0;border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0}
+.narrow{max-width:var(--measure)}
+
+/* ---- rows of record ---- */
+.rec{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--stamp);
+     padding:1rem 1.1rem;margin-bottom:.85rem;border-radius:2px}
+.rec--held{border-left-color:var(--withheld)}
+.rec p{margin:0}
+.chip{display:inline-block;margin-top:.6rem;font:500 12px/1 var(--mono);color:var(--stamp);
+      border:1px solid currentColor;border-radius:2px;padding:.3rem .45rem}
+.held-label{font:600 11px/1.4 var(--sans);letter-spacing:.11em;text-transform:uppercase;color:var(--withheld);display:block;margin-bottom:.5rem}
+.caption{font:400 14px/1.55 var(--sans);color:var(--muted);margin-top:.9rem}
+
+/* ---- labelled rows ---- */
+.stage{display:grid;grid-template-columns:auto 1fr;gap:.9rem 1rem;align-items:baseline;padding:.85rem 0;border-bottom:1px solid var(--rule)}
+.stage:last-child{border-bottom:0}
+.stage b{font:500 12px/1.6 var(--mono);color:var(--muted);white-space:nowrap}
+.stage b.no{color:var(--withheld)}
+.stage p{margin:.2rem 0 0;font:400 15px/1.55 var(--sans)}
+.stage em{font-style:normal;color:var(--withheld);font-weight:600}
+
+/* ---- refusals ---- */
+.refuse{border-left:2px solid var(--rule);padding-left:1.1rem;margin-bottom:1.5rem}
+.refuse h3{font:600 15px/1.4 var(--sans)}
+.refuse p{font:400 15px/1.58 var(--sans);color:var(--muted);margin:0}
+
+/* ---- policy pages ---- */
+.stamp{font:500 12px/1.5 var(--mono);color:var(--muted);letter-spacing:.04em;margin:0 0 1.7rem}
+.note{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--withheld);
+      border-radius:2px;padding:1rem 1.1rem;margin:0 0 1.8rem;font:400 15px/1.58 var(--sans)}
+.note p{margin:0 0 .6rem}
+.note p:last-child{margin:0}
+.plain{font:400 15px/1.58 var(--sans)}
+code{font:400 .9em/1.4 var(--mono);background:color-mix(in srgb,var(--stamp) 9%,transparent);padding:0 .22em;border-radius:2px}
+ul{margin:0 0 1.05rem;padding-left:1.1rem;font:400 15px/1.58 var(--sans)}
+li{margin:0 0 .5rem}
+.ph{border:1px dashed var(--withheld);border-radius:2px;padding:.85rem .95rem;margin:0 0 1.05rem;
+    font:400 14px/1.55 var(--sans);color:var(--withheld)}
+.ph b{display:block;font:600 11px/1.4 var(--sans);letter-spacing:.11em;text-transform:uppercase;margin-bottom:.45rem}
+
+/* ---- closing ---- */
+footer{border-top:1px solid var(--rule);padding:2.2rem 0 3.5rem;font:400 14px/1.6 var(--sans);color:var(--muted)}
+footer a{color:var(--muted)}
+.foot{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:baseline}
+.foot .sep{margin-left:auto}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="/">Strat<span>a</span></a>
+    <a class="navlink" href="/#how">How it works</a>
+    <a class="navlink" href="/terms.html">Terms</a>
+    <a class="navlink" href="/security.html">Security</a>
+    <a class="signin" href="/login">Sign in</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section>
+  <div class="wrap"><div class="lined" data-line="1">
+    <div class="narrow">
+      <h1>What Strata records, and the one record it cannot erase.</h1>
+      <p class="stamp">Privacy · 2026-08-04</p>
+      <p class="lede">Strata holds the documents a regulated company puts into it and writes a
+      permanent trail of every decision taken over them. This page says which fields exist, who
+      can read them, and where a deletion request runs into a wall.</p>
+      <div class="note">
+        <p>Strata is a pre-production build by one person. It has no customers, and the data in
+        the demonstration is invented.</p>
+        <p>Nothing on this page describes a control the code does not have. Where a buyer would
+        expect one and it does not exist, the page says so instead of implying it.</p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="2">
+    <h2>What the product stores</h2>
+    <div class="narrow">
+      <p>Field by field, as the tables actually stand. Nothing here asks for a payment card, a
+      date of birth, a telephone number or a home address, and no column exists to put one in.</p>
+    </div>
+
+    <div class="stage"><b>account</b><p>Your email address, your display name, a scrypt hash of
+      your password with its own random salt and its own cost settings, the state of the account,
+      when it was made, when you last signed in, how many sign-ins failed in a row, and the time
+      any lock runs to. The password itself is never written down.</p></div>
+    <div class="stage"><b>session</b><p>One row for each sign-in. It holds a SHA-256 of the
+      session token and never the token, when the session started, when it expires, when it was
+      last used, the address the request arrived from, the browser's user-agent line, and — once
+      it ends — the time it ended and the reason.</p></div>
+    <div class="stage"><b>documents</b><p>Each filing you load, kept byte for byte with a SHA-256
+      beside it, and the passages cut from it with their character offsets. The product re-reads
+      those bytes every time it checks a citation, so it cannot discard them and still work.</p></div>
+    <div class="stage"><b>your work</b><p>Proceedings, changes, claims and their citations,
+      escalations, projects, research threads, plans, findings, questions, deliverables,
+      obligations and their owners, and anything typed into the chat. Every row names the company
+      it belongs to.</p></div>
+    <div class="stage"><b>the trail</b><p>A row for every decision, with who, what, when and from
+      which address. That one has a section of its own below, because it is the field a privacy
+      policy usually leaves out.</p></div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="3">
+    <h2>The trail records your address, and that is the point</h2>
+    <div class="narrow">
+      <p>Every decision the system takes writes a row naming the person as a display string, the
+      account id, whether a person or a machine acted, the login session it happened under, the
+      IP address the request arrived from, and the time in UTC. All of it sits inside the row's
+      hash, not merely beside it, so nobody can rename the actor afterwards and leave the record
+      looking sound.</p>
+      <p>Failed sign-ins are recorded as well as successful ones, so anyone probing accounts
+      leaves a trace. The row names the address that was typed and never the password tried
+      against it. An entry that does not look like an address at all is stored as a marker
+      instead, because a password typed into the wrong box would otherwise be kept for ever.</p>
+      <p>The address is the one the connection itself reported. The product does not read the
+      <code>X-Forwarded-For</code> header, because a header the caller writes is not evidence.</p>
+      <p class="muted">Why say this so plainly: an audit trail is the product, not a side effect of
+      it. A regulator asking who said what, when, and from where is the question Strata exists to
+      answer. A policy that quietly omitted the address would be hiding the main feature.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="4">
+    <h2>What cannot be erased</h2>
+    <div class="narrow">
+      <p>The trail is append-only twice over. Application code has no path that updates or deletes
+      an audit row — the attempt raises. And a SHA-256 chain runs over every field of every row,
+      per company, numbered from one with no gaps, so a row altered or removed by other means is
+      detected: a gap in the sequence <em>is</em> a deletion.</p>
+      <p>Several laws give a person the right to have their data deleted. That right and this
+      design pull against each other, and pretending otherwise would be dishonest. A deletion
+      request cannot take your audit rows out, because removing one breaks the chain that makes
+      every remaining row worth reading.</p>
+      <p><b>What stays.</b> Your email address as the actor on rows you caused. Your account id,
+      your session id and the IP address on the rows the sign-in path wrote. What each decision
+      was and why.</p>
+      <p><b>What a design with erasure could reach.</b> Account details, uploaded documents,
+      passages, claims, project work and chat turns — everything in the section above that is not
+      the trail.</p>
+      <p><b>What is true today.</b> The product implements no erasure at all. There is no delete
+      path for a user, a document, a claim or a session anywhere in the code. Suspending an
+      account keeps the row. Revoking a role keeps the row. Signing out keeps the session row and
+      marks it revoked with a reason. That is a limit of an unfinished build, not a policy anyone
+      chose.</p>
+      <div class="ph"><b>Placeholder — required before production use</b>
+      A written retention and erasure procedure: what a lawful erasure request can and cannot
+      reach, who decides, and how the answer is given. It does not exist. No retention schedule
+      is written down, and nothing in the code deletes anything on a clock.</div>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="5">
+    <h2>Who else sees it</h2>
+    <div class="narrow">
+      <p>Nobody, today.</p>
+      <ul>
+        <li>No analytics, no trackers, no advertising, no tag manager, no session recorder.</li>
+        <li>No content delivery network, no external fonts, no external stylesheets, no external
+        scripts. This site and the application load nothing from another host. The only web
+        address in the application's front-end code is the SVG namespace identifier, which is a
+        name rather than a request.</li>
+        <li>No model call runs. Nothing on the request path sends your text anywhere. One module
+        exists that would send filing passages to a model vendor, and no code calls it; with no
+        API key set that path is off and reports itself as off. If it is ever wired up, this page
+        changes before it runs.</li>
+        <li>No payment processor, because nothing is for sale yet.</li>
+      </ul>
+      <p>If you write to the address at the foot of this page, the message sits in an ordinary
+      Gmail mailbox. That is Google's service, not mine, and their terms govern it.</p>
+      <div class="ph"><b>Placeholder — required before production use</b>
+      A list of sub-processors, once there is one. Today there is none, so a list would be an
+      empty page dressed up as diligence.</div>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="6">
+    <h2>The cookie</h2>
+    <div class="narrow">
+      <p>One cookie, named <code>strata_session</code>. It carries a random 256-bit token and
+      nothing else — no identifier the product follows you with, no profile, no preferences. The
+      token resolves a row in the database, which is what lets a sign-out end the session on the
+      server rather than merely clear your browser.</p>
+      <p>It is set HttpOnly, so a script cannot read it; SameSite=Lax, which is the whole of the
+      cross-site request defence on this build; Secure, so it does not travel over plain HTTP; and
+      it expires with the session, twelve hours after you sign in.</p>
+      <p class="muted">One narrow exception: for plain HTTP to your own machine, which is what the
+      local run serves, the Secure flag comes off, because Safari would otherwise drop the cookie
+      and the login page would not work. The login page prints on the page when it has done that.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="7">
+    <h2>What the demonstration contains</h2>
+    <div class="narrow">
+      <p>The corpus the product loads is invented: a fictional commission, a fictional docket, a
+      fictional utility, fictional people. No text in it is copied from a real filing, and nobody's
+      real documents are in it.</p>
+      <p>The repository also carries a set of real regulatory filings downloaded from state
+      commissions' own public document systems, each with a note recording where it came from and
+      when. Those are public record, no customer supplied them, and no code loads them into the
+      running product.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="8">
+    <h2>Where it runs, and who to ask</h2>
+    <div class="narrow">
+      <p>The data sits in a single SQLite file on whichever machine runs the product. There is no
+      encryption at rest beyond whatever the host's disk provides, and there are no backups. The
+      <a href="/security.html">security page</a> lists what is built and what is not, without
+      softening either.</p>
+      <p>Write to <a href="mailto:jsahasi@gmail.com?subject=Strata%20privacy">jsahasi@gmail.com</a>.
+      One person reads it.</p>
+      <div class="ph"><b>Placeholder — required before production use</b>
+      A named legal entity, a registered address, the country whose law governs this document, and
+      a privacy contact belonging to that entity. None of those exist yet, and inventing them would
+      be the exact failure this product argues against.</div>
+      <p class="muted">This page changes when the code changes, and the date at the top moves with
+      it.</p>
+    </div>
+  </div></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap"><div class="foot">
+    <span>Strata</span>
+    <a href="/login">Sign in</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/security.html">Security</a>
+    <a href="mailto:jsahasi@gmail.com">Contact</a>
+    <span class="sep muted">Built by Jayesh Sahasi</span>
+  </div></div>
+</footer>
+
+</body>
+</html>
