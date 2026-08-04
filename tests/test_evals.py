@@ -19,6 +19,14 @@ percentage in it, and fails unless each one prints its sample size beside it and
 that sample reaches ten. A future metric that prints "100% recall" over the five
 changes fails here, not in review.
 
+That test passed while the scorecard printed "20 of 20 manifest offsets verify
+[100%, n = 20 offsets]", because the harness handed it 20 and 20 clears the
+floor. Nine of those twenty offsets quote the same boilerplate sentence. The
+sample is now derived by de-duplicating the evidence rather than declared by the
+metric, so the tests below pin the derivation as well as the printed line: what
+identity folds two rows into one, that a `Metric` has no slot to be handed a
+sample size through, and that the floor still lets a real sample through.
+
 The failure paths are exercised against a copy of the corpus in a temp
 directory. Nothing in this file writes to `data/`.
 """
@@ -36,23 +44,29 @@ import pytest
 
 from app.evals import run
 from app.evals.corpus import Corpus
-from app.evals.metrics import ALL_METRICS, FABRICATION_FROM
+from app.evals.metrics import ALL_METRICS, FABRICATION_FROM, Metric
 from app.evals.report import (
     CAVEAT,
     MIN_SAMPLE_FOR_RATE,
     RateRefused,
+    Sample,
     count_phrase,
     rate,
 )
 
 # The counts the current code earns against the committed corpus. Written out
 # rather than computed, so a regression appears as a diff in this file.
+#
+# Read the third column against the second. Every metric here gathers more rows
+# of evidence than it has independent samples, and the gap is the point: 20
+# offsets over 6 subjects, 27 probes over 9 spans, 7 checks over 1 change. Not
+# one of them reaches ten, so not one of them prints a rate.
 EXPECTED = {
-    "citation_verification": (20, 20, 20, "offsets"),
+    "citation_verification": (20, 20, 6, "subjects over 20 recorded offsets"),
     "corruption_rejection": (2, 2, 2, "probes"),
     "diff_completeness": (5, 5, 5, "changes"),
-    "occurrence_disambiguation": (27, 27, 9, "spans"),
-    "draft_final_routing": (7, 7, 1, "change: CHG-4"),
+    "occurrence_disambiguation": (27, 27, 9, "spans over 27 probes"),
+    "draft_final_routing": (7, 7, 1, "change (CHG-4) over 7 routing checks"),
 }
 
 _PERCENT = re.compile(r"\d+(?:\.\d+)?%")
@@ -245,17 +259,196 @@ def test_count_phrase_prints_no_symbol_below_the_floor():
     assert "100%, n = 20 offsets" in large
 
 
-def test_the_caveat_is_always_printed_and_its_numbers_match_the_corpus(card, output):
+def test_the_caveat_is_always_printed_and_its_numbers_match_the_corpus(
+    card, output, data_dir: Path
+):
     """Prose in the caveat is a claim too, so it is checked against the counts."""
     flat_output, flat_caveat = _flat(output), _flat(CAVEAT)
     assert flat_caveat in flat_output
 
     largest = max(metric.sample_size for metric in card.metrics)
     changes = next(m for m in card.metrics if m.key == "diff_completeness").sample_size
-    assert f"sample here is {largest} recorded offsets" in flat_caveat
+    assert f"largest independent sample here is {largest} spans" in flat_caveat
     assert f"change detection rests on {changes}" in flat_caveat
     assert "withholds a rate below a sample of ten" in flat_caveat
     assert "No model runs here and no network call is made" in flat_caveat
+
+    # The caveat now carries the three offset numbers. Check each against the
+    # corpus, because a caveat quoting a stale number is worse than none.
+    sites = Corpus.load(data_dir).citation_sites()
+    offsets = next(m for m in card.metrics if m.key == "citation_verification")
+    assert f"re-reads {len(sites)} recorded offsets" in flat_caveat
+    assert f"all {len(sites)} verify" in flat_caveat
+    assert f"readings of {offsets.sample_size} subjects" in flat_caveat
+    assert (
+        f"{len({site.quoted_text for site in sites})} distinct quoted strings "
+        "at the most generous count" in flat_caveat
+    )
+    assert "it prints no rate at all" in flat_caveat
+
+
+# ---------------------------------------------------------------------------
+# The sample is derived, not declared
+# ---------------------------------------------------------------------------
+
+
+def _metric_fields(hits: int = 1, total: int = 1) -> dict:
+    """Everything a Metric needs except the sample. Prose kept short on purpose."""
+    return {
+        "key": "probe",
+        "title": "Probe",
+        "measures": "nothing",
+        "method": "nothing",
+        "threshold": "nothing",
+        "hits": hits,
+        "total": total,
+        "unit": "things",
+    }
+
+
+def _metric(sample: Sample, hits: int = 1, total: int = 1) -> Metric:
+    return Metric(**_metric_fields(hits, total), sample=sample)
+
+
+def test_a_sample_counts_distinct_evidence_not_probes():
+    """Twenty readings of six subjects are six samples, not twenty."""
+    sample = Sample(
+        unit="subjects",
+        probe_unit="readings",
+        identities=("a", "a", "a", "b", "c"),
+    )
+    assert sample.probes == 5
+    assert sample.size == 3
+    assert "3" not in sample.phrase  # the phrase names units, the size is separate
+    assert sample.phrase == "subjects over 5 readings"
+
+
+def test_a_sample_with_nothing_repeated_does_not_pad_its_phrase():
+    sample = Sample(unit="changes", probe_unit="changes", identities=("a", "b"))
+    assert sample.size == sample.probes == 2
+    assert sample.phrase == "changes"
+
+
+def test_a_sample_built_from_no_evidence_is_refused():
+    """0 of 0 reads as a pass, so an empty corpus must never reach the page."""
+    with pytest.raises(ValueError) as caught:
+        Sample(unit="offsets", probe_unit="offsets", identities=())
+    assert "no evidence" in str(caught.value)
+    assert "has not passed; it has not run" in str(caught.value)
+
+
+def test_a_metric_cannot_be_handed_its_own_sample_size():
+    """The number that licenses a rate may not arrive from a caller.
+
+    This is the whole fix. A call site that could pass 20 could pass it again
+    next time, and the rule would hold everywhere except where breaking it
+    bought a better number. So Metric is constructed directly here rather than
+    through the helper: the constructor is the thing under test.
+    """
+    one = Sample(unit="offsets", probe_unit="offsets", identities=("a",))
+
+    with pytest.raises(TypeError):
+        Metric(**_metric_fields(), sample=one, sample_size=20)  # type: ignore[call-arg]
+    with pytest.raises(TypeError):
+        Metric(**_metric_fields(), sample=one, sample_unit="offsets")  # type: ignore[call-arg]
+
+    # And the derived ones cannot be written over after the fact either.
+    metric = Metric(**_metric_fields(), sample=one)
+    with pytest.raises(AttributeError):
+        metric.sample_size = 20  # type: ignore[misc]
+
+
+def test_a_metric_derives_its_sample_size_from_the_evidence():
+    metric = _metric(
+        Sample(unit="subjects", probe_unit="offsets", identities=("a", "a", "b"))
+    )
+    assert metric.sample_size == 2
+    assert metric.sample_unit == "subjects over 3 offsets"
+
+
+# ---------------------------------------------------------------------------
+# The offsets scorecard, which used to print a rate it had not earned
+# ---------------------------------------------------------------------------
+
+
+def test_nine_copies_of_one_sentence_are_one_sample(data_dir: Path):
+    """The corpus says what each offset is about, and nine say the same thing."""
+    corpus = Corpus.load(data_dir)
+    sites = corpus.citation_sites()
+    assert len(sites) == 20
+
+    subjects = [site.subject for site in sites]
+    assert len(set(subjects)) == 6
+    assert subjects.count(corpus.boilerplate_subject) == 9
+
+    # The more generous reading -- every distinct string a separate sample --
+    # only reaches ten, which ties the floor rather than clearing it.
+    assert len({site.quoted_text for site in sites}) == 10
+
+
+def test_the_offsets_metric_reports_a_count_and_refuses_a_rate(card, output: str):
+    """Twenty offsets over six subjects cannot carry a percentage.
+
+    The old line read '20 of 20 manifest offsets verify [100%, n = 20 offsets]'.
+    Nine of those twenty quote one sentence, so twenty was never the sample.
+    """
+    metric = next(m for m in card.metrics if m.key == "citation_verification")
+    assert (metric.hits, metric.total) == (20, 20)
+    assert metric.sample_size == 6
+    assert metric.sample.probes == 20
+
+    flat = _flat(output)
+    assert "20 of 20 manifest offsets verify" in flat
+    assert "100%, n = 20 offsets" not in flat
+    assert (
+        "20 of 20 manifest offsets verify "
+        "[n = 6 subjects over 20 recorded offsets; "
+        f"no rate, n < {MIN_SAMPLE_FOR_RATE}]"
+    ) in flat
+
+
+def test_the_raw_count_and_the_distinct_count_are_printed_together(output: str):
+    """Do not hide the number. Twenty offsets verifying is a real result."""
+    flat = _flat(output)
+    assert "20 recorded offsets" in flat
+    assert "10 distinct quoted strings" in flat
+    assert "6 subjects" in flat
+
+
+def test_no_metric_reaches_the_floor_so_no_percentage_is_printed(card, output: str):
+    """Nothing this corpus measures earns a rate, and the page prints none.
+
+    Written as an implication rather than a ban on percentages. Grow the corpus
+    until some metric holds ten independent samples and the first assertion
+    fails first -- which is a prompt to revisit the second, not a rule against
+    ever printing a rate.
+    """
+    over = [m.key for m in card.metrics if m.sample_size >= MIN_SAMPLE_FOR_RATE]
+    assert over == [], over
+    assert _PERCENT.findall(_flat(output)) == []
+
+
+def test_a_rate_still_prints_when_the_evidence_really_is_independent():
+    """The fix deflates a sample. It does not switch rates off.
+
+    Ten distinct subjects clear the floor and print a rate, so a harness that
+    grows a real corpus is not stuck reporting counts forever.
+    """
+    sample = Sample(
+        unit="subjects",
+        probe_unit="offsets",
+        identities=tuple(f"s{n}" for n in range(10)) + ("s0", "s0"),
+    )
+    assert sample.size == MIN_SAMPLE_FOR_RATE
+    metric = _metric(sample, hits=12, total=12)
+    phrase = count_phrase(
+        metric.hits,
+        metric.total,
+        metric.unit,
+        sample_size=metric.sample_size,
+        sample_unit=metric.sample_unit,
+    )
+    assert phrase == "12 of 12 things  [100%, n = 10 subjects over 12 offsets]"
 
 
 # ---------------------------------------------------------------------------
@@ -339,9 +532,16 @@ def test_a_failed_metric_still_prints_its_counts_and_its_reasons(corpus_copy, ca
     assert run.main(["--data", str(corpus_copy)]) == 1
     printed = _flat(capsys.readouterr().out)
     assert "quoted text does not match the source at the cited offsets" in printed
-    # The counts move, the rate stays tied to its sample, and 18 of 20 is floored
-    # to 90.0% rather than rounded anywhere near the threshold it just missed.
-    assert "18 of 20 manifest offsets verify [90.0%, n = 20 offsets]" in printed
+    # The counts move and stay counts. Two offsets stopped verifying, which is
+    # 18 of 20 and would once have printed as 90.0%. The sample did not change
+    # -- the same six subjects -- so there is still no rate to print, in the bad
+    # direction as well as the good one.
+    assert (
+        "18 of 20 manifest offsets verify [n = 6 subjects over 20 recorded "
+        f"offsets; no rate, n < {MIN_SAMPLE_FOR_RATE}]" in printed
+    )
+    assert "90.0%" not in printed
+    assert "%" not in printed
 
 
 # ---------------------------------------------------------------------------

@@ -21,6 +21,7 @@ from dataclasses import dataclass, field
 
 from app.diff.engine import RESTRUCTURE_CONFIDENCE_CEILING, Change, diff
 from app.evals.corpus import Corpus
+from app.evals.report import Sample
 from app.interpretation.action import (
     ACTION_COMMENT,
     ACTION_COMPLY,
@@ -49,7 +50,12 @@ _HEADING = re.compile(r"^\s*\d+(?:\.\d+)*\s+([^.]+)\.")
 
 @dataclass(frozen=True)
 class Metric:
-    """One scored dimension, with its counts and the sample behind them."""
+    """One scored dimension, with its counts and the evidence behind them.
+
+    A metric supplies a `Sample` -- the identity of every row of evidence it
+    gathered -- and never a sample size. `sample_size` is a property here for
+    that reason: there is no constructor slot to pass an inflated one into.
+    """
 
     key: str
     title: str
@@ -59,8 +65,7 @@ class Metric:
     hits: int
     total: int
     unit: str
-    sample_size: int
-    sample_unit: str
+    sample: Sample
     blocking: bool = True
     failures: tuple[str, ...] = ()
     notes: tuple[str, ...] = ()
@@ -68,6 +73,15 @@ class Metric:
     @property
     def passed(self) -> bool:
         return self.hits == self.total and not self.failures
+
+    @property
+    def sample_size(self) -> int:
+        """Independent items, derived. The renderer reads this to gate a rate."""
+        return self.sample.size
+
+    @property
+    def sample_unit(self) -> str:
+        return self.sample.phrase
 
 
 @dataclass(frozen=True)
@@ -87,6 +101,7 @@ def citation_verification(corpus: Corpus) -> Metric:
     sites = corpus.citation_sites()
     failures: list[str] = []
     verified = 0
+    boilerplate = sum(1 for site in sites if site.subject == corpus.boilerplate_subject)
 
     for site in sites:
         result = verify_citation(
@@ -121,14 +136,31 @@ def citation_verification(corpus: Corpus) -> Metric:
         hits=verified,
         total=len(sites),
         unit="manifest offsets verify",
-        sample_size=len(sites),
-        sample_unit="offsets",
+        # The subject each offset is evidence about, not the offset. Nine of
+        # these twenty quote one boilerplate sentence and two more quote a
+        # wording recorded twice because a revision left it alone; six subjects
+        # is what the corpus holds. Reporting 20 samples here printed the only
+        # percentage on the page, and it was the one number the harness had not
+        # earned. Corpus.citation_sites carries the full argument.
+        sample=Sample(
+            unit="subjects",
+            probe_unit="recorded offsets",
+            identities=tuple(site.subject for site in sites),
+        ),
         blocking=True,
         failures=tuple(failures),
         notes=(
-            "20 offsets: 11 recorded on the five changes, 9 on the repeated "
-            "boilerplate. CHG-4 contributes one -- it has no before side, and "
-            "that absence is checked by the draft-versus-final metric.",
+            f"{len(sites)} recorded offsets, "
+            f"{len({site.quoted_text for site in sites})} distinct quoted "
+            f"strings, {len({site.subject for site in sites})} subjects. "
+            "All three are printed because the first is the work done and the "
+            "last is the evidence: every offset re-reads correctly, and that "
+            "is a count, not a rate.",
+            f"{len(sites) - boilerplate} offsets sit on the "
+            f"{len(corpus.changes)} labelled changes and {boilerplate} on the "
+            "repeated boilerplate. CHG-4 contributes one -- it has no before "
+            "side, and that absence is checked by the draft-versus-final "
+            "metric.",
         ),
     )
 
@@ -218,8 +250,13 @@ def corruption_rejection(corpus: Corpus) -> Metric:
         hits=rejected,
         total=2,
         unit="corruption probes rejected",
-        sample_size=2,
-        sample_unit="probes",
+        # Two probes, two corruptions, nothing folded: a fabricated quote and
+        # an unstated occurrence are different evidence.
+        sample=Sample(
+            unit="probes",
+            probe_unit="probes",
+            identities=("fabricated quote", "unstated occurrence"),
+        ),
         blocking=True,
         failures=tuple(failures),
         notes=tuple(notes),
@@ -386,8 +423,13 @@ def diff_completeness(corpus: Corpus) -> Metric:
         hits=found,
         total=len(corpus.changes),
         unit="labelled changes found",
-        sample_size=len(corpus.changes),
-        sample_unit="changes",
+        # One identity per labelled change. Nothing folds here; five authored
+        # changes are five subjects, and five is still under the floor.
+        sample=Sample(
+            unit="changes",
+            probe_unit="changes",
+            identities=tuple(change["id"] for change in corpus.changes),
+        ),
         blocking=True,
         failures=tuple(failures),
         notes=tuple(notes),
@@ -402,21 +444,21 @@ def diff_completeness(corpus: Corpus) -> Metric:
 def occurrence_disambiguation(corpus: Corpus) -> Metric:
     sentence = corpus.boilerplate_sentence
     failures: list[str] = []
+    # One entry per probe, naming the span it asked about. Three entries share
+    # a span, so the sample deflates from twenty-seven to nine on its own.
+    identities: list[str] = []
     passed = 0
-    probes = 0
-    spans = 0
 
     for version_id, occurrences in sorted(corpus.boilerplate_by_version().items()):
         text = corpus.text(version_id)
         for index, occurrence in enumerate(occurrences):
-            spans += 1
             citation = Citation(
                 version_id, occurrence["start"], occurrence["end"], sentence
             )
             where = f"{version_id}:{occurrence['start']}:{occurrence['end']}"
             section = occurrence.get("section")
 
-            probes += 1
+            identities.append(where)
             stated = verify_citation(citation, text, expected_occurrence=index)
             if stated.verified:
                 passed += 1
@@ -426,7 +468,7 @@ def occurrence_disambiguation(corpus: Corpus) -> Metric:
                     f"did not verify -- {stated.reason}"
                 )
 
-            probes += 1
+            identities.append(where)
             silent = verify_citation(citation, text)
             if not silent.verified and silent.reason == REASON_AMBIGUOUS_OCCURRENCE:
                 passed += 1
@@ -437,7 +479,7 @@ def occurrence_disambiguation(corpus: Corpus) -> Metric:
                     f"different thing."
                 )
 
-            probes += 1
+            identities.append(where)
             wrong_index = (index + 1) % len(occurrences)
             wrong = verify_citation(citation, text, expected_occurrence=wrong_index)
             if not wrong.verified and wrong.reason == REASON_AMBIGUOUS_OCCURRENCE:
@@ -469,13 +511,24 @@ def occurrence_disambiguation(corpus: Corpus) -> Metric:
             "verification rather than inside it."
         ),
         hits=passed,
-        total=probes,
+        total=len(identities),
         unit="occurrence probes correct",
         # Nine spans, not twenty-seven probes. Three questions about one span
         # are not three samples, and treating them as such would manufacture
-        # the denominator that licenses a rate.
-        sample_size=spans,
-        sample_unit="spans",
+        # the denominator that licenses a rate. The identities carry the span,
+        # so the deflation happens in Sample rather than in a variable this
+        # function has to remember to increment.
+        #
+        # The nine spans are one sentence, and the citation metric folds them
+        # into one subject. Here they stay nine, because this metric's subject
+        # is the span: each one has a different right answer, and telling them
+        # apart is the thing being scored. Reasonable people could argue for
+        # one. Either way it is under the floor and no rate prints.
+        sample=Sample(
+            unit="spans",
+            probe_unit="probes",
+            identities=tuple(identities),
+        ),
         blocking=True,
         failures=tuple(failures),
         notes=(
@@ -615,8 +668,14 @@ def draft_final_routing(corpus: Corpus) -> Metric:
         hits=passed,
         total=checks,
         unit="routing checks pass",
-        sample_size=1,
-        sample_unit="change: CHG-4",
+        # Seven checks, one change. Asking CHG-4 seven questions does not make
+        # seven changes, and the seventh sweeps the other four only to prove a
+        # negative about the draft side.
+        sample=Sample(
+            unit="change (CHG-4)",
+            probe_unit="routing checks",
+            identities=("CHG-4",) * checks,
+        ),
         blocking=True,
         failures=tuple(failures),
         notes=tuple(notes),

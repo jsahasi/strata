@@ -34,6 +34,9 @@ from app.ingestion.ingest import _segment
 DEFAULT_DATA_DIR = Path(__file__).resolve().parents[2] / "data"
 
 
+BOILERPLATE_SUBJECT = "the repeated boilerplate sentence"
+
+
 @dataclass(frozen=True)
 class CitationSite:
     """One offset the manifest records, ready to be handed to the verifier.
@@ -42,6 +45,11 @@ class CitationSite:
     an index for one of the nine repeated boilerplate spans. That index comes
     from the manifest's own ordering, not from the verifier, so the check is
     an independent comparison rather than the code confirming itself.
+
+    `subject` is what this offset is evidence about -- a labelled change, or
+    the repeated sentence. Two sites sharing a subject are two readings of one
+    thing, not two samples, and the scorecard counts subjects when it decides
+    whether a rate is allowed. See `Corpus.citation_sites` for the argument.
     """
 
     label: str
@@ -49,6 +57,7 @@ class CitationSite:
     start: int
     end: int
     quoted_text: str
+    subject: str
     expected_occurrence: int | None = None
     section: str | None = None
 
@@ -134,6 +143,11 @@ class Corpus:
     def boilerplate_sentence(self) -> str:
         return self.manifest["repeated_boilerplate"]["sentence"]
 
+    @property
+    def boilerplate_subject(self) -> str:
+        """One subject for all nine spans. Nine copies of a sentence are one."""
+        return BOILERPLATE_SUBJECT
+
     def boilerplate_by_version(self) -> dict[str, list[dict]]:
         """The nine spans, grouped by version and ordered by position.
 
@@ -160,6 +174,7 @@ class Corpus:
                         start=span["start"],
                         end=span["end"],
                         quoted_text=self.boilerplate_sentence,
+                        subject=BOILERPLATE_SUBJECT,
                         expected_occurrence=index,
                         section=span.get("section"),
                     )
@@ -176,6 +191,26 @@ class Corpus:
         the unchanged third copy. CHG-4 has no before side at all, and the
         absence is the point, so it contributes no site here and is checked by
         the draft-versus-final metric instead.
+
+        **Twenty offsets, six subjects.** Every site carries the subject it is
+        evidence about: the labelled change, or the repeated sentence. Count
+        the subjects and there are six -- five changes and one sentence -- so
+        the scorecard may print the count of offsets and may not print a rate
+        over them. The three ways the twenty inflate:
+
+        - 9 of the 20 are the same boilerplate sentence, three sections in each
+          of three versions of one document.
+        - 2 more are a wording recorded twice because it survived a revision
+          untouched, so the same string sits at two offsets.
+        - The rest are a before side and an after side of the same edit, which
+          is one authored decision read from both ends.
+
+        Counting distinct quoted strings instead gives 10, the most generous
+        honest reading, and 10 only ties the floor rather than clearing it. We
+        cannot establish that this corpus carries ten independent samples, and
+        an unverified sample size degrades to a refusal, so the subject is what
+        governs. A larger corpus would move this number; hand-authored evidence
+        does not become independent by being read more times.
         """
         sites: list[CitationSite] = []
         for change in self.manifest["changes"]:
@@ -190,6 +225,7 @@ class Corpus:
                         start=side["start"],
                         end=side["end"],
                         quoted_text=side["exact_text"],
+                        subject=change["id"],
                         section=change.get("section"),
                     )
                 )
