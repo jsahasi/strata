@@ -29,11 +29,11 @@
 then every judgement call, with its alternatives and what would reverse it. Written as the work
 happened, not reconstructed.</p>
 
-<div class="note"><span class="lbl">Why this file exists.</span> A repository that only shows its
+<div class="note"><p><span class="lbl">Why this file exists.</span> A repository that only shows its
 finished state teaches a reader nothing about how carefully it was built. The interesting
 information is in what went wrong and what was decided under pressure. Two patterns in the table
-below are worth naming up front: <strong>most defects were found by adversarial review rather than
-by a failing test</strong>, and <strong>three of them were false claims in documents rather than
+below are worth naming up front: <strong>most defects were found by adversarial review or by fuzzing,
+not by a failing test</strong>, and <strong>three of them were false claims in documents rather than
 bugs in code</strong> — which matters for a product whose entire thesis is that a claim must not
 assert itself without evidence.</p></div>
 
@@ -83,8 +83,8 @@ assert itself without evidence.</p></div>
 <td><code>_spans_of</code> falls back to fixed-width window scanning.</td>
 <td>Adversarial review during integration design.</td>
 <td>It only works while normalization preserves length, and normalization collapses whitespace. On real PDF text the occurrence check silently stops finding spans, which disables the boilerplate-trap guard — one of the product's strongest ideas, failing quietly.</td>
-<td><span class="open">Open.</span> Fix is a normalized projection of the source carrying an index map back to raw offsets: normalize once, search in normalized space, map hits back.</td>
-<td>None yet. Needs a PDF-shaped fixture.</td>
+<td><span class="fixed">Fixed</span> in <code>bbd44fb</code>. The window scan is gone. <code>normalized_projection()</code> in <code>app/text/normalize.py</code> makes one left-to-right pass over the source and carries, for every normalized character, the raw offsets of the run that produced it. <code>_spans_of</code> searches in normalized space and maps each hit back. O(n), where the scan was O(n·m) and wrong.</td>
+<td><code>tests/test_pdf_text.py</code>, built PDF-shaped and recording each raw span as the fixture string is assembled, so the expected offsets do not come from the code under test: <code>test_the_spans_found_are_the_raw_offsets_recorded_when_the_fixture_was_built</code>, <code>test_all_three_occurrences_are_found_in_pdf_shaped_text</code>, <code>test_normalization_changes_the_length_of_every_recorded_span</code> (which pins the assumption the old scan made), <code>test_each_occurrence_reports_its_own_index_in_document_order</code>, <code>test_the_fixture_really_carries_all_three_extraction_artefacts</code>. Plus <code>tests/test_normalize.py::test_a_normalized_span_maps_back_to_the_raw_offsets_that_produced_it</code>.</td>
 </tr>
 
 <tr id="f-06">
@@ -92,8 +92,8 @@ assert itself without evidence.</p></div>
 <td><code>normalize()</code> folds superscripts and fractions via NFKC.</td>
 <td>A build agent reading its own implementation against its docstring.</td>
 <td><code>normalize("20²")</code> returns <code>"202"</code> and <code>"½"</code> becomes <code>"1⁄2"</code>. The docstring promises digits and units are never folded. A footnote marker or a fraction in tariff text can change value under normalization.</td>
-<td><span class="open">Open.</span> Either narrow the NFKC application or amend the docstring. Not yet reached by the corpus.</td>
-<td>None</td>
+<td><span class="fixed">Fixed</span> in <code>bbd44fb</code>, by narrowing NFKC rather than the docstring. A character is held back from folding when its compatibility decomposition is tagged <code>&lt;super&gt;</code>, <code>&lt;sub&gt;</code> or <code>&lt;fraction&gt;</code>, or when folding it would begin with a decimal digit that then closes up against the number to its left. A character that is already a digit still folds, because a full-width two is the digit two wearing another face. Amending the docstring was the other option and was rejected: the honest version would have had to say the module rewrites values, in the one module whose job is to preserve them.</td>
+<td><code>tests/test_normalize.py</code>: <code>test_superscripts_and_subscripts_keep_their_value</code>, <code>test_vulgar_fractions_are_not_expanded</code>, <code>test_still_folds_the_compatibility_forms_that_carry_no_value</code>, <code>test_the_protected_forms_survive_a_second_pass</code>, and <code>test_the_folding_boundary_is_exactly_where_the_docstring_puts_it</code>, which holds both halves of the rule in one test so neither side can drift without the other being read.</td>
 </tr>
 
 <tr id="f-07">
@@ -101,8 +101,8 @@ assert itself without evidence.</p></div>
 <td><code>normalize()</code> has no rule for soft hyphens or line-break hyphenation.</td>
 <td>Inbound-integration research into PDF extraction.</td>
 <td>PDF text carries <code>U+00AD</code> and <code>-\n</code> word breaks. Both defeat exact citation matching, which is the product's foundation.</td>
-<td><span class="open">Open.</span> Delete <code>U+00AD</code> unconditionally; rewrite <code>-\n\s*</code> to <code>-</code>. Do not attempt to rejoin true end-of-line word breaks.</td>
-<td>None</td>
+<td><span class="fixed">Fixed</span> in <code>bbd44fb</code>, as planned. <code>U+00AD</code> is deleted unconditionally, including between a letter and its combining accent, so a second pass cannot compose what the first left apart. Any dash against a line break loses the break and keeps the hyphen, over every character that ends a line — the form feed included, because that is the break a paginated filing is guaranteed to carry. A true word break is not rejoined: <code>"demon-\nstrate"</code> stays <code>"demon-strate"</code> and fails to match, per ADR-003. One limit is conceded rather than closed: a soft hyphen sitting <em>at</em> a line break gives <code>"main tain"</code>, which matches nothing and goes to review. Wrong text, and the safe wrong text — joining it would be a guess that fails open.</td>
+<td><code>tests/test_normalize.py</code>: <code>test_deletes_the_soft_hyphen_without_leaving_a_gap</code>, <code>test_a_soft_hyphen_does_not_strand_an_accent</code>, <code>test_a_hyphen_against_a_line_break_loses_the_break_and_keeps_the_hyphen</code>, <code>test_a_true_word_break_is_not_rejoined</code>, <code>test_a_spaced_dash_is_left_alone</code>, and <code>test_a_soft_hyphen_at_a_line_break_fails_closed_rather_than_rejoining</code>, which pins the conceded limit so it cannot change by accident. End to end in <code>tests/test_pdf_text.py</code>: <code>test_a_hyphenated_word_break_is_not_counted_as_a_fourth_occurrence</code> and <code>test_a_real_hyphen_split_across_a_line_break_still_verifies</code>.</td>
 </tr>
 
 <tr id="f-08">
@@ -110,10 +110,37 @@ assert itself without evidence.</p></div>
 <td><code>Citation.version_id</code> is carried but never checked against the source text passed in.</td>
 <td>A build agent reporting on the plan it was given.</td>
 <td>A citation naming v2, verified against v1's text, passes if the quote matches at those offsets. The repeated boilerplate sentence across versions makes this reachable in this corpus.</td>
-<td><span class="open">Open.</span> The two-argument signature gives the function no way to check it, so the caller currently holds that guarantee. Needs a version-aware entry point.</td>
-<td>None</td>
+<td><span class="fixed">Fixed</span> in <code>bbd44fb</code>. <code>verify_citation_for_version(session, citation, company_id, ...)</code> loads the version the citation names, through the tenant chokepoint in <code>app/state/queries.py</code>, and verifies against that text. A version this company cannot read and a version that does not exist return the same refusal, so the answer never tells a caller which ids exist. The two-argument form stays, with its limit written on it, because the pure function is what the diff and the evals score.</td>
+<td><code>tests/test_verification.py</code>, seven tests where there were none. The pair that makes the hole legible: <code>test_the_two_argument_form_cannot_catch_a_mispaired_version</code> and <code>test_the_version_aware_form_rejects_that_same_citation</code> — the same misfiled citation, verified by one and refused by the other. Then <code>test_the_version_aware_form_verifies_the_citation_when_it_names_its_own_version</code>, <code>test_the_version_aware_form_still_applies_the_occurrence_rule</code>, <code>test_a_version_this_company_cannot_read_is_refused_not_answered</code>, <code>test_the_other_tenant_is_refused_even_when_the_quote_is_correct</code>, <code>test_an_unscoped_read_is_refused_rather_than_treated_as_a_wildcard</code>.</td>
+</tr>
+
+<tr id="f-12">
+<td>12</td>
+<td>A collapsed space could claim an <em>empty</em> raw span. <code>normalize("A　́B")</code> gave the emitted space the span <code>(1,1)</code>.</td>
+<td>A fuzzer, over roughly 60,000 random strings assembled from PDF artefacts, run against code that already looked finished and had a green suite behind it.</td>
+<td>The whitespace run was closed at the next chunk's start, which is one character too early when a single chunk folds to a space <em>followed by something else</em> — an ideographic space carrying a stray combining mark, which bad PDF extraction does emit. The <code>Projection</code> docstring promises that every normalized character names the run of source characters that produced it. A reviewer clicking through to see the cited characters would have been shown nothing, and the promise would have been false while every test passed.</td>
+<td><span class="fixed">Fixed</span> in <code>bbd44fb</code>. The run ends where the chunk that produced the space ends, not where the next chunk starts. The span is then the whole chunk — wider than strictly necessary, and honest: those are the source characters the space came out of.</td>
+<td><code>tests/test_normalize.py::test_a_collapsed_space_never_maps_to_an_empty_raw_span</code>, which asserts <code>start &lt; end</code> for every character rather than only for the one that failed. The class is held by <code>test_every_projection_offset_is_a_real_non_empty_run</code> over text mixing every rule in the module.</td>
+</tr>
+
+<tr id="f-13">
+<td>13</td>
+<td><code>_spans_of</code> could report a span that is not the quote.</td>
+<td>The same fuzzer, same run.</td>
+<td>A needle beginning part-way through an expanded character — the "2" of a squared-metre glyph, which normalizes to "m2" — matches in normalized space with no raw span behind it, because there is no such thing as half a source character. The code answered with the whole glyph, which normalizes to more than the quote. That is worse than a miss: a spurious span shifts the occurrence index of every real occurrence after it, so a claim that stated its occurrence <em>correctly</em> gets refused. The repeated-boilerplate guard would have started rejecting good citations, which is the failure mode an analyst stops trusting fastest.</td>
+<td><span class="fixed">Fixed</span> in <code>bbd44fb</code>. Every candidate span is re-read and kept only when the raw characters really do normalize to the needle. A cheap check that makes the function's promise exact instead of approximate.</td>
+<td><code>tests/test_occurrence.py::test_a_quote_beginning_part_way_through_an_expanded_character_reports_nothing</code>, which also asserts the quote taken from the glyph's own start still returns its span, so the fix refuses the wrong span without losing the right one. The promise itself is asserted directly by <code>test_every_span_reported_really_normalizes_to_the_quote</code>.</td>
 </tr>
 </table>
+
+<div class="note"><span class="lbl">Where 12 and 13 came from, and why it belongs in this table.</span> Both were found by a
+fuzzer written to attack the correctness core <em>after</em> findings 5 to 8 were closed and the suite
+was green. No test failed. The suite could not have failed: it fed the module the text a person thinks
+to write, and neither defect is reachable from text a person thinks to write. That is the same pattern
+the closing section below argues about, one step further out — the difference between a test suite that
+proves the cases you imagined and one that proves the module. Both defects are now regression-guarded,
+which converts them from luck into coverage, and neither would have been found by adding a coverage
+percentage.</div>
 
 <h2>Defects in documents</h2>
 
@@ -134,9 +161,9 @@ never quietly deleted.</div>
 
 <tr id="f-10">
 <td>10</td>
-<td><code>README.md</code> stated <code>data/</code> was empty.</td>
-<td>The corpus landed in commit <code>dcb04af</code>.</td>
-<td><span class="open">Open.</span> The file's own rule is that it says only what is true at each commit.</td>
+<td><code>README.md</code> stated <code>data/</code> was empty, and that <code>app/</code> and <code>tests/</code> were too. It also gave <code>make load-corpus</code> as the reload command.</td>
+<td>The corpus landed in commit <code>dcb04af</code>, and the modules and tests over the commits after it. The README was never updated, so it described a repository that had not existed for a day. <code>make load-corpus</code> is not a target and never was; the target is <code>make seed</code>.</td>
+<td><span class="fixed">Corrected.</span> The status section now names what is built, what is tested, and the three areas whose name promises more than the code does — no model runs, rollback does not exist, and reviewer routing is a shared queue. <code>make run</code>, <code>make test</code> and <code>make eval</code> were each executed before the sentences describing them were written, because a reviewer runs the commands before reading the prose, so a wrong command there costs more than a wrong sentence anywhere else.</td>
 </tr>
 
 <tr id="f-11">
@@ -231,13 +258,16 @@ impression is hard to undo with the exact audience whose trust the product needs
 
 <h2>What this list says about the build</h2>
 
-<p>Eleven defects. <strong>Seven were found by review rather than by a failing test</strong>, and three
-were false statements in documents rather than bugs in code. Two conclusions follow, and both are
-worth defending rather than hiding.</p>
+<p>Thirteen defects. <strong>Nine were found by reading or attacking the code rather than by a test in
+the suite going red</strong>, and three were false statements in documents rather than bugs in code.
+Two conclusions follow, and both are worth defending rather than hiding.</p>
 
 <p>First, the test suite is not the safety net it looks like. Fifty-six passing tests did not catch an
 unscoped tenant read, because no test asked the question. That is the argument for mutation testing
-over a coverage percentage, and it is why finding #1 is described here rather than quietly fixed.</p>
+over a coverage percentage, and it is why finding #1 is described here rather than quietly fixed.
+Findings 12 and 13 say the same thing at four hundred tests instead of fifty-six: a green suite over a
+module whose every branch runs still missed two defects, because both live in text a person does not
+think to write. Size did not fix it. A fuzzer did.</p>
 
 <p>Second, a document is a claim, and this project holds claims to a standard. The three false
 statements above were all written in good faith by people describing what they intended to build.

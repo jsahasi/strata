@@ -1,0 +1,229 @@
+/* Shared diagram styling for the Strata documents.
+ *
+ * WHY A FILE RATHER THAN INLINE. Each doc under docs/ carries its own <style>
+ * block, which is fine for prose. Diagrams are different: a dozen of them
+ * across four documents have to agree about what a box means, what a dashed
+ * arrow means, and what amber means, or the reader learns the vocabulary twice
+ * and trusts neither. One file, linked from each doc.
+ *
+ * NO BUILD STEP, NO NETWORK. Plain CSS beside the HTML that uses it, so a
+ * reviewer who opens docs/architecture.html from the filesystem sees the same
+ * page a server would give them.
+ *
+ * THE VOCABULARY, which every diagram must obey:
+ *
+ *   .box            a deterministic stage. Pure computation or a plain
+ *                   read/write. Most of the system is these.
+ *   .box--model     the only kind of stage permitted to call a model. There is
+ *                   exactly one in the architecture, and it is drawn
+ *                   differently on purpose -- a reader should be able to find
+ *                   the model in a diagram without reading any label.
+ *   .box--gate      a stage that can refuse. The verifier is the archetype.
+ *   .box--store     persisted state.
+ *   .box--absent    designed and NOT BUILT. Dashed, muted, and it must say so
+ *                   in its own label. A diagram that draws unbuilt work the
+ *                   same as shipped work is the diagram equivalent of a claim
+ *                   asserted on a citation that did not verify.
+ *
+ *   .flow           the path taken when things work.
+ *   .flow--refuse   the path taken when something cannot be proved: withheld,
+ *                   escalated, sent to a person. Amber, because that is what
+ *                   the application already uses for withheld.
+ *   .flow--weak     an inference the system does not fully trust.
+ *
+ * Amber means "the system declined to assert this" everywhere -- in the app,
+ * in the diagrams, in the prose. It never means warning, and never decoration.
+ */
+
+/* ARROWHEADS ARE DEFINED ONCE PER PAGE, not once per diagram. A page with ten
+ * diagrams that each define <marker id="arrow"> has ten elements sharing one id,
+ * and which one wins is left to the browser. Put this block once, immediately
+ * after <body>, and every diagram on the page references url(#arrow):
+ *
+ *   <svg class="fig-defs" aria-hidden="true"><defs>
+ *     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+ *             markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+ *       <path d="M0,0 L10,5 L0,10 z"/></marker>
+ *     <marker id="arrow-refuse" viewBox="0 0 10 10" refX="9" refY="5"
+ *             markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+ *       <path d="M0,0 L10,5 L0,10 z"/></marker>
+ *     <marker id="arrow-weak" viewBox="0 0 10 10" refX="9" refY="5"
+ *             markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+ *       <path d="M0,0 L10,5 L0,10 z"/></marker>
+ *   </defs></svg>
+ */
+.fig-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+#arrow path        { fill: var(--fig-arrow, #64748b); }
+#arrow-refuse path { fill: var(--fig-arrow-refuse, #b45309); }
+#arrow-weak path   { fill: var(--fig-arrow-weak, #94a3b8); }
+@media (prefers-color-scheme: dark) {
+  :root { --fig-arrow: #94a3b8; --fig-arrow-refuse: #fbbf24; --fig-arrow-weak: #64748b; }
+}
+
+.fig {
+  margin: 1.4rem 0;
+  padding: 0;
+  border: 1px solid var(--fig-rule, #e2e8f0);
+  border-radius: 8px;
+  background: var(--fig-paper, #ffffff);
+  overflow: hidden;
+}
+
+/* The scroll container, so a wide diagram scrolls itself rather than making
+   the page scroll sideways on a phone. */
+.fig__frame { overflow-x: auto; padding: 1.1rem 1.2rem 0.6rem; }
+
+.fig svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 30rem;   /* below this a box diagram stops being readable */
+  font: 12px/1.35 ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.fig figcaption {
+  border-top: 1px solid var(--fig-rule, #e2e8f0);
+  background: var(--fig-panel, #f8fafc);
+  color: var(--fig-muted, #475569);
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.fig figcaption strong { color: var(--fig-ink, #0f172a); }
+
+/* ---------------------------------------------------------------- shapes */
+
+.fig .box rect,
+.fig rect.box {
+  fill: var(--fig-panel, #f8fafc);
+  stroke: var(--fig-rule-strong, #94a3b8);
+  stroke-width: 1.25;
+  rx: 6;
+}
+
+.fig .box--model rect,
+.fig rect.box--model {
+  fill: var(--fig-model-fill, #eef2ff);
+  stroke: var(--fig-model, #4338ca);
+  stroke-width: 1.75;
+}
+
+.fig .box--gate rect,
+.fig rect.box--gate {
+  fill: var(--fig-gate-fill, #ecfeff);
+  stroke: var(--fig-gate, #0369a1);
+  stroke-width: 2;
+}
+
+.fig .box--store rect,
+.fig rect.box--store {
+  fill: var(--fig-store-fill, #f1f5f9);
+  stroke: var(--fig-rule-strong, #94a3b8);
+  stroke-dasharray: none;
+  rx: 3;
+}
+
+.fig .box--absent rect,
+.fig rect.box--absent {
+  fill: none;
+  stroke: var(--fig-muted, #94a3b8);
+  stroke-width: 1.25;
+  stroke-dasharray: 5 4;
+}
+.fig .box--absent text { fill: var(--fig-muted, #64748b); }
+
+/* ----------------------------------------------------------------- text */
+
+.fig text { fill: var(--fig-ink, #0f172a); }
+.fig .t-title { font-weight: 650; }
+.fig .t-sub   { fill: var(--fig-muted, #64748b); font-size: 10.5px; }
+.fig .t-mono  { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10.5px; }
+.fig .t-edge  { fill: var(--fig-muted, #64748b); font-size: 10.5px; }
+.fig .t-refuse { fill: var(--fig-refuse, #b45309); font-size: 10.5px; font-weight: 600; }
+
+/* ---------------------------------------------------------------- flows */
+
+.fig .flow {
+  fill: none;
+  stroke: var(--fig-rule-strong, #64748b);
+  stroke-width: 1.4;
+  marker-end: url(#arrow);
+}
+
+.fig .flow--refuse {
+  fill: none;
+  stroke: var(--fig-refuse, #b45309);
+  stroke-width: 1.6;
+  marker-end: url(#arrow-refuse);
+}
+
+.fig .flow--weak {
+  fill: none;
+  stroke: var(--fig-muted, #94a3b8);
+  stroke-width: 1.3;
+  stroke-dasharray: 5 4;
+  marker-end: url(#arrow-weak);
+}
+
+.fig .rule { stroke: var(--fig-rule, #e2e8f0); stroke-width: 1; }
+
+/* A labelled boundary drawn around a group -- a tenant, a trust boundary. */
+.fig .boundary {
+  fill: none;
+  stroke: var(--fig-model, #4338ca);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+  rx: 8;
+}
+.fig .t-boundary {
+  fill: var(--fig-model, #4338ca);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 650;
+}
+
+/* ------------------------------------------------------------- the key */
+
+.fig__key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.1rem;
+  padding: 0.55rem 1.2rem;
+  border-top: 1px solid var(--fig-rule, #e2e8f0);
+  font-size: 0.78rem;
+  color: var(--fig-muted, #475569);
+}
+.fig__key span { display: inline-flex; align-items: center; gap: 0.35rem; }
+.fig__key i {
+  width: 0.85rem; height: 0.85rem; border-radius: 3px; flex: none;
+  border: 1.25px solid var(--fig-rule-strong, #94a3b8);
+  background: var(--fig-panel, #f8fafc);
+}
+.fig__key i.k-model  { border-color: var(--fig-model, #4338ca); background: var(--fig-model-fill, #eef2ff); }
+.fig__key i.k-gate   { border-color: var(--fig-gate, #0369a1); background: var(--fig-gate-fill, #ecfeff); }
+.fig__key i.k-absent { border-style: dashed; background: none; }
+.fig__key i.k-refuse { border: none; height: 0; border-top: 2px solid var(--fig-refuse, #b45309); border-radius: 0; }
+
+/* --------------------------------------------------------------- dark */
+
+@media (prefers-color-scheme: dark) {
+  .fig {
+    --fig-paper: #0f172a;
+    --fig-panel: #1e293b;
+    --fig-ink: #e2e8f0;
+    --fig-muted: #94a3b8;
+    --fig-rule: #334155;
+    --fig-rule-strong: #64748b;
+    --fig-model: #a5b4fc;
+    --fig-model-fill: #1e1b4b;
+    --fig-gate: #7dd3fc;
+    --fig-gate-fill: #082f49;
+    --fig-store-fill: #172033;
+    --fig-refuse: #fbbf24;
+  }
+}
+
+@media print {
+  .fig { break-inside: avoid; }
+}
