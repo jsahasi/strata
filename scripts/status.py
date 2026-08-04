@@ -46,15 +46,63 @@ def modules() -> dict:
 
 
 def tests() -> dict:
+    """Run the suite and report what it said, or refuse to report a number.
+
+    THE BUG THIS DOCSTRING EXISTS FOR. This used to regex for "N passed" and
+    fall back to 0 when nothing matched. A pytest COLLECTION ERROR prints no
+    summary line at all -- one half-written module that imports something not
+    yet created takes the whole run down before a single test executes -- so the
+    fallback turned "I could not measure" into "0 tests pass". That number then
+    landed in state.json, which ADR-42 makes authoritative over prose, and it is
+    indistinguishable from a suite that is empty or a suite where everything
+    failed. Three very different facts, one number.
+
+    Absence is denial applies to our own instruments. passed is None when the
+    run produced no summary, `measured` says so, and `problem` carries the
+    reason. A consumer that wants a number must handle the None; that is the
+    point, because there genuinely was not one.
+    """
     raw = _run(str(ROOT / ".venv/bin/python"), "-m", "pytest", "tests/", "-q", "--no-header")
-    match = re.search(r"(\d+) passed", raw)
-    failed = re.search(r"(\d+) failed", raw)
     return {
-        "passed": int(match.group(1)) if match else 0,
-        "failed": int(failed.group(1)) if failed else 0,
+        **parse_pytest_summary(raw),
         "files": sorted(p.name for p in (ROOT / "tests").glob("test_*.py")),
         "requires_network": False,
         "requires_api_key": False,
+    }
+
+
+def parse_pytest_summary(raw: str) -> dict:
+    """Read a pytest run, or say it could not be read. Pure, so it is testable.
+
+    Split out from tests() precisely so the collection-error case can be proved
+    against real captured output instead of by running a broken suite on purpose.
+    """
+    passed = re.search(r"(\d+) passed", raw)
+    failed = re.search(r"(\d+) failed", raw)
+    errors = re.search(r"(\d+) error", raw)
+
+    # A collection error aborts before any test runs, so neither counter appears.
+    aborted = passed is None and failed is None
+    problem = ""
+    if aborted:
+        # Two shapes pytest uses. Both stop at whitespace so the run of
+        # underscores it prints as a separator is not read as part of the path.
+        broken = re.findall(
+            r"ImportError while importing test module '([^']+)'|ERROR collecting (\S+)", raw
+        )
+        names_found = {Path(a or b).name for a, b in broken if (a or b)}
+        if names_found:
+            names = ", ".join(sorted(names_found))
+            problem = f"collection failed; could not import {names}"
+        else:
+            problem = "pytest produced no summary line: " + " ".join(raw.split())[-200:]
+
+    return {
+        "passed": int(passed.group(1)) if passed else None,
+        "failed": int(failed.group(1)) if failed else None,
+        "errors": int(errors.group(1)) if errors else 0,
+        "measured": not aborted,
+        "problem": problem,
     }
 
 
@@ -185,14 +233,20 @@ def main() -> None:
     }
     OUT.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
     print(f"wrote {OUT.relative_to(ROOT)}")
+    t = state["tests"]
+    count = f"{t['passed']} tests pass" if t["measured"] else "TEST COUNT NOT MEASURED"
     print(
-        f"  {state['tests']['passed']} tests pass, "
+        f"  {count}, "
         f"{len(state['modules'])} modules, "
         f"{len(state['decisions'])} decisions, "
         f"{len(state['designed_not_built'])} things designed but not built"
     )
-    if state["tests"]["failed"]:
-        print(f"  WARNING: {state['tests']['failed']} tests FAILING", file=sys.stderr)
+    if not t["measured"]:
+        # Loud, and on stderr, because a silent zero is what this replaced.
+        print(f"  WARNING: {t['problem']}", file=sys.stderr)
+        print("  state.json records no test count rather than a false one.", file=sys.stderr)
+    elif t["failed"]:
+        print(f"  WARNING: {t['failed']} tests FAILING", file=sys.stderr)
 
 
 if __name__ == "__main__":

@@ -1,16 +1,19 @@
 {
   "_generated_by": "scripts/status.py via `make status`. Do not hand-edit.",
   "_why": "Every other file in docs/.ai/ is prose and can go stale. This one is read from the repository, so where it disagrees with prose, it is right.",
-  "generated_at": "2026-08-04T15:48:25.052014+00:00",
+  "generated_at": "2026-08-04T16:58:29.892069+00:00",
   "git": {
-    "head": "62007a3",
+    "head": "69f7518",
     "branch": "main",
-    "commits": 20,
+    "commits": 30,
     "dirty": true
   },
   "tests": {
-    "passed": 413,
-    "failed": 0,
+    "passed": null,
+    "failed": null,
+    "errors": 1,
+    "measured": false,
+    "problem": "collection failed; could not import test_workflow.py",
     "files": [
       "test_app_wiring.py",
       "test_audit.py",
@@ -31,12 +34,20 @@
       "test_pipeline.py",
       "test_policy.py",
       "test_projects.py",
+      "test_propose.py",
+      "test_responsive.py",
       "test_review.py",
+      "test_rollback.py",
+      "test_routing.py",
+      "test_schema.py",
       "test_screens.py",
       "test_seed.py",
       "test_seed_workspace.py",
       "test_smoke.py",
-      "test_verification.py"
+      "test_status_script.py",
+      "test_verification.py",
+      "test_workflow.py",
+      "test_workflow_editor.py"
     ],
     "requires_network": false,
     "requires_api_key": false
@@ -50,20 +61,24 @@
       "lines": 582,
       "calls_a_model": false
     },
+    "app/chat/persona.py": {
+      "lines": 211,
+      "calls_a_model": false
+    },
     "app/diff/engine.py": {
       "lines": 126,
       "calls_a_model": false
     },
     "app/evals/corpus.py": {
-      "lines": 196,
+      "lines": 232,
       "calls_a_model": false
     },
     "app/evals/metrics.py": {
-      "lines": 681,
+      "lines": 740,
       "calls_a_model": false
     },
     "app/evals/report.py": {
-      "lines": 107,
+      "lines": 187,
       "calls_a_model": false
     },
     "app/evals/run.py": {
@@ -78,8 +93,12 @@
       "lines": 35,
       "calls_a_model": false
     },
+    "app/interpretation/propose.py": {
+      "lines": 697,
+      "calls_a_model": true
+    },
     "app/main.py": {
-      "lines": 112,
+      "lines": 121,
       "calls_a_model": false
     },
     "app/pipeline.py": {
@@ -91,11 +110,11 @@
       "calls_a_model": false
     },
     "app/state/audit.py": {
-      "lines": 591,
+      "lines": 841,
       "calls_a_model": false
     },
     "app/state/claims.py": {
-      "lines": 372,
+      "lines": 390,
       "calls_a_model": false
     },
     "app/state/db.py": {
@@ -103,11 +122,11 @@
       "calls_a_model": false
     },
     "app/state/identity.py": {
-      "lines": 1018,
+      "lines": 1025,
       "calls_a_model": false
     },
     "app/state/models.py": {
-      "lines": 1155,
+      "lines": 1766,
       "calls_a_model": false
     },
     "app/state/projects.py": {
@@ -122,16 +141,28 @@
       "lines": 575,
       "calls_a_model": false
     },
+    "app/state/rollback.py": {
+      "lines": 375,
+      "calls_a_model": false
+    },
+    "app/state/routing.py": {
+      "lines": 938,
+      "calls_a_model": false
+    },
     "app/text/normalize.py": {
-      "lines": 216,
+      "lines": 292,
       "calls_a_model": false
     },
     "app/verification/verifier.py": {
-      "lines": 177,
+      "lines": 262,
       "calls_a_model": false
     },
     "app/web/deps.py": {
       "lines": 458,
+      "calls_a_model": false
+    },
+    "app/web/views/admin.py": {
+      "lines": 1357,
       "calls_a_model": false
     },
     "app/web/views/auth.py": {
@@ -156,6 +187,10 @@
     },
     "app/web/views/review_centre.py": {
       "lines": 1149,
+      "calls_a_model": false
+    },
+    "app/web/views/workflow.py": {
+      "lines": 643,
       "calls_a_model": false
     }
   },
@@ -358,7 +393,267 @@
       "depends_on": "ADR-015",
       "revisits": null,
       "is_hard_bet": false,
-      "title": "A session is a server-side row and a random bearer token, not a signed cookie"
+      "title": "an identity system with no way to sign in is a library, not a control. The project list and detail are the frame the four original screens hang inside; the original four assumed a single project and the corpus has six. The read-only workflow route answers a pain that is written down: an analyst hands an item off and cannot say who has it or what happens if nobody acts, so they chase it by email \u2014 which is the workflow this product claims to replace. The new-project form and the split between the escalation queue and the review centre are the two that were"
+    },
+    {
+      "id": "ADR-021",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "security",
+      "depends_on": "ADR-015",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Authority is a grid of roles to permission codes, held in code, and the control is the row that is missing"
+    },
+    {
+      "id": "ADR-022",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "hard-bet",
+      "depends_on": "ADR-003",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Every synthesis states what it withheld, at the same visual weight as what it included"
+    },
+    {
+      "id": "ADR-023",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "delivery",
+      "depends_on": "ADR-013",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "One router owns one path, and the guard is derived from the application rather than written by hand"
+    },
+    {
+      "id": "ADR-024",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "hard-bet",
+      "depends_on": "ADR-003",
+      "revisits": null,
+      "is_hard_bet": true,
+      "title": "A refusal may be disputed. The verifier may not be overridden"
+    },
+    {
+      "id": "ADR-025",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "hard-bet",
+      "depends_on": "ADR-003",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "A soft hyphen at a line break produces the wrong text on purpose, because the wrong text fails closed"
+    },
+    {
+      "id": "ADR-026",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "hard-bet",
+      "depends_on": "ADR-003",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Compatibility folding is decided by what a folding does, not by which tag a character carries"
+    },
+    {
+      "id": "ADR-027",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "hard-bet",
+      "depends_on": "ADR-003",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "A citation names a version, is checked against that version, and a verified fact has a shelf life"
+    },
+    {
+      "id": "ADR-028",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "stack",
+      "depends_on": null,
+      "revisits": "ADR-007",
+      "is_hard_bet": false,
+      "title": "SQLite now, Postgres at a named trigger \u2014 and the guarantees that are application promises until then"
+    },
+    {
+      "id": "ADR-029",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "security",
+      "depends_on": "ADR-028",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Tenant scope is one chokepoint, and no child row carries a second copy of the company"
+    },
+    {
+      "id": "ADR-030",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "stack",
+      "depends_on": "ADR-028",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Time is stored as UTC through a column type, and a naive timestamp raises rather than being assumed"
+    },
+    {
+      "id": "ADR-031",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "stack",
+      "depends_on": "ADR-016",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Knowledge is superseded, never edited"
+    },
+    {
+      "id": "ADR-032",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "security",
+      "depends_on": "ADR-017",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "The reversal column exists and the digest scheme that would defend it does not, so nothing may treat it as evidence"
+    },
+    {
+      "id": "ADR-033",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "hard-bet",
+      "depends_on": "ADR-003",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Regulatory relationships are a citation-verified edge graph, not a graph database"
+    },
+    {
+      "id": "ADR-034",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "workflow",
+      "depends_on": null,
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Time is injected into the approval engine, never read inside it"
+    },
+    {
+      "id": "ADR-035",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "workflow",
+      "depends_on": "ADR-018",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "A bypassed approval is recorded as bypassed and never as approved"
+    },
+    {
+      "id": "ADR-036",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "workflow",
+      "depends_on": "ADR-006",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "An escalation that cannot be routed stays in the shared queue, visibly unrouted"
+    },
+    {
+      "id": "ADR-037",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "hard-bet",
+      "depends_on": "ADR-003",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Exactly one module may call a model, the id is pinned in code, and with no key the path says so"
+    },
+    {
+      "id": "ADR-038",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "testing",
+      "depends_on": null,
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "No line-coverage target: branch coverage on the load-bearing modules, mutation testing, and properties"
+    },
+    {
+      "id": "ADR-039",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "testing",
+      "depends_on": "ADR-022",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Evals print raw counts with denominators, and the size of the independent sample is derived, not supplied"
+    },
+    {
+      "id": "ADR-040",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "testing",
+      "depends_on": null,
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "The corpus stays synthetic and keeps its fictional jurisdiction; real filings would be a second, labelled corpus"
+    },
+    {
+      "id": "ADR-041",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "docs",
+      "depends_on": "ADR-008",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Diagrams have one vocabulary, and unbuilt work is drawn as unbuilt"
+    },
+    {
+      "id": "ADR-042",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "docs",
+      "depends_on": null,
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "One file in this repository is generated, and where prose disagrees with it, it wins"
+    },
+    {
+      "id": "ADR-043",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "process",
+      "depends_on": "ADR-014",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "The history is kept whole, commits are split honestly, and the repository starts private"
+    },
+    {
+      "id": "ADR-044",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "process",
+      "depends_on": "ADR-023",
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "Parallel agents own disjoint files, one process commits, and a wave that would collide is parked"
+    },
+    {
+      "id": "ADR-045",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "research",
+      "depends_on": null,
+      "revisits": null,
+      "is_hard_bet": false,
+      "title": "No gift-card incentive, and the write-up is offered unconditionally"
+    },
+    {
+      "id": "ADR-046",
+      "status": "accepted",
+      "date": "2026-08-04",
+      "area": "research",
+      "depends_on": null,
+      "revisits": "ADR-045",
+      "is_hard_bet": false,
+      "title": "The signature is a name and an address: no borrowed title, no third party named, and the disclosure line stays verbatim"
     }
   ],
   "built": {
@@ -377,11 +672,10 @@
     "authentication": true,
     "roles_and_permissions": true,
     "segregation_of_duties": true,
+    "model_interpretation": true,
     "evals": true
   },
-  "designed_not_built": {
-    "model_interpretation": "docs/architecture.html - the only stage permitted to call a model"
-  },
+  "designed_not_built": {},
   "known_gaps": [
     "The verifier confirms a quoted passage EXISTS at the cited offsets. It does not confirm the passage supports the claim attached to it. Named in docs/security.html.",
     "The audit hash chain detects tampering; it does not prevent it. Closing that needs the chain head published outside the host.",
