@@ -35,6 +35,16 @@ genuine hyphen is a guess, and this module exists so that nothing guesses. So
 normalizes to "demon-strate" -- the second will not match "demonstrate", which
 sends the citation to review rather than asserting a joined word nobody wrote.
 
+A LIMIT WORTH STATING. A soft hyphen sitting at a line break -- "main<AD>\n
+tain", which some extractors emit where others emit "main-\ntain" -- is deleted
+like any other, and the line break then collapses to a space, giving "main
+tain". That is the wrong text. It is also the safe wrong text: it matches
+nothing, so the citation fails and goes to review. Consuming the break instead
+would produce "maintain", which is very probably right and is still a guess,
+and a guess that fails open rather than closed. ADR-003 fails toward review, so
+this stays as it is, documented and pinned by a test rather than left to be
+rediscovered.
+
 THE PROJECTION. normalize() returns only the text. normalized_projection()
 returns the same text plus a map from each normalized character back to the raw
 characters that produced it, which is what lets a search run in normalized
@@ -126,6 +136,7 @@ def normalized_projection(text: str) -> Projection:
     ends: list[int] = []
     pending_space = False
     pending_start = 0
+    pending_end = 0
 
     index = 0
     length = len(text)
@@ -161,11 +172,19 @@ def normalized_projection(text: str) -> Projection:
                 if not pending_space:
                     pending_space = True
                     pending_start = index
+                # The run ends where the chunk that produced this space ends,
+                # not at the next chunk's start. The two differ when a chunk
+                # folds to a space followed by something else -- an ideographic
+                # space carrying a stray combining mark, which bad PDF
+                # extraction does emit. Closing the run at the next chunk's
+                # start then gave the space an empty raw span, so a reviewer
+                # asked to see the cited characters would have been shown none.
+                pending_end = chunk_end
                 continue
             if out and pending_space:
                 out.append(" ")
                 starts.append(pending_start)
-                ends.append(index)
+                ends.append(pending_end)
             pending_space = False
             out.append(out_char)
             starts.append(index)

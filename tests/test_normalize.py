@@ -134,6 +134,77 @@ def test_a_normalized_span_maps_back_to_the_raw_offsets_that_produced_it():
     assert normalize(raw[start:end]) == needle
 
 
+def test_a_collapsed_space_never_maps_to_an_empty_raw_span():
+    # Regression. The whitespace run used to be closed at the next chunk's
+    # start, which is one character too early when a single chunk folds to a
+    # space followed by something else -- an ideographic space carrying a stray
+    # combining mark, which bad PDF extraction emits. The space then claimed
+    # the raw span (1, 1), so a reviewer asked to see the cited characters was
+    # shown none, and the projection's own promise -- that every normalized
+    # character names the source characters that produced it -- was false.
+    raw = "A　́B"
+    projection = normalized_projection(raw)
+
+    assert projection.text == "A ́B"
+    for index in range(len(projection.text)):
+        start, end = projection.starts[index], projection.ends[index]
+        assert start < end, f"character {index} claims the empty span ({start}, {end})"
+    # The run is the whole chunk, because one chunk produced both the space and
+    # the mark after it. Wider than strictly necessary, and honest: those are
+    # the source characters the space came out of.
+    assert (projection.starts[1], projection.ends[1]) == (1, 3)
+    assert raw[1:3].startswith("　")
+
+
+def test_every_projection_offset_is_a_real_non_empty_run():
+    # The same invariant, over text that mixes every rule in the module.
+    raw = (
+        "  SECTION　4.\n\n\tThe  Utility  shall main­tain "
+        "cost-\n   causation records suﬃcient for 2² years. "
+    )
+    projection = normalized_projection(raw)
+
+    assert projection.text == normalize(raw)
+    assert len(projection.starts) == len(projection.ends) == len(projection.text)
+    assert all(0 <= s < e <= len(raw) for s, e in zip(projection.starts, projection.ends))
+    # Offsets only ever move forward through the source.
+    assert list(projection.starts) == sorted(projection.starts)
+    assert list(projection.ends) == sorted(projection.ends)
+
+
+def test_a_soft_hyphen_at_a_line_break_fails_closed_rather_than_rejoining():
+    # A documented limit, pinned so it cannot change by accident. A PDF that
+    # breaks a word with U+00AD and a newline leaves "main<soft>\ntain". The
+    # soft hyphen is deleted, the newline still collapses to a space, and the
+    # result is "main tain", which matches neither "maintain" nor anything
+    # else. That is the wrong text, and it is the safe wrong text: the citation
+    # fails to verify and goes to review. Consuming the break instead would
+    # assert "maintain" -- a better guess, still a guess, and a guess that
+    # fails open. ADR-003 says we fail toward review, so this stands.
+    assert normalize("main­\ntain") == "main tain"
+    assert normalize("main­\ntain") != "maintain"
+    # Away from a line break the soft hyphen closes the word up, as it must.
+    assert normalize("main­tain") == "maintain"
+
+
+def test_the_folding_boundary_is_exactly_where_the_docstring_puts_it():
+    # One test holding both halves of the rule, so neither can drift without
+    # the other being read. Left column folds, right column does not, and the
+    # difference is whether the character can carry a number's value.
+    folds = {
+        "ﬁ": "fi",        # ligature
+        " ": " ",         # no-break space, between words
+        "２": "2",         # full-width two: a digit written wide
+        "㍲": "da",        # squared unit
+        "№": "No",        # numero sign
+    }
+    for source, expected in folds.items():
+        assert normalize(f"a{source}b") == f"a{expected}b", repr(source)
+
+    for protected in ("²", "₂", "½", "⅓", "¹"):
+        assert normalize(f"20{protected}") == f"20{protected}", repr(protected)
+
+
 def test_a_span_outside_the_projection_is_refused_not_answered():
     projection = normalized_projection("20 MW")
     for start, end in ((0, 0), (-1, 3), (0, 99), (3, 2)):

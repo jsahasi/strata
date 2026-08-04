@@ -72,7 +72,14 @@ def _spans_of(quoted_text: str, source_text: str) -> list[tuple[int, int]]:
         # source character expanded into several. One span, counted once.
         if span not in seen:
             seen.add(span)
-            spans.append(span)
+            # And a hit can begin or end part-way through one such expansion --
+            # a quote starting at the "2" of a squared-metre glyph. There is no
+            # raw span for half a character, so the span mapped back is wider
+            # than the quote. Re-reading it is the cheap way to keep this
+            # function's promise exact rather than approximate: what is
+            # returned is a raw span that really does normalize to the needle.
+            if normalize(source_text[span[0] : span[1]]) == needle:
+                spans.append(span)
         position = projection.text.find(needle, position + 1)
     return spans
 
