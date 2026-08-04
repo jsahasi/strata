@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Strata — Web Surface and Deployment Design</title>
+<style>
+  body { font: 15px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 940px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.8rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.2rem; }
+  h3 { font-size:1rem; color:#1d4ed8; margin:1.2rem 0 .3rem; }
+  .d { border:1px solid #e2e8f0; border-radius:8px; padding:.9rem 1.2rem; margin:.9rem 0; }
+  .meta { color:#64748b; font-size:.85rem; margin:.1rem 0 .5rem; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  .lbl { font-weight:600; color:#334155; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .crit { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.92rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .5rem .65rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+  .diagram { overflow-x:auto; background:#0f172a; color:#e2e8f0; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0; }
+  .diagram pre { font: 12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; margin:0; white-space:pre; }
+</style>
+</head>
+<body>
+
+<h1>Web Surface and Deployment</h1>
+<p class="sub">The design for what a reviewer sees at <code>strata.sudama.ai</code>, and how it gets there.
+Written 2026-08-03, before implementation.</p>
+
+<p>This document covers only what is new: the web layer, its visual design, and the deployment.
+The pipeline behind it — ingestion, diff, interpretation, verification, state — is specified in
+<code>docs/architecture.html</code> and is unchanged by anything here. The reasoning for each choice
+below lives in <code>docs/.ai/decisions.html</code> as ADR-009 through ADR-014; this document says
+what is being built, not why it beat the alternatives.</p>
+
+<div class="crit"><strong>Sequencing risk, stated first because it governs everything else.</strong>
+<code>app/</code> and <code>tests/</code> are empty at the time of writing. The web layer renders state
+that nothing yet produces. Build order is therefore verifier and diff before screens, and the
+deployment before the design polish — a designed shell over an absent product is the exact failure
+this design was chosen to avoid. If hours run short, the cut order is in the last section.</div>
+
+<h2>Scope</h2>
+
+<p>Three additions.</p>
+<table>
+<tr><th>What</th><th>Where</th><th>Detail</th></tr>
+<tr><td>Web layer</td><td><code>app/web/</code></td><td>FastAPI routes, Jinja templates under <code>app/web/templates/</code>, assets under <code>app/web/static/</code>. A read surface over stored state, plus exactly two writes: approve and reject on a queued item. The module boundary is the one already fixed in <code>docs/architecture.html</code> — deliberately thin, no business logic.</td></tr>
+<tr><td>Design system</td><td><code>app/web/static/strata.css</code></td><td>One stylesheet. Design tokens, type scale, both colour schemes. No framework, no icon font, no build step.</td></tr>
+<tr><td>Deployment</td><td><code>Dockerfile</code>, <code>compose.yml</code>, <code>Caddyfile</code></td><td>Two containers on a dedicated droplet. Caddy terminates TLS; the app serves on an internal port.</td></tr>
+</table>
+
+<p>The web layer holds no business logic. It reads projections and renders them. Anything that
+decides something belongs upstream, behind the verification gate.</p>
+
+<h2>Screens</h2>
+
+<p>Four. Each maps to a moment in the analyst's day; a screen that does not is not built.</p>
+
+<table>
+<tr><th>Screen</th><th>Route</th><th>What it answers</th></tr>
+<tr><td>Proceedings</td><td><code>/</code></td><td>"What am I tracking, and where has something moved?" One row per proceeding: docket, jurisdiction, latest version, draft-or-final badge, count of unreviewed changes.</td></tr>
+<tr><td>Proceeding detail</td><td><code>/proceedings/{id}</code></td><td>"What changed between these two versions?" A version timeline, and the typed changes between any selected pair — added, removed, modified — each with its materiality and its draft-or-final status.</td></tr>
+<tr><td>Change detail</td><td><code>/changes/{id}</code></td><td>"What does this mean for us, and can I trust it?" The claim, its citation, the obligations and projects it touches, the recommended action, the named reviewer.</td></tr>
+<tr><td>Review queue</td><td><code>/review</code></td><td>"What did the system refuse to assert?" Everything that failed verification or fell below the confidence threshold, each with the reason stated in plain words.</td></tr>
+</table>
+
+<p>Deliberately absent: a settings page, a metrics dashboard, an admin view, a search box, a user
+profile. None answers a pain the analyst named, and each would dilute the one path the demo depends
+on. The internal eval numbers live in the submission documents, not in the product — an eval
+dashboard built for a non-technical user is a feature the panel is explicitly primed to challenge.</p>
+
+<h2>The citation viewer</h2>
+
+<p>This is the interaction the submission rests on, so it is specified rather than sketched.</p>
+
+<p>Every claim on change detail carries a citation chip showing the section reference. Activating the
+chip opens a source panel beside the claim, scrolled to the cited character offsets, with the exact
+quoted span marked in the original document text. The analyst reads the sentence where it actually
+appears, and closes the panel. No modal, no navigation away, no loss of place.</p>
+
+<div class="diagram"><pre>
+  CHANGE DETAIL                              SOURCE PANEL (opens on chip activation)
+  +--------------------------------------+   +------------------------------------+
+  |  Threshold lowered, 20 MW -> 10 MW    |   |  SECTION 2. DEFINITIONS            |
+  |                                        |   |                                    |
+  |  Materiality: MATERIAL                 |   |  2.1 "Large Load Customer" means   |
+  |  Status: FINAL - effective 2026-11-01  |   |  a Customer whose Requested Load   |
+  |                                        |   |  equals or exceeds [10 megawatts]  |
+  |  "...equals or exceeds 10 megawatts"   |   |  ^^^^^^^^^^^^^^^^^^^ marked span   |
+  |  [ Sec 2.1, v3 ]  <- citation chip     |   |  (MW).                             |
+  |                                        |   |                                    |
+  |  Affects: OBL-003, OBL-007             |   |  2.2 "Requested Load" means the    |
+  |  Action: COMPLY   Reviewer: J. Okonkwo |   |  maximum electric demand...        |
+  +--------------------------------------+   +------------------------------------+
+</pre></div>
+
+<p><span class="lbl">The paired demonstration.</span> Two changes, shown one after the other. The first
+verifies: the chip is solid, the span highlights, the claim reads as established fact. The second
+carries a deliberately corrupted quote. It never renders as a claim at all. It appears in the review
+queue, labelled with the reason and showing the mismatch — what was quoted, against what the source
+actually says at those offsets.</p>
+
+<div class="note"><span class="lbl">Constraint on the visual design, and it is a hard one.</span>
+Verified and unverified must not read as two shades of a single treatment. A greyed-out assertion is
+still an assertion — the reader's eye completes it. The unverified state has to differ in
+<em>structure</em>, not only in colour: the claim text does not appear in the position where claims
+appear, and what occupies that position is the reason it was withheld. It must work without a legend,
+and it must survive being screenshotted in black and white.</div>
+
+<h2>Design system</h2>
+
+<p>One stylesheet, organised as tokens then components.</p>
+
+<ul>
+<li><span class="lbl">Type.</span> A scale built for dense regulatory prose, not for dashboard chrome.
+Quoted source passages need a real measure — around 66 characters — and generous leading, because
+the analyst reads them rather than scans them. Interface text and document text are visibly different
+registers, so a quotation is never mistaken for the product's own voice.</li>
+<li><span class="lbl">Colour.</span> Greyscale carries the structure. One accent for interactive
+elements, one for escalation. Materiality and draft-versus-final are conveyed by label and weight
+first, colour second, so the meaning survives colour blindness and a monochrome screenshot.</li>
+<li><span class="lbl">Both schemes.</span> Light and dark, via <code>prefers-color-scheme</code>.
+Tokens are declared once and inverted, not redefined per component.</li>
+<li><span class="lbl">No dependencies.</span> No CSS framework, no icon font, no web font fetched from
+a third party. System font stack. Every byte the page loads is served from the same origin, which
+also keeps the content security policy simple.</li>
+</ul>
+
+<p>The visual execution runs under the <code>frontend-design</code> skill at implementation time.
+This section fixes the constraints that skill works within.</p>
+
+<h2>Deployment</h2>
+
+<div class="diagram"><pre>
+  strata.sudama.ai  --A record-->  [ new droplet, nothing sensitive on it ]
+                                     |
+                                     |  :443  +-----------+
+                                     +------->|   caddy    |  TLS via Let's Encrypt,
+                                              |            |  basic-auth at the edge
+                                              +-----+------+
+                                                    | :8000 (internal only)
+                                              +-----v------+
+                                              |   strata    |  FastAPI, uvicorn
+                                              |             |  seeds corpus if DB empty
+                                              +-----+------+
+                                                    |
+                                              +-----v------+
+                                              |  volume     |  SQLite
+                                              +------------+
+</pre></div>
+
+<p><span class="lbl">Properties.</span> Two containers, one compose file. SQLite on a named volume, so
+a redeploy does not lose reviewed state. The corpus seeds on first boot only if the database is empty.
+Basic auth at the edge, with the credentials printed in the submission — this keeps crawlers and
+strangers out without putting a login screen between a reviewer and the demo.</p>
+
+<p><span class="lbl">The local contract survives untouched.</span> The Dockerfile calls the same
+entrypoint as <code>make run</code>. There is no deployment-only code path, because a deployment-only
+code path is a thing that breaks the moment nobody is testing it. <code>make test</code> stays offline
+and does not know the droplet exists.</p>
+
+<h2>Failure behaviour</h2>
+
+<p>The deployed instance obeys the same rule as the local one: <strong>absence is denial</strong>.
+Deployment must not become the place that principle quietly stops applying.</p>
+
+<table>
+<tr><th>Condition</th><th>Behaviour</th></tr>
+<tr><td>Database empty</td><td>The page says the corpus has not loaded, and how to load it. It does not render an empty table that reads like "nothing has changed".</td></tr>
+<tr><td>Verification cannot run</td><td>No claim renders as established. Everything routes to review. The product degrades to useless-but-honest rather than confident-and-wrong.</td></tr>
+<tr><td>Model unavailable</td><td>Ingestion, diff and citation verification continue — they need no model. Interpretation degrades visibly to escalation, with the reason shown, per principle 26: a fallback must announce itself.</td></tr>
+<tr><td>Citation offsets out of range</td><td>Treated as a verification failure, not an exception. The claim is withheld and the reason names the version and the offsets.</td></tr>
+</table>
+
+<h2>Testing</h2>
+
+<p>Existing suite unchanged: offline, deterministic, asserted against the corpus manifest's known
+answers. Deployment adds three checks and no more.</p>
+
+<ol>
+<li><code>/healthz</code> returns 200 with the schema version and the corpus row counts.</li>
+<li>A container smoke test: build the image, boot it against an empty volume, confirm the seed runs
+and the known change count matches the manifest.</li>
+<li>A rendering test for the withheld state — a claim whose citation fails must not appear in the
+change-detail response body at all. This is asserted against the HTML, because "it looked greyed out"
+is not a guarantee and a CSS change could otherwise silently reveal it.</li>
+</ol>
+
+<h2>Cut order, if hours run short</h2>
+
+<p>Sacrifice in this sequence, and say so in the submission rather than hiding it: dark scheme;
+the review queue's amend action, keeping approve and reject; the proceedings list, entering at a
+single seeded proceeding instead; the deployment itself, falling back to the local run which is
+still guaranteed.</p>
+
+<p><strong>Never cut:</strong> the citation viewer, the withheld-claim state, or the paired verified
+and corrupted demonstration. Those three are the submission's argument. Everything else on this page
+is in service of them.</p>
+
+</body>
+</html>
