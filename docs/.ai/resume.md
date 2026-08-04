@@ -18,7 +18,13 @@ cannot be stale. Everything below is prose and may already be wrong.
    down for several minutes during the workspace build and is easy to reintroduce
    across the ~14 new models.
 
-## Four workflows died mid-run. All resumable from cache.
+## Four workflows died mid-run. Resumable from cache — but only in the same session.
+
+> **`resumeFromRunId` is same-session only.** Returning to the existing Claude Code
+> session replays every completed agent instantly and re-runs only the failed ones.
+> Starting a fresh session loses all of it, and roughly 3.3M subagent tokens of
+> completed work would have to be redone from scratch. Resume the session; do not
+> start a new one.
 
 Completed agents replay instantly; only the failed ones re-run.
 
