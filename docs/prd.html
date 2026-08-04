@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — PRD</title>
+<style>
+  body { font: 15px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 900px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.8rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.2rem; }
+  h3 { font-size:1.02rem; color:#1d4ed8; margin:1.1rem 0 .3rem; }
+  .d { border:1px solid #e2e8f0; border-radius:8px; padding:.9rem 1.2rem; margin:.9rem 0; }
+  .meta { color:#64748b; font-size:.85rem; margin:.1rem 0 .5rem; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  .lbl { font-weight:600; color:#334155; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .crit { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .pitch { background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.92rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .45rem .6rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+  ol, ul { padding-left: 1.3rem; }
+  li { margin: .3rem 0; }
+  blockquote { border-left:3px solid #cbd5e1; margin:.6rem 0; padding:.2rem 0 .2rem .9rem; color:#334155; }
+</style>
+</head>
+<body>
+
+<h1>Strata — Product Requirements</h1>
+<p class="sub">A citation-grade regulatory change-intelligence workspace, built for one user. Living document — updated as the build and the user interviews change what we know, not rewritten at the end.</p>
+
+<div class="pitch">
+<h3 style="margin-top:0">90-second pitch (say this at the panel)</h3>
+<p>Strata is regulatory change intelligence for one person: the regulatory affairs analyst at a multi-state investor-owned utility, the one who reads a new docket filing and has to work out, fast, what changed, whether it is binding yet, and what the business must now do.</p>
+<p>Today that work is manual. A new draft or order lands; the analyst opens it beside the last version, finds the delta by eye, judges materiality against memory of the obligations register, and routes it by hallway conversation or email. An alert only tells them something moved. Search only helps if they already know what to look for. Neither one does the interpretation, and the interpretation is the expensive part.</p>
+<p>Strata takes two versions of a proceeding, diffs them deterministically, and asks a model only to judge the materiality of a change it is shown — never to find the change itself. Every claim carries a citation to an exact source passage, and that citation is verified against the stored text before the claim is ever shown as fact. An unverified claim does not assert itself; it goes to review, labelled as unverified, not hidden.</p>
+<p>The hard part is exactly that: language models misquote fluently and with confidence, and in this domain a wrong citation is worse than no answer. Strata assumes the model will get it wrong sometimes and is built so that failure is visible and survivable, not invisible.</p>
+</div>
+
+<h2>The user</h2>
+<p>One person, per ADR-001: <strong>the regulatory affairs analyst at a multi-state investor-owned utility.</strong> Not the compliance officer, who owns the obligation register but consumes analysis rather than producing it. Not outside counsel, who bills by the hour for exactly this work and has no incentive to make it faster. Not "regulated enterprises" in general, which describes an industry, not a person.</p>
+<p>The analyst is the one who reads the docket. Their job is to turn a filing into a judgement — what changed, whether it matters, whether it is final — and to hand that judgement to the people who act on it. That is the job Strata is built to make faster and more defensible, not the job of filing comments or writing legal opinions.</p>
+
+<h2>A day in the analyst's week — modeled, not yet observed</h2>
+<div class="note"><strong>Honesty check.</strong> The workflow below is the model Strata is designed against. It is built from how state public-utility-commission dockets work as a matter of public record — draft orders, comment periods, final orders with effective dates — plus reasoning about who touches each step, not from an interview transcript. No interview has been completed as of this writing. H1 and H2 below (see "User feedback") test the two load-bearing claims in it directly, and this section gets rewritten the moment a real conversation contradicts it.</div>
+<p>The analyst tracks several open proceedings at once, across several state commissions, because the utility operates in more than one jurisdiction. Proceedings move slowly and then suddenly — months of quiet, then a draft order posts, then a short comment window, then a final order with a compliance deadline attached. The analyst's job inside that rhythm is to notice the version that matters, work out what it changed from the last one, and decide, this week, whether the business has to do something and by when.</p>
+<p>The moment Strata is built for: a new version of a proceeding the utility is a party to appears. The analyst does not want a summary of the new document — they have read the old one and know it well. They want the delta: what changed, in the source's own words, whether it is a draft they should watch or a final order they must comply with, which of the utility's existing obligations or projects it touches, and who on their team needs to see it this week. Today that delta is assembled by hand: two documents open side by side, a redline built by eye, a judgement of materiality made from memory, and a routing decision made by knowing who owns what. Strata's job is to produce that same delta as a verified, citable artefact instead of a manual reconstruction.</p>
+
+<h2>Why alerts and search are not enough</h2>
+<p>Both exist today and neither does the analyst's actual work.</p>
+<p><strong>An alert says something moved.</strong> A docket-tracking subscription or a law firm client memo tells the analyst a new filing posted. It does not tell them what changed inside it, whether the change is material, whether it is still a draft that could be withdrawn on rehearing, or which of the utility's obligations it touches. The analyst still has to open both versions and do the entire interpretive job the alert implied was done. An alert converts silence into a to-do item; it does not shrink the to-do item.</p>
+<p><strong>Search is worse, because it assumes the question.</strong> Search answers "where does this proceeding mention interconnection timelines" — a query the analyst can only write if they already know a change touched interconnection timelines. The analyst's actual starting point is the opposite: they do not know what changed yet, that is the thing they are trying to find out. A tool that requires the query to already contain the answer is not built for the moment it claims to serve.</p>
+<p>What both tools skip is the same step: turning a new version into a judged, cited, routed piece of work. That step is the product. It is why the unit of work in Strata (ADR-002) is a <em>change</em>, carried through to a recommended action with a named reviewer — not a document, not a query result, not a notification.</p>
+
+<h2>The wedge, end to end</h2>
+<p>One workflow, deliberately narrow, run against a synthetic proceeding with known material and immaterial edits plus a synthetic company context of obligations, projects and documents (the corpus described in <code>docs/.ai/tasks.html</code>, T3):</p>
+<ol>
+<li><strong>Ingest</strong> two versions of a proceeding. Each is segmented into passages with stable character offsets and a hash of the source text — the foundation everything downstream cites back to.</li>
+<li><strong>Diff, deterministically.</strong> Segments are aligned and compared with an exact, testable algorithm. The model is not asked to find changes (ADR-004) — diffing is a solved problem and has a known right answer per test fixture; asking a model to do it too would make the step untestable.</li>
+<li><strong>Interpret materiality.</strong> For each typed change (added, removed, modified), the model is shown the change and asked only to judge whether it is material and why. Its claim must carry a citation of exact source offsets.</li>
+<li><strong>Verify the citation.</strong> Before any claim is shown as established, the verifier re-reads the stored source at the cited offsets and confirms the quote matches (ADR-003). If it does not match, the claim is never displayed as fact — it is routed to the review queue, labelled unverified, with the reason shown.</li>
+<li><strong>Classify draft versus final.</strong> This is a field on the version, never inferred at read time (ADR-005). A draft change produces a monitor-and-comment action. A final change produces a comply action with an effective date. The two never share a code path, because conflating them is the costliest error in the domain in both directions — acting on a draft that never survives comment, or missing a binding deadline because a final order was treated as provisional.</li>
+<li><strong>Map impact.</strong> The change is matched against the company's obligations, projects and documents, each match carrying a confidence. Lexical matching handles the regulatory text; semantic matching earns its place only here, where the company's internal wording will not lexically match the docket's (ADR-008).</li>
+<li><strong>Recommend an action and a reviewer.</strong> Draft → monitor or comment, routed to the analyst. Final → comply, routed to the obligation owner, with the effective date attached.</li>
+<li><strong>Update project state, with an audit trail.</strong> Anything below the confidence threshold — an uncertain impact mapping, an unverified citation, a low-confidence alignment — never enters project state as settled fact. It goes to the escalation queue instead (ADR-006). Absence is denial: a failure to verify degrades to a review item, never to a confident guess.</li>
+</ol>
+<p>The end state the analyst sees: a list of changes, each with its materiality judgement and citation, its draft-or-final status, the obligations and projects it touches, a recommended action with a named reviewer, and — for anything the system was not confident about — a review item instead of a silent guess.</p>
+
+<h3>Cold start</h3>
+<p>This wedge needs two versions of a proceeding before it produces a change. The first version of any proceeding Strata sees has nothing to diff against. Rather than produce nothing, obligation extraction and citation verification run on a single version standalone — the analyst gets a verified reading of what the document says and which obligations it touches, even before there is a second version to compare it to. The change-to-action workflow activates on the next version. This is a real limitation of a change-centric design, not a solved one; it is named here rather than discovered at the panel.</p>
+
+<h2>What Strata deliberately does not do</h2>
+<ul>
+<li><strong>Does not file anything.</strong> It recommends an action and a reviewer; a human files the comment, signs the compliance memo, or updates the tariff. Strata ends at a routed, cited recommendation.</li>
+<li><strong>Does not give legal advice.</strong> Materiality and impact judgements are decision support for the analyst, not a substitute for counsel's sign-off on anything that leaves the building.</li>
+<li><strong>Does not monitor external dockets on its own.</strong> Ingestion in this build is a version handed to the system, not a crawler watching commission websites for new filings. That is a real product gap for a production version, and it is out of scope for 48 hours.</li>
+<li><strong>Does not model more than one reviewer role.</strong> Per the cut list in <code>docs/.ai/tasks.html</code>, the build assumes one reviewer role rather than a full org chart of routing rules. A compliance officer, a project owner, and a document owner are all "the reviewer" for this build.</li>
+<li><strong>Does not build a multi-jurisdiction taxonomy.</strong> Also on the cut list. The synthetic corpus covers one proceeding type well rather than many shallowly.</li>
+<li><strong>Does not treat a paraphrase as a citation.</strong> A claim that cannot be traced to an exact, matching source span is not shown as fact, full stop — even if a human reader would find the paraphrase obviously correct. This is the trade-off named in ADR-003 and it is accepted deliberately: rejecting a good citation costs a review; accepting a bad one costs the product's reason to exist.</li>
+</ul>
+
+<h2>Trust and adoption — what would actually earn it</h2>
+<p>An expert user does not trust a compliance tool because it looks confident. The metrics below are what this build proposes to measure trust by. None have been observed yet — the eval work is scheduled for hours 34-42 of the build (<code>docs/.ai/tasks.html</code>, Phase 4) — so what follows is the definition of each metric, not a result.</p>
+<table>
+<tr><th>Metric</th><th>What it measures</th><th>Status</th></tr>
+<tr><td>Citation-verification pass rate</td><td>Of claims the system generates, the share whose cited offsets are confirmed against the stored source rather than routed to review. This is the direct, measurable proxy for "does the tool ever assert something it cannot back up."</td><td>To be measured; a deliberate-corruption test (T17) proves the verifier rejects a fabricated quote before the pass rate is reported as meaningful.</td></tr>
+<tr><td>Obligation-extraction precision and recall</td><td>Against a hand-labelled eval set over the synthetic corpus (T16). This is the standard the "AI excellence" evaluators expect — a number you can defend, not an adjective.</td><td>Eval set and labels not yet built.</td></tr>
+<tr><td>Escalation-queue clearance</td><td>Whether the review queue stays small enough that clearing it is routine rather than becoming its own backlog. A queue nobody empties is a failure mode the peer project already lived through (ADR-006).</td><td>No usage data exists yet; this needs a live queue and a reviewer working it.</td></tr>
+<tr><td>Confidence threshold placement</td><td>Where the line sits between "shown as settled" and "sent to review," and on what evidence it was set. Listed as an open question in <code>docs/.ai/decisions.html</code>; it is not yet a number, and pretending otherwise would be exactly the bluff the prep guide warns against.</td><td>Open.</td></tr>
+<tr><td>Behavioural trust proxy</td><td>Whether an analyst, shown a verified claim with its source span open, stops re-opening the original PDF to check it. Directly testable in a user session; not testable from the build alone.</td><td>Proposed instrumentation only. Depends on the user interviews and any hands-on session that follows them.</td></tr>
+</table>
+<p>The honest summary: this build can already report a citation-verification pass rate and a deliberate-corruption result, because those are properties of code that exists. It cannot yet report extraction precision, queue health under real load, or whether an analyst's behaviour actually changes — those need, respectively, labelled data, live usage, and a user in the room. All three are named as gaps rather than smoothed over.</p>
+
+<h2>Beyond utilities — why the wedge generalises, and where it does not</h2>
+<p>The core primitive is domain-agnostic: successive versions of a governing text, a registry of the reader's own obligations, a deterministic diff, a citation-verified materiality judgement, and a routed action. Nothing in that chain is specific to public-utility-commission dockets. The prep guide's adjacent-user list names the obvious next markets: an independent power producer or energy retailer facing the same commissions; a banking compliance analyst tracking rule changes from a prudential regulator; a pharma regulatory-affairs analyst tracking FDA guidance revisions. Each has the same shape — a body issues successive versions of binding text, a company holds obligations against it, and someone has to work out what changed and route it.</p>
+<p>What does not generalise for free is the parsing layer. PUC dockets, SEC filings, and FDA guidance documents are structured differently — different section conventions, different signals for draft-versus-final, different citation formats. The deterministic diff and the citation verifier are format-agnostic once text is segmented with stable offsets; the segmentation step itself needs a domain-specific adapter per source type. This build has one adapter, for one proceeding type, because building three shallow adapters in 48 hours would leave none of them trustworthy. The choice to go deep on one domain rather than wide on three is the same choice ADR-001 makes about the user, applied to the source material.</p>
+
+<h2>User feedback — the honest state of it</h2>
+<div class="crit"><strong>As of this writing, zero interviews are complete.</strong> Requests went out per T1 in <code>docs/.ai/tasks.html</code>; the tracking table in <code>docs/user-research.html</code> is still empty. This section states the hypotheses under test and what would falsify each, because that is what is actually true right now — not because it is the strongest possible answer. A submission that invented findings here would score worse on inspection than one that shows the interviews in flight and the reasoning that will update this document the moment they land.</p></div>
+<table>
+<tr><th>#</th><th>Hypothesis</th><th>What would falsify it</th><th>What it decides</th></tr>
+<tr><td>H1</td><td>The analyst, not counsel, does the change-to-action work.</td><td>Two or more interviews say outside counsel does the actual reading and the analyst only files the result.</td><td>ADR-001 and the entire "one user" framing above. If this falls, the persona in this PRD is wrong and the document gets rewritten, not patched.</td></tr>
+<tr><td>H2</td><td>Nobody reliably diffs versions today; it is done by reading, memory, and manual highlighting.</td><td>An interview shows a redlining tool they already trust and use routinely for this exact task.</td><td>Whether the deterministic-diff step (ADR-004) is displacing a real gap or a tool that already exists and works.</td></tr>
+<tr><td>H3</td><td>Trust requires seeing the source passage, not a confidence score.</td><td>An interview subject says a bare confidence score would be enough, or that they would not check the citation either way.</td><td>Whether citation verification (ADR-003) is the product's central bet or an engineering nicety. If H3 falls, the honest move — stated in advance, here — is to keep the verifier as a correctness mechanism and stop presenting it as the trust mechanism, and to say exactly that at the panel.</td></tr>
+<tr><td>H4</td><td>The expensive part of the analyst's work is interpretation and routing, not detecting that something changed.</td><td>An interview subject says detection is the actual bottleneck and interpretation is fast once they know where to look.</td><td>Whether the product is solving the right end of the problem. If detection turns out to be the bottleneck, the wedge should move upstream toward faster, more reliable change-finding rather than richer interpretation of changes already found.</td></tr>
+</table>
+<p>Per the standing risk in <code>docs/.ai/tasks.html</code>: if only one interview lands before submission, that one conversation gets reported here honestly, with what it changed or why it did not. One real conversation reported straight beats three invented ones. If none land at all, that is reported too, and the hypotheses above stand as the design's stated bets rather than confirmed findings.</p>
+
+<h2>Open questions this PRD is not settling yet</h2>
+<p>Carried from <code>docs/.ai/decisions.html</code> because they bear directly on what "done" means for this product: which model and what its fallback is when wrong or unavailable; where the confidence threshold sits and on what evidence; whether audit history is an event log (rollback for free, more machinery) or snapshots (simpler, coarser); who labels the obligation-extraction eval set and by what standard. None of these get a placeholder answer here — an invented number would read worse under questioning than an open item marked open.</p>
+
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — Technical Design Document</title>
+<style>
+  body { font: 15px/1.62 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 980px; margin: 0 auto; padding: 2.5rem 1.25rem 6rem; }
+  h1 { font-size: 1.9rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.6rem; border-bottom:1px solid #e2e8f0; padding-bottom:.3rem; }
+  h3 { font-size:1.04rem; color:#1d4ed8; margin:1.3rem 0 .35rem; }
+  h4 { font-size:.92rem; color:#334155; margin:1rem 0 .3rem; }
+  p { margin:.5rem 0; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.88em; }
+  pre { background:#f1f5f9; border:1px solid #e2e8f0; border-radius:8px; padding:.8rem 1rem; overflow-x:auto; font-size:.85rem; line-height:1.5; }
+  pre code { background:none; padding:0; }
+  .lbl { font-weight:600; color:#334155; }
+  .d { border:1px solid #e2e8f0; border-radius:8px; padding:.9rem 1.2rem; margin:.8rem 0; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .open { background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:.7rem 1rem; margin:.7rem 0; }
+  .open .lbl { color:#1d4ed8; }
+  .risk { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:.8rem 0; }
+  table { border-collapse: collapse; width: 100%; margin: .7rem 0; font-size:.87rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .4rem .55rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+  .toc { columns:2; font-size:.9rem; column-gap:2rem; margin: 1rem 0; }
+  .toc a { color:#1d4ed8; text-decoration:none; }
+  .meta { color:#64748b; font-size:.85rem; }
+  ol, ul { margin:.4rem 0 .4rem 1.2rem; }
+  li { margin:.2rem 0; }
+</style>
+</head>
+<body>
+
+<h1>Technical Design Document</h1>
+<p class="sub">Strata — citation-grade regulatory change intelligence. How the hard bet is built, with the alternative considered and the trade-off accepted at every step.</p>
+<p class="meta">Written 2026-08-03, before implementation, per the project convention (TDD before code for anything with logic worth trusting). Kept current as the build changes — a TDD that stops matching the code is worse than none, because it tells the reader a false story with confidence.</p>
+
+<div class="note"><strong>How to read this.</strong> Every section states what was built (or, for pieces not yet written at time of drafting, what will be built and why), the alternative rejected, and the trade-off accepted. Where a number is not yet known — because the eval has not run, or the threshold has not been tuned — this document says so rather than filling the gap with something plausible. A guess dressed as a result is exactly the failure this product exists to prevent in its own domain; it would be strange to allow it here.</div>
+
+<div class="toc">
+<b>Contents</b><br>
+<a href="#overview">System overview</a><br>
+<a href="#ingestion">1. Ingestion &amp; passage segmentation</a><br>
+<a href="#diffing">2. Version diffing</a><br>
+<a href="#extraction">3. Evidence-linked extraction</a><br>
+<a href="#context">4. Company-context data model</a><br>
+<a href="#citation">5. Citation verification</a><br>
+<a href="#confidence">6. Confidence &amp; escalation</a><br>
+<a href="#routing">7. Reviewer routing</a><br>
+<a href="#audit">8. Audit history &amp; rollback</a><br>
+<a href="#evals">9. Evals</a><br>
+<a href="#isolation">10. Data isolation</a><br>
+<a href="#security">11. Security</a><br>
+<a href="#datamodel">12. Data model</a><br>
+<a href="#requestpath">13. Request path — main workflow</a><br>
+<a href="#failure">14. Failure modes</a><br>
+</div>
+
+<h2 id="overview">System overview</h2>
+<p>Two version-controlled corpora feed one pipeline. A <strong>proceeding</strong> — an external regulatory docket — arrives as successive <strong>document versions</strong>, each tagged draft or final. A <strong>company context</strong> — obligations, projects, documents, written in the company's own words, never the docket's — sits beside it. The pipeline turns a new version into: what changed (deterministic), whether the change matters (model, evidence-linked), what it touches in the company context (retrieval plus model, confidence-scored), and what to do about it (a routed action). Every factual claim the pipeline makes — a change happened, an obligation says X, a change affects obligation Y — carries a citation, and a citation that does not verify against the stored source is never shown as fact.</p>
+<p>The system is a single FastAPI service over SQLite (ADR-007), server-rendered, with one background-eligible stage: model calls. Everything upstream of a model call — text extraction, segmentation, diffing, offset bookkeeping — is deterministic, unit-tested against known answers, and has no failure mode that involves the model being wrong, because it never asks the model anything.</p>
+
+<h2 id="ingestion">1. Ingestion &amp; passage segmentation</h2>
+<div class="d">
+<h3>Design</h3>
+<p>A document version is ingested once and stored as immutable raw text plus a SHA-256 of that text (<code>document_version.source_sha256</code>). Versions are never edited in place — a correction is a new version, never a mutation, because every downstream offset assumes the text under it cannot move. Ingestion then segments the raw text into <strong>passages</strong>: the unit everything else — diffing, citation, extraction — operates on.</p>
+<p>Segmentation splits on structural cues native to regulatory drafting: numbered/lettered clauses (<code>§4.2</code>, <code>(a)</code>, <code>Ordering Paragraph 3</code>), blank-line paragraph breaks, and heading patterns. Each passage is stamped with <code>(document_version_id, seq, char_start, char_end, structural_ref)</code>, where <code>char_start</code>/<code>char_end</code> index directly into the stored raw text — not into a re-flowed or re-normalized copy — computed in a single pass over the text so a passage's offsets can never drift from a later re-parse.</p>
+<p><span class="lbl">PDF extraction is itself a place error enters</span> and is treated as its own tested stage, not folded into segmentation: page headers/footers, hyphenation across line breaks, and column reflow are resolved once, at extraction, before any offset is computed. Everything downstream trusts the extracted text as the source of truth for that version — which means an extraction bug is invisible to every later stage. This is the ingestion pipeline's single largest correctness risk and it is a deterministic-code risk, not a model risk; the mitigation is a fixed extraction library version and golden-file tests on the synthetic corpus's known text, not a confidence score.</p>
+</div>
+<div class="d">
+<h4>Alternatives considered</h4>
+<table>
+<tr><th>Option</th><th>Rejected because</th></tr>
+<tr><td>Fixed-size token windows</td><td>Even chunking is easy to implement but ignores document structure — a citation span routinely cuts a sentence in half, and a diff routinely straddles two unrelated clauses.</td></tr>
+<tr><td>Sentence-level segmentation (NLP splitter)</td><td>Finer citation precision, but multiplies passage count 5–8x, which multiplies the number of alignment decisions diffing must make (§2) and the number of low-confidence edge cases that can each independently escalate.</td></tr>
+<tr><td>Whole document as one segment</td><td>No segmentation cost, but every diff and every citation becomes page-scale — useless for judging materiality and useless for a reviewer trying to see what changed.</td></tr>
+</table>
+<p><span class="lbl">Trade-off accepted.</span> Paragraph/clause-level segmentation is coarse when a long paragraph contains one small change — the passage-level offsets bracket the whole paragraph, not the sentence. Diffing (§2) works at character granularity <em>within</em> an aligned passage pair precisely to compensate: the passage is the unit of alignment, not the unit of citation precision.</p>
+</div>
+
+<h2 id="diffing">2. Version diffing (ADR-004)</h2>
+<div class="d">
+<h3>Design</h3>
+<p>Diffing is deterministic code, in two steps, and the model is not part of either. <strong>Alignment</strong> matches each passage in version N to its counterpart (if any) in version N+1: an exact hash match on normalized passage text needs no further comparison; a non-exact match is aligned by structural anchor (<code>structural_ref</code>) first, with a lexical-similarity fallback when a structural anchor has moved or disappeared. Every alignment carries a confidence — 1.0 for an exact hash match, high for a structural-anchor match, lower and similarity-scaled for the positional fallback. <strong>Diffing</strong> then runs a character-level diff over each aligned pair, producing typed changes — added, removed, modified — each with its own char offsets into the two versions' own stored text.</p>
+<p>A low-confidence alignment does not proceed to a "modified" classification on a guess. It is flagged ambiguous and routed to escalation (§6) — the diff would rather say "I could not confidently match these two passages" than silently pick the nearest one and let a wrong pairing look like a real content change.</p>
+</div>
+<div class="d">
+<h4>Alternatives considered</h4>
+<table>
+<tr><th>Option</th><th>Rejected because</th></tr>
+<tr><td>Whole-document diff (Myers over the full text)</td><td>One pass, but the output doesn't map to the structural units — passages, obligations — the rest of the system reasons about, and a single reflow anywhere produces an unreadable diff everywhere.</td></tr>
+<tr><td>Embedding-similarity change detection</td><td>Finds drift, not edits (ADR-004/ADR-008): it can say a passage moved semantically without saying which words changed, which is exactly the information a citation needs.</td></tr>
+<tr><td>Ask the model to diff two full documents</td><td>Untestable against a known answer, and silently drops changes in long documents — the stated reason ADR-004 splits detection from interpretation in the first place.</td></tr>
+</table>
+<p><span class="lbl">Trade-off accepted, stated plainly (ADR-004).</span> Deterministic alignment assumes the document's structure is stable enough to anchor on. Wholesale restructuring — renumbered sections, moved text — breaks this assumption for many passages at once, not one. This is not a rare edge case in regulatory drafting; a final order routinely renumbers a draft's sections. See §14.</p>
+</div>
+
+<h2 id="extraction">3. Evidence-linked extraction</h2>
+<div class="d">
+<h3>Design</h3>
+<p>Extraction is the one place the model reads source text and produces a structured claim — an obligation's text, category, deadline, applicability — and it runs only after deterministic diffing has already enumerated what changed (or, for a proceeding's first version, over the baseline text). The model is given the passage text with explicit offset markers and instructed to quote verbatim substrings for anything it asserts as fact, never to paraphrase into the citation field. Every claim field is one of two kinds, and the UI marks the difference: a <strong>cited</strong> field carries a citation object and must verify (§5) before it is shown as established; an <strong>inferred</strong> field (e.g., a category label the text doesn't use verbatim) carries no citation and is always shown as inference, never as fact.</p>
+<p>An obligation with no citation on its load-bearing fields does not enter obligation state. It drops to the escalation queue as a candidate, same as a failed citation verification (§6) — the contract is symmetric: no evidence, no assertion, regardless of which stage produced the gap.</p>
+</div>
+
+<h2 id="context">4. Company-context data model</h2>
+<div class="d">
+<h3>Design</h3>
+<p>Three entities carry the company side of the join. <strong>Obligation</strong> — a regulatory duty the company holds, sourced from a proceeding or entered directly. <strong>Project</strong> — an internal initiative that fulfills or is constrained by obligations. <strong>Document</strong> — the company's own artifacts: filings, tariffs, compliance memos — written in the company's language, evidentiary rather than regulatory. Obligations relate to projects many-to-many (a project can discharge several obligations; an obligation can span several projects) and to documents by evidentiary link (a filing that discharges, or a memo that interprets, a specific obligation).</p>
+<p>The synthetic corpus (<code>data/</code>, per the build board) is roughly 8 obligations, 3 projects, 4 documents, deliberately written in the company's own phrasing rather than the docket's — this is not incidental realism, it is the reason ADR-008 adds semantic retrieval on top of lexical: an obligation record that says "quarterly outage reporting" will not lexically match a docket clause that says "the utility shall submit reliability metrics no less than four times annually."</p>
+</div>
+
+<h2 id="citation">5. Citation verification (ADR-003)</h2>
+<div class="note"><strong>This is the depth area.</strong> It is the hardest technical decision in the build and the one the product makes visible rather than buries (ADR-003; CLAUDE.md). Everything above exists to feed it evidence; everything below (§6–7) exists to handle what it refuses to verify.</div>
+
+<div class="d">
+<h3>Contract</h3>
+<p>A citation is <code>(document_version_id, char_start, char_end, quoted_text)</code>. The verifier: (1) resolves <code>document_version_id</code> to the stored raw text and checks its SHA-256 against <code>source_sha256</code> — this catches corruption of the stored copy itself, independent of anything about the citation; (2) slices <code>text[char_start:char_end]</code>; (3) normalizes both the slice and <code>quoted_text</code> through an explicit, tested pipeline; (4) compares. The comparison is exact string equality after normalization — never a similarity threshold. A paraphrase is exactly what an auditor will not accept (ADR-003), so "close enough" is not a verification outcome this system produces.</p>
+
+<h4>Normalization — stated explicitly, because an unstated normalization rule is a silent one</h4>
+<table>
+<tr><th>Rule</th><th>What it handles</th></tr>
+<tr><td>Whitespace collapse</td><td>Runs of spaces/tabs/newlines → single space; leading/trailing trim. Handles PDF reflow and the model's own line-wrapped reproduction of a quote.</td></tr>
+<tr><td>Unicode NFKC</td><td>Ligatures (ﬁ→fi), smart quotes → straight quotes, non-breaking space → space. Canonical target is NFKC; both source slice and quoted_text pass through it before comparison, never just one.</td></tr>
+<tr><td>Dash variants</td><td>Em/en dash normalized to hyphen for comparison only — the display copy keeps the source's original character.</td></tr>
+<tr><td>Case</td><td><strong>Not</strong> normalized. A citation with wrong case is suspicious — it can mean a defined term was altered — and is treated as a genuine mismatch, not noise.</td></tr>
+<tr><td>Hyphenation across line breaks</td><td>Resolved once, at ingestion extraction (§1), before offsets exist — never at verification time. Verification must not "fix" text out from under an offset it didn't compute.</td></tr>
+</table>
+
+<h4>Outcomes</h4>
+<table>
+<tr><th>Outcome</th><th>Meaning</th><th>Product behavior</th></tr>
+<tr><td><code>verified_exact</code></td><td>Byte-identical after normalization, at the given offsets.</td><td>Shown as fact; source span highlightable on click.</td></tr>
+<tr><td><code>verified_normalized</code></td><td>Matches only after a specific rule fired.</td><td>Shown as fact; which rule fired is recorded for audit, not shown as a caveat to the reader.</td></tr>
+<tr><td><code>near_match</code></td><td>Not found at the given offsets, but found by a bounded local re-anchor search (see below).</td><td>Downgraded confidence; surfaced as "offset auto-corrected" in the audit history — never silently accepted at face value.</td></tr>
+<tr><td><code>unverified</code></td><td>No match at the offsets or within the search window.</td><td>Never displayed as fact. Routed to escalation, labelled "unverified — quote does not match source," with a link to what the offsets actually contain so a reviewer can see the real passage.</td></tr>
+</table>
+
+<h4>Near-miss re-anchoring — a deliberate, bounded compromise</h4>
+<p>Offsets can be slightly wrong even when the quote is real: the model's own arithmetic on where a passage starts can be off by a few characters. Rather than reject every off-by-a-little citation outright, the verifier searches a bounded window (±N characters, N a tunable constant — <strong>not yet fixed; see open item below</strong>) around the given offsets for the normalized <code>quoted_text</code> as an exact substring. A hit inside the window is <code>near_match</code>, never silently promoted to <code>verified_exact</code>. A miss is <code>unverified</code>.</p>
+<p><span class="lbl">Trade-off, stated both directions.</span> Too narrow a window rejects a true citation whose offset arithmetic drifted slightly — costs a review, which is the correct failure direction ("absence is denial"). Too wide a window risks confirming a coincidental identical phrase elsewhere in the document — a false <em>accept</em>, which is the one failure this design cannot tolerate. The window width has to be small enough that coincidental identical phrasing within it is implausible for the corpus's prose. <strong>The actual value has not been chosen against real data</strong> — it needs to be set from the eval corpus (§9), not from intuition, and is marked open rather than filled with a plausible-looking default.</p>
+
+<div class="open"><span class="lbl">Open — not yet decided.</span> (1) The re-anchor window width N. (2) Whether <code>near_match</code> citations should ever be permitted to back a <em>final-status</em> comply action, or whether final-status actions should require <code>verified_exact</code>/<code>verified_normalized</code> only. Leaning toward the stricter rule for final, but this has not been tested against the corpus and should not be asserted as decided.</div>
+
+<h4>The harder case: a true substring that reverses meaning</h4>
+<p>A citation can pass exact-match verification and still misrepresent the source, if the model quotes a real, correctly-offset substring that omits an adjacent qualifier — dropping "shall not" to leave "shall," or quoting a clause without the "unless" three words later that governs it. Verification proves <em>the text exists at that location</em>; it does not by itself prove <em>the text supports the claim</em>. These are different guarantees and this design does not pretend otherwise.</p>
+<p>Mitigation, stated as a heuristic guard rather than a solved problem: on any verified citation, a cheap adjacency check scans immediately outside the cited span for negation/qualifier words (<code>not</code>, <code>shall not</code>, <code>except</code>, <code>unless</code>, <code>provided that</code>). If one is found abutting the boundary, the citation is not auto-rejected but is downgraded to <code>near_match</code>-equivalent handling and flagged <code>suspect_truncation</code> for review — the span should have been widened to include it. This catches an adjacent qualifier. It does <strong>not</strong> catch a qualifier two sentences later, or one stated once and applied by reference to several following clauses. That gap is real, unclosed by this design, and is called out again in §14 rather than left to be discovered at the panel.</p>
+
+<h4>Offsets are scoped to a version, never projected across versions</h4>
+<p>A citation into version 1 stays a citation into version 1's immutable text. It is never re-projected onto version 2's text through the alignment computed in §2. The alternative — a document-level coordinate space every version maps into, so a citation could "follow" a passage across versions — was rejected because that mapping <em>is</em> the alignment problem, and alignment has its own confidence and its own failure mode (§14); routing citation correctness through it would let an alignment error silently corrupt a citation that was otherwise exactly right. The accepted cost: when a change record says "this obligation's deadline moved," the UI shows two citations — the old span in the old version, the new span in the new version — not one citation that claims to have moved. That is correct, and it is more UI surface than a single "moved" pointer would be.</p>
+
+<h4>Performance and placement</h4>
+<p>Verification is a bounded string slice and comparison — no model call — so it runs synchronously in the extraction/interpretation path and gates the write: a claim's citation must verify before the claim can be written to obligation, change-interpretation, or impact-mapping state. It does not need to re-run at read time, because document versions are append-only and never mutated after ingestion; the only case that forces re-verification is a change to the stored source itself, which the append-only invariant should make impossible outside of tested migrations.</p>
+
+<h4>Adversarial test discipline (T5, T17)</h4>
+<p>The verifier is tested against deliberately corrupted citations before anything is wired to it: a fabricated quote (words changed) must produce <code>unverified</code>; a truncated quote that drops a governing negation must produce <code>suspect_truncation</code>; an offset shifted by a few characters into real matching text must produce <code>near_match</code>, not a silent <code>verified_exact</code>. <span class="lbl">The passing bar for the corruption tests is 100% rejection, not "mostly."</span> A single false accept defeats ADR-003's entire premise — there is no partial credit for a citation verifier, because the product's claim to the reader is "if it is shown as fact, it verified," not "it usually verified."</p>
+</div>
+
+<h2 id="confidence">6. Confidence &amp; escalation (ADR-006)</h2>
+<div class="d">
+<h3>Design</h3>
+<p>Confidence is attached at every stage that makes a judgement, and each source is kept distinct rather than collapsed into one number: alignment confidence (§2, rule-derived — exact hash, structural-anchor, or lexical-fallback), citation verification outcome (§5, a gate, not a score — <code>unverified</code> always forces escalation regardless of any other signal), and model-reported confidence on interpretation and impact-mapping fields.</p>
+<p>Model self-reported confidence is treated as an <strong>ordinal signal</strong> (low / medium / high), not a probability. Raw confidence numbers from language models are known to be poorly calibrated, and trusting a number like <code>0.83</code> at face value would be fake precision dressed as rigor. The escalation threshold is set and tuned against the eval set's known answers (§9) — against outcomes, not against the model's own stated certainty.</p>
+<p>Below threshold, a result does not enter obligation, change, or impact-mapping state at all. It becomes an escalation record: what was attempted, why it stopped short, and a link to the source and the review action needed. The threshold itself lives in configuration (<code>CONFIDENCE_THRESHOLD</code>), not as a constant in code — per ADR-006, so it can move as the eval evidence accumulates without a redeploy of logic.</p>
+<div class="open"><span class="lbl">Open — not yet tuned (decision-log open item 2).</span> The starting default is deliberately conservative: escalate anything below ordinal <code>high</code>. This is a defensible prior, not a measured setting — it has not been checked against precision/recall numbers because those numbers do not exist yet (§9). It should move once they do, and this document should be updated when it does, not silently left stale.</div>
+<p><span class="lbl">Trade-off accepted (ADR-006).</span> A review queue nobody empties is its own failure — the review surface has to be fast enough that clearing it is routine. That is a product requirement on the reviewer view (§7), not just an engineering one, and is why the escalation record carries enough context (source link, reason, prior confidence) to be actioned in one look rather than requiring the reviewer to re-derive it.</p>
+</div>
+
+<h2 id="routing">7. Reviewer routing</h2>
+<div class="d">
+<h3>Design</h3>
+<p>Routing follows the draft/final split (ADR-005) with no shared code path. A change on a <em>draft</em> version produces a monitor-or-comment action, owned by the regulatory affairs analyst (ADR-001's one persona), with an option to flag for a comment-filing review. A change on a <em>final</em> version produces a comply action carrying an effective date, routed to the analyst and to the obligation's project owner. The role a claim routes to is a field on the action record, not inferred from who is looking at the screen.</p>
+<p>The build board's cut list allows dropping the multi-role reviewer model under time pressure in favor of a single reviewer role. This design accommodates that gracefully: routing degrades to "everything to the analyst" by changing one lookup, not by branching logic, because the analyst is the primary owner in every case already — the project-owner routing on final actions is additive, not load-bearing.</p>
+</div>
+
+<h2 id="audit">8. Audit history &amp; rollback</h2>
+<div class="d">
+<h3>Decision: event-fold, not snapshots</h3>
+<p>This was an open question in the decision log (item 3). The choice made here is <strong>event-fold</strong>: every state-changing action appends an immutable event; current state in every table is the fold of its events; rollback is a new event that restores a prior fold point, never a destructive edit of history.</p>
+<h4>Why, against the alternative</h4>
+<table>
+<tr><th></th><th>Event-fold (chosen)</th><th>Snapshots</th></tr>
+<tr><td>Extra work</td><td>None — the audit-trail requirement (best-practices §11) already means every transition is logged; storing that log as the source of truth instead of as ephemeral lines is the same work, kept.</td><td>A full state copy per transition, which duplicates the growing project state repeatedly.</td></tr>
+<tr><td>What rollback explains</td><td>Actor, reason, and the source change behind every transition — this domain needs "why did the obligation status change on this date," not just the before/after blob.</td><td>What the state was, not why it changed — coarser, and wrong for a compliance audit trail.</td></tr>
+<tr><td>Cost at this scale</td><td>Folding is cheap over ~8 obligations and one proceeding. It is not free at arbitrary scale — see below.</td><td>Read is O(1) regardless of history length — the argument in snapshots' favor, and it does not apply yet.</td></tr>
+</table>
+<p><span class="lbl">Trade-off accepted, stated plainly.</span> Event-fold requires that current-state tables are never written outside the event-apply path — a direct <code>UPDATE</code> against, say, <code>obligation.status</code> from anywhere else makes state and history diverge silently, which is exactly the failure best-practices §26/§27 describe: a derived value that is wrong but announces nothing. The design forbids this by convention now and should enforce it structurally (only the event-apply function issues writes to state tables) before it is trusted with real data. Folding also does not stay cheap forever — at a scale this MVP does not reach, folding the full event stream on every read becomes the bottleneck, and the standard answer (periodic snapshot + fold-forward from the snapshot) is a later addition, not a redesign, because it composes with an event log and would not with snapshots alone.</p>
+<p>Per the cut list, rollback (the restore action) can be dropped before audit history is; this decision supports that directly — the append-only log is kept unconditionally, and "restore to a prior point" is a thin UI action over a read path (fold-and-diff against current) that already has to exist for the audit view itself.</p>
+</div>
+
+<h2 id="evals">9. Evals</h2>
+<div class="d">
+<h3>What is measured, on what data</h3>
+<table>
+<tr><th>Metric</th><th>Data</th><th>Passing bar</th></tr>
+<tr><td>Citation-verification corruption rejection</td><td>Deliberately corrupted citations against the synthetic corpus (fabricated quote, shifted offset, truncated qualifier)</td><td><strong>100%</strong> rejection. Not negotiable — a single false accept defeats ADR-003 (§5).</td></tr>
+<tr><td>Diff classification correctness</td><td>The corpus's four deliberate edits: one material, one cosmetic, one final-version-only, one deadline move (build board T3)</td><td>All four classified correctly. Hand-checkable at this size — a small confirmatory set, not a statistical benchmark.</td></tr>
+<tr><td>Obligation extraction precision/recall</td><td>~8 hand-labeled obligations in the synthetic corpus</td><td><strong>Not yet run; target not yet set.</strong> High recall matters more than high precision here — a missed obligation is silent, a false positive gets escalated and caught (§6) — but a specific number has not been chosen and should not be invented ahead of the run.</td></tr>
+<tr><td>Escalation correctness</td><td>Corpus items with injected ambiguity/corruption</td><td>Every injected case escalates rather than being confidently resolved. A miss here means confidence calibration is wrong (§6), not just extraction.</td></tr>
+</table>
+<div class="open"><span class="lbl">Honest limitation.</span> The eval set has roughly eight obligations, labeled by the same person who wrote the corpus and the extractor. That is a sanity check on whether the pipeline is wired correctly, not evidence of production-grade accuracy on real dockets — decision-log open item 4 ("who labels it") is answered here as "the builder, against a corpus they authored," which is a real limitation and is stated as one rather than presented as N=8 standing in for N=800.</div>
+</div>
+
+<h2 id="isolation">10. Data isolation</h2>
+<div class="d">
+<p>Every company-scoped table carries <code>company_id</code> from the start, even though the 48-hour build has exactly one synthetic company. Queries go through a repository layer that injects <code>company_id</code> from the resolved principal, not from client input, through one chokepoint (best-practices §3/§16) rather than a per-handler check that drifts. A negative test — company A's principal cannot read company B's proceeding or obligation even given a guessable ID — is part of the test suite, not an assumption. Retrofitting isolation after the schema exists is the mistake best-practices §16 documents; building the query layer as if a second tenant existed, while only one does, is cheap now and expensive later.</p>
+<p>Proceedings themselves are not company-scoped — a docket is external and can be tracked by more than one company context — while obligations, projects, and documents are. This split matters for isolation: a citation into a proceeding's document version is safe to share in principle, but the obligation record that references it is not, and the isolation boundary sits on the company-owned tables, not on the shared regulatory text.</p>
+</div>
+
+<h2 id="security">11. Security</h2>
+<div class="d">
+<p>SQLite as a local file with no exposed network service beyond the FastAPI app itself (ADR-007). Model API keys come from environment configuration, never committed or logged. Real authentication (login, session management) is out of scope for the reviewer-run prototype and is stated here as a known gap, not a silent one — the code should not carry an implicit "no auth needed" assumption that would ship unnoticed past this build. In a real deployment, company-context documents are confidential regulated-industry filings, which means encryption at rest and access logging are productionization requirements; ADR-007 already commits to saying what changes past this prototype's scale, and this is one of those things — explicitly deferred, not implicitly forgotten.</p>
+</div>
+
+<h2 id="datamodel">12. Data model</h2>
+<div class="d">
+<p>Core tables and the columns that carry the design decisions above. Not exhaustive — timestamps and standard bookkeeping columns are omitted for readability.</p>
+<table>
+<tr><th>Table</th><th>Key columns</th></tr>
+<tr><td><code>company</code></td><td><code>id, name</code> — isolation boundary (§10), one row in the MVP by design, not by schema limitation.</td></tr>
+<tr><td><code>proceeding</code></td><td><code>id, jurisdiction, docket_number, title</code> — not company-scoped; external and shared.</td></tr>
+<tr><td><code>document_version</code></td><td><code>id, proceeding_id, version_seq, status[draft|revised_draft|final], filed_date, source_sha256, raw_text, ingested_at</code> — immutable once written (§1); <code>status</code> is set at ingestion, never inferred (ADR-005).</td></tr>
+<tr><td><code>passage</code></td><td><code>id, document_version_id, seq, char_start, char_end, structural_ref, text_hash</code> — offsets into that version's raw text only (§1, §5).</td></tr>
+<tr><td><code>change</code></td><td><code>id, proceeding_id, from_version_id, to_version_id, change_type[added|removed|modified], from_passage_id, to_passage_id, alignment_confidence, materiality[pending|cosmetic|material], materiality_confidence, status[pending|escalated|resolved]</code> — output of §2, interpreted by §3.</td></tr>
+<tr><td><code>citation</code></td><td><code>id, claim_type, claim_id, document_version_id, char_start, char_end, quoted_text, verification_status[verified_exact|verified_normalized|near_match|unverified], normalization_rules_applied, verified_at</code> — the §5 contract, generic across every claim type that needs one.</td></tr>
+<tr><td><code>obligation</code></td><td><code>id, company_id, proceeding_id (nullable), title, description, category, deadline, status[active|superseded|discharged], source_citation_id (nullable)</code></td></tr>
+<tr><td><code>project</code></td><td><code>id, company_id, name, description, owner</code></td></tr>
+<tr><td><code>obligation_project</code></td><td><code>obligation_id, project_id</code> — many-to-many (§4).</td></tr>
+<tr><td><code>document</code></td><td><code>id, company_id, title, doc_type, body, related_obligation_id (nullable)</code> — company-owned artifact, distinct from <code>document_version</code>.</td></tr>
+<tr><td><code>impact_mapping</code></td><td><code>id, change_id, obligation_id (nullable), project_id (nullable), document_id (nullable), confidence, rationale, status[pending_review|confirmed|rejected]</code> — the core join (ADR-008).</td></tr>
+<tr><td><code>action</code></td><td><code>id, change_id, impact_mapping_id, action_type[monitor|comment|comply], recommended_reviewer_role, due_date (nullable), status[queued|in_review|approved|rejected|done]</code></td></tr>
+<tr><td><code>escalation</code></td><td><code>id, subject_type[citation|alignment|extraction|impact_mapping], subject_id, reason, confidence, resolved_by (nullable), resolution (nullable)</code> — §6's queue.</td></tr>
+<tr><td><code>event</code></td><td><code>id, entity_type, entity_id, event_type, payload_json, actor, occurred_at</code> — the §8 fold source; the sole writer of every state table above.</td></tr>
+</table>
+</div>
+
+<h2 id="requestpath">13. Request path — main workflow</h2>
+<div class="d">
+<p>From a new version landing to an analyst seeing a routed action.</p>
+<ol>
+<li><strong>Ingest.</strong> New <code>document_version</code> arrives (upload or corpus script). Extract text, compute <code>source_sha256</code>, store immutably. Segment into <code>passage</code> rows with stable offsets (§1).</li>
+<li><strong>Diff.</strong> Align this version's passages against the proceeding's prior latest version; produce <code>change</code> rows with <code>change_type</code> and <code>alignment_confidence</code> (§2). Low-confidence alignments create an <code>escalation</code> row immediately and the change stays <code>pending</code>.</li>
+<li><strong>Branch on status.</strong> <code>document_version.status</code> (draft/final) selects the downstream action vocabulary now, not later — the draft and final paths never merge (ADR-005).</li>
+<li><strong>Interpret.</strong> For changes above the alignment threshold, a scoped model call reads the from/to passage text and classifies materiality, producing citations for any assertion beyond the raw diff (e.g., "the deadline moved from X to Y").</li>
+<li><strong>Verify.</strong> Every citation produced in step 4 runs through the verifier (§5) before it can attach to the <code>change</code> record. <code>unverified</code> routes to escalation; the change's materiality is not written as settled until its citations are.</li>
+<li><strong>Map impact.</strong> For changes marked material, retrieve candidate obligations/projects/documents — lexical (BM25) first pass, semantic re-rank for obligation matching (ADR-008) since obligations are worded in the company's own language. The model confirms or rejects candidates with confidence; any asserted linkage text is again citation-gated.</li>
+<li><strong>Gate on confidence.</strong> Impact mappings and extractions below threshold (§6) do not reach <code>confirmed</code> — they sit as <code>pending_review</code> and generate an <code>escalation</code> row.</li>
+<li><strong>Recommend and route.</strong> Confirmed, above-threshold mappings generate an <code>action</code>: monitor/comment for draft, comply-plus-effective-date for final, with a recommended reviewer role (§7).</li>
+<li><strong>Record.</strong> Every write in steps 1–8 appends an <code>event</code>; the state tables are that log's fold (§8), never written to directly.</li>
+<li><strong>Surface.</strong> The analyst workspace reads current state directly (the fold already happened at write time, not at read time). Clicking a claim highlights its exact verified source span; unverified items sit in the escalation/review queue with the reason shown, not hidden behind a generic error.</li>
+<li><strong>Review.</strong> A reviewer approves, rejects, or amends an escalated item; that action is itself an event, which updates state and can re-trigger routing.</li>
+</ol>
+</div>
+
+<h2 id="failure">14. Failure modes</h2>
+<div class="risk"><strong>Where this design is honest about what it does not solve.</strong> Evaluation dimension 1 asks where modern AI fails and how the system was designed around it — not whether it was designed to never fail. Each item below states the failure, the blast radius, and the actual mitigation, including where the mitigation is partial.</div>
+
+<div class="d">
+<h4>Retrieval misses (impact mapping, ADR-008)</h4>
+<p>A missed lexical/semantic match means a real change is not linked to the obligation it affects. This degrades <em>explanation quality</em>, not <em>change coverage</em> — the deterministic diff (§2) already enumerated the change independent of retrieval, so a missed link surfaces as a visible, unmapped item in the analyst's queue ("change detected — no automatic obligation match"), not as a change that silently vanished. This separation between "did something change" (complete, deterministic) and "what does it touch" (lossy, retrieval-based) is the load-bearing design choice ADR-008 makes, and it is why a retrieval failure is recoverable by a human glance rather than invisible.</p>
+</div>
+<div class="d">
+<h4>Deterministic diffing breaks under restructuring (§2)</h4>
+<p>When a final version renumbers or reorganizes a draft's sections — common in this domain, not an edge case — structural-anchor alignment fails across many passages at once, not one. The honest characterization: this is a flood into the escalation queue, not a graceful degrade. The intended mitigation — batching related low-confidence alignments so a reviewer can confirm "section 4 became section 7" once, rather than passage by passage — is the right shape of fix and is <strong>explicitly not built</strong> in the 48-hour scope. Marked open, not hidden.</p>
+</div>
+<div class="d">
+<h4>The model misquotes or misreads</h4>
+<p>Fabrication and shifted offsets are caught by the verifier (§5) at a 100% bar on the corruption test suite. The residual, unclosed risk is the truncation case: a real, correctly-offset substring that drops a distant qualifier. The adjacency heuristic catches a qualifier touching the cited boundary; it does not catch one two sentences away or one governing several clauses by reference. <span class="lbl">The distinction that matters:</span> citation verification proves a quote exists at a location. It does not prove the interpretation drawn from that quote is correct. Those are different guarantees, and conflating them would be the single easiest way for this design to overstate what it delivers.</p>
+</div>
+<div class="d">
+<h4>At 10x latency</h4>
+<p>The only latency-sensitive stage is model calls (interpretation, extraction, impact confirmation). Ingestion, segmentation, and diffing have no model dependency and are unaffected at any multiple — a proceeding's changes are always enumerated even if interpretation stalls completely. Model-dependent stages are intended to run as background work (best-practices §9) so a request returns "N changes detected, interpreting" rather than hanging; a bounded per-call timeout and retry (best-practices §8) stop one slow call from stalling a whole batch. A call that ultimately times out leaves that item as "needs interpretation" in the workspace — visible, not dropped. <span class="lbl">Open scoping question:</span> whether this ships as a real background job or a simpler request-time timeout with a "try again" surface depends on what the 48 hours allow; either is acceptable as long as the failure stays visible rather than silent (best-practices §26) — a hang with no explanation is not.</p>
+</div>
+<div class="d">
+<h4>When the model is simply wrong</h4>
+<p>Not a hallucination, not a bad citation — the model reads a verified passage correctly and reaches a materiality judgement a domain expert would disagree with. This is precisely the case ADR-006's confidence and escalation exist for, and the honest limit is that confidence is an imperfect proxy for correctness: a model can be wrong while reporting itself confident. The mitigation stack, stated as partial: ordinal calibration against eval outcomes rather than trusting a raw score (§6); draft-versus-final removed from model judgement entirely (ADR-005), closing off one whole class of wrong guess; and human review sitting between any impact mapping and an action with a deadline attached.</p>
+<p><span class="lbl">What is not solved, stated plainly.</span> There is no mechanism that samples the model's <em>confident</em> calls — the ones that never reach the escalation queue because the model itself did not flag them — and checks them against ground truth. The escalation queue only catches what the model flagged as uncertain about itself; it cannot catch what the model was confidently wrong about. At production scale this needs sampled human audit of confirmed, non-escalated output, not just of the queue. This is the single largest unresolved risk in the design, and it is unresolved because closing it requires exactly the real-user, real-volume evidence this 48-hour build does not have — not because it was overlooked.</p>
+</div>
+
+</body>
+</html>

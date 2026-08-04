@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — Decision Log</title>
+<style>
+  body { font: 15px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 900px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.8rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.2rem; }
+  .d { border:1px solid #e2e8f0; border-radius:8px; padding:.9rem 1.2rem; margin:.9rem 0; }
+  .d h3 { margin:.1rem 0 .3rem; color:#1d4ed8; font-size:1.02rem; }
+  .meta { color:#64748b; font-size:.85rem; margin:.1rem 0 .5rem; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  .lbl { font-weight:600; color:#334155; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; }
+</style>
+</head>
+<body>
+<h1>Decision Log</h1>
+<p class="sub">Every technology and design choice, with the alternatives considered and the trade-off accepted. The panel walks through this; a choice without its reasoning is worth little.</p>
+
+<div class="note"><strong>Rule for this file:</strong> write the entry when the decision is made, not afterwards. An ADR reconstructed at the end reads like a justification, and the interview is designed to tell the difference.</div>
+
+<h2>Product shape</h2>
+
+<div class="d"><h3>ADR-001 — One user: the regulatory affairs analyst at a multi-state utility</h3>
+<p class="meta">2026-08-03 · accepted</p>
+<p><span class="lbl">Decision.</span> The product is built for one person: a regulatory affairs analyst at an investor-owned utility operating in several jurisdictions. Not counsel, not the compliance officer, not the executive. The analyst is the one who reads the docket, works out what changed, and tells the business what it must do.
+<span class="lbl">Alternatives considered.</span> (a) Compliance officer — owns the obligation register but consumes analysis rather than producing it; (b) outside counsel — bills for exactly this work and has the opposite incentive; (c) "regulated enterprises" generically — which is not a user at all.
+<span class="lbl">Trade-off accepted.</span> Narrowing to one persona means the demo will not impress a compliance officer or a lawyer on their own terms. That is the point. The prep guide is explicit: naming more than one type of person means the work is unfinished.
+<span class="lbl">Open.</span> This persona is a hypothesis until the user interviews (see <code>docs/user-research.html</code>). If two of three interviews say the real reader is counsel, this ADR gets rewritten and the PRD with it.</p></div>
+
+<div class="d"><h3>ADR-002 — The wedge is change-to-action, not search and not alerts</h3>
+<p class="meta">2026-08-03 · accepted</p>
+<p><span class="lbl">Decision.</span> The unit of work is a <em>change</em> between two versions of a proceeding, carried through to a recommended action with a named reviewer. Not a document, not a query, not a notification.
+<span class="lbl">Why alerts and search fail.</span> An alert says something moved; the analyst still has to open both versions, find the delta, judge whether it is material, decide whether it binds yet, and work out which of their obligations it touches. Search is worse: it assumes the analyst already knows what to look for. The expensive part is the interpretation, and neither tool does any of it.
+<span class="lbl">Trade-off accepted.</span> A change-centric model is harder to populate — it needs at least two versions of a proceeding before it produces anything. Cold start is real and the PRD must answer it.</p></div>
+
+<h2>The hard technical bet</h2>
+
+<div class="d"><h3>ADR-003 — Citations are verified against source offsets, and an unverified claim cannot assert itself</h3>
+<p class="meta">2026-08-03 · accepted · <strong>this is the depth area</strong></p>
+<p><span class="lbl">Decision.</span> Every claim the system makes carries a citation of <code>(document_version_id, char_start, char_end, quoted_text)</code>. Before that claim is shown as fact, a verifier re-reads the stored source at those offsets and confirms the quote matches. A claim whose citation does not verify is never displayed as established — it is routed to expert review, labelled as unverified.
+<span class="lbl">Why this and not something else.</span> "Citation-grade" is the word in the challenge title, and in this domain a confident wrong answer is worse than no answer: an analyst who cannot trust the citation must re-read the source, which is the work the product claims to remove. Language models produce fluent, plausible, subtly wrong quotations, and no amount of prompting fixes it — so the design assumes the model will misquote and makes that survivable.
+<span class="lbl">Alternatives considered.</span> (a) Trust the model's quotation and show it — fastest, and the failure is invisible, which is the worst property a compliance tool can have; (b) semantic similarity between claim and source above a threshold — accepts paraphrase, but a paraphrase is exactly what an auditor will not accept; (c) human review of every claim — trustworthy and useless at volume.
+<span class="lbl">Trade-off accepted.</span> Exact-offset verification is brittle against whitespace, ligatures, and PDF extraction noise, so normalisation has to be defined carefully and will still reject some legitimate quotes. Rejecting a good citation costs a review; accepting a bad one costs the product's reason to exist. We fail toward review.
+<span class="lbl">Visible in the product.</span> Per the prep guide, the hardest decision must be visible rather than buried: the UI shows verified claims with a source span the user can open, and shows unverified ones held back in a review queue with the reason.</p></div>
+
+<div class="d"><h3>ADR-004 — Deterministic diff first, model interpretation second</h3>
+<p class="meta">2026-08-03 · accepted</p>
+<p><span class="lbl">Decision.</span> Structural differences between two versions are computed deterministically (segment alignment, then per-segment diff). The model is asked only to interpret the materiality of a change it is shown, never to find the changes.
+<span class="lbl">Why.</span> Diffing is a solved, testable problem with exact answers; materiality is a judgement. Asking a model to do both means you cannot test either, and it is precisely the thin-wrapper shape the challenge warns against. Splitting them means the diff has unit tests with known answers, and the model's job is small enough to evaluate.
+<span class="lbl">Alternatives considered.</span> (a) Ask the model to compare two documents end to end — cheap to build, impossible to test, and it silently drops changes in long documents; (b) embedding-similarity change detection — finds drift, not edits, and cannot tell you the words that changed.
+<span class="lbl">Trade-off accepted.</span> Deterministic alignment struggles when a document is restructured wholesale (sections renumbered, text moved). That is a known failure mode; the design escalates low-confidence alignments rather than guessing.</p></div>
+
+<div class="d"><h3>ADR-005 — Draft versus final is a first-class field, never inferred at read time</h3>
+<p class="meta">2026-08-03 · accepted</p>
+<p><span class="lbl">Decision.</span> Every document version carries an explicit status. A draft change produces monitor-and-comment actions; a final change produces comply actions with an effective date. The two never share a code path.
+<span class="lbl">Why.</span> Conflating them is the error with the highest cost in this domain, in both directions: acting on a draft wastes money on something that may not survive comment, and treating a final order as a draft misses a binding deadline. It is also the one distinction an analyst will check first when deciding whether to trust the tool.</p></div>
+
+<div class="d"><h3>ADR-006 — Confidence is explicit and low confidence escalates rather than guesses</h3>
+<p class="meta">2026-08-03 · accepted</p>
+<p><span class="lbl">Decision.</span> Every extraction and every impact mapping carries a confidence. Below a threshold it goes to a review queue instead of into the project state. The threshold is configuration, not a constant buried in code.
+<span class="lbl">Why.</span> Carried directly from the peer project's hardest-won lesson: a fallback that returns something plausible hides its own failure. There, an embedding provider silently degraded and ranking ran on noise for months while every check passed. Here the equivalent is an impact mapping the model was unsure about, presented as settled.
+<span class="lbl">Trade-off accepted.</span> A queue nobody empties is its own failure. The review surface has to be fast enough that clearing it is routine, which is a product constraint, not just an engineering one.</p></div>
+
+<h2>Stack</h2>
+
+<div class="d"><h3>ADR-007 — Python, FastAPI, SQLite, server-rendered UI</h3>
+<p class="meta">2026-08-03 · accepted</p>
+<p><span class="lbl">Decision.</span> Python 3.12 + FastAPI + SQLAlchemy over SQLite, with a server-rendered interface. One command to run, one to test.
+<span class="lbl">Why.</span> The submission is executed on a reviewer's machine before a panel is scheduled — so the primary risk is not elegance, it is failing to start. SQLite has no service to install. SQLAlchemy keeps Postgres a configuration change rather than a rewrite. Server-rendered pages remove a build step and a second language from the critical path of a 48-hour build.
+<span class="lbl">Alternatives considered.</span> (a) Postgres + pgvector + Docker Compose — what the peer project runs, better at scale, but adds a container runtime to the reviewer's critical path; (b) React SPA — a build step, a second toolchain, and no user-visible benefit at this size; (c) Jupyter notebook — fastest to write, and explicitly not what "the implementation must run" means.
+<span class="lbl">Trade-off accepted.</span> SQLite will not carry real multi-tenant volume, and the architecture doc must say what changes at that point rather than pretending it scales.</p></div>
+
+<div class="d"><h3>ADR-008 — Retrieval: lexical BM25 first, embeddings only where they earn it</h3>
+<p class="meta">2026-08-03 · proposed</p>
+<p><span class="lbl">Decision (provisional).</span> Passage retrieval starts lexical. Semantic retrieval is added only for the specific step where paraphrase matters — matching a regulatory change to an internally-worded obligation.
+<span class="lbl">Why.</span> Regulatory text is quotation-heavy and citation-bearing; exact terms matter and lexical search is strong, debuggable and free. Company obligations, by contrast, are written in the company's own words and will not lexically match the docket's.
+<span class="lbl">Alternatives considered.</span> (a) Embeddings everywhere — one mechanism, but it obscures why a passage was retrieved, and "why did it pick that passage" is a question the panel will ask; (b) lexical only — fails the obligation-matching step, which is the product's core join.
+<span class="lbl">Expected question, and the honest answer.</span> "What happens when retrieval fails?" — a missed passage means a missed change, which is the failure mode that matters most here. Mitigation is that the deterministic diff, not retrieval, is what enumerates changes; retrieval only ranks context. A retrieval miss therefore degrades explanation quality, not change coverage. This separation is deliberate and is the strongest answer this design has.</p></div>
+
+<h2>To be decided</h2>
+<div class="d"><h3>Open questions</h3>
+<p class="meta">resolve as the build proceeds; do not let these become invisible defaults</p>
+<p>1. Which model, and what the fallback is when it is wrong or unavailable. 2. Where the confidence threshold actually sits, and on what evidence. 3. Whether audit history is an event log folded into state (rollback for free, more machinery) or snapshots (simpler, coarser). 4. What the eval set is for obligation extraction, and who labels it.</p></div>
+
+</body>
+</html>

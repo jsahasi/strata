@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — Architecture</title>
+<style>
+  body { font: 15px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 900px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.8rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.4rem; }
+  h3 { font-size:1.05rem; color:#1d4ed8; margin:1.3rem 0 .3rem; }
+  .d { border:1px solid #e2e8f0; border-radius:8px; padding:.9rem 1.2rem; margin:.9rem 0; }
+  .meta { color:#64748b; font-size:.85rem; margin:.1rem 0 .5rem; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  .lbl { font-weight:600; color:#334155; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.9rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .45rem .6rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+  .diagram { overflow-x:auto; background:#0f172a; color:#e2e8f0; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0; }
+  .diagram pre { font: 12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; margin:0; white-space:pre; }
+  .open { color:#b45309; font-weight:600; }
+</style>
+</head>
+<body>
+<h1>Architecture</h1>
+<p class="sub">Components and their boundaries, the data flow from raw document to routed action, and where each responsibility lives under <code>app/</code>. This document defines the target architecture; <code>docs/.ai/tasks.html</code> tracks how much of it is built. Where a decision is still open in <code>docs/.ai/decisions.html</code>, this doc says so rather than quietly picking an answer and hiding the seam.</p>
+
+<div class="note"><strong>The shape in one sentence.</strong> A pipeline of small, mostly deterministic stages, with exactly one stage permitted to call a model and exactly one stage permitted to turn a model's output into fact. Everything else is either pure computation or a thin read/write against stored state. The seams between stages are the module boundaries under <code>app/</code>.</p></div>
+
+<h2>Data flow — raw document to routed action</h2>
+<div class="diagram"><pre>
+                              COMPANY CONTEXT
+                    (obligations, projects, documents)
+                                    |
+                                    v
+  raw proceeding    +----------------------------+
+  version N     --> |  ingestion                  |
+                     |  passage segmentation,      |
+                     |  stable char offsets,       |
+                     |  SHA(source) frozen         |
+                     +--------------+---------------+
+                                    |
+                                    v
+                     +----------------------------+
+                     |  passage store               |  <- lexical BM25 (SQLite FTS5)
+                     |  (offset-addressed, immutable)|     over docket text; semantic
+                     +--------------+---------------+     retrieval over company
+                                    |                      context only (ADR-008)
+             passages, version N-1  v
+             passages, version N -> +--------+
+                                     |  diff  |   pure function: no model, no I/O
+                                     +--------+   Change[]: added / removed / modified,
+                                        |          each with passage refs both sides
+                                        v
+                     +----------------------------+
+                     |  interpretation              |  <- retrieves context from
+                     |  (the only caller of a model)|     the passage store
+                     |  materiality * obligation     |
+                     |  extraction * impact mapping  |
+                     |  * action + reviewer routing  |
+                     +--------------+---------------+
+                                    |  candidate claims:
+                                    |  text + citation(version, start, end, quote)
+                                    |  + confidence
+                                    v
+                     +----------------------------+
+                     |  verification                 |  no model. re-reads the source
+                     |  (the gate)                   |  at the cited offsets, normalizes,
+                     +------+---------------+---------+  compares exactly
+                match + conf ok       mismatch or low confidence
+                            |                   |
+                            v                   v
+                  +------------------+   +----------------------+
+                  |  state            |   |  escalation queue     |
+                  |  event log +      |   |  reason recorded,     |
+                  |  current-state    |   |  never shown as fact  |
+                  |  projection,      |<--|  reviewer: approve /  |
+                  |  audit history    |   |  reject / amend       |
+                  +--------+----------+   +----------------------+
+                            |
+                            v
+                  +----------------------+
+                  |  web                  |  analyst workspace,
+                  |  FastAPI + server-    |  citation viewer,
+                  |  rendered templates   |  reviewer view
+                  +----------------------+
+</pre></div>
+
+<p>The reasoning matters more than the boxes. Three properties of this pipeline do the actual work:</p>
+<ol>
+<li><strong>The model sees a diff, never a pair of documents.</strong> By the time <code>interpretation</code> runs, <code>diff</code> has already decided what changed. The model is never asked "did anything change" — a question it answers unreliably on long documents — only "does this specific change matter," a smaller and checkable question (ADR-004).</li>
+<li><strong>Nothing reaches <code>state</code> without passing through <code>verification</code>.</strong> There is exactly one write path into project state, and it is gated. A bug anywhere upstream produces an escalation, not a wrong fact in front of the analyst.</li>
+<li><strong>Every arrow into <code>interpretation</code> and out of it crosses a typed boundary</strong> — <code>Change</code> objects in, candidate claims with citations out. Neither side needs to know how the other is implemented. That is what makes each stage swappable on its own.</li>
+</ol>
+
+<h2>Module layout under app/</h2>
+<table>
+<tr><th>Module</th><th>Responsibility</th><th>Calls a model?</th><th>Swappable without touching the rest</th></tr>
+<tr><td><code>app/ingestion/</code></td><td>Raw text (proceeding version, or company-context document) &rarr; <code>DocumentVersion</code> + <code>Passage</code> rows with stable char offsets. Hashes and freezes the source.</td><td>no</td><td>Parser per input format (plain text now; PDF/HTML extraction is additive, not a rewrite) as long as it still emits offset-addressed passages.</td></tr>
+<tr><td><code>app/passages/</code></td><td>The passage store: schema, offset addressing, and retrieval. Lexical index (SQLite FTS5/BM25) always; semantic retrieval only over company-context passages (ADR-008).</td><td>no (embeddings are not generation)</td><td>Retrieval backend behind one <code>retrieve(query)</code> call — swap FTS5 for Postgres full-text, or add a vector store, without touching callers.</td></tr>
+<tr><td><code>app/diff/</code></td><td>Pure function: two passage sequences in, typed <code>Change[]</code> out (added / removed / modified), each carrying passage references on both sides.</td><td>no</td><td>The alignment algorithm (currently sequence-based) is fully replaceable — e.g. a structural, section-aware aligner later — because callers only depend on the <code>Change</code> contract, never the algorithm.</td></tr>
+<tr><td><code>app/interpretation/</code></td><td>The only module allowed to call a model. Materiality judgment on a <code>Change</code>; obligation extraction with evidence spans; impact mapping (change &rarr; obligations/projects/documents); action recommendation; reviewer routing. Draft-vs-final status is read from the version and dispatches to two separate branches (ADR-005) — never inferred by the model.</td><td>yes — the only place in the codebase that does</td><td>The model provider sits behind one call interface, so it can be swapped or stubbed. Which model to use is still an open question in <code>decisions.html</code> — deliberately not answered here.</td></tr>
+<tr><td><code>app/verification/</code></td><td>The gate. Given a candidate claim, re-reads the passage store at the cited <code>(version_id, char_start, char_end)</code>, normalizes both sides, and compares exactly. Applies the confidence threshold (ADR-006). Pass &rarr; fact. Fail &rarr; escalation with a reason.</td><td>no — pure string comparison and a threshold check</td><td>Runs and is fully unit-tested with no model available and no network — this is deliberate; it is the module a reviewer can audit without trusting anything about the AI.</td></tr>
+<tr><td><code>app/state/</code></td><td>SQLAlchemy models; the append-only event log; the current-state projection (obligations, projects, documents, changes, actions); audit history.</td><td>no</td><td>Event-log persistence is the seam where SQLite becomes Postgres (ADR-007) — see below. The projection can be recomputed from the log, so the storage engine underneath is not load-bearing for correctness.</td></tr>
+<tr><td><code>app/review/</code></td><td>The escalation queue as a read model over <code>state</code>'s event log (candidates with no resolution event yet) plus reviewer actions — approve, reject, amend — each of which appends a resolution event.</td><td>no</td><td>Reviewer role model can go from several roles to one (the cut list already names this) by changing routing rules, not this module's shape.</td></tr>
+<tr><td><code>app/web/</code></td><td>FastAPI routes and server-rendered templates: analyst workspace, citation viewer, reviewer view. Reads <code>state</code> and, for the citation viewer, <code>passages</code> directly. Writes only by calling the pipeline orchestrator below.</td><td>no</td><td>Deliberately thin — no business logic lives here, so the interface (server-rendered today) can change without moving any of the reasoning above it.</td></tr>
+<tr><td><code>app/pipeline.py</code></td><td>The chokepoint. Sequences ingestion &rarr; diff &rarr; interpretation &rarr; verification &rarr; state for a new version, so there is exactly one place that owns the order of operations and can be told to stop, retry, or resume.</td><td>no</td><td>The only module that imports all the others. Nothing else is allowed to skip a stage by calling downstream modules directly.</td></tr>
+</table>
+
+<p>Dependency direction runs one way, top to bottom of the table above. <code>ingestion</code> knows nothing about <code>diff</code>; <code>diff</code> knows nothing about <code>interpretation</code>; <code>interpretation</code> knows nothing about <code>verification</code>'s pass/fail logic, only that it must emit a citation for anything it wants to survive. <code>verification</code> knows nothing about models at all. This is what makes "fix the class, not the line" tractable — a bug in one stage cannot silently depend on behavior in another, because the only thing that crosses a boundary is a typed object.</p>
+
+<h2>Ingestion path</h2>
+<p>Ingestion takes raw text for one document version — a proceeding filing or a company-context document — and produces two things: a <code>DocumentVersion</code> row carrying a SHA-256 of the exact bytes ingested, and a sequence of <code>Passage</code> rows, each a contiguous span of that text with a stable <code>(char_start, char_end)</code> into it. The SHA exists so that "this is the document the citation points at" is checkable independent of anything the database says — if the stored source ever diverges from what was ingested, the hash catches it. Passage boundaries follow the document's own structure (paragraph, then section, falling back to a fixed-size window for unstructured text) because that is the unit the model is later shown and the unit BM25 indexes — but the boundary choice is a retrieval convenience, not the unit of truth. The unit of truth is the raw text plus an offset into it, which is why ingestion never rewrites, trims, or re-encodes the source before storing it. Anything ingestion normalizes (whitespace collapse, smart-quote folding) it normalizes in a documented, tested function that <code>verification</code> also calls — the same normalization on both sides of every comparison, or the comparison means nothing.</p>
+
+<h2>The passage store, and why offsets are the unit</h2>
+<p>Every claim in the product — a diff segment, a citation, a piece of obligation evidence — ultimately resolves to <code>(document_version_id, char_start, char_end)</code> against an immutable, hashed source. Offsets are the unit rather than passage IDs, sentence IDs, or a similarity score, for one reason: an offset is checkable by exact substring lookup. No embedding math, no fuzzy threshold, no model in the loop — read the bytes between two integers and compare them to what was claimed. That is what makes <code>verification</code> a pure function instead of another place where the product has to trust something.</p>
+<p>Offsets are addressed against the frozen version, not the current document, so a citation minted against version 3 stays valid even after version 4 exists — versions are never edited in place, only appended. The passage store also carries the lexical index (BM25 over the docket text) and, only for company-context passages, a semantic index — the split from ADR-008. Retrieval ranks which passages <code>interpretation</code> gets to see; it does not decide which changes exist. That distinction is what keeps a retrieval miss a quality problem instead of a coverage problem — see <code>diff</code>, next.</p>
+
+<h2>The diff engine — pure, testable, no model dependency</h2>
+<p>Diffing is the one stage in this pipeline built to have a single correct answer per input, so it is built as a pure function: <code>diff(passages_v_n_minus_1, passages_v_n) -> list[Change]</code>. No network call, no model, no clock, no randomness. Given the same two passage sequences it returns the same <code>Change</code> list every time, which means it can be unit-tested directly against the synthetic corpus's deliberate edits (T3/T6) and the test asserts an exact expected diff, not a fuzzy "looks about right."</p>
+<p>Each <code>Change</code> is typed — added, removed, or modified — and carries passage references on both sides (or one side, for pure additions or removals), so nothing downstream needs to re-derive what moved. This is also where the sharpest known failure mode lives: alignment degrades when a document is restructured wholesale — sections renumbered, text relocated rather than edited. The design does not pretend this is solved. A low-confidence alignment is escalated rather than guessed at, the same "absence is denial" rule applied one stage earlier than usual. Because the algorithm is swappable behind the <code>Change</code> contract, a better aligner for restructured documents is a <code>diff/</code>-internal change later, not a rewrite of interpretation or verification.</p>
+
+<h2>Interpretation — the only place that calls a model</h2>
+<p>Every other stage in this pipeline is deterministic on purpose, so that the one stage that is not — <code>interpretation</code> — is easy to find, easy to isolate, and easy to blame first when something is wrong. It is the only module permitted to make a model call, and every function in it that does so is named plainly, so a grep for the provider's client library finds every place the product can be fluent and wrong.</p>
+<p>Interpretation does four jobs, all downstream of a <code>Change</code> the diff engine already found: judge materiality; extract obligations with evidence spans; map a change to the company-context obligations, projects, and documents it affects; recommend an action and a reviewer. Draft-versus-final is read once, from the version's explicit status field, and used to dispatch to one of two branches before any model call happens — a draft change is only ever asked to produce monitor-or-comment language, a final change is only ever asked to produce comply language with an effective date. The model is never asked which branch it is in, because that is exactly the distinction ADR-005 says must never be inferred.</p>
+<p>Not everything in this stage calls a model. Reviewer routing — which role sees an escalation — is a deterministic lookup against ownership metadata already in the company context, not a guess. The fewer decisions handed to the model, the fewer things <code>verification</code> has to catch, and the fewer things can be wrong in a way that reads as confident.</p>
+<p>What interpretation emits is never a fact. It is a candidate claim: text, a citation of <code>(version_id, char_start, char_end, quoted_text)</code>, and a confidence. That object crosses the one boundary in the system where a hallucination could enter — which is exactly why the next stage exists.</p>
+
+<h2>Verification — the gate</h2>
+<p>Verification takes a candidate claim and does one job: decide whether it is allowed to become fact. It re-reads the passage store at the exact offsets the claim cited, for the exact version the claim cited, runs both the stored substring and the claimed quote through the same normalization ingestion used, and compares them for equality — not similarity, not a threshold, equality. A claim whose quote does not match what is actually at those offsets, or whose confidence sits below the configured threshold, is written to the escalation queue with the specific reason (mismatch or low confidence), never silently dropped and never shown to the analyst as settled.</p>
+<p>This module has no model dependency of its own, which is deliberate twice over: it means the module the product's trustworthiness rests on can be exercised in CI with no API key and no network, and it means the failure mode the product is built around — a model that misquotes fluently — is caught by code that cannot itself misquote fluently, because it does not generate anything. It only compares. <code>state</code> has exactly one write path for claims, and it runs through here.</p>
+
+<h2>State and audit</h2>
+<p>Project state — the current obligations, projects, documents, changes, and actions the analyst sees as true — is a projection over an append-only event log, not a table mutated in place. Every write that reaches state through verification is one event; every reviewer decision (approve, reject, amend) is another. The escalation queue is not a separate table kept in sync by hand — it is a read over the same log, defined as "candidates with no resolution event yet." Approving or rejecting an item is appending an event, not deleting a row, so the queue cannot drift from the log that explains it.</p>
+<p>An event log gives audit history and rollback the same mechanism: rollback is replaying the projection up to an earlier point in the log, and audit is reading the log directly. That is this document's working answer to the open question in <code>decisions.html</code> (event-fold versus snapshots) — chosen because a 48-hour build with a small corpus never needs the alternative's main benefit, fast replay over a long log, and one mechanism serving two requirements is less to get wrong than two. <span class="open">This is not yet written back into the ADR log as accepted</span> — it is the architecture's current default, and if replay cost becomes visible against the synthetic corpus, periodic snapshot compaction is the documented escape hatch, not a redesign.</p>
+
+<h2>What changes when this outgrows SQLite</h2>
+<p>ADR-007 picks SQLite so the submission starts with one command on a reviewer's machine. It does not scale as built, and this section says plainly where it breaks and what the fix is — not as a hedge, but because implying otherwise would be exactly the kind of confident-and-wrong claim the rest of this design refuses to make.</p>
+<ul>
+<li><strong>Concurrent writers.</strong> SQLite serializes writes to a single file; WAL mode lets readers proceed during a write but writers still queue behind each other. Fine for one analyst team exercising the demo; wrong the moment more than one tenant is ingesting or resolving escalations at the same time. The fix is Postgres, and SQLAlchemy makes that a connection string, not a rewrite — but transaction and locking behavior differs enough that the switch needs its own test pass, not just a config flag.</li>
+<li><strong>Horizontal scale of the web tier.</strong> A SQLite file lives on one disk; two app instances behind a load balancer cannot share it without contention. Postgres removes this by being a server rather than a file.</li>
+<li><strong>Lexical retrieval.</strong> SQLite's FTS5 index is process-local to that one file. At scale this becomes Postgres full-text search or a dedicated search index shared across instances — the swap happens entirely inside <code>app/passages/</code>, per the module table above.</li>
+<li><strong>Semantic retrieval.</strong> There is no pgvector today because ADR-008 only asks for semantic matching over the company-context join, which is small enough to compare in process. At real volume that needs a vector store, and the retrieval interface in <code>app/passages/</code> is exactly where it plugs in.</li>
+<li><strong>The event log.</strong> Replay cost grows with log length. The documented answer above — snapshot compaction — is the fix, not a switch to storing state as mutable rows, which would give up the audit guarantee the log exists for.</li>
+<li><strong>Background work.</strong> Ingesting a long proceeding runs synchronously today, inside the <code>pipeline</code> chokepoint, called from a request. At volume this becomes a queued job so a large upload does not hold a request thread open; the chokepoint's shape does not change, only what calls it.</li>
+</ul>
+
+<h2>Open questions this document does not resolve</h2>
+<p>Carried forward from <code>decisions.html</code> because pretending they are settled here would contradict that log: which model <code>interpretation</code> calls, and its fallback when unavailable; where the confidence threshold in <code>verification</code> actually sits, and on what evidence; whether the event-fold default above survives contact with the eval corpus. None of these are architectural in the sense of changing a module boundary — they are configuration and calibration, which is exactly why the boundaries above were drawn to keep them swappable.</p>
+
+</body>
+</html>

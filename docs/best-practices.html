@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Best-Practices Architecture — a portable playbook</title>
+<style>
+  body { font: 15px/1.65 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 900px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.95rem; margin-bottom:.2rem; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.4rem; }
+  .sub { color:#475569; } code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  .p { border:1px solid #e2e8f0; border-radius:8px; padding:.9rem 1.2rem; margin:.8rem 0; }
+  .p h3 { margin:.1rem 0 .5rem; color:#1d4ed8; font-size:1.02rem; }
+  .p h3 .n { color:#94a3b8; font-weight:600; margin-right:.4rem; }
+  .why { color:#334155; margin:.3rem 0 .55rem; }
+  .do, .avoid { margin:.15rem 0; padding-left:1.4rem; }
+  .do li { color:#166534; } .avoid li { color:#9f1239; }
+  .lbl { font-weight:600; font-size:.78rem; text-transform:uppercase; letter-spacing:.04em; color:#64748b; margin-top:.3rem; }
+  .refs { font-size:.83rem; color:#475569; margin-top:.55rem; } .refs a { color:#1d4ed8; }
+  .meta { color:#64748b; font-size:.85rem; }
+  .toc { columns:2; font-size:.9rem; column-gap:2rem; } .toc a { color:#1d4ed8; text-decoration:none; } .toc b { display:block; margin-top:.5rem; color:#0369a1; font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; }
+  .born { font-size:.82rem; color:#94a3b8; font-style:italic; }
+</style>
+</head>
+<body>
+<h1>Best-Practices Architecture</h1>
+<p class="sub">Guidelines, design patterns, and hard-won lessons worth adopting on most new software projects — established practice, hardened by real production fixes. Hand this to a new project so it starts smarter. Each entry: the "why", concrete do/avoid, and external references. Nothing here is specific to one application.</p>
+<p class="meta">Started 2026-07-26 · <b>living document</b>. Maintenance: at each commit, ask "did this teach a <i>general</i> principle a new project should follow?" Fold it in <b>selectively</b> — keep entries general and portable, push project-specifics to <code>decisions.html</code>, and prune bloat. A playbook people re-read beats an exhaustive one they don't.</p>
+
+<div class="note"><b>How to use.</b> These are strong defaults, not laws — adopt the reasoning, adapt the specifics to your context and scale. Bootstrapping a project? Start with <b>§1 (start simple)</b>, <b>§12 (tests)</b>, and <b>§9/§10 (deploy &amp; ops)</b>; layer the rest in as you touch each area. Over-applying any of these (premature abstraction, gold-plated infra) is its own anti-pattern.</p></div>
+
+<h2>Contents</h2>
+<div class="toc">
+  <b>Architecture</b>
+  <a href="#simple">1. Start simple; earn complexity</a><br>
+  <a href="#boundaries">2. Clear boundaries &amp; dependency direction</a><br>
+  <a href="#chokepoint">3. One chokepoint per cross-cutting concern</a><br>
+  <b>Data &amp; contracts</b>
+  <a href="#datamodel">4. Model data deliberately; migrate safely</a><br>
+  <a href="#idempotent">5. Idempotent, natural-keyed writes</a><br>
+  <a href="#api">6. Explicit, versioned contracts</a><br>
+  <a href="#external">7. Verify external data before trusting it</a><br>
+  <b>Reliability &amp; operations</b>
+  <a href="#failure">8. Design for failure</a><br>
+  <a href="#async">9. Slow work belongs in the background</a><br>
+  <a href="#deploy">10. Deploy &amp; migrate safely</a><br>
+  <a href="#observe">11. Observability; diagnose from evidence</a><br>
+  <b>Quality &amp; craft</b>
+  <a href="#tests">12. Tests &amp; evals are the safety net</a><br>
+  <a href="#class">13. Fix the class, not the symptom</a><br>
+  <a href="#readable">14. Readable code, small changes, real review</a><br>
+  <a href="#perf">15. Measure before you optimize</a><br>
+  <b>Security &amp; supply chain</b>
+  <a href="#security">16. Security &amp; confidentiality by construction</a><br>
+  <a href="#deps">17. Minimize &amp; vet dependencies</a><br>
+  <a href="#privacy">18. Collect less; expire &amp; delete</a><br>
+  <b>AI systems</b>
+  <a href="#ai">19. Ground on the record; never assert the unverified</a><br>
+  <a href="#aicost">20. Budget cost &amp; latency for models</a><br>
+  <a href="#context">21. Context is a budget: curate it, don't dump it</a><br>
+  <a href="#promptexp">22. Change prompts by experiment, not by faith</a><br>
+  <b>Product &amp; knowledge</b>
+  <a href="#ux">23. Safe defaults; honest, accessible UI</a><br>
+  <a href="#config">24. Config, environments &amp; feature flags</a><br>
+  <a href="#docs">25. Living docs &amp; structured memory</a>
+  <b>Degradation &amp; data migrations</b>
+  <a href="#fallback">26. A fallback must announce itself</a><br>
+  <a href="#corpusmigration">27. A derived corpus migrates all at once</a>
+</div>
+
+<!-- ============================ ARCHITECTURE ============================ -->
+<h2>Architecture</h2>
+
+<div class="p" id="simple">
+  <h3><span class="n">1</span>Start simple; earn complexity</h3>
+  <p class="why">Most projects die of complexity they added before they needed it. A well-structured <b>modular monolith</b> ships faster, is easier to reason about, and can be split later along seams you've actually discovered. Distribute (microservices, queues, caches, sharding) only when a real constraint forces it.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Begin with one deployable, internally modular by domain; extract services when scale/ownership demands it.</li><li>Apply YAGNI / KISS: build what the current requirement needs, no speculative generality.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Microservices, event-sourcing, or a cache before you have the load or the team to justify them.</li></ul>
+  <p class="refs">Refs: <a href="https://martinfowler.com/bliki/MonolithFirst.html">Fowler — MonolithFirst</a> · <a href="https://martinfowler.com/bliki/Yagni.html">Fowler — YAGNI</a> · <a href="https://shopify.engineering/deconstructing-monolith-designing-software-maximizes-developer-productivity">Shopify — Modular Monolith</a></p>
+</div>
+
+<div class="p" id="boundaries">
+  <h3><span class="n">2</span>Clear boundaries &amp; dependency direction</h3>
+  <p class="why">Coupling is what makes software hard to change. Keep the core domain independent of frameworks, databases, and I/O; let dependencies point <b>inward</b> (ports &amp; adapters / hexagonal / clean architecture). You can then swap a UI, DB, or vendor without touching business logic, and test the core in isolation.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Separate domain logic from delivery (HTTP), persistence, and external services behind small interfaces.</li><li>Make the direction of dependency explicit; the domain imports nothing framework-specific.</li><li>Isolate each external system behind an <b>anti-corruption layer</b> — an adapter that maps it to <b>one canonical internal record</b> (a <code>source</code> tag marks origin). Adding the Nth provider becomes a pure adapter change; dashboards, analytics, and AI context keep working unchanged and vendor quirks don't ripple inward.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Business rules tangled into controllers, ORMs, or vendor SDKs.</li></ul>
+  <p class="born">Seen in peers: vitalnexa normalizes every wearable (Oura/WHOOP/Dexcom) into one <code>test_results</code> shape; citelocal wraps every data provider behind one interface — a new provider is one adapter fn.</p>
+  <p class="refs">Refs: <a href="https://alistair.cockburn.us/hexagonal-architecture/">Cockburn — Hexagonal</a> · <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">Martin — Clean Architecture</a> · <a href="https://martinfowler.com/bliki/PresentationDomainDataLayering.html">Fowler — PDD layering</a></p>
+</div>
+
+<div class="p" id="chokepoint">
+  <h3><span class="n">3</span>One chokepoint per cross-cutting concern</h3>
+  <p class="why">Cross-cutting logic — auth, redaction, rate-limiting, formatting, per-item controls — duplicated across call sites drifts out of sync and re-introduces bugs you already fixed. One place to change is one place to get right and to test.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Route each cross-cutting concern through a single function/middleware/layer applied uniformly.</li><li>Compose small, single-responsibility units (e.g. an orchestrator delegating to specialists with clear contracts).</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Copy-pasted policy logic in N handlers.</li></ul>
+  <p class="refs">Refs: <a href="https://en.wikipedia.org/wiki/Single-responsibility_principle">SRP</a> · <a href="https://martinfowler.com/eaaCatalog/">Fowler — Patterns of Enterprise App Architecture</a></p>
+</div>
+
+<!-- ============================ DATA & CONTRACTS ============================ -->
+<h2>Data &amp; contracts</h2>
+
+<div class="p" id="datamodel">
+  <h3><span class="n">4</span>Model data deliberately; migrate safely</h3>
+  <p class="why">The schema outlives most code and is the hardest thing to change under load. Model it on purpose; evolve it with versioned, ordered migrations that are safe to run on live data.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Schema in version-controlled migrations; forward-only and additive where possible (expand → migrate → contract).</li><li>Index for real query patterns; enforce invariants with constraints, not just app code.</li><li>Native enums need an explicit add-value migration; large tables need online/backfill-safe changes.</li><li>Track <b>provenance</b> on derived facts — a <code>source</code> field with precedence (human-authoritative &gt; external feed) so a re-sync can't clobber a human edit.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Hand-run or destructive migrations; a rename/drop in the same release that still reads the old shape.</li><li>Init-only migration scripts that skip existing databases (e.g. <code>docker-entrypoint-initdb.d</code>, which runs only on an empty volume), or two schema paths (auto-<code>create_all</code> + migrations) that silently drift. Make a migration runner with an applied-ledger the <b>sole</b> authority.</li></ul>
+  <p class="refs">Refs: <a href="https://dataintensive.net/">Kleppmann — DDIA</a> · <a href="https://martinfowler.com/articles/evodb.html">Fowler — Evolutionary Database Design</a></p>
+</div>
+
+<div class="p" id="idempotent">
+  <h3><span class="n">5</span>Idempotent, natural-keyed writes; best-effort side-effects</h3>
+  <p class="why">Syncs, imports, and retries happen. A write keyed by a natural key that UPSERTs converges on replay instead of duplicating. And a secondary effect (analytics, enrichment, memory) must never roll back the primary transaction.</p>
+  <p class="lbl">Do</p><ul class="do"><li>UPSERT on a natural key (entity + date), not blind insert; use idempotency keys for external calls.</li><li>Guard best-effort side-effects so failure degrades to a no-op; use a <b>savepoint</b> so a sub-step failure rolls back only itself.</li><li><b>Claim before dispatch</b> for concurrent fan-out: mark work claimed (e.g. <code>last_sync = NOW()</code>) in the <i>same transaction</i> that selects it, before launching parallel fetches — gives at-most-once behavior across concurrent triggers (tabs, devices) without standing up a queue.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>A best-effort enrichment that can abort the user's actual save.</li></ul>
+  <p class="refs">Refs: <a href="https://stripe.com/blog/idempotency">Stripe — Idempotency</a> · <a href="https://dataintensive.net/">Kleppmann — DDIA</a></p>
+  <p class="born">Hardened here: lab ingestion behind a savepoint on upload; upserts keyed by (principal, biomarker, date).</p>
+</div>
+
+<div class="p" id="api">
+  <h3><span class="n">6</span>Explicit, versioned contracts</h3>
+  <p class="why">Every interface between components (HTTP API, event, library) is a promise. Make it explicit and evolve it without breaking callers, so teams and clients move independently.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Define request/response schemas; validate at the boundary; return consistent error shapes and status codes.</li><li>Version deliberately; keep backward compatibility (additive changes); deprecate on a timeline, not abruptly.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Silent breaking changes; leaking internal models straight onto the wire.</li></ul>
+  <p class="refs">Refs: <a href="https://stripe.com/blog/api-versioning">Stripe — API versioning</a> · <a href="https://semver.org/">SemVer</a></p>
+</div>
+
+<div class="p" id="external">
+  <h3><span class="n">7</span>Verify external data before trusting it</h3>
+  <p class="why">A shallow "success" is not validity — HTTP 200 doesn't mean a page is what you think (expired postings, generic landing pages, JS shells all return 200). Trusting the shallow signal surfaces stale/wrong data to users.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Verify content and dates: does it actually contain the expected entity? Is it in-date? A specific record vs a landing page?</li><li>Treat "can't confirm" as <b>unverified</b>, distinct from "confirmed good".</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Equating reachability with correctness or freshness.</li></ul>
+  <p class="born">Learned here: expired job postings that all returned 200; fixed with content-marker + expiry + entity-on-page checks.</p>
+</div>
+
+<!-- ============================ RELIABILITY & OPS ============================ -->
+<h2>Reliability &amp; operations</h2>
+
+<div class="p" id="failure">
+  <h3><span class="n">8</span>Design for failure</h3>
+  <p class="why">Networks, dependencies, and disks fail; the question is whether your system fails <i>well</i>. Bound every remote call, retry transient errors safely, and degrade gracefully instead of cascading.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Set <b>timeouts</b> on every I/O call; retry only idempotent ops, with <b>exponential backoff + jitter</b> and a cap.</li><li>Degrade gracefully — a failing non-critical dependency returns empty/cached, not a 500.</li><li>Use circuit breakers / bulkheads when a dependency can overwhelm you.</li><li>Wrap each paid/external API in <b>one resilient client</b> (timeout + backoff + rate-limit + cache, with an injectable clock/cache so tests never touch the network) rather than scattered try/excepts; refresh OAuth tokens from day one — a 401 that silently returns empty makes an integration die quietly.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Unbounded waits; blind infinite retries (retry storms); one slow dependency taking the whole request down.</li></ul>
+  <p class="refs">Refs: <a href="https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/">AWS — Timeouts, retries, backoff w/ jitter</a> · <a href="https://pragprog.com/titles/mnee2/release-it-second-edition/">Nygard — Release It!</a></p>
+</div>
+
+<div class="p" id="async">
+  <h3><span class="n">9</span>Slow work belongs in the background</h3>
+  <p class="why">Anything that can exceed a request budget (proxies typically cut at ~60s) must not run synchronously in the request. Serve the last stored result instantly and refresh asynchronously.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Persist results; the endpoint returns the stored copy at once with a "refreshing" flag; poll for the new one.</li><li>Run refresh via a <b>managed</b> background mechanism (framework tasks or a real job/queue) — not a raw thread the server may reap; de-dupe in-flight work per key.</li><li>For wall-clock-local schedules, run the cron often in UTC and gate on a <b>stored local-time target</b> — immune to daylight-saving shifts, unlike a hand-computed UTC hour.</li><li><b>Fan out independent work instead of a straight line.</b> When a batch job does the same independent unit N times (one digest per user, one check per URL), run them on a bounded pool through one small <code>parallel_map</code>-style primitive that returns results in input order and captures a per-item failure in its slot (so one unit's error never sinks the batch). Give each worker its own DB session — sessions aren't thread-safe — and keep a <b>kill switch</b> (width 1 → sequential) to revert by config.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Synchronous calls that outlive the gateway timeout; fire-and-forget threads under a worker that recycles.</li></ul>
+  <p class="refs">Refs: <a href="https://12factor.net/">12-Factor</a> (VIII, IX) · <a href="https://sre.google/sre-book/table-of-contents/">Google SRE Book</a></p>
+  <p class="born">Learned here: a ~2.5-min search timed out synchronously; a raw background thread died under a cycling deploy — moved to stored-result + managed refresh.</p>
+</div>
+
+<div class="p" id="deploy">
+  <h3><span class="n">10</span>Deploy &amp; migrate safely</h3>
+  <p class="why">Deploys that skip the safety net or run migrations by hand break in production; rapid successive deploys recycle instances and kill in-flight work; assuming a deploy "went out" is how stale code lingers.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Gate merges on the regression net; run migrations automatically on release.</li><li><b>Verify the deploy landed</b> (running build/commit), not just that you triggered it; keep releases small and reversible.</li><li>Measure real deploy downtime with a probe (a 1&nbsp;s loop over <code>/health</code>) before you try to optimize it — and verify recovery by probing the <b>service</b>, not the deploy tool's status, which can lag real recovery by minutes. Design the client to degrade gracefully during the window (timeouts, honest retry) rather than chasing true zero-downtime first.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Hand-run migrations; assuming a queued deploy succeeded; a storm of successive deploys.</li></ul>
+  <p class="refs">Refs: <a href="https://12factor.net/">12-Factor</a> (V) · <a href="https://martinfowler.com/bliki/BlueGreenDeployment.html">Fowler — Blue-Green</a></p>
+</div>
+
+<div class="p" id="observe">
+  <h3><span class="n">11</span>Observability; diagnose from evidence</h3>
+  <p class="why">You can't fix what you can't see, and guessing wastes time and "fixes" the wrong thing. Emit signals, keep an audit trail, and diagnose by reading real state before theorizing.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Structured logs, metrics, and traces; log significant state changes to an <b>audit trail</b>.</li><li>When something's wrong, inspect the actual data/logs first; confirm root cause before fixing.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Guessing at a cause and patching a symptom that wasn't the problem.</li></ul>
+  <p class="refs">Refs: <a href="https://sre.google/sre-book/table-of-contents/">Google SRE Book</a> · <a href="https://opentelemetry.io/docs/concepts/observability-primer/">OpenTelemetry primer</a></p>
+  <p class="born">Learned here: "why reconnect Oura?" — answered from DB + audit log (no connection row, no connect event), not assumption.</p>
+</div>
+
+<!-- ============================ QUALITY & CRAFT ============================ -->
+<h2>Quality &amp; craft</h2>
+
+<div class="p" id="tests">
+  <h3><span class="n">12</span>Tests &amp; evals are the safety net</h3>
+  <p class="why">A frozen set of cases run on every change tells you whether the system improved or quietly broke; most outages are re-breaks of something once fixed. For non-deterministic (AI) systems, split the net: deterministic checks in CI, judged checks on demand.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Maintain a golden/regression suite gated in CI; follow the <b>test pyramid</b> (many fast unit tests, fewer integration/E2E).</li><li><b>Every bug fix ships a guard</b> — the cheapest test that would have caught it. Extract a pure helper to make a behavior testable.</li><li>For open-ended AI output, use <b>LLM-as-judge</b> against a rubric (opt-in; replay real past failures in it); score dimensions separately.</li><li>Tests run <b>offline by default</b>: neutralize spend/prod secrets <i>before</i> test collection (an import-time side effect can bill you or leak live keys) and default to a mock provider.</li><li><b>Run the whole suite before shipping</b> — not just the tests you believe are affected. Your model of the blast radius is exactly the thing that is wrong when you break something.</li><li>When a change makes an old test fail, decide deliberately: is this a <b>regression</b> (fix the code) or a <b>superseded contract</b> (update the test, and write down why)? Silently flipping an assertion to green is how a real defect ships.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>One quality number hiding which dimension regressed; only-manual "it works" checks.</li></ul>
+  <p class="refs">Refs: <a href="https://martinfowler.com/articles/practical-test-pyramid.html">Fowler — Test Pyramid</a> · <a href="https://martinfowler.com/articles/continuousIntegration.html">Fowler — CI</a> · <a href="https://github.com/openai/evals">OpenAI Evals</a> · <a href="https://www.promptfoo.dev/">Promptfoo</a></p>
+</div>
+
+<div class="p" id="class">
+  <h3><span class="n">13</span>Fix the class, not the symptom</h3>
+  <p class="why">Patching the one reported line leaves the same failure lurking on paths you didn't look at and invites a re-break. Fixing the class + a guard is what makes a system get monotonically better.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Trace the failure to its class — every producer and consumer of the bad state, forward and backward — fix the general cause, then add the guard (§12).</li><li>Beware the <b>per-vendor patch</b>: fixing the one provider that was reported leaves every sibling broken. If the rule is "exclude index pages", express it structurally, not as a list of that vendor's URLs.</li><li>When matching text, match the <b>field you actually mean</b> (path, not the whole URL; a title, not the whole document). Over-broad matching passes your examples and misfires on real input.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>The one-line patch that only silences the reported instance.</li></ul>
+  <p class="born">Learned here: an email listing's description orphaning — the cause was two independently-keyed lines, not the one row reported.</p>
+</div>
+
+<div class="p" id="readable">
+  <h3><span class="n">14</span>Readable code, small changes, real review</h3>
+  <p class="why">Code is read far more than written; clarity is a feature. Small, reviewed changes are easier to reason about, test, and revert, and reviews spread knowledge and catch what tests can't.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Match the surrounding style; name for intent; small functions; comments explain <i>why</i>, not <i>what</i>.</li><li>Small, focused commits with meaningful messages; review every change (correctness, clarity, security).</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Giant mixed-concern PRs; clever code that only the author can read; DRY taken to premature abstraction.</li></ul>
+  <p class="refs">Refs: <a href="https://google.github.io/eng-practices/review/">Google — Code Review</a> · <a href="https://martinfowler.com/bliki/TwoHardThings.html">Fowler — naming/cache-invalidation</a></p>
+</div>
+
+<div class="p" id="perf">
+  <h3><span class="n">15</span>Measure before you optimize</h3>
+  <p class="why">Intuition about performance is usually wrong; optimize the measured hot path, not a guess. The common real wins are algorithmic and I/O-shaped, not micro-tweaks.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Profile / measure first; set latency &amp; cost budgets; fix the biggest offender.</li><li>Kill <b>N+1</b> queries (batch/eager-load); cache with a clear <b>invalidation</b> strategy and TTLs.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Premature micro-optimization; caches without an invalidation plan (stale-data bugs).</li></ul>
+  <p class="refs">Refs: <a href="https://wiki.c2.com/?PrematureOptimization">Knuth — premature optimization</a> · <a href="https://use-the-index-luke.com/">Use The Index, Luke</a></p>
+</div>
+
+<!-- ============================ SECURITY & SUPPLY CHAIN ============================ -->
+<h2>Security &amp; supply chain</h2>
+
+<div class="p" id="security">
+  <h3><span class="n">16</span>Security &amp; confidentiality by construction</h3>
+  <p class="why">Authorization scattered across handlers drifts and leaks. A single resolution chokepoint, least privilege, and context-aware visibility keep the confidential surface small and auditable. Secrets and personal data must never live in code or logs.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Resolve authorization through <b>one chokepoint</b>; deny by default; fail closed; row-scope multi-tenant data by tenant id on every query.</li><li>Make visibility <b>context-aware</b> where needed (who is viewing <i>and</i> whose data, in what context).</li><li>Keep secrets in env/secret stores; <b>encrypt tokens &amp; PII at rest</b> (envelope encryption with rotatable keys lets you re-key with zero downtime); validate and encode all input/output.</li><li><b>Fail closed at startup</b> — refuse to boot in prod with a default/weak secret or unconfigured encryption.</li><li>Gate locked/paid content by <b>server-side omission</b> — never ship a payload the client is trusted to hide; read entitlements/authz from the server or DB, never from the token.</li><li><b>Test the negative</b> — prove tenant/user A cannot read B's data. A control you've never attacked adversarially is an assumption, not a guarantee.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Per-handler ad-hoc auth; secrets in code/config/logs; trusting client input.</li><li>Leaning on regex denylists as the <i>primary</i> guard for injection/PII — brittle and bypassable; make them one layer behind a fail-closed validator.</li></ul>
+  <p class="refs">Refs: <a href="https://owasp.org/www-project-top-ten/">OWASP Top Ten</a> · <a href="https://owasp.org/www-project-application-security-verification-standard/">OWASP ASVS</a> · <a href="https://12factor.net/config">12-Factor — Config</a></p>
+</div>
+
+<div class="p" id="deps">
+  <h3><span class="n">17</span>Minimize &amp; vet dependencies</h3>
+  <p class="why">Every dependency is code you didn't write but now own — a surface for bugs, breakage, and supply-chain attacks. Prefer borrowing a pattern over adding a library; when you do add one, pin and vet it.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Weigh each dependency (maintenance, size, blast radius); prefer the platform/stdlib when it suffices.</li><li>Pin versions with a lockfile; scan for known vulns; keep deps current.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>A framework to save ten lines; unpinned deps; blindly trusting transitive packages.</li></ul>
+  <p class="refs">Refs: <a href="https://owasp.org/www-project-dependency-check/">OWASP Dependency-Check</a> · <a href="https://slsa.dev/">SLSA (supply-chain)</a></p>
+  <p class="born">Applied here: kept the existing test harness rather than adding an eval framework — "borrow patterns, not dependencies."</p>
+</div>
+
+<div class="p" id="privacy">
+  <h3><span class="n">18</span>Collect less; expire &amp; delete</h3>
+  <p class="why">Data you don't hold can't leak or be misused. Minimize collection, define a lifecycle, and make deletion real — both good practice and, increasingly, the law.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Collect only what a feature needs; set retention/TTLs; support deletion end-to-end.</li><li>Separate confidential lanes (health/financial) with stricter access and logging.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>"Collect everything just in case"; data with no expiry or delete path.</li></ul>
+  <p class="refs">Refs: <a href="https://gdpr-info.eu/art-5-gdpr/">GDPR Art. 5 — minimization</a> · <a href="https://en.wikipedia.org/wiki/Privacy_by_design">Privacy by Design</a></p>
+</div>
+
+<!-- ============================ AI SYSTEMS ============================ -->
+<h2>AI systems</h2>
+
+<div class="p" id="ai">
+  <h3><span class="n">19</span>Ground on the system of record; never assert the unverified</h3>
+  <p class="why">The worst AI failure is confident and wrong — it happens when the model reads stale/partial state and insists on it. The fix is architectural: get inputs into the system of record, ground the model on that latest state, and have it reconcile discrepancies rather than defend what it can't verify.</p>
+  <p class="lbl">Do</p><ul class="do"><li><b>Ingest</b> user inputs (uploads, forms) into the structured record the model reads — don't leave them as stranded blobs.</li><li>Prefer <b>LLM structured extraction</b> for messy inputs (OCR, varied PDFs) over brittle regex — constrained to the source, forbidding fabrication.</li><li>Make the model <b>reconcile and flag</b> conflicting sources; scrub PII before it reaches a model (independent validate → fail closed → only then call); keep confidential lanes confidential.</li><li>Separate <b>VERIFIED facts from HYPOTHESIS</b> in the model's context and pass provenance, so it cites what's known and flags what to check instead of asserting inferences as fact. Render the same catalog/rules the product persists, so the model's advice can't drift from the app.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Answering from a stale cache while a fresher input sits un-ingested; trusting extraction without validation.</li></ul>
+  <p class="refs">Refs: <a href="https://www.anthropic.com/research/building-effective-agents">Anthropic — Effective agents</a> · <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">Prompt engineering</a> · <a href="https://arxiv.org/abs/2005.11401">RAG</a></p>
+  <p class="born">Learned here: a reply that defended a stale lab value over the user's uploaded one — fixed by ingesting the upload and guarding with a grounding judge.</p>
+</div>
+
+<div class="p" id="aicost">
+  <h3><span class="n">20</span>Budget cost &amp; latency for models</h3>
+  <p class="why">Model calls cost real money and add real latency; unbudgeted, they surprise you in the bill and the p99. Treat tokens and time as first-class budgets.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Right-size the model to the task (tier: a stronger model for interactive advice, a cheaper one for bulk); cache/dedupe calls; make expensive passes (large evals, deep research) opt-in; use batch APIs for non-interactive work.</li><li><b>Prompt-cache layout</b>: freeze a byte-stable prefix with <code>cache_control</code> and put ALL per-request/volatile context in a <i>separate later</i> block — one stray timestamp in the cached prefix zeroes your hit rate.</li><li>Set token/latency budgets; run heavy work in the background (§9). Encode <b>unit economics</b> as authoritative config (prices in minor units, per-call cost, a per-tier usage cap the metering layer enforces) so margin is a code-level invariant, not a spreadsheet.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>The biggest model for every call; re-running identical prompts; slow model work in the request path.</li></ul>
+  <p class="refs">Refs: <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching">Anthropic — Prompt caching</a> · <a href="https://docs.anthropic.com/en/docs/build-with-claude/batch-processing">Message Batches</a></p>
+</div>
+
+
+<div class="p" id="context">
+  <h3><span class="n">21</span>Context is a budget: curate it, don't dump it</h3>
+  <p class="why">Everything you put in front of a model is paid for on every call, and noise crowds out signal. The failure is rarely a missing fact &mdash; it is a wall of state the model must wade through. Treat the context window like a budget with line items you can name.</p>
+  <p class="lbl">Do</p><ul class="do">
+    <li><b>Measure before trimming.</b> Print the byte/token size of each block you assemble per call; the distribution is usually lopsided and the biggest item is often a surprise.</li>
+    <li><b>Never interpolate a raw state object</b> (a JSON blob, a settings dict, a cache) into a prompt. Render a curated subset and cap each value &mdash; blobs grow silently as unrelated features add keys.</li>
+    <li><b>Progressive disclosure:</b> pass lightweight identifiers and fetch detail on demand, rather than pre-loading every domain into every call.</li>
+    <li>Keep an explicit boundary between <i>facts the model needs now</i> and <i>state another surface owns</i>.</li>
+  </ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Pre-loading all domains "just in case"; letting an operational cache ride along as context because it happens to live on the same record.</li></ul>
+  <p class="refs">Refs: <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Anthropic &mdash; Effective context engineering</a></p>
+  <p class="born">Learned here: a per-turn context of ~2,400 tokens was 57% one block &mdash; and most of that was a raw settings dump carrying ~3,000 chars of an unrelated agent's cached output.</p>
+</div>
+
+<div class="p" id="promptexp">
+  <h3><span class="n">22</span>Change prompts by experiment, not by faith</h3>
+  <p class="why">Prompts are load-bearing code with no compiler. As models improve, older prompts accumulate scaffolding they no longer need &mdash; but some of that verbosity is a <i>learned correction</i> that encodes a bug you already paid for. You cannot tell the two apart by reading. Measure.</p>
+  <p class="lbl">Do</p><ul class="do">
+    <li><b>A/B it:</b> same scenarios through old and new prompt, judged against a per-scenario rubric on the dimensions a change could plausibly break.</li>
+    <li><b>Repeat trials on anything safety- or policy-critical</b> &mdash; a rare failure matters more than an average score. Single runs hide flakiness.</li>
+    <li>Distinguish <b>what the model can infer</b> (style, obvious behaviour &mdash; cut it) from <b>what it cannot</b> (domain policy, legal posture, corrections learned from real incidents &mdash; keep, and comment WHY so the next person doesn't re-cut it).</li>
+    <li>Pin the load-bearing clauses with a test, and keep the harness so the next trim must re-measure.</li>
+  </ul>
+  <p class="lbl">Avoid</p><ul class="avoid">
+    <li>Trusting a run where <b>everything passes</b> &mdash; a suite with no failures has no discriminating power; make the cases harder until it can tell the variants apart.</li>
+    <li>Comparing runs by which case-<i>names</i> failed instead of <b>pass counts</b> &mdash; a 2/3&rarr;0/3 collapse reads as "no new failures".</li>
+  </ul>
+  <p class="born">Learned here: a 42% prompt cut looked clean at 8/8 vs 8/8; repeat trials then caught it reintroducing a bug fixed months earlier, and the harness's own verdict logic was wrong in the same direction.</p>
+</div>
+
+<!-- ============================ PRODUCT & KNOWLEDGE ============================ -->
+<h2>Product &amp; knowledge</h2>
+
+<div class="p" id="ux">
+  <h3><span class="n">23</span>Safe defaults; honest, accessible UI</h3>
+  <p class="why">Good defaults prevent whole categories of mistakes; reversibility turns a scary action into a safe one; and a UI should degrade honestly and work for everyone.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Default to the <b>safe</b> choice; prefer <b>hide + restore</b> over hard delete; a single click shouldn't be irreversible.</li><li>Responsive/progressive UI (keep essential content visible at any width); honest, specific error &amp; empty states.</li><li>Meet accessibility basics (semantics, contrast, keyboard, focus) and respect theme/motion preferences.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Destructive defaults; one-click-permanent deletes; a layout that clips its key content on a narrow screen.</li></ul>
+  <p class="refs">Refs: <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">Nielsen — Heuristics</a> · <a href="https://www.w3.org/WAI/standards-guidelines/wcag/">WCAG</a></p>
+</div>
+
+<div class="p" id="config">
+  <h3><span class="n">24</span>Config, environments &amp; feature flags</h3>
+  <p class="why">Config in code can't vary per environment and leaks secrets; risky changes shipped all-at-once are hard to unwind. Externalize config and decouple <i>deploy</i> from <i>release</i>.</p>
+  <p class="lbl">Do</p><ul class="do"><li>Config from the environment; keep dev/stage/prod at parity; one build promoted across envs.</li><li>Use <b>feature flags</b> to ship dark, roll out gradually, and kill instantly; prefer trunk-based development with small merges.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Hardcoded per-env values; long-lived divergent branches; big-bang releases with no off switch.</li></ul>
+  <p class="refs">Refs: <a href="https://12factor.net/config">12-Factor — Config</a> · <a href="https://martinfowler.com/articles/feature-toggles.html">Fowler — Feature Toggles</a> · <a href="https://trunkbaseddevelopment.com/">Trunk-Based Development</a></p>
+</div>
+
+<div class="p" id="docs">
+  <h3><span class="n">25</span>Living docs &amp; structured memory</h3>
+  <p class="why">Decisions and durable knowledge that aren't derivable from the code get lost. A small, curated set of living docs pays for itself every time someone (or an agent) needs the "why".</p>
+  <p class="lbl">Do</p><ul class="do"><li>Keep an <b>ADR log</b> — one entry per real decision, capturing <b>Options Considered + Consequences</b> (and the bug that forced it, for incident-driven ones) — plus a structured-memory folder (here, <code>.ai/</code>) and a README that gets someone running fast.</li><li>Update this playbook at commit time, selectively — only genuinely general lessons.</li></ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Docs that duplicate the code, or grow into an unread dump.</li><li>Contradictory or stale entries — mark superseded decisions and reconcile reversals; an unmaintained log actively misleads (a peer's still read "bcrypt" long after it moved to Argon2id, and documented a CI gate that didn't exist).</li></ul>
+  <p class="refs">Refs: <a href="https://adr.github.io/">ADRs</a> · <a href="https://martinfowler.com/bliki/ArchitectureDecisionRecord.html">Fowler — ADR</a></p>
+</div>
+
+<h2>Degradation &amp; data migrations</h2>
+
+<div class="p" id="fallback">
+  <h3><span class="n">26</span>A fallback must announce itself</h3>
+  <p class="why">A good fallback keeps the system up. A <i>silent</i> one keeps the system up while quietly changing what it means &mdash; and because nothing throws, nobody looks. The dangerous shape is a fallback that returns a value of the right type and shape but not the right <i>quality</i>: a vector of the right width carrying no meaning, a cached answer standing in for a live one, a stub that returns success. These survive for months because every check downstream passes.</p>
+  <p class="lbl">Do</p><ul class="do">
+    <li><b>Make routing and reporting agree.</b> If a health check or diagnostic names a provider, that name must come from what the code will <i>actually execute</i>, not from what is configured. Resolve to the effective mode &mdash; and let a stubbed or failed path report the fallback it really uses.</li>
+    <li><b>Treat placeholder config as absent.</b> <code>CHANGE_ME</code>, <code>TODO</code>, <code>your-key-here</code> are truthy strings; a bare <code>if key:</code> reads them as configured. Normalize them to empty at the edge.</li>
+    <li><b>Never let an ambient credential re-route a subsystem.</b> A key present for one feature must not silently select a provider for another &mdash; require an explicit opt-in, so the blast radius of adding a secret is what you intended.</li>
+    <li><b>Classify errors by whether retrying can fix them &mdash; and be humble about the boundary.</b> Config rollouts propagate unevenly, so "unauthorized" can be transient. Retry, then conclude; a permanent latch on the first bad response is its own outage.</li>
+    <li>When a degraded mode <i>is</i> entered, <b>log at error, expire the decision</b>, and expose it to callers who can compensate (drop a weight, skip a term) rather than scoring noise.</li>
+  </ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>"Best-effort" wrappers that swallow the reason; reporting intent as if it were behaviour; inferring success from "no exception was raised".</li></ul>
+  <p class="born">Learned here: a stubbed HTTP client plus <code>VOYAGE_API_KEY=CHANGE_ME</code> made the platform report the <code>voyage</code> provider for months while every vector was a hash &mdash; and 55% of the ranking score was cosine over those hashes.</p>
+</div>
+
+<div class="p" id="corpusmigration">
+  <h3><span class="n">27</span>A derived corpus migrates all at once, or not at all</h3>
+  <p class="why">Embeddings, hashes, encodings, tokenized indexes &mdash; derived data is only comparable <i>within</i> the scheme that produced it. Half-migrated, the system does not fail: it answers every query, plausibly, and wrongly. That is strictly worse than not migrating, because there is no error to notice and the old behaviour is gone.</p>
+  <p class="lbl">Do</p><ul class="do">
+    <li><b>Enumerate every column, then ask which are read.</b> A stale vector nothing compares is inert; one behind a similarity call is corruption. Write the coverage check as a <i>test</i> so the next migration cannot quietly skip a table.</li>
+    <li><b>Rebuild derived text with the app's own builders, imported</b> &mdash; not a copy in the migration script. Two definitions drift, and the drift shows up as subtly worse retrieval nobody can date.</li>
+    <li><b>Re-assert the mode on every batch.</b> A long migration outlives the conditions it started in; if the underlying provider changes, abort with a resumable message rather than finishing in two schemes.</li>
+    <li><b>Identify derived state that cannot be recomputed</b> (anything <i>learned</i> rather than derived from stored text) and decide explicitly: reset to a neutral start, or keep and accept it's meaningless. Do not let it ride along by default.</li>
+    <li>Prefer a provider/model that can emit the <b>existing dimension</b> &mdash; it turns a schema migration into a data one.</li>
+  </ul>
+  <p class="lbl">Avoid</p><ul class="avoid"><li>Backfilling only rows with NULL when the whole space changed; clearing learned state before the rebuild has actually finished; trusting a "success" exit that never checked what mode it ran in.</li></ul>
+  <p class="born">Learned here: the backfill covered 196 of 636 vectors and skipped every column the recruiter ranks against &mdash; running it as written would have made ranking worse than the all-hash state it was fixing.</p>
+</div>
+
+<h2>Changelog</h2>
+<div class="p">
+  <p class="meta">2026-08-01 — Added a "Degradation &amp; data migrations" area: §26 (a fallback must announce itself — routing and reporting agree, placeholder config is absent, an ambient credential never re-routes a subsystem, retry before concluding "misconfigured", expire the degraded decision) and §27 (a derived corpus migrates all at once — enumerate columns then ask which are READ, rebuild with the app's own builders, re-assert the mode on every batch, decide explicitly about learned state, prefer a model that emits the existing dimension). Both born from switching the embedding provider from a hash fallback that had been reporting itself as something else.</p>
+</div>
+<div class="p">
+  <p class="meta">2026-07-28 — Renamed to <code>best-practices.html</code>. Added §21 (context is a budget: measure it, never interpolate raw state objects, progressive disclosure) and §22 (change prompts by experiment: A/B with repeat trials, distinguish scaffolding from learned corrections, compare pass counts, distrust an all-pass suite). Folded hard-won test hygiene into §12 (run the WHOLE suite before shipping; regression vs superseded contract) and two matching lessons into §13 (no per-vendor patches; match the field you mean).</p>
+</div>
+<div class="p">
+  <p class="meta">2026-07-26 (b) — Folded in lessons from two peer projects (<b>vitalnexa</b>, health/wearables; <b>citelocal</b>, local-business advisor), both unusually disciplined. Added: anti-corruption layer / canonical record (§2), data provenance + the init-only-migration anti-pattern (§4), claim-before-dispatch idempotency (§5), one resilient client per paid API (§8), DST-safe cron (§9), offline-by-default tests (§12), fail-closed-at-startup + server-side content gating + test-the-negative isolation (§16), verified-vs-hypothesis grounding (§19), prompt-cache layout + unit-economics-as-config (§20), and ADR reconcile-reversals (§23). Entries drawn from a peer carry a "seen in peers" note.</p>
+  <p class="meta">2026-07-26 (a) — Expanded from 12 to 23 principles across 7 areas, drawing on the broader engineering canon, not only this project's incidents. Session-hardened entries keep a "learned here" note.</p>
+</div>
+</body>
+</html>

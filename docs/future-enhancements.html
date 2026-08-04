@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — Future Enhancements</title>
+<style>
+  body { font: 15px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 900px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.8rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.2rem; }
+  h3 { font-size:1rem; }
+  .d { border:1px solid #e2e8f0; border-radius:8px; padding:.9rem 1.2rem; margin:.9rem 0; }
+  .d h3 { margin:.1rem 0 .3rem; color:#1d4ed8; }
+  .meta { color:#64748b; font-size:.85rem; margin:.1rem 0 .5rem; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  .lbl { font-weight:600; color:#334155; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .crit { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.92rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .45rem .6rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+</style>
+</head>
+<body>
+<h1>Future Enhancements</h1>
+<p class="sub">What Strata becomes past the 48-hour build, and what has to be true before each step is honest rather than aspirational.</p>
+
+<div class="note"><strong>How to read this.</strong> Every item below names two things: what it unlocks, and what has to be true first. An item with no precondition is a feature request, not a roadmap. Where a precondition is organisational rather than technical — a design partner, a legal review, real usage volume — that is said plainly, because it is often the harder gate.</div>
+
+<h2>4 weeks — prove the bet before extending it</h2>
+<p>The 48-hour build proves the mechanism works on a corpus we wrote ourselves. The next four weeks exist to find out whether it survives contact with a real proceeding and a real analyst, not to add scope. Nothing in this section is a new feature; everything is the 48-hour build tested against reality.</p>
+
+<div class="d"><h3>Replace the synthetic corpus with one real proceeding</h3>
+<p><span class="lbl">Unlocks.</span> The eval numbers in <code>docs/tasks.html</code> (T16, T17) stop being about a corpus designed to make the pipeline look good and start being about text nobody wrote to spec — different sentence structure, inconsistent formatting, the kind of exhibit that is a scanned table rather than clean text.
+<span class="lbl">Needs first.</span> A design partner willing to share one real docket, or a public proceeding with enough successive versions to matter. This is a relationship to secure, not code to write, and it may not land inside four weeks — if it does not, that is a finding to report, not to hide.</p></div>
+
+<div class="d"><h3>Harden the citation verifier against real source noise</h3>
+<p><span class="lbl">Unlocks.</span> ADR-003's normalisation rules were written against a corpus with no OCR artefacts, no re-paginated exhibits, no inconsistent quotation marks across a scanned PDF. Real filings have all three. Every rejection the verifier produces on real text is either a genuine catch or a normalisation gap — both are useful, and right now we cannot tell which is more common.
+<span class="lbl">Needs first.</span> The real proceeding above. This item cannot start without it.</p></div>
+
+<div class="d"><h3>Move H1–H4 from open to resolved</h3>
+<p><span class="lbl">Unlocks.</span> <code>docs/user-research.html</code> lists four hypotheses as open after 2–3 interviews. Four weeks of a working group — five to eight analysts, not a one-time conversation — is enough to actually falsify or confirm them, especially H3 (does trust require the source span, or would a confidence score do). H3's answer decides whether the depth area is a trust mechanism or only a correctness one.
+<span class="lbl">Needs first.</span> Analysts willing to use the prototype more than once. A single interview establishes interest; repeat use establishes whether the workflow survives a second Tuesday.</p></div>
+
+<div class="d"><h3>Tune the confidence threshold on real disagreement data</h3>
+<p><span class="lbl">Unlocks.</span> ADR-006 leaves the threshold as configuration with no evidence behind the number. Real reviewer decisions — approve, reject, amend — against real extractions is the only data that can set it honestly; a threshold picked before any reviewer has disagreed with the model is a guess wearing a number.
+<span class="lbl">Needs first.</span> A review queue that has actually been used, which needs the real proceeding and the working group above. This item is downstream of both.</p></div>
+
+<h2>12 weeks — one jurisdiction, done in depth</h2>
+
+<div class="d"><h3>Multi-jurisdiction taxonomy — the real moat</h3>
+<p><span class="lbl">What it is.</span> A canonical map from each jurisdiction's own vocabulary — proceeding types, filing statuses, the exact trigger for "final" — onto one internal model. A state PUC's forty proceeding types do not line up with FERC's, and "final order" does not mean the same thing, or arrive on the same clock, in every commission.
+<span class="lbl">Why this is the moat and not the model.</span> Any competent team with access to a frontier model can rebuild the citation verifier and the diff engine in a few weeks — that part of the stack is replicable by design, because ADR-004 and ADR-007 deliberately chose boring, well-understood mechanisms over anything proprietary. The taxonomy is not replicable the same way. It is accumulated, jurisdiction-by-jurisdiction domain knowledge, wrong the first time it is written and correct only after real proceedings expose where it breaks. A fast follower can copy the architecture from this repo's ADRs in an afternoon. They cannot copy three months of "this is what Ohio calls a Tier 3 rulemaking and how it maps to Texas's equivalent" without doing the same work.
+<span class="lbl">Needs first.</span> Real proceedings from more than one jurisdiction — a taxonomy designed from one state's data is not a taxonomy, it is that state's data with a general-sounding name. This is also the item the 48-hour cut list (<code>docs/tasks.html</code>) sacrifices first. That was correct triage under a 48-hour clock, not a judgment that it does not matter — it is cut first under time pressure and rebuilt first once the core loop works, because it compounds and the citation pipeline, once built, mostly does not.</p></div>
+
+<div class="d"><h3>Obligation-extraction evals as a compounding asset</h3>
+<p><span class="lbl">Unlocks.</span> T16 in the 48-hour build produces one eval number against one hand-labelled corpus — a snapshot. Turn every reviewer correction in production into a labelled example instead, and the eval set grows on its own from real correction traffic, without anyone hand-labelling anything after week one. A static eval set caps how much anyone can trust the extraction step, no matter how good the underlying model gets; a growing one, sourced from real disagreement, raises that ceiling every day the product is used. This is the second compounding asset, alongside the taxonomy, and it is the direct answer to "how does this get harder to copy over time" — a question the panel is likely to ask given how replicable the base architecture is.
+<span class="lbl">Needs first.</span> Real usage volume, and a mechanism — not yet built — to route reviewer decisions back into the eval set rather than just into the audit trail. That mechanism is new engineering work, not a byproduct of the reviewer queue that already exists.</p></div>
+
+<div class="d"><h3>Live source ingestion from dockets, not uploaded files</h3>
+<p><span class="lbl">Unlocks.</span> The 48-hour build ingests files a human uploads. Pulling directly from a jurisdiction's e-filing system on a schedule closes the gap named in the user-research script's first interview question — "how did you hear about it" — which today is answered by an alert, a colleague, or a law-firm memo, none of which the prototype touches.
+<span class="lbl">Needs first.</span> There is no universal docket API — each jurisdiction's filing system has to be integrated individually, which is exactly why this item cannot be scoped before the taxonomy work names which jurisdictions matter first. It also introduces a new failure mode the 48-hour build never faced: a scrape that returns stale or partial results and looks, from inside the product, like a proceeding with no new activity. That has to fail the same way ADR-006 already requires — a failed or partial ingest escalates and is shown as failed, never silently rendered as "nothing changed." Building the ingestion pipeline without building that escalation path first would quietly break the absence-is-denial rule this whole product is built on.</p></div>
+
+<h2>Six months — the record of what happened</h2>
+
+<div class="d"><h3>The reviewer workflow becomes a system of record</h3>
+<p><span class="lbl">Unlocks.</span> In the 48-hour build the reviewer view is an escalation queue attached to the analyst's workspace. At six months, with enough continuous use, it becomes the place the record actually lives — every action, its approver, its citation trail, its effective date — replacing the spreadsheet that user-research.html's "what did you write down, and where does it live now?" question is designed to surface. That question exists in the script because the honest answer, most of the time, is a spreadsheet nobody trusts and everybody keeps anyway.
+<span class="lbl">Needs first.</span> This is where a second kind of reader — a compliance officer, reading rather than producing — first has a legitimate claim on the product. ADR-001 is explicit that the build is for one user, and that discipline does not lapse here: the compliance officer becomes a consumer of state the analyst already produced, not a second person the product is designed for. Building for both before either usage pattern is proven is the exact trap the challenge's prep guide warns about, just deferred six months rather than avoided.</p></div>
+
+<div class="d"><h3>Cross-customer learning without cross-customer data leakage</h3>
+<p><span class="lbl">Unlocks.</span> Once there is more than one customer, a pattern learned at one utility — "FERC changes to interconnection-queue rules are usually material" — could sharpen materiality judgment at another. That is real signal sitting on the table the day a second customer exists.
+<span class="lbl">Why this is hard, specifically.</span> The useful signal (which classes of regulatory change turn out to be material) and the sensitive payload (whose obligations, whose internal wording, whose projects) are generated by the same event and live in the same record. A regulated enterprise cannot let a vendor pool its obligation text or company context across customers — that is legal exposure for the customer, not a preference Strata can trade off for a better model. Any approach that fine-tunes on customer text or shares an embedding index across tenants leaks the sensitive part in order to get the useful part.
+<span class="lbl">Needs first.</span> A design that separates the two before a single line of pooling code exists: learn only over public regulatory text and an anonymised material/immaterial verdict, computed per proceeding, and keep company-context matching — obligations, projects, documents — strictly per-tenant, never pooled, never fine-tuned on. That boundary needs to be written down, reviewed by someone other than the engineer who built it, and probably described in customer contracts, before it is trusted. It is an organisational precondition as much as a technical one, and it is not yet designed — this page states the shape of the constraint, not a solution to it.</p></div>
+
+<h2>Further horizon — the artefact regulators and auditors want</h2>
+
+<div class="d"><h3>The deeper bet: the trail becomes the record, not a feature of it</h3>
+<p><span class="lbl">The bet.</span> If the chain from source passage, to verified citation, to obligation, to action, to reviewer approval stays intact and exportable over years of real use, it stops being a UI convenience and becomes the audit artefact itself — the thing an internal auditor, or a regulator's own investigator, would want handed to them directly instead of reconstructed from an analyst's inbox and a spreadsheet. That is a different sales motion than "better compliance software": the artefact could be produced for the auditor as readily as for the customer, because it was built to survive scrutiny from the start rather than assembled after the fact to satisfy it.
+<span class="lbl">Needs first.</span> Three things, none of which the 48-hour build or the 12-week or six-month work can substitute for. First, years of continuous, unbroken production trail — an audit artefact is worth something because of what it has been through, not what it could theoretically do on day one. Second, outside validation that the citation-verification chain actually meets an auditor's or regulator's bar; an engineering team cannot self-certify that, and no amount of internal confidence changes who has to sign off on it. Third, the six-month system-of-record work has to hold under real reviewer load first — this cannot be the first thing that has to work.
+<span class="lbl">Honest flag.</span> This is the least validated claim on this page and the one most worth being wrong about early rather than late. Nobody has been asked yet whether an auditor would actually want this artefact in this form, and that question belongs in the next round of user interviews, not left until six months in.</p></div>
+
+<h2>Deliberately not on the roadmap</h2>
+<p>A roadmap with no exclusions has no point of view. These are excluded on purpose, and the reason is the same for most of them: each one would dilute the wedge in ADR-002, add a persona the product was not built for, or spend effort on a part of the stack that is not where the moat is.</p>
+<table>
+<tr><th>Excluded</th><th>Why</th></tr>
+<tr><td>General regulatory search or a chatbot over arbitrary dockets</td><td>ADR-002 already rejects search as the wedge: it assumes the analyst knows what to look for, and the expensive part — interpretation — is exactly what search skips. Adding it back as a "feature" would undo that decision by another name.</td></tr>
+<tr><td>Drafting comments, testimony, or filings on the analyst's behalf</td><td>Strata's job is reading and routing, not advocacy. A model asserting text into a docket is a materially higher-stakes failure than a model misreading one — that is counsel's liability profile, not this product's.</td></tr>
+<tr><td>A fine-tuned or self-hosted foundation model, near term</td><td>ADR-004 already places the depth in the deterministic pipeline around the model, not the model itself. Training one is effort spent where the moat is not — the taxonomy and the eval set are the compounding assets; the model is a replaceable component by design.</td></tr>
+<tr><td>Multi-tenant cloud infrastructure ahead of a second real customer</td><td>ADR-007 already made SQLite-to-Postgres a configuration change, not a rewrite, for exactly this reason. Scaling infrastructure before there is load to scale for is waste against a clock that should be spent on the taxonomy and the evals instead.</td></tr>
+<tr><td>A second named persona before the six-month system-of-record work</td><td>ADR-001's discipline: one user until that user's workflow is proven. The compliance officer's turn comes after, as a reader of state already produced, not before.</td></tr>
+<tr><td>Any pooling of raw customer text across tenants</td><td>Not deferred — excluded outright until the separation design in the six-month section exists, is reviewed, and is contractually described. This is a hard line, not a backlog item waiting for capacity.</td></tr>
+</table>
+
+<div class="note"><strong>Open, stated plainly.</strong> Cross-customer learning is the item on this page most likely to not survive contact with reality. The anonymised signal it proposes to share — "this class of change was material at N of M utilities" — may turn out too coarse to be useful once the separation boundary strips out everything customer-specific. If that is what a real second customer's data shows, the honest move is to say so and drop the item, not to keep it on the roadmap out of momentum.</div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — Submission Record</title>
+<style>
+  body { font: 15px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 900px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.8rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.2rem; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.92rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .45rem .6rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+  .crit { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+</style>
+</head>
+<body>
+<h1>Submission Record</h1>
+<p class="sub">Kept current as the build proceeds. The reply template AI Fund asks for, plus the working notes behind each line.</p>
+
+<div class="crit"><strong>Write these entries as they happen, not at hour 47.</strong> The AI interview asks you to name exact files, functions and commands, and AI Fund reconciles your answers against the repository afterwards. A log written from memory at the end is both weaker and less accurate, and the gap shows.</div>
+
+<h2>The reply template</h2>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>PRD</td><td>&mdash;</td></tr>
+<tr><td>TDD</td><td>&mdash;</td></tr>
+<tr><td>Prototype</td><td>&mdash;</td></tr>
+<tr><td>Source code</td><td>&mdash;</td></tr>
+<tr><td>Access notes / credentials</td><td>&mdash;</td></tr>
+<tr><td>What I personally built</td><td>&mdash;</td></tr>
+<tr><td>What I reused</td><td>&mdash;</td></tr>
+<tr><td>What the AI wrote, and what I rewrote or rejected</td><td>&mdash;</td></tr>
+<tr><td>What broke and how I debugged it</td><td>&mdash;</td></tr>
+</table>
+
+<h2>Running log: AI use</h2>
+<p>The rubric is explicit — using an AI coding tool is expected; letting it choose the architecture is not. The defensible answer has the shape <em>"I chose this approach because X, and asked the AI to implement it."</em> Record the decisions you made yourself, and the places you rejected what the tool proposed. The rejections are the most valuable rows here: they are evidence of judgement rather than acceptance.</p>
+<table>
+<tr><th>What</th><th>Who decided the approach</th><th>What the AI produced</th><th>What you changed or rejected, and why</th></tr>
+<tr><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+</table>
+
+<h2>Running log: what broke</h2>
+<p>Debugging stories are asked about directly. Capture the symptom, the wrong hypothesis you held first, the evidence that corrected you, and the fix. The wrong hypothesis is the interesting part — it shows how you reason when the obvious answer is wrong.</p>
+<table>
+<tr><th>Symptom</th><th>First hypothesis (and why it was wrong)</th><th>What the evidence showed</th><th>Fix</th></tr>
+<tr><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+</table>
+
+<h2>Pre-submission checklist</h2>
+<table>
+<tr><th>Check</th><th>Done</th></tr>
+<tr><td><code>make run</code> works from a <strong>fresh clone in a clean directory</strong>, not just your working copy</td><td>&mdash;</td></tr>
+<tr><td><code>make test</code> works from that same fresh clone, and the output is legible to a stranger</td><td>&mdash;</td></tr>
+<tr><td>Repository is public, or reviewer access is granted, BEFORE the AI interview begins</td><td>&mdash;</td></tr>
+<tr><td>Commit history intact and not squashed — they read it</td><td>&mdash;</td></tr>
+<tr><td>PRD and prototype tell the same story; no capability promised that is not built</td><td>&mdash;</td></tr>
+<tr><td>User-interview findings folded into the PRD, with what changed as a result</td><td>&mdash;</td></tr>
+<tr><td>Citation verification is visible in the running product, not only in the code</td><td>&mdash;</td></tr>
+<tr><td>Every doc link is viewable by anyone with the link</td><td>&mdash;</td></tr>
+<tr><td>90-second pitch said out loud, timed</td><td>&mdash;</td></tr>
+<tr><td>DeepInterview started within 30 minutes of sending the submission, repo open alongside</td><td>&mdash;</td></tr>
+</table>
+
+<div class="note"><strong>On the 48-hour deadline.</strong> If the build needs longer, the instructions say to flag it and give an ETA. Flagging early with a specific ETA reads as judgement; going silent and arriving late reads as neither. Decide by hour 30, not hour 47.</div>
+
+<h2>Known gaps to state plainly</h2>
+<p>List what you did not build and why. A submission that names its own limits is stronger than one that hopes they go unnoticed, and the interview will find them regardless. Saying "I don't know" is described in the prep guide as a positive signal.</p>
+<table>
+<tr><th>Gap</th><th>Why it was cut</th><th>What you would do with more time</th></tr>
+<tr><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+</table>
+
+</body>
+</html>

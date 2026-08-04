@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — User Research</title>
+<style>
+  body { font: 15px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 900px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.8rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.2rem; }
+  h3 { font-size:1rem; color:#1d4ed8; margin:1.2rem 0 .3rem; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.92rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .45rem .6rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+  .crit { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  blockquote { border-left:3px solid #cbd5e1; margin:.6rem 0; padding:.2rem 0 .2rem .9rem; color:#334155; }
+</style>
+</head>
+<body>
+<h1>User Research</h1>
+<p class="sub">Who was spoken to, what they said, and what changed in the build because of it.</p>
+
+<div class="crit"><strong>This is the highest-leverage hour of the 48.</strong> AI Fund's prep guide names it directly: "Get real user feedback on your prototype before you submit — this is the most useful thing you can do." The PRD is read specifically for how user feedback shaped the build, and the panel digs into it. A submission with a working prototype and no user conversations loses a whole evaluation dimension. Send the requests before writing code; run the conversations while the build is in flight.</div>
+
+<h2>Who to ask</h2>
+<p>Target: a regulatory affairs analyst or manager at a utility, an independent power producer, or an energy retailer. Adjacent and still useful: compliance analysts in banking or pharma who track rule changes; a regulatory lawyer, provided you discount their answers — their incentives differ from an in-house analyst's.</p>
+<p>Where they are: LinkedIn (search "regulatory affairs" + utility names), former colleagues who moved into energy or compliance, anyone in the AI Fund and AES orbit met at the build lunch. Ask for twenty minutes, not an hour.</p>
+
+<h3>The request, short enough to answer from a phone</h3>
+<blockquote>I'm building a prototype for turning regulatory change into tracked work — dockets and orders into "here is what changed, here is what it affects, here is who reviews it." I'd value 20 minutes to hear how you do this today and where it hurts. I'm not selling anything; I want to know if I'm solving a real problem or an imagined one.</blockquote>
+
+<h2>What to ask — and what not to</h2>
+<p>Ask about the last time, not about preferences in general. "Walk me through the last docket you had to act on" produces facts; "would you use a tool that..." produces politeness.</p>
+<table>
+<tr><th>Ask</th><th>What you are listening for</th></tr>
+<tr><td>Walk me through the last regulatory change you had to act on. Start from how you heard about it.</td><td>The trigger. Is it an alert, a colleague, a law firm memo, a docket subscription? This tells you what the product replaces.</td></tr>
+<tr><td>How did you work out what actually changed between versions?</td><td>Whether anyone truly diffs, or whether they read the new version cold. If they redline by hand, that is the wedge.</td></tr>
+<tr><td>How do you decide whether it is material to you?</td><td>The judgement the product must support rather than replace.</td></tr>
+<tr><td>Who else had to look at it before anything happened?</td><td>The real routing graph, versus the org chart.</td></tr>
+<tr><td>What did you write down, and where does it live now?</td><td>The system of record you must fit alongside. If it is a spreadsheet, say so in the PRD.</td></tr>
+<tr><td>When were you last burned — something missed, or acted on too early?</td><td>The pain with a dollar figure attached. This becomes the PRD's opening.</td></tr>
+<tr><td>What would you need to see before you trusted a machine reading of a docket?</td><td>Direct evidence for or against the citation-verification bet (ADR-003).</td></tr>
+</table>
+<p>Do not describe your solution until the end. Once you do, they will be agreeable, and agreeable answers are worthless.</p>
+
+<h3>Then show the prototype and stay quiet</h3>
+<p>Ask them to do one task without narration from you. Record three things: <strong>what they misread</strong>, <strong>what they ignored</strong>, and <strong>what they asked for that is not there</strong>. Silence while they struggle is the data.</p>
+
+<h2>Interviews</h2>
+<p><em>Fill one block per conversation, the same day. Quotes verbatim where you can — a real sentence is worth more at the panel than a paraphrase.</em></p>
+
+<table>
+<tr><th>#</th><th>Who / role / sector</th><th>Date</th><th>Medium</th></tr>
+<tr><td>1</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td>2</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td>3</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+</table>
+
+<h3>Per interview, capture</h3>
+<p><strong>How they hear about change today &middot; how they establish what changed &middot; how they judge materiality &middot; who reviews &middot; where the record lives &middot; the last time it went wrong &middot; what would earn their trust.</strong> Then, after the demo: what they misread, what they ignored, what they asked for.</p>
+
+<h2>What changed because of this</h2>
+<p><em>The section the panel actually reads. Each row must name a real change to the build, or an explicit decision not to change — "we heard it and rejected it, because" is a legitimate and strong answer.</em></p>
+<table>
+<tr><th>What we heard</th><th>Who said it</th><th>What we changed (or why we did not)</th></tr>
+<tr><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+</table>
+
+<h2>Hypotheses under test</h2>
+<p>Stated before the interviews so they can be genuinely falsified rather than confirmed after the fact.</p>
+<table>
+<tr><th>#</th><th>Hypothesis</th><th>What would falsify it</th><th>Verdict</th></tr>
+<tr><td>H1</td><td>The analyst, not counsel, is the person who does the change-to-action work.</td><td>Two or more interviews say the real reading is done by outside counsel and the analyst only files it.</td><td>open</td></tr>
+<tr><td>H2</td><td>Nobody reliably diffs versions today; it is done by reading, memory and highlighting.</td><td>They show a redlining tool they already trust and use routinely.</td><td>open</td></tr>
+<tr><td>H3</td><td>Trust requires seeing the source passage, not a confidence score.</td><td>They say a score would be enough, or that they would not check either way.</td><td>open</td></tr>
+<tr><td>H4</td><td>The expensive part is interpretation and routing, not detection.</td><td>They say detection is the bottleneck and interpretation is quick once they know where to look.</td><td>open</td></tr>
+</table>
+<p>H3 is the one to watch. If trust does not require the source span, the depth area (ADR-003) is engineering for its own sake — and the honest response is to say so in the PRD and keep the verifier anyway as a correctness mechanism rather than a trust one.</p>
+
+</body>
+</html>
