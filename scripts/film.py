@@ -21,16 +21,30 @@ THE RULE THIS CUT IS BUILT ON: ONE TAKEAWAY PER CAPABILITY.
 
 THE ORDER, AND THE ONE LINE EACH MOVEMENT EXISTS TO DELIVER.
 
-   1. The refusal.        The quote is not in the source, so the claim is not made.
-   2. The same rule.      Same check, opposite answer. Nobody chose which.
-   3. Real filings.       The corpus was not built to pass. A filer published it.
-   4. Routing.            It will not name an owner it cannot stand behind.
-   5. The queue.          Settling a refusal never publishes the claim.
-   6. Logins.             Add your own people. Nobody hands on authority they lack.
-   7. Permissions.        You decide who may approve. A conflict is named, never hidden.
-   8. Approval routes.    The approval route is yours to draw, not ours.
-   9. Security and access. We measured it. Where it falls short, we say so.
-  10. Close.              You act on what it proves. It says nothing else.
+   1. The refusal.       The quote is not in the source, so the claim is not made.
+   2. The same rule.     Same check, opposite answer. Nobody chose which.
+   3. Real filings.      The corpus was not built to pass. A filer published it.
+   4. Routing.           A name appears here only when somebody put it there.
+   5. The queue.         What it withheld is counted beside what it kept.
+   6. Logins.            Add your own people. Nobody hands on authority they lack.
+   7. Permissions.       You decide who may approve. A conflict is named, never hidden.
+   8. Approval routes.   The approval route is yours to draw, not ours.
+   9. Security, access.  We measured it. Where it falls short, we say so.
+  10. Close.             You act on what it proves. It says nothing else.
+
+A TAKEAWAY IS READ AGAINST THE PICTURE BEHIND IT, which decided two of those
+ten. Movement four ends on the change where routing DID name an owner, so its
+line cannot be "it will not name an owner it cannot stand behind" -- true of the
+movement, false of the frame. Movement five ends on the coverage strip, so the
+sentence about settling a refusal is said back on the queue where it belongs and
+the line over the strip is about the strip. A caption that argues with the
+screen under it is the same defect as a claim that argues with its citation.
+
+LENGTH. The holds add up to 104 seconds across 40 shots, and the file lands
+longer than that: navigation, scrolling and the keyboard walk are real time no
+beat() counts. Every hold outside movement one was cut to the bone to pay for
+movements six to nine; movement one was not, because the refusal is the only
+thing here that nothing else in the market does and it is worth the discomfort.
 
 WHY MOVEMENTS SIX TO EIGHT ARE NEW, and they are the largest change here. The
 old cut filmed nothing an administrator touches, on the argument that a feature
@@ -47,7 +61,9 @@ not be on screen and must not be spoken. The first-visit tour, the project
 board, the assistant, the invitation queue, the share register, the feedback
 screen and the source registry -- the last four are named on the /admin index in
 movement six, which is honest about their existing without spending four seconds
-each proving it. The hash chain has NO SCREEN in this product (verify_chain is
+each proving it. That index lists only what the account signed in may open, so
+the row is evidence rather than a brochure. The hash chain has NO SCREEN in this
+product (verify_chain is
 reached from scripts/backup.py and app/state/replay.py and from nothing a
 browser can open), so nothing here is captioned as the chain.
 
@@ -831,6 +847,12 @@ def main() -> None:
                     "appear <b>three times</b> and did not say which.",
                 )
                 beat(page, 2800, "the two shapes of refusal")
+            # Said HERE rather than as the takeaway, because it is about the
+            # queue and the takeaway plays two screens later. What a reviewer
+            # can do to a row is settle it; what nobody can do from this screen
+            # is turn a refused claim into a printed one.
+            caption(page, "Settling one does not publish the claim. Nothing here can.")
+            beat(page, 2400, "what a reviewer can and cannot do")
 
         page.goto(f"{BASE}/review#coverage", wait_until="networkidle")
         # No lift. MEASURED at 1440x900 this strip sits at 366..533 with the
@@ -838,10 +860,9 @@ def main() -> None:
         # wrong shape for a strip whose height moves with how many findings the
         # database holds.
         if centre(page, ".coverage"):
-            caption(page, "It counts what it withheld beside what it kept.")
-            beat(page, 2200, "the coverage strip: two numbers, equal weight")
-
-        point(page, "Settling a refusal never publishes the claim.", 3000)
+            point(page, "What it withheld is counted beside what it kept.", 3000)
+        else:
+            print("  SKIPPED: no coverage strip, so movement 5 lost its takeaway")
 
         # ============================================== 6. LOGINS
         #
@@ -964,19 +985,27 @@ def main() -> None:
             wait_until="networkidle",
         )
         centre(page, ".claim--withheld", nudge=70)
-        caption(page, "Security headers ship on every response, redirects included.")
-        beat(page, 2800, "nothing here can be put in a frame under somebody's button")
+        caption(
+            page,
+            "Every response carries the same headers, redirects included. "
+            "Nothing here can be framed.",
+        )
+        beat(page, 3000, "measured with curl against this instance, not read off the code")
 
         caption(page, "Tab through it. The focus ring is never taken away.")
         walk_the_focus(page)
         beat(page, 1400, "the ring, walked rather than claimed")
 
-        caption(
-            page,
-            "WCAG 2.2 was swept, and the contrast measured on rendered pixels "
-            "rather than tokens.",
-        )
-        beat(page, 2800, "swept, measured, and guarded by a test over every template")
+        caption(page, "WCAG 2.2 was swept. Contrast was measured on rendered pixels.")
+        beat(page, 2400, "swept, measured, and guarded by a test over every template")
+
+        # THE CONCESSION IS ON SCREEN, not left for the takeaway to imply. Two
+        # captions saying the work was done, followed by a line about telling
+        # the truth, reads to a viewer as "it all passes" -- and it does not.
+        # The film costs itself two seconds here to say which way it fails, and
+        # the takeaway after it is then a promise the picture has already kept.
+        caption(page, "Some grey text is still short of AA, and the stylesheet says so.")
+        beat(page, 2400, "the shortfall, named before anybody asks")
 
         point(page, "We measured it. Where it falls short, we say so.", 3200)
 

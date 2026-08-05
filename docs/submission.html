@@ -29,33 +29,8 @@
 </nav>
 
 <h1>Submission Record</h1>
-<p class="sub">The reply template AI Fund asks for, plus the running logs behind each line: what was
-built, what was reused, what the AI wrote versus what was rewritten or rejected, and what broke.</p>
+<p class="sub">What was built, what was reused, what the AI wrote versus what was rewritten or rejected, and what broke. Every row names a file, a commit, a route or a test; where a claim could not be checked against the repository, it says so.</p>
 
-<div class="crit"><strong>How this file was assembled, stated first because it changes how much
-weight it carries.</strong> The template says write these entries as they happen. Some were: the
-defects and judgements went into <a href="https://strata.sudama.ai/docs/ai/findings.html"><code>docs/.ai/findings.html</code></a> as the work happened, and every
-commit message carries its reasoning at the time of the commit. This page was assembled at commit
-<code>45c408c</code>, re-verified at <code>c7d6e00</code>, and re-verified again at
-<code>1343f57</code> — 43 commits — each time from primary sources: <code>git log</code>,
-<code>findings.html</code>, <code>decisions.html</code>,
-<code>state.json</code>, <code>resume.md</code>, and the code itself.
-<br><br><span class="lbl">What the third pass checked, so the method is auditable.</span> The suite
-was run and its count read off the output rather than carried forward; <a href="https://github.com/jsahasi/strata/blob/main/app/evals/run.py"><code>app/evals/run.py</code></a>
-was executed end to end; the hosted instance was requested over the internet; the repository's
-visibility was read with <code>gh repo view</code>; and every module and test file this page names
-was listed with <code>git ls-files</code> and <code>wc -l</code>.
-<br><br><span class="lbl">The third pass found this page badly stale, and two errors in it were the
-dangerous kind.</span> Twenty-four commits had landed since <code>c7d6e00</code>. Of the thirteen
-gaps below, four were closed outright and four more half closed, and every one still read as open.
-Two rows described a fix that a later
-commit proved wrong and then replaced — the <code>O(n)</code> claim in the occurrence scan, and the
-three-decomposition-tag rule in normalization — so the page was carrying a repaired defect as
-though the first repair had held. Those two are corrected in place with the second fix named, since
-that sequence is the honest record and hiding it would leave the page asserting a version of the
-code that no longer exists. Every row below names a file, a commit, a route or a test. Nothing here
-is recalled; where a claim could not be checked against the repository it says so rather than
-asserting.</div>
 
 
 <h2>What Strata is</h2>
