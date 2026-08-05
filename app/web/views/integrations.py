@@ -61,6 +61,7 @@ sources so it can render a refusal rather than a stack trace, and renders what
 the write layer decided in the write layer own words.
 """
 
+import os
 from dataclasses import dataclass
 from datetime import datetime, timezone
 
@@ -169,6 +170,12 @@ class SourceRow:
     corpus_origins: tuple[str, ...]
     corpus_dockets: tuple[str, ...]
     corpus_span: str
+
+
+# The assistant owns the pinned model id and the variable name it reads.
+# Imported rather than restated: a second spelling of ANTHROPIC_API_KEY here
+# would report on a variable nothing actually reads.
+from app.chat.agent import ENV_API_KEY, MODEL_ID  # noqa: E402
 
 
 def _now() -> datetime:
@@ -339,6 +346,41 @@ def _credential_state(credential_ref: str | None) -> str:
     return sources.CREDENTIAL_RESOLVES if known else sources.CREDENTIAL_MISSING
 
 
+def _model_status() -> dict:
+    """Whether a model is reachable, said as a boolean and a variable name.
+
+    THE SAME RULE app/state/sources.py::credential_is_set MAKES FOR A SOURCE
+    CREDENTIAL, applied to the one secret this product reads directly. It reports
+    that a variable is SET. Never its value, never its length, never a prefix,
+    never a masked form with the last four showing. Two different answers to "how
+    much of a secret may a screen show" is how the looser one ends up in front of
+    somebody, so there is one answer and this is it.
+
+    WHY THIS SCREEN AND NOT A SETTINGS FORM. An administrator cannot type a key
+    in. A provider key held in the database is a key in every backup and inside
+    the blast radius of any read bug, and this database deliberately holds no
+    recoverable secret -- passwords and share tokens are one-way hashes. Worse,
+    whoever sets the key chooses the endpoint, and every prompt carries obligation
+    titles, owner names and account ids; that would quietly turn user.manage into
+    "read this company's context off the wire". So the value stays in the
+    environment and this screen reports what the environment says.
+
+    READ ON EVERY RENDER, never cached at import. A key added to a running
+    container has to show without a restart, and one removed has to stop showing.
+    Deciding once at start and never looking again is the exact failure
+    app/config.py exists because of.
+    """
+    configured = bool(os.environ.get(ENV_API_KEY, "").strip())
+    return {
+        "variable": ENV_API_KEY,
+        "configured": configured,
+        "model": MODEL_ID,
+        # The literal line to add, so nobody has to guess the spelling of a
+        # variable name that fails silently when it is wrong.
+        "example_line": f"{ENV_API_KEY}=sk-ant-...",
+    }
+
+
 def _shell(company_id: str, waiting: int) -> dict:
     """base.html context plus what every answer this screen gives has to carry.
 
@@ -357,6 +399,7 @@ def _shell(company_id: str, waiting: int) -> dict:
     )
     context.update(
         {
+            "model_status": _model_status(),
             "permission": MANAGE,
             "refused": REFUSED,
             "reason": None,

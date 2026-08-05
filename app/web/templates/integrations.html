@@ -371,6 +371,49 @@
 </div>
 {% endif %}
 
+{# --------------------------------------------------------- the assistant #}
+{#
+  WHETHER THE ASSISTANT IS ON, said here because until this block existed the
+  only way to find out was to ask Clarke a question and read the refusal. The
+  refusal was honest; a state you can only discover by tripping over it is still
+  a state nobody told you about.
+
+  A BOOLEAN AND A VARIABLE NAME. Never the value, never its length, never a
+  masked form -- the same rule the source credentials above follow, for the same
+  reason. There is deliberately no form to type a key into: see _model_status in
+  app/web/views/integrations.py for why a provider key does not go in the
+  database.
+#}
+<section class="source-group">
+  <h2>Whether the assistant can reach a model</h2>
+  <div class="stage">
+    <b{% if not model_status.configured %} class="no"{% endif %}>
+      {{ model_status.variable }}</b>
+    <p>
+      {%- if model_status.configured %}
+      Set in this process, so <b>{{ model_status.model }}</b> is reachable and
+      Clarke answers from the record. This screen reports only that the variable
+      exists. Its value is never read here, never logged and never rendered.
+      {%- else %}
+      <em>Not set</em> in this process. Clarke and the change proposer both say
+      so rather than answering from memory, and every other screen works
+      normally &mdash; ingestion, version diffing, citation verification and the
+      audit chain reach no network and call no model.
+      <br>To switch it on, add this line to <code>.env</code> and restart:
+      <br><code>{{ model_status.example_line }}</code>
+      {%- endif %}
+    </p>
+  </div>
+  <p class="page-head__note">
+    The model id is pinned in code rather than read from the environment, so
+    which model wrote a claim is part of the record and a deployment cannot
+    swap it silently. There is no field here to paste a key into, and that is a
+    decision rather than an omission: a key in the database is a key in every
+    backup, and whoever sets one also chooses the endpoint every prompt is sent
+    to.
+  </p>
+</section>
+
 {# ------------------------------------------------------- the real corpus #}
 
 <section class="source-group">

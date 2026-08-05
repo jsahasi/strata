@@ -37,12 +37,26 @@ Needs playwright in the SYSTEM python, not the project virtualenv. The product
 has no browser dependency and must not grow one for the sake of a video.
 """
 
+import os
 import pathlib
 import sys
 
 from playwright.sync_api import sync_playwright
 
-BASE = "http://127.0.0.1:8111"
+# Where to film. Local by default; STRATA_FILM_BASE points it at the deployed
+# instance instead.
+#
+# FILMING PRODUCTION WRITES TO PRODUCTION, and it is worth knowing exactly what
+# before pointing this at a live host. Two things: a login session row, and one
+# exchange with the assistant -- the send button is really clicked and a real
+# model call is really made. The steer directive is typed and never submitted,
+# so nothing is written for it. Every other beat is a GET.
+#
+# Both writes land in an append-only, hash-chained audit log, so a take cannot
+# be tidied away afterwards. That is the cost. What it buys is a recording of
+# the thing a reviewer will actually open rather than of a copy on somebody's
+# laptop, which is the more honest artefact and the harder one to fake.
+BASE = os.environ.get("STRATA_FILM_BASE", "http://127.0.0.1:8111").rstrip("/")
 OUT = pathlib.Path("/private/tmp/claude-501/-Users-jayeshsahasi-github-strata/d55eeea2-8bd9-4f27-a26d-3161a77f7384/scratchpad/film")
 W, H = 1440, 900
 
@@ -53,6 +67,11 @@ CHANGE = "CHG-v1-v2-003"
 
 # app/web/static/tour.js reads this and stays shut when it is set.
 TOUR_COOKIE = "strata_tour"
+# The VALUE matters as much as the name. tour.js checks `preference() === DONE`
+# where DONE is the literal "done", so any other value leaves the tour opening on
+# every screen that has one -- and several screens have their own. A take was
+# recorded with "seen" here and the Review screen's tour sat over the shot.
+TOUR_DONE = "done"
 
 
 
@@ -152,7 +171,7 @@ def main() -> None:
         if page.locator("[data-tour]").count():
             caption(page, "A first-time reader is walked through it once")
             beat(page, 2600, "the first-visit tour")
-        ctx.add_cookies([{"name": TOUR_COOKIE, "value": "seen", "url": BASE}])
+        ctx.add_cookies([{"name": TOUR_COOKIE, "value": TOUR_DONE, "url": BASE}])
         caption(page, "")
         page.goto(f"{BASE}/projects", wait_until="networkidle")
         page.wait_for_timeout(300)
