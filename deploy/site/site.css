@@ -456,3 +456,5 @@ header {
 .creds td > form {
   margin: 0;
 }
+
+.brand .logo { display:block; height:30px; width:auto; color:currentColor; }

@@ -837,6 +837,17 @@ hr {
   color: var(--ink);
 }
 
+.wordmark .logo {
+  /* The lockup carries the name, so the old text node and the three-rule
+     span underneath it are gone. The tile keeps its accent fill in both
+     schemes -- it is the one place the brand colour is not doing UI work --
+     and the name takes currentColor so it follows the masthead's ink. */
+  display: block;
+  height: 30px;
+  width: auto;
+  color: var(--ink);
+}
+
 .wordmark__mark {
   display: block;
   width: 4.6rem;
