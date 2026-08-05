@@ -128,29 +128,39 @@ exactly as refuse_a_short_map() does for retrieval: a future change that filters
 a zero out of the list stops the read rather than quietly improving the output.
 
 --------------------------------------------------------------------------
-THE LIMIT THIS MODULE DOES NOT CLOSE
+THE LIMIT THIS MODULE USED TO LEAVE OPEN, AND WHAT CLOSED IT
 --------------------------------------------------------------------------
 
-resolve_change_owner() does not read mapped_by_kind. A mapping the pipeline
-proposed therefore routes an escalation to an owner exactly as a mapping a
-person confirmed does, and on that path a candidate has become a finding in the
-most consequential place there is. It is not theoretical: a Kentucky
+resolve_change_owner() did not read mapped_by_kind. A mapping this module
+proposed therefore routed an escalation to an owner exactly as a mapping a
+person confirmed did, and on that path a candidate had become a finding in the
+most consequential place there is. It was not theoretical: a Kentucky
 vegetation-management budget table shares the words "project" and "budget" with
 MEP's cost-allocation duty, and the change screen printed "Sarah Lindqvist owns
 OBL-005" over it.
 
-Closing it properly means a sixteenth refusal code -- work held on an
-unconfirmed mapping is work nobody has agreed is theirs -- and that is a change
-to the routing contract every caller of resolve_change_owner depends on, so it
-is named here rather than made quietly.
+app/state/routing.py closed it with ROUTE_MAPPING_UNCONFIRMED. A change reached
+only by a proposal of this module's does not route at all: the refusal names the
+person it would have handed the work to, says nobody confirmed the mapping, and
+leaves the item in the shared queue. That was a change to the routing contract
+every caller of resolve_change_owner depends on, which is why it is recorded
+here as well as there -- this module writes the rows that refusal reads.
 
-What stands in its place today, and it is a smaller thing honestly labelled:
-app/web/views/changes.py prints the routing refusal to state accountability
-whenever no confirmed mapping is behind the name (UNCONFIRMED_ROUTING), the
-screen renders a proposal and a confirmation in different shapes, the audit
-chain records which kind was written, and the seed writes both so a reviewer
-meets the difference rather than reading about it. The escalation queue and the
-approval route have no such caveat, because they do not go through that screen.
+WHAT DID NOT CHANGE, AND IS STILL THIS MODULE'S HALF. The screen renders a
+proposal and a confirmation in different shapes, the audit chain records which
+kind was written, and the seed writes both so a reviewer meets the difference
+rather than reading about it. confirm_obligation_for_change is the only way a
+candidate becomes a person's judgement, and it is therefore the only way that
+refusal is cleared.
+
+WHAT IT COST, stated because a closed limit that hid a new one would be worse
+than the open one. An owner-gap invitation can no longer put an item on the new
+owner's desk when the only mapping behind it is a proposal: the invitation is
+written, the account is created, and the escalation stays in the shared queue
+under ROUTE_MAPPING_UNCONFIRMED until somebody confirms the mapping. That is the
+wanted answer -- a person invited into this product and handed work on the
+strength of a word overlap is the sharpest form of the bug, not an exception to
+it -- but it is a real step somebody now has to take.
 """
 
 from __future__ import annotations

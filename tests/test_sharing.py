@@ -72,6 +72,17 @@ from app.state import sharing
 COMPANY = "MEP"
 RIVAL = "RIVAL"
 
+# A MOMENT FOR THE MINTS THAT NEVER HAPPEN, AND ONLY FOR THOSE.
+#
+# Four calls in this file ask create_share_link for a link it must refuse: a
+# subject in another company, a stranger, somebody without the read permission,
+# and the tenant switch turned off. None of them writes a row. They pass this
+# moment so that an omitted clock argument anywhere in this file means somebody
+# forgot rather than somebody decided -- see tests/test_clock_pinned.py.
+#
+# _mint() below does NOT use it, deliberately, and the reason is written there.
+T0 = datetime(2026, 8, 4, 9, 0, tzinfo=timezone.utc)
+
 # The change carrying both planted claims: one that verifies against v2 and one
 # that cites the same offsets with words that are not there.
 PAIRED = "CHG-v1-v2-003"
@@ -175,6 +186,35 @@ def client(corpus) -> TestClient:
 
 
 def _mint(user_id: str, subject_id: str, subject_type: str = SHARE_SUBJECT_CLAIM, **kw):
+    """Mint a real link at the real now, and that is a decision, not an oversight.
+
+    THIS IS THE ONE PLACE IN THIS FILE THAT MUST NOT PIN ITS CLOCK, and it is
+    listed in ALLOWED in tests/test_clock_pinned.py for exactly this reason.
+
+    Nearly every link minted here is then opened over HTTP --
+    `client.get(minted.url)` -- and the share route has no injectable clock. It
+    reads the real now, and it will keep reading the real now until somebody
+    changes app/web/views/share.py, which no test may do from the outside.
+
+    So the two ends of every one of those tests are: a mint I could pin, and an
+    open I cannot. Pinning only the mint would leave a row stamped
+    2026-08-04 with a default seven-day life, read by a route that thinks it is
+    whatever day it actually is. That passes today, passes for a week, and then
+    fails for somebody else on a clean clone with nothing wrong in the product.
+    It is not merely the same class of defect as the invitation that fired on
+    2026-08-05 -- it is the identical mechanism, a fixed write read by a moving
+    clock, and pinning half of it would have introduced it rather than removed
+    it.
+
+    The alternative is to leave both ends on the real clock, where they move
+    together and the seven days never elapse between two lines of one test.
+    That is what this does. `now` is still accepted through **kw, so a test that
+    controls both ends -- there are none today -- can pass one.
+
+    The rule this illustrates, and it is worth stating once: pinning is not the
+    goal. Agreement between the write and the read is the goal. A pinned clock
+    on one side of a pair is worse than no pinning at all.
+    """
     with session_scope() as session:
         return sharing.create_share_link(
             session,
@@ -331,6 +371,7 @@ def test_a_subject_that_is_not_this_company_s_cannot_be_shared(corpus):
                 user_id=rival_id,
                 subject_type=SHARE_SUBJECT_CLAIM,
                 subject_id=VERIFIED_CLAIM,
+                now=T0,
             )
         assert VERIFIED_CLAIM in str(refused.value)
 
@@ -348,6 +389,7 @@ def test_a_stranger_to_the_company_cannot_share_its_claims(corpus):
                 user_id=corpus["sharer"],
                 subject_type=SHARE_SUBJECT_CLAIM,
                 subject_id=VERIFIED_CLAIM,
+                now=T0,
             )
 
 
@@ -384,6 +426,7 @@ def test_somebody_who_may_not_read_the_claim_may_not_share_it(corpus):
                 user_id=stranger_id,
                 subject_type=SHARE_SUBJECT_CLAIM,
                 subject_id=VERIFIED_CLAIM,
+                now=T0,
             )
 
 
@@ -423,6 +466,7 @@ def test_the_setting_is_asked_at_one_place_and_turning_it_off_closes_the_door(
                 user_id=corpus["sharer"],
                 subject_type=SHARE_SUBJECT_CLAIM,
                 subject_id=VERIFIED_CLAIM,
+                now=T0,
             )
         # An existing link stops opening too. A switch that only stops new
         # links leaves every link already out there working.

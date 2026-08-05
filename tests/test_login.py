@@ -71,6 +71,27 @@ from app.web.views import proceedings as proceedings_view
 COMPANY = "MEP"
 RIVAL = "RIVAL"
 
+# THE MOMENT THIS FILE SIGNS PEOPLE IN, AND WHY THERE IS ONE AT ALL.
+#
+# Every login, resolve and revoke below passes a moment. None of them used to,
+# and the sibling defect that taught the rule is written up in
+# tests/test_clock_pinned.py: a test wrote an invitation at a hardcoded
+# 2026-08-04 09:00 expiring twenty-four hours later, then asked whether it was
+# still live WITHOUT passing a moment. The read used the real clock. It passed
+# all of the 4th and began failing at 09:05 on the 5th, on a clean clone, with
+# nothing wrong in the product.
+#
+# The sessions here carry the same fuse. SESSION_TTL is twelve hours, so a test
+# that signs in at the real now and asks a question about the session at the
+# real now is safe only because both ends move together. The moment one end is
+# pinned and the other is not, the pair has an expiry date. So both ends are
+# pinned, from this one constant, and the offsets below are read as "how long
+# after signing in" rather than as wall-clock times.
+#
+# The date is deliberately the day of that incident. A reader who greps for it
+# lands on the story rather than on a number somebody typed.
+T0 = datetime(2026, 8, 4, 9, 0, tzinfo=timezone.utc)
+
 ANALYST = "denise.okoro@mep.example"
 PASSWORD = "correct-horse-battery"
 WRONG = "wrong-horse-battery"
@@ -309,7 +330,14 @@ def test_an_unknown_address_still_pays_for_a_password_check(monkeypatch):
 
     with session_scope() as session:
         with pytest.raises(AuthFailed):
-            login(session, COMPANY, email=UNKNOWN, password=PASSWORD, ip="203.0.113.7")
+            login(
+                session,
+                COMPANY,
+                email=UNKNOWN,
+                password=PASSWORD,
+                ip="203.0.113.7",
+                now=T0,
+            )
 
     assert len(calls) == 1, "an unknown address returned before hashing anything"
     assert calls[0][0] == sessions._DUMMY_HASH
@@ -460,36 +488,62 @@ def test_an_expired_token_resolves_to_nothing():
 
 
 def test_a_revoked_token_resolves_to_nothing():
+    """Revocation, not expiry -- and the pinned moment is what keeps them apart.
+
+    The read happens a minute after the sign-in, well inside the twelve-hour
+    SESSION_TTL, so the only thing that can turn this token into None is the
+    logout. Left on the real clock the test still passed, but it passed for two
+    possible reasons and could not tell you which.
+    """
     _make_user()
     with session_scope() as session:
-        live, token = login(session, COMPANY, email=ANALYST, password=PASSWORD)
+        live, token = login(
+            session, COMPANY, email=ANALYST, password=PASSWORD, now=T0
+        )
         session_id = live.id
 
     with session_scope() as session:
-        logout(session, session_id, f"person:{ANALYST}", company_id=COMPANY)
+        logout(
+            session,
+            session_id,
+            f"person:{ANALYST}",
+            company_id=COMPANY,
+            now=T0 + timedelta(seconds=30),
+        )
 
     with session_scope() as session:
-        assert resolve_session(session, token) is None
+        assert resolve_session(session, token, now=T0 + timedelta(minutes=1)) is None
 
 
 def test_a_token_nobody_issued_resolves_to_nothing():
+    """No row exists, so no expiry can lapse -- and the moment is stated anyway.
+
+    Nothing here can rot: the answer for a token nobody issued is None whenever
+    you ask. The moment is passed because a reader should not have to work that
+    out. An omitted clock argument in this file now means "somebody forgot",
+    and that only stays true if the calls which do not care say so too.
+    """
     _make_user()
     with session_scope() as session:
-        assert resolve_session(session, "not-a-token-anybody-issued") is None
-        assert resolve_session(session, "") is None
+        assert resolve_session(session, "not-a-token-anybody-issued", now=T0) is None
+        assert resolve_session(session, "", now=T0) is None
 
 
 def test_suspending_the_account_stops_the_session_it_already_holds():
     """A suspension that leaves live cookies working is a suspension in one table."""
     user_id = _make_user()
     with session_scope() as session:
-        _, token = login(session, COMPANY, email=ANALYST, password=PASSWORD)
+        _, token = login(
+            session, COMPANY, email=ANALYST, password=PASSWORD, now=T0
+        )
 
     with session_scope() as session:
         session.get(User, user_id).status = "suspended"
 
+    # An hour later, so the session is unquestionably still inside its twelve
+    # hours. Suspension is the only thing left that can close it.
     with session_scope() as session:
-        assert resolve_session(session, token) is None
+        assert resolve_session(session, token, now=T0 + timedelta(hours=1)) is None
 
 
 def test_logout_revokes_the_session_and_clears_the_cookie(client):
@@ -514,12 +568,20 @@ def test_logout_revokes_the_session_and_clears_the_cookie(client):
 def test_logging_out_twice_is_not_two_decisions():
     _make_user()
     with session_scope() as session:
-        live, _ = login(session, COMPANY, email=ANALYST, password=PASSWORD)
+        live, _ = login(
+            session, COMPANY, email=ANALYST, password=PASSWORD, now=T0
+        )
         session_id = live.id
 
-    for _ in range(2):
+    for offset in range(2):
         with session_scope() as session:
-            logout(session, session_id, "person:someone", company_id=COMPANY)
+            logout(
+                session,
+                session_id,
+                "person:someone",
+                company_id=COMPANY,
+                now=T0 + timedelta(minutes=offset + 1),
+            )
 
     assert len(_of(ACTION_LOGOUT)) == 1
 
@@ -527,39 +589,77 @@ def test_logging_out_twice_is_not_two_decisions():
 def test_another_tenant_cannot_end_this_tenants_session():
     _make_user()
     with session_scope() as session:
-        live, token = login(session, COMPANY, email=ANALYST, password=PASSWORD)
+        live, token = login(
+            session, COMPANY, email=ANALYST, password=PASSWORD, now=T0
+        )
         session_id = live.id
 
     with session_scope() as session:
-        assert logout(session, session_id, "person:intruder", company_id=RIVAL) is None
+        assert (
+            logout(
+                session,
+                session_id,
+                "person:intruder",
+                company_id=RIVAL,
+                now=T0 + timedelta(minutes=1),
+            )
+            is None
+        )
 
+    # STILL LIVE, AND THE MOMENT IS WHAT MAKES THAT AN ASSERTION.
+    # This is the one shape where a pinned clock could hollow a test out: "the
+    # session survived" is only interesting if the session could have died. Two
+    # minutes into a twelve-hour life it could not have died of old age, so the
+    # only way this comes back None is if the rival's logout reached it.
     with session_scope() as session:
-        assert resolve_session(session, token) is not None
+        assert resolve_session(session, token, now=T0 + timedelta(minutes=2)) is not None
 
 
 def test_revoking_every_session_ends_all_of_them_and_names_each():
     user_id = _make_user()
     tokens = []
+    # Three sign-ins a minute apart. revoke_all_for_user orders by created_at
+    # then id, and separating them keeps that ordering a real one rather than a
+    # tie broken by the id -- which is what three logins at one instant would
+    # leave it as.
     with session_scope() as session:
-        for _ in range(3):
-            _, token = login(session, COMPANY, email=ANALYST, password=PASSWORD)
+        for offset in range(3):
+            _, token = login(
+                session,
+                COMPANY,
+                email=ANALYST,
+                password=PASSWORD,
+                now=T0 + timedelta(minutes=offset),
+            )
             tokens.append(token)
 
     with session_scope() as session:
         closed = revoke_all_for_user(
-            session, COMPANY, user_id, actor="person:admin", reason="password changed"
+            session,
+            COMPANY,
+            user_id,
+            actor="person:admin",
+            reason="password changed",
+            now=T0 + timedelta(minutes=10),
         )
     assert closed == 3
 
+    # Fifteen minutes in, so all three are far short of their twelve hours.
+    # Every None below is a revocation, not an expiry.
     with session_scope() as session:
         for token in tokens:
-            assert resolve_session(session, token) is None
+            assert resolve_session(session, token, now=T0 + timedelta(minutes=15)) is None
 
     assert len(_of(ACTION_LOGOUT)) == 3
 
     with session_scope() as session:
         again = revoke_all_for_user(
-            session, COMPANY, user_id, actor="person:admin", reason="password changed"
+            session,
+            COMPANY,
+            user_id,
+            actor="person:admin",
+            reason="password changed",
+            now=T0 + timedelta(minutes=20),
         )
     assert again == 0, "nothing left to close, and nothing written for it"
 

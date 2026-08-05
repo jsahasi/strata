@@ -41,8 +41,13 @@ from datetime import datetime, timedelta, timezone
 import pytest
 from sqlalchemy.exc import IntegrityError
 
-from app.auth.sessions import AuthFailed, login
-from app.state.audit import ACTION_ACCESS_DENIED, event_count, verify_chain
+from app.auth.sessions import REASON_NOT_ACTIVE, AuthFailed, login
+from app.state.audit import (
+    ACTION_ACCESS_DENIED,
+    ACTION_LOGIN_FAILED,
+    event_count,
+    verify_chain,
+)
 from app.state.db import init_db, session_scope
 from app.state.identity import (
     MIN_PASSWORD_LENGTH,
@@ -390,8 +395,60 @@ def test_an_invited_account_cannot_sign_in_before_accepting():
     with session_scope() as session:
         admin, _analyst, _root = _world(session)
         _provision(session, admin)
+        # WHY THE AUDIT REASON IS READ AND NOT JUST THE EXCEPTION. login()
+        # raises the same AuthFailed with the same sentence for every refusal,
+        # on purpose -- LOGIN_REFUSED is one message so the form cannot be used
+        # to probe which accounts exist. That makes `pytest.raises(AuthFailed)`
+        # alone almost worthless HERE, where the whole question is WHICH refusal
+        # fired. A reviewer proved it: he replaced `if user.status !=
+        # STATUS_ACTIVE` with `if False` in app/auth/sessions.py and this test
+        # stayed green, because a provisioned account has no usable password yet
+        # and the wrong-password branch raises the identical exception one check
+        # later. The test named the pending-status refusal and asserted the
+        # exception, which every refusal shares.
+        #
+        # The audit row is where the refusals differ, because that is the reader
+        # who needs to know. So assert on REASON_NOT_ACTIVE. Delete the status
+        # check now and this goes red naming the reason it got instead.
+        #
+        # A NOTE ON WHAT THIS TEST IS NOT ABOUT, because the comment that used
+        # to sit here said otherwise and was wrong. It claimed pinning stopped
+        # the refusal "drifting into 'the link ran out'". login() never reads an
+        # Invitation at all -- there is no occurrence of "invit" anywhere in
+        # app/auth/sessions.py -- so that drift was never possible and the
+        # sentence described a mechanism that does not exist. The moment is
+        # still passed, because an unpinned clock in a test is a defect whether
+        # or not this particular call could rot, and tests/test_clock_pinned.py
+        # enforces that without needing a story about why.
         with pytest.raises(AuthFailed):
-            login(session, COMPANY, email=NEW_EMAIL, password=CHOSEN)
+            login(
+                session,
+                COMPANY,
+                email=NEW_EMAIL,
+                password=CHOSEN,
+                now=T0 + timedelta(minutes=1),
+            )
+        refusal = (
+            session.query(AuditEvent)
+            .filter(AuditEvent.company_id == COMPANY)
+            .filter(AuditEvent.action == ACTION_LOGIN_FAILED)
+            .order_by(AuditEvent.seq.desc())
+            .first()
+        )
+        assert refusal is not None, (
+            "the refusal wrote no audit row, so nothing records that somebody "
+            "tried to sign in on an account that has not accepted"
+        )
+        assert REASON_NOT_ACTIVE in refusal.reason, (
+            "the account was refused, but not for not having accepted. The "
+            f"reason recorded was {refusal.reason!r}. A refusal that arrives by "
+            "a different route than the one under test is a green test guarding "
+            "nothing."
+        )
+        assert STATUS_INVITED in refusal.reason, (
+            "the audit row does not name the status it refused on. The log "
+            "reader needs which of the inactive states this was."
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -444,9 +501,21 @@ def test_accepting_twice_is_refused_and_says_nothing_extra():
         assert second.reason_text == ACCEPT_UNAVAILABLE
         assert second.company_id is None
         # And the password the second attempt offered did not take.
-        login(session, COMPANY, email=NEW_EMAIL, password=CHOSEN)
+        login(
+            session,
+            COMPANY,
+            email=NEW_EMAIL,
+            password=CHOSEN,
+            now=T0 + timedelta(minutes=1),
+        )
         with pytest.raises(AuthFailed):
-            login(session, COMPANY, email=NEW_EMAIL, password="a-different-password")
+            login(
+                session,
+                COMPANY,
+                email=NEW_EMAIL,
+                password="a-different-password",
+                now=T0 + timedelta(minutes=2),
+            )
 
 
 def test_a_password_below_the_minimum_gets_its_own_code_not_the_dead_one():
@@ -1218,7 +1287,10 @@ def test_the_read_never_crosses_a_tenant():
         _provision(session, rival_admin, company_id=RIVAL, email="sam@rival.example")
 
         here = {row.email for row in accounts_for_company(session, company_id=COMPANY, now=T0)}
-        there = {row.email for row in accounts_for_company(session, company_id=RIVAL)}
+        there = {
+            row.email
+            for row in accounts_for_company(session, company_id=RIVAL, now=T0)
+        }
         assert NEW_EMAIL in here
         assert NEW_EMAIL not in there
         assert "sam@rival.example" in there
@@ -1226,11 +1298,71 @@ def test_the_read_never_crosses_a_tenant():
 
 
 def test_an_unscoped_read_is_refused():
+    """accounts_for_company refuses an unusable scope in its OWN frame.
+
+    WHAT WAS WRONG WITH THIS TEST, and it is worth spelling out because the
+    version it replaces was green and empty. It asserted only that a ValueError
+    came out of accounts_for_company. A reviewer deleted `_require_scope(
+    company_id)` from that function and the test stayed green: the call falls
+    through to users_for_company, which has a guard of its own and raises the
+    same class from one frame down. The test named the tenant boundary and
+    asserted the existence of an exception, which is not the same claim.
+
+    That distinction is not pedantry here. _require_scope in
+    accounts_for_company is what makes the refusal happen BEFORE any query runs.
+    A guard that only fires deeper still refuses today, and stops refusing the
+    day somebody adds an early return, or a cache, or reorders the reads. The
+    boundary has to hold at the door it is drawn on.
+
+    So the traceback is read. If accounts_for_company refuses in its own frame,
+    users_for_company is never entered and cannot appear in the traceback.
+    Delete the guard and it appears, and this goes red naming it.
+
+    AND THE VOCABULARY IS WIDER THAN "". The old test tried the empty string
+    alone. A tenant scope arrives from a URL, a form or a JSON body, and the
+    shapes that actually turn up were tested nowhere. The list below is not
+    invented: it is the one _require_scope in app/state/queries.py documents
+    itself as refusing -- blank, whitespace, padded, wildcard, non-string --
+    each with a reason, and every one of them exists because an unusable scope
+    that is not refused returns [] and reads as "this tenant has nothing".
+    ABSENCE IS DENIAL: that empty list is a sentence somebody acts on, and it is
+    false.
+
+    WHAT IS NOT REFUSED, ASSERTED SEPARATELY SO THE LINE IS VISIBLE. "mep" is a
+    well-formed scope that simply names no tenant. Refusing it would be wrong --
+    it is a caller asking about a company that does not exist, not a caller who
+    forgot to say which company. It must come back empty, and empty must not
+    contain MEP's rows. That is the cross-tenant claim, and it is a stronger one
+    than the refusal.
+    """
     init_db()
     with session_scope() as session:
         _world(session)
-        with pytest.raises(ValueError):
-            accounts_for_company(session, company_id="")
+
+        # The moment is passed on every call below. The scope check runs before
+        # the clock is ever read, so none of these could rot -- but an allowance
+        # in tests/test_clock_pinned.py would have to be re-earned every time
+        # somebody reorders the checks in accounts_for_company, and nobody would
+        # think to. Pinning is cheaper than remembering.
+        for scope in ("", None, "   ", "\t", "%", "_", "MEP ", " MEP", ["MEP"], 0, True):
+            with pytest.raises(ValueError) as excinfo:
+                accounts_for_company(session, company_id=scope, now=T0)
+
+            frames = [entry.name for entry in excinfo.traceback]
+            assert "users_for_company" not in frames, (
+                f"accounts_for_company let company_id={scope!r} through its own "
+                "guard and was refused deeper, inside users_for_company. The "
+                "refusal still happened today. It will stop happening the day "
+                f"somebody adds an early return above that call. Frames: {frames}"
+            )
+
+        # A real string naming no tenant. Answered, not refused -- and answered
+        # with nothing, rather than with the tenant whose name it resembles.
+        assert accounts_for_company(session, company_id="mep", now=T0) == []
+        assert accounts_for_company(session, company_id=COMPANY, now=T0) != [], (
+            "the control failed: the real scope returns nothing either, so the "
+            "empty answer above proves nothing about scoping"
+        )
 
 
 # ---------------------------------------------------------------------------

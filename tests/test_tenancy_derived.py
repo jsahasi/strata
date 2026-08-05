@@ -132,6 +132,23 @@ def _populate(session) -> None:
     it looks like. This is the short version, and it exists here rather than as
     an import because a test that depends on a script in scripts/ depends on a
     file nobody runs in CI.
+
+    THE CLOCK IS THE REAL ONE HERE, ON PURPOSE. Three writers below take a
+    moment -- create_share_link twice and provision_login once -- and all three
+    are listed in ALLOWED in tests/test_clock_pinned.py rather than pinned.
+
+    What this function builds is a corpus, and the corpus is read back two ways
+    that no test can pin: the function sweep calls each scoped reader with
+    arguments built from its signature, and the HTTP sweep signs in over the
+    real stack and fetches every screen. Both run on the real now. A share link
+    or an invitation written at a fixed 2026-08-04 and read by those would be a
+    live row today, an expired one next week, and the difference would show up
+    as screens quietly losing rows -- which is precisely what
+    test_the_signed_in_owner_still_sees_their_own_rows asserts against.
+
+    Agreement between the write and the read is what stops a test rotting.
+    Pinning one end of a pair whose other end cannot be pinned breaks that
+    agreement instead of enforcing it.
     """
     from app.state import audit, feedback, invites, models, permissions
     from app.state import rollback, routing, sharing, sources

@@ -405,8 +405,9 @@ setting overwritten in place. There is a review centre over the top.</p>
 <p><strong>Routing exists now, and the queue screen is the last place to hear about it.</strong>
 <code>app/state/routing.py</code> walks an escalation to the claim, the claim to the change, the
 change to the company obligations it bears on, and the obligation to its owner &mdash; and every
-step of that walk can refuse. Fifteen refusal codes, one per fix &mdash; the obligation has no owner,
-the owner's account is suspended, two obligations name two different people &mdash; plus
+step of that walk can refuse. A refusal code per fix &mdash; the obligation has no owner,
+the owner's account is suspended, two obligations name two different people, nobody confirmed the
+mapping this name rests on &mdash; plus
 <code>ROUTE_PENDING_ACCEPTANCE</code>, which says an owner was invited and has not accepted yet, and
 is carried as data rather than as a sentence so a screen cannot render &ldquo;waiting on Priya&rdquo;
 and &ldquo;waiting on Priya, invited two days ago&rdquo; the same way. It never guesses a default

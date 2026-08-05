@@ -22,13 +22,26 @@ printed where the verdict would have gone -- so a reviewer can watch the gate
 refuse the model's own output on the same screen it refuses a stored claim's.
 That is the hardest decision in this product made visible rather than described.
 
-THE CALL HAPPENS ON THE RENDER, AND THAT COST IS REAL. With no key the path is
-off and says so, which is the state a reviewer will see. With a key, every load
-of this page is a model call: it costs money, it takes seconds, and two loads
-can disagree because nothing is stored. The fix is not a cache -- it is the
-three things propose.py names as missing (an action code, columns for the reason
-and the citation, a writer) and none of them is a change to this file. Naming the
-cost here is better than a comment claiming it was considered.
+THE VERDICT IS NOW STORED, AND THE GATE STILL RUNS ON EVERY RENDER. It used to
+be that every load of this page was a model call -- money, seconds, and two
+loads able to disagree about one change -- because the judgement was computed
+and thrown away. app/interpretation/propose.py now writes the verdict, its
+reason, its citation, the model id and the moment beside `Change.materiality`,
+and appends `change.materiality_set` to the audit chain, so the second load of
+this page calls nothing.
+
+What did NOT change is the thing this screen exists to demonstrate. The stored
+citation is re-read against the stored source on every render, exactly as a
+stored claim's is, and a verdict whose quote is no longer at its offsets is
+withheld here with the reason in its place. Editing the source under a stored
+verdict flips it to a refusal on the very next render, with no job in between.
+Read propose.py's module docstring before making any of that faster: what is
+stored is the model's output, and what is recomputed is whether it may be shown.
+
+ONE COST IS NEW AND IS NOT HIDDEN. The first view of an unjudged change is a GET
+that writes -- a row and an audit event. A GET that writes cannot be replayed
+blindly, and the honest defence is that it records a judgement genuinely made at
+that moment by something the row names, and that every later GET writes nothing.
 
 Two things this module deliberately does not do.
 
@@ -57,8 +70,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from app.auth import policy
 from app.diff.engine import RESTRUCTURE_CONFIDENCE_CEILING
 from app.interpretation.propose import (
-    MODEL_ID,
-    judge_materiality_for_company,
+    materiality_for_company,
     transport_from_environment,
 )
 from app.state.claims import (
@@ -78,6 +90,8 @@ from app.state.mapping import (
 from app.state.models import AUTHOR_ANALYST, Change
 from app.state.queries import passages_for_company, versions_for_company
 from app.state.routing import (
+    ROUTE_MAPPING_UNCONFIRMED,
+    UNCONFIRMED_MAPPING,
     mappings_for_change,
     obligation_for_company,
     resolve_change_owner,
@@ -157,11 +171,24 @@ BADGE_ROUTINE = "badge--routine"
 JUDGEMENT_WITHHELD = "No judgement made"
 
 #: Printed under every verdict that survives the gate. Three facts a reader
-#: needs and cannot get from the verdict itself: which model said it, that the
-#: citation was re-read during this render, and that nothing was stored.
+#: needs and cannot get from the verdict itself: which model said it, when, and
+#: that the citation was re-read from the source during THIS render rather than
+#: taken on trust from the row.
+#:
+#: THE LAST SENTENCE IS NOT REASSURANCE, IT IS THE PRODUCT'S ARGUMENT ON THE
+#: PAGE. A reader who sees a verdict with a date on it will assume it was looked
+#: up, and looking a verdict up is exactly what ADR-003 refuses. Saying which
+#: half was stored and which half was re-checked is the difference between a
+#: record and a cache, said out loud where a regulator would read it.
+#:
+#: A TEMPLATE RATHER THAN A CONSTANT SENTENCE, because the model and the moment
+#: both come off the judgement now: a stored verdict names the model that made
+#: it, which may not be the model this build would use today.
 JUDGED_BY = (
-    f"Judged by {MODEL_ID} while this page rendered. The citation was re-read "
-    "against the stored source a moment ago, and nothing was written."
+    "Judged by {model} at {when}, and stored with the citation it rests on. "
+    "That citation was re-read against the stored source during this render, "
+    "and the verdict is shown only because the words are still there. It is "
+    "never shown from the record alone."
 )
 
 #: Unreachable today: a run with no verdict always carries an announcement.
@@ -241,18 +268,19 @@ MISSED_NOTE = (
     "know it belongs here."
 )
 
-#: Printed under a routed owner whose mapping nobody has confirmed.
+#: THE SENTENCE THAT USED TO LIVE HERE IS NOW app/state/routing.py's, AND THIS
+#: NOTE IS THE HEADSTONE. UNCONFIRMED_ROUTING was defined in this module and
+#: printed under a routed owner, because the fix was the screen's: routing did
+#: not read mapped_by_kind, so it handed back a name whether a person or a word
+#: overlap was behind it, and only this page said so.
 #:
-#: THE PRODUCT'S CENTRAL ARGUMENT, APPLIED TO ITS OWN OUTPUT. Routing hands back
-#: a name whether the mapping under it came from a person or from a word
-#: overlap, so without this sentence the page states accountability it has not
-#: earned. It is the same move the withheld claim makes: say what is missing
-#: where the assertion would have gone.
-UNCONFIRMED_ROUTING = (
-    "Nobody has confirmed the mapping this name rests on. The pipeline proposed "
-    "it from a word overlap, so read the owner above as a suggestion rather than "
-    "as accountability until somebody confirms it below."
-)
+#: routing.py now refuses instead -- ROUTE_MAPPING_UNCONFIRMED -- which means the
+#: warning had to reach the escalation queue and the approval route too, and
+#: neither of those renders this template. So the words moved to the library and
+#: this module imports UNCONFIRMED_MAPPING. There is no second copy and no alias
+#: pointing at the first: two names for one sentence is two things to keep true,
+#: and the one nobody edits is the one that goes stale on the screen a regulator
+#: reads. Anything here that needs these words imports them.
 
 #: Shown where the company has recorded no duties at all. Kept apart from the
 #: empty candidate list on purpose -- "your obligations are not loaded" must
@@ -417,24 +445,30 @@ class RoutingView:
     """Who this change is the duty of, or the reason nobody can be named.
 
     text is app/state/routing.py's own sentence, not a second wording of it.
-    Fifteen refusal codes each carry the fix for their own case, and rewriting
-    them here would give an analyst a second vocabulary to learn.
+    Each refusal code carries the fix for its own case, and rewriting them here
+    would give an analyst a second vocabulary to learn. How many there are is
+    the tuple's business and not this docstring's: a total typed out in prose is
+    right on the day it is typed and wrong on the day the next code lands, and
+    this one was wrong within its own commit.
 
-    caveat IS THE HALF THAT WAS MISSING AND IT WAS FOUND ON A REAL PAGE.
-    resolve_change_owner does not read mapped_by_kind: a mapping the pipeline
-    proposed walks to an owner exactly as one a person confirmed does. So a
-    Kentucky vegetation-management budget table, which shares the words
-    "project" and "budget" with a cost-allocation duty, printed "Sarah
-    Lindqvist owns OBL-005" directly above a block saying the same mapping was
+    ROUTE_MAPPING_UNCONFIRMED IS WHY THIS DOCSTRING CHANGED. It was found on a real
+    page. resolve_change_owner did not read mapped_by_kind, so a mapping the
+    pipeline proposed walked to an owner exactly as one a person confirmed did,
+    and a Kentucky vegetation-management budget table -- which shares the words
+    "project" and "budget" with a cost-allocation duty -- printed "Sarah
+    Lindqvist owns OBL-005" directly above a block saying that same mapping was
     proposed and not confirmed. The page contradicted itself in two adjacent
-    sentences, and the confident one was on top.
+    sentences and the confident one was on top.
 
-    The fix here is the screen's and not the routing layer's, deliberately.
-    Adding a sixteenth refusal code would change a contract every caller of
-    resolve_change_owner depends on, and that is a decision to take in the open
-    rather than in passing -- see the foot of app/state/mapping.py. What this
-    does is refuse to let an unconfirmed mapping read as accountability, which
-    is a statement about how the page reads and is entirely ours to make.
+    The fix was this screen's for a while, and that was always the smaller half
+    honestly labelled. A caveat on this template does nothing for the escalation
+    queue or the approval route, because neither goes through here, and those are
+    the surfaces that actually tell somebody the work is theirs.
+    ROUTE_MAPPING_UNCONFIRMED moved the refusal into routing, where every caller
+    passes. What is left for this class is narrower and is described at the call
+    site: a routing refusal that CARRIES OBLIGATION IDS rests on the mapping
+    being real even while it refuses to name an owner, and resting on a mapping
+    is itself a claim about what this change bears on.
     """
 
     code: str
@@ -744,15 +778,18 @@ def change_detail(
     another company resolves to None and answers 404 -- the row never reaches
     this function, so there is nothing here that could leak it.
 
-    Nothing is written. Every verdict on this page -- the stored claims' and the
-    model's -- is computed from the stored source during this request and is not
-    saved, which is what makes editing the source flip a claim to withheld on
-    the next render with no job in between.
+    EVERY VERDICT ON THIS PAGE IS EARNED DURING THIS REQUEST. The claims' and
+    the model's alike: each citation is re-read against the stored source here
+    and now, which is what makes editing the source flip a claim -- or a stored
+    materiality verdict -- to withheld on the next render with no job in
+    between. What is looked up and what is checked are different things, and
+    only the first comes out of a column.
 
-    ONE THING HERE IS NOT A READ. The materiality call goes out to a model when
-    a key is configured, so this GET is not free and is not repeatable. See the
-    module docstring: that is a real cost, and the fix is persistence, which
-    needs three things that do not exist yet.
+    ONE THING HERE IS NOT A READ. When no materiality verdict is stored yet and
+    a key is configured, the call below judges, writes the verdict beside
+    `Change.materiality` and appends to the audit chain -- so the FIRST view of
+    an unjudged change is a GET that writes. A second view of it writes nothing
+    and calls nothing. See the module docstring for why that trade was taken.
     """
     with session_scope() as session:
         change = change_for_company(session, company_id, change_id)
@@ -830,12 +867,18 @@ def change_detail(
             for claim in withheld
         ]
 
-        # The one model call in the product. It goes through the scoped entry
-        # point rather than being assembled here, even though this function is
-        # already holding the change and the versions: a second way to resolve
-        # a change for a company is a second thing to get the tenancy wrong in,
-        # and it would be the one nobody audited. The extra read is the price.
-        run = judge_materiality_for_company(
+        # The one model call in the product, and now usually not a call at all.
+        # It goes through the scoped entry point rather than being assembled
+        # here, even though this function is already holding the change and the
+        # versions: a second way to resolve a change for a company is a second
+        # thing to get the tenancy wrong in, and it would be the one nobody
+        # audited. The extra read is the price.
+        #
+        # THIS LINE CAN WRITE. When no verdict is stored yet and the model path
+        # is on, it judges, records the verdict on the change row and appends to
+        # the audit chain. Everything else on this screen is a read; this one is
+        # not, and the module docstring argues why that is worth it.
+        run = materiality_for_company(
             session, company_id, change_id, transport=transport_factory()
         )
 
@@ -860,7 +903,13 @@ def change_detail(
                     verdict.citation_end,
                 ),
                 source_reads=verdict.actual_text,
-                judged_by=JUDGED_BY,
+                # The model and the moment come off the judgement, not off this
+                # module. A verdict read back from the row was made by whatever
+                # judged it then, and printing today's pinned id over it would
+                # be this build putting words in an older one's mouth.
+                judged_by=JUDGED_BY.format(
+                    model=verdict.model_id, when=_stamp(verdict.judged_at)
+                ),
             )
         elif run.withheld is not None:
             refused = run.withheld
@@ -906,10 +955,45 @@ def change_detail(
             code=resolution.reason_code,
             text=resolution.reason_text,
             routed=resolution.routed,
-            # A name on the page with nobody's judgement behind it. See the
-            # RoutingView docstring for the page this was found on.
+            # THE CAVEAT NOW COVERS MORE GROUND THAN IT DID, not less, and the
+            # condition is worth reading slowly.
+            #
+            # It used to fire on `resolution.routed and not confirmed` -- a name
+            # printed as accountability with only a word overlap behind it. That
+            # case is gone: routing refuses it outright now, so that condition
+            # can never be true again and a caveat written for it would be dead.
+            #
+            # What is left is the case nobody had looked at. A routing refusal
+            # that CARRIES OBLIGATION IDS rests on the mapping being real, and
+            # asserts it whether or not the sentence prints the ids. "the
+            # obligation this change touches has no owner (OBL-005)" spells it
+            # out; "Sarah Lindqvist owns this and their account is suspended"
+            # spells nothing out and claims exactly the same thing -- that this
+            # change is that duty. If nobody confirmed the mapping, both are
+            # stating something no person decided, in quieter words than "Sarah
+            # Lindqvist owns OBL-005". So the caveat follows
+            # resolution.obligation_ids rather than the routed flag, and not the
+            # wording either.
+            #
+            # THIS COMMENT USED TO SAY "every other routing refusal names the
+            # duties in its own sentence", and a reviewer found three that do
+            # not: ROUTE_OWNER_INACTIVE and ROUTE_OWNER_UNKNOWN name no duty,
+            # and ROUTE_NO_OBLIGATION carries no obligation ids at all -- which
+            # is exactly why it draws no caveat and wants none. The condition
+            # below was right and the reason given for it was not, which is the
+            # worse of the two faults: the next reader keeps the rule and
+            # rewrites the code.
+            #
+            # ROUTE_MAPPING_UNCONFIRMED is excluded because its own reason_text
+            # already carries these exact words. Printing them again under it
+            # would be the same sentence twice on one card, which reads as two
+            # separate warnings and teaches a reader to skim both.
             caveat=(
-                UNCONFIRMED_ROUTING if resolution.routed and not confirmed else ""
+                UNCONFIRMED_MAPPING
+                if resolution.obligation_ids
+                and not confirmed
+                and resolution.reason_code != ROUTE_MAPPING_UNCONFIRMED
+                else ""
             ),
         )
 
@@ -1056,7 +1140,6 @@ __all__ = [
     "NO_OBLIGATIONS_NOTE",
     "NO_SUCH_OBLIGATION",
     "PERMISSION_MAP",
-    "UNCONFIRMED_ROUTING",
     "VERDICT_MATERIAL",
     "VERDICT_NOT_MATERIAL",
     "CandidateMapping",

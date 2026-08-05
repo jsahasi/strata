@@ -33,8 +33,8 @@ from datetime import datetime, timedelta, timezone
 
 import pytest
 
-from app.auth.sessions import AuthFailed, login
-from app.state.audit import event_count, verify_chain
+from app.auth.sessions import REASON_NOT_ACTIVE, AuthFailed, login
+from app.state.audit import ACTION_LOGIN_FAILED, event_count, verify_chain
 from app.state.db import init_db, session_scope
 from app.state.identity import (
     create_user,
@@ -46,6 +46,8 @@ from app.state.identity import (
     user_for_company,
 )
 from app.state.models import (
+    AUTHOR_ANALYST,
+    AUTHOR_SYSTEM,
     INVITE_ACCEPTED,
     INVITE_APPROVED,
     INVITE_AWAITING_APPROVAL,
@@ -121,6 +123,7 @@ from app.state.invites import (
 )
 from app.state.routing import (
     ACTION_ESCALATION_ROUTED_PENDING,
+    ROUTE_MAPPING_UNCONFIRMED,
     ROUTE_OBLIGATION_UNOWNED,
     ROUTE_OK,
     ROUTE_OWNER_INACTIVE,
@@ -241,7 +244,7 @@ def _may_invite(session, company_id, user):
     return user
 
 
-def _gap(session, company_id=COMPANY):
+def _gap(session, company_id=COMPANY, *, mapped_by_kind=AUTHOR_ANALYST):
     """The dead end this module exists to close.
 
     One analyst who may invite, one obligation with NO owner account, one change
@@ -251,6 +254,20 @@ def _gap(session, company_id=COMPANY):
     Ids carry the tenant where the tenant is not the corpus one. Every id in
     this schema is unique across companies, so two tenants asking for OBL-001
     is an IntegrityError rather than a test of isolation.
+
+    THE MAPPING IS A PERSON'S, AND IT DID NOT USE TO BE. map_change_to_obligation
+    defaults mapped_by_kind to AUTHOR_SYSTEM, which is right for the writer --
+    nearly every row in the product is the proposer's -- and wrong for a fixture
+    whose subject is a person being handed work. When routing learned to refuse
+    a mapping nobody confirmed (ROUTE_MAPPING_UNCONFIRMED) nine tests in this
+    file went red at once, all of them asserting that an invitation lands the
+    item on the new owner's desk. Every one was passing on a mapping the
+    PIPELINE had guessed. The fixture, not the tests, was the thing that was
+    wrong.
+
+    The kind stays a parameter because the other case is real and has to be
+    tested rather than removed: see
+    test_an_invitation_cannot_land_work_that_rests_on_a_proposed_mapping.
     """
     ensure_system_roles(session)
     analyst = _may_invite(
@@ -280,6 +297,7 @@ def _gap(session, company_id=COMPANY):
         change_id=change,
         obligation_id=f"OBL-001{tag}",
         mapped_by=ACTOR,
+        mapped_by_kind=mapped_by_kind,
         mapped_at=T0,
     )
     escalation = _escalation(session, company_id, f"ESC-1{tag}", change)
@@ -549,7 +567,15 @@ def test_an_item_whose_refusal_is_not_the_owner_gap_carries_the_routing_reason()
 
 
 def test_two_unowned_obligations_refuse_rather_than_picking_one():
-    """Which duty would the invited person own? Nothing here can say."""
+    """Which duty would the invited person own? Nothing here can say.
+
+    BOTH MAPPINGS ARE A PERSON'S. Two duties somebody confirmed, both unowned,
+    is a genuine ambiguity an invitation cannot settle. A confirmed duty beside
+    one the pipeline guessed is not that question at all -- routing sets the
+    guess aside and there is nothing ambiguous left -- so writing the second
+    mapping as the default AUTHOR_SYSTEM would have quietly turned this test
+    into a test of the precedence rule under an ambiguity name.
+    """
     init_db()
     with session_scope() as session:
         analyst, escalation_id = _gap(session)
@@ -567,6 +593,7 @@ def test_two_unowned_obligations_refuse_rather_than_picking_one():
             change_id="CHG-1",
             obligation_id="OBL-008",
             mapped_by=ACTOR,
+            mapped_by_kind=AUTHOR_ANALYST,
             mapped_at=T0,
         )
         outcome = _invite(session, actor_user=analyst)
@@ -676,6 +703,68 @@ def test_a_same_domain_invite_routes_the_item_and_marks_it_pending():
         assert verify_chain(session, COMPANY)
 
 
+def test_an_invitation_cannot_land_work_that_rests_on_a_proposed_mapping():
+    """The price of ROUTE_MAPPING_UNCONFIRMED, paid where it is charged.
+
+    WHY THIS TEST EXISTS AT ALL. Every other test in this file now runs on a
+    mapping a person confirmed, because _gap was fixed to write one. That fix
+    was right and it took the last exercise of the proposed path out of the
+    suite with it -- so the one product behaviour the refusal actually COST
+    would have been asserted nowhere, and the next person tuning precedence
+    would have broken it in silence. A reviewer spotted the hole while the
+    fixture fix was still a suggestion. This is the plug.
+
+    WHAT IT PINS. Half the flow still runs: the duty is unowned, so routing
+    answers ROUTE_OBLIGATION_UNOWNED, invites reads that code as a genuine gap,
+    and the invitation and the account are both written. What does NOT happen is
+    the last step. Once the invited person owns the duty, the only thing joining
+    this change to that duty is a word overlap the pipeline noticed, so routing
+    refuses and the escalation stays in the shared queue.
+
+    That is the wanted answer and it is worth saying why rather than only that.
+    A person invited into this product and handed an escalation on the strength
+    of two words appearing in both documents is the sharpest form of the bug the
+    refusal exists to stop, not an exception to it. The cost is real: somebody
+    has to confirm the mapping before the item moves. It is smaller than the
+    alternative, which is a stranger's first day beginning with work that was
+    never theirs.
+    """
+    init_db()
+    with session_scope() as session:
+        analyst, escalation_id = _gap(session, mapped_by_kind=AUTHOR_SYSTEM)
+        outcome = _invite(session, actor_user=analyst)
+
+        # The gap was real and the invitation was written.
+        assert outcome.reason_code == INV_OK
+        assert outcome.status == INVITE_PENDING
+        invited = session.get(Invitation, outcome.invitation_id).invited_user_id
+        assert invited is not None
+        assert obligation_for_company(session, COMPANY, "OBL-001").owner_user_id == invited
+
+        # And nothing landed on the new person's desk.
+        assert outcome.routed_escalation_ids == ()
+        assert session.get(Escalation, escalation_id).assigned_to_user_id is None
+
+        resolution = resolve_escalation_owner(
+            session, COMPANY, escalation_id=escalation_id, now=T0
+        )
+        assert resolution.reason_code == ROUTE_MAPPING_UNCONFIRMED
+        assert resolution.routed is False
+        assert resolution.user_id is None
+        # The refusal still names who confirming would route it to, so the
+        # analyst reading the queue has one click to make and not a search.
+        assert resolution.candidate_user_ids == (invited,)
+
+        # The item is visible, in the queue nobody owns, with the live reason.
+        queued = {
+            item.escalation.id: item.resolution.reason_code
+            for item in shared_queue(session, COMPANY)
+        }
+        assert queued == {escalation_id: ROUTE_MAPPING_UNCONFIRMED}
+        assert escalations_for_user(session, COMPANY, user_id=invited) == []
+        assert verify_chain(session, COMPANY)
+
+
 def test_the_pending_state_is_data_rather_than_a_sentence_to_parse():
     """"Waiting on Priya" and "waiting on Priya, invited 2 days ago, not yet
     accepted" are different facts. A screen must not have to read prose to tell."""
@@ -685,7 +774,7 @@ def test_the_pending_state_is_data_rather_than_a_sentence_to_parse():
         outcome = _invite(session, actor_user=analyst)
 
         resolution = resolve_escalation_owner(
-            session, COMPANY, escalation_id=escalation_id
+            session, COMPANY, escalation_id=escalation_id, now=T0
         )
         assert resolution.reason_code == ROUTE_PENDING_ACCEPTANCE
         assert resolution.routed is True
@@ -705,7 +794,7 @@ def test_an_item_waiting_on_an_invitation_leaves_the_shared_queue_for_its_own():
         _invite(session, actor_user=analyst)
 
         assert shared_queue(session, COMPANY) == []
-        waiting = awaiting_acceptance(session, COMPANY)
+        waiting = awaiting_acceptance(session, COMPANY, now=T0)
         assert [item.escalation.id for item in waiting] == [escalation_id]
         assert waiting[0].resolution.pending_acceptance is True
         assert waiting[0].resolution.invited_at == T0
@@ -734,8 +823,52 @@ def test_an_invited_account_cannot_sign_in_before_accepting():
         analyst, _escalation_id = _gap(session)
         outcome = _invite(session, actor_user=analyst)
         assert permissions_for_user(session, COMPANY, outcome.invited_user_id) == frozenset()
+        # THE EXCEPTION IS NOT THE ASSERTION. login() raises one AuthFailed
+        # with one sentence for every refusal, deliberately, so the form cannot
+        # be used to find out which addresses have accounts. That makes
+        # `pytest.raises(AuthFailed)` on its own nearly empty here, where the
+        # entire point is WHICH refusal fired. A reviewer showed it: replacing
+        # `if user.status != STATUS_ACTIVE` with `if False` in
+        # app/auth/sessions.py left this test green, because an invited account
+        # has no usable password yet and the wrong-password branch raises the
+        # same exception a few lines later. The test was passing on the strength
+        # of a check it was not written about.
+        #
+        # The audit row is where the refusals are told apart, so read it.
+        #
+        # The comment that used to be here said pinning stopped the refusal
+        # drifting into "the link ran out". It does not, because that drift was
+        # never possible: login() never loads an Invitation -- "invit" does not
+        # appear anywhere in app/auth/sessions.py. The moment is still pinned,
+        # for the plain reason that an unpinned clock in a test is a defect on
+        # its own terms.
         with pytest.raises(AuthFailed):
-            login(session, COMPANY, email=OWNER_EMAIL, password=CHOSEN)
+            login(
+                session,
+                COMPANY,
+                email=OWNER_EMAIL,
+                password=CHOSEN,
+                now=T0 + timedelta(minutes=1),
+            )
+        refusal = (
+            session.query(AuditEvent)
+            .filter(AuditEvent.company_id == COMPANY)
+            .filter(AuditEvent.action == ACTION_LOGIN_FAILED)
+            .order_by(AuditEvent.seq.desc())
+            .first()
+        )
+        assert refusal is not None, (
+            "nothing recorded the attempt. An invited account being tried is "
+            "exactly the row a security reviewer comes looking for."
+        )
+        assert REASON_NOT_ACTIVE in refusal.reason, (
+            "refused, but not for not having accepted. The recorded reason was "
+            f"{refusal.reason!r}."
+        )
+        assert STATUS_INVITED in refusal.reason, (
+            "the row does not name which inactive status it refused on, so the "
+            "log cannot tell a pending invitation from a suspension."
+        )
 
 
 def test_the_token_is_returned_once_and_never_stored():
@@ -871,7 +1004,7 @@ def test_approval_admits_the_person_and_routes_the_item():
         assert session.get(Escalation, escalation_id).assigned_to_user_id == (
             stored.invited_user_id
         )
-        resolution = resolve_escalation_owner(session, COMPANY, escalation_id=escalation_id)
+        resolution = resolve_escalation_owner(session, COMPANY, escalation_id=escalation_id, now=T0)
         assert resolution.pending_acceptance is True
         assert verify_chain(session, COMPANY)
 
@@ -985,9 +1118,9 @@ def test_acceptance_activates_the_account_and_lands_them_on_the_item():
             escalation_id
         ]
         assert resolve_escalation_owner(
-            session, COMPANY, escalation_id=escalation_id
+            session, COMPANY, escalation_id=escalation_id, now=T0
         ).reason_code == ROUTE_OK
-        assert awaiting_acceptance(session, COMPANY) == []
+        assert awaiting_acceptance(session, COMPANY, now=T0) == []
         assert verify_chain(session, COMPANY)
 
 
@@ -997,7 +1130,13 @@ def test_the_password_goes_through_the_existing_scrypt_path():
         analyst, _escalation_id = _gap(session)
         invited = _invite(session, actor_user=analyst)
         accept_invitation(session, token=invited.token, password=CHOSEN, now=T0)
-        live, token = login(session, COMPANY, email=OWNER_EMAIL, password=CHOSEN)
+        live, token = login(
+            session,
+            COMPANY,
+            email=OWNER_EMAIL,
+            password=CHOSEN,
+            now=T0 + timedelta(minutes=1),
+        )
         assert token
         assert live.user_id == invited.invited_user_id
 
@@ -1108,7 +1247,13 @@ def test_a_second_acceptance_is_refused():
         )
         assert again.reason_code == ACCEPT_REFUSED
         # And the first password still works, so a replay cannot reset it.
-        assert login(session, COMPANY, email=OWNER_EMAIL, password=CHOSEN)
+        assert login(
+            session,
+            COMPANY,
+            email=OWNER_EMAIL,
+            password=CHOSEN,
+            now=T0 + timedelta(minutes=1),
+        )
 
 
 def test_a_queued_invitation_cannot_be_accepted_before_it_is_approved():
@@ -1280,7 +1425,7 @@ def test_an_invited_owner_with_no_live_invitation_is_still_a_refusal():
         session.flush()
 
         resolution = resolve_escalation_owner(
-            session, COMPANY, escalation_id=escalation_id
+            session, COMPANY, escalation_id=escalation_id, now=T0
         )
         assert resolution.reason_code == ROUTE_OWNER_INACTIVE
         assert resolution.routed is False
@@ -1329,7 +1474,7 @@ def test_a_suspended_owner_is_still_refused_rather_than_read_as_pending():
         person.status = STATUS_SUSPENDED
         session.flush()
         resolution = resolve_escalation_owner(
-            session, COMPANY, escalation_id=escalation_id
+            session, COMPANY, escalation_id=escalation_id, now=T0
         )
         assert resolution.reason_code == ROUTE_OWNER_INACTIVE
 

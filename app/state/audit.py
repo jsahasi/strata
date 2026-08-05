@@ -229,6 +229,29 @@ ACTION_REVERSAL_WITHDRAWN = "decision.reversal_withdrawn"
 ACTION_ACCESS_DENIED = "access.denied"
 ACTION_APPROVAL_WAIVED = "approval.waived"
 
+# The one judgement a model makes in this product, recorded like any other
+# decision. app/interpretation/propose.py asks whether a change matters and
+# writes the answer beside Change.materiality; this is the code that write
+# appends under.
+#
+# IT IS HERE BECAUSE IT WAS ALREADY DRIFTING, which is the same sentence the
+# escalation pair above carries and the reason it is worth repeating.
+# tests/test_policy.py types "change.materiality_set" as a bare literal in two
+# places -- it was the obvious spelling, so somebody wrote it before any code
+# did -- and app/interpretation/propose.py named that as one of the three
+# things persistence needed. A retyped action code does not fail: it writes a
+# row that hashes perfectly and that no query for that action will ever return,
+# so the decision is in the log and invisible. tests/test_audit.py now walks
+# every module under app/ for a literal that matches a constant here, so the
+# next one fails a test rather than waiting to be read.
+#
+# THE SUBJECT IS THE CHANGE, NOT THE CLAIM. A materiality verdict interprets
+# the change itself, and app/auth/policy.py already treats an act on the change
+# underneath a claim as authorship of that claim -- so the person or model that
+# set materiality cannot then approve what follows from it. That control reads
+# this code, which is the second reason it may only have one spelling.
+ACTION_MATERIALITY_SET = "change.materiality_set"
+
 # Work that changes what the system looks for or asserts.
 ACTION_STEER_ISSUED = "steer.issued"
 ACTION_THRESHOLD_CHANGED = "threshold.changed"
@@ -891,6 +914,7 @@ __all__ = [
     "ACTION_REVERSAL_WITHDRAWN",
     "ACTION_ACCESS_DENIED",
     "ACTION_APPROVAL_WAIVED",
+    "ACTION_MATERIALITY_SET",
     "ACTION_STEER_ISSUED",
     "ACTION_THRESHOLD_CHANGED",
     "ACTION_KNOWLEDGE_SUPERSEDED",

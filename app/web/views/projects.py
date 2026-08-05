@@ -43,6 +43,10 @@ from fastapi import APIRouter, Depends, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlalchemy.exc import SQLAlchemyError
 
+from app.interpretation.propose import (
+    ShownMateriality,
+    shown_materiality_for_company,
+)
 from app.state.claims import (
     claims_for_change,
     escalations_for_company,
@@ -50,7 +54,11 @@ from app.state.claims import (
     verified_claims,
 )
 from app.state.db import session_scope
-from app.state.models import PROJECT_STATUSES
+from app.state.models import (
+    MATERIALITY_MATERIAL,
+    MATERIALITY_NOT_MATERIAL,
+    PROJECT_STATUSES,
+)
 from app.state.projects import (
     changes_for_project,
     create_project,
@@ -107,14 +115,66 @@ _CHANGE_BADGE = {"DRAFT": "badge--draft", "FINAL": "badge--final"}
 
 # What a change's materiality reads as on this screen, which is every row.
 #
-# NOTHING WRITES THE COLUMN, so it is NULL everywhere and the list says which of
-# the two facts that is rather than printing a blank cell. The change screen now
-# asks a model whether one change is material, but it computes that on the
-# render and stores nothing -- see app/interpretation/propose.py, which names the
-# three things persistence would need. A list of thirty rows is also the wrong
-# place to fire thirty model calls, so this screen does not, and a reader who
-# wants the judgement opens the change.
+# THREE WORDS, BECAUSE THERE ARE THREE FACTS AND THEY ARE NOT THE SAME FACT.
+# Nothing has judged this change. Something judged it and the verdict still
+# stands up. Something judged it and the verdict may not be shown. Collapsing
+# any two of those into one cell is the whole failure this screen once had.
+#
+# THE FAILURE, NAMED, BECAUSE THIS SCREEN IS WHERE IT LANDED. The column was
+# NULL on every row for as long as nothing wrote it, and this list read the
+# attribute raw -- safe by accident. When the change screen began storing
+# verdicts, this list went on printing the stored word with no citation and no
+# re-read of the source. A verdict whose cited bytes had moved was refused on
+# the change screen and printed as fact here, on the screen that shows it most
+# often: one row per change, no click required. It is now read through
+# shown_materiality_for_company(), which runs the same gate the change screen
+# runs.
+#
+# STILL NO MODEL CALLS FROM THIS SCREEN, and that part of the old comment was
+# right. Thirty rows must not be thirty model calls on a GET. The gate here
+# reads and refuses; earning a fresh verdict for a change whose source moved is
+# the change screen's job, one link away.
 MATERIALITY_UNASSESSED = "not assessed"
+
+# What stands in the verdict's place when the citation no longer verifies.
+#
+# NOT "not assessed", and the distance between the two words is the point. "Not
+# assessed" says nobody looked. This says somebody looked, wrote a verdict down,
+# and the product will not repeat it because the words it rested on are not in
+# the document any more. A reader who sees this should open the change, which is
+# the only place that can ask again.
+MATERIALITY_WITHHELD = "withheld"
+
+# Which verdict wears the alarm treatment, and which deliberately does not.
+#
+# Only "material" is an alarm. "Not material" is a finding and is printed as
+# one, in the counterpart class, because a harmless verdict in the alarm colour
+# teaches a reader to ignore the colour -- and the colour is the only thing that
+# carries meaning at thirty rows a screen. Both classes already exist in
+# strata.css and app/web/views/changes.py already uses them with exactly these
+# meanings on the change screen, so the two screens agree.
+#
+# A dict rather than a conditional, so a third verdict added to
+# MATERIALITY_VERDICTS one day arrives here with NO badge rather than silently
+# inheriting the alarm.
+_MATERIALITY_BADGE = {
+    MATERIALITY_MATERIAL: "badge--material",
+    MATERIALITY_NOT_MATERIAL: "badge--routine",
+}
+
+
+def _materiality_word(shown: ShownMateriality) -> str:
+    """The one word this column prints, for each of the three facts.
+
+    A ShownMateriality carrying no verdict has already named its own reason, and
+    the two reasons mean opposite things: nothing looked, or something looked and
+    the product will not repeat what it found. This turns that into two different
+    words rather than one blank, which is the same argument app/state/models.py
+    makes for keeping the column nullable instead of defaulting it to a verdict.
+    """
+    if shown.verdict is not None:
+        return shown.verdict
+    return MATERIALITY_WITHHELD if shown.judged else MATERIALITY_UNASSESSED
 
 
 # ---------------------------------------------------------------------------
@@ -147,7 +207,21 @@ class ChangeRow:
     url: str
     change_type: str
     section: str
+    #: One of the three words above, or a verdict from MATERIALITY_VERDICTS. It
+    #: is a DISPLAY string that has already passed the gate -- never the raw
+    #: column. See _change_rows.
     materiality: str
+    #: Why there is no verdict, empty when there is one. The verifier's own
+    #: reason, so a refusal on this row and the same refusal on the change
+    #: screen cannot describe the same failure in different words.
+    materiality_reason: str
+    #: The badge class the verdict wears, empty for the two non-verdicts.
+    #: Carried on the row rather than decided in the template, because the
+    #: template got it wrong: while the column was permanently NULL its
+    #: else-branch was dead code, and it painted ANY verdict with the alarm
+    #: class -- so the first change ever judged HARMLESS would have shipped
+    #: wearing the colour that means the opposite.
+    materiality_badge: str
     status: str
     badge: str
     claims: int
@@ -348,22 +422,47 @@ def _change_rows(session, company_id: str, project_id: str) -> list[ChangeRow]:
     deliberate one app/web/views/proceedings.py documents: claims_for_change()
     is the audited chokepoint, and a faster unscoped query written here would be
     a second place tenancy could be got wrong.
+
+    MATERIALITY IS NOT READ OFF THE ROW. `change.materiality` holds a word that
+    means nothing without the citation stored beside it, and that citation is
+    only worth anything if the bytes are still where it says they are. So the
+    verdicts for the whole page come from shown_materiality_for_company(), which
+    re-reads the source for each one and hands back a refusal where the words
+    have moved. It is one batched call rather than one per row, it calls no
+    model and it writes nothing.
+
+    This is the second N+1 this function deliberately does not create, and the
+    first one -- claims_for_change above -- explains why the shape is worth it.
     """
     held_claim_ids = {
         row.claim_id
         for row in escalations_for_company(session, company_id, unresolved_only=True)
     }
 
+    attached = changes_for_project(session, company_id, project_id)
+    verdicts = shown_materiality_for_company(
+        session, company_id, [change.id for change in attached]
+    )
+
     rows: list[ChangeRow] = []
-    for change in changes_for_project(session, company_id, project_id):
+    for change in attached:
         claims = claims_for_change(session, company_id, change.id)
+        shown = verdicts[change.id]
         rows.append(
             ChangeRow(
                 change_id=change.id,
                 url=change_url(change.id),
                 change_type=change.change_type,
                 section=change.section or "not numbered",
-                materiality=change.materiality or MATERIALITY_UNASSESSED,
+                materiality=_materiality_word(shown),
+                materiality_reason=shown.reason,
+                # The alarm class is spelt here and only for the one verdict
+                # that means alarm. A refusal and an unjudged row get no badge
+                # at all rather than a quieter one, because a badge of any
+                # colour in this column reads as a finding.
+                materiality_badge=(
+                    _MATERIALITY_BADGE.get(shown.verdict, "") if shown.verdict else ""
+                ),
                 status=change.status,
                 badge=_CHANGE_BADGE.get(change.status, ""),
                 claims=len(claims),
@@ -843,7 +942,11 @@ def project_detail(
             "runs": runs,
             "knowledge": knowledge,
             "superseded_count": superseded,
+            # Both words reach the template, because the template now tells
+            # three states apart and comparing against one of them would make
+            # the other two share a branch.
             "materiality_unassessed": MATERIALITY_UNASSESSED,
+            "materiality_withheld": MATERIALITY_WITHHELD,
         }
     )
     return templates.TemplateResponse(request, "project_detail.html", context)
@@ -853,6 +956,7 @@ __all__ = [
     "JURISDICTION_REQUIRED",
     "LIST_URL",
     "MATERIALITY_UNASSESSED",
+    "MATERIALITY_WITHHELD",
     "NAME_REQUIRED",
     "NEW_URL",
     "NOT_FOUND",

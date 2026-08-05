@@ -32,16 +32,22 @@ from app.interpretation.propose import (
     ANNOUNCEMENT_UNREADABLE_RESPONSE,
     DROP_OUTSIDE_THE_CHANGE,
     DROP_UNASKED_VERSION,
+    MODEL_ID,
 )
 from app.seed import CLAIM_AMBIGUOUS, CLAIM_MISQUOTE, load
-from app.state.audit import event_count
+from app.state.audit import (
+    ACTION_MATERIALITY_SET,
+    ACTOR_MODEL,
+    event_count,
+    verify_chain,
+)
 from app.state.claims import (
     REASON_CODE_QUOTE_MISMATCH,
     change_for_company,
     verified_claims,
 )
 from app.state.db import init_db, session_scope
-from app.state.models import Claim
+from app.state.models import MATERIALITY_MATERIAL, AuditEvent, Claim
 from app.state.queries import versions_for_company
 from app.web import STATIC_DIR, STATIC_URL_PATH
 from app.verification.verifier import REASON_QUOTE_MISMATCH
@@ -513,8 +519,20 @@ def test_a_judgement_whose_citation_verifies_reaches_the_screen(client, monkeypa
     assert _html(WHY) in body
     # The quote shown is the source's own bytes at the cited offsets.
     assert _html(_after_span(PAIRED)[3]) in body
-    # And the reader is told what said it, and that nothing was stored.
-    assert _html(changes.JUDGED_BY) in body
+
+    # And the reader is told which model said it, when, and -- the part that
+    # matters -- that the citation was checked on this render rather than looked
+    # up. A page that printed a date and a verdict without that sentence would
+    # read as a cache, which is the one thing this product must not be.
+    with session_scope() as session:
+        change = change_for_company(session, COMPANY, PAIRED)
+        stamped = changes.JUDGED_BY.format(
+            model=change.materiality_model_id,
+            when=changes._stamp(change.materiality_judged_at),
+        )
+    assert _html(stamped) in body
+    assert MODEL_ID in body
+    assert "re-read against the stored source during this render" in _html(stamped)
 
 
 def test_not_material_is_a_verdict_and_says_so(client, monkeypatch):
@@ -616,12 +634,13 @@ def test_the_model_is_sent_one_change_and_not_the_filing(client, monkeypatch):
     assert PAIRED in prompt
 
 
-def test_judging_a_change_stores_nothing(client, monkeypatch):
-    """The verdict is computed on the render and not written.
+def test_judging_a_change_records_the_verdict_and_audits_it(client, monkeypatch):
+    """The judgement stops vanishing on the next render.
 
-    Nothing sets Change.materiality and nothing appends to the audit chain,
-    because app/state/audit.py has no action code for a materiality judgement.
-    That is a gap named in propose.py, not a fact hidden here.
+    It used to be computed on every load and thrown away, so nothing recorded
+    who judged, when, or on what evidence -- and with a key set, every load was
+    another model call that could disagree with the last one. ADR-78 conceded
+    that as cost one and cost two. The row and the audit event close both.
     """
     _install(monkeypatch, _reply(PAIRED))
 
@@ -631,5 +650,77 @@ def test_judging_a_change_stores_nothing(client, monkeypatch):
     assert client.get(f"/changes/{PAIRED}").status_code == 200
 
     with session_scope() as session:
-        assert event_count(session, COMPANY) == before
-        assert change_for_company(session, COMPANY, PAIRED).materiality is None
+        assert event_count(session, COMPANY) == before + 1
+        row = (
+            session.query(AuditEvent)
+            .filter(AuditEvent.company_id == COMPANY)
+            .order_by(AuditEvent.seq.desc())
+            .first()
+        )
+        assert row.action == ACTION_MATERIALITY_SET
+        assert row.actor_kind == ACTOR_MODEL
+        assert row.subject_id == PAIRED
+        assert verify_chain(session, COMPANY) is True
+
+        change = change_for_company(session, COMPANY, PAIRED)
+        assert change.materiality == MATERIALITY_MATERIAL
+        assert change.materiality_why == WHY
+        assert change.materiality_model_id == MODEL_ID
+        assert change.materiality_judged_at is not None
+
+
+def test_the_second_view_of_a_judged_change_calls_no_model(client, monkeypatch):
+    """The saving, measured on the screen rather than argued in a comment."""
+    transport = _install(monkeypatch, _reply(PAIRED))
+
+    client.get(f"/changes/{PAIRED}")
+    assert len(transport.calls) == 1
+
+    body = client.get(f"/changes/{PAIRED}").text
+    assert len(transport.calls) == 1
+    assert "materiality--judged" in body
+    assert _html(WHY) in body
+
+
+def test_a_stored_verdict_disappears_when_the_source_moves_under_it(
+    client, monkeypatch
+):
+    """ADR-003 ON THE STORED VERDICT, asserted against the bytes on the wire.
+
+    This is the paired demonstration the whole screen exists for, applied to the
+    model's own output rather than to a seeded claim. The verdict is earned,
+    shown and written. Then the cited characters change. On the very next render
+    -- no key installed, so no model is asked anything, and no job runs -- the
+    verdict is gone from the page and the verifier's reason stands in its place.
+
+    A product that answered from the column here would still be showing
+    "Material" over words that are no longer in the document.
+    """
+    _install(monkeypatch, _reply(PAIRED))
+    assert _html(WHY) in client.get(f"/changes/{PAIRED}").text
+
+    with session_scope() as session:
+        change = change_for_company(session, COMPANY, PAIRED)
+        for version in versions_for_company(session, COMPANY):
+            if version.id == change.materiality_citation_version_id:
+                version.source_text = version.source_text.replace(
+                    "20 megawatts (MW)", "50 megawatts (MW)"
+                )
+
+    # No transport at all on this render. The gate is the only thing running.
+    monkeypatch.setattr(changes, "transport_factory", lambda: None)
+    body = client.get(f"/changes/{PAIRED}").text
+
+    assert WHY not in body
+    assert _html(WHY) not in body
+    assert changes.BADGE_MATERIAL not in body
+    assert changes.BADGE_ROUTINE not in body
+    assert "materiality--withheld" in body
+    assert _html(REASON_QUOTE_MISMATCH) in body
+
+    # And the row is untouched. The refusal is a read, not a correction.
+    with session_scope() as session:
+        assert (
+            change_for_company(session, COMPANY, PAIRED).materiality
+            == MATERIALITY_MATERIAL
+        )

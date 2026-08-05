@@ -72,13 +72,16 @@ from app.web.views.changes import (
     LABEL_CONFIRMED,
     LABEL_PROPOSED,
     MISSED_NOTE,
-    UNCONFIRMED_ROUTING,
 )
 from app.state.routing import (
     ACTION_OBLIGATION_MAPPED,
+    ROUTE_MAPPING_UNCONFIRMED,
     ROUTE_NO_OBLIGATION,
+    ROUTE_OBLIGATION_UNOWNED,
     ROUTE_OK,
+    UNCONFIRMED_MAPPING,
     map_change_to_obligation,
+    obligation_for_company,
     obligations_for_change,
     resolve_change_owner,
 )
@@ -769,17 +772,24 @@ def test_an_owner_reached_through_an_unconfirmed_mapping_is_not_stated_as_one(
 ):
     """The page must not contradict itself, and it did.
 
-    resolve_change_owner does not read mapped_by_kind, so a mapping the pipeline
-    proposed walks to an owner exactly as a confirmed one does. Found on a real
-    page: a Kentucky vegetation-management budget table shares the words
-    "project" and "budget" with the cost-allocation duty, and the screen printed
-    "Sarah Lindqvist owns OBL-005" immediately above a block saying that same
-    mapping was proposed and not confirmed. Two adjacent sentences, and the
-    confident one on top.
+    Found on a real page: a Kentucky vegetation-management budget table shares
+    the words "project" and "budget" with the cost-allocation duty, and the
+    screen printed "Sarah Lindqvist owns OBL-005" immediately above a block
+    saying that same mapping was proposed and not confirmed. Two adjacent
+    sentences, and the confident one on top.
 
-    Both halves are asserted, because a caveat printed over a CONFIRMED mapping
-    would be the opposite error -- refusing to state accountability somebody has
-    actually taken.
+    WHAT THIS TEST ASSERTED BEFORE, AND WHY THAT WAS THE WEAKER CLAIM. It used
+    to require ROUTE_OK on the page beside the caveat -- the screen stated
+    accountability and then took it back in the next paragraph. That was the
+    best this file could do while the fix was the template's, and it left the
+    escalation queue and the approval route saying the confident half with no
+    paragraph after it. Routing refuses now, so the page shows the refusal and
+    the assertion is the stronger one: the name is NOT stated as accountability
+    anywhere on the page.
+
+    Both halves are still asserted, because withholding the owner over a
+    CONFIRMED mapping would be the opposite error -- refusing to state
+    accountability somebody has actually taken.
     """
     with session_scope() as session:
         map_change_to_obligation(
@@ -791,8 +801,13 @@ def test_an_owner_reached_through_an_unconfirmed_mapping_is_not_stated_as_one(
             mapped_by_kind=AUTHOR_SYSTEM,
         )
     page = signed_in.get(f"/changes/{FLAGSHIP}").text
-    assert ROUTE_OK in page, "the fixture no longer routes, so this proves nothing"
-    assert UNCONFIRMED_ROUTING in page
+    assert ROUTE_MAPPING_UNCONFIRMED in page
+    assert ROUTE_OK not in page
+    assert UNCONFIRMED_MAPPING in page
+    # Once, not twice. The refusal's own sentence carries these words, so a
+    # caveat printed under it as well would be the same warning on the card
+    # twice -- which reads as two problems and teaches a reader to skim both.
+    assert page.count(UNCONFIRMED_MAPPING) == 1
 
     signed_in.post(
         f"/changes/{FLAGSHIP}/obligations",
@@ -801,7 +816,42 @@ def test_an_owner_reached_through_an_unconfirmed_mapping_is_not_stated_as_one(
     )
     confirmed = signed_in.get(f"/changes/{FLAGSHIP}").text
     assert ROUTE_OK in confirmed
-    assert UNCONFIRMED_ROUTING not in confirmed
+    assert UNCONFIRMED_MAPPING not in confirmed
+
+
+def test_a_refusal_that_names_a_duty_still_says_nobody_confirmed_the_mapping(
+    signed_in,
+):
+    """The quieter half of the same lie, and it survived the first fix.
+
+    ROUTE_MAPPING_UNCONFIRMED only fires where a name would otherwise have been
+    handed out. Every other routing refusal still NAMES THE DUTIES in its own
+    sentence -- "the obligation this change touches has no owner (OBL-005)"
+    states as settled fact that this change touches OBL-005. If the only thing
+    behind that is a word overlap, the page is asserting a mapping nobody made;
+    it is simply doing it in duller words than "Sarah Lindqvist owns OBL-005".
+
+    So the caveat follows the obligation ids rather than the routed flag. The
+    old condition -- routed and unconfirmed -- can never be true again, and a
+    caveat left on it would have been dead code that read like a live guard.
+    """
+    with session_scope() as session:
+        obligation = obligation_for_company(session, COMPANY, FLAGSHIP_OBLIGATION)
+        assert obligation.owner_user_id is not None, "the fixture proves nothing"
+        obligation.owner_user_id = None
+        map_change_to_obligation(
+            session,
+            COMPANY,
+            change_id=FLAGSHIP,
+            obligation_id=FLAGSHIP_OBLIGATION,
+            mapped_by="system:seed",
+            mapped_by_kind=AUTHOR_SYSTEM,
+        )
+
+    page = signed_in.get(f"/changes/{FLAGSHIP}").text
+    assert ROUTE_OBLIGATION_UNOWNED in page
+    assert FLAGSHIP_OBLIGATION in page
+    assert UNCONFIRMED_MAPPING in page
 
 
 def test_confirming_from_the_screen_writes_the_mapping_and_comes_back(signed_in):

@@ -87,6 +87,7 @@ from sqlalchemy.orm import Session
 # the gate that runs. app/web/views/admin.py takes the same care for the same
 # reason.
 from app.auth import policy
+from app.interpretation.propose import shown_materiality_for_company
 from app.pipeline import ACTION_RECORD_CHANGE
 from app.state.audit import ACTOR_USER, record_event
 from app.state.claims import (
@@ -1090,11 +1091,36 @@ def change_detail(
     verified, withheld = verified_claims(session, company_id, change_id)
     escalations = _escalation_by_claim(session, company_id)
 
+    # THE VERDICT IS GATED HERE FOR THE SAME REASON THE CLAIMS ARE, one call
+    # above. It used to be read straight off `change.materiality`, which was
+    # harmless only while that column was permanently NULL. Once the change
+    # screen began storing verdicts, this tool handed the stored word to a model
+    # with no citation behind it and no re-read of the source -- so a verdict
+    # about text that had since moved came back as a plain fact, and the model
+    # restated it in prose. That is worse here than on any screen: there is no
+    # column beside the sentence for a reader to check, and fluent wrong
+    # sentences are the exact failure this product exists to stop.
+    shown = shown_materiality_for_company(session, company_id, [change_id])[change_id]
+
     note = ""
     if before_cut or after_cut:
         note += f" The quoted text is cut at {MAX_EXCERPT} characters."
-    if change.materiality is None:
+    # TWO ABSENCES, TWO SENTENCES, and never one null for both. The payload sends
+    # None in either case, so the note is the only thing that can tell the model
+    # which absence it is looking at. Left to a bare null it would write "this
+    # change is not material" for a change whose verdict was withheld -- the
+    # unjudged-reads-as-harmless collapse that app/state/models.py refuses in the
+    # column and app/interpretation/propose.py refuses on a missing API key.
+    if shown.verdict is None and not shown.judged:
         note += " Nothing has judged how material this is; the column is empty."
+    elif shown.verdict is None:
+        note += (
+            " A materiality verdict is on the record for this change and is NOT"
+            f" being shown: {shown.reason}. The filing has moved under the"
+            " judgement, so what it decided is not reported here. Do not describe"
+            " this change as material or as not material. Opening the change in"
+            " the product is what asks the question again."
+        )
     if withheld:
         held = "claim" if len(withheld) == 1 else "claims"
         note += (
@@ -1113,7 +1139,9 @@ def change_detail(
             "change_type": change.change_type,
             "section": change.section,
             "status": change.status,
-            "materiality": change.materiality,
+            # The gated verdict, or None. Never the raw column -- see the
+            # comment above the note, and the WHY at app/state/models.py.
+            "materiality": shown.verdict,
             "alignment_confidence": change.alignment_confidence,
             "from_version_id": change.from_version_id,
             "to_version_id": change.to_version_id,

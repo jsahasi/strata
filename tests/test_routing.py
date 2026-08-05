@@ -21,6 +21,8 @@ people. Each has its own reason code, because "could not route" collapses five
 different fixes into one sentence an analyst cannot act on.
 """
 
+import pathlib
+import re
 from datetime import datetime, timezone
 
 import pytest
@@ -34,23 +36,30 @@ from app.state.identity import (
     set_user_status,
 )
 from app.state.models import (
+    AUTHOR_ANALYST,
+    AUTHOR_SYSTEM,
+    INVITE_PENDING,
     ROLE_ADMIN,
     ROLE_ANALYST,
     ROLE_OBLIGATION_OWNER,
+    STATUS_INVITED,
     STATUS_SUSPENDED,
     Change,
     ChangeObligation,
     Claim,
     Escalation,
+    Invitation,
     Obligation,
 )
 from app.state.routing import (
     ACTION_ESCALATION_ROUTED,
     ACTION_ESCALATION_UNROUTED,
+    ROUTE_MAPPING_UNCONFIRMED,
     ROUTE_NO_ESCALATION,
     ROUTE_NO_OBLIGATION,
     ROUTE_OBLIGATION_UNOWNED,
     ROUTE_OK,
+    ROUTE_OK_CODES,
     ROUTE_OWNER_INACTIVE,
     ROUTE_OWNER_UNKNOWN,
     ROUTE_OWNERS_DISAGREE,
@@ -62,6 +71,7 @@ from app.state.routing import (
     ROUTE_USER_INACTIVE,
     ROUTE_USER_UNKNOWN,
     ROUTING_REASON_CODES,
+    UNCONFIRMED_MAPPING,
     ensure_obligation,
     escalations_for_user,
     map_change_to_obligation,
@@ -148,8 +158,38 @@ def _escalation(session, company_id, escalation_id, change_id):
     return escalation_id
 
 
+def _confirm(session, company_id, *, change_id, obligation_id):
+    """A mapping a PERSON stands behind. The only kind that routes.
+
+    Written here rather than left to the default because the default is the
+    pipeline's. map_change_to_obligation defaults mapped_by_kind to
+    AUTHOR_SYSTEM, which is right for the writer -- almost every row is the
+    proposer's -- and wrong for a fixture whose whole subject is a person being
+    told work is theirs. Every happy path below goes through this helper, so a
+    test that routes is a test where somebody confirmed, and the difference is
+    visible at the call site instead of hiding in a keyword default.
+    """
+    return map_change_to_obligation(
+        session,
+        company_id,
+        change_id=change_id,
+        obligation_id=obligation_id,
+        mapped_by="person:analyst@mep.example",
+        mapped_by_kind=AUTHOR_ANALYST,
+    )
+
+
 def _world(session):
-    """One company, one owner, one obligation, one change, one escalation."""
+    """One company, one owner, one obligation, one change, one escalation.
+
+    THE MAPPING HERE IS A PERSON'S, AND IT DID NOT USE TO BE. This fixture wrote
+    the default AUTHOR_SYSTEM row, so every happy-path test in this file was
+    asserting that a mapping the PIPELINE proposed from a word overlap routes an
+    escalation to a named human. They passed for the same reason the product was
+    wrong: resolve_change_owner did not read mapped_by_kind. A fixture that
+    cannot tell a candidate from a finding cannot prove the thing this file is
+    about.
+    """
     ensure_system_roles(session)
     owner = _person(session, COMPANY, "priya")
     ensure_obligation(
@@ -161,13 +201,7 @@ def _world(session):
         actor=ACTOR,
     )
     change = _change(session, COMPANY, "CHG-1")
-    map_change_to_obligation(
-        session,
-        COMPANY,
-        change_id=change,
-        obligation_id="OBL-001",
-        mapped_by=ACTOR,
-    )
+    _confirm(session, COMPANY, change_id=change, obligation_id="OBL-001")
     escalation = _escalation(session, COMPANY, "ESC-1", change)
     return owner, change, escalation
 
@@ -395,7 +429,7 @@ def test_an_escalation_routes_to_the_owner_of_the_obligation_the_change_touches(
     init_db()
     with session_scope() as session:
         owner, _change_id, escalation = _world(session)
-        resolution = resolve_escalation_owner(session, COMPANY, escalation_id=escalation)
+        resolution = resolve_escalation_owner(session, COMPANY, escalation_id=escalation, now=T0)
         assert resolution.reason_code == ROUTE_OK
         assert resolution.routed
         assert resolution.user_id == owner.id
@@ -447,11 +481,8 @@ def test_two_obligations_naming_one_person_still_route():
             owner_user_id=owner.id,
             actor=ACTOR,
         )
-        map_change_to_obligation(
-            session, COMPANY, change_id=change, obligation_id="OBL-008",
-            mapped_by=ACTOR,
-        )
-        resolution = resolve_escalation_owner(session, COMPANY, escalation_id=escalation)
+        _confirm(session, COMPANY, change_id=change, obligation_id="OBL-008")
+        resolution = resolve_escalation_owner(session, COMPANY, escalation_id=escalation, now=T0)
         assert resolution.reason_code == ROUTE_OK
         assert resolution.user_id == owner.id
         assert resolution.obligation_ids == ("OBL-001", "OBL-008")
@@ -579,7 +610,14 @@ def test_a_suspended_owner_stays_in_the_queue():
 
 
 def test_two_obligations_naming_two_people_stay_in_the_queue():
-    """The one a naive implementation gets wrong: it picks the first and moves on."""
+    """The one a naive implementation gets wrong: it picks the first and moves on.
+
+    BOTH MAPPINGS ARE A PERSON'S, and that is now load-bearing rather than
+    incidental. Two duties a person confirmed, with two owners, is a genuine
+    disagreement nobody but a human can settle. A duty somebody confirmed beside
+    a duty the pipeline guessed is NOT one, and the test for that case is
+    test_a_confirmed_mapping_beside_a_proposed_one_routes_on_the_confirmed_one.
+    """
     init_db()
     with session_scope() as session:
         owner, change, escalation = _world(session)
@@ -592,10 +630,7 @@ def test_two_obligations_naming_two_people_stay_in_the_queue():
             owner_user_id=other.id,
             actor=ACTOR,
         )
-        map_change_to_obligation(
-            session, COMPANY, change_id=change, obligation_id="OBL-008",
-            mapped_by=ACTOR,
-        )
+        _confirm(session, COMPANY, change_id=change, obligation_id="OBL-008")
         resolution = _refusal_leaves_it_in_the_queue(
             session, escalation, ROUTE_OWNERS_DISAGREE
         )
@@ -603,11 +638,372 @@ def test_two_obligations_naming_two_people_stay_in_the_queue():
         assert set(resolution.candidate_user_ids) == {owner.id, other.id}
 
 
+# ---------------------------------------------------------------------------
+# A candidate is not a finding, in the place where it costs the most
+#
+# resolve_change_owner did not read ChangeObligation.mapped_by_kind, so a
+# mapping the PIPELINE proposed from a word overlap routed an escalation to a
+# named human exactly as a mapping a PERSON confirmed did. Somebody was told
+# work was theirs on the strength of two words appearing in both documents.
+#
+# It was found on a real page: a Kentucky vegetation-management budget table
+# shares "project" and "budget" with MEP's cost-allocation duty OBL-005, and the
+# change screen printed "Sarah Lindqvist owns OBL-005" over it. The screen grew
+# a caveat; the escalation queue and the approval route did not, because they do
+# not go through that screen. These tests are the queue's half.
+#
+# THE THREE STATES ARE TESTED APART, because the interesting one is the third.
+# Confirmed routes. Proposed-only refuses and still names who it would have
+# given it to -- a refusal that will not say who it was about is a refusal
+# nobody can clear. A mix routes on the confirmed one, and the proposed one does
+# not get a vote: a guess sitting beside a person's judgement must not be able
+# to overrule it by arithmetic, which is what a second owner in the disagree
+# check would do.
+# ---------------------------------------------------------------------------
+
+
+def _proposed_world(session, *, kind=AUTHOR_SYSTEM):
+    """The Kentucky case: an owned duty, reached only by a word overlap.
+
+    The kind is a PARAMETER rather than two near-identical fixtures, so the
+    confirmed control below differs from the refusal case in exactly one value
+    and nothing else. A control that differed in two things would not be a
+    control.
+
+    It cannot be written by mapping the pair twice, and finding that out was
+    worth the fixture. map_change_to_obligation is idempotent ON THE PAIR: given
+    a stored proposed row it returns it and writes nothing, so a test that
+    proposed and then "confirmed" the same pair through this function was still
+    testing a proposed row. Promoting a candidate to a person's finding is
+    app/state/mapping.py::confirm_obligation_for_change's job and only its job.
+    """
+    ensure_system_roles(session)
+    owner = _person(session, COMPANY, "sarah")
+    ensure_obligation(
+        session,
+        COMPANY,
+        obligation_id="OBL-005",
+        title="Allocate network upgrade costs between the parties.",
+        owner_user_id=owner.id,
+        actor=ACTOR,
+    )
+    change = _change(session, COMPANY, "CHG-VEG")
+    map_change_to_obligation(
+        session,
+        COMPANY,
+        change_id=change,
+        obligation_id="OBL-005",
+        mapped_by="system:proposer" if kind == AUTHOR_SYSTEM else "person:sarah",
+        mapped_by_kind=kind,
+    )
+    escalation = _escalation(session, COMPANY, "ESC-VEG", change)
+    return owner, change, escalation
+
+
+def test_a_confirmed_mapping_routes_to_the_owner():
+    """The control. Without it the refusal below proves only that nothing works."""
+    init_db()
+    with session_scope() as session:
+        owner, _change, escalation = _proposed_world(session, kind=AUTHOR_ANALYST)
+
+        resolution = resolve_escalation_owner(session, COMPANY, escalation_id=escalation, now=T0)
+        assert resolution.reason_code == ROUTE_OK
+        assert resolution.routed
+        assert resolution.user_id == owner.id
+
+
+def test_a_mapping_only_the_pipeline_proposed_refuses_and_names_who_it_would_have():
+    """Work resting on an unconfirmed mapping is work nobody has agreed is theirs.
+
+    The refusal carries the owner in candidate_user_ids rather than in user_id,
+    which is the same shape ROUTE_OWNERS_DISAGREE uses and is not a detail.
+    Resolution's invariant is that user_id is set if and only if the code is one
+    of ROUTE_OK_CODES, so a caller that reads user_id can never be handed a name
+    the product is refusing to stand behind -- while an analyst asked to fix
+    this still gets the name, and knows which one confirming would route to.
+    """
+    init_db()
+    with session_scope() as session:
+        owner, _change, escalation = _proposed_world(session)
+
+        resolution = resolve_escalation_owner(session, COMPANY, escalation_id=escalation, now=T0)
+        assert resolution.reason_code == ROUTE_MAPPING_UNCONFIRMED
+        assert resolution.routed is False
+        assert resolution.user_id is None
+        assert resolution.candidate_user_ids == (owner.id,)
+        assert resolution.obligation_ids == ("OBL-005",)
+        # The person is named and the duty is named, so the fix is one click.
+        assert owner.display_name in resolution.reason_text
+        assert "OBL-005" in resolution.reason_text
+        # And the sentence is the library's own, not a second wording of it.
+        assert UNCONFIRMED_MAPPING in resolution.reason_text
+
+
+def test_an_unconfirmed_mapping_leaves_the_item_in_the_shared_queue():
+    """Not on a desk, not silently assigned, and the reason is in the chain."""
+    init_db()
+    with session_scope() as session:
+        _proposed_world(session)
+        _refusal_leaves_it_in_the_queue(session, "ESC-VEG", ROUTE_MAPPING_UNCONFIRMED)
+        assert [item.escalation.id for item in shared_queue(session, COMPANY)] == [
+            "ESC-VEG"
+        ]
+
+
+def test_a_confirmed_mapping_beside_a_proposed_one_routes_on_the_confirmed_one():
+    """A guess does not get a vote next to a judgement.
+
+    Two owners are in play and they are different people, so the naive reading
+    of this is ROUTE_OWNERS_DISAGREE -- which would mean the proposer could stop
+    a change routing at all by guessing a second duty. The confirmed mapping is
+    the only one considered, so the arithmetic never sees the candidate.
+    """
+    init_db()
+    with session_scope() as session:
+        owner, change, escalation = _proposed_world(session)
+        other = _person(session, COMPANY, "david")
+        ensure_obligation(
+            session,
+            COMPANY,
+            obligation_id="OBL-002",
+            title="File the annual reliability report.",
+            owner_user_id=other.id,
+            actor=ACTOR,
+        )
+        _confirm(session, COMPANY, change_id=change, obligation_id="OBL-002")
+
+        resolution = resolve_escalation_owner(session, COMPANY, escalation_id=escalation, now=T0)
+        assert resolution.reason_code == ROUTE_OK
+        assert resolution.user_id == other.id
+        # And the duty it reports is the confirmed one alone. A page that listed
+        # OBL-005 here would be stating a mapping nobody made.
+        assert resolution.obligation_ids == ("OBL-002",)
+        assert owner.id != other.id
+
+
+def test_an_unconfirmed_mapping_does_not_hide_a_duty_with_no_owner():
+    """The precedence decision, pinned so nobody has to guess it later.
+
+    The new code fires only where a NAME WOULD OTHERWISE HAVE BEEN HANDED OUT.
+    It exists to stop an assignment, not to add a second complaint to a refusal
+    that already stopped one. A proposed mapping onto an unowned duty still
+    answers ROUTE_OBLIGATION_UNOWNED, because "give this duty an owner" is a
+    true and actionable sentence whoever wrote the mapping -- and because
+    app/state/invites.py branches on exactly that code to decide an invitation
+    is the fix. That dependency is now deliberate rather than accidental.
+    """
+    init_db()
+    with session_scope() as session:
+        ensure_system_roles(session)
+        _person(session, COMPANY, "priya")
+        ensure_obligation(
+            session, COMPANY, obligation_id="OBL-009", title="Unowned.", actor=ACTOR
+        )
+        change = _change(session, COMPANY, "CHG-2")
+        map_change_to_obligation(
+            session,
+            COMPANY,
+            change_id=change,
+            obligation_id="OBL-009",
+            mapped_by="system:proposer",
+            mapped_by_kind=AUTHOR_SYSTEM,
+        )
+        escalation = _escalation(session, COMPANY, "ESC-2", change)
+        resolution = resolve_escalation_owner(session, COMPANY, escalation_id=escalation, now=T0)
+        assert resolution.reason_code == ROUTE_OBLIGATION_UNOWNED
+
+
+def test_an_invited_owner_behind_an_unconfirmed_mapping_is_not_handed_the_item():
+    """Pending acceptance is an assignment too, and it converts like the rest.
+
+    ROUTE_PENDING_ACCEPTANCE means the item HAS left the shared queue and is on
+    a named desk; that is the whole reason it is in ROUTE_OK_CODES. So an
+    unconfirmed mapping must stop it for the same reason it stops ROUTE_OK.
+    Exempting it would be the convenient answer rather than the true one: the
+    person invited on the strength of a word overlap is the sharpest version of
+    the failure, not an exception to it.
+    """
+    init_db()
+    with session_scope() as session:
+        owner, _change, escalation = _proposed_world(session)
+        owner.status = STATUS_INVITED
+        session.add(
+            Invitation(
+                id="INV-1",
+                company_id=COMPANY,
+                email=owner.email,
+                invited_by_user_id=owner.id,
+                invited_at=T0,
+                token_hash="0" * 64,
+                expires_at=datetime(2026, 9, 1, tzinfo=timezone.utc),
+                status=INVITE_PENDING,
+                kind="handoff",
+                subject_type="escalation",
+                subject_id=escalation,
+                invited_user_id=owner.id,
+            )
+        )
+        session.flush()
+
+        resolution = resolve_escalation_owner(session, COMPANY, escalation_id=escalation, now=T0)
+        assert resolution.reason_code == ROUTE_MAPPING_UNCONFIRMED
+        assert resolution.routed is False
+        assert resolution.pending_acceptance is False
+        assert resolution.candidate_user_ids == (owner.id,)
+
+
+def test_the_unconfirmed_code_is_a_refusal_and_not_an_outcome():
+    """It must never join the codes that mean an item is on somebody's desk.
+
+    ROUTE_OK_CODES is what Resolution.routed reads, and every consumer in the
+    product -- the workflow step opener, the invitation gap check, the queue --
+    branches on .routed. One careless addition to that tuple would put the bug
+    back everywhere at once, silently, with no test naming it.
+    """
+    assert ROUTE_MAPPING_UNCONFIRMED in ROUTING_REASON_CODES
+    assert ROUTE_MAPPING_UNCONFIRMED not in ROUTE_OK_CODES
+    assert len(set(ROUTING_REASON_CODES)) == len(ROUTING_REASON_CODES)
+
+
+# ---------------------------------------------------------------------------
+# The vocabulary is described in four places, and adding a code went stale in
+# three of them in a single commit
+#
+# THE FAILURE THAT TAUGHT THIS. ROUTE_MAPPING_UNCONFIRMED was the sixteenth
+# refusal code. Four files describe this vocabulary in prose -- the library, the
+# module that proposes the mappings it reads, the view that renders it and the
+# template the view renders. The commit that added the code updated one of the
+# four counts, left "Fifteen refusal codes" standing in the template, wrote "the
+# other fourteen" into the library's own docstring, and left a whole paragraph in
+# app/state/mapping.py describing the limit as still open and naming a symbol
+# the same commit deleted. An adversarial reviewer found all four; no test did.
+#
+# A hand-written count in prose is a claim nobody checks. It is right on the day
+# it is typed and wrong on the day the next code lands, and the reader who
+# trusts it is the reader who has not read the tuple -- which is every reader,
+# because that is what the sentence is for.
+#
+# So there are two guards, and they do different work. The first bans the
+# hand-count outright: say what the codes DO, and let the tuple say how many
+# there are. The second pins the size of the tuple, so a seventeenth code cannot
+# arrive quietly -- it fails, names the four files, and the person adding the
+# code rereads them. Neither guard can tell whether a sentence is true. Together
+# they make a change to the vocabulary impossible to make in silence, which is
+# the most a test can do about prose.
+# ---------------------------------------------------------------------------
+
+#: Every file that describes routing's reason codes in prose rather than using
+#: them. Listed here rather than discovered by grep because the point is the
+#: CHECKLIST: a person adding a code needs to be told where to go, and a
+#: discovered list would silently shrink the day one of these was renamed. The
+#: guard below asserts each path still exists for exactly that reason.
+ROUTING_VOCABULARY_PROSE = (
+    "app/state/routing.py",
+    "app/state/mapping.py",
+    "app/web/views/changes.py",
+    "app/web/templates/change.html",
+    # The market document counted them too, and a stale number there is read by
+    # the panel rather than by a maintainer. It is the surface with the fewest
+    # readers who could spot the error and the most who would act on it.
+    "docs/mrd.html",
+)
+
+#: Cardinals and ordinals, "one" deliberately absent. "One code per fix" is a
+#: rule and not a count, and banning it would push the writer towards a vaguer
+#: sentence to satisfy a test -- which is worse prose bought with no truth.
+_COUNT_WORDS = (
+    "two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|"
+    "fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty"
+)
+
+#: A number word standing directly in front of "refusal code" or "routing code",
+#: in either the cardinal or the ordinal form. Deliberately narrow. A looser
+#: pattern flagged "one line of code", "the other two" and "the other six
+#: duties" -- all true, none of them counting anything -- and a guard that cries
+#: about correct prose gets suppressed within a week.
+_HAND_COUNTED = re.compile(
+    rf"\b({_COUNT_WORDS})(?:th|teenth|tieth)?\s+(?:refusal|routing)\s+codes?\b",
+    re.IGNORECASE,
+)
+
+
+def test_no_prose_hand_counts_the_routing_refusal_codes():
+    """Say what the codes do. The tuple says how many there are."""
+    root = pathlib.Path(__file__).resolve().parents[1]
+    found = []
+    for name in ROUTING_VOCABULARY_PROSE:
+        path = root / name
+        for number, line in enumerate(path.read_text().splitlines(), start=1):
+            if _HAND_COUNTED.search(line):
+                found.append(f"{name}:{number}: {line.strip()}")
+    assert not found, (
+        "a refusal-code total written out by hand goes stale the day the next "
+        "code lands, and three of these did:\n" + "\n".join(found)
+    )
+
+
+def test_a_new_reason_code_cannot_arrive_without_the_prose_being_reread():
+    """The tripwire, and the checklist it hands you when it goes off.
+
+    If this test failed for you, you added or removed a routing reason code.
+    That is allowed and this test is not asking you not to. It is asking you to
+    open every file in ROUTING_VOCABULARY_PROSE and read what it says about this
+    vocabulary before you change the number below, because last time three of
+    them were left describing a product that no longer existed.
+
+    The refusal count is derived rather than typed twice, so this test cannot
+    itself drift out of step with ROUTE_OK_CODES.
+    """
+    root = pathlib.Path(__file__).resolve().parents[1]
+    missing = [name for name in ROUTING_VOCABULARY_PROSE if not (root / name).exists()]
+    assert not missing, (
+        "a file that describes the reason codes was moved or renamed and the "
+        f"checklist was not updated: {missing}"
+    )
+
+    assert len(ROUTING_REASON_CODES) == 18
+    assert set(ROUTE_OK_CODES) <= set(ROUTING_REASON_CODES)
+    refusals = [c for c in ROUTING_REASON_CODES if c not in ROUTE_OK_CODES]
+    assert len(refusals) == 16
+
+
+def test_the_caveat_has_one_wording_and_nothing_holds_a_second_copy():
+    """Two names for one sentence is two things to keep true.
+
+    THE FAILURE. The words lived in app/web/views/changes.py as
+    UNCONFIRMED_ROUTING, printed under a routed owner, because the fix was the
+    screen's. When routing learned to refuse, the sentence moved to the library
+    -- and the danger at that moment was leaving a copy behind, or an alias
+    pointing at the new one. Either would give the product two places to edit
+    and one of them would go stale on the screen a regulator reads.
+
+    So the literal is searched for across the whole of app/, not just the two
+    modules that use it. A copy pasted into a template is exactly the failure
+    this guards, and a template would never show up in an import graph.
+    """
+    root = pathlib.Path(__file__).resolve().parents[1] / "app"
+    # A distinctive fragment rather than the whole sentence, so a copy that
+    # rewrapped the lines is still caught. Line wrapping is how a duplicate
+    # usually arrives: somebody pastes it and their editor reflows it.
+    fragment = "read the owner as a suggestion rather than as"
+    holders = [
+        str(path.relative_to(root))
+        for path in sorted(root.rglob("*"))
+        if path.is_file()
+        and path.suffix in {".py", ".html"}
+        and fragment in path.read_text(errors="ignore")
+    ]
+    assert holders == ["state/routing.py"], (
+        "the caveat is defined once and imported everywhere else; a second copy "
+        f"is a second thing to keep true: {holders}"
+    )
+
+
 def test_an_escalation_from_another_company_resolves_to_nothing():
     init_db()
     with session_scope() as session:
         _world(session)
-        resolution = resolve_escalation_owner(session, RIVAL, escalation_id="ESC-1")
+        resolution = resolve_escalation_owner(session, RIVAL, escalation_id="ESC-1", now=T0)
         assert resolution.reason_code == ROUTE_NO_ESCALATION
         assert resolution.user_id is None
 
@@ -693,7 +1089,7 @@ def test_the_unassigned_rule_refuses_rather_than_picking_somebody():
     init_db()
     with session_scope() as session:
         _world(session)
-        resolution = resolve_assignee(session, COMPANY, rule="unassigned")
+        resolution = resolve_assignee(session, COMPANY, rule="unassigned", now=T0)
         assert resolution.reason_code == ROUTE_RULE_UNASSIGNED
         assert resolution.user_id is None
 
@@ -703,7 +1099,7 @@ def test_a_rule_outside_the_vocabulary_refuses_rather_than_guessing():
     with session_scope() as session:
         _world(session)
         for rule in ("owner", "team:regulatory", "", "role"):
-            resolution = resolve_assignee(session, COMPANY, rule=rule)
+            resolution = resolve_assignee(session, COMPANY, rule=rule, now=T0)
             assert resolution.reason_code == ROUTE_RULE_UNKNOWN, rule
 
 
@@ -711,9 +1107,9 @@ def test_a_user_rule_resolves_to_that_account_and_only_within_this_company():
     init_db()
     with session_scope() as session:
         owner, _change_id, _escalation_id = _world(session)
-        good = resolve_assignee(session, COMPANY, rule=f"user:{owner.id}")
+        good = resolve_assignee(session, COMPANY, rule=f"user:{owner.id}", now=T0)
         assert good.user_id == owner.id
-        assert resolve_assignee(session, RIVAL, rule=f"user:{owner.id}").reason_code == (
+        assert resolve_assignee(session, RIVAL, rule=f"user:{owner.id}", now=T0).reason_code == (
             ROUTE_USER_UNKNOWN
         )
 
@@ -723,7 +1119,7 @@ def test_a_user_rule_naming_a_suspended_account_refuses():
     with session_scope() as session:
         owner, _change_id, _escalation_id = _world(session)
         set_user_status(session, COMPANY, owner.id, STATUS_SUSPENDED, ACTOR)
-        resolution = resolve_assignee(session, COMPANY, rule=f"user:{owner.id}")
+        resolution = resolve_assignee(session, COMPANY, rule=f"user:{owner.id}", now=T0)
         assert resolution.reason_code == ROUTE_USER_INACTIVE
         assert resolution.user_id is None
 
@@ -733,7 +1129,7 @@ def test_a_role_rule_resolves_when_exactly_one_person_holds_the_role():
     with session_scope() as session:
         ensure_system_roles(session)
         admin = _person(session, COMPANY, "sarah", role=ROLE_ADMIN)
-        resolution = resolve_assignee(session, COMPANY, rule=f"role:{ROLE_ADMIN}")
+        resolution = resolve_assignee(session, COMPANY, rule=f"role:{ROLE_ADMIN}", now=T0)
         assert resolution.user_id == admin.id
 
 
@@ -742,7 +1138,7 @@ def test_a_role_nobody_holds_refuses_rather_than_falling_to_an_admin():
     with session_scope() as session:
         ensure_system_roles(session)
         _person(session, COMPANY, "sarah", role=ROLE_ADMIN)
-        resolution = resolve_assignee(session, COMPANY, rule=f"role:{ROLE_ANALYST}")
+        resolution = resolve_assignee(session, COMPANY, rule=f"role:{ROLE_ANALYST}", now=T0)
         assert resolution.reason_code == ROUTE_ROLE_EMPTY
         assert resolution.user_id is None
 
@@ -754,7 +1150,7 @@ def test_a_role_two_people_hold_refuses_rather_than_picking_one():
         first = _person(session, COMPANY, "priya")
         second = _person(session, COMPANY, "david")
         resolution = resolve_assignee(
-            session, COMPANY, rule=f"role:{ROLE_OBLIGATION_OWNER}"
+            session, COMPANY, rule=f"role:{ROLE_OBLIGATION_OWNER}", now=T0
         )
         assert resolution.reason_code == ROUTE_ROLE_AMBIGUOUS
         assert resolution.user_id is None
@@ -769,7 +1165,7 @@ def test_suspending_one_of_two_holders_makes_the_role_resolve_again():
         second = _person(session, COMPANY, "david")
         set_user_status(session, COMPANY, second.id, STATUS_SUSPENDED, ACTOR)
         resolution = resolve_assignee(
-            session, COMPANY, rule=f"role:{ROLE_OBLIGATION_OWNER}"
+            session, COMPANY, rule=f"role:{ROLE_OBLIGATION_OWNER}", now=T0
         )
         assert resolution.user_id == first.id
 
@@ -778,7 +1174,7 @@ def test_a_role_this_company_does_not_have_refuses():
     init_db()
     with session_scope() as session:
         _world(session)
-        resolution = resolve_assignee(session, COMPANY, rule="role:auditor")
+        resolution = resolve_assignee(session, COMPANY, rule="role:auditor", now=T0)
         assert resolution.reason_code == ROUTE_ROLE_UNKNOWN
 
 
@@ -787,11 +1183,11 @@ def test_the_obligation_owner_rule_needs_an_escalation_to_resolve_against():
     with session_scope() as session:
         owner, _change_id, escalation = _world(session)
         with_escalation = resolve_assignee(
-            session, COMPANY, rule="obligation_owner", escalation_id=escalation
+            session, COMPANY, rule="obligation_owner", escalation_id=escalation, now=T0
         )
         assert with_escalation.user_id == owner.id
 
-        without = resolve_assignee(session, COMPANY, rule="obligation_owner")
+        without = resolve_assignee(session, COMPANY, rule="obligation_owner", now=T0)
         assert without.reason_code == ROUTE_NO_ESCALATION
         assert without.user_id is None
 
@@ -803,12 +1199,12 @@ def test_every_reason_code_a_resolution_can_carry_is_in_the_vocabulary():
         owner, change, escalation = _world(session)
         seen = {
             resolve_escalation_owner(
-                session, COMPANY, escalation_id=escalation
+                session, COMPANY, escalation_id=escalation, now=T0
             ).reason_code,
-            resolve_assignee(session, COMPANY, rule="unassigned").reason_code,
-            resolve_assignee(session, COMPANY, rule="nonsense").reason_code,
-            resolve_assignee(session, COMPANY, rule="role:auditor").reason_code,
-            resolve_assignee(session, COMPANY, rule="user:nobody").reason_code,
+            resolve_assignee(session, COMPANY, rule="unassigned", now=T0).reason_code,
+            resolve_assignee(session, COMPANY, rule="nonsense", now=T0).reason_code,
+            resolve_assignee(session, COMPANY, rule="role:auditor", now=T0).reason_code,
+            resolve_assignee(session, COMPANY, rule="user:nobody", now=T0).reason_code,
         }
         assert seen <= set(ROUTING_REASON_CODES)
         assert len(set(ROUTING_REASON_CODES)) == len(ROUTING_REASON_CODES)
@@ -853,7 +1249,7 @@ def test_an_obligation_and_its_map_are_never_read_across_the_tenant_line():
         ours = obligations_for_change(session, COMPANY, "CHG-1")
         assert [o.id for o in ours] == ["OBL-001"]
 
-        resolution = resolve_escalation_owner(session, COMPANY, escalation_id="ESC-1")
+        resolution = resolve_escalation_owner(session, COMPANY, escalation_id="ESC-1", now=T0)
         assert resolution.user_id != theirs.id
         assert resolution.reason_code == ROUTE_OK
 

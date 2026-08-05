@@ -151,6 +151,20 @@ def _stamp_every_version(url: str | None, **rest) -> None:
 
 
 def _mint(user_id: str, claim_id: str):
+    """Real link, real clock, and that is the decision -- see tests/test_sharing.py.
+
+    Listed in ALLOWED in tests/test_clock_pinned.py. Every link this mints is
+    opened through `share_client.get(minted.url)`, and the share route reads the
+    real now with no way for a test to reach in and say otherwise. Pinning the
+    mint alone would stamp a row 2026-08-04 and hand it to a route living on
+    today's date: fine for a week, then a failure on somebody else's clean clone
+    that nothing in the output explains. That is the exact mechanism of the
+    invitation defect this rule came from, so pinning here would plant it rather
+    than pull it.
+
+    Both ends stay on the real clock, where they move together and the seven-day
+    life never runs out between two lines of one test.
+    """
     with session_scope() as session:
         return sharing.create_share_link(
             session,

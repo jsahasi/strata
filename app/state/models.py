@@ -245,6 +245,25 @@ class Proceeding(Base):
     subject: Mapped[str] = mapped_column(String(512))
 
 
+# The two verdicts a materiality judgement can land on, and the only two values
+# Change.materiality may hold.
+#
+# WORDS RATHER THAN A BOOLEAN COLUMN, and the reason is the third state. NULL
+# means nothing has judged this change, and that is not "false" -- an unjudged
+# change and a change judged harmless are opposite facts, and a nullable boolean
+# would let one read as the other everywhere a template prints it. The project
+# list already prints this column beside "not assessed"; these two words sit
+# next to that sentence and read as findings, which is what they are.
+#
+# LOWER CASE, because this is the record and not the screen.
+# app/web/views/changes.py owns the capitalised words a person reads, and a
+# display string written into a column is a decision about the page that
+# outlives the page.
+MATERIALITY_MATERIAL = "material"
+MATERIALITY_NOT_MATERIAL = "not material"
+MATERIALITY_VERDICTS = (MATERIALITY_MATERIAL, MATERIALITY_NOT_MATERIAL)
+
+
 class Change(Base):
     """One typed difference between two versions of a proceeding.
 
@@ -279,9 +298,79 @@ class Change(Base):
     # row. The number on a claim is both, so it gets the integer treatment.
     alignment_confidence: Mapped[float] = mapped_column(Float)
 
-    # The model would fill this in. No model call exists yet, so it stays NULL
-    # rather than being defaulted to a value that reads like a judgement.
+    # One of MATERIALITY_VERDICTS, or NULL where nothing has judged this change.
+    # NULL is a real state and the screens print it as one: an unjudged change
+    # and a change judged harmless are opposite facts, so a default here would
+    # be the fallback that does not announce itself.
     materiality: Mapped[str | None] = mapped_column(String(32), nullable=True)
+
+    # WHAT THE VERDICT RESTS ON, and it is seven columns rather than one because
+    # of what the one column could not hold.
+    #
+    # The judgement used to be computed on every render of the change screen and
+    # thrown away. With a key set that made every page load a model call -- it
+    # cost money, it took seconds, and two loads could disagree about the same
+    # change -- and nothing recorded who judged, when, or on what evidence. The
+    # brief asks for a living, auditable project state, and a judgement that
+    # vanishes on the next render is neither.
+    #
+    # The obvious fix is to write the verdict word into `materiality` above and
+    # stop. That column is 32 characters. It can hold "material" and it cannot
+    # hold a citation, and a verdict that cannot show its source is precisely
+    # the assertion this product refuses -- app/web/templates/change.html says
+    # so about this very column. So the citation is stored with the verdict, and
+    # app/interpretation/propose.py re-reads the source at these offsets before
+    # it will show the word above.
+    #
+    # DO NOT READ `materiality` DIRECTLY. Not on a screen, not in a tool, not in
+    # a report. The word in that column is only as true as the citation in these
+    # seven, and the citation is only true if the bytes are still there -- so the
+    # word is meaningless without the re-read, and the re-read has exactly two
+    # homes: materiality_for_company() to earn a verdict, and
+    # shown_materiality_for_company() to show one.
+    #
+    # This is written as an instruction because the first version of this change
+    # got it wrong. It gated the change screen and left the project list and the
+    # chat tool reading the attribute raw, which had been harmless only while
+    # the column was permanently NULL. The moment anything wrote it, those two
+    # printed verdicts about text that had since moved.
+    # tests/test_propose.py::test_no_surface_reads_the_materiality_column_raw
+    # now fails on any module under app/ that touches the attribute at all.
+    #
+    # WRITTEN TOGETHER OR NOT AT ALL. All seven are set in one place, so a row
+    # carrying a moment and no citation did not come from this product.
+    # _stored_verdict() refuses such a row by name rather than reading the word
+    # out of it.
+    #
+    # NULLABLE, EVERY ONE, WHICH IS WHAT LETS THEM SHIP. app/state/migrate.py is
+    # additive only and refuses a NOT NULL column with no default -- correctly,
+    # because the honest value for a change judged before these columns existed
+    # is "unknown", and any default would write a fact into every historical row.
+    materiality_why: Mapped[str | None] = mapped_column(Text, nullable=True)
+    # NO ForeignKey, unlike Claim.citation_version_id, and the difference is the
+    # migration rather than the meaning. migrate.py adds a missing column with
+    # ALTER TABLE ADD COLUMN and renders the type alone, so a REFERENCES clause
+    # here would exist on a fresh install and not on a migrated one -- two
+    # schemas wearing one model. app/state/audit.py's reverts_event_id is plain
+    # INTEGER for the same reason, and says so.
+    materiality_citation_version_id: Mapped[str | None] = mapped_column(
+        String(64), nullable=True
+    )
+    materiality_citation_start: Mapped[int | None] = mapped_column(
+        Integer, nullable=True
+    )
+    materiality_citation_end: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    materiality_citation_quote: Mapped[str | None] = mapped_column(Text, nullable=True)
+    # Which model said it. Pinned in app/interpretation/propose.py rather than
+    # read from the environment, and copied onto the row at write time for the
+    # reason `status` below is copied: a deployment that swapped the model would
+    # otherwise make every earlier judgement unreproducible and unattributable.
+    materiality_model_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    # The moment, aware and in UTC. The same moment goes on the audit row, so
+    # the log and the record cannot disagree about when this was known.
+    materiality_judged_at: Mapped[datetime | None] = mapped_column(
+        UtcDateTime, nullable=True
+    )
 
     # DRAFT or FINAL, copied from the to_version AT WRITE TIME per ADR-005.
     # Copied rather than joined so the status a decision was taken under is the

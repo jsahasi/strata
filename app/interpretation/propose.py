@@ -91,29 +91,87 @@ best-practices.html section 26, and the one degradation that would make the whol
 submission dishonest, because an unjudged change and a change judged harmless
 look identical on screen and mean opposite things.
 
-WHAT THIS MODULE DOES NOT DO. It does not write. Nothing here sets
-`Change.materiality`, and nothing here appends to the audit chain. Both are
-missing the same thing: app/state/audit.py has no ACTION_ constant for a
-materiality judgement. The spelling that fits is `change.materiality_set`, which
-tests/test_policy.py already writes as a bare string -- so the vocabulary this
-product keeps in one file has a second home already, which is how the two codes
-that drifted got that way. A caller that wants to persist a judgement needs
-three things this module does not own: that constant, a column for the reason
-and the citation beside the existing `materiality` column, and a writer that
-records who judged. Until then the judgement is computed at read time and not
-stored, which is what app/state/claims.py does with a verified claim and for the
-same reason: a stored verdict is a promise about bytes that may have changed
-since.
+THE VERDICT IS STORED, AND THAT IS NOT THE THING ADR-003 REFUSES. READ THIS
+BEFORE YOU DELETE ANYTHING BELOW, BECAUSE THE OPTIMISATION IS ONE LINE AWAY.
+
+Until this change the judgement was computed on every render of the change
+screen and thrown away. With a key set, every page load was a model call: it
+cost money, it took seconds, and two loads could disagree with each other about
+the same change. Nothing recorded who judged, when, or on what evidence.
+ADR-78 conceded exactly that as cost one and cost two, and the brief asks for a
+living, auditable project state -- which a judgement that vanishes on the next
+render is not.
+
+So `materiality_for_company` now writes the verdict beside `Change.materiality`
+and appends `change.materiality_set` to the chain, and a later read answers from
+the row instead of the model.
+
+THE DISTINCTION THAT MAKES THAT LEGITIMATE, in one sentence: what is stored is
+THE MODEL'S OUTPUT together with its citation, and that citation is
+RE-VERIFIED ON EVERY READ. Nothing stores the fact that the citation verified.
+That fact has no shelf life -- it is a statement about bytes, and bytes move --
+so it is recomputed from the stored source every single time the verdict is
+shown, exactly as app/state/claims.py recomputes it for a stored claim. A stored
+verdict whose quote is no longer at its offsets is WITHHELD on the next render:
+no job runs, nothing is rebuilt, the page simply refuses. Only the MODEL CALL is
+avoided by the store. The gate is not.
+
+"EVERY READ" IS A CLAIM ABOUT THE WHOLE PRODUCT, AND IT WAS ONCE FALSE HERE.
+The sentence above is worth exactly as much as the number of readers that obey
+it, so the count belongs in the docstring rather than the reader's trust. When
+the verdict first became a stored thing, this paragraph already said "every
+read" and the code gated ONE reader -- the change screen, which is also the one
+that writes. The project list and the chat tool went on reading the raw column,
+and were safe only for as long as it had been permanently NULL. A verdict whose
+bytes had moved was refused on one screen and asserted as fact one link away.
+
+So there are TWO gated entry points and no third way in:
+
+  materiality_for_company    judges, writes, audits. The change screen.
+  shown_materiality_for_company  shows only. No model, no write, no transport
+                             argument to add one. The project list, the chat
+                             tool, and anything shipped after this sentence.
+
+Both run `_reread` and both narrow the sources to the two versions the change
+spans, so they cannot disagree about the same row.
+tests/test_propose.py::test_no_surface_reads_the_materiality_column_raw walks
+the syntax tree of app/ and fails on any other module that touches the attribute
+at all, which is what keeps "every read" a fact rather than an aspiration.
+
+WHAT WOULD MAKE IT A CACHED VERDICT, so that you can recognise the edit when you
+are tempted by it. Skipping verify_citation when a row is present. Trusting
+`materiality` because `materiality_judged_at` is set. Storing a "verified" flag
+and reading it. Comparing a hash of the version instead of re-reading the quote.
+Each of those turns this into the thing ADR-003 exists to refuse -- a claim
+asserted from memory -- and every test that does not move the bytes underneath a
+stored verdict keeps passing while you do it. That is why
+tests/test_propose.py::test_a_stored_verdict_whose_source_moved_is_withheld
+edits the cited characters and calls no model at all, and why the docstring you
+are reading is itself pinned by a test.
+
+THE ONE THING THAT BUYS ANOTHER CALL is a stale citation. When the stored quote
+no longer verifies, the source has moved and the judgement was made about text
+that is no longer there, so the model is asked again and a fresh verdict that
+passes the gate replaces the stale row. A retry that cannot answer -- no key, a
+timeout -- leaves the refusal standing rather than falling back to the stored
+word, because "this change's stored verdict no longer verifies" is the more
+specific true sentence and the fallback would be the cache arriving by the back
+door.
 """
 
 import json
 import os
 from dataclasses import dataclass
-from typing import Any, Mapping, Protocol
+from datetime import datetime, timezone
+from typing import Any, Iterable, Mapping, Protocol
 
 from app.interpretation.action import requires_effective_date
 from app.text.normalize import normalize
-from app.verification.verifier import Citation, verify_citation
+from app.verification.verifier import (
+    REASON_VERSION_UNREADABLE,
+    Citation,
+    verify_citation,
+)
 
 # The model. A fixed id with no date suffix, matching the alias the client docs
 # publish. Pinned here rather than read from the environment: which model judged
@@ -153,6 +211,15 @@ DROP_UNASKED_VERSION = "citation names a version this change does not span"
 DROP_OUTSIDE_THE_CHANGE = (
     "citation falls outside the change the model was shown, so it quotes text "
     "it was never given"
+)
+# The same refusal pointed at the store rather than at the model. A row that
+# says it was judged and carries no citation, or carries a word this build does
+# not recognise as a verdict, is not a judgement this product may read out --
+# whatever put it there. Dropped rather than withheld, for the reason the drops
+# above are: the failure is in what was recorded, not in whether it matched.
+DROP_STORED_INCOMPLETE = (
+    "a stored verdict is missing something a judgement needs, so it cannot be "
+    "checked against the source and is not read as one"
 )
 
 
@@ -230,6 +297,16 @@ class MaterialityJudgement:
     There is no confidence field and there will not be one. See the module
     docstring: ADR-006 owns that axis, and a second number on this object would
     be read as the same thing.
+
+    model_id AND judged_at ARE PART OF THE VERDICT, not decoration on it. Which
+    model said this and when it said it are the first two things anybody asks of
+    a machine judgement, and neither is recoverable afterwards. They travel on
+    this object so that a fresh judgement and one read back out of the database
+    are the same shape -- the screen prints the same sentence either way and
+    does not need to know which it was handed.
+
+    actual_text still comes from the source read a moment ago, on both paths.
+    That is what stops a stored verdict quoting itself.
     """
 
     material: bool
@@ -239,6 +316,8 @@ class MaterialityJudgement:
     citation_end: int
     citation_quote: str
     actual_text: str
+    model_id: str
+    judged_at: datetime
 
 
 @dataclass(frozen=True, slots=True)
@@ -551,6 +630,8 @@ def judge_materiality(
     transport: Transport | None,
     change: ChangeUnderReview,
     sources: Mapping[str, str],
+    *,
+    judged_at: datetime | None = None,
 ) -> MaterialityRun:
     """Ask whether this change matters, then let the verifier decide if we say so.
 
@@ -560,11 +641,18 @@ def judge_materiality(
     the model never sees. So the model can only cite what it was handed, and the
     check happens against the document rather than against the extract.
 
-    NOTHING IS WRITTEN. The verdict is computed here and not stored, for the
-    reason app/state/claims.py gives: a stored verdict is a promise about bytes
-    that may have changed since.
+    NOTHING IS WRITTEN HERE. This function asks and gates; it holds no session
+    and touches no table. materiality_for_company below is where a verdict that
+    survives the gate is recorded, and keeping the two apart is what lets the
+    whole gate run in CI against a dictionary of strings.
+
+    judged_at IS THE MOMENT THIS VERDICT WAS MADE, and it is an argument rather
+    than a clock read at the far end because the same moment has to land on the
+    row and on the audit event. Two reads of the clock would let the record
+    disagree with the log about when the product knew.
     """
     _refuse_what_cannot_be_judged(change, sources)
+    moment = judged_at or datetime.now(timezone.utc)
     system, user = _prompt(change)
 
     if transport is None:
@@ -593,7 +681,7 @@ def judge_materiality(
             announcement=ANNOUNCEMENT_UNREADABLE_RESPONSE,
         )
 
-    return _judge(payload, change, sources)
+    return _judge(payload, change, sources, moment)
 
 
 def _refuse_what_cannot_be_judged(
@@ -624,6 +712,7 @@ def _judge(
     payload: dict,
     change: ChangeUnderReview,
     sources: Mapping[str, str],
+    judged_at: datetime,
 ) -> MaterialityRun:
     """Structural checks, then the verifier. The same gate a claim passes."""
     checked = _structure(payload, change, sources)
@@ -658,6 +747,8 @@ def _judge(
             citation_end=citation.char_end,
             citation_quote=citation.quoted_text,
             actual_text=result.actual_text or "",
+            model_id=MODEL_ID,
+            judged_at=judged_at,
         )
     )
 
@@ -791,17 +882,228 @@ def _span(
     return Span(version_id, start, end, sources[version_id][start:end])
 
 
+# ------------------------------------------------------ the stored verdict --
+#
+# Everything above this line asks and gates. Everything below remembers, and
+# then refuses to trust what it remembered. Read the module docstring first if
+# you are here to make this faster.
+
+
+@dataclass(frozen=True, slots=True)
+class _StoredVerdict:
+    """A verdict read back off a row, before anything has been checked about it.
+
+    Deliberately NOT a MaterialityJudgement. That type means "a verdict whose
+    citation was just re-read and matched", and a row cannot be that until the
+    source has been read: naming this one the same thing is how a reader ends up
+    passing it to a template. It carries the citation and no actual_text,
+    because the only honest source of actual_text is the read that has not
+    happened yet.
+    """
+
+    material: bool
+    why: str
+    citation: Citation
+    model_id: str
+    judged_at: datetime
+
+
+def _stored_verdict(change: Any) -> _StoredVerdict | DroppedJudgement | None:
+    """What the row says, or a named refusal, or nothing at all.
+
+    THREE ANSWERS, AND THE THIRD IS NOT AN ERROR. None means nothing has ever
+    judged this change, which is the state every row in the corpus is in and the
+    reason the model is asked at all.
+
+    The moment is the flag. `materiality_judged_at` is written last-and-together
+    with the rest, so a row carrying it is a row this product wrote; a row
+    carrying a word in `materiality` and nothing else came from a loader, from a
+    hand-written UPDATE, or from an older build. That row is refused BY NAME
+    rather than read as a verdict, because a bare word in a 32-character column
+    cannot show its source and an assertion that cannot show its source does not
+    get made, whichever table it came out of. It is not overwritten either --
+    somebody put it there, and this module is not the place to decide they were
+    wrong.
+    """
+    from app.state.models import MATERIALITY_MATERIAL, MATERIALITY_VERDICTS
+
+    if change.materiality_judged_at is None:
+        return None
+
+    missing = [
+        name
+        for name in (
+            "materiality",
+            "materiality_why",
+            "materiality_citation_version_id",
+            "materiality_citation_start",
+            "materiality_citation_end",
+            "materiality_citation_quote",
+            "materiality_model_id",
+        )
+        if getattr(change, name) is None
+    ]
+    if missing:
+        return DroppedJudgement(
+            DROP_STORED_INCOMPLETE,
+            f"change {change.id} says it was judged at {change.materiality_judged_at} "
+            f"and carries no {', '.join(missing)}",
+        )
+    if change.materiality not in MATERIALITY_VERDICTS:
+        return DroppedJudgement(
+            DROP_STORED_INCOMPLETE,
+            f"change {change.id} holds materiality {change.materiality!r}, which "
+            f"is not one of {MATERIALITY_VERDICTS}",
+        )
+
+    return _StoredVerdict(
+        material=change.materiality == MATERIALITY_MATERIAL,
+        why=change.materiality_why,
+        citation=Citation(
+            change.materiality_citation_version_id,
+            change.materiality_citation_start,
+            change.materiality_citation_end,
+            change.materiality_citation_quote,
+        ),
+        model_id=change.materiality_model_id,
+        judged_at=change.materiality_judged_at,
+    )
+
+
+def _reread(stored: _StoredVerdict, sources: Mapping[str, str]) -> MaterialityRun:
+    """Run the gate over a stored verdict. THIS IS THE FUNCTION NOT TO SKIP.
+
+    It is the whole reason storing the verdict does not make it a cached one.
+    The bytes behind the citation are read out of the database as they are right
+    now and the quote is matched against them, with the same call and the same
+    refusals a model's fresh answer meets one screen up. A verdict that survives
+    is shown with the SOURCE's text, never with the quote the row carried.
+
+    A citation naming a version this change no longer spans is withheld rather
+    than dropped, and the difference is worth a sentence: the record is intact
+    and the document it points at cannot be read for this company, which is a
+    statement about the source and is what REASON_VERSION_UNREADABLE says
+    everywhere else in the product.
+    """
+    source = sources.get(stored.citation.version_id)
+    if source is None:
+        return MaterialityRun(
+            withheld=WithheldJudgement(
+                reason=REASON_VERSION_UNREADABLE,
+                citation_version_id=stored.citation.version_id,
+                citation_start=stored.citation.char_start,
+                citation_end=stored.citation.char_end,
+                citation_quote=stored.citation.quoted_text,
+                source_excerpt="",
+            )
+        )
+
+    # expected_occurrence is not passed, for the reason the fresh path does not
+    # pass it: the only value available is derived from the offsets already on
+    # the row, so the check would be the record agreeing with itself.
+    result = verify_citation(stored.citation, source)
+
+    if not result.verified:
+        return MaterialityRun(
+            withheld=WithheldJudgement(
+                reason=result.reason or "",
+                citation_version_id=stored.citation.version_id,
+                citation_start=stored.citation.char_start,
+                citation_end=stored.citation.char_end,
+                citation_quote=stored.citation.quoted_text,
+                source_excerpt=result.actual_text or "",
+            )
+        )
+
+    return MaterialityRun(
+        judgement=MaterialityJudgement(
+            material=stored.material,
+            why=stored.why,
+            citation_version_id=stored.citation.version_id,
+            citation_start=stored.citation.char_start,
+            citation_end=stored.citation.char_end,
+            citation_quote=stored.citation.quoted_text,
+            actual_text=result.actual_text or "",
+            model_id=stored.model_id,
+            judged_at=stored.judged_at,
+        )
+    )
+
+
+def _record_verdict(
+    session: Any, company_id: str, change: Any, judgement: MaterialityJudgement
+) -> None:
+    """Write the verdict onto the row and the decision into the chain.
+
+    THE SEVEN COLUMNS ARE WRITTEN IN ONE PLACE, which is what makes
+    _stored_verdict's refusal above meaningful: a row with a moment and no
+    citation cannot have come from here.
+
+    THE ACTOR IS THE MODEL AND THE ROW SAYS SO. actor_kind is ACTOR_MODEL, so
+    record_event refuses to attach a user id and nothing downstream can read
+    this as a person's judgement. app/auth/policy.py already treats an act on a
+    change as authorship of the claims underneath it, so this row also removes
+    whoever it names from the approval of what follows -- which is another
+    reason the action code may only have one spelling, and it now has one.
+
+    THE MOMENT IS THE JUDGEMENT'S, not the write's. occurred_at is passed rather
+    than defaulted so the log and the row cannot disagree about when this was
+    known; a second clock read here would be a small, permanent, unexplainable
+    discrepancy in the one table that exists to be trusted under dispute.
+
+    NO REASON IS INVENTED. The audit row's reason is the verdict word and the
+    model's own sentence, and its citation is the coordinate the verdict rests
+    on -- so an auditor reading the log alone can go and re-read the source
+    themselves without opening the product.
+    """
+    from app.state.audit import ACTION_MATERIALITY_SET, ACTOR_MODEL, record_event
+    from app.state.models import MATERIALITY_MATERIAL, MATERIALITY_NOT_MATERIAL
+
+    verdict = MATERIALITY_MATERIAL if judgement.material else MATERIALITY_NOT_MATERIAL
+
+    change.materiality = verdict
+    change.materiality_why = judgement.why
+    change.materiality_citation_version_id = judgement.citation_version_id
+    change.materiality_citation_start = judgement.citation_start
+    change.materiality_citation_end = judgement.citation_end
+    change.materiality_citation_quote = judgement.citation_quote
+    change.materiality_model_id = judgement.model_id
+    change.materiality_judged_at = judgement.judged_at
+
+    record_event(
+        session,
+        company_id=company_id,
+        actor=f"model:{judgement.model_id}",
+        action=ACTION_MATERIALITY_SET,
+        subject_type="change",
+        subject_id=change.id,
+        reason=f"{verdict}: {judgement.why}",
+        citation=(
+            f"{judgement.citation_version_id}:"
+            f"{judgement.citation_start}:{judgement.citation_end}"
+        ),
+        occurred_at=judgement.judged_at,
+        actor_kind=ACTOR_MODEL,
+    )
+
+
 # ------------------------------------------------------------------ tenancy --
 
 
-def judge_materiality_for_company(
+def materiality_for_company(
     session: Any,
     company_id: str,
     change_id: str,
     *,
     transport: Transport | None,
+    judged_at: datetime | None = None,
 ) -> MaterialityRun:
-    """The scoped entry point: resolve this company's change, then judge it.
+    """The scoped entry point: read the verdict, or earn one, and always re-check it.
+
+    THE ORDER IS THE DESIGN. Resolve the change under the scope; narrow the
+    sources to the two versions it spans; read whatever verdict the row already
+    carries and RUN THE GATE OVER IT; only then, and only when there is nothing
+    to show, spend a model call.
 
     Both reads go through the tenant chokepoints -- change_for_company in
     app/state/claims.py and versions_for_company in app/state/queries.py --
@@ -812,12 +1114,43 @@ def judge_materiality_for_company(
     THE SOURCES ARE NARROWED TO THE TWO VERSIONS THIS CHANGE SPANS. The company
     owns more, and handing them all over would let a citation into an unrelated
     filing verify and be reported as a drop for the wrong reason. The gate reads
-    exactly the documents the change is about.
+    exactly the documents the change is about -- and that narrowing is why a
+    stored citation pointing anywhere else comes back unreadable rather than
+    quietly verifying against a filing nobody was looking at.
 
     A change this company cannot read raises. Absence is denial: the caller named
     a change, and judging a different one is worse than refusing. The imports are
     deferred so that everything above this function stays free of persistence, as
     app/verification/verifier.py does for the same reason.
+
+    THE FOUR WAYS THIS ENDS, and only the first two touch the database.
+
+      Nothing stored -> ask the model. A verdict that passes the gate is written
+      and audited; a withheld, dropped or degraded run writes NOTHING, because
+      there is no verdict to record and a row nobody may show would still be a
+      row the project list reads out of the column.
+
+      Stored and it still verifies -> show it. No model call. This is the common
+      case and the whole saving.
+
+      Stored and it no longer verifies -> the source moved under a judgement made
+      about text that is not there any more, so the verdict is withheld AND the
+      model is asked again. A fresh answer that reaches the gate replaces the
+      stale row and is what the reader sees, whether it is a verdict, a refusal
+      or a drop -- it is about the document as it now reads.
+
+      Stored, stale, and the retry could not answer at all -> the stale refusal
+      stands. A run that never reached the model says only "not just now", while
+      the refusal says "this change's stored verdict does not verify", and
+      falling back to the stored word here is the cached verdict arriving by the
+      back door.
+
+    IT WRITES ON A READ, AND THAT IS A REAL COST TO NAME. The change screen is a
+    GET, so the first view of an unjudged change is a GET that appends to the
+    audit chain. The alternative is a job that does not exist and a screen that
+    says "unjudged" until it runs. What makes it defensible is that the write is
+    the RECORD of a judgement that was genuinely made at that moment, by
+    something the row names, and that a second GET writes nothing at all.
     """
     from app.state.claims import change_for_company
     from app.state.queries import _require_scope, versions_for_company
@@ -838,9 +1171,197 @@ def judge_materiality_for_company(
         if version.id in spanned
     }
 
-    return judge_materiality(
-        transport, change_under_review(change, sources), sources
+    stored = _stored_verdict(change)
+    if isinstance(stored, DroppedJudgement):
+        return MaterialityRun(dropped=stored)
+
+    held: MaterialityRun | None = None
+    if stored is not None:
+        held = _reread(stored, sources)
+        if held.judgement is not None:
+            return held
+
+    fresh = judge_materiality(
+        transport, change_under_review(change, sources), sources, judged_at=judged_at
     )
+
+    # A degraded run answered nothing about this change. Where a stale verdict is
+    # already refused on this read, that refusal is the more specific truth and
+    # it stands; where there is no stored verdict at all, the announcement is
+    # what the reader gets, and it is the honest one.
+    if fresh.fallback is not None and held is not None:
+        return held
+
+    if fresh.judgement is not None:
+        _record_verdict(session, company_id, change, fresh.judgement)
+
+    return fresh
+
+
+# ---------------------------------------------- the readers that never judge --
+
+
+#: Why there is no verdict on a change nothing has ever judged.
+#:
+#: A SENTENCE RATHER THAN AN EMPTY STRING, and it is the third state the column
+#: exists to keep. An unjudged change and a change whose verdict was refused are
+#: opposite facts -- one has never been looked at, the other was looked at and
+#: cannot be shown -- and a reader handed a blank for both prints one word for
+#: two meanings. app/state/models.py refuses that collapse in the column itself,
+#: for the same reason, and this keeps the refusal alive one layer up.
+NOT_YET_JUDGED = "nothing has judged how material this change is"
+
+
+@dataclass(frozen=True, slots=True)
+class ShownMateriality:
+    """What a screen that cannot judge may say about one change's materiality.
+
+    NO `material` BOOLEAN, and slots=True so nothing can attach one at runtime.
+    The same design as WithheldJudgement above and WithheldClaim in
+    app/state/claims.py: when the citation does not verify, `verdict` is None
+    and there is no other field a template could reach for. A greyed-out verdict
+    is still a verdict.
+
+    `judged` is what keeps the two absences apart. It says a verdict is on the
+    row, whether or not it may be shown, so a caller can print "not assessed"
+    and "withheld" as the different things they are. `reason` is empty only when
+    `verdict` is set; every refusal names itself.
+    """
+
+    change_id: str
+    judged: bool
+    verdict: str | None
+    reason: str
+
+
+def shown_materiality_for_company(
+    session: Any,
+    company_id: str,
+    change_ids: Iterable[str],
+) -> dict[str, ShownMateriality]:
+    """The gate for every screen that SHOWS a verdict without earning one.
+
+    THE BUG THIS FUNCTION EXISTS TO CLOSE, written down because it already
+    happened once and the shape of it will happen again.
+
+    Until the verdict was stored, `Change.materiality` was NULL on every row in
+    the product. That made every reader of the column safe by accident: there
+    was nothing in it to leak. The change that started WRITING the column gated
+    exactly one reader -- the change screen, which is also the one that writes
+    -- and left two others reading the raw attribute with no citation, no
+    verify_citation and no re-read of the source: the project list, which prints
+    one row per change and is where the word is seen most often, and the chat
+    tool, which hands the word to a model that will restate it in prose. So a
+    verdict earned on the change screen, whose cited bytes then moved, was
+    WITHHELD on that screen and asserted as fact one link away. That is a claim
+    made from the record alone about text that is no longer there, which is the
+    thing ADR-003 exists to refuse, and the whole suite stayed green over it
+    because no test judged a change and then read a different screen.
+
+    THE FIX IS ONE FUNCTION, NOT TWO PATCHED CALL SITES, and the difference
+    matters: patching the two would leave the THIRD reader -- the one nobody has
+    written yet -- to repeat the mistake. This is now the only supported way to
+    read that column for display, and
+    tests/test_propose.py::test_no_surface_reads_the_materiality_column_raw
+    walks the syntax tree of app/ to keep it that way.
+
+    IT RUNS THE SAME GATE AS materiality_for_company AND THE SAME NARROWING.
+    Both matter. The gate is `_reread`, so a stored verdict is shown only
+    because its quote is still at its offsets in the source as the database
+    holds it right now. The narrowing is the two versions the change spans, so a
+    stored citation pointing anywhere else comes back unreadable rather than
+    quietly verifying against an unrelated filing. A reader that skipped either
+    would be MORE permissive than the screen that earned the verdict, and the
+    two surfaces would print different words about the same row -- which is the
+    contradiction, not the cure.
+
+    IT CALLS NO MODEL AND WRITES NOTHING, and there is no transport argument to
+    change that. A list of thirty rows must not be thirty model calls, thirty
+    audit rows and thirty writes on a GET. So a stale verdict here is simply
+    withheld; earning a fresh one is the change screen's job, one click away.
+    That asymmetry is deliberate and it is the honest half: the reader refuses,
+    it never guesses, and it never quietly repairs the row underneath a person
+    who only asked to see a list.
+
+    ONE SOURCE READ FOR THE WHOLE BATCH. The versions are fetched once through
+    versions_for_company and then narrowed per change, rather than fetched per
+    change, because thirty rows would otherwise be thirty scans of the same
+    table. The scope is checked once, up front, and each change is resolved
+    through change_for_company -- the audited chokepoint -- so a change id this
+    company cannot read RAISES rather than being dropped from the map. Absence
+    is denial: a missing key would let a caller print "not assessed" for a row
+    it was never allowed to see, and that reads as a fact about the change
+    rather than as the scope refusal it is.
+    """
+    from app.state.claims import change_for_company
+    from app.state.queries import _require_scope, versions_for_company
+
+    from app.state.models import MATERIALITY_MATERIAL, MATERIALITY_NOT_MATERIAL
+
+    _require_scope(company_id)
+
+    # dict.fromkeys rather than set(): the caller's order is the screen's order,
+    # and a set would hand back rows in a different one each run.
+    wanted = list(dict.fromkeys(change_ids))
+    if not wanted:
+        return {}
+
+    sources = {
+        version.id: version.source_text
+        for version in versions_for_company(session, company_id)
+    }
+
+    shown: dict[str, ShownMateriality] = {}
+    for change_id in wanted:
+        change = change_for_company(session, company_id, change_id)
+        if change is None:
+            raise ValueError(
+                f"no change {change_id!r} readable for company {company_id!r}; "
+                "refusing to report a materiality this company cannot read"
+            )
+
+        stored = _stored_verdict(change)
+        if stored is None:
+            shown[change_id] = ShownMateriality(
+                change_id=change_id, judged=False, verdict=None, reason=NOT_YET_JUDGED
+            )
+            continue
+        if isinstance(stored, DroppedJudgement):
+            shown[change_id] = ShownMateriality(
+                change_id=change_id, judged=True, verdict=None, reason=stored.reason
+            )
+            continue
+
+        spanned = {change.from_version_id, change.to_version_id}
+        run = _reread(
+            stored,
+            {
+                version_id: text
+                for version_id, text in sources.items()
+                if version_id in spanned
+            },
+        )
+        if run.judgement is None:
+            shown[change_id] = ShownMateriality(
+                change_id=change_id,
+                judged=True,
+                verdict=None,
+                reason=run.withheld.reason,
+            )
+            continue
+
+        shown[change_id] = ShownMateriality(
+            change_id=change_id,
+            judged=True,
+            verdict=(
+                MATERIALITY_MATERIAL
+                if run.judgement.material
+                else MATERIALITY_NOT_MATERIAL
+            ),
+            reason="",
+        )
+
+    return shown
 
 
 __all__ = [
@@ -851,6 +1372,7 @@ __all__ = [
     "DROP_MALFORMED",
     "DROP_OUTSIDE_THE_CHANGE",
     "DROP_OUT_OF_RANGE",
+    "DROP_STORED_INCOMPLETE",
     "DROP_UNASKED_VERSION",
     "FALLBACK_NO_API_KEY",
     "FALLBACK_TRANSPORT_FAILED",
@@ -865,12 +1387,15 @@ __all__ = [
     "DroppedJudgement",
     "MaterialityJudgement",
     "MaterialityRun",
+    "NOT_YET_JUDGED",
+    "ShownMateriality",
     "Span",
     "StoredChange",
     "Transport",
     "WithheldJudgement",
     "change_under_review",
     "judge_materiality",
-    "judge_materiality_for_company",
+    "materiality_for_company",
+    "shown_materiality_for_company",
     "transport_from_environment",
 ]

@@ -138,11 +138,33 @@
           <td><a href="{{ row.url }}">{{ row.change_id }}</a></td>
           <td>{{ row.change_type }}</td>
           <td>{{ row.section }}</td>
+          {#
+            THREE STATES, THREE TREATMENTS, and the badge class comes off the
+            row rather than being decided here.
+
+            This cell used to have two branches, and the second one was dead for
+            as long as nothing wrote the column. It painted ANY verdict with
+            badge--material -- the ALARM class -- so the first change ever judged
+            HARMLESS would have shipped wearing the colour that means the
+            opposite. A dead branch is not a safe branch; it is an untested one
+            waiting for the day its condition becomes reachable.
+
+            "Withheld" is a refusal and is styled as one, not as a verdict and
+            not as a blank. Something judged this change and the product will
+            not repeat what it found, because the words it rested on are no
+            longer in the document. The reason is on the row beside it.
+          #}
           <td>
             {% if row.materiality == materiality_unassessed %}
             <span class="coord">{{ row.materiality }}</span>
+            {% elif row.materiality == materiality_withheld %}
+            <span class="coord" title="{{ row.materiality_reason }}"
+              >{{ row.materiality }}</span
+            >
             {% else %}
-            <span class="badge badge--material">{{ row.materiality }}</span>
+            <span class="badge {{ row.materiality_badge }}"
+              >{{ row.materiality }}</span
+            >
             {% endif %}
           </td>
           <td><span class="badge {{ row.badge }}">{{ row.status }}</span></td>
@@ -158,12 +180,29 @@
         {% endfor %}
       </tbody>
     </table>
+    {#
+      THIS PARAGRAPH WAS FALSE THE MOMENT ONE CHANGE SCREEN WAS OPENED. It said
+      materiality reads "not assessed" on EVERY row because nothing judges, and
+      it sat directly under a table that had begun showing verdicts. A sentence
+      on the page that the table above it contradicts is worse than no sentence:
+      a regulator reads the one that suits them.
+
+      So it describes the mechanism now instead of asserting a state, and every
+      claim in it is true whatever the rows happen to say.
+    #}
     <p class="coord">
-      Materiality reads "{{ materiality_unassessed }}" on every row because
-      nothing on the pipeline that produced these changes calls a model. The
-      proposer that would judge it is written and is not wired into this path.
-      So nothing has judged how much these changes matter, and the column says
-      so rather than leaving a blank.
+      Materiality is judged one change at a time, by a model, on the change
+      screen -- opening a change is what asks the question. This list never asks
+      it: thirty rows would be thirty model calls on a page load. So a row reads
+      "{{ materiality_unassessed }}" until somebody opens that change.
+    </p>
+    <p class="coord">
+      A verdict shown here was re-checked against the filing during this render,
+      not read out of a column. The judgement is stored; the proof that it still
+      holds is not, and cannot be -- it is a statement about bytes, and bytes
+      move. Where the words a verdict rested on are no longer in the document,
+      the row reads "{{ materiality_withheld }}" and the verdict is not shown at
+      all. Open the change to ask again.
     </p>
 
     {% else %}

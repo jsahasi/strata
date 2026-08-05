@@ -373,10 +373,15 @@
   <h2 id="bears-on">Obligations</h2>
 
   {#
-    Who holds this, in app/state/routing.py's own words. Fifteen refusal codes,
-    each carrying the fix for its own case; rewriting any of them here would
-    give an analyst a second vocabulary to learn. The code is printed beside the
+    Who holds this, in app/state/routing.py's own words. Each refusal code
+    carries the fix for its own case; rewriting any of them here would give an
+    analyst a second vocabulary to learn. The code is printed beside the
     sentence because code branches on the code and people read the sentence.
+
+    There was a count of the codes in this comment and it was wrong within a
+    day of a code being added. How many there are is ROUTING_REASON_CODES's
+    business; a template that repeats the number is one more thing to keep true
+    and the only one nobody rereads.
   #}
   <div class="card stack--tight">
     <p>
@@ -385,10 +390,18 @@
     </p>
     <p>{{ routing.text }}</p>
     {#
-      A name with nobody's judgement behind it. Routing does not read
-      mapped_by_kind, so this line is the only thing between an unconfirmed word
-      overlap and a page that states who is accountable. Never render the owner
-      without it.
+      Routing REFUSES to name an owner on a mapping only the pipeline proposed
+      -- ROUTE_MAPPING_UNCONFIRMED -- so this line is no longer the last thing
+      standing between a word overlap and a page that states accountability.
+      The sentence that said it was is gone, because it read as an instruction
+      to write the caveat out here, and a second copy of these words is the
+      failure the refusal was moved into the library to end.
+
+      What is left for this line is quieter and still real. A refusal that
+      rests on an unconfirmed mapping asserts the mapping even while it refuses
+      the owner, so the caveat follows the obligation ids.
+      app/web/views/changes.py decides when it shows and the words are
+      app/state/routing.py's UNCONFIRMED_MAPPING. Do not spell them out here.
     #}
     {%- if routing.caveat %}
     <p class="withheld__reason">{{ routing.caveat }}</p>
