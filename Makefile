@@ -27,15 +27,25 @@ help:
 
 venv: .venv
 
-install: .venv
+# Dependencies are installed once and stamped. Without the stamp every `make
+# test` re-resolves the requirements before printing anything, and a reviewer
+# watches a blank terminal wondering whether the command hung. Silence during a
+# long command reads as a broken command.
+install: .venv/.deps-installed
+
+.venv/.deps-installed: requirements.txt | .venv
+	@echo "==> installing dependencies (a minute or so on a fresh clone)"
 	$(PIP) install -q --upgrade pip
 	$(PIP) install -q -r requirements.txt
+	@touch $@
+	@echo "==> dependencies ready"
 
 # One command, end to end: install, load the corpus, serve.
 run: install seed
 	$(PY) -m uvicorn app.main:app --host 127.0.0.1 --port $(PORT) --reload
 
 test: install
+	@echo "==> running the suite (1100+ tests, about four minutes)"
 	$(PY) -m pytest tests/ -q
 
 eval: install seed
