@@ -106,8 +106,16 @@
      six values off the page behind it -- so the blur had signal but the
      PANE had none, and the white edge highlight had nothing to catch. Dark
      never had this problem: its tint sits about eighteen off its page.
-     Measured, not guessed: body ink on the composited pane goes 15.84:1 to
-     16.15:1, so this moves contrast the safe way. */
+     Measured against the real --ink token: body ink on the composited pane goes
+     16.41:1 to 16.73:1, so this moves contrast the safe way.
+
+     THE FIRST VERSION OF THIS COMMENT SAID 15.84 TO 16.15, and the correction is
+     worth keeping rather than tidying away. Those figures were computed against
+     #0f1e24 -- an ink colour that appears nowhere in this stylesheet. The
+     DIRECTION was right and the digits were invented by measuring the wrong
+     thing, which is a more comfortable error than it should be: it survives
+     review precisely because a plausible number reads as a checked one. Nothing
+     asserts either figure in a test, so nothing would have caught it. */
   --glass-solid: #f4f7f8;    /* that tint already composited over --bg   */
   --glass-edge: #ffffff;     /* the 1px highlight that says "in front"   */
   --glass-cast: #04191f;     /* shadows are blue-black, never neutral    */
