@@ -101,7 +101,13 @@
    * it -- so it consumes these and nothing else.
    */
   --paper: #ffffff;          /* the record: diff, claims, source, tables */
-  --glass-tint: #f7fafb;     /* the material the panes are made of       */
+  --glass-tint: #fdfeff;     /* the material the panes are made of       */
+  /* Raised from #f7fafb on 2026-08-05. At the old value a pane composited
+     six values off the page behind it -- so the blur had signal but the
+     PANE had none, and the white edge highlight had nothing to catch. Dark
+     never had this problem: its tint sits about eighteen off its page.
+     Measured, not guessed: body ink on the composited pane goes 15.84:1 to
+     16.15:1, so this moves contrast the safe way. */
   --glass-solid: #f4f7f8;    /* that tint already composited over --bg   */
   --glass-edge: #ffffff;     /* the 1px highlight that says "in front"   */
   --glass-cast: #04191f;     /* shadows are blue-black, never neutral    */
@@ -132,6 +138,14 @@
      floats. --glass-cast is the colour all three are mixed from. */
   --edge: inset 0 1px 0 rgba(255, 255, 255, 0.55);
   --shadow-1: 0 1px 2px rgba(4, 25, 31, 0.07);
+  /* THE STICKY PANES NEED THEIR OWN, and shadow-1 could not be widened to
+     do it: four surfaces use it and most of them are flat cards that would
+     start floating for no reason. A masthead that content passes underneath
+     is the one place an elevation shadow is telling the truth -- something
+     really is in front of something else -- and at 2px and 7 per cent the
+     old one said nothing at all. This is the whole reason the chrome read
+     flat while the blur was working correctly behind it. */
+  --glass-lift: 0 6px 16px rgba(4, 25, 31, 0.10), 0 1px 2px rgba(4, 25, 31, 0.06);
   --shadow-2: 0 12px 32px rgba(4, 25, 31, 0.14), 0 2px 6px rgba(4, 25, 31, 0.08);
   --shadow-3: 0 4px 14px rgba(4, 25, 31, 0.1);
 
@@ -203,6 +217,7 @@
 
     --edge: inset 0 1px 0 rgba(92, 117, 126, 0.35);
     --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5);
+    --glass-lift: 0 8px 22px rgba(0, 0, 0, 0.55), 0 1px 2px rgba(0, 0, 0, 0.4);
     --shadow-2: 0 12px 32px rgba(0, 0, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
     --shadow-3: 0 4px 14px rgba(0, 0, 0, 0.45);
 
@@ -349,7 +364,7 @@ hr {
 .masthead {
   border-bottom: 1px solid var(--rule);
   background: var(--glass-solid);
-  box-shadow: var(--edge), var(--shadow-1);
+  box-shadow: var(--edge), var(--glass-lift);
 }
 
 @supports (
@@ -1637,7 +1652,7 @@ a.card--new:focus-visible {
   border: 1px solid var(--rule);
   border-radius: var(--r);
   background: var(--glass-solid);
-  box-shadow: var(--edge), var(--shadow-1);
+  box-shadow: var(--edge), var(--glass-lift);
   overflow-x: auto;
   scrollbar-width: thin;
 }
@@ -2565,6 +2580,7 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
     --glass-3: #fff;
     --edge: none;
     --shadow-1: none;
+    --glass-lift: none;
     --shadow-2: none;
     --shadow-3: none;
     --blur-1: none;
