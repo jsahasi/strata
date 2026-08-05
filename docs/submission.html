@@ -76,9 +76,12 @@ assistant, share links, invitations, users, Integrations and the feedback queue.
 <code>corpus_loaded: true</code> with 2 proceedings, 5 versions, 171 changes, and
 <code>/projects</code> answers 303 to <code>/login</code> rather than 404.</td></tr>
 <tr><td>Source code</td><td><code>https://github.com/jsahasi/strata</code>. 43 commits, not
-squashed. <span class="no">The repository is PRIVATE.</span> Confirmed here, not assumed:
-<code>gh repo view jsahasi/strata --json visibility</code> returns <code>PRIVATE</code>. It has to
-be made public, or the reviewer invited, before the interview is booked. This is the one item on the
+squashed. <span class="yes">The repository is PUBLIC.</span> Confirmed here, not assumed:
+<code>gh repo view jsahasi/strata --json visibility</code> returns <code>PUBLIC</code>, and an
+unauthenticated request for a file blob answers 200. It was private until the history had been
+checked for secrets: making a repository public exposes every commit ever made, not the working
+tree, so a key committed once and deleted later is still readable. <code>.env</code> was absent
+from all of it. This is the one item on the
 checklist that stops a reviewer at the front door.</td></tr>
 <tr><td>Access notes / credentials</td><td>None needed for the deterministic path — ingestion,
 normalization, citation verification, occurrence identity, diff, draft-versus-final, tenant scoping
@@ -1068,9 +1071,9 @@ Run again in this pass: 5 of 5 metrics pass, exit 0, no model and no network. It
 than rates below a sample of ten and states what the numbers cannot support. It now has tests of its
 own — <a href="https://github.com/jsahasi/strata/blob/main/tests/test_evals.py"><code>tests/test_evals.py</code></a>, 37 — and <code>make test</code> still does not run it.</td></tr>
 <tr><td>Repository is public, or reviewer access is granted, BEFORE the AI interview
-begins</td><td><span class="no">NO — it is private, and this is now confirmed rather than
-assumed.</span> <code>gh repo view jsahasi/strata --json visibility</code> returns
-<code>PRIVATE</code>. Nothing else on this list matters until this changes.</td></tr>
+begins</td><td><span class="yes">YES — public, confirmed rather than assumed.</span>
+<code>gh repo view jsahasi/strata --json visibility</code> returns <code>PUBLIC</code> and an
+anonymous fetch of a file blob answers 200, which is what a reviewer holding no account gets.</td></tr>
 <tr><td>Commit history intact and not squashed — they read it</td><td><span class="yes">Yes.</span> 43
 commits, each message carrying its reasoning, its reproduction and what it cost. One note is recorded
 rather than rewritten: the three corpus files were swept into <code>d614f7d</code> by a broad
@@ -1112,7 +1115,7 @@ megawatts, the citation quoted 10, and where the statement would be there is a h
 no claim made. The poster frame is that panel, so a reader who never presses play has still seen the
 argument.</td></tr>
 <tr><td>Every doc link is viewable by anyone with the link</td><td><span class="no">Not
-checked.</span> Moot until the repository stops being private.</td></tr>
+checked.</span> Reachable now that the repository is public.</td></tr>
 <tr><td>90-second pitch said out loud, timed</td><td><span class="part">Written in
 <a href="https://strata.sudama.ai/docs/ai/briefing.html"><code>docs/.ai/briefing.html</code></a>. Not timed aloud on the record.</span></td></tr>
 <tr><td>DeepInterview started within 30 minutes of sending the submission, repo open
@@ -1136,8 +1139,8 @@ how much they matter, not by how comfortable they are.</p>
 <tr><th>Gap</th><th>Why it is this way</th><th>What I would do with more time</th></tr>
 
 <tr><td><strong>The two commands a reviewer runs are not both green, and the repository is
-private.</strong> <code>make test</code> fails one test on a fresh clone of HEAD; <code>gh repo
-view</code> returns <code>PRIVATE</code>.</td><td>A feature landed half-committed — the
+private.</strong> <code>make test</code> failed one test on a fresh clone of HEAD at the time of
+this entry. The repository has since been made public.</td><td>A feature landed half-committed — the
 <code>user_permissions</code> table is in <a href="https://github.com/jsahasi/strata/blob/main/app/state/models.py"><code>app/state/models.py</code></a> and the module that uses
 it is not — so a derived guard in <a href="https://github.com/jsahasi/strata/blob/main/tests/test_retention.py"><code>tests/test_retention.py</code></a> caught exactly what it was
 written for and the commit went in over it. The visibility was never changed from the default and
@@ -1295,7 +1298,7 @@ forward.</td><td>Publish the chain head where the same attacker cannot reach it.
 <p class="sub">Last verified against the repository at commit <code>1343f57</code>: 43 commits;
 1,380 passed and 1 failed on a fresh clone; 1,378 passed and 3 failed in this working copy; 92% line
 coverage as recorded at <code>2b10bb6</code>; <code>make eval</code> 5 of 5, exit 0; the hosted
-instance answering <code>corpus_loaded: true</code>; the repository <code>PRIVATE</code>. The tree
+instance answering <code>corpus_loaded: true</code>; the repository <code>PRIVATE</code> at that moment. The tree
 was <strong>not</strong> clean at the moment of the check, and that matters for reading the numbers
 above: a parallel workstream held uncommitted work — a scheduler under <code>app/jobs/</code>, a
 docket fetcher at <a href="https://github.com/jsahasi/strata/blob/main/app/sources/fetch.py"><code>app/sources/fetch.py</code></a>, point-in-time replay at
