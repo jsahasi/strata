@@ -479,7 +479,7 @@ def record_thumb(
     rating: str,
     comment: str = "",
 ) -> Feedback:
-    """A thumb on one of Clerk's turns, with the exchange frozen beside it.
+    """A thumb on one of Clarke's turns, with the exchange frozen beside it.
 
     company_id AND user_id ARE INJECTED BY THE CALLER FROM THE SIGNED-IN
     SESSION, never read off the wire. The feedback POST carries {message_id,

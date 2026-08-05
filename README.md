@@ -51,10 +51,13 @@ editor, share links that re-verify in the recipient's hands, an in-app assistant
 provisioning with 24-hour invitations, a retention schedule, a source registry, and an offline
 eval harness.
 
-**Two corpora, both labelled.** A synthetic one — one proceeding in three versions, with traps
-built on purpose, which the eval numbers are measured against. And 102 real public filings
-retrieved from eight state commissions, each carrying the URL it came from and a hash of its
-bytes; one pair is loaded into the demonstration workspace.
+**Two corpora, both labelled, and `make seed` loads one.** A synthetic one — one proceeding in
+three versions, with traps built on purpose, which the eval numbers are measured against. That is
+the one the seed loads, so a fresh checkout holds one docket and three versions. And 102 real
+public filings retrieved from eight state commissions across nineteen dockets, each carrying the
+URL it came from and a hash of its bytes. `scripts/ingest_real.py` loads one pair of those — a
+Kentucky witness's direct testimony, filed and then corrected — and nothing calls that script for
+you, so run it by hand or the 102 stay on disk.
 
 ### What the names promise and the code does not
 
@@ -140,14 +143,25 @@ idempotent by design, and a test asserts it.
 
 - **Python 3.12.** No other language runtime, no Node build step — the UI is server-rendered
   HTML (ADR-007, reaffirmed as ADR-012).
-- **No external services.** No Postgres, no Docker, no message queue. SQLite ships with Python.
-  This is a deliberate trade against scale, written up in ADR-007: SQLite will not carry real
-  multi-tenant volume, and `docs/architecture.html` says what changes at that point.
-- **No API key, for anything currently built.** Ingestion, citation verification, version
-  diffing and the eval harness all run offline. `requirements.txt` pins the `anthropic` client
-  against the interpretation layer described in `docs/architecture.html`; that layer is not
-  built, nothing imports the package, and this file names no environment variable for it
-  because there is none to name.
+- **No external services to run it locally.** No Postgres, no message queue, no Node build
+  step. SQLite ships with Python. This is a deliberate trade against scale, written up in
+  ADR-007: SQLite will not carry real multi-tenant volume, and the technical design document
+  says what changes at that point. Docker appears only in `deploy/` for the hosted instance;
+  `make run` uses none of it.
+- **No API key needed, and the product says so rather than pretending.** Every screen serves
+  and `make test` passes with no key at all. What runs offline is the half that decides
+  correctness: ingestion, version diffing, citation verification, the audit chain and the eval
+  harness reach no network and call no model, by design rather than by accident.
+- **Two things do call a model, and both need `ANTHROPIC_API_KEY`.** Clarke, the in-app
+  assistant (`app/chat/agent.py`), and the change proposer (`app/interpretation/propose.py`).
+  Without a key each one announces that it is off and the screens still work. `app/config.py`
+  loads `.env` into the process at startup and `.env.example` names all sixteen variables.
+  <br>An earlier version of this bullet said no key was needed for anything built, that the
+  interpretation layer did not exist and that nothing imported the `anthropic` package. All
+  three had stopped being true and the sentence is kept here as a correction rather than
+  quietly replaced, because a README that only ever shows its current state teaches a reader
+  nothing about how carefully it is maintained. Neither module sits on the verification path:
+  a claim still has to survive its citation whatever produced it.
 
 ---
 
@@ -190,8 +204,11 @@ guess. Alongside it sits a company context of obligations, projects, and documen
 is written down in `data/manifest.json` as ground truth, so tests assert against a known answer
 rather than an impression. `data/README.md` describes the authored edits.
 
-Nothing in `data/` is a real filing and no real company appears in it. The people named in
-`docs/mrd.html`'s outreach log are real and filed in public proceedings; the corpus is not.
+Nothing in this corpus is a real filing and no real company appears in it. That is true of the
+three `.txt` files at the top of `data/` and not of `data/real/`, which holds the other 102 —
+genuine filings by named companies and named witnesses, each with a provenance record beside it.
+This paragraph said "nothing in `data/`" until the real corpus landed, which made it false four
+sentences after the section above says 102 real filings are there.
 
 ---
 
@@ -199,7 +216,7 @@ Nothing in `data/` is a real filing and no real company appears in it. The peopl
 
 | Doc | Purpose |
 |---|---|
-| [`docs/.ai/decisions.html`](docs/.ai/decisions.html) | Decision log, ADR-001 through ADR-023. Every choice with its alternatives and the trade-off accepted. Written when the decision is made. |
+| [`docs/.ai/decisions.html`](docs/.ai/decisions.html) | Decision log, ADR-001 through ADR-069, no gaps. Every choice with its alternatives and the trade-off accepted. Written when the decision is made. |
 | [`docs/.ai/findings.html`](docs/.ai/findings.html) | Every defect found during the build, how it was found, what was done, and which test now guards it. Including the three that were false claims in documents. |
 | [`docs/.ai/briefing.html`](docs/.ai/briefing.html) | The rubric, an honest assessment against each of its four dimensions, and the limits to concede before being asked. |
 | [`docs/.ai/tasks.html`](docs/.ai/tasks.html) | The 48-hour build board. Current state of every task. |
@@ -220,7 +237,7 @@ All documents listed above exist in the repository.
 ## Layout
 
 ```
-app/        application code, 40 modules
+app/        application code, 78 Python modules
   text/         normalization and the projection back to raw offsets
   ingestion/    raw text in, hashed version plus offset-addressed passages out
   diff/         two passage sequences in, typed changes out; no model
@@ -229,9 +246,10 @@ app/        application code, 40 modules
   state/        models, the tenant chokepoint, claims, review, audit, identity
   auth/         sessions, and the policy that reads authorship off the chain
   evals/        the offline scorecard
-  web/          FastAPI routers, Jinja templates, one stylesheet, one script
+  web/          FastAPI routers, Jinja templates, four stylesheets, four scripts
 tests/      pytest; offline by default, no API key
 data/       three proceeding versions, company context, manifest of ground truth
+  real/         102 real public filings, each beside its provenance record
 docs/       prd.html mrd.html tdd.html architecture.html security.html
             best-practices.html future-enhancements.html user-research.html
             submission.html web-design.html

@@ -2,7 +2,7 @@
 
 WHY THIS EXISTS. Three modules read configuration from os.environ and each one
 falls back safely when it finds nothing: app/chat/agent.py returns no transport
-and Clerk says the assistant is unavailable, app/interpretation/propose.py
+and Clarke says the assistant is unavailable, app/interpretation/propose.py
 declines to propose, app/notify/transport.py declines to send and says so. All
 three announce the fallback, which is right.
 

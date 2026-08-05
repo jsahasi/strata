@@ -32,6 +32,13 @@ anthropic==0.120.*
 
 pytest==8.3.*
 pytest-asyncio==0.24.*
+# Here so the coverage figure this project publishes can be REPRODUCED. It was
+# installed in a virtualenv and left out of this file, so the README quoted a
+# number a reviewer had no way to check -- which is the same defect as a claim
+# with no citation behind it, in the one repository that cannot afford it.
+#   .venv/bin/python -m pytest --cov=app --cov-report=term-missing
+coverage==7.15.*
+pytest-cov==7.1.*
 
 # Deliberately NOT here, and why:
 #   - no vector database: passage retrieval is lexical first (ADR-008), and

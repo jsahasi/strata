@@ -319,7 +319,20 @@ ENV_API_KEY = "ANTHROPIC_API_KEY"
 
 
 class AnthropicTransport:
-    """The real thing. Unexercised: no key has ever been held in this repo.
+    """The real thing, and it now runs: a key reaches this class through
+    app/config.py, which loads .env into the process at startup.
+
+    This docstring said "unexercised: no key has ever been held in this repo"
+    for hours after that stopped being true, which is worth leaving a note
+    about. Nothing loaded .env at the time, so the sentence was accurate when
+    written AND the product was still broken by it -- every model path honestly
+    announced itself as off while a valid key sat on disk. A true sentence about
+    a stale state is the hardest kind of wrong to see.
+
+    Still true and still the concession to make unprompted: the failure modes
+    only the endpoint can produce -- a rate limit, a malformed response, a
+    timeout mid-stream -- have not been exercised. Every test drives a
+    deterministic fake through the injected transport.
 
     Written against the installed SDK (0.120), not from memory. Two parameters
     are current and would have been wrong a year ago: thinking is

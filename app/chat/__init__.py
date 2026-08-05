@@ -1,4 +1,4 @@
-"""Chat: what Clerk sounds like, and what Clerk can actually do.
+"""Chat: what Clarke sounds like, and what Clarke can actually do.
 
 Two modules, and the split is the point.
 

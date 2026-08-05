@@ -122,8 +122,11 @@
   <p class="page-head__note">
     <span class="label">Materiality</span>
     {%- if change.materiality %} {{ change.materiality }}
-    {%- else %} not assessed. This build makes no model call, so nothing has
-    judged how much this change matters.
+    {%- else %} not assessed. Nothing on the pipeline that produced this change
+    calls a model, so nothing has judged how much it matters. The proposer that
+    would (app/interpretation/propose.py) is written and is not wired into this
+    path, and the assistant does not write here. Absence is denial: an
+    unassessed change says so rather than showing a number nobody computed.
     {%- endif %}
   </p>
 </div>
