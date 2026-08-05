@@ -328,8 +328,14 @@ claim in scope is reported by count and reason instead of being silently absent 
 The module table now in <a href="tdd.html#a4-modules">A4 of the TDD</a> described BM25 over SQLite
 FTS5 for weeks before any of it existed, and has since been corrected;
 <code>requirements.txt</code> explains why no vector store is pinned, and that half is still an
-intention. So what ships is citation verification with a grep behind it &mdash; the checking half of
-the requirement built hard, and the finding half barely begun.</p>
+intention. <span class="lbl">This sentence said &ldquo;citation verification with a grep behind it&rdquo;
+until 2026-08-05</span>, which contradicted the paragraph above it: the grep was replaced on
+2026-08-04 and the closing line was not rewritten. What ships is the checking half built hard and a
+finding half that is now real but narrow. Lexical retrieval exists and is indexed; it reaches the
+record only through the assistant, so a machine with no <code>ANTHROPIC_API_KEY</code> gets none of
+it; and the semantic half &mdash; the one ADR-08 reserved for matching a docket change to an
+obligation written in the company's own words, which is the product's core join &mdash; is still an
+intention with no vector store behind it.</p>
 
 <h3>2. Change detection at scale &mdash; <span class="gap">PARTIAL</span></h3>
 <p>The architecture here is deliberate and it is the right way round (ADR-004). The diff is a pure

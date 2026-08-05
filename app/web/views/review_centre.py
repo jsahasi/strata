@@ -64,6 +64,21 @@ from fastapi import APIRouter, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlalchemy.exc import SQLAlchemyError
 
+# THE MODULE, NOT THE NAME. tests/test_policy.py reloads app.auth.policy to prove
+# the approval mode is read at import, and a reload rebinds every class in it. A
+# bound `PermissionDenied` here would be the class from before the reload while
+# the raise inside require() used the one from after, and the except would
+# quietly stop catching a refusal. app/state/invites.py and
+# app/state/permissions.py both import it this way for the same reason.
+from app.auth import policy
+from app.web.deps import current_user
+
+# The permission the other route already gates this act on. Imported rather
+# than restated: two spellings of one permission code is how one of them
+# drifts, and a drifted code does not fail -- it gates on a name nobody holds
+# or, worse, on nothing at all, which is the defect this line closes.
+from app.web.views.review import PERMISSION_RESOLVE
+
 from app.state.audit import record_event
 from app.state.claims import verified_claims
 from app.state.db import session_scope
@@ -991,6 +1006,36 @@ def resolve(
 
     try:
         with session_scope() as session:
+            # THE SAME ACT WAS GATED ON ONE ROUTE AND NOT THE OTHER, and this
+            # was the open one. app/web/views/review.py::resolve_escalation asks
+            # for escalation.resolve before closing a refusal; this route closes
+            # the same refusal, writes the same audit rows, and asked for
+            # nothing -- so anybody signed in could resolve through the review
+            # centre what they were refused on the escalations screen. Two doors
+            # to one room and a lock on one of them.
+            #
+            # Found by the derived POST sweep in tests/test_tenancy_derived.py,
+            # which opens every route in the assembled product as somebody
+            # holding no roles. No hand-written test had ever posted here: the
+            # screen tests drive the happy path as a seeded analyst, who holds
+            # the permission, so the gate's absence was invisible to every one
+            # of them.
+            #
+            # policy.require writes its own ACCESS_DENIED row, so the refusal
+            # lands in the same chain as the resolutions it withholds. The
+            # except is not optional: PermissionDenied is not an HTTPException,
+            # and an uncaught one is a 500 and a traceback where a decision
+            # belongs.
+            principal = current_user(request)
+            if principal is None:
+                raise HTTPException(status_code=403, detail="not signed in")
+            try:
+                policy.require(
+                    session, company_id, principal.user_id, PERMISSION_RESOLVE
+                )
+            except policy.PermissionDenied as denied:
+                raise HTTPException(status_code=403, detail=denied.reason) from None
+
             row = _target(session, company_id, escalation_id)
             if row is None:
                 raise HTTPException(status_code=404, detail="no such escalation")
