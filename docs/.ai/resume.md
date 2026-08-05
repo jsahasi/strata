@@ -1,92 +1,70 @@
-# Resume — written 2026-08-04, ~14:00 Pacific, at 97% context
+# Resume — state at 2026-08-05 09:20 UTC
 
-Read `docs/.ai/state.json` first: it is generated, so it is the only file here
-that cannot be stale. Everything below is prose and may already be wrong.
+**HEAD `f3b14f8`, pushed. Working tree clean. 2,039 passed, 2 xfailed.**
+Repo public: https://github.com/jsahasi/strata · Live: https://strata.sudama.ai
 
-## Live right now
+Deadline is TODAY. Submission + 60-minute DeepInterview as one sitting.
 
-- **strata.sudama.ai serves the real product**, not a holding page. Marketing site
-  at `/`, application behind it on the same host, nginx proxying a NAMED LIST of
-  paths (not a catch-all — see the reasoning in `deploy/nginx.conf`).
-- Sign in: `denise.okoro@mep.example` (analyst), `priya.nandakumar@mep.example`
-  (obligation owner), `sarah.lindqvist@mep.example` (admin). Password
-  `strata-demo-2026`, printed on the site on purpose.
-- Host: citelocal-1, 143.198.140.28, key `~/.ssh/citelocal_deploy`.
-  `/data/strata/` holds `compose.yml`, `nginx.conf`, `site/`, `src/`, `db/`, `app.env`.
-- Deploy: `rsync` to `/data/strata/src/`, then `docker compose build strata-app &&
-  docker compose up -d`. Site only: `rsync deploy/site/ …:/data/strata/site/`.
-- **The entrypoint migrates on EVERY start** (`scripts/migrate.py`). It seeds only
-  when no database file exists, so a redeploy keeps the audit chain.
+## Score against "How we evaluate": 91/100
 
-## Suite
+| Criterion | Wt | Score | Note |
+|---|--:|--:|---|
+| Working prototype ("the main event") | 30 | 28 | runs, live, `make fresh-check` green, `make reset-demo` exists |
+| Four required capabilities | 25 | 23 | change→obligation join CLOSED today |
+| Depth area | 10 | 10 | citation grounding; gate now refuses the model's own verdict |
+| PRD | 10 | 9.5 | trust metrics + expansion both substantial (I under-scored these twice) |
+| TDD | 10 | 9.5 | A10 adds build-method section + fan-out diagram |
+| Not a thin wrapper | 10 | 10 | deterministic half runs with no key |
+| Submission mechanics | 5 | 5 | public, unsquashed, template filled |
 
-1381 passing, 2 xfailed, 1 xpassed. Coverage **92%** (10,359 statements, 804 missed).
-Lowest: `review_centre.py` 74%, `migrate.py` 0% (new, untested), `notify/transport.py` 83%.
+## NOT DEPLOYED — the one thing outstanding
+HEAD is pushed but **not deployed**. Live site runs `68cbfa2`. To ship:
+```
+make publish-docs
+rsync -a --delete -e "ssh -i ~/.ssh/citelocal_deploy" ./ root@143.198.140.28:/data/strata/src/ \
+  --exclude .git --exclude .venv --exclude __pycache__ --exclude strata.db --exclude .env
+ssh -i ~/.ssh/citelocal_deploy root@143.198.140.28 'cd /data/strata/src && docker compose build strata-app && docker compose up -d'
+rsync -a --delete -e "ssh -i ~/.ssh/citelocal_deploy" deploy/site/ root@143.198.140.28:/data/strata/site/
+```
+Key: `~/.ssh/citelocal_deploy`. Nothing else authenticates.
 
-## Running when this was written
+## Read before the interview
+`docs/.ai/briefing.html` — rebuilt as a ten-minute read. Five files map, nine-step
+walkthrough of `/changes/{id}`, verified numbers, uncomfortable questions, three stories.
 
-| Workflow | What |
-|---|---|
-| `wf_2d62c09a-b13` | Granular permissions: any permission to any person, custom roles, conflict report |
-| `wf_1f066e45-b92` | Blog repair — all five articles were refuted on numbers, quotes were all clean |
+**Five files decide everything:** `verifier.py::verify_citation` (151) ·
+`claims.py::verified_claims` (502) · `queries.py::_require_scope` (60) /
+`row_for_company` (113) · `audit.py::record_event` (515) / `verify_chain` (668) ·
+`diff/engine.py::diff` (78). The two smallest matter most.
 
-## Asked for and NOT yet done
+## Numbers that survive checking
+2,039 tests · 93% coverage / 13,073 statements · 85 ADRs · `make eval` 5 of 5 ·
+retrieval 0.5–1.1ms vs 357–364ms on 8,707 passages · Kentucky pair 1,024,409 vs
+1,024,536 chars, 127 apart, 144 changes · 102 filings, 8 commissions, 19 dockets ·
+26 change→obligation mappings (24 proposed, 2 confirmed), all resolving an owner.
 
-1. **Realistic roles — NOW UNBLOCKED, still not done.** The permissions workflow
-   landed, so a company can compose its own roles and the reason this was blocked
-   is gone. What remains is the visible half. `scripts/seed_route.py` still sends
-   STP-2 "Legal review" and STP-4 "Officer signs the filing" to `role:admin`, so
-   the account that draws the route approves through it twice — the exact
-   segregation-of-duties failure this product exists to surface, sitting in the
-   demonstration a panel will open.
-   **The fix, in the order it has to happen:** `create_role` in
-   `app/state/permissions.py` composes "Regulatory counsel" and "Certifying
-   officer" from the templates already written in `scripts/seed_roles.py`; the
-   actor must hold `user.manage`. Then grant each role to an account, because
-   `app/state/workflow.py` refuses an `assignee_rule` naming nobody — a role with
-   no holder fails route validation rather than passing quietly. Only then point
-   the two steps at `role:<name>`.
-   **Decide before building:** the conflict report discloses rather than forbids,
-   so leaving the clash and letting the report name it is a defensible demo of
-   the product working on its own configuration. It is only defensible if it is
-   deliberate and labelled. Right now it is an accident, which is the worst of
-   the three options.
-2. ~~**99% coverage on all modules.**~~ **CUT 2026-08-04 by the owner.** The
-   override of ADR-38 is withdrawn; ADR-38 stands and now carries the whole
-   history, including the part where refusing a target while measuring nothing
-   was the weaker position. What is left of it: the coverage tool stays, the
-   measured line figure is reported as a fact and not as a standard, and
-   `app/state/migrate.py` is the one module worth covering on merit — it is the
-   file that stands between a deploy and a broken live schema, and it has no
-   tests.
-3. **Logo mismatch.** The application masthead wordmark differs from the marketing
-   site's. User wants the SITE one used in the app.
-4. **Re-record the demo video.** Current one predates the glass restyle, the
-   markdown fix, source links, the tour and Integrations.
-5. **Blog is not publishable** until `wf_1f066e45-b92` lands and re-checks clean.
-6. Tour and Integrations built; verify they are wired and visible.
+**DO NOT SAY:** "101 of 176 vs the old suites' 2" — the 2 was test *files*. True
+version: an 18-deletion audit where hand-written files caught 4; a separate
+176-deletion campaign where the derived rule caught 78 per-function, 101 per-query.
+No mutation harness was committed, so nothing reproduces these.
 
-## Things that were true and surprising
+**Glass contrast is 16.41:1 → 16.73:1**, not 15.84 → 16.15. I measured the first
+pair against an ink colour not in the stylesheet.
 
-- **`db.py` reads `STRATA_DATABASE_URL`**, not `STRATA_DB_PATH`. Setting the latter
-  silently writes `./strata.db` in the working directory.
-- **`init_db()` drops every table** unless `drop_first=False`. 480 test call sites
-  depend on the drop; production must pass False.
-- The four bounced outreach addresses were all **filing-verified** — a service list
-  records who was reachable when filed, not now.
-- Zero replies to ~40 emails. Julia Lundin (AES) and Federico Heine (AES) both
-  emailed, both unanswered. Those are the only paths to a real ICP interview.
-- 102 real filings in `data/real/`, all hashes verified, 62 in version families.
-  Kentucky Kollen pair: 1,024,409 vs 1,024,536 chars, 144 changes in 0.78s.
-- Three of those families contain the **filer's own redline** — real ground truth
-  for an accuracy claim, which retires the "eval set is self-labelled" concession.
+## Open, ranked
+1. **Deploy** (above).
+2. `resolve_change_owner` ignores `mapped_by_kind` — a proposed mapping routes like
+   a confirmed one everywhere except the change screen. Needs a 16th refusal code.
+   ADR-85 names it.
+3. 32 call sites still read the real clock (`tests/test_clock_pinned.py`, strict xfail).
+4. `restore()` in backup.py says "Nothing was written" and can leave a partial file
+   at the live DB path. ADR-77.
+5. Missing vocabulary: `obligation.map` permission, `obligation.confirmed` audit code.
+6. Zero user interviews. 45 messages, 0 replies, 4 bounces. Unrecoverable in time.
 
-## The failure that keeps recurring
-
-Built and not connected. Today: two routers unmounted while the nav linked to
-them; Clarke built and never included in `base.html`; its engine shipped under a
-different name than the view looked for; `.env` never loaded so every model path
-announced itself as off while holding a valid key; the approval route seeded by an
-agent that died, so the screen correctly said there was none. **No test caught any
-of them** — tests verify capability, not whether anything is wired or seeded.
-`tests/test_app_wiring.py` and the demo-readiness idea are the guards for this.
+## Standing lessons
+- Agents ignored "do not commit/deploy" **four times**. Put it in every brief AND
+  verify with `git log` after.
+- `git add docs/` swept an unreviewed agent edit into my commit. Stage explicit paths.
+- Every audit that worked read **code**, never another document.
+- Four of six modules had docstrings claiming controls their code did not keep.
