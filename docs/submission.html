@@ -34,14 +34,14 @@ built, what was reused, what the AI wrote versus what was rewritten or rejected,
 
 <div class="crit"><strong>How this file was assembled, stated first because it changes how much
 weight it carries.</strong> The template says write these entries as they happen. Some were: the
-defects and judgements went into <code>docs/.ai/findings.html</code> as the work happened, and every
+defects and judgements went into <a href="https://strata.sudama.ai/docs/ai/findings.html"><code>docs/.ai/findings.html</code></a> as the work happened, and every
 commit message carries its reasoning at the time of the commit. This page was assembled at commit
 <code>45c408c</code>, re-verified at <code>c7d6e00</code>, and re-verified again at
 <code>1343f57</code> — 43 commits — each time from primary sources: <code>git log</code>,
 <code>findings.html</code>, <code>decisions.html</code>,
 <code>state.json</code>, <code>resume.md</code>, and the code itself.
 <br><br><span class="lbl">What the third pass checked, so the method is auditable.</span> The suite
-was run and its count read off the output rather than carried forward; <code>app/evals/run.py</code>
+was run and its count read off the output rather than carried forward; <a href="https://github.com/jsahasi/strata/blob/main/app/evals/run.py"><code>app/evals/run.py</code></a>
 was executed end to end; the hosted instance was requested over the internet; the repository's
 visibility was read with <code>gh repo view</code>; and every module and test file this page names
 was listed with <code>git ls-files</code> and <code>wc -l</code>.
@@ -57,17 +57,39 @@ code that no longer exists. Every row below names a file, a commit, a route or a
 is recalled; where a claim could not be checked against the repository it says so rather than
 asserting.</div>
 
+
+<h2>What Strata is</h2>
+
+<p>Strata takes two versions of a regulatory proceeding and tells a regulatory affairs analyst
+what changed, which of their company's obligations it touches, and who has to act &mdash; and it
+refuses to say any of it without showing the words in the source. Every claim carries a citation
+that is re-read from the stored bytes on the request that renders it, so a claim whose source has
+moved withdraws itself rather than repeating what used to be true. Around that sit the parts an
+enterprise asks about before it asks about features: named roles and per-permission grants, an
+approval route an administrator shapes to their own organisation, segregation of duties, an
+append-only hash-chained audit log where a reversal is a new row rather than an edit, tenant
+isolation through a single chokepoint with tests derived from the code rather than a maintained
+list, security headers on every response, and an accessibility sweep against WCAG 2.2 with
+contrast measured from rendered pixels rather than from tokens. Where any of that is incomplete,
+this record says so rather than leaving it to be found.</p>
+
+<div class="note"><p><strong>The running product is at
+<a href="https://strata.sudama.ai">strata.sudama.ai</a></strong>, and the home page carries a
+<strong>video walk-through</strong> of the product in use &mdash; the fastest way to see what this
+record describes. The source is at
+<a href="https://github.com/jsahasi/strata">github.com/jsahasi/strata</a>.</p></div>
+
 <h2>The reply template</h2>
 <table>
 <tr><th>Field</th><th>Value</th></tr>
-<tr><td>PRD</td><td><code>docs/prd.html</code>. Living document. The user-research section is the
+<tr><td>PRD</td><td><a href="https://strata.sudama.ai/docs/prd.html"><code>docs/prd.html</code></a>. Living document. The user-research section is the
 weak one and says so: no interview has happened, so the persona in ADR-001 is still a hypothesis.
-<code>docs/synthetic-user.html</code> exists and is labelled at the top as not evidence and not a
+<a href="https://strata.sudama.ai/docs/synthetic-user.html"><code>docs/synthetic-user.html</code></a> exists and is labelled at the top as not evidence and not a
 transcript — it is a question generator, and no line of it may be moved into the PRD as a
 finding.</td></tr>
-<tr><td>TDD</td><td><code>docs/tdd.html</code>, whose Part A carries the module
-boundaries, with <code>docs/security.html</code> for the threat model. Decisions and their rejected
-alternatives are in <code>docs/.ai/decisions.html</code> — 63 entries, ADR-001 to ADR-063
+<tr><td>TDD</td><td><a href="https://strata.sudama.ai/docs/tdd.html"><code>docs/tdd.html</code></a>, whose Part A carries the module
+boundaries, with <a href="https://strata.sudama.ai/docs/security.html"><code>docs/security.html</code></a> for the threat model. Decisions and their rejected
+alternatives are in <a href="https://strata.sudama.ai/docs/ai/decisions.html"><code>docs/.ai/decisions.html</code></a> — 63 entries, ADR-001 to ADR-063
 (<code>grep -c 'data-adr=' docs/.ai/decisions.html</code>). Five of the early ones had gone false
 and were corrected in place with their original text kept beneath (<code>295c40d</code>).</td></tr>
 <tr><td>Prototype</td><td>Local: <code>make run</code>, then <code>http://localhost:8000</code>.
@@ -87,14 +109,14 @@ checklist that stops a reviewer at the front door.</td></tr>
 normalization, citation verification, occurrence identity, diff, draft-versus-final, tenant scoping
 — which runs with no API key and no network, and so does <code>make eval</code>. A key buys two
 things and neither sits on the verification path: Clarke the assistant
-(<code>app/chat/</code>) and the claim proposer (<code>app/interpretation/propose.py</code>). Both
+(<code>app/chat/</code>) and the claim proposer (<a href="https://github.com/jsahasi/strata/blob/main/app/interpretation/propose.py"><code>app/interpretation/propose.py</code></a>). Both
 decline and say so without one. Secrets live in one gitignored <code>.env</code> (ADR-014), loaded
-by <code>app/config.py</code> before anything reads the environment;
+by <a href="https://github.com/jsahasi/strata/blob/main/app/config.py"><code>app/config.py</code></a> before anything reads the environment;
 <code>.env.example</code> lists all nineteen names — fifteen the application reads, plus four Gmail
 values at the foot marked as belonging to the outreach script and not to the product.</td></tr>
 <tr><td>What I personally built</td><td>The decisions and the plan; the AI wrote most of the lines.
 See the two sections below, which split it honestly rather than claiming either extreme.</td></tr>
-<tr><td>What I reused</td><td><code>docs/best-practices.html</code> (27 principles carried from a
+<tr><td>What I reused</td><td><a href="https://strata.sudama.ai/docs/best-practices.html"><code>docs/best-practices.html</code></a> (27 principles carried from a
 peer project; §28 was born here), the append-only-audit and escalate-rather-than-guess patterns
 from that same project, and ten runtime packages. No code was copied from it.</td></tr>
 <tr><td>What the AI wrote, and what I rewrote or rejected</td><td>Table below. The rejections are
@@ -105,7 +127,7 @@ the other way and is the more useful one: <strong>I asked for a 99% coverage tar
 refused it.</strong> I overruled the refusal, then cut the target myself. Read that row rather than
 this summary of it.</td></tr>
 <tr><td>What broke and how I debugged it</td><td>Table below, 22 rows. Thirteen are logged with their
-guards in <code>docs/.ai/findings.html</code>; the other nine appear here first, including the three
+guards in <a href="https://strata.sudama.ai/docs/ai/findings.html"><code>docs/.ai/findings.html</code></a>; the other nine appear here first, including the three
 that cost the most and one that is still open. Five landed on the last day and are the sharpest: nothing loaded <code>.env</code>, the
 deploy ran no migration, <code>init_db()</code> dropped every table against its own docstring, a
 share link redirected its own bearer token into a query string, and the test written to catch an
@@ -121,9 +143,9 @@ code, with its rejected alternatives, and that I can name where the tool was wro
 
 <table>
 <tr><th>Module</th><th>What it does</th><th>Guarded by</th></tr>
-<tr><td><code>app/ingestion/ingest.py</code></td><td>Segments a version into passages with stable
-character offsets; retains a SHA-256 of the source.</td><td><code>tests/test_ingestion.py</code> (4)</td></tr>
-<tr><td><code>app/text/normalize.py</code></td><td>The single normalization used on both sides of
+<tr><td><a href="https://github.com/jsahasi/strata/blob/main/app/ingestion/ingest.py"><code>app/ingestion/ingest.py</code></a></td><td>Segments a version into passages with stable
+character offsets; retains a SHA-256 of the source.</td><td><a href="https://github.com/jsahasi/strata/blob/main/tests/test_ingestion.py"><code>tests/test_ingestion.py</code></a> (4)</td></tr>
+<tr><td><a href="https://github.com/jsahasi/strata/blob/main/app/text/normalize.py"><code>app/text/normalize.py</code></a></td><td>The single normalization used on both sides of
 every citation comparison. Folds quotes, dashes, ligatures, whitespace; deletes soft hyphens;
 rewrites hyphenated line breaks across the seven characters Unicode counts as a line boundary, form
 feed included, which is the one a paginated filing is guaranteed to carry. Never folds digits,
@@ -131,48 +153,48 @@ units, dates or case. A character is protected from NFKC when its folded output 
 decimal digit</em> and the character is not itself a digit — a rule tested against the folding
 rather than read off a tag list, because the tag list it replaced was wrong by 210 characters
 (<code>34eff78</code>). <code>normalized_projection()</code> carries a map from each normalized
-character back to the raw characters that made it.</td><td><code>tests/test_normalize.py</code> (30)</td></tr>
-<tr><td><code>app/verification/verifier.py</code></td><td>ADR-003, the depth area. Re-reads the
+character back to the raw characters that made it.</td><td><a href="https://github.com/jsahasi/strata/blob/main/tests/test_normalize.py"><code>tests/test_normalize.py</code></a> (30)</td></tr>
+<tr><td><a href="https://github.com/jsahasi/strata/blob/main/app/verification/verifier.py"><code>app/verification/verifier.py</code></a></td><td>ADR-003, the depth area. Re-reads the
 stored source at the cited offsets and compares for <em>equality after normalization</em>, not
 similarity. A repeated quote must state which occurrence it relies on.
 <code>verify_citation_for_version()</code> loads the version the citation names, through the tenant
 chokepoint, so the citation cannot be verified against the wrong text — and refuses outright when
 the stored bytes no longer hash to <code>DocumentVersion.source_sha256</code>, with its own reason,
 so a tampered version is never confused with a quote that does not match
-(<code>ec1c4bf</code>).</td><td><code>tests/test_verification.py</code> (23),
-<code>tests/test_occurrence.py</code> (9)</td></tr>
-<tr><td><code>app/diff/engine.py</code></td><td>ADR-004. Deterministic alignment and typed changes.
-Alignment confidence is capped when the section label disagrees, so a renumbering escalates.</td><td><code>tests/test_diff.py</code> (11)</td></tr>
-<tr><td><code>app/interpretation/action.py</code></td><td>ADR-005. Draft and final have separate
+(<code>ec1c4bf</code>).</td><td><a href="https://github.com/jsahasi/strata/blob/main/tests/test_verification.py"><code>tests/test_verification.py</code></a> (23),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_occurrence.py"><code>tests/test_occurrence.py</code></a> (9)</td></tr>
+<tr><td><a href="https://github.com/jsahasi/strata/blob/main/app/diff/engine.py"><code>app/diff/engine.py</code></a></td><td>ADR-004. Deterministic alignment and typed changes.
+Alignment confidence is capped when the section label disagrees, so a renumbering escalates.</td><td><a href="https://github.com/jsahasi/strata/blob/main/tests/test_diff.py"><code>tests/test_diff.py</code></a> (11)</td></tr>
+<tr><td><a href="https://github.com/jsahasi/strata/blob/main/app/interpretation/action.py"><code>app/interpretation/action.py</code></a></td><td>ADR-005. Draft and final have separate
 action vocabularies and separate code paths; <code>Change.status</code> is copied at write time, not
-joined at read time.</td><td><code>tests/test_draft_final.py</code> (5)</td></tr>
-<tr><td><code>app/state/queries.py</code>, <code>app/state/claims.py</code></td><td>Every read that
+joined at read time.</td><td><a href="https://github.com/jsahasi/strata/blob/main/tests/test_draft_final.py"><code>tests/test_draft_final.py</code></a> (5)</td></tr>
+<tr><td><a href="https://github.com/jsahasi/strata/blob/main/app/state/queries.py"><code>app/state/queries.py</code></a>, <a href="https://github.com/jsahasi/strata/blob/main/app/state/claims.py"><code>app/state/claims.py</code></a></td><td>Every read that
 returns content is tenant-scoped through one auditable place. Claims are verified at read time and
-withheld rather than shown when they fail.</td><td><code>tests/test_isolation.py</code> (3),
-<code>tests/test_passage_isolation.py</code> (5), <code>tests/test_claims.py</code> (19)</td></tr>
-<tr><td><code>app/state/audit.py</code></td><td>Append-only audit with two independent mechanisms: a
+withheld rather than shown when they fail.</td><td><a href="https://github.com/jsahasi/strata/blob/main/tests/test_isolation.py"><code>tests/test_isolation.py</code></a> (3),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_passage_isolation.py"><code>tests/test_passage_isolation.py</code></a> (5), <a href="https://github.com/jsahasi/strata/blob/main/tests/test_claims.py"><code>tests/test_claims.py</code></a> (19)</td></tr>
+<tr><td><a href="https://github.com/jsahasi/strata/blob/main/app/state/audit.py"><code>app/state/audit.py</code></a></td><td>Append-only audit with two independent mechanisms: a
 <code>before_flush</code> guard against application code, and a SHA-256 chain against out-of-band
 rewrites. Events now carry actor attribution. Each mechanism is honest about what it does not
-do.</td><td><code>tests/test_audit.py</code> (8), <code>tests/test_audit_v2.py</code> (25)</td></tr>
-<tr><td><code>app/state/identity.py</code>, <code>app/auth/</code></td><td>Users, roles and
+do.</td><td><a href="https://github.com/jsahasi/strata/blob/main/tests/test_audit.py"><code>tests/test_audit.py</code></a> (8), <a href="https://github.com/jsahasi/strata/blob/main/tests/test_audit_v2.py"><code>tests/test_audit_v2.py</code></a> (25)</td></tr>
+<tr><td><a href="https://github.com/jsahasi/strata/blob/main/app/state/identity.py"><code>app/state/identity.py</code></a>, <code>app/auth/</code></td><td>Users, roles and
 permissions, with scrypt password hashing and hashed session tokens; the session guard is installed
-once in <code>app/main.py</code> rather than decorated onto each route, so a screen added next month
+once in <a href="https://github.com/jsahasi/strata/blob/main/app/main.py"><code>app/main.py</code></a> rather than decorated onto each route, so a screen added next month
 is protected by existing. The login path this was built ahead of now exists, and a person signs in
-over the internet.</td><td><code>tests/test_identity.py</code> (33),
-<code>tests/test_login.py</code> (33), <code>tests/test_policy.py</code> (28),
-<code>tests/test_provisioning.py</code> (51)</td></tr>
-<tr><td><code>app/config.py</code></td><td>Loads <code>.env</code> into the process once, before
+over the internet.</td><td><a href="https://github.com/jsahasi/strata/blob/main/tests/test_identity.py"><code>tests/test_identity.py</code></a> (33),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_login.py"><code>tests/test_login.py</code></a> (33), <a href="https://github.com/jsahasi/strata/blob/main/tests/test_policy.py"><code>tests/test_policy.py</code></a> (28),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_provisioning.py"><code>tests/test_provisioning.py</code></a> (51)</td></tr>
+<tr><td><a href="https://github.com/jsahasi/strata/blob/main/app/config.py"><code>app/config.py</code></a></td><td>Loads <code>.env</code> into the process once, before
 anything reads <code>os.environ</code>. Fifteen lines of standard library rather than a dependency.
 The real environment always beats the file, and it never logs a value. It exists because nothing did
 this, so every model path announced itself as off while a valid key sat on disk — see the break log.
 </td><td><span class="no">Nothing. No test file imports <code>app.config</code> or calls
 <code>load_env</code>.</span> The guard that would matter is the one asserting the environment beats
 the file, because reading it the other way round means a container cannot override its own image.</td></tr>
-<tr><td><code>app/state/migrate.py</code></td><td>Asks SQLAlchemy what the models declare, asks the
+<tr><td><a href="https://github.com/jsahasi/strata/blob/main/app/state/migrate.py"><code>app/state/migrate.py</code></a></td><td>Asks SQLAlchemy what the models declare, asks the
 database what it has, adds the difference. Never drops, renames, retypes or backfills; refuses a
 NOT NULL column with no default and exits non-zero, so a deploy stops rather than starting against a
-schema it cannot read. <code>deploy/entrypoint.sh</code> runs it on every start.</td><td><span class="no">Nothing.
-No test imports <code>app.state.migrate</code>; <code>docs/.ai/resume.md</code> records it at 0%
+schema it cannot read. <a href="https://github.com/jsahasi/strata/blob/main/deploy/entrypoint.sh"><code>deploy/entrypoint.sh</code></a> runs it on every start.</td><td><span class="no">Nothing.
+No test imports <code>app.state.migrate</code>; <a href="https://strata.sudama.ai/docs/ai/resume.md"><code>docs/.ai/resume.md</code></a> records it at 0%
 coverage.</span> It is the module that stands between a deploy and an unreadable live schema, and
 tests cannot easily reach it: a test builds its schema from today's models, so it never meets
 yesterday's database. That is the reason and not an excuse — the fixture it needs is an old schema
@@ -183,30 +205,30 @@ assistant. The only place in the product where a model reads the record, and it 
 tools that go to the same tenant-scoped queries the screens use. No key, no model: it says so and
 answers nothing. <code>engine.py</code> is a name rather than a layer — it exists because the view
 resolved <code>app.chat.engine.answer</code> and the engine shipped as
-<code>app.chat.agent.run_turn</code>.</td><td><code>tests/test_chat_surface.py</code> (65),
-<code>tests/test_chat_tools.py</code> (49), <code>tests/test_chat_agent.py</code> (43),
-<code>tests/test_chat_schema.py</code> (19)</td></tr>
-<tr><td><code>app/pipeline.py</code>, <code>app/seed.py</code>,
-<code>scripts/ingest_real.py</code></td><td>Ingest and diff end to end; load the corpus and the
+<code>app.chat.agent.run_turn</code>.</td><td><a href="https://github.com/jsahasi/strata/blob/main/tests/test_chat_surface.py"><code>tests/test_chat_surface.py</code></a> (65),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_chat_tools.py"><code>tests/test_chat_tools.py</code></a> (49), <a href="https://github.com/jsahasi/strata/blob/main/tests/test_chat_agent.py"><code>tests/test_chat_agent.py</code></a> (43),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_chat_schema.py"><code>tests/test_chat_schema.py</code></a> (19)</td></tr>
+<tr><td><a href="https://github.com/jsahasi/strata/blob/main/app/pipeline.py"><code>app/pipeline.py</code></a>, <a href="https://github.com/jsahasi/strata/blob/main/app/seed.py"><code>app/seed.py</code></a>,
+<a href="https://github.com/jsahasi/strata/blob/main/scripts/ingest_real.py"><code>scripts/ingest_real.py</code></a></td><td>Ingest and diff end to end; load the corpus and the
 workspace from the two data files, inventing nothing. <code>ingest_real.py</code> is how a real
 filing gets in: it reads a provenance record from <code>data/real/</code>, keeps the source URL on
 the version so every claim links back to the commission's own copy, and loads the Kentucky
 2025-00113 pair — 1,024,409 characters against 1,024,536, 144 changes in 0.78
-seconds.</td><td><code>tests/test_pipeline.py</code> (17),
-<code>tests/test_seed.py</code> (20), <code>tests/test_seed_workspace.py</code> (23),
-<code>tests/test_source_links.py</code> (44)</td></tr>
-<tr><td><code>app/state/projects.py</code>, <code>app/state/review.py</code></td><td>The workspace
+seconds.</td><td><a href="https://github.com/jsahasi/strata/blob/main/tests/test_pipeline.py"><code>tests/test_pipeline.py</code></a> (17),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_seed.py"><code>tests/test_seed.py</code></a> (20), <a href="https://github.com/jsahasi/strata/blob/main/tests/test_seed_workspace.py"><code>tests/test_seed_workspace.py</code></a> (23),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_source_links.py"><code>tests/test_source_links.py</code></a> (44)</td></tr>
+<tr><td><a href="https://github.com/jsahasi/strata/blob/main/app/state/projects.py"><code>app/state/projects.py</code></a>, <a href="https://github.com/jsahasi/strata/blob/main/app/state/review.py"><code>app/state/review.py</code></a></td><td>The workspace
 AI Fund demoed: projects, threads, work plans, scheduled runs, superseded-never-edited knowledge,
 and a review centre whose synthesis refuses to compose a take that does not record its withheld
-count.</td><td><code>tests/test_projects.py</code> (26), <code>tests/test_review.py</code> (19)</td></tr>
+count.</td><td><a href="https://github.com/jsahasi/strata/blob/main/tests/test_projects.py"><code>tests/test_projects.py</code></a> (26), <a href="https://github.com/jsahasi/strata/blob/main/tests/test_review.py"><code>tests/test_review.py</code></a> (19)</td></tr>
 <tr><td><code>app/web/views/</code>, <code>app/web/templates/</code></td><td>Fifteen routers, 50
 routes, 18 page templates (<code>git ls-files 'app/web/views/*.py'</code> and
 <code>grep -c '@router\.'</code>). The citation chip opens the stored source beside the claim,
 scrolled to the cited offsets with the span marked. The project list and the review centre are
 mounted and reachable since <code>94ef20f</code>; the path collision that kept them off is
-resolved.</td><td><code>tests/test_change_view.py</code> (18),
-<code>tests/test_screens.py</code> (24), <code>tests/test_app_wiring.py</code> (10),
-<code>tests/test_tour.py</code> (23). <span class="part">Still no test file of its own for
+resolved.</td><td><a href="https://github.com/jsahasi/strata/blob/main/tests/test_change_view.py"><code>tests/test_change_view.py</code></a> (18),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_screens.py"><code>tests/test_screens.py</code></a> (24), <a href="https://github.com/jsahasi/strata/blob/main/tests/test_app_wiring.py"><code>tests/test_app_wiring.py</code></a> (10),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_tour.py"><code>tests/test_tour.py</code></a> (23). <span class="part">Still no test file of its own for
 <code>projects.py</code> (872 lines) or <code>review_centre.py</code> (1,149 lines).</span> They are
 now exercised through <code>test_app_wiring.py</code>, which signs in and requests every screen, and
 <code>resume.md</code> puts <code>review_centre.py</code> at 74% — the lowest module in the
@@ -214,22 +236,22 @@ repository.</td></tr>
 <tr><td>The workspace built after the engine — <code>app/state/</code>: <code>sharing.py</code>,
 <code>invites.py</code>, <code>workflow.py</code>, <code>sources.py</code>, <code>rollback.py</code>,
 <code>routing.py</code>, <code>retention.py</code>, <code>feedback.py</code>; plus
-<code>app/notify/</code> and <code>app/interpretation/propose.py</code></td><td>Share links,
+<code>app/notify/</code> and <a href="https://github.com/jsahasi/strata/blob/main/app/interpretation/propose.py"><code>app/interpretation/propose.py</code></a></td><td>Share links,
 invitations, the approval route, where filings come from, reverting an event, routing to the person
 who owns the obligation, retention windows, the feedback queue, mail, and the claim proposer — the
-only other module that calls a model.</td><td><code>tests/test_invites.py</code> (63),
-<code>tests/test_feedback.py</code> (60), <code>tests/test_sources.py</code> (54),
-<code>tests/test_workflow.py</code> (53), <code>tests/test_workflow_editor.py</code> (44),
-<code>tests/test_source_links.py</code> (44), <code>tests/test_sharing.py</code> (41),
-<code>tests/test_share_registry.py</code> (40), <code>tests/test_rollback.py</code> (38),
-<code>tests/test_propose.py</code> (37), <code>tests/test_routing.py</code> (35),
-<code>tests/test_retention.py</code> (32), <code>tests/test_notify.py</code> (32),
-<code>tests/test_users_admin.py</code> (52), <code>tests/test_schema.py</code> (18)</td></tr>
+only other module that calls a model.</td><td><a href="https://github.com/jsahasi/strata/blob/main/tests/test_invites.py"><code>tests/test_invites.py</code></a> (63),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_feedback.py"><code>tests/test_feedback.py</code></a> (60), <a href="https://github.com/jsahasi/strata/blob/main/tests/test_sources.py"><code>tests/test_sources.py</code></a> (54),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_workflow.py"><code>tests/test_workflow.py</code></a> (53), <a href="https://github.com/jsahasi/strata/blob/main/tests/test_workflow_editor.py"><code>tests/test_workflow_editor.py</code></a> (44),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_source_links.py"><code>tests/test_source_links.py</code></a> (44), <a href="https://github.com/jsahasi/strata/blob/main/tests/test_sharing.py"><code>tests/test_sharing.py</code></a> (41),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_share_registry.py"><code>tests/test_share_registry.py</code></a> (40), <a href="https://github.com/jsahasi/strata/blob/main/tests/test_rollback.py"><code>tests/test_rollback.py</code></a> (38),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_propose.py"><code>tests/test_propose.py</code></a> (37), <a href="https://github.com/jsahasi/strata/blob/main/tests/test_routing.py"><code>tests/test_routing.py</code></a> (35),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_retention.py"><code>tests/test_retention.py</code></a> (32), <a href="https://github.com/jsahasi/strata/blob/main/tests/test_notify.py"><code>tests/test_notify.py</code></a> (32),
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_users_admin.py"><code>tests/test_users_admin.py</code></a> (52), <a href="https://github.com/jsahasi/strata/blob/main/tests/test_schema.py"><code>tests/test_schema.py</code></a> (18)</td></tr>
 <tr><td><code>app/evals/</code></td><td><code>make eval</code>. A scorecard over the deterministic
-spine, scored against <code>data/manifest.json</code>. Five metrics, exit 1 on any blocking failure,
+spine, scored against <a href="https://github.com/jsahasi/strata/blob/main/data/manifest.json"><code>data/manifest.json</code></a>. Five metrics, exit 1 on any blocking failure,
 so it is a gate rather than a report. It prints raw counts and withholds a rate below a sample of
 ten, and its caveat names the sample size and what it cannot support. Run in this pass: 5 of 5
-pass, exit 0.</td><td><code>tests/test_evals.py</code> (37), added at <code>ac6a6fd</code>. The rule
+pass, exit 0.</td><td><a href="https://github.com/jsahasi/strata/blob/main/tests/test_evals.py"><code>tests/test_evals.py</code></a> (37), added at <code>ac6a6fd</code>. The rule
 that matters most — refuse a rate below ten independent samples — is pinned, because a harness that
 quietly reports a percentage off six items is worse than no harness. <code>make test</code> still
 does not run <code>make eval</code>.</td></tr>
@@ -252,10 +274,10 @@ xfailed, 1 xpassed, 6m 53s — the failure is the first row of the break log and
 <strong>This working copy</strong> (<code>.venv/bin/python -m pytest -q</code>): 1,378 passed, 3
 failed, 5m 44s. The two extra failures here are caused by an uncommitted scheduler under
 <code>app/jobs/</code>, which two retention guards caught for reaching the retention module while
-<code>deploy/site/privacy.html</code> still says nothing runs on a clock. Those two are the guards
+<a href="https://github.com/jsahasi/strata/blob/main/deploy/site/privacy.html"><code>deploy/site/privacy.html</code></a> still says nothing runs on a clock. Those two are the guards
 working; the shared one is not. The per-file counts above were read off
 <code>pytest --collect-only -q</code>, not carried forward. Coverage is 92% of 10,359 statements
-(804 missed), recorded in <code>docs/.ai/resume.md</code> at commit <code>2b10bb6</code>; the lowest
+(804 missed), recorded in <a href="https://strata.sudama.ai/docs/ai/resume.md"><code>docs/.ai/resume.md</code></a> at commit <code>2b10bb6</code>; the lowest
 modules are <code>review_centre.py</code> at 74% and <code>migrate.py</code> at 0%. The coverage tool
 is installed in the virtualenv and is <em>not</em> in <code>requirements.txt</code>, so a reviewer
 who clones this repository can run the tests and cannot reproduce that number.</p>
@@ -264,7 +286,7 @@ who clones this repository can run the tests and cannot reproduce that number.</
 
 <table>
 <tr><th>Reused</th><th>From where</th><th>What was <em>not</em> taken, and why</th></tr>
-<tr><td><code>docs/best-practices.html</code> — 27 engineering principles, each with the failure
+<tr><td><a href="https://strata.sudama.ai/docs/best-practices.html"><code>docs/best-practices.html</code></a> — 27 engineering principles, each with the failure
 that taught it</td><td>A peer project of the author's</td><td>Nothing was dropped, and §28 was added
 here from this build's own mistake — an outreach address verified against a 2021 filing and wrong by
 2026. Stated precisely, because a reader will open the file: at HEAD it carries 27 numbered
@@ -285,13 +307,13 @@ gain (ADR-014).</td></tr>
 Jinja2, plus pytest and pytest-asyncio</td><td>PyPI, pinned to minor versions</td><td>No vector
 database (SQLite ships FTS5 and retrieval is lexical first, ADR-008), no migrations tool, no
 frontend toolchain (ADR-012), no password library (<code>hashlib.scrypt</code> is in the standard
-library), and no <code>python-dotenv</code> — <code>app/config.py</code> is fifteen lines of
+library), and no <code>python-dotenv</code> — <a href="https://github.com/jsahasi/strata/blob/main/app/config.py"><code>app/config.py</code></a> is fifteen lines of
 standard library against a file whose format we control. <code>requirements.txt</code> lists each
 omission with its reason. <span class="lbl">Two corrections since this was written.</span> The
-schema is no longer one version: <code>app/state/migrate.py</code> is a hand-rolled additive
+schema is no longer one version: <a href="https://github.com/jsahasi/strata/blob/main/app/state/migrate.py"><code>app/state/migrate.py</code></a> is a hand-rolled additive
 migration, still not Alembic, and the file says why. And <code>anthropic</code> is no longer a
-dependency nothing imports — <code>app/interpretation/propose.py</code> and
-<code>app/chat/agent.py</code> both import it, inside a function, so nothing pays for the SDK at
+dependency nothing imports — <a href="https://github.com/jsahasi/strata/blob/main/app/interpretation/propose.py"><code>app/interpretation/propose.py</code></a> and
+<a href="https://github.com/jsahasi/strata/blob/main/app/chat/agent.py"><code>app/chat/agent.py</code></a> both import it, inside a function, so nothing pays for the SDK at
 import time. The pin moved from 0.39 to 0.120 to match what the callers send.
 <code>requirements.txt</code> still names <code>propose.py</code> as the only importer, which is one
 importer short.</td></tr>
@@ -317,7 +339,7 @@ information.</p>
 <tr>
 <td>Citation verification (ADR-003)</td>
 <td>Me, in <code>decisions.html</code>, before any code existed (commit <code>634d559</code>)</td>
-<td><code>app/verification/verifier.py</code> as specified: re-read the source at the offsets,
+<td><a href="https://github.com/jsahasi/strata/blob/main/app/verification/verifier.py"><code>app/verification/verifier.py</code></a> as specified: re-read the source at the offsets,
 compare after normalization.</td>
 <td><span class="lbl">Rejected the obvious implementation.</span> The reflex answer — and the one a
 model reaches for — is a similarity threshold. A threshold accepts paraphrase, and a paraphrase is
@@ -412,7 +434,7 @@ that it was declining to measure anything at all: none of that substitute had be
 both. A coverage tool went in, the answer became 92% rather than an opinion, and once the remaining
 target was priced — three to six hours of tests written to move a figure, against a submission
 whose thinnest dimension is user research — I cut it. Mutation testing is still not built. The one
-module I would cover on merit is <code>app/state/migrate.py</code>, which stands between a deploy
+module I would cover on merit is <a href="https://github.com/jsahasi/strata/blob/main/app/state/migrate.py"><code>app/state/migrate.py</code></a>, which stands between a deploy
 and an unreadable live schema and has no tests.</td>
 </tr>
 
@@ -423,7 +445,7 @@ and an unreadable live schema and has no tests.</td>
 so <code>make eval</code> gates rather than reports.</td>
 <td><span class="lbl">Accepted, with one rule forced into the reporting layer.</span> The corpus
 labels five changes. Any percentage over five items is false precision, which is the exact sin this
-repository keeps catching, so <code>app/evals/report.py</code> owns a rule no future metric can
+repository keeps catching, so <a href="https://github.com/jsahasi/strata/blob/main/app/evals/report.py"><code>app/evals/report.py</code></a> owns a rule no future metric can
 route around: print raw counts with their denominators, print a rate only when the independent
 sample reaches ten. The harness also refuses to report precision at all, because the manifest
 carries no negative labels and building the denominator by hand would be inventing evidence. It
@@ -488,7 +510,7 @@ reveal it.</td>
 today, because there is no evidence for where the line sits and a number picked to look rigorous is
 worse than an honest zero. The mechanism is present so that setting it is configuration rather than
 a code change, which is what ADR-006 actually requires. The comment in
-<code>app/state/claims.py</code> says all of this at the constant.</td>
+<a href="https://github.com/jsahasi/strata/blob/main/app/state/claims.py"><code>app/state/claims.py</code></a> says all of this at the constant.</td>
 </tr>
 
 <tr>
@@ -514,7 +536,7 @@ values sit at the foot under a heading saying the application does not read them
 <td>A real corpus, and what it may not replace (ADR-40)</td>
 <td>Me: the demonstration runs on a filing somebody actually made</td>
 <td>102 public filings retrieved from eight commissions, each with provenance; then the Kentucky
-2025-00113 pair loaded into the demonstration workspace (<code>scripts/ingest_real.py</code>).</td>
+2025-00113 pair loaded into the demonstration workspace (<a href="https://github.com/jsahasi/strata/blob/main/scripts/ingest_real.py"><code>scripts/ingest_real.py</code></a>).</td>
 <td><span class="lbl">Accepted, and the synthetic corpus explicitly kept.</span> The tempting move
 is to retire the invented corpus once real filings exist. That would have gutted the eval harness in
 silence: its traps are built on purpose — one sentence repeated three times per version, a
@@ -532,17 +554,17 @@ fabricated one would end the project.</td>
 <tr>
 <td>Role templates</td>
 <td>Me — and half of my own evidence was the wrong half</td>
-<td>Ten templates in <code>scripts/seed_roles.py</code>, each named for a function and each drawn
+<td>Ten templates in <a href="https://github.com/jsahasi/strata/blob/main/scripts/seed_roles.py"><code>scripts/seed_roles.py</code></a>, each named for a function and each drawn
 from a title already in the repository.</td>
 <td><span class="lbl">The list I handed over was titles; what shipped was functions, and functions
-are right.</span> The note I left (<code>docs/.ai/resume.md</code>) said three fixed roles were too
+are right.</span> The note I left (<a href="https://strata.sudama.ai/docs/ai/resume.md"><code>docs/.ai/resume.md</code></a>) said three fixed roles were too
 few and gave the real titles in <code>data/real/</code> as the evidence: Analyst II, Manager,
 Director, Deputy Director, VP Pricing &amp; Planning, Regulatory Counsel, Legal Assistant. Half of
 those are ranks, not permissions, and taking the list at face value would have built the vocabulary
 out of them. A Director of Load Forecasting and a Director of System Operations
 approve entirely different things, so a route step reading "Director" says nothing a product can act
 on. The templates are functions instead, every one traced to
-<code>data/company_context.json</code> or to a filer in <code>data/real/</code>, and all fifteen
+<a href="https://github.com/jsahasi/strata/blob/main/data/company_context.json"><code>data/company_context.json</code></a> or to a filer in <code>data/real/</code>, and all fifteen
 permission codes checked against <code>PERMISSION_CODES</code> so a template cannot name a
 permission the product does not define. No template holds both <code>action.propose</code> and
 <code>action.approve</code> — not because a four-person team may not, but because a default must not
@@ -565,7 +587,7 @@ with an explicit admission that it does not exist at launch.</td>
 <tr>
 <td>The handoff note at the quota wall</td>
 <td>Me: stop at a coherent tree, not at a finish line</td>
-<td><code>docs/.ai/resume.md</code>, written to make the restart cheap — and it carried a material
+<td><a href="https://strata.sudama.ai/docs/ai/resume.md"><code>docs/.ai/resume.md</code></a>, written to make the restart cheap — and it carried a material
 error about how the workflow cache works.</td>
 <td><span class="lbl">Corrected minutes later, in its own commit (<code>c7d6e00</code>), rather than
 edited quietly.</span> The note first implied completed agents could be replayed from any session.
@@ -589,7 +611,7 @@ move the rubric punishes.</td>
 <h2>Running log: what broke</h2>
 
 <p>The wrong hypothesis is the interesting column. Twenty-two rows. Thirteen of them are logged with
-their guards in <code>docs/.ai/findings.html</code>; the rest appear here first. They are ordered by
+their guards in <a href="https://strata.sudama.ai/docs/ai/findings.html"><code>docs/.ai/findings.html</code></a>; the rest appear here first. They are ordered by
 what they cost, not by when they happened, and the first row is open.</p>
 
 <table>
@@ -604,8 +626,8 @@ fails. 1 failed, 1,380 passed. <code>make fresh-check</code> exits non-zero.</td
 from uncommitted files. Half right, which is why it nearly passed unnoticed: the working copy fails
 three tests and two of those three <em>are</em> the uncommitted scheduler. The third is not.</td>
 <td>Running <code>make fresh-check</code>, which clones HEAD into a temp directory and runs the
-suite there. <code>app/state/models.py</code> at HEAD declares a
-<code>user_permissions</code> table; <code>app/state/retention.py</code>'s
+suite there. <a href="https://github.com/jsahasi/strata/blob/main/app/state/models.py"><code>app/state/models.py</code></a> at HEAD declares a
+<code>user_permissions</code> table; <a href="https://github.com/jsahasi/strata/blob/main/app/state/retention.py"><code>app/state/retention.py</code></a>'s
 <code>SCHEDULE</code> does not cover it, and the guard's own message says why that matters — "a
 table with no window is a table nobody decided about, and the privacy page would be describing a
 schedule with a hole in it." <span class="lbl">A feature went in half-committed</span>: the model
@@ -625,12 +647,12 @@ page for two days.</td>
 carries "Projects" as a live link to <code>/projects</code>. On the assembled application
 <code>/projects</code> is a 404.</td>
 <td>That the unmounted-router defect had been fixed. It had — for the three routers that existed
-when the fix was written. <code>tests/test_app_wiring.py</code> was added for exactly this failure
+when the fix was written. <a href="https://github.com/jsahasi/strata/blob/main/tests/test_app_wiring.py"><code>tests/test_app_wiring.py</code></a> was added for exactly this failure
 and passes.</td>
 <td>Starting <code>app.main:app</code> and requesting each route.
-<code>app/main.py</code> includes <code>proceedings</code>, <code>changes</code> and
-<code>review</code>. <code>app/web/views/projects.py</code> (872 lines, five routes) and
-<code>app/web/views/review_centre.py</code> (1,149 lines, four routes) are included nowhere.
+<a href="https://github.com/jsahasi/strata/blob/main/app/main.py"><code>app/main.py</code></a> includes <code>proceedings</code>, <code>changes</code> and
+<code>review</code>. <a href="https://github.com/jsahasi/strata/blob/main/app/web/views/projects.py"><code>app/web/views/projects.py</code></a> (872 lines, five routes) and
+<a href="https://github.com/jsahasi/strata/blob/main/app/web/views/review_centre.py"><code>app/web/views/review_centre.py</code></a> (1,149 lines, four routes) are included nowhere.
 <code>test_app_wiring.py</code> asserts five paths <em>it names by hand</em>, and neither module's
 paths are among them — so the test written to catch an unmounted router cannot catch the next
 one. <span class="lbl">Worse, <code>base.html</code> hardcodes <code>true</code> for the Projects
@@ -662,22 +684,22 @@ Three agreeing witnesses read as corroboration.</td>
 is the worst shape a bug can take</span>: every fallback fired, every message was honest, and
 nothing looked broken. best-practices §26 says a fallback must announce itself — it did, and what it
 announced was false, which is the failure mode §26 does not cover.
-Underneath it, a second one of the same family: <code>app/web/views/chat.py</code> resolved its
+Underneath it, a second one of the same family: <a href="https://github.com/jsahasi/strata/blob/main/app/web/views/chat.py"><code>app/web/views/chat.py</code></a> resolved its
 engine as <code>app.chat.engine.answer</code> while the engine shipped as
 <code>app.chat.agent.run_turn</code>. Two agents either side of one seam named it two ways, and a
 missing engine is a legitimate state, so nothing failed.</td>
-<td><code>app/config.py</code> loads the file before anything reads the environment, and
-<code>app/main.py</code> calls it above its own imports because
-<code>app/auth/policy.py</code> resolves the approval mode at import time. The real environment
-always beats the file, and it never logs a value. <code>app/chat/engine.py</code> is the bridge for
+<td><a href="https://github.com/jsahasi/strata/blob/main/app/config.py"><code>app/config.py</code></a> loads the file before anything reads the environment, and
+<a href="https://github.com/jsahasi/strata/blob/main/app/main.py"><code>app/main.py</code></a> calls it above its own imports because
+<a href="https://github.com/jsahasi/strata/blob/main/app/auth/policy.py"><code>app/auth/policy.py</code></a> resolves the approval mode at import time. The real environment
+always beats the file, and it never logs a value. <a href="https://github.com/jsahasi/strata/blob/main/app/chat/engine.py"><code>app/chat/engine.py</code></a> is the bridge for
 the name. (<code>97daf02</code>.) <span class="part">No test covers
-<code>app/config.py</code>.</span></td>
+<a href="https://github.com/jsahasi/strata/blob/main/app/config.py"><code>app/config.py</code></a>.</span></td>
 </tr>
 
 <tr>
 <td><strong>Caught one redeploy before it happened: every screen on the live site would have
 answered <code>(sqlite3.OperationalError) no such column: document_versions.source_url</code>.</strong></td>
-<td>That <code>deploy/entrypoint.sh</code> was safe because it seeded only when there was no
+<td>That <a href="https://github.com/jsahasi/strata/blob/main/deploy/entrypoint.sh"><code>deploy/entrypoint.sh</code></a> was safe because it seeded only when there was no
 database. That half was right — a redeploy must never lay demo rows over an audit chain.</td>
 <td>When the file existed the script ran <strong>nothing</strong>, not even
 <code>create_all</code>. So the first deploy after a column was added would keep yesterday's table
@@ -686,7 +708,7 @@ minus the five new columns, then <code>versions_for_company</code>, then the err
 then the same read succeeds. <span class="lbl">No test could have caught it.</span> A test builds
 its schema from the current models every time, so it never meets yesterday's database. A subagent
 found it by asking what its own change would do to a live host — the question the suite cannot ask.</td>
-<td><code>app/state/migrate.py</code>, run on every start. Derived, not listed: the obvious fix is
+<td><a href="https://github.com/jsahasi/strata/blob/main/app/state/migrate.py"><code>app/state/migrate.py</code></a>, run on every start. Derived, not listed: the obvious fix is
 five <code>ALTER TABLE</code> lines, which repairs the instance and leaves the class for whoever
 adds the next column. So it asks SQLAlchemy what the models declare, asks the database what it has,
 and adds the difference. It never drops, renames, retypes or backfills — a new column is NULL on old
@@ -708,7 +730,7 @@ production path destroys the evidence and looks like a clean install.</td>
 <td>The default stays, because 480 test call sites depend on the drop for isolation — but it is
 <code>drop_first: bool = True</code> now, stated in the signature, and the docstring carries the
 correction rather than the claim. A caller that means "make sure the tables exist" says
-<code>drop_first=False</code> and gets exactly that. <code>deploy/entrypoint.sh</code> passes False,
+<code>drop_first=False</code> and gets exactly that. <a href="https://github.com/jsahasi/strata/blob/main/deploy/entrypoint.sh"><code>deploy/entrypoint.sh</code></a> passes False,
 and only when there is no database file. (<code>b5c894b</code>.)</td>
 </tr>
 
@@ -724,14 +746,14 @@ because it looks like one working.</span> The sharing agent had written an
 <code>xfail</code> for this behaviour; it turned XPASS when the fix landed, which is how the fix
 proved it hit the right thing.</td>
 <td><code>SHARE_PATH_PREFIX + "/"</code> joins <code>PUBLIC_PREFIXES</code> in
-<code>app/web/deps.py</code>, with the trailing slash load-bearing: <code>/settings</code> and a bare
+<a href="https://github.com/jsahasi/strata/blob/main/app/web/deps.py"><code>app/web/deps.py</code></a>, with the trailing slash load-bearing: <code>/settings</code> and a bare
 <code>/s</code> stay guarded, and prefix matching on the rest would make
 <code>/login-as-somebody-else</code> public by accident. (<code>97daf02</code>.)</td>
 </tr>
 
 <tr>
 <td><strong>The test written to catch an unmounted router could not catch the next one.</strong>
-<code>tests/test_app_wiring.py</code> passed all day while two routers holding 2,021 lines and nine
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_app_wiring.py"><code>tests/test_app_wiring.py</code></a> passed all day while two routers holding 2,021 lines and nine
 routes were mounted nowhere and the nav linked to one of them.</td>
 <td>That a regression test named after a defect covers the defect. It covered the instance.</td>
 <td>The test asserted five paths <em>it named by hand</em>, and neither module's paths were among
@@ -745,7 +767,7 @@ document correction on this page was found by a person reading, not by anything 
 
 <tr>
 <td>None. No test failed, and 56 were passing.</td>
-<td>That tenant isolation was proved. <code>tests/test_isolation.py</code> existed and passed, so
+<td>That tenant isolation was proved. <a href="https://github.com/jsahasi/strata/blob/main/tests/test_isolation.py"><code>tests/test_isolation.py</code></a> existed and passed, so
 the chokepoint claim in <code>security.html</code> read as verified.</td>
 <td>Reading the data inventory rather than the test output:
 <code>app/diff/engine.py::passage_refs</code> selected passages on <code>version_id</code> alone, and
@@ -753,7 +775,7 @@ the chokepoint claim in <code>security.html</code> read as verified.</td>
 another tenant's source text, and version ids are short and guessable. The isolation test passed
 because it never asked this question.</td>
 <td>Join <code>Passage</code> to <code>DocumentVersion</code> and filter on the version's company,
-routed through <code>app/state/queries.py</code> so scoping lives in one auditable place.
+routed through <a href="https://github.com/jsahasi/strata/blob/main/app/state/queries.py"><code>app/state/queries.py</code></a> so scoping lives in one auditable place.
 <code>company_id</code> is keyword-only with no default, so it cannot be omitted or passed
 positionally into the wrong slot. Five tests, one asserting the offsets everything depends on survive
 the scoped read. (<code>58cfc68</code>, finding #1.)</td>
@@ -763,13 +785,13 @@ the scoped read. (<code>58cfc68</code>, finding #1.)</td>
 <td>Commit <code>45c408c</code> says the four screens exist and 222 tests pass. Both true. A reviewer
 running <code>make run</code> at that commit reached <code>/healthz</code> and nothing else.</td>
 <td>That 24 passing screen tests mean the screens are in the product.</td>
-<td><code>tests/test_screens.py</code> and <code>tests/test_change_view.py</code> assemble their own
+<td><a href="https://github.com/jsahasi/strata/blob/main/tests/test_screens.py"><code>tests/test_screens.py</code></a> and <a href="https://github.com/jsahasi/strata/blob/main/tests/test_change_view.py"><code>tests/test_change_view.py</code></a> assemble their own
 <code>FastAPI</code> object around the routers — deliberately, so a screen can be tested before
-anything wires it in. <code>app/main.py</code> at that commit called no
+anything wires it in. <a href="https://github.com/jsahasi/strata/blob/main/app/main.py"><code>app/main.py</code></a> at that commit called no
 <code>include_router</code>. Every test passed because each one built the application the product
 did not.</td>
-<td><code>app/main.py</code> now mounts three routers and the static directory, and
-<code>tests/test_app_wiring.py</code> asserts the object <code>make run</code> starts is the one the
+<td><a href="https://github.com/jsahasi/strata/blob/main/app/main.py"><code>app/main.py</code></a> now mounts three routers and the static directory, and
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_app_wiring.py"><code>tests/test_app_wiring.py</code></a> asserts the object <code>make run</code> starts is the one the
 screen tests exercise. It also caught a second bug while being written: the tenant was answered
 twice, by <code>deps.py</code> and by <code>proceedings.py</code> reading different sources, so a
 deployment pointed at a second company had the list stay silent while the change screen served the
@@ -782,7 +804,7 @@ above.</td>
 inside unrelated modules.</td>
 <td>That the new workspace code had broken something badly. The failures looked like real defects and
 were triaged as real defects.</td>
-<td>They moved between runs. <code>tests/conftest.py</code> pointed every process at one fixed
+<td>They moved between runs. <a href="https://github.com/jsahasi/strata/blob/main/tests/conftest.py"><code>tests/conftest.py</code></a> pointed every process at one fixed
 scratch path while <code>init_db()</code> drops tables, so concurrent runs were deleting each other's
 schema mid-test. <span class="lbl">A build agent had flagged exactly this during the engine work.
 The warning was read and not acted on.</span></td>
@@ -829,10 +851,10 @@ at the boundary rather than storing it and hoping. (<code>9c3d621</code>, findin
 <td>Caught before it ran: <code>make test</code> would have destroyed the developer's
 <code>strata.db</code> on every invocation.</td>
 <td>That a test suite is harmless to run.</td>
-<td>Self-review of the written plan. <code>app/state/db.py</code> builds its engine at import time
+<td>Self-review of the written plan. <a href="https://github.com/jsahasi/strata/blob/main/app/state/db.py"><code>app/state/db.py</code></a> builds its engine at import time
 and <code>init_db()</code> drops tables, so any suite importing <code>app.</code> before pointing at
 a scratch database destroys the real one.</td>
-<td><code>STRATA_DATABASE_URL</code> is set in <code>tests/conftest.py</code> before any
+<td><code>STRATA_DATABASE_URL</code> is set in <a href="https://github.com/jsahasi/strata/blob/main/tests/conftest.py"><code>tests/conftest.py</code></a> before any
 <code>app.</code> import, with the ordering requirement written into the file so a later editor
 cannot undo it by accident. (<code>b70d688</code>, finding #4.)</td>
 </tr>
@@ -873,19 +895,19 @@ finding #11.)</td>
 </tr>
 
 <tr>
-<td><code>docs/.ai/state.json</code> — the one file in the project that "cannot be stale" — went
+<td><a href="https://strata.sudama.ai/docs/ai/state.json"><code>docs/.ai/state.json</code></a> — the one file in the project that "cannot be stale" — went
 stale, was recorded as stale, and <strong>went stale again</strong>.</td>
 <td>First time: that generating a fact from the repository is enough to keep it true. Second time:
 that naming the fix in writing is close enough to making it.</td>
 <td>At <code>c7d6e00</code> the file reports HEAD <code>45c408c</code>, 16 commits and 284 tests.
-The repository has 19 commits and 296 tests. It lists <code>app/evals/run.py</code> at nine lines;
+The repository has 19 commits and 296 tests. It lists <a href="https://github.com/jsahasi/strata/blob/main/app/evals/run.py"><code>app/evals/run.py</code></a> at nine lines;
 the file is 196 lines and the harness passes 5 of 5 metrics. It lists evals under
 <code>designed_not_built</code>. Every one of those was true when <code>make status</code> last ran.</td>
 <td><span class="part">Regenerated at <code>2462561</code>, and stale again as this is written —
 the third occurrence.</span> It reports HEAD <code>2b10bb6</code> and 39 commits against a
 repository at <code>1343f57</code> and 43. A fix that depends on a human remembering is not a fix,
 it is a note; the class fix is a hook that regenerates on commit, and it is still not built.
-<br><br><span class="lbl">And the instrument itself lied.</span> <code>scripts/status.py</code>
+<br><br><span class="lbl">And the instrument itself lied.</span> <a href="https://github.com/jsahasi/strata/blob/main/scripts/status.py"><code>scripts/status.py</code></a>
 matched pytest's output for "N passed" and fell back to <code>0</code>. A collection error prints no
 summary line — one half-written module importing something not yet created aborts the run before a
 test executes — so "I could not measure" was written into the file as "0 tests pass", in the one
@@ -897,14 +919,14 @@ behaviour working.</td>
 </tr>
 
 <tr>
-<td><code>docs/.ai/findings.html</code> marks defects #5 to #8 <em>open</em>. The code closes all
+<td><a href="https://strata.sudama.ai/docs/ai/findings.html"><code>docs/.ai/findings.html</code></a> marks defects #5 to #8 <em>open</em>. The code closes all
 four.</td>
 <td>That a findings log written as the work happened stays current by construction.</td>
 <td>At <code>c7d6e00</code>: <code>_spans_of</code> runs on a normalized projection with an index map
 (#5), NFKC is skipped for <code>&lt;super&gt;</code>, <code>&lt;sub&gt;</code> and
 <code>&lt;fraction&gt;</code> decompositions (#6), soft hyphens are deleted and hyphenated line
 breaks rewritten (#7), and <code>verify_citation_for_version()</code> loads the version the citation
-names instead of trusting the caller (#8). <code>tests/test_normalize.py</code> went from 6 tests to
+names instead of trusting the caller (#8). <a href="https://github.com/jsahasi/strata/blob/main/tests/test_normalize.py"><code>tests/test_normalize.py</code></a> went from 6 tests to
 18. The log did not move.</td>
 <td><span class="yes">Closed at <code>edad6d3</code>.</span> Each row now names the test functions
 that guard it rather than saying "covered", so a reader can go and run them. Two more defects, found
@@ -920,11 +942,11 @@ direction — understating what works — which is why it survived a full day un
 <td>That a module whose output a human reads does not need its own guard.</td>
 <td>No test file imports <code>app.evals</code>. <code>make test</code> never runs it, so the only
 signal that <code>make eval</code> still works is somebody typing <code>make eval</code>. The same
-gap covers <code>app/web/views/projects.py</code> and <code>app/web/views/review_centre.py</code>,
-and <code>projects.py</code>'s own docstring cites <code>tests/test_project_views.py</code> — a file
+gap covers <a href="https://github.com/jsahasi/strata/blob/main/app/web/views/projects.py"><code>app/web/views/projects.py</code></a> and <a href="https://github.com/jsahasi/strata/blob/main/app/web/views/review_centre.py"><code>app/web/views/review_centre.py</code></a>,
+and <code>projects.py</code>'s own docstring cites <a href="https://github.com/jsahasi/strata/blob/main/tests/test_project_views.py"><code>tests/test_project_views.py</code></a> — a file
 that does not exist. A docstring asserting a guard that is not there is the product's failure mode
 in miniature.</td>
-<td><span class="yes">Closed at <code>ac6a6fd</code>.</span> <code>tests/test_evals.py</code>, 37
+<td><span class="yes">Closed at <code>ac6a6fd</code>.</span> <a href="https://github.com/jsahasi/strata/blob/main/tests/test_evals.py"><code>tests/test_evals.py</code></a>, 37
 tests. The rule pinned first is the one that refuses to print a rate below ten samples, because a
 harness quietly reporting a percentage off six items is worse than no harness — and within hours
 that guard was earning its place, when the scorecard was caught printing 100% over 20 offsets of
@@ -946,9 +968,9 @@ second time is the one worth reading.</span> The first fix corrected the empty-d
 The second found three <em>more</em> claims that had gone false in the same safe direction: the
 README's own "what the names promise and the code does not" list still said no model runs anywhere,
 rollback does not exist, and reviewer routing is a shared queue. All three had since been built —
-<code>app/chat/agent.py</code> and <code>app/interpretation/propose.py</code> call the model,
-<code>app/state/rollback.py</code> exports <code>revert_event</code>,
-<code>app/state/routing.py</code> routes to an obligation owner. A README that understates is still
+<a href="https://github.com/jsahasi/strata/blob/main/app/chat/agent.py"><code>app/chat/agent.py</code></a> and <a href="https://github.com/jsahasi/strata/blob/main/app/interpretation/propose.py"><code>app/interpretation/propose.py</code></a> call the model,
+<a href="https://github.com/jsahasi/strata/blob/main/app/state/rollback.py"><code>app/state/rollback.py</code></a> exports <code>revert_event</code>,
+<a href="https://github.com/jsahasi/strata/blob/main/app/state/routing.py"><code>app/state/routing.py</code></a> routes to an obligation owner. A README that understates is still
 a README that is wrong, and a reviewer who checks one claim and finds it stale stops believing the
 others. It now carries its line count with the command that produced it. Recomputed here at HEAD
 rather than copied from the README —
@@ -964,9 +986,9 @@ across <strong>69</strong> modules, not the 40 the README claimed, and 30,295 li
 <td>It stops wherever it is. What survived was decided by which agent had written last, not by
 what was coherent.</td>
 <td>Stop at a coherent tree rather than a few minutes later: <code>068503c</code> was taken with 284
-tests passing and <code>docs/.ai/resume.md</code> recording what landed, what did not, the four
+tests passing and <a href="https://strata.sudama.ai/docs/ai/resume.md"><code>docs/.ai/resume.md</code></a> recording what landed, what did not, the four
 resumable run ids and the order to restart them — <code>close-findings</code> first, because it is
-the only one that touches neither <code>app/state/models.py</code> nor <code>app/seed.py</code> and
+the only one that touches neither <a href="https://github.com/jsahasi/strata/blob/main/app/state/models.py"><code>app/state/models.py</code></a> nor <a href="https://github.com/jsahasi/strata/blob/main/app/seed.py"><code>app/seed.py</code></a> and
 so cannot collide. The note also records the seams the agents reported about their own work, so they
 are read rather than rediscovered.</td>
 </tr>
@@ -982,7 +1004,7 @@ disk. And no number of tests could have caught the deploy that ran no migration,
 builds its schema from today's models and never meets yesterday's database. Every test passed each
 time and no test asked the question.</p>
 <p>The third instance is the one worth sitting with, because a fix for the second was already in
-place. <code>tests/test_app_wiring.py</code> existed <em>because</em> of the unmounted router, and it
+place. <a href="https://github.com/jsahasi/strata/blob/main/tests/test_app_wiring.py"><code>tests/test_app_wiring.py</code></a> existed <em>because</em> of the unmounted router, and it
 missed the next unmounted router — it asserted a hand-written list of five paths rather than deriving
 the question from <code>app.routes</code>. CLAUDE.md says fix the class, not the line. That was a
 line fix wearing a class fix's name, and the difference stayed invisible for a day because the suite
@@ -990,7 +1012,7 @@ was green. It is derived now (<code>94ef20f</code>), and the general rule it pro
 would take to the next project: <strong>a guard that a person maintains by hand is a guard against
 the failure you already had.</strong></p>
 <p>The class the suite still cannot reach is prose. Every document correction on this page was found
-by a person reading, not by a red test. <code>tests/test_app_wiring.py</code> derives from
+by a person reading, not by a red test. <a href="https://github.com/jsahasi/strata/blob/main/tests/test_app_wiring.py"><code>tests/test_app_wiring.py</code></a> derives from
 <code>app.routes</code>; there is no equivalent that derives a claim in a document from the code it
 describes, and the marketing site said every filing was invented for several hours after 102 real
 ones landed.</p>
@@ -1069,7 +1091,7 @@ workstream has written and not committed.</td></tr>
 <tr><td><code>make eval</code> produces numbers a reviewer can read</td><td><span class="yes">Yes.</span>
 Run again in this pass: 5 of 5 metrics pass, exit 0, no model and no network. It prints counts rather
 than rates below a sample of ten and states what the numbers cannot support. It now has tests of its
-own — <code>tests/test_evals.py</code>, 37 — and <code>make test</code> still does not run it.</td></tr>
+own — <a href="https://github.com/jsahasi/strata/blob/main/tests/test_evals.py"><code>tests/test_evals.py</code></a>, 37 — and <code>make test</code> still does not run it.</td></tr>
 <tr><td>Repository is public, or reviewer access is granted, BEFORE the AI interview
 begins</td><td><span class="no">NO — it is private, and this is now confirmed rather than
 assumed.</span> <code>gh repo view jsahasi/strata --json visibility</code> returns
@@ -1081,7 +1103,7 @@ rather than rewritten: the three corpus files were swept into <code>d614f7d</cod
 <tr><td>PRD and prototype tell the same story; no capability promised that is not
 built</td><td><span class="part">Much closer than it was, and not yet true.</span> The README, the
 findings log, the ADRs, the briefing and the marketing pages were all reconciled against the code on
-the last day. What still disagrees: <code>docs/.ai/state.json</code> reports HEAD
+the last day. What still disagrees: <a href="https://strata.sudama.ai/docs/ai/state.json"><code>docs/.ai/state.json</code></a> reports HEAD
 <code>2b10bb6</code> and 39 commits against 43, and <code>requirements.txt</code> names one importer
 of <code>anthropic</code> where there are two. Both understate, which is the safer direction and is
 exactly why nobody looked.</td></tr>
@@ -1100,8 +1122,8 @@ are the right organisations, reached at addresses they had themselves put on a p
 five well-aimed messages produced nothing, so the lesson is about the channel: cold email from an
 address they have never seen, inside a two-day window. One introduction through somebody they
 already know is worth more than another forty-five. No recipient's name or address appears anywhere
-in this repository; <code>docs/user-research.html</code> carries the breakdown and says plainly
-which part of it cannot be reconstructed. <code>docs/synthetic-user.html</code> exists and is labelled at the
+in this repository; <a href="https://strata.sudama.ai/docs/user-research.html"><code>docs/user-research.html</code></a> carries the breakdown and says plainly
+which part of it cannot be reconstructed. <a href="https://strata.sudama.ai/docs/synthetic-user.html"><code>docs/synthetic-user.html</code></a> exists and is labelled at the
 top as not evidence; if a sentence from it ever reaches the PRD as a finding, the submission has done
 itself active harm.</td></tr>
 <tr><td>Citation verification is visible in the running product, not only in the
@@ -1117,7 +1139,7 @@ argument.</td></tr>
 <tr><td>Every doc link is viewable by anyone with the link</td><td><span class="no">Not
 checked.</span> Moot until the repository stops being private.</td></tr>
 <tr><td>90-second pitch said out loud, timed</td><td><span class="part">Written in
-<code>docs/.ai/briefing.html</code>. Not timed aloud on the record.</span></td></tr>
+<a href="https://strata.sudama.ai/docs/ai/briefing.html"><code>docs/.ai/briefing.html</code></a>. Not timed aloud on the record.</span></td></tr>
 <tr><td>DeepInterview started within 30 minutes of sending the submission, repo open
 alongside</td><td><span class="no">Not yet.</span> Plan submission and interview as one sitting; the
 assignment expires 72 hours after the challenge email.</td></tr>
@@ -1141,8 +1163,8 @@ how much they matter, not by how comfortable they are.</p>
 <tr><td><strong>The two commands a reviewer runs are not both green, and the repository is
 private.</strong> <code>make test</code> fails one test on a fresh clone of HEAD; <code>gh repo
 view</code> returns <code>PRIVATE</code>.</td><td>A feature landed half-committed — the
-<code>user_permissions</code> table is in <code>app/state/models.py</code> and the module that uses
-it is not — so a derived guard in <code>tests/test_retention.py</code> caught exactly what it was
+<code>user_permissions</code> table is in <a href="https://github.com/jsahasi/strata/blob/main/app/state/models.py"><code>app/state/models.py</code></a> and the module that uses
+it is not — so a derived guard in <a href="https://github.com/jsahasi/strata/blob/main/tests/test_retention.py"><code>tests/test_retention.py</code></a> caught exactly what it was
 written for and the commit went in over it. The visibility was never changed from the default and
 was recorded as unchecked for two days rather than checked in ten seconds.</td><td>Both before
 anything else on this page. Neither is engineering. Details on the checklist and in the first row of
@@ -1162,16 +1184,16 @@ real interview and they are worth more than another wave.</td></tr>
 <tr><td><strong>The two widest view modules have no test file of their own.</strong>
 <code>projects.py</code> (872 lines) and <code>review_centre.py</code> (1,149 lines) are mounted and
 reachable, and <code>review_centre.py</code> is the lowest-covered module in the repository at
-74%. <code>projects.py</code>'s own docstring cites <code>tests/test_project_views.py</code>, a file
+74%. <code>projects.py</code>'s own docstring cites <a href="https://github.com/jsahasi/strata/blob/main/tests/test_project_views.py"><code>tests/test_project_views.py</code></a>, a file
 that does not exist.</td><td>Both landed in the hours before a quota wall, and being unmounted hid
 the absence: a screen nobody serves is a screen nobody misses. Mounting them
 (<code>94ef20f</code>) closed the reachability half and left this half open. They are exercised
-indirectly by <code>tests/test_app_wiring.py</code>, which signs in and requests every
+indirectly by <a href="https://github.com/jsahasi/strata/blob/main/tests/test_app_wiring.py"><code>tests/test_app_wiring.py</code></a>, which signs in and requests every
 screen.</td><td>A test file each, and delete the docstring line that names a guard which is not
 there. A docstring asserting a test that does not exist is this product's failure mode in
 miniature.</td></tr>
 
-<tr><td><strong><code>app/config.py</code> and <code>app/state/migrate.py</code> have no tests
+<tr><td><strong><a href="https://github.com/jsahasi/strata/blob/main/app/config.py"><code>app/config.py</code></a> and <a href="https://github.com/jsahasi/strata/blob/main/app/state/migrate.py"><code>app/state/migrate.py</code></a> have no tests
 at all.</strong> Between them they decide whether the process can see its key and whether the live
 schema can be read.</td><td><code>migrate.py</code> is genuinely awkward to test: a test builds its
 schema from today's models, so it never meets yesterday's database, which is the whole reason the
@@ -1189,7 +1211,7 @@ opposite reading — both mitigation, neither proof. Volunteer this before being
 
 <tr><td><strong>A model now runs in exactly two places, and the eval harness measures neither.</strong>
 Clarke (<code>app/chat/</code>) and the claim proposer
-(<code>app/interpretation/propose.py</code>). <code>make eval</code> scores the deterministic spine
+(<a href="https://github.com/jsahasi/strata/blob/main/app/interpretation/propose.py"><code>app/interpretation/propose.py</code></a>). <code>make eval</code> scores the deterministic spine
 and says so at the foot of every run: no model runs there, no network call is made, and a green
 scorecard must not be read as though it said anything about model
 behaviour.</td><td>Deliberate ordering: the deterministic gate had to work first, because it is the
@@ -1202,8 +1224,8 @@ judgement.</td></tr>
 
 <tr><td><strong>The obligation graph exists as tables and not as a join.</strong>
 <code>Obligation</code> and <code>ChangeObligation</code> are real tables now, seeded from
-<code>data/company_context.json</code> with owners resolved to real accounts, and
-<code>app/state/routing.py</code> routes a change to the person who owns the obligation it touches.
+<a href="https://github.com/jsahasi/strata/blob/main/data/company_context.json"><code>data/company_context.json</code></a> with owners resolved to real accounts, and
+<a href="https://github.com/jsahasi/strata/blob/main/app/state/routing.py"><code>app/state/routing.py</code></a> routes a change to the person who owns the obligation it touches.
 What does not exist is anything that <em>proposes</em> the mapping: every link is recorded with the
 actor who made it, and no code computes one. No retrieval was ever built either — ADR-08 chose BM25
 first, and <code>grep -rn embedding app/</code> finds nothing.</td><td>The mapping is the product's
@@ -1217,7 +1239,7 @@ not exist at launch.</td></tr>
 
 <tr><td><strong>Nothing fetches on a schedule, and retention is written but not
 running.</strong> A new version of a docket arrives when somebody puts it there. The retention
-windows in <code>app/state/retention.py</code> are declared and no code in the product calls
+windows in <a href="https://github.com/jsahasi/strata/blob/main/app/state/retention.py"><code>app/state/retention.py</code></a> are declared and no code in the product calls
 them.</td><td>Both were ordered behind the correctness core on purpose, and a scheduler that deletes
 customer rows or bypasses an approval is the last thing that should start because somebody deployed
 an image.</td><td>A fetcher per commission and a job runner, with the retention sweep in dry mode
@@ -1236,11 +1258,11 @@ concession the moment somebody scores against it. Nobody has yet.</td></tr>
 
 <tr><td><strong>Documents lag the code, though far less than they did.</strong> The README, the
 findings log, the ADRs, the briefing and the marketing pages were reconciled on the last day.
-<code>docs/.ai/state.json</code> is the one still behind — HEAD <code>2b10bb6</code> and 39 commits
+<a href="https://strata.sudama.ai/docs/ai/state.json"><code>docs/.ai/state.json</code></a> is the one still behind — HEAD <code>2b10bb6</code> and 39 commits
 against 43 — and <code>requirements.txt</code> names one importer of <code>anthropic</code> where
 there are two.</td><td>Each was true when written. Every one understates the build, which is why
 nobody noticed — an overstatement gets caught the first time somebody checks. The guard for the
-application is <code>tests/test_app_wiring.py</code> deriving from <code>app.routes</code>. There is
+application is <a href="https://github.com/jsahasi/strata/blob/main/tests/test_app_wiring.py"><code>tests/test_app_wiring.py</code></a> deriving from <code>app.routes</code>. There is
 no equivalent for prose, and every correction on this page was found by a person
 reading.</td><td>Run <code>make status</code> from a commit hook rather than from memory. Beyond
 that, the interesting question is what a derived guard for prose would even look like: a claim in a
@@ -1251,10 +1273,10 @@ were exactly that shape.</td></tr>
 A person signs in over the internet. An admin holds <code>user.manage</code>, so an admin can grant
 themselves <code>obligation_owner</code> and approve their own work. Separately,
 <code>can_approve</code> has no caller in <code>app/web/</code> — only
-<code>tests/test_policy.py</code> exercises it — so the approval paths are ungated and an operator
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_policy.py"><code>tests/test_policy.py</code></a> exercises it — so the approval paths are ungated and an operator
 can still resolve an escalation they raised.</td><td>The chain records the grant, which makes it
 visible afterwards and does not prevent it. Both limits are written in
-<code>docs/security.html</code> in those words rather than implied away, because a compliance
+<a href="https://strata.sudama.ai/docs/security.html"><code>docs/security.html</code></a> in those words rather than implied away, because a compliance
 product that oversells its own controls has made the argument against
 itself.</td><td>A second approver on privilege changes, and a caller for
 <code>can_approve</code> on every approval path. The first is design work; the second is a line and
@@ -1275,8 +1297,8 @@ what ADR-009's mitigation promised, and <code>make run</code> is still what a re
 trust.</td></tr>
 
 <tr><td><strong>Rollback is built (T13); the review queue still has approve and reject, not amend
-(T16).</strong> <code>app/state/rollback.py</code> exports <code>revert_event</code>, guarded by
-<code>tests/test_rollback.py</code> (38). There is no point-in-time replay.</td><td>Amend was on the
+(T16).</strong> <a href="https://github.com/jsahasi/strata/blob/main/app/state/rollback.py"><code>app/state/rollback.py</code></a> exports <code>revert_event</code>, guarded by
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_rollback.py"><code>tests/test_rollback.py</code></a> (38). There is no point-in-time replay.</td><td>Amend was on the
 cut list and ADR-013 permitted it explicitly: the module keeps the third path unused rather than the
 architecture being rewritten around a temporary UI limit.</td><td>Amend is an event appended to the
 log like any other, so the work is the editing surface, not the model.</td></tr>
@@ -1301,9 +1323,9 @@ coverage as recorded at <code>2b10bb6</code>; <code>make eval</code> 5 of 5, exi
 instance answering <code>corpus_loaded: true</code>; the repository <code>PRIVATE</code>. The tree
 was <strong>not</strong> clean at the moment of the check, and that matters for reading the numbers
 above: a parallel workstream held uncommitted work — a scheduler under <code>app/jobs/</code>, a
-docket fetcher at <code>app/sources/fetch.py</code>, point-in-time replay at
-<code>app/state/replay.py</code>, and granular permissions across
-<code>app/state/permissions.py</code> and <code>app/web/views/permissions.py</code>, with their test
+docket fetcher at <a href="https://github.com/jsahasi/strata/blob/main/app/sources/fetch.py"><code>app/sources/fetch.py</code></a>, point-in-time replay at
+<a href="https://github.com/jsahasi/strata/blob/main/app/state/replay.py"><code>app/state/replay.py</code></a>, and granular permissions across
+<a href="https://github.com/jsahasi/strata/blob/main/app/state/permissions.py"><code>app/state/permissions.py</code></a> and <a href="https://github.com/jsahasi/strata/blob/main/app/web/views/permissions.py"><code>app/web/views/permissions.py</code></a>, with their test
 files. <span class="lbl">None of it is claimed as shipped anywhere on this page</span>, and the gap
 rows that say those capabilities are missing are correct against HEAD, which is what a reviewer
 clones. Every claim above is bound to <code>1343f57</code> and expires against anything later —
