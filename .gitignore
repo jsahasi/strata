@@ -5,6 +5,16 @@ __pycache__/
 strata.db
 .DS_Store
 
+# Coverage output. `.coverage` is a SQLite file recording which lines one run
+# executed on one machine, so committing it puts a binary that changes on every
+# run into a history reviewers read. It was committed once by accident and is
+# deleted here; the number belongs in prose with the command beside it, not in
+# a tracked artefact nobody can diff.
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
 # Secrets. Never commit. This repo goes public with history intact (task T24),
 # so anything committed here cannot be taken back by a later deletion.
 .env

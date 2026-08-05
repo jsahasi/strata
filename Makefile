@@ -51,8 +51,23 @@ test: install
 eval: install seed
 	$(PY) -m app.evals.run
 
+# THE WHOLE DEMONSTRATION, NOT HALF OF IT. app.seed lays down the corpus, the
+# claims and the accounts. It does NOT lay down the obligations, the source
+# registrations or the approval route -- those arrived later, in two scripts
+# nothing called, so `make run` served a product whose owner-handoff screen had
+# nobody to hand to and whose approval route was empty. Every one of those
+# features works and none of them could demonstrate.
+#
+# A reviewer runs this command once and judges what they see. Three lines here
+# are cheaper than the sentence explaining why the screens are hollow.
+#
+# Order matters: seed_route needs the accounts app.seed creates, and
+# seed_demo_gaps needs the proceeding. Each is idempotent, so running `make
+# seed` twice is safe.
 seed: install
 	$(PY) -m app.seed
+	$(PY) scripts/seed_demo_gaps.py
+	$(PY) scripts/seed_route.py
 
 # The one file in docs/.ai/ nobody writes by hand, so it cannot go stale.
 status: install
