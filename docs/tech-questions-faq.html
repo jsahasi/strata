@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — Technical Questions</title>
+<style>
+  body { font: 15px/1.65 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 940px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.85rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.8rem; border-top:1px solid #e2e8f0; padding-top:1.1rem; }
+  h3 { font-size:1.02rem; color:#1d4ed8; margin:1.4rem 0 .35rem; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.92rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .5rem .6rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+  .crit { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .muted { color:#64748b; }
+  .good { color:#15803d; font-weight:600; } .weak { color:#b45309; font-weight:600; } .bad { color:#b91c1c; font-weight:600; }
+  blockquote { border-left:3px solid #cbd5e1; margin:.6rem 0; padding:.15rem 0 .15rem .9rem; color:#334155; font-style:italic; }
+
+  /* One question. The border colour and the badge are the same signal said twice,
+     so a page skimmed at speed and a page read in daylight both work. */
+  .qa { background:#f8fafc; border:1px solid #e2e8f0; border-left:4px solid #94a3b8; border-radius:6px; padding:.75rem 1rem .85rem; margin:1rem 0; }
+  .qa .ask { font-weight:700; color:#0f172a; font-size:1.02rem; }
+  .qa .ans { color:#1e293b; margin-top:.5rem; }
+  .qa .ev { color:#64748b; font-size:.82rem; line-height:1.5; margin-top:.55rem; border-top:1px dotted #cbd5e1; padding-top:.4rem; }
+  .qa .ev code { font-size:.95em; background:#eef2f6; }
+  .qa .next { color:#334155; font-size:.9rem; margin-top:.45rem; }
+  .qa .next b { color:#0369a1; }
+
+  .badge { display:inline-block; font-size:9.5px; font-weight:800; letter-spacing:.11em; text-transform:uppercase; padding:.16rem .42rem; border-radius:3px; vertical-align:.18em; margin-right:.45rem; }
+  .b-warmup { background:#dcfce7; color:#15803d; }
+  .b-core   { background:#e0f2fe; color:#0369a1; }
+  .b-hard   { background:#fef3c7; color:#92400e; }
+  .b-killer { background:#b91c1c; color:#fff; }
+
+  .qa--killer { background:#fffafa; border-color:#fecaca; border-left:5px solid #b91c1c; }
+  .qa--five   { background:#f0f9ff; border-color:#bae6fd; border-left:5px solid #0369a1; }
+
+  .killlist { background:#fff5f5; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .killlist ol { margin:.4rem 0 0; padding-left:1.3rem; }
+  .killlist li { margin:.18rem 0; font-size:.93rem; }
+  .killlist a { color:#b91c1c; text-decoration:none; }
+  .killlist a:hover { text-decoration:underline; }
+  .lbl { font-weight:700; color:#0f172a; }
+  .ptr { font-size:.93rem; color:#475569; margin:.6rem 0; padding-left:.7rem; border-left:3px solid #bae6fd; }
+</style>
+<link rel="stylesheet" href="../docs-nav.css">
+</head>
+<body>
+<nav class="dnav" aria-label="Documents">
+<div class="dnav__row"><span class="dnav__label">Docs</span><a href="../mrd.html">MRD</a><a href="../prd.html">PRD</a><a href="../tdd.html">TDD</a><a href="../security.html">Security</a><a href="../web-design.html">Design</a><a href="../future-enhancements.html">Roadmap</a><a href="../user-research.html">User research</a><a href="../synthetic-user.html">Persona</a><a href="../synthetic-interview.html">Interview</a><a href="../best-practices.html">Playbook</a><a href="../submission.html">Submission</a></div>
+<div class="dnav__row"><span class="dnav__label">Working notes</span><a href="index.html">Index</a><a href="decisions.html">Decisions</a><a href="tasks.html">Tasks</a><a href="briefing.html">Briefing</a><a href="findings.html">Findings</a><a href="gaps.html">Gaps</a><a href="live-transport-probe.html">Live probe</a><a href="eval-result.html">Eval result</a><span class="dnav__here">Question bank</span></div>
+</nav>
+
+<h1>Question bank</h1>
+<p class="sub">Thirty-eight questions with the answer said out loud, the file the answer rests on, the follow-up that comes next, and the wrong answer that is tempting. Every claim below was re-checked against the code on 2026-08-05 at commit <code>a5c20cb</code> &mdash; against the tree, not against the documents, which disagree with it in four places named at the foot of this page. The suite was re-run rather than remembered: <strong>2,271 passed, 1 xfailed, 4 minutes 58 seconds.</strong></p>
+
+<div class="crit"><strong>How to use this.</strong> Read <a href="#five">the five</a>. If you have twenty minutes, read the killers. Nothing here is a script &mdash; a memorised answer sounds memorised and the hour is built to catch that. If a line number will not come, say "let me look" and look. A confident wrong filename is the worst outcome available; "I don't know" is a positive signal in their own guide.</div>
+
+<div class="killlist"><strong>The fifteen that can lose the answer.</strong> If you rehearse only the hard ones, these.
+<ol>
+<li><a href="#q-twice">The quote a claim cites appears twice. What happens?</a></li>
+<li><a href="#q-live-once">You keep saying the live model path ran once. Is that true?</a></li>
+<li><a href="#q-which-talked">Which parts of your model code have actually talked to Anthropic?</a></li>
+<li><a href="#q-overlap">Your change-to-obligation mapping is a word overlap. Why is it in the product?</a></li>
+<li><a href="#q-pointer">What stops somebody writing a reversal pointer onto an old row?</a></li>
+<li><a href="#q-filters">How do you know the tenant filters are actually there?</a></li>
+<li><a href="#q-100x">Take the corpus to a hundred times its size. What gives first?</a></li>
+<li><a href="#q-users">Did you talk to real users? Did their feedback change anything?</a></li>
+<li><a href="#q-persona">You wrote the persona. Why is it worth anything?</a></li>
+<li><a href="#q-tenlast">Of the last ten things on her desk, how many had an earlier version?</a></li>
+<li><a href="#q-pay">Why would they pay, and who signs the cheque?</a></li>
+<li><a href="#q-labeller">Your gold set was labelled by a model. You are grading a model with a model.</a></li>
+<li><a href="#q-zerowrong">Zero wrong assertions is your headline safety number. Defend it.</a></li>
+<li><a href="#q-pooled">Two gold sets, different rules, scored as one pool. Show me that is safe.</a></li>
+<li><a href="#q-uncalled">You shipped code nothing called. Why should I believe there isn't another?</a></li>
+</ol></div>
+
+<h2 id="five">The five, in full</h2>
+<p>If you rehearse nothing else, rehearse these. Between them they answer all four evaluation dimensions.</p>
+
+<div class="qa qa--five" id="q-readpath">
+<p class="ask"><span class="badge b-warmup">Warmup</span>Your citation verification runs when a page is read, not when the claim is written. Why that way round, and what does it cost you?</p>
+<p class="ans">Because a write-time verdict is a promise about bytes that can move afterwards. <code>verified_claims</code> re-reads the stored source at the cited offsets every time a claim renders. Edit the source and the claim flips to withheld on the next page load. No job runs, nothing rebuilds, the page just refuses. What it costs I measured this morning rather than guessed. The cost is linear in the document, not in the quote: about nine milliseconds on a fifty-three kilobyte filing, a hundred and seventy on the million-character Kentucky testimony. Nearly all of it is the ambiguity check, which projects the whole document. The string comparison itself is forty microseconds.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/state/claims.py:502</code> (<code>verified_claims</code>); <code>app/verification/verifier.py:151-201</code>. Measured on this machine: <code>occurrence_count</code> 8.9&nbsp;ms on <code>va-scc-PUR-2026-00056-odec-dembek-corrected-testimony-clean-redline.txt</code> (53,132 chars); <code>verify_citation</code> 168.7&nbsp;ms on <code>ky-2025-00113-kollen-direct-testimony-corrected-clean.txt</code> (1,024,536 chars), of which <code>occurrence_count</code> alone is 169.5&nbsp;ms.</p>
+</div>
+
+<div class="qa qa--five" id="q-aifails">
+<p class="ask"><span class="badge b-core">Core</span>Where does modern AI fail, and how did you design around it?</p>
+<p class="ans">It fails by being fluently, plausibly, subtly wrong in a way nothing downstream can detect. A model reads a paragraph well and remembers where it read it badly. It hands you a quotation that reads exactly like a commission order and is not in the order, and nothing in the shape of the answer says so. No confidence dip, no hedge. So the design assumes misquotation and makes it survivable rather than trying to prompt it away. Every claim carries version, offsets and quoted text, and the source is re-read before anything is shown. A claim that fails is withheld, not greyed out. And nothing is repaired. Snap an offset to the nearest match and the gate is checking the repair.</p>
+<p class="ev"><span class="lbl">Evidence.</span> ADR-03 at <code>docs/.ai/decisions.html:54-59</code>; <code>app/state/claims.py:302-322</code> &mdash; <code>WithheldClaim</code> is frozen with <code>slots=True</code> and has no statement field, so the template cannot render one by accident; <code>app/web/templates/change.html:4-9</code>; <code>app/interpretation/propose.py:67-71</code> ("NOTHING IS REPAIRED").</p>
+</div>
+
+<div class="qa qa--five" id="q-whofor">
+<p class="ask"><span class="badge b-warmup">Warmup</span>Who is this for? One person.</p>
+<p class="ans">The regulatory affairs analyst at a multi-state investor-owned utility. The person who opens the filing, works out what changed, and tells the business what it now has to do. Not counsel, who bills by the hour for exactly that reading and has the opposite incentive. Not the compliance officer, who owns the obligation register but consumes the analysis rather than producing it. Not the executive. And not regulated enterprises, which is an industry, not a person. That is ADR-01, written on day one with the alternatives beside it. It is a hypothesis rather than a finding, because nobody has confirmed it. If two interviews say counsel does the real reading, the ADR gets rewritten and the PRD with it. It says that in the ADR.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>docs/.ai/decisions.html:37-43</code> &mdash; ADR-01, alternatives at <code>:40</code>, the open hypothesis at <code>:43</code>. <code>docs/prd.html:57</code>.</p>
+</div>
+
+<div class="qa qa--five" id="q-users">
+<p class="ask"><span class="badge b-killer">Killer</span>Did you talk to real users before you built this? Did their feedback change anything?</p>
+<p class="ans">No, and no. Zero interviews. Forty-five messages went out to people named on certificates of service, four bounced, nobody replied. The interview table in the repo is three empty rows, and the row about what changed because of user feedback says nothing, because nothing did. What I did instead was read a hundred and two real filings from eight commissions and build a persona where every trait points at a line in one of them, with the guesses tagged as guesses. That buys the shape of the job and what error looks like in it. It does not buy frequency, price, or what she would abandon, and the page says so.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>docs/user-research.html:45-50</code> (45 sent, 0 replies, 0 interviews, 4 bounces), <code>:127-131</code> (three empty rows), <code>:137</code> ("This table has no rows"), <code>:144</code> (the bounce, and what it changed in the verifier). <code>data/real</code> holds 102 <code>.txt</code> files across 8 commissions.</p>
+</div>
+
+<div class="qa qa--five" id="q-rewrite">
+<p class="ask"><span class="badge b-hard">Hard</span>What is the one thing you would rewrite?</p>
+<p class="ans">The pairing between a claim and its source. Two things are wrong with it. It reads the whole tenant's corpus to build a map keyed on version id when it needs one row. And the drift check &mdash; hash the version's text, compare it with what ingest recorded &mdash; is written, is tested, and nothing in the application calls it. Only tests do. I checked with grep rather than trusting the docstring. So today, edit the cited span and the claim withholds on the next read. Edit twenty characters elsewhere in the same filing and the claim still asserts against a document that is no longer the one we ingested. That is a genuine hole, and one scoped single-version read closes both halves.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/state/claims.py:469-499</code> &mdash; the docstring names the gap itself; <code>app/verification/verifier.py:204-262</code>, hash at <code>:255-260</code>. <code>grep -rn verify_citation_for_version app/ tests/ scripts/</code>: every hit under <code>app/</code> is a docstring; the only callers are in <code>tests/test_verification.py</code>.</p>
+</div>
+
+<h2>1. The gate &mdash; citation verification</h2>
+
+<p class="ptr">The read-path question and its cost live in <a href="#q-readpath">the five</a>. Start there, then these two.</p>
+
+<div class="qa">
+<p class="ask"><span class="badge b-core">Core</span>There is no stored "verified" column. But a hash of the source would tell you the document has not changed. Why would that not do instead?</p>
+<p class="ans">Because a hash answers a different question. A matching hash says the whole document is unchanged. It does not say the quote sits at those offsets, so you still have to read them. And a mismatch is too blunt the other way: one unrelated typo would withhold every claim in that filing. So the hash is an addition, not a replacement. I do hash, in <code>verify_citation_for_version</code>, and it costs well under a millisecond on a megabyte. But nothing under <code>app</code> calls that function. Only tests do, and I checked with grep before saying so. Drift is caught on cited spans and missed everywhere else in the same filing. That is a real hole and the docstring says it rather than hiding it.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/state/claims.py:469-499</code> (the docstring names the gap); <code>app/verification/verifier.py:204-262</code>, hash at <code>:255-260</code>. Measured: sha256 of the 1,024,536-char file, 0.57&nbsp;ms.</p>
+</div>
+
+<div class="qa qa--killer" id="q-twice">
+<p class="ask"><span class="badge b-killer">Killer</span>The quote a claim cites appears twice in the filing. What happens?</p>
+<p class="ans">The claim is refused. The verifier counts occurrences, and if there is more than one, the citation has to state which one it rests on or nothing is asserted. The same sentence in two sections is two different obligations. This is not a synthetic problem. In the Kentucky testimony we ingested, the phrase Cane Run BESS appears four times. I ran it just now: cited with no occurrence it refuses, cited as occurrence zero it verifies, cited as occurrence one it refuses. The synthetic corpus plants the same trap on purpose. And the tempting fix is the one we refuse. We could derive the occurrence from the offsets the model gave us. That check would agree with itself every time.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/verification/verifier.py:137-148, 196-199</code>; <code>tests/test_occurrence.py</code>; <code>app/interpretation/propose.py:72-80</code>. Measured live: <code>occurrence_count("Cane Run BESS")</code> is 4; occurrence 0 verifies; no occurrence and occurrence 1 both refuse.</p>
+</div>
+
+<h2>2. The model &mdash; what it may do, and where it has run</h2>
+
+<p class="ptr">"Where does modern AI fail" is in <a href="#q-aifails">the five</a>.</p>
+
+<div class="qa">
+<p class="ask"><span class="badge b-hard">Hard</span>What is the model actually allowed to do in this product?</p>
+<p class="ans">One thing. It is shown a single change the deterministic diff already found &mdash; both sides, the section, the exact offsets &mdash; and asked whether it matters to the utility, in one sentence, with a citation. It is never asked what changed. The diff knows that exactly and can be tested against known answers. It is never asked whether a version is draft or final; that is read from a column and stated to it as fact. Its answer then passes five structural drops before the verifier is reached: malformed, a version this change does not span, an empty quote, offsets out of range, and a span outside the change it was shown. That last one matters most. A citation can verify perfectly and still be about text the model was never handed.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/interpretation/propose.py:82-88</code> (draft or final read from the field, ADR-05), <code>:194-197</code> (the named fallbacks), <code>:214-231</code> (the <code>DROP_</code> codes including <code>DROP_OUTSIDE_THE_CHANGE</code>); ADR-04 and ADR-05 in <code>decisions.html</code>.</p>
+</div>
+
+<div class="qa qa--killer" id="q-live-once">
+<p class="ask"><span class="badge b-killer">Killer</span>You keep saying the live model path ran once. Is that true?</p>
+<p class="ans">No, and the page says so before you do. A second request almost certainly went out on the same day. An agent ran the probe script with send, believing the key was absent because it had cleared the environment variable &mdash; but <code>load_env</code> puts any name from the dot-env file back that is not already set, which is exactly what clearing it creates. The output was piped to head and lost. So I cannot tell you the response, the token counts, or whether it succeeded. What I can defend is the one deliberate call: request bytes, response fields, stop reason, usage, cost, all written down, and a test that holds the request block to the exact bytes so it cannot be quietly edited.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>docs/.ai/live-transport-probe.html:34</code> &mdash; the correction note sits directly under the headline sentence and names the second call. <code>tests/test_live_transport_probe.py:288</code> rebuilds the request through <code>AnthropicTransport</code> and asserts it byte for byte.</p>
+</div>
+
+<div class="qa qa--killer" id="q-which-talked">
+<p class="ask"><span class="badge b-killer">Killer</span>So which parts of your model code have actually talked to Anthropic?</p>
+<p class="ans">One deliberately: the citation-gate transport in <code>propose.py</code>, once, on the fifth of August. The other is the assistant's, in <code>app/chat/agent.py</code>, with a different parameter set. Here is the uncomfortable part. Line thirty-three of that file says the path has never run against the real API. Line three hundred and twenty-two, in the same file, says the real thing now runs, because a key reaches it through <code>config.py</code>. Both are in the shipped tree. The truthful reading is that on the deployed instance the assistant has been making real calls and nobody recorded one, while the docstring above it still says it never has. That is the same failure as a stale refusal: a true-sounding sentence about a state that moved.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/chat/agent.py:33</code> ("This path has never run against the real API in this repository") and <code>app/chat/agent.py:322</code> ("The real thing, and it now runs"). <code>docs/.ai/live-transport-probe.html:45</code> still lists the chat transport as not exercised.</p>
+</div>
+
+<h2>3. The deterministic half &mdash; diff, mapping, retrieval</h2>
+
+<div class="qa">
+<p class="ask"><span class="badge b-hard">Hard</span>Your diff is difflib. Where does it break?</p>
+<p class="ans">On wholesale restructuring. Sequence alignment sees a section renumbered and relocated as a deletion plus an addition, and the module says so rather than pretending. The dangerous part is subtler: text similarity runs high exactly when structural identity has changed. Our corpus carries the case on purpose. Section 6 becomes subsection 5.4 and the words barely move. I measured it a few minutes ago: raw similarity is 0.944. Report that as a confident match and a restructure looks like a small edit, which is how a moved obligation gets missed. So a disagreement in the leading section number caps the score at 0.5, below any plausible escalation threshold. It is a ceiling, not a judgement. The alignment became an inference, and an inference escalates.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/diff/engine.py:1-11</code> (the weakness, disclosed), <code>:22</code> (<code>RESTRUCTURE_CONFIDENCE_CEILING = 0.5</code>), <code>:53-75</code> (<code>_alignment_confidence</code>); <code>data/manifest.json</code> CHG-5. Measured live: <code>_similarity</code> 0.9443, <code>_alignment_confidence</code> 0.5000, labels "6" and "5.4".</p>
+</div>
+
+<div class="qa">
+<p class="ask"><span class="badge b-hard">Hard</span>Retrieval. Why FTS5, and what happens when the index is wrong?</p>
+<p class="ans">FTS5 is compiled into the SQLite the app already opens, so there is no service, no process, nothing for a reviewer to install before the run command works. More important, the index points at passage rows that already carry version, ordinal and character offsets, so a hit is already in citation shape and composes straight into the verifier. Most retrieval chunks text and then cannot cite what it retrieved. When the index is missing, stale, or unavailable, the read does not return fewer results. It falls back to a full scan of every passage in scope and says which path answered and why, because a short list with no announcement is the worst outcome available. And every hit is checked against its fingerprint.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/state/search.py:27-40</code> (why FTS5, why Passage), <code>:62-88</code> (the three named degradations and what the staleness check misses); <code>app/state/queries.py:258-277</code> (the whole-corpus fallback). ADR-71 at <code>decisions.html:689-696</code> records 366&nbsp;ms scanning against 1.3&nbsp;ms indexed on 8,707 passages.</p>
+</div>
+
+<div class="qa">
+<p class="ask"><span class="badge b-hard">Hard</span>The brief asks you to map a change to the documents it affects. Where is that?</p>
+<p class="ans">It does not exist, and the schema says so out loud. An obligation carries a source document reference &mdash; the string DOC-2 &mdash; and the comment beside it says: not a foreign key, those documents have no table, they are entries in a JSON file, and naming the column with an id suffix would promise a join nothing can satisfy. The four company documents are seeded as Source rows with a locator into that JSON and no body text at all. So there is no document to re-read, no offsets, no verification. The chain I actually have is change to obligation to a document label. Calling that document mapping would be exactly the fluent unverified assertion this product exists to refuse.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/state/models.py:1513-1518</code> (the comment and the column); <code>app/seed.py</code> seeds the four documents as Source rows with locator <code>data/company_context.json#DOC-n</code>. <code>data/company_context.json</code> holds 4 documents and 8 obligations.</p>
+</div>
+
+<div class="qa qa--killer" id="q-overlap">
+<p class="ask"><span class="badge b-killer">Killer</span>Your change-to-obligation mapping is a word overlap. That is barely AI. Why is it in the product at all?</p>
+<p class="ans">Because the alternative was worse. Nothing wrote that table, so every change in the product refused with no obligation mapped. And it is deliberately not the semantic join. ADR-08 reserves that for embeddings I did not build, and the company context is arranged to defeat anything less: one duty says post security where the docket says post collateral. Four rules, each measured against the corpus. Four characters or more. Prefix match, not substring, because work sits inside network and every network upgrade was proposing the security duty. A word more than half the company's duties use is not evidence. And two words, not one. The part that matters is downstream: a mapping the pipeline proposed cannot put work on a person's desk.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/state/mapping.py:1-10</code> (the hole it fills), <code>:12-27</code> (ADR-08 and <code>note_for_semantic_join</code>), <code>:55-88</code> (the four rules, with "work" inside "network" and "large" in six of eight); <code>app/state/search.py:259</code> (<code>PREFIX_MIN = 4</code>); <code>app/state/routing.py:184</code> and <code>:940-975</code> (<code>ROUTE_MAPPING_UNCONFIRMED</code>; the candidate goes in <code>candidate_user_ids</code> and never <code>user_id</code>).</p>
+</div>
+
+<h2>4. The record &mdash; audit chain and tenancy</h2>
+
+<div class="qa">
+<p class="ask"><span class="badge b-core">Core</span>Tenant isolation. Why a chokepoint rather than a code review rule?</p>
+<p class="ans">Because a rule three people have to remember fails on the fourth call site, and it already did here. There are two guards and they answer different questions. The first refuses a company id that could match more than the caller meant: blank, whitespace, padded, or carrying a wildcard. That is the way in. The second is the way out, and it exists because the first got mistaken for it. One function called the scope guard, passed because the string was well formed, then fetched by primary key and handed back whatever row carried that id &mdash; another tenant's included. Ids are unique across tenants and printed on the front of filings. Now the fetch and the check are one call. And another tenant's row raises rather than answering None, because None collapses nobody holds this into somebody else does.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/state/queries.py:1-23</code> (the two-guards docstring, naming <code>routing.py::ensure_obligation</code> as the failing site), <code>:57</code> (<code>SCOPE_WILDCARDS</code>), <code>:60-107</code> (<code>_require_scope</code>), <code>:113-172</code> (<code>row_for_company</code>, <code>CrossTenantRow</code> at <code>:168</code>).</p>
+</div>
+
+<div class="qa">
+<p class="ask"><span class="badge b-core">Core</span>Your audit log carries three digest schemes. Why not migrate them to one?</p>
+<p class="ans">Because migrating them would destroy the thing they exist to prove. Scheme one hashes the ten original fields. Scheme two adds who acted, from where, under which session. Scheme three adds the reversal pointer. Rows written before attribution existed still verify under scheme one, forever, and nothing rewrites them. Re-hash them under the newest scheme and you get a chain that verifies and proves nothing, because the process that verified it is the process that rewrote it. So each row states its own scheme in a column and verification dispatches per row. A chain mixing all three verifies end to end, because the previous hash is a value copied forward and does not know which function made it. The migration adds columns and backfills the version number. It never touches a hashed field.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/state/audit.py:13-24</code> (module docstring), <code>:95-126</code> (the scheme comment, <code>CURRENT_DIGEST_VERSION = DIGEST_V2</code> at <code>:126</code>), <code>:262 / :309 / :369</code> (the three digest functions), <code>:430-506</code> (<code>_digest_for_row</code>), <code>:691</code> (<code>verify_chain</code>), <code>:799-820</code> (<code>migrate_audit_schema</code>: "no rehash step and there must never be one", <code>:804</code>).</p>
+</div>
+
+<div class="qa qa--killer" id="q-pointer">
+<p class="ask"><span class="badge b-killer">Killer</span>What is a reversal pointer, and what stops somebody writing one onto an old row?</p>
+<p class="ans">Undo is a row, not an edit. Taking back a decision appends an event naming the one it reverses. The reverted row is not edited, not deleted, not flagged, because the record of a correction is exactly what an auditor comes for. The pointer sits inside the hash, in scheme three, for the same reason attribution does: a column beside the hash can be re-pointed while the chain still verifies, and the log would then assert with a valid hash that a decision nobody undid had been undone. Now your question. Schemes one and two do not hash that column. So a pointer on such a row is an assertion nothing defends, and the verifier refuses that row outright. Application code cannot make one. A row in that state arrived out of band.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/state/audit.py:26-32</code> (rollback is a row), <code>:109-116</code> (the hole and how it is closed), <code>:126</code> (<code>CURRENT_DIGEST_VERSION</code> stays at 2), <code>:369-427</code> (<code>_digest_v3</code>), <code>:430-453</code> (<code>_digest_for_row</code> raises <code>AuditTamperError</code> on a v1 or v2 row carrying a pointer), <code>:216-217</code> (the two undo action codes).</p>
+</div>
+
+<div class="qa qa--killer" id="q-filters">
+<p class="ask"><span class="badge b-killer">Killer</span>You have two thousand tests. How do you know the tenant filters are actually there, rather than the tests passing for other reasons?</p>
+<p class="ans">I checked, and the honest answer is that they were mostly not proving it. I deleted eighteen tenant filters one at a time and ran the suite after each. The two hand-written isolation files caught four &mdash; the four functions they name. One deletion turned nothing red at all. That is two thousand tests answering "is the guard there" with a shrug. So the guard is derived from the code now. Three sweeps: every scoped function called with a foreign scope; a syntax-tree pass requiring every query under app to name the company; and every mounted route driven signed in as one company. Asking per query rather than per function took it from catching seventy-eight of a hundred and seventy-six deletions to a hundred and one. Not all of them.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>tests/test_tenancy_derived.py:1-42</code> (the eighteen-deletion audit and the function nothing caught, <code>queries.py::passage_counts_by_version</code>), <code>:795-801</code> (78 of 176 to 101), <code>:822</code> (<code>AST_EXEMPT</code> is empty), <code>:840</code> (<code>AST_QUERY_EXEMPT</code>: 8 entries, 11 allowed queries, each with its reason).</p>
+</div>
+
+<h2>5. Scale &mdash; what gives first</h2>
+
+<p class="ptr">"What is the one thing you would rewrite" is in <a href="#q-rewrite">the five</a>, and it is the same defect seen from the other end.</p>
+
+<div class="qa qa--killer" id="q-100x">
+<p class="ask"><span class="badge b-killer">Killer</span>Take the corpus to a hundred times its size. What gives first, and where exactly?</p>
+<p class="ans">The claims read, and I can point at the line. The function that builds the source map loads every version the company owns, whole source text, on every change render. Today that corpus is a hundred and two filings, fifteen megabytes. At a hundred times it is about one and a half gigabytes pulled into memory to draw one page. That goes before anything else does. Second is verification cost per citation, which is linear in the document rather than the corpus: nine milliseconds on fifty-three kilobytes, a hundred and seventy on a megabyte. More filings do not make that worse; bigger ones do. Third is the retrieval fallback, which is a whole-corpus scan by design. The first two share one fix.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/state/claims.py:469-499</code> (<code>_sources_by_version</code> reads <code>versions_for_company</code> entire); <code>app/verification/verifier.py:151-201</code>; <code>app/state/queries.py:258-277</code>. Measured: <code>data/real</code> is 102 files, 15&nbsp;MB; 8.9&nbsp;ms on 53,132 chars, 168.7&nbsp;ms on 1,024,536 chars.</p>
+</div>
+
+<h2>6. The user</h2>
+
+<p class="ptr">"Who is this for" and "did you talk to real users" are both in <a href="#five">the five</a>. These four come after them.</p>
+
+<div class="qa">
+<p class="ask"><span class="badge b-core">Core</span>The compliance officer owns the obligation register. Isn't she the buyer and the user?</p>
+<p class="ans">She may well be the buyer. She is not the user. The register is a list of duties already agreed; the expensive work is turning a new version of a proceeding into a judgement about whether one of those duties just moved. That is production, not consumption, and the analyst does it. I keep exactly one other role in the model, and it is not a second user &mdash; the obligation owner, who approves the action the analyst recommends. That separation is a security control, because the person who interprets a change should not be the person who signs off acting on it. Where the demo lets you self-approve, I call that a disclosed downgrade rather than the design.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>docs/.ai/decisions.html:42</code> (ADR-01's second role, named as load-bearing and not a second user); <code>app/state/routing.py:203</code>. Role permissions read live from <code>strata.db</code>: analyst holds <code>action.propose</code>; obligation_owner holds <code>action.approve</code> and <code>action.reject</code>; admin holds neither.</p>
+</div>
+
+<div class="qa">
+<p class="ask"><span class="badge b-core">Core</span>Walk me through their day. Where exactly does this help?</p>
+<p class="ans">Several open proceedings at once, in several states, because the utility operates in several. Months of quiet, then a draft order posts, then a short comment window, then a final order with a deadline attached. Filings arrive as PDFs by email against a service list, often scanned, two copies of everything &mdash; one public, one confidential. The moment I built for is narrow. A second version of something she has already read lands. She does not want a summary; she knows the old one. She wants the delta in the source's own words, whether it binds yet, which of her obligations it touches, and who needs to see it this week. Today that is two documents side by side and a redline built by eye. This is a model, not an observation. Nobody has walked me through last Tuesday.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>docs/prd.html:60-63</code>, and the section is headed "modeled, not yet observed" with its own honesty check at <code>:61</code>; <code>docs/synthetic-user.html:61-62</code>.</p>
+</div>
+
+<div class="qa qa--killer" id="q-persona">
+<p class="ask"><span class="badge b-killer">Killer</span>You wrote the persona, from filings you picked, for a product you built. Why is that worth anything?</p>
+<p class="ans">Its agreement is worth nothing and I say so on the page. It was assembled by the same mind, from a corpus that same mind chose, so it produces the pains the product already claims to solve. Two things make it non-zero. Every trait carries a file and a line in a real filing, so a reader can check the trait rather than trust me, and the traits I could not source are tagged as guesses with what would kill them. And it earned its place by failing. Asked to walk through last Tuesday it had nothing, so that question survived onto the real script. A question a synthetic cannot answer is exactly the one worth a stranger's ten minutes. The corpus is also biased on purpose. I selected for errata and version pairs.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>docs/synthetic-user.html:53</code> (bias on purpose), <code>:66</code> ("A trait with no source does not appear"), <code>:252-253</code> ("It will agree with the product too readily"); <code>docs/prd.html:88-89</code>; <code>docs/user-research.html</code> (the rehearsal cut four questions and produced the two marked "can hurt").</p>
+</div>
+
+<div class="qa qa--killer" id="q-tenlast">
+<p class="ask"><span class="badge b-killer">Killer</span>Of the last ten things that landed on her desk, how many had an earlier version she had already read?</p>
+<p class="ans">I don't know, and if the answer is two then my unit of work is aimed at the wrong moment. That question came out of rehearsing against the synthetic persona and it is the sharpest thing the rehearsal produced, because the product only makes a change when it has two versions to compare. The first version of any proceeding has nothing to diff against, and nothing in this build fills that gap &mdash; no branch for it in the design, the data model or the board. If most arrivals are cold, then cold start is not a gap in the product, it is the product, and the whole change-centric decision gets rewritten rather than patched. It is question two on my call script, marked as one of the two that can hurt.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>docs/prd.html:87-89</code> (cold start, and "It may be worse than a weakness"); <code>docs/user-research.html:239-240</code> (question 2, tagged as able to hurt ADR-002).</p>
+</div>
+
+<h2>7. Product and market</h2>
+
+<div class="qa">
+<p class="ask"><span class="badge b-core">Core</span>So what would you cut?</p>
+<p class="ans">The approval-route machinery. Not routing &mdash; routing stays, because it is the part that refuses. The walk from change to obligation to owner returns one of sixteen named refusal codes rather than a guess. And on the seeded data almost every mapped change refuses to name a person, because the pipeline proposed those mappings from word overlap and only two were confirmed by a person. Exactly two are hard-coded as person-confirmed in the seed script; everything else is a proposal, and a proposal cannot route. That is a quieter demo and it is the correct answer. What I would cut is the machinery that decides what happens next, because nothing in the public record told me what happens next at any real company.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/state/routing.py:165-197</code> (the <code>ROUTE_</code> codes), <code>:203</code> &mdash; read live, <code>len(ROUTING_REASON_CODES)</code> is 18 and <code>ROUTE_OK_CODES</code> holds 2, leaving 16 refusals; <code>:940-975</code> (only <code>AUTHOR_ANALYST</code> routes); <code>scripts/seed_demo_gaps.py:71-74</code> (<code>CONFIRMED_BY_A_PERSON</code> is exactly two pairs); ADR-87 at <code>decisions.html:904</code>.</p>
+</div>
+
+<div class="qa">
+<p class="ask"><span class="badge b-hard">Hard</span>How do you know they want this and not just a better search box?</p>
+<p class="ans">I don't know it. That is hypothesis two and nobody has answered it. What I can defend is the choice. Search assumes the question. It answers where does this proceeding mention interconnection timelines, and she can only type that if she already knows a change touched interconnection timelines. Her starting point is the opposite. So I built retrieval and refused search. Full-text indexing is in the code and it is fast &mdash; about a millisecond against roughly a third of a second scanning eight and a half thousand passages &mdash; and there is no search box, no search screen and no search route in the sixty-three the app mounts. A ranked list puts a ranking in front of the evidence.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>docs/.ai/decisions.html:45-51</code> (ADR-02) and <code>:689-696</code> (ADR-71: 366&nbsp;ms scanning against 1.3&nbsp;ms indexed on 8,707 passages); <code>app/state/search.py:27-32</code>; <code>app.routes</code> counted live &mdash; 63 routes, none matching "search"; <code>docs/user-research.html:155</code> (H2).</p>
+</div>
+
+<div class="qa">
+<p class="ask"><span class="badge b-hard">Hard</span>Name the one feature that does not map to a named user pain.</p>
+<p class="ans">The approval-route engine. Two and a half thousand lines of state machine plus fourteen hundred in the admin canvas &mdash; steps, timeouts, reminders, escalation, bypass. The pain it claims to serve is chasing an approval by email. The trouble is that the persona row underneath it is tagged assumed, not grounded: that the obligation owner is a distinct person who approves her work. It is assumed because internal approval process never gets filed, so a hundred and two public filings cannot show it. And the clock does not even tick unless someone sets an environment variable to start a separate loop, which is off by default. So it is the largest body of code in the product resting on the weakest evidence in the persona. I would rather say that first than have it found.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/state/workflow.py</code> is 2,471 lines; <code>app/web/views/admin.py</code> is 1,431. <code>docs/synthetic-user.html:229-231</code> (tagged ASSUMED, and why: internal process is not filed). <code>deploy/entrypoint.sh:116</code> and <code>app/jobs/runner.py:211</code> &mdash; nothing runs unless <code>STRATA_JOBS_ENABLED</code> is "true".</p>
+</div>
+
+<div class="qa">
+<p class="ask"><span class="badge b-hard">Hard</span>What would you change?</p>
+<p class="ans">The front door. Ingestion assumes somebody hands the system two versions of a proceeding. My own call script has a question I have never been able to ask &mdash; walk me through the last thing that landed on you, starting from how you found out it existed. If the honest answer is a colleague, or a law firm memo, or a phone call, then the first screen is in the wrong place and ingestion is not the front door at all. Second thing, and it is about how I spent the time. I spent hour forty on an approval-route canvas and hour one on cold email. I would swap those. One warm introduction was worth more than the forty-five messages, and I never went looking for one.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>docs/user-research.html:236-237</code> (question 1 and what it settles: where the product's front door belongs); <code>:81-86</code> (targeting was not the problem, the channel was).</p>
+</div>
+
+<div class="qa">
+<p class="ask"><span class="badge b-hard">Hard</span>What did reading 102 filings teach you that you did not expect?</p>
+<p class="ans">Three things, and the first two changed the design. The redline lies. A Utah errata redline shows a page reference of eighty-six where both the original and the clean copy read eight &mdash; a change that never happened &mdash; and it silently passed over one that did. So the wedge is not producing a redline, it is ranking one. Second, a diff cannot see what is not there. A Missouri corrected stipulation is fifteen lines longer than the original, the prose identical, and the added lines are the rate table. The document that sets the prices had been filed without the prices. Third, and this is why the whole product exists: in a Kentucky testimony the body says Brown BESS twice and an exhibit bound into the same PDF says Cane Run BESS.</p>
+<p class="ev"><span class="lbl">Evidence.</span> Verified by hand this session. <code>ut-24-035-04-ellis-phase3-direct-testimony-errata-redline.txt:33</code> reads "86" where <code>-original.txt:31</code> and <code>-errata-clean.txt:31</code> both read "8". <code>mo-ET-2025-0184-nonunanimous-stipulation-corrected.txt</code> is 1,231 lines against 1,216; the diff shows the title, the date (7th to 9th), and Exhibit A &mdash; the Schedule LLCS pricing table at <code>:1218-1232</code>, absent from the original. <code>ky-2025-00113-kollen-direct-testimony-original.txt:4600</code> and <code>:4608</code> say "Brown BESS"; <code>:13568</code> and <code>:13570</code> say "Cane Run BESS".</p>
+</div>
+
+<div class="qa">
+<p class="ask"><span class="badge b-hard">Hard</span>Your strongest number is the Kentucky pair &mdash; a million characters, a hundred and twenty-seven apart, a hundred and forty-four changes. What obligations came out of it?</p>
+<p class="ans">Close to none, and the reason is structural. That pair is Lane Kollen's direct testimony in Kentucky, original against corrected. Intervenor testimony does not place duties on a utility &mdash; it argues. My own gold set says it: the Kentucky corpus there is testimony, errata and cover letters, and it holds one duty across six passages against Georgia's ten across nineteen. So the diff is real arithmetic on a real filing, and the thing downstream of the diff has almost nothing to bite on. The eight obligations in the demo are written against the invented Meridian docket. I do not have the split of the mappings between the two corpora in my head, and it is one query.</p>
+<p class="ev"><span class="lbl">Evidence.</span> Re-measured this session: the two files are 1,024,409 and 1,024,536 chars, 127 apart; segmenting both and running <code>app/diff/engine.py::diff</code> gives exactly 144 changes &mdash; 134 modified, 6 added, 4 removed &mdash; in 0.38&nbsp;s over 4,285 passages against 4,287. Scorer output: KY 6 passages, 1 obligation; GA 19 passages, 10 obligations. <code>data/company_context.json</code> holds 8 obligations, all Meridian.</p>
+</div>
+
+<div class="qa qa--killer" id="q-pay">
+<p class="ask"><span class="badge b-killer">Killer</span>Why would they pay, and who signs the cheque?</p>
+<p class="ans">I don't know, and that is the honest answer rather than a modest one. No buyer has been spoken to at all &mdash; my interview plan targets analysts, not the budget holder above them, and neither has happened. There is no price in any document here, because nothing in a public filing says what a seat costs, and a number invented at this desk would end up in the MRD and be indefensible in this room. What I will commit to is the reasoning. The user is sold on time and on trust &mdash; does it read the docket correctly, and can she check a claim without redoing the work. The buyer is sold on risk &mdash; can the company show an auditor that a specific order was seen, assessed and acted on inside the deadline, with a record of who reviewed it. Different pitches, different proof.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>docs/mrd.html:619-625</code> (buyer versus user, and the open row saying which budget it comes from is unconfirmed); <code>docs/synthetic-user.html:240-241</code> ("It cannot price anything").</p>
+</div>
+
+<h2>8. The evidence &mdash; evals and gold sets</h2>
+<p class="muted">All three are killers. Reproduce the scorer before the answer: <code>.venv/bin/python -m app.evals.obligations --no-extractor</code>.</p>
+
+<div class="qa qa--killer" id="q-labeller">
+<p class="ask"><span class="badge b-killer">Killer</span>Your obligation gold set was labelled by a model. You are grading a model with a model.</p>
+<p class="ans">Correct, and both files say so in the field. The Georgia-Kentucky set names Claude Opus 5, single annotator, no adjudication. The Utah-Missouri set now says the same words. One annotator each, no second pass, no inter-annotator agreement number, and none can be computed from those files. Seventeen of the fifty-one passages carry an ambiguous flag, and that flag is the labeller's own guess at contestability, not a measured disagreement rate. So the honest claim is narrow: the set is internally consistent and its quotes still slice out of the source byte for byte. It is not a regulatory expert's judgement of what a filing obliges a utility to do, and I would not present it as one.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>data/evals/goldset_ga_ky.json</code> <code>labeller</code> field: "Claude (Opus 5), single annotator, no adjudication". <code>data/evals/goldset_ut_mo.json</code> <code>labelled_by</code>: the same phrase plus "regulatory text only". 25 + 26 = 51 passages, 9 + 8 = 17 ambiguous. Reproduced live.</p>
+</div>
+
+<div class="qa qa--killer" id="q-zerowrong">
+<p class="ask"><span class="badge b-killer">Killer</span>Your obligation scorer reports zero wrong assertions. That is your headline safety number. Defend it.</p>
+<p class="ans">It is empty and I will not quote it alone. There is no extractor in this build. No predictions file exists anywhere in the tree, and no code path reads a passage and says what duty it creates. The only run available was no-extractor, which records a refusal for all fifty-one passages. A system that asserts nothing cannot assert wrongly, so the blocking metric passed by asserting nothing. The scorer prints that in capitals in its own output and says do not quote the exit code of this run. Correct assertions is also zero, on the same page. Twenty-three misses is the only figure in that run carrying information &mdash; it is the whole of what an extractor would have to earn back.</p>
+<p class="ev"><span class="lbl">Evidence.</span> Reproduced live: wrong 0, missed 23, correct 0, correct refusal 28, unadjudicated 0. <code>app/evals/obligations.py</code> &mdash; the flag's own banner reads "NO EXTRACTOR RAN" and "Do not quote the exit code of this run"; <code>docs/.ai/eval-result.html</code>.</p>
+</div>
+
+<div class="qa qa--killer" id="q-pooled">
+<p class="ask"><span class="badge b-killer">Killer</span>You have two gold sets with different labelling rules and you score them as one pool. Show me that is safe.</p>
+<p class="ans">I cannot, and it is the sharper problem of the two. The Georgia-Kentucky file has a rule the other does not: a passage that restates a duty created somewhere else &mdash; a prior order, a statute &mdash; is labelled false unless this document is the instrument imposing it. The Utah-Missouri file's not-an-obligation list has six entries and no restatement clause at all. So the same sentence can score true in one file and false in the other. And the loader reads the known limits and never reads either rule field, so nothing in the scorer can notice. The flattening function pools both into one tuple and every metric runs over the pool. The counts are arithmetic over two definitions.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>data/evals/goldset_ga_ky.json</code> <code>labelling_rule</code> (the restatement clause); <code>data/evals/goldset_ut_mo.json</code> <code>labelling_rules.not_an_obligation</code> &mdash; six entries, and the string "restat" appears nowhere in that object. <code>app/evals/obligations.py:321-330</code> (<code>GoldSet</code> carries name, path, jurisdictions, known_limits, passages &mdash; no rule field), <code>:442-455</code> (<code>all_passages</code> flattens every set into one tuple).</p>
+</div>
+
+<h2>9. Security, and the code nothing calls</h2>
+
+<div class="qa">
+<p class="ask"><span class="badge b-core">Core</span>You have no CSRF token anywhere in this application. Every admin form is forgeable.</p>
+<p class="ans">There is no token, correct. SameSite=Lax on the session cookie is the whole defence, and I wrote that in the modules that own forms rather than leaving it to be discovered. What that buys and what it does not: Lax stops a cross-site POST from carrying the cookie, which covers the ordinary form-forgery shape, and it does nothing against an attacker who can get script onto my own origin. The login form has no token either, so somebody can make a victim's browser sign in as the attacker. There is a per-account lockout &mdash; five wrong passwords, fifteen minutes &mdash; but nothing throttles an attacker spreading guesses across many addresses. That belongs at the edge and this build has no edge.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/web/deps.py:78-79</code> &mdash; the comment says Lax "is the whole of the CSRF defence on this build &mdash; there is no token"; <code>app/auth/sessions.py:45</code>; <code>app/auth/sessions.py:101-102</code> (<code>MAX_FAILED_ATTEMPTS = 5</code>, <code>LOCKOUT</code> 15 minutes). The same concession is written in four view modules: <code>auth.py:28</code>, <code>users_admin.py:77</code>, <code>shares_admin.py:67</code>, <code>permissions.py:74</code>.</p>
+</div>
+
+<div class="qa">
+<p class="ask"><span class="badge b-core">Core</span>Your demo signs anybody in as an administrator with one click and no password. Walk me through what that account can do.</p>
+<p class="ans">Yes, and it is my call &mdash; ADR-84. One unauthenticated POST to the demo login returns a session. It is not a bypass: the handler calls the same login function with the seeded password, supplied by the server instead of by somebody's fingers, so there is no second door. What the account holds is four administrative codes &mdash; manage users, invite, manage the workflow, set the threshold. The full cost: through the handoff invite path a visitor can invite an address they control, accept it, and hold approve. Nothing rate-limits that. Provisioning is ceiling-bound and cannot escalate; the handoff path deliberately can, and it writes an audit row saying so every time. What is not at stake is confidentiality.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/web/views/auth.py:305-350</code> (<code>demo_login_post</code>, and the docstring on why it is not a bypass). Role permissions read live: admin holds eight codes, of which <code>user.manage</code>, <code>user.invite</code>, <code>workflow.manage</code> and <code>threshold.set</code> are the administrative ones &mdash; the other four are reads every role has, and admin holds neither <code>action.approve</code> nor <code>action.reject</code>. <code>app/state/invites.py:35-49</code> and <code>:2222-2233</code> (<code>CEILING_WAIVED_BY_KIND</code> names the handoff hole in writing); ADR-84 at <code>decisions.html:853-860</code>, including its own correction that "no way back" was false when written; <code>make reset-demo</code> puts the tenant back.</p>
+</div>
+
+<div class="qa">
+<p class="ask"><span class="badge b-hard">Hard</span>Your own stylesheet says a text colour fails accessibility. Explain why it is still in the build.</p>
+<p class="ans">Because I measured the wrong thing three times and only the fourth measurement was honest. The third ink tone on the masthead does not clear AA. Sampled every pixel inside the nav-link box on a real page at 1440 by 900: best pixel four point four nine to one, worst three point eight five. AA wants four point five. The figures I had published &mdash; 4.57, and before that 16.15 &mdash; were computed against the flat fallback token, or against an ink colour that appears nowhere in the stylesheet. The pane is glass. It has the colour of whatever is under it, and something is always under it because content scrolls beneath a sticky masthead. So a rendered figure there is a range, not a number.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>app/web/static/strata.css:161-183</code> &mdash; the sampled figures at <code>:169-170</code>, the correction at <code>:171-175</code>, and 16.73 / 8.26 / 4.57 labelled as token arithmetic against <code>--glass-solid</code> at <code>:176-182</code>. <code>--ink-3</code> is <code>#67747a</code> at <code>:87</code>.</p>
+</div>
+
+<div class="qa qa--killer" id="q-uncalled">
+<p class="ask"><span class="badge b-killer">Killer</span>Several times in this repository you shipped code that nothing called. Why should I believe there is not another one in there right now?</p>
+<p class="ans">There is, and I will name two. <code>can_approve</code> reads authorship out of the audit chain and refuses self-approval. It is tested. No view in the product calls it, so the review screens still take a reviewer's name typed into a form. And <code>start_run</code>, the function that begins an approval run, has no caller in the application either &mdash; so no run ever starts. What changed is how I look for these. The wiring test used to assert five hand-written paths and passed happily while two view modules with nine routes between them were mounted nowhere. Rewritten to read the route table and compare, it caught three unmounted routers on its first run. A list a person maintains cannot catch the module that person forgot.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>grep -rn can_approve app/</code>: hits are <code>app/auth/policy.py</code> docstrings, its definition at <code>:531</code>, and one comment at <code>app/web/views/admin.py:1219</code> &mdash; no call. <code>start_run</code> is defined at <code>app/state/workflow.py:1744</code> and called only from tests. <code>tests/test_app_wiring.py</code> derives the check from <code>app.routes</code>. <code>docs/security.html:131</code> and <code>:148</code> concede the <code>can_approve</code> gap in their own words.</p>
+</div>
+
+<h2>10. Authorship</h2>
+
+<div class="qa">
+<p class="ask"><span class="badge b-hard">Hard</span>Ninety decision records in three days. How much of this did you write?</p>
+<p class="ans">Most of the lines are the model's, and the submission record says so before anybody asks. Fifty-seven thousand lines under app, fifty-two thousand under tests, seventy-six commits in three days &mdash; nobody types that. What is mine is the architecture, the plan, and every position an ADR takes. The rows worth reading are the rejections: a similarity threshold in the verifier, raw similarity as diff confidence, a fixed-width window in the occurrence check, an analytics screen, a percentage computed over five items. One runs the other way and it is the more useful row &mdash; I asked for a ninety-nine percent coverage target, the model refused it, I overruled the refusal, then cut the target myself. Read that row rather than my summary of it.</p>
+<p class="ev"><span class="lbl">Evidence.</span> <code>git rev-list --count HEAD</code> gives 76 at <code>a5c20cb</code>. <code>wc -l</code>: 57,435 lines under <code>app/</code>, 52,435 under <code>tests/</code>. <code>docs/.ai/decisions.html</code> carries 90 unique anchors, <code>adr-001</code> to <code>adr-090</code>. <code>docs/submission.html</code> holds the "what the AI wrote, and what I rewrote or rejected" table.</p>
+</div>
+
+<h2>Known limits</h2>
+<p>Every limit below is a fact about the system, stated here rather than left to be found. Each one is checkable in the tree.</p>
+
+<div class="note">
+<p><span class="lbl">Nobody has been interviewed.</span> Zero. Forty-five messages, four bounces, no replies. User empathy is the weak dimension in this submission and no amount of further engineering moves it.</p>
+<p><span class="lbl">The persona is invented and labelled so.</span> Its agreement is worth nothing. Its traceability is worth something. Never offer it as a substitute for a conversation.</p>
+<p><span class="lbl">The gate checks the words, not the reading.</span> Verified means the words exist where the claim says they do. A fluent, correctly-cited, wrong reading passes.</p>
+<p><span class="lbl">Two controls are built, tested, and not wired.</span> <code>can_approve</code> refuses self-approval and no view calls it. <code>start_run</code> begins an approval run and nothing in <code>app/</code> calls it.</p>
+<p><span class="lbl">Drift is caught on cited spans only.</span> The hash check exists, is tested, and is not on the read path. Edit twenty characters elsewhere in the same filing and the claim still asserts.</p>
+<p><span class="lbl">There is no CSRF token.</span> SameSite=Lax is the whole defence. The login form has none either.</p>
+<p><span class="lbl">The chain is tamper-evident, not tamper-proof.</span> Anyone who can rewrite the whole database recomputes every hash forward. Closing that needs the head published outside, and it is not built.</p>
+<p><span class="lbl">The evals measure the deterministic half.</span> There is no eval on the model path, and the obligation scorer's zero comes from a build with no extractor.</p>
+<p><span class="lbl">The live model path is barely exercised.</span> One deliberate call, one accidental one that cannot be reported, and no counter anywhere for the assistant's calls in production.</p>
+<p><span class="lbl">The approval engine rests on the weakest row in the persona.</span> Largest body of code, tagged ASSUMED, and its clock is off by default.</p>
+<p><span class="lbl">The diff does not handle restructures.</span> It refuses to present one as settled. That is the claim, and it is narrower.</p>
+</div>
+
+</body>
+</html>
