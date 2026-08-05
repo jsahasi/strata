@@ -8,22 +8,33 @@ settings page.
 
 THE HARD PART IS TELLING THE TRUTH, AND IT IS THE WHOLE DESIGN.
 
-NOTHING IN THIS PRODUCT FETCHES ANYTHING. There is no crawler, no poller and no
-scheduler. ScheduledRun is a table with cadences and no fetcher behind it. So
-every function here is written to make it impossible for a screen to imply
-otherwise:
+ONE KIND NOW FETCHES, AND EXACTLY ONE. app/sources/fetch.py retrieves the
+document a public_docket names, hashes it, and stores a new version only when
+the hash moved. Nothing else fetches: an internal store, a REST API and an MCP
+server have no fetcher, there is still no crawler, no poller and no scheduler,
+and ScheduledRun remains a table of cadences with nothing behind it. Every
+function here is written so that a screen cannot round that up:
 
-* FETCHABLE_SOURCE_KINDS is asked, never assumed. It is empty today, and
-  initial_status_for_kind() reads it, so a newly registered source is
-  not_implemented -- registered, and this build cannot fetch from it.
+* can_fetch() is asked, never assumed, and FETCHABLE_KINDS is derived from the
+  fetcher package rather than restated here, so the registry cannot claim a
+  capability no code provides.
+* THE KIND IS NOT THE WHOLE ANSWER, AND initial_status() BELOW IS WHERE THAT
+  BITES. A public docket that names one document is never_tried. A public
+  docket that names a commission's front door -- which is every row
+  register_corpus_sources() writes -- is not_implemented, because this build
+  retrieves bytes and hashes them, and a search page is not a filing. Two rows
+  of the same kind, two honest statuses. app/sources/__init__.py holds the rule
+  both sides ask.
 * status and enabled are two facts and neither implies the other. enabled is
   what the administrator wants. status is what is true. Disabling a source does
   not touch its status, and set_source_enabled() below is written so that it
   cannot.
-* last_scanned_at stays NULL until something scans, which is never. The screen
-  prints NEVER_SCANNED rather than an empty cell, because a blank reads as a
-  quiet week rather than as a capability that does not exist.
-* FETCHES_NOTHING is a sentence, not a comment, and the screen renders it.
+* last_scanned_at stays NULL until something scans, and now something can. The
+  screen prints NEVER_SCANNED rather than an empty cell, because a blank reads
+  as a quiet week rather than as a capability that does not exist.
+* FETCHES_NOTHING is a sentence, not a comment, and the screen renders it. It
+  is still true: nothing here fetches ON A SCHEDULE. A fetch happens when
+  somebody asks for one.
 
 THE SECRET IS REFERENCED BY NAME AND NEVER HELD. credential_ref carries the NAME
 of an environment variable. app/state/models.py argues that at length; what this
@@ -34,20 +45,23 @@ a name outside CREDENTIAL_REF_PREFIX, refuses anything that is not shaped like
 an environment variable at all, and NEVER QUOTES WHAT IT REFUSED. An error
 message that echoes its input is how a pasted key reaches the page and the logs.
 
-THERE IS NO CONNECTION TEST, AND THAT IS A DECISION. A button that makes this
-server fetch a URL an administrator typed is a server-side request forgery
-surface: it turns an admin screen into a way to ask the host to open connections
-inside its own network -- the cloud metadata address, the loopback interface,
-anything a name happens to resolve to. Doing it safely needs the resolved
-address checked against every private range, redirects refused, the socket
-pinned to the address that was checked, and a timeout. None of that is built.
-Refusing is the better answer, so CONNECTION_TEST_REFUSAL is on the screen.
+THERE IS STILL NO CONNECTION TEST ON THE SCREEN, AND THAT IS STILL A DECISION.
+A button that makes this server fetch a URL an administrator typed is a
+server-side request forgery surface: it turns an admin screen into a way to ask
+the host to open connections inside its own network -- the cloud metadata
+address, the loopback interface, anything a name happens to resolve to. The
+address checks that make it survivable now exist, in app/sources/fetch.py, and
+nothing on this screen calls them. Wiring a button to them is a change to
+app/web/views/integrations.py, and until somebody makes it, CONNECTION_TEST_REFUSAL
+is what the screen says.
 
 What is offered instead is endpoint_preflight(), which reads the text of an
 endpoint and says whether a fetcher would be allowed to reach it. It opens no
 socket and resolves no name. It proves nothing about whether the endpoint
 exists, and its own reason string says so, because a preflight that reads like a
-connection test is the same lie in smaller type.
+connection test is the same lie in smaller type. app/sources/fetch.check_url()
+is the version with teeth: it resolves the name and checks every address, which
+is why it is not called while rendering a page.
 
 THE ROWS ARE REAL. data/real holds 102 public filings from eight commissions,
 each with a provenance file naming the URL it was fetched from. corpus_sources()
@@ -81,6 +95,10 @@ from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app.auth import policy
+
+# The fetch contract, which imports nothing from this package. See the note on
+# FETCHABLE_KINDS below for why it lives one level up from both of us.
+from app.sources import FETCHER_KINDS, fetch_problem
 from app.state.audit import ACTOR_USER, record_event
 from app.state.identity import user_for_company
 from app.state.models import (
@@ -96,6 +114,7 @@ from app.state.models import (
     SOURCE_STATUS_NEVER_TRIED,
     SOURCE_STATUS_NOT_IMPLEMENTED,
     SOURCE_STATUS_UNREACHABLE,
+    SOURCE_STATUSES,
     DocumentVersion,
     SourceRegistration,
     initial_status_for_kind,
@@ -129,6 +148,13 @@ ACTION_SOURCE_ENABLED = "source.enabled"
 ACTION_SOURCE_DISABLED = "source.disabled"
 ACTION_SOURCE_REMOVED = "source.removed"
 
+# The two the fetcher writes. SEPARATE CODES RATHER THAN ONE WITH THE OUTCOME
+# BURIED IN THE REASON, because a security refusal has to be findable: "show me
+# every time this product declined to open an address somebody registered" is
+# the query a reviewer asks, and it cannot be answered by grepping prose.
+ACTION_SOURCE_FETCHED = "source.fetched"
+ACTION_SOURCE_FETCH_REFUSED = "source.fetch_refused"
+
 # What these rows are about. Unambiguous on purpose: a `sources` table exists
 # and answers a different question.
 SUBJECT_SOURCE = "source_registration"
@@ -153,6 +179,11 @@ FETCHES_NOTHING = "Nothing in this build fetches on a schedule."
 NEVER_SCANNED = "Never scanned"
 
 #: Why there is no connection test. On the page, not in a docstring.
+#:
+#: THE LAST SENTENCE CHANGED WHEN THE FETCHER LANDED. It used to say none of
+#: those checks were built. They are built now, in app/sources/fetch.py, and
+#: nothing on this screen calls them -- which is a different statement and the
+#: only one still true.
 CONNECTION_TEST_REFUSAL = (
     "There is no connection test on this screen, and that is a decision rather "
     "than an omission. A test button takes a URL an administrator typed and has "
@@ -160,9 +191,11 @@ CONNECTION_TEST_REFUSAL = (
     "host to open connections inside its own network: the cloud metadata "
     "address at 169.254.169.254, the loopback interface, anything a name "
     "happens to resolve to. Doing it safely needs the resolved address checked "
-    "against every private range, redirects refused, the socket pinned to the "
-    "address that was checked, and a timeout. None of that is built here, so "
-    "nothing on this screen opens a socket."
+    "against every private range, every redirect re-checked, the socket "
+    "connected to the address that was checked, a timeout and a size ceiling. "
+    "Those checks now exist, and they guard the fetch this product performs "
+    "when somebody asks it to. No button on this screen calls them, so nothing "
+    "here opens a socket."
 )
 
 #: The half of the answer a connection test would still not give.
@@ -219,9 +252,15 @@ KIND_WORDS = {
 
 #: One line per status, in words a buyer can quote. The four are the four states
 #: the brief asks this screen to tell apart at a glance.
+#:
+#: not_implemented USED TO READ "cannot fetch from that KIND", and it stopped
+#: being true the day one kind gained a fetcher: a public docket that names a
+#: commission rather than a document is unfetchable for a reason that has
+#: nothing to do with its kind. The shorter sentence is true in both cases. See
+#: initial_status().
 STATUS_WORDS = {
     SOURCE_STATUS_NOT_IMPLEMENTED: (
-        "Registered, and this build cannot fetch from that kind"
+        "Registered, and this build cannot fetch from it"
     ),
     SOURCE_STATUS_NEVER_TRIED: "Registered and reachable in principle, never tried",
     SOURCE_STATUS_CONNECTED: "Registered and reached",
@@ -383,19 +422,65 @@ def credential_ref_problem(kind: str, credential_ref: str | None) -> str:
     return ""
 
 
+# ---------------------------------------------------------------------------
+# WHAT THIS BUILD CAN FETCH FROM
+#
+# THIS UNION IS A SHIM AND IT IS MEANT TO BE DELETED. The right home for this
+# tuple is app/state/models.py, where FETCHABLE_SOURCE_KINDS already sits and
+# already says "when the first fetcher lands, add its kind here and nowhere
+# else". A fetcher has landed and that file is not owned by this change, so the
+# union below adds the kind app/sources/ actually serves, and the handoff names
+# the one line to edit. When models.FETCHABLE_SOURCE_KINDS gains public_docket
+# this becomes a no-op and FETCHABLE_KINDS can be replaced by it outright.
+#
+# IT IS DERIVED FROM THE FETCHER PACKAGE, NOT TYPED. FETCHER_KINDS is what
+# app/sources/ can actually retrieve from, and reading it here is what stops the
+# registry from claiming a capability no code provides. A hand-kept second list
+# is how a screen ends up promising a scan that will never come; the assertion
+# in tests/test_fetch.py holds the subset relation in place.
+# ---------------------------------------------------------------------------
+
+FETCHABLE_KINDS: tuple[str, ...] = tuple(
+    dict.fromkeys(FETCHABLE_SOURCE_KINDS + FETCHER_KINDS)
+)
+
+
 def can_fetch(kind: str) -> bool:
-    """Whether this build can fetch from that kind of source at all.
+    """Whether this build has a fetcher for that KIND of source.
 
     ONE PLACE THE QUESTION IS ASKED, and it is asked rather than assumed. Every
-    screen and every sentence that turns on the answer comes through here, so
-    the day a fetcher lands the tuple in app/state/models.py gains one entry and
-    nothing else in this product has to be found and edited. A view that wrote
-    `kind in FETCHABLE_SOURCE_KINDS` for itself would be a second place to
-    forget.
+    screen and every sentence that turns on the answer comes through here, so a
+    fetcher for a second kind changes one tuple and nothing else in this product
+    has to be found and edited. A view that wrote `kind in
+    FETCHABLE_SOURCE_KINDS` for itself would be a second place to forget.
 
-    It answers False for all four kinds today. Nothing here fetches anything.
+    IT IS A QUESTION ABOUT THE KIND AND NOT ABOUT THE ROW, and the difference
+    matters enough to be two functions. A public docket that names a
+    commission's search page is a kind this build can fetch from and a row it
+    cannot fetch. fetch_problem() answers the second question; nothing should
+    use this one to decide whether a particular registration is fetchable.
     """
-    return kind in FETCHABLE_SOURCE_KINDS
+    return kind in FETCHABLE_KINDS
+
+
+def initial_status(kind: str, config: dict | None = None) -> str:
+    """The status a newly registered source truthfully starts at.
+
+    A WRAPPER, AND THE WRAPPING IS THE POINT. models.initial_status_for_kind()
+    validates the kind and answers from FETCHABLE_SOURCE_KINDS, and it is asked
+    first so there is still one place that refuses an unknown kind. What it
+    cannot know is that the kind now has a fetcher and that the fetcher reads
+    the ROW: a public docket naming one document can be scanned, and one naming
+    a commission cannot, and both are public dockets.
+
+    So: not_implemented unless this build could actually fetch this row, in
+    which case never_tried. Never connected and never unreachable -- those are
+    claims about reachability, and registering a source establishes neither.
+    """
+    status = initial_status_for_kind(kind)
+    if status == SOURCE_STATUS_NOT_IMPLEMENTED and not fetch_problem(kind, config or {}):
+        return SOURCE_STATUS_NEVER_TRIED
+    return status
 
 
 def kind_problem(kind: str) -> str:
@@ -669,6 +754,35 @@ def provenance_counts(session: Session, *, company_id: str) -> ProvenanceCounts:
     )
 
 
+def latest_version_from_source(
+    session: Session, *, company_id: str, source_id: str
+) -> DocumentVersion | None:
+    """The most recently retrieved version this registration produced, or None.
+
+    THE HASH A FETCH COMPARES AGAINST. None is a real answer and means the first
+    fetch: there is nothing stored to be unchanged from, so the retrieved text
+    is new. It must not be read as "unchanged".
+
+    Ordered by source_retrieved_at, which every row this fetcher writes carries
+    and which a row loaded by hand may not. NULLs sort last on this dialect, so
+    a hand-loaded version pointed at this registration cannot displace a fetched
+    one; the id breaks a tie, and the ids carry the digest, so the tie-break is
+    stable rather than arbitrary.
+    """
+    _require_scope(company_id)
+    if not source_id:
+        return None
+    return (
+        session.query(DocumentVersion)
+        .filter(DocumentVersion.company_id == company_id)
+        .filter(DocumentVersion.source_registration_id == source_id)
+        .order_by(
+            DocumentVersion.source_retrieved_at.desc(), DocumentVersion.id.desc()
+        )
+        .first()
+    )
+
+
 def documents_pointing_at(session: Session, *, company_id: str, source_id: str) -> int:
     """How many of this company versions name this registration as their source."""
     _require_scope(company_id)
@@ -763,11 +877,11 @@ def register_source(
     administer sources learns nothing about whether their configuration was
     acceptable. policy.require() writes the refusal into the chain and raises.
 
-    The status is taken from initial_status_for_kind() rather than written here.
-    Today it answers not_implemented for all four kinds because
-    FETCHABLE_SOURCE_KINDS is empty. When a fetcher lands, that tuple gains one
-    entry and this function starts writing never_tried for that kind without
-    being edited.
+    The status is taken from initial_status() rather than written here, and that
+    function reads the row rather than only its kind: a public docket naming one
+    document starts at never_tried, and one naming a commission's front door
+    starts at not_implemented. A fetcher for a second kind changes neither this
+    function nor any call site.
     """
     _require_scope(company_id)
     policy.require(session, company_id, user_id, SOURCE_REGISTRY_PERMISSION)
@@ -800,8 +914,8 @@ def register_source(
         company_id=company_id,
         name=label,
         kind=kind,
-        # Never a literal. See initial_status_for_kind().
-        status=initial_status_for_kind(kind),
+        # Never a literal. See initial_status().
+        status=initial_status(kind, settings),
         config=settings,
         credential_ref=(credential_ref or "").strip() or None,
         created_by_user_id=user_id,
@@ -894,13 +1008,33 @@ def update_source(
         "name": row.name,
         "endpoints": endpoints(row.config or {}),
         "credential": row.credential_ref,
+        "status": row.status,
     }
     row.name = label
     row.config = settings
     row.credential_ref = (credential_ref or "").strip() or None
     stamp = now or _utcnow()
 
+    # THE STATUS IS DERIVED FROM THE CONFIG, SO EDITING THE CONFIG MOVES IT.
+    # Adding an endpoint and a proceeding to a row that had neither makes it
+    # fetchable, and leaving not_implemented on it would tell an administrator
+    # their edit did nothing. Both directions, because half of this is the
+    # dangerous half:
+    #
+    # * A row edited into an unfetchable shape becomes not_implemented whatever
+    #   it was, because "this build cannot fetch from it" is now simply true.
+    # * A row edited into a fetchable shape becomes never_tried ONLY IF nothing
+    #   has ever scanned it. connected and unreachable are measurements, and a
+    #   config edit is not a reason to forget one.
+    if fetch_problem(row.kind, settings) or row.last_scanned_at is None:
+        row.status = initial_status(row.kind, settings)
+
     changed = []
+    if before["status"] != row.status:
+        changed.append(
+            f"what this build can do with it, from {before['status']} to "
+            f"{row.status}: {STATUS_WORDS.get(row.status, row.status)}"
+        )
     if before["name"] != row.name:
         changed.append(f"name from {before['name']} to {row.name}")
     if before["endpoints"] != endpoints(settings):
@@ -979,6 +1113,96 @@ def set_source_enabled(
             "this company wants of the source and says nothing about whether it "
             f"can be reached: its status is unchanged at {row.status}."
         ),
+        now=stamp,
+    )
+    session.flush()
+    return row
+
+
+#: The width of SourceRegistration.last_result. SQLite does not enforce it and
+#: Postgres does, so a sentence written past it reads fine here and truncates
+#: into a different outcome there -- "the address answered 403, and nothing was"
+#: is not the sentence that was written.
+LAST_RESULT_LIMIT = 256
+
+
+def _fits_the_column(result: str) -> str:
+    """Cut a result to the column, marking the cut. The full text is audited.
+
+    A silent truncation is the failure this exists to prevent, so the cut says
+    it happened and the audit row beside it carries the whole sentence.
+    """
+    text = " ".join((result or "").split())
+    if len(text) <= LAST_RESULT_LIMIT:
+        return text
+    return text[: LAST_RESULT_LIMIT - 14].rstrip() + " ... (see log)"
+
+
+def record_fetch_attempt(
+    session: Session,
+    *,
+    company_id: str,
+    source_id: str,
+    user_id: str,
+    status: str,
+    result: str,
+    detail: str = "",
+    refused: bool = False,
+    now: datetime | None = None,
+) -> SourceRegistration:
+    """Write down that something tried to fetch this source, and what happened.
+
+    THE ONLY WRITER OF last_scanned_at AND last_result, and the reason both
+    columns exist. A registry that showed an empty cell for a source nothing had
+    reached in a week would read as a quiet week; a registry that showed a
+    timestamp with no words would read as a success. So an attempt writes three
+    things at once -- when, what status, and a sentence -- or it writes none of
+    them.
+
+    IT DOES NOT DECIDE WHETHER THE FETCH WORKED. The caller has just done the
+    work and is the only thing that knows; passing a status in rather than
+    inferring one here is what keeps this function from becoming a second,
+    quieter opinion about reachability. It refuses a status outside the
+    vocabulary rather than storing one the check constraint will reject later.
+
+    NOT ENABLED, EVER. A failed fetch is not a reason to switch a source off:
+    that is the administrator's decision and this is a measurement. The two
+    columns are kept apart everywhere else in this module for the same reason.
+    """
+    _require_scope(company_id)
+    policy.require(session, company_id, user_id, SOURCE_REGISTRY_PERMISSION)
+
+    if status not in SOURCE_STATUSES:
+        raise ValueError(
+            f"status must be one of {', '.join(SOURCE_STATUSES)}; got {status!r}. "
+            "A misspelt status writes a row the check constraint refuses and a "
+            "screen cannot render."
+        )
+    if not (result or "").strip():
+        raise ValueError(
+            "an attempt with no reason is not a record of anything; "
+            "last_result is the sentence a person reads"
+        )
+
+    row = source_registration_for_company(
+        session, company_id=company_id, source_id=source_id
+    )
+    if row is None:
+        raise LookupError(f"no source {source_id!r} for this company")
+
+    stamp = now or _utcnow()
+    row.status = status
+    row.last_scanned_at = stamp
+    row.last_result = _fits_the_column(result)
+
+    _audit(
+        session,
+        company_id=company_id,
+        user_id=user_id,
+        actor=_actor_email(session, company_id, user_id),
+        action=ACTION_SOURCE_FETCH_REFUSED if refused else ACTION_SOURCE_FETCHED,
+        source_id=row.id,
+        reason=" ".join(part for part in (result.strip(), detail.strip()) if part),
         now=stamp,
     )
     session.flush()
@@ -1204,11 +1428,15 @@ def register_corpus_sources(
     the button twice is not two registrations, and the second press writes no
     audit rows.
 
-    Every row is a public_docket, enabled, with the status
-    initial_status_for_kind() gives it -- which is not_implemented, because
-    nothing here fetches. That is the point of registering them: the screen then
-    describes where this workspace corpus came from, honestly, rather than
-    demonstrating an empty table.
+    EVERY ROW IS A public_docket AND EVERY ROW IS not_implemented, WHICH IS NOT
+    A CONTRADICTION NOW THAT public_docket HAS A FETCHER. What these rows name
+    is a commission -- its hostnames and its docket numbers, read out of the
+    provenance files -- and not a document. app/sources/fetch.py retrieves one
+    document and hashes it; there is nothing here that turns a commission's
+    search page into a filing, so initial_status() gives these rows the honest
+    value. That is the point of registering them: the screen describes where
+    this workspace corpus came from rather than demonstrating an empty table,
+    and it does not imply a scan nobody can run.
     """
     _require_scope(company_id)
     policy.require(session, company_id, user_id, SOURCE_REGISTRY_PERMISSION)
@@ -1249,6 +1477,8 @@ def register_corpus_sources(
 __all__ = [
     "ACTION_SOURCE_DISABLED",
     "ACTION_SOURCE_ENABLED",
+    "ACTION_SOURCE_FETCHED",
+    "ACTION_SOURCE_FETCH_REFUSED",
     "ACTION_SOURCE_REGISTERED",
     "ACTION_SOURCE_REMOVED",
     "ACTION_SOURCE_UPDATED",
@@ -1258,8 +1488,10 @@ __all__ = [
     "CREDENTIAL_MISSING",
     "CREDENTIAL_REF_PREFIX",
     "CREDENTIAL_RESOLVES",
+    "FETCHABLE_KINDS",
     "FETCHES_NOTHING",
     "FORM_NOT_REFILLED",
+    "LAST_RESULT_LIMIT",
     "HANDSHAKE_IS_NOT_A_FETCH",
     "KINDS_TAKING_A_CREDENTIAL",
     "KIND_WORDS",
@@ -1287,9 +1519,13 @@ __all__ = [
     "documents_pointing_at",
     "endpoint_preflight",
     "endpoints",
+    "fetch_problem",
+    "initial_status",
     "kind_problem",
+    "latest_version_from_source",
     "provenance_counts",
     "reach_problem",
+    "record_fetch_attempt",
     "register_corpus_sources",
     "register_source",
     "remove_source",
