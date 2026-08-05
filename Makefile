@@ -73,6 +73,13 @@ seed: install
 status: install
 	$(PY) scripts/status.py
 
+# Copy docs/ into the site so strata.sudama.ai serves them at /docs/. Refuses if
+# any internal link in the published copy goes nowhere -- it caught one on the
+# first run, and a document served with a broken link is worse than one not
+# served, because the reader blames the product rather than the deploy.
+publish-docs:
+	$(PY) scripts/publish_docs.py
+
 # The check that matters: does this work for someone who is not you?
 # Clones HEAD into a temp directory and runs the suite there.
 fresh-check:

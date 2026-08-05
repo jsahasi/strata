@@ -52,6 +52,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--stamp);outline-offs
      because it is the only link that goes anywhere. */
   .bar{flex-wrap:nowrap}
   .navlink{display:none}
+  /* Docs is the exception, and the rule above explains why: the four hidden
+     links are anchors into a page the reader is already scrolling, so the
+     scroll IS the navigation. Docs goes somewhere else. A link that leaves the
+     page has to survive on a phone or it does not exist there. */
+  .navlink--away{display:inline}
 }
 
 /* ---- header ---- */
@@ -159,6 +164,7 @@ footer a{color:var(--muted)}
     <a class="navlink" href="#how">How it works</a>
     <a class="navlink" href="#refuses">What it refuses</a>
     <a class="navlink" href="#who">Who it is for</a>
+    <a class="navlink navlink--away" href="/docs/">Docs</a>
     <a class="signin" href="/login">Sign in</a>
   </div>
 </header>

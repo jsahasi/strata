@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — The documents</title>
+<meta name="description" content="Every document behind Strata: what the market wants, what was decided, how it is designed, what broke, and what is still missing.">
+<style>
+  body { font: 16px/1.65 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 860px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 2rem; margin-bottom:.3rem; letter-spacing:-.01em; }
+  .sub { color:#475569; font-size:1.05rem; margin-top:0; }
+  h2 { font-size:.8rem; text-transform:uppercase; letter-spacing:.1em; color:#0369a1; margin-top:2.6rem; padding-bottom:.35rem; border-bottom:1px solid #e2e8f0; }
+  .d { display:block; text-decoration:none; color:inherit; border:1px solid #e2e8f0; border-radius:8px; padding:.85rem 1.1rem; margin:.7rem 0; }
+  .d:hover { border-color:#93c5fd; background:#f8fbff; }
+  .d b { color:#1d4ed8; font-size:1.02rem; display:block; margin-bottom:.15rem; }
+  .d span { color:#475569; font-size:.94rem; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.9rem 1.1rem; margin:1.2rem 0; font-size:.95rem; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  @media (prefers-color-scheme: dark) {
+    body { background:#0d1017; color:#e6e8ec; }
+    .sub, .d span { color:#98a1b2; }
+    h2 { color:#8fa9e8; border-bottom-color:#242a35; }
+    .d { border-color:#242a35; }
+    .d:hover { border-color:#39435a; background:#131822; }
+    .d b { color:#8fa9e8; }
+    .note { background:#1a1608; border-color:#4a3c14; }
+    code { background:#131822; }
+  }
+</style>
+<link rel="stylesheet" href="docs-nav.css">
+</head>
+<body>
+<nav class="dnav" aria-label="Documents">
+<div class="dnav__row"><span class="dnav__label">Docs</span><a href="mrd.html">MRD</a><a href="prd.html">PRD</a><a href="tdd.html">TDD</a><a href="architecture.html">Architecture</a><a href="security.html">Security</a><a href="web-design.html">Design</a><a href="future-enhancements.html">Roadmap</a><a href="user-research.html">User research</a><a href="synthetic-user.html">Persona</a><a href="synthetic-interview.html">Interview</a><a href="best-practices.html">Playbook</a><a href="submission.html">Submission</a></div>
+<div class="dnav__row"><span class="dnav__label">Working notes</span><a href=".ai/index.html">Index</a><a href=".ai/decisions.html">Decisions</a><a href=".ai/tasks.html">Tasks</a><a href=".ai/briefing.html">Briefing</a><a href=".ai/findings.html">Findings</a><a href=".ai/gaps.html">Gaps</a><a href=".ai/demo-notes.html">Demo notes</a></div>
+</nav>
+
+<h1>The documents behind Strata</h1>
+<p class="sub">Written as the work happened, not assembled afterwards to explain it. Several of
+them say plainly where they are wrong.</p>
+
+<div class="note"><strong>Read these two first if you read nothing else.</strong> The
+<a href="mrd.html">MRD</a> says who this is for and what their day looks like. The
+<a href=".ai/decisions.html">decisions log</a> holds every architectural choice with the
+alternatives that were rejected and the cost that was accepted &mdash; a diagram without reasoning
+is worth little, so the reasoning is the artefact.</div>
+
+<h2>What is being built, and why</h2>
+
+<a class="d" href="mrd.html"><b>MRD &mdash; the market</b>
+<span>Who the user is, what their day looks like, and what the product refuses to do for anybody
+else. Carries the eleven coverage areas in plain English.</span></a>
+
+<a class="d" href="prd.html"><b>PRD &mdash; the product</b>
+<span>The eight-step wedge, with a status marker on each step, because unbuilt work must not be
+drawn like shipped work.</span></a>
+
+<a class="d" href="future-enhancements.html"><b>Roadmap</b>
+<span>Four weeks, twelve weeks, six months, and what is deliberately excluded. Every item names
+what has to be true first &mdash; an item with no precondition is a feature request.</span></a>
+
+<h2>How it is built</h2>
+
+<a class="d" href="tdd.html"><b>Technical design</b>
+<span>Each subsystem, its failure modes, and the diagrams. Mapped to the eleven coverage areas so
+a reader can check them off.</span></a>
+
+<a class="d" href="architecture.html"><b>Architecture</b>
+<span>Module tree, dependency direction, the tenant chokepoint, the deploy path, and what changes
+when SQLite runs out.</span></a>
+
+<a class="d" href="security.html"><b>Security</b>
+<span>The threat model, what is enforced in code, and what is written down and not yet built.</span></a>
+
+<a class="d" href="web-design.html"><b>Design</b>
+<span>Glass on the chrome, paper for the record &mdash; and why the withheld claim is the one
+surface with no effect on it at all.</span></a>
+
+<h2>Who it is for, and what we actually know</h2>
+
+<a class="d" href="user-research.html"><b>User research &mdash; the weakest page here</b>
+<span>45 messages, 0 replies, 0 interviews, 4 bounces. No line of the product was changed by a
+user. It says so on its first line.</span></a>
+
+<a class="d" href="synthetic-user.html"><b>The synthetic persona</b>
+<span>Built from public filings when the outreach failed. Labelled a substitute everywhere it is
+cited, because it is one.</span></a>
+
+<a class="d" href="synthetic-interview.html"><b>The rehearsal</b>
+<span>What the persona said, and the standing rule that nothing in it may be lifted into the
+research page as a finding.</span></a>
+
+<h2>The working record</h2>
+
+<a class="d" href=".ai/decisions.html"><b>Decisions &mdash; the ADRs</b>
+<span>Every architectural choice with its rejected alternatives and its accepted cost, written at
+the time rather than reconstructed. Includes the ones that were later overruled.</span></a>
+
+<a class="d" href=".ai/findings.html"><b>Findings</b>
+<span>Every defect found during the build, how it was found, and what guards it now. Most were
+found by adversarial review rather than by a failing test.</span></a>
+
+<a class="d" href=".ai/gaps.html"><b>Remaining gaps</b>
+<span>What is still missing, ordered by what a reviewer hits first rather than by effort.</span></a>
+
+<a class="d" href=".ai/tasks.html"><b>The board</b>
+<span>Task by task. The source of truth over any adjective in any other document here.</span></a>
+
+<a class="d" href="best-practices.html"><b>The playbook</b>
+<span>Thirty-one engineering principles, each with the failure that taught it, and each tied to
+something checkable in this repository &mdash; or saying plainly that there is no instance
+here.</span></a>
+
+<a class="d" href="submission.html"><b>Submission record</b>
+<span>What was built, what was reused, what the AI wrote versus what was rewritten or rejected,
+and what broke.</span></a>
+
+<div class="note"><strong>These are generated, not maintained by hand.</strong>
+<code>scripts/publish_docs.py</code> copies <code>docs/</code> into the site at deploy time and
+refuses to finish if any internal link goes nowhere. So there is one copy of each document rather
+than two, and the copy you are reading cannot drift from the one in the repository.</div>
+
+</body>
+</html>
