@@ -370,7 +370,16 @@ def test_the_provisioned_account_holds_its_role_and_no_authority_until_it_accept
         assert outcome.reason_code == INV_OK
         assert permissions_for_user(session, COMPANY, outcome.user_id) == frozenset()
 
-        rows = accounts_for_company(session, company_id=COMPANY)
+         # THE CLOCK IS PINNED, AND THIS TEST TAUGHT US WHY. It wrote an invitation at
+         # T0 expiring 24 hours later, then asked accounts_for_company whether it was
+         # live -- without passing a moment, so the read used the REAL clock. It passed
+         # all of 2026-08-04 and failed at 09:00 on the 5th, five minutes after the
+         # expiry it had written itself. A test that passes on Tuesday and fails on
+         # Wednesday is worse than one that never passed: `make test` is the command a
+         # reviewer runs, and this one would have failed for them on a clean clone with
+         # nothing wrong in the product. The read has always taken `now`; every call
+         # here passes it.
+        rows = accounts_for_company(session, company_id=COMPANY, now=T0)
         mine = [row for row in rows if row.email == NEW_EMAIL][0]
         assert mine.roles == (ROLE_ANALYST,)
         assert mine.status == STATUS_INVITED
@@ -639,7 +648,7 @@ def test_a_resend_never_mints_a_second_account():
             .count()
             == 2
         )
-        rows = [r for r in accounts_for_company(session, company_id=COMPANY)
+        rows = [r for r in accounts_for_company(session, company_id=COMPANY, now=T0)
                 if r.email == NEW_EMAIL]
         assert len(rows) == 1
 
@@ -1119,7 +1128,7 @@ def test_never_logged_in_stays_none_and_is_not_coerced():
     with session_scope() as session:
         admin, _analyst, _root = _world(session)
         _provision(session, admin)
-        rows = accounts_for_company(session, company_id=COMPANY)
+        rows = accounts_for_company(session, company_id=COMPANY, now=T0)
         mine = [row for row in rows if row.email == NEW_EMAIL][0]
         assert mine.last_login_at is None
         assert not isinstance(mine.last_login_at, str)
@@ -1135,7 +1144,7 @@ def test_the_read_shows_the_last_login_once_there_is_one():
         when = T0 + timedelta(days=3)
         login(session, COMPANY, email=NEW_EMAIL, password=CHOSEN, now=when)
 
-        rows = accounts_for_company(session, company_id=COMPANY)
+        rows = accounts_for_company(session, company_id=COMPANY, now=T0)
         mine = [row for row in rows if row.email == NEW_EMAIL][0]
         assert mine.last_login_at == when
         assert mine.status == STATUS_ACTIVE
@@ -1150,7 +1159,7 @@ def test_the_read_shows_every_account_with_status_roles_and_any_outstanding_invi
         admin, analyst, root = _world(session)
         outcome = _provision(session, admin)
 
-        rows = {row.email: row for row in accounts_for_company(session, company_id=COMPANY)}
+        rows = {row.email: row for row in accounts_for_company(session, company_id=COMPANY, now=T0)}
         assert set(rows) == {admin.email, analyst.email, root.email, NEW_EMAIL}
 
         assert rows[admin.email].roles == (ROLE_ADMIN,)
@@ -1208,7 +1217,7 @@ def test_the_read_never_crosses_a_tenant():
         _provision(session, admin)
         _provision(session, rival_admin, company_id=RIVAL, email="sam@rival.example")
 
-        here = {row.email for row in accounts_for_company(session, company_id=COMPANY)}
+        here = {row.email for row in accounts_for_company(session, company_id=COMPANY, now=T0)}
         there = {row.email for row in accounts_for_company(session, company_id=RIVAL)}
         assert NEW_EMAIL in here
         assert NEW_EMAIL not in there

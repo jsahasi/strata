@@ -74,7 +74,14 @@ fi
 if [ "$(printf '%s' "${STRATA_DEMO_ACCOUNTS:-1}" | tr 'A-Z' 'a-z')" = "0" ]; then
   echo "strata: STRATA_DEMO_ACCOUNTS is 0, so no demonstration content was laid down."
 else
-  for script in seed_demo_gaps seed_route ingest_real; do
+  # seed_demo_gaps LAST, and the order is load-bearing rather than tidy. Its
+  # mapping pass compares every stored change against the company's obligations,
+  # so run before ingest_real it sees only the synthetic docket and writes fewer
+  # rows -- then writes the rest on the NEXT boot, when the real corpus is
+  # already there. A step whose output depends on how many times the container
+  # has restarted is a step nobody can reason about. The Makefile's seed target
+  # makes the same argument for build_index and now for this.
+  for script in seed_route ingest_real seed_demo_gaps; do
     if python "scripts/$script.py"; then
       echo "strata: scripts/$script.py ok."
     else

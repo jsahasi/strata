@@ -346,6 +346,168 @@
   {%- endif %}
 </section>
 
+<hr>
+
+{#
+  Movement four: what the record does to this company, and who has to act.
+
+  IT IS LAST, AND THAT IS AN ARGUMENT RATHER THAN A LEFTOVER. The three
+  movements above are about the filing: what moved, what the product will say
+  about it, and what it refuses to say. This one is about us -- which of our own
+  duties the change touches and whose desk it lands on -- and it is a question
+  nobody can ask until they know what the filing actually says. A reader who
+  arrives here has read the record.
+
+  THE TWO STATES ARE TWO LOOPS OVER TWO TYPES, and there is no flag anywhere in
+  this section. ConfirmedMapping carries no matched terms and CandidateMapping
+  carries no confirmer, both are slotted, so this template could not render a
+  candidate as a confirmed mapping if it tried -- the same construction the
+  claim lists above use, for the same reason. Never add {{ item.who }} to the
+  candidate loop: it will raise, which is the point.
+
+  Never remove the missed list either. Two candidates shown with six duties
+  dropped reads exactly like a complete answer about a company with two duties,
+  and the reader draws the conclusion the missing rows would have contradicted.
+#}
+<section class="stack" aria-labelledby="bears-on">
+  <h2 id="bears-on">Obligations</h2>
+
+  {#
+    Who holds this, in app/state/routing.py's own words. Fifteen refusal codes,
+    each carrying the fix for its own case; rewriting any of them here would
+    give an analyst a second vocabulary to learn. The code is printed beside the
+    sentence because code branches on the code and people read the sentence.
+  #}
+  <div class="card stack--tight">
+    <p>
+      <span class="label">Routing</span>
+      <span class="coord">{{ routing.code }}</span>
+    </p>
+    <p>{{ routing.text }}</p>
+    {#
+      A name with nobody's judgement behind it. Routing does not read
+      mapped_by_kind, so this line is the only thing between an unconfirmed word
+      overlap and a page that states who is accountable. Never render the owner
+      without it.
+    #}
+    {%- if routing.caveat %}
+    <p class="withheld__reason">{{ routing.caveat }}</p>
+    {%- endif %}
+  </div>
+
+  {%- if mapping_reason == "NO_OBLIGATIONS_RECORDED" %}
+  <div class="empty empty--none">
+    <p class="empty__title">No obligations are recorded for this company</p>
+    <div class="empty__body stack--tight"><p>{{ no_obligations_note }}</p></div>
+  </div>
+  {%- else %}
+
+  {%- if confirmed_mappings %}
+  <div class="stack--tight">
+    <h3>Mapped</h3>
+    <ul class="stack--tight">
+      {%- for item in confirmed_mappings %}
+      <li>
+        <p>
+          <span class="label">{{ item.obligation_id }}</span>
+          {{ item.title }}
+        </p>
+        <p class="claim__route">
+          {{ label_confirmed }} {{ item.who }}{% if item.when %} on {{ item.when }}{% endif %}.
+          {%- if item.document_ref %} Written down in {{ item.document_ref }}.{% endif %}
+        </p>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+  {%- endif %}
+
+  {%- if candidate_mappings %}
+  <div class="stack--tight">
+    <h3>Candidates</h3>
+    <p>{{ candidate_note }}</p>
+    <ul class="stack--tight">
+      {%- for item in candidate_mappings %}
+      <li class="stack--tight">
+        <p>
+          <span class="label">{{ label_candidate }}</span>
+          <span class="coord">{{ item.obligation_id }}</span>
+          {{ item.title }}
+        </p>
+        <p class="claim__route">
+          {%- if item.recorded %}{{ label_proposed }}{% if item.recorded_at %},
+          {{ item.recorded_at }}{% endif %}.{% endif %}
+          {%- if item.terms %}
+          Matched on {{ item.terms | join(", ") }}.
+          {%- else %}
+          No word in this change reaches this duty's wording.
+          {%- endif %}
+          {%- if item.document_ref %} Written down in {{ item.document_ref }}.{% endif %}
+        </p>
+        {#
+          The span the words were found in. The blockquote appears once per
+          passage -- several duties commonly match the same paragraph -- but the
+          address is on EVERY candidate, because that is what tells a reader the
+          second one rests on the same paragraph as the first rather than on a
+          paragraph the page declined to show them.
+        #}
+        {%- if item.quote %}
+        <blockquote class="quote">{{ item.quote }}</blockquote>
+        {%- endif %}
+        {%- if item.coordinate %}
+        <p class="claim__route">
+          <span class="label">{{ item.reference }}</span>
+          <span class="coord">{{ item.coordinate }}</span>
+        </p>
+        {%- endif %}
+        {%- if may_confirm %}
+        <form method="post" action="{{ confirm_url }}">
+          <input type="hidden" name="obligation_id" value="{{ item.obligation_id }}">
+          <button class="btn" type="submit">This change bears on {{ item.obligation_id }}</button>
+        </form>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+  {%- endif %}
+
+  {#
+    The explicit zeroes. Each row carries its own code -- there are four of
+    them and they are four different facts -- and the sentence behind each code
+    is printed ONCE below the list rather than under every row. Repeating the
+    same forty words eight times is how a page teaches a reader to skip the part
+    that matters.
+  #}
+  {%- if missed_mappings %}
+  <div class="stack--tight">
+    <h3>Not found by these words</h3>
+    <p>{{ missed_note }}</p>
+    <ul class="stack--tight">
+      {%- for item in missed_mappings %}
+      <li>
+        <p>
+          <span class="label">{{ item.obligation_id }}</span>
+          {{ item.title }}
+          <span class="coord">{{ item.reason }}</span>
+        </p>
+      </li>
+      {%- endfor %}
+    </ul>
+    {%- for code, note in missed_reasons %}
+    <p class="claim__route"><span class="coord">{{ code }}</span> {{ note }}</p>
+    {%- endfor %}
+  </div>
+  {%- endif %}
+
+  <p class="claim__route">
+    {{ mapping_in_scope }} obligation(s) on this company's record were compared
+    against the passages this change touches. Nothing on this page was written
+    by a model.
+  </p>
+  {%- endif %}
+</section>
+
 {% endblock %}
 
 {% block foot %}

@@ -37,6 +37,7 @@ load_env()
 
 from app.state.db import session_scope  # noqa: E402
 from app.state.models import (  # noqa: E402
+    AUTHOR_ANALYST,
     ROLE_ADMIN,
     SOURCE_REGISTRATION_KIND_PUBLIC_DOCKET,
     SourceRegistration,
@@ -48,6 +49,29 @@ from app.state.routing import ensure_obligation, obligations_for_company  # noqa
 
 COMPANY = "MEP"
 ACTOR = "system:seed"
+
+#: The two mappings a person makes in the demonstration, and each is chosen for
+#: what it shows rather than for being convenient.
+#:
+#: CHG-v1-v2-004 / OBL-005 is the flagship case and data/company_context.json
+#: calls it that: section 5.2 moves from 100% customer-pays to a shared
+#: allocation, and OBL-005 states the old practice. The internal document that
+#: was correct against v1 is wrong against v2 with nobody having edited it. The
+#: words agree strongly here -- network, upgrade, costs, general, rate -- so this
+#: is the case where the proposer offers and a person agrees.
+#:
+#: CHG-v1-v2-006 / OBL-002 is the opposite and the more important one. The
+#: docket's compliance date moves from March 2027 to June 2027; OBL-002 says
+#: "on an annual cycle" and mentions no date at all, so the two share nothing a
+#: lexical rule can see, and the corpus says so in its own note_for_semantic_join
+#: field. The proposer does NOT offer it. A person maps it anyway and the audit
+#: row records that the words did not find it -- which is the whole argument for
+#: proposing rather than asserting, standing in the seeded data where a reviewer
+#: meets it rather than in a paragraph claiming it.
+CONFIRMED_BY_A_PERSON = (
+    ("CHG-v1-v2-004", "OBL-005"),
+    ("CHG-v1-v2-006", "OBL-002"),
+)
 CONTEXT = json.loads((ROOT / "data" / "company_context.json").read_text())
 REAL = ROOT / "data" / "real"
 
@@ -141,9 +165,131 @@ def seed_sources() -> None:
         print(f"sources: {len(seen)} commissions registered, {sum(seen.values())} documents")
 
 
+def seed_change_mappings() -> None:
+    """Map changes to the duties they bear on, so routing has somewhere to go.
+
+    THE GAP THIS CLOSES IS THE ONE THIS SCRIPT WAS NAMED FOR AND DID NOT CLOSE.
+    seed_obligations above filled the obligations table and stopped there, so
+    change_obligations stayed at zero rows after a full `make seed` and
+    resolve_change_owner answered ROUTE_NO_OBLIGATION for all 171 changes in the
+    workspace. The owner handoff, the approval route and the escalation queue
+    were all downstream of a table nothing wrote. Capability against content, in
+    the same shape the docstring at the head of this file describes.
+
+    TWO KINDS OF ROW, AND BOTH ARE VISIBLE ON PURPOSE.
+
+    A person's. Two mappings are written as AUTHOR_ANALYST, by the analyst
+    account, because a demonstration where every mapping came from the pipeline
+    cannot show the difference the mapped_by_kind column exists for. One of them
+    -- CONFIRMED_BY_HAND below -- is a mapping the words could not have found,
+    which is the single most useful thing in this seed: it is the case that
+    proves a person can reach past the proposer rather than only agree with it.
+
+    The pipeline's. Every remaining change gets its top candidate as
+    AUTHOR_SYSTEM. On this corpus that is 24 more rows out of 171 changes, and
+    the other 145 stay unmapped -- which is the honest number. A seed that
+    mapped every change would be a seed asserting a link it does not have.
+
+    THE PIPELINE NEVER WRITES BESIDE A PERSON. A change somebody has already
+    mapped is skipped whole, rather than gaining a second machine-proposed row.
+    Two obligations with two different owners is ROUTE_OWNERS_DISAGREE, so a
+    candidate added next to a confirmed mapping would take a change that routed
+    cleanly and stop it routing at all -- the machine overruling a person by
+    arithmetic. It also makes this idempotent for free: the second run finds a
+    mapping and writes nothing.
+    """
+    from app.state.claims import change_for_company
+    from app.state.mapping import (
+        confirm_obligation_for_change,
+        propose_obligations_for_change,
+    )
+    from app.state.models import Change, ChangeObligation, ROLE_ANALYST
+    from app.state.routing import map_change_to_obligation, mappings_for_change
+
+    with session_scope() as session:
+        # Counted rather than assumed. The first version of this printed how
+        # many mappings it had asked for, which on a second run was two
+        # confirmations and nothing written -- a seed reporting work it did not
+        # do. What a reader needs is how many rows this run added and how many
+        # are there now, and the only way to know the first is to count.
+        held = (
+            session.query(ChangeObligation)
+            .filter(ChangeObligation.company_id == COMPANY)
+            .count()
+        )
+        analyst_email = next(
+            (a.email for a in demo_account_list() if a.role == ROLE_ANALYST), None
+        )
+        analyst = (
+            session.query(User)
+            .filter(User.company_id == COMPANY, User.email == analyst_email)
+            .one_or_none()
+            if analyst_email
+            else None
+        )
+
+        if analyst is None:
+            print("mappings: no analyst account, so nothing is confirmed by a person")
+        else:
+            for change_id, obligation_id in CONFIRMED_BY_A_PERSON:
+                if change_for_company(session, COMPANY, change_id) is None:
+                    # A corpus without the synthetic docket is a corpus this
+                    # pair does not describe. Saying so beats raising: the rest
+                    # of the seed is still worth running.
+                    print(f"mappings: {change_id} is not in this corpus; skipped")
+                    continue
+                confirm_obligation_for_change(
+                    session,
+                    COMPANY,
+                    change_id=change_id,
+                    obligation_id=obligation_id,
+                    actor=f"person:{analyst.email}",
+                    actor_user_id=analyst.id,
+                )
+
+        changes = (
+            session.query(Change)
+            .filter(Change.company_id == COMPANY)
+            .order_by(Change.id)
+            .all()
+        )
+        for change in changes:
+            if mappings_for_change(session, COMPANY, change.id):
+                continue
+            proposal = propose_obligations_for_change(
+                session, COMPANY, change_id=change.id
+            )
+            if not proposal.candidates:
+                continue
+            top = proposal.candidates[0]
+            map_change_to_obligation(
+                session,
+                COMPANY,
+                change_id=change.id,
+                obligation_id=top.obligation_id,
+                mapped_by=ACTOR,
+                note=f"proposed on {', '.join(top.matched_terms)}",
+            )
+
+        session.flush()
+        rows = (
+            session.query(ChangeObligation)
+            .filter(ChangeObligation.company_id == COMPANY)
+            .all()
+        )
+        by_person = sum(1 for row in rows if row.mapped_by_kind == AUTHOR_ANALYST)
+        print(
+            f"mappings: {len(rows) - held} written this run; "
+            f"{len(rows)} on record -- {by_person} confirmed by a person, "
+            f"{len(rows) - by_person} proposed by the pipeline. "
+            f"{len(changes) - len(rows)} changes carry no obligation."
+        )
+
+
 def main() -> int:
     seed_obligations()
     seed_sources()
+    seed_change_mappings()
     return 0
 
 

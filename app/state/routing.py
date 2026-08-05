@@ -473,6 +473,8 @@ def map_change_to_obligation(
     mapped_by: str,
     mapped_by_kind: str = AUTHOR_SYSTEM,
     mapped_at: datetime | None = None,
+    actor_user_id: str | None = None,
+    note: str = "",
 ) -> ChangeObligation:
     """Record that one docket change bears on one company obligation.
 
@@ -484,6 +486,21 @@ def map_change_to_obligation(
     unique index would stop a duplicate, but nothing in the schema stops a
     mapping from naming another tenant's change, and a mapping written across
     the boundary would route this company's work to that company's owner.
+
+    actor_user_id AND note ARRIVED WITH THE FIRST CALLER THAT WAS A PERSON. Until
+    app/state/mapping.py there was none: every mapping this function could ever
+    have written was the pipeline's, so a bare actor string said everything there
+    was to say and the chain row was hashed under digest scheme 2 with a NULL
+    actor. A mapping a person makes is the load-bearing judgement in this
+    product, and a chain entry for it that cannot name the account is an entry
+    whose actor can be rewritten without the hash noticing -- which is what
+    _digest_v2 exists to stop. Both default to the old behaviour, so no existing
+    call site changes.
+
+    note is appended to the reason rather than replacing it, so every row still
+    starts with the same eight words and a query for the action still finds
+    them all. What the caller adds is the sentence only it knows: whether the
+    words proposed this mapping or a person reached past them.
     """
     _require_scope(company_id)
     who = _require_actor(mapped_by)
@@ -531,7 +548,12 @@ def map_change_to_obligation(
         action=ACTION_OBLIGATION_MAPPED,
         subject_type="change",
         subject_id=change_id,
-        reason=f"bears on {obligation_id} ({mapped_by_kind})",
+        reason=(
+            f"bears on {obligation_id} ({mapped_by_kind})"
+            + (f"; {note}" if note else "")
+        ),
+        actor_user_id=actor_user_id,
+        actor_kind=ACTOR_USER if actor_user_id else ACTOR_SYSTEM,
     )
     session.flush()
     return row
@@ -558,6 +580,35 @@ def obligations_for_change(
         .filter(Obligation.company_id == company_id)
         .filter(ChangeObligation.change_id == change_id)
         .order_by(Obligation.id)
+        .all()
+    )
+
+
+def mappings_for_change(
+    session: Session, company_id: str, change_id: str
+) -> list[ChangeObligation]:
+    """The mapping rows themselves, not the duties behind them.
+
+    obligations_for_change answers "what does this bear on"; this answers "who
+    said so, and when". They are different questions and the second one only
+    became askable when something other than a loader started writing rows:
+    app/state/mapping.py has to tell a candidate the pipeline offered from a
+    mapping a person confirmed, and mapped_by_kind lives on this row rather than
+    on the obligation.
+
+    It is here rather than in the module that reads it, so the change_obligations
+    table has ONE file that queries it. A second reader elsewhere would be a
+    second copy of this tenant filter, and the copy nobody audited is the one
+    that leaks.
+    """
+    _require_scope(company_id)
+    if not change_id:
+        return []
+    return (
+        session.query(ChangeObligation)
+        .filter(ChangeObligation.company_id == company_id)
+        .filter(ChangeObligation.change_id == change_id)
+        .order_by(ChangeObligation.obligation_id)
         .all()
     )
 
@@ -1259,6 +1310,7 @@ __all__ = [
     "invitation_for_invited_user",
     "invitation_is_live",
     "map_change_to_obligation",
+    "mappings_for_change",
     "obligation_for_company",
     "obligations_for_change",
     "obligations_for_company",

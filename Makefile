@@ -67,17 +67,27 @@ eval: install seed
 # seed_demo_gaps needs the proceeding. Each is idempotent, so running `make
 # seed` twice is safe.
 #
-# build_index LAST, and it must be. It reads the passages every step above
-# writes and rebuilds the retrieval index whole, so anything ingested after it
-# is not in it. Retrieval says so rather than answering short -- it reports the
-# index stale and falls back to reading every passage -- but a reviewer running
-# `make run` should see the built thing, not the announcement of the unbuilt
-# one.
+# THE LAST TWO BOTH READ WHAT EVERY STEP ABOVE THEM WROTE, and both used to sit
+# in the wrong place.
+#
+# build_index rebuilds the retrieval index whole from the passages, so anything
+# ingested after it is not in it. Retrieval says so rather than answering short
+# -- it reports the index stale and falls back to reading every passage -- but a
+# reviewer running `make run` should see the built thing, not the announcement
+# of the unbuilt one.
+#
+# seed_demo_gaps is the same shape and it was ahead of ingest_real, which made
+# `make seed` give a different answer the second time it ran. Its mapping pass
+# compares every stored change against the company's obligations; run before the
+# real corpus is ingested, it saw 27 changes, and run again on the same database
+# it saw 171 and wrote more rows. A seed whose output depends on how many times
+# it has run is a seed nobody can reason about, and the fix is the same one
+# build_index already had: read after every writer has written.
 seed: install
 	$(PY) -m app.seed
-	$(PY) scripts/seed_demo_gaps.py
 	$(PY) scripts/seed_route.py
 	$(PY) scripts/ingest_real.py
+	$(PY) scripts/seed_demo_gaps.py
 	$(PY) scripts/build_index.py
 
 # Put the demonstration tenant back the way it shipped.

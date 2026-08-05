@@ -43,11 +43,18 @@ printing "confidence 0.00" beside a pure addition would report a doubt the
 system does not hold.
 """
 
+import dataclasses
 from dataclasses import dataclass
+from datetime import datetime
 
-from fastapi import APIRouter, Depends, HTTPException, Request
-from fastapi.responses import HTMLResponse
+from fastapi import APIRouter, Depends, Form, HTTPException, Request
+from fastapi.responses import HTMLResponse, RedirectResponse
 
+# The MODULE, not the names on it, for the reason app/web/views/review.py gives:
+# tests/test_policy.py reloads app.auth.policy, and a reload rebinds every class
+# in it, so an imported PermissionDenied would stop catching the refusal that is
+# actually raised.
+from app.auth import policy
 from app.diff.engine import RESTRUCTURE_CONFIDENCE_CEILING
 from app.interpretation.propose import (
     MODEL_ID,
@@ -63,9 +70,19 @@ from app.state.claims import (
     verified_claims,
 )
 from app.state.db import session_scope
-from app.state.models import Change
+from app.state.mapping import (
+    Proposal,
+    confirm_obligation_for_change,
+    propose_obligations_for_change,
+)
+from app.state.models import AUTHOR_ANALYST, Change
 from app.state.queries import passages_for_company, versions_for_company
-from app.web.deps import company_name, current_company
+from app.state.routing import (
+    mappings_for_change,
+    obligation_for_company,
+    resolve_change_owner,
+)
+from app.web.deps import company_name, current_company, current_user
 from app.web.templating import build_templates
 
 router = APIRouter()
@@ -93,6 +110,11 @@ ALIGNMENT_NOTE = (
 # the other would tell anyone who asked which change ids exist somewhere in the
 # system.
 NOT_FOUND = "no change with that id for this company"
+
+# The same treatment for the other end of a mapping. An id belonging to another
+# tenant and an id belonging to nobody read alike here, so the refusal cannot be
+# used to learn which obligations exist somewhere in the system.
+NO_SUCH_OBLIGATION = "no obligation with that id for this company"
 
 # The word for a citation whose section cannot be named, because the offsets
 # fall outside every stored passage. It says less rather than guessing a
@@ -146,6 +168,99 @@ JUDGED_BY = (
 #: Here so the label can never stand over an empty space if that stops being
 #: true, because a blank beside "Materiality" reads as "not material".
 NOT_JUDGED = "Nothing has judged this change."
+
+
+# ---------------------------------------------------------------------------
+# What this change bears on
+#
+# THE STEP THE PRODUCT IS NAMED FOR, AND IT HAD NO SCREEN. app/state/routing.py
+# walks a change to an obligation to an owner; app/state/mapping.py proposes
+# which obligations a change might bear on. Between them was nothing a person
+# could press, so change_obligations stayed empty and every change in the
+# product routed to ROUTE_NO_OBLIGATION. A module with tests and no route is a
+# feature that cannot demonstrate, which is the shape this repository has
+# shipped by accident more than once.
+#
+# THE ONE RULE THIS SECTION IS BUILT AROUND. A lexical overlap between the
+# docket's words and the company's words is a CANDIDATE. It is not evidence that
+# a change bears on a duty, and the interface may not let it read as one. So the
+# two states are DIFFERENT DATACLASSES rather than one class and a flag, in
+# exactly the way VerifiedView and WithheldView are above: ConfirmedMapping has
+# no matched terms and CandidateMapping has no confirmer, both are slotted so
+# neither can be given the other's field at runtime, and the template branches
+# on which object it was handed. A mistake here cannot promote a guess to a
+# finding; it can only fail to render.
+# ---------------------------------------------------------------------------
+
+#: The permission that gates confirming a mapping.
+#:
+#: NOT A NEW CODE, AND NOT THE PERFECTLY FITTING ONE EITHER, so the compromise is
+#: written down rather than discovered. PERMISSION_CODES has no obligation.map,
+#: and inventing one is a schema decision with a migration behind it: the strings
+#: in that tuple are written into role grants and audit rows that outlive a
+#: release, and adding one also means deciding which roles hold it, which is the
+#: segregation-of-duties grid rather than a line of code.
+#:
+#: action.propose is the closest existing code and it is close on the argument
+#: rather than by accident. PERMISSION_DESCRIPTIONS reads "Propose an action that
+#: follows from a change", and a mapping is the thing an action follows FROM --
+#: without it resolve_change_owner refuses and no action can be routed to
+#: anybody. It sits on ROLE_ANALYST, which is the person whose job this is, and
+#: deliberately NOT on ROLE_OBLIGATION_OWNER: an approver who could decide which
+#: duties a change touches could route the approval to themselves, which is the
+#: control the whole grid exists to express.
+#:
+#: What is genuinely missing is a code that says "decide what a change bears
+#: on". It is named here so the next person adding to PERMISSION_CODES knows why
+#: this one is borrowed.
+PERMISSION_MAP = "action.propose"
+
+#: The words on the page for each state. Held as constants because the tests
+#: assert on them: a screen test comparing against a literal it typed itself
+#: keeps passing after the page stops saying it.
+LABEL_CONFIRMED = "Confirmed by"
+LABEL_PROPOSED = "Proposed by the pipeline, not confirmed"
+LABEL_CANDIDATE = "Candidate"
+
+#: Printed over the candidate list. Says what a candidate is BEFORE the reader
+#: sees one, because the alternative is a list of duties that reads like a
+#: finding until somebody scrolls to the caveat.
+CANDIDATE_NOTE = (
+    "These are the duties whose own words appear in the passages this change "
+    "touches. A shared word is a reason to look, not a finding: the docket and "
+    "the company do not use the same vocabulary, so this list will miss duties "
+    "that are affected and offer duties that are not. Nothing below is recorded "
+    "until somebody confirms it."
+)
+
+#: Printed over the explicit zeroes. The sentence the whole section turns on.
+MISSED_NOTE = (
+    "The words in this change do not reach these duties. That is a statement "
+    "about the words and not about the duties: a change can bear on an "
+    "obligation without sharing any vocabulary with it. Map one by hand if you "
+    "know it belongs here."
+)
+
+#: Printed under a routed owner whose mapping nobody has confirmed.
+#:
+#: THE PRODUCT'S CENTRAL ARGUMENT, APPLIED TO ITS OWN OUTPUT. Routing hands back
+#: a name whether the mapping under it came from a person or from a word
+#: overlap, so without this sentence the page states accountability it has not
+#: earned. It is the same move the withheld claim makes: say what is missing
+#: where the assertion would have gone.
+UNCONFIRMED_ROUTING = (
+    "Nobody has confirmed the mapping this name rests on. The pipeline proposed "
+    "it from a word overlap, so read the owner above as a suggestion rather than "
+    "as accountability until somebody confirms it below."
+)
+
+#: Shown where the company has recorded no duties at all. Kept apart from the
+#: empty candidate list on purpose -- "your obligations are not loaded" must
+#: never be able to read as "no obligation is affected".
+NO_OBLIGATIONS_NOTE = (
+    "This company has no obligations recorded, so there was nothing to map this "
+    "change against. Load them before reading anything into the silence."
+)
 
 
 # ---------------------------------------------------------------------------
@@ -242,6 +357,93 @@ class WithheldJudgementView:
 
 
 @dataclass(frozen=True, slots=True)
+class ConfirmedMapping:
+    """A duty a person said this change bears on.
+
+    Carries no matched terms and cannot be given any -- it is somebody's
+    judgement, and printing the words that happened to overlap beside it would
+    put the machine's reasoning where the person's belongs. Several of these
+    were confirmed against no overlap at all, which is the case the whole design
+    exists for.
+    """
+
+    obligation_id: str
+    title: str
+    document_ref: str | None
+    who: str
+    when: str
+
+
+@dataclass(frozen=True, slots=True)
+class CandidateMapping:
+    """A duty the words point at, and the span they point from.
+
+    Carries no confirmer and no confirmation time, because nobody has made one.
+    `recorded` says the pipeline has already written this candidate into
+    change_obligations -- which makes it a stored candidate and not a finding.
+    That distinction is the reason the word "candidate" is on the page in both
+    cases and the word "confirmed" in neither.
+    """
+
+    obligation_id: str
+    title: str
+    document_ref: str | None
+    terms: tuple[str, ...]
+    reference: str
+    coordinate: str
+    quote: str
+    recorded: bool
+    recorded_at: str
+
+
+@dataclass(frozen=True, slots=True)
+class MissedMapping:
+    """A duty with no candidate, and the reason it has none.
+
+    Present on the page, never left off it. A list of two candidates with the
+    other six duties dropped reads exactly like a complete answer about a
+    company with two duties -- ADR-79 makes this argument for filings and it is
+    the same argument for obligations.
+    """
+
+    obligation_id: str
+    title: str
+    reason: str
+    note: str
+
+
+@dataclass(frozen=True, slots=True)
+class RoutingView:
+    """Who this change is the duty of, or the reason nobody can be named.
+
+    text is app/state/routing.py's own sentence, not a second wording of it.
+    Fifteen refusal codes each carry the fix for their own case, and rewriting
+    them here would give an analyst a second vocabulary to learn.
+
+    caveat IS THE HALF THAT WAS MISSING AND IT WAS FOUND ON A REAL PAGE.
+    resolve_change_owner does not read mapped_by_kind: a mapping the pipeline
+    proposed walks to an owner exactly as one a person confirmed does. So a
+    Kentucky vegetation-management budget table, which shares the words
+    "project" and "budget" with a cost-allocation duty, printed "Sarah
+    Lindqvist owns OBL-005" directly above a block saying the same mapping was
+    proposed and not confirmed. The page contradicted itself in two adjacent
+    sentences, and the confident one was on top.
+
+    The fix here is the screen's and not the routing layer's, deliberately.
+    Adding a sixteenth refusal code would change a contract every caller of
+    resolve_change_owner depends on, and that is a decision to take in the open
+    rather than in passing -- see the foot of app/state/mapping.py. What this
+    does is refuse to let an unconfirmed mapping read as accountability, which
+    is a statement about how the page reads and is entirely ours to make.
+    """
+
+    code: str
+    text: str
+    routed: bool
+    caveat: str
+
+
+@dataclass(frozen=True, slots=True)
 class WithheldView:
     """A claim the product refuses to make.
 
@@ -273,6 +475,11 @@ def claim_anchor(claim_id: str) -> str:
 
 def change_url(change_id: str) -> str:
     return f"/changes/{change_id}"
+
+
+def confirm_url(change_id: str) -> str:
+    """Where the confirm form posts. One spelling, shared by view and template."""
+    return f"/changes/{change_id}/obligations"
 
 
 def proceeding_url(proceeding_id: str) -> str:
@@ -384,6 +591,123 @@ def _shows_alignment(change: Change) -> bool:
         change.change_type == "modified"
         and change.alignment_confidence <= LOW_ALIGNMENT
     )
+
+
+def _stamp(moment: datetime | None) -> str:
+    """A date a person can read, or nothing. Never an invented one."""
+    if moment is None:
+        return ""
+    return moment.strftime("%Y-%m-%d %H:%M UTC")
+
+
+def _mapping_views(
+    proposal: Proposal, mapped_by: dict[str, tuple[str, datetime | None]]
+) -> tuple[
+    tuple[ConfirmedMapping, ...],
+    tuple[CandidateMapping, ...],
+    tuple[MissedMapping, ...],
+]:
+    """Sort one proposal into the three things a reader is shown.
+
+    THE ORDER OF THE TESTS IS THE WHOLE OF THE SAFETY HERE. A row is confirmed
+    only when a person's kind is on it; everything else with words behind it is
+    a candidate whether or not the pipeline already stored it; and everything
+    left over is an explicit zero. Reading it the other way round -- treating
+    any stored row as settled -- is the one mistake that would turn the lexical
+    overlap into an assertion, and it is one line of code away, which is why the
+    two states are different types rather than a boolean on one.
+    """
+    confirmed: list[ConfirmedMapping] = []
+    candidates: list[CandidateMapping] = []
+    missed: list[MissedMapping] = []
+
+    # EVERY OFFERED ROW IS RENDERED, NOT app.state.mapping.MAX_CANDIDATES OF
+    # THEM. The shortlist exists for a caller that has to pick one -- the seed
+    # does -- and a screen is not that caller: a duty the words reached and the
+    # page did not show is a duty the reader was never told about, which is the
+    # same short-list failure the missed block below exists to refuse. The cap
+    # still decides the ORDER, because proposal.candidates is ranked and this
+    # list follows it.
+    #
+    # THE SAME SPAN IS QUOTED ONCE. Several duties commonly match the same
+    # paragraph -- the flagship change proposes three duties off one passage --
+    # and three identical blockquotes is a page nobody reads carefully. Repeats
+    # keep their reference and coordinate, which is what a reader needs to see
+    # that it is the same paragraph, and lose the second copy of the words.
+    quoted: set[str] = set()
+
+    for row in proposal.obligations:
+        if row.mapped and row.mapped_by_kind == AUTHOR_ANALYST:
+            who, when = mapped_by.get(row.obligation_id, ("", None))
+            confirmed.append(
+                ConfirmedMapping(
+                    obligation_id=row.obligation_id,
+                    title=row.title,
+                    document_ref=row.document_ref,
+                    who=who,
+                    when=_stamp(when),
+                )
+            )
+            continue
+        if row.mapped or row.reason == "":
+            # A stored candidate the pipeline wrote, or one found on this read.
+            # Both are offered for confirmation and both say what produced them.
+            # A stored one with no words behind it -- possible, since a row can
+            # be written by a loader -- still shows as a candidate with an empty
+            # word list, which reads as thin because it is.
+            _who, when = mapped_by.get(row.obligation_id, ("", None))
+            span = row.span
+            address = (
+                coordinate(span.version_id, span.char_start, span.char_end)
+                if span
+                else ""
+            )
+            candidates.append(
+                CandidateMapping(
+                    obligation_id=row.obligation_id,
+                    title=row.title,
+                    document_ref=row.document_ref,
+                    terms=row.matched_terms,
+                    reference=_reference(span.section if span else None),
+                    coordinate=address,
+                    quote=span.text if span else "",
+                    recorded=row.mapped,
+                    recorded_at=_stamp(when) if row.mapped else "",
+                )
+            )
+            continue
+        missed.append(
+            MissedMapping(
+                obligation_id=row.obligation_id,
+                title=row.title,
+                reason=row.reason,
+                note=row.note,
+            )
+        )
+
+    # The candidates the proposer ranked come first and in its order; anything
+    # else that is offered -- a stored row the words no longer reach -- follows
+    # by id. Sorting the whole list here would replace the proposer's ranking
+    # with the id order, and the ranking is the part a person reads first.
+    ranked = [row.obligation_id for row in proposal.candidates]
+    candidates.sort(
+        key=lambda row: (
+            ranked.index(row.obligation_id) if row.obligation_id in ranked else len(ranked),
+            row.obligation_id,
+        )
+    )
+
+    # The repeat check runs AFTER the sort and not during the build, or the copy
+    # of the words would land on whichever row happened to be constructed first
+    # rather than on the one a reader meets first -- so the page would show the
+    # bare coordinate above and the paragraph below it.
+    deduped = []
+    for row in candidates:
+        if row.coordinate and row.coordinate in quoted:
+            row = dataclasses.replace(row, quote="")
+        quoted.add(row.coordinate)
+        deduped.append(row)
+    return tuple(confirmed), tuple(deduped), tuple(missed)
 
 
 # ---------------------------------------------------------------------------
@@ -562,6 +886,43 @@ def change_detail(
             escalations_for_company(session, company_id, unresolved_only=True)
         )
 
+        # WHAT THIS CHANGE BEARS ON, AND WHO HOLDS IT. Two reads, no model, and
+        # nothing written. The proposal is recomputed on every render for the
+        # same reason the claims are: a duty mapped this morning has to change
+        # what this page says this afternoon without a job having run, and a
+        # stored candidate list would be a promise about rows that may have
+        # moved since.
+        proposal = propose_obligations_for_change(
+            session, company_id, change_id=change_id
+        )
+        mapped_by = {
+            row.obligation_id: (row.mapped_by, row.mapped_at)
+            for row in mappings_for_change(session, company_id, change_id)
+        }
+        confirmed, candidates, missed = _mapping_views(proposal, mapped_by)
+
+        resolution = resolve_change_owner(session, company_id, change_id=change_id)
+        routing = RoutingView(
+            code=resolution.reason_code,
+            text=resolution.reason_text,
+            routed=resolution.routed,
+            # A name on the page with nobody's judgement behind it. See the
+            # RoutingView docstring for the page this was found on.
+            caveat=(
+                UNCONFIRMED_ROUTING if resolution.routed and not confirmed else ""
+            ),
+        )
+
+        # Whether to DRAW the confirm control, which is not the same question as
+        # whether somebody may use it. has() answers the first and writes
+        # nothing; require() is the gate on the POST and is the only thing that
+        # decides the second. A page drawn a minute ago is a statement about the
+        # past, and a grant can be revoked between the render and the click.
+        principal = current_user(request)
+        may_confirm = principal is not None and policy.has(
+            session, company_id, principal.user_id, PERMISSION_MAP
+        )
+
         section = change.section
         context = {
             "page_title": f"Section {section}" if section else f"Change {change.id}",
@@ -594,9 +955,86 @@ def change_detail(
             "judgement_dropped": run.dropped,
             "judgement_absence": run.announcement or NOT_JUDGED,
             "judgement_withheld_label": JUDGEMENT_WITHHELD,
+            # The mapping step. Four keys and none of them a state word: the
+            # template iterates whichever lists it was handed.
+            "routing": routing,
+            "confirmed_mappings": confirmed,
+            "candidate_mappings": candidates,
+            "missed_mappings": missed,
+            # Each distinct code once, in the order it first appears. The rows
+            # carry the code; this carries the sentence behind it.
+            "missed_reasons": tuple(
+                dict((row.reason, row.note) for row in missed).items()
+            ),
+            "mapping_reason": proposal.reason,
+            "mapping_in_scope": proposal.in_scope,
+            "may_confirm": may_confirm,
+            "confirm_url": confirm_url(change.id),
+            "label_confirmed": LABEL_CONFIRMED,
+            "label_proposed": LABEL_PROPOSED,
+            "label_candidate": LABEL_CANDIDATE,
+            "candidate_note": CANDIDATE_NOTE,
+            "missed_note": MISSED_NOTE,
+            "no_obligations_note": NO_OBLIGATIONS_NOTE,
         }
 
     return templates.TemplateResponse(request, "change.html", context)
+
+
+@router.post("/changes/{change_id}/obligations")
+def confirm_obligation(
+    request: Request,
+    change_id: str,
+    obligation_id: str = Form(default=""),
+    company_id: str = Depends(current_company),
+):
+    """A person accepts a candidate: this change bears on this duty.
+
+    The one write on this screen, and it is the load-bearing judgement in the
+    product -- everything downstream, the owner handoff and the approval route,
+    hangs off the row it appends. So it is gated, it is audited, and the row it
+    writes says a person made it rather than the pipeline.
+
+    THE ORDER OF THE CHECKS IS DELIBERATE and it follows app/auth/policy.py's
+    own argument. Permission first, existence second, so somebody without the
+    permission gets the same answer for a change that exists and one that does
+    not, and cannot use this route to find out which ids are real.
+
+    THE REFUSAL IS CAUGHT AND ANSWERED. policy.require raises PermissionDenied,
+    which is not an HTTPException: an uncaught one is a 500 and a traceback
+    where a decision belongs. tests/test_tenancy_derived.py posts to every route
+    in the product as somebody holding no roles, and that is how the same
+    omission was found in the escalation resolver.
+
+    Another company's change id is a 404 with the same body an unknown id gets.
+    Nothing about it is read and nothing about it is written.
+    """
+    principal = current_user(request)
+    if principal is None:
+        raise HTTPException(status_code=403, detail="sign in to map a change")
+
+    with session_scope() as session:
+        try:
+            policy.require(session, company_id, principal.user_id, PERMISSION_MAP)
+        except policy.PermissionDenied as denied:
+            raise HTTPException(status_code=403, detail=denied.reason) from None
+
+        if change_for_company(session, company_id, change_id) is None:
+            raise HTTPException(status_code=404, detail=NOT_FOUND)
+        if obligation_for_company(session, company_id, obligation_id) is None:
+            raise HTTPException(status_code=404, detail=NO_SUCH_OBLIGATION)
+
+        confirm_obligation_for_change(
+            session,
+            company_id,
+            change_id=change_id,
+            obligation_id=obligation_id,
+            actor=f"person:{principal.email}",
+            actor_user_id=principal.user_id,
+        )
+
+    # 303, so a reload of the change screen does not repost the confirmation.
+    return RedirectResponse(url=change_url(change_id), status_code=303)
 
 
 __all__ = [
@@ -604,15 +1042,28 @@ __all__ = [
     "ALIGNMENT_NOTE",
     "BADGE_MATERIAL",
     "BADGE_ROUTINE",
+    "CANDIDATE_NOTE",
     "CONTEXT_CHARS",
     "JUDGED_BY",
     "JUDGEMENT_WITHHELD",
+    "LABEL_CANDIDATE",
+    "LABEL_CONFIRMED",
+    "LABEL_PROPOSED",
     "LOW_ALIGNMENT",
+    "MISSED_NOTE",
     "NOT_FOUND",
     "NOT_JUDGED",
+    "NO_OBLIGATIONS_NOTE",
+    "NO_SUCH_OBLIGATION",
+    "PERMISSION_MAP",
+    "UNCONFIRMED_ROUTING",
     "VERDICT_MATERIAL",
     "VERDICT_NOT_MATERIAL",
+    "CandidateMapping",
+    "ConfirmedMapping",
     "JudgementView",
+    "MissedMapping",
+    "RoutingView",
     "Side",
     "SourceWindow",
     "VerifiedView",
@@ -621,6 +1072,8 @@ __all__ = [
     "change_detail",
     "change_url",
     "claim_anchor",
+    "confirm_obligation",
+    "confirm_url",
     "coordinate",
     "panel_id",
     "proceeding_url",

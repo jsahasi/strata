@@ -29,14 +29,20 @@ previous edit. Repeat it yourself; a number in prose goes stale the next commit.
 
 | | lines |
 |---|---:|
-| Application — `app/`, 78 Python modules | 48,963 |
-| Tests — `tests/` | 37,495 |
-| Templates — Jinja | 6,209 |
-| Front end — hand-written CSS and JS, no build step | 6,400 |
-| Scripts — seeding, migration, status, backup | 1,965 |
-| Documents — `docs/`, HTML | 11,771 |
-| Marketing site — `deploy/site/` | 6,074 |
-| **Total** | **118,877** |
+| Application — `app/`, 80 Python modules | 54,420 |
+| Tests — `tests/` | 45,438 |
+| Templates — Jinja | 6,491 |
+| Front end — hand-written CSS and JS, no build step | 6,491 |
+| Scripts — seeding, migration, status, backup | 3,217 |
+| Documents — `docs/` | 12,710 |
+| Marketing site — `deploy/site/` | 6,155 |
+| **Total, every text file in the repository** | **147,199** |
+
+The total is larger than the rows above it sum to, because it counts the data
+fixtures, the deploy configuration and the requirements as well. Recount with
+`find . -path ./.venv -prune -o -path ./.git -prune -o -type f \( -name '*.py' -o
+-name '*.html' -o -name '*.css' -o -name '*.js' -o -name '*.sh' -o -name '*.conf'
+-o -name '*.yml' -o -name '*.md' \) -print | xargs wc -l | tail -1`.
 
 Tests are 77 per cent of the application by line. No test count is written here for the
 same reason the totals carry their command: `make test` prints the current one, and
@@ -56,8 +62,9 @@ three versions, with traps built on purpose, which the eval numbers are measured
 the one the seed loads, so a fresh checkout holds one docket and three versions. And 102 real
 public filings retrieved from eight state commissions across nineteen dockets, each carrying the
 URL it came from and a hash of its bytes. `scripts/ingest_real.py` loads one pair of those — a
-Kentucky witness's direct testimony, filed and then corrected — and nothing calls that script for
-you, so run it by hand or the 102 stay on disk.
+Kentucky witness's direct testimony, filed and then corrected — and `make seed` calls it for you,
+so a fresh checkout holds both corpora rather than one. That sentence used to say nothing called
+it, which was true until the seed target was fixed and false for a day afterwards.
 
 ### What the names promise and the code does not
 
@@ -97,10 +104,16 @@ database, loads the synthetic corpus from `data/` if the database is empty, seed
 accounts, and starts the server at `http://localhost:8000`. No other service, no container, no
 signup, no API key.
 
-Sign in with any of the seeded addresses — `denise.okoro@mep.example` is the analyst ADR-001
-is written for — and the password `strata-demo-2026`. Every account shares that password, it
-is printed by the seed and shown on the login page, and it is a demo downgrade rather than a
-design: a real deployment sets `STRATA_DEMO_ACCOUNTS=0` and seeds its own.
+**The login page offers a button per role — click one and you are in.** Analyst, obligation
+owner, administrator. Sign in as the analyst first (`denise.okoro@mep.example`, the person ADR-001
+is written for), then as the owner, and watch the same screen refuse a different thing.
+
+The password field beside them still works and `make seed` still prints the accounts, but the
+page no longer shows a password to copy. This paragraph told you to type `strata-demo-2026` for a
+day after that stopped being on screen, which is the exact defect this README's own gap list is
+about. It is a demonstration downgrade either way, not a design: a real deployment sets
+`STRATA_DEMO_ACCOUNTS=0`, which turns the buttons off, and seeds its own people. `make reset-demo`
+puts the demonstration tenant back the way it shipped.
 
 ## Test it
 
@@ -236,7 +249,7 @@ All documents listed above exist in the repository.
 ## Layout
 
 ```
-app/        application code, 78 Python modules
+app/        application code, 80 Python modules
   text/         normalization and the projection back to raw offsets
   ingestion/    raw text in, hashed version plus offset-addressed passages out
   diff/         two passage sequences in, typed changes out; no model
