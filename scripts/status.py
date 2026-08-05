@@ -158,7 +158,7 @@ DESIGNED_IN = {
     "authentication": "docs/security.html - Authentication and authorization",
     "roles_and_permissions": "docs/security.html - roles: analyst, obligation owner, admin",
     "segregation_of_duties": "docs/security.html - the analyst never approves their own reading",
-    "model_interpretation": "docs/architecture.html - the only stage permitted to call a model",
+    "model_interpretation": "docs/tdd.html - the only stage permitted to call a model",
     "evals": "docs/.ai/tasks.html T17/T18 - labelled set, precision and recall",
     "review_centre": "docs/.ai/demo-notes.html - what AI Fund demoed",
     "project_workspace": "docs/.ai/demo-notes.html - project list with running changes",

@@ -80,7 +80,7 @@ must announce itself; a derived corpus migrates all at once) are directly load-b
 app/        application code
 tests/      pytest; offline by default
 data/       synthetic proceeding versions + company context
-docs/       prd.html mrd.html tdd.html architecture.html security.html
+docs/       prd.html mrd.html tdd.html security.html
             future-enhancements.html user-research.html submission.html
 docs/.ai/   decisions.html (ADRs) tasks.html (board)
 ```

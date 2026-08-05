@@ -40,7 +40,7 @@
 </head>
 <body>
 <nav class="dnav" aria-label="Documents">
-<div class="dnav__row"><span class="dnav__label">Docs</span><a href="mrd.html">MRD</a><a href="prd.html">PRD</a><a href="tdd.html">TDD</a><a href="architecture.html">Architecture</a><a href="security.html">Security</a><span class="dnav__here">Design</span><a href="future-enhancements.html">Roadmap</a><a href="user-research.html">User research</a><a href="synthetic-user.html">Persona</a><a href="synthetic-interview.html">Interview</a><a href="best-practices.html">Playbook</a><a href="submission.html">Submission</a></div>
+<div class="dnav__row"><span class="dnav__label">Docs</span><a href="mrd.html">MRD</a><a href="prd.html">PRD</a><a href="tdd.html">TDD</a><a href="security.html">Security</a><span class="dnav__here">Design</span><a href="future-enhancements.html">Roadmap</a><a href="user-research.html">User research</a><a href="synthetic-user.html">Persona</a><a href="synthetic-interview.html">Interview</a><a href="best-practices.html">Playbook</a><a href="submission.html">Submission</a></div>
 <div class="dnav__row"><span class="dnav__label">Working notes</span><a href=".ai/index.html">Index</a><a href=".ai/decisions.html">Decisions</a><a href=".ai/tasks.html">Tasks</a><a href=".ai/briefing.html">Briefing</a><a href=".ai/findings.html">Findings</a><a href=".ai/gaps.html">Gaps</a><a href=".ai/demo-notes.html">Demo notes</a></div>
 </nav>
 
@@ -58,7 +58,7 @@ it says so and gives the date. <strong>Where nobody has checked, it says nobody 
 those admissions are in <em>What is still not known</em> near the foot, and they are not padding.</div>
 
 <p>The pipeline behind the screens — ingestion, diff, interpretation, verification, state — is
-specified in <code>docs/architecture.html</code> and is unchanged by anything here. The reasoning for
+specified in Part A of <code>docs/tdd.html</code> and is unchanged by anything here. The reasoning for
 each choice below lives in <code>docs/.ai/decisions.html</code> as ADR-009 through ADR-014.</p>
 
 <div class="win"><span class="lbl">The sequencing risk, and how it turned out.</span> Written first
@@ -75,7 +75,7 @@ in the cut order at the end of part one was cut.</div>
 was written.</p>
 <table>
 <tr><th>What</th><th>Where</th><th>Detail</th></tr>
-<tr><td>Web layer</td><td><code>app/web/</code></td><td>FastAPI routes under <code>app/web/views/</code>, Jinja templates under <code>app/web/templates/</code>, assets under <code>app/web/static/</code>. Sixteen routers are mounted in <code>app/main.py</code> lines 64&ndash;98. The module boundary is the one fixed in <code>docs/architecture.html</code> — deliberately thin, no business logic.</td></tr>
+<tr><td>Web layer</td><td><code>app/web/</code></td><td>FastAPI routes under <code>app/web/views/</code>, Jinja templates under <code>app/web/templates/</code>, assets under <code>app/web/static/</code>. Sixteen routers are mounted in <code>app/main.py</code> lines 64&ndash;98. The module boundary is the one fixed in <a href="tdd.html#a4-modules">A4 of the TDD</a> — deliberately thin, no business logic.</td></tr>
 <tr><td>Design system</td><td><code>app/web/static/</code></td><td><strong>Four hand-written stylesheets, not one.</strong> <code>strata.css</code> (2,752 lines) holds every token, the type scale, both colour schemes and the shared components; <code>clerk.css</code> (543) the assistant dock; <code>tour.css</code> (113) the first-login tour; <code>workflow.css</code> (641) the approval-route editor. The three secondary sheets declare no colour of their own — see the no-hex rule below. No framework, no icon font, no build step.</td></tr>
 <tr><td>Marketing site</td><td><code>deploy/site/</code></td><td>Thirteen static pages and one shared stylesheet, <code>site.css</code> (438 lines). Served at the root; the application sits behind it. Covered in <em>Part three</em>.</td></tr>
 <tr><td>Deployment</td><td><code>deploy/Dockerfile</code>, <code>deploy/compose.yml</code>, <code>deploy/nginx.conf</code>, <code>deploy/entrypoint.sh</code></td><td>Two containers. nginx serves the site and proxies a named list of paths to the app; Traefik terminates TLS. There is no <code>Caddyfile</code> and never was — the original plan said Caddy, and the deployment that shipped uses nginx behind the Traefik already running on the host.</td></tr>
@@ -537,7 +537,7 @@ suggestion pill is paper with an edge and a cast, not a second pane; and the tou
 at all. See the two notes below.</td></tr>
 <tr><td><span class="lbl">Behind it</span></td><td>the page, scrolling</td>
 <td>a whole screen the reader wants to keep their place in</td><td>anything, briefly</td></tr>
-<tr><td><span class="lbl">Alpha</span></td><td>0.72</td><td>0.86</td><td>0.92</td></tr>
+<tr><td><span class="lbl">Alpha</span></td><td>0.62 &mdash; <span class="lbl">was 0.72 until 2026-08-04</span></td><td>0.86</td><td>0.92</td></tr>
 <tr><td><span class="lbl">Filter</span></td><td><code>blur(20px) saturate(180%)</code></td>
 <td><code>blur(30px) saturate(170%)</code></td><td><code>blur(14px) saturate(160%)</code></td></tr>
 <tr><td><span class="lbl">Radius</span></td><td>0 &mdash; it spans the viewport and has no corners</td>
@@ -568,9 +568,13 @@ exists to correct.</div>
 
 <p><span class="lbl">The fallback collapses all three levels into one, and that is correct.</span>
 Composited over <code>--bg</code>, the three alphas land two points apart at most — in light
-<code>#f4f7f8</code>, <code>#f6f9fa</code>, <code>#f6f9fa</code>; in dark <code>#162125</code>,
+<code>#f4f7f8</code>, <code>#f6f9fa</code>, <code>#f6f9fa</code>; in dark <code>#151f23</code>,
 <code>#182328</code>, <code>#192429</code>. There is no useful difference to preserve, so
-<code>--glass-solid</code> takes the middle value and serves all three. Without the filter there is no
+<code>--glass-solid</code> serves all three. <span class="lbl">It took the middle value until
+2026-08-04 and now takes the first</span>, because dropping G1 to 0.62 moved the attached level
+furthest from the other two — and G1 is the one surface a reader without
+<code>backdrop-filter</code> actually meets, since the masthead and the tab rail are the only two
+places the filter is applied. Without the filter there is no
 <em>material</em> difference between the levels anyway, only a difference in depth, and depth is carried
 by the shadow ladder and the edge highlight, neither of which needs <code>backdrop-filter</code> to
 exist. So a browser that drops the filter loses translucency and keeps the whole hierarchy. Do not
@@ -649,11 +653,11 @@ called out under it.</p>
 
   --paper: #ffffff;          <span class="c">/* the record: diff, claims, source, tables */</span>
   --glass-tint: #f7fafb;     <span class="c">/* the material the panes are made of  */</span>
-  --glass-solid: #f6f9fa;    <span class="c">/* the tint already composited over --bg */</span>
+  --glass-solid: #f4f7f8;    <span class="c">/* the tint already composited over --bg */</span>
   --glass-edge: #ffffff;     <span class="c">/* the 1px highlight that says "in front" */</span>
   --glass-cast: #04191f;     <span class="c">/* shadows are blue-black, never neutral  */</span>
 
-  --glass-1: rgba(247, 250, 251, 0.72);   <span class="c">/* attached  */</span>
+  --glass-1: rgba(247, 250, 251, 0.62);   <span class="c">/* attached  */</span>
   --glass-2: rgba(247, 250, 251, 0.86);   <span class="c">/* floating  */</span>
   --glass-3: rgba(247, 250, 251, 0.92);   <span class="c">/* transient */</span>
 

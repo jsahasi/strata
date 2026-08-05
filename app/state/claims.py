@@ -67,7 +67,7 @@ _REASON_CODES = {
 # Basis points, 0..10000. Configuration rather than a constant buried in code,
 # per ADR-006. It ships at 0 -- no claim is withheld for confidence alone --
 # because there is no evidence yet for where the line sits, and a number picked
-# to look rigorous is worse than an honest zero. docs/architecture.html lists
+# to look rigorous is worse than an honest zero. docs/tdd.html lists
 # calibrating it as an open question. The mechanism is here so that setting it
 # is configuration, not a code change.
 MIN_CONFIDENCE_BP = int(os.environ.get("STRATA_MIN_CONFIDENCE_BP", "0"))

@@ -57,6 +57,8 @@ from sqlalchemy.exc import SQLAlchemyError
 
 from app.auth import policy
 from app.state.db import session_scope
+from app.state.identity import role_grants_for_user
+from app.state.models import Role
 from app.web import TEMPLATES_DIR
 from app.web.deps import current_user
 
@@ -271,6 +273,89 @@ def _menu_for(request: Request) -> tuple[AdminScreen, ...]:
     return tuple(screen for screen in screens if screen.permission in held)
 
 
+@dataclass(frozen=True, slots=True)
+class SignedInAs:
+    """Who is holding this request, and what authority they are holding it with.
+
+    Two fields and not one. The name answers "am I signed in as the right
+    person", which a reviewer switching between demo accounts asks constantly.
+    The roles answer "why did that button refuse me", which is the question the
+    permission grid exists to make answerable and which no screen could answer
+    before -- app/web/deps.py::Principal deliberately carries no permissions, so
+    the masthead had a name available and nothing about authority.
+    """
+
+    display_name: str
+    email: str
+    roles: tuple[str, ...]
+
+    @property
+    def role_label(self) -> str:
+        """The roles as one string, or an honest phrase when there are none.
+
+        A person with no role is not a defect and must not render as a blank:
+        an invited account before any grant, or one whose role was revoked
+        mid-session, is a real state and reads as "no role" rather than as a
+        missing value. Underscores become spaces because these codes are read
+        aloud on calls -- obligation_owner is a database value, not a job.
+        """
+        if not self.roles:
+            return "no role"
+        return ", ".join(name.replace("_", " ") for name in self.roles)
+
+
+def signed_in_as(request: Request | None = None) -> SignedInAs | None:
+    """The signed-in person and their roles, or None when nobody is.
+
+    READ ON EVERY RENDER RATHER THAN CACHED AT SIGN-IN, for the reason ADR-69
+    gives for the admin menu: a copy taken when the session started would still
+    name a role after the grant behind it was revoked, and the masthead would
+    then be telling somebody they hold authority the product has already taken
+    away. One read per page, inside the same request.
+
+    A database that cannot be read answers None, which renders as signed out
+    rather than as a broken masthead. That is a fallback, and it is the same one
+    principal_for_token already takes for the same reason.
+    """
+    if request is None:
+        return None
+    principal = current_user(request)
+    if principal is None or not principal.company_id or not principal.user_id:
+        return None
+
+    roles: tuple[str, ...] = ()
+    try:
+        with session_scope() as session:
+            grants = role_grants_for_user(
+                session,
+                principal.company_id,
+                principal.user_id,
+                # The live picture, not the history. This is the masthead, and
+                # "what may I do now" is the only question it is answering --
+                # role_grants_for_user defaults to including revoked grants
+                # because the audit question is the other one.
+                include_revoked=False,
+            )
+            # UserRole holds role_id, not a name, so the names come from Role in
+            # one read rather than one per grant. Ordered by the grant order so
+            # two people holding the same pair read the same way.
+            wanted = list(dict.fromkeys(grant.role_id for grant in grants))
+            if wanted:
+                found = {
+                    role.id: role.name
+                    for role in session.query(Role).filter(Role.id.in_(wanted)).all()
+                }
+                roles = tuple(found[rid] for rid in wanted if rid in found)
+    except SQLAlchemyError:
+        roles = ()
+
+    return SignedInAs(
+        display_name=principal.display_name or principal.email,
+        email=principal.email,
+        roles=roles,
+    )
+
+
 def build_templates() -> Jinja2Templates:
     """The templates object every view renders through.
 
@@ -282,6 +367,7 @@ def build_templates() -> Jinja2Templates:
     templates = Jinja2Templates(directory=TEMPLATES_DIR)
     templates.env.globals["admin_url"] = ADMIN_URL
     templates.env.globals["admin_menu"] = admin_menu
+    templates.env.globals["signed_in_as"] = signed_in_as
     return templates
 
 
@@ -289,7 +375,9 @@ __all__ = [
     "ADMIN_URL",
     "MASTHEAD_GLOBALS",
     "AdminScreen",
+    "SignedInAs",
     "admin_menu",
     "admin_screens",
     "build_templates",
+    "signed_in_as",
 ]

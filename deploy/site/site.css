@@ -436,3 +436,23 @@ header {
 .stage code {
   overflow-wrap: anywhere;
 }
+
+/* The three "sign in as" buttons in the credentials table.
+ *
+ * .signin is styled as an anchor; these are real <button>s inside a <form>,
+ * because signing somebody in is a POST and a link that changes state is a
+ * link a browser may prefetch. So they inherit the look and reset the three
+ * things a button brings with it and an anchor does not. */
+.signin--row {
+  font: inherit;
+  border: 0;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+/* The form is layout-neutral: without this the table cell gains the browser's
+   default form margin and the three rows stop lining up with their labels. */
+.creds td > form {
+  margin: 0;
+}

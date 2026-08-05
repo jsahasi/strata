@@ -106,6 +106,19 @@
         <span class="masthead__name">No company selected</span>
         {%- endif %}
       </p>
+      {#- Who is holding this page, and with what authority. Both, because a
+          name alone does not answer "why did that button refuse me" -- which is
+          the question the permission grid exists to make answerable, and which
+          no screen could answer before. Read on every render, never cached at
+          sign-in, so a revoked role stops being claimed here immediately. #}
+      {%- set holder = signed_in_as(request) %}
+      {%- if holder %}
+      <p class="masthead__who">
+        <span class="label">Signed in as</span>
+        <span class="masthead__name">{{ holder.display_name }}</span>
+        <span class="coord">{{ holder.role_label }}</span>
+      </p>
+      {%- endif %}
       <div class="masthead__tools" data-clerk-slot></div>
     </div>
     <nav aria-label="Screens">

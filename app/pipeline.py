@@ -1,6 +1,6 @@
 """The chokepoint. One version in, its typed changes out, the audit trail behind.
 
-architecture.html gives this module one job: own the order of operations. It is
+docs/tdd.html gives this module one job: own the order of operations. It is
 the only module that imports ingestion, diff, state and audit together, so
 nothing else can skip a stage by calling downstream code directly. Read this
 file and you know what happens to a new version and in what order.
@@ -20,7 +20,7 @@ it is worse than failing: the product would answer every question plausibly and
 wrongly (best-practices.html §27). So it raises and names the fix.
 
 **It calls no model, and that stays true now that one exists.** The
-interpretation stage architecture.html places between diff and state is now
+interpretation stage docs/tdd.html places between diff and state is now
 built -- app/interpretation/propose.py judges whether one change is material --
 but it runs on the change screen at render time and writes nothing back. So
 `Change.materiality` still stays NULL here rather than being defaulted to a

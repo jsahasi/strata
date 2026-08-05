@@ -28,8 +28,8 @@
   .meta { color:#64748b; font-size:.85rem; }
   ol, ul { margin:.4rem 0 .4rem 1.2rem; }
   li { margin:.2rem 0; }
-  /* Inline "this is still open" marker. It carries the amber of docs/architecture.html,
-     where this material came from. It is a span, and .open above is a block: two
+  /* Inline "this is still open" marker. It carries the amber of the separate
+     architecture document Part A came from. It is a span, and .open above is a block: two
      different jobs, so two different names rather than one class doing both badly. */
   .gap { color:#b45309; font-weight:600; }
   h2.part { font-size:1.05rem; text-transform:none; letter-spacing:0; color:#0f172a;
@@ -54,7 +54,7 @@
 
 <h1>Technical Design Document</h1>
 <p class="sub">Strata — citation-grade regulatory change intelligence. How the hard bet is built, with the alternative considered and the trade-off accepted at every step.</p>
-<p class="meta">Written 2026-08-03, before implementation. Reconciled against the code twice since, section by section: once on 2026-08-04, and again after commit <code>97daf02</code>, when a model path, a schema migration, an approval engine, a routing module and a corpus of real filings all landed and left this document describing a build that had moved under it. Both times the places where the two disagreed were fixed here rather than in the code. A TDD that stops matching the build is worse than none, because it tells the reader a false story with confidence. <span class="lbl">On 2026-08-04 this document absorbed <code>docs/architecture.html</code>, which is now a one-paragraph signpost.</span> The reason is the same rule pointed at the documents themselves: two descriptions of one system drift, and this pair had already drifted — the two disagreed about where normalization runs, about how segmentation splits, and about the restructure similarity score, and an earlier revision of the architecture drawing had the citation gate on the wrong side of the write. One description can be wrong. Two can disagree, and a reader has no way to tell which.</p>
+<p class="meta">Written 2026-08-03, before implementation. Reconciled against the code twice since, section by section: once on 2026-08-04, and again after commit <code>97daf02</code>, when a model path, a schema migration, an approval engine, a routing module and a corpus of real filings all landed and left this document describing a build that had moved under it. Both times the places where the two disagreed were fixed here rather than in the code. A TDD that stops matching the build is worse than none, because it tells the reader a false story with confidence. <span class="lbl">On 2026-08-04 this document absorbed the separate architecture document, which was then deleted rather than left standing as a signpost.</span> The reason is the same rule pointed at the documents themselves: two descriptions of one system drift, and this pair had already drifted — the two disagreed about where normalization runs, about how segmentation splits, and about the restructure similarity score, and an earlier revision of the architecture drawing had the citation gate on the wrong side of the write. One description can be wrong. Two can disagree, and a reader has no way to tell which.</p>
 
 <div class="note"><strong>How to read this.</strong> Every section states what is built, the alternative rejected, and the trade-off accepted. Where a number is not yet known — because the eval has not measured it, or the threshold has not been tuned — this document says so rather than filling the gap with something plausible. A guess dressed as a result is exactly the failure this product exists to prevent in its own domain; it would be strange to allow it here.
 <p><strong>The same rule governs the drawings.</strong> A dashed, muted box means designed and not built. Nothing on these pages draws intended work in the same ink as shipped work, for the same reason a claim refuses to assert itself on a citation that did not verify: a reviewer who finds one box that overstates stops believing the other twenty.</p>
@@ -123,8 +123,8 @@ beneath it: a reader sees the eleven ticks and the concessions in one glance.</p
 <p>Part A answers the questions no feature-ordered section can: which module may import which, where the
 database seam is, what the deploy does before it serves a request. It is organised around the code. Part B is
 organised around what the product does, and every section here that touches one of the eleven areas points at
-the section that answers it rather than answering it a second time. <span class="lbl">This material was
-<code>docs/architecture.html</code> until 2026-08-04.</span> It goes first because the eleven areas each assume
+the section that answers it rather than answering it a second time. <span class="lbl">This material was a
+separate architecture document until 2026-08-04, when it was absorbed here and that file was deleted.</span> It goes first because the eleven areas each assume
 a shape the reader has not been given — that ingestion writes and verification reads, that one function is the
 gate, that the core imports no database — and two screens here supply it.</p>
 

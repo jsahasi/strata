@@ -11,7 +11,7 @@ are assembled from the manifest by the small extractors below: a date, a
 percentage, a section label, a measure carried over unchanged. Each rule is
 deterministic and tested. What that buys is a working demo with no API key and
 no network. This module is a fixture standing in for the interpretation stage
-that architecture.html places between diff and state. When that stage exists,
+that docs/tdd.html places between diff and state. When that stage exists,
 these sentences come from it and this file loads data only.
 
 **An earlier version of this paragraph said there was no model call anywhere in

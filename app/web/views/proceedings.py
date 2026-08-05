@@ -1,6 +1,6 @@
 """Two screens: the proceedings list, and one proceeding's versions and changes.
 
-Thin, per docs/architecture.html. Every read here goes through the tenant-scoped
+Thin, per Part A of docs/tdd.html. Every read here goes through the tenant-scoped
 functions in app/state/, nothing decides anything, and nothing writes.
 
 Three things in this module are shared with the review screen and live here

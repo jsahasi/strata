@@ -780,8 +780,8 @@ def test_every_scoped_function_can_be_called_by_the_sweep(swept):
 #   in map_change_to_obligation left the function still mentioning company_id in
 #   the second, and the rule stayed green over an unscoped read of the changes
 #   table. Asking the question once per query took the rule from catching 78 of
-#   176 single-line deletions to catching many more, at the cost of nine
-#   exemptions -- each named below with the sentence that argues it.
+#   176 single-line deletions to catching 101, at the cost of eleven exemptions
+#   across eight functions -- each named below with the sentence that argues it.
 #
 # WALKED RATHER THAN GREPPED. A grep for "company_id ==" counts the string in a
 # docstring, in a comment, and in a line somebody commented out, and misses
@@ -805,9 +805,10 @@ NARROWING_CALLS = {"filter", "filter_by", "where", "having"}
 AST_EXEMPT: dict[tuple[str, str], str] = {}
 
 #: Functions holding a query that names no company_id, each with the argument for
-#: why that query is right as it stands. NINE, and every one of them is the same
-#: shape: the row the query is keyed on was already resolved under the scope, or
-#: the table it reads is vocabulary rather than tenant data.
+#: why that query is right as it stands. EIGHT functions and eleven queries, and
+#: every one of them is the same shape: the row the query is keyed on was already
+#: resolved under the scope, or the table it reads is vocabulary rather than
+#: tenant data.
 #:
 #: EACH ENTRY PINS A COUNT, AND THE COUNT IS THE WHOLE POINT. Keyed by function
 #: alone, an exemption covers every unscoped query that function will ever hold:
@@ -833,7 +834,13 @@ AST_QUERY_EXEMPT: dict[tuple[str, str], tuple[int, str]] = {
         "same as role_for_company: the fallback looks for a system role under "
         "company_id IS NULL, which is what makes printing its name safe"
     ),
-    ("app.state.permissions", "delete_role"): (2, 
+    ("app.state.permissions", "edit_role"): (
+        1,
+        "the RolePermission rows it clears are keyed on a role _editable_role "
+        "already resolved under the scope, and role_permissions carries no "
+        "company_id -- tests/test_isolation.py::TENANCY_BY_PARENT argues why",
+    ),
+    ("app.state.permissions", "delete_role"): (3,
         "counted by role_id alone ON PURPOSE, and the function says so at "
         "length: it asks whether ANY row anywhere points at the role about to be "
         "destroyed, and a company filter would hide exactly the rows that should "
@@ -916,12 +923,21 @@ def _hands_scope_on(node: ast.AST) -> set[str]:
     return given
 
 
-def _leaf_statements(node: ast.AST):
-    """Statements that hold their own work rather than a block of others.
+def _query_sites(node: ast.AST):
+    """One subtree per place a query could be written, with its line.
 
-    A `for` or a `with` is skipped and its body is walked instead, so a query
-    inside a loop is judged as the statement it is rather than folded into the
-    loop that carries it.
+    A plain statement is one site. A COMPOUND statement is not: its body holds
+    other statements, each their own site, and folding them into the block would
+    let a scoped query anywhere inside a loop vouch for an unscoped one beside
+    it. What the block contributes is its HEADER -- the iterable of a `for`, the
+    test of an `if` or a `while`, the subject of a `with` -- and that is yielded
+    on its own.
+
+    The header is not a detail. Two of app/state/invites.py's tenant filters live
+    in `for row in (session.query(...).filter(...))`, and an earlier version of
+    this walk skipped compound statements outright, so deleting either of those
+    two filters turned nothing red. The gap was found by deleting all 176 of them
+    one at a time and reading which ones this file failed to notice.
     """
     for statement in ast.walk(node):
         if not isinstance(statement, ast.stmt):
@@ -933,9 +949,15 @@ def _leaf_statements(node: ast.AST):
         blocks = []
         for field in ("body", "orelse", "finalbody", "handlers"):
             blocks += getattr(statement, field, []) or []
-        if blocks:
+        if not blocks:
+            yield statement.lineno, statement
             continue
-        yield statement
+        for field in ("iter", "test"):
+            header = getattr(statement, field, None)
+            if header is not None:
+                yield statement.lineno, header
+        for item in getattr(statement, "items", ()) or ():
+            yield statement.lineno, item.context_expr
 
 
 class _Facts:
@@ -967,19 +989,20 @@ class _Facts:
 
         #: Every query in this function that names no company_id, by line.
         self.unscoped_queries: list[int] = []
-        for statement in _leaf_statements(node):
-            if not _opens_a_query(statement):
+        for line, site in _query_sites(node):
+            if not _opens_a_query(site):
                 continue
-            if _narrows_on_scope(statement):
+            if _narrows_on_scope(site):
                 continue
-            if _reads_raw_sql(statement) and self.binds_scope:
+            if _reads_raw_sql(site) and self.binds_scope:
                 continue
-            # A statement that hands the scope to somebody else has delegated
-            # the filter along with it. Whether that somebody actually applies
-            # it is asked of them, in their own entry above.
-            if _hands_scope_on(statement):
+            # A site that hands the scope to somebody else has delegated the
+            # filter along with it. Whether that somebody actually applies it is
+            # asked of them, in their own entry above.
+            if _hands_scope_on(site):
                 continue
-            self.unscoped_queries.append(statement.lineno)
+            self.unscoped_queries.append(line)
+        self.unscoped_queries.sort()
 
 
 def _scoped_facts(root: pathlib.Path):

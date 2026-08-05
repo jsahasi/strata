@@ -29,7 +29,7 @@
 </head>
 <body>
 <nav class="dnav" aria-label="Documents">
-<div class="dnav__row"><span class="dnav__label">Docs</span><a href="mrd.html">MRD</a><a href="prd.html">PRD</a><a href="tdd.html">TDD</a><a href="architecture.html">Architecture</a><a href="security.html">Security</a><a href="web-design.html">Design</a><a href="future-enhancements.html">Roadmap</a><a href="user-research.html">User research</a><a href="synthetic-user.html">Persona</a><a href="synthetic-interview.html">Interview</a><span class="dnav__here">Playbook</span><a href="submission.html">Submission</a></div>
+<div class="dnav__row"><span class="dnav__label">Docs</span><a href="mrd.html">MRD</a><a href="prd.html">PRD</a><a href="tdd.html">TDD</a><a href="security.html">Security</a><a href="web-design.html">Design</a><a href="future-enhancements.html">Roadmap</a><a href="user-research.html">User research</a><a href="synthetic-user.html">Persona</a><a href="synthetic-interview.html">Interview</a><span class="dnav__here">Playbook</span><a href="submission.html">Submission</a></div>
 <div class="dnav__row"><span class="dnav__label">Working notes</span><a href=".ai/index.html">Index</a><a href=".ai/decisions.html">Decisions</a><a href=".ai/tasks.html">Tasks</a><a href=".ai/briefing.html">Briefing</a><a href=".ai/findings.html">Findings</a><a href=".ai/gaps.html">Gaps</a><a href=".ai/demo-notes.html">Demo notes</a></div>
 </nav>
 
@@ -92,7 +92,7 @@
   <p class="lbl">Do</p><ul class="do"><li>Begin with one deployable, internally modular by domain; extract services when scale/ownership demands it.</li><li>Apply YAGNI / KISS: build what the current requirement needs, no speculative generality.</li></ul>
   <p class="lbl">Avoid</p><ul class="avoid"><li>Microservices, event-sourcing, or a cache before you have the load or the team to justify them.</li></ul>
   <p class="refs">Refs: <a href="https://martinfowler.com/bliki/MonolithFirst.html">Fowler — MonolithFirst</a> · <a href="https://martinfowler.com/bliki/Yagni.html">Fowler — YAGNI</a> · <a href="https://shopify.engineering/deconstructing-monolith-designing-software-maximizes-developer-productivity">Shopify — Modular Monolith</a></p>
-  <p class="here">ADR-08 planned a lexical BM25 index with embeddings only where paraphrase mattered, and none of it was ever built — there is no index, no ranking and no embedding anywhere in <code>app/</code>, and <code>search_claims</code> is a substring scan over rows the tenant chokepoint already returned. Nothing needed more: the deterministic diff enumerates the changes and retrieval would only ever have ranked context. The cost was in the drawing, where <code>docs/architecture.html</code> showed "passage store — lexical BM25" as a solid box beside components that really exist, for weeks.</p>
+  <p class="here">ADR-08 planned a lexical BM25 index with embeddings only where paraphrase mattered, and none of it was ever built — there is no index, no ranking and no embedding anywhere in <code>app/</code>, and <code>search_claims</code> is a substring scan over rows the tenant chokepoint already returned. Nothing needed more: the deterministic diff enumerates the changes and retrieval would only ever have ranked context. The cost was in the drawing, where the architecture document — since absorbed into <code>docs/tdd.html</code> — showed "passage store — lexical BM25" as a solid box beside components that really exist, for weeks.</p>
 </div>
 
 <div class="p" id="boundaries">

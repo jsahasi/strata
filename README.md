@@ -222,8 +222,7 @@ sentences after the section above says 102 real filings are there.
 | [`docs/.ai/tasks.html`](docs/.ai/tasks.html) | The 48-hour build board. Current state of every task. |
 | [`docs/prd.html`](docs/prd.html) | Product requirements. One analyst, one workflow, citation-grade change intelligence. |
 | [`docs/mrd.html`](docs/mrd.html) | Market requirements, the outreach log, and what the submission has to cover with where each area stands. |
-| [`docs/tdd.html`](docs/tdd.html) | Technical design. How the hard bet is built, alternative rejected, trade-off accepted at each step. |
-| [`docs/architecture.html`](docs/architecture.html) | System architecture and data flow. Components, module boundaries under `app/`, and what changes past SQLite/single-node. |
+| [`docs/tdd.html`](docs/tdd.html) | Technical design. How the hard bet is built, alternative rejected, trade-off accepted at each step. Part A carries the architecture — data flow, module boundaries under `app/`, dependency direction, and what changes past SQLite/single-node. |
 | [`docs/security.html`](docs/security.html) | Security posture. Threat model, tenant isolation via the company_id chokepoint, the audit chain, and what the demo downgrades. |
 | [`docs/user-research.html`](docs/user-research.html) | The interview plan, the four hypotheses, and what changed in the build because of what was heard. The interview table is still empty — no conversation has happened. Who was contacted, and when, is in `docs/mrd.html`. |
 | [`docs/future-enhancements.html`](docs/future-enhancements.html) | What is deliberately out of scope for 48 hours. Roadmap preconditions and unlocks past the build. |
@@ -250,7 +249,7 @@ app/        application code, 78 Python modules
 tests/      pytest; offline by default, no API key
 data/       three proceeding versions, company context, manifest of ground truth
   real/         102 real public filings, each beside its provenance record
-docs/       prd.html mrd.html tdd.html architecture.html security.html
+docs/       prd.html mrd.html tdd.html security.html
             best-practices.html future-enhancements.html user-research.html
             submission.html web-design.html
 docs/.ai/   decisions.html (ADRs) findings.html briefing.html tasks.html

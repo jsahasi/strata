@@ -462,7 +462,12 @@ hr {
   background-repeat: no-repeat;
 }
 
-.masthead__company {
+.masthead__company,
+/* Same shape as the company block beside it. Who is holding the page is the
+   same KIND of fact as which tenant is open -- both are context for everything
+   below, neither is an action -- so they read as one row rather than as a
+   label and an afterthought. */
+.masthead__who {
   display: flex;
   align-items: baseline;
   gap: var(--s2);

@@ -267,14 +267,20 @@ footer a{color:var(--muted)}
       <table>
         <thead><tr><th>Role</th><th>Sign in as</th><th>What it can reach</th></tr></thead>
         <tbody>
-          <tr><td>Analyst</td><td>Denise Okoro</td>
+          <tr><td>Analyst</td>
+              <td><form method="post" action="/login/demo"><input type="hidden" name="email" value="denise.okoro@mep.example"><button type="submit" class="signin signin--row">Denise Okoro</button></form></td>
               <td>Reads, proposes, resolves escalations, steers. Cannot approve.</td></tr>
-          <tr><td>Obligation owner</td><td>Priya Nandakumar</td>
+          <tr><td>Obligation owner</td>
+              <td><form method="post" action="/login/demo"><input type="hidden" name="email" value="priya.nandakumar@mep.example"><button type="submit" class="signin signin--row">Priya Nandakumar</button></form></td>
               <td>Approves and rejects the actions the analyst proposes. Cannot propose them.</td></tr>
-          <tr><td>Administrator</td><td>Sarah Lindqvist</td>
+          <tr><td>Administrator</td>
+              <td><form method="post" action="/login/demo"><input type="hidden" name="email" value="sarah.lindqvist@mep.example"><button type="submit" class="signin signin--row">Sarah Lindqvist</button></form></td>
               <td>Users, the approval route, the share registry. Cannot approve a claim.</td></tr>
         </tbody>
       </table>
+      <p class="muted">Each name is a button. It signs in as that person and lands on their
+      workspace &mdash; the masthead then names who you are and which role you are holding, so a
+      screen that refuses you says which authority you were missing.</p>
       <p class="muted"><b>Roles are a shortcut, not the model.</b> Underneath, an administrator
       grants any one of fifteen permissions to any person in the workspace and names whatever set
       they end up with. The workspace ships with ten templates drawn from real filings &mdash;
@@ -382,17 +388,6 @@ footer a{color:var(--muted)}
       for deliberately. A multi-state holding company does not run one open docket — it runs one per
       jurisdiction, each on its own procedural clock, each amended independently, and no single
       filing tells the company everything it now owes.</p>
-    </div>
-  </div></div>
-</section>
-
-<section>
-  <div class="wrap"><div class="lined" data-line="5">
-    <div class="cta">
-      <h3>See a proceeding move through it</h3>
-      <p>Three versions of one docket, the changes between them, and a claim that refuses to assert
-      itself when its citation does not check out.</p>
-      <a class="signin" href="/login">Sign in to Strata</a>
     </div>
   </div></div>
 </section>

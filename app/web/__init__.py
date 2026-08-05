@@ -1,6 +1,6 @@
 """The web layer: FastAPI routes, Jinja templates, one stylesheet.
 
-Thin by design, per docs/architecture.html. This layer reads projections and
+Thin by design, per Part A of docs/tdd.html. This layer reads projections and
 renders them. Nothing here decides anything, and nothing here may reach past
 app.state.queries for a tenant-scoped read.
 

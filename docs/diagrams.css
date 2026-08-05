@@ -7,7 +7,7 @@
  * and trusts neither. One file, linked from each doc.
  *
  * NO BUILD STEP, NO NETWORK. Plain CSS beside the HTML that uses it, so a
- * reviewer who opens docs/architecture.html from the filesystem sees the same
+ * reviewer who opens docs/tdd.html from the filesystem sees the same
  * page a server would give them.
  *
  * THE VOCABULARY, which every diagram must obey:

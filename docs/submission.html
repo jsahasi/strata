@@ -24,7 +24,7 @@
 </head>
 <body>
 <nav class="dnav" aria-label="Documents">
-<div class="dnav__row"><span class="dnav__label">Docs</span><a href="mrd.html">MRD</a><a href="prd.html">PRD</a><a href="tdd.html">TDD</a><a href="architecture.html">Architecture</a><a href="security.html">Security</a><a href="web-design.html">Design</a><a href="future-enhancements.html">Roadmap</a><a href="user-research.html">User research</a><a href="synthetic-user.html">Persona</a><a href="synthetic-interview.html">Interview</a><a href="best-practices.html">Playbook</a><span class="dnav__here">Submission</span></div>
+<div class="dnav__row"><span class="dnav__label">Docs</span><a href="mrd.html">MRD</a><a href="prd.html">PRD</a><a href="tdd.html">TDD</a><a href="security.html">Security</a><a href="web-design.html">Design</a><a href="future-enhancements.html">Roadmap</a><a href="user-research.html">User research</a><a href="synthetic-user.html">Persona</a><a href="synthetic-interview.html">Interview</a><a href="best-practices.html">Playbook</a><span class="dnav__here">Submission</span></div>
 <div class="dnav__row"><span class="dnav__label">Working notes</span><a href=".ai/index.html">Index</a><a href=".ai/decisions.html">Decisions</a><a href=".ai/tasks.html">Tasks</a><a href=".ai/briefing.html">Briefing</a><a href=".ai/findings.html">Findings</a><a href=".ai/gaps.html">Gaps</a><a href=".ai/demo-notes.html">Demo notes</a></div>
 </nav>
 
@@ -65,8 +65,8 @@ weak one and says so: no interview has happened, so the persona in ADR-001 is st
 <code>docs/synthetic-user.html</code> exists and is labelled at the top as not evidence and not a
 transcript — it is a question generator, and no line of it may be moved into the PRD as a
 finding.</td></tr>
-<tr><td>TDD</td><td><code>docs/tdd.html</code>, with <code>docs/architecture.html</code> for module
-boundaries and <code>docs/security.html</code> for the threat model. Decisions and their rejected
+<tr><td>TDD</td><td><code>docs/tdd.html</code>, whose Part A carries the module
+boundaries, with <code>docs/security.html</code> for the threat model. Decisions and their rejected
 alternatives are in <code>docs/.ai/decisions.html</code> — 63 entries, ADR-001 to ADR-063
 (<code>grep -c 'data-adr=' docs/.ai/decisions.html</code>). Five of the early ones had gone false
 and were corrected in place with their original text kept beneath (<code>295c40d</code>).</td></tr>
