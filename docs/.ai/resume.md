@@ -1,6 +1,6 @@
 # Resume — state at 2026-08-05, after the final deploy
 
-**HEAD pushed AND deployed. 2,095 passed, 1 xfailed. Working tree clean.**
+**HEAD pushed AND deployed. 2,301 passed, 2 xfailed. `make fresh-check` passes on a clone in 310s, exit zero.**
 Repo public: https://github.com/jsahasi/strata · Live: https://strata.sudama.ai
 `/healthz` returns `{"status":"ok","corpus_loaded":true,...,"changes":171}`.
 
@@ -47,7 +47,7 @@ of `/changes/{id}`, verified numbers, uncomfortable questions, three stories.
 `diff/engine.py::diff` (78). The two smallest matter most.
 
 ## Numbers that survive checking
-2,095 tests · 93% coverage / 13,073 statements · 87 ADRs · `make eval` 5 of 5 ·
+2,301 tests · 90 ADRs · 82 modules · 84 commits · `make eval` 5 of 5 ·
 retrieval 0.5–1.1ms vs 357–364ms on 8,707 passages · Kentucky pair 1,024,409 vs
 1,024,536 chars, 127 apart, 144 changes · 102 filings, 8 commissions, 19 dockets ·
 26 change→obligation mappings (24 proposed, 2 confirmed) · 16 refusal codes.
