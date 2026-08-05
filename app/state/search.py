@@ -131,6 +131,11 @@ Two differences remain and both are permissive, which is the safe side:
                 one searchable term. It is searched as a PHRASE -- the tokens 5,
                 4 and 1 adjacent -- rather than as three separate numbers, or
                 every table reference in the corpus would match it.
+  word endings  a term ending in four letters or more is also matched as a
+                prefix, so "curtailment" reaches "Curtailments". Without it the
+                index found 9 of the 15 passages the substring scan found on the
+                seeded corpus, and said nothing about the six. See PREFIX_MIN,
+                including why a term ending in a digit is never widened.
 
 The scheme is named in SCHEME and recorded on every indexed row, so an index
 built under an older scheme is refused rather than mixed with a newer one.
@@ -197,6 +202,37 @@ DEFAULT_LIMIT = 10
 #: direction, and the terms that survived come back in the result so a caller can
 #: see what was actually searched.
 _HAS_WORD = re.compile(r"\w", re.UNICODE)
+
+#: The run of letters a term ends with, if any. Digits are excluded on purpose:
+#: see PREFIX_MIN.
+_TRAILING_LETTERS = re.compile(r"[^\W\d_]+$", re.UNICODE)
+
+#: How many letters a term must end with before it is also searched as a prefix.
+#:
+#: MEASURED, NOT CHOSEN. Against the seeded corpus of 8,707 passages, "curtailment"
+#: as an exact token found 9 passages and the substring scan it replaced found 15.
+#: The six it missed all said "Curtailments". A retrieval layer that answers a
+#: question about curtailment with two thirds of the passages about curtailment,
+#: and says nothing, is the silent miss this whole module is arranged against --
+#: and it would have been introduced by the change meant to improve retrieval.
+#:
+#: So the last token of a term is also matched as a prefix, which recovers the
+#: plural, the participle and the gerund without a stemmer, a word list or a
+#: dependency. Two limits keep it from becoming noise:
+#:
+#:   the tail must be LETTERS. "20" must not reach "2000" and "5.4.1" must not
+#:   reach "5.4.10". Digits and units are the values this product exists to
+#:   quote exactly, and ADR-003's whole argument is that a number changing
+#:   quietly is the failure that matters. A superscript two is not a letter
+#:   either, so "20²" stays exact and the footnote marker keeps its meaning.
+#:
+#:   four letters, not three. Below that a prefix stops narrowing anything --
+#:   "the", "and", "may" -- while the cost of a term that matches half the
+#:   corpus is paid by every other term ANDed with it.
+#:
+#: It only ever widens what an exact token would have found, so it stays on the
+#: permissive side of the rule this module is built on.
+PREFIX_MIN = 4
 
 
 @dataclass(frozen=True, slots=True)
@@ -285,6 +321,15 @@ def match_terms(query: str) -> tuple[str, ...]:
     )
 
 
+def _phrase(term: str) -> str:
+    """One term as an FTS5 phrase, with a prefix star where PREFIX_MIN allows it."""
+    quoted = '"' + term.replace('"', '""') + '"'
+    tail = _TRAILING_LETTERS.search(term)
+    if tail is not None and len(tail.group(0)) >= PREFIX_MIN:
+        return quoted + "*"
+    return quoted
+
+
 def match_expression(terms: tuple[str, ...]) -> str:
     """An FTS5 MATCH expression that can only ever be a conjunction of phrases.
 
@@ -295,8 +340,16 @@ def match_expression(terms: tuple[str, ...]) -> str:
     column filters. Quoting every term turns all of it into ordinary text: a
     double quote is doubled, which is FTS5's own escape, and everything else
     inside a phrase is either a token or a separator.
+
+    THE ONE OPERATOR THAT IS OURS TO USE is the trailing star, and it is added
+    by _phrase from the term's own shape rather than copied from what the person
+    typed. Someone who types "plan*" gets a phrase containing the token "plan",
+    not a prefix search they asked for by knowing the syntax; someone who types
+    "curtailment" gets the prefix search because the rule says so. The
+    difference matters: the syntax stays unreachable, and the behaviour stays
+    the same for everyone whether or not they know FTS5.
     """
-    return " AND ".join('"' + term.replace('"', '""') + '"' for term in terms)
+    return " AND ".join(_phrase(term) for term in terms)
 
 
 def fingerprint(
@@ -554,10 +607,19 @@ def _scan_matches(passage_text: str, terms: tuple[str, ...]) -> bool:
     "maintain" reaches a passage the extractor wrote with a soft hyphen in it --
     the fallback must not be worse at the job than the index it stands in for.
 
-    It is more permissive than the index in one direction and less in another:
-    a substring can land inside a longer word, and a term whose punctuation the
-    tokeniser would drop ("5.4.1" against "5-4-1") will not match here. Both are
-    announced, because the result says a scan answered.
+    THE TWO PATHS DO NOT RETURN IDENTICAL SETS, and the difference was measured
+    on the seeded corpus of 8,707 passages rather than guessed at. Across
+    "curtailment", "battery energy storage", "Utility shall", "interconnection
+    study" and "rate base reconciliation" the two agree exactly. They part on
+    "20 MW": the scan returns four passages the index does not, and all four
+    mention docket 2020-00174, where the substring "20" lands inside "2020".
+
+    That is the scan being loose, not the index being short -- which is the
+    right way round for a fallback. Every passage the index finds, the scan
+    finds; a scan-only hit is a false positive a reader can see through, and an
+    index-only hit would be a passage the fallback could not reach. The rule
+    this module is built on holds on both paths: neither is ever quietly
+    narrower than the other.
     """
     haystack = index_body(passage_text).casefold()
     return all(term.casefold() in haystack for term in terms)

@@ -308,6 +308,33 @@ def test_the_scan_and_the_index_agree_on_which_passage_answers(unindexed):
     assert indexed_spans == scanned_spans
 
 
+def test_the_fallback_is_never_narrower_than_the_index(unindexed):
+    """The direction that matters: the scan must reach everything the index does.
+
+    They are allowed to differ the other way, and on the seeded corpus they do --
+    a scan for "20 MW" also returns four passages about docket 2020-00174,
+    because the substring "20" lands inside "2020". A loose fallback costs a
+    reader a glance. A narrow one loses a passage nobody knows is missing.
+    """
+    queries = ["feeder", "utility", "plan", "20 MW", "5.4.1", "file", "maintain"]
+    with session_scope() as session:
+        scanned = {q: _search(session, q) for q in queries}
+        for retrieval in scanned.values():
+            assert retrieval.source == search.SOURCE_SCAN
+
+    search.rebuild_index(get_engine())
+    with session_scope() as session:
+        for query in queries:
+            indexed = _search(session, query)
+            assert indexed.source == search.SOURCE_INDEX
+            index_spans = {(h.version_id, h.char_start) for h in indexed.hits}
+            scan_spans = {(h.version_id, h.char_start) for h in scanned[query].hits}
+            assert index_spans <= scan_spans, (
+                f"{query!r} reached a passage the fallback cannot: "
+                f"{index_spans - scan_spans}"
+            )
+
+
 # ---------------------------------------------------------------------------
 # 3. Tokenisation. The index folds what the verifier folds, and nothing else.
 # ---------------------------------------------------------------------------
@@ -337,6 +364,58 @@ def test_the_index_finds_what_the_verifier_would_fold(corpus, query, expected):
         retrieval = _search(session, query)
         assert retrieval.hits, f"{query!r} found nothing"
         assert any(expected in text for text in _texts(retrieval))
+
+
+def test_a_word_ending_does_not_hide_a_passage(corpus):
+    """"curtailment" has to reach "Curtailments", or the index loses to the scan.
+
+    The defect this pins was measured rather than imagined: on the seeded corpus
+    an exact-token index found 9 passages about curtailment where the substring
+    scan it replaced found 15, and the six it dropped all said "Curtailments".
+    Retrieval that answers with two thirds of the passages and says nothing is
+    the failure this module exists to refuse.
+    """
+    with session_scope() as session:
+        ingest_version(
+            session,
+            version_id="mep-plural",
+            company_id=COMPANY,
+            docket="24-M-0001",
+            label="Order, December",
+            status="FINAL",
+            source_text="SECTION 2. TARIFF\n\nCurtailments are ordered by the commission.\n",
+        )
+    search.rebuild_index(get_engine())
+
+    with session_scope() as session:
+        retrieval = _search(session, "curtailment")
+        assert retrieval.source == search.SOURCE_INDEX
+        assert any("Curtailments" in text for text in _texts(retrieval))
+
+
+@pytest.mark.parametrize(
+    "query,expected",
+    [
+        # Letters widen. Four is the floor, so "plan" reaches "plans".
+        ("curtailment", '"curtailment"*'),
+        ("plan", '"plan"*'),
+        # Three letters do not. Below four a prefix stops narrowing anything.
+        ("the", '"the"'),
+        # A term ending in a digit NEVER widens. "20" must not reach "2000" and
+        # "5.4.1" must not reach "5.4.10": digits are the values this product
+        # exists to quote exactly.
+        ("20", '"20"'),
+        ("5.4.1", '"5.4.1"'),
+        # Two letters is a unit, not a word stem.
+        ("MW", '"MW"'),
+        # A superscript two is not a letter, so the footnote marker stays exact.
+        ("20²", '"20²"'),
+        # A term whose tail is a word widens on that word.
+        ("cost-causation", '"cost-causation"*'),
+    ],
+)
+def test_the_prefix_rule_is_the_one_written_down(query, expected):
+    assert search.match_expression(search.match_terms(query)) == expected
 
 
 def test_the_index_keeps_the_distinction_the_verifier_keeps(corpus):

@@ -110,8 +110,8 @@ today, not estimated from the plan.</div>
     <text class="t-sub" x="188" y="186">set, and says so when not.</text></g>
   <g class="box box--model"><rect x="356" y="130" width="172" height="76"/>
     <text class="t-title" x="368" y="152">claim search</text>
-    <text class="t-sub" x="368" y="170">substring match over claims</text>
-    <text class="t-sub" x="368" y="186">that verify. Clarke only.</text></g>
+    <text class="t-sub" x="368" y="170">FTS5 + bm25 over passages.</text>
+    <text class="t-sub" x="368" y="186">Clarke only. No search box.</text></g>
   <g class="box box--absent"><rect x="546" y="130" width="172" height="76"/>
     <text class="t-title" x="558" y="152">the ingest-hash check</text>
     <text class="t-sub" x="558" y="170">refuses a drifted source.</text>
@@ -313,11 +313,16 @@ addresses characters into a frozen text; an analyst cites &ldquo;Exhibit JS-3 at
 product cannot say that, because the corpus is plain text with no pagination and
 <code>DocumentVersion</code> carries no page map. The fix is a page index built at ingestion from the
 PDF layer that does not exist yet &mdash; it is additive, not a redesign, and it is not done.
-<strong>And retrieval is one substring match.</strong> <code>search_claims()</code> in
-<code>app/chat/tools.py</code> takes a query, walks every change on the company's record,
-re-verifies each claim, and keeps the ones whose statement contains the words &mdash; no index, no
-ranking, no embeddings, and its own docstring says the cost is linear in the corpus and names where
-the fix belongs. It is reachable only through Clarke, so on a machine with no
+<strong>Retrieval was one substring match until 2026-08-04 and is now an index.</strong>
+<code>search_claims()</code> in <code>app/chat/tools.py</code> used to walk every change on the
+company's record and keep the claims whose own statement contained the words &mdash; so a claim was
+reachable only through the sentence it had already written, never through the filing it cites.
+<code>app/state/search.py</code> is now FTS5 with bm25 ranking over the passage store, scoped
+through <code>queries.py</code> like every other tenant read: 1.3ms against 366ms on 8,707
+passages. It is deliberately not a search feature and there is no search box &mdash; ADR-02 rejected
+search as the wedge and ADR-71 explains at length why retrieval inside the citation path is a
+different thing. A ranked hit is a candidate that still has to pass <code>verify_citation</code>,
+and a passage carrying the cited span of a withheld claim is not offered at all. It is reachable only through Clarke, so on a machine with no
 <code>ANTHROPIC_API_KEY</code> it never runs at all. What it does get right is the refusal: a
 withheld claim cannot be searched, because its statement is never handed back, so every withheld
 claim in scope is reported by count and reason instead of being silently absent from the results.
