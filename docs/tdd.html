@@ -149,8 +149,9 @@ about the codebase.</p></div>
   and no screen. A pure diff compares two versions. app/pipeline.py sequences ingestion,
   diff and the writes, and calls no model. Claims are written into ordinary tables by rule, in
   app/seed.py. Interpretation, the one module on this path permitted to call a model,
-  sits to the side and is drawn with a dashed arrow because no caller in app reaches
-  it. The assistant calls a model too, but it sits beside this pipeline rather than
+  sits to the side of the write path and is drawn with a dashed arrow because nothing
+  in the pipeline reaches it; the change screen reaches it on read. The assistant
+  calls a model too, but it sits beside this pipeline rather than
   in it. The gate is below state, not above it: verification runs on every read, inside
   app/state/claims.py, which re-reads the source at the cited offsets, normalizes,
   compares exactly and checks the occurrence. A claim that passes reaches the reader
@@ -199,7 +200,7 @@ about the codebase.</p></div>
     <text class="t-title" x="626" y="502">interpretation</text>
     <text class="t-sub" x="626" y="519">the only model call on this path</text>
     <text class="t-sub" x="626" y="534">propose.py pins claude-opus-5 (ADR-037)</text>
-    <text class="t-sub" x="626" y="549">nothing in app/ calls it</text></g>
+    <text class="t-sub" x="626" y="549">two screens and Clarke call it</text></g>
   <path class="flow--weak" d="M606 516 H538"/>
 
   <g class="box box--store"><rect x="250" y="480" width="280" height="72"/>
@@ -246,12 +247,13 @@ fact and points there.
 <strong>The retrieval box is solid because the index now exists and the assistant queries it</strong>, and §15
 states exactly what "exists" means at this commit. It was drawn solid once before, as "BM25 over SQLite FTS5",
 when no such thing existed — a design intention drawn as though it had shipped, which is what ADR-040 was
-written to stop. <strong>The model box is still a seam.</strong>
+written to stop. <strong>The model box is no longer a seam, and it does one job.</strong>
 <code>app/interpretation/propose.py</code> builds its prompt by dispatching on the version's stored status and
-sends each proposal it can read to the verifier, but no caller in <code>app/</code> reaches it, so the claims
-on screen still come from deterministic assembly in <code>app/seed.py</code>. Check it with
-<code>grep -rn propose_changes app/ scripts/</code>: every hit is inside <code>propose.py</code> itself, bar
-two comments elsewhere that cite it as a shape to copy.</figcaption>
+sends each proposal it can read to the verifier. The change screen calls it on the first view of an
+unjudged change, and it writes a materiality verdict with the citation that earned it. It does not write
+claims: the claim sentences on screen still come from deterministic assembly in <code>app/seed.py</code>.
+Check the callers with
+<code>grep -rn "materiality_for_company(" app/ | grep -v interpretation/propose.py</code>.</figcaption>
 </figure>
 
 <h2 id="a3-properties">A3. Three properties that do the work</h2>
@@ -297,18 +299,18 @@ ship elsewhere, and they are listed here at the path where the code actually sit
 <tr><td><code>app/interpretation/</code></td><td>The only module on the pipeline path allowed to call a model. <code>action.py</code> is 35 lines and imports nothing: draft-versus-final is read from the version's status field and dispatches to two separate branches (ADR-005), never inferred. <code>propose.py</code> holds the model call and sends each proposal it can read to the verifier. <span class="gap">Nothing in <code>app/</code> calls <code>propose.py</code></span> — its only importer is <code>tests/test_propose.py</code>. <a href="#extraction">§3</a>.</td><td>yes</td><td>The provider sits behind one transport interface, imported inside the factory function so the module loads with no SDK present. The model id is pinned as a constant, <code>claude-opus-5</code>, and deliberately not read from the environment (ADR-037).</td></tr>
 <tr><td><code>app/verification/</code></td><td>The comparison. Given a citation and a source text, re-reads at <code>(char_start, char_end)</code>, normalizes both sides, compares for <em>equality</em> and checks the occurrence. It applies no threshold and never has. <a href="#citation">§5</a>.</td><td>no — string equality after normalization</td><td>Runs and is unit-tested with no model, no network and no database; it imports only <code>app/text/normalize.py</code>. It is the module a reviewer can audit without trusting anything about the AI.</td></tr>
 <tr><td><code>app/text/</code></td><td><code>normalize.py</code>: the one normalization, plus the projection that maps a normalized offset back to the source character that produced it. Imports nothing from <code>app/</code>.</td><td>no</td><td>Four modules call it — <code>diff</code>, <code>verification</code>, <code>interpretation</code> and the index in <code>state/search.py</code> — which is the point. Changing the folding here changes all four together, on purpose. Ingestion is deliberately <em>not</em> one of them (<a href="#ingestion">§1</a>).</td></tr>
-<tr><td><code>app/state/</code></td><td>Twenty-one tracked modules — the twenty named here plus <code>__init__.py</code>. <code>models.py</code> (43 tables), <code>db.py</code> (the engine seam), <code>queries.py</code> (the tenant chokepoint, <a href="#isolation">§10</a>), <code>claims.py</code> (the read-time gate and the confidence floor), <code>audit.py</code> (the hash chain, <a href="#audit">§8</a>), <code>migrate.py</code> (additive schema migration, <a href="#datamodel">§12</a>), <code>search.py</code> (the index, <a href="#retrieval">§15</a>), and the feature stores: <code>projects</code>, <code>review</code>, <code>workflow</code>, <code>routing</code>, <code>rollback</code>, <code>replay</code>, <code>sharing</code>, <code>invites</code>, <code>identity</code>, <code>permissions</code>, <code>feedback</code>, <code>retention</code>, <code>sources</code>.</td><td>no</td><td><code>db.py</code> is the seam where SQLite becomes Postgres (ADR-028) — see <a href="#a7-sqlite">A7</a>. State is ordinary tables, so the storage engine is load-bearing for correctness in a way an event fold would not be; the audit chain is what carries the evidence.</td></tr>
+<tr><td><code>app/state/</code></td><td>Twenty-three tracked modules — the twenty-two named here plus <code>__init__.py</code>. <code>models.py</code> (44 tables), <code>db.py</code> (the engine seam), <code>queries.py</code> (the tenant chokepoint, <a href="#isolation">§10</a>), <code>claims.py</code> (the read-time gate and the confidence floor), <code>audit.py</code> (the hash chain, <a href="#audit">§8</a>), <code>migrate.py</code> (additive schema migration, <a href="#datamodel">§12</a>), <code>search.py</code> (the index, <a href="#retrieval">§15</a>), and the feature stores: <code>projects</code>, <code>review</code>, <code>workflow</code>, <code>routing</code>, <code>mapping</code>, <code>actions</code>, <code>rollback</code>, <code>replay</code>, <code>sharing</code>, <code>invites</code>, <code>identity</code>, <code>permissions</code>, <code>feedback</code>, <code>retention</code>, <code>sources</code>.</td><td>no</td><td><code>db.py</code> is the seam where SQLite becomes Postgres (ADR-028) — see <a href="#a7-sqlite">A7</a>. State is ordinary tables, so the storage engine is load-bearing for correctness in a way an event fold would not be; the audit chain is what carries the evidence.</td></tr>
 <tr><td>the escalation queue — <code>state/claims.py</code>, <code>web/views/review.py</code><br><span class="gap">no <code>app/review/</code> directory</span></td><td><code>models.Escalation</code> is a real table. <code>escalations_for_company()</code> reads it; <code>/escalations</code> shows it; resolving one stamps <code>resolved_at</code> and <code>resolved_by</code> on the row and appends an audit event naming the actor. <code>app/state/review.py</code> is a different thing — the review centre's findings, questions and takes.</td><td>no</td><td>Resolution is reversible through <code>app/state/rollback.py</code>, which writes a new audit row naming the one it takes back rather than editing either.</td></tr>
 <tr><td><code>app/auth/</code></td><td><code>sessions.py</code>: login, logout, session resolution by token hash. <code>policy.py</code>: fifteen permission codes, role grants, and the segregation-of-duties check on approvals. <a href="#security">§11</a>.</td><td>no</td><td>The guard is installed once in <code>app/main.py</code> as middleware rather than decorated onto each route, so a screen added next month is protected by existing.</td></tr>
 <tr><td><code>app/chat/</code></td><td>Clarke, the records clerk (ADR-050). <code>persona.py</code> holds the prompt and a deterministic pre-screen; <code>agent.py</code> the turn loop, the pinned model and nine named degradations; <code>tools.py</code> ten tools behind an import-time-checked allowlist; <code>pills.py</code> the suggested actions; <code>engine.py</code> a thirty-line shim. <a href="#a9-surface">A9</a>.</td><td>yes — the second and last place</td><td>The model never supplies an identity: <code>company_id</code>, <code>actor</code>, <code>user_id</code> and <code>session</code> are refused as tool arguments rather than stripped, and the turn halts (ADR-051).</td></tr>
 <tr><td><code>app/notify/</code></td><td><code>messages.py</code> composes an invitation mail; <code>transport.py</code> sends it over SMTP. With no SMTP settings it declines, returns <code>MAIL_PATH_OFF_NOT_CONFIGURED</code> and tells the admin the link is real and nobody was emailed.</td><td>no</td><td>The token goes in the link and nowhere else — not the subject, not a header, not a log, not the audit chain.</td></tr>
-<tr><td><code>app/web/</code></td><td>FastAPI routes and server-rendered templates. Seventeen routers, each owning its own absolute paths — no prefixes, so a URL lives in one file. Reads <code>state</code>; for the citation viewer, passages through the scoped read; imports <code>app/diff/</code> and <code>app/verification/</code> for the constants and the occurrence helpers.</td><td>no</td><td>Deliberately thin, with one conceded exception: four private scoped reads sit in <code>web/views/admin.py</code> that belong in <code>state/queries.py</code>, and the file says so.</td></tr>
+<tr><td><code>app/web/</code></td><td>FastAPI routes and server-rendered templates. Eighteen routers, each owning its own absolute paths — no prefixes, so a URL lives in one file. Reads <code>state</code>; for the citation viewer, passages through the scoped read; imports <code>app/diff/</code> and <code>app/verification/</code> for the constants and the occurrence helpers.</td><td>no</td><td>Deliberately thin, with one conceded exception: four private scoped reads sit in <code>web/views/admin.py</code> that belong in <code>state/queries.py</code>, and the file says so.</td></tr>
 <tr><td><code>app/evals/</code></td><td>The offline harness: <code>corpus.py</code>, <code>metrics.py</code>, <code>report.py</code>, <code>run.py</code>. Scores diff and verification against the synthetic corpus, whose expected answers come from <code>data/manifest.json</code> rather than from the code under test. <a href="#evals">§9</a>.</td><td>no</td><td>Imports <code>diff</code>, <code>ingestion</code>, <code>interpretation.action</code> and <code>verification</code>. It imports neither <code>state</code> nor <code>web</code>, so the harness cannot accidentally measure the database.</td></tr>
 <tr><td><code>app/jobs/</code></td><td>The only thing here that acts with nobody present. <code>runner.py</code> sweeps overdue approvals and purges past their retention window. <span class="gap">It does not fetch</span>: the source fetch is named and refused in the module's own docstring — asking for it raises with a sentence saying so, rather than registering a job that quietly does nothing (<code>app/jobs/runner.py</code> 69-74). <code>deploy/entrypoint.sh</code> starts the loop as a separate process, and only when <code>STRATA_JOBS_ENABLED</code> is <code>true</code> — which is not the default (ADR-066).</td><td>no</td><td>A separate process rather than a thread, because a sweep and a request would otherwise compete for the same SQLite write lock. Retention runs dry unless a second setting arms it, and <code>purge_all</code> re-checks that flag itself rather than trusting this caller.</td></tr>
 <tr><td><code>app/sources/</code></td><td>The only code here that opens a socket, at an address an administrator supplies. <code>fetch.py</code> retrieves a public docket, hashes it, and stores it only if the hash moved; an unchanged fetch writes nothing and says so (ADR-067).</td><td>no</td><td>The SSRF guard is the module, not a check in front of it: scheme before any name is resolved, then every address the name resolves to and every redirect hop. Hands the changed bytes to <code>app/pipeline.py</code> rather than diffing them itself.</td></tr>
 <tr><td><code>app/pipeline.py</code></td><td>The write chokepoint. Sequences ingestion &rarr; diff &rarr; record for a new version, so one place owns the order of operations. Idempotent: the same version twice writes nothing the second time. Refuses a corpus whose bytes moved under it rather than rebuilding half of it. <a href="#requestpath">§13</a>.</td><td>no</td><td>It imports <code>diff</code>, <code>ingestion</code>, <code>state</code> and <code>audit</code>, and <span class="gap">not <code>verification</code></span> — because the gate is on the read path, not this one.</td></tr>
 <tr><td><code>app/seed.py</code></td><td>Loads the synthetic corpus and writes the demonstration rows: proceedings, versions, claims assembled by rule from <code>data/manifest.json</code>, escalations, accounts. One claim's quote is deliberately altered at real offsets so a citation fails on screen.</td><td>no</td><td>This is where the claims a reviewer sees come from. It is a loader, not a model, and the product's arithmetic is honest only because it says so.</td></tr>
-<tr><td><code>app/main.py</code></td><td>Assembles the application: loads <code>.env</code>, mounts the static files, includes the seventeen routers in the order an analyst meets them, installs the session guard, serves <code>/healthz</code>.</td><td>no</td><td><code>tests/test_app_wiring.py</code> derives the expected set from <code>app.routes</code> and fails the moment a router under <code>app/web/views/</code> is not on the list. That test is how two routers and roughly two thousand lines were found mounted nowhere.</td></tr>
+<tr><td><code>app/main.py</code></td><td>Assembles the application: loads <code>.env</code>, mounts the static files, includes the eighteen routers in the order an analyst meets them, installs the session guard, serves <code>/healthz</code>.</td><td>no</td><td><code>tests/test_app_wiring.py</code> derives the expected set from <code>app.routes</code> and fails the moment a router under <code>app/web/views/</code> is not on the list. That test is how two routers and roughly two thousand lines were found mounted nowhere.</td></tr>
 </table>
 
 <h2 id="a5-deps">A5. Dependency direction, and the edges that run the wrong way</h2>
@@ -344,8 +346,8 @@ draws it honestly, including the edges that run back up.</p>
 
   <g class="box"><rect x="70" y="36" width="470" height="80"/>
     <text class="t-title" x="86" y="58">app/main.py    app/web/    app/chat/    app/seed.py</text>
-    <text class="t-sub" x="86" y="76">main.py calls app/config.py first, then mounts seventeen routers</text>
-    <text class="t-sub" x="86" y="90">web imports auth, state, diff and verification directly</text>
+    <text class="t-sub" x="86" y="76">main.py calls app/config.py first, then mounts eighteen routers</text>
+    <text class="t-sub" x="86" y="90">web imports auth, state, diff, verification and interpretation</text>
     <text class="t-sub" x="86" y="104">chat imports state, auth, pipeline — and two names back out of web</text></g>
 
   <g class="box"><rect x="70" y="150" width="470" height="62"/>
@@ -375,7 +377,7 @@ draws it honestly, including the edges that run back up.</p>
     <text class="t-sub" x="412" y="422">action.py — 35 lines, no imports</text>
     <text class="t-sub" x="412" y="438">propose.py — the one model call</text>
     <text class="t-sub" x="412" y="454">it sends proposals to the gate</text>
-    <text class="t-sub" x="412" y="470">nothing in app/ calls it</text></g>
+    <text class="t-sub" x="412" y="470">two screens and Clarke call it</text></g>
 
   <g class="box"><rect x="200" y="510" width="200" height="54"/>
     <text class="t-title" x="216" y="534">app/text/normalize.py</text>
@@ -454,8 +456,8 @@ sideways rather than upward, and a grep over every indented <code>from app.state
 <strong>Where this picture disagrees with the table above.</strong>
 <code>app/passages/</code> and <code>app/review/</code> are not directories, but both
 capabilities ship, so they are drawn where the code actually sits. The model call does exist, in
-<code>app/interpretation/propose.py</code>, but no caller in <code>app/</code> reaches it, so
-the pipeline runs end to end without one. The table's order implies dependency runs top
+<code>app/interpretation/propose.py</code>, and two screens and the assistant reach it — but none of
+them is on the write pipeline, which runs end to end without one. The table's order implies dependency runs top
 to bottom of it; <code>ingestion</code> imports <code>state/models.py</code>, which runs the
 other way. <strong>And one edge points up out of the top band.</strong>
 <code>app/chat/tools.py</code> imports <code>active_workflow_for_company</code> and
@@ -589,7 +591,7 @@ than a scaling seam, and sits in <a href="#failure">§14</a>.</li>
   <g class="box box--store"><rect x="30" y="160" width="400" height="262"/>
     <text class="t-title" x="46" y="184">what SQLite enforces</text>
     <text class="t-sub" x="46" y="204">primary keys, NOT NULL, column types</text>
-    <text class="t-sub" x="46" y="220">twelve unique constraints over 43 tables. Two are</text>
+    <text class="t-sub" x="46" y="220">twelve unique constraints over 44 tables. Two are</text>
     <text class="t-sub" x="46" y="236">PARTIAL indexes — business rules held in SQL:</text>
     <text class="t-sub" x="46" y="258">one active approval workflow per company,</text>
     <text class="t-sub" x="46" y="274">WHERE status = 'active'</text>
@@ -676,7 +678,7 @@ belongs here is the <em>topology</em>: what runs, in what order, before anything
 <svg viewBox="0 0 900 530" role="img" aria-labelledby="depT depD">
   <title id="depT">The request path and the start-up path, side by side</title>
   <desc id="depD">On the left, a request to strata.sudama.ai reaches nginx, which
-  matches a named list of seventeen path prefixes and proxies those to the application
+  matches a named list of eighteen path prefixes and proxies those to the application
   container on port 8000. Everything else is served as a static file from the
   marketing site. The application container carries no Traefik labels and publishes
   no port, so nginx decides what reaches it. On the right, the entrypoint runs the
@@ -697,8 +699,8 @@ belongs here is the <em>topology</em>: what runs, in what order, before anything
   <g class="box box--gate"><rect x="30" y="122" width="400" height="88"/>
     <text class="t-title" x="46" y="144">deploy/nginx.conf — a named list, not a catch-all</text>
     <text class="t-sub" x="46" y="164">login logout projects proceedings changes review escalations</text>
-    <text class="t-sub" x="46" y="180">workflow admin permissions chat feedback users invite</text>
-    <text class="t-sub" x="46" y="196">s static healthz — seventeen names. Everything else is the site</text></g>
+    <text class="t-sub" x="46" y="180">workflow admin permissions actions chat feedback users invite</text>
+    <text class="t-sub" x="46" y="196">s static healthz — eighteen names. Everything else is the site</text></g>
   <path class="flow" d="M130 210 V236"/>
   <path class="flow" d="M330 210 V236"/>
 
@@ -750,7 +752,7 @@ belongs here is the <em>topology</em>: what runs, in what order, before anything
 <figcaption><strong>The named list is the seam, and it is written down.</strong> A catch-all
 proxy fails quietly in both directions: a page added to the marketing site would silently
 reach the application, and a router added to the application would silently 404 while every
-test still passed. So nginx matches seventeen names and the site keeps the root, because a
+test still passed. So nginx matches eighteen names and the site keeps the root, because a
 stranger arriving at the domain should meet the argument before the product. The cost is a
 list somebody has to remember to extend, and the file says so at the top. <code>permissions</code> was once
 added to the regex and not to the prose, which is the drift a single description is meant to stop.
@@ -1199,8 +1201,8 @@ have no table (<a href="#context">§4</a>). <strong>Four, recommend an action an
 <code>app/state/routing.py</code> picks the reviewer off <code>obligations.owner_user_id</code>
 (<a href="#routing">§7</a>). So of the four, one has a deterministic answer, two have a table and no producer,
 and one has nothing.</p>
-<p>The shape of that module is the part worth reading. Every proposal must name a <code>(version_id, char_start, char_end, quoted_text)</code>, and <code>propose_changes</code> re-reads the stored source at those offsets through <code>app/verification/verifier.py</code> before anything survives. <strong>Nothing is repaired.</strong> A proposal whose offsets sit two characters off the quote is withheld, not nudged into place — snapping an offset to the nearest matching span would make the gate a formality, because every citation would be adjusted until it passed and the verifier would end up checking the repair. A malformed proposal is dropped one at a time with its reason recorded, so one bad entry does not discard the good ones beside it. The model is never asked whether a version is draft or final: that is read from the field and dispatched on in Python (ADR-005), and the permitted actions go to the model as a closed list.</p>
-<p><span class="lbl">Three limits, none of them small.</span> The module <strong>does not write</strong> — nothing in it creates a <code>Claim</code> row or appends to the audit chain, because there is no action code for "a model proposed this" and inventing a second spelling of one is how the two that already drifted got that way. It <strong>has no caller</strong>: <code>grep -rn "propose_changes" app/</code> returns its own definitions and two mentions in comments, and no invocation anywhere else, so the path runs from <code>tests/test_propose.py</code> and from nowhere a reviewer can click. And its request <strong>has been sent for real exactly once</strong> — every test drives a deterministic fake through an injected transport, so what the <em>suite</em> proves is the gate and not the request. The request itself went to the endpoint on 2026-08-05 through <code>scripts/probe_live_transport.py</code>: the parameters were accepted, the structured output came back in the shape <code>_SCHEMA</code> asks for, and <a href=".ai/live-transport-probe.html">the transcript</a> sets out what that settles and what it leaves open. The claims a reviewer actually sees are still assembled deterministically: <code>app/seed.py</code> writes the synthetic ones by rule from <code>data/manifest.json</code>, and <code>scripts/ingest_real.py</code> carries exactly one hand-written statement about the real Kentucky filing, cited at the offsets where it sits.</p>
+<p>The shape of that module is the part worth reading. Every proposal must name a <code>(version_id, char_start, char_end, quoted_text)</code>, and <code>judge_materiality</code> re-reads the stored source at those offsets through <code>app/verification/verifier.py</code> before anything survives. <strong>Nothing is repaired.</strong> A proposal whose offsets sit two characters off the quote is withheld, not nudged into place — snapping an offset to the nearest matching span would make the gate a formality, because every citation would be adjusted until it passed and the verifier would end up checking the repair. A malformed proposal is dropped one at a time with its reason recorded, so one bad entry does not discard the good ones beside it. The model is never asked whether a version is draft or final: that is read from the field and dispatched on in Python (ADR-005), and the permitted actions go to the model as a closed list.</p>
+<p><span class="lbl">Three limits, and one of them has closed.</span> The module <strong>writes no claim</strong> — nothing in it creates a <code>Claim</code> row, because there is no action code for "a model proposed this" and inventing a second spelling of one is how the two that already drifted got that way. It <strong>does write a verdict</strong>: <code>_record_verdict</code> puts seven materiality columns on the <code>Change</code> row and appends <code>ACTION_MATERIALITY_SET</code> to the chain under <code>ACTOR_MODEL</code>. And it <strong>now has callers</strong>: <code>grep -rn "materiality_for_company(" app/ | grep -v interpretation/propose.py</code> finds the change screen, the project screen and the assistant, so a reviewer reaches it by clicking a change. Its request <strong>has been sent for real exactly once</strong> — every test drives a deterministic fake through an injected transport, so what the <em>suite</em> proves is the gate and not the request. The request itself went to the endpoint on 2026-08-05 through <code>scripts/probe_live_transport.py</code>: the parameters were accepted, the structured output came back in the shape <code>_SCHEMA</code> asks for, and <a href=".ai/live-transport-probe.html">the transcript</a> sets out what that settles and what it leaves open. The claims a reviewer actually sees are still assembled deterministically: <code>app/seed.py</code> writes the synthetic ones by rule from <code>data/manifest.json</code>, and <code>scripts/ingest_real.py</code> carries exactly one hand-written statement about the real Kentucky filing, cited at the offsets where it sits.</p>
 <p>That leaves this section a contract as well as a description, and the contract is the useful part. Whatever produces a claim — the model, the seed, a person typing one into a script — emits the same typed object, and that object is the only thing that crosses into verification. Nothing else about the producer is visible downstream, which is what makes the model swappable and, more importantly, what makes the gate in §5 independent of it.</p>
 </div>
 
@@ -1208,16 +1210,17 @@ and one has nothing.</p>
 <div class="fig__frame">
 <svg viewBox="0 0 900 456" role="img" aria-labelledby="figExtT figExtD">
   <title id="figExtT">Where claims come from today, and the object that crosses the boundary</title>
-  <desc id="figExtD">The model proposer is built and has no caller: it runs from its tests. The claims a
+  <desc id="figExtD">The model proposer is built and the change screen calls it: it writes the verdict onto
+  the change row and an audit row beside it. The claims a
   reviewer sees are assembled deterministically in the seed from the manifest, plus one hand-written
   claim about the real filing. Every producer emits the same typed claim carrying a statement, a
   citation and a confidence, and that object is the only thing that reaches the verification gate.</desc>
 
   <g class="box box--model"><rect x="40" y="28" width="380" height="80"/>
     <text class="t-title" x="56" y="50">propose.py — the model proposer</text>
-    <text class="t-sub" x="56" y="70">BUILT, NO CALLER. Asks claude-opus-5, binds</text>
+    <text class="t-sub" x="56" y="70">BUILT AND CALLED. Asks claude-opus-5, binds</text>
     <text class="t-sub" x="56" y="85">every proposal to a citation, repairs nothing,</text>
-    <text class="t-sub" x="56" y="100">writes nothing. Runs from its tests.</text></g>
+    <text class="t-sub" x="56" y="100">and writes the verdict it earns.</text></g>
 
   <g class="box"><rect x="480" y="28" width="380" height="80"/>
     <text class="t-title" x="496" y="50">app/seed.py — deterministic assembly</text>
@@ -1244,7 +1247,7 @@ and one has nothing.</p>
     <text class="t-sub" x="266" y="360">Nothing reaches the screen as fact without passing here,</text>
     <text class="t-sub" x="266" y="375">whichever of the two producers above wrote it.</text></g>
 
-  <text class="t-sub" x="20" y="412">Nothing judges materiality, so Change.materiality stays NULL rather than carrying a default that would read like a judgement.</text>
+  <text class="t-sub" x="20" y="412">The change screen asks propose.py to judge materiality and stores the verdict; unjudged stays NULL, not a default.</text>
   <text class="t-sub" x="20" y="428">There is no cited-versus-inferred field split either. A Claim carries exactly one citation, and it verifies or the claim is withheld.</text>
   <text class="t-sub" x="20" y="444">Every seeded claim carries confidence_bp = 10000, which is a constant and not a measurement. The proposer reports no confidence at all.</text>
 </svg>
@@ -1255,11 +1258,11 @@ and one has nothing.</p>
   <span><i class="k-gate"></i>can refuse</span>
 </div>
 <figcaption><strong>The absence is visible in the data, not hidden in a default.</strong>
-<code>Change.materiality</code> is NULL on every row — <code>app/pipeline.py</code> passes
-<code>materiality=None</code> and nothing else ever writes the column — because the stage that would
-fill it does not exist and a default like "pending" or "cosmetic" would read as a judgement nobody
-made. <code>app/web/views/projects.py</code> renders it as <code>MATERIALITY_UNASSESSED</code> rather
-than as a grade. The
+<code>Change.materiality</code> is NULL until something judges it — <code>app/pipeline.py</code> passes
+<code>materiality=None</code> at ingest and only <code>propose.py</code> ever fills the column — because
+a default like "pending" or "cosmetic" would read as a judgement nobody made.
+<code>app/web/views/projects.py</code> renders an unjudged row as <code>MATERIALITY_UNASSESSED</code>
+rather than as a grade. The
 plan also had each claim field marked <em>cited</em> or <em>inferred</em>, so a category label the
 text does not use verbatim could be shown as inference. <strong>That split is not built</strong> and the
 schema has no room for it: one claim, one citation, verified or withheld. The simplification is
@@ -1272,7 +1275,7 @@ simplification, not the original design.</figcaption>
 <h3>Design</h3>
 <p>Three things carry the company side of the join. An <strong>obligation</strong> is a regulatory duty the company holds, recorded in the company's own words. A <strong>project</strong> is an internal initiative that fulfils or is constrained by obligations. A <strong>document</strong> is one of the company's own artefacts — a tariff, a compliance policy, a procedure — evidentiary rather than regulatory.</p>
 <p>The corpus (<code>data/company_context.json</code>) holds 8 obligations, 3 projects and 4 documents, deliberately worded the way the company would word them rather than the way the docket does. That is not incidental realism. It is the reason a lexical match is not enough. OBL-001 reads <em>Post security for new large-load interconnection work before construction starts.</em> The clause it answers to, section 6.1, reads <em>A Large Load Customer shall post collateral in an amount equal to 100% of the binding cost estimate produced by the Facilities Study, prior to the Utility's commencement of construction of Interconnection Facilities or Network Upgrades.</em> Five words are common to both — post, large, load, interconnection, construction — and none of them is the one that matters. The company posts <em>security</em>; the docket posts <em>collateral</em>. A lexical match has to bridge that word, and the five it does share are the generic ones this docket uses throughout.</p>
-<p><span class="lbl">How much of that is a table is drawn rather than described, because it has moved three times under this document.</span> Projects have always been rows. <code>obligations</code> is now a loaded table: <code>scripts/seed_demo_gaps.py</code> reads the eight out of the JSON and resolves each <code>owner_name</code> to a real account by name, and where no account matches it writes the obligation <strong>without</strong> an owner rather than with a guessed one — an unowned obligation is visible and unroutable, which is the honest state. <code>change_obligations</code> exists and has a writer, <code>map_change_to_obligation</code>, which nothing outside the tests calls. Documents still have no table at all. So the join between a change and an obligation is still done by hand, in <code>data/manifest.json</code> and read out by the seed.</p>
+<p><span class="lbl">How much of that is a table is drawn rather than described, because it has moved three times under this document.</span> Projects have always been rows. <code>obligations</code> is now a loaded table: <code>scripts/seed_demo_gaps.py</code> reads the eight out of the JSON and resolves each <code>owner_name</code> to a real account by name, and where no account matches it writes the obligation <strong>without</strong> an owner rather than with a guessed one — an unowned obligation is visible and unroutable, which is the honest state. <code>change_obligations</code> exists and the change screen writes it: <code>propose_obligations_for_change</code> offers candidates on every render and <code>confirm_obligation_for_change</code> commits the one a person accepts, through <code>map_change_to_obligation</code>. Documents still have no table at all. The candidates are proposed from words the two sides share, which is the half of the join that does not need the word that matters.</p>
 </div>
 
 <figure class="fig">
@@ -1281,9 +1284,10 @@ simplification, not the original design.</figcaption>
   <title id="figCtxT">The company context: what became a table and what did not</title>
   <desc id="figCtxD">The company context is a JSON file read by the seed. Projects, users, sources,
   findings, questions and knowledge items become rows, and obligations now do too, with owners
-  resolved to accounts or left empty. The change_obligations table has a writer nothing calls.
+  resolved to accounts or left empty. The change_obligations table is written from the change screen.
   Documents have no table. The join between the company's wording and the docket's wording is the
-  product, and no code derives it. Both wordings are shown at their full length so neither can be
+  product; mapping.py proposes it from shared words and a person confirms it, and nothing derives
+  it from meaning. Both wordings are shown at their full length so neither can be
   trimmed into agreeing with the other.</desc>
 
   <g class="box box--store"><rect x="20" y="28" width="290" height="92"/>
@@ -1313,7 +1317,7 @@ simplification, not the original design.</figcaption>
     <text class="t-title" x="326" y="182">proposed by words, confirmed by a person</text>
     <text class="t-mono" x="326" y="206">change_obligations</text>
     <text class="t-sub" x="326" y="226">map_change_to_obligation exists;</text>
-    <text class="t-sub" x="326" y="240">only the tests reach it</text></g>
+    <text class="t-sub" x="326" y="240">reached from changes.py</text></g>
 
   <g class="box box--absent"><rect x="600" y="160" width="280" height="84"/>
     <text class="t-title" x="616" y="182">documents</text>
@@ -1339,10 +1343,10 @@ simplification, not the original design.</figcaption>
   <text class="t-edge" x="462" y="504">the join</text>
 
   <g class="box box--absent"><rect x="230" y="530" width="440" height="80"/>
-    <text class="t-title" x="246" y="552">impact mapping — deriving the join</text>
-    <text class="t-sub" x="246" y="572">DESIGNED, NOT BUILT (ADR-008). change_obligations can now</text>
-    <text class="t-sub" x="246" y="587">HOLD the edge; nothing computes one. The docket-side index</text>
-    <text class="t-sub" x="246" y="602">exists (§15); this side has none. The manifest names five by hand.</text></g>
+    <text class="t-title" x="246" y="552">impact mapping — the missing half</text>
+    <text class="t-sub" x="246" y="572">DESIGNED, NOT BUILT (ADR-008): nothing embeds the</text>
+    <text class="t-sub" x="246" y="587">company's wording. What IS built is lexical — mapping.py</text>
+    <text class="t-sub" x="246" y="602">proposes the edge from shared words, a person confirms it.</text></g>
 </svg>
 </div>
 <div class="fig__key">
@@ -1350,18 +1354,18 @@ simplification, not the original design.</figcaption>
   <span><i class="k-absent"></i>designed, not built</span>
 </div>
 <figcaption><strong>The gap between the two wordings is the reason the product would be worth
-buying, and it is the part that is not built.</strong> ADR-008 proposes lexical retrieval with a
+buying, and the half that closes it is not built.</strong> ADR-008 proposes lexical retrieval with a
 semantic re-rank over company-context passages, because the words the two sides share are the
 generic ones and the word that carries the duty is not shared at all. <strong>Half of that ADR is now
-built and it is the other half.</strong> The lexical index runs over <em>docket</em> passages and serves
-the assistant (<a href="#retrieval">§15</a>); nothing indexes, ranks or embeds the company's own wording,
-which is the side this join needs, and a lexical index would not close it anyway — the whole point of the
-two sentences above is that the shared words are the wrong ones.
-<strong>A table for the answer is not the answer.</strong>
-<code>change_obligations</code> and its writer landed since this figure was drawn, which moves the gap
-without closing it: the five change-to-obligation mappings a reviewer sees in the demo are still
-written by hand in <code>data/manifest.json</code> and read out by the seed. They show what the surface
-would look like, not that anything can produce it.
+built and it is the lexical half.</strong> <code>app/state/mapping.py</code> ranks obligations against a
+change by the words they share and offers the top ones on the change screen; a person confirms or
+rejects, and only a confirmed edge routes. Nothing embeds the company's own wording, so the ranking
+cannot bridge <em>security</em> to <em>collateral</em> — the whole point of the two sentences above is
+that the shared words are the wrong ones.
+<strong>A proposal is not a derivation.</strong>
+The proposer moves the work from typing to confirming, which is real, and it leaves the hard half
+where it was: the five change-to-obligation mappings a reviewer sees seeded in the demo are still
+written by hand in <code>data/manifest.json</code> and read out by the seed.
 <strong>Both wordings are quoted whole, and once were not.</strong>
 The docket side was 57 characters standing in for a 236-character sentence, spliced from three
 separate fragments of it with no ellipsis, under a caption calling it the corpus's own words and an
@@ -1640,8 +1644,9 @@ rather than quoting a default that looks measured.</figcaption>
   <desc id="figRteD">A change produces an action vocabulary from its status. The escalation screens still
   read one flat company queue with no assignee. Beside it, routing.py can resolve an obligation owner
   and write the assignment, and refuses with a named code rather than guessing when it cannot; it is
-  reached from the invitation paths and the assistant, not from any screen. An approval gate refuses
-  anyone who already acted on the claim. The approval engine walks a route and is tested. A job loop turns
+  reached from the invitation paths, the assistant and the change screen, which reads a resolution
+  without assigning anything. The /actions screen builds its form from the same vocabulary and asks
+  the approval gate at the click; the gate refuses anyone who already acted on the claim. The approval engine walks a route and is tested. A job loop turns
   its clock when the deploy enables one, and nothing in the product starts a run for that clock to advance.</desc>
 
   <g class="box"><rect x="20" y="28" width="260" height="96"/>
@@ -1660,15 +1665,15 @@ rather than quoting a default that looks measured.</figcaption>
   <g class="box box--gate"><rect x="620" y="28" width="260" height="96"/>
     <text class="t-title" x="636" y="50">routing.py — or a named refusal</text>
     <text class="t-sub" x="636" y="70">change → obligation → owner, then</text>
-    <text class="t-sub" x="636" y="85">writes assigned_to_user_id. 15 refusal</text>
-    <text class="t-sub" x="636" y="100">codes, no default assignee. Reached</text>
-    <text class="t-sub" x="636" y="115">from invites.py, from no screen.</text></g>
+    <text class="t-sub" x="636" y="85">writes assigned_to_user_id. 16 refusal</text>
+    <text class="t-sub" x="636" y="100">codes, no default assignee. Assigned</text>
+    <text class="t-sub" x="636" y="115">from invites.py. No screen does.</text></g>
   <path class="flow" d="M594 76 H616"/>
 
-  <path class="flow" d="M450 124 V156"/>
+  <path class="flow" d="M150 124 V140 H450 V156"/>
 
   <g class="box box--gate"><rect x="220" y="156" width="460" height="132"/>
-    <text class="t-title" x="236" y="178">can_approve() — four gates, each refusing on its own</text>
+    <text class="t-title" x="236" y="178">can_approve() — four gates, asked at the click on /actions</text>
     <text class="t-sub" x="236" y="198">1. the user exists in this company and is active</text>
     <text class="t-sub" x="236" y="213">2. they hold action.approve</text>
     <text class="t-sub" x="236" y="228">3. the id names a claim or an escalation in this company</text>
@@ -2395,7 +2400,15 @@ demonstration, which is what a 48-hour build actually needs. Gate 4 still runs a
 its verdict; the reason returned states what the safe mode would have decided, and a row lands in
 the chain under <code>approval.waived</code> rather than <code>action.approved</code> — so a waived separation
 of duties can never be read a year later as a clean sign-off. An unrecognised value raises at
-import: a control that a typo can switch off, in either direction, is not a control.</figcaption>
+import: a control that a typo can switch off, in either direction, is not a control.
+<strong>One control this figure does not draw.</strong> <code>app/main.py</code> installs
+<code>install_security_headers</code> after <code>install_auth</code>, and Starlette runs the
+last-added middleware outermost, so the header stamp wraps the session guard rather than sitting
+under it. The left column draws AuthMiddleware as the outermost thing in the process, which is one
+layer wrong, and the "not built" column has no line for a gap that closed. Giving it a box means
+re-flowing the whole column, so it is stated here instead of drawn wrong.
+<code>app/web/headers.py</code> names the attack it stops — clickjacking on the approval route —
+and <code>tests/test_security_headers.py</code> guards the install order.</figcaption>
 </figure>
 <h2 class="part" id="partc">Part C — beyond the eleven</h2>
 <p>Four sections the brief does not ask for and this build needs anyway: the schema, one request followed end
@@ -2453,7 +2466,7 @@ a rubric area, and none of them renumbers one.</p>
     <text class="t-mono" x="36" y="300">before/after offsets</text>
     <text class="t-mono" x="36" y="316">alignment_confidence</text>
     <text class="t-mono" x="36" y="332">status  DRAFT|FINAL</text>
-    <text class="t-mono" x="36" y="348">materiality  NULL</text></g>
+    <text class="t-mono" x="36" y="348">materiality  NULL until judged</text></g>
 
   <g class="box box--store"><rect x="306" y="176" width="290" height="188"/>
     <text class="t-title" x="322" y="198">claims</text>
@@ -2503,13 +2516,13 @@ a rubric area, and none of them renumbers one.</p>
   <text class="t-sub" x="20" y="488">state is written directly, not folded</text>
   <text class="t-sub" x="20" y="504">from this log.</text>
 
-  <text class="t-sub" x="620" y="424">43 tables in all. The other 36 fall</text>
-  <text class="t-sub" x="620" y="440">in eight clusters: project workspace</text>
+  <text class="t-sub" x="620" y="424">44 tables in all. The other 37 fall</text>
+  <text class="t-sub" x="620" y="440">in nine clusters: project workspace</text>
   <text class="t-sub" x="620" y="456">(8), review centre (6), identity and</text>
   <text class="t-sub" x="620" y="472">access (8), approval workflow (7),</text>
   <text class="t-sub" x="620" y="488">the assistant (2), feedback (2),</text>
-  <text class="t-sub" x="620" y="504">sharing (2) and the source registry</text>
-  <text class="t-sub" x="620" y="520">(1). Named in the table below.</text>
+  <text class="t-sub" x="620" y="504">sharing (2), source registry (1) and</text>
+  <text class="t-sub" x="620" y="520">proposed actions (1). Named below.</text>
 </svg>
 </div>
 <div class="fig__key">
@@ -2525,7 +2538,7 @@ differ too, and the audit chain would report tampering where none happened.</fig
 </figure>
 
 <div class="d">
-<h4>The other thirty-six, by cluster</h4>
+<h4>The other thirty-seven, by cluster</h4>
 <table>
 <tr><th>Cluster</th><th>Tables</th><th>What it is for</th></tr>
 <tr><td>Project workspace (8)</td><td><code>projects</code>, <code>project_changes</code>, <code>research_threads</code>, <code>research_turns</code>, <code>work_plans</code>, <code>work_plan_steps</code>, <code>scheduled_runs</code>, <code>knowledge_items</code></td><td>The work a person does around a set of changes over months, rather than one change in one moment. <code>knowledge_items</code> is versioned by supersession, never edited (ADR-031).</td></tr>
@@ -2535,6 +2548,7 @@ differ too, and the audit chain would report tampering where none happened.</fig
 <tr><td>The assistant (2)</td><td><code>chat_sessions</code>, <code>chat_messages</code></td><td>One turn of Clarke, stored so a thumb can attach to a message id. The model never holds an identity: <code>company_id</code> and the actor are injected from the signed-in session, never taken from the model's arguments (ADR-051).</td></tr>
 <tr><td>Feedback (2)</td><td><code>feedback</code>, <code>improvement_items</code></td><td>What a user reported, and what was decided about it. Kept apart on purpose — a complaint is referred, never escalated (ADR-055), because the escalation queue is about refused claims and folding the two would bury both.</td></tr>
 <tr><td>Sharing (2)</td><td><code>share_links</code>, <code>share_opens</code></td><td>A read-only link to one claim. The token is stored as a hash, like a session token, so reading the table wins nothing; <code>share_opens</code> records that it was opened and from where.</td></tr>
+<tr><td>Proposed actions (1)</td><td><code>proposed_actions</code></td><td>&sect;7. One row per action somebody proposed on a claim, with who proposed it, who decided and what the decision was. This is the table <code>can_approve</code> guards: the gate reads authorship out of the audit chain, and the row here is what a second person is being asked to sign.</td></tr>
 <tr><td>Source registry (1)</td><td><code>source_registrations</code></td><td>Which commissions this company watches. It carries a <code>credential_ref</code> rather than a credential, and <code>document_versions.source_registration_id</code> points back at the registration a version came from.</td></tr>
 </table>
 <p><span class="lbl">Tables named in this document that do not exist.</span> <code>company</code>, <code>citation</code>, <code>obligation_project</code>, <code>impact_mapping</code>, <code>action</code> and <code>event</code>. The citation is columns on <code>claims</code> rather than a table of its own; there is one company and no table for it; and the three joins were the impact-mapping design that was never built.</p>
@@ -2582,7 +2596,7 @@ differ too, and the audit chain would report tampering where none happened.</fig
   <path class="flow" d="M415 76 V104"/>
 
   <g class="box box--gate"><rect x="200" y="104" width="430" height="56"/>
-    <text class="t-title" x="216" y="126">AuthMiddleware — the session guard</text>
+    <text class="t-title" x="216" y="126">AuthMiddleware — session guard, inside the header stamp</text>
     <text class="t-sub" x="216" y="146">resolves the cookie once, in a worker thread, into a Principal</text></g>
   <path class="flow--refuse" d="M634 132 H656"/>
   <g class="box"><rect x="660" y="104" width="220" height="56"/>
@@ -2630,7 +2644,7 @@ differ too, and the audit chain would report tampering where none happened.</fig
     <text class="t-title" x="216" y="646">change.html — two lists, iterated separately</text>
     <text class="t-sub" x="216" y="666">The evidence panels ship open; the script only closes them.</text></g>
 
-  <text class="t-sub" x="20" y="706">Nothing on this path writes. That is what makes editing a stored source flip a claim to withheld on the very next render, with no job in between.</text>
+  <text class="t-sub" x="20" y="706">One write here: the first view of an unjudged change stores its materiality. Nothing else writes, so editing a source flips a claim next render.</text>
 </svg>
 </div>
 <div class="fig__key">
@@ -2979,17 +2993,17 @@ carries the one line that re-derives it, so a reader who doubts one can settle i
 them from the repository root with the project's own interpreter.</p>
 <table>
 <tr><th>The claim</th><th>The line that re-derives it</th></tr>
-<tr><td>43 tables; 15 permission codes</td><td><code>.venv/bin/python -c "import app.state.models as m; print(len(m.Base.metadata.tables), len(m.PERMISSION_CODES))"</code></td></tr>
+<tr><td>44 tables; 15 permission codes</td><td><code>.venv/bin/python -c "import app.state.models as m; print(len(m.Base.metadata.tables), len(m.PERMISSION_CODES))"</code></td></tr>
 <tr><td>Twelve unique constraints (A7)</td><td>Build the schema into a scratch database and read <code>PRAGMA index_list</code> for every table, skipping the primary-key autoindexes.</td></tr>
-<tr><td>Twenty-one modules under <code>app/state/</code> (twenty named in A4, plus <code>__init__.py</code>)</td><td><code>git ls-files 'app/state/*.py' | wc -l</code></td></tr>
+<tr><td>Twenty-three modules under <code>app/state/</code> (twenty-two named in A4, plus <code>__init__.py</code>)</td><td><code>git ls-files 'app/state/*.py' | wc -l</code></td></tr>
 <tr><td>Eight modules under <code>app/</code> read through the gate, at eleven sites (A3, §5)</td><td><code>grep -rln "verified_claims(session" app/ | wc -l; grep -rn "verified_claims(session" app/ | wc -l</code></td></tr>
 <tr><td>Seven of ten scripts load <code>.env</code> (A4)</td><td><code>grep -L load_env scripts/*.py</code></td></tr>
-<tr><td>Seventeen routers, seventeen mounted</td><td><code>ls app/web/views/*.py | grep -v __init__ | wc -l; grep -c include_router app/main.py</code></td></tr>
+<tr><td>Eighteen routers, eighteen mounted</td><td><code>ls app/web/views/*.py | grep -v __init__ | wc -l; grep -c include_router app/main.py</code></td></tr>
 <tr><td>Thirty modules import the scope guard, one defines it</td><td><code>grep -rl _require_scope app/ | grep '\.py$' | wc -l; grep -rn "def _require_scope" app/</code></td></tr>
 <tr><td>Three call-time imports of <code>app/state/</code> from outside it (A5)</td><td><code>grep -rn '^\s\+from app\.state' app/ | grep -v '^app/state/'</code></td></tr>
 <tr><td>19 changes, 8 capped, 0.9904 on the restructure pair</td><td>The snippet in <a href="#a6-corpora">A6</a>.</td></tr>
-<tr><td>Nothing calls the proposer</td><td><code>grep -rn propose_changes app/ scripts/</code></td></tr>
-<tr><td>Seventeen path prefixes reach the application (A8)</td><td><code>grep -n "location ~" deploy/nginx.conf</code></td></tr>
+<tr><td>Three calls to the proposer; the other four hits are comments</td><td><code>grep -rn "materiality_for_company(" app/ | grep -v interpretation/propose.py</code></td></tr>
+<tr><td>Eighteen path prefixes reach the application (A8)</td><td><code>grep -n "location ~" deploy/nginx.conf</code></td></tr>
 <tr><td>92% of 12,040 statements (§9)</td><td><code>.venv/bin/python -m pytest tests/ -q --cov=app</code></td></tr>
 <tr><td>The eval scorecard</td><td><code>make eval</code></td></tr>
 </table>

@@ -113,10 +113,10 @@ code, not estimated from the plan.</div>
     <text class="t-title" x="558" y="152">the ingest-hash check</text>
     <text class="t-sub" x="558" y="170">refuses a drifted source.</text>
     <text class="t-sub" x="558" y="186">Tested. No view calls it.</text></g>
-  <g class="box box--absent"><rect x="726" y="130" width="172" height="76"/>
-    <text class="t-title" x="738" y="152">the claim proposer</text>
-    <text class="t-sub" x="738" y="170">asks Claude what changed.</text>
-    <text class="t-sub" x="738" y="186">Tested. Nothing calls it.</text></g>
+  <g class="box box--model"><rect x="726" y="130" width="172" height="76"/>
+    <text class="t-title" x="738" y="152">the materiality judge</text>
+    <text class="t-sub" x="738" y="170">asks Claude if it matters.</text>
+    <text class="t-sub" x="738" y="186">Runs on the change screen.</text></g>
 
   <!-- 2. change detection at scale -->
   <text class="t-title" x="6" y="258">Change detection</text>
@@ -213,17 +213,17 @@ code, not estimated from the plan.</div>
   <span><i class="k-gate"></i>can refuse</span>
   <span><i class="k-absent"></i>not built, or runs only in tests</span>
 </div>
-<figcaption><strong>Thirteen dashed boxes, twelve solid, and two of the solid ones need a key.</strong>
+<figcaption><strong>Nine dashed boxes, fifteen solid, and three of the solid ones need a key.</strong>
 The two strong rows are strong on the half that can be checked without a model &mdash; re-reading
 bytes, hashing a chain &mdash; which is the half a 48-hour build can finish and prove. The dashed
 side is where the money and the years go: connectors to every commission, structure inside a filing,
 a queue somebody staffs. <strong>The shape is not an accident.</strong> Depth was spent on one thing a
 reviewer can audit rather than spread thin across five, and this picture is the bill for that choice.
-<strong>Four dashed boxes are not missing work.</strong> The approval gate, the ingest-hash check,
-the claim proposer and <code>revert_event</code> are written and tested, and nothing in
-<code>app/</code> calls any of them, so they sit on the dashed side with the reason on the box. A
+<strong>Two dashed boxes are not missing work.</strong> The ingest-hash check and
+<code>revert_event</code> are written and tested, and nothing a reviewer can click reaches either, so
+they sit on the dashed side with the reason on the box. A
 solid box means the code runs when the product runs, not merely that the code exists &mdash; and the
-two indigo boxes run only where somebody set <code>ANTHROPIC_API_KEY</code>, which on a reviewer's
+three indigo boxes run only where somebody set <code>ANTHROPIC_API_KEY</code>, which on a reviewer's
 machine after <code>make run</code> is nowhere.</figcaption>
 </figure>
 
@@ -366,9 +366,10 @@ over normalized text, plus a section-label check. The confidence cap detects whe
 <em>unreliable</em>, which is genuinely useful and usually skipped &mdash; but detecting an unreliable
 diff is not understanding meaning. Semantic materiality is the job the interpretation stage would do.
 <code>app/interpretation/propose.py</code> now asks Claude exactly that question, binds every proposal
-to a citation the verifier re-reads, and drops the ones that fail &mdash; and nothing under
-<code>app/</code> or <code>scripts/</code> calls it. <code>app/pipeline.py</code> still calls no model
-and still leaves <code>Change.materiality</code> NULL rather than defaulting it to something that
+to a citation the verifier re-reads, and drops the ones that fail &mdash; and the change screen calls
+it on the first view of a change nobody has judged, then stores the verdict with its citation.
+<code>app/pipeline.py</code> still calls no model and still writes
+<code>Change.materiality</code> NULL at ingest rather than defaulting it to something that
 reads like a judgement.</p>
 
 <h3>3. Document intelligence &mdash; <span class="gap">NOT BUILT</span></h3>
@@ -505,7 +506,7 @@ suggests, and they are listed here at the same weight as the eight.</strong> Tha
 the rule that every synthesis states what it withheld &mdash; applied to our own document.
 <strong>Five of the eleven rows named a control that was written, tested, and called by
 nothing in <code>app/</code></strong> &mdash; the ingest-hash check, <code>can_approve</code>,
-<code>revert_event</code>, <code>propose_changes</code>, and ten of the fifteen permission codes. <code>can_approve</code> is off that list as of ADR-091; the rest stand. Each
+<code>revert_event</code>, the materiality judge, and ten of the fifteen permission codes. <code>can_approve</code> came off that list with ADR-091 and the materiality judge with the change screen; the rest stand. Each
 is named in its own row, because a capability that lives in a module nothing calls is not visible in
 the product, and that distinction is what this table is for.</div>
 
@@ -529,7 +530,7 @@ the product, and that distinction is what this table is for.</div>
 <tr>
 <td>Evidence-linked extraction</td>
 <td>Pulling out statements ("the notice period went from 30 days to 60") and tying each one to the exact spot in the source it came from.</td>
-<td><span class="gap">The linking is real. The extraction is written and nothing calls it.</span> A model does run in this repository now, and it runs in exactly one place a user can reach: Clarke, the assistant, through <code>app/chat/agent.py</code> &mdash; and only where somebody set <code>ANTHROPIC_API_KEY</code>. Without one, <code>transport_from_environment()</code> returns None and the assistant says "this deployment has no ANTHROPIC_API_KEY" rather than answering from memory, which is the fallback announcing itself instead of pretending (best-practices &sect;26). The extractor is <code>app/interpretation/propose.py</code> &mdash; it asks Claude what changed between two versions, hands the model a closed list of permitted actions dispatched from the version's own draft-or-final status (ADR-005), binds every proposal to a <code>(version_id, start, end, quote)</code>, re-reads each one through the verifier, and <em>repairs nothing</em>: a proposal two characters off its quote is withheld, not nudged into place, because snapping offsets would make the gate a formality. <code>grep -rn propose_changes app/ scripts/</code> finds no caller. So the claim sentences on screen are still deterministic assembly from <code>data/manifest.json</code>, plus one hand-written statement in <code>scripts/ingest_real.py</code> about the Kentucky filing, and <code>app/pipeline.py</code> still calls no model and still leaves <code>Change.materiality</code> NULL rather than defaulting it to something that reads like a judgement.
+<td><span class="gap">The linking is real. The extraction is written and judges materiality only.</span> A model now runs in two places a user can reach: Clarke, the assistant, through <code>app/chat/agent.py</code>, and the materiality judge on the change screen &mdash; both only where somebody set <code>ANTHROPIC_API_KEY</code>. Without one, <code>transport_from_environment()</code> returns None and the assistant says "this deployment has no ANTHROPIC_API_KEY" rather than answering from memory, which is the fallback announcing itself instead of pretending (best-practices &sect;26). The extractor is <code>app/interpretation/propose.py</code> &mdash; it asks Claude whether a change matters, hands the model a closed list of permitted actions dispatched from the version's own draft-or-final status (ADR-005), binds every proposal to a <code>(version_id, start, end, quote)</code>, re-reads each one through the verifier, and <em>repairs nothing</em>: a proposal two characters off its quote is withheld, not nudged into place, because snapping offsets would make the gate a formality. <code>grep -rn "materiality_for_company(" app/ | grep -v interpretation/propose.py</code> finds the change screen, the project screen and Clarke. What it writes is a materiality verdict and an audit row, never a claim: the claim sentences on screen are still deterministic assembly from <code>data/manifest.json</code>, plus one hand-written statement in <code>scripts/ingest_real.py</code> about the Kentucky filing.
 <br><br><em>The limit the proposer states about itself, in its own docstring:</em> this path has never run against the real API, because nobody here has held a key. Every test drives a fake through an injected transport. What is proven offline is the gate; what is unproven is anything only the endpoint can answer.
 <br><br>What <em>is</em> real is the half the product's thesis rests on: every claim carries version, start offset, end offset, quoted text and occurrence index, and a claim whose citation fails genuinely refuses to assert itself &mdash; it has no statement field to leak. So this is the evidence link enforced end to end, with a seeded corpus standing in for the extractor and the extractor sitting beside it, tested and unwired.</td>
 </tr>
@@ -559,8 +560,8 @@ the product, and that distinction is what this table is for.</div>
 <tr>
 <td>Reviewer routing</td>
 <td>Sending the uncertain item to the right person, not just onto a pile.</td>
-<td><span class="gap">Built, and the queue screen has not heard about it.</span> <code>Escalation</code> now carries <code>assigned_to_user_id</code> and <code>assigned_at</code>, written together or not at all, with an index for "what is on my desk" and for the unassigned pile. <code>app/state/routing.py</code> resolves an owner by walking escalation &rarr; claim &rarr; change &rarr; obligation &rarr; owner, refuses with one of fifteen coded reasons when any step cannot answer, and re-derives the reason at read time so that suspending an owner this morning changes what the queue says this afternoon. It refuses to pick a default assignee, on the argument that a wrong assignment looks handled and a refusal stays visible.
-<br><br><strong>Where it actually runs.</strong> Clarke reads it &mdash; <code>obligation_owner</code> and <code>open_escalations</code> report who holds what, and name the duties nobody holds. Revoking an invitation un-routes the escalations that invitation was holding, and that path does reach a screen. <strong>Nothing else does.</strong> <code>invite_owner_for_escalation()</code> has no caller outside tests. <code>/escalations</code> still lists every unresolved refusal in id order with no owner column &mdash; <code>grep -c assign app/web/templates/review.html</code> returns 0 &mdash; anyone signed in can resolve any of them, and the resolve form still takes a reviewer's name typed into a text box rather than the signed-in person.
+<td><span class="gap">Built, and the queue screen has not heard about it.</span> <code>Escalation</code> now carries <code>assigned_to_user_id</code> and <code>assigned_at</code>, written together or not at all, with an index for "what is on my desk" and for the unassigned pile. <code>app/state/routing.py</code> resolves an owner by walking escalation &rarr; claim &rarr; change &rarr; obligation &rarr; owner, refuses with one of sixteen coded reasons when any step cannot answer, and re-derives the reason at read time so that suspending an owner this morning changes what the queue says this afternoon. It refuses to pick a default assignee, on the argument that a wrong assignment looks handled and a refusal stays visible.
+<br><br><strong>Where it actually runs.</strong> Clarke reads it &mdash; <code>obligation_owner</code> and <code>open_escalations</code> report who holds what, and name the duties nobody holds. The change screen reads it too and prints the owner, or the refusal code and its sentence, beside the change. Revoking an invitation un-routes the escalations that invitation was holding, and that path does reach a screen. <strong>The assignment is what no screen writes.</strong> <code>invite_owner_for_escalation()</code> has no caller outside tests. <code>/escalations</code> still lists every unresolved refusal in id order with no owner column &mdash; <code>grep -c assign app/web/templates/review.html</code> returns 0 &mdash; anyone signed in can resolve any of them, and the resolve form still takes a reviewer's name typed into a text box rather than the signed-in person.
 <br><br>The approval half has moved, and not on this screen: <code>app/auth/policy.py::can_approve</code> enforces segregation of duties off the audit chain, and ADR-091 gave it the screen it was missing &mdash; <code>/actions</code>, where a proposed action is approved or rejected. Escalation routing is still not surfaced in the queue, which is the gap this row is about.</td>
 </tr>
 
@@ -597,13 +598,13 @@ the product, and that distinction is what this table is for.</div>
 </table>
 
 <p><span class="lbl">Why this table is in the market document.</span> Because the gaps are market
-facts, not engineering trivia. The extractor exists and nothing calls it, so the demo still shows a
-correctness engine rather than an extractor, and the sentence "we use a model" has to be said with
-the caveat attached. Routing resolves an owner and no screen shows the answer, so the "who reviews
-this" half of the pitch is a running feature a buyer cannot see. And a control that sits in a module
-nothing calls buys a buyer nothing, whatever the tests say &mdash; which is where the approval gate,
-the ingest-hash check, the claim proposer and <code>revert_event</code> all sit today. Each changes
-what can be claimed.</p>
+facts, not engineering trivia. The extractor runs, and it judges materiality rather than writing
+claims, so the demo still shows a correctness engine rather than an extractor, and the sentence "we
+use a model" has to be said with the caveat attached. Routing names the owner on the change screen
+and no screen assigns anybody, so the "who reviews this" half of the pitch stops one step short of
+the desk. And a control that sits in a module nothing calls buys a buyer nothing, whatever the tests
+say &mdash; which is where the ingest-hash check and <code>revert_event</code> still sit today. Each
+changes what can be claimed.</p>
 <p><span class="lbl">One shape keeps recurring, and it is a discipline problem rather
 than a list of bugs.</span> Four times now a capability has been built, tested and left unwired, and
 each time the tests stayed green because a test proves a module works, never that a product uses it.
