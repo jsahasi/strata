@@ -268,8 +268,18 @@ def _page(session, company_id: str, user_id: str) -> ActionsPage:
         session, company_id, user_id, policy.APPROVE
     )
 
+    # A LIVE proposal takes a claim off the form, and a decided one does not.
+    # The rule is one open question per claim, not one attempt ever. Hiding a
+    # claim whose proposal was rejected left the analyst with no way to offer an
+    # alternative on the screen whose whole argument is that a rejection sends
+    # the work back -- and the POST accepted the claim the whole time, so the
+    # product could do it and would not offer it.
     proposable = (
-        _proposable(session, company_id, {row.claim_id for row in rows})
+        _proposable(
+            session,
+            company_id,
+            {row.claim_id for row in rows if row.state == store.STATE_PROPOSED},
+        )
         if may_propose
         else ()
     )
@@ -523,6 +533,22 @@ def decide(
                 page = _page(session, company_id, principal.user_id)
     except SQLAlchemyError:
         raise HTTPException(status_code=404, detail=NO_SUCH_ACTION) from None
+    except LookupError:
+        # store.record_decision re-reads the row by id and refuses one that is
+        # not in this company. The check above already answered that case; this
+        # covers the row disappearing between the two, and answers it the same
+        # way rather than differently.
+        missing = True
+    except ValueError:
+        # The gap the pre-check cannot close. Nothing holds the row between the
+        # state check and the write, so a second decision arriving in between
+        # reaches record_decision, which refuses it -- correctly, a decision
+        # taken twice is two decisions. Answered as the conflict it is rather
+        # than as a 500. The raisers inside this block are that guard and
+        # record_decision's guard on an unexplained decision, and both paths
+        # above supply a reason before they call, so what lands here is the
+        # race.
+        conflict = True
 
     if missing:
         raise HTTPException(status_code=404, detail=NO_SUCH_ACTION)

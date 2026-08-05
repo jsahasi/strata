@@ -206,12 +206,24 @@ Then the second control, which is the one a regulated buyer asks about (ADR-091)
 5. Sign in as an obligation owner — `priya.nandakumar@mep.example` — and open
    `http://localhost:8000/actions`. The analyst has proposed two actions: monitor a draft, comply
    with the final order. Approve one. The decision names you and the audit chain still verifies.
-6. Now watch it refuse. Sign in as the admin `sarah.lindqvist@mep.example`, open
-   `http://localhost:8000/users`, and give the analyst `denise.okoro@mep.example` the obligation
-   owner role as well. Sign in as her and press Approve on her own proposal. Strata answers 403
-   and cites the audit row where she proposed it: *the person who interprets a change does not
-   approve the action that follows from it.* Holding the permission is necessary and never
-   sufficient — that is the whole approval model, on a screen, in two minutes.
+6. Now watch it refuse. Leave the server running, and in another terminal run
+   `STRATA_DEMO_REFUSAL=1 .venv/bin/python -m app.seed`. Permissions are read from the database on
+   every request, so there is nothing to restart. That puts both halves of the conflict on the analyst
+   `denise.okoro@mep.example`: she wrote both proposals and now holds the approval permission too.
+   Sign in as her and press Approve on her own proposal. Strata answers 403 and cites the audit
+   row where she proposed it: *the person who interprets a change does not approve the action
+   that follows from it.* Holding the permission is necessary and never sufficient — that is the
+   whole approval model, on a screen, in two minutes. The other four owners still approve, so
+   both answers are on the same page.
+
+   **Why a seed switch and not a screen.** No screen in Strata can arrange this, and that is the
+   role grid working rather than a gap in it. Admin holds `user.manage` and deliberately holds no
+   approval code, every grant path refuses a permission the granter does not hold, and
+   `/users` provisions a new login rather than changing an existing one. So the only account that
+   can put both halves on one person is the system actor, and the seed is where it does it — out
+   loud, with the reason printed. The cost is stated in ADR-091: the control the product rests on
+   can be watched refusing only in a workspace the seed arranged, or in
+   `tests/test_seeded_refusal.py`, which drives the same steps end to end.
 
 After that: the decision log ([`docs/.ai/decisions.html`](docs/.ai/decisions.html)) answers
 "why this and not the alternative" for every choice above, and

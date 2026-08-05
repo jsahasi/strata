@@ -27,6 +27,8 @@ Offline, no API key, no network. https://testserver, because the session cookie
 is marked Secure and a client on http drops it in silence.
 """
 
+import re
+
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -151,6 +153,17 @@ def _one_waiting() -> ProposedAction:
     rows = [row for row in _waiting() if row.state == store.STATE_PROPOSED]
     assert rows, "the seed left nothing waiting for a decision"
     return rows[0]
+
+
+def _proposable_ids(body: str) -> set[str]:
+    """The claim ids the propose form offers, read off the rendered page.
+
+    Off the hidden input each propose form carries, so this reads what a person
+    could actually post rather than what a paragraph nearby happens to mention.
+    """
+    return set(
+        re.findall(r'name="claim_id"\s+value="([^"]+)"', body)
+    )
 
 
 def _events() -> list[AuditEvent]:
@@ -631,6 +644,89 @@ def test_an_already_decided_action_cannot_be_decided_again(owner):
         follow_redirects=False,
     )
     assert again.status_code == 409
+
+
+def test_a_rejected_proposal_gives_its_claim_back_to_the_form(anonymous):
+    """A rejection is the end of one proposal, not the end of the claim.
+
+    The form hid every claim that carried ANY proposal, decided or not, so the
+    first rejection took that claim off the screen for good and an analyst had
+    no way to offer an alternative -- on a screen whose whole argument is that
+    a rejection sends the work back rather than closing it. The POST always
+    accepted the claim, so the block was the form alone, which is the worst
+    version: the product could do the thing and would not offer it.
+    """
+    row = _one_waiting()
+    claim_id = row.claim_id
+
+    assert _sign_in(anonymous, _email(ROLE_ANALYST)).status_code == 303
+    before = anonymous.get(screen.ACTIONS_URL)
+    assert claim_id not in _proposable_ids(before.text)
+
+    assert _sign_in(anonymous, _email(ROLE_OBLIGATION_OWNER)).status_code == 303
+    rejected = anonymous.post(
+        f"{screen.ACTIONS_URL}/{row.id}/decide",
+        data={"decision": screen.DECISION_REJECT, "reason": "not our obligation"},
+        follow_redirects=False,
+    )
+    assert rejected.status_code == 303, rejected.text
+
+    assert _sign_in(anonymous, _email(ROLE_ANALYST)).status_code == 303
+    after = anonymous.get(screen.ACTIONS_URL)
+    assert claim_id in _proposable_ids(after.text), (
+        "a rejected proposal left its claim out of the propose form, so nobody "
+        "could offer an alternative through the screen"
+    )
+
+    again = anonymous.post(
+        f"{screen.ACTIONS_URL}/propose",
+        data={
+            "claim_id": claim_id,
+            "kind": ACTION_MONITOR,
+            "rationale": "watch it instead, since complying was refused",
+        },
+        follow_redirects=False,
+    )
+    assert again.status_code == 303, again.text
+
+
+def test_a_live_proposal_still_keeps_its_claim_out_of_the_form(analyst):
+    """The other half of the same rule. One live proposal per claim, in practice."""
+    row = _one_waiting()
+    assert row.claim_id not in _proposable_ids(analyst.get(screen.ACTIONS_URL).text)
+
+
+def test_a_decision_taken_between_the_check_and_the_write_answers_409(owner, monkeypatch):
+    """The store's own refusal, answered as a conflict rather than a 500.
+
+    decide() checks the state and then writes, and nothing holds the row
+    between the two. record_decision refuses a second decision with ValueError
+    -- correctly, since a decision taken twice is two decisions -- and the
+    handler caught only SQLAlchemyError, so the race the pre-check cannot close
+    answered 500. The pre-check is the common path; this is the one underneath
+    it, and both now say the same thing.
+    """
+    row = _one_waiting()
+    real = store.record_decision
+
+    def raced(*args, **kwargs):
+        monkeypatch.undo()
+        raise ValueError(f"{row.id} was already {store.STATE_APPROVED}")
+
+    monkeypatch.setattr(screen.store, "record_decision", raced)
+    answer = owner.post(
+        f"{screen.ACTIONS_URL}/{row.id}/decide",
+        data={"decision": screen.DECISION_APPROVE},
+        follow_redirects=False,
+    )
+    assert answer.status_code == 409, answer.text
+    assert store.record_decision is real
+
+    with session_scope() as session:
+        assert (
+            store.proposed_action_for_company(session, COMPANY, row.id).state
+            == store.STATE_PROPOSED
+        )
 
 
 def test_an_anonymous_request_never_reaches_the_screen(anonymous):

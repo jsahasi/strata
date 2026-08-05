@@ -72,6 +72,7 @@ papered over with a half-table.
 """
 
 import json
+import os
 import re
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
@@ -1718,16 +1719,30 @@ def ensure_accounts(
 # the happy path a reviewer meets first, and it is the honest one: two people,
 # two roles, one decision each.
 #
-# THE REFUSAL IS NOT SEEDED, AND THAT IS DELIBERATE. Reaching gate 4 needs one
-# person holding action.approve who has also touched the claim, and the seeded
-# grid gives nobody both -- the analyst proposes and cannot approve, the
-# obligation owner approves and cannot propose. Manufacturing such a person here
-# would mean shipping the demo with its own load-bearing control switched off,
-# which is exactly what the "one role each" rule above refuses. The arrangement
-# is one grant away and a reviewer can make it in the product: sign in as the
-# admin, open /users, give the analyst the obligation owner role as well, then
-# sign in as the analyst and try to approve their own proposal. Strata refuses
-# and cites the audit row. tests/test_actions_screen.py drives exactly that.
+# THE REFUSAL IS NOT SEEDED BY DEFAULT, AND NO SCREEN CAN ARRANGE IT. Reaching
+# gate 4 needs one person holding action.approve who has also touched the claim,
+# and the seeded grid gives nobody both -- the analyst proposes and cannot
+# approve, the obligation owner approves and cannot propose.
+#
+# This comment used to send a reviewer to /users to arrange it, and README,
+# ADR-91 and the panel brief all repeated that. It was false. /users provisions
+# a NEW login, and no screen anywhere puts a second role on an account that
+# already exists. Every path that could is ceilinged against the granter:
+# admin holds user.manage and not action.approve, so the role picker offers only
+# admin, permissions.py refuses a code the granter does not hold, and the
+# handoff invitation -- the one declared ceiling waiver -- refuses an address
+# that is already an active account. The role grid is working. It is working so
+# well that the control it defends cannot be watched from a screen.
+#
+# So the arrangement is made HERE, by ensure_refusal_arrangement below, as
+# ACTOR -- the system actor, which is authority no human in the grid holds. It
+# is off unless STRATA_DEMO_REFUSAL is set, because the default workspace should
+# hold no segregation conflict and a reviewer should meet the clean grid first.
+# Setting it grants the analyst the obligation owner role as a second role, which
+# puts both halves of the declared action.propose/action.approve pair on one
+# person: the permissions register then names her and prints why anybody minds,
+# and /actions refuses her own proposal and cites the audit row that proves she
+# wrote it. tests/test_seeded_refusal.py drives exactly that, end to end.
 # ---------------------------------------------------------------------------
 
 
@@ -1843,6 +1858,79 @@ def ensure_demo_actions(
         written.append(row.id)
     session.flush()
     return tuple(written)
+
+
+#: The one name that turns the refusal arrangement on. Off unless it is set, and
+#: tests/test_seeded_refusal.py pins it against the README so a walkthrough
+#: cannot name a switch the seed does not read.
+REFUSAL_ENV = "STRATA_DEMO_REFUSAL"
+
+#: Read the same way app/web/views/auth.py reads STRATA_DEMO_ACCOUNTS: anything
+#: that is not plainly off is on, and an unset name is off.
+_REFUSAL_OFF = ("", "0", "false", "no", "off")
+
+
+def refusal_requested() -> bool:
+    """True when the environment asks for the refusal arrangement."""
+    return os.environ.get(REFUSAL_ENV, "").strip().lower() not in _REFUSAL_OFF
+
+
+def ensure_refusal_arrangement(
+    session: Session, *, data_dir: Path = DATA_DIR
+) -> str | None:
+    """Put both halves of the approval conflict on the analyst. Idempotent.
+
+    Returns the address it arranged, or None when the accounts are absent.
+
+    WHY THIS IS NOT A SCREEN. Read the comment block above this section for the
+    argument in full. The short of it: every grant path the product ships is
+    ceilinged against the person granting, admin deliberately holds no approval
+    code, and so nobody the role grid contains can hand out action.approve to an
+    account that already exists. That is the control working, and it is also the
+    reason the control cannot be watched working. This function is the seam,
+    and it is a seam rather than a route on purpose -- a route that could do
+    this would be a privilege escalation with a screen in front of it.
+
+    IT ANNOUNCES ITSELF. main() prints what it did and what it means, the
+    permissions register lists the person under the declared
+    action.propose/action.approve pair, and the audit chain carries the grant
+    under ACTOR. A demo arrangement that looked like an ordinary grant would be
+    a fallback that does not announce itself, which is the failure principle 26
+    of docs/best-practices.html exists to prevent.
+
+    IT DOES NOT WEAKEN ANYTHING. The person it arranges is the person gate 4
+    refuses. The other four obligation owners still approve, so the screen shows
+    both answers side by side -- which is how docs/prd.html already argues the
+    citation demonstration should be read.
+    """
+    context = _read_json(data_dir / "company_context.json")
+    company_id = context["company"]["short_name"]
+
+    analyst = next(
+        (
+            account
+            for account in demo_accounts(context, company_id)
+            if account.role == ROLE_ANALYST
+        ),
+        None,
+    )
+    if analyst is None:
+        return None
+    person = user_by_email(session, company_id, analyst.email)
+    if person is None:
+        return None
+
+    # grant_role returns the standing grant rather than writing a second, so a
+    # rerun is a read. The same idempotency every other ensure_ here relies on.
+    grant_role(
+        session,
+        company_id,
+        user_id=person.id,
+        role_name=ROLE_OBLIGATION_OWNER,
+        actor=ACTOR,
+    )
+    session.flush()
+    return analyst.email
 
 
 def ensure_tables(engine=None) -> None:
@@ -2044,6 +2132,9 @@ def main() -> None:
         # both of the above: the claims from the corpus, the author from the
         # accounts.
         proposals = ensure_demo_actions(session)
+        # Last, and only when asked for. It needs the accounts and the
+        # proposals, and the default workspace holds no segregation conflict.
+        arranged = ensure_refusal_arrangement(session) if refusal_requested() else None
 
     print(f"seed: company {report.company_id} ({report.company_name})")
     print(
@@ -2076,6 +2167,31 @@ def main() -> None:
     print(f"seed: {len(accounts)} accounts, all with the password {DEMO_PASSWORD!r}")
     for account in accounts:
         print(f"seed:   {account.email} -- {account.role} ({account.title})")
+
+    if arranged:
+        print(
+            f"seed: {REFUSAL_ENV} is set, so {arranged} now holds the analyst "
+            "role AND the obligation owner role"
+        )
+        print(
+            "seed:   she wrote the proposals above, so /actions refuses her own "
+            "approval and cites the audit row that proves it"
+        )
+        print(
+            "seed:   no screen can arrange this. Admin holds user.manage and no "
+            "approval code, and every grant path is ceilinged against the "
+            "granter, so the seed does it as the system actor"
+        )
+        print(
+            "seed:   the cost is one segregation conflict in the workspace. "
+            "/permissions names her under the declared pair and says why."
+        )
+    else:
+        print(
+            f"seed: set {REFUSAL_ENV}=1 and run this again to watch the approval "
+            "gate refuse. It gives the analyst the obligation owner role too, "
+            "which no screen in the product can do."
+        )
     print(
         "seed: those passwords are published on the login page. Set "
         "STRATA_DEMO_ACCOUNTS=0 and seed your own accounts before this faces "

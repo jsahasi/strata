@@ -137,6 +137,33 @@ assert itself without evidence.</p></div>
 <td><span class="fixed">Fixed</span> in <code>bbd44fb</code>. Every candidate span is re-read and kept only when the raw characters really do normalize to the needle. A cheap check that makes the function's promise exact instead of approximate.</td>
 <td><code>tests/test_occurrence.py::test_a_quote_beginning_part_way_through_an_expanded_character_reports_nothing</code>, which also asserts the quote taken from the glyph's own start still returns its span, so the fix refuses the wrong span without losing the right one. The promise itself is asserted directly by <code>test_every_span_reported_really_normalizes_to_the_quote</code>.</td>
 </tr>
+
+<tr id="f-14">
+<td>14</td>
+<td>The documented way to watch the approval gate refuse did not exist. README step 6, ADR-91, the comment block in <code>app/seed.py</code> and the panel brief all said: sign in as the admin, open <code>/users</code>, give the analyst the obligation owner role. No route does that.</td>
+<td>Adversarial review of the change that wired the gate. Every test passed, including the ones that prove the refusal, because they arrange it through <code>identity.grant_role</code> in Python.</td>
+<td>A reviewer following the walkthrough reached a dead end at the exact moment the product's load-bearing control was supposed to appear &mdash; and the 403 they did reach was gate 2 (no <code>action.approve</code>), which looks like the same refusal and is not. Worse than a missing feature: a false sentence in four files, in a submission whose thesis is that a claim must not assert itself without evidence. The ninth instance of this project's own pattern, one level up: the control was wired to a screen, and the state that makes it refuse was reachable from nothing.</td>
+<td><span class="fixed">Fixed.</span> The sentence was the defect, not the code. Nothing in the product can put a second role on an existing account, and that is the grid working: admin holds <code>user.manage</code> and no approval code, every grant path is ceilinged against the granter, and the one declared waiver refuses an active address. So the four documents now say that, and <code>app/seed.py::ensure_refusal_arrangement</code> &mdash; off unless <code>STRATA_DEMO_REFUSAL</code> is set &mdash; arranges it as the system actor and prints why no screen could.</td>
+<td><code>tests/test_seeded_refusal.py</code>. The walkthrough is executed end to end through the real POST; a second test asserts that no product route can reach the same state, so if one is ever built the guard goes red and the docs get rewritten rather than drifting; two more hold the four files to the true sentence.</td>
+</tr>
+
+<tr id="f-15">
+<td>15</td>
+<td>The propose form hid a claim after <em>any</em> proposal, not after a live one. One rejection removed that claim from the form for good.</td>
+<td>The same review. <code>{row.claim_id for row in rows}</code> with no state filter.</td>
+<td>On a screen whose argument is that a rejection sends the work back rather than closing it, the analyst could not offer an alternative. The POST accepted the claim the whole time, so the product could do the thing and would not offer it &mdash; the version of this defect that is hardest to notice and easiest to mistake for a rule.</td>
+<td><span class="fixed">Fixed.</span> Only a proposal in <code>STATE_PROPOSED</code> takes its claim off the form.</td>
+<td><code>tests/test_actions_screen.py::test_a_rejected_proposal_gives_its_claim_back_to_the_form</code>, which rejects through the real route and then proposes again; and <code>test_a_live_proposal_still_keeps_its_claim_out_of_the_form</code> for the half that has to stay true.</td>
+</tr>
+
+<tr id="f-16">
+<td>16</td>
+<td><code>decide()</code> caught <code>SQLAlchemyError</code> only, so a second decision arriving between the state check and the write answered 500.</td>
+<td>The same review, by reading the exception paths rather than by racing it. SQLite serialises writers, so it was never reproduced.</td>
+<td><code>record_decision</code> refuses an already-decided row with <code>ValueError</code>, correctly. The handler's own pre-check answers 409 and cannot close the gap between itself and the write. Two callers pressing Approve together would have got a stack trace instead of the conflict the single-threaded path gives.</td>
+<td><span class="fixed">Fixed.</span> <code>ValueError</code> answers 409 and <code>LookupError</code> answers 404, so the store's refusals and the view's own reach the same two codes.</td>
+<td><code>tests/test_actions_screen.py::test_a_decision_taken_between_the_check_and_the_write_answers_409</code>, which makes the store raise at the moment of the write.</td>
+</tr>
 </table>
 
 <div class="note"><span class="lbl">Where 12 and 13 came from, and why it belongs in this table.</span> Both were found by a
