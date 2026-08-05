@@ -192,6 +192,13 @@ REASON_INDEX_STALE = "INDEX_STALE"
 REASON_INDEX_UNAVAILABLE = "INDEX_UNAVAILABLE"
 REASON_NO_TERMS = "QUERY_HAS_NO_TERMS"
 
+#: The scope named no filings at all. Its own code, kept apart from every reason
+#: above, because those describe an index that could not be trusted and this
+#: describes a question asked about nothing. A map of no versions is not a map of
+#: silent versions, and folding the two would let "that docket is not on your
+#: record" read as "none of those filings mention it".
+REASON_EMPTY_SCOPE = "NOTHING_IN_SCOPE"
+
 #: How many candidates a caller gets by default. A model handed fifty passages
 #: spends its turn on passages nobody asked for, and the cap is counted and said
 #: rather than applied quietly.
@@ -202,6 +209,23 @@ DEFAULT_LIMIT = 10
 #: direction, and the terms that survived come back in the result so a caller can
 #: see what was actually searched.
 _HAS_WORD = re.compile(r"\w", re.UNICODE)
+
+#: Characters removed from a term before it is searched for.
+#:
+#: A NUL IS NOT A WORD, AND IN THIS PATH IT IS A CRASH. FTS5 parses the MATCH
+#: expression as a C string, so a NUL inside it ends the expression early and
+#: SQLite raises "unterminated string" -- from inside a bound parameter, where
+#: nothing else in this module can be reached from a query. A model can put one
+#: in a tool call by writing a JSON \u0000 escape, and the turn handler would then put the
+#: whole SQL statement into the transcript as an error message.
+#:
+#: Dropping it rather than refusing the query keeps the two paths equivalent:
+#: the scan handles the same input without complaint, and a query that works on
+#: the fallback and raises on the index would break the one promise this module
+#: makes about its two paths. It is stripped from the query side only -- the
+#: index side stores whatever the filing holds -- which leaves the query the
+#: more permissive of the two, the safe direction.
+_UNSEARCHABLE = str.maketrans("", "", "\x00")
 
 #: The run of letters a term ends with, if any. Digits are excluded on purpose:
 #: see PREFIX_MIN.
@@ -317,7 +341,9 @@ def match_terms(query: str) -> tuple[str, ...]:
     scattered anywhere in the passage.
     """
     return tuple(
-        term for term in normalize(query or "").split() if _HAS_WORD.search(term)
+        stripped
+        for term in normalize(query or "").split()
+        if _HAS_WORD.search(stripped := term.translate(_UNSEARCHABLE))
     )
 
 
@@ -595,6 +621,10 @@ _NOTES = {
         "That question held no searchable words, so no passage was ranked. This "
         "is not the same as finding nothing."
     ),
+    REASON_EMPTY_SCOPE: (
+        "There are no filings in this scope, so nothing was searched. That is a "
+        "fact about the scope and not about any filing."
+    ),
 }
 
 
@@ -774,10 +804,508 @@ def search_passages(
     )
 
 
+# ---------------------------------------------------------------------------
+# The coverage map: what every filing in scope says, INCLUDING the ones that
+# say nothing
+# ---------------------------------------------------------------------------
+#
+# WHY A RANKED LIST CANNOT ANSWER THE QUESTION AN ANALYST ACTUALLY ASKS. The
+# read above answers "which passage best matches these words". The question that
+# arrives at a desk is "does this hold across these filings, and where does it
+# not" -- and bm25 ranks GLOBALLY, so it cannot. Ask about curtailment across
+# eight filings and the top five can all come from the one filing that mentions
+# it most, with nothing from the other seven, and the caller cannot tell "those
+# seven do not mention it" from "those seven lost on rank". The second is the
+# answer they came for. app/chat/tools.py::MAX_CANDIDATE_PASSAGES is a global
+# cap of five, so one talkative filing really does spend the whole budget: the
+# fixture in tests/test_coverage_map.py reproduces it in one assertion.
+#
+# So the shape changes rather than the ranking. This read returns a row FOR
+# EVERY VERSION IN SCOPE -- its best verified spans, or an explicit statement
+# that nothing in it matched -- and caps spans PER FILING rather than once
+# across all of them. A filing with forty matching paragraphs then cannot make a
+# quiet one look silent, because the quiet one has its own budget and its own
+# row.
+#
+# THE SILENCE IS THE PRODUCT, AND IT IS THE HALF MOST LIKELY TO BE BUILT WRONG.
+# If seven filings address a subject and the eighth does not, the eighth is the
+# interesting one. A result that simply omits it is indistinguishable from one
+# where it ranked sixth, so a version with nothing to offer comes back as a
+# PRESENT, EXPLICIT ZERO: a row, with a reason, in the same list as the rest.
+# Never an omission, never a filtered-out line. That is app/state/retention.py's
+# rule and the withheld-claim design applied to retrieval -- absence is denial,
+# and an unreported absence is a guess. refuse_a_short_map() below turns it from
+# a convention into an invariant.
+#
+# WHAT A ZERO MEANS, AND THE SENTENCE IT MAY NOT BE ALLOWED TO BECOME:
+#
+#   "this version contains no passage matching these terms"  -- what the index
+#       can support, and all it can support.
+#   "this version does not address the subject"  -- a judgement no deterministic
+#       read may make. A filing can address curtailment for six pages while
+#       spelling it "interruption of service", and nothing here would know.
+#
+# The wire format keeps them apart and so does every note below, because the
+# prose is handed to a model that will paraphrase it, and the paraphrase of a
+# blurred sentence is the confident guess this product exists to refuse.
+#
+# FOUR EMPTY SPAN LISTS, FOUR DIFFERENT FACTS. Three of them live here and the
+# fourth is app/chat/tools.py's, because only the tool layer knows about claims:
+#
+#   VERSION_NO_MATCH      searched; its passages do not carry these words.
+#   VERSION_NO_PASSAGES   holds no passages at all -- a scanned exhibit whose
+#                         text extraction produced nothing. Nobody has read it,
+#                         so nothing may be said about what it contains.
+#   VERSION_NOT_SEARCHED  the version cap never reached it, or the question held
+#                         no searchable words. Unknown, and named as unknown.
+#   (tools.py)            matched, and then not offered -- its spans carry the
+#                         cited span of a withheld claim, or would not verify.
+#
+# Reported as the same thing, three of those four are false.
+
+#: How many spans one filing may contribute.
+#:
+#: TWO, AND THE SECOND ONE EARNS ITS PLACE. One span answers "does this filing
+#: say it". The second exists because the top-ranked span in regulatory text is
+#: very often a heading, a table of contents line or a defined-terms entry that
+#: repeats the query's words and says nothing -- and a single span with no
+#: runner-up leaves a reader with no way past it. A third rarely changes the
+#: answer and costs another app/chat/tools.py::MAX_EXCERPT characters on every
+#: filing at once, which across the version cap below is the difference between
+#: a page of source text and a chapter of it.
+#:
+#: The cap is per filing on purpose, which is the whole change: a global cap
+#: makes the loudest filing decide what the quiet ones look like.
+MAX_SPANS_PER_VERSION = 2
+
+#: How many filings may be SEARCHED for spans in one map.
+#:
+#: MEASURED AGAINST THE CORPUS RATHER THAN CHOSEN. The largest proceeding in
+#: data/real holds eight filings -- ga-56002, va-scc-PUR-2025-00058, ut-24-035
+#: and ky-2025-00113 each do -- so a cap at eight would bite on the four biggest
+#: real cases the product has. Twelve leaves a docket room to grow past the
+#: biggest one on disk without the cap ever running.
+#:
+#: It is a cap and not "everything" because a company-wide map has 102 filings
+#: behind it in that corpus, and a question must not be able to pull a hundred
+#: filings' source text into one turn.
+#:
+#: WHAT THE CAP DOES NOT DO IS HIDE A FILING. Every version in scope is reported
+#: whatever this number is; the ones past it come back as VERSION_NOT_SEARCHED,
+#: which is an admission of ignorance rather than a report of silence. A zero row
+#: costs an id and a sentence, so there is no budget argument for dropping one --
+#: what costs context is the spans, and that is what this limits. Which filings
+#: fall past it is decided by version id order, which has nothing to do with
+#: relevance; that is exactly why the truncation has to be loud.
+MAX_VERSIONS_MAPPED = 12
+
+#: Searched, and its passages do not carry these words.
+VERSION_NO_MATCH = "NO_PASSAGE_MATCHED"
+#: Holds no passages at all, so nothing in it was searched by anybody.
+VERSION_NO_PASSAGES = "VERSION_HAS_NO_PASSAGES"
+#: Not searched: past the version cap, or the question held no searchable words.
+VERSION_NOT_SEARCHED = "VERSION_NOT_SEARCHED"
+
+_VERSION_NOTES = {
+    VERSION_NO_MATCH: (
+        "No passage stored for this filing matches the words searched for. That "
+        "is a statement about the words and not a statement about the subject: "
+        "a filing can address a subject at length without using them."
+    ),
+    VERSION_NO_PASSAGES: (
+        "This filing has no stored passages, so nothing in it was searched. "
+        "Nothing follows about what it contains. Text extraction produced "
+        "nothing for it, which belongs in the review queue rather than in an "
+        "answer."
+    ),
+    VERSION_NOT_SEARCHED: (
+        "This filing was not searched, so nothing is known about whether it "
+        "carries these words. It is not a filing that said nothing."
+    ),
+}
+
+
+@dataclass(frozen=True, slots=True)
+class VersionCoverage:
+    """One filing's row in the map: its best spans, or why it has none.
+
+    reason is "" when and only when hits carries something. Every other value is
+    one of the codes above, and note is the sentence that goes in front of a
+    person. A caller that renders hits and drops reason has thrown away the half
+    of this read that is new.
+    """
+
+    version_id: str
+    label: str
+    status: str
+    docket: str
+    hits: tuple[PassageHit, ...]
+    more: bool
+    """More passages in THIS filing matched than are shown. A bool, not a count.
+
+    The two paths know different amounts -- the scan reads everything in scope
+    and knows the exact remainder, the index is asked for one row beyond the cap
+    and learns only THAT there are more -- and publishing an int here would put
+    two different meanings in one key of one row, which is worse than a bool
+    that means the same thing on both. Retrieval.omitted carries the int for the
+    flat read and documents that split at length; this row refuses to repeat it.
+    """
+    reason: str
+    note: str
+
+
+@dataclass(frozen=True, slots=True)
+class CoverageMap:
+    """Every version in scope, which path answered, and why if it was not the index.
+
+    in_scope and len(versions) are equal, always, and refuse_a_short_map()
+    enforces it rather than trusting it. searched is how many of them were
+    actually looked in -- lower than in_scope when the version cap bit, and zero
+    when the question held no searchable words.
+    """
+
+    versions: tuple[VersionCoverage, ...]
+    terms: tuple[str, ...]
+    source: str
+    reason: str
+    note: str
+    in_scope: int
+    searched: int
+
+    @property
+    def ranked(self) -> bool:
+        return self.source == SOURCE_INDEX
+
+    @property
+    def covered(self) -> int:
+        """Filings that carry at least one span for this question."""
+        return sum(1 for row in self.versions if row.hits)
+
+    @property
+    def silent(self) -> int:
+        """Filings that were searched and hold nothing matching.
+
+        Deliberately not "filings with no spans". A filing nobody searched is not
+        silent, and counting it here would be the same collapse this whole read
+        is against, made numeric.
+        """
+        return sum(1 for row in self.versions if row.reason == VERSION_NO_MATCH)
+
+
+def refuse_a_short_map(
+    rows: tuple[VersionCoverage, ...] | list[VersionCoverage],
+    scope: tuple[str, ...] | list[str],
+) -> None:
+    """Raise unless every version in scope has a row. The invariant, enforced.
+
+    A COVERAGE MAP WITH A ROW MISSING IS NOT A DEGRADED ANSWER, IT IS A WRONG
+    ONE. A short list of filings reads exactly like a complete list of a smaller
+    docket -- there is nothing in the shape to notice, no key absent, no count
+    that disagrees with itself -- and the reader draws the conclusion the missing
+    row would have contradicted. That is the failure best-practices.html section
+    26 is about, in its worst available form: a value of the right type and shape
+    and not the right quality.
+
+    So this refuses rather than returning, and it names the versions that went
+    missing so the refusal is actionable. It is cheap, it runs on every call, and
+    it is the reason the tests in tests/test_coverage_map.py can be trusted: a
+    future change that filters a zero out of the list stops the read instead of
+    quietly improving the output.
+    """
+    reported = [row.version_id for row in rows]
+    seen, wanted = set(reported), set(scope)
+    missing = [version_id for version_id in scope if version_id not in seen]
+    extra = [version_id for version_id in reported if version_id not in wanted]
+    if missing or extra:
+        raise RuntimeError(
+            "the coverage map does not cover its scope: "
+            f"missing {sorted(missing)}, unexpected {sorted(extra)}. A map with a "
+            "filing missing reads as a complete map of a smaller docket, so it is "
+            "refused rather than returned."
+        )
+    if len(reported) != len(set(reported)):
+        raise RuntimeError(
+            "the coverage map reported a filing twice, so its counts would "
+            "double-count it."
+        )
+
+
+def _covered_row(version, hits: list[PassageHit], more: bool) -> VersionCoverage:
+    return VersionCoverage(
+        version_id=version.id,
+        label=version.label,
+        status=version.status,
+        docket=version.docket,
+        hits=tuple(hits),
+        more=more,
+        reason="",
+        note="",
+    )
+
+
+def _zero_row(version, reason: str) -> VersionCoverage:
+    return VersionCoverage(
+        version_id=version.id,
+        label=version.label,
+        status=version.status,
+        docket=version.docket,
+        hits=(),
+        more=False,
+        reason=reason,
+        note=_VERSION_NOTES[reason],
+    )
+
+
+def _row_for(version, hits: list[PassageHit], more: bool, passages: int) -> VersionCoverage:
+    """One filing's row, with the right kind of zero when it has no spans.
+
+    The order of the two tests matters. A version with no passages must be told
+    apart from a version whose passages did not match BEFORE the second sentence
+    is written, or a filing nobody has read gets reported as a filing that says
+    nothing -- which is the single most misleading row this read could produce,
+    because it is the row an analyst would act on.
+    """
+    if hits:
+        return _covered_row(version, hits, more)
+    if passages == 0:
+        return _zero_row(version, VERSION_NO_PASSAGES)
+    return _zero_row(version, VERSION_NO_MATCH)
+
+
+def _map_by_scan(
+    session: Session,
+    company_id: str,
+    versions: list,
+    terms: tuple[str, ...],
+    counts: dict[str, int],
+    reason: str,
+) -> CoverageMap:
+    """The complete, unranked map. Slow, whole, and it still reports every zero.
+
+    One read of every passage the company owns, grouped in Python. That is the
+    honest cost of a fallback that cannot be quietly short, and it is the same
+    read _hits_by_scan makes for the flat path -- see all_passages_for_company,
+    which says why the cost is the point rather than an oversight.
+
+    A DEGRADED MAP IS STILL A MAP. It reports the same rows, in the same shape,
+    with the same zeroes, and it carries the reason the index was not used. The
+    temptation on this path is to trim it because it is expensive; a short list
+    with no announcement is the failure this whole feature is against, and it
+    would arrive here first.
+    """
+    from app.state.queries import all_passages_for_company
+
+    searchable = versions[:MAX_VERSIONS_MAPPED]
+    wanted = {version.id for version in searchable}
+
+    matched: dict[str, list[PassageHit]] = {}
+    for row in all_passages_for_company(session, company_id):
+        if row.version_id not in wanted:
+            continue
+        if not _scan_matches(row.text, terms):
+            continue
+        matched.setdefault(row.version_id, []).append(
+            PassageHit(
+                passage_id=row.id,
+                version_id=row.version_id,
+                ordinal=row.ordinal,
+                section=row.section,
+                char_start=row.char_start,
+                char_end=row.char_end,
+                text=row.text,
+                rank=None,
+            )
+        )
+
+    rows = [
+        _row_for(
+            version,
+            matched.get(version.id, [])[:MAX_SPANS_PER_VERSION],
+            len(matched.get(version.id, [])) > MAX_SPANS_PER_VERSION,
+            counts.get(version.id, 0),
+        )
+        for version in searchable
+    ]
+    rows.extend(
+        _zero_row(version, VERSION_NOT_SEARCHED)
+        for version in versions[MAX_VERSIONS_MAPPED:]
+    )
+    return _finished(rows, versions, terms, SOURCE_SCAN, reason, len(searchable))
+
+
+def _finished(
+    rows: list[VersionCoverage],
+    versions: list,
+    terms: tuple[str, ...],
+    source: str,
+    reason: str,
+    searched: int,
+) -> CoverageMap:
+    """Check the invariant, then build the map. Nothing returns without this."""
+    refuse_a_short_map(rows, [version.id for version in versions])
+    return CoverageMap(
+        versions=tuple(rows),
+        terms=terms,
+        source=source,
+        reason=reason,
+        note=_NOTES[reason] if reason else "",
+        in_scope=len(versions),
+        searched=searched,
+    )
+
+
+def map_coverage(
+    session: Session,
+    *,
+    company_id: str,
+    query: str,
+    docket: str | None = None,
+) -> CoverageMap:
+    """For every filing in scope: its best spans for this question, or an explicit zero.
+
+    Scoped through app/state/queries.py like every other tenant read -- the
+    company_id guard refuses None, the empty string, whitespace, a padded id and
+    a LIKE wildcard, and the docket only ever narrows what that guard already
+    allowed. A cross-tenant read here would be one company reading another's
+    filings, which is the worst outcome this product has available.
+
+    THE CHECKS RUN IN THE SAME ORDER search_passages USES, for the same reasons,
+    and the first that fails sends the whole map to the scan with its own reason:
+    the query holds a searchable word; the database can hold an FTS5 index; both
+    index objects exist; the index covers exactly the passages this company owns
+    right now. And one more after, per row: a hit whose fingerprint disagrees
+    with what was indexed condemns the WHOLE map to the scan rather than being
+    dropped from it, because a filtered row is a short list and a short list is
+    what this read exists to refuse.
+
+    NO MODEL RUNS ANYWHERE IN HERE. Every branch is a query, a comparison or a
+    count. That is deliberate and it is the argument for building this rather
+    than something cleverer: the claim it makes -- "these three filings carry it,
+    these four do not, and this one nobody has read" -- is checkable by hand
+    against the corpus, and no part of it is a judgement a model could get wrong.
+
+    THE ORDER OF THE ROWS IS VERSION ID ORDER and has nothing to do with
+    relevance. There is no ranking ACROSS filings here and there deliberately is
+    none: the moment the rows are sorted by best score, the bottom of the list
+    reads as "less relevant" when what it actually holds is the silence the
+    caller asked about.
+    """
+    from app.state.queries import (
+        _require_scope,
+        passage_counts_by_version,
+        passage_index_coverage,
+        passage_index_hits,
+        versions_for_company,
+    )
+
+    _require_scope(company_id)
+
+    versions = versions_for_company(session, company_id, docket=docket)
+    terms = match_terms(query)
+
+    if not versions:
+        # Not a map of zeroes. Nothing was searched because there was nothing to
+        # search, and a row-less map with its own reason is the only honest
+        # shape: "that docket is not on your record" must never be able to read
+        # as "none of those filings mention it".
+        return _finished([], versions, terms, SOURCE_SCAN, REASON_EMPTY_SCOPE, 0)
+
+    if not terms:
+        # Every filing reported as unknown rather than as silent. Nothing was
+        # searched, so nothing may be said about what any of them contains --
+        # the same distinction VERSION_NOT_SEARCHED exists for at the other end.
+        return _finished(
+            [_zero_row(version, VERSION_NOT_SEARCHED) for version in versions],
+            versions,
+            terms,
+            SOURCE_SCAN,
+            REASON_NO_TERMS,
+            0,
+        )
+
+    counts = passage_counts_by_version(session, company_id)
+
+    bind = session.get_bind()
+    if not _is_sqlite(bind):
+        return _map_by_scan(
+            session, company_id, versions, terms, counts, REASON_INDEX_UNAVAILABLE
+        )
+    if not index_present(session):
+        return _map_by_scan(
+            session, company_id, versions, terms, counts, REASON_INDEX_MISSING
+        )
+
+    indexed, total = passage_index_coverage(session, company_id, scheme=SCHEME)
+    if indexed != total:
+        return _map_by_scan(
+            session, company_id, versions, terms, counts, REASON_INDEX_STALE
+        )
+
+    expression = match_expression(terms)
+    searchable = versions[:MAX_VERSIONS_MAPPED]
+    rows: list[VersionCoverage] = []
+    for version in searchable:
+        # ONE QUERY PER FILING, WITH THAT FILING'S OWN BUDGET. This is the whole
+        # shape change in one line: asking once and slicing the answer by version
+        # is what lets a talkative filing spend everyone's budget, because the
+        # cap would already have been applied by the ORDER BY.
+        found = passage_index_hits(
+            session,
+            company_id,
+            expression=expression,
+            limit=MAX_SPANS_PER_VERSION + 1,
+            version_id=version.id,
+        )
+        hits: list[PassageHit] = []
+        for row in found[:MAX_SPANS_PER_VERSION]:
+            expected = fingerprint(
+                row["version_id"],
+                row["ordinal"],
+                row["char_start"],
+                row["char_end"],
+                row["text"],
+            )
+            if expected != row["fingerprint"]:
+                return _map_by_scan(
+                    session, company_id, versions, terms, counts, REASON_INDEX_STALE
+                )
+            hits.append(
+                PassageHit(
+                    passage_id=row["passage_id"],
+                    version_id=row["version_id"],
+                    ordinal=row["ordinal"],
+                    section=row["section"],
+                    char_start=row["char_start"],
+                    char_end=row["char_end"],
+                    text=row["text"],
+                    rank=row["score"],
+                )
+            )
+        rows.append(
+            _row_for(
+                version,
+                hits,
+                # One row over the cap was asked for, so "there are more" is a
+                # fact rather than a guess.
+                len(found) > MAX_SPANS_PER_VERSION,
+                counts.get(version.id, 0),
+            )
+        )
+
+    rows.extend(
+        _zero_row(version, VERSION_NOT_SEARCHED)
+        for version in versions[MAX_VERSIONS_MAPPED:]
+    )
+    return _finished(rows, versions, terms, SOURCE_INDEX, "", len(searchable))
+
+
 __all__ = [
     "DEFAULT_LIMIT",
     "INDEX_TABLE",
     "LEDGER_TABLE",
+    "MAX_SPANS_PER_VERSION",
+    "MAX_VERSIONS_MAPPED",
+    "REASON_EMPTY_SCOPE",
     "REASON_INDEX_MISSING",
     "REASON_INDEX_STALE",
     "REASON_INDEX_UNAVAILABLE",
@@ -786,15 +1314,22 @@ __all__ = [
     "SOURCE_INDEX",
     "SOURCE_SCAN",
     "TOKENISER",
+    "VERSION_NOT_SEARCHED",
+    "VERSION_NO_MATCH",
+    "VERSION_NO_PASSAGES",
+    "CoverageMap",
     "PassageHit",
     "Retrieval",
+    "VersionCoverage",
     "drop_index",
     "ensure_passage_index",
     "fingerprint",
     "index_body",
     "index_present",
+    "map_coverage",
     "match_expression",
     "match_terms",
     "rebuild_index",
+    "refuse_a_short_map",
     "search_passages",
 ]

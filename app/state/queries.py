@@ -24,7 +24,7 @@ one call and there is nothing left to forget.
 
 from typing import Any, TypeVar
 
-from sqlalchemy import text
+from sqlalchemy import func, text
 from sqlalchemy.orm import Session
 
 from app.state.models import DocumentVersion, Passage
@@ -172,14 +172,63 @@ def row_for_company(
     return row
 
 
-def versions_for_company(session: Session, company_id: str) -> list[DocumentVersion]:
+def versions_for_company(
+    session: Session, company_id: str, *, docket: str | None = None
+) -> list[DocumentVersion]:
+    """Every version this company owns, or every version it owns in one docket.
+
+    THE DOCKET IS A NARROWING AND NEVER A SCOPE. It is applied after the company
+    filter and cannot replace it: a docket number is printed on the front of a
+    filing, so it is guessable, and a read scoped by docket alone would hand one
+    company's proceeding to anyone who could name it. The company filter is the
+    scope; this only shrinks the answer inside it.
+
+    None means every docket, and the empty string is refused rather than treated
+    as None. A caller that computed a docket and got "" meant a docket and found
+    none, and answering the whole estate would be the widening this file exists
+    to stop -- the same argument _require_scope makes about a blank company id,
+    one level down.
+    """
     _require_scope(company_id)
-    return (
-        session.query(DocumentVersion)
+    query = session.query(DocumentVersion).filter(
+        DocumentVersion.company_id == company_id
+    )
+    if docket is not None:
+        if not isinstance(docket, str) or not docket.strip():
+            raise ValueError(
+                "docket must be a string naming one docket, or None for every "
+                "docket. A blank one would widen the read rather than narrow it."
+            )
+        query = query.filter(DocumentVersion.docket == docket)
+    return query.order_by(DocumentVersion.id).all()
+
+
+def passage_counts_by_version(session: Session, company_id: str) -> dict[str, int]:
+    """How many passages each of this company's versions holds. Zero included.
+
+    WHY A COUNT IS WORTH ITS OWN QUERY. app/state/search.py has to tell two empty
+    answers apart: a version whose passages were searched and matched nothing,
+    and a version that holds no passages at all -- a scanned exhibit whose text
+    extraction produced nothing, which was never searched by anybody. Reported as
+    the same thing, the second reads as evidence that a filing is silent on a
+    subject when in truth nobody has read it. The index cannot supply the
+    difference, because a version with no rows in it looks identical either way.
+
+    A version with no passages does NOT appear in the grouped result, so callers
+    read this with .get(version_id, 0) against the version list rather than
+    iterating it. That is deliberate: a dict that invented a zero row for every
+    version would need the version list anyway, and building it here would be a
+    second enumeration of the scope.
+    """
+    _require_scope(company_id)
+    rows = (
+        session.query(Passage.version_id, func.count(Passage.id))
+        .join(DocumentVersion, Passage.version_id == DocumentVersion.id)
         .filter(DocumentVersion.company_id == company_id)
-        .order_by(DocumentVersion.id)
+        .group_by(Passage.version_id)
         .all()
     )
+    return {version_id: count for version_id, count in rows}
 
 
 def passages_for_company(
@@ -285,9 +334,23 @@ def passage_index_coverage(
 
 
 def passage_index_hits(
-    session: Session, company_id: str, *, expression: str, limit: int
+    session: Session,
+    company_id: str,
+    *,
+    expression: str,
+    limit: int,
+    version_id: str | None = None,
 ) -> list[dict]:
     """Ranked passages matching an FTS5 expression, for one company and no other.
+
+    ONE VERSION AT A TIME WHEN version_id IS GIVEN, and it is a parameter here
+    rather than a second function on purpose. The coverage map asks this question
+    once per filing so that a filing with forty matching paragraphs cannot spend
+    the whole budget and leave the quiet ones looking silent -- but a second
+    function would be a second copy of the tenant join, and the copy nobody
+    audited is the one that leaks. It is the same statement with one more bound
+    clause. The company filter still runs, and a version id naming another
+    company's filing therefore matches nothing rather than answering.
 
     THE JOIN IS THE SCOPE. The index knows only rowids, so the company filter
     can only be applied by walking passages to document_versions -- the same
@@ -306,10 +369,33 @@ def passage_index_hits(
     bm25 is aliased to `score` rather than ordered by the name `rank`, because
     `rank` is a hidden column of an FTS5 table and ordering by it means
     something else. Lower is better, which is SQLite's convention.
+
+    THE ORDER IS score THEN p.id, AND THE SECOND HALF IS NOT DECORATION. bm25
+    ties, and it ties often on short passages of similar length: three passages
+    of the seeded corpus score identically to the last digit. With score alone,
+    which of them a limit keeps is whatever order SQLite's sorter happens to
+    yield -- stable today, and free to change when the same corpus is ingested
+    again. That matters most to the coverage map, where a per-filing cap of two
+    cuts through the middle of a tie: one span offered rather than another can
+    turn a filing from one that shows a passage into one that shows none,
+    because the passage it kept carries the cited span of a withheld claim. A
+    read that claims to be deterministic has to be ordered by something that
+    cannot move.
     """
     from app.state.search import INDEX_TABLE, LEDGER_TABLE, SCHEME
 
     _require_scope(company_id)
+    # Bound like every other value here. The clause is added or not; the id
+    # itself never becomes part of the statement text.
+    narrowing = "" if version_id is None else "AND p.version_id = :version_id "
+    parameters = {
+        "expression": expression,
+        "company_id": company_id,
+        "scheme": SCHEME,
+        "limit": limit,
+    }
+    if version_id is not None:
+        parameters["version_id"] = version_id
     rows = session.execute(
         text(
             "SELECT p.id AS passage_id, p.version_id AS version_id, "
@@ -322,13 +408,9 @@ def passage_index_hits(
             "JOIN document_versions v ON v.id = p.version_id "
             f"WHERE {INDEX_TABLE} MATCH :expression "
             "AND v.company_id = :company_id AND r.scheme = :scheme "
-            "ORDER BY score LIMIT :limit"
+            f"{narrowing}"
+            "ORDER BY score, p.id LIMIT :limit"
         ),
-        {
-            "expression": expression,
-            "company_id": company_id,
-            "scheme": SCHEME,
-            "limit": limit,
-        },
+        parameters,
     ).mappings().all()
     return [dict(row) for row in rows]

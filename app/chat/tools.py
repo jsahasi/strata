@@ -138,7 +138,12 @@ from app.state.routing import (
 from app.state.search import (
     REASON_NO_TERMS,
     SOURCE_INDEX,
+    VERSION_NO_MATCH,
+    VERSION_NO_PASSAGES,
+    VERSION_NOT_SEARCHED,
+    CoverageMap,
     Retrieval,
+    map_coverage,
     match_terms,
     search_passages,
 )
@@ -286,6 +291,21 @@ MAX_RETRIEVED_PASSAGES = 100
 #: nothing in it. Folding them would make "the index is broken" and "you asked
 #: about a project that does not exist" the same sentence.
 RETRIEVAL_NOT_RUN = "RETRIEVAL_NOT_RUN"
+
+#: The fourth kind of empty span list, and the only one this layer can produce.
+#:
+#: app/state/search.py names three -- searched and nothing matched, no passages
+#: to search, never searched -- and it cannot name this one, because it knows
+#: nothing about claims. This is a filing whose passages DID match and whose
+#: spans were then not handed over: they carry the cited span of a withheld
+#: claim, or they would not verify against the stored source.
+#:
+#: It is a separate code rather than a zero because reporting it as "nothing
+#: matched" would be a false sentence built out of a true refusal -- the product
+#: declining to repeat text, rendered as the filing having nothing to say. The
+#: two counts that caused it travel in the same row, so a reader can tell a
+#: policy from a defect without another call.
+VERSION_NOT_OFFERED = "MATCHED_BUT_NOT_OFFERED"
 
 # ---------------------------------------------------------------------------
 # Ordering, announced rather than assumed
@@ -650,11 +670,12 @@ def _candidates(
 
 
 def _retrieval_payload(
-    retrieval: Retrieval | None,
+    retrieval: Retrieval | CoverageMap | None,
     withheld_spans: int = 0,
     unverifiable: int = 0,
     *,
     not_run: str = RETRIEVAL_NOT_RUN,
+    found: int | None = None,
 ) -> dict:
     """Which path answered, why, and what it searched for. Present on every result.
 
@@ -667,6 +688,14 @@ def _retrieval_payload(
     rather than this function guessing. There are two ways to reach it and they
     are different facts: a question with no searchable words in it, and a scope
     that holds nothing to search.
+
+    IT TAKES EITHER READ, and ``found`` is how. Retrieval and CoverageMap agree
+    on source, reason and terms and disagree on what they hold underneath -- a
+    flat tuple of hits against a row per filing -- so the count comes from the
+    caller when the shape is not a flat one. A second payload builder for the
+    coverage map was the obvious alternative and it is the wrong one: these keys
+    are read by the same transcript code, and two builders is two chances for
+    one of them to stop writing a key the other still writes.
     """
     if retrieval is None:
         return {
@@ -678,12 +707,26 @@ def _retrieval_payload(
             "withheld_spans": 0,
             "unverifiable": 0,
         }
+    if found is None:
+        hits = getattr(retrieval, "hits", None)
+        if hits is None:
+            # LOUD AT THE CALL SITE BEATS A ZERO IN THE TRANSCRIPT. A read with no
+            # flat hit list -- the coverage map has rows per filing instead --
+            # cannot have its count guessed here, and the plausible guess is 0,
+            # which would report a search that found nothing. Both callers pass
+            # `found` today; this is for the third.
+            raise ValueError(
+                f"{type(retrieval).__name__} has no flat list of hits, so `found` "
+                "has to be supplied. Guessing would report a search that found "
+                "nothing."
+            )
+        found = len(hits)
     return {
         "source": retrieval.source,
         "reason": retrieval.reason,
         "ranked": retrieval.source == SOURCE_INDEX,
         "terms": list(retrieval.terms),
-        "found": len(retrieval.hits),
+        "found": found,
         "withheld_spans": withheld_spans,
         "unverifiable": unverifiable,
     }
@@ -730,19 +773,28 @@ def _retrieval_note(
             "and only a claim whose citation verifies may be asserted."
         )
     if withheld_spans:
-        word = "passage" if withheld_spans == 1 else "passages"
+        # THE SINGULAR CASE IS THE COMMON ONE, so it is the one worth reading.
+        # This said "1 matching passage are not shown because they carry" until
+        # the coverage map hit the same slip and it was fixed in both places at
+        # once. A note assembled out of a count is one a reader stops trusting
+        # the moment its grammar shows the seam, and this note is the sentence
+        # that explains a refusal.
         parts.append(
-            f" {withheld_spans} matching {word} are not shown because they carry "
-            "the span of a claim that was withheld. The reason is in the review "
-            "queue; the words are in the citation viewer, beside what the source "
-            "actually says."
+            f" {withheld_spans} matching "
+            f"{_agree(withheld_spans, 'passage', 'passages')} "
+            f"{_agree(withheld_spans, 'is', 'are')} not shown because "
+            f"{_agree(withheld_spans, 'it carries', 'they carry')} the span of a "
+            "claim that was withheld. The reason is in the review queue; the "
+            "words are in the citation viewer, beside what the source actually "
+            "says."
         )
     if unverifiable:
-        word = "passage" if unverifiable == 1 else "passages"
         parts.append(
-            f" {unverifiable} matching {word} did not verify against the stored "
-            "source and were dropped. That is a defect in the stored corpus "
-            "rather than an answer; it belongs in the review queue."
+            f" {unverifiable} matching "
+            f"{_agree(unverifiable, 'passage', 'passages')} did not verify against "
+            f"the stored source and {_agree(unverifiable, 'was', 'were')} dropped. "
+            "That is a defect in the stored corpus rather than an answer; it "
+            "belongs in the review queue."
         )
     return "".join(parts)
 
@@ -810,6 +862,19 @@ def _stamp(moment: datetime | None) -> str | None:
 
 def _cap(rows: list, limit: int) -> tuple[list, int]:
     return rows[:limit], max(0, len(rows) - limit)
+
+
+def _agree(count: int, singular: str, plural: str) -> str:
+    """The word that agrees with a count. For sentences built out of five of them.
+
+    The rest of this file writes the ternary inline, and at one or two per note
+    that is the right call. The coverage map's note counts five different things
+    in one paragraph, and ten inline ternaries would bury the sentence being
+    composed. A count of one reading "1 filings have" is the kind of seam that
+    tells a reader the sentence was assembled rather than written, and this
+    paragraph is one a person is meant to trust.
+    """
+    return singular if count == 1 else plural
 
 
 def _omission_note(omitted: int) -> str:
@@ -1418,6 +1483,428 @@ def search_claims(
     )
 
 
+def _withheld_spans_for_company(
+    session: Session, company_id: str
+) -> tuple[dict[str, list[tuple[int, int]]], int]:
+    """Where every withheld claim in this company cites, and how many there are.
+
+    WHY COMPANY-WIDE RATHER THAN NARROWED TO THE DOCKET BEING MAPPED. A claim is
+    attached to a change, a change to a proceeding, and reaching from a docket to
+    its changes is another join to get right. A superset of the withheld spans
+    drops MORE passages and never fewer, which is the safe direction for a rule
+    about not repeating text the product has already refused to assert -- and the
+    spans carry a version id, so a span from another docket cannot match a
+    passage in this one anyway. It costs a wider read, not a wider answer.
+
+    NOT CALLED FROM search_claims, ON PURPOSE. That tool needs the verified and
+    the withheld claims from one pass over the same changes, and calling this
+    would run verified_claims a second time over the whole scope. The spans are
+    built the same way in both places and this is the shape to copy if a third
+    caller appears; a third inline loop is not.
+
+    WHERE THIS FAILS, AND IN WHICH DIRECTION, SAID PLAINLY BECAUSE IT IS THE
+    WRONG DIRECTION. _changes_for_company reaches changes through their
+    proceeding, which is deliberate in app/state/claims.py -- the join is what
+    catches a change stamped with the wrong company. The cost is that a change
+    whose proceeding row is absent is invisible to it, so a withheld claim under
+    that change contributes no span, and this function would hand over the very
+    passage the withholding rule exists to hold back. Nothing would say so: the
+    count would read zero because zero were found.
+
+    It is not reachable through this product today -- no path in app/ deletes a
+    Proceeding, and SQLite is not running with foreign keys enforced, which is
+    what would otherwise stop the row going away. So this is a concession about
+    the direction of failure rather than a live defect: a guard about not
+    repeating refused text degrades to repeating it. Closing it properly means a
+    claims read that does not depend on the parent existing, which is
+    app/state/claims.py's call to make, and it is in the handoff list.
+    """
+    _require_scope(company_id)
+    spans: dict[str, list[tuple[int, int]]] = {}
+    total = 0
+    for change in _changes_for_company(session, company_id):
+        _, withheld = verified_claims(session, company_id, change.id)
+        for claim in withheld:
+            total += 1
+            spans.setdefault(claim.citation_version_id, []).append(
+                (claim.citation_start, claim.citation_end)
+            )
+    return spans, total
+
+
+def coverage_map(
+    session: Session,
+    *,
+    company_id: str,
+    actor: User,
+    query: str = "",
+    docket: str | None = None,
+) -> dict:
+    """Whether each filing in scope carries these words, and which ones do not.
+
+    THE QUESTION A RANKED LIST CANNOT ANSWER. search_claims hands back the best
+    passages for a question, ranked across the whole corpus, capped at
+    MAX_CANDIDATE_PASSAGES. Ask it about curtailment across eight filings and all
+    five candidates can come from the one filing that mentions it most -- and
+    nothing in the answer distinguishes "the other seven do not mention it" from
+    "the other seven lost on rank". This tool returns a row for EVERY filing in
+    scope, with its own span budget, so that the second half of the answer -- the
+    silence -- is reported rather than implied.
+
+    THE SILENCE IS THE POINT. If seven filings address a subject and the eighth
+    does not, the eighth is the interesting one, and a result that leaves it out
+    is indistinguishable from one where it ranked ninth. So a filing with nothing
+    to offer comes back as a present, explicit row carrying its own reason.
+    app/state/search.py::refuse_a_short_map makes that an invariant rather than a
+    habit: a map missing a filing raises instead of answering.
+
+    ``found`` COUNTS THE FILINGS REPORTED, NOT THE PASSAGES, and that is the only
+    honest choice here. A filing that says nothing is a row this tool exists to
+    return, so counting only the ones that matched would make the half that
+    matters invisible in every count the transcript keeps -- ``used`` in the wire
+    contract reads this number.
+
+    FOUR EMPTY SPAN LISTS, FOUR DIFFERENT FACTS, AND THEY ARE NEVER FOLDED. Three
+    codes come from the retrieval layer -- searched and nothing matched, no
+    stored passages to search, never searched -- and the fourth is
+    VERSION_NOT_OFFERED, which is this layer's: the filing matched and its spans
+    were then not handed over. Every row carries the code, the sentence, and the
+    two drop counts that produced it.
+
+    WHAT A ZERO DOES NOT MEAN, said in the wire as well as here. "No passage in
+    this filing matches these words" is what the index can support. "This filing
+    does not address the subject" is a judgement no deterministic read may make,
+    and the note beside every zero says so, because the note is handed to a model
+    that will paraphrase it.
+
+    EVERY SPAN GOES THROUGH THE CITATION GATE, through _candidate_payload and so
+    through verify_citation -- the same function every rendered claim goes
+    through. A span that will not verify is not offered, is counted, and turns
+    its filing's row into VERSION_NOT_OFFERED rather than into a silence. And a
+    passage carrying the cited span of a WITHHELD claim is still not handed over
+    here: this tool must not become a second door into text the product has
+    already refused to assert because the paragraph ranked well on its own.
+
+    NO MODEL RUNS IN ANY OF THIS. Every number in the result is a query, a
+    comparison or a count, which is what makes the claim it makes checkable by
+    hand against the corpus.
+
+    THE COST, PLAINLY. One query per filing on the index path, one whole-corpus
+    read on the degraded one, and a verification pass over every claim in the
+    company to find the withheld spans. On this corpus that is nothing. On
+    thousands it is the same fix search_claims needs -- a verified_claims that
+    takes a prepared source map -- and not a cache, because a cached verdict is
+    the stored verdict ADR-003 refuses.
+    """
+    _require_scope(company_id)
+
+    # A BLANK DOCKET FROM A MODEL MEANS "I DID NOT NAME ONE", AND THE QUERY LAYER
+    # REFUSES IT. Both are right at their own level. versions_for_company refuses
+    # "" because a docket a caller COMPUTED and got blank means they meant one and
+    # found none, and answering the whole estate would be a widening nobody
+    # asked for. Here the blank came from a model filling a field it had no value
+    # for, which _ARGUMENT_TYPES already says is not worth a refusal about JSON.
+    # So it is folded to None once, at the boundary, and the note says which
+    # scope actually answered -- a widening that announces itself is a different
+    # thing from one that does not. Without this fold the ValueError travels up
+    # as a stack trace instead of a sentence.
+    docket = (docket or "").strip() or None
+
+    coverage = map_coverage(
+        session, company_id=company_id, query=query, docket=docket
+    )
+
+    if not coverage.versions:
+        # A scope with no filings in it. Not a map of zeroes, and the sentence
+        # has to say which of the two it is, or "that docket is not on your
+        # record" reads as "none of those filings mention it".
+        where = f"docket {docket!r}" if docket else "this company's record"
+        return _result(
+            "coverage_map",
+            found=0,
+            note=(
+                f"There are no filings under {where}, so there was nothing to "
+                "search. That is a fact about the scope and not about any filing."
+            ),
+            versions=[],
+            in_scope=0,
+            searched=0,
+            covered=0,
+            silent=0,
+            no_passages=0,
+            not_searched=0,
+            not_offered=0,
+            retrieval=_retrieval_payload(coverage, found=0),
+        )
+
+    # Skipped when nothing was searched -- an empty question or an empty scope --
+    # because it is a verification pass over every claim in the company and there
+    # is no span for it to guard. The count it produces is reported only when it
+    # was actually taken; a zero printed without counting is the silent count
+    # this module refuses everywhere else.
+    held_spans: dict[str, list[tuple[int, int]]] = {}
+    withheld_claims = 0
+    if coverage.searched:
+        held_spans, withheld_claims = _withheld_spans_for_company(session, company_id)
+
+    sources = _source_by_version(session, company_id)
+    rows: list[dict] = []
+    total_withheld_spans = 0
+    total_unverifiable = 0
+
+    for row in coverage.versions:
+        source_text = sources.get(row.version_id)
+        spans: list[dict] = []
+        withheld_here = 0
+        unverifiable_here = 0
+        for hit in row.hits:
+            if source_text is None:
+                # The version is not one this company can read. Reachable only
+                # through a scoping bug upstream, and the answer to a scoping bug
+                # is to drop the span, not to render it.
+                unverifiable_here += 1
+                continue
+            if _overlaps(hit.version_id, hit.char_start, hit.char_end, held_spans):
+                withheld_here += 1
+                continue
+            payload = _candidate_payload(hit, source_text)
+            if payload is None:
+                unverifiable_here += 1
+                continue
+            spans.append(payload)
+
+        total_withheld_spans += withheld_here
+        total_unverifiable += unverifiable_here
+
+        reason, note = row.reason, row.note
+        if row.hits and not spans:
+            # It matched. What it matched was not ours to hand over. Saying
+            # "nothing matched" here would be a false sentence assembled out of
+            # a true refusal.
+            reason = VERSION_NOT_OFFERED
+            # NO COUNT OF WHAT MATCHED, BECAUSE THIS DOES NOT KNOW ONE. row.hits
+            # is capped at MAX_SPANS_PER_VERSION, so a filing with eight matching
+            # passages arrives here with two -- and "2 passages in this filing
+            # match those words" would be a precise-looking invention,
+            # contradicted by the `more` flag on the same row. The counts that
+            # follow are of the passages actually examined, which is a number
+            # this does know, and they are labelled as such.
+            note = (
+                "This filing carries passages matching those words and none of "
+                "the ones examined here is shown. "
+                + (
+                    f"{withheld_here} "
+                    f"{_agree(withheld_here, 'carries', 'carry')} the cited span "
+                    "of a claim that was withheld: the reason is in the review "
+                    "queue and the words are in the citation viewer, beside what "
+                    "the source actually says. "
+                    if withheld_here
+                    else ""
+                )
+                + (
+                    f"{unverifiable_here} did not verify against the stored "
+                    "source, which is a defect in the corpus rather than an "
+                    "answer. "
+                    if unverifiable_here
+                    else ""
+                )
+            ).strip()
+
+        elif spans and (withheld_here or unverifiable_here):
+            # A ROW THAT LOST SOME OF ITS SPANS STILL HAS TO SAY SO IN ITS OWN
+            # SENTENCE. The drop is already in the two numeric fields and in the
+            # note at the top of the result, so nothing here was false -- but the
+            # per-row note is the string a renderer is most likely to show on its
+            # own, and beside two spans it read as though two were all there was.
+            note = (
+                "Some passages matching those words in this filing are not shown: "
+                + (
+                    f"{withheld_here} "
+                    f"{_agree(withheld_here, 'carries', 'carry')} the cited span "
+                    "of a claim that was withheld. "
+                    if withheld_here
+                    else ""
+                )
+                + (
+                    f"{unverifiable_here} did not verify against the stored "
+                    "source. "
+                    if unverifiable_here
+                    else ""
+                )
+            ).strip()
+
+        rows.append(
+            {
+                "version_id": row.version_id,
+                "label": row.label,
+                "status": row.status,
+                "docket": row.docket,
+                "spans": spans,
+                "reason": reason,
+                "note": note,
+                # A bool rather than a count: the index path knows only THAT
+                # there are more. app/state/search.py::VersionCoverage.more says
+                # why at length.
+                "more": row.more,
+                "withheld_spans": withheld_here,
+                "unverifiable": unverifiable_here,
+            }
+        )
+
+    covered = sum(1 for row in rows if row["spans"])
+    silent = sum(1 for row in rows if row["reason"] == VERSION_NO_MATCH)
+    no_passages = sum(1 for row in rows if row["reason"] == VERSION_NO_PASSAGES)
+    not_searched = sum(1 for row in rows if row["reason"] == VERSION_NOT_SEARCHED)
+    not_offered = sum(1 for row in rows if row["reason"] == VERSION_NOT_OFFERED)
+
+    where = f" for docket {docket}" if docket else " on this company's record"
+    scope_sentence = (
+        f"{coverage.in_scope} {_agree(coverage.in_scope, 'filing', 'filings')} in "
+        f"scope{where}."
+    )
+
+    if not coverage.searched:
+        # NOTHING WAS SEARCHED, SO THE COUNTS MAY NOT BE READ OUT. Every one of
+        # them is zero here, and "0 carry a passage matching those words" is a
+        # sentence about a search that did not happen -- the exact blur this
+        # whole read exists to refuse, arriving in the first line of the
+        # paragraph the model paraphrases. The scope is still a fact and is still
+        # reported; what follows it is search.py's own reason for why no filing
+        # was looked in.
+        # The counts are read off the rows here as they are below, never written
+        # as literal zeroes. They are all zero on this branch today; a literal
+        # would keep saying so on the day that stops being true.
+        return _result(
+            "coverage_map",
+            found=len(rows),
+            withheld=withheld_claims,
+            # Zero for the same reason as the branch below: every row is here.
+            omitted=0,
+            note=(
+                f"{scope_sentence} None of them was searched, so nothing is known "
+                f"about whether any carries those words. {coverage.note}"
+            ).strip(),
+            versions=rows,
+            in_scope=coverage.in_scope,
+            searched=coverage.searched,
+            covered=covered,
+            silent=silent,
+            no_passages=no_passages,
+            not_searched=not_searched,
+            not_offered=not_offered,
+            retrieval=_retrieval_payload(coverage, found=0),
+        )
+
+    # WHAT CARRIES A MATCHING PASSAGE AND WHAT IS SHOWN ARE DIFFERENT NUMBERS,
+    # and the opening sentence is about the first. `covered` counts filings whose
+    # spans SURVIVED the citation gate and the withholding rule; a filing whose
+    # matches were all refused still carries them. Saying "2 carry a passage
+    # matching those words" where three do put the undercount in the first line
+    # of the paragraph a model paraphrases, with the correction two sentences
+    # later -- and in the one-filing case it read "0 carry a passage matching
+    # those words" about a docket that plainly does.
+    matching = covered + not_offered
+    note = (
+        f"{scope_sentence} {matching} {_agree(matching, 'carries', 'carry')} a "
+        f"passage matching those words; {silent} "
+        f"{_agree(silent, 'was', 'were')} searched and "
+        f"{_agree(silent, 'carries', 'carry')} none."
+    )
+    if silent:
+        note += (
+            " A filing carrying none of the words is not a filing that does not "
+            "address the subject; it is one that does not use them."
+        )
+    if no_passages:
+        note += (
+            f" {no_passages} {_agree(no_passages, 'has', 'have')} no stored "
+            f"passages at all, so nothing in {_agree(no_passages, 'it', 'them')} "
+            "was searched and nothing follows about what "
+            f"{_agree(no_passages, 'it holds', 'they hold')}."
+        )
+    if not_searched:
+        note += (
+            f" {not_searched} {_agree(not_searched, 'was', 'were')} not searched, "
+            f"so nothing is known about {_agree(not_searched, 'it', 'them')} "
+            "either way. Narrow the question to a docket to reach the rest."
+        )
+    if not_offered:
+        note += (
+            f" Of those, {not_offered} {_agree(not_offered, 'is', 'are')} not "
+            "shown here at all; the row for each says which of the two reasons "
+            "applies."
+        )
+    if covered:
+        note += (
+            " Every passage here is a candidate and not evidence: a filing using "
+            "the words is where to look, and only a claim whose citation verifies "
+            "may be asserted."
+        )
+    if withheld_claims:
+        note += (
+            f" {withheld_claims} {_agree(withheld_claims, 'claim', 'claims')} on "
+            f"this company's record {_agree(withheld_claims, 'is', 'are')} "
+            "withheld and could not be read at all, so "
+            f"{_agree(withheld_claims, 'it', 'one of them')} may bear on this "
+            "question."
+        )
+    if coverage.reason:
+        # The degraded path announces itself in the transcript the person reads,
+        # not only in a log nobody opens -- best-practices.html section 26. The
+        # sentence is search.py's own; a second wording of the same fallback is a
+        # second answer to what went wrong.
+        note += f" {coverage.note}"
+    if total_withheld_spans:
+        note += (
+            f" {total_withheld_spans} matching "
+            f"{_agree(total_withheld_spans, 'passage', 'passages')} "
+            f"{_agree(total_withheld_spans, 'is', 'are')} not shown because "
+            f"{_agree(total_withheld_spans, 'it carries', 'they carry')} the span "
+            "of a claim that was withheld."
+        )
+    if total_unverifiable:
+        note += (
+            f" {total_unverifiable} matching "
+            f"{_agree(total_unverifiable, 'passage', 'passages')} did not verify "
+            f"against the stored source and {_agree(total_unverifiable, 'was', 'were')} "
+            "dropped. That is a defect in the stored corpus rather than an "
+            "answer; it belongs in the review queue."
+        )
+
+    return _result(
+        "coverage_map",
+        found=len(rows),
+        withheld=withheld_claims,
+        # ZERO, ALWAYS, AND THAT IS THE PROPERTY THIS TOOL EXISTS FOR. ``omitted``
+        # means "rows a length cap left out of this list" on every other tool in
+        # this file -- _omission_note spells it "N more rows not shown" -- and
+        # this list never cuts a row. The version cap limits what is SEARCHED,
+        # not what is REPORTED: a filing past it comes back as a row saying it
+        # was not searched, so it is present and counted in ``found``. It was
+        # briefly set to the not-searched count, which told a reader that rows
+        # were missing while handing them every one of them.
+        #
+        # What a per-filing span cap left out is carried on the row itself as
+        # ``more``, because the index path knows only that there is more.
+        omitted=0,
+        note=note.strip(),
+        versions=rows,
+        in_scope=coverage.in_scope,
+        searched=coverage.searched,
+        covered=covered,
+        silent=silent,
+        no_passages=no_passages,
+        not_searched=not_searched,
+        not_offered=not_offered,
+        retrieval=_retrieval_payload(
+            coverage,
+            total_withheld_spans,
+            total_unverifiable,
+            found=sum(len(row["spans"]) for row in rows),
+        ),
+    )
+
+
 # ---------------------------------------------------------------------------
 # The two writes
 # ---------------------------------------------------------------------------
@@ -1770,6 +2257,7 @@ REGISTRY: dict[str, Tool] = {
         _declare(obligation_owner),
         _declare(approval_route),
         _declare(search_claims),
+        _declare(coverage_map),
         _declare(create_project, writes=True, permission=PERMISSION_PROJECT_CREATE),
         _declare(record_note, writes=True, permission=PERMISSION_NOTE_WRITE),
     )
@@ -1969,9 +2457,12 @@ __all__ = [
     "REASON_UNKNOWN_ARGUMENT",
     "REASON_UNKNOWN_TOOL",
     "REGISTRY",
+    "RETRIEVAL_NOT_RUN",
+    "VERSION_NOT_OFFERED",
     "Tool",
     "approval_route",
     "change_detail",
+    "coverage_map",
     "create_project",
     "dispatch",
     "find_projects",

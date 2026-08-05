@@ -571,6 +571,11 @@ def test_the_contract_tools_are_all_present():
         "obligation_owner",
         "approval_route",
         "search_claims",
+        # Retrieval that answers "does this hold across these filings, and where
+        # does it not". It is in the contract because a ranked list cannot
+        # answer that -- see app/state/search.py's coverage map section and
+        # tests/test_coverage_map.py.
+        "coverage_map",
         "create_project",
         "record_note",
     }

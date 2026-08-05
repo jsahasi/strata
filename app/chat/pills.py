@@ -283,6 +283,65 @@ def _from_claims(consulted: Consulted) -> list[Pill]:
     ]
 
 
+#: The one reason code on a coverage map row that means "searched, and it holds
+#: nothing matching". Spelled here rather than imported because this module
+#: deliberately depends on nothing but the result dicts it is handed -- and it is
+#: pinned against app/state/search.py by tests/test_coverage_map.py, so the two
+#: cannot drift without a test going red.
+COVERAGE_SILENT = "NO_PASSAGE_MATCHED"
+
+
+def _from_coverage(consulted: Consulted) -> list[Pill]:
+    """The silence first, because it is the half nobody thinks to ask about.
+
+    A coverage map answers two questions at once and a reader takes the loud one:
+    they read the filings that carry the words and skim past the ones that do
+    not. The filings that carry nothing are the reason the tool exists, so the
+    first pill sends the next turn straight at them.
+
+    IT BRANCHES ON THE REASON, NEVER ON AN EMPTY SPAN LIST, and that distinction
+    is the whole reason this function is careful. A coverage map has FOUR kinds
+    of row with no spans -- searched and nothing matched; no stored passages to
+    search; never searched; matched and then not handed over -- and only the
+    first is silence. This offered "Which filings are silent?" over an empty span
+    list for one afternoon, which meant that a filing whose matching passage was
+    refused for carrying a withheld claim's citation was labelled silent, on a
+    button, in the only layer a person actually reads. app/state/search.py spends
+    three reason codes and sixty lines of comment keeping those four apart; a
+    pill that reads `if not spans` throws all of it away at the last step.
+    """
+    rows = [
+        item
+        for item in _rows(consulted.result, "versions", "items", "results")
+        if isinstance(item, Mapping)
+    ]
+    silent = [item for item in rows if item.get("reason") == COVERAGE_SILENT]
+
+    out: list[Pill] = []
+    if silent:
+        out.append(
+            Pill(
+                "Which filings are silent?",
+                "Which of those filings carry none of those words, and what do "
+                "they cover instead?",
+            )
+        )
+        # Named, because "which filings are silent" is a question somebody has to
+        # reformulate and "open the Staff report" is a button. Only ever a row
+        # this result says is silent.
+        for item in silent:
+            label = _label_for(item)
+            if label:
+                out.append(Pill(f"Open {label}", f"Show what the {label} covers."))
+                break
+
+    if any(item.get("spans") for item in rows):
+        out.append(
+            Pill("Show the source", "Show the passage each of those filings cites.")
+        )
+    return out
+
+
 def _from_write(consulted: Consulted) -> list[Pill]:
     return [LATEST_CHANGES, REVIEW_QUEUE]
 
@@ -299,6 +358,7 @@ _BY_TOOL = {
     "obligation_owner": _from_owner,
     "approval_route": _from_route,
     "search_claims": _from_claims,
+    "coverage_map": _from_coverage,
     "create_project": _from_write,
     "record_note": _from_write,
 }
