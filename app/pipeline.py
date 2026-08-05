@@ -19,10 +19,20 @@ citations -- was computed against text that no longer exists. Rebuilding half of
 it is worse than failing: the product would answer every question plausibly and
 wrongly (best-practices.html §27). So it raises and names the fix.
 
-**It calls no model.** The interpretation stage that architecture.html places
-between diff and state does not exist yet, which is why `Change.materiality`
-stays NULL rather than being defaulted to a value that reads like a judgement.
-The absence is visible in the data instead of hidden in a default.
+**It calls no model, and that stays true now that one exists.** The
+interpretation stage architecture.html places between diff and state is now
+built -- app/interpretation/propose.py judges whether one change is material --
+but it runs on the change screen at render time and writes nothing back. So
+`Change.materiality` still stays NULL here rather than being defaulted to a
+value that reads like a judgement, and the absence is visible in the data
+instead of hidden in a default.
+
+Keeping the model off this path is the decision, not an accident of ordering.
+Ingest is where a corpus is turned into offsets every later citation depends on;
+a model call in the middle of it would make loading the same bytes twice produce
+two different databases, and would put a network dependency inside the one
+function that must work on a laptop with no key. Judgement belongs where it can
+be read beside the change it is about.
 """
 
 import hashlib

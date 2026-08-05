@@ -547,6 +547,37 @@ a.nav__link:hover {
   max-width: 60ch;
 }
 
+/* The model's judgement, on the change screen and nowhere else yet.
+ *
+ * It sits in the page head, where "not assessed" used to be printed, and it
+ * gets more room than a note because it carries a verdict, a reason, a quote
+ * and an address. The four states are not four shades of one treatment:
+ *
+ *   --judged      a verdict that passed the gate. Badge, sentence, the source's
+ *                 own words underneath, then who said it and when.
+ *   --withheld    the citation did not verify. Borrows .withheld and .mismatch
+ *                 from the claim further down the page, because it IS the same
+ *                 mechanism refusing, and a reader who has met one recognises
+ *                 the other with nothing to read.
+ *   --dropped     the answer never reached the verifier. Same hatch, and the
+ *                 detail says which field was wrong.
+ *   --unjudged    nothing ran. A sentence, no badge, no hatch -- an absence of
+ *                 work is not a refusal and must not borrow its clothes.
+ *
+ * No rule paints a verdict by colour alone: the badge classes carry a border
+ * and a weight, so the page survives a monochrome print. */
+.materiality {
+  margin-top: var(--s4);
+}
+
+.materiality > * + * {
+  margin-top: var(--s3);
+}
+
+.materiality .quote {
+  margin-top: var(--s3);
+}
+
 .colophon {
   border-top: 1px solid var(--rule);
   padding: var(--s5) 0 var(--s7);

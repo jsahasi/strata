@@ -110,7 +110,15 @@ def test_a_change_carries_the_status_of_the_version_it_came_from():
         assert {row.status for row in rows} == {"FINAL"}
 
 
-def test_materiality_stays_null_because_no_model_call_exists():
+def test_materiality_stays_null_because_the_pipeline_calls_no_model():
+    """The judge exists now and it still does not write here.
+
+    app/interpretation/propose.py judges one change on the change screen, at
+    render time, and stores nothing -- so this column stays NULL and the absence
+    stays visible in the data rather than hidden in a default. This test was
+    named "because no model call exists", which stopped being true the day the
+    judge was wired; the assertion did not change and the name did.
+    """
     init_db()
     with session_scope() as session:
         _proceeding(session)

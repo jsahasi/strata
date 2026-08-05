@@ -119,16 +119,74 @@
     between the {{ before.version_label }} and the {{ after.version_label }},
     in docket {{ docket }}.
   </p>
-  <p class="page-head__note">
+  {#
+    The one judgement a model makes in this product, and it wears the same
+    collar as everything else on the page.
+
+    FOUR BLOCKS, NO FLAG. The view hands over at most one of four things and
+    this template takes the first it is given. There is no state word to switch
+    on, and the withheld object has no verdict field and no reason for the
+    verdict -- so the branch that refuses could not print a judgement if it
+    tried. Never add {{ judgement_withheld.why }} below: it will raise, which is
+    the point.
+
+    The refusal borrows .withheld and .mismatch from the claim further down the
+    page on purpose. A reader who has seen one refusal recognises the second
+    without being told they are the same mechanism, which they are.
+
+    change.materiality -- the stored column -- is deliberately NOT read here any
+    more. It is NULL on every row, and if something started writing it, a bare
+    word in a 32-character column could not carry the citation that earns it. An
+    assertion that cannot show its source does not get made, whichever table it
+    came out of.
+  #}
+  {%- if judgement %}
+  <div class="page-head__note materiality materiality--judged">
+    <p>
+      <span class="label">Materiality</span>
+      <span class="badge {{ judgement.badge }}">{{ judgement.verdict }}</span>
+      {{ judgement.why }}
+    </p>
+    <blockquote class="quote">{{ judgement.source_reads }}</blockquote>
+    <p class="claim__route">
+      <span class="label">{{ judgement.reference }}</span>
+      <span class="coord">{{ judgement.coordinate }}</span>
+    </p>
+    <p class="claim__route">{{ judgement.judged_by }}</p>
+  </div>
+  {%- elif judgement_withheld %}
+  <div class="page-head__note materiality materiality--withheld">
+    <p><span class="label">Materiality</span></p>
+    <div class="withheld">
+      <p class="withheld__label">{{ judgement_withheld_label }}</p>
+      <p class="withheld__reason">{{ judgement_withheld.reason }}</p>
+    </div>
+    <dl class="mismatch">
+      <dt class="mismatch__term">What the source says</dt>
+      <dd class="mismatch__value">{{ judgement_withheld.source_reads }}</dd>
+      <dt class="mismatch__term">What the citation quoted</dt>
+      <dd class="mismatch__value">{{ judgement_withheld.quoted }}</dd>
+    </dl>
+    <p class="claim__route">
+      <span class="label">{{ judgement_withheld.reference }}</span>
+      <span class="coord">{{ judgement_withheld.coordinate }}</span>
+    </p>
+  </div>
+  {%- elif judgement_dropped %}
+  <div class="page-head__note materiality materiality--dropped">
+    <p><span class="label">Materiality</span></p>
+    <div class="withheld">
+      <p class="withheld__label">{{ judgement_withheld_label }}</p>
+      <p class="withheld__reason">{{ judgement_dropped.reason }}</p>
+    </div>
+    <p class="claim__route">{{ judgement_dropped.detail }}</p>
+  </div>
+  {%- else %}
+  <p class="page-head__note materiality materiality--unjudged">
     <span class="label">Materiality</span>
-    {%- if change.materiality %} {{ change.materiality }}
-    {%- else %} not assessed. Nothing on the pipeline that produced this change
-    calls a model, so nothing has judged how much it matters. The proposer that
-    would (app/interpretation/propose.py) is written and is not wired into this
-    path, and the assistant does not write here. Absence is denial: an
-    unassessed change says so rather than showing a number nobody computed.
-    {%- endif %}
+    {{ judgement_absence }}
   </p>
+  {%- endif %}
 </div>
 
 {#

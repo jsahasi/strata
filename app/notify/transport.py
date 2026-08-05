@@ -159,7 +159,7 @@ def deliver(message: Message, transport: MailTransport | None) -> Delivery:
     deployment with no relay -- which is every reviewer's laptop -- and the
     product must stay usable there while being honest that the mail did not go.
 
-    The except is broad on purpose, as it is in propose_changes(). The transport
+    The except is broad on purpose, as it is in judge_materiality(). The transport
     is injected, so its failures are not a closed set this module can name: a
     refused connection, a rejected recipient, an expired certificate, a relay
     that took the connection and dropped it. Every one of them means the same

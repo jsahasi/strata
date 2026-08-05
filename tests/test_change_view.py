@@ -19,12 +19,20 @@ module-level application would pass or fail for reasons that have nothing to do
 with this screen.
 """
 
+import json
+
 import pytest
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.testclient import TestClient
 from markupsafe import escape
 
+from app.interpretation.propose import (
+    ANNOUNCEMENT_NO_API_KEY,
+    ANNOUNCEMENT_UNREADABLE_RESPONSE,
+    DROP_OUTSIDE_THE_CHANGE,
+    DROP_UNASKED_VERSION,
+)
 from app.seed import CLAIM_AMBIGUOUS, CLAIM_MISQUOTE, load
 from app.state.audit import event_count
 from app.state.claims import (
@@ -36,6 +44,7 @@ from app.state.db import init_db, session_scope
 from app.state.models import Claim
 from app.state.queries import versions_for_company
 from app.web import STATIC_DIR, STATIC_URL_PATH
+from app.verification.verifier import REASON_QUOTE_MISMATCH
 from app.web.deps import current_company
 from app.web.views import changes
 
@@ -396,3 +405,231 @@ def test_the_stylesheet_and_the_script_are_served(client):
     """base.html links both at fixed absolute paths. A 404 here is an unstyled page."""
     assert client.get("/static/strata.css").status_code == 200
     assert client.get("/static/citation.js").status_code == 200
+
+
+# ---------------------------------------------------------------------------
+# The one judgement a model makes in this product, held to the same gate
+# ---------------------------------------------------------------------------
+#
+# This screen is the only call site of app/interpretation/propose.py. Every test
+# below drives a deterministic fake through the injected transport: no key, no
+# network, and the same failure modes a real answer can have.
+#
+# The test this section exists for is the withheld one. A model that says
+# "material" and quotes words that are not at the offsets it gave must not get
+# its verdict onto the page in any form -- the refusal takes its place, exactly
+# as it does for a claim. Asserted against the response bytes, because "it looked
+# greyed out" is a property of a stylesheet.
+
+WHY = "The Large Load Customer threshold is the line every intake screen uses."
+
+# The same fluent, plausible, wrong sentence the seeded misquote uses: the
+# filing says 20 megawatts and this says 10. Nothing about it looks broken,
+# which is the failure a model produces and the one the gate has to catch.
+FABRICATED_QUOTE = (
+    '2.1 "Large Load Customer" means a Customer whose Requested Load is equal '
+    "to or greater than 10 megawatts (MW)."
+)
+
+
+class _Transport:
+    """Canned text, and a record of what it was asked. No network, ever."""
+
+    def __init__(self, reply: str):
+        self.reply = reply
+        self.calls: list[tuple[str, str]] = []
+
+    def complete(self, *, system: str, user: str) -> str:
+        self.calls.append((system, user))
+        return self.reply
+
+
+def _install(monkeypatch, reply: str) -> _Transport:
+    transport = _Transport(reply)
+    monkeypatch.setattr(changes, "transport_factory", lambda: transport)
+    return transport
+
+
+def _after_span(change_id: str) -> tuple[str, int, int, str]:
+    """The change's after side, read from the corpus rather than typed here."""
+    with session_scope() as session:
+        change = change_for_company(session, COMPANY, change_id)
+        for version in versions_for_company(session, COMPANY):
+            if version.id == change.to_version_id:
+                start, end = change.after_start, change.after_end
+                return version.id, start, end, version.source_text[start:end]
+    raise AssertionError(f"no after side for {change_id}")
+
+
+def _reply(change_id: str, *, material: bool = True, why: str = WHY, **citation) -> str:
+    version_id, start, end, text = _after_span(change_id)
+    return json.dumps(
+        {
+            "material": material,
+            "why": why,
+            "citation": {
+                "version_id": version_id,
+                "char_start": start,
+                "char_end": end,
+                "quoted_text": text,
+                **citation,
+            },
+        }
+    )
+
+
+def test_a_judgement_whose_citation_does_not_verify_never_reaches_the_screen(
+    client, monkeypatch
+):
+    """The whole reason the proposer was worth wiring.
+
+    The model returns a confident verdict and a quote that is not in the
+    document -- 10 MW where the filing says 20. The verdict is withheld, not
+    hedged, and the verifier's reason is printed where it would have gone.
+    """
+    _install(monkeypatch, _reply(PAIRED, quoted_text=FABRICATED_QUOTE))
+
+    body = client.get(f"/changes/{PAIRED}").text
+
+    assert WHY not in body
+    assert _html(WHY) not in body
+    # The verdict word is a substring of the label "Materiality", so the badge
+    # is what discriminates. Only a surviving verdict wears one.
+    assert changes.BADGE_MATERIAL not in body
+    assert changes.BADGE_ROUTINE not in body
+    # Not vacuous: the refusal is on the page, with the mismatch shown.
+    assert "materiality--withheld" in body
+    assert _html(REASON_QUOTE_MISMATCH) in body
+    assert _html(FABRICATED_QUOTE) in body
+
+
+def test_a_judgement_whose_citation_verifies_reaches_the_screen(client, monkeypatch):
+    _install(monkeypatch, _reply(PAIRED))
+
+    body = client.get(f"/changes/{PAIRED}").text
+
+    assert "materiality--judged" in body
+    assert changes.BADGE_MATERIAL in body
+    assert _html(WHY) in body
+    # The quote shown is the source's own bytes at the cited offsets.
+    assert _html(_after_span(PAIRED)[3]) in body
+    # And the reader is told what said it, and that nothing was stored.
+    assert _html(changes.JUDGED_BY) in body
+
+
+def test_not_material_is_a_verdict_and_says_so(client, monkeypatch):
+    """An unjudged change and a change judged harmless must not read alike."""
+    _install(monkeypatch, _reply(PAIRED, material=False, why="Nothing moves here."))
+
+    body = client.get(f"/changes/{PAIRED}").text
+
+    assert "materiality--judged" in body
+    assert changes.BADGE_ROUTINE in body
+    assert changes.BADGE_MATERIAL not in body
+
+
+def test_a_citation_outside_the_change_is_dropped_and_named(client, monkeypatch):
+    """The model may only cite the change it was shown. ADR-004.
+
+    These offsets verify perfectly against the same version -- they are a real
+    sentence from another section of it -- which is what makes the drop
+    necessary rather than incidental.
+    """
+    other = _after_span(DRAFT_SURE)
+    _install(
+        monkeypatch,
+        _reply(
+            PAIRED,
+            version_id=other[0],
+            char_start=other[1],
+            char_end=other[2],
+            quoted_text=other[3],
+        ),
+    )
+
+    body = client.get(f"/changes/{PAIRED}").text
+
+    assert WHY not in body
+    assert _html(WHY) not in body
+    assert "materiality--dropped" in body
+    assert _html(DROP_OUTSIDE_THE_CHANGE) in body
+
+
+def test_a_citation_into_a_version_this_change_does_not_span_is_dropped(
+    client, monkeypatch
+):
+    """The gate reads two documents for this change, and only those two.
+
+    The company owns a third version and the model may not reach it. Narrowing
+    the sources to the change's own pair is what makes this a named drop rather
+    than a citation that verifies against a filing nobody was looking at.
+    """
+    other = _after_span(AMBIGUOUS)  # a v2-to-v3 change, so it cites v3
+    _install(
+        monkeypatch,
+        _reply(
+            PAIRED,
+            version_id=other[0],
+            char_start=other[1],
+            char_end=other[2],
+            quoted_text=other[3],
+        ),
+    )
+
+    body = client.get(f"/changes/{PAIRED}").text
+
+    assert WHY not in body
+    assert _html(DROP_UNASKED_VERSION) in body
+
+
+def test_with_no_key_the_screen_says_the_change_is_unjudged(client):
+    """No transport is installed, and no key reaches the process. ADR-37.
+
+    The screen must not read "not material". An absence of work and a finding
+    that the change is harmless are opposite facts.
+    """
+    body = client.get(f"/changes/{PAIRED}").text
+
+    assert "materiality--unjudged" in body
+    assert _html(ANNOUNCEMENT_NO_API_KEY) in body
+    assert changes.BADGE_MATERIAL not in body
+    assert changes.BADGE_ROUTINE not in body
+
+
+def test_an_answer_the_screen_cannot_read_announces_itself(client, monkeypatch):
+    _install(monkeypatch, "I think this one is quite important.")
+
+    body = client.get(f"/changes/{PAIRED}").text
+
+    assert _html(ANNOUNCEMENT_UNREADABLE_RESPONSE) in body
+
+
+def test_the_model_is_sent_one_change_and_not_the_filing(client, monkeypatch):
+    """ADR-004 at the screen. The prompt carries the change, never the document."""
+    transport = _install(monkeypatch, _reply(PAIRED))
+
+    client.get(f"/changes/{PAIRED}")
+
+    assert len(transport.calls) == 1
+    prompt = "".join(transport.calls[0])
+    assert _source("v2") not in prompt
+    assert PAIRED in prompt
+
+
+def test_judging_a_change_stores_nothing(client, monkeypatch):
+    """The verdict is computed on the render and not written.
+
+    Nothing sets Change.materiality and nothing appends to the audit chain,
+    because app/state/audit.py has no action code for a materiality judgement.
+    That is a gap named in propose.py, not a fact hidden here.
+    """
+    _install(monkeypatch, _reply(PAIRED))
+
+    with session_scope() as session:
+        before = event_count(session, COMPANY)
+
+    assert client.get(f"/changes/{PAIRED}").status_code == 200
+
+    with session_scope() as session:
+        assert event_count(session, COMPANY) == before
+        assert change_for_company(session, COMPANY, PAIRED).materiality is None

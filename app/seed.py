@@ -6,15 +6,23 @@ one claim per labelled change in the manifest, writes two claims that are
 supposed to fail, then asks the product which of them may be asserted and
 escalates the rest.
 
-**The statements are built by code, not by a model.** There is no model call
-anywhere in this repository, so the claim sentences here are assembled from the
-manifest by the small extractors below: a date, a percentage, a section label, a
-measure carried over unchanged. Each rule is deterministic and tested. What that
-buys is a working demo with no API key and no network; what it does not buy is
-materiality judgement, which is the one thing a model would add and the one
-thing that is out of scope. This module is a fixture standing in for the
-interpretation stage that architecture.html places between diff and state. When
-that stage exists, these sentences come from it and this file loads data only.
+**The statements are built by code, not by a model.** The claim sentences here
+are assembled from the manifest by the small extractors below: a date, a
+percentage, a section label, a measure carried over unchanged. Each rule is
+deterministic and tested. What that buys is a working demo with no API key and
+no network. This module is a fixture standing in for the interpretation stage
+that architecture.html places between diff and state. When that stage exists,
+these sentences come from it and this file loads data only.
+
+**An earlier version of this paragraph said there was no model call anywhere in
+this repository, which is why it is corrected rather than quietly replaced.**
+Two modules call one now, and neither writes anything here: app/chat/agent.py
+answers questions, and app/interpretation/propose.py judges whether one change
+is material, on the change screen, at render time. Nothing seeded below is model
+output and nothing below judges materiality -- `Change.materiality` is still
+NULL on every row this file writes. The judgement is computed while the page
+renders and is not stored, so the demo still runs with no key and says so when
+it has none.
 
 **The two failures are deliberate and are the point.** A demo where everything
 verifies proves nothing about ADR-003. So the seed writes a claim whose quote was

@@ -14,6 +14,22 @@ mark. app/web/static/citation.js only toggles visibility and moves focus. That
 ordering is deliberate: the evidence for a claim must not depend on a script
 running, so the panels ship open and the script closes them, never the reverse.
 
+THIS IS ALSO THE ONE CALL SITE OF THE ONE MODEL JUDGEMENT IN THE PRODUCT. The
+screen asks app/interpretation/propose.py whether this change is material, and
+the answer goes through the same verifier every claim goes through. When the
+model's citation does not verify, the verdict is withheld and the reason is
+printed where the verdict would have gone -- so a reviewer can watch the gate
+refuse the model's own output on the same screen it refuses a stored claim's.
+That is the hardest decision in this product made visible rather than described.
+
+THE CALL HAPPENS ON THE RENDER, AND THAT COST IS REAL. With no key the path is
+off and says so, which is the state a reviewer will see. With a key, every load
+of this page is a model call: it costs money, it takes seconds, and two loads
+can disagree because nothing is stored. The fix is not a cache -- it is the
+three things propose.py names as missing (an action code, columns for the reason
+and the citation, a writer) and none of them is a change to this file. Naming the
+cost here is better than a comment claiming it was considered.
+
 Two things this module deliberately does not do.
 
 It does not show a withheld claim's citation chip. The chip is the affordance
@@ -33,6 +49,11 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import HTMLResponse
 
 from app.diff.engine import RESTRUCTURE_CONFIDENCE_CEILING
+from app.interpretation.propose import (
+    MODEL_ID,
+    judge_materiality_for_company,
+    transport_from_environment,
+)
 from app.state.claims import (
     VerifiedClaim,
     WithheldClaim,
@@ -82,6 +103,49 @@ SOURCE_UNREADABLE = "nothing could be read at those offsets"
 
 _STATUS_BADGE = {"DRAFT": "badge--draft", "FINAL": "badge--final"}
 _STATUS_WORD = {"DRAFT": "Draft", "FINAL": "Final"}
+
+# ---------------------------------------------------------------------------
+# The model's judgement
+# ---------------------------------------------------------------------------
+
+#: How this screen gets a transport. A module attribute rather than a call
+#: inside the handler, so a test can put a deterministic fake in its place --
+#: every test of this screen drives one and none of them may reach the network.
+#: The factory itself belongs to app/interpretation/propose.py and is imported
+#: rather than re-spelt, so there is one definition of "is the model path on".
+transport_factory = transport_from_environment
+
+#: The two verdicts, in the product's own words rather than the schema's
+#: booleans. "Not material" is a finding and is printed as one; it must never
+#: read like the absence of a judgement, which is the sentence below it.
+VERDICT_MATERIAL = "Material"
+VERDICT_NOT_MATERIAL = "Not material"
+
+#: The badge each verdict wears. Both classes already exist in strata.css and
+#: already carry this meaning on the project screen -- material is the alarm
+#: treatment, routine is its deliberate counterpart -- so materiality reads by
+#: contrast rather than by remembering what one colour means.
+BADGE_MATERIAL = "badge--material"
+BADGE_ROUTINE = "badge--routine"
+
+#: What stands in the verdict's place when the citation does not verify, and
+#: also when the answer never reached the verifier. Deliberately the same four
+#: words for both: the difference between them is a fact about our parser, not
+#: about this change, and the reason underneath says which it was.
+JUDGEMENT_WITHHELD = "No judgement made"
+
+#: Printed under every verdict that survives the gate. Three facts a reader
+#: needs and cannot get from the verdict itself: which model said it, that the
+#: citation was re-read during this render, and that nothing was stored.
+JUDGED_BY = (
+    f"Judged by {MODEL_ID} while this page rendered. The citation was re-read "
+    "against the stored source a moment ago, and nothing was written."
+)
+
+#: Unreachable today: a run with no verdict always carries an announcement.
+#: Here so the label can never stand over an empty space if that stops being
+#: true, because a blank beside "Materiality" reads as "not material".
+NOT_JUDGED = "Nothing has judged this change."
 
 
 # ---------------------------------------------------------------------------
@@ -140,6 +204,41 @@ class VerifiedView:
     coordinate: str
     panel_id: str
     window: SourceWindow
+
+
+@dataclass(frozen=True, slots=True)
+class JudgementView:
+    """The model's verdict, after its citation was re-read and matched.
+
+    `source_reads` is the source's own bytes at the cited offsets, not the
+    model's quote echoed back. Echoing the quote would prove nothing: the whole
+    claim of this screen is that the words shown are the document's.
+    """
+
+    verdict: str
+    badge: str
+    why: str
+    reference: str
+    coordinate: str
+    source_reads: str
+    judged_by: str
+
+
+@dataclass(frozen=True, slots=True)
+class WithheldJudgementView:
+    """A verdict the product refuses to show. It cannot carry the verdict.
+
+    No `verdict` field and no `why`, and slotted so neither can be attached at
+    runtime -- the same shape as WithheldView below, for the same reason. The
+    template branches on which object it was handed, never on a flag, so a
+    mistake here cannot leak a judgement; it can only fail to render.
+    """
+
+    reason: str
+    reference: str
+    coordinate: str
+    source_reads: str
+    quoted: str
 
 
 @dataclass(frozen=True, slots=True)
@@ -321,9 +420,15 @@ def change_detail(
     another company resolves to None and answers 404 -- the row never reaches
     this function, so there is nothing here that could leak it.
 
-    Nothing is written. The verdict on each claim is computed from the stored
-    source during this request and is not saved, which is what makes editing the
-    source flip a claim to withheld on the next render with no job in between.
+    Nothing is written. Every verdict on this page -- the stored claims' and the
+    model's -- is computed from the stored source during this request and is not
+    saved, which is what makes editing the source flip a claim to withheld on
+    the next render with no job in between.
+
+    ONE THING HERE IS NOT A READ. The materiality call goes out to a model when
+    a key is configured, so this GET is not free and is not repeatable. See the
+    module docstring: that is a real cost, and the fix is persistence, which
+    needs three things that do not exist yet.
     """
     with session_scope() as session:
         change = change_for_company(session, company_id, change_id)
@@ -401,6 +506,58 @@ def change_detail(
             for claim in withheld
         ]
 
+        # The one model call in the product. It goes through the scoped entry
+        # point rather than being assembled here, even though this function is
+        # already holding the change and the versions: a second way to resolve
+        # a change for a company is a second thing to get the tenancy wrong in,
+        # and it would be the one nobody audited. The extra read is the price.
+        run = judge_materiality_for_company(
+            session, company_id, change_id, transport=transport_factory()
+        )
+
+        judgement = None
+        judgement_withheld = None
+        if run.judgement is not None:
+            verdict = run.judgement
+            judgement = JudgementView(
+                verdict=(
+                    VERDICT_MATERIAL if verdict.material else VERDICT_NOT_MATERIAL
+                ),
+                badge=BADGE_MATERIAL if verdict.material else BADGE_ROUTINE,
+                why=verdict.why,
+                reference=_reference(
+                    _section_for(
+                        verdict.citation_version_id, verdict.citation_start
+                    )
+                ),
+                coordinate=coordinate(
+                    verdict.citation_version_id,
+                    verdict.citation_start,
+                    verdict.citation_end,
+                ),
+                source_reads=verdict.actual_text,
+                judged_by=JUDGED_BY,
+            )
+        elif run.withheld is not None:
+            refused = run.withheld
+            judgement_withheld = WithheldJudgementView(
+                reason=refused.reason,
+                reference=_reference(
+                    _section_for(
+                        refused.citation_version_id, refused.citation_start
+                    )
+                    if refused.citation_version_id in versions
+                    else None
+                ),
+                coordinate=coordinate(
+                    refused.citation_version_id,
+                    refused.citation_start,
+                    refused.citation_end,
+                ),
+                source_reads=refused.source_excerpt or SOURCE_UNREADABLE,
+                quoted=refused.citation_quote,
+            )
+
         review_count = len(
             escalations_for_company(session, company_id, unresolved_only=True)
         )
@@ -428,6 +585,15 @@ def change_detail(
             "verified": verified_views,
             "withheld": withheld_views,
             "claim_anchor": claim_anchor,
+            # Four keys, at most one of which is not None. The template picks
+            # the first one it finds rather than reading a state word, so a
+            # branch added later cannot render a verdict object that is missing
+            # its verdict.
+            "judgement": judgement,
+            "judgement_withheld": judgement_withheld,
+            "judgement_dropped": run.dropped,
+            "judgement_absence": run.announcement or NOT_JUDGED,
+            "judgement_withheld_label": JUDGEMENT_WITHHELD,
         }
 
     return templates.TemplateResponse(request, "change.html", context)
@@ -436,12 +602,21 @@ def change_detail(
 __all__ = [
     "ALIGNMENT_LABEL",
     "ALIGNMENT_NOTE",
+    "BADGE_MATERIAL",
+    "BADGE_ROUTINE",
     "CONTEXT_CHARS",
+    "JUDGED_BY",
+    "JUDGEMENT_WITHHELD",
     "LOW_ALIGNMENT",
     "NOT_FOUND",
+    "NOT_JUDGED",
+    "VERDICT_MATERIAL",
+    "VERDICT_NOT_MATERIAL",
+    "JudgementView",
     "Side",
     "SourceWindow",
     "VerifiedView",
+    "WithheldJudgementView",
     "WithheldView",
     "change_detail",
     "change_url",
@@ -451,4 +626,5 @@ __all__ = [
     "proceeding_url",
     "router",
     "source_window",
+    "transport_factory",
 ]

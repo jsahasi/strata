@@ -105,9 +105,15 @@ OWNER_REQUIRED = (
 _STATUS_WORD = {"active": "Active", "monitoring": "Monitoring", "closed": "Closed"}
 _CHANGE_BADGE = {"DRAFT": "badge--draft", "FINAL": "badge--final"}
 
-# What a change's materiality reads as when no model has judged it. This build
-# makes no model call, so every change carries NULL and the screen says which of
-# the two facts that is rather than printing a blank cell.
+# What a change's materiality reads as on this screen, which is every row.
+#
+# NOTHING WRITES THE COLUMN, so it is NULL everywhere and the list says which of
+# the two facts that is rather than printing a blank cell. The change screen now
+# asks a model whether one change is material, but it computes that on the
+# render and stores nothing -- see app/interpretation/propose.py, which names the
+# three things persistence would need. A list of thirty rows is also the wrong
+# place to fire thirty model calls, so this screen does not, and a reader who
+# wants the judgement opens the change.
 MATERIALITY_UNASSESSED = "not assessed"
 
 

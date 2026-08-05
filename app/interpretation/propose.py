@@ -1,16 +1,36 @@
-"""Ask Claude what changed between two versions. Let the verifier decide what may be said.
+"""Ask Claude whether one change matters. Let the verifier decide if it may say so.
 
-THE HONEST LIMIT, FIRST. This path has **never** run against the real Anthropic
+This is the one place in the product where a model makes a judgement. It is
+shown a single change the deterministic diff has already found -- the text
+before, the text after, the section, the offsets -- and asked one question: does
+this matter to the utility that has to live with it, and which exact sentence
+says so. It is never asked what changed. The diff knows that, exactly, and can
+be tested against known answers.
+
+WHAT THIS MODULE USED TO BE, BECAUSE THE DRIFT IS THE LESSON. Until this
+rewrite it sent the model the FULL TEXT OF BOTH VERSIONS and asked it to report
+what changed, and its output schema carried no materiality field at all. That is
+precisely the job ADR-004 reserves for the diff, and the reason ADR-004 reserves
+it: a model reading two long documents silently drops changes and there is
+nothing in the answer that says which ones. The module was written after the
+ADR, was tested, and drifted anyway -- because every test asked what came *out*
+of the call and none asked what went *in*. Nothing failed. The gap was found by
+reading the ADR against the prompt. tests/test_propose.py now asserts that
+neither version's full text reaches the model and that the prompt names the diff
+as the thing that found the change, so the same drift fails a test rather than
+waiting to be read.
+
+THE HONEST LIMIT, SECOND. This path has **never** run against the real Anthropic
 API in this repository. Nobody here has held an API key, so every test drives a
 deterministic fake through an injected transport.
 
 What is proven offline is the gate: the prompt is built by dispatching on the
-version's stored status, every proposal is bound to a citation, every citation
-is re-read against the stored source, and a proposal that fails is withheld or
-dropped rather than shown. The request shape is checked one step further than
-prose allows -- tests/test_propose.py reads the installed SDK's own signature
-and typed parameters and asserts that every argument name and nested key below
-exists in them. That catches a keyword invented from memory.
+change's stored status, the judgement is bound to a citation, the citation is
+re-read against the stored source, and a judgement whose citation fails is
+withheld rather than shown. The request shape is checked one step further than
+prose allows -- tests/test_propose.py reads the installed SDK's own signature and
+typed parameters and asserts that every argument name and nested key below exists
+in them. That catches a keyword invented from memory.
 
 What is NOT proven is anything only the endpoint can answer: that
 `claude-opus-5` accepts this combination of parameters, that the model returns
@@ -20,31 +40,44 @@ AnthropicTransport, and it will not find them in the verifier. Treat the client
 below as unexercised code and the gate above it as tested code, because that is
 what they are.
 
-WHY A PROPOSER IS SAFE TO ADD AT ALL. A model is good at reading two documents
-and saying what moved, and bad at remembering exactly where it read it. Offsets
-it produces are guesses. So nothing here trusts them: every proposal names a
-(version_id, char_start, char_end, quoted_text), and app/verification/verifier.py
-re-reads the stored source at those offsets and refuses the claim unless the
-words match after normalization -- and, where the quote appears more than once,
-unless the proposal also named the occurrence it relies on. There is no
-confidence score, no hedge, no greyed-out rendering. ADR-003: a claim that
-cannot show its source does not get made. That is the product, and this module
-is a caller of it, not a second path around it.
+THE JUDGEMENT PASSES THE GATE EVERY CLAIM PASSES. A model is good at reading a
+paragraph and saying what it obliges, and bad at remembering exactly where it
+read it. Offsets it produces are guesses. So nothing here trusts them: the
+judgement names a (version_id, char_start, char_end, quoted_text), and
+app/verification/verifier.py re-reads the stored source at those offsets and
+refuses unless the words match after normalization. When it refuses, the verdict
+and the reason for it are both withheld and the refusal takes their place --
+not lowered in confidence, not shown with a caveat, withheld, exactly as a
+misquoted claim is. ADR-003: a claim that cannot show its source does not get
+made, and a model's judgement is a claim.
 
-NOTHING IS REPAIRED. A proposal whose offsets sit two characters off the quote
+MATERIALITY IS NOT CONFIDENCE. ADR-006 owns the confidence floor and the review
+queue below it. This is a different judgement with a different shape: a boolean
+with a citation, no score, no threshold, nothing to tune. A number here would
+become a second floor that nobody decided the height of, and on screen the two
+would read as one thing.
+
+NOTHING IS REPAIRED. A judgement whose offsets sit two characters off the quote
 is withheld, not nudged into place. Snapping an offset to the nearest matching
 span would make the gate a formality: every citation would be adjusted until it
 passed, and the verifier would be checking the repair rather than the model.
-Malformed proposals are dropped with the reason recorded, one by one, so a
-single bad entry does not discard the good ones beside it.
+
+THE CITATION HAS NO OCCURRENCE FIELD, AND THAT COSTS US A JUDGEMENT RATHER THAN
+BUYING ONE. Where the quoted words appear more than once in the version, the
+verifier withholds, because the citation cannot say which of them it rests on --
+the same sentence in two sections is two obligations. The tempting fix is to
+derive the occurrence from the offsets the model gave and hand that to the
+verifier as the expected one. That check would agree with itself every time. So
+the prompt asks for a span that is unique, and a judgement that quotes repeated
+boilerplate is withheld.
 
 THE MODEL IS NEVER ASKED WHETHER A VERSION IS DRAFT OR FINAL. ADR-005. The
-status is read from the version's explicit field and dispatched on here, using
-app/interpretation/action.py, and the permitted actions are handed to the model
-as a closed list. Acting on a draft wastes money on something that may not
-survive comment; treating a final order as a draft misses a binding deadline.
-That decision belongs in a line of Python a reviewer can read, not in a
-sentence a model produces. An unknown status raises before the call is made.
+status is read from the change's own field, dispatched on here through
+app/interpretation/action.py, and stated to the model as a fact. Acting on a
+draft wastes money on something that may not survive comment; treating a final
+order as a draft misses a binding deadline. That decision belongs in a line of
+Python a reviewer can read, not in a sentence a model produces. An unknown
+status raises before the call is made.
 
 OFFLINE BY DEFAULT. The transport is an injected dependency and the SDK is
 imported inside the factory, not at module scope, so importing this module costs
@@ -52,36 +85,43 @@ nothing and reaches nothing. `make test` passes with no key and no network, and
 tests/test_propose.py measures both rather than asserting them in prose.
 
 WITH NO KEY THE PATH IS OFF AND SAYS SO. transport_from_environment() returns
-None, propose_changes() proposes nothing, and the run carries FALLBACK_NO_API_KEY
-with an announcement for the reader. It does not quietly fall back to the seeded
-corpus and present it as model output -- best-practices.html section 26, and the
-one degradation that would make the whole submission dishonest.
+None, judge_materiality() judges nothing, and the run carries FALLBACK_NO_API_KEY
+with an announcement for the reader. It does not quietly answer "not material" --
+best-practices.html section 26, and the one degradation that would make the whole
+submission dishonest, because an unjudged change and a change judged harmless
+look identical on screen and mean opposite things.
 
-WHAT THIS MODULE DOES NOT DO. It does not write. Nothing here creates a Claim
-row, and nothing here appends to the audit chain: there is no ACTION_ constant
-in app/state/audit.py for "a model proposed this", and inventing a second
-spelling of one is how the two that already drifted got that way. A caller that
-wants to persist a proposal needs both -- a new ACTION_ constant and a writer
-that records who proposed and who accepted -- and that is a change to files this
-module does not own.
+WHAT THIS MODULE DOES NOT DO. It does not write. Nothing here sets
+`Change.materiality`, and nothing here appends to the audit chain. Both are
+missing the same thing: app/state/audit.py has no ACTION_ constant for a
+materiality judgement. The spelling that fits is `change.materiality_set`, which
+tests/test_policy.py already writes as a bare string -- so the vocabulary this
+product keeps in one file has a second home already, which is how the two codes
+that drifted got that way. A caller that wants to persist a judgement needs
+three things this module does not own: that constant, a column for the reason
+and the citation beside the existing `materiality` column, and a writer that
+records who judged. Until then the judgement is computed at read time and not
+stored, which is what app/state/claims.py does with a verified claim and for the
+same reason: a stored verdict is a promise about bytes that may have changed
+since.
 """
 
 import json
 import os
 from dataclasses import dataclass
-from typing import Any, Mapping, Protocol, Sequence
+from typing import Any, Mapping, Protocol
 
-from app.interpretation.action import action_vocabulary, requires_effective_date
+from app.interpretation.action import requires_effective_date
 from app.text.normalize import normalize
 from app.verification.verifier import Citation, verify_citation
 
 # The model. A fixed id with no date suffix, matching the alias the client docs
-# publish. Pinned here rather than read from the environment: which model wrote
-# a claim is part of the record, and a deployment that silently swapped it would
+# publish. Pinned here rather than read from the environment: which model judged
+# a change is part of the record, and a deployment that silently swapped it would
 # make every earlier evaluation unreproducible.
 MODEL_ID = "claude-opus-5"
 
-# Output ceiling for one proposal round. Thinking and response text share this
+# Output ceiling for one judgement. Thinking and response text share this
 # budget. Well under the point where a non-streaming request risks an HTTP
 # timeout, which is why this stays a plain create() call.
 MAX_OUTPUT_TOKENS = 16000
@@ -92,25 +132,27 @@ FALLBACK_UNREADABLE_RESPONSE = "MODEL_PATH_OFF_UNREADABLE_RESPONSE"
 FALLBACK_TRANSPORT_FAILED = "MODEL_PATH_OFF_TRANSPORT_FAILED"
 
 ANNOUNCEMENT_NO_API_KEY = (
-    "The model path is off: no ANTHROPIC_API_KEY is set, so no claims were "
-    "proposed. Anything on screen came from the loaded corpus, not from a model."
+    "The model path is off: no ANTHROPIC_API_KEY is set, so nothing has judged "
+    "whether this change matters. Read that as work not done, not as a finding "
+    "that the change is unimportant."
 )
 ANNOUNCEMENT_UNREADABLE_RESPONSE = (
-    "The model path is on but its answer could not be read as proposals, so "
-    "none were made. Nothing was guessed from it."
+    "The model path is on but its answer could not be read as a judgement, so "
+    "no judgement was made. Nothing was guessed from it."
 )
 ANNOUNCEMENT_TRANSPORT_FAILED = (
-    "The model path is on but the call failed, so no claims were proposed. "
+    "The model path is on but the call failed, so this change is unjudged. "
     "The error was: {error}"
 )
 
-# Why a proposal never reached the verifier. Each one is a refusal to invent.
-DROP_MALFORMED = "proposal is missing a field a citation needs, or its type is wrong"
+# Why a judgement never reached the verifier. Each one is a refusal to invent.
+DROP_MALFORMED = "the answer is missing a field a judgement needs, or its type is wrong"
 DROP_OUT_OF_RANGE = "citation offsets fall outside the cited version's text"
 DROP_EMPTY_QUOTE = "citation quotes nothing"
-DROP_UNASKED_VERSION = "citation names a version the caller did not ask about"
-DROP_ACTION_OUT_OF_VOCABULARY = (
-    "proposed action is not one this version's status allows"
+DROP_UNASKED_VERSION = "citation names a version this change does not span"
+DROP_OUTSIDE_THE_CHANGE = (
+    "citation falls outside the change the model was shown, so it quotes text "
+    "it was never given"
 )
 
 
@@ -127,45 +169,90 @@ class Transport(Protocol):
     def complete(self, *, system: str, user: str) -> str: ...
 
 
-class SourceVersion(Protocol):
-    """What the proposer needs of a version. DocumentVersion satisfies it."""
+class StoredChange(Protocol):
+    """What building a review needs of a change row. `Change` satisfies it."""
 
     id: str
+    change_type: str
+    section: str | None
     status: str
-    source_text: str
+    from_version_id: str
+    to_version_id: str
+    before_start: int | None
+    before_end: int | None
+    after_start: int | None
+    after_end: int | None
 
 
 @dataclass(frozen=True, slots=True)
-class ProposedClaim:
-    """A model's claim whose citation was just re-read and matched.
+class Span:
+    """One side of a change: where it sits in a version, and what it says there.
+
+    The text is sliced from the stored source rather than carried in from a
+    caller, so what the model reads and what the verifier re-reads come from the
+    same bytes.
+    """
+
+    version_id: str
+    char_start: int
+    char_end: int
+    text: str
+
+
+@dataclass(frozen=True, slots=True)
+class ChangeUnderReview:
+    """Exactly what the model is shown. One change, never a document.
+
+    A pure addition has no `before` and a pure removal has no `after`, and the
+    prompt says which kind of absence it is rather than printing an empty block.
+    Both being None is refused: there is no change there to judge.
+    """
+
+    change_id: str
+    change_type: str
+    section: str | None
+    status: str
+    before: Span | None
+    after: Span | None
+
+    @property
+    def sides(self) -> tuple[Span, ...]:
+        return tuple(side for side in (self.before, self.after) if side is not None)
+
+
+@dataclass(frozen=True, slots=True)
+class MaterialityJudgement:
+    """A verdict whose citation was just re-read and matched.
 
     actual_text is what the source really says at the cited offsets, carried so
     a reviewer sees the source rather than the model's own quote echoed back.
+
+    There is no confidence field and there will not be one. See the module
+    docstring: ADR-006 owns that axis, and a second number on this object would
+    be read as the same thing.
     """
 
-    statement: str
-    action: str
+    material: bool
+    why: str
     citation_version_id: str
     citation_start: int
     citation_end: int
     citation_quote: str
-    cited_occurrence: int | None
     actual_text: str
 
 
 @dataclass(frozen=True, slots=True)
-class WithheldProposal:
-    """A proposal the product declines to make. It cannot carry what it said.
+class WithheldJudgement:
+    """A judgement the product declines to show. It cannot carry the verdict.
 
-    No statement field, and slots=True so one cannot be attached at runtime
-    either -- the same design as WithheldClaim in app/state/claims.py, for the
-    same reason: a template cannot render what the object does not have. A
-    greyed-out assertion is still an assertion.
+    No `material` field, no `why`, and slots=True so neither can be attached at
+    runtime either -- the same design as WithheldClaim in app/state/claims.py,
+    for the same reason: a template cannot render what the object does not have.
+    A greyed-out verdict is still a verdict.
 
     `reason` is the verifier's own reason string, imported rather than restated,
     so the two cannot drift into describing different failures with the same
-    words. Mapping it to the REASON_CODE_* vocabulary is the persistence layer's
-    job and happens in app/state/claims.py, where the rows are read.
+    words.
     """
 
     reason: str
@@ -173,15 +260,14 @@ class WithheldProposal:
     citation_start: int
     citation_end: int
     citation_quote: str
-    cited_occurrence: int | None
     source_excerpt: str
 
 
 @dataclass(frozen=True, slots=True)
-class DroppedProposal:
-    """A proposal that never reached the verifier, and why.
+class DroppedJudgement:
+    """An answer that never reached the verifier, and why.
 
-    Also carries no statement. A proposal too malformed to check its citation is
+    Also carries no verdict. An answer too malformed to check its citation is
     further from assertable than one that merely failed, not closer.
     """
 
@@ -190,24 +276,23 @@ class DroppedProposal:
 
 
 @dataclass(frozen=True, slots=True)
-class ProposalRun:
-    """One round: what may be shown, what may not, and what was thrown away.
+class MaterialityRun:
+    """One change, one answer, and at most one of the three ways it can land.
 
     `fallback` is None on a healthy run. When it is set, `announcement` holds
-    the sentence the product must show the reader, and the three lists are
-    empty -- a degraded run proposes nothing rather than proposing less.
+    the sentence the product must show the reader and the other three are None --
+    a degraded run judges nothing rather than judging vaguely.
     """
 
-    proposed: tuple[ProposedClaim, ...]
-    withheld: tuple[WithheldProposal, ...]
-    dropped: tuple[DroppedProposal, ...]
-    action_vocabulary: tuple[str, ...]
+    judgement: MaterialityJudgement | None = None
+    withheld: WithheldJudgement | None = None
+    dropped: DroppedJudgement | None = None
     fallback: str | None = None
     announcement: str | None = None
 
 
 class _Unreadable(RuntimeError):
-    """The model's answer was not a list of proposals."""
+    """The model's answer was not a judgement."""
 
 
 # ------------------------------------------------------------- the transport --
@@ -291,33 +376,21 @@ class AnthropicTransport:
 _SCHEMA = {
     "type": "object",
     "properties": {
-        "claims": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "statement": {"type": "string"},
-                    "action": {"type": "string"},
-                    "version_id": {"type": "string"},
-                    "char_start": {"type": "integer"},
-                    "char_end": {"type": "integer"},
-                    "quoted_text": {"type": "string"},
-                    "occurrence": {"type": ["integer", "null"]},
-                },
-                "required": [
-                    "statement",
-                    "action",
-                    "version_id",
-                    "char_start",
-                    "char_end",
-                    "quoted_text",
-                    "occurrence",
-                ],
-                "additionalProperties": False,
+        "material": {"type": "boolean"},
+        "why": {"type": "string"},
+        "citation": {
+            "type": "object",
+            "properties": {
+                "version_id": {"type": "string"},
+                "char_start": {"type": "integer"},
+                "char_end": {"type": "integer"},
+                "quoted_text": {"type": "string"},
             },
-        }
+            "required": ["version_id", "char_start", "char_end", "quoted_text"],
+            "additionalProperties": False,
+        },
     },
-    "required": ["claims"],
+    "required": ["material", "why", "citation"],
     "additionalProperties": False,
 }
 
@@ -325,99 +398,130 @@ _SCHEMA = {
 # ---------------------------------------------------------------- the prompt --
 
 _SYSTEM = """\
-You compare two versions of a regulatory proceeding for a regulated utility and \
-report what changed. You are one half of a pair. The other half re-reads the \
-source at every offset you give and silently discards any claim whose quoted \
-text does not match, so an invented citation costs you the claim and gains \
-nothing.
+You judge whether one change to a regulatory proceeding matters to the utility \
+that has to live with it. You are one half of a pair. The other half re-reads \
+the source at the offsets you give and withholds your judgement outright when \
+the quoted text is not there, so an invented citation costs you the judgement \
+and gains nothing.
+
+You are not asked to find the change or to say what moved. A deterministic diff \
+found it and its exact offsets, and they are given below as fact.
 
 Rules, in order of importance.
 
-1. Every claim carries a citation into ONE of the two versions given below: the \
-version id, the character offsets of the exact span, and the text at that span \
-copied character for character. Offsets are 0-based, char_end is exclusive, and \
-they index the text exactly as given -- do not count from a heading or a page.
-2. If the words you quote appear more than once in that version, set occurrence \
-to the 0-based index of the one you rely on. Otherwise set occurrence to null. \
-The same sentence in two sections is two different obligations.
-3. Claim only what the cited span shows on its own. A claim that needs a second \
-sentence to stand up needs a second claim.
-4. Returning an empty list is a correct and expected answer. Report nothing \
-rather than reporting something you cannot cite.
-5. {status_line}
+1. Answer with one object: material, true or false; why, in one sentence; and a \
+citation.
+2. The citation names one of the versions below, the character offsets of the \
+exact span, and the text at that span copied character for character. Offsets \
+are 0-based, char_end is exclusive, and they index that version's whole text -- \
+each side below carries the offsets it sits at, so count from those.
+3. Cite inside the change. The span you quote must lie within the offsets given \
+for one of the sides below. Text outside them is a document you have not been \
+shown.
+4. Quote a span whose words appear only once in that version. Where the sentence \
+you would quote is repeated elsewhere in the filing, take the shortest span \
+around it that is unique -- a quote the gate cannot place is withheld.
+5. false is a correct and expected answer. A change that does not matter is a \
+finding, not a failure.
+6. {status_line}
 """
 
-_ACTION_LINE = (
-    "The action on every claim must be exactly one of: {actions}. That list is "
-    "fixed by the record and is not yours to extend."
+#: Stated to the model as a fact about the record, never asked. ADR-005, and the
+#: two lines never share a code path for the same reason the actions do not.
+STATUS_LINE_FINAL = (
+    "This change lands in a FINAL version. It binds, so judge it by what it "
+    "obliges the utility to do and by when. Where the change moves a date, cite "
+    "the text that states the date rather than computing one."
 )
-
-_EFFECTIVE_DATE_LINE = (
-    " This order binds from a date. Where a claim concerns a deadline, cite the "
-    "text that states it rather than computing one."
+STATUS_LINE_DRAFT = (
+    "This change lands in a DRAFT version. It is proposed and may not survive "
+    "comment, so judge whether it is worth watching and commenting on, not "
+    "whether it binds."
 )
 
 _USER = """\
-FROM VERSION
-STATUS: {from_status}
-ID: {from_id}
----
-{from_text}
----
+CHANGE {change_id}
+TYPE: {change_type}
+SECTION: {section}
+STATUS: {status}
 
-TO VERSION
-STATUS: {to_status}
-ID: {to_id}
----
-{to_text}
----
+{before_block}
 
-Report what changed from the FROM version to the TO version, as a JSON object \
-with a single key "claims" holding a list. Each item has: statement, action, \
-version_id, char_start, char_end, quoted_text, occurrence. Return an empty list \
-if nothing in these two texts supports a claim you can cite.
+{after_block}
+
+Judge whether this change is material for the utility subject to this \
+proceeding. Answer with a JSON object holding material, why, and a citation \
+carrying version_id, char_start, char_end and quoted_text.
 """
 
+_SIDE = """\
+{term}
+VERSION: {version_id}
+OFFSETS: {start}-{end}
+---
+{text}
+---"""
 
-def _prompt(
-    from_version: SourceVersion, to_version: SourceVersion
-) -> tuple[str, str, tuple[str, ...]]:
+_ABSENT = {
+    "BEFORE": (
+        "BEFORE\nNothing. This passage is new, and no earlier version carries "
+        "text corresponding to it."
+    ),
+    "AFTER": (
+        "AFTER\nNothing. This passage is gone, and the version now in force "
+        "carries no text corresponding to it."
+    ),
+}
+
+UNLABELLED_SECTION = "unlabelled"
+
+
+def _side_block(term: str, side: Span | None) -> str:
+    if side is None:
+        return _ABSENT[term]
+    return _SIDE.format(
+        term=term,
+        version_id=side.version_id,
+        start=side.char_start,
+        end=side.char_end,
+        text=side.text,
+    )
+
+
+def _prompt(change: ChangeUnderReview) -> tuple[str, str]:
     """Build the prompt by dispatching on the stored status. ADR-005.
 
-    Both statuses are put through action_vocabulary, which raises on a word it
+    The status goes through requires_effective_date, which raises on a word it
     does not know. That happens before the transport is touched, so an unknown
     status costs a refusal rather than a call and a plausible answer.
     """
-    action_vocabulary(from_version.status)
-    vocabulary = action_vocabulary(to_version.status)
-
-    status_line = _ACTION_LINE.format(actions=", ".join(vocabulary))
-    if requires_effective_date(to_version.status):
-        status_line += _EFFECTIVE_DATE_LINE
-
-    system = _SYSTEM.format(status_line=status_line)
-    user = _USER.format(
-        from_status=from_version.status,
-        from_id=from_version.id,
-        from_text=from_version.source_text,
-        to_status=to_version.status,
-        to_id=to_version.id,
-        to_text=to_version.source_text,
+    binding = requires_effective_date(change.status)
+    system = _SYSTEM.format(
+        status_line=STATUS_LINE_FINAL if binding else STATUS_LINE_DRAFT
     )
-    return system, user, vocabulary
+    user = _USER.format(
+        change_id=change.change_id,
+        change_type=change.change_type,
+        section=change.section or UNLABELLED_SECTION,
+        status=change.status,
+        before_block=_side_block("BEFORE", change.before),
+        after_block=_side_block("AFTER", change.after),
+    )
+    return system, user
 
 
 # --------------------------------------------------------------- the parsing --
 
 
-def _payload(text: str) -> list[Any]:
-    """Read the model's answer as a list of proposals, or refuse to.
+def _payload(text: str) -> dict:
+    """Read the model's answer as one judgement, or refuse to.
 
     A fenced code block is unwrapped. That is formatting around the answer, not
-    the answer: unwrapping it repairs nothing about any claim inside, and every
-    proposal still has to survive the same checks. Anything else that will not
-    parse, or that parses to something other than a list, raises -- the caller
-    announces a fallback rather than salvaging fragments.
+    the answer: unwrapping it repairs nothing about the judgement inside, which
+    still has to survive every check below. Anything else that will not parse,
+    or that parses to something other than an object, raises -- one change was
+    sent, so a list is not a shape this can read, and taking the first item of
+    one would be picking an answer out of several.
     """
     stripped = text.strip()
     if stripped.startswith("```"):
@@ -430,10 +534,8 @@ def _payload(text: str) -> list[Any]:
     except (ValueError, TypeError) as error:
         raise _Unreadable(str(error)) from error
 
-    if isinstance(loaded, dict):
-        loaded = loaded.get("claims")
-    if not isinstance(loaded, list):
-        raise _Unreadable("the answer was not a list of proposals")
+    if not isinstance(loaded, dict):
+        raise _Unreadable("the answer was not a single judgement")
     return loaded
 
 
@@ -445,27 +547,29 @@ def _is_int(value: Any) -> bool:
 # ------------------------------------------------------------------ the gate --
 
 
-def propose_changes(
+def judge_materiality(
     transport: Transport | None,
-    from_version: SourceVersion,
-    to_version: SourceVersion,
-) -> ProposalRun:
-    """Ask for claims, then let the verifier decide which of them may be shown.
+    change: ChangeUnderReview,
+    sources: Mapping[str, str],
+) -> MaterialityRun:
+    """Ask whether this change matters, then let the verifier decide if we say so.
 
-    Returns a ProposalRun. `proposed` are the claims whose citations were
-    re-read and matched just now; `withheld` are the ones that failed the check,
-    carrying the reason and never the statement; `dropped` are the ones too
-    malformed to check.
+    TWO ARGUMENTS, TWO AUDIENCES, AND THE SPLIT IS THE POINT. `change` is what
+    the model is shown -- one change, its two sides, its offsets. `sources` is
+    what the gate reads: the whole text of the versions this change spans, which
+    the model never sees. So the model can only cite what it was handed, and the
+    check happens against the document rather than against the extract.
 
     NOTHING IS WRITTEN. The verdict is computed here and not stored, for the
     reason app/state/claims.py gives: a stored verdict is a promise about bytes
     that may have changed since.
     """
-    system, user, vocabulary = _prompt(from_version, to_version)
+    _refuse_what_cannot_be_judged(change, sources)
+    system, user = _prompt(change)
 
     if transport is None:
-        return ProposalRun(
-            (), (), (), vocabulary, FALLBACK_NO_API_KEY, ANNOUNCEMENT_NO_API_KEY
+        return MaterialityRun(
+            fallback=FALLBACK_NO_API_KEY, announcement=ANNOUNCEMENT_NO_API_KEY
         )
 
     try:
@@ -476,197 +580,266 @@ def propose_changes(
         # provider outage. Every one of them means the same thing to a reader --
         # the model path did not answer -- and the alternative is a stack trace
         # where a sentence belongs. The error text is carried, not swallowed.
-        return ProposalRun(
-            (),
-            (),
-            (),
-            vocabulary,
-            FALLBACK_TRANSPORT_FAILED,
-            ANNOUNCEMENT_TRANSPORT_FAILED.format(error=error),
+        return MaterialityRun(
+            fallback=FALLBACK_TRANSPORT_FAILED,
+            announcement=ANNOUNCEMENT_TRANSPORT_FAILED.format(error=error),
         )
 
     try:
         payload = _payload(answer)
     except _Unreadable:
-        return ProposalRun(
-            (),
-            (),
-            (),
-            vocabulary,
-            FALLBACK_UNREADABLE_RESPONSE,
-            ANNOUNCEMENT_UNREADABLE_RESPONSE,
+        return MaterialityRun(
+            fallback=FALLBACK_UNREADABLE_RESPONSE,
+            announcement=ANNOUNCEMENT_UNREADABLE_RESPONSE,
         )
 
-    sources = {
-        from_version.id: from_version.source_text,
-        to_version.id: to_version.source_text,
-    }
-    return _judge(payload, sources, vocabulary)
+    return _judge(payload, change, sources)
+
+
+def _refuse_what_cannot_be_judged(
+    change: ChangeUnderReview, sources: Mapping[str, str]
+) -> None:
+    """Refuse before the call, never after it. Absence is denial.
+
+    A change with no side at all is not a change, and a change whose source text
+    is not in hand cannot have its citation re-read -- so the judgement would be
+    unverifiable by construction, which is the one thing this module exists to
+    prevent. Both raise rather than returning a fallback: a fallback describes a
+    degradation the product can announce, and these two are a caller's mistake.
+    """
+    if not change.sides:
+        raise ValueError(
+            f"change {change.change_id!r} has neither a before nor an after side; "
+            "there is nothing here to judge"
+        )
+    for side in change.sides:
+        if side.version_id not in sources:
+            raise ValueError(
+                f"no source text for version {side.version_id!r}; refusing to "
+                "judge a change whose citation could not be re-read"
+            )
 
 
 def _judge(
-    payload: Sequence[Any],
+    payload: dict,
+    change: ChangeUnderReview,
     sources: Mapping[str, str],
-    vocabulary: tuple[str, ...],
-) -> ProposalRun:
-    """Structural checks, then the verifier. One proposal at a time.
+) -> MaterialityRun:
+    """Structural checks, then the verifier. The same gate a claim passes."""
+    checked = _structure(payload, change, sources)
+    if isinstance(checked, DroppedJudgement):
+        return MaterialityRun(dropped=checked)
 
-    Per proposal rather than per batch, so one malformed entry drops itself and
-    leaves the rest standing. A batch-level refusal would let a single stray
-    field discard claims that were perfectly citable.
-    """
-    proposed: list[ProposedClaim] = []
-    withheld: list[WithheldProposal] = []
-    dropped: list[DroppedProposal] = []
+    material, why, citation = checked
 
-    for item in payload:
-        checked = _structure(item, sources, vocabulary)
-        if isinstance(checked, DroppedProposal):
-            dropped.append(checked)
-            continue
+    # expected_occurrence is deliberately not passed. See the module docstring:
+    # the only value available here would be derived from the offsets the model
+    # gave, so the check would be comparing the model with itself.
+    result = verify_citation(citation, sources[citation.version_id])
 
-        statement, action, citation = checked
-        result = verify_citation(
-            citation,
-            sources[citation.version_id],
-            expected_occurrence=_occurrence(item),
-        )
-
-        if not result.verified:
-            withheld.append(
-                WithheldProposal(
-                    reason=result.reason or "",
-                    citation_version_id=citation.version_id,
-                    citation_start=citation.char_start,
-                    citation_end=citation.char_end,
-                    citation_quote=citation.quoted_text,
-                    cited_occurrence=_occurrence(item),
-                    source_excerpt=result.actual_text or "",
-                )
-            )
-            continue
-
-        proposed.append(
-            ProposedClaim(
-                statement=statement,
-                action=action,
+    if not result.verified:
+        return MaterialityRun(
+            withheld=WithheldJudgement(
+                reason=result.reason or "",
                 citation_version_id=citation.version_id,
                 citation_start=citation.char_start,
                 citation_end=citation.char_end,
                 citation_quote=citation.quoted_text,
-                cited_occurrence=_occurrence(item),
-                actual_text=result.actual_text or "",
+                source_excerpt=result.actual_text or "",
             )
         )
 
-    return ProposalRun(tuple(proposed), tuple(withheld), tuple(dropped), vocabulary)
-
-
-def _occurrence(item: Any) -> int | None:
-    value = item.get("occurrence") if isinstance(item, dict) else None
-    return value if _is_int(value) else None
+    return MaterialityRun(
+        judgement=MaterialityJudgement(
+            material=material,
+            why=why,
+            citation_version_id=citation.version_id,
+            citation_start=citation.char_start,
+            citation_end=citation.char_end,
+            citation_quote=citation.quoted_text,
+            actual_text=result.actual_text or "",
+        )
+    )
 
 
 def _structure(
-    item: Any,
+    payload: dict,
+    change: ChangeUnderReview,
     sources: Mapping[str, str],
-    vocabulary: tuple[str, ...],
-) -> tuple[str, str, Citation] | DroppedProposal:
+) -> tuple[bool, str, Citation] | DroppedJudgement:
     """Everything that can be settled without reading the source.
 
-    Order matters only in what it reports, not in what it admits: a proposal
+    Order matters only in what it reports, not in what it admits: an answer
     failing two of these is dropped either way, and the first reason is the one
     an analyst can act on.
     """
-    if not isinstance(item, dict):
-        return DroppedProposal(DROP_MALFORMED, f"expected an object, got {type(item)}")
+    material = payload.get("material")
+    why = payload.get("why")
+    citation = payload.get("citation")
 
-    statement = item.get("statement")
-    action = item.get("action")
-    version_id = item.get("version_id")
-    start = item.get("char_start")
-    end = item.get("char_end")
-    quote = item.get("quoted_text")
+    # bool first and on its own. `material: 1` is an int in JSON and would pass
+    # a truthiness test while meaning nothing a person could defend.
+    if not isinstance(material, bool):
+        return DroppedJudgement(
+            DROP_MALFORMED, f"material was {material!r}, which is not true or false"
+        )
+    if not isinstance(why, str) or not why.strip():
+        return DroppedJudgement(DROP_MALFORMED, "no reason given")
+    if not isinstance(citation, dict):
+        return DroppedJudgement(DROP_MALFORMED, "no citation")
 
-    if not isinstance(statement, str) or not statement.strip():
-        return DroppedProposal(DROP_MALFORMED, "no statement")
-    if not isinstance(action, str) or not isinstance(version_id, str):
-        return DroppedProposal(DROP_MALFORMED, "action or version_id is not a string")
-    if not isinstance(quote, str):
-        return DroppedProposal(DROP_MALFORMED, "quoted_text is not a string")
+    version_id = citation.get("version_id")
+    start = citation.get("char_start")
+    end = citation.get("char_end")
+    quote = citation.get("quoted_text")
+
+    if not isinstance(version_id, str) or not isinstance(quote, str):
+        return DroppedJudgement(
+            DROP_MALFORMED, "version_id or quoted_text is not a string"
+        )
     if not _is_int(start) or not _is_int(end):
-        return DroppedProposal(DROP_MALFORMED, "offsets are not integers")
+        return DroppedJudgement(DROP_MALFORMED, "offsets are not integers")
 
     if version_id not in sources:
-        return DroppedProposal(
+        return DroppedJudgement(
             DROP_UNASKED_VERSION,
-            f"cited {version_id!r}, which is neither version in this comparison",
+            f"cited {version_id!r}, which is not a version this change spans",
         )
 
     # Empty by the same definition the verifier uses, imported rather than
     # re-spelt: whitespace that normalizes away is not a quote.
     if not normalize(quote):
-        return DroppedProposal(DROP_EMPTY_QUOTE, f"quoted_text was {quote!r}")
+        return DroppedJudgement(DROP_EMPTY_QUOTE, f"quoted_text was {quote!r}")
 
     source = sources[version_id]
     if start < 0 or end > len(source) or start > end:
-        return DroppedProposal(
+        return DroppedJudgement(
             DROP_OUT_OF_RANGE,
             f"({start}, {end}) against a source of {len(source)} characters",
         )
 
-    if action not in vocabulary:
-        return DroppedProposal(
-            DROP_ACTION_OUT_OF_VOCABULARY,
-            f"{action!r} is not one of {', '.join(vocabulary)}",
+    # ADR-004 at the far end of the call. The model was shown one change; a
+    # citation outside it is a claim about text it was never handed, and it can
+    # verify perfectly while still being that. Dropped rather than withheld,
+    # because the failure is in what was cited rather than in whether it matched.
+    side = next(
+        (side for side in change.sides if side.version_id == version_id), None
+    )
+    if side is None:
+        return DroppedJudgement(
+            DROP_OUTSIDE_THE_CHANGE,
+            f"cited {version_id!r}, which is not a side of this change",
+        )
+    if start < side.char_start or end > side.char_end:
+        return DroppedJudgement(
+            DROP_OUTSIDE_THE_CHANGE,
+            f"cited ({start}, {end}), outside the change at "
+            f"({side.char_start}, {side.char_end})",
         )
 
-    return statement, action, Citation(version_id, start, end, quote)
+    return material, why, Citation(version_id, start, end, quote)
 
 
-# ----------------------------------------------------------------- tenancy --
+# ------------------------------------------------------------------ building --
 
 
-def propose_changes_for_company(
+def change_under_review(
+    change: StoredChange, sources: Mapping[str, str]
+) -> ChangeUnderReview:
+    """Turn a stored change row into the thing the model is shown.
+
+    The side texts are sliced out of the stored source here rather than accepted
+    from a caller. A caller passing the text in could pass text that is not what
+    the offsets address, and the model would then be judging one passage while
+    the verifier read another.
+    """
+    return ChangeUnderReview(
+        change_id=change.id,
+        change_type=change.change_type,
+        section=change.section,
+        status=change.status,
+        before=_span(
+            sources,
+            change.from_version_id,
+            change.before_start,
+            change.before_end,
+        ),
+        after=_span(
+            sources,
+            change.to_version_id,
+            change.after_start,
+            change.after_end,
+        ),
+    )
+
+
+def _span(
+    sources: Mapping[str, str], version_id: str, start: int | None, end: int | None
+) -> Span | None:
+    """One side, or None where the change has no side there.
+
+    None means a pure addition or a pure removal, which is a fact about the
+    change. A version whose text is missing is not that, and raises.
+    """
+    if start is None or end is None:
+        return None
+    if version_id not in sources:
+        raise ValueError(
+            f"no source text for version {version_id!r}; refusing to build a "
+            "change whose text cannot be read"
+        )
+    return Span(version_id, start, end, sources[version_id][start:end])
+
+
+# ------------------------------------------------------------------ tenancy --
+
+
+def judge_materiality_for_company(
     session: Any,
     company_id: str,
+    change_id: str,
     *,
-    from_version_id: str,
-    to_version_id: str,
     transport: Transport | None,
-) -> ProposalRun:
-    """The scoped entry point: resolve both versions for this company, then run.
+) -> MaterialityRun:
+    """The scoped entry point: resolve this company's change, then judge it.
 
-    The versions are read through versions_for_company in app/state/queries.py
-    rather than queried here. A second scoped read of the same table is a second
-    thing to get wrong, and one of the two would be the one nobody audited.
+    Both reads go through the tenant chokepoints -- change_for_company in
+    app/state/claims.py and versions_for_company in app/state/queries.py --
+    rather than being queried here. A second scoped read of the same tables is a
+    second thing to get wrong, and one of the two would be the one nobody
+    audited.
 
-    A version this company cannot read raises. Absence is denial: the caller
-    named two documents, and comparing one of them against a guess is worse than
-    refusing. The import is deferred so that everything above this function
-    stays free of persistence, as app/verification/verifier.py does for the same
-    reason.
+    THE SOURCES ARE NARROWED TO THE TWO VERSIONS THIS CHANGE SPANS. The company
+    owns more, and handing them all over would let a citation into an unrelated
+    filing verify and be reported as a drop for the wrong reason. The gate reads
+    exactly the documents the change is about.
+
+    A change this company cannot read raises. Absence is denial: the caller named
+    a change, and judging a different one is worse than refusing. The imports are
+    deferred so that everything above this function stays free of persistence, as
+    app/verification/verifier.py does for the same reason.
     """
+    from app.state.claims import change_for_company
     from app.state.queries import _require_scope, versions_for_company
 
     _require_scope(company_id)
 
-    versions = {
-        version.id: version for version in versions_for_company(session, company_id)
-    }
-    missing = [
-        version_id
-        for version_id in (from_version_id, to_version_id)
-        if version_id not in versions
-    ]
-    if missing:
+    change = change_for_company(session, company_id, change_id)
+    if change is None:
         raise ValueError(
-            f"no version {missing[0]!r} readable for company {company_id!r}; "
-            "refusing to compare against a version this company cannot read"
+            f"no change {change_id!r} readable for company {company_id!r}; "
+            "refusing to judge a change this company cannot read"
         )
 
-    return propose_changes(
-        transport, versions[from_version_id], versions[to_version_id]
+    spanned = {change.from_version_id, change.to_version_id}
+    sources = {
+        version.id: version.source_text
+        for version in versions_for_company(session, company_id)
+        if version.id in spanned
+    }
+
+    return judge_materiality(
+        transport, change_under_review(change, sources), sources
     )
 
 
@@ -674,9 +847,9 @@ __all__ = [
     "ANNOUNCEMENT_NO_API_KEY",
     "ANNOUNCEMENT_TRANSPORT_FAILED",
     "ANNOUNCEMENT_UNREADABLE_RESPONSE",
-    "DROP_ACTION_OUT_OF_VOCABULARY",
     "DROP_EMPTY_QUOTE",
     "DROP_MALFORMED",
+    "DROP_OUTSIDE_THE_CHANGE",
     "DROP_OUT_OF_RANGE",
     "DROP_UNASKED_VERSION",
     "FALLBACK_NO_API_KEY",
@@ -684,14 +857,20 @@ __all__ = [
     "FALLBACK_UNREADABLE_RESPONSE",
     "MAX_OUTPUT_TOKENS",
     "MODEL_ID",
+    "STATUS_LINE_DRAFT",
+    "STATUS_LINE_FINAL",
+    "UNLABELLED_SECTION",
     "AnthropicTransport",
-    "DroppedProposal",
-    "ProposalRun",
-    "ProposedClaim",
-    "SourceVersion",
+    "ChangeUnderReview",
+    "DroppedJudgement",
+    "MaterialityJudgement",
+    "MaterialityRun",
+    "Span",
+    "StoredChange",
     "Transport",
-    "WithheldProposal",
-    "propose_changes",
-    "propose_changes_for_company",
+    "WithheldJudgement",
+    "change_under_review",
+    "judge_materiality",
+    "judge_materiality_for_company",
     "transport_from_environment",
 ]
