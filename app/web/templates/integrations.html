@@ -324,23 +324,43 @@
         <p><span class="coord">{{ row.created_at }}</span></p>
         <form class="source-form" method="post"
               action="{{ sources_url }}/{{ row.source_id }}/edit">
-          <label>
+          {# EVERY FIELD IS NAMED TWICE, AND THE SECOND NAME IS THE ROW.
+
+             The label wrapper stays and gains a `for`, so the association
+             survives somebody moving the input out of it -- a wrapping label
+             names the first labelable descendant and silently names nothing
+             once that stops being true.
+
+             The aria-label carries the source as well, because this form is
+             drawn once per registered row. Without it a screen reader
+             tabbing this table hears "Name, edit text" five times over with
+             nothing saying which registration is about to be rewritten, and
+             the field that follows holds a credential variable. The visible
+             word comes first in the name, so what a person says out loud to
+             a voice control still matches (2.5.3). #}
+          <label for="src-{{ row.source_id }}-name">
             <span class="label">Name</span>
-            <input type="text" name="name" value="{{ row.name }}">
+            <input id="src-{{ row.source_id }}-name" type="text" name="name"
+                   aria-label="Name — {{ row.name }}" value="{{ row.name }}">
           </label>
-          <label>
+          <label for="src-{{ row.source_id }}-endpoint">
             <span class="label">Read from</span>
-            <input type="text" name="endpoint"
+            <input id="src-{{ row.source_id }}-endpoint" type="text" name="endpoint"
+                   aria-label="Read from — {{ row.name }}"
                    value="{{ row.endpoints[0].url if row.endpoints else '' }}">
           </label>
-          <label>
+          <label for="src-{{ row.source_id }}-docket">
             <span class="label">Docket</span>
-            <input type="text" name="docket" value="{{ row.docket }}">
+            <input id="src-{{ row.source_id }}-docket" type="text" name="docket"
+                   aria-label="Docket — {{ row.name }}" value="{{ row.docket }}">
           </label>
           {% if row.kind in ('rest_api', 'mcp_server') %}
-          <label>
+          <label for="src-{{ row.source_id }}-credential">
             <span class="label">Credential variable</span>
-            <input type="text" name="credential_ref" value="{{ row.credential_ref }}">
+            <input id="src-{{ row.source_id }}-credential" type="text"
+                   name="credential_ref"
+                   aria-label="Credential variable — {{ row.name }}"
+                   value="{{ row.credential_ref }}">
           </label>
           {% else %}
           <input type="hidden" name="credential_ref" value="">
@@ -525,31 +545,37 @@
   </p>
 
   <form class="source-form" method="post" action="{{ add_url }}">
-    <label>
+    {# One form, one of each field, so the visible label is the whole name and
+       `for` is all these need. A placeholder is not a label: it goes the moment
+       somebody types, and it is the first thing to disappear for the reader who
+       most needed it. Each one here carries an example, never the field's
+       name. #}
+    <label for="new-source-name">
       <span class="label">Name</span>
-      <input type="text" name="name" required
+      <input id="new-source-name" type="text" name="name" required
              placeholder="What this source is called here">
     </label>
-    <label>
+    <label for="new-source-kind">
       <span class="label">Kind</span>
-      <select name="kind">
+      <select id="new-source-kind" name="kind">
         {% for kind in kinds %}
         <option value="{{ kind.code }}">{{ kind.words }}</option>
         {% endfor %}
       </select>
     </label>
-    <label>
+    <label for="new-source-endpoint">
       <span class="label">Read from</span>
-      <input type="text" name="endpoint"
+      <input id="new-source-endpoint" type="text" name="endpoint"
              placeholder="https://filings.example.gov/search">
     </label>
-    <label>
+    <label for="new-source-docket">
       <span class="label">Docket, if this source is one</span>
-      <input type="text" name="docket" placeholder="2025-00113">
+      <input id="new-source-docket" type="text" name="docket"
+             placeholder="2025-00113">
     </label>
-    <label>
+    <label for="new-source-credential">
       <span class="label">Credential variable, for a REST API or an MCP server</span>
-      <input type="text" name="credential_ref"
+      <input id="new-source-credential" type="text" name="credential_ref"
              placeholder="{{ credential_prefix }}ACME_KEY">
     </label>
     <p><button class="btn btn--primary" type="submit">Register</button></p>

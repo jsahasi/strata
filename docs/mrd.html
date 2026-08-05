@@ -473,6 +473,34 @@ document reads the approval gate and the ingest-hash check, because it is the sa
 <code>version_id:start:end</code>. The chain is the mechanism their requirement asks for; it is not
 yet carrying everything the requirement names.</p>
 
+<p><strong>And erasure means something narrower here than a buyer will assume.</strong> It is the
+first thing a regulated buyer's procurement team asks, so the answer belongs in this document rather
+than only in the code. <code>SCHEDULE</code> in <code>app/state/retention.py</code> gives every table
+in the schema a window, the column its clock is measured from, a reason, and a dotted path to the
+code that carries it out; <code>tests/test_retention.py</code> refuses a table with no rule and
+resolves every mechanism by import rather than believing it. The window on <code>audit_events</code>
+is <em>never</em>. The chain is append-only twice over and no purge reaches it, so a subject row is
+deleted while the audit row naming it survives, pointing at an id that no longer resolves. What a
+reader of the log can still learn about a deleted record: that a record with that id existed, what
+kind of thing it was, when each decision about it was taken, who took it, from what address, and the
+reason they gave. What they cannot learn: what the record said &mdash; the words of a chat turn, the
+text of a complaint, the address a shared link was opened from.</p>
+
+<p><span class="gap">Where the personal datum <em>is</em> the actor or the reason, no purge reaches
+it at all.</span> <code>record_event</code> stores <code>subject_id</code>, <code>actor</code> and
+<code>reason</code> verbatim. A failed sign-in records <code>person:&lt;address&gt;</code> as the
+actor and, with no account matching, that address again as the subject, and it stays there for
+good. An invitation's audit row quotes the invited address in its reason, and purging the invitation
+leaves the line standing. Tests pin both, because a limit nobody writes down is a limit the buyer
+finds instead. <strong>The module refuses to call that erasure, and this document refuses too.</strong>
+The cost, stated plainly: a buyer who needs deletion to mean deletion &mdash; because their regulator
+says so, or their own policy does &mdash; needs a different product. That is the same trade the
+section above makes about the verifier. A record a person can edit on request is a record the next
+auditor discounts, and the record is what this product is bought for. Two settings stand between the
+daily job and a deleted row, and they are deliberately not one: <code>STRATA_JOBS_ENABLED</code>
+starts the loop at all, <code>STRATA_JOBS_RETENTION_DELETE</code> arms the destructive path, and
+without the second the run reports what it would have removed and removes nothing.</p>
+
 <h2>What the submission has to cover, in plain English</h2>
 
 <p>The brief names eleven areas. The names are industry words and several of them promise more than

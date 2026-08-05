@@ -474,6 +474,21 @@
   --rail-h: 2.875rem;
   --anchor: calc(var(--stuck) + var(--rail-h) + var(--s4));
 
+  /* The same clearance, for focus rather than for anchors. WCAG 2.2 added
+     2.4.11 Focus Not Obscured, and this layout was already failing it: three
+     rules in this file carried --anchor, all of them on things a fragment link
+     points at, none of them on the controls a person tabs through. Tab down a
+     long page and the browser scrolls the next control to the top of the
+     viewport, which is where the masthead and the tab rail are.
+
+     A SEPARATE TOKEN, NOT --anchor ITSELF, because a scroll container lowers
+     it for its own descendants. Inside a chat transcript or the tour's tip
+     there is no sticky chrome, and 10.875rem of clearance in a box 20rem tall
+     would push the focused control to the bottom edge -- solving 2.4.11 in the
+     page and breaking it in the panel. Each scroller sets this down to a
+     hairline in its own stylesheet. */
+  --focus-anchor: var(--anchor);
+
   --ease-settle: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-offer: cubic-bezier(0.34, 1.42, 0.64, 1);
@@ -635,8 +650,12 @@ a:hover {
 }
 
 /* The ring is an OUTLINE, in every scheme, on every surface, glass
-   included. Never write outline:none anywhere in this file -- a ring lost
-   to a redesign is an accessibility regression no test here catches.
+   included. Never take it away from :focus-visible, in this file or in any
+   other under this directory -- a ring lost to a redesign is an accessibility
+   regression that no screenshot catches, because whoever takes the screenshot
+   is holding a mouse. One narrow form is allowed, `:focus:not(:focus-visible)`,
+   and it appears exactly once below on .tabpanel with its reasons. Anything
+   broader now fails tests/test_a11y_guards.py.
 
    The halo is the second layer, and it is where a focus ring usually dies:
    a 2px accent ring against a translucent pane full of blurred page
@@ -657,6 +676,31 @@ a:hover {
 .citation-chip:focus-visible,
 .skip:focus-visible {
   outline-color: var(--ink);
+}
+
+/* 2.4.11 Focus Not Obscured, and a ring drawn under the masthead is a ring
+   nobody sees. Every tab stop keeps the sticky chrome's height clear of
+   itself, so the browser scrolls far enough when it brings one into view.
+
+   :where() so this carries NO specificity at all. It is a floor, not a
+   decision: any component that knows better -- a taller chrome, a shorter one,
+   none -- overrides it with a plain class selector and wins. A blanket rule
+   that fights the components it applies to is a rule people delete.
+
+   Attribute selectors, not the elements' own defaults, because tabindex is
+   what makes a <span> a tab stop and a <span> is exactly the case that broke
+   here. [tabindex] catches -1 as well, which is right: those are the targets
+   script moves focus to, and they land under the chrome the same way. */
+:where(a, area, button, input, select, textarea, summary, [tabindex]) {
+  scroll-margin-top: var(--focus-anchor);
+}
+
+/* The scrollers inside the page. There is no sticky chrome in any of them, so
+   the page's clearance would be a hole. tour.css and clerk.css set the same
+   property on their own boxes; this one is the panel that holds the source
+   text beside a claim. */
+.source-panel__body {
+  --focus-anchor: var(--s3);
 }
 
 code {
@@ -911,9 +955,74 @@ a.nav__link:hover {
   border-bottom-color: var(--accent);
 }
 
+/* The two items that need a proceeding or a change in hand. They are drawn
+   rather than dropped, because nav that appears and vanishes as you move
+   cannot be learned -- and this product's rule everywhere else is that a thing
+   which cannot be shown NAMES ITS REASON.
+
+   THE REASON USED TO LIVE IN A title ATTRIBUTE, which is to say it did not
+   live anywhere a keyboard could reach. Hence tabindex="0" in base.html and
+   the panel below, shown on hover and on focus alike.
+
+   MADE TO LOOK DELIBERATE. --ink-3 alone reads as a rendering fault -- the
+   same word as its neighbours, a shade weaker, no other difference. The
+   dashed rule underneath says the same thing this stylesheet says everywhere
+   else it draws a dashed edge: provisional, not in force. cursor: help says
+   there is something to read here, which there now is. */
 .nav__link--off {
+  position: relative;
   color: var(--ink-3);
-  cursor: default;
+  border-bottom-style: dashed;
+  border-bottom-color: var(--rule-strong);
+  cursor: help;
+}
+
+/* The reason, in text, on hover and on focus.
+
+   IT IS NEVER TAKEN OUT OF THE ACCESSIBILITY TREE. clip-path and opacity hide
+   it from the eye and leave it in the tree, so it is part of the item's
+   accessible name at all times and a screen reader speaks it on arrival --
+   before, and regardless of, anything to do with hover. display: none or
+   visibility: hidden would have hidden it from both, which is how a "visually
+   hidden" helper usually turns into no helper at all.
+
+   THE POINTER CAN REST ON IT. WCAG 1.4.13 wants content shown on hover to be
+   hoverable, and this panel is a CHILD of the item, so :hover still matches
+   while the pointer is over the panel itself. pointer-events go back to none
+   while it is hidden, so a clipped box never eats a click.
+
+   WHAT THIS STILL DOES NOT DO, said plainly rather than discovered later:
+   1.4.13 also asks that such content be dismissible without moving the pointer
+   or the focus, which normally means Escape, which means script. There is none
+   here. The panel is small, sits under its own item, and goes the moment the
+   pointer or the focus leaves. The attribute it replaced met none of 2.1.1,
+   4.1.2 or 1.4.13, so this is a step and not the last one. */
+.nav__why {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  width: max-content;
+  max-width: min(20rem, 70vw);
+  padding: var(--s2) var(--s3);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--ink-2);
+  font: var(--t-small) / var(--lh-ui) var(--face-ui);
+  font-weight: 500;
+  box-shadow: var(--shadow-3);
+  clip-path: inset(50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav__link--off:hover .nav__why,
+.nav__link--off:focus .nav__why,
+.nav__link--off:focus-visible .nav__why {
+  clip-path: none;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .nav__count {
@@ -2172,7 +2281,19 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
   scroll-margin-top: var(--anchor);
 }
 
-.tabpanel:focus {
+/* THE ONE PLACE THIS FILE TAKES A RING AWAY, and it is scoped so that it
+   cannot take one from a keyboard. :focus:not(:focus-visible) is the browser's
+   own judgement that this focus arrived by a click or by script rather than by
+   a key -- and a 2px ring with a halo around a panel eight hundred pixels tall
+   is noise nobody asked for. As written before, it was `.tabpanel:focus`,
+   which outranks the `:focus-visible` rule three hundred lines above it and
+   would have swallowed the ring for a keyboard reader too the moment anybody
+   gave a panel a tabindex. Nothing had, so nothing was broken yet; the rule
+   was a trap laid for the next person, and the comment on :focus-visible
+   forbidding outline:none was already contradicted by this line.
+   tests/test_a11y_guards.py holds every stylesheet in this directory to the
+   scoped form. */
+.tabpanel:focus:not(:focus-visible) {
   outline: none;
 }
 

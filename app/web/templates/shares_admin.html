@@ -208,8 +208,13 @@
       <tr class="share-row{% if row.last_open_refused %} share-row--refused{% endif %}">
         <td>
           {%- if row.state != 'revoked' %}
+          {# The column head says "Pick" and the button beside it says "Revoke",
+             so the name this box carries says both rather than a third word
+             nobody can see. It keeps the link's id: every box in this table
+             would otherwise announce the same four words, and an administrator
+             revoking in bulk would have nothing to hear which row apart by. #}
           <input type="checkbox" name="share_ids" value="{{ row.share_id }}"
-                 aria-label="Select {{ row.share_id }} for revocation">
+                 aria-label="Pick link {{ row.share_id }} to revoke">
           {%- else %}
           <span class="coord">—</span>
           {%- endif %}

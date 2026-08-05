@@ -34,6 +34,7 @@ from app.state.models import (
 )
 from app.web import STATIC_DIR, STATIC_URL_PATH
 from app.web.deps import install_auth
+from app.web.headers import install_security_headers
 from app.web.views import (
     admin,
     admin_index,
@@ -112,6 +113,21 @@ app.include_router(admin_index.router)
 # /healthz and the stylesheet; everything else without a session goes to the
 # login page. app/web/deps.py holds the list and the reasoning.
 install_auth(app)
+
+# The security headers, outside the guard. THE ORDER OF THESE TWO LINES IS THE
+# WHOLE POINT: Starlette inserts each added middleware at the front of the
+# stack, so the one added LAST is the OUTERMOST. Installed after install_auth,
+# this wraps the guard, which means the guard's own 303 to the login page goes
+# out stamped -- and that redirect is a real response a browser renders and can
+# be made to frame. Swap these two lines and every anonymous response on the
+# product loses its headers while every test that signs in still passes.
+#
+# What it sends and why each one: app/web/headers.py. The short version is
+# clickjacking on the approval route -- this product's claim is that a NAMED
+# PERSON approved something, and a framed approve button harvests a real
+# signature from somebody who meant to click something else, which the audit
+# chain then records faithfully and for ever.
+install_security_headers(app)
 
 # Counted, in this order, into the health body.
 _TABLES = {

@@ -21,6 +21,15 @@
  *
  * ABOVE THE ASSISTANT. clerk.css goes to z-index 60. The last stop points at
  * the assistant's own button, so the ring has to sit over it.
+ *
+ * FOCUS IS DRAWN HERE, NOT INHERITED. This file had no :focus-visible rule at
+ * all and leaned on the one in strata.css, which is a reasonable bet until you
+ * notice what this component does: it is the first thing a new reader meets,
+ * it opens by moving focus into a box that floats over the page, and the page
+ * ring is an outline plus a 4px halo drawn OUTSIDE the element. On a tip
+ * pinned against the edge of the viewport that halo is off-screen, and on the
+ * ring the tour paints over the target it is a second accent ring 2px from the
+ * first. Both are drawn below, on this file's own terms.
  */
 
 /* No veil over the page. A backdrop with a hole cut in it is a second thing to
@@ -52,7 +61,40 @@
   color: var(--ink);
   font: var(--t-ui) / var(--lh-ui) var(--face-ui);
   box-shadow: 0 2px 10px var(--hatch);
+  /* The tip scrolls when the viewport is short, and the three buttons are at
+     the bottom of it. strata.css gives every tab stop a scroll-margin-top of
+     --focus-anchor so focus clears the sticky masthead; inside a box this
+     small that clearance is ten times too much and would shove a focused
+     button to the edge it was scrolled to. Lowered here, for everything
+     within, which is why the page declares it as a property rather than a
+     figure. */
+  --focus-anchor: var(--s3);
 }
+
+/* THE TIP ITSELF. tour.js moves focus here on every stop, so a reader who
+   arrived by keyboard needs to see where they landed -- and the ring goes
+   INSIDE the border, because the tip is pinned to a target and is regularly a
+   hair from the edge of the viewport, where an outset ring and its halo would
+   be drawn off-screen. Same two pixels, same colour, no halo: the tip is
+   opaque --surface, which is the surface the halo exists to rescue a ring
+   from.
+
+   :focus-visible and not :focus, so the ring appears for the reader who tabbed
+   in and not for the one who clicked Next with a mouse -- who knows perfectly
+   well where the box is, because they are pointing at it. */
+.tour-tip:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -4px;
+  box-shadow: 0 2px 10px var(--hatch);
+}
+
+/* THE THREE BUTTONS KEEP THE PAGE'S RING and this file adds no rule for them,
+   which is a decision rather than an omission. One focus ring for the whole
+   product is the point; .btn is a page component that happens to be standing
+   in a tip. The one thing that ring needs is room, and it has it: the tip's
+   padding is --s4, 16px, against a ring drawn 2px outside the button with a
+   4px halo beyond that. Cut the padding below 6px and the halo starts being
+   clipped by this box's own overflow. */
 
 .tour-tip__step {
   margin-bottom: var(--s1);

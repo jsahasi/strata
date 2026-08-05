@@ -185,6 +185,12 @@
   /* The head already draws the rule above. This one is the paper's lower
      edge against the pills row, which had nothing between them. */
   border-bottom: 1px solid var(--rule);
+  /* strata.css gives every tab stop a scroll-margin-top of --focus-anchor, so
+     focus clears the page's sticky masthead. There is no sticky masthead in
+     here. Left at the page's figure, a citation chip tabbed to inside a long
+     answer would be scrolled until ten rem of nothing sat above it -- fixing
+     2.4.11 on the page and breaking it in the panel. */
+  --focus-anchor: var(--s3);
 }
 
 /* ---------------------------------------------------------------- a turn -- */
@@ -426,6 +432,8 @@
   max-width: 100vw;
   overflow-y: auto;
   padding: var(--s4);
+  /* Its own scroller, so its own clearance -- see .clerk-dock__transcript. */
+  --focus-anchor: var(--s3);
   border-left: 1px solid var(--rule);
   background: var(--glass-solid);
   box-shadow: var(--edge), var(--shadow-2);
@@ -509,6 +517,47 @@
 
   .clerk-turn--person {
     max-width: 100%;
+  }
+}
+
+/* ---------------------------------------------------- the reader who asked
+ * against movement.
+ *
+ * THIS FILE ANSWERS FOR ITS OWN MOTION. strata.css ends with a blanket sweep
+ * -- `*, *::before, *::after { animation: none !important }` under
+ * prefers-reduced-motion: reduce -- and that sweep does reach every animation
+ * below, today, because base.html loads both sheets on every page. So nothing
+ * was broken. What was missing is the answer in the file that asks the
+ * question: the dock slides in from the right and the suggestion pills spring
+ * with a four-percent overshoot, and until now the only record that anybody
+ * had considered a reader with vestibular trouble was one `*` rule at the foot
+ * of somebody else's stylesheet. Scope that sweep, split the bundle, or render
+ * this dock on a page that does not carry strata.css, and the movement comes
+ * back with nothing here to stop it. tour.css states the same rule in its own
+ * header and this file now keeps it.
+ *
+ * IT SAYS THE SAME THING THE SWEEP SAYS, AND NOT A SOFTER THING. The tempting
+ * version of this block keeps a short fade and drops only the slide. It was
+ * written and thrown away, because it would have been a lie in this bundle:
+ * the sweep in strata.css carries !important, so a plain `animation: fade`
+ * here never runs, and the comment above it would have described motion that
+ * no reader ever sees. Winning that with an !important of its own buys a
+ * reader who asked for stillness a fade they did not ask for. So the answer
+ * here is stillness, stated, and it holds on its own if the sweep ever goes.
+ *
+ * The transitions below it are colour only -- border-color and color -- and
+ * they go too. A reader who asked for stillness did not ask for a definition
+ * of it that turns on which property is moving.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .clerk-dock,
+  .clerk-bug,
+  .clerk-pill {
+    animation: none;
+  }
+
+  .clerk-pill {
+    transition: none;
   }
 }
 

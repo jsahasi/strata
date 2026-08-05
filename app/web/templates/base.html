@@ -133,7 +133,25 @@
             {%- endif %}
           </a>
           {%- else %}
-          <span class="nav__link nav__link--off" aria-disabled="true" title="{{ hint }}">{{ label }}</span>
+          {#- THE ITEM STAYS AND THE REASON COMES OUT OF THE TITLE ATTRIBUTE.
+              A title needs a mouse, a hover and about a second of holding
+              still. It never fires on touch, most screen readers do not speak
+              it unless the reader has turned that on, and nobody scanning the
+              page sees it at all. So the only thing a keyboard reader met here
+              was a grey word with no explanation, and one of them reported it
+              as a dead link -- WCAG 2.1.1 and 4.1.2 both, from one attribute.
+
+              The reason is now a real element inside the item, which puts it in
+              the accessible name rather than in a description a screen reader
+              may be configured to skip. strata.css shows it on hover AND on
+              focus; tabindex="0" is what makes the focus half reachable.
+
+              role="link" because aria-disabled on a bare <span> maps to nothing
+              in most screen readers, and "unavailable" is the whole message. #}
+          <span class="nav__link nav__link--off" role="link" aria-disabled="true"
+                tabindex="0">{{ label }}
+            <span class="nav__why">{{ hint }}</span>
+          </span>
           {%- endif %}
         </li>
         {%- endfor %}
