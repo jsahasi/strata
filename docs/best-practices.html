@@ -25,8 +25,14 @@
   .here::before { content:"In this build"; display:block; font-weight:600; font-size:.71rem; text-transform:uppercase; letter-spacing:.05em; color:#0369a1; margin-bottom:.2rem; }
   .here code { background:#e0f2fe; }
 </style>
+<link rel="stylesheet" href="docs-nav.css">
 </head>
 <body>
+<nav class="dnav" aria-label="Documents">
+<div class="dnav__row"><span class="dnav__label">Docs</span><a href="mrd.html">MRD</a><a href="prd.html">PRD</a><a href="tdd.html">TDD</a><a href="architecture.html">Architecture</a><a href="security.html">Security</a><a href="web-design.html">Design</a><a href="future-enhancements.html">Roadmap</a><a href="user-research.html">User research</a><a href="synthetic-user.html">Persona</a><a href="synthetic-interview.html">Interview</a><span class="dnav__here">Playbook</span><a href="submission.html">Submission</a></div>
+<div class="dnav__row"><span class="dnav__label">Working notes</span><a href=".ai/index.html">Index</a><a href=".ai/decisions.html">Decisions</a><a href=".ai/tasks.html">Tasks</a><a href=".ai/briefing.html">Briefing</a><a href=".ai/findings.html">Findings</a><a href=".ai/gaps.html">Gaps</a><a href=".ai/demo-notes.html">Demo notes</a></div>
+</nav>
+
 <h1>Best-Practices Architecture</h1>
 <p class="sub">Guidelines, design patterns, and hard-won lessons worth adopting on most new software projects — established practice, hardened by real production fixes. Hand this to a new project so it starts smarter. Each entry: the "why", concrete do/avoid, external references, and a box holding what the principle looked like in <i>this</i> repository. The principles are portable; the boxes are not, and every one names a file you can open. Where a principle has no instance here, the box says so.</p>
 <p class="meta">Started 2026-07-26 · <b>living document</b>. Maintenance: at each commit, ask "did this teach a <i>general</i> principle a new project should follow?" Fold it in <b>selectively</b> — keep the principle general and portable, keep the instance short and checkable, push the reasoning to <code>decisions.html</code>, and prune bloat. A playbook people re-read beats an exhaustive one they don't.</p>

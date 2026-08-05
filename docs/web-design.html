@@ -36,8 +36,14 @@
      wrongly. The cell may wrap; the name in it may not. */
   td > code:only-child, th > code:only-child { white-space: nowrap; }
 </style>
+<link rel="stylesheet" href="docs-nav.css">
 </head>
 <body>
+<nav class="dnav" aria-label="Documents">
+<div class="dnav__row"><span class="dnav__label">Docs</span><a href="mrd.html">MRD</a><a href="prd.html">PRD</a><a href="tdd.html">TDD</a><a href="architecture.html">Architecture</a><a href="security.html">Security</a><span class="dnav__here">Design</span><a href="future-enhancements.html">Roadmap</a><a href="user-research.html">User research</a><a href="synthetic-user.html">Persona</a><a href="synthetic-interview.html">Interview</a><a href="best-practices.html">Playbook</a><a href="submission.html">Submission</a></div>
+<div class="dnav__row"><span class="dnav__label">Working notes</span><a href=".ai/index.html">Index</a><a href=".ai/decisions.html">Decisions</a><a href=".ai/tasks.html">Tasks</a><a href=".ai/briefing.html">Briefing</a><a href=".ai/findings.html">Findings</a><a href=".ai/gaps.html">Gaps</a><a href=".ai/demo-notes.html">Demo notes</a></div>
+</nav>
+
 
 <h1>Web Surface and Deployment</h1>
 <p class="sub">The design for what a reviewer sees at <code>strata.sudama.ai</code>, and how it gets there.

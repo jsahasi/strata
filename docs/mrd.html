@@ -27,8 +27,14 @@
   .gap { color:#b91c1c; }
 </style>
 <link rel="stylesheet" href="diagrams.css">
+<link rel="stylesheet" href="docs-nav.css">
 </head>
 <body>
+<nav class="dnav" aria-label="Documents">
+<div class="dnav__row"><span class="dnav__label">Docs</span><span class="dnav__here">MRD</span><a href="prd.html">PRD</a><a href="tdd.html">TDD</a><a href="architecture.html">Architecture</a><a href="security.html">Security</a><a href="web-design.html">Design</a><a href="future-enhancements.html">Roadmap</a><a href="user-research.html">User research</a><a href="synthetic-user.html">Persona</a><a href="synthetic-interview.html">Interview</a><a href="best-practices.html">Playbook</a><a href="submission.html">Submission</a></div>
+<div class="dnav__row"><span class="dnav__label">Working notes</span><a href=".ai/index.html">Index</a><a href=".ai/decisions.html">Decisions</a><a href=".ai/tasks.html">Tasks</a><a href=".ai/briefing.html">Briefing</a><a href=".ai/findings.html">Findings</a><a href=".ai/gaps.html">Gaps</a><a href=".ai/demo-notes.html">Demo notes</a></div>
+</nav>
+
 
 <svg class="fig-defs" aria-hidden="true"><defs>
   <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker>
@@ -49,11 +55,7 @@ entirely invented, the <code>Obligation</code> table absent, reviewer routing a 
 assignee, the permission grid fourteen codes with one enforced, retrieval a thing that took no query
 at all, annotation impossible, the eval numbers non-existent, and the repository a place where no
 model ran anywhere. Each is corrected in place, and the correction says what is now true rather than
-quietly dropping the sentence. <strong>Work sitting uncommitted in
-the tree as this was written &mdash; a scheduler, a docket fetcher, point-in-time replay and granular
-permissions &mdash; is deliberately NOT described here.</strong> Where this document says those things
-do not exist, that is the honest state of what a reviewer can clone, and it stays that way until the
-tests prove otherwise.</div>
+quietly dropping the sentence. <strong>Four subsystems were held out of this document while they sat uncommitted &mdash; a scheduler, a docket fetcher, point-in-time replay and granular permissions. They are committed now, and this document has not yet been revised to describe them.</strong> So where it says those things do not exist, read that as "not yet written up here" rather than "not in the repository": the code, its tests and ADRs 64 to 68 are in the tree a reviewer clones. The rule that produced the gap was the right one and is worth keeping &mdash; describe what a reviewer can clone, never what is in somebody's working tree.</div>
 
 <h2>The five requirement areas, and where each one stands</h2>
 
