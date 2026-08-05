@@ -26,7 +26,7 @@ THE ORDER, AND THE ONE LINE EACH MOVEMENT EXISTS TO DELIVER.
    3. Real filings.      The corpus was not built to pass. A filer published it.
    4. Routing.           A name appears here only when somebody put it there.
    5. The queue.         What it withheld is counted beside what it kept.
-   6. Logins.            Add your own people. Nobody hands on authority they lack.
+   6. Logins.            Your people, your roles, and a record of who granted what.
    7. Permissions.       You decide who may approve. A conflict is named, never hidden.
    8. Approval routes.   The approval route is yours to draw, not ours.
    9. Security, access.  We measured it. Where it falls short, we say so.
@@ -872,7 +872,15 @@ def main() -> None:
         # narrating a refusal it caused.
         if can_users:
             cut(page)
+            # THE ROLE CHANGES HERE AND THE FILM SAYS SO. Everything before this
+            # was an analyst. What follows needs user.manage and workflow.manage,
+            # which an analyst does not hold. Sliding into it silently would tell
+            # a viewer that one account does all of this -- the opposite of what
+            # the permission model is for, and the reading an enterprise buyer
+            # would most want corrected.
             page.goto(f"{BASE}{ADMIN_INDEX}", wait_until="networkidle")
+            caption(page, "From here on: a different person, signed in as an administrator.")
+            beat(page, 2600, "the role switch, said out loud")
             centre(page, "table.table", nudge=40)
             caption(page, "The administrative screens, each behind the permission that opens it.")
             beat(page, 2400, "the admin index: every screen names its own code")
@@ -881,15 +889,22 @@ def main() -> None:
             caption(page, "Every account in this workspace, and when each was last used.")
             beat(page, 2200, "the logins screen, at the top")
 
-            # The role picker and the sentence under it. An administrator may
-            # hand on only a role whose permissions they already hold, which is
-            # app/state/invites.py's ceiling and is printed on the page beside
-            # the menu rather than discovered by being refused.
+            # THERE IS NO CEILING HERE AND THE FILM MUST NOT IMPLY ONE.
+            # app/state/invites.py:35-42 says it in its own words: the handoff
+            # path grants MORE than its inviter holds, because admin carries
+            # user.invite while carrying neither action.approve nor
+            # action.reject. grant_role has no ceiling either -- its actor is a
+            # display string, so there is nothing to compute one against
+            # (app/state/identity.py:55-61). An earlier cut of this film claimed
+            # "nobody hands on authority they lack" over this very screen. It is
+            # false, the repository documents it as false, and asserting it in a
+            # film about refusing to overstate would have been the worst
+            # sentence in the product.
             if centre(page, "#role", nudge=40):
-                caption(page, "Add a colleague, and hand on only a role you already hold.")
+                caption(page, "Add a colleague and choose their role. Every grant is written to the chain.")
                 beat(page, 2200, "the add-a-login form and the ceiling note")
 
-            point(page, "Add your own people. Nobody hands on authority they lack.", 3000)
+            point(page, "Your people, your roles, and a record of who granted what.", 3000)
         else:
             print("  SKIPPED movement 6: this account cannot open /users")
 
