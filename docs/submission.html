@@ -67,14 +67,14 @@ alternatives are in <a href="https://strata.sudama.ai/docs/ai/decisions.html"><c
 (<code>grep -c 'data-adr=' docs/.ai/decisions.html</code>). Five of the early ones had gone false
 and were corrected in place with their original text kept beneath (<code>295c40d</code>).</td></tr>
 <tr><td>Prototype</td><td>Local: <code>make run</code>, then <code>http://localhost:8000</code>.
-Fifteen routers, 50 routes and 18 page templates are served — project list, proceedings, one
+Fifteen routers, 66 routes and 18 page templates are served — project list, proceedings, one
 proceeding, one change, the review centre, the escalation queue, the approval route, Clarke the
 assistant, share links, invitations, users, Integrations and the feedback queue. Hosted:
 <code>strata.sudama.ai</code> serves <em>the product</em> behind the marketing site
 (<code>b5c894b</code>). Checked from here over the internet: <code>/healthz</code> answers
 <code>corpus_loaded: true</code> with 2 proceedings, 5 versions, 171 changes, and
 <code>/projects</code> answers 303 to <code>/login</code> rather than 404.</td></tr>
-<tr><td>Source code</td><td><code>https://github.com/jsahasi/strata</code>. 43 commits, not
+<tr><td>Source code</td><td><code>https://github.com/jsahasi/strata</code>. 97 commits, not
 squashed. <span class="yes">The repository is PUBLIC.</span> Confirmed here, not assumed:
 <code>gh repo view jsahasi/strata --json visibility</code> returns <code>PUBLIC</code>, and an
 unauthenticated request for a file blob answers 200. It was private until the history had been
@@ -1034,7 +1034,7 @@ product exists to argue that an unchecked claim is worth nothing.</p>
 
 <div class="note"><p><strong>Re-executed on 2026-08-05 at commit <code>bd21a5a</code>.</strong> <code>gh repo view</code> returns PUBLIC and an anonymous file blob answers 200. <code>git rev-list --count HEAD</code> gives 84 commits, none squashed. <code>make fresh-check</code> clones into a temporary directory and passes: <strong>2,301 passed, 2 xfailed in 310 seconds</strong>, exit zero. The deployed instance answers <code>corpus_loaded: true</code> with four live escalations, so the refusal is visible in the running product and not only in the tests. Five documents fetched anonymously answer 200. <strong>One row is still NO and no command changes it: no user has been interviewed.</strong></p></div>
 
-<p>Status as checked against the repository at commit <code>1343f57</code>, 43 commits.</p>
+<p>Status as checked against the repository at commit <code>1343f57</code>, 97 commits.</p>
 
 <table>
 <tr><th>Check</th><th>Status</th></tr>
@@ -1290,7 +1290,7 @@ forward.</td><td>Publish the chain head where the same attacker cannot reach it.
 
 </table>
 
-<p class="sub">Last verified against the repository at commit <code>1343f57</code>: 43 commits;
+<p class="sub">Last verified against the repository at commit <code>1343f57</code>: 97 commits;
 1,380 passed and 1 failed on a fresh clone at that time; 1,378 passed and 3 failed in the working copy; 92% line
 coverage as recorded at <code>2b10bb6</code>; <code>make eval</code> 5 of 5, exit 0; the hosted
 instance answering <code>corpus_loaded: true</code>; the repository <code>PRIVATE</code> at that moment. The tree

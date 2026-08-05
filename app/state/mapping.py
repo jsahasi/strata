@@ -1,7 +1,7 @@
 """What a change might bear on, proposed in words a person can check.
 
 THE HOLE THIS FILLS, said plainly. app/state/routing.py can walk a change to an
-obligation to an owner and refuses in fifteen named ways when it cannot. Every
+obligation to an owner and refuses in sixteen named ways when it cannot. Every
 one of those refusals was reachable and exactly one of them ever fired:
 ROUTE_NO_OBLIGATION, on every change in the product, because nothing anywhere
 wrote a row into change_obligations. The table had a writer

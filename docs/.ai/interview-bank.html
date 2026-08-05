@@ -430,38 +430,6 @@
 <p><span class="lbl">The diff does not handle restructures.</span> It refuses to present one as settled. That is the claim, and it is narrower.</p>
 </div>
 
-<h2>The things not to say</h2>
-<p>Numbers that do not survive checking. Reading one of these aloud is how the hour goes wrong. The first two are carried over from the do-not-say block in <code>resume.md</code>.</p>
-
-<table>
-<tr><th>Do not say</th><th>Why</th><th>Say instead</th></tr>
-<tr><td><strong>"101 of 176 against the old suites' 2"</strong><br><span class="muted">from <code>resume.md</code></span></td><td>The 2 was the number of old test <em>files</em>, not what they caught.</td><td>An eighteen-deletion audit where the hand-written files caught four; a separate 176-deletion campaign where the derived rule caught 78 per function and 101 per query. No mutation harness was committed, so nothing reproduces these today.</td></tr>
-<tr><td><strong>"Glass contrast is 15.84 rising to 16.15"</strong><br><span class="muted">from <code>resume.md</code></span></td><td>Measured against an ink colour that is not in the stylesheet. The corrected pair, 16.41 to 16.73, is also not a rendered figure &mdash; it is arithmetic on the opaque fallback token.</td><td>"I raised the pane tint and re-measured, and it moved the safe way." Then stop. If pressed on AA: the third ink tone does not clear it, best pixel 4.49, worst 3.85.</td></tr>
-<tr><td><strong>"345 milliseconds to verify a citation"</strong></td><td>Does not reproduce on this machine.</td><td>About 170&nbsp;ms on the million-character filing, 9&nbsp;ms at 53&nbsp;KB. Linear in the document.</td></tr>
-<tr><td><strong>"AnthropicTransport is exercised by no test"</strong><br><span class="muted"><code>resume.md</code> open item 5</span></td><td>False, and one grep contradicts it. Both transport classes are driven against a fake SDK client.</td><td>"What is unexercised is the endpoint, not the class." <code>tests/test_propose.py:659</code>, <code>tests/test_chat_agent.py:931</code>.</td></tr>
-<tr><td><strong>"24 of 26 mappings"</strong></td><td>Came from a fully seeded run. The working database holds one mapping row.</td><td>"Two confirmed by a person, the rest proposed." Read the total off what <code>make seed</code> prints.</td></tr>
-<tr><td><strong>"2,095 tests" or "87 ADRs"</strong><br><span class="muted"><code>resume.md</code></span></td><td>Both stale. The tree carries 90 ADR anchors, and the suite re-run today gives 2,301 passed, 2 xfailed.</td><td>Let <code>make test</code> print the number, and count the anchors.</td></tr>
-<tr><td><strong>"restore() in backup.py is broken"</strong><br><span class="muted"><code>resume.md</code> open item 1</span></td><td>Fixed at commit <code>6079247</code>, after <code>resume.md</code> was last written.</td><td>Do not name it as open.</td></tr>
-<tr><td><strong>"Seven things nothing called"</strong></td><td>You cannot list seven. Three of the four named in <code>gaps.html</code> now have callers.</td><td>One, named: <code>start_run</code>. <code>can_approve</code> got its caller in ADR-91.</td></tr>
-<tr><td><strong>"Three of four eval metrics pass"</strong></td><td>Two of the three pass vacuously, and the scorecard labels them so.</td><td>"The only figure carrying information in that run is 23 misses."</td></tr>
-<tr><td><strong>"Tamper-proof"</strong></td><td>A whole-database rewrite defeats the chain.</td><td>"Tamper-evident. External notarisation is not built."</td></tr>
-<tr><td><strong>"The AI finds the changes"</strong></td><td>The diff is deterministic and runs with no key.</td><td>"The diff finds changes; the model judges whether one matters."</td></tr>
-<tr><td><strong>"Semantic matching"</strong></td><td>A grep for "embedding" under <code>app/</code> ends that sentence.</td><td>"Lexical today; the semantic join is designed and not built."</td></tr>
-<tr><td><strong>"Retrieval is about a millisecond"</strong> <span class="muted">&mdash; said as if just run</span></td><td>That is ADR-71's figure on the fully seeded corpus. The working database holds 135 passages against 8,707 index rows, so it would degrade to a scan.</td><td>Quote it as ADR-71's measurement, or run <code>make seed</code> first.</td></tr>
-<tr><td><strong>"The checked-in database"</strong></td><td><code>strata.db</code> is gitignored at <code>.gitignore:5</code> and is not tracked.</td><td>"The database is built by <code>make seed</code> on a reviewer's machine."</td></tr>
-</table>
-
-<div class="crit"><strong>Four repository corrections, ranked by what a reviewer hits first.</strong> These are stale sentences in the tree itself, not in this file.
-<br>1. <strong><code>docs/submission.html</code> is stale on its own front page.</strong> It says 43 commits at <code>:40</code> and <code>:81</code>, fifteen routers and 50 routes and 18 templates at <code>:74</code>, and "The repository is PRIVATE" at <code>:82</code>. The tree has 76 commits, 17 routers, 63 routes, 24 templates, and <code>resume.md</code> says the repo is public. This is the first document a reviewer opens.
-<br>2. <strong><code>app/evals/obligations.py:10</code></strong> says the 51 passages are "each labelled by hand". Both gold-set files name a model. The data is honest; the docstring is not. One line.
-<br>3. <strong><code>docs/security.html:147</code></strong> says "a password the login page publishes". Commit <code>9ac91a7</code> took the password off the page. The rest of that row &mdash; the variable hides the panel and does not remove the accounts &mdash; is still true and still load-bearing.
-<br>4. <strong><code>app/state/mapping.py:4</code></strong> says routing "refuses in fifteen named ways". <code>ROUTING_REASON_CODES</code> holds 18 codes with 2 OK codes, so the count is sixteen. <code>docs/.ai/eval-result.html</code> is stale too: it says <code>goldset_ut_mo</code> does not name its labeller, and it does.
-<br><br>And run <code>make seed</code> and <code>make status</code> before the room. <code>docs/.ai/state.json</code> was generated when the repo had 39 commits, and its own header claims it is authoritative wherever prose disagrees.</div>
-
-<h2>If they find a hole you have not listed</h2>
-<p>They will. Do not defend and do not collapse &mdash; both read badly.</p>
-<blockquote>That is a real gap and I had not thought about it. What it would break is [the specific consequence]. The fix is probably [direction], and the reason I would not have caught it in 48 hours is [the honest reason]. Is that the failure you were pointing at, or is there a worse version of it?</blockquote>
-<p>The last question is the move. It turns being caught into working the problem with them, which is what the residency is.</p>
 
 </body>
 </html>

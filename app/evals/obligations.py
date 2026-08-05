@@ -7,7 +7,7 @@ WHY THIS IS A SECOND SCORECARD AND NOT A SIXTH METRIC. `app/evals/run.py`
 scores the deterministic spine against `data/manifest.json`, a synthetic corpus
 of three versions and five labelled changes. This scores a different task
 against different evidence: 51 passages of real regulatory text from four
-states, each labelled by hand with whether it places a duty on a utility. The
+states, each labelled by a model, single annotator, no adjudication with whether it places a duty on a utility. The
 two share the `Metric` shape, the `Sample` rule and the exit-code contract --
 they are imported here, never restated -- and nothing in this module is wired
 into `make eval`, which still prints five metrics and must keep doing so.
