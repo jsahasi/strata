@@ -122,5 +122,12 @@
 
 {% block foot %}{% endblock %}
 {% include "_clerk.html" %}
+{# After _clerk.html, not before. Both scripts are deferred and run in document
+   order, and the tour's last stop points at a button clerk.js has not revealed
+   yet. _tour.html links its own stylesheet from the body for the same reason:
+   the whole walkthrough arrives or none of it does, rather than needing two
+   edits in this file to ship. It was written, tested and never included here,
+   so it had never rendered for anybody -- best-practices §29. #}
+{% include "_tour.html" %}
 </body>
 </html>

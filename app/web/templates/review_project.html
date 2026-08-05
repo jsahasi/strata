@@ -1,0 +1,53 @@
+{#
+  review_project.html — the review centre narrowed to one project.
+
+  IT OVERRIDES THREE BLOCKS AND NOTHING ELSE. Every section — coverage, sources,
+  the queue, findings, questions, takes, deliverables, steers — comes from
+  review_centre.html unchanged, because the whole point of the parent is that
+  the two pages cannot drift into showing different things. A section copied
+  here would be a second copy of a page that is already hard to keep honest, and
+  the copy is the one that would go stale.
+
+  WHY THIS FILE DID NOT EXIST UNTIL NOW, since the failure is instructive.
+  app/web/views/review_centre.py named it in two places — the GET at
+  /review/{project_id} and the redraw after a refused write — and both raised
+  TemplateNotFound. Every "Scope" link on the review centre answered 500. The
+  parent template said so in its own opening comment, in plain words, and the
+  suite stayed green for a day because nothing in tests/ rendered either route.
+
+  A template test would not have caught it either: the file was absent, so there
+  was nothing to read. What caught it was a test that follows links from the
+  front door the way a person does, which is the only kind of check that can
+  tell "built" from "reachable" — best-practices §29.
+#}{% extends "review_centre.html" %}
+
+{% block scope_head %}
+<div class="page-head">
+  <div class="page-head__title">
+    {# The project's own name, because a person who narrowed the scope already
+       knows they are in Review and needs to know which project they are in. #}
+    <h1>{{ scope_project.name }}</h1>
+    <span class="coord">1 of {{ projects | length }} projects</span>
+  </div>
+  <p class="page-head__note">
+    What this project's research rests on, and what it does not. Every count
+    below was taken from the rows on this request and covers this project alone
+    — a number here is not the company's number. Nothing is stored and read
+    back.
+  </p>
+</div>
+{% endblock %}
+
+{% block scope_switch %}{{ super() }}{% endblock %}
+
+{% block steer_project_field %}
+{# Narrowed to this project, so the choice is already made. A hidden field
+   rather than a one-option select: a select showing a single choice invites a
+   reader to look for the others, and a steer issued from this page must land on
+   the project whose page it was issued from. #}
+<input type="hidden" name="project_id" value="{{ scope_project.project_id }}">
+<p class="page-head__note">
+  This steer applies to {{ scope_project.name }}. To issue one against a
+  different project, switch the scope above.
+</p>
+{% endblock %}

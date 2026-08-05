@@ -36,11 +36,19 @@ ABSENCE IS DENIAL, TWICE OVER.
   turn claiming fewer sources than it consulted is the same lie in a smaller
   font.
 
-THE FALLBACK ANNOUNCES ITSELF. app/chat/engine.py does not exist in this tree
-yet. Rather than answer from a model's memory, or from a cheerful stub, a turn
-with no engine says plainly that nothing was looked up and offers the screens
-that do hold the record. §26 of docs/best-practices.html, applied to the one
-surface where a confident sentence costs nothing to produce.
+THE FALLBACK ANNOUNCES ITSELF. Rather than answer from a model's memory, or from
+a cheerful stub, a turn with no engine says plainly that nothing was looked up
+and offers the screens that do hold the record. §26 of docs/best-practices.html,
+applied to the one surface where a confident sentence costs nothing to produce.
+
+AND THE ANNOUNCEMENT ONCE COVERED FOR A TYPO, WHICH IS WHY §26 IS NOT THE WHOLE
+RULE. This paragraph read "app/chat/engine.py does not exist in this tree yet"
+long after it did. This module resolves app.chat.engine.answer; the engine had
+shipped as app.chat.agent.run_turn. Two hands either side of one seam named it
+two ways, so every question got the honest "nothing was looked up" reply while a
+working engine and a valid key sat behind it. A fallback that announces itself
+truthfully still says nothing about whether the thing it replaced is wired --
+see §29.
 
 WHAT IS AUDITED, AND WHAT IS NOT. A refusal is. Nothing else this module writes
 is, and the second half of that is a deviation from the brief this surface was

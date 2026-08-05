@@ -317,12 +317,23 @@ def test_low_alignment_confidence_is_shown_and_a_sure_one_is_not(client):
 
 
 def test_a_change_with_no_claims_says_so(client):
-    """Rendering nothing would read as "nothing to report", which is a claim."""
+    """Rendering nothing would read as "nothing to report", which is a claim.
+
+    The assertions name the RENDERED CLASS ATTRIBUTE rather than the bare class
+    name, and that precision is not fussiness. Written as a substring search for
+    "claim--withheld" over the whole document, this test went red the moment
+    base.html began including the first-visit tour: one of the tour's stops
+    names ".claim--withheld" in its list of things to point at, so the string
+    appears in a JSON blob at the foot of every page while no claim is rendered
+    anywhere. A whole-document substring search cannot tell "a withheld claim is
+    on this page" from "some script mentions withheld claims", and the second is
+    not what this test is for.
+    """
     response = client.get(f"/changes/{UNCLAIMED}")
     assert response.status_code == 200
     assert "empty" in response.text
-    assert "claim--verified" not in response.text
-    assert "claim--withheld" not in response.text
+    assert 'class="claim claim--verified"' not in response.text
+    assert 'class="claim claim--withheld"' not in response.text
 
 
 # ---------------------------------------------------------------------------

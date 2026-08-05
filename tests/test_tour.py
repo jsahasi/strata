@@ -498,16 +498,16 @@ def test_no_fixed_width_wider_than_a_phone(styles):
 # ------------------------------------------------------------------ the wiring
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "NOT WIRED. base.html does not include _tour.html, so the walkthrough "
-        "is built and reaches nobody. Add, after the _clerk.html include and "
-        "before </body>:  {% include \"_tour.html\" %}  -- then DELETE this "
-        "xfail marker, which is what turns this test red on you."
-    ),
-)
 def test_base_html_includes_the_tour():
+    """Wired 2026-08-04. The strict xfail this carried is deleted, not flipped.
+
+    It worked exactly as written: the tour shipped complete, styled and included
+    by nothing, twenty-three tests passed because they read the template FILE,
+    and this one turned the suite red the moment base.html gained the line. A
+    strict xfail is the honest way to record "built and not connected" when the
+    connecting edit belongs to somebody else's file -- it fails loudly on
+    success, so nobody discovers months later that the guard was decorative.
+    """
     body = BASE.read_text()
     clerk = body.find('include "_clerk.html"')
     tour = body.find('include "_tour.html"')

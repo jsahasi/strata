@@ -893,17 +893,21 @@ def test_an_empty_token_resolves_to_nothing(corpus):
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    reason=(
-        "app/web/deps.py::PUBLIC_PATHS does not yet list the share prefix, so "
-        "the assembled application sends an anonymous open to /login and the "
-        "feature does not exist in the product. The change is two lines in a "
-        "file this branch does not own; see the handoff. This test flips to "
-        "XPASS the moment it lands."
-    ),
-    strict=False,
-)
 def test_the_share_path_is_reachable_without_a_session():
+    """Landed 2026-08-04. The xfail marker this carried is deleted, not flipped.
+
+    It was written strict=False while the wiring belonged to another branch,
+    which meant it went quietly green and sat as an XPASS in the summary line
+    for a day -- nobody's eye catches one letter in "1714 passed, 2 xfailed, 1
+    xpassed". strict=True would have failed the suite the moment the two lines
+    landed and forced this deletion the same hour. That is the lesson worth more
+    than the test: a non-strict xfail records an intention and guards nothing.
+
+    What it guards now: an anonymous open of a share link must not be redirected
+    to /login. The redirect was the defect -- it answered 303 to
+    /login?next=%2Fs%2F<token>, copying a live bearer token into a query string,
+    an access log and a Referer header.
+    """
     from app.web.deps import is_public_path
 
     assert is_public_path(sharing.share_url("c" * 43))
