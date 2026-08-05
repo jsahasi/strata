@@ -10,73 +10,164 @@
   h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.2rem; }
   h3 { font-size:1rem; color:#1d4ed8; margin:1.2rem 0 .3rem; }
   code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
-  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.92rem; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.92rem; display:block; overflow-x:auto; }
   th, td { border: 1px solid #e2e8f0; padding: .45rem .6rem; text-align: left; vertical-align: top; }
   th { background:#f8fafc; }
   .crit { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .d { border:1px solid #e2e8f0; border-radius:8px; padding:.9rem 1.2rem; margin:.9rem 0; }
+  .lbl { font-weight:600; color:#334155; }
+  .gap { color:#b45309; font-weight:600; }
+  .no { color:#b91c1c; font-weight:600; }
   blockquote { border-left:3px solid #cbd5e1; margin:.6rem 0; padding:.2rem 0 .2rem .9rem; color:#334155; }
 </style>
 </head>
 <body>
 <h1>User Research</h1>
-<p class="sub">Who was spoken to, what they said, and what changed in the build because of it.</p>
+<p class="sub">Who was spoken to, what they said, and what changed in the build because of it. Nobody, nothing, and nothing.</p>
 
-<div class="crit"><strong>This is the highest-leverage hour of the 48.</strong> AI Fund's prep guide names it directly: "Get real user feedback on your prototype before you submit — this is the most useful thing you can do." The PRD is read specifically for how user feedback shaped the build, and the panel digs into it. A submission with a working prototype and no user conversations loses a whole evaluation dimension. Send the requests before writing code; run the conversations while the build is in flight.</div>
+<div class="crit">
+<p><strong>The answer to the question the panel asks, given first and without hedging.</strong> AI Fund asks: did you talk to real users before you built, and did their feedback change what you built. <strong class="no">No, and no.</strong> As of 2026-08-04, 45 messages have gone to named regulatory-affairs people on live dockets. Zero replies. Zero conversations. Zero calls booked. Not one line of this product was changed by a user, because no user has said anything to change it.</p>
+<p>This is the weakest of the four evaluation dimensions and it is weak by a wide margin. Nothing engineered in the remaining hours moves it. The three rows in the interview table below are still dashes and they stay dashes until somebody picks up a phone.</p>
+<p><strong>What was done instead is on this page, labelled as a substitute every time it appears.</strong> A synthetic user was built from 102 real public filings and interviewed by the person who built the product. That is a rehearsal, not evidence. It generates questions to ask; it cannot answer them. The section on what it cannot tell us is longer than the section on what it can, and that is the right proportion.</p>
+</div>
 
-<h2>Who to ask</h2>
-<p>Target: a regulatory affairs analyst or manager at a utility, an independent power producer, or an energy retailer. Adjacent and still useful: compliance analysts in banking or pharma who track rule changes; a regulatory lawyer, provided you discount their answers — their incentives differ from an in-house analyst's.</p>
-<p>Where they are: LinkedIn (search "regulatory affairs" + utility names), former colleagues who moved into energy or compliance, anyone in the AI Fund and AES orbit met at the build lunch. Ask for twenty minutes, not an hour.</p>
+<div class="note"><p><strong>Where the numbers live.</strong> Attempts, addresses and their provenance are logged in <code>docs/mrd.html</code>; what a conversation actually said would live here. The split stops the two drifting into different versions of one story. Nothing has yet been said, so this page carries the account of the attempt and the substitute, and the MRD carries the tallies.</p></div>
 
-<h3>The request, short enough to answer from a phone</h3>
-<blockquote>I'm building a prototype for turning regulatory change into tracked work — dockets and orders into "here is what changed, here is what it affects, here is who reviews it." I'd value 20 minutes to hear how you do this today and where it hurts. I'm not selling anything; I want to know if I'm solving a real problem or an imagined one.</blockquote>
+<h2>What actually happened</h2>
 
-<h2>What to ask — and what not to</h2>
-<p>Ask about the last time, not about preferences in general. "Walk me through the last docket you had to act on" produces facts; "would you use a tool that..." produces politeness.</p>
 <table>
-<tr><th>Ask</th><th>What you are listening for</th></tr>
-<tr><td>Walk me through the last regulatory change you had to act on. Start from how you heard about it.</td><td>The trigger. Is it an alert, a colleague, a law firm memo, a docket subscription? This tells you what the product replaces.</td></tr>
-<tr><td>How did you work out what actually changed between versions?</td><td>Whether anyone truly diffs, or whether they read the new version cold. If they redline by hand, that is the wedge.</td></tr>
-<tr><td>How do you decide whether it is material to you?</td><td>The judgement the product must support rather than replace.</td></tr>
-<tr><td>Who else had to look at it before anything happened?</td><td>The real routing graph, versus the org chart.</td></tr>
-<tr><td>What did you write down, and where does it live now?</td><td>The system of record you must fit alongside. If it is a spreadsheet, say so in the PRD.</td></tr>
-<tr><td>When were you last burned — something missed, or acted on too early?</td><td>The pain with a dollar figure attached. This becomes the PRD's opening.</td></tr>
-<tr><td>What would you need to see before you trusted a machine reading of a docket?</td><td>Direct evidence for or against the citation-verification bet (ADR-003).</td></tr>
+<tr><th>Measure</th><th>2026-08-04</th></tr>
+<tr><td>Messages sent</td><td>45. Seven on 2026-08-03, then 38 through 2026-08-04, paced at five to thirteen minutes with one recipient per employer first.</td></tr>
+<tr><td>Replies</td><td class="no">0.</td></tr>
+<tr><td>Interviews held</td><td class="no">0.</td></tr>
+<tr><td>Calls booked</td><td class="no">0.</td></tr>
+<tr><td>Bounces</td><td>4, all confirmed by the mailer daemon.</td></tr>
+<tr><td>People emailed twice by mistake</td><td>1.</td></tr>
 </table>
-<p>Do not describe your solution until the end. Once you do, they will be agreeable, and agreeable answers are worthless.</p>
 
-<h3>Then show the prototype and stay quiet</h3>
-<p>Ask them to do one task without narration from you. Record three things: <strong>what they misread</strong>, <strong>what they ignored</strong>, and <strong>what they asked for that is not there</strong>. Silence while they struggle is the data.</p>
+<p><strong>Read the second column, not the first.</strong> 45 messages is effort and effort is not evidence. Counting sends as progress on user empathy is the exact move the rubric punishes, and a panel that catches one inflated number stops believing the honest ones beside it.</p>
+
+<p><span class="lbl">Why nobody replied, as far as anyone here can tell — and this is a guess.</span> Cold outbound from a personal address to people who file for a living, on a two-day window, over a weekday. Regulatory affairs is not a function with spare afternoons. No warm introduction was available and none was tried, because there was nobody to ask. The honest position is that the sample is too small and too fast to conclude anything about the outreach itself: 45 messages with zero replies inside 36 hours is consistent with a bad pitch, a bad list, a bad channel or an ordinary response lag, and nothing here distinguishes them.</p>
+
+<h2>What the outreach taught, which is not the same as what a user taught</h2>
+
+<div class="d"><h3>Four addresses bounced, and all four carried the label "filing-verified"</h3>
+<p>Every address was read off a certificate of service — a document the parties file themselves, under oath, so that others can reach them about that docket. That is the best source available and better than any contact broker. Four of them bounced anyway.</p>
+<p><span class="lbl">The lesson, stated as a rule rather than as an anecdote.</span> A service list records who was reachable <em>when it was filed</em>, not who is reachable now. "Verified" is a timestamp against a version, not a permanent property of a fact. The clearest case is in the record twice over: a July 2021 certificate of service in IURC Cause No. 45591 gives AES Indiana's counsel as <code>tnyhart@btlaw.com</code>; the April 2026 filing in Cause No. 46394 gives <code>tnyhart@taftlaw.com</code>. Same person, same role, different firm. Both were honestly verified against a public filing and only one works. Nothing announced the change.</p>
+<p><span class="lbl">This changed the product, and it must not be reported as user feedback.</span> It is written up as principle 28 in <code>docs/best-practices.html</code> and as ADR-27 in <code>docs/.ai/decisions.html</code>, and it is the argument for scoping every citation to a proceeding <em>version</em> rather than to a proceeding. It also produced a real code change: <code>verify_citation_for_version</code> never consulted <code>DocumentVersion.source_sha256</code>, so its verdict was bound to a version id rather than to that version's bytes, and an out-of-band edit far from the cited offsets left a citation verifying clean. It refuses on mismatch now. <strong>That is a lesson from the method, not from a person.</strong> No regulatory-affairs person said it. Putting it in the "what users told us" column would be the same defect this product exists to catch — a confident claim with the wrong evidence behind it.</p></div>
+
+<div class="d"><h3>One person was emailed twice, because a send log did not know about the mailbox</h3>
+<p>The second wave was driven from a send log that began at 08:31. A first wave had gone out at 06:20 and existed only in the Sent mailbox. The log had no row for it, so one address appeared eligible and was sent to again.</p>
+<p><span class="lbl">Why it is worth writing down rather than quietly fixing.</span> It is the same failure shape as three separate defects in the application: a derived record that is trusted while a second, older record beside it disagrees. The audit chain exists because a history kept beside the thing it describes is free to disagree with it. The approval gate reads authorship out of the hash chain rather than out of an <code>authored_by</code> column for exactly this reason. And <code>docs/.ai/state.json</code> is generated rather than written because prose about the build goes stale within the hour. The outreach then made the mistake those three were designed to prevent, in a spreadsheet, on the one workstream where the cost lands on a stranger's inbox.</p>
+<p><span class="lbl">What it cost.</span> One duplicate message to one person, who has not replied to either. Small, and it is the sort of thing a real recipient notices and reads as a mailshot — which is the impression this outreach was paced over eight hours specifically to avoid.</p></div>
+
+<div class="d"><h3>The send count in this repository does not agree with itself</h3>
+<p><span class="lbl">Named rather than smoothed.</span> ADR-63 in <code>docs/.ai/decisions.html</code> says "eight messages had gone out and one bounced". <code>docs/mrd.html</code> records the first wave as seven. <code>docs/.ai/resume.md</code> says "zero replies to ~40 emails" where the total is 45. These are three counts of the same thing written at three moments by three hands, and no one of them can be shown to be the right one from what is in the repository — the send log itself is not in this repository, because the outreach ran from a personal mailbox through a script in working notes outside the tree.</p>
+<p><span class="lbl">What follows from that, and it is uncomfortable.</span> The number 45 on this page is the best available figure and it is not audited. The one number nobody disputes is the one that matters: <strong>zero replies</strong>. A project that argues every claim should be checkable against a source has an outreach record whose central quantity is not, and the honest fix is a send log inside the repository with one row per address per attempt — not a better sentence here.</p></div>
+
+<h2>The substitute, and what it is not</h2>
+
+<div class="crit">
+<p><strong>Two documents stand in for interviews that did not happen: <code>docs/synthetic-user.html</code> and <code>docs/synthetic-interview.html</code>.</strong> Both must be named as substitutes every time they are cited, on this page and everywhere else. Nobody said any of it. Both were written by a model, in one sitting, on behalf of the same person who built the product.</p>
+<p>The persona, Corinne Halloran, is invented. Her employer is invented. What is not invented is the evidence under each trait: every one traces to a line in <code>data/real/</code> — 102 public filings, roughly 4,023 pages, across eight commissions, each with a provenance file naming its docket, filer, date, source URL and SHA-256. Traits with no source do not appear, and traits that are guesses are tagged as guesses.</p>
+</div>
+
+<p><span class="lbl">What it is legitimately for.</span> Three things and no more. Rehearsing questions, so a real twenty minutes is not spent discovering the obvious. Generating candidate pains to go and check against a real source. Answering a design question when no real user is available, with the guess marked as a guess in the ADR that relies on it.</p>
+
+<p><span class="lbl">What it cannot do, at greater length, because this is the part that keeps it honest.</span></p>
+
+<table>
+<tr><th>It cannot</th><th>Why not</th></tr>
+<tr><td>Settle who the user is</td><td>The corpus is a record of who <em>files</em>. The user this product is for mostly reads, and often never appears on a service list. An earlier pass over 39 outreach targets found only 13 utility-side and matching the profile; the rest were commission staff, consumer advocates, outside counsel and consultants. Docket mining is biased against ever answering H1.</td></tr>
+<tr><td>Price anything</td><td>Nothing in a public filing says what a seat costs, what a budget line looks like, who signs the order, or whether this is bought by the department or by IT. A number invented here would land in the MRD and be indefensible at the panel.</td></tr>
+<tr><td>Say what she would buy, adopt or abandon</td><td>Willingness to pay, switching cost and what tool already sits in the workflow are all unobservable from the record. This bears directly on H2: if she already has a redlining tool she trusts, the corpus would not show it.</td></tr>
+<tr><td>Give a frequency or a base rate</td><td>The corpus was assembled by hunting for errata and version pairs. Every rate derived from it is inflated by construction. "How often does this bite you" is a question for a person.</td></tr>
+<tr><td>See anything that never produced a filing</td><td>The public record is the tail end of the work. The meeting where materiality was argued, the mail that routed it, the deadline nearly missed — all invisible. If the largest pain in the job never generates a document, this method cannot find it.</td></tr>
+<tr><td>Disagree usefully</td><td>The failure that matters most. The persona was built by the same mind that built Strata, from a corpus that mind selected. It produces pains Strata already claims to solve, because that is what it was assembled from. Treat its agreement as worth nothing and its disagreement as mildly interesting.</td></tr>
+</table>
+
+<p><span class="lbl">The three standing rules on its output, repeated here because this is the page they protect.</span> Nothing it says moves into the interview table below. Where it informs a decision, the ADR says the input was synthetic — "the synthetic persona flagged X, which we then checked against [filing]" is legitimate; "users told us X" is not. Every claim it makes is a line on the interview script, not a line in the PRD.</p>
+
+<p><span class="lbl">The one genuinely useful thing the rehearsal produced.</span> The synthetic interview undercut the product seven times, and one undercut is worth carrying into a real conversation: that a filer's own redline already gets most of the job done, so the wedge is not producing a redline but <em>ranking</em> one. A 378-page Kentucky reissue carried roughly 1,370 lines of re-layout churn around a single substantive change, and a Utah redline invented three changes that never happened while silently passing over one that did. Those are facts from filings, checkable in <code>data/real/</code>. Whether they are the pain a real analyst feels is precisely what nobody has been asked.</p>
 
 <h2>Interviews</h2>
-<p><em>Fill one block per conversation, the same day. Quotes verbatim where you can — a real sentence is worth more at the panel than a paraphrase.</em></p>
+
+<p><em>One block per conversation, filled the same day, quotes verbatim. The table is empty. It stays empty and visibly empty, because a blank row is a true statement and a filled one would not be.</em></p>
 
 <table>
-<tr><th>#</th><th>Who / role / sector</th><th>Date</th><th>Medium</th></tr>
-<tr><td>1</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-<tr><td>2</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-<tr><td>3</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><th>#</th><th>Who / role / sector</th><th>Date</th><th>Medium</th><th>Outcome</th></tr>
+<tr><td>1</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td>2</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td>3</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
 </table>
 
-<h3>Per interview, capture</h3>
-<p><strong>How they hear about change today &middot; how they establish what changed &middot; how they judge materiality &middot; who reviews &middot; where the record lives &middot; the last time it went wrong &middot; what would earn their trust.</strong> Then, after the demo: what they misread, what they ignored, what they asked for.</p>
+<h2>What changed because of user feedback</h2>
 
-<h2>What changed because of this</h2>
-<p><em>The section the panel actually reads. Each row must name a real change to the build, or an explicit decision not to change — "we heard it and rejected it, because" is a legitimate and strong answer.</em></p>
 <table>
-<tr><th>What we heard</th><th>Who said it</th><th>What we changed (or why we did not)</th></tr>
-<tr><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><th>What we heard</th><th>Who said it</th><th>What we changed, or why we did not</th></tr>
+<tr><td colspan="3" class="no">Nothing. No user has said anything. This table has no rows and inventing one would cost more than the empty table does.</td></tr>
+</table>
+
+<p><span class="lbl">Kept separate on purpose: what the outreach <em>method</em> changed.</span> Two changes below are real and neither is user feedback. They are here so the distinction is visible rather than blurred into the table above.</p>
+
+<table>
+<tr><th>What happened</th><th>What changed in the build</th><th>Why this is not user feedback</th></tr>
+<tr><td>Four filing-verified addresses bounced</td><td>Principle 28 and ADR-27: a verified fact has a shelf life. <code>verify_citation_for_version</code> now binds its verdict to <code>DocumentVersion.source_sha256</code> and refuses on mismatch.</td><td>A mailer daemon is not a user. The lesson came from the method, and the code change came from applying it to the verifier.</td></tr>
+<tr><td>One address sent to twice from a log that did not know about the mailbox</td><td>Nothing in the product. It is recorded here as an instance of the failure the audit chain and <code>state.json</code> were built to prevent, arriving on the one workstream that had neither.</td><td>Same reason. Nobody told us anything; a spreadsheet did.</td></tr>
 </table>
 
 <h2>Hypotheses under test</h2>
-<p>Stated before the interviews so they can be genuinely falsified rather than confirmed after the fact.</p>
+
+<p>Stated before the interviews so they can be falsified rather than confirmed after the fact. <strong>All four are open, and open here means untested, not undecided.</strong> No evidence for or against any of them exists in this repository, because the only evidence that would count is a person's answer.</p>
+
 <table>
-<tr><th>#</th><th>Hypothesis</th><th>What would falsify it</th><th>Verdict</th></tr>
-<tr><td>H1</td><td>The analyst, not counsel, is the person who does the change-to-action work.</td><td>Two or more interviews say the real reading is done by outside counsel and the analyst only files it.</td><td>open</td></tr>
-<tr><td>H2</td><td>Nobody reliably diffs versions today; it is done by reading, memory and highlighting.</td><td>They show a redlining tool they already trust and use routinely.</td><td>open</td></tr>
-<tr><td>H3</td><td>Trust requires seeing the source passage, not a confidence score.</td><td>They say a score would be enough, or that they would not check either way.</td><td>open</td></tr>
-<tr><td>H4</td><td>The expensive part is interpretation and routing, not detection.</td><td>They say detection is the bottleneck and interpretation is quick once they know where to look.</td><td>open</td></tr>
+<tr><th>#</th><th>Hypothesis</th><th>What would falsify it</th><th>What it would take to find out</th><th>What falls if it falls</th></tr>
+<tr><td>H1</td><td>The analyst, not counsel, is the person who does the change-to-action work.</td><td>Two or more interviews say the real reading is done by outside counsel and the analyst only files the result.</td><td>Two conversations, one utility-side and one at a firm. The corpus cannot answer it: it records who files, and this person mostly reads. Reaching them means a warm introduction or a commission-staff contact, not another cold send to a service list.</td><td>ADR-001 and the whole one-user framing. The PRD gets rewritten, not patched.</td></tr>
+<tr><td>H2</td><td>Nobody reliably diffs versions today; it is done by reading, memory and highlighting.</td><td>They show a redlining tool they already trust and use routinely for this task.</td><td>One conversation, and the question has to be "show me the last one you did", not "do you use a tool". Cheapest of the four to settle and the most likely to go against us — the synthetic rehearsal already pushed back with "Compare Documents in Word, and filers do send redlines".</td><td>The deterministic diff (ADR-004) stops being a wedge and becomes table stakes. The argument moves to ranking a diff rather than producing one.</td></tr>
+<tr><td>H3</td><td>Trust requires seeing the source passage, not a confidence score.</td><td>They say a score would be enough, or that they would not check either way.</td><td>Put the prototype in front of one person, ask for one task, say nothing, and watch whether they click the citation chip. Behaviour, not opinion — everybody says they would check.</td><td>The depth area. Citation verification (ADR-003) stops being the trust mechanism and survives as a correctness mechanism, and the honest move is to say exactly that at the panel rather than keep selling it as trust.</td></tr>
+<tr><td>H4</td><td>The expensive part is interpretation and routing, not detection.</td><td>They say detection is the bottleneck and interpretation is quick once they know where to look.</td><td>One conversation about the last thing they missed, with a clock attached: how long between the filing landing and somebody knowing it mattered, and how much of that was finding versus deciding.</td><td>The wedge moves upstream toward faster, more reliable change-finding. Most of what is built stays; what it leads with does not.</td></tr>
 </table>
-<p>H3 is the one to watch. If trust does not require the source span, the depth area (ADR-003) is engineering for its own sake — and the honest response is to say so in the PRD and keep the verifier anyway as a correctness mechanism rather than a trust one.</p>
+
+<p><span class="lbl">H3 is the one to watch, and it is worth saying what happens if it falls.</span> If trust does not require the source span, the depth area is engineering for its own sake. The response prepared in advance, so it is not composed under pressure: say so in the PRD, keep the verifier as a correctness mechanism because a claim that cannot show its source is still a claim that may be wrong, and stop presenting it as the reason anybody would trust the product.</p>
+
+<h2>The method, kept because it has never been used</h2>
+
+<p>Everything below is a plan. It was written before the outreach and no part of it has been run against a person. It is kept rather than deleted so the first real conversation does not start from nothing, and so a reader can see that the questions were prepared and the answer was still silence.</p>
+
+<h3>Who to ask</h3>
+<p>A regulatory affairs analyst or manager at a utility, an independent power producer, or an energy retailer. Adjacent and still useful: compliance analysts in banking or pharma who track rule changes; a regulatory lawyer, discounting their answers, because their incentives differ from an in-house analyst's.</p>
+<p><span class="lbl">What the attempt taught about where they are.</span> Commission service lists name every participant in a proceeding with contact details, filed as public record, and that beats any profile database — filing in a docket proves somebody does the work rather than merely holds the title. It also skews the list: of 39 targets mined that way, 13 matched the profile and 26 were commission staff, consumer advocates or outside counsel. The one untried channel with the best odds is a public-servant reader at a consumer counsel office: not the buyer and never will be, but reading the same dockets under the same clock, and far more likely to answer within a day.</p>
+
+<h3>The request, short enough to answer from a phone</h3>
+<blockquote>I'm building a prototype for turning regulatory change into tracked work — dockets and orders into "here is what changed, here is what it affects, here is who reviews it." I'd value 20 minutes to hear how you do this today and where it hurts. I'm not selling anything; I want to know if I'm solving a real problem or an imagined one.</blockquote>
+<p>Sent 45 times. Answered none. Whether the words are the problem is not something a zero-reply run can say.</p>
+
+<h3>What to ask</h3>
+<p>Ask about the last time, not about preferences in general. "Walk me through the last docket you had to act on" produces facts; "would you use a tool that…" produces politeness.</p>
+<table>
+<tr><th>Ask</th><th>What you are listening for</th></tr>
+<tr><td>Walk me through the last regulatory change you had to act on. Start from how you heard about it.</td><td>The trigger. An alert, a colleague, a law firm memo, a docket subscription. This tells you what the product replaces.</td></tr>
+<tr><td>How did you work out what actually changed between versions?</td><td>H2, directly. Whether anyone truly diffs, or reads the new version cold. If they redline by hand, that is the wedge; if they open a tool, it is not.</td></tr>
+<tr><td>How do you decide whether it is material to you?</td><td>The judgement the product must support rather than replace.</td></tr>
+<tr><td>Who else had to look at it before anything happened?</td><td>The real routing graph, against the org chart. Also the only way to test whether the obligation owner is a real second person or a design convenience.</td></tr>
+<tr><td>What did you write down, and where does it live now?</td><td>The system of record this has to sit alongside. If it is a spreadsheet, say so in the PRD.</td></tr>
+<tr><td>When were you last burned — something missed, or acted on too early?</td><td>H4, and the pain with a cost attached. This becomes the PRD's opening.</td></tr>
+<tr><td>What would you need to see before you trusted a machine reading of a docket?</td><td>H3, asked directly — but weigh the demo below far above the answer.</td></tr>
+</table>
+<p>Do not describe the solution until the end. Once you do, they will be agreeable, and agreeable answers are worthless.</p>
+
+<h3>Then show the prototype and stay quiet</h3>
+<p>Ask for one task with no narration. Record three things: <strong>what they misread</strong>, <strong>what they ignored</strong>, and <strong>what they asked for that is not there</strong>. Silence while they struggle is the data. For H3 specifically, the measurement is whether they click the citation chip unprompted — not whether they say they would.</p>
+
+<h2>What this page would have to look like to stop being the weak one</h2>
+<p>Named plainly, because the gap is easier to defend when the fix is specific.</p>
+<ul>
+<li><strong>One conversation.</strong> One real twenty minutes fills the first row of the interview table and gives the "what changed" table its first honest entry, even if the entry is "we heard it and rejected it, because". One conversation reported straight beats three invented ones.</li>
+<li><strong>A send log in the repository</strong>, one row per address per attempt, with the outcome. It would have prevented the duplicate send and would settle the three disagreeing counts above. The absence of it is why the central number on this page cannot be checked.</li>
+<li><strong>A channel that is not cold email.</strong> 45 messages and zero replies is the measurement of that channel on this timescale. A warm introduction, a commission-staff reader, or a docket-adjacent forum all beat sending message 46.</li>
+</ul>
+<p>Until then this page says no, describes what was done instead, and states what the substitute cannot tell us. That is the whole of the honest answer, and it is a better one than a page that reads as though somebody had been asked.</p>
 
 </body>
 </html>

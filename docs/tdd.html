@@ -41,7 +41,7 @@
 
 <h1>Technical Design Document</h1>
 <p class="sub">Strata — citation-grade regulatory change intelligence. How the hard bet is built, with the alternative considered and the trade-off accepted at every step.</p>
-<p class="meta">Written 2026-08-03, before implementation. Reconciled against the code on 2026-08-04, section by section, and the places where the two disagreed were fixed here rather than in the code. A TDD that stops matching the build is worse than none, because it tells the reader a false story with confidence.</p>
+<p class="meta">Written 2026-08-03, before implementation. Reconciled against the code twice since, section by section: once on 2026-08-04, and again after commit <code>97daf02</code>, when a model path, a schema migration, an approval engine, a routing module and a corpus of real filings all landed and left this document describing a build that had moved under it. Both times the places where the two disagreed were fixed here rather than in the code. A TDD that stops matching the build is worse than none, because it tells the reader a false story with confidence.</p>
 
 <div class="note"><strong>How to read this.</strong> Every section states what is built, the alternative rejected, and the trade-off accepted. Where a number is not yet known — because the eval has not measured it, or the threshold has not been tuned — this document says so rather than filling the gap with something plausible. A guess dressed as a result is exactly the failure this product exists to prevent in its own domain; it would be strange to allow it here.
 <p><strong>The same rule governs the drawings.</strong> A dashed, muted box means designed and not built. Nothing on these pages draws intended work in the same ink as shipped work, for the same reason a claim refuses to assert itself on a citation that did not verify: a reviewer who finds one box that overstates stops believing the other twenty.</p></div>
@@ -67,7 +67,8 @@
 
 <h2 id="overview">System overview</h2>
 <p>A <strong>proceeding</strong> — an external regulatory docket — arrives as successive <strong>document versions</strong>, each tagged draft or final. A <strong>company context</strong> — obligations, projects, documents, written in the company's own words rather than the docket's — sits beside it. The pipeline turns a new version into: what changed (deterministic), and what the product is prepared to say about it (a claim, with a citation that must re-read cleanly before it can be shown as fact).</p>
-<p>The system is a single FastAPI service over SQLite (ADR-007), server-rendered. <span class="lbl">Every stage that runs today is deterministic.</span> There is no model call anywhere in <code>app/</code>, and no retrieval layer of any kind. The stages that would call a model — materiality judgement, obligation extraction, impact mapping — are designed and not built, and this document draws them dashed rather than describing them in the present tense. What that leaves is the part the submission actually rests on: a diff that is a pure function, and a verifier that can refuse.</p>
+<p>The system is a single FastAPI service over SQLite (ADR-007), server-rendered. <span class="lbl">Two modules call a model, and neither of them sits on the path a claim takes to the screen.</span> <code>app/interpretation/propose.py</code> asks Claude what changed between two versions (ADR-037); <code>app/chat/agent.py</code> answers questions about the record through a fixed set of tools (ADR-050). Everything between reading a version's bytes and rendering a claim — ingestion, segmentation, the diff, normalization, verification, the audit chain — is deterministic and takes no model call. That ordering is the whole architecture: a claim survives its citation whatever produced it, so the gate in §5 does not need to know.</p>
+<p><span class="lbl">An earlier version of this document said there was no model call anywhere in <code>app/</code>, which is how it read for most of the build and is why the sentence is corrected rather than quietly replaced.</span> Both paths are off unless <code>ANTHROPIC_API_KEY</code> reaches the process, both say so when they are off rather than answering from something canned, and <strong>neither has ever run against the real endpoint in this repository</strong> — every test drives a deterministic fake through an injected transport. There is still no retrieval layer of any kind: no index, no ranking, no embeddings, nothing to search. The stages that would need one — materiality judgement and automatic change-to-obligation mapping — are designed and not built, and this document draws them dashed rather than describing them in the present tense.</p>
 
 <h2 id="ingestion">1. Ingestion &amp; passage segmentation</h2>
 <div class="d">
@@ -83,7 +84,7 @@
   <desc id="figIngD">Ingestion hashes the exact bytes, splits the text on blank lines only, and
   writes one passage row per chunk carrying character offsets into the frozen text. Section labels
   are detected by a leading-number pattern and carried forward. PDF and HTML extraction do not
-  exist; the corpus is plain text.</desc>
+  exist; both corpora are stored as text, the real one extracted outside this product.</desc>
 
   <text class="t-sub" x="14" y="58">raw version text</text>
   <text class="t-sub" x="14" y="72">read as bytes, decoded</text>
@@ -96,7 +97,7 @@
 
   <g class="box box--absent"><rect x="596" y="32" width="290" height="64"/>
     <text class="t-title" x="612" y="54">PDF and HTML extraction</text>
-    <text class="t-sub" x="612" y="72">DESIGNED, NOT BUILT. The corpus is plain</text>
+    <text class="t-sub" x="612" y="72">DESIGNED, NOT BUILT. Both corpora arrive as</text>
     <text class="t-sub" x="612" y="87">text, so no header, hyphen or column pass runs</text></g>
   <path class="flow--weak" d="M554 64 H592"/>
 
@@ -124,7 +125,7 @@
   <g class="box box--store"><rect x="310" y="240" width="280" height="72"/>
     <text class="t-title" x="326" y="262">passage, ordinal n</text>
     <text class="t-mono" x="326" y="282">4665 – 5063   (v1)</text>
-    <text class="t-sub" x="326" y="300">section 4.4 — its last 133 chars are §5's</text></g>
+    <text class="t-sub" x="326" y="300">section 4.4 — its last 133 chars repeat (§5)</text></g>
 
   <g class="box box--store"><rect x="600" y="240" width="280" height="72"/>
     <text class="t-title" x="616" y="262">passage, ordinal n+1</text>
@@ -163,7 +164,8 @@ which is why nothing between reading the bytes and writing the row is allowed to
 
 <div class="d">
 <h4>PDF extraction, stated honestly</h4>
-<p>The plan was to treat PDF extraction as its own tested stage — page headers and footers, hyphenation across line breaks, column reflow all resolved once, before any offset exists. <span class="lbl">No such stage exists.</span> The corpus is three plain-text files and <code>ingest_version</code> is handed decoded text. So there is nothing here to test and nothing here to trust, and the risk this section used to describe as mitigated is simply unaddressed.</p>
+<p>The plan was to treat PDF extraction as its own tested stage — page headers and footers, hyphenation across line breaks, column reflow all resolved once, before any offset exists. <span class="lbl">No such stage exists.</span> <code>grep -rn "pdfminer\|pypdf\|pdfplumber" app/</code> returns nothing, and <code>ingest_version</code> is handed decoded text in every path.</p>
+<p><span class="lbl">The corpus is no longer three files, and that widens what is untested rather than closing it.</span> <code>data/real/</code> holds 102 real public filings retrieved from eight commissions, each beside a <code>.provenance.json</code> naming its source URL, docket, filer, filing date, retrieval time and a SHA-256 of the bytes (ADR-058, ADR-059). <code>scripts/ingest_real.py</code> loads one pair of them — Kentucky PSC 2025-00113, a witness's direct testimony filed and then corrected — into the demonstration workspace. That text was extracted from the commissions' PDFs <em>outside</em> this product and stored as text, so the extractor is still somebody else's, still untested here, and the risk this section used to describe as mitigated is still unaddressed. What the real corpus does buy is input the normalizer had never met: line-numbered testimony, certificates of service, words hyphenated across line breaks, soft hyphens and ligatures, in documents nobody on this side shaped to suit the code.</p>
 <p>One piece of PDF reality is handled, in a different place from the one this document used to name. Soft hyphens and hyphen-against-line-break are folded by <code>app/text/normalize.py</code>, which runs on <em>both sides of every comparison at verification time</em> (§5) — not at ingestion, before offsets exist. That is the opposite of what an earlier draft said, and the code's arrangement is the safer one: normalization that ran at ingestion would rewrite the text the offsets index, and verification must never fix text out from under an offset it did not compute. <code>tests/test_pdf_text.py</code> exercises the occurrence check over text shaped the way an extractor emits it — soft hyphens, ligatures, wrapped lines — which is a test of the normalizer, not of an extractor the product does not have.</p>
 </div>
 
@@ -277,23 +279,26 @@ thing that raises an escalation today is a citation that fails to verify.</figca
 <h2 id="extraction">3. Evidence-linked extraction</h2>
 <div class="d">
 <h3>Design, and what of it exists</h3>
-<p>Extraction is the stage where a model would read source text and produce a structured claim, downstream of a diff that has already enumerated what changed. <span class="lbl">No model call exists anywhere in <code>app/</code>.</span> <code>app/interpretation/</code> contains one file — a status-to-vocabulary table with no model in it (§7). The claims the product renders today are assembled deterministically in <code>app/seed.py</code>: the sentence is written there and the facts inside it are substituted from <code>data/manifest.json</code>.</p>
-<p>That makes this section a contract rather than a description of running code, and the contract is the useful part. Whatever produces a claim — a model later, the seed today — emits the same typed object, and that object is the only thing that crosses into verification. Nothing else about the producer is visible downstream, which is what makes the model swappable and, more importantly, what makes the gate in §5 independent of it.</p>
+<p>Extraction is the stage where a model reads source text and produces a structured claim, downstream of a diff that has already enumerated what changed. <span class="lbl">This section used to say no model call existed anywhere in <code>app/</code>, and that <code>app/interpretation/</code> held one file. Both stopped being true.</span> The package now holds two: <code>action.py</code>, the status-to-vocabulary table with no model in it (§7), and <code>propose.py</code>, which asks <code>claude-opus-5</code> what changed between two versions and hands every answer to the verifier (ADR-037).</p>
+<p>The shape of that module is the part worth reading. Every proposal must name a <code>(version_id, char_start, char_end, quoted_text)</code>, and <code>propose_changes</code> re-reads the stored source at those offsets through <code>app/verification/verifier.py</code> before anything survives. <strong>Nothing is repaired.</strong> A proposal whose offsets sit two characters off the quote is withheld, not nudged into place — snapping an offset to the nearest matching span would make the gate a formality, because every citation would be adjusted until it passed and the verifier would end up checking the repair. A malformed proposal is dropped one at a time with its reason recorded, so one bad entry does not discard the good ones beside it. The model is never asked whether a version is draft or final: that is read from the field and dispatched on in Python (ADR-005), and the permitted actions go to the model as a closed list.</p>
+<p><span class="lbl">Three limits, none of them small.</span> The module <strong>does not write</strong> — nothing in it creates a <code>Claim</code> row or appends to the audit chain, because there is no action code for "a model proposed this" and inventing a second spelling of one is how the two that already drifted got that way. It <strong>has no caller</strong>: <code>grep -rn "propose_changes" app/</code> returns its own definitions and two mentions in comments, and no invocation anywhere else, so the path runs from <code>tests/test_propose.py</code> and from nowhere a reviewer can click. And it <strong>has never run against the real endpoint</strong> — every test drives a deterministic fake through an injected transport, so what is proven is the gate, not the request. The claims a reviewer actually sees are still assembled deterministically: <code>app/seed.py</code> writes the synthetic ones by rule from <code>data/manifest.json</code>, and <code>scripts/ingest_real.py</code> carries exactly one hand-written statement about the real Kentucky filing, cited at the offsets where it sits.</p>
+<p>That leaves this section a contract as well as a description, and the contract is the useful part. Whatever produces a claim — the model, the seed, a person typing one into a script — emits the same typed object, and that object is the only thing that crosses into verification. Nothing else about the producer is visible downstream, which is what makes the model swappable and, more importantly, what makes the gate in §5 independent of it.</p>
 </div>
 
 <figure class="fig">
 <div class="fig__frame">
 <svg viewBox="0 0 900 456" role="img" aria-labelledby="figExtT figExtD">
   <title id="figExtT">Where claims come from today, and the object that crosses the boundary</title>
-  <desc id="figExtD">The model proposer is designed and not built. Claims are assembled deterministically
-  in the seed from the manifest. Either producer emits the same typed claim carrying a statement, a
+  <desc id="figExtD">The model proposer is built and has no caller: it runs from its tests. The claims a
+  reviewer sees are assembled deterministically in the seed from the manifest, plus one hand-written
+  claim about the real filing. Every producer emits the same typed claim carrying a statement, a
   citation and a confidence, and that object is the only thing that reaches the verification gate.</desc>
 
-  <g class="box box--absent"><rect x="40" y="28" width="380" height="80"/>
-    <text class="t-title" x="56" y="50">interpretation — the model proposer</text>
-    <text class="t-sub" x="56" y="70">DESIGNED, NOT BUILT. app/interpretation/ holds</text>
-    <text class="t-sub" x="56" y="85">one file: a status-to-vocabulary table with no</text>
-    <text class="t-sub" x="56" y="100">model call in it.</text></g>
+  <g class="box box--model"><rect x="40" y="28" width="380" height="80"/>
+    <text class="t-title" x="56" y="50">propose.py — the model proposer</text>
+    <text class="t-sub" x="56" y="70">BUILT, NO CALLER. Asks claude-opus-5, binds</text>
+    <text class="t-sub" x="56" y="85">every proposal to a citation, repairs nothing,</text>
+    <text class="t-sub" x="56" y="100">writes nothing. Runs from its tests.</text></g>
 
   <g class="box"><rect x="480" y="28" width="380" height="80"/>
     <text class="t-title" x="496" y="50">app/seed.py — deterministic assembly</text>
@@ -301,7 +306,7 @@ thing that raises an escalation today is a citation that fails to verify.</figca
     <text class="t-sub" x="496" y="85">are substituted from data/manifest.json. This is</text>
     <text class="t-sub" x="496" y="100">what fills the claims table today.</text></g>
 
-  <path class="flow--weak" d="M230 108 V140 H420 V166"/>
+  <path class="flow" d="M230 108 V140 H420 V166"/>
   <path class="flow" d="M670 108 V140 H480 V166"/>
 
   <g class="box"><rect x="250" y="166" width="400" height="116"/>
@@ -320,19 +325,22 @@ thing that raises an escalation today is a citation that fails to verify.</figca
     <text class="t-sub" x="266" y="360">Nothing reaches the screen as fact without passing here,</text>
     <text class="t-sub" x="266" y="375">whichever of the two producers above wrote it.</text></g>
 
-  <text class="t-sub" x="20" y="412">No model call exists in app/, so Change.materiality stays NULL rather than carrying a default that would read like a judgement.</text>
+  <text class="t-sub" x="20" y="412">Nothing judges materiality, so Change.materiality stays NULL rather than carrying a default that would read like a judgement.</text>
   <text class="t-sub" x="20" y="428">There is no cited-versus-inferred field split either. A Claim carries exactly one citation, and it verifies or the claim is withheld.</text>
-  <text class="t-sub" x="20" y="444">Every seeded claim carries confidence_bp = 10000, which is a constant and not a measurement.</text>
+  <text class="t-sub" x="20" y="444">Every seeded claim carries confidence_bp = 10000, which is a constant and not a measurement. The proposer reports no confidence at all.</text>
 </svg>
 </div>
 <div class="fig__key">
   <span><i></i>deterministic stage</span>
+  <span><i class="k-model"></i>may call a model</span>
   <span><i class="k-gate"></i>can refuse</span>
-  <span><i class="k-absent"></i>designed, not built</span>
 </div>
 <figcaption><strong>The absence is visible in the data, not hidden in a default.</strong>
-<code>Change.materiality</code> is NULL on every row, because the stage that would fill it does not
-exist and a default like "pending" or "cosmetic" would read as a judgement nobody made. The
+<code>Change.materiality</code> is NULL on every row — <code>app/pipeline.py</code> passes
+<code>materiality=None</code> and nothing else ever writes the column — because the stage that would
+fill it does not exist and a default like "pending" or "cosmetic" would read as a judgement nobody
+made. <code>app/web/views/projects.py</code> renders it as <code>MATERIALITY_UNASSESSED</code> rather
+than as a grade. The
 plan also had each claim field marked <em>cited</em> or <em>inferred</em>, so a category label the
 text does not use verbatim could be shown as inference. <strong>That split is not built</strong> and the
 schema has no room for it: one claim, one citation, verified or withheld. The simplification is
@@ -345,18 +353,19 @@ simplification, not the design this section originally promised.</figcaption>
 <h3>Design</h3>
 <p>Three things carry the company side of the join. An <strong>obligation</strong> is a regulatory duty the company holds, recorded in the company's own words. A <strong>project</strong> is an internal initiative that fulfils or is constrained by obligations. A <strong>document</strong> is one of the company's own artefacts — a tariff, a compliance policy, a procedure — evidentiary rather than regulatory.</p>
 <p>The corpus (<code>data/company_context.json</code>) holds 8 obligations, 3 projects and 4 documents, deliberately worded the way the company would word them rather than the way the docket does. That is not incidental realism. It is the reason a lexical match is not enough. OBL-001 reads <em>Post security for new large-load interconnection work before construction starts.</em> The clause it answers to, section 6.1, reads <em>A Large Load Customer shall post collateral in an amount equal to 100% of the binding cost estimate produced by the Facilities Study, prior to the Utility's commencement of construction of Interconnection Facilities or Network Upgrades.</em> Five words are common to both — post, large, load, interconnection, construction — and none of them is the one that matters. The company posts <em>security</em>; the docket posts <em>collateral</em>. A lexical match has to bridge that word, and the five it does share are the generic ones this docket uses throughout.</p>
-<p><span class="lbl">How much of that is a table has changed under this document twice, so it is drawn rather than described.</span> Projects have always been rows. <code>obligations</code> and <code>change_obligations</code> landed in the schema on 2026-08-04 and nothing loads them yet. Documents have no table at all. The join between a change and an obligation is done by hand in the seed.</p>
+<p><span class="lbl">How much of that is a table has changed under this document three times, so it is drawn rather than described.</span> Projects have always been rows. <code>obligations</code> is now a loaded table: <code>scripts/seed_demo_gaps.py</code> reads the eight out of the JSON and resolves each <code>owner_name</code> to a real account by name, and where no account matches it writes the obligation <strong>without</strong> an owner rather than with a guessed one — an unowned obligation is visible and unroutable, which is the honest state. <code>change_obligations</code> exists and has a writer, <code>map_change_to_obligation</code>, which nothing outside the tests calls. Documents still have no table at all. So the join between a change and an obligation is still done by hand, in <code>data/manifest.json</code> and read out by the seed.</p>
 </div>
 
 <figure class="fig">
 <div class="fig__frame">
 <svg viewBox="0 0 900 622" role="img" aria-labelledby="figCtxT figCtxD">
   <title id="figCtxT">The company context: what became a table and what did not</title>
-  <desc id="figCtxD">The company context is a JSON file read once by the seed. Projects, users, sources,
-  findings, questions and knowledge items become rows. The obligations and change_obligations tables
-  exist but nothing loads them. Documents have no table. The join between the company's wording and
-  the docket's wording is the product, and no code performs it. Both wordings are shown at their full
-  length so neither can be trimmed into agreeing with the other.</desc>
+  <desc id="figCtxD">The company context is a JSON file read by the seed. Projects, users, sources,
+  findings, questions and knowledge items become rows, and obligations now do too, with owners
+  resolved to accounts or left empty. The change_obligations table has a writer nothing calls.
+  Documents have no table. The join between the company's wording and the docket's wording is the
+  product, and no code derives it. Both wordings are shown at their full length so neither can be
+  trimmed into agreeing with the other.</desc>
 
   <g class="box box--store"><rect x="20" y="28" width="290" height="92"/>
     <text class="t-title" x="36" y="50">data/company_context.json</text>
@@ -366,9 +375,9 @@ simplification, not the design this section originally promised.</figcaption>
   <path class="flow" d="M314 74 H356"/>
 
   <g class="box"><rect x="360" y="28" width="290" height="92"/>
-    <text class="t-title" x="376" y="50">app/seed.py</text>
-    <text class="t-sub" x="376" y="70">reads the file once and turns the parts</text>
-    <text class="t-sub" x="376" y="85">that have a table into rows. The rest</text>
+    <text class="t-title" x="376" y="50">app/seed.py + seed_demo_gaps.py</text>
+    <text class="t-sub" x="376" y="70">read the file and turn the parts that</text>
+    <text class="t-sub" x="376" y="85">have a table into rows. The rest</text>
     <text class="t-sub" x="376" y="100">supplies names, owners and mappings.</text></g>
 
   <path class="flow" d="M470 120 V140 H155 V156"/>
@@ -379,13 +388,13 @@ simplification, not the design this section originally promised.</figcaption>
     <text class="t-title" x="36" y="182">loaded into rows</text>
     <text class="t-mono" x="36" y="204">projects  users  sources</text>
     <text class="t-mono" x="36" y="220">findings  questions</text>
-    <text class="t-mono" x="36" y="236">knowledge_items</text></g>
+    <text class="t-mono" x="36" y="236">knowledge_items  obligations</text></g>
 
   <g class="box box--store"><rect x="310" y="160" width="270" height="84"/>
-    <text class="t-title" x="326" y="182">tables that exist, empty</text>
-    <text class="t-mono" x="326" y="204">obligations</text>
-    <text class="t-mono" x="326" y="220">change_obligations</text>
-    <text class="t-sub" x="326" y="238">landed today; no loader writes them</text></g>
+    <text class="t-title" x="326" y="182">a table with a writer nobody calls</text>
+    <text class="t-mono" x="326" y="206">change_obligations</text>
+    <text class="t-sub" x="326" y="226">map_change_to_obligation exists;</text>
+    <text class="t-sub" x="326" y="240">only the tests reach it</text></g>
 
   <g class="box box--absent"><rect x="600" y="160" width="280" height="84"/>
     <text class="t-title" x="616" y="182">documents</text>
@@ -411,10 +420,10 @@ simplification, not the design this section originally promised.</figcaption>
   <text class="t-edge" x="462" y="504">the join</text>
 
   <g class="box box--absent"><rect x="230" y="530" width="440" height="80"/>
-    <text class="t-title" x="246" y="552">impact mapping — change to obligation</text>
-    <text class="t-sub" x="246" y="572">DESIGNED, NOT BUILT (ADR-008). Nothing in app/ joins a</text>
-    <text class="t-sub" x="246" y="587">change to an obligation, and there is no retrieval layer at</text>
-    <text class="t-sub" x="246" y="602">all, lexical or semantic. The seed maps the five by hand.</text></g>
+    <text class="t-title" x="246" y="552">impact mapping — deriving the join</text>
+    <text class="t-sub" x="246" y="572">DESIGNED, NOT BUILT (ADR-008). change_obligations can now</text>
+    <text class="t-sub" x="246" y="587">HOLD the edge; nothing computes one. No retrieval layer at</text>
+    <text class="t-sub" x="246" y="602">all, lexical or semantic. The manifest names the five by hand.</text></g>
 </svg>
 </div>
 <div class="fig__key">
@@ -425,10 +434,12 @@ simplification, not the design this section originally promised.</figcaption>
 buying, and it is the part that is not built.</strong> ADR-008 proposes lexical retrieval with a
 semantic re-rank over company-context passages, because the words the two sides share are the
 generic ones and the word that carries the duty is not shared at all. There is no index, no
-ranking and no embedding in this repository. The consequence is worth stating rather than hiding:
-the five change-to-obligation mappings a reviewer sees in the demo were written by hand in the
-manifest and read out by the seed. They show what the surface would look like, not that anything
-can produce it. <strong>A note on what this figure used to do.</strong> It drew both wordings cut short.
+ranking and no embedding in this repository. <strong>A table for the answer is not the answer.</strong>
+<code>change_obligations</code> and its writer landed since this figure was drawn, which moves the gap
+without closing it: the five change-to-obligation mappings a reviewer sees in the demo are still
+written by hand in <code>data/manifest.json</code> and read out by the seed. They show what the surface
+would look like, not that anything can produce it.
+<strong>A note on what this figure used to do.</strong> It drew both wordings cut short.
 The docket side was 57 characters standing in for a 236-character sentence, spliced from three
 separate fragments of it with no ellipsis, under a caption calling it the corpus's own words and an
 edge label reading "no word shared". The label was untrue even of the
@@ -448,12 +459,12 @@ that move. Quoting whole is the version a reader can check, which is the standar
 <table>
 <tr><th>Rule</th><th>What it handles</th></tr>
 <tr><td>Whitespace collapse</td><td>Runs of whitespace become one space; leading and trailing space is dropped. Handles PDF reflow and a quote reproduced with different line wrapping.</td></tr>
-<tr><td>Selective NFKC</td><td>Ligatures, no-break space, full-width and half-width forms, squared unit glyphs, and canonical composition. <span class="lbl">Selective, not blanket:</span> a character tagged <code>&lt;super&gt;</code>, <code>&lt;sub&gt;</code> or <code>&lt;fraction&gt;</code> is left alone, and so is any character whose folding starts with a decimal digit. Blanket NFKC folded "20" followed by a superscript two into "202" and the vulgar half into "1/2" — a footnote marker changing a number's value inside the function whose job is to preserve it.</td></tr>
+<tr><td>Selective NFKC</td><td>Ligatures, no-break space, full-width and half-width forms, squared unit glyphs, and canonical composition. <span class="lbl">Selective, not blanket:</span> a character tagged <code>&lt;super&gt;</code>, <code>&lt;sub&gt;</code> or <code>&lt;fraction&gt;</code> is left alone, and so is any character whose folding <em>begins</em> with a decimal digit — <strong>unless that character is itself a decimal digit</strong> (category Nd). Blanket NFKC folded "20" followed by a superscript two into "202", and the vulgar half into "1⁄2" with a fraction slash — a footnote marker changing a number's value inside the function whose job is to preserve it. The Nd exception is the judgement to argue with: a full-width two and a mathematical bold two are the digit two in another face, so both fold and <code>"２０ MW"</code> still matches <code>"20 MW"</code>. A bold digit used as a marker beside a plain number would fold wrongly. Nobody here has seen one in a filing, and there is no way to tell the two uses apart from the characters alone.</td></tr>
 <tr><td>Quotes and dashes</td><td>Smart quotes and every dash variant fold to the straight forms, for comparison only.</td></tr>
 <tr><td>Soft hyphen</td><td>Deleted unconditionally. It is a rendering hint and the words either side stay joined.</td></tr>
 <tr><td>Hyphen against a line break</td><td>The break is consumed and the hyphen kept, for any of seven line-break characters including the form feed a PDF extractor writes at a page boundary. "cost-\ncausation" becomes "cost-causation"; "demon-\nstrate" becomes "demon-strate", which will not match "demonstrate" — so the citation goes to review rather than asserting a joined word nobody wrote.</td></tr>
 <tr><td>Case</td><td><strong>Not</strong> normalized. A citation with wrong case is suspicious — it can mean a defined term was altered — and is a genuine mismatch, not noise.</td></tr>
-<tr><td>Digits, units, dates</td><td><strong>Not</strong> normalized, ever. "20 MW" and "10 MW" are the whole point.</td></tr>
+<tr><td>Digits, units, dates</td><td><strong>No digit's value is ever changed.</strong> "20 MW" and "10 MW" are the whole point. The precise rule is narrower than "never touched", and stating it loosely was wrong: a squared unit glyph does fold — <code>㎠</code> to <code>cm2</code>, <code>㎒</code> to <code>MHz</code> — and a full-width digit folds to its plain form. What may not happen is a fold that makes a number read as a different number, which is what the digit test above defends.</td></tr>
 </table>
 <p>The same function runs on both sides of every comparison. A normalization applied to one side only is not a normalization, it is an edit.</p>
 </div>
@@ -550,7 +561,7 @@ must carry one more field or it cannot be made at all.</figcaption>
 <p><span class="lbl">What this document used to claim, and does not now.</span> An earlier draft listed four graded outcomes — <code>verified_exact</code>, <code>verified_normalized</code>, <code>near_match</code>, <code>unverified</code> — with a stored <code>verification_status</code> column and a bounded re-anchor search that would hunt for the quote a few characters either side of the given offsets. <strong>None of that is built, and two of the four were bad ideas.</strong> A stored status is a promise about bytes that may since have changed; there is no <code>verified</code> column anywhere in the schema and the verdict is recomputed on every read (§6). And a re-anchor window is a tunable that trades a false reject for a false accept, which is the one direction this design cannot fail in. Rejecting an off-by-a-little citation costs a review. Confirming a coincidental identical phrase elsewhere in the document costs the reason the product exists.</p>
 
 <h4>Two entry points, and which one production uses</h4>
-<p><code>verify_citation(citation, source_text)</code> is the canonical one. It trusts the caller for one thing it cannot check: that the text it was handed is the text of the version the citation names. That is a real guarantee to have to make — a citation naming v2 handed v1's text verifies whenever the quote sits at the same offsets in both, which repeated boilerplate across versions makes reachable rather than theoretical. The pairing is made once, in <code>verified_claims()</code>, against a map keyed on version id, so there is one place to check it rather than one per call site.</p>
+<p><code>verify_citation(citation, source_text)</code> is the canonical one. It trusts the caller for one thing it cannot check: that the text it was handed is the text of the version the citation names. That is a real guarantee to have to make — a citation naming v2 handed v1's text verifies whenever the quote sits at the same offsets in both, which repeated boilerplate across versions makes reachable rather than theoretical. <span class="lbl">On the path a rendered claim takes</span> the pairing is made once, in <code>verified_claims()</code>, against a map keyed on version id, so there is one place to check it rather than one per call site. That is narrower than this paragraph used to claim: <code>app/interpretation/propose.py</code> and <code>app/evals/metrics.py</code> each build their own version-to-source map and call <code>verify_citation</code> directly, so there are three places that make the pairing, not one. Two of them are off the render path, and saying "once" without the qualifier was the kind of overstatement this document is supposed to catch.</p>
 <p><code>verify_citation_for_version(session, citation, company_id)</code> makes the pairing itself and adds the check the other cannot: it hashes the version's stored text and refuses when the digest disagrees with the one ingestion recorded. <span class="lbl">Nothing in <code>app/</code> calls it.</span> It is not on the path a rendered claim takes, because it finds its version by reading every version the company owns, and adopting it would repeat that read once per claim. Two consequences follow and neither is hidden: <strong>the hash check does not run in production</strong>, and closing that needs a single-row scoped read in <code>app/state/queries.py</code> that does not exist yet.</p>
 <p>What that costs, precisely. The bytes under a citation are re-read on every render, so an edit landing on a cited span withholds the claim immediately. An edit elsewhere in the same version does not: the quote still matches at its offsets, and the claim still asserts itself against a document that is no longer the one ingested. That is the freshness principle unclosed on the path the product actually uses, and it is stated here rather than left to be found.</p>
 
@@ -563,7 +574,8 @@ must carry one more field or it cannot be made at all.</figcaption>
 
 <h4>Adversarial test discipline</h4>
 <p>The verifier is tested against deliberately corrupted citations. A fabricated quote at real offsets — one numeral altered inside a real cost floor — must come back as a quote mismatch. A real repeated quote cited without stating its occurrence must come back as ambiguous. Both are scored in <code>make eval</code> (§9) and both must be rejected <em>for the right reason</em>: a rejection for the wrong reason is not a pass. <span class="lbl">The passing bar is every probe, not most.</span> There is no partial credit for a citation verifier, because the product's claim to the reader is "if it is shown as fact, it verified," not "it usually verified."</p>
-<p><code>tests/test_verification.py</code> also fuzzes the occurrence scan over randomized adversarial text, measuring rather than asserting that the fast boundary test never clears a span the exact re-read would refuse. The scan re-reads what it refuses and never re-reads what it clears, which is the direction that keeps the guard from switching itself off quietly.</p>
+<p><code>tests/test_verification.py</code> also fuzzes the occurrence scan over randomized adversarial text. It <em>asserts</em> the property — the fast boundary test never clears a span the exact re-read would refuse — and <em>measures</em> that the fuzz pool is strong enough to be worth asserting over: the run fails if fewer than a thousand hits reached the assertion, and fails again if no hit took the slower path, so the fallback cannot become dead code without the suite saying so. The scan re-reads what it refuses and never re-reads what it clears, which is the direction that keeps the guard from switching itself off quietly.</p>
+<p><span class="lbl">The cost of that scan, stated as a measurement rather than a complexity class.</span> <code>_spans_of</code>'s docstring used to claim O(n) while re-normalizing every hit, which is O(m) each while hits scale with the source: a 144,000-character rule line against a ten-character quote found 143,991 hits. Replacing the re-normalization with two integer comparisons — a hit is valid exactly when it does not share a raw offset with the character either side of it — took that case from 357 ms to 68 ms and made it flat in the quote's length. It is <strong>still not O(n) in the worst case</strong>, and saying otherwise would repeat the mistake: the exact re-read survives for the hits the boundary test refuses, so a source made entirely of expanding characters still costs O(n·m). Filing text is not that; a page of accented capitals would be.</p>
 </div>
 
 <h2 id="confidence">6. Confidence &amp; escalation (ADR-006)</h2>
@@ -631,7 +643,7 @@ must carry one more field or it cannot be made at all.</figcaption>
 
   <text class="t-sub" x="20" y="472">MIN_CONFIDENCE_BP ships at 0, so check 3 refuses nothing today. There is no evidence yet for where the line sits, and a number chosen to look</text>
   <text class="t-sub" x="20" y="488">rigorous would be worse than an honest zero (ADR-006). The mechanism is here so that moving the line is configuration rather than a code change.</text>
-  <text class="t-sub" x="20" y="504">Model self-reported confidence is not used and is not converted to an ordinal, because no model runs. Every seeded claim carries the same constant.</text>
+  <text class="t-sub" x="20" y="504">Model self-reported confidence is not used and is not converted to an ordinal. The proposer asks for none, so there is none to convert.</text>
   <text class="t-sub" x="20" y="520">The escalation rows a reviewer clears are written from this same withheld list, so the queue and the screen cannot disagree about what was refused.</text>
 </svg>
 </div>
@@ -651,48 +663,52 @@ rather than quoting a default that looks measured.</figcaption>
 </figure>
 
 <div class="d">
-<p>Confidence is attached at each stage that makes a judgement, and the sources are kept distinct rather than collapsed into one number: alignment confidence from §2, which is rule-derived and capped; the citation outcome from §5, which is a gate rather than a score and always forces refusal on its own; and a model-reported confidence on interpretation, which does not exist because no model runs.</p>
+<p>Confidence is attached at each stage that makes a judgement, and the sources are kept distinct rather than collapsed into one number: alignment confidence from §2, which is rule-derived and capped; the citation outcome from §5, which is a gate rather than a score and always forces refusal on its own; and a model-reported confidence on interpretation, which does not exist because <code>app/interpretation/propose.py</code> does not ask for one and would not accept one. That is a decision rather than an omission — a number a model produces about its own certainty is a number the gate would then have to argue with.</p>
 <p>Where a model does eventually report a confidence, it will be treated as an <strong>ordinal signal</strong>, not a probability. Raw numbers from language models are poorly calibrated, and trusting a value like <code>0.83</code> at face value would be fake precision dressed as rigor. The bar would be tuned against the eval set's known answers (§9) — against outcomes, not against the model's own stated certainty.</p>
-<div class="open"><span class="lbl">Open — not yet tuned.</span> <code>STRATA_MIN_CONFIDENCE_BP</code> ships at 0. Every seeded claim carries <code>confidence_bp = 10000</code>, so nothing in the corpus would be withheld for confidence at any bar below full. The earlier plan — "escalate anything below ordinal high" — described a signal that does not exist. What is real is the mechanism: the bar is read from the environment, not compiled in, so setting it is configuration.</div>
+<div class="open"><span class="lbl">Open — not yet tuned.</span> <code>STRATA_MIN_CONFIDENCE_BP</code> ships at 0 (<code>app/state/claims.py</code>). Every claim in either corpus carries <code>confidence_bp = 10000</code> — <code>SEED_CONFIDENCE_BP</code> in <code>app/seed.py</code>, <code>CONFIDENCE_BP</code> in <code>scripts/ingest_real.py</code> — so nothing would be withheld for confidence at any bar below full. The earlier plan — "escalate anything below ordinal high" — described a signal that does not exist. What is real is the mechanism: the bar is read from the environment, not compiled in, so setting it is configuration.</div>
 <p><span class="lbl">Trade-off accepted (ADR-006).</span> A review queue nobody empties is its own failure. That is why the escalation record carries enough context to be actioned in one look — the reason in plain words, the quote that was made, and the bytes the source really holds at those offsets — rather than making the reviewer re-derive it. It is also why the alignment cap in §2 does not raise an escalation: capping is common in a renumbered filing, and a queue that filled with every capped pairing would be a list of everything.</p>
 </div>
 <h2 id="routing">7. Reviewer routing</h2>
 <div class="d">
 <h3>What routing means here, and how much of it runs</h3>
-<p>Two halves. The <strong>vocabulary</strong> half decides what kind of action a change may produce, from the version's explicit status and nothing else: a draft change offers monitor or comment, a final change offers comply and requires an effective date. It is a lookup table with no model in it, and an unknown status raises rather than defaulting, because guessing this wrong is the most expensive error available in this domain (ADR-005). That half is built, tested and scored.</p>
-<p>The <strong>routing</strong> half decides who is asked. <span class="lbl">It is not built.</span> No function in <code>app/</code> turns a change into a recommended action or hands it to a named person. What exists instead is a single escalation queue per company — one list, in id order, that everyone with the screen sees — and an approval gate that decides whether a given person may sign off on a given claim.</p>
-<p>That gate is the part worth defending. Holding <code>action.approve</code> gets a user past its first check and no further. The second asks whether this person already acted on the claim underneath the action, on the change beneath it, or on an escalation raised against it — and refuses if they did, whatever their permissions say. Authorship is read out of the audit chain rather than from an <code>authored_by</code> column, because a second record of who did what, kept beside the first, is free to disagree with it.</p>
+<p>Two halves. The <strong>vocabulary</strong> half decides what kind of action a change may produce, from the version's explicit status and nothing else: a draft change offers monitor or comment, a final change offers comply and requires an effective date. It is a lookup table with no model in it (<code>app/interpretation/action.py</code>), and an unknown status raises rather than defaulting, because guessing this wrong is the most expensive error available in this domain (ADR-005). That half is built, tested and scored.</p>
+<p>The <strong>routing</strong> half decides who is asked. <span class="lbl">This section used to say it was not built. It is.</span> <code>app/state/routing.py</code> walks an escalation to its claim, the claim to its change, the change to the company obligations it bears on, and the obligation to its owner, then writes <code>Escalation.assigned_to_user_id</code> and <code>assigned_at</code> together. Obligations are rows now, with an owner column that resolves to a real account.</p>
+<p><span class="lbl">The design work is in the refusals, not the routing.</span> Every step can fail to name a person and none of them may guess when it does: no obligation maps to the change, the obligation has no owner, the owner's account is inactive or belongs to another tenant, two obligations name two different people. Each is a distinct code — <code>ROUTE_NO_OBLIGATION</code>, <code>ROUTE_OBLIGATION_UNOWNED</code>, <code>ROUTE_OWNER_INACTIVE</code>, <code>ROUTE_OWNERS_DISAGREE</code> and eleven more — and after each one the escalation is <em>still</em> in the shared queue with nobody's name on it (ADR-036, ADR-056). The temptation this file exists to refuse is the default assignee: the admin, the person who raised it, the last person who touched anything nearby. Each is one line of code and each is worse than the refusal, because a wrong assignment <em>looks handled</em> — it leaves the queue, sits on a desk that will not act on it, and nobody finds out until the deadline has gone. <code>shared_queue()</code> re-derives every verdict on read rather than trusting a stored one, for the same reason <code>verified_claims()</code> does: suspending an owner this morning has to change what the queue says this afternoon with nothing having re-run.</p>
+<p><span class="lbl">What is still honest to concede.</span> The escalation screens have not moved. <code>app/web/views/review.py</code>, <code>changes.py</code>, <code>proceedings.py</code> and <code>projects.py</code> all still read <code>escalations_for_company()</code> — the flat company list, in id order, that everyone with the screen sees. Routing is reached from <code>app/state/invites.py</code>, when an invited owner accepts or an invitation is withdrawn, and from the assistant's tools; no screen routes an item. So the queue is <em>routable</em> and is not yet <em>routed</em>, and a reviewer clicking through the demo will see the shared list this section originally described.</p>
+<p>Beside routing sits the approval gate, which decides whether a given person may sign off on a given claim, and it is the part worth defending. Holding <code>action.approve</code> gets a user past its second check and no further. The fourth asks whether this person already acted on the claim underneath the action, on the change beneath it, or on an escalation raised against it — and refuses if they did, whatever their permissions say. Authorship is read out of the audit chain rather than from an <code>authored_by</code> column, because a second record of who did what, kept beside the first, is free to disagree with it.</p>
 </div>
 
 <figure class="fig">
 <div class="fig__frame">
 <svg viewBox="0 0 900 604" role="img" aria-labelledby="figRteT figRteD">
-  <title id="figRteT">Reviewer routing: the shared queue that exists and the workflow that does not</title>
-  <desc id="figRteD">Today a change produces an action vocabulary from its status, escalations sit in one
-  shared company queue with no assignee, and an approval gate refuses anyone who already acted on the
-  claim. The configurable approval workflow exists as seven database tables with no code reading or
-  writing them, so nothing sends reminders, escalates on a timeout, or bypasses a step.</desc>
+  <title id="figRteT">Reviewer routing: the queue the screens read, the router that can name an owner, and the engine nothing starts</title>
+  <desc id="figRteD">A change produces an action vocabulary from its status. The escalation screens still
+  read one flat company queue with no assignee. Beside it, routing.py can resolve an obligation owner
+  and write the assignment, and refuses with a named code rather than guessing when it cannot; it is
+  reached from the invitation paths and the assistant, not from any screen. An approval gate refuses
+  anyone who already acted on the claim. The approval engine walks a route and is tested, and nothing
+  in the product starts a run or turns its clock.</desc>
 
   <g class="box"><rect x="20" y="28" width="260" height="96"/>
     <text class="t-title" x="36" y="50">action_vocabulary(status)</text>
     <text class="t-sub" x="36" y="70">a lookup, and no model is asked</text>
     <text class="t-mono" x="36" y="92">DRAFT → monitor, comment</text>
-    <text class="t-mono" x="36" y="110">FINAL → comply, + due date</text></g>
+    <text class="t-mono" x="36" y="110">FINAL → comply, + effective date</text></g>
 
   <g class="box box--store"><rect x="310" y="28" width="280" height="96"/>
-    <text class="t-title" x="326" y="50">the escalation queue today</text>
-    <text class="t-sub" x="326" y="70">one list per company, from escalations_</text>
-    <text class="t-sub" x="326" y="85">for_company(unresolved_only=True).</text>
-    <text class="t-sub" x="326" y="100">Everyone with the screen sees the</text>
-    <text class="t-sub" x="326" y="115">same rows, in id order.</text></g>
+    <text class="t-title" x="326" y="50">what the screens read</text>
+    <text class="t-sub" x="326" y="70">one flat list per company, from</text>
+    <text class="t-sub" x="326" y="85">escalations_for_company(unresolved_</text>
+    <text class="t-sub" x="326" y="100">only=True). Everyone with the screen</text>
+    <text class="t-sub" x="326" y="115">sees the same rows, in id order.</text></g>
 
-  <g class="box box--absent"><rect x="620" y="28" width="260" height="96"/>
-    <text class="t-title" x="636" y="50">routing to a named owner</text>
-    <text class="t-sub" x="636" y="70">DESIGNED, NOT BUILT.</text>
-    <text class="t-sub" x="636" y="85">Escalation.assigned_to_user_id</text>
-    <text class="t-sub" x="636" y="100">landed today and nothing in</text>
-    <text class="t-sub" x="636" y="115">app/ writes it.</text></g>
-  <path class="flow--weak" d="M594 76 H616"/>
+  <g class="box box--gate"><rect x="620" y="28" width="260" height="96"/>
+    <text class="t-title" x="636" y="50">routing.py — or a named refusal</text>
+    <text class="t-sub" x="636" y="70">change → obligation → owner, then</text>
+    <text class="t-sub" x="636" y="85">writes assigned_to_user_id. 15 refusal</text>
+    <text class="t-sub" x="636" y="100">codes, no default assignee. Reached</text>
+    <text class="t-sub" x="636" y="115">from invites.py, from no screen.</text></g>
+  <path class="flow" d="M594 76 H616"/>
 
   <path class="flow" d="M450 124 V156"/>
 
@@ -724,56 +740,63 @@ rather than quoting a default that looks measured.</figcaption>
     <text class="t-sub" x="456" y="470">Gate 4 still runs and still reaches its verdict; the reason states what</text>
     <text class="t-sub" x="456" y="485">SEGREGATED would have decided, and approval.waived lands in the chain.</text></g>
 
-  <g class="box box--absent"><rect x="20" y="428" width="380" height="132"/>
+  <g class="box"><rect x="20" y="428" width="380" height="132"/>
     <text class="t-title" x="36" y="450">the configurable approval workflow</text>
-    <text class="t-sub" x="36" y="470">SCHEMA ONLY. Seven tables landed today —</text>
-    <text class="t-sub" x="36" y="485">approval_workflows, workflow_steps, edges,</text>
-    <text class="t-sub" x="36" y="500">runs, step_runs, obligations, change_</text>
-    <text class="t-sub" x="36" y="515">obligations — carrying approval_hours and</text>
-    <text class="t-sub" x="36" y="530">on_timeout in (remind, escalate, bypass).</text>
-    <text class="t-sub" x="36" y="545">Nothing in app/ reads or writes any of them.</text></g>
+    <text class="t-sub" x="36" y="470">ENGINE BUILT, NO RUN EVER STARTS. state/workflow.py</text>
+    <text class="t-sub" x="36" y="485">saves and validates a route, assigns a step, reminds,</text>
+    <text class="t-sub" x="36" y="500">escalates and bypasses. Two screens draw it and read</text>
+    <text class="t-sub" x="36" y="515">it. Nothing calls start_run or record_decision, and</text>
+    <text class="t-sub" x="36" y="530">advance_overdue takes `now` as an argument — there is</text>
+    <text class="t-sub" x="36" y="545">no clock in the product to hand it one.</text></g>
 
   <text class="t-refuse" x="20" y="578">bypass is not approval: a step that ran out of time was answered by nobody.</text>
-  <text class="t-sub" x="20" y="592">STEP_RUN_OUTCOMES keeps bypassed apart from approved so nothing downstream can fold the two — and nothing writes either value yet.</text>
+  <text class="t-sub" x="20" y="592">STEP_RUN_OUTCOMES keeps bypassed apart from approved so nothing downstream can fold the two, and approval_summary returns the list rather than a boolean.</text>
 </svg>
 </div>
 <div class="fig__key">
   <span><i></i>deterministic stage</span>
   <span><i class="k-gate"></i>can refuse</span>
-  <span><i class="k-absent"></i>designed, not built</span>
   <span><i class="k-refuse"></i>the refusal path</span>
 </div>
-<figcaption><strong>Bypass is the reason the schema is worth reading before the engine exists.</strong>
+<figcaption><strong>Bypass is why the outcome vocabulary was worth fixing before the engine walked it.</strong>
 A step that timed out and was skipped, and a step a person signed, must never be the same value.
-<code>OUTCOME_BYPASSED</code> is a separate member of the outcome vocabulary and a NULL outcome means
-open, not consent — so a run can reach its end with a step nobody answered, and the run status
-alone cannot be read as approval. That distinction is worth building into the columns before
-anything walks them, because folding the two later is how an unapproved action gets filed as an
-approved one. <strong>Today it is columns and nothing more.</strong> No clock runs, no reminder is
-sent, nothing escalates and nothing is bypassed.</figcaption>
+<code>OUTCOME_BYPASSED</code> is a separate member of the vocabulary and a NULL outcome means open,
+not consent — so a run can reach its end with a step nobody answered, and the run status alone
+cannot be read as approval (ADR-035). The engine keeps three neighbouring branches apart for the
+same reason: reminding is not acting, so a reminded step stays on the same desk and grows a
+counter; and an escalation that resolves to nobody leaves the step open on whoever already had it
+rather than falling through to bypass. That is the branch a tired implementation gets wrong, and
+getting it wrong turns a routing bug into an unapproved action that reads as an approved one.
+<strong>What is still missing is the start.</strong> <code>app/web/views/workflow.py</code> says so on
+its own page: nothing in this build creates a <code>WorkflowRun</code>, so the "where has my item
+reached" half of the screen reports that no run has been started rather than rendering an empty
+list that would read as "nothing has happened".</figcaption>
 </figure>
 
 <div class="d">
-<p>The build board's cut list allows dropping the multi-role reviewer model under time pressure in favour of one reviewer role. Three roles exist as data — analyst, obligation owner, admin — with fourteen permission codes between them, and the routing that would use them does not. Degrading to a single role is therefore a change to a grant, not to any branch in the code, because nothing branches on role today.</p>
-<p><span class="lbl">What this section used to say.</span> That a final change routes to the analyst and to the obligation's named owner, and that the owner sits on the obligation record rather than the project because one project carries obligations different people answer for. The reasoning still holds and the column now exists — <code>obligations.owner_user_id</code>, nullable, because an owner who leaves takes their account's usefulness and not the duty. Nothing reads it. An obligation nobody owns is meant to render as work; there is no screen that renders obligations at all.</p>
+<p>The build board's cut list allows dropping the multi-role reviewer model under time pressure in favour of one reviewer role. Three system roles exist as data — <code>analyst</code>, <code>obligation_owner</code>, <code>admin</code> — and <code>PERMISSION_CODES</code> in <code>app/state/models.py</code> now holds fifteen codes, not the fourteen this paragraph used to name (<code>workflow.manage</code> is the one that arrived with the approval route). Beside them, <code>scripts/seed_roles.py</code> carries ten <em>role templates</em> named for a function rather than a rank — regulatory analyst, regulatory counsel, interconnection, load forecasting, certifying officer, auditor and four more — every code in every template checked against <code>PERMISSION_CODES</code> so a template cannot grant a permission the product does not define. <span class="lbl">They are templates, not a vocabulary.</span> An administrator grants any code to any person; a template is copied, never edited, because a role called "analyst" that one company has quietly changed means something different on every screen and every ADR that names it. And no template holds both <code>action.propose</code> and <code>action.approve</code> — not because a four-person team may not have both, but because a default must not hand that over in silence.</p>
+<p><span class="lbl">What this section used to say, and how much of it has since landed.</span> That a final change routes to the analyst and to the obligation's named owner, and that the owner sits on the obligation record rather than the project because one project carries obligations different people answer for. The reasoning held, the column exists — <code>obligations.owner_user_id</code>, nullable, because an owner who leaves takes their account's usefulness and not the duty — and <code>app/state/routing.py</code> now reads it. What remains missing is the surface: there is still no screen that renders obligations, so an obligation nobody owns is visible only as the reason an escalation refused to route.</p>
 </div>
 
 <h2 id="audit">8. Audit history &amp; rollback</h2>
 <div class="d">
 <h3>What the log is, and what it is not</h3>
 <p>Every decision the system takes appends one row to a hash-linked chain, scoped to a company: ingesting a version, recording a change, withholding a claim, granting a role, refusing an approval, resolving an escalation, composing a synthesis. One log, not two. A separate table for security events would drift from this one, and the log nobody reads is the one that goes wrong first — silently, because nothing compares them.</p>
-<p><span class="lbl">A correction on this earlier draft, because it was the largest error in the document.</span> This section used to say the choice was <strong>event-fold</strong>: that current state in every table is the fold of its events and that rollback replays the projection to an earlier point. <strong>That is not how the code works.</strong> State tables are written directly — the pipeline inserts a <code>Change</code> row and then records an audit event beside it — and the log is a parallel, append-only record of what was written, not the thing that produces it. There is no fold, no projection and no restore action. Describing it otherwise claimed a guarantee the build does not make: with a real event fold, a state table cannot silently disagree with its history, and here it can.</p>
-<p>What the code does provide instead is narrower and true: the log cannot be edited or deleted through application code, its rows verify against each other, and a revision anywhere in the product is a new row that points at the one it replaces.</p>
+<p><span class="lbl">A correction on this earlier draft, because it was the largest error in the document.</span> This section used to say the choice was <strong>event-fold</strong>: that current state in every table is the fold of its events and that rollback replays the projection to an earlier point. <strong>That is not how the code works.</strong> State tables are written directly — the pipeline inserts a <code>Change</code> row and then records an audit event beside it — and the log is a parallel, append-only record of what was written, not the thing that produces it. There is no fold and no projection. Describing it otherwise claimed a guarantee the build does not make: with a real event fold, a state table cannot silently disagree with its history, and here it can.</p>
+<p><span class="lbl">Taking one decision back is built, and it is a row rather than an undo.</span> <code>app/state/rollback.py</code> writes a new event naming the one it takes back, restores the state that decision changed, and never edits or flags the original — writing anything onto it would be the rewrite the whole table exists to prevent, and a decision somebody later reversed is precisely what an auditor asks to see. The pointer sits <em>inside</em> the digest under scheme 3 (ADR-053), so re-pointing a reversal at a different event turns the chain red rather than quietly changing what the log says was undone. Two rules are load-bearing. <strong>A reversal may not make an unverified citation verify</strong> — only the source agreeing with the quote does that, and there is a test that reads this module's own source to stop a later edit blurring it. And <strong>taking back a reversal reinstates nothing</strong> (ADR-054): the subject stays where the reversal left it and waits for a fresh decision, because putting the original back would write a resolver's name onto state nobody re-decided.</p>
+<p><span class="lbl">Two limits on that, stated rather than left to be found.</span> <code>RESTORERS</code> covers exactly one transition today — closing an escalation — and an action with no entry there is refused rather than recorded, because a row saying a decision was taken back while no state moved is a fallback that did not announce itself. And <code>revert_event</code> has no caller in <code>app/</code>: no screen takes a decision back, so the capability is reachable from tests and from nowhere a reviewer can click. Point-in-time restore — rewinding a company to a moment — is not built at all.</p>
+<p>What the log itself provides is narrower and true: it cannot be edited or deleted through application code, its rows verify against each other, and a revision anywhere in the product is a new row that points at the one it replaces.</p>
 </div>
 
 <figure class="fig">
 <div class="fig__frame">
-<svg viewBox="0 0 900 544" role="img" aria-labelledby="figAudT figAudD">
+<svg viewBox="0 0 900 576" role="img" aria-labelledby="figAudT figAudD">
   <title id="figAudT">The hash chain, the two guards on it, and how a correction is recorded</title>
   <desc id="figAudD">Each audit row hashes the previous row's hash, so removing or editing one breaks every
   row after it. A session listener refuses any update or delete, and verify_chain recomputes each row
-  under the digest scheme that row names. A correction is a new row pointing at the one it replaces;
-  the original is never edited. There is no rollback action and no externally published chain head.</desc>
+  under the digest scheme that row names — one of three. A correction is a new row pointing at the one
+  it replaces; the original is never edited. Taking one decision back is a row under scheme 3 and has
+  no caller. Restoring to a prior point is not built, and no chain head is published outside.</desc>
 
   <text class="t-sub" x="20" y="36">One chain per company. Each row's hash covers the row before it, so removing or editing one breaks every row after it.</text>
 
@@ -796,7 +819,7 @@ sent, nothing escalates and nothing is bypassed.</figcaption>
     <text class="t-title" x="714" y="70">seq 4</text>
     <text class="t-mono" x="714" y="90">prev_hash  77ef…</text>
     <text class="t-mono" x="714" y="106">entry_hash 0d12…</text>
-    <text class="t-sub" x="714" y="126">scheme 2</text></g>
+    <text class="t-sub" x="714" y="126">scheme 3: + what it reverts</text></g>
   <path class="flow" d="M224 92 H242"/>
   <path class="flow" d="M450 92 H468"/>
   <path class="flow" d="M676 92 H694"/>
@@ -813,37 +836,39 @@ sent, nothing escalates and nothing is bypassed.</figcaption>
     <text class="t-sub" x="476" y="221">scheme-2 row verifies end to end. An unknown scheme raises rather</text>
     <text class="t-sub" x="476" y="236">than falling back to a known one.</text></g>
 
-  <text class="t-sub" x="20" y="286">A correction is a new row that points at the one it replaces. The old row is not edited and not deleted. This pair is in the seeded corpus:</text>
+  <text class="t-sub" x="20" y="286">A correction is a new row that points at the one it replaces. The old row is not edited and not deleted. The seed writes this pair. The replacement's</text>
+  <text class="t-sub" x="20" y="300">id is minted per run — _new_id in app/state/projects.py takes twelve hex characters from a uuid4 — so it is drawn as a shape, not as a value. An</text>
+  <text class="t-sub" x="20" y="314">earlier version of this figure printed one machine's throwaway id as though a reviewer could grep for it. They could not.</text>
 
-  <g class="box box--store"><rect x="20" y="298" width="380" height="92"/>
-    <text class="t-title" x="36" y="320">the original — still readable</text>
-    <text class="t-mono" x="36" y="342">KN-LESSON-COST-ALLOCATION</text>
-    <text class="t-mono" x="36" y="358">superseded_by  kn-71d7ab00bf59</text>
-    <text class="t-sub" x="36" y="378">body never touched. superseded_by is the only field</text></g>
+  <g class="box box--store"><rect x="20" y="330" width="380" height="92"/>
+    <text class="t-title" x="36" y="352">the original — still readable</text>
+    <text class="t-mono" x="36" y="374">KN-LESSON-COST-ALLOCATION</text>
+    <text class="t-mono" x="36" y="390">superseded_by  kn-&lt;12 hex&gt;</text>
+    <text class="t-sub" x="36" y="410">body never touched. superseded_by is the only field</text></g>
 
-  <path class="flow" d="M404 344 H466"/>
-  <text class="t-edge" x="406" y="336">points at</text>
+  <path class="flow" d="M404 376 H466"/>
+  <text class="t-edge" x="406" y="368">points at</text>
 
-  <g class="box box--store"><rect x="470" y="298" width="410" height="92"/>
-    <text class="t-title" x="486" y="320">the replacement — a new row</text>
-    <text class="t-mono" x="486" y="342">kn-71d7ab00bf59   superseded_by NULL</text>
-    <text class="t-sub" x="486" y="362">Both rows are in the seeded database. supersede_knowledge()</text>
-    <text class="t-sub" x="486" y="377">refuses a second replacement, which would fork the history.</text></g>
+  <g class="box box--store"><rect x="470" y="330" width="410" height="92"/>
+    <text class="t-title" x="486" y="352">the replacement — a new row</text>
+    <text class="t-mono" x="486" y="374">kn-&lt;12 hex&gt;   superseded_by NULL</text>
+    <text class="t-sub" x="486" y="394">Both rows are written by app/seed.py. supersede_knowledge()</text>
+    <text class="t-sub" x="486" y="409">refuses a second replacement, which would fork the history.</text></g>
 
-  <g class="box box--absent"><rect x="20" y="410" width="420" height="84"/>
-    <text class="t-title" x="36" y="432">restore to a prior point</text>
-    <text class="t-sub" x="36" y="452">DESIGNED, NOT BUILT. There is no rollback action, and no</text>
-    <text class="t-sub" x="36" y="467">state table is a fold of this log: the log records the writes,</text>
-    <text class="t-sub" x="36" y="482">it does not produce them.</text></g>
+  <g class="box box--absent"><rect x="20" y="442" width="420" height="84"/>
+    <text class="t-title" x="36" y="464">restore to a prior point</text>
+    <text class="t-sub" x="36" y="484">DESIGNED, NOT BUILT. One decision can be taken back —</text>
+    <text class="t-sub" x="36" y="499">rollback.revert_event, no caller in app/ — but no state table</text>
+    <text class="t-sub" x="36" y="514">is a fold of this log, so nothing can rewind a company.</text></g>
 
-  <g class="box box--absent"><rect x="460" y="410" width="420" height="84"/>
-    <text class="t-title" x="476" y="432">a chain head published outside</text>
-    <text class="t-sub" x="476" y="452">DESIGNED, NOT BUILT. The chain detects tampering; it cannot</text>
-    <text class="t-sub" x="476" y="467">prevent it. Anyone able to write the whole database file can</text>
-    <text class="t-sub" x="476" y="482">recompute every hash from the break forward.</text></g>
+  <g class="box box--absent"><rect x="460" y="442" width="420" height="84"/>
+    <text class="t-title" x="476" y="464">a chain head published outside</text>
+    <text class="t-sub" x="476" y="484">DESIGNED, NOT BUILT. The chain detects tampering; it cannot</text>
+    <text class="t-sub" x="476" y="499">prevent it. Anyone able to write the whole database file can</text>
+    <text class="t-sub" x="476" y="514">recompute every hash from the break forward.</text></g>
 
-  <text class="t-sub" x="20" y="518">The same shape governs synthesis: compose_take() supersedes rather than edits, and refuses a take that hides its exclusions. The seeded take</text>
-  <text class="t-sub" x="20" y="534">rests on 5 findings and states the 3 it could not verify, both stored on the row at compose time rather than recomputed when it is read.</text>
+  <text class="t-sub" x="20" y="550">The same shape governs synthesis: compose_take() supersedes rather than edits, and refuses a take that hides its exclusions. The seeded take</text>
+  <text class="t-sub" x="20" y="566">rests on 5 findings and states the 3 it could not verify, both stored on the row at compose time rather than recomputed when it is read.</text>
 </svg>
 </div>
 <div class="fig__key">
@@ -851,10 +876,12 @@ sent, nothing escalates and nothing is bypassed.</figcaption>
   <span><i class="k-gate"></i>can refuse</span>
   <span><i class="k-absent"></i>designed, not built</span>
 </div>
-<figcaption><strong>Two digest schemes, and the older one can never be rewritten.</strong> Scheme 1
-hashes ten fields; scheme 2 hashes those ten plus who acted, from which session and address.
-Rows written before attribution existed keep their scheme-1 hashes and verify under scheme 1
-for ever. Re-hashing them under scheme 2 would produce a chain that verifies and proves nothing,
+<figcaption><strong>Three digest schemes, and an older one can never be rewritten.</strong> Scheme 1
+hashes ten fields; scheme 2 hashes those ten plus who acted, from which session and address;
+scheme 3 adds the id of the event this row takes back, and is chosen by what the row carries
+rather than by a global switch — a scheme that cannot cover the pointer refuses to write the row
+at all (ADR-053). Rows written before attribution existed keep their scheme-1 hashes and verify
+under scheme 1 for ever. Re-hashing them under a later scheme would produce a chain that verifies and proves nothing,
 because the process that verifies it would be the process that rewrote it — which is the general
 rule about migrating derived data, pointed the other way, since here the derived data <em>is</em>
 the evidence. <strong>The limit worth conceding:</strong> attribution records what the writing process
@@ -871,7 +898,7 @@ file can tell.</figcaption>
 <tr><td>What it does not give</td><td><span class="lbl">Reconstruction.</span> Because the state tables are written directly rather than folded from the log, the log cannot rebuild them, and a direct write that skipped the log would leave no trace to compare against.</td><td>Reconstruction is exactly what snapshots do give, which is the argument in their favour and the one this build has not needed.</td></tr>
 </table>
 <p><span class="lbl">Trade-off accepted, stated plainly.</span> The honest version of the rule is a convention, not a constraint: nothing outside the intended write path should touch a state table, and nothing in the schema enforces it. A direct update against a row would leave state and history disagreeing with no alarm — the failure mode of a derived value that is wrong and announces nothing. The log is unwritable; the tables it describes are not.</p>
-<p>Per the cut list, rollback could be dropped before audit history was. That is what happened, and this section now says so rather than describing a restore action nobody wrote.</p>
+<p>Per the cut list, rollback could be dropped before audit history was. What landed is the narrow half: one decision can be taken back as a row, and a company cannot be rewound to a moment. This section used to say rollback had been dropped entirely, which stopped being true when <code>app/state/rollback.py</code> landed.</p>
 </div>
 <h2 id="evals">9. Evals</h2>
 <div class="d">
@@ -945,7 +972,7 @@ file can tell.</figcaption>
     <text class="t-sub" x="486" y="325">An earlier build printed 100% here, over 20 samples.</text></g>
 
   <text class="t-sub" x="20" y="372">What is not measured: no model runs in the harness and no network call is made, so a green scorecard says nothing about model behaviour.</text>
-  <text class="t-sub" x="20" y="388">Precision cannot be computed at all. The manifest labels five changes, not every change, so the corpus carries no negative labels.</text>
+  <text class="t-sub" x="20" y="388">Precision cannot be computed: the manifest labels 5 changes, not every change. The run prints the shortfall — 27 reported across both pairs, 9 labelled, 18 unlabelled.</text>
   <text class="t-sub" x="20" y="404">Every verdict is bound to the three corpus digests printed at the head of the run. Change the corpus and the verdicts expire.</text>
   <text class="t-sub" x="20" y="420">Rates are floored, never rounded: nothing here may print 100% for anything short of every one.</text>
 </svg>
@@ -966,7 +993,10 @@ direction that flatters.</strong> Twenty offsets verifying is a real result and 
 It is not twenty samples.</figcaption>
 </figure>
 
-<div class="open"><span class="lbl">Honest limitation.</span> One hand-built corpus: three versions of one invented proceeding, five labelled changes, nine spans of one repeated sentence — six subjects in all, authored by the same person who wrote the extractor. That is a regression gate, and a strict one. It is not evidence of accuracy on real filings, it supports no comparison with another system, and it carries no recall figure. <span class="lbl">What this document used to claim instead:</span> an obligation extraction precision and recall metric over roughly eight hand-labelled obligations, and an escalation-correctness metric over injected ambiguity. Neither exists. Obligations are not scored at all, because nothing extracts them.</div>
+<div class="open"><span class="lbl">Honest limitation.</span> The eval corpus is one hand-built proceeding: three versions, five labelled changes, nine spans of one repeated sentence — six subjects in all, authored by the same person who wrote the extractor. That is a regression gate, and a strict one. It is not evidence of accuracy on real filings, it supports no comparison with another system, and it carries no recall figure. <span class="lbl">What this document used to claim instead:</span> an obligation extraction precision and recall metric over roughly eight hand-labelled obligations, and an escalation-correctness metric over injected ambiguity. Neither exists. Obligations are not scored at all, because nothing extracts them.
+<p><span class="lbl">And the corpus is no longer the only one, which changes what this limitation means.</span> <code>data/real/</code> holds 102 real public filings across eight commissions, and one pair of them runs in the demonstration. The synthetic corpus stays the <em>eval</em> corpus and must (ADR-040): its traps are built on purpose — one sentence repeated three times per version, a restructure scoring 0.9904 on raw similarity — and a real filing will not reproduce them on demand, so replacing the fixture would quietly gut the harness. So there are now two corpora, each labelled for what it is: one invented and measured against, one real and demonstrated on. <strong>Nothing in the real corpus is scored.</strong> The eval numbers below still describe a corpus built to be measurable, not a corpus that resembles the world.</p>
+<p><span class="lbl">On coverage, because the number gets asked for.</span> There is no line-coverage target and this document does not carry one as a goal (ADR-038). A 99% target was asked for, argued against, granted, and then cut once its cost was visible against the deadline — three to six hours of tests written to raise a number, in a submission whose weakest dimension is user research rather than test volume. What survives is the standard ADR-038 states — branch coverage on the four deterministic load-bearing modules, mutation testing on those same modules, and property tests for the invariants that matter. The property tests exist. <strong>Mutation testing does not</strong>, because there is no mutation tool in <code>requirements.txt</code>, so that half of the standard is stated and unmet.</p>
+<p>The measured figure at commit <code>38a4b01</code>: <strong>92% of 12,040 statements, 1,000 missed</strong>, over roughly 1,710 passing tests. The four modules ADR-038 actually cares about read high — <code>verification/verifier.py</code> 99%, <code>diff/engine.py</code> 100%, <code>text/normalize.py</code> 99%, <code>state/audit.py</code> 96%. The number is reported and nobody is asked to defend it as a standard, because line coverage measures execution rather than verification: <code>verify_citation</code> could be driven to 100% by tests that call it with every argument shape and assert nothing, and the line that rejects a fabricated quote would be green while the product's central claim went untested. <span class="lbl">Two caveats a reviewer will find on their own, so they are here.</span> There is no coverage target in the <code>Makefile</code>, and <code>pytest-cov</code> is not in <code>requirements.txt</code> — so the 92% is repeatable on this machine and not from a clean clone. And the count moves every hour this build runs; the command is <code>.venv/bin/python -m pytest tests/ -q --cov=app</code>, which is the part that does not go stale.</p></div>
 
 <h2 id="isolation">10. Data isolation</h2>
 <div class="d">
@@ -986,24 +1016,25 @@ It is not twenty samples.</figcaption>
 
   <text class="t-sub" x="20" y="40">every module that reads tenant data</text>
   <g class="box"><rect x="20" y="50" width="210" height="152"/>
-    <text class="t-title" x="36" y="72">callers</text>
+    <text class="t-title" x="36" y="72">callers — grep is the list</text>
     <text class="t-mono" x="36" y="94">state/claims.py</text>
-    <text class="t-mono" x="36" y="110">state/review.py</text>
-    <text class="t-mono" x="36" y="126">state/projects.py</text>
+    <text class="t-mono" x="36" y="110">state/routing.py</text>
+    <text class="t-mono" x="36" y="126">state/workflow.py</text>
     <text class="t-mono" x="36" y="142">auth/policy.py</text>
     <text class="t-mono" x="36" y="158">pipeline.py</text>
-    <text class="t-mono" x="36" y="174">diff/engine.py</text>
-    <text class="t-mono" x="36" y="190">web/views/*</text></g>
+    <text class="t-mono" x="36" y="174">interpretation/propose.py</text>
+    <text class="t-mono" x="36" y="190">chat/tools.py, web/views/*</text></g>
   <path class="flow" d="M234 124 H274"/>
 
   <g class="box box--gate"><rect x="278" y="50" width="300" height="152"/>
     <text class="t-title" x="294" y="72">app/state/queries.py</text>
     <text class="t-mono" x="294" y="94">_require_scope(company_id)</text>
-    <text class="t-sub" x="294" y="116">Imported by every module on the left,</text>
-    <text class="t-sub" x="294" y="131">never copied. Two copies of a tenant</text>
-    <text class="t-sub" x="294" y="146">guard drift, and the copy nobody</text>
-    <text class="t-sub" x="294" y="161">audited is the one that leaks.</text>
-    <text class="t-sub" x="294" y="183">An empty or non-string id raises.</text></g>
+    <text class="t-sub" x="294" y="116">Two dozen modules import it and none</text>
+    <text class="t-sub" x="294" y="131">copies it — grep -rln _require_scope</text>
+    <text class="t-sub" x="294" y="146">app/ is the roll call. Two copies of a</text>
+    <text class="t-sub" x="294" y="161">tenant guard drift, and the copy</text>
+    <text class="t-sub" x="294" y="176">nobody audited is the one that leaks.</text>
+    <text class="t-sub" x="294" y="194">An empty or non-string id raises.</text></g>
   <path class="flow" d="M582 124 H622"/>
 
   <g class="box box--store"><rect x="626" y="50" width="254" height="152"/>
@@ -1059,8 +1090,12 @@ would put a whole table outside the boundary on the strength of a sentence in a 
 <h2 id="security">11. Security</h2>
 <div class="d">
 <h3>What runs, and what is a named gap</h3>
-<p><span class="lbl">This section used to say authentication was out of scope.</span> It is not. There is a login: scrypt password hashing with the cost parameters stored per user so the cost can be raised without locking anybody out; session tokens held in the database as a SHA-256 of the bearer token, never the token itself; a middleware that refuses an anonymous request to everything except the login page, the health check and the stylesheet; three roles and fourteen permission codes; and an approval gate that a permission alone cannot pass (§7). Every login, every failure, every denial and every waived approval lands in the same audit chain as the state changes.</p>
+<p><span class="lbl">This section used to say authentication was out of scope.</span> It is not. There is a login: scrypt password hashing with the cost parameters stored per user so the cost can be raised without locking anybody out; session tokens held in the database as a SHA-256 of the bearer token, never the token itself; a middleware that refuses an anonymous request to everything except the login page, the health check, the stylesheet and a share link; three roles and fifteen permission codes; and an approval gate that a permission alone cannot pass (§7). Every login, every failure, every denial and every waived approval lands in the same audit chain as the state changes.</p>
 <p>Refusing at the middleware rather than per route is the load-bearing choice: a route added next week is protected because it exists, not because somebody remembered a decorator. A login refusal says one thing whatever went wrong — unknown address, wrong password, suspended, locked — because a message that distinguishes them turns the form into an account oracle. And a refusal costs the same as a success: the password check runs against a dummy hash even for an address with no account, so timing does not answer the question the message refused to.</p>
+<p><span class="lbl">The share prefix is in the public list on purpose, and it got there by way of a defect worth keeping in the document.</span> <code>/s/&lt;token&gt;</code> was <em>not</em> public, so an anonymous open answered 303 to <code>/login?next=%2Fs%2F&lt;token&gt;</code> — which puts a live bearer token into a query string, where it reaches the access log, the <code>Referer</code> header and browser history. A redirect that carries the thing it was protecting is worse than no guard, because it looks like one working. <code>PUBLIC_PREFIXES</code> in <code>app/web/deps.py</code> now holds the prefix <em>with its trailing slash</em>; a bare <code>/s</code> and <code>/settings</code> are still guarded, because prefix-matching the rest would make <code>/login-as-somebody-else</code> public by accident.</p>
+<h4>Where the key comes from, and the bug that made this worth a paragraph</h4>
+<p><code>app/config.py</code> reads <code>.env</code> into <code>os.environ</code> once, at startup, in about fifteen lines of standard library — no new dependency (ADR-014). Two rules govern it. <strong>The real environment always wins:</strong> a name already set is never overwritten, because a container, a systemd unit or an export on the command line is a deliberate act and a file on disk is a default; read the other way round, a deployment could not override its own checked-out configuration and the surprise would land in production. <strong>It never logs a value:</strong> it reports which <em>names</em> it set, because the file holds an API key, an OAuth refresh token and a client secret, and a helpful startup line would put all three into every log aggregator the host ships to.</p>
+<p>Before it existed, nothing put <code>.env</code> into the process. The key sat in the file the README told a reviewer to put it in and never reached <code>os.environ</code>, so the assistant, the proposer and the mail transport were all permanently on their fallback paths — a deployment holding a perfectly good key behaving exactly like one holding none. Every fallback fired, every message it printed was honest, and the product was still wrong. §14 carries that as a failure mode in its own right, because it is the shape a fallback bug takes when the fallback was designed correctly.</p>
 </div>
 
 <figure class="fig">
@@ -1085,8 +1120,8 @@ would put a whole table outside the boundary on the strength of a sentence in a 
   <g class="box box--gate"><rect x="44" y="176" width="280" height="76"/>
     <text class="t-title" x="60" y="198">AuthMiddleware</text>
     <text class="t-sub" x="60" y="216">resolves the cookie once per request,</text>
-    <text class="t-sub" x="60" y="231">in a worker thread. Anonymous goes to</text>
-    <text class="t-sub" x="60" y="246">/login; only /login, /healthz, /static pass.</text></g>
+    <text class="t-sub" x="60" y="231">in a worker thread. Anonymous goes to /login;</text>
+    <text class="t-sub" x="60" y="246">only /login, /healthz, /static/ and /s/ pass.</text></g>
   <path class="flow" d="M184 252 V280"/>
 
   <g class="box box--gate"><rect x="44" y="280" width="280" height="72"/>
@@ -1096,8 +1131,8 @@ would put a whole table outside the boundary on the strength of a sentence in a 
   <path class="flow" d="M184 352 V380"/>
 
   <g class="box box--store"><rect x="44" y="380" width="280" height="52"/>
-    <text class="t-title" x="60" y="402">14 permission codes, 3 roles</text>
-    <text class="t-sub" x="60" y="420">analyst, obligation owner, admin</text></g>
+    <text class="t-title" x="60" y="402">15 codes, 3 roles, 10 templates</text>
+    <text class="t-sub" x="60" y="420">analyst, obligation_owner, admin</text></g>
 
   <g class="box box--store"><rect x="350" y="84" width="210" height="116"/>
     <text class="t-title" x="366" y="106">users</text>
@@ -1139,10 +1174,10 @@ would put a whole table outside the boundary on the strength of a sentence in a 
     <text class="t-sub" x="626" y="338">so one person with two accounts</text>
     <text class="t-sub" x="626" y="353">is two people to segregation of</text>
     <text class="t-sub" x="626" y="368">duties.</text>
-    <text class="t-sub" x="626" y="390">no key management. The model</text>
-    <text class="t-sub" x="626" y="405">API key is read from the</text>
-    <text class="t-sub" x="626" y="420">environment, and no model is</text>
-    <text class="t-sub" x="626" y="435">called.</text></g>
+    <text class="t-sub" x="626" y="390">no key management. The model API</text>
+    <text class="t-sub" x="626" y="405">key is read from the environment,</text>
+    <text class="t-sub" x="626" y="420">which app/config.py fills from .env.</text>
+    <text class="t-sub" x="626" y="435">No vault, no rotation, no per-tenant key.</text></g>
 </svg>
 </div>
 <div class="fig__key">
@@ -1160,7 +1195,7 @@ import: a control that a typo can switch off, in either direction, is not a cont
 </figure>
 <h2 id="datamodel">12. Data model</h2>
 <div class="d">
-<p>Thirty-four tables. Drawing all of them would teach nothing, so the diagram carries the spine — the seven a reader has to hold in order to follow every other section — with the keys that make each one work. The rest are named by cluster underneath.</p>
+<p>Forty-three tables — this section said thirty-four until the assistant, sharing, feedback, invitations, direct permission grants and the source registry landed. Drawing all of them would teach nothing, so the diagram carries the spine — the seven a reader has to hold in order to follow every other section — with the keys that make each one work. The rest are named by cluster underneath. The count is checkable in one line: <code>python -c "import app.state.models as m; print(len(m.Base.metadata.tables))"</code>.</p>
 </div>
 
 <figure class="fig">
@@ -1181,10 +1216,11 @@ import: a control that a typo can switch off, in either direction, is not a cont
 
   <g class="box box--store"><rect x="306" y="24" width="290" height="104"/>
     <text class="t-title" x="322" y="46">document_versions</text>
-    <text class="t-mono" x="322" y="68">id  company_id  docket</text>
-    <text class="t-mono" x="322" y="84">label  status DRAFT|FINAL</text>
-    <text class="t-mono" x="322" y="100">source_text</text>
-    <text class="t-mono" x="322" y="116">source_sha256</text></g>
+    <text class="t-mono" x="322" y="66">id  company_id  docket</text>
+    <text class="t-mono" x="322" y="81">label  status DRAFT|FINAL</text>
+    <text class="t-mono" x="322" y="96">source_text  source_sha256</text>
+    <text class="t-mono" x="322" y="111">source_url  filer  filing_date</text>
+    <text class="t-mono" x="322" y="126">source_registration_id</text></g>
   <path class="flow" d="M600 76 H638"/>
 
   <g class="box box--store"><rect x="642" y="24" width="238" height="104"/>
@@ -1230,7 +1266,7 @@ import: a control that a typo can switch off, in either direction, is not a cont
     <text class="t-mono" x="658" y="268">reason_text  detail</text>
     <text class="t-mono" x="658" y="284">resolved_at</text>
     <text class="t-mono" x="658" y="300">resolved_by</text>
-    <text class="t-mono" x="658" y="316">assigned_to_user_id</text>
+    <text class="t-mono" x="658" y="316">assigned_to_user_id  assigned_at</text>
     <text class="t-sub" x="658" y="338">no verified column, anywhere:</text>
     <text class="t-sub" x="658" y="353">the verdict is recomputed (§5)</text></g>
 
@@ -1247,9 +1283,9 @@ import: a control that a typo can switch off, in either direction, is not a cont
     <text class="t-mono" x="322" y="460">actor  action  actor_kind</text>
     <text class="t-mono" x="322" y="476">subject_type  subject_id</text>
     <text class="t-mono" x="322" y="492">reason  citation</text>
-    <text class="t-mono" x="322" y="508">actor_user_id  session_id  ip</text>
-    <text class="t-mono" x="322" y="524">prev_hash  entry_hash</text>
-    <text class="t-mono" x="322" y="540">digest_version</text></g>
+    <text class="t-mono" x="322" y="506">actor_user_id  session_id  ip</text>
+    <text class="t-mono" x="322" y="521">prev_hash  entry_hash</text>
+    <text class="t-mono" x="322" y="536">digest_version  reverts_event_id</text></g>
 
   <text class="t-sub" x="20" y="424">Every write above appends one row</text>
   <text class="t-sub" x="20" y="440">here. It is a record of the writes,</text>
@@ -1257,13 +1293,13 @@ import: a control that a typo can switch off, in either direction, is not a cont
   <text class="t-sub" x="20" y="472">are written directly and are not a</text>
   <text class="t-sub" x="20" y="488">fold of this log (§8).</text>
 
-  <text class="t-sub" x="620" y="424">34 tables in all. The other 27</text>
-  <text class="t-sub" x="620" y="440">fall in four clusters: the project</text>
-  <text class="t-sub" x="620" y="456">workspace (8), the review centre</text>
-  <text class="t-sub" x="620" y="472">(6), identity (6), and the approval</text>
-  <text class="t-sub" x="620" y="488">workflow (7) — whose tables landed</text>
-  <text class="t-sub" x="620" y="504">today with no code reading or</text>
-  <text class="t-sub" x="620" y="520">writing any of them.</text>
+  <text class="t-sub" x="620" y="424">43 tables in all. The other 36 fall</text>
+  <text class="t-sub" x="620" y="440">in eight clusters: project workspace</text>
+  <text class="t-sub" x="620" y="456">(8), review centre (6), identity and</text>
+  <text class="t-sub" x="620" y="472">access (8), approval workflow (7),</text>
+  <text class="t-sub" x="620" y="488">the assistant (2), feedback (2),</text>
+  <text class="t-sub" x="620" y="504">sharing (2) and the source registry</text>
+  <text class="t-sub" x="620" y="520">(1). Named in the table below.</text>
 </svg>
 </div>
 <div class="fig__key">
@@ -1278,15 +1314,34 @@ differ too, and the audit chain would report tampering where none happened.</fig
 </figure>
 
 <div class="d">
-<h4>The other twenty-seven, by cluster</h4>
+<h4>The other thirty-six, by cluster</h4>
 <table>
 <tr><th>Cluster</th><th>Tables</th><th>What it is for</th></tr>
-<tr><td>Project workspace (8)</td><td><code>projects</code>, <code>project_changes</code>, <code>research_threads</code>, <code>research_turns</code>, <code>work_plans</code>, <code>work_plan_steps</code>, <code>scheduled_runs</code>, <code>knowledge_items</code></td><td>The work a person does around a set of changes over months, rather than one change in one moment. <code>knowledge_items</code> is versioned by supersession, never edited.</td></tr>
-<tr><td>Review centre (6)</td><td><code>sources</code>, <code>findings</code>, <code>questions</code>, <code>collective_takes</code>, <code>deliverables</code>, <code>steer_directives</code></td><td>Evidence and synthesis. Every surface that counts or synthesises has to state what it left out, which is why a take carries two counts and not one.</td></tr>
-<tr><td>Identity (6)</td><td><code>users</code>, <code>roles</code>, <code>permissions</code>, <code>role_permissions</code>, <code>user_roles</code>, <code>login_sessions</code></td><td>§11. A revoked grant keeps its row and gains a timestamp, because "who could do what, when" is the question asked after an incident and a delete is what makes it unanswerable.</td></tr>
-<tr><td>Approval workflow (7)</td><td><code>obligations</code>, <code>change_obligations</code>, <code>approval_workflows</code>, <code>workflow_steps</code>, <code>workflow_edges</code>, <code>workflow_runs</code>, <code>workflow_step_runs</code></td><td>§7. Schema only. Landed 2026-08-04 and no code in <code>app/</code> reads or writes any of them.</td></tr>
+<tr><td>Project workspace (8)</td><td><code>projects</code>, <code>project_changes</code>, <code>research_threads</code>, <code>research_turns</code>, <code>work_plans</code>, <code>work_plan_steps</code>, <code>scheduled_runs</code>, <code>knowledge_items</code></td><td>The work a person does around a set of changes over months, rather than one change in one moment. <code>knowledge_items</code> is versioned by supersession, never edited (ADR-031).</td></tr>
+<tr><td>Review centre (6)</td><td><code>sources</code>, <code>findings</code>, <code>questions</code>, <code>collective_takes</code>, <code>deliverables</code>, <code>steer_directives</code></td><td>Evidence and synthesis. Every surface that counts or synthesises has to state what it left out, which is why a take carries two counts and not one (ADR-022).</td></tr>
+<tr><td>Identity and access (8)</td><td><code>users</code>, <code>roles</code>, <code>permissions</code>, <code>role_permissions</code>, <code>user_roles</code>, <code>user_permissions</code>, <code>login_sessions</code>, <code>invitations</code></td><td>§11. A revoked grant keeps its row and gains a timestamp, because "who could do what, when" is the question asked after an incident and a delete is what makes it unanswerable. <code>user_permissions</code> is a code granted straight to a person rather than through a role; <code>invitations</code> is how an obligation owner who has no account gets one.</td></tr>
+<tr><td>Approval workflow (7)</td><td><code>obligations</code>, <code>change_obligations</code>, <code>approval_workflows</code>, <code>workflow_steps</code>, <code>workflow_edges</code>, <code>workflow_runs</code>, <code>workflow_step_runs</code></td><td>§7. No longer schema only: <code>app/state/routing.py</code> writes the first two and <code>app/state/workflow.py</code> the rest, but nothing in the product starts a run, so <code>workflow_runs</code> and <code>workflow_step_runs</code> are empty outside tests.</td></tr>
+<tr><td>The assistant (2)</td><td><code>chat_sessions</code>, <code>chat_messages</code></td><td>One turn of Clarke, stored so a thumb can attach to a message id. The model never holds an identity: <code>company_id</code> and the actor are injected from the signed-in session, never taken from the model's arguments (ADR-051).</td></tr>
+<tr><td>Feedback (2)</td><td><code>feedback</code>, <code>improvement_items</code></td><td>What a user reported, and what was decided about it. Kept apart on purpose — a complaint is referred, never escalated (ADR-055), because the escalation queue is about refused claims and folding the two would bury both.</td></tr>
+<tr><td>Sharing (2)</td><td><code>share_links</code>, <code>share_opens</code></td><td>A read-only link to one claim. The token is stored as a hash, like a session token, so reading the table wins nothing; <code>share_opens</code> records that it was opened and from where.</td></tr>
+<tr><td>Source registry (1)</td><td><code>source_registrations</code></td><td>Which commissions this company watches. It carries a <code>credential_ref</code> rather than a credential, and <code>document_versions.source_registration_id</code> points back at the registration a version came from.</td></tr>
 </table>
 <p><span class="lbl">Tables this document used to list that do not exist.</span> <code>company</code>, <code>citation</code>, <code>obligation_project</code>, <code>impact_mapping</code>, <code>action</code> and <code>event</code>. The citation is columns on <code>claims</code> rather than a table of its own; there is one company and no table for it; and the three joins were the impact-mapping design that was never built.</p>
+</div>
+
+<div class="d">
+<h4>How a schema change reaches a database that already has rows</h4>
+<p><code>requirements.txt</code> says there is no migrations tool, and the reasoning it gives — one schema version, created from the models at startup — was true and then stopped being true, in the way that costs a live site rather than a test. <code>deploy/entrypoint.sh</code> seeds only when there is no database file, which is right: a redeploy must never lay demo rows over an audit chain. But when the file existed it ran <em>nothing</em>, not even <code>create_all</code>. So the first deploy after a column was added would have kept yesterday's table while today's code selected the new column, and every proceeding, claim and verification screen would have answered <code>(sqlite3.OperationalError) no such column: document_versions.source_url</code>.</p>
+<p><span class="lbl">No test could have caught it, and that is the interesting part.</span> Tests build their schema from the current models every time, so they never meet yesterday's database. The failure exists only in production, only on the deploy, in front of whoever is looking.</p>
+<p><code>app/state/migrate.py</code> is the fix, and it is <strong>derived rather than listed</strong>. Five <code>ALTER TABLE</code> lines would have closed the instance and left the class open: the next column anybody adds breaks the deploy the same way and they will not think of this file. So it asks SQLAlchemy what the models declare, asks the database what it has, and adds the difference. What it will not do is the design:</p>
+<ul>
+<li><strong>It never drops, renames or retypes.</strong> Those are destructive, and this product keeps an append-only hash chain a rewrite would silently invalidate.</li>
+<li><strong>It never backfills.</strong> A new column is NULL on old rows, because NULL says "the schema of the day did not record this" and a default says something the record cannot support.</li>
+<li><strong>It refuses rather than guessing.</strong> A NOT NULL column with no default is reported as a refusal and <code>scripts/migrate.py</code> exits non-zero, so a deploy stops rather than starting against a schema it cannot read.</li>
+</ul>
+<p>It also calls <code>migrate_audit_schema</code>, which had been exported with no production caller at all — so the live database may have been missing its attribution columns since the day they landed. Safe to run on every start, and it has to be: an idempotent migration nobody calls is the same as no migration. The second run reports that the schema is already current.</p>
+<div class="open"><span class="lbl">The concession that goes with it.</span> <code>app/state/migrate.py</code> has <strong>no test file and 0% coverage</strong>. It was verified by hand — a database built from the models minus the five new columns, a read that failed with <code>no such column</code>, the migration, the same read succeeding — and that reproduction is written down in the commit message rather than in a test that would re-run it. It is the module in this repository where the gap between "verified once" and "guarded" costs the most, because it is the one thing standing between a deploy and a broken live schema, and the failure it prevents is invisible to a suite that builds its schema fresh every time.</div>
+<div class="risk"><strong>A sharp default, corrected in place rather than removed.</strong> <code>init_db()</code> takes <code>drop_first: bool = True</code> and its docstring used to claim it dropped tables only for an in-memory test database. It did not — it dropped unconditionally, against whatever engine it was handed. In this product that is the worst available default: the audit chain is append-only and hash-linked precisely so no row can be removed unnoticed, and <code>drop_all</code> removes every row and leaves nothing behind to notice, so one call on a production path destroys the evidence and looks like a clean install. Roughly 480 test call sites depend on the drop for isolation, so the default stays and the docstring is now true. <code>deploy/entrypoint.sh</code> passes <code>drop_first=False</code>, and only when there is no database file at all.</div>
 </div>
 
 <h2 id="requestpath">13. Request path — main workflow</h2>
@@ -1371,12 +1426,15 @@ wrapped in a mark; the script only toggles visibility and moves focus. The evide
 must not depend on a script running, so the panels ship open and the script closes them, never the
 reverse. <strong>What this path no longer claims:</strong> an earlier version of this section walked
 through a model call, a lexical-then-semantic retrieval pass, an impact mapping and an event fold.
-None of those stages exist. What is left is shorter and is what actually runs.</figcaption>
+None of those stages is on this path. The proposer that does call a model is not reached from any
+route (§3), so a request that renders a change still touches no model and no network. What is left
+is shorter and is what actually runs.</figcaption>
 </figure>
 
 <div class="d">
 <h4>The load path, which is the other half</h4>
-<p>Ingesting a version runs through one chokepoint, <code>app/pipeline.py</code>, so exactly one place owns the order of operations. It ingests, diffs against the previous version, writes the <code>Change</code> rows and records an audit entry for each. Three properties are deliberate: it is <strong>idempotent</strong>, so a second run with the same bytes writes nothing — no second copy of the passages, no second set of changes, no second audit entry; it <strong>refuses a corpus that moved under it</strong> rather than rebuilding half of it; and it <strong>calls no model</strong>, which is why <code>Change.materiality</code> is NULL rather than defaulted. Change ids are derived from the two version ids and the position in the diff output, so a re-run reuses them; a UUID there would be correct and useless, because the second run would mint new ids for the same changes and double the row count.</p>
+<p>Ingesting a version runs through one chokepoint, <code>app/pipeline.py</code>, so exactly one place owns the order of operations. It ingests, diffs against the previous version, writes the <code>Change</code> rows and records an audit entry for each. Three properties are deliberate: it is <strong>idempotent</strong>, so a second run with the same bytes writes nothing — no second copy of the passages, no second set of changes, no second audit entry; it <strong>refuses a corpus that moved under it</strong> rather than rebuilding half of it; and it <strong>calls no model</strong> — <code>app/pipeline.py</code> passes <code>materiality=None</code>, which is why <code>Change.materiality</code> is NULL rather than defaulted. Change ids are derived from the two version ids and the position in the diff output, so a re-run reuses them; a UUID there would be correct and useless, because the second run would mint new ids for the same changes and double the row count.</p>
+<p>The same chokepoint takes the real corpus. <code>scripts/ingest_real.py</code> hands it Kentucky PSC 2025-00113 — one witness's direct testimony, filed and then corrected — as two versions of 1,024,409 and 1,024,536 characters, a 127-character difference across a million. Every version carries the address it was fetched from, so a claim drawn from that docket links back to the Commission's own copy of the PDF, which is the one thing a regulatory reader wants from a citation: not our text, theirs. The URL goes through the same check the templates use, so a provenance file naming a <code>javascript:</code> address is refused at ingest rather than in a template.</p>
 </div>
 
 <h2 id="failure">14. Failure modes</h2>
@@ -1398,7 +1456,15 @@ None of those stages exist. What is left is shorter and is what actually runs.</
 </div>
 <div class="d">
 <h4>Retrieval — there is nothing to fail</h4>
-<p>Earlier drafts of this section distinguished a retrieval <em>miss</em> from a retrieval <em>service failure</em>, and argued that an outage should escalate rather than degrade quietly to lexical-only. The reasoning holds and there is no retrieval layer to apply it to: no index, no ranking, no embeddings, nothing to time out. The load-bearing design choice underneath survives and is worth keeping — <strong>"did something change" is complete and deterministic; "what does it touch" is lossy</strong> — because it means a missing link would surface as a visible unmapped change rather than a change that vanished. Today every link is written by hand in the seed, so nothing is being separated from anything.</p>
+<p>Earlier drafts of this section distinguished a retrieval <em>miss</em> from a retrieval <em>service failure</em>, and argued that an outage should escalate rather than degrade quietly to lexical-only. The reasoning holds and there is no retrieval layer to apply it to: no index, no ranking, no embeddings, nothing to time out. The load-bearing design choice underneath survives and is worth keeping — <strong>"did something change" is complete and deterministic; "what does it touch" is lossy</strong> — because it means a missing link would surface as a visible unmapped change rather than a change that vanished.</p>
+<p><span class="lbl">What has changed since is the shape of the gap, not its size.</span> The edge now has a table and a writer: <code>change_obligations</code>, written by <code>map_change_to_obligation</code> in <code>app/state/routing.py</code>. Nothing outside the tests calls it — <code>grep -rn "map_change_to_obligation" app/ scripts/</code> finds only the definition — so in a seeded workspace routing walks the change, finds no obligation, and refuses with <code>ROUTE_NO_OBLIGATION</code>. The five change-to-obligation mappings a reviewer sees are still the ones written by hand in <code>data/manifest.json</code> and read out by the seed.</p>
+</div>
+
+<div class="d">
+<h4>A fallback that announced itself correctly, about a state that was not true</h4>
+<p>This one is in the document because it is the failure mode this repository actually produces, and no test goes red for it. Three modules degrade safely with no API key: the assistant says it is unavailable, the proposer proposes nothing and carries <code>FALLBACK_NO_API_KEY</code>, the mail transport declines to send and says so. That is the right design — best-practices §26, a fallback must announce itself.</p>
+<p>They announced it <em>always</em>. Nothing loaded <code>.env</code> into the process, so the key sat in the file and never reached <code>os.environ</code>, and a deployment holding a good key behaved exactly like one holding none. Every message printed was honest and every one of them was about a state that was not the state. <strong>Nothing failed, which is why nothing found it.</strong> The same shape appeared twice more the same day: a router nobody mounted, and a chat engine the view resolved by a name the engine did not publish — so the product answered every question with a polite, correct sentence saying the part of it that reads the record was not wired in.</p>
+<p>The fix is <code>app/config.py</code> (§11). <span class="lbl">The general lesson is the one worth carrying:</span> a legitimate fallback state makes a wiring bug invisible, because the failure looks exactly like the designed behaviour. The guard has to be a test that asserts the <em>connection</em> — that the name the caller resolves is the name the callee publishes, that the router is mounted, that the environment a module reads is the environment something fills — not a test that the fallback works.</p>
 </div>
 <div class="d">
 <h4>Tables</h4>
@@ -1414,7 +1480,8 @@ None of those stages exist. What is left is shorter and is what actually runs.</
 </div>
 <div class="d">
 <h4>At 10x latency, and at 10x scale</h4>
-<p>No stage in the running product is latency-sensitive, because no stage calls a model or the network. Ingestion, segmentation, diffing and verification are bounded string work. What breaks first is SQLite: writes serialize to one file, two application instances cannot share it, and ingesting a long proceeding runs synchronously inside a request. The seam is a connection string, and the switch needs its own test pass rather than a config flag, because transaction and locking behaviour differ enough to matter. When a model stage does land it is the one that has to run as background work, so a request returns "changes detected, interpreting" rather than hanging — and a call that times out must leave its item visibly needing interpretation, never dropped.</p>
+<p>Every stage on the path a claim takes to the screen is bounded string work: ingestion, segmentation, diffing and verification call no model and make no network request, so none of them is latency-sensitive. <span class="lbl">One surface is.</span> The assistant makes a model call inside the request that renders the answer, with a step cap and nothing else — no timeout of our own, no queue, no background worker — so a slow endpoint is a slow page and a rate-limited one is a failed turn. That is acceptable for a chat surface, where a person is waiting anyway and an empty answer is legible, and it would not be acceptable for the proposer: when that path lands behind a screen it is the one that has to run as background work, so a request returns "changes detected, interpreting" rather than hanging, and a call that times out leaves its item visibly needing interpretation rather than dropped.</p>
+<p>What breaks first under load is SQLite (ADR-028): writes serialize to one file, two application instances cannot share it, and ingesting a long proceeding runs synchronously inside a request. The deployment already pays that ceiling openly — one uvicorn worker, on purpose, because a second buys concurrency the database cannot honour and turns a slow write into a locked one. The seam is a connection string, and the switch needs its own test pass rather than a config flag, because transaction and locking behaviour differ enough to matter.</p>
 </div>
 <div class="d">
 <h4>When the model is simply wrong</h4>

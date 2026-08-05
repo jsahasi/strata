@@ -32,16 +32,33 @@ Lowest: `review_centre.py` 74%, `migrate.py` 0% (new, untested), `notify/transpo
 
 ## Asked for and NOT yet done
 
-1. **Realistic roles.** Three fixed roles are too few. Real titles in `data/real/`:
-   Analyst II, Manager, Director, Deputy Director, VP Pricing & Planning,
-   Regulatory Counsel, Legal Assistant. The demo route in `scripts/seed_route.py`
-   puts "Legal review" AND "Officer signs" both on `role:admin` because no such
-   roles exist — so the person who draws the route approves through it. Fix after
-   the permissions workflow lands.
-2. **99% coverage on all modules.** User overrode ADR-38, which rejects a
-   line-coverage target. User then asked "can't we do both?" — yes: keep branch
-   and mutation testing AND reach 99%, with every new test required to fail when
-   the behaviour breaks. ADR-38 needs amending, not deleting.
+1. **Realistic roles — NOW UNBLOCKED, still not done.** The permissions workflow
+   landed, so a company can compose its own roles and the reason this was blocked
+   is gone. What remains is the visible half. `scripts/seed_route.py` still sends
+   STP-2 "Legal review" and STP-4 "Officer signs the filing" to `role:admin`, so
+   the account that draws the route approves through it twice — the exact
+   segregation-of-duties failure this product exists to surface, sitting in the
+   demonstration a panel will open.
+   **The fix, in the order it has to happen:** `create_role` in
+   `app/state/permissions.py` composes "Regulatory counsel" and "Certifying
+   officer" from the templates already written in `scripts/seed_roles.py`; the
+   actor must hold `user.manage`. Then grant each role to an account, because
+   `app/state/workflow.py` refuses an `assignee_rule` naming nobody — a role with
+   no holder fails route validation rather than passing quietly. Only then point
+   the two steps at `role:<name>`.
+   **Decide before building:** the conflict report discloses rather than forbids,
+   so leaving the clash and letting the report name it is a defensible demo of
+   the product working on its own configuration. It is only defensible if it is
+   deliberate and labelled. Right now it is an accident, which is the worst of
+   the three options.
+2. ~~**99% coverage on all modules.**~~ **CUT 2026-08-04 by the owner.** The
+   override of ADR-38 is withdrawn; ADR-38 stands and now carries the whole
+   history, including the part where refusing a target while measuring nothing
+   was the weaker position. What is left of it: the coverage tool stays, the
+   measured line figure is reported as a fact and not as a standard, and
+   `app/state/migrate.py` is the one module worth covering on merit — it is the
+   file that stands between a deploy and a broken live schema, and it has no
+   tests.
 3. **Logo mismatch.** The application masthead wordmark differs from the marketing
    site's. User wants the SITE one used in the app.
 4. **Re-record the demo video.** Current one predates the glass restyle, the

@@ -31,25 +31,31 @@
   <marker id="arrow-weak" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker>
 </defs></svg>
 <h1>Architecture</h1>
-<p class="sub">Components and their boundaries, the data flow from raw document to routed action, and where each responsibility lives under <code>app/</code>. This document defines the target architecture; <code>docs/.ai/tasks.html</code> tracks how much of it is built. Where a decision is still open in <code>docs/.ai/decisions.html</code>, this doc says so rather than quietly picking an answer and hiding the seam.</p>
+<p class="sub">Components and their boundaries, the data flow from raw document to screen, and where each responsibility lives under <code>app/</code>. This document describes what is built. Where something is designed and not built, it says so in the same place it would have described it. Where a decision is still open in <code>docs/.ai/decisions.html</code>, it says that too, rather than quietly picking an answer and hiding the seam.</p>
 
-<div class="note"><strong>The shape in one sentence.</strong> A pipeline of small, mostly deterministic stages, with exactly one stage permitted to call a model and exactly one stage permitted to turn a model's output into fact. Everything else is either pure computation or a thin read/write against stored state. The seams between stages are the module boundaries under <code>app/</code>.</div>
+<div class="note"><strong>The shape in one sentence.</strong> A pipeline of small, mostly deterministic stages, with exactly one module permitted to call a model on the pipeline path and exactly one function permitted to decide that a stored claim may be asserted. Everything else is either pure computation or a thin read and write against stored state. The seams between stages are the module boundaries under <code>app/</code>.</div>
 
-<h2>Data flow — raw document to routed action</h2>
+<div class="note"><strong>Checked against <code>1343f57</code>, 2026-08-04.</strong> Every count and file path below was read out of the tree at that commit, not remembered. This document had gone stale once already — it was last revised at <code>97daf02</code> and described a module layout that eight commits had moved. Two habits follow from that. Numbers carry the command that produces them, so a reader can repeat it instead of trusting it. And work that is written but not committed is not described here at all: as this is revised, a scheduler, a docket fetcher, point-in-time replay and a permissions screen all exist in somebody's working tree, and none of them appears below.</div>
+
+<h2>Data flow — raw document to screen</h2>
 <figure class="fig">
 <div class="fig__frame">
-<svg viewBox="0 0 900 764" role="img" aria-labelledby="dfT dfD">
-  <title id="dfT">Data flow from a raw proceeding version to a routed action</title>
+<svg viewBox="0 0 900 782" role="img" aria-labelledby="dfT dfD">
+  <title id="dfT">Data flow from a raw proceeding version to a screen, and where the gate sits</title>
   <desc id="dfD">Raw text for one proceeding version enters ingestion, which segments
   it into offset-addressed passages and writes them to an immutable passage store.
   Retrieval over that store is drawn dashed because it is designed and not built. A
-  pure diff compares two versions. Interpretation, the one stage this design permits
-  to call a model, reads the diff and the stored company context and emits candidate
-  claims, each carrying a citation of version, start offset, end offset and quoted
-  text. Verification calls no model: it re-reads the source at those offsets,
-  normalizes, compares, and either passes the claim into the hash-chained audit state
-  or refuses it into the escalation queue. Resolving an escalation writes back to
-  state. The web layer reads state and shows a withheld claim's reason.</desc>
+  pure diff compares two versions. app/pipeline.py sequences ingestion, diff and the
+  writes, and calls no model. Claims are written into ordinary tables by rule, in
+  app/seed.py. Interpretation, the one module on this path permitted to call a model,
+  sits to the side and is drawn with a dashed arrow because no caller in app reaches
+  it. The assistant calls a model too, but it sits beside this pipeline rather than
+  in it. The gate is below state, not above it: verification runs on every read, inside
+  app/state/claims.py, which re-reads the source at the cited offsets, normalizes,
+  compares exactly and checks the occurrence. A claim that passes reaches the reader
+  as fact; one that fails is withheld with its reason code and never its statement.
+  The readers are the web screens, the public share page and the assistant's tools,
+  and all three go through the same function.</desc>
 
   <!-- input -->
   <text class="t-sub" x="14" y="112">raw proceeding</text>
@@ -76,44 +82,54 @@
     <text class="t-sub" x="266" y="324">pure function. No model, no I/O. Confidence capped on restructure</text></g>
   <path class="flow" d="M390 342 V376"/>
 
-  <g class="box box--model"><rect x="250" y="382" width="280" height="64"/>
-    <text class="t-title" x="266" y="404">interpretation</text>
-    <text class="t-sub" x="266" y="421">the only stage permitted to call a model</text>
-    <text class="t-sub" x="266" y="436">draft vs final is read from the field, never asked</text></g>
+  <g class="box"><rect x="250" y="382" width="280" height="64"/>
+    <text class="t-title" x="266" y="404">app/pipeline.py — the write path</text>
+    <text class="t-sub" x="266" y="421">ingests, diffs, records changes and audit rows</text>
+    <text class="t-sub" x="266" y="436">calls no model. A second run writes nothing</text></g>
+  <path class="flow" d="M390 446 V474"/>
 
-  <g class="box box--store"><rect x="610" y="382" width="272" height="64"/>
+  <g class="box box--store"><rect x="610" y="382" width="272" height="58"/>
     <text class="t-title" x="626" y="404">company context</text>
     <text class="t-sub" x="626" y="422">obligations, owners, projects</text></g>
-  <path class="flow" d="M606 414 H534"/>
+  <path class="flow--weak" d="M746 440 V474"/>
 
-  <text class="t-edge" x="398" y="464">candidate claims: text + citation(version, start, end, quote)</text>
-  <path class="flow" d="M390 446 V480"/>
+  <g class="box box--model"><rect x="610" y="480" width="272" height="72"/>
+    <text class="t-title" x="626" y="502">interpretation</text>
+    <text class="t-sub" x="626" y="519">the only model call on this path</text>
+    <text class="t-sub" x="626" y="534">propose.py pins claude-opus-5 (ADR-37)</text>
+    <text class="t-sub" x="626" y="549">nothing in app/ calls it</text></g>
+  <path class="flow--weak" d="M606 516 H538"/>
 
-  <g class="box box--gate"><rect x="250" y="486" width="280" height="64"/>
-    <text class="t-title" x="266" y="508">verification — the gate</text>
-    <text class="t-sub" x="266" y="525">no model. Re-reads the source at the cited offsets,</text>
-    <text class="t-sub" x="266" y="540">normalizes, compares exactly, checks the occurrence</text></g>
+  <g class="box box--store"><rect x="250" y="480" width="280" height="72"/>
+    <text class="t-title" x="266" y="502">state</text>
+    <text class="t-sub" x="266" y="519">ordinary tables, plus a hash-chained audit log</text>
+    <text class="t-sub" x="266" y="534">beside them. Claims are written by rule in</text>
+    <text class="t-sub" x="266" y="549">app/seed.py. There is no verified column</text></g>
+  <path class="flow" d="M390 552 V586"/>
+  <text class="t-edge" x="398" y="574">every read, not every write</text>
 
-  <path class="flow" d="M390 550 V584"/>
-  <text class="t-edge" x="398" y="572">quote matches</text>
+  <g class="box box--gate"><rect x="250" y="592" width="280" height="72"/>
+    <text class="t-title" x="266" y="614">verification — the gate</text>
+    <text class="t-sub" x="266" y="631">app/state/claims.py re-reads the source at the</text>
+    <text class="t-sub" x="266" y="646">cited offsets, normalizes, compares exactly and</text>
+    <text class="t-sub" x="266" y="661">checks the occurrence. No model. No similarity</text></g>
 
-  <path class="flow--refuse" d="M534 518 H606"/>
-  <text class="t-refuse" x="536" y="509">refuses</text>
+  <path class="flow--refuse" d="M534 624 H606"/>
+  <text class="t-refuse" x="536" y="615">withholds</text>
 
-  <g class="box"><rect x="610" y="486" width="272" height="64"/>
-    <text class="t-title" x="626" y="508">escalation queue</text>
-    <text class="t-sub" x="626" y="525">the reason, never the statement. Resolving records</text>
-    <text class="t-sub" x="626" y="540">that a person agreed or disputed — it publishes nothing</text></g>
-  <path class="flow--refuse" d="M746 550 V608 H538"/>
+  <g class="box"><rect x="610" y="592" width="272" height="72"/>
+    <text class="t-title" x="626" y="614">withheld claim</text>
+    <text class="t-sub" x="626" y="631">the reason code, never the statement. The</text>
+    <text class="t-sub" x="626" y="646">escalations table holds what the seed raised;</text>
+    <text class="t-sub" x="626" y="661">resolving one appends an audit row</text></g>
 
-  <g class="box box--store"><rect x="250" y="590" width="280" height="58"/>
-    <text class="t-title" x="266" y="612">state — hash-chained audit</text>
-    <text class="t-sub" x="266" y="630">append-only. UPDATE and DELETE refused at the session</text></g>
-  <path class="flow" d="M390 648 V682"/>
+  <path class="flow" d="M390 664 V698"/>
+  <text class="t-edge" x="398" y="686">quote matches</text>
+  <path class="flow--refuse" d="M746 664 V698"/>
 
-  <g class="box"><rect x="250" y="688" width="280" height="58"/>
-    <text class="t-title" x="266" y="710">web</text>
-    <text class="t-sub" x="266" y="728">FastAPI, server-rendered. A withheld claim shows its reason</text></g>
+  <g class="box"><rect x="250" y="704" width="632" height="58"/>
+    <text class="t-title" x="266" y="726">the readers</text>
+    <text class="t-sub" x="266" y="744">app/web/ screens, the public /s/ share page, and the assistant's tools — all three through the one gate</text></g>
 </svg>
 </div>
 <div class="fig__key">
@@ -123,40 +139,57 @@
   <span><i class="k-absent"></i>designed, not built</span>
   <span><i class="k-refuse"></i>the refusal path</span>
 </div>
-<figcaption><strong>One model call, one gate.</strong> Every stage but interpretation is pure
-computation or a plain read and write, which is what makes the pipeline testable without a
-network. The gate is the product: a claim whose citation does not re-read cleanly never
-reaches the web layer as fact. <strong>Two honest notes.</strong> Retrieval over docket text is
-drawn dashed because it does not exist — an earlier version of this diagram showed it as
-BM25 over SQLite FTS5, which was a design intention drawn as if it were shipped. And the
-model box is the seam. <code>app/interpretation/propose.py</code> builds its prompt by
-dispatching on the version's stored status and sends each proposal it can read to the
-verifier — but no caller in <code>app/</code> reaches that module, so the claims on screen
-still come from deterministic assembly in <code>app/seed.py</code>.</figcaption>
+<figcaption><strong>The gate moved, and moving it made it stronger.</strong> An earlier
+version of this diagram put verification between interpretation and state, as a write gate,
+and drew a <code>verified</code> flag going into the database. That is not how the code
+works and it is the weaker design: a stored verdict is a promise about bytes that may have
+changed since. What ships instead is ADR-003 — <code>verified_claims()</code> in
+<code>app/state/claims.py</code> re-runs the check on every read, so editing a source flips
+its claims to withheld on the very next page load, and there is no <code>verified</code>
+column anywhere in the schema to go stale. The cost is arithmetic: verification runs once
+per claim per view instead of once per claim ever.
+<strong>Two honest notes.</strong> Retrieval over docket text is drawn dashed because it
+does not exist — an earlier version of this diagram showed it as BM25 over SQLite FTS5,
+which was a design intention drawn as if it were shipped. And the model box is still a
+seam. <code>app/interpretation/propose.py</code> builds its prompt by dispatching on the
+version's stored status and sends each proposal it can read to the verifier, but no caller
+in <code>app/</code> reaches it, so the claims on screen still come from deterministic
+assembly in <code>app/seed.py</code>. Check it with <code>grep -rn propose_changes app/ scripts/</code>: every hit is
+inside <code>propose.py</code> itself, bar two comments elsewhere that cite it as a shape
+to copy.</figcaption>
 </figure>
 
 <p>The reasoning matters more than the boxes. Three properties of this pipeline do the actual work:</p>
 <ol>
 <li><strong>The model sees a diff, never a pair of documents.</strong> By the time <code>interpretation</code> runs, <code>diff</code> has already decided what changed. The model is never asked "did anything change" — a question it answers unreliably on long documents — only "does this specific change matter," a smaller and checkable question (ADR-004).</li>
-<li><strong>Nothing reaches <code>state</code> without passing through <code>verification</code>.</strong> There is exactly one write path into project state, and it is gated. A bug anywhere upstream produces an escalation, not a wrong fact in front of the analyst.</li>
+<li><strong>Nothing leaves <code>state</code> as fact without passing through <code>verification</code>.</strong> There is one function that turns a stored claim into something a screen may assert — <code>verified_claims()</code> in <code>app/state/claims.py</code> — and every reader goes through it: the change view, the public share page, the assistant's <code>change_detail</code> and <code>search_claims</code> tools. A bug anywhere upstream produces a withheld claim with a reason code, not a wrong fact in front of the analyst.</li>
 <li><strong>Every arrow into <code>interpretation</code> and out of it crosses a typed boundary</strong> — <code>Change</code> objects in, candidate claims with citations out. Neither side needs to know how the other is implemented. That is what makes each stage swappable on its own.</li>
 </ol>
 
 <h2>Module layout under app/</h2>
+<p>Eleven packages and four top-level modules, as of <code>1343f57</code>. Two names this table used to carry — <code>app/passages/</code> and <code>app/review/</code> — are not directories and never were; both capabilities ship elsewhere, and they are listed here at the path where the code actually sits. Repeat the layout with <code>find app -name '*.py' | sort</code>.</p>
 <table>
 <tr><th>Module</th><th>Responsibility</th><th>Calls a model?</th><th>Swappable without touching the rest</th></tr>
+<tr><td><code>app/config.py</code></td><td>Reads <code>.env</code> into <code>os.environ</code> once, at startup, and returns the names it set — never the values. The real environment always wins over the file. Fifteen lines of standard library rather than a dependency (ADR-14).</td><td>no</td><td>Called at the top of <code>app/main.py</code> and of each <code>scripts/*.py</code>, before <code>app.state</code> or <code>app.web</code> is imported, because <code>app/auth/policy.py</code> resolves its approval mode at import time.</td></tr>
 <tr><td><code>app/ingestion/</code></td><td>Raw text (proceeding version, or company-context document) &rarr; <code>DocumentVersion</code> + <code>Passage</code> rows with stable char offsets. Hashes and freezes the source.</td><td>no</td><td>Parser per input format (plain text now; PDF/HTML extraction is additive, not a rewrite) as long as it still emits offset-addressed passages.</td></tr>
-<tr><td><code>app/passages/</code></td><td>The passage store: schema, offset addressing, and retrieval. Lexical index (SQLite FTS5/BM25) always; semantic retrieval only over company-context passages (ADR-008).</td><td>no (embeddings are not generation)</td><td>Retrieval backend behind one <code>retrieve(query)</code> call — swap FTS5 for Postgres full-text, or add a vector store, without touching callers.</td></tr>
+<tr><td>the passage store — <code>state/models.py</code>, <code>state/queries.py</code><br><span class="open">no <code>app/passages/</code> directory</span></td><td>Schema, offset addressing, and the one scoped read: <code>models.Passage</code> holds the rows and <code>queries.passages_for_company</code> is the only way into them. Retrieval over those rows — index, ranking, embeddings — is ADR-008 and <strong>is not built</strong>.</td><td>no</td><td>Making a directory of it is a move, not a redesign. Adding retrieval is the real work, and it is where a lexical index or a vector store would plug in.</td></tr>
 <tr><td><code>app/diff/</code></td><td>Pure function: two passage sequences in, typed <code>Change[]</code> out (added / removed / modified), each carrying passage references on both sides.</td><td>no</td><td>The alignment algorithm (currently sequence-based) is fully replaceable — e.g. a structural, section-aware aligner later — because callers only depend on the <code>Change</code> contract, never the algorithm.</td></tr>
-<tr><td><code>app/interpretation/</code></td><td>The only module allowed to call a model. Materiality judgment on a <code>Change</code>; obligation extraction with evidence spans; impact mapping (change &rarr; obligations/projects/documents); action recommendation; reviewer routing. Draft-vs-final status is read from the version and dispatches to two separate branches (ADR-005) — never inferred by the model.</td><td>yes — the only place in the codebase that does</td><td>The model provider sits behind one call interface, so it can be swapped or stubbed. Which model to use is still an open question in <code>decisions.html</code> — deliberately not answered here.</td></tr>
-<tr><td><code>app/verification/</code></td><td>The gate. Given a candidate claim, re-reads the passage store at the cited <code>(version_id, char_start, char_end)</code>, normalizes both sides, and compares exactly. Applies the confidence threshold (ADR-006). Pass &rarr; fact. Fail &rarr; escalation with a reason.</td><td>no — pure string comparison and a threshold check</td><td>Runs and is fully unit-tested with no model available and no network — this is deliberate; it is the module a reviewer can audit without trusting anything about the AI.</td></tr>
-<tr><td><code>app/state/</code></td><td>SQLAlchemy models; the append-only event log; the current-state projection (obligations, projects, documents, changes, actions); audit history.</td><td>no</td><td>Event-log persistence is the seam where SQLite becomes Postgres (ADR-007) — see below. The projection can be recomputed from the log, so the storage engine underneath is not load-bearing for correctness.</td></tr>
-<tr><td><code>app/review/</code></td><td>The escalation queue as a read model over <code>state</code>'s event log (candidates with no resolution event yet) plus reviewer actions — approve, reject, amend — each of which appends a resolution event.</td><td>no</td><td>Reviewer role model can go from several roles to one (the cut list already names this) by changing routing rules, not this module's shape.</td></tr>
-<tr><td><code>app/web/</code></td><td>FastAPI routes and server-rendered templates: analyst workspace, citation viewer, reviewer view. Reads <code>state</code> and, for the citation viewer, <code>passages</code> directly. Writes only by calling the pipeline orchestrator below.</td><td>no</td><td>Deliberately thin — no business logic lives here, so the interface (server-rendered today) can change without moving any of the reasoning above it.</td></tr>
-<tr><td><code>app/pipeline.py</code></td><td>The chokepoint. Sequences ingestion &rarr; diff &rarr; interpretation &rarr; verification &rarr; state for a new version, so there is exactly one place that owns the order of operations and can be told to stop, retry, or resume.</td><td>no</td><td>The only module that imports all the others. Nothing else is allowed to skip a stage by calling downstream modules directly.</td></tr>
+<tr><td><code>app/interpretation/</code></td><td>The only module on the pipeline path allowed to call a model. <code>action.py</code> is 35 lines and imports nothing: draft-versus-final is read from the version's status field and dispatches to two separate branches (ADR-005), never inferred. <code>propose.py</code> holds the model call and sends each proposal it can read to the verifier. <span class="open">Nothing in <code>app/</code> calls <code>propose.py</code></span> — its only importer is <code>tests/test_propose.py</code>.</td><td>yes</td><td>The provider sits behind one transport interface, imported inside the factory function so the module loads with no SDK present. The model id is pinned as a constant, <code>claude-opus-5</code>, and deliberately not read from the environment (ADR-37).</td></tr>
+<tr><td><code>app/verification/</code></td><td>The comparison. Given a citation and a source text, re-reads at <code>(char_start, char_end)</code>, normalizes both sides, compares for <em>equality</em> and checks the occurrence. It applies no threshold and never has — "a paraphrase is exactly what an auditor will not accept, so a threshold would defeat the point of having the gate at all."</td><td>no — string equality after normalization</td><td>Runs and is unit-tested with no model, no network and no database; it imports only <code>app/text/normalize.py</code>. It is the module a reviewer can audit without trusting anything about the AI.</td></tr>
+<tr><td><code>app/text/</code></td><td><code>normalize.py</code>: the one normalization, plus the projection that maps a normalized offset back to the source character that produced it. Imports nothing from <code>app/</code>.</td><td>no</td><td>Both sides of every comparison call it, which is the point. Changing folding here changes ingestion, diff and verification together, on purpose.</td></tr>
+<tr><td><code>app/state/</code></td><td>Seventeen modules. <code>models.py</code> (43 tables), <code>db.py</code> (the engine seam), <code>queries.py</code> (the tenant chokepoint), <code>claims.py</code> (the read-time gate and the confidence floor), <code>audit.py</code> (the hash chain), <code>migrate.py</code> (additive schema migration), and the feature stores: <code>projects</code>, <code>review</code>, <code>workflow</code>, <code>routing</code>, <code>rollback</code>, <code>sharing</code>, <code>invites</code>, <code>identity</code>, <code>feedback</code>, <code>retention</code>, <code>sources</code>.</td><td>no</td><td><code>db.py</code> is the seam where SQLite becomes Postgres (ADR-28) — see below. State is ordinary tables, so the storage engine is load-bearing for correctness in a way an event-fold would not be; the audit chain is what carries the evidence.</td></tr>
+<tr><td>the escalation queue — <code>state/claims.py</code>, <code>web/views/review.py</code><br><span class="open">no <code>app/review/</code> directory</span></td><td><code>models.Escalation</code> is a real table. <code>escalations_for_company()</code> reads it; <code>/escalations</code> shows it; resolving one stamps <code>resolved_at</code> and <code>resolved_by</code> on the row and appends an audit event naming the actor. <code>app/state/review.py</code> is a different thing — the review centre's findings, questions and takes.</td><td>no</td><td>Resolution is reversible through <code>app/state/rollback.py</code>, which writes a new audit row naming the one it takes back rather than editing either.</td></tr>
+<tr><td><code>app/auth/</code></td><td><code>sessions.py</code>: login, logout, session resolution by token hash. <code>policy.py</code>: fifteen permission codes, role grants, and the segregation-of-duties check on approvals.</td><td>no</td><td>The guard is installed once in <code>app/main.py</code> as middleware rather than decorated onto each route, so a screen added next month is protected by existing.</td></tr>
+<tr><td><code>app/chat/</code></td><td>Clarke, the records clerk (ADR-50). <code>persona.py</code> holds the prompt and a deterministic pre-screen; <code>agent.py</code> the turn loop, the pinned model and nine named degradations; <code>tools.py</code> ten tools behind an import-time-checked allowlist; <code>pills.py</code> the suggested actions; <code>engine.py</code> a thirty-line shim.</td><td>yes — the second and last place</td><td>The model never supplies an identity: <code>company_id</code>, <code>actor</code>, <code>user_id</code> and <code>session</code> are refused as tool arguments rather than stripped, and the turn halts (ADR-51).</td></tr>
+<tr><td><code>app/notify/</code></td><td><code>messages.py</code> composes an invitation mail; <code>transport.py</code> sends it over SMTP. With no SMTP settings it declines, returns <code>MAIL_PATH_OFF_NOT_CONFIGURED</code> and tells the admin the link is real and nobody was emailed.</td><td>no</td><td>The token goes in the link and nowhere else — not the subject, not a header, not a log, not the audit chain.</td></tr>
+<tr><td><code>app/web/</code></td><td>FastAPI routes and server-rendered templates. Fifteen routers, each owning its own absolute paths — no prefixes, so a URL lives in one file. Reads <code>state</code>; for the citation viewer, <code>passages</code> through the scoped read; imports <code>app/diff/</code> and <code>app/verification/</code> for the constants and the occurrence helpers.</td><td>no</td><td>Deliberately thin, with one conceded exception: four private scoped reads sit in <code>web/views/admin.py</code> that belong in <code>state/queries.py</code>, and the file says so.</td></tr>
+<tr><td><code>app/evals/</code></td><td>The offline harness: <code>corpus.py</code>, <code>metrics.py</code>, <code>report.py</code>, <code>run.py</code>. Scores diff and verification against the synthetic corpus, whose expected answers come from <code>data/manifest.json</code> rather than from the code under test.</td><td>no</td><td>Imports <code>diff</code>, <code>ingestion</code>, <code>interpretation.action</code> and <code>verification</code>. It imports neither <code>state</code> nor <code>web</code>, so the harness cannot accidentally measure the database.</td></tr>
+<tr><td><code>app/pipeline.py</code></td><td>The write chokepoint. Sequences ingestion &rarr; diff &rarr; record for a new version, so one place owns the order of operations. Idempotent: the same version twice writes nothing the second time. Refuses a corpus whose bytes moved under it rather than rebuilding half of it.</td><td>no</td><td>It imports <code>diff</code>, <code>ingestion</code>, <code>state</code> and <code>audit</code>, and <span class="open">not <code>verification</code></span> — because the gate is on the read path now, not this one.</td></tr>
+<tr><td><code>app/seed.py</code></td><td>Loads the synthetic corpus and writes the demonstration rows: proceedings, versions, claims assembled by rule from <code>data/manifest.json</code>, escalations, accounts. One claim's quote is deliberately altered at real offsets so a citation fails on screen.</td><td>no</td><td>This is where the claims a reviewer sees come from. It is a loader, not a model, and the product's arithmetic is honest only because it says so.</td></tr>
+<tr><td><code>app/main.py</code></td><td>Assembles the application: loads <code>.env</code>, mounts the static files, includes the fifteen routers in the order an analyst meets them, installs the session guard, serves <code>/healthz</code>.</td><td>no</td><td><code>tests/test_app_wiring.py</code> derives the expected set from <code>app.routes</code> and fails the moment a router under <code>app/web/views/</code> is not on the list. That test is how two routers and roughly two thousand lines were found mounted nowhere.</td></tr>
 </table>
 
-<p>Dependency direction runs one way, top to bottom of the table above. <code>ingestion</code> knows nothing about <code>diff</code>; <code>diff</code> knows nothing about <code>interpretation</code>; <code>interpretation</code> knows nothing about <code>verification</code>'s pass/fail logic, only that it must emit a citation for anything it wants to survive. <code>verification</code> knows nothing about models at all. This is what makes "fix the class, not the line" tractable — a bug in one stage cannot silently depend on behavior in another, because the only thing that crosses a boundary is a typed object.</p>
+<p>Dependency direction runs one way for the core. <code>ingestion</code> knows nothing about <code>diff</code>; <code>diff</code> knows nothing about <code>interpretation</code>; <code>interpretation</code> knows nothing about the gate's pass or fail logic, only that it must emit a citation for anything it wants to survive. <code>verification</code> knows nothing about models, databases or the web. This is what makes "fix the class, not the line" tractable — a bug in one stage cannot silently depend on behavior in another, because the only thing that crosses a boundary is a typed object. Above the core the direction is looser and the next diagram draws it honestly, including the edges that run back up.</p>
 
 <figure class="fig">
 <div class="fig__frame">
@@ -171,22 +204,25 @@ still come from deterministic assembly in <code>app/seed.py</code>.</figcaption>
   puts its own citations through the same module app/state/claims.py uses, rather
   than through a second check of its own. Three dashed arrows point back up to
   app/state/queries.py: diff.passage_refs(), verification.verify_citation_for_version()
-  and the proposer's scoped entry point each reach it at call time. On the right sit
-  two capabilities the table above files under directories that do not exist. The
-  escalation queue ships, in state and web. The passage store ships, in state. Only
-  retrieval over that store is drawn dashed, because no index, ranking or embedding
-  exists under app/. app/evals/ imports the four core packages and imports neither
-  state nor web.</desc>
+  and the proposer's scoped entry point each reach it at call time, and there are
+  still exactly three. One edge runs the wrong way in the top band and is drawn
+  where it is rather than hidden: app/chat/tools.py imports two functions from
+  app/web/views/. On the right sit two capabilities the table above files under
+  directories that do not exist. The escalation queue ships, in state and web. The
+  passage store ships, in state. Only retrieval over that store is drawn dashed,
+  because no index, ranking or embedding exists under app/. app/evals/ imports the
+  four core packages and imports neither state nor web.</desc>
 
-  <g class="box"><rect x="70" y="44" width="470" height="62"/>
-    <text class="t-title" x="86" y="68">app/web/    app/seed.py</text>
-    <text class="t-sub" x="86" y="86">web imports auth, state, diff and verification directly</text>
-    <text class="t-sub" x="86" y="100">seed imports pipeline and state</text></g>
+  <g class="box"><rect x="70" y="36" width="470" height="80"/>
+    <text class="t-title" x="86" y="58">app/main.py    app/web/    app/chat/    app/seed.py</text>
+    <text class="t-sub" x="86" y="76">main.py calls app/config.py first, then mounts fifteen routers</text>
+    <text class="t-sub" x="86" y="90">web imports auth, state, diff and verification directly</text>
+    <text class="t-sub" x="86" y="104">chat imports state, auth, pipeline — and two names back out of web</text></g>
 
   <g class="box"><rect x="70" y="150" width="470" height="62"/>
-    <text class="t-title" x="86" y="174">app/pipeline.py    app/auth/</text>
+    <text class="t-title" x="86" y="174">app/pipeline.py    app/auth/    app/notify/</text>
     <text class="t-sub" x="86" y="192">pipeline imports ingestion, diff and state — never verification</text>
-    <text class="t-sub" x="86" y="206">auth imports state only</text></g>
+    <text class="t-sub" x="86" y="206">auth and notify import state only</text></g>
 
   <g class="box"><rect x="70" y="256" width="470" height="68"/>
     <text class="t-title" x="86" y="280">app/state/    app/ingestion/</text>
@@ -217,7 +253,7 @@ still come from deterministic assembly in <code>app/seed.py</code>.</figcaption>
     <text class="t-sub" x="216" y="552">imports nothing from app/</text></g>
 
   <!-- the spine: each arrow stands for at least one real import, named in the box above it -->
-  <path class="flow" d="M305 106 V146"/>
+  <path class="flow" d="M305 116 V146"/>
   <path class="flow" d="M305 212 V252"/>
   <path class="flow" d="M330 324 V378"/>
   <text class="t-edge" x="338" y="344">claims.py imports the verifier</text>
@@ -281,50 +317,72 @@ That is the return on the layering, and the three dashed arrows are what it cost
 passages, <code>diff.passage_refs()</code> imports <code>app/state/queries.py</code> inside
 the function body, so the module stays clean at import time and the dependency is real at
 call time. <code>verification.verify_citation_for_version()</code> does the same, and nothing
-in <code>app/</code> calls it. So does the proposer's scoped entry point.
-<strong>Three ways this picture disagrees with the table above.</strong>
+in <code>app/</code> calls it. So does the proposer's scoped entry point. Still exactly
+three, and still checkable in one line: <code>grep -rn '^\s\+from app\.state' app/</code>.
+<strong>Where this picture disagrees with the table above.</strong>
 <code>app/passages/</code> and <code>app/review/</code> are not directories, but both
 capabilities ship, so they are drawn where the code actually sits rather than dashed — what
-is missing under <code>app/passages/</code> is retrieval. The model call does now exist, in
+is missing under <code>app/passages/</code> is retrieval. The model call does exist, in
 <code>app/interpretation/propose.py</code>, but no caller in <code>app/</code> reaches it, so
-the pipeline runs end to end without one. And the table's order implies dependency runs top
+the pipeline runs end to end without one. The table's order implies dependency runs top
 to bottom of it; <code>ingestion</code> imports <code>state/models.py</code>, which runs the
-other way.</figcaption>
+other way. <strong>And one edge points up out of the top band.</strong>
+<code>app/chat/tools.py</code> imports <code>active_workflow_for_company</code> and
+<code>steps_and_edges</code> from <code>app/web/views/admin.py</code>, plus two private
+helpers from <code>web/views/workflow.py</code>, so the assistant can answer "where is this
+in the route" without a second walker that could disagree with the screen. The file concedes
+the inversion in a comment rather than hiding it. The right fix is to move those functions
+down into <code>app/state/workflow.py</code>; it has not been done.
+<strong>One label on this figure is narrower than it looks.</strong> Only
+<code>app/interpretation/</code> is drawn as a model caller, because it is the only one on
+the pipeline path. <code>app/chat/agent.py</code> calls a model as well, from the top band,
+and is not drawn in the model colour because the band holds four things. Two places in the
+codebase can be fluent and wrong, and both pin the same id.
+<code>grep -rn 'MODEL_ID' app/</code> finds them.</figcaption>
 </figure>
 
 <h2>Ingestion path</h2>
-<p>Ingestion takes raw text for one document version — a proceeding filing or a company-context document — and produces two things: a <code>DocumentVersion</code> row carrying a SHA-256 of the exact bytes ingested, and a sequence of <code>Passage</code> rows, each a contiguous span of that text with a stable <code>(char_start, char_end)</code> into it. The SHA exists so that "this is the document the citation points at" is checkable independent of anything the database says — if the stored source ever diverges from what was ingested, the hash catches it. Passage boundaries follow the document's own structure (paragraph, then section, falling back to a fixed-size window for unstructured text) because that is the unit the model is later shown and the unit BM25 indexes — but the boundary choice is a retrieval convenience, not the unit of truth. The unit of truth is the raw text plus an offset into it, which is why ingestion never rewrites, trims, or re-encodes the source before storing it. Anything ingestion normalizes (whitespace collapse, smart-quote folding) it normalizes in a documented, tested function that <code>verification</code> also calls — the same normalization on both sides of every comparison, or the comparison means nothing.</p>
+<p>Ingestion takes raw text for one document version — a proceeding filing or a company-context document — and produces two things: a <code>DocumentVersion</code> row carrying a SHA-256 of the exact bytes ingested, and a sequence of <code>Passage</code> rows, each a contiguous span of that text with a stable <code>(char_start, char_end)</code> into it. The SHA exists so that "this is the document the citation points at" is checkable independent of anything the database says — if the stored source ever diverges from what was ingested, the hash catches it. Passage boundaries follow the document's own structure (paragraph, then section, falling back to a fixed-size window for unstructured text) because that is the unit the model would later be shown and the unit any index would take — but the boundary choice is a retrieval convenience, not the unit of truth, and <code>app/ingestion/ingest.py</code> says so in those words. The unit of truth is the raw text plus an offset into it, which is why ingestion never rewrites, trims, or re-encodes the source before storing it. Anything ingestion normalizes (whitespace collapse, smart-quote folding) it normalizes in a documented, tested function that <code>verification</code> also calls — the same normalization on both sides of every comparison, or the comparison means nothing.</p>
 
 <h2>The passage store, and why offsets are the unit</h2>
 <p>Every claim in the product — a diff segment, a citation, a piece of obligation evidence — ultimately resolves to <code>(document_version_id, char_start, char_end)</code> against an immutable, hashed source. Offsets are the unit rather than passage IDs, sentence IDs, or a similarity score, for one reason: an offset is checkable by exact substring lookup. No embedding math, no fuzzy threshold, no model in the loop — read the bytes between two integers and compare them to what was claimed. That is what makes <code>verification</code> a pure function instead of another place where the product has to trust something.</p>
-<p>Offsets are addressed against the frozen version, not the current document, so a citation minted against version 3 stays valid even after version 4 exists — versions are never edited in place, only appended. The passage store also carries the lexical index (BM25 over the docket text) and, only for company-context passages, a semantic index — the split from ADR-008. Retrieval ranks which passages <code>interpretation</code> gets to see; it does not decide which changes exist. That distinction is what keeps a retrieval miss a quality problem instead of a coverage problem — see <code>diff</code>, next.</p>
+<p>Offsets are addressed against the frozen version, not the current document, so a citation minted against version 3 stays valid even after version 4 exists — versions are never edited in place, only appended.</p>
+<p><strong>The store carries no index, and this paragraph used to say it did.</strong> ADR-008 designs the split — lexical BM25 over docket text, semantic matching only where paraphrase matters, over the company-context join — and none of it is built. The ADR carries <code>implementation: none</code> for exactly this reason. Check it rather than trusting it: <code>grep -rniE 'fts5|bm25|embed|vector|tfidf' app/</code> returns nothing on any of those terms. The nearest thing to search in the product is <code>search_claims</code> in <code>app/chat/tools.py</code> — a substring scan over rows the tenant chokepoint already returned, re-verifying each citation as it goes. No index, no scoring, and it does not pretend otherwise. The one similarity computation anywhere in the codebase is <code>difflib.SequenceMatcher</code> inside <code>app/diff/engine.py</code>, which scores a detected change's confidence; it is not retrieval, and the verifier refuses to use similarity at all.</p>
+<p>When retrieval is built, it ranks which passages <code>interpretation</code> gets to see; it does not decide which changes exist. That distinction is what keeps a retrieval miss a quality problem instead of a coverage problem — see <code>diff</code>, next.</p>
 
 <figure class="fig">
 <div class="fig__frame">
-<svg viewBox="0 0 900 408" role="img" aria-labelledby="tenT tenD">
-  <title id="tenT">The tenant chokepoint in front of the passage store</title>
-  <desc id="tenD">Three callers read passages — app/web/views/changes.py, app/pipeline.py
-  and diff.passage_refs() — and each hands a company_id to one function in
-  app/state/queries.py. That function refuses a company_id that is empty, None or not a
-  string, and joins to document_versions to apply the scope, because a passages row
-  carries no company_id of its own and inherits tenancy from the version that owns it.
-  A refused call raises ValueError. Another tenant's version id returns an empty list,
-  so a forbidden version and an absent one look the same. Below that, the read that once
-  went straight to the passages table with no join: it is closed, no such call is left in
-  app/, it was found by reading the code rather than by a failing test, and
-  tests/test_passage_isolation.py guards it now.</desc>
+<svg viewBox="0 0 900 620" role="img" aria-labelledby="tenT tenD">
+  <title id="tenT">The tenant chokepoint, what it covers, and what sits outside it</title>
+  <desc id="tenD">app/state/queries.py is fifty lines holding one guard and two reads.
+  Three callers read passages — app/web/views/changes.py, app/pipeline.py and
+  diff.passage_refs(). Twelve call sites in eleven modules read versions. Each hands a
+  company_id, which is the second positional parameter and has no default. The guard
+  refuses a company_id that is empty, None or not a string, and the passage read joins
+  to document_versions to apply the scope, because a passages row carries no company_id
+  of its own and inherits tenancy from the version that owns it. A refused call raises
+  ValueError. Another tenant's version id returns an empty list, so a forbidden version
+  and an absent one look the same. Below that, the read that once went straight to the
+  passages table with no join: it is closed, no such call is left in app/, it was found
+  by reading the code rather than by a failing test, and tests/test_passage_isolation.py
+  guards it now. Three things sit outside the file. Twenty-four modules import the guard
+  and write their own scoped query, including six functions that two files say belong in
+  queries.py. Three reads are scoped by a token hash rather than a company, because there
+  is no signed-in tenant when they run. And one read, routing.ensure_obligation, fetches
+  a row by primary key and returns it without comparing its company_id.</desc>
 
-  <g class="box"><rect x="30" y="56" width="220" height="94"/>
-    <text class="t-title" x="46" y="80">callers</text>
-    <text class="t-sub" x="46" y="100">web/views/changes.py</text>
-    <text class="t-sub" x="46" y="116">pipeline.py</text>
-    <text class="t-sub" x="46" y="132">diff/engine.passage_refs()</text></g>
+  <g class="box"><rect x="30" y="44" width="230" height="118"/>
+    <text class="t-title" x="46" y="66">the two scoped reads</text>
+    <text class="t-sub" x="46" y="88">passages_for_company — 3 callers:</text>
+    <text class="t-sub" x="46" y="104">changes.py, pipeline.py, passage_refs()</text>
+    <text class="t-sub" x="46" y="126">versions_for_company — 12 call sites</text>
+    <text class="t-sub" x="46" y="142">in 11 modules, from web to chat to sharing</text></g>
 
-  <text class="t-edge" x="256" y="96">company_id</text>
-  <path class="flow" d="M250 103 H316"/>
+  <text class="t-edge" x="266" y="96">company_id</text>
+  <path class="flow" d="M260 103 H316"/>
 
   <g class="box box--gate"><rect x="320" y="44" width="240" height="118"/>
-    <text class="t-title" x="334" y="68">app/state/queries.py</text>
+    <text class="t-title" x="334" y="68">app/state/queries.py — 50 lines</text>
     <text class="t-sub" x="334" y="88">_require_scope(company_id)</text>
     <text class="t-sub" x="334" y="104">refuses empty, None, non-string</text>
     <text class="t-sub" x="334" y="120">JOIN document_versions</text>
@@ -371,59 +429,110 @@ other way.</figcaption>
     <text class="t-title" x="604" y="348">closed — no such call in app/</text>
     <text class="t-sub" x="604" y="366">found by review, not by a failing test</text>
     <text class="t-sub" x="604" y="382">tests/test_passage_isolation.py guards it</text></g>
+
+  <path class="rule" d="M30 410 H880"/>
+  <text class="t-boundary" x="30" y="432">outside the file, still inside the rule</text>
+
+  <g class="box"><rect x="30" y="444" width="410" height="86"/>
+    <text class="t-title" x="46" y="466">the guard travels; the query stays put</text>
+    <text class="t-sub" x="46" y="486">24 modules import _require_scope rather than copying it, then</text>
+    <text class="t-sub" x="46" y="502">write their own company_id filter. Four private scoped reads sit</text>
+    <text class="t-sub" x="46" y="518">in web/views/admin.py and two in chat/tools.py — both files say</text>
+    <text class="t-sub" x="46" y="534">so, and say they belong in queries.py</text></g>
+
+  <g class="box"><rect x="460" y="444" width="420" height="86"/>
+    <text class="t-title" x="476" y="466">scoped by a token, not by a company</text>
+    <text class="t-sub" x="476" y="486">sharing.open_share, auth.sessions.resolve_session and</text>
+    <text class="t-sub" x="476" y="502">invite_accept._peek look a row up by its token hash with no</text>
+    <text class="t-sub" x="476" y="518">company filter. Nobody is signed in yet, so the row supplies</text>
+    <text class="t-sub" x="476" y="534">the company and every read after it is scoped to that</text></g>
+
+  <g class="box"><rect x="30" y="546" width="850" height="62"/>
+    <text class="t-refuse" x="46" y="568">STILL OPEN</text>
+    <text class="t-title" x="130" y="568">app/state/routing.py — ensure_obligation</text>
+    <text class="t-sub" x="46" y="588">session.get(Obligation, id) returns the stored row without comparing its company_id. _require_scope runs, but it only checks</text>
+    <text class="t-sub" x="46" y="602">the string. Reached today from scripts/seed_demo_gaps.py and nowhere else. No test covers it. Two files nearby get this right.</text></g>
+  <path class="flow--refuse" d="M240 530 V542"/>
 </svg>
 </div>
 <div class="fig__key">
   <span><i></i>code, or a table</span>
   <span><i class="k-gate"></i>the chokepoint — can refuse</span>
-  <span><i class="k-refuse"></i>refused, or closed</span>
+  <span><i class="k-refuse"></i>refused, closed, or open against us</span>
   <span>dashed outline: one tenant's rows</span>
 </div>
 <figcaption><strong>Nothing in the database enforces any of this.</strong> SQLite has no
 row-level security, so the scope is a <code>WHERE</code> clause in Python and the boundary
 holds only because there is one function to write it in. That is the argument for the
-chokepoint rather than for more tests: the bypass below was reachable, not theoretical —
-version ids are short and guessable — and it was found by reading the code, not by anything
-going red. A guard that has to be repeated at every call site is a guard that will be
-forgotten at one of them. The join is the load-bearing part: a <code>passages</code> row has
-no <code>company_id</code>, and adding one would give two writers a chance to disagree about
-who owns a passage.</figcaption>
+chokepoint rather than for more tests: the closed bypass in the third row was reachable,
+not theoretical — version ids are short and guessable — and it was found by reading the code,
+not by anything going red. A guard that has to be repeated at every call site is a guard
+that will be forgotten at one of them. The join is the load-bearing part: a
+<code>passages</code> row has no <code>company_id</code>, and adding one would give two
+writers a chance to disagree about who owns a passage.
+<strong>One correction, because this document had it backwards.</strong> An earlier draft
+said <code>company_id</code> was keyword-only in <code>queries.py</code>. It is not. Both
+functions there take it as the second positional parameter — <code>versions_for_company(session,
+company_id)</code> and <code>passages_for_company(session, company_id, version_id)</code> —
+with no default, so it cannot be omitted, but it can be passed in the wrong slot, and in
+the second signature it sits between two other positionals. Keyword-only holds one level
+up, at <code>diff.passage_refs(session, version_id, *, company_id)</code>, and
+<code>tests/test_passage_isolation.py</code> pins that with a <code>TypeError</code>. The
+weaker property is the one the chokepoint actually has, and saying otherwise would be
+exactly the confident-and-wrong claim the rest of this design refuses.
+<strong>And the guard has a soft edge.</strong> <code>_require_scope</code> rejects empty,
+<code>None</code> and non-strings. It does not reject <code>"%"</code> or a string of
+spaces, which are truthy strings; those are harmless only because SQLAlchemy's
+<code>==</code> is equality and not <code>LIKE</code>, so they return nothing. The two
+isolation tests encode that as "raise <em>or</em> return an empty list", which means they
+would still pass if the guard were deleted.</figcaption>
 </figure>
 
+<p>The rule the chokepoint states is narrower than "every tenant read goes through one file", and stating it accurately is what makes it enforceable. It is: <strong>there is one definition of what an unscoped read is, and no module writes a second one.</strong> Twenty-four modules import <code>_require_scope</code>; none copies it. That is checkable in one line — <code>grep -rn "_require_scope" app/ | grep -v "def _require_scope"</code> — and a copy would show up as a second <code>def</code>.</p>
+
+<p>Six functions are the honest exception, and both files carrying them say so in a comment rather than in a commit message: four private scoped reads in <code>app/web/views/admin.py</code> and two in <code>app/chat/tools.py</code>. They were written while <code>queries.py</code> was being edited by somebody else and moving them would have lost that work. They import the guard, and their signatures already match the ones <code>queries.py</code> uses, so the move is a handoff and not a rewrite. It is still owed.</p>
+
 <h2>The diff engine — pure, testable, no model dependency</h2>
-<p>Diffing is the one stage in this pipeline built to have a single correct answer per input, so it is built as a pure function: <code>diff(passages_v_n_minus_1, passages_v_n) -> list[Change]</code>. No network call, no model, no clock, no randomness. Given the same two passage sequences it returns the same <code>Change</code> list every time, which means it can be unit-tested directly against the synthetic corpus's deliberate edits (T3/T6) and the test asserts an exact expected diff, not a fuzzy "looks about right."</p>
-<p>Each <code>Change</code> is typed — added, removed, or modified — and carries passage references on both sides (or one side, for pure additions or removals), so nothing downstream needs to re-derive what moved. This is also where the sharpest known failure mode lives: alignment degrades when a document is restructured wholesale — sections renumbered, text relocated rather than edited. The design does not pretend this is solved. A low-confidence alignment is escalated rather than guessed at, the same "absence is denial" rule applied one stage earlier than usual. Because the algorithm is swappable behind the <code>Change</code> contract, a better aligner for restructured documents is a <code>diff/</code>-internal change later, not a rewrite of interpretation or verification.</p>
+<p>Diffing is the one stage in this pipeline built to have a single correct answer per input, so it is built as a pure function: <code>diff(passages_v_n_minus_1, passages_v_n) -> list[Change]</code>. No network call, no model, no clock, no randomness. Given the same two passage sequences it returns the same <code>Change</code> list every time, which means it can be unit-tested directly against the synthetic corpus's deliberate edits — the corpus labelled T3 under <code>data/</code> — with the expected answers read from <code>data/manifest.json</code> rather than from the code under test. The test asserts an exact expected diff, not a fuzzy "looks about right."</p>
+<p>Each <code>Change</code> is typed — added, removed, or modified — and carries passage references on both sides (or one side, for pure additions or removals), so nothing downstream needs to re-derive what moved. This is also where the sharpest known failure mode lives: alignment degrades when a document is restructured wholesale — sections renumbered, text relocated rather than edited. The design does not pretend this is solved. A passage that reads almost identically but sits under a different section number has its confidence capped at 0.5, a ceiling chosen to fall below any plausible escalation threshold so a renumbering can never present itself as a settled match (ADR-004). <span class="open">The cap is real; the floor that would act on it is not.</span> <code>MIN_CONFIDENCE_BP</code> ships at 0, so a capped alignment is recorded as low confidence and escalates nothing. Half the mechanism is built, and saying it escalates today would be the confident-and-wrong claim. Because the algorithm is swappable behind the <code>Change</code> contract, a better aligner for restructured documents is a <code>diff/</code>-internal change later, not a rewrite of interpretation or verification.</p>
 
-<h2>Interpretation — the only place that calls a model</h2>
-<p>Every other stage in this pipeline is deterministic on purpose, so that the one stage that is not — <code>interpretation</code> — is easy to find, easy to isolate, and easy to blame first when something is wrong. It is the only module permitted to make a model call, and every function in it that does so is named plainly, so a grep for the provider's client library finds every place the product can be fluent and wrong.</p>
-<p>Interpretation does four jobs, all downstream of a <code>Change</code> the diff engine already found: judge materiality; extract obligations with evidence spans; map a change to the company-context obligations, projects, and documents it affects; recommend an action and a reviewer. Draft-versus-final is read once, from the version's explicit status field, and used to dispatch to one of two branches before any model call happens — a draft change is only ever asked to produce monitor-or-comment language, a final change is only ever asked to produce comply language with an effective date. The model is never asked which branch it is in, because that is exactly the distinction ADR-005 says must never be inferred.</p>
-<p>Not everything in this stage calls a model. Routing to the obligation owner — the named person recorded on the obligation record — is a deterministic lookup against that field, not a guess. The fewer decisions handed to the model, the fewer things <code>verification</code> has to catch, and the fewer things can be wrong in a way that reads as confident.</p>
-<p>What interpretation emits is never a fact. It is a candidate claim: text, a citation of <code>(version_id, char_start, char_end, quoted_text)</code>, and a confidence. That object crosses the one boundary in the system where a hallucination could enter — which is exactly why the next stage exists.</p>
+<h2>Interpretation — the only place on the pipeline path that calls a model</h2>
+<p>Every other stage in this pipeline is deterministic on purpose, so that the one stage that is not — <code>interpretation</code> — is easy to find, easy to isolate, and easy to blame first when something is wrong. Every function in it that calls a model is named plainly, and the provider's client is imported inside the factory function rather than at module load, so the package imports cleanly on a machine with no SDK installed.</p>
+<p>Interpretation does four jobs, all downstream of a <code>Change</code> the diff engine already found: judge materiality; extract obligations with evidence spans; map a change to the company-context obligations, projects, and documents it affects; recommend an action and a reviewer. Draft-versus-final is read once, from the version's explicit status field, and used to dispatch to one of two branches before any model call happens — a draft change is only ever asked to produce monitor-or-comment language, a final change is only ever asked to produce comply language with an effective date. The model is never asked which branch it is in, because that is exactly the distinction ADR-005 says must never be inferred. That dispatch lives in <code>action.py</code>: 35 lines, no imports, and it raises rather than defaulting when it meets a status it does not know.</p>
+<p>Not everything in this stage calls a model. Routing to the obligation owner — the named person recorded on the obligation record — is a deterministic lookup against that field, in <code>app/state/routing.py</code>, not a guess. The fewer decisions handed to the model, the fewer things the gate has to catch, and the fewer things can be wrong in a way that reads as confident.</p>
+<p>What interpretation emits is never a fact. It is a candidate claim: text, a citation of <code>(version_id, char_start, char_end, quoted_text)</code>, and a confidence. That object crosses the one boundary in the system where a hallucination could enter — which is exactly why the gate exists.</p>
+<p><strong>Two things are settled since this section was last written, and one is not.</strong> The model is settled: <code>claude-opus-5</code>, pinned as a constant in <code>propose.py</code> and deliberately not read from the environment, so a deployment cannot quietly swap the thing that produces text without a commit (ADR-37). How the key reaches the process is settled: <code>app/config.py</code> loads <code>.env</code> at startup, real environment first. Before it existed, every model path announced itself off while a valid key sat in the file the README told the reviewer to put it in — a fallback firing honestly and the product still wrong, which is the worst shape a bug can take. What is <span class="open">not settled is whether the proposer works</span>. Nothing in <code>app/</code> calls it, no run has been made against the real API from this repository, and until one is, the module is unexercised code sitting behind tested code. Its own docstring says that.</p>
 
-<h2>Verification — the gate</h2>
-<p>Verification takes a candidate claim and does one job: decide whether it is allowed to become fact. It re-reads the passage store at the exact offsets the claim cited, for the exact version the claim cited, runs both the stored substring and the claimed quote through the same normalization ingestion used, and compares them for equality — not similarity, not a threshold, equality. A claim whose quote does not match what is actually at those offsets, or whose confidence sits below the configured threshold, is written to the escalation queue with the specific reason (mismatch or low confidence), never silently dropped and never shown to the analyst as settled.</p>
-<p>This module has no model dependency of its own, which is deliberate twice over: it means the module the product's trustworthiness rests on can be exercised in CI with no API key and no network, and it means the failure mode the product is built around — a model that misquotes fluently — is caught by code that cannot itself misquote fluently, because it does not generate anything. It only compares. <code>state</code> has exactly one write path for claims, and it runs through here.</p>
+<h2>Verification — the gate, and it sits on the read path</h2>
+<p><code>app/verification/verifier.py</code> answers one question: does the text at these offsets, in this version, equal this quote after normalization? Not similarity, not a threshold, equality — plus an occurrence check, so a quote that appears three times in a version cannot cite the wrong one. It calls no model, opens no socket, and imports only <code>app/text/normalize.py</code>. That is what lets the module the product's trustworthiness rests on run in CI with no API key, no network and no database, and it means a model that misquotes fluently is caught by code that cannot itself misquote, because it generates nothing.</p>
+<p><strong>The gate is a read, not a write, and the difference is the whole design.</strong> The function every reader goes through is <code>verified_claims(session, company_id, change_id)</code> in <code>app/state/claims.py</code>. It fetches the change's claims, re-reads each cited source, calls the verifier, and returns two lists: what may be asserted, and what may not. It writes nothing and stores no verdict. There is no <code>verified</code> column anywhere in the 43-table schema, on purpose — a stored boolean is a promise about bytes that may have changed since, and ADR-003 refuses to make it. Edit a source after a claim was written and that claim flips to withheld on the next page load, with no migration and no background job.</p>
+<p>Three readers use it and none has its own copy: the change view in <code>app/web/views/changes.py</code>, the public share page (which re-verifies at open time, every open), and the assistant's <code>change_detail</code> and <code>search_claims</code> tools. A withheld claim's wire form is built in one function and carries a reason code, a reason text and where it sits — never the statement, never the quote.</p>
+<p><strong>The confidence floor is not in the verifier and never was.</strong> The verifier's own docstring says a threshold would defeat the point of having a gate. What exists is one number, <code>MIN_CONFIDENCE_BP</code> in <code>app/state/claims.py</code>, read from <code>STRATA_MIN_CONFIDENCE_BP</code> in basis points, applied after the citation check so a claim that misquotes reports the misquote rather than a number. <span class="open">It ships at 0</span> — no claim is withheld for confidence alone — because there is no evidence yet for where the line sits, and a figure picked to look rigorous is worse than an honest zero. The mechanism is configuration rather than a constant so that setting it is a deployment decision and not a code change (ADR-006).</p>
 
 <h2>State and audit</h2>
-<p>Project state — the current obligations, projects, documents, changes, and actions the analyst sees as true — is a projection over an append-only event log, not a table mutated in place. Every write that reaches state through verification is one event; every reviewer decision (approve, reject, amend) is another. The escalation queue is not a separate table kept in sync by hand — it is a read over the same log, defined as "candidates with no resolution event yet." Approving or rejecting an item is appending an event, not deleting a row, so the queue cannot drift from the log that explains it.</p>
-<p>An event log gives audit history and rollback the same mechanism: rollback is replaying the projection up to an earlier point in the log, and audit is reading the log directly. That is this document's working answer to the open question in <code>decisions.html</code> (event-fold versus snapshots) — chosen because a 48-hour build with a small corpus never needs the alternative's main benefit, fast replay over a long log, and one mechanism serving two requirements is less to get wrong than two. <span class="open">This is not yet written back into the ADR log as accepted</span> — it is the architecture's current default, and if replay cost becomes visible against the synthetic corpus, periodic snapshot compaction is the documented escape hatch, not a redesign.</p>
+<p><strong>This section described a system that was never built, and the correction is worth more than the original.</strong> It said project state was a projection folded from an append-only event log, that the escalation queue was a read over that log, and that rollback was a replay to an earlier point. None of that is true. State is ordinary SQLAlchemy tables mutated in place. <code>escalations</code> is a table; resolving one stamps <code>resolved_at</code> and <code>resolved_by</code> on the row. The event-fold-versus-snapshots question that paragraph called open was settled by ADR-16, ADR-17 and ADR-31, and settled the other way.</p>
+<p>What actually carries the evidence is a hash-chained audit log <em>beside</em> the tables, not underneath them. Every act that matters appends a row to <code>audit_events</code>: the actor, the action, the subject, the previous row's hash, and a digest over its own fields. A SQLAlchemy <code>before_flush</code> listener refuses any <code>UPDATE</code> or <code>DELETE</code> of an audit row, so the append-only rule binds this process at the point of writing rather than living in a comment. <code>verify_chain(session, company_id)</code> walks the rows in sequence order and raises <code>AuditTamperError</code> on a sequence gap, a broken <code>prev_hash</code>, an altered row, or a digest scheme it cannot compute.</p>
+<p>Taking a decision back is a row, not a replay. <code>revert_event()</code> in <code>app/state/rollback.py</code> restores the state the decision changed and then appends an event naming the one it undoes, in that order, inside the caller's transaction. Neither row is edited, both stay in the chain, and the chain verifies over both. One sentence in that module is worth repeating here: reverting a decision restores state, and it never turns a withheld claim into an assertion — only the source agreeing with the quote does that. <span class="open">Point-in-time replay does not exist.</span> Rebuilding the state as it stood at an earlier sequence number is a different capability and no module under <code>app/</code> offers it.</p>
 
 <figure class="fig">
 <div class="fig__frame">
 <svg viewBox="0 0 900 560" role="img" aria-labelledby="audT audD">
-  <title id="audT">The audit chain, its two digest schemes, and the reversal link</title>
+  <title id="audT">The audit chain, its three digest schemes, and the reversal link</title>
   <desc id="audD">Each audit row hashes its own fields plus the previous row's hash.
   Rows written before attribution existed hash ten fields under scheme 1 and keep those
-  hashes forever; later rows hash fourteen under scheme 2. verify_chain recomputes each
-  row under the scheme that row names, so a chain that changes scheme part-way still
-  verifies. Rehashing the old rows under scheme 2 was rejected. A reversal is a later row
-  naming an earlier one; the column exists but no digest covers it yet.</desc>
+  hashes forever; later rows hash fourteen under scheme 2; a row that takes back an
+  earlier decision hashes fifteen under scheme 3, the fifteenth being the id of the
+  event it reverses. verify_chain recomputes each row under the scheme that row names,
+  so a chain that changes scheme twice still verifies. Rehashing the old rows was
+  rejected. The scheme is chosen by the row's own content and not by the date: a row
+  with no reversal is written under scheme 2, which stays the current default.</desc>
 
   <text class="t-edge" x="330" y="24">reverts_event_id — a later row names the one it undoes; neither row is edited</text>
-  <path class="flow--weak" d="M715 76 V30 H315 V72"/>
+  <path class="flow" d="M715 76 V30 H515 V72"/>
 
   <path class="rule" d="M413 64 V174"/>
-  <text class="t-edge" x="421" y="58">scheme changes here, and no row was rewritten</text>
+  <text class="t-edge" x="421" y="58">two scheme changes, and no row was rewritten</text>
+  <path class="rule" d="M613 64 V174"/>
 
   <g class="box box--store"><rect x="30" y="76" width="170" height="84"/>
     <text class="t-title" x="42" y="100">seq 1 · digest 1</text>
@@ -444,10 +553,10 @@ who owns a passage.</figcaption>
     <text class="t-sub" x="442" y="150">+ actor, session, ip</text></g>
 
   <g class="box box--store"><rect x="630" y="76" width="170" height="84"/>
-    <text class="t-title" x="642" y="100">seq 4 · digest 2</text>
+    <text class="t-title" x="642" y="100">seq 4 · digest 3</text>
     <text class="t-sub" x="642" y="118">prev_hash = seq 3</text>
-    <text class="t-sub" x="642" y="134">fourteen fields hashed</text>
-    <text class="t-sub" x="642" y="150">every new row is v2</text></g>
+    <text class="t-sub" x="642" y="134">fifteen fields hashed</text>
+    <text class="t-sub" x="642" y="150">it reverts seq 3</text></g>
 
   <path class="flow" d="M200 118 H226"/>
   <path class="flow" d="M400 118 H426"/>
@@ -466,67 +575,75 @@ who owns a passage.</figcaption>
 
   <g class="box"><rect x="570" y="222" width="310" height="62"/>
     <text class="t-title" x="584" y="244">verifies end to end</text>
-    <text class="t-sub" x="584" y="262">the v1-to-v2 join needs nothing special:</text>
+    <text class="t-sub" x="584" y="262">a join between schemes needs nothing special:</text>
     <text class="t-sub" x="584" y="278">prev_hash is a value copied forward</text></g>
 
   <path class="flow--refuse" d="M300 308 V352"/>
   <text class="t-refuse" x="308" y="334">raises</text>
 
-  <g class="box"><rect x="180" y="358" width="300" height="80"/>
+  <g class="box"><rect x="180" y="358" width="300" height="96"/>
     <text class="t-title" x="194" y="380">AuditTamperError</text>
     <text class="t-sub" x="194" y="398">seq gap — a record was removed</text>
     <text class="t-sub" x="194" y="414">prev_hash break — a row was unlinked</text>
-    <text class="t-sub" x="194" y="430">digest mismatch — a row was altered</text></g>
+    <text class="t-sub" x="194" y="430">digest mismatch — a row was altered</text>
+    <text class="t-sub" x="194" y="446">a v1 or v2 row carrying a reversal</text></g>
 
-  <g class="box box--absent"><rect x="570" y="358" width="310" height="80"/>
-    <text class="t-title" x="584" y="380">rehash the v1 rows under v2</text>
+  <g class="box box--absent"><rect x="570" y="358" width="310" height="96"/>
+    <text class="t-title" x="584" y="380">rehash the old rows</text>
     <text class="t-sub" x="584" y="398">REJECTED, NOT BUILT. A chain rewritten</text>
     <text class="t-sub" x="584" y="414">by the process that verifies it proves</text>
-    <text class="t-sub" x="584" y="430">nothing. The derived data is the evidence.</text></g>
+    <text class="t-sub" x="584" y="430">nothing. The derived data is the evidence.</text>
+    <text class="t-sub" x="584" y="446">Three schemes are kept, and dispatched per row.</text></g>
 
-  <g class="box"><rect x="180" y="462" width="300" height="80"/>
-    <text class="t-title" x="194" y="484">audit_events.reverts_event_id</text>
-    <text class="t-sub" x="194" y="502">the column ships, with a real FK</text>
-    <text class="t-sub" x="194" y="518">record_event() takes no such argument</text>
-    <text class="t-sub" x="194" y="534">so nothing in app/ writes one yet</text></g>
+  <g class="box"><rect x="180" y="478" width="300" height="80"/>
+    <text class="t-title" x="194" y="500">audit_events.reverts_event_id</text>
+    <text class="t-sub" x="194" y="518">record_event() takes it and checks it:</text>
+    <text class="t-sub" x="194" y="534">a real id, same company, not already</text>
+    <text class="t-sub" x="194" y="550">reverted. rollback.revert_event() writes it</text></g>
 
-  <path class="flow--weak" d="M480 502 H566"/>
+  <path class="flow" d="M480 518 H566"/>
 
-  <g class="box box--absent"><rect x="570" y="462" width="310" height="80"/>
-    <text class="t-title" x="584" y="484">_digest_v3</text>
-    <text class="t-sub" x="584" y="502">DESIGNED, NOT BUILT. DIGEST_V3 = 3 is a</text>
-    <text class="t-sub" x="584" y="518">constant in models.py; no function computes</text>
-    <text class="t-sub" x="584" y="534">it, so the link sits outside the hash</text></g>
+  <g class="box box--gate"><rect x="570" y="478" width="310" height="80"/>
+    <text class="t-title" x="584" y="500">_digest_v3 — it ships</text>
+    <text class="t-sub" x="584" y="518">fifteen fields. The pointer sits inside the</text>
+    <text class="t-sub" x="584" y="534">hash, so re-pointing a reversal turns the</text>
+    <text class="t-sub" x="584" y="550">chain red rather than quietly rewriting it</text></g>
 </svg>
 </div>
 <div class="fig__key">
   <span><i></i>code</span>
   <span><i class="k-gate"></i>can refuse</span>
-  <span><i class="k-absent"></i>designed, not built</span>
+  <span><i class="k-absent"></i>rejected, not built</span>
   <span><i class="k-refuse"></i>the refusal path</span>
-  <span>dashed arrow: a link the chain does not defend</span>
 </div>
-<figcaption><strong>The price of never rewriting a row is two hash functions kept forever,
-and it is the right price.</strong> Re-hashing the old rows under scheme 2 would have left
-one function to maintain and a chain whose evidence was produced by the process that checks
-it. So each row states its own scheme and <code>verify_chain</code> dispatches per row.
-<strong>Two limits to read before trusting the picture.</strong> The chain detects tampering;
-it does not prevent it — anyone who can write the file can recompute every hash forward, and
-closing that needs the head published somewhere they cannot reach. And the reversal link is
-storage the chain does not yet defend: until <code>_digest_v3</code> exists, someone with
-write access could re-point a reversal at a different event and the chain would still
-verify, so no screen may treat it as evidence.</figcaption>
+<figcaption><strong>The price of never rewriting a row is three hash functions kept forever,
+and it is the right price.</strong> Re-hashing the old rows under the newest scheme would
+have left one function to maintain and a chain whose evidence was produced by the process
+that checks it. So each row states its own scheme and <code>verify_chain</code> dispatches
+per row. <strong>The scheme is chosen by content, not by date.</strong>
+<code>CURRENT_DIGEST_VERSION</code> stays at 2: a row with nothing to revert is written
+under scheme 2, and only a row that carries a reversal is written under 3. That keeps the
+extra field out of every ordinary row, and it lets <code>verify_chain</code> refuse a v1 or
+v2 row that turns up carrying a reversal — a pointer written out of band onto a row whose
+scheme does not hash it.
+<strong>This figure was wrong until 2026-08-04</strong> and said so in two places: that
+<code>record_event()</code> took no reversal argument, and that <code>_digest_v3</code> was
+designed and not built. Both shipped, and the limit the old caption conceded — that
+somebody with write access could re-point a reversal and the chain would still verify — is
+closed. <strong>One limit is not.</strong> The chain detects tampering; it does not prevent
+it. Anyone who can write the file can recompute every hash forward, and closing that needs
+the head published somewhere they cannot reach. Nothing publishes it.</figcaption>
 </figure>
 
 <h2>What changes when this outgrows SQLite</h2>
-<p>ADR-007 picks SQLite so the submission starts with one command on a reviewer's machine. It does not scale as built, and this section says plainly where it breaks and what the fix is — not as a hedge, but because implying otherwise would be exactly the kind of confident-and-wrong claim the rest of this design refuses to make.</p>
+<p>ADR-007 picks SQLite so the submission starts with one command on a reviewer's machine. ADR-28 revisits it and names the trigger for moving: a second tenant, or any real customer data, whichever comes first — not a date and not a row count. SQLite does not scale as built, and this section says plainly where it breaks and what the fix is, not as a hedge but because implying otherwise would be exactly the kind of confident-and-wrong claim the rest of this design refuses to make.</p>
 <ul>
-<li><strong>Concurrent writers.</strong> SQLite serializes writes to a single file; WAL mode lets readers proceed during a write but writers still queue behind each other. Fine for one analyst team exercising the demo; wrong the moment more than one tenant is ingesting or resolving escalations at the same time. The fix is Postgres, and SQLAlchemy makes that a connection string, not a rewrite — but transaction and locking behavior differs enough that the switch needs its own test pass, not just a config flag.</li>
+<li><strong>Concurrent writers.</strong> SQLite serializes writes to a single file. WAL mode would let readers proceed during a write, and <span class="open">WAL is not enabled</span> — nothing in this repository sets <code>journal_mode</code>, so a reader waits behind a writer today. The deployment runs one uvicorn worker for exactly this reason, which is the ADR-28 trade-off arriving in production rather than being papered over. The fix is Postgres, and SQLAlchemy makes that a connection string, not a rewrite — but transaction and locking behaviour differ enough that the switch needs its own test pass, not just a config flag.</li>
 <li><strong>Horizontal scale of the web tier.</strong> A SQLite file lives on one disk; two app instances behind a load balancer cannot share it without contention. Postgres removes this by being a server rather than a file.</li>
-<li><strong>Lexical retrieval.</strong> SQLite's FTS5 index is process-local to that one file. At scale this becomes Postgres full-text search or a dedicated search index shared across instances — the swap happens entirely inside <code>app/passages/</code>, per the module table above.</li>
-<li><strong>Semantic retrieval.</strong> There is no pgvector today because ADR-008 only asks for semantic matching over the company-context join, which is small enough to compare in process. At real volume that needs a vector store, and the retrieval interface in <code>app/passages/</code> is exactly where it plugs in.</li>
-<li><strong>The event log.</strong> Replay cost grows with log length. The documented answer above — snapshot compaction — is the fix, not a switch to storing state as mutable rows, which would give up the audit guarantee the log exists for.</li>
-<li><strong>Background work.</strong> Ingesting a long proceeding runs synchronously today, inside the <code>pipeline</code> chokepoint, called from a request. At volume this becomes a queued job so a large upload does not hold a request thread open; the chokepoint's shape does not change, only what calls it.</li>
+<li><strong>Retrieval, lexical and semantic.</strong> Neither exists, so neither has a scaling problem yet. When ADR-008 is built, the lexical side would start as SQLite FTS5, which is process-local to one file and becomes Postgres full-text or a shared index; the semantic side over the company-context join is small enough to compare in process before it needs a vector store. Both plug in behind one <code>retrieve()</code> call beside <code>passages_for_company</code>, which is the whole reason that read is a function and not an inline query.</li>
+<li><strong>The audit chain.</strong> <code>verify_chain</code> walks every row for a company on every call. That is linear in the log and fine at demonstration size; at real volume it becomes a walk from the last verified checkpoint, which needs a published head to anchor to. Compaction is not the answer here — dropping rows is the one thing this table exists to prevent.</li>
+<li><strong>Read-time verification.</strong> The gate runs once per claim per view. That is the cost of having no stored verdict, and it is paid in CPU against a source text already in the page's working set. At volume the answer is a cache keyed on the source hash, which invalidates itself when the bytes change — not a stored boolean, which does not.</li>
+<li><strong>Background work.</strong> Ingesting a long proceeding runs synchronously today, inside the <code>pipeline</code> chokepoint, called from a request. The real corpus makes the number concrete: a million-character filing against its correction produces 144 changes in 0.78 seconds. At volume this becomes a queued job so a large upload does not hold a request thread open; the chokepoint's shape does not change, only what calls it.</li>
 </ul>
 
 <figure class="fig">
@@ -534,16 +651,17 @@ verify, so no screen may treat it as evidence.</figcaption>
 <svg viewBox="0 0 900 596" role="img" aria-labelledby="sqlT sqlD">
   <title id="sqlT">The seam at app/state/db.py, and which guarantees sit on which side of it</title>
   <desc id="sqlD">One connection string in app/state/db.py is the seam to Postgres.
-  SQLite enforces primary keys, NOT NULL, column types and nine unique constraints —
-  among them one account per email per company, one live session per token hash, and a
-  partial index allowing one active approval workflow per company, which is a business
-  rule held in SQL. It has no users, no roles and no GRANT statement, so no control here
-  can be a database privilege. Tenant scope, the append-only audit rule, the hash chain
-  and citation verification are enforced by Python. The foreign keys declared in
-  models.py enforce nothing today: PRAGMA foreign_keys is off and no line under app/
-  turns it on. Moving to Postgres removes the concurrency limits, makes those foreign
-  keys bite, and makes a grant-based control possible; it moves no guarantee out of
-  Python by itself.</desc>
+  SQLite enforces primary keys, NOT NULL, column types and twelve unique constraints
+  over forty-three tables — among them one account per email per company, one live
+  session per token hash, one live grant of a permission to a person, and one active
+  approval workflow per company. The last two are partial indexes, business rules held
+  in SQL rather than in Python. SQLite has no users, no roles and no GRANT statement,
+  so no control here can be a database privilege. Tenant scope, the append-only audit
+  rule, the hash chain and citation verification are enforced by Python. The foreign
+  keys declared in models.py enforce nothing today: PRAGMA foreign_keys is off and no
+  line under app/ turns it on. Moving to Postgres removes the concurrency limits, makes
+  those foreign keys bite, and makes a grant-based control possible; it moves no
+  guarantee out of Python by itself.</desc>
 
   <g class="box"><rect x="290" y="36" width="320" height="70"/>
     <text class="t-title" x="306" y="58">app/state/db.py</text>
@@ -556,16 +674,16 @@ verify, so no screen may treat it as evidence.</figcaption>
   <g class="box box--store"><rect x="30" y="160" width="400" height="262"/>
     <text class="t-title" x="46" y="184">what SQLite enforces</text>
     <text class="t-sub" x="46" y="204">primary keys, NOT NULL, column types</text>
-    <text class="t-sub" x="46" y="220">nine unique constraints, not two. Three of them are</text>
-    <text class="t-sub" x="46" y="236">guarantees this design leans on:</text>
-    <text class="t-sub" x="46" y="258">one active approval workflow per company — a PARTIAL</text>
-    <text class="t-sub" x="46" y="274">unique index, WHERE status = 'active'. A business rule,</text>
-    <text class="t-sub" x="46" y="290">held in SQL rather than in Python</text>
-    <text class="t-sub" x="46" y="306">one account per email per company, on users</text>
-    <text class="t-sub" x="46" y="322">one live session per token hash, on login_sessions</text>
-    <text class="t-sub" x="46" y="344">six more stop duplicate rows: audit (company_id, seq),</text>
-    <text class="t-sub" x="46" y="360">roles, permissions, change_obligations, project_changes,</text>
-    <text class="t-sub" x="46" y="376">chat message ordinal within a session</text>
+    <text class="t-sub" x="46" y="220">twelve unique constraints over 43 tables. Two are</text>
+    <text class="t-sub" x="46" y="236">PARTIAL indexes — business rules held in SQL:</text>
+    <text class="t-sub" x="46" y="258">one active approval workflow per company,</text>
+    <text class="t-sub" x="46" y="274">WHERE status = 'active'</text>
+    <text class="t-sub" x="46" y="290">one live grant of a code to a person,</text>
+    <text class="t-sub" x="46" y="306">WHERE revoked_at IS NULL</text>
+    <text class="t-sub" x="46" y="328">then three token hashes and one email: sessions,</text>
+    <text class="t-sub" x="46" y="344">invitations, share links, users (company_id, email)</text>
+    <text class="t-sub" x="46" y="360">and six more stopping duplicate rows: audit seq,</text>
+    <text class="t-sub" x="46" y="376">roles, permissions, two join tables, chat ordinal</text>
     <text class="t-sub" x="46" y="398">no users, no roles, no GRANT, no row-level security,</text>
     <text class="t-sub" x="46" y="414">so no control here can be a database privilege</text></g>
 
@@ -609,12 +727,14 @@ verify, so no screen may treat it as evidence.</figcaption>
 <figcaption><strong>The database holds uniqueness. Python holds the rules that matter. The
 foreign keys are held by nobody.</strong> That is a narrower claim than this figure used to
 make, and the narrowing was earned: an earlier draft said SQLite enforced two unique indexes
-"and that is the whole list", when it was already six, and is nine as this is written. One of
-the nine is a partial index over <code>approval_workflows</code> — one active workflow per
-company, a business rule the database is enforcing, not bookkeeping. Count them yourself with
-<code>PRAGMA index_list</code> over a freshly built schema rather than trusting the number
-here; it moves whenever a table is added. <strong>What the move to Postgres does and does
-not do.</strong> It buys concurrency, and it turns the foreign keys on. It does not move
+"and that is the whole list", when it was already six; it was nine a day later and is twelve
+now. Two of the twelve are partial indexes — one active workflow per company, and one live
+grant of a permission code to a person — business rules the database is enforcing, not
+bookkeeping. <strong>Do not trust the number in this caption. Count them.</strong> Build the
+schema from the models into a scratch file and read <code>PRAGMA index_list</code> for every
+table, skipping the primary-key autoindexes; the figure is right on the day it is written
+and moves whenever a table is added, which is the whole reason it has been wrong three
+times. <strong>What the move to Postgres does and does not do.</strong> It buys concurrency, and it turns the foreign keys on. It does not move
 tenant scope, the append-only rule, the hash chain or citation verification out of Python.
 That last point is worth saying plainly because <code>docs/security.html</code> already
 carries a correction for the opposite mistake: an earlier draft claimed the database user
@@ -624,8 +744,135 @@ SQLAlchemy reads like a database constraint and is not one until <code>PRAGMA
 foreign_keys</code> is on, and no line in this repository turns it on.</figcaption>
 </figure>
 
+<h2>Configuration, schema migration, and the deploy</h2>
+<p>This section did not exist when the application ran only on a laptop. It exists because two defects were found by deploying, and neither could have been found by a test.</p>
+<p><strong>The first was configuration that never arrived.</strong> Three modules read their settings from <code>os.environ</code> and each falls back safely when it finds nothing: the assistant says it is unavailable, the proposer declines to propose, the mail transport declines to send and says so. All three announce the fallback, which is right. What was wrong is that they announced it always — the key lived in <code>.env</code>, nothing put <code>.env</code> into the environment, and a deployment holding a perfectly good key behaved exactly like one holding none. Every fallback fired, every message was honest, and the product was still wrong. <code>app/config.py</code> is the fix: fifteen lines of standard library, called at the top of <code>app/main.py</code> before <code>app.state</code> or <code>app.web</code> is imported. A variable already in the environment is never overwritten by the file, because a container or an <code>export</code> is a deliberate act and a file on disk is a default. It returns the names it set and never a value; that file holds an API key, an OAuth refresh token and a client secret, and a helpful startup line echoing them would put all three into every log the host ships to.</p>
+<p><strong>The second was a deploy that ran no migration.</strong> <code>deploy/entrypoint.sh</code> seeded only when there was no database, which is right — a redeploy must never lay demo rows over an audit chain. But when the file existed it ran nothing, not even <code>create_all</code>. The first deploy after a column was added would have kept the old table while the new code selected the new column, and every proceeding, claim and verification screen would have answered <code>no such column: document_versions.source_url</code>. No test could catch it: tests build their schema from the current models every time, so they never meet yesterday's database. It appears only in production, on the deploy, in front of whoever is looking.</p>
+<p>The obvious fix is five <code>ALTER TABLE</code> lines. That fixes the instance and leaves the class — the next column anybody adds breaks the deploy the same way, and they will not think of this file. So <code>app/state/migrate.py</code> derives the difference instead of listing it: ask SQLAlchemy what the models declare, ask the database what it has, add what is missing. New tables through <code>create_all</code>, new columns through a generated <code>ALTER TABLE ... ADD COLUMN</code>, new indexes through <code>CREATE INDEX IF NOT EXISTS</code>. It never drops, renames, retypes or backfills. A new column is NULL on old rows, because NULL says the schema of the day did not record this and a default says something the record cannot support. And it refuses rather than guessing: a NOT NULL column with no default on an existing table goes into a <code>refused</code> list, <code>scripts/migrate.py</code> prints each refusal to stderr and returns 1, and <code>set -eu</code> in the entrypoint stops the deploy rather than starting the application against a schema it cannot read.</p>
+
+<figure class="fig">
+<div class="fig__frame">
+<svg viewBox="0 0 900 530" role="img" aria-labelledby="depT depD">
+  <title id="depT">The request path and the start-up path, side by side</title>
+  <desc id="depD">On the left, a request to strata.sudama.ai reaches nginx, which
+  matches a named list of sixteen path prefixes and proxies those to the application
+  container on port 8000. Everything else is served as a static file from the
+  marketing site. The application container carries no Traefik labels and publishes
+  no port, so nginx decides what reaches it. On the right, the entrypoint runs the
+  migration first, on every start, before anything reads a table and before the
+  seed. The migration derives what is missing from the SQLAlchemy metadata and adds
+  it; a NOT NULL column with no default is refused and the process exits non-zero,
+  so the deploy stops. Below both, the seed runs only when there is no database
+  file, and then uvicorn starts with one worker.</desc>
+
+  <text class="t-boundary" x="30" y="30">a request arrives</text>
+  <text class="t-boundary" x="470" y="30">the container starts</text>
+
+  <g class="box"><rect x="30" y="44" width="400" height="44"/>
+    <text class="t-title" x="46" y="72">strata-site — nginx:alpine, holds the Traefik labels</text></g>
+  <path class="flow" d="M230 88 V116"/>
+
+  <g class="box box--gate"><rect x="30" y="122" width="400" height="88"/>
+    <text class="t-title" x="46" y="144">deploy/nginx.conf — a named list, not a catch-all</text>
+    <text class="t-sub" x="46" y="164">login logout projects proceedings changes review</text>
+    <text class="t-sub" x="46" y="180">escalations workflow admin chat feedback users invite</text>
+    <text class="t-sub" x="46" y="196">s static healthz — sixteen names. Everything else is the site</text></g>
+  <path class="flow" d="M130 210 V236"/>
+  <path class="flow" d="M330 210 V236"/>
+
+  <g class="box box--store"><rect x="30" y="242" width="190" height="64"/>
+    <text class="t-title" x="44" y="264">deploy/site/</text>
+    <text class="t-sub" x="44" y="282">7 pages, 5 blog posts</text>
+    <text class="t-sub" x="44" y="298">one same-origin stylesheet</text></g>
+
+  <g class="box"><rect x="240" y="242" width="190" height="64"/>
+    <text class="t-title" x="254" y="264">strata-app:8000</text>
+    <text class="t-sub" x="254" y="282">no Traefik labels</text>
+    <text class="t-sub" x="254" y="298">no published port</text></g>
+
+  <g class="box"><rect x="470" y="44" width="400" height="44"/>
+    <text class="t-title" x="486" y="72">deploy/entrypoint.sh — every start, set -eu</text></g>
+  <path class="flow" d="M670 88 V116"/>
+
+  <g class="box box--gate"><rect x="470" y="122" width="400" height="60"/>
+    <text class="t-title" x="486" y="144">python scripts/migrate.py — always, and first</text>
+    <text class="t-sub" x="486" y="164">before anything reads a table, and before the seed</text></g>
+  <path class="flow" d="M670 182 V212"/>
+
+  <g class="box"><rect x="470" y="218" width="400" height="86"/>
+    <text class="t-title" x="486" y="240">app/state/migrate.py — derived, not listed</text>
+    <text class="t-sub" x="486" y="258">asks the models what they declare, the database what it has</text>
+    <text class="t-sub" x="486" y="274">adds the difference: tables, columns, indexes</text>
+    <text class="t-sub" x="486" y="290">never drops, renames, retypes or backfills</text></g>
+  <path class="flow--refuse" d="M670 304 V332"/>
+  <text class="t-refuse" x="678" y="322">refuses</text>
+
+  <g class="box"><rect x="470" y="338" width="400" height="64"/>
+    <text class="t-title" x="486" y="360">exit 1 — the deploy stops</text>
+    <text class="t-sub" x="486" y="378">a NOT NULL column with no default. Add it nullable,</text>
+    <text class="t-sub" x="486" y="394">backfill deliberately, then tighten</text></g>
+
+  <g class="box"><rect x="30" y="430" width="840" height="72"/>
+    <text class="t-title" x="46" y="452">then, and only then</text>
+    <text class="t-sub" x="46" y="470">seed only when there is no database file — a redeploy must never lay demo rows over an audit chain</text>
+    <text class="t-sub" x="46" y="486">then uvicorn, one worker, because SQLite takes a write lock across the file (ADR-28)</text></g>
+  <path class="flow" d="M670 402 V426"/>
+  <path class="flow" d="M335 306 V416 H660"/>
+</svg>
+</div>
+<div class="fig__key">
+  <span><i></i>a container, a file, or a step</span>
+  <span><i class="k-gate"></i>decides, and can refuse</span>
+  <span><i class="k-refuse"></i>the refusal path</span>
+</div>
+<figcaption><strong>The named list is the seam, and it is written down.</strong> A catch-all
+proxy fails quietly in both directions: a page added to the marketing site would silently
+reach the application, and a router added to the application would silently 404 while every
+test still passed. So nginx matches sixteen names and the site keeps the root, because a
+stranger arriving at the domain should meet the argument before the product. The cost is a
+list somebody has to remember to extend, and the file says so at the top.
+<strong>Two things this figure asserts that a test cannot.</strong> The application
+container publishes no port and carries no Traefik labels — it is reachable by name on the
+internal network and nowhere else, so nginx is the only way in. And the migration runs
+before the seed rather than beside it, because the deploy that adds a column is exactly the
+deploy where the old table is still there. <span class="open">There is no
+<code>tests/test_migrate.py</code>.</span> The module that stands between a schema change
+and a live outage has no test file of its own; only the audit-column helper it delegates to
+is covered. That is the largest single gap in this document.</figcaption>
+</figure>
+
+<h2>The application surface</h2>
+<p>The pipeline above is the reason the product can be trusted. It is not what a person uses. Five capabilities sit on top of it, and each one is described here by what it does and by what it does not.</p>
+<h3>Clarke — the assistant</h3>
+<p><code>app/chat/</code> is the second and last place in the codebase that calls a model. The persona is a commission's records clerk (ADR-50): it finds a project, opens a change, says what moved, and offers no opinion on the merits. It has ten tools — eight reads and two writes — and the boundary is the interesting part. <strong>The model never holds an identity.</strong> <code>company_id</code>, <code>actor</code>, <code>user_id</code> and <code>session</code> are supplied by the caller, and if the model puts any of them in a tool call the turn is refused rather than the argument stripped, with an audit row to say it happened (ADR-51). The tool registry checks itself at import: a tool whose signature disagrees with its allowlist, or that names a permission code the product does not define, fails the import rather than the request.</p>
+<p>Two limits are worth stating plainly. The claims Clarke reads are gated — <code>change_detail</code> and <code>search_claims</code> go through <code>verified_claims()</code>, and a withheld claim reaches the model as a reason code with no statement and no quote. <span class="open">The prose Clarke writes is not gated.</span> Nothing re-checks the reply text against the source. The controls are the persona prompt, the narrowed payload, and a check that a turn which withheld something says so with the count; <code>app/chat/tools.py</code> concedes it in one line — "a tool result is text a model will summarise, and nothing in this file can stop it paraphrasing badly." Second: history is stored, ordered by an ordinal with a unique index rather than by a timestamp, and <span class="open">the engine discards it</span> before the model sees it. Each turn stands alone today.</p>
+<h3>Share links</h3>
+<p><code>/s/{token}</code> is the only unauthenticated route in the product, and the token is the whole credential. The row stores a SHA-256 of it and never the token itself; the plaintext exists once, on the object returned to the person who minted it. Expiry is mandatory, seven days by default and thirty at most, and a request for zero or for a year is refused rather than clamped. Expired, revoked, unknown, and "this tenant switched sharing off" all render one identical 404, so nobody can probe which tokens are real. A share re-verifies its claim at open time, on every open, through the same function every screen uses — so a shared claim whose source later changed shows as withheld to the recipient without anybody revoking anything.</p>
+<p>The defect that made this route public is worth keeping in the record. <code>/s/</code> was not on the anonymous-allow list, so the session guard answered <code>303</code> to <code>/login?next=%2Fs%2F&lt;token&gt;</code> — putting a live bearer token into a query string, where it reaches the access log, the <code>Referer</code> header and the browser history. The fix was one prefix, with its trailing slash, so <code>/settings</code> and a bare <code>/s</code> stay guarded.</p>
+<h3>Invitations, and no signup</h3>
+<p>There is no registration route anywhere in <code>app/</code>. An account is provisioned by an administrator holding <code>user.manage</code>, or handed off by somebody holding <code>user.invite</code> when routing finds an obligation owner with no login. Two clocks: seven days for a handoff, twenty-four hours for a provision. An inviter can never grant more than they hold. A resend is a new invitation with a new token and the old row marked superseded, never a longer life on the same one. <code>app/state/invites.py</code> sends no mail — it returns the token once, to its caller — and the token goes into the link and nowhere else. <span class="open">At this commit <code>/invite/</code> is not on the public-path list</span>, so an invitee is sent to a login page they have no account for. The admin screen renders the warning itself, and it asks <code>is_public_path()</code> rather than assuming, so the warning will disappear on its own the day the prefix is added.</p>
+<h3>Integrations</h3>
+<p><code>/admin/sources</code> is a registry, not a connector, and the page says so in its own copy rather than only in a comment: "Nothing in this build fetches on a schedule." The list of fetchable source kinds is an empty tuple, so <code>can_fetch()</code> answers no for every kind and every new row is born with status <code>not_implemented</code>. What is real: rows with a kind, a status, an enable flag, provenance counts, and an audited history of every registration, edit and removal. Credentials are stored as the <em>name</em> of an environment variable, allow-listed by prefix and shape, and the screen shows whether that name is set in this process — never the value, never its length. There is no "test connection" button, and the page explains why: a button that fetches an administrator-typed URL is a request-forgery surface. What exists instead is a text-only preflight that refuses private ranges and internal-looking names, opens no socket and resolves no name, and says so on every verdict.</p>
+<h3>The first-login tour</h3>
+<p>Five stops, ending on a withheld claim and then the assistant. The stops are data in the template; the script holds behaviour and no words. State is a cookie and nothing else — no route, no table, no column — because a preference is not a credential, and it therefore may not share a name, a lifetime or a reader with the session cookie. A stop whose target is not on the screen is skipped, and if no stop resolves, nothing is drawn and nothing is remembered. <span class="open"><code>base.html</code> does not include it</span>, so it reaches nobody. That is asserted rather than forgotten: the test that would prove it wired carries a strict expected-failure marker naming the gap.</p>
+
+<h2>The two corpora</h2>
+<p>There are two, both labelled, and conflating them would be the easiest dishonesty available to this product.</p>
+<p><strong>The synthetic corpus</strong> — three versions of a fictional proceeding under <code>data/</code>, with a manifest — carries traps built on purpose: one sentence repeated three times per version so an unqualified citation is ambiguous, and a wholesale restructure that scores 0.944 on raw text similarity while meaning something different. It stays, and it stays the eval corpus (ADR-40). The expected answers live in <code>data/manifest.json</code> rather than in the code under test, so the oracle is independent of the thing it scores. Real filings will not reproduce those traps on demand, so replacing the fixture would quietly gut the harness. The synthetic corpus must never be given a source URL: no commission published it, and a plausible-looking docket link would be the product inventing provenance, which is the one failure everything else here exists to prevent.</p>
+<p><strong>The real corpus</strong> — 102 public filings under <code>data/real/</code>, from eight commissions across nineteen dockets. Every filing has a provenance record beside it carrying the source URL, the docket, the filing date, the filer, how it was obtained, the retrieval time and a SHA-256 of the saved bytes. The record shapes are not uniform, and where a field is absent the record says nothing rather than guessing. One pair is loaded into the demonstration by <code>scripts/ingest_real.py</code>: Kentucky PSC 2025-00113, a witness's direct testimony filed and then corrected. 1,024,409 characters against 1,024,536 — 127 characters of difference across a million, and the pipeline finds 144 changes in 0.78 seconds. That number is the argument, because it states the problem as arithmetic on a document somebody really filed, with a link back to the commission's own copy so a reader can leave and check. The filer also published a marked-up version saying what they changed, which is ground truth nobody on this side wrote.</p>
+<p>One claim in the demonstration comes from that real pair, and it was written by hand, not extracted — the script says so. Nothing in this product extracts claims yet.</p>
+
 <h2>Open questions this document does not resolve</h2>
-<p>Carried forward from <code>decisions.html</code> because pretending they are settled here would contradict that log: which model <code>interpretation</code> calls, and its fallback when unavailable; where the confidence threshold in <code>verification</code> actually sits, and on what evidence; whether the event-fold default above survives contact with the eval corpus. None of these are architectural in the sense of changing a module boundary — they are configuration and calibration, which is exactly why the boundaries above were drawn to keep them swappable.</p>
+<p>Two of the three questions this section used to carry are closed, and closing them honestly matters more than the list looking long.</p>
+<ul>
+<li><strong>Closed — which model, and how the key reaches it.</strong> <code>claude-opus-5</code>, pinned as a constant in both places that call one, deliberately not read from the environment (ADR-37). The key arrives through <code>app/config.py</code>. Every model path still announces its fallback by name when there is no key.</li>
+<li><strong>Closed the other way — event-fold versus snapshots.</strong> Settled by ADR-16, ADR-17 and ADR-31 as an append-only hash-linked audit log beside mutable tables, with a correction written as a new row that supersedes an old one. This document argued for a projection folded from an event log and described the product as if that had been built. It had not.</li>
+<li><strong>Open — where the confidence floor sits.</strong> It ships at 0 basis points, which withholds nothing for confidence alone. <code>app/state/claims.py</code> says why in its own words: there is no evidence yet for where the line sits, and a number picked to look rigorous is worse than an honest zero. Finding the number is an eval question, and the eval harness scores diff and verification, not confidence.</li>
+<li><strong>Open — does the proposer work.</strong> <code>app/interpretation/propose.py</code> has never run against the real API from this repository. Until it has, it is unexercised code behind tested code, and no claim on any screen comes from it.</li>
+<li><strong>Open — retrieval.</strong> ADR-008 is accepted and unbuilt. Nothing under <code>app/</code> indexes, ranks or embeds anything. The design says where it plugs in; that is not the same as it existing.</li>
+<li><strong>Open — the migration has no test.</strong> Named again here because it is the one gap that can take a live site down, and because a document that lists its gaps in a diagram caption and not in the list at the end is hiding them in plain sight.</li>
+</ul>
+<p>None of these change a module boundary. They are calibration, coverage and unfinished work, which is exactly why the boundaries above were drawn to keep them swappable.</p>
 
 </body>
 </html>

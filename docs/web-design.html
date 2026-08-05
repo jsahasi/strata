@@ -21,8 +21,8 @@
   .diagram { overflow-x:auto; background:#0f172a; color:#e2e8f0; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0; }
   .diagram pre { font: 12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; margin:0; white-space:pre; }
   /* Added 2026-08-04 with the glass revision. Token listings are copied
-     verbatim by two agents who cannot ask a question, so they get their own
-     block: selectable, scrollable, and never wrapped. */
+     verbatim into stylesheets, so they get their own block: selectable,
+     scrollable, and never wrapped. A wrapped token is a mistyped token. */
   .tok { overflow-x:auto; background:#0b1417; color:#e7eeef; border-radius:8px;
          padding:1rem 1.2rem; margin:1rem 0; border:1px solid #1f3238; }
   .tok pre { font: 12.5px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
@@ -41,49 +41,99 @@
 
 <h1>Web Surface and Deployment</h1>
 <p class="sub">The design for what a reviewer sees at <code>strata.sudama.ai</code>, and how it gets there.
-Written 2026-08-03, before implementation.</p>
+Two surfaces: the application, and the marketing site in front of it.</p>
 
-<p>This document covers only what is new: the web layer, its visual design, and the deployment.
-The pipeline behind it — ingestion, diff, interpretation, verification, state — is specified in
-<code>docs/architecture.html</code> and is unchanged by anything here. The reasoning for each choice
-below lives in <code>docs/.ai/decisions.html</code> as ADR-009 through ADR-014; this document says
-what is being built, not why it beat the alternatives.</p>
+<div class="note"><span class="lbl">What this document is, and when each part was written.</span>
+Part one was written 2026-08-03, before <code>app/</code> existed. Part two was written 2026-08-04 as a
+plan for the visual revision. Both have since shipped, so on 2026-08-04 the whole document was read
+back against the files and every claim that had gone false was corrected. It now says what the code
+does, in the present tense. Where a passage records a decision or a measurement from before the build,
+it says so and gives the date. <strong>Where nobody has checked, it says nobody has checked</strong> —
+those admissions are in <em>What is still not known</em> near the foot, and they are not padding.</div>
 
-<div class="crit"><strong>Sequencing risk, stated first because it governs everything else.</strong>
-<code>app/</code> and <code>tests/</code> are empty at the time of writing. The web layer renders state
-that nothing yet produces. Build order is therefore verifier and diff before screens, and the
-deployment before the design polish — a designed shell over an absent product is the exact failure
-this design was chosen to avoid. If hours run short, the cut order is in the last section.</div>
+<p>The pipeline behind the screens — ingestion, diff, interpretation, verification, state — is
+specified in <code>docs/architecture.html</code> and is unchanged by anything here. The reasoning for
+each choice below lives in <code>docs/.ai/decisions.html</code> as ADR-009 through ADR-014.</p>
+
+<div class="win"><span class="lbl">The sequencing risk, and how it turned out.</span> Written first
+on 2026-08-03 because it governed everything else: <code>app/</code> and <code>tests/</code> were empty,
+so the web layer would render state that nothing yet produced. The build order chosen was verifier and
+diff before screens, and the deployment before the design polish. That order held. The engine landed
+first, the screens second, the deployment third and the visual revision last, which is why part two
+below could be written against screenshots of a running product rather than against a sketch. Nothing
+in the cut order at the end of part one was cut.</div>
 
 <h2>Scope</h2>
 
-<p>Three additions.</p>
+<p>Four things, not the three this section originally listed. The marketing site did not exist when it
+was written.</p>
 <table>
 <tr><th>What</th><th>Where</th><th>Detail</th></tr>
-<tr><td>Web layer</td><td><code>app/web/</code></td><td>FastAPI routes, Jinja templates under <code>app/web/templates/</code>, assets under <code>app/web/static/</code>. A read surface over stored state, plus exactly two writes: approve and reject on a queued item. The module boundary is the one already fixed in <code>docs/architecture.html</code> — deliberately thin, no business logic.</td></tr>
-<tr><td>Design system</td><td><code>app/web/static/strata.css</code></td><td>One stylesheet. Design tokens, type scale, both colour schemes. No framework, no icon font, no build step.</td></tr>
-<tr><td>Deployment</td><td><code>Dockerfile</code>, <code>compose.yml</code>, <code>Caddyfile</code></td><td>Two containers on a dedicated droplet. Caddy terminates TLS; the app serves on an internal port.</td></tr>
+<tr><td>Web layer</td><td><code>app/web/</code></td><td>FastAPI routes under <code>app/web/views/</code>, Jinja templates under <code>app/web/templates/</code>, assets under <code>app/web/static/</code>. Sixteen routers are mounted in <code>app/main.py</code> lines 64&ndash;98. The module boundary is the one fixed in <code>docs/architecture.html</code> — deliberately thin, no business logic.</td></tr>
+<tr><td>Design system</td><td><code>app/web/static/</code></td><td><strong>Four hand-written stylesheets, not one.</strong> <code>strata.css</code> (2,752 lines) holds every token, the type scale, both colour schemes and the shared components; <code>clerk.css</code> (543) the assistant dock; <code>tour.css</code> (113) the first-login tour; <code>workflow.css</code> (641) the approval-route editor. The three secondary sheets declare no colour of their own — see the no-hex rule below. No framework, no icon font, no build step.</td></tr>
+<tr><td>Marketing site</td><td><code>deploy/site/</code></td><td>Thirteen static pages and one shared stylesheet, <code>site.css</code> (438 lines). Served at the root; the application sits behind it. Covered in <em>Part three</em>.</td></tr>
+<tr><td>Deployment</td><td><code>deploy/Dockerfile</code>, <code>deploy/compose.yml</code>, <code>deploy/nginx.conf</code>, <code>deploy/entrypoint.sh</code></td><td>Two containers. nginx serves the site and proxies a named list of paths to the app; Traefik terminates TLS. There is no <code>Caddyfile</code> and never was — the original plan said Caddy, and the deployment that shipped uses nginx behind the Traefik already running on the host.</td></tr>
 </table>
 
 <p>The web layer holds no business logic. It reads projections and renders them. Anything that
 decides something belongs upstream, behind the verification gate.</p>
 
+<div class="note"><span class="lbl">No Node, no build step, no CDN, and this is checkable.</span>
+Every stylesheet named above is hand-written and served as it sits in the repository. There is no
+<code>package.json</code>, no bundler, no preprocessor, no icon font and no web font. Nothing on either
+surface is fetched from another host, and for the marketing site a test holds that true:
+<code>tests/test_responsive.py::test_the_site_loads_nothing_from_another_host</code> reads every page
+and stylesheet under <code>deploy/site/</code> and fails on any absolute <code>src</code> or
+<code>href</code>, any <code>@import</code>, and any <code>url(http…)</code>.</div>
+
 <h2>Screens</h2>
 
-<p>Four. Each maps to a moment in the analyst's day; a screen that does not is not built.</p>
+<div class="crit"><strong>This section said "Four" and it is wrong by a wide margin.</strong> It was
+written on 2026-08-03 and describes the demo path only. The application now mounts sixteen routers in
+<code>app/main.py</code> lines 64&ndash;98 and serves fifty-seven routes. Corrected below. The four
+screens the original list named are still the spine, and they are still the only path the demo walks —
+but a reviewer who opens the nav sees six items, and a reviewer who reads <code>app/main.py</code> sees
+far more than that. Better to name them than to be caught by them.</div>
+
+<h3>The four the argument rests on</h3>
 
 <table>
 <tr><th>Screen</th><th>Route</th><th>What it answers</th></tr>
-<tr><td>Proceedings</td><td><code>/</code></td><td>"What am I tracking, and where has something moved?" One row per proceeding: docket, jurisdiction, latest version, draft-or-final badge, count of unreviewed changes.</td></tr>
+<tr><td>Projects</td><td><code>/</code> and <code>/projects</code></td><td>"What am I tracking, and where has something moved?" <code>/</code> is the project board, not the proceedings list as originally planned. <code>app/web/views/projects.py</code> line 671.</td></tr>
 <tr><td>Proceeding detail</td><td><code>/proceedings/{id}</code></td><td>"What changed between these two versions?" A version timeline, and the typed changes between any selected pair — added, removed, modified — each with its materiality and its draft-or-final status.</td></tr>
-<tr><td>Change detail</td><td><code>/changes/{id}</code></td><td>"What does this mean for us, and can I trust it?" The claim, its citation, the obligations and projects it touches, the recommended action, the named reviewer.</td></tr>
-<tr><td>Review queue</td><td><code>/review</code></td><td>"What did the system refuse to assert?" Everything that failed verification or fell below the confidence threshold, each with the reason stated in plain words.</td></tr>
+<tr><td>Change detail</td><td><code>/changes/{id}</code></td><td>"What does this mean for us, and can I trust it?" The claim, its citation, the obligations and projects it touches, the recommended action, the named reviewer. This is the screen the citation viewer and the withheld claim live on.</td></tr>
+<tr><td>Review</td><td><code>/review</code>, <code>/escalations</code></td><td>"What did the system refuse to assert?" Everything that failed verification or fell below the confidence threshold, each with the reason stated in plain words.</td></tr>
 </table>
 
-<p>Deliberately absent: a settings page, a metrics dashboard, an admin view, a search box, a user
-profile. None answers a pain the analyst named, and each would dilute the one path the demo depends
-on. The internal eval numbers live in the submission documents, not in the product — an eval
-dashboard built for a non-technical user is a feature the panel is explicitly primed to challenge.</p>
+<h3>The nav shows six, and two of them are conditional</h3>
+
+<p><code>app/web/templates/base.html</code> lines 54&ndash;63 build the list: Projects, Proceedings,
+This proceeding, This change, Review, Approval route. The middle two need a proceeding or a change in
+hand, so when there is none they render as <code>.nav__link--off</code> — a span, not a link, with
+<code>aria-disabled</code> and a title saying how to reach the screen. That greying is the only signal
+the item leads nowhere, and it is why one contrast figure in part two is knowingly left under AA.</p>
+
+<h3>What else is mounted, named rather than hidden</h3>
+
+<p>Everything below is real and reachable. None of it is on the demo path, and the original claim that
+the product deliberately has no admin view has not been true since the identity work landed.</p>
+
+<table>
+<tr><th>Area</th><th>Routes</th><th>Notes</th></tr>
+<tr><td>Approval routes</td><td><code>/workflow</code>, <code>/admin/workflows…</code></td><td>The route editor and its canvas. <code>workflow.css</code>, 641 lines.</td></tr>
+<tr><td>Sources — the Integrations page</td><td><code>/admin/sources</code></td><td><strong>Not <code>/integrations</code></strong>, though the template and the view are named for it. Every source the workspace draws documents from. Its central claim is a refusal: nothing in this product fetches anything, and the page says so on the page rather than in a footnote. It is the heaviest user of <code>.withheld__reason</code> outside a change page — five uses, <code>integrations.html</code> lines 240, 257, 295, 307 and 468.</td></tr>
+<tr><td>People and permissions</td><td><code>/users</code>, <code>/permissions</code>, <code>/invite/{token}</code>, <code>/admin/invites</code></td><td><code>/permissions</code> is deliberately absent from the nav.</td></tr>
+<tr><td>Sharing</td><td><code>/s/{token}</code>, <code>/admin/shares</code></td><td><code>/s/</code> is unauthenticated by design, and its prefix is on the public list — a redirect to <code>/login?next=/s/&lt;token&gt;</code> would put a live bearer token in a query string.</td></tr>
+<tr><td>Feedback</td><td><code>/chat/feedback</code>, <code>/feedback/bug</code>, <code>/admin/feedback</code></td><td>Where the assistant's thumbs land. See <em>Clarke</em> in part two.</td></tr>
+<tr><td>The assistant</td><td><code>/chat</code>, <code>/chat/opening</code></td><td>Rendered into every page by <code>base.html</code> line 124.</td></tr>
+<tr><td>Session and health</td><td><code>/login</code>, <code>/logout</code>, <code>/healthz</code>, <code>/static</code></td><td><code>/healthz</code> returns the corpus row counts across five tables, so it fails loudly on an empty database rather than serving empty screens.</td></tr>
+</table>
+
+<p><span class="lbl">What is still deliberately absent, and this part held.</span> There is no metrics
+dashboard and no search box. The internal eval numbers live in the submission documents, not in the
+product — an eval dashboard built for a non-technical user is a feature the panel is explicitly primed
+to challenge. The admin screens that do exist are not analytics; each one is a place a person changes
+something the audit chain then records.</p>
 
 <h2>The citation viewer</h2>
 
@@ -125,7 +175,9 @@ and it must survive being screenshotted in black and white.</div>
 
 <h2>Design system</h2>
 
-<p>One stylesheet, organised as tokens then components.</p>
+<p>Four stylesheets, each organised as tokens then components, with every colour declared once in
+<code>strata.css</code>. The constraints below were set on 2026-08-03 and all four still hold; part two
+says what was drawn inside them.</p>
 
 <ul>
 <li><span class="lbl">Type.</span> A scale built for dense regulatory prose, not for dashboard chrome.
@@ -142,38 +194,79 @@ a third party. System font stack. Every byte the page loads is served from the s
 also keeps the content security policy simple.</li>
 </ul>
 
-<p>The visual execution runs under the <code>frontend-design</code> skill at implementation time.
-This section fixes the constraints that skill works within.</p>
+<p>These four constraints were written before a line of CSS existed. Part two is what got drawn inside
+them, and none of the four was relaxed to make the glass work — the closest call is the type register
+rule, which is why long prose never sits on a translucent surface anywhere in the product.</p>
 
 <h2>Deployment</h2>
 
+<div class="crit"><strong>The diagram in this section named Caddy and basic auth. Neither shipped.</strong>
+There is no <code>Caddyfile</code> in the repository. The host already runs Traefik, so adding a second
+TLS terminator would have meant two certificate stores and two places to look when the site is down.
+And basic auth was dropped once the product grew real logins: an edge password in front of a login
+screen asks a reviewer for two passwords to see one demo. The shipped shape is below.</div>
+
 <div class="diagram"><pre>
-  strata.sudama.ai  --A record-->  [ new droplet, nothing sensitive on it ]
-                                     |
-                                     |  :443  +-----------+
-                                     +------->|   caddy    |  TLS via Let's Encrypt,
-                                              |            |  basic-auth at the edge
-                                              +-----+------+
-                                                    | :8000 (internal only)
-                                              +-----v------+
-                                              |   strata    |  FastAPI, uvicorn
-                                              |             |  seeds corpus if DB empty
-                                              +-----+------+
-                                                    |
-                                              +-----v------+
-                                              |  volume     |  SQLite
-                                              +------------+
+  strata.sudama.ai
+        |
+        |  :443            +-------------+
+        +----------------->|   traefik    |  TLS, Let's Encrypt, http->https
+        (host, pre-existing)|             |  redirect. Not in this repo;
+                           +------+------+  configured by the labels in
+                                  |         deploy/compose.yml lines 21-32.
+                                  | :80
+                           +------v------+
+                           | strata-site  |  nginx:alpine. Serves deploy/site/
+                           |              |  at the root, and proxies a NAMED
+                           |              |  LIST of paths to the app.
+                           +------+------+  deploy/nginx.conf line 65.
+                                  | :8000  (expose, not publish)
+                           +------v------+
+                           |  strata-app  |  FastAPI, uvicorn.
+                           |              |  entrypoint: migrate, then seed
+                           |              |  ONLY if there is no database.
+                           +------+------+
+                                  |
+                           +------v------+
+                           |  host bind   |  SQLite at /data/strata.db
+                           |  /data/strata/db
+                           +-------------+
 </pre></div>
 
-<p><span class="lbl">Properties.</span> Two containers, one compose file. SQLite on a named volume, so
-a redeploy does not lose reviewed state. The corpus seeds on first boot only if the database is empty.
-Basic auth at the edge, with the credentials printed in the submission — this keeps crawlers and
-strangers out without putting a login screen between a reviewer and the demo.</p>
+<p><span class="lbl">The seam is a named list, and that is the decision worth defending.</span>
+<code>deploy/nginx.conf</code> line 65 matches one regex:</p>
 
-<p><span class="lbl">The local contract survives untouched.</span> The Dockerfile calls the same
-entrypoint as <code>make run</code>. There is no deployment-only code path, because a deployment-only
-code path is a thing that breaks the moment nobody is testing it. <code>make test</code> stays offline
-and does not know the droplet exists.</p>
+<div class="tok"><pre>location ~ ^/(login|logout|projects|proceedings|changes|review|escalations|workflow
+              |admin|chat|feedback|users|invite|s|static|healthz)(/|$)</pre></div>
+
+<p>Everything else falls through to <code>try_files</code> and the static site. A catch-all would fail
+quietly in both directions: a page added to the site would silently reach the app, and a router added
+to the app would silently 404. Writing the list down makes the seam a thing somebody must edit on
+purpose. The cost is real and stated: <strong>a new top-level route needs a line here or it is
+unreachable in production and perfectly fine in every test.</strong> No test catches that.</p>
+
+<p><span class="lbl">Properties.</span> Two containers, one compose file. The app publishes no port —
+<code>expose: "8000"</code>, not <code>ports:</code> — and carries no Traefik labels, so nginx is the
+only thing that can reach it. SQLite is a <strong>host bind mount</strong>, not a named volume as this
+section originally said: <code>/data/strata/db:/data</code>, with
+<code>STRATA_DATABASE_URL=sqlite:////data/strata.db</code>. A redeploy replaces the image and keeps the
+data, which for this product means keeping the audit chain — the one thing that cannot be regenerated,
+because regenerating it is indistinguishable from rewriting it.</p>
+
+<p><span class="lbl">The entrypoint migrates before it reads.</span> <code>deploy/entrypoint.sh</code>
+runs <code>scripts/migrate.py</code> always, before anything touches a table, then seeds only when the
+database file is absent, then <code>exec</code>s uvicorn. The migration exists because the deploy after
+a new column would otherwise have kept yesterday's table under today's code and answered every screen
+with <code>no such column</code>. Tests build their schema from the current models every time, so they
+never meet yesterday's database; this is a failure only production can have.</p>
+
+<p><span class="lbl">The local contract, restated accurately.</span> The original text claimed the
+Dockerfile calls the same entrypoint as <code>make run</code>. It does not, quite:
+<code>make run</code> is <code>seed</code> then uvicorn with <code>--reload</code>, while the container
+entrypoint adds the migration and the seed-only-if-absent guard. What is true, and is the part that
+matters, is that <strong>there is no deployment-only application code path</strong> — both run
+<code>app.main:app</code> unchanged. <code>make test</code> stays offline and does not know the host
+exists.</p>
 
 <h2>Failure behaviour</h2>
 
@@ -190,37 +283,100 @@ Deployment must not become the place that principle quietly stops applying.</p>
 
 <h2>Testing</h2>
 
-<p>Existing suite unchanged: offline, deterministic, asserted against the corpus manifest's known
-answers. Deployment adds three checks and no more.</p>
+<p>The suite is offline, deterministic and asserted against the corpus manifest's known answers. It
+runs with:</p>
+
+<div class="tok"><pre>.venv/bin/python -m pytest tests/ -q</pre></div>
+
+<p>This section originally promised "three checks and no more" for the deployment. That number is long
+past. The checks that guard <em>this</em> document's subject matter — the web surface — are:</p>
 
 <ol>
-<li><code>/healthz</code> returns 200 with the schema version and the corpus row counts.</li>
-<li>A container smoke test: build the image, boot it against an empty volume, confirm the seed runs
-and the known change count matches the manifest.</li>
+<li><code>/healthz</code> returns 200 with the corpus row counts across five tables
+(<code>app/main.py</code> lines 107&ndash;120), so an empty database fails loudly instead of rendering
+empty screens that read like "nothing has changed".</li>
+<li><code>tests/test_responsive.py</code> — fixed widths, table scrolling, the viewport tag, long
+unbreakable tokens, and since 2026-08-04 the marketing site as well. See <em>Part three</em>.</li>
+<li><code>tests/test_chat_surface.py</code> and <code>tests/test_tour.py</code> — the no-hex rule that
+keeps <code>clerk.css</code> and <code>tour.css</code> inside one palette.</li>
 <li>A rendering test for the withheld state — a claim whose citation fails must not appear in the
-change-detail response body at all. This is asserted against the HTML, because "it looked greyed out"
-is not a guarantee and a CSS change could otherwise silently reveal it.</li>
+change-detail response body at all. Asserted against the HTML, because "it looked greyed out" is not a
+guarantee and a CSS change could otherwise silently reveal it.</li>
 </ol>
 
-<h2>Cut order, if hours run short</h2>
+<div class="note"><span class="lbl">What no test in this repository catches, said here because it
+keeps being the thing that breaks.</span> Three gaps, all of them real:
+<strong>(1)</strong> the focus ring. Nothing asserts that a control on glass still shows one.
+<strong>(2)</strong> Layout. These tests read stylesheets and markup; they cannot lay out a page, so
+they cannot prove either surface looks right on a handset — only a browser at a real width can, and the
+390px figures quoted in this document come from a headless Chromium at a fixed viewport, not a phone.
+<strong>(3)</strong> Prose. There is no guard on a document like this one. Every correction in the
+2026-08-04 pass was found by a person reading the file against the code, which is exactly how it went
+stale in the first place.</div>
 
-<p>Sacrifice in this sequence, and say so in the submission rather than hiding it: dark scheme;
-the review queue's amend action, keeping approve and reject; the proceedings list, entering at a
-single seeded proceeding instead; the deployment itself, falling back to the local run which is
-still guaranteed.</p>
+<h2>Cut order — written 2026-08-03, and nothing was cut</h2>
+
+<p>Kept as written, because a plan that names what it would sacrifice and then sacrifices none of it is
+worth more as a record than as a deletion. The sequence was: dark scheme; the review queue's amend
+action, keeping approve and reject; the proceedings list, entering at a single seeded proceeding
+instead; the deployment itself, falling back to the local run.</p>
+
+<p>All four survived. The dark scheme ships and carries its own glass tint rather than an alpha of the
+light one. The proceedings list ships. The deployment ships and serves the real product at
+<code>strata.sudama.ai</code>.</p>
 
 <p><strong>Never cut:</strong> the citation viewer, the withheld-claim state, or the paired verified
-and corrupted demonstration. Those three are the submission's argument. Everything else on this page
-is in service of them.</p>
+and corrupted demonstration. Those three are the submission's argument. Everything else on this page is
+in service of them, and part two below is mostly an account of protecting the second of the three from
+its own stylesheet.</p>
 
 <hr class="rule2">
 
 <h1 style="margin-top:2rem">Part two — glass on the chrome, paper for the record</h1>
-<p class="sub">The visual revision, written 2026-08-04, after looking at the built product at 1440
-and at 390 in both colour schemes. Everything above this line still stands; this part replaces only
-the four-line sketch in <em>Design system</em>, which said what the constraints were and not what to
-draw. Two agents build from the token listings below and cannot ask a question, so every value they
-need is written out in full rather than described.</p>
+<p class="sub">The visual revision, planned 2026-08-04 after looking at the built product at 1440 and
+at 390 in both colour schemes, and shipped the same day. This part replaces the four-line sketch in
+<em>Design system</em>, which said what the constraints were and not what to draw.</p>
+
+<div class="win"><span class="lbl">This part was written as a plan and is now a description.</span>
+It shipped in commit <code>2b10bb6</code>. Every listing below has been read back against
+<code>app/web/static/strata.css</code> and the two sheets that consume it. <strong>Where the build
+deviated from the plan, the deviation is marked in place</strong> rather than quietly smoothed over —
+in a red box if it changes what somebody should do, in the surrounding prose if it does not. The eight
+that matter, in the order they appear:
+<ol style="margin:.4rem 0 0">
+<li>The glass ladder's occupant list named three surfaces that do not exist.</li>
+<li>The worst-case contrast figure was wrong in the safe-sounding direction, and the true worst case
+sits two hundredths under AA.</li>
+<li><code>--stuck</code> is not 3.25rem; three tokens ship instead of one.</li>
+<li>Scroll anchors use <code>--anchor</code>, not the plan's arithmetic, which would have left every
+anchor behind the tab rail.</li>
+<li>The paper list gained one component and lost two.</li>
+<li>The weight floor on glass is 500, not 600.</li>
+<li>The masthead condenses by one step on each edge, not the three the plan wrote.</li>
+<li>The tour tip took no glass at all — and the ladder's own rule says it should not have.</li>
+</ol>
+<div style="margin-top:.5rem">The reasoning around those eight is unchanged and still holds.</div></div>
+
+<h2>The idea, in one paragraph</h2>
+
+<p>macOS has never applied vibrancy uniformly: sidebars, toolbars and popovers are translucent, and the
+document canvas is opaque. This product borrows that split and gives it a meaning it does not have on a
+desktop. <strong>The chrome is glass and the record is paper.</strong> Navigation, panels, rails and
+controls take the translucent treatment, because you look past them a thousand times a day. Claims,
+citations, quoted source text, the diff and the audit trail stay flat, opaque and still, because a
+document a regulator may read should not shimmer. Blur behind body text costs legibility, and a
+translucent tariff clause is a worse tariff clause.</p>
+
+<p>Then one surface goes further than paper, and it is the whole argument:</p>
+
+<div class="note" style="background:#f8fafc;border-color:#cbd5e1">
+<strong>The withheld claim is the one surface in the product with no effect on it at all.</strong>
+No blur, no shadow, no transform, no transition, no animation, no hover, no cursor change. It is
+deliberate, and it is the most important sentence in this document: <em>the moment the product refuses
+to assert something is the moment it must look least like a decoration.</em> Everything else on a
+Strata screen answers a cursor. A reviewer who moves across a change page and feels the interface go
+dead at exactly the claim the system declined to assert has understood the product without being told.
+The full specification is in <em>The signature</em>.</div>
 
 <h2>What I looked at first</h2>
 
@@ -255,12 +411,14 @@ higher than surface, not an alpha applied to the existing one.</td></tr>
 </table>
 
 <div class="note"><span class="lbl">A constraint the brief did not mention, and it is load-bearing.</span>
+Two tests assert that <code>clerk.css</code> and <code>tour.css</code> contain <strong>no hex literal
+and no <code>rgba(</code> followed by a digit</strong>, outside comments:
 <code>tests/test_chat_surface.py::test_the_dock_borrows_the_apps_palette_rather_than_inventing_one</code>
-and its twin in <code>tests/test_tour.py</code> assert that <code>clerk.css</code> and
-<code>tour.css</code> contain <strong>no hex literal and no <code>rgba(</code> followed by a digit</strong>,
-outside comments. So a translucent value cannot be written in either file. Every alpha, every blur, every
-shadow below is declared once in <code>strata.css</code> as a custom property, and the other two sheets
-reference it with <code>var()</code> and nothing else. Break this and the suite goes red at 1256.
+(line 931) and <code>tests/test_tour.py::test_the_tour_borrows_the_apps_palette_rather_than_inventing_one</code>
+(line 426). Both strip comments before they read, so a comment may name the thing it forbids.
+So a translucent value cannot be written in either file. Every alpha, every blur and every shadow below
+is declared once in <code>strata.css</code> as a custom property, and the other sheets reference it with
+<code>var()</code> and nothing else. Both files are clean today: neither contains a hex literal at all.
 </div>
 
 <h2 id="colour">Colour</h2>
@@ -358,10 +516,19 @@ legibility, and it is where most glass work fails.</div>
 
 <table>
 <tr><th></th><th>G1 &mdash; attached</th><th>G2 &mdash; floating</th><th>G3 &mdash; transient</th></tr>
-<tr><td><span class="lbl">Wears it</span></td>
-<td>the masthead; the review tab rail when stuck; the admin chrome bar</td>
-<td>the Clarke dock; the bug sheet; the share panel; any modal or sheet built later</td>
-<td>tour tips; toasts; suggestion pills</td></tr>
+<tr><td><span class="lbl">Wears it, as shipped</span></td>
+<td><code>.masthead</code> (<code>strata.css</code> 349&ndash;363) and the review tab rail
+<code>.tabs</code> (1596&ndash;1615). Two surfaces.</td>
+<td>the Clarke dock <code>.clerk-dock</code> (<code>clerk.css</code> 88&ndash;115) and the bug sheet
+<code>.clerk-bug</code> (419&ndash;443). Two surfaces.</td>
+<td>the floating assistant launcher <code>.clerk-launch--floating</code> (<code>clerk.css</code>
+52&ndash;70), and the tab-rail hover tint <code>a.tab:hover</code> (<code>strata.css</code> 1652).</td></tr>
+<tr><td><span class="lbl">The plan said</span></td>
+<td>&hellip;and "the admin chrome bar". <strong>No such element exists.</strong></td>
+<td>&hellip;and "the share panel". <strong>Not built.</strong> The rest of the row held.</td>
+<td>"tour tips; toasts; suggestion pills". <strong>All three wrong.</strong> There are no toasts; the
+suggestion pill is paper with an edge and a cast, not a second pane; and the tour tip took no glass
+at all. See the two notes below.</td></tr>
 <tr><td><span class="lbl">Behind it</span></td><td>the page, scrolling</td>
 <td>a whole screen the reader wants to keep their place in</td><td>anything, briefly</td></tr>
 <tr><td><span class="lbl">Alpha</span></td><td>0.72</td><td>0.86</td><td>0.92</td></tr>
@@ -375,6 +542,24 @@ legibility, and it is where most glass work fails.</div>
 See the paragraph below.</td></tr>
 </table>
 
+<div class="crit"><strong>The tour tip is not glass, and the reason is worth more than the plan was.</strong>
+<code>tour.css</code> contains no <code>backdrop-filter</code> and no <code>--glass-*</code> token
+anywhere. The tip is opaque <code>--surface</code> with a single soft cast
+(<code>tour.css</code> lines 41&ndash;55). By the ladder's own rule this is right, and the plan
+contradicted itself: a tour tip is the longest prose the product ever floats over a page, read once and
+dismissed, and the rule says the more words a surface carries the more opaque it is. Following the rule
+takes you past 0.92 to solid. <strong>The tip should never have been in the G3 row.</strong> The row now
+lists what actually wears it.</div>
+
+<div class="crit"><strong>The tour ships and reaches nobody.</strong> <code>base.html</code> does not
+include <code>_tour.html</code> — line 124 includes <code>_clerk.html</code> and there is no second
+include. So the five-stop first-login walkthrough is built, styled, tested and invisible.
+<code>tests/test_tour.py</code> line 500 carries a <code>strict=True</code> xfail naming the exact
+missing line, which means the test turns red on whoever fixes it and forgets to delete the marker. This
+is not a design defect and no rule in this document caused it; it is stated here because a document
+describing a surface a reader cannot reach, without saying so, is the failure this whole revision pass
+exists to correct.</div>
+
 <p><span class="lbl">The fallback collapses all three levels into one, and that is correct.</span>
 Composited over <code>--bg</code>, the three alphas land two points apart at most — in light
 <code>#f4f7f8</code>, <code>#f6f9fa</code>, <code>#f6f9fa</code>; in dark <code>#162125</code>,
@@ -386,8 +571,7 @@ exist. So a browser that drops the filter loses translucency and keeps the whole
 invent three fallback greys to preserve a distinction that was never in the greys.</p>
 
 <p><span class="lbl">Measured, not asserted.</span> Every pairing that will actually occur, computed
-against WCAG relative luminance. The worst case in the product is the palest ink on a pane composited
-over white paper — a masthead scrolling over a claim card — and it clears 4.5:1 with room to spare.</p>
+against WCAG relative luminance.</p>
 
 <table>
 <tr><th>Pairing</th><th>Light</th><th>Dark</th></tr>
@@ -395,13 +579,34 @@ over white paper — a masthead scrolling over a claim card — and it clears 4.
 <tr><td><code>--ink-2</code> on <code>--glass-solid</code></td><td>8.24:1</td><td>7.76:1</td></tr>
 <tr><td><code>--ink-3</code> on <code>--glass-solid</code></td><td>4.56:1</td><td>4.61:1</td></tr>
 <tr><td><code>--accent</code> on <code>--glass-solid</code></td><td>7.19:1</td><td>8.71:1</td></tr>
-<tr><td><code>--ink-3</code> on a G1 pane over <code>--paper</code> <em>(worst case)</em></td>
+<tr><td><code>--ink-3</code> on a G1 pane over <code>--paper</code></td>
 <td>4.64:1</td><td>4.56:1</td></tr>
+<tr><td><code>--ink-3</code> on a G1 pane over flat <code>--bg</code> <em>(the real worst case)</em></td>
+<td><strong>4.48:1</strong></td><td>&mdash;</td></tr>
 <tr><td><code>--ink-3</code> on <code>--paper</code></td><td>4.82:1</td><td>4.87:1</td></tr>
 <tr><td><code>--focus</code> ring on <code>--surface-sunk</code> <em>(the withheld surface)</em></td>
 <td>6.16:1</td><td>10.55:1</td></tr>
 <tr><td><code>--alarm-strong</code> on <code>--surface-sunk</code></td><td>8.78:1</td><td>12.55:1</td></tr>
 </table>
+
+<div class="crit"><strong>The plan named the wrong worst case, and it named it in the flattering
+direction.</strong> It said the worst pairing was the palest ink on a pane over white paper — a masthead
+scrolling over a claim card — and that it cleared 4.5:1 with room to spare. That is the
+<em>second</em>-worst pairing. The masthead does not only scroll over cards; it scrolls over the flat
+page floor between them, and a G1 pane over <code>--bg</code> composites to <code>#f4f7f8</code>, where
+<code>--ink-3</code> reads <strong>4.48:1 — two hundredths under AA for small text</strong>. The 4.64:1
+figure over a card is exactly why it was missed. <code>strata.css</code> lines 406&ndash;426 record
+this.</div>
+
+<p><span class="lbl">What was fixed, and the one thing knowingly left under the line.</span> The two
+labels a person actually reads in the masthead — the "Viewing" qualifier and the tenant id — moved to
+<code>--ink-2</code> and now read 8.4:1 (<code>strata.css</code> lines 427&ndash;434).
+<strong><code>.nav__link--off</code> keeps <code>--ink-3</code> and keeps the 4.48:1</strong>
+(lines 512&ndash;515). That grey is the only signal saying a nav item is not reachable yet, and raising
+it to <code>--ink-2</code> would make an unreachable screen look exactly like a reachable one. A nav
+item that leads nowhere while looking live is a small lie, and this product's argument is that it does
+not tell those. Two hundredths of a contrast point is the cheaper cost. It is written down here and in
+the stylesheet rather than discovered by an auditor.</p>
 
 <p><span class="lbl">The shape every glass rule takes.</span> Solid first, unconditionally. Glass only
 inside <code>@supports</code>. Written the other way round — declare the alpha and hope — a browser
@@ -423,8 +628,10 @@ failure the brief forbids.</p>
 
 <h3>The tokens, verbatim</h3>
 
-<p>Add to the existing <code>:root</code> block in <code>app/web/static/strata.css</code>, after
-<code>--focus</code>. Do not start a second block and do not start a second file.</p>
+<p>These sit in the single <code>:root</code> block in <code>app/web/static/strata.css</code>, lines
+103&ndash;160, after <code>--focus</code>. One block, one file — no second block was started and no
+second file. The listing below is the plan as written; the two values that shipped differently are
+called out under it.</p>
 
 <div class="tok"><pre>  <span class="c">/* ---- glass, paper, depth ------------------------------------------
      Added 2026-08-04. The chrome is glass; the record is paper. A pane is
@@ -457,12 +664,39 @@ failure the brief forbids.</p>
      lost; the ring itself is an outline and never is. See "Focus" below. */</span>
   --focus-halo: rgba(255, 255, 255, 0.90);
 
-  --r-glass: 10px;    <span class="c">/* a window has a radius; a form field does not */</span>
-  --stuck: 3.25rem;   <span class="c">/* condensed masthead. Sticky tops and anchors use it. */</span>
+  --track-label-tight: 0.04em; <span class="c">/* the same label, in a narrow track */</span>
+  --r-glass: 10px;             <span class="c">/* a window has a radius; a form field does not */</span>
+
+  <span class="c">/* SHIPPED DIFFERENTLY. The plan said --stuck: 3.25rem, one token, always
+     on. Three values ship instead, and the reason is in the next box. */</span>
+  --stuck: 0rem;
+  --rail-h: 2.875rem;
+  --anchor: calc(var(--stuck) + var(--rail-h) + var(--s4));
 
   --ease-settle: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-offer: cubic-bezier(0.34, 1.42, 0.64, 1);</pre></div>
+
+<div class="crit"><strong><code>--stuck</code> is not 3.25rem, and the browser is why.</strong> The
+plan guessed at a condensed masthead height. Measured, this masthead is <strong>124px tall at every
+width from 768px up, and 112px</strong> once its padding collapses in the sticky block. At 3.25rem
+(52px) the sticky source panel would slide about 60px under the masthead and every anchor link would
+land behind it — the exact failure the token was invented to prevent, arrived at by writing the token
+down and not checking it. Three values ship:
+<ul>
+<li><code>--stuck: 0rem</code> at <code>:root</code>, because <strong>the masthead does not stick below
+48rem.</strong> The nav wraps to two rows at 640px and three below 480px, making the bar 193px and then
+253px tall. A quarter of a phone screen permanently occupied by chrome is worse than scrolling to the
+top. <code>strata.css</code> lines 380&ndash;396.</li>
+<li><code>--stuck: 7rem</code> inside <code>@media (min-width: 48rem)</code>, which is what the browser
+reports, alongside <code>position: sticky</code> on the masthead itself.</li>
+<li><code>--rail-h: 2.875rem</code> — the tab rail, measured at 46px. It sticks at every width,
+including phones, because it is small and it is the only thing telling a reader where they are on an
+8,800px page.</li>
+</ul>
+<code>--anchor</code> is the sum plus a gutter, and it is what every scroll target uses. The plan's
+<code>calc(var(--stuck) + var(--s4))</code> would have cleared the masthead and left every anchor
+behind the rail.</div>
 
 <p>And in the existing <code>@media (prefers-color-scheme: dark)</code> block, after
 <code>--hatch</code>:</p>
@@ -513,18 +747,48 @@ no glass on it at all:</p>
 
 <h3>Which components take paper</h3>
 
-<p>Named, so nobody has to judge. Change <code>background: var(--surface)</code> to
-<code>background: var(--paper)</code> on exactly these, and on nothing else:</p>
+<p>Named, so nobody has to judge. <strong>Thirteen declarations of
+<code>background: var(--paper)</code> exist, and this is all of them</strong> — grep the two files and
+the count should match. Ten in <code>strata.css</code>:</p>
 
-<div class="tok"><pre>.claim--verified   .source-panel   .source-panel__body   .quote (no fill; keep as is)
-.coverage__cell    .deliverable    .question   .steer    .project-card
-.run-schedule__cell    .card    .table (inherits from its container)</pre></div>
+<div class="tok"><pre>.card                    644     .project-card            1404
+.source-panel            818     .tab--current /
+.claim--verified         948       .tab[aria-selected]    1680
+.coverage__cell         1252     .run-schedule__cell      1952
+.question               2070     .steer                   2138
+.deliverable            2186</pre></div>
 
-<p>Everything that stays on <code>--surface</code> or <code>--surface-sunk</code> stays there:
-<code>.source-panel__head</code>, <code>.deliverable__head</code>, <code>.tabs</code>,
-<code>.clerk-turn--person</code>, and — this one matters —
-<code>.claim--withheld</code>, which keeps <code>--surface-sunk</code> and does not become paper,
-because the whole point of it is that it is not a record of anything.</p>
+<p>And three in <code>clerk.css</code>, which are the reason the assistant is readable:</p>
+
+<div class="tok"><pre>.clerk-dock__transcript  184    <span class="c">/* the longest prose in the product */</span>
+.clerk-pill              293    <span class="c">/* a raised chip on the pane, not a second pane */</span>
+.clerk-ask__field        369    <span class="c">/* a translucent input is the worst thing in every
+                                   glass interface ever shipped */</span></pre></div>
+
+<div class="crit"><strong>Three corrections to the plan's list.</strong>
+<strong>(1)</strong> <code>.source-panel__body</code> and <code>.table</code> were named and take no
+fill of their own; they inherit from the container, which was the intent, so naming them was noise
+rather than error. <code>.quote</code> was correctly listed as "keep as is" and it is unchanged.
+<strong>(2)</strong> <code>.tab--current</code> takes paper and was not on the list. That is where the
+lift of the current section now comes from, and it is the one place paper is used as chrome rather than
+as record — a deliberate exception, explained in the tab-rail note below.
+<strong>(3)</strong> <code>.tabs</code> was listed as staying on <code>--surface</code> and
+<strong>it did not</strong>. It is G1 glass (<code>strata.css</code> 1596&ndash;1615). The rail is
+chrome; the section chip inside it is what the reader is placing themselves against.</div>
+
+<p>Everything else stays where it was. <code>.source-panel__head</code> (line 830) and
+<code>.deliverable__head</code> (2198) are <code>--surface-sunk</code>; so is
+<code>.clerk-turn--person</code> (<code>clerk.css</code> 204), which is what the reader said rather than
+what the product answered. And — this one matters — <code>.claim--withheld</code> keeps
+<code>--surface-sunk</code> and does not become paper, because the whole point of it is that it is not
+a record of anything.</p>
+
+<div class="note"><span class="lbl">The tab rail inverts between schemes, and it has to.</span>
+In light, the current section is <code>--paper</code> lifted out of a glass rail. In dark,
+<code>--paper</code> sits <em>below</em> the rail, so a paper chip would read as pressed in rather than
+lifted out; the current tab takes <code>--rule</code> instead, the one step above the rail that still
+carries <code>--ink</code> at full strength — 11:1, measured (<code>strata.css</code> 1686&ndash;1700).
+Same relationship, opposite direction, because that is what the two schemes ask for.</div>
 
 <h2 id="type">Type</h2>
 
@@ -564,7 +828,10 @@ scale keeps its value.</p>
 <p><span class="lbl">1. A tracking value for labels in narrow tracks.</span> <code>--t-micro</code> at
 0.09em inside a 74px grid track renders <em>WAITING / ON A / PERSON</em> over three lines and breaks
 <em>NEXT RE-RUN</em> across a hyphen. Tracking is what makes an eleven-pixel uppercase label readable
-in a row and what makes it unreadable in a column. Add one token and one rule; invent no new size.</p>
+in a row and what makes it unreadable in a column. One token and one rule fixed it; no new size was
+invented. Shipped at <code>strata.css</code> line 143 (the token), 1495&ndash;1501
+(<code>.tally__label</code>) and 1464&ndash;1470 (the track, widened from a 4.25rem minimum to
+5.5rem).</p>
 
 <div class="tok"><pre>  --track-label-tight: 0.04em;   <span class="c">/* the same label, in a narrow track */</span>
 
@@ -579,21 +846,32 @@ in a row and what makes it unreadable in a column. Add one token and one rule; i
 }</pre></div>
 
 <p><span class="lbl">2. A weight floor on glass.</span> A blurred backdrop lowers apparent contrast even
-when measured contrast holds, because the eye reads edges and a blur softens them. So: <strong>no text
-on a glass surface below 600 weight, and none below <code>--t-small</code>.</strong> That covers nav
-items, the wordmark, tab labels, dock chrome and pills, and it rules out the thing that would break it —
-body prose on glass. Do not reach for <code>-webkit-font-smoothing: antialiased</code> to compensate; on
-a Mac it thins the strokes, which is the opposite of what is wanted.</p>
+when measured contrast holds, because the eye reads edges and a blur softens them. The plan wrote the
+floor as 600. <strong>The floor as shipped is 500, and nothing on a pane goes below it</strong>
+(<code>strata.css</code> lines 406&ndash;412). In practice the difference is nil: the nav is 600 and its
+current item 700 rather than the 400 and 600 they were, tab labels are 600, and dock chrome and pills
+are 600. The rule that does the work is the second half, and it did not move — <strong>no text on glass
+below <code>--t-small</code></strong>, which rules out the thing that would actually break it: body
+prose on a pane. Do not reach for <code>-webkit-font-smoothing: antialiased</code> to compensate; on a
+Mac it thins the strokes, which is the opposite of what is wanted.</p>
 
-<p><span class="lbl">3. Long text never sits on glass, including inside the dock.</span> The Clarke dock
-is G2 glass at its head, its pills row and its ask row. The transcript between them is
-<code>--paper</code>, opaque, edge to edge. This is what Mail and Messages do — a vibrant sidebar, an
-opaque message list — and it is the difference between a translucent panel and an unreadable one. The
-same rule sends the source extract, the diff quotes and every table of record to paper.</p>
+<p><span class="lbl">3. Long text never sits on glass, including inside the dock.</span> Stated more
+precisely than the plan managed: <strong>the dock itself is the G2 pane.</strong>
+<code>.clerk-dock</code> carries the glass, and its head, pills row and ask row declare no background at
+all — they show the pane through. The one exception is cut across the middle of it:
+<code>.clerk-dock__transcript</code> is <code>--paper</code>, opaque, edge to edge, because it is the
+longest prose in the product and on glass it would be the least readable text on screen. Two things
+inside the glass rows are paper too — the pill and the input field. This is what Mail and Messages do:
+a vibrant frame around an opaque list. It turns the legibility problem into a non-problem instead of a
+trade-off. The same rule sends the source extract, the diff quotes and every table of record to
+paper.</p>
 
 <div class="crit"><strong>What does not happen to type, ever.</strong> Nothing resizes on scroll. The
-masthead condenses by collapsing its padding from <code>--s5</code> to <code>--s2</code>, and the
-wordmark and nav keep their exact size and weight through it. Type that shrinks as you scroll is the
+masthead condenses by collapsing the padding on <code>.masthead__bar</code> from
+<code>var(--s5) 0 var(--s4)</code> to <code>var(--s4) 0 var(--s3)</code> — one step on each edge, not
+the <code>--s5</code>-to-<code>--s2</code> the plan wrote — and the wordmark and nav keep their exact
+size and weight through it (<code>strata.css</code> 365&ndash;372 and 389&ndash;391). That is the
+124px-to-112px move <code>--stuck</code> is measured against. Type that shrinks as you scroll is the
 single most common tell of a templated modern site, it reflows text while a person is reading, and it
 buys nothing a padding change does not.</div>
 
@@ -704,12 +982,12 @@ transition, no hover.</li>
 
 <h3>Reduced motion removes motion. It does not shorten it.</h3>
 
-<div class="crit"><strong>The block at the foot of <code>strata.css</code> is wrong against this
-requirement today</strong> and must be replaced, not extended. It currently sets
+<div class="win"><strong>Done.</strong> The block at the foot of <code>strata.css</code> used to set
 <code>animation-duration: 0.01ms</code> and <code>transition-duration: 0.01ms</code>, which shortens
 motion to the point of invisibility but leaves every animation and transition running — the events still
-fire, the compositor still works, and an element mid-animation at a repaint can still flash. Replace it
-with the block below.</div>
+fire, the compositor still works, and an element mid-animation at a repaint can still flash. It was
+replaced rather than extended. What ships is below, at <code>strata.css</code> lines 2610&ndash;2618,
+and the marketing site carries the same block at <code>deploy/site/site.css</code> 391&ndash;405.</div>
 
 <div class="tok"><pre>@media (prefers-reduced-motion: reduce) {
   <span class="c">/* Removed, not shortened. A reader who asked for stillness gets the end
@@ -824,14 +1102,21 @@ of them already surviving a monochrome screenshot and the print block.</td></tr>
    of the three. Do not add one that "does nothing" -- an empty rule is an
    invitation, and the next person will fill it. */</span></pre></div>
 
-<div class="crit"><strong>One existing rule must be deleted, not overridden.</strong>
-<code>strata.css</code> currently carries <code>.queue__row:hover { background-color: var(--bg); }</code>.
-Leaving it and cancelling it elsewhere would satisfy the letter and lose the point: the next person to
-open the file finds a hover rule on the refusal surface and assumes it is meant to be there. Remove the
-rule. The last two lines of <code>.withheld__label</code> and <code>.withheld__reason</code> are listed
-separately in the selector above because <code>shares_admin.html</code> and <code>integrations.html</code>
-use <code>.withheld__reason</code> without a <code>.withheld</code> parent — a descendant selector alone
-would miss them, and the refusal must look the same on an admin screen as on a change page.</div>
+<div class="win"><strong>The one rule that had to be deleted, not overridden, is gone.</strong>
+<code>strata.css</code> carried <code>.queue__row:hover { background-color: var(--bg); }</code>.
+Cancelling it elsewhere would have satisfied the letter and lost the point: the next person to open the
+file finds a hover rule on the refusal surface and assumes it is meant to be there. It was removed.
+Grep <code>queue__row</code> in <code>strata.css</code> today and there is no <code>:hover</code> among
+the hits.</div>
+
+<p><span class="lbl">Two details in the shipped block that the plan's listing did not have.</span>
+First, <code>opacity: 1</code> is declared inside the reset — never faded and never dimmed, because a
+greyed-out assertion is still an assertion and the reader's eye completes it. Second,
+<code>.withheld__label</code> and <code>.withheld__reason</code> are named separately from
+<code>.withheld *</code> because <code>shares_admin.html</code> and <code>integrations.html</code> use
+the reason with no <code>.withheld</code> parent — a descendant selector alone would miss them, and a
+refusal has to look the same on an admin screen as on a change page. The integrations page alone uses
+it five times.</p>
 
 <h3>Why this encodes the product rather than decorating it</h3>
 
@@ -864,7 +1149,7 @@ is an addition and may be lost without harm.</p>
   box-shadow: 0 0 0 4px var(--focus-halo);
 }</pre></div>
 
-<p>Three rules for whoever builds this:</p>
+<p>Three rules, for anyone adding a control to a glass surface later:</p>
 <ol>
 <li><strong>Never write <code>outline: none</code>.</strong> Not on a glass pane, not on a card, not to
 "clean up" a control. The existing <code>.tab:focus-visible { outline-offset: -2px }</code> stays, because
@@ -884,21 +1169,28 @@ control in the dock, the tour tip and the masthead. No test in this repository c
 <p>Making the masthead sticky puts it over anything that scrolls beneath, including two things that are
 themselves positioned and one that is jumped to by anchor. All three break silently.</p>
 
-<div class="tok"><pre>.masthead { position: sticky; top: 0; z-index: 30; }
+<div class="tok"><pre><span class="c">/* Only from 48rem up. Below that the nav wraps and the bar is a quarter
+   of the screen; see the --stuck box above. */</span>
+@media (min-width: 48rem) {
+  :root { --stuck: 7rem; }
+  .masthead { position: sticky; top: 0; z-index: 30; }
+}
 
 <span class="c">/* The source panel already sticks. Without this it slides under the
    masthead and the reader loses the top of the cited section. */</span>
-.split__aside { top: calc(var(--stuck) + var(--s4)); }
+.split__aside { position: sticky; top: calc(var(--stuck) + var(--s4)); }
 
 <span class="c">/* Anchor targets. change.html gives every claim an id and links to it;
-   review.html jumps between sections. Without a scroll margin the anchor
-   lands behind the masthead and the reader sees the middle of the thing
-   they asked for. */</span>
-.claim, .tabpanel, .queue__row { scroll-margin-top: calc(var(--stuck) + var(--s4)); }</pre></div>
+   review.html jumps between sections. --anchor, NOT the plan's
+   calc(--stuck + --s4): that clears the masthead and leaves the anchor
+   behind the tab rail, which sticks underneath it. */</span>
+.claim, .tabpanel, .queue__row { scroll-margin-top: var(--anchor); }</pre></div>
 
-<p>The review tab rail sticks below the masthead at <code>top: var(--stuck)</code> and takes G1 glass
-when it does. That page is 8,823px tall with nine sections; the rail is the only thing that tells a
-reader where they are, and today it leaves the screen 304px in.</p>
+<p>The review tab rail sticks below the masthead at <code>top: var(--stuck)</code>, z-index 20 to the
+masthead's 30 — two attached panes, and the outer one wins. It takes G1 glass when it sticks. That page
+is 8,823px tall with nine sections and the rail was leaving the screen 304px in, which is what the
+stickiness fixed. On a phone the rail still sticks, at <code>top: 0</code>, because the masthead does
+not: at 46px it is cheap, and it is the only thing telling a reader where they are.</p>
 
 <h3>The change page's dead column</h3>
 
@@ -918,30 +1210,137 @@ visible at the same time, which is the entire reason the panel is beside the cla
 modal. A browser without <code>:has()</code> keeps today's dead column and loses nothing else; the
 stylesheet already relies on <code>:has()</code> for the deliverable tripwire.</p>
 
-<h2>Where each rule goes</h2>
+<h2>Where each rule went</h2>
 
 <table>
-<tr><th>File</th><th>What it gains</th></tr>
-<tr><td><code>app/web/static/strata.css</code></td><td>Every token above; the paper reassignments; the
-settle keyframes; the glass rules for the masthead and the tab rail; the replaced reduced-motion block;
-the signature block, placed last in the file.</td></tr>
-<tr><td><code>app/web/static/clerk.css</code></td><td>G2 on the dock head, pills row and ask row; paper
-on the transcript; the dock-in animation; the inset and <code>--r-glass</code> above 40rem.
-<strong>No hex, no <code>rgba(</code>, <code>var()</code> only</strong> — a test enforces it.</td></tr>
-<tr><td><code>app/web/static/tour.css</code></td><td>G3 on the tip. Same prohibition, same test. The tip
-still carries no position of its own; <code>tour.js</code> sets those.</td></tr>
-<tr><td><code>app/web/static/workflow.css</code></td><td>Nothing, unless the editor's side panel becomes
-a sheet. The canvas is a diagram of a route, which is record, and record is paper.</td></tr>
-<tr><td>templates</td><td>Nothing required. The <code>&lt;style&gt;</code> block in
-<code>change.html</code> lines 29&ndash;32 says it belongs in <code>strata.css</code>; whoever opens that
-file should move it.</td></tr>
+<tr><th>File</th><th>What it carries</th></tr>
+<tr><td><code>app/web/static/strata.css</code><br>2,752 lines</td><td>Every token; the ten paper
+reassignments; the settle keyframes; G1 on the masthead and the tab rail; the replaced reduced-motion
+block; the print token block; the signature block, placed last in the file so it wins against anything
+added above it later.</td></tr>
+<tr><td><code>app/web/static/clerk.css</code><br>543 lines</td><td>G2 on the dock and on the bug sheet;
+G3 on the floating launcher; paper on the transcript, the pill and the input field; the dock-in and
+pill-in animations. <strong>No hex, no <code>rgba(</code>, <code>var()</code> only</strong> — a test
+enforces it, and the file is clean.</td></tr>
+<tr><td><code>app/web/static/tour.css</code><br>113 lines</td><td><strong>No glass.</strong> The plan
+said G3 on the tip and that was wrong — see the box under the ladder. The tip is opaque
+<code>--surface</code> with one soft cast. Same prohibition, same test, also clean. The tip still
+carries no position of its own; <code>tour.js</code> sets those.</td></tr>
+<tr><td><code>app/web/static/workflow.css</code><br>641 lines</td><td>Nothing. Zero glass tokens, zero
+<code>--paper</code>. The canvas is a diagram of a route, which is record, and record is paper. This
+held.</td></tr>
+<tr><td>templates</td><td>Nothing required, and nothing changed.</td></tr>
+<tr><td><code>deploy/site/site.css</code><br>438 lines</td><td>The marketing site's own glass layer,
+with its own token names. See <em>Part three</em> — it is not the same file and it does not share
+tokens with the app.</td></tr>
 </table>
 
-<h2>Critique of this plan, before it is handed on</h2>
+<h2 id="clarke">Clarke, the assistant dock</h2>
+
+<p>Not in the original plan at all, and the largest surface added since. It is rendered into every page
+by <code>base.html</code> line 124, so it is present on every screen in the product. The visual rules
+above cover it; what follows is the part a reader of this document would otherwise have to find in the
+JavaScript.</p>
+
+<h3>Markdown becomes DOM nodes. It never touches <code>innerHTML</code>.</h3>
+
+<p>This is a security decision before it is a design one, and <code>clerk.js</code> states it at the
+head of the file, lines 21&ndash;23: <em>every string from the server goes in as text.</em>
+<code>textContent</code>, never <code>innerHTML</code>. Grep the file — there is no
+<code>innerHTML</code> in it, and even the thumb glyphs are built with
+<code>createElementNS</code>.</p>
+
+<p>The reason is specific to this product. A reply is prose that passed through a model, and a model
+that has read a filing has read whatever that filing contained. The corpus is 102 real public documents
+retrieved from eight commissions; nobody on this side wrote them. Rendering model output as markup would
+make the contents of a stranger's PDF into executable page structure.</p>
+
+<p>So the renderer parses a deliberately short subset and appends real elements —
+<code>inline()</code> at <code>clerk.js</code> lines 221&ndash;242 and <code>addTurn()</code> at
+244&ndash;282:</p>
+
+<table>
+<tr><th>Supported</th><th>Refused, and why</th></tr>
+<tr><td><strong>Bold</strong> (<code>**…**</code>), inline <code>code</code> (backticks), unordered
+lists (<code>-</code> or <code>*</code>), paragraphs.</td>
+<td><strong>Links.</strong> A link whose <code>href</code> came from a model is a place to send
+somebody, and this product does not let a model choose that. Also no headings, no tables, no images, no
+ordered lists.</td></tr>
+</table>
+
+<p>Anything unrecognised stays as the plain text it arrived as, which is the safe direction to fail —
+the same rule as the rest of the product. A reader sees an asterisk rather than a surprise.</p>
+
+<h3>Suggestion pills</h3>
+
+<p>Built in <code>addPills()</code>, <code>clerk.js</code> lines 458&ndash;471; each is a
+<code>&lt;button class="clerk-pill"&gt;</code> that asks its own prompt. <strong>The count is capped on
+the server, not the client</strong> — <code>app/web/views/chat.py</code> lines 129&ndash;130 set
+<code>MIN_PILLS = 3</code> and <code>MAX_PILLS = 5</code>, and <code>_pills_out()</code> tops a short
+list up from a fixed opening set rather than showing one lonely suggestion. There is an import-time
+tripwire that raises if that opening set ever drops below the minimum.</p>
+
+<p>Visually the pill is the one place the product springs: 240ms on <code>--ease-offer</code>, which
+overshoots about four percent, with a <strong>40ms stagger capped at four</strong> — a fifth pill
+arrives with the fourth (<code>clerk.css</code> 326&ndash;347). Past roughly 200ms a stagger stops
+reading as one gesture and starts reading as a queue. A suggestion is the only thing on screen that is
+an offer rather than a record, so it is the only thing allowed to be light. And it is paper with an
+edge and a cast, not a second pane: a <code>backdrop-filter</code> nested inside an already-blurred
+surface blurs the parent's own tint, which buys nothing you can see and costs a second compositor
+pass.</p>
+
+<h3>Thumbs up and thumbs down</h3>
+
+<p>One SVG path, rotated 180&deg; for down (<code>clerk.js</code> 340&ndash;371). Up posts immediately.
+<strong>Down opens a comment box first</strong> — the asymmetry is deliberate: a person who says "yes,
+good" has finished, and a person who says "no" usually knows why and will say so if asked in the moment.
+Both go to <code>POST /chat/feedback</code> (<code>app/web/views/chat.py</code> line 712) and land in
+<code>app/state/feedback.py</code> <code>record_thumb()</code>, lines 473&ndash;537.</p>
+
+<p>Two properties of the stored row are worth naming here because they are the sort of thing a panel
+asks about. First, <strong>the company and the user are injected from the signed-in session and never
+read off the wire</strong>, so a rating cannot be attributed to somebody else by editing a request.
+Second, the row stores a <em>snapshot</em> of the conversation up to and including the rated turn — the
+ordinal, role, text, tools used and withheld count of each turn — because a rating that does not carry
+what was rated is unreadable a week later. It writes no audit event: feedback is opinion, and the audit
+chain is for things that happened to the record.</p>
+
+<h2 id="tour">The first-login tour</h2>
+
+<p>Five stops, defined as JSON in <code>_tour.html</code> lines 81&ndash;155 and driven by
+<code>tour.js</code>. <strong>It is not currently reachable</strong> — see the box under the glass
+ladder. What is built:</p>
+
+<table>
+<tr><th>#</th><th>Stop</th><th>Points at</th></tr>
+<tr><td>1</td><td><code>board</code></td><td><code>.card-grid</code>, falling back to <code>.coverage</code></td></tr>
+<tr><td>2</td><td><code>docket</code></td><td>the version-pair table, falling back to any proceeding link</td></tr>
+<tr><td>3</td><td><code>citation</code></td><td><code>.citation-chip</code></td></tr>
+<tr><td>4</td><td><code>withheld</code></td><td><code>.claim--withheld, .withheld</code>, falling back to the review count, then the Review link</td></tr>
+<tr><td>5</td><td><code>assistant</code></td><td><code>[data-clerk-open]</code></td></tr>
+</table>
+
+<p>Stop 4 is the point of the whole thing, and the other four are arranged around it: four stops lead to
+it and one follows. A first-time reader has to reach the behaviour that separates this product from a
+summariser — a claim that refuses to assert itself — and a tour that ends on the assistant would have
+buried it. Each stop carries fallbacks because the tour must survive a workspace where the demo data is
+not where it was, and <code>tour.js</code> skips a stop whose targets are all absent rather than
+pointing at nothing.</p>
+
+<p><span class="lbl">The cookie.</span> <code>strata_tour=done</code>, <code>Path=/</code>,
+<code>Max-Age=31536000</code> (365 days), <code>SameSite=Lax</code>, and <code>Secure</code> only over
+https with a console warning when it is not (<code>tour.js</code> lines 58&ndash;61 and 129&ndash;147).
+It is set and read entirely in the browser; nothing in <code>app/</code> touches it. That is deliberate
+and written into the file: it must not share a name or a reader with the session cookie, because a tour
+preference is not an authentication fact and the two must never be able to expire each other.
+<code>?tour=1</code> replays it regardless.</p>
+
+<h2>Critique of the plan, written before it was built</h2>
 
 <p>The client has rejected templated work. So: what would a generic answer to "make it look Mac-like"
 produce, and does any part of this arrive at the same place? Six checks, and three of them changed
-something.</p>
+something before a line was written. Kept as a record — every one of the six held through
+implementation.</p>
 
 <table>
 <tr><th>The generic move</th><th>Where this plan lands</th></tr>
@@ -997,9 +1396,10 @@ the chip fills, the panel slides — until the cursor reaches the withheld claim
 all. That is harder to miss and it survives a reader who arrives by anchor link, by back button, or with
 reduced motion switched on, none of which ever see a page-load sequence.</p>
 
-<h2>What I am not sure about</h2>
+<h2>What is still not known</h2>
 
-<p>Four things, said here rather than discovered at the panel.</p>
+<p>Six things, said here rather than discovered at the panel. Two of them are new since the revision
+shipped, and one of the original four has been partly answered.</p>
 
 <ol>
 <li><strong>Dark glass may be too subtle to be worth the cost.</strong> <code>--glass-solid</code> at
@@ -1018,28 +1418,328 @@ colour transitions on hover as well as movement, which is more than the preferen
 It is the reading the brief requires — remove, do not shorten — and it is defensible, but a person who
 set the preference for vestibular reasons has also lost a 120ms colour fade that would not have troubled
 them.</li>
-<li><strong>Nothing here has been opened on a handset.</strong> The 390px screenshots come from a
-headless Chromium at a fixed viewport. A phone has a real backdrop-filter cost, a real address bar that
-resizes the viewport, and a real thumb. The same caveat already stands at the foot of
-<code>strata.css</code> and it still stands.</li>
+<li><strong>Nothing here has been opened on a handset.</strong> The 390px figures come from a headless
+Chromium at a fixed viewport. A phone has a real backdrop-filter cost, a real address bar that resizes
+the viewport, and a real thumb. The same caveat stands at the foot of <code>strata.css</code> and in the
+docstring of <code>tests/test_responsive.py</code>, which says plainly that it cannot lay out a page.
+<em>Partly answered since:</em> the marketing site <em>was</em> measured in a real browser at 390 and
+1440 across five pages after the revision, and that measurement is what found the two pages scrolling
+sideways. The application has had no equivalent pass.</li>
+<li><strong>The two nav contrast figures disagree between the code and the commit that shipped
+them.</strong> See <em>Part three</em>. The light pair reconciles; the dark pair does not, and nobody has
+re-sampled the live page to settle it.</li>
+<li><strong>Nobody has tabbed the whole product with a keyboard since the glass landed.</strong> The
+focus ring is an <code>outline</code> precisely so it survives the signature block, and three rules
+above say how to keep it — but no test in this repository asserts a visible ring anywhere, on any
+surface, in either scheme. This is the largest untested claim in the document.</li>
 </ol>
 
-<h2>The checks before this is called done</h2>
+<h2>The checks, and where each one stands</h2>
 
+<p>A count of passing tests goes stale the next commit, so the command is here rather than a number:</p>
+
+<div class="tok"><pre>.venv/bin/python -m pytest tests/ -q</pre></div>
+
+<p>The suite was green at 1,381 in <code>2b10bb6</code>, the commit that shipped this revision. It has
+grown since. The durable check is not the total but the three files that guard the claims on this page:
+<code>test_responsive.py</code>, <code>test_chat_surface.py</code> and <code>test_tour.py</code> —
+98 passed and 1 xfailed when this document was last read back, the xfail being the unwired tour.</p>
+
+<table>
+<tr><th>Check</th><th>Stands how</th></tr>
+<tr><td>Every glass rule has a solid declaration <em>outside</em> its <code>@supports</code> block.</td>
+<td><span class="lbl">Holds.</span> Grep <code>backdrop-filter</code> across
+<code>app/web/static/</code>: every one of the five app surfaces has a
+<code>background: var(--glass-solid)</code> above its block. Not asserted by a test — done by
+reading.</td></tr>
+<tr><td>With <code>backdrop-filter</code> forced off, no text drops below 4.5:1.</td>
+<td><span class="lbl">FALSE, knowingly.</span> <code>.nav__link--off</code> reads 4.48:1 on a G1 pane
+over the flat page floor. The reason it is kept is above, and it is a judgement rather than an
+oversight. Every other pairing clears.</td></tr>
+<tr><td>Tab through the masthead, the dock, the tour tip and a queue row in both schemes. Every stop
+shows a visible ring.</td>
+<td><span class="lbl">Not done.</span> No test catches a lost ring and nobody has walked it. Listed
+again in <em>What is still not known</em>.</td></tr>
+<tr><td>With <code>prefers-reduced-motion: reduce</code>, nothing moves.</td>
+<td><span class="lbl">Holds by construction.</span> Both stylesheets set <code>animation: none</code>
+and <code>transition: none</code> on every element and pseudo-element. The site's block additionally
+zeroes the two hover transforms, because a transform with no transition is a jump, which is still
+motion.</td></tr>
+<tr><td>Print the change page. The withheld claim still reads as a refusal in black and white.</td>
+<td><span class="lbl">Styled for.</span> The print token block flattens every pane to white and every
+shadow and filter to none. The refusal survives on structure — broken rule, hatch, reason in the
+statement position, and no claim text anywhere in the markup. The last of those is asserted against the
+HTML by a test; the rest is styled and has been read, not measured.</td></tr>
+<tr><td>Hover across the change page. Everything answers except one surface.</td>
+<td><span class="lbl">Verified in production.</span> With <code>getComputedStyle</code>, in both colour
+schemes, at rest and on hover: the withheld claim reports <code>transition: none</code>,
+<code>transform: none</code>, <code>box-shadow: none</code>. The verified claim beside it lifts and
+casts a stamp-blue shadow.</td></tr>
+</table>
+
+<hr class="rule2">
+
+<h1 style="margin-top:2rem">Part three — the marketing site</h1>
+<p class="sub">Thirteen static pages under <code>deploy/site/</code>, restyled 2026-08-04 in commit
+<code>2b10bb6</code> so that the site and the application read as one product. This part did not exist
+in the document before that date, which is why the site could scroll sideways for a day with nobody
+noticing.</p>
+
+<h2>One stylesheet that adds, and does not restructure</h2>
+
+<p>Every page carries its own inline <code>&lt;style&gt;</code> block, written for that page and correct
+as it stood. <code>site.css</code> loads <em>after</em> that block on every page, so it wins where it
+needs to and leaves everything else exactly as it was.</p>
+
+<p><span class="lbl">Why a file and not thirteen edits.</span> Copying a glass layer into every page
+would drift inside a week: one page would gain a token the others never got, and nobody would notice
+until a screenshot looked wrong. The file is the seam. <code>docs/diagrams.css</code> is the precedent
+in this repository.</p>
+
+<div class="note"><span class="lbl">It does not share tokens with the application, and that is not an
+oversight.</span> <code>site.css</code> declares its own <code>--glass-veil</code>,
+<code>--glass-panel</code>, <code>--glass-action</code>, <code>--glass-chip</code>,
+<code>--glass-hair</code>, <code>--glass-shade</code>, <code>--glass-r</code>. The names rhyme with the
+app's and the values do not, because the two palettes are genuinely different: the site's accent is
+<code>--stamp: #1b3a8f</code>, a true navy, and the app's is <code>--accent: #0d5c6b</code>, a deep
+petrol. <strong>Two products' worth of tokens under one roof is a real cost and it is worth naming.</strong>
+The wordmark, in part four, is where that cost has already shown up.</div>
+
+<h2>What wears glass, and what does not</h2>
+
+<table>
+<tr><th>Glass — translucent, blurred, layered, spring motion</th><th>Paper — opaque, flat, still</th></tr>
+<tr><td>the sticky <code>header</code> and the nav hover pill; <code>.signin</code> — the Sign in
+button, Request access and the closing call to action; <code>.creds</code>, the credentials panel;
+<code>.cta</code>; <code>.film__frame</code>, the frame around the demo video.</td>
+<td><code>.rec</code>, the hero's claim pair; <code>.note</code>; <code>.stage</code>, the rows on the
+security and sub-processor pages; <code>.ph</code>; <code>.refuse</code>; <code>.srctext</code>. The
+video's transcript sits below the frame, on paper, where reading happens.</td></tr>
+</table>
+
+<p>The paper rules are written as an explicit reset — <code>backdrop-filter: none</code> and
+<code>box-shadow: none</code> on those six selectors (<code>site.css</code> 277&ndash;290) — rather than
+left implicit. <strong>If a glass rule above ever widens its selector, that is the rule that catches
+it.</strong></p>
+
+<p>One rule keeps the two registers legible as registers: <strong>glass is rounded (10px and up), paper
+is square (2px and 3px, as it was)</strong>. A reader should be able to tell chrome from record without
+reading a word.</p>
+
+<h3>And the withheld claim, again, harder</h3>
+
+<p>The hero shows two claims side by side: one that verified, and one whose citation did not. The
+verified one lifts two pixels on a spring with a stamp-blue cast. The withheld one is
+<code>.pair .rec--held</code>, and it has eleven declarations of <code>none</code> marked
+<code>!important</code> across itself, its hover, its focus, its focus-within, its two pseudo-elements,
+every descendant, and every descendant's hover, focus and pseudo-elements
+(<code>site.css</code> 333&ndash;357).</p>
+
+<p><span class="lbl">Why <code>!important</code>, which is used nowhere else in that file.</span> The
+reset has to survive a later author adding a global <code>* { transition: … }</code> or an animation
+sweep across the page. Those get written without <code>!important</code>, so this subtree keeps its
+stillness whatever lands after it. The declarations reach the pseudo-elements too, because a spinning
+<code>::after</code> inside a still box is still motion. A withheld claim that shimmered would be
+arguing against itself.</p>
+
+<h2>The contrast failure, and the number that does not reconcile</h2>
+
+<p>The glass veil over the header failed WCAG at the opacity that looked best in a still. The nav links
+are <code>--muted</code> at 14px, and the darkest thing that passes under the bar is the demo film.</p>
+
+<table>
+<tr><th></th><th>Veil opacity before</th><th>Measured before</th><th>Veil opacity now</th><th>Measured now</th></tr>
+<tr><td>Light</td><td>72%</td><td><strong>3.50:1</strong> — fail</td><td>88%</td><td>4.67:1</td></tr>
+<tr><td>Dark</td><td>68%</td><td><strong>2.63:1</strong> — fail</td><td>86%</td><td>5.03:1</td></tr>
+</table>
+
+<p>Sampled every 60px down the page rather than at one scroll position, because the number changes with
+whatever happens to be under the bar. The lesson, written into <code>site.css</code> line 57:
+<strong>a macOS header is far more opaque than a screenshot of one suggests.</strong> Content still
+shows through, blurred and desaturated, which is the whole of what the effect is for.</p>
+
+<div class="crit"><strong>The dark figure disagrees with itself, and I cannot settle it from the
+files.</strong> The commit that shipped the fix says the two links now measure 4.67:1 and 5.03:1. The
+comment in <code>site.css</code> line 56 says 88% "brings them back to 4.7:1", which rounds from 4.67
+and agrees. But line 95 says 86% "brings it to 5.3:1" — and 5.3 is not a rounding of 5.03. One of the
+two dropped a digit.<br><br>
+Computing the theoretical floors — the veil over the extreme backdrop it could ever meet — gives 4.34:1
+light over pure black and <strong>4.98:1 dark over pure white</strong>. The real sampled values sit above
+those floors, which brackets 4.67 and 5.03 and makes both plausible. <strong>5.3:1 sits well clear of
+the floor and is the harder of the two to reach</strong>, so the commit's 5.03 is the likelier
+measurement and the comment is likely the typo — but nobody has re-sampled the live page, so this
+document is not going to assert which. Reproduce the floors with:</div>
+
+<div class="tok"><pre>.venv/bin/python - &lt;&lt;'PY'
+def lin(c):
+    c = c / 255
+    return c / 12.92 if c &lt;= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+def L(rgb):
+    r, g, b = [lin(x) for x in rgb]
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+def ratio(a, b):
+    la, lb = L(a), L(b)
+    return (max(la, lb) + 0.05) / (min(la, lb) + 0.05)
+def mix(fg, alpha, bg):
+    return tuple(fg[i] * alpha + bg[i] * (1 - alpha) for i in range(3))
+
+<span class="c"># --paper / --muted, deploy/site/index.html lines 11 and 19</span>
+print(round(ratio((0x5a,0x63,0x73), mix((0xf7,0xf8,0xfa), .88, (0,0,0))), 2))       <span class="c"># light floor</span>
+print(round(ratio((0x98,0xa1,0xb2), mix((0x0d,0x10,0x17), .86, (255,255,255))), 2)) <span class="c"># dark floor</span>
+PY</pre></div>
+
+<h2>The sideways scroll, and the guard that had a hole</h2>
+
+<p>Two pages were scrolling sideways at 390px and had been all day, with the suite green:
+<code>security.html</code> at 414px against 390, and <code>subprocessors.html</code> at 477.</p>
+
+<p>The cause was one rule written for a short status label: <code>.stage b { white-space: nowrap }</code>.
+It is a <em>descendant</em> selector, so it also caught the <code>&lt;b&gt;</code> that opens each row's
+sentence and held a whole paragraph on one line. A paragraph that cannot wrap sets the page's minimum
+width to the length of its longest sentence, and the whole document then scrolls.</p>
+
+<div class="crit"><strong>The guard had a hole and that is the real lesson.</strong>
+<code>tests/test_responsive.py</code> only ever read <code>app/web/</code>. The marketing site was never
+guarded at all, which is precisely why it could scroll sideways for hours with everything green. A guard
+that covers the half of the product you were thinking about is how the other half goes wrong
+quietly.</div>
+
+<p>The file now reads <code>deploy/site/</code> too — <code>SITE</code> at line 174, then five tests.
+The one that matters carries the specific rule that caused this:</p>
+
+<div class="tok"><pre>test_nowrap_never_reaches_prose_through_a_descendant_selector   <span class="c">line 223</span></pre></div>
+
+<p>It walks every rule in every site page and stylesheet, and fails when a block containing
+<code>nowrap</code> has a selector whose last part is a descendant and is one of
+<code>b strong em i span p li td</code>. A short label may be nowrap; a paragraph may not.</p>
+
+<p><span class="lbl">Two false positives in the test's own first drafts, kept in its docstring because
+they are the interesting part.</span> A comment explaining the past bug quotes the rule that caused it,
+and <code>@media (max-width: 640px)</code> is a breakpoint — the opposite of a fixed element width. The
+first version flagged all seven pages for their own media query. So the helper strips comments and
+at-rule preludes before it reads anything (<code>_without_comments_and_at_rules</code>, line 192).
+<strong>A test that fails on the documentation of the bug it guards is worse than no test</strong>,
+because it gets deleted rather than fixed.</p>
+
+<p>The fix itself is scoped rather than global: <code>.stage p b { white-space: normal }</code> gives
+the sentence its wrapping back while the label keeps its nowrap. Two more rules were needed and both are
+narrow on purpose — <code>min-width: 0</code> on the stage rows, because a <code>1fr</code> grid track
+takes its automatic minimum from the item's min-content; and <code>overflow-wrap: anywhere</code> on
+<code>.stage code</code> and <strong>deliberately not on <code>code</code> everywhere</strong>, because
+applied globally it also breaks the demo email address in the credentials table across two lines at full
+width, and that is an address a reader is meant to copy.</p>
+
+<h2>The blog</h2>
+
+<p>Five posts and an index under <code>deploy/site/blog/</code>. Every one argues from the real corpus
+rather than from the product, which is why they belong to the site and not to the application:</p>
+
+<table>
+<tr><th>Post</th><th>The argument</th></tr>
+<tr><td><code>one-hundred-and-twenty-seven-characters.html</code></td><td>Kentucky PSC 2025-00113,
+refiled 21 days later. The files differ by 127 characters in 1,024,409; a naive diff reports 144 changes
+and the substantive correction is six characters. Finding the real change inside the noise.</td></tr>
+<tr><td><code>the-cost-of-as-modified.html</code></td><td>Ohio 24-508 and Georgia 44280. The text a
+company must file is in neither the filing nor the order — it is the difference between them, and
+neither document states it.</td></tr>
+<tr><td><code>the-quarterly-report-problem.html</code></td><td>Nine recurring large-load filings. Ten of
+twelve stated changes reconcile exactly and two are out by 100 MW, because the baselines move silently
+underneath.</td></tr>
+<tr><td><code>two-settlements-thirteen-days-apart.html</code></td><td>Ohio 24-508-EL-ATA settled twice in
+one October. The procedural boilerplate is 92% identical and the operative terms 26%. Similarity of
+form hides divergence of substance.</td></tr>
+<tr><td><code>what-actually-gets-corrected.html</code></td><td>Twenty-one corrections across seven
+commissions. Exactly one fixed a spelling mistake. Corrections cannot be dismissed as typos.</td></tr>
+</table>
+
+<div class="note"><span class="lbl">The blog is not linked from the landing page.</span>
+<code>deploy/site/index.html</code> links to <code>/login</code>, the three legal pages, the film and
+some anchors. Nothing on it points at <code>/blog</code>. The posts link back to the landing page, so
+the connection is one-way and the wrong way round: five pieces of the strongest evidence this project
+has are reachable only by someone who already knows the URL. Stated as a defect, not a design.</div>
+
+<hr class="rule2">
+
+<h1 style="margin-top:2rem">Part four — the wordmark, and the one thing that does not match</h1>
+
+<div class="crit"><strong>The two surfaces do not use the same wordmark, and the document had never
+specified one.</strong> That is the gap that let them drift. This part specifies the mark, names which
+one wins, and lists the files that would have to change. <strong>Nothing has been changed yet</strong> —
+this document owns no template.</div>
+
+<h2>What each surface renders today</h2>
+
+<table>
+<tr><th></th><th>Application — <code>.wordmark</code></th><th>Marketing site — <code>.brand</code></th></tr>
+<tr><td><span class="lbl">Renders as</span></td><td><code>Strata</code></td><td><code>STRATA</code></td></tr>
+<tr><td><span class="lbl">Markup</span></td><td>a text node, plus an empty
+<code>&lt;span class="wordmark__mark" aria-hidden="true"&gt;</code></td>
+<td><code>Strat&lt;span&gt;a&lt;/span&gt;</code> — the last letter wrapped</td></tr>
+<tr><td><span class="lbl">Accent</span></td><td>none; the whole word is <code>--ink</code></td>
+<td>the final <strong>A</strong> is <code>--stamp</code>, the filing-stamp navy</td></tr>
+<tr><td><span class="lbl">Extra mark</span></td><td>a CSS-painted three-bar glyph, 4.6rem &times; 8px,
+bars at 100% / 66% / 38% width, stacked <em>below</em> the text</td><td>none</td></tr>
+<tr><td><span class="lbl">Size / weight / tracking</span></td><td>17px, 650, 0.01em, no
+<code>text-transform</code></td><td>15px, 600, 0.14em, <code>uppercase</code></td></tr>
+<tr><td><span class="lbl">Where its CSS lives</span></td><td>one rule, <code>strata.css</code>
+436&ndash;463</td><td>two lines duplicated inline in all thirteen pages;
+<strong><code>site.css</code> has no <code>.brand</code> rule at all</strong></td></tr>
+</table>
+
+<p>There is a third variant. <code>invite_accept.html</code> is standalone and renders the brand as an
+11px uppercase grey micro-label, <code>.invite__mark</code>, matching neither.</p>
+
+<h2>The specification: one mark, and it is the site's</h2>
+
+<div class="win"><strong>The mark is <code>STRATA</code>, uppercase, tracked at 0.14em, with the final
+letter in the accent colour. No three-bar glyph.</strong> The site's mark wins. The reason is order of
+encounter: a reviewer meets the site first, at the root, and signs in from it. The masthead is the first
+thing they see after the sign-in button, and a brand that changes shape across that boundary makes the
+application look like a different product bolted on behind — which is precisely what the restyle was
+done to prevent.</div>
+
+<h2>What would have to change, and the one question it raises</h2>
+
+<p>Listed exactly, because this document does not own these files:</p>
+
+<table>
+<tr><th>File</th><th>Lines</th><th>What is there now</th></tr>
+<tr><td><code>app/web/templates/base.html</code></td><td>68&ndash;71</td>
+<td><code>&lt;a class="wordmark" href="/"&gt;</code>, the text node <code>Strata</code>, and the
+<code>wordmark__mark</code> span. Needs the two-run form and the mark span removed.</td></tr>
+<tr><td><code>app/web/templates/login.html</code></td><td>43&ndash;46</td>
+<td>The same content inside a <code>&lt;span class="wordmark"&gt;</code> rather than an anchor — this
+template does not extend <code>base.html</code>. A second decision rides on it: the site's mark is a link
+to <code>/</code> everywhere, and this one is not.</td></tr>
+<tr><td><code>app/web/static/strata.css</code></td><td>436&ndash;463</td>
+<td><code>.wordmark</code>, <code>.wordmark:hover</code> and the whole <code>.wordmark__mark</code>
+gradient block. Replaced by the equivalent of the site's two lines.</td></tr>
+<tr><td><code>app/web/static/strata.css</code></td><td>2006&ndash;2009, 2021&ndash;2041</td>
+<td><em>Consequential.</em> <code>.knowledge-item::before</code> reuses the three-bar mark and its
+comment calls it "the wordmark's three bars". If the bars leave the wordmark that comment goes false and
+the component loses its stated reason for existing.</td></tr>
+<tr><td><code>app/web/templates/invite_accept.html</code></td><td>54, 70, 77, 88</td>
+<td><em>Optional.</em> The third variant. It stays a third variant unless it is changed too.</td></tr>
+</table>
+
+<div class="crit"><strong>The blocker, and I do not think it should be decided in a stylesheet.</strong>
+The site's accent letter is <code>--stamp: #1b3a8f</code>, a navy. <strong>The application has no
+<code>--stamp</code> token.</strong> Its only accent is <code>--accent: #0d5c6b</code>, a deep petrol,
+and <code>strata.css</code> line 11 states the rule the whole palette rests on: exactly two hues exist,
+<code>--accent</code> for anything you can act on and <code>--alarm</code> for escalation. So there are
+three options and each costs something real:
 <ol>
-<li><code>.venv/bin/python -m pytest tests/ -q</code> is green at 1256. In particular
-<code>test_responsive.py</code>, <code>test_chat_surface.py</code> and <code>test_tour.py</code>, which
-guard fixed widths, the table scroll, the viewport tag and the no-hex rule in the two secondary sheets.</li>
-<li>Every glass rule has a solid declaration <em>outside</em> its <code>@supports</code> block. Grep for
-<code>backdrop-filter</code> and confirm each one has a sibling <code>background</code> above it.</li>
-<li>With <code>backdrop-filter</code> forced off in devtools, no text anywhere drops below 4.5:1.</li>
-<li>Tab through the masthead, the dock, the tour tip and a queue row in both schemes. Every stop shows a
-visible ring.</li>
-<li>With <code>prefers-reduced-motion: reduce</code>, nothing moves — not shortened, not faint, nothing.</li>
-<li>Print the change page. The withheld claim still reads as a refusal in black and white: broken rule,
-hatch, reason in the statement position, no claim text anywhere in the markup.</li>
-<li>Hover across the change page. Everything answers except one surface.</li>
+<li><strong>Use the app's <code>--accent</code> for the final letter.</strong> Keeps the two-hue rule.
+The two marks then match in shape, casing and tracking but not in colour — which is most of the
+inconsistency solved, and the remaining difference reads as a theme rather than as a different product.
+<em>This is the option I would take.</em></li>
+<li><strong>Add <code>--stamp</code> to the app.</strong> Exact match, and it breaks the stated rule on
+line 11 for one letter of one word.</li>
+<li><strong>Move the site to the app's petrol.</strong> Exact match the other way. It is a bigger change
+than it sounds: <code>--stamp</code> carries the site's links, buttons and the glass action fill.</li>
 </ol>
+Option 1 unless somebody with a claim on the brand says otherwise. It is written here rather than
+decided quietly, because a hue is not a CSS detail in a product whose palette is load-bearing.</div>
 
 </body>
 </html>

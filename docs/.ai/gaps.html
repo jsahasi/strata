@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — Remaining gaps, prioritised</title>
+<style>
+  body { font: 15px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 1000px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.8rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; margin-top:2.4rem; padding-bottom:.3rem; border-bottom:2px solid currentColor; }
+  .p0 { color:#b91c1c; } .p1 { color:#c2410c; } .p2 { color:#a16207; } .p3 { color:#0369a1; } .done h2 { color:#15803d; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.9rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .5rem .6rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+  td:first-child { white-space:nowrap; font-weight:600; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.88em; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .crit { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .lbl { font-weight:600; color:#334155; }
+  .who { font-size:.82rem; color:#64748b; }
+</style>
+</head>
+<body>
+<h1>Remaining gaps, prioritised</h1>
+<p class="sub">Compiled 2026-08-04 from a full audit of every document in <code>docs/</code> and
+<code>deploy/site/</code>, each claim checked against the code rather than against the previous
+version of the document.</p>
+
+<div class="crit"><strong>How to read the ordering.</strong> Priority here is not size of effort. It
+is <em>what a reviewer hits first</em>. A submission is read in a fixed order — the repository link,
+then the run command, then the screens, then the documents — and a defect early in that order hides
+everything good behind it. P0 items stop a reviewer at the front door. P1 items are false statements
+a reader could act on. P2 items are real code gaps that a panel question would expose. P3 items are
+things only we would notice.</div>
+
+<div class="note"><strong>One decision is yours and I have not taken it.</strong> Making the
+repository public is an outward-facing, hard-to-reverse act, and the history contains 40-odd commit
+messages plus every document in this list. It is item P0-1 and it needs your word, not mine.</div>
+
+
+<h2 class="p0">P0 — stops a reviewer at the front door</h2>
+<table>
+<tr><th>Gap</th><th>What it costs</th><th>State</th></tr>
+
+<tr><td>P0-1<br>Repository is private</td>
+<td><code>gh repo view jsahasi/strata --json visibility</code> returns <code>PRIVATE</code>. The
+submission gives a GitHub link as its first field. Every argument this project makes about keeping
+the full history unsquashed, about ADRs written before the code, about commit messages carrying
+their reasoning, is worth nothing behind a 404. This is the single highest-value minute available.</td>
+<td class="lbl">Needs your decision. Not taken on your behalf.</td></tr>
+
+<tr><td>P0-2<br>Uncommitted work</td>
+<td>Around 13,500 lines across four subsystems sit in the working tree: the scheduler, the docket
+fetcher, point-in-time replay, and granular permissions. None of it is in the history a reviewer
+reads, and an untracked file is one <code>git clean</code> from gone.</td>
+<td class="lbl">Suite green at 1,711. Committing now.</td></tr>
+
+<tr><td>P0-3<br><code>make test</code> failed on a fresh clone</td>
+<td>HEAD declared a <code>user_permissions</code> table whose retention window was never added, so a
+derived guard refused it — on a clean checkout, which is exactly what a reviewer runs. The feature
+landed half-committed: the model went in, the module that uses it did not.</td>
+<td class="lbl">Fixed. Commit pending.</td></tr>
+
+<tr><td>P0-4<br>Every "Scope" link answered 500</td>
+<td><code>review_project.html</code> did not exist while <code>review_centre.py</code> rendered it
+from two routes. The parent template said so in its own opening comment and the suite stayed green
+for a day, because nothing rendered either route.</td>
+<td class="lbl">Fixed — template written.</td></tr>
+
+<tr><td>P0-5<br><code>permissions</code> missing from nginx</td>
+<td>The router is mounted in <code>app/main.py</code>; <code>deploy/nginx.conf</code> proxies a named
+list that did not include it. A screen that works locally and 404s in production is the worst shape
+a bug can take.</td>
+<td class="lbl">Fixed in the same change as the mount.</td></tr>
+
+<tr><td>P0-6<br><code>make run</code> seeds zero obligations</td>
+<td>The eight duties reach the database only through <code>scripts/seed_demo_gaps.py</code>, which
+neither <code>make run</code> nor <code>deploy/entrypoint.sh</code> calls. A reviewer following the
+README opens the owner-handoff feature and finds nobody in it. <strong>This is the one still open in
+P0 that I have not started.</strong></td>
+<td class="lbl">OPEN.</td></tr>
+</table>
+
+
+<h2 class="p1">P1 — false statements a reader could act on</h2>
+<p>All three of these are on the <em>public</em> site, which makes them representations to a reader
+who has no way to check.</p>
+<table>
+<tr><th>Gap</th><th>What it says, and what is true</th><th>State</th></tr>
+
+<tr><td>P1-1<br>"No document text goes anywhere"</td>
+<td><code>deploy/site/security.html</code> tells a buyer that no model call runs on the request path.
+<code>app/web/views/chat.py</code> reaches <code>app/chat/agent.py</code>, <code>app/config.py</code>
+loads the key, and <code>compose.yml</code> passes it into the container. The assistant's tools
+return obligation titles, owner names, account ids, the approval route, escalations and claims.</td>
+<td class="lbl">Agent rewriting now.</td></tr>
+
+<tr><td>P1-2<br>Anthropic is a sub-processor and the page denies it</td>
+<td><code>subprocessors.html</code> argues the case on four grounds and <em>all four have
+reversed</em>. The page names its own trigger — "the first time a key is set and a call is made" —
+and that trigger has fired. <code>privacy.html</code> repeats it.</td>
+<td class="lbl">Agent rewriting now.</td></tr>
+
+<tr><td>P1-3<br>Safe harbour points at the wrong surface</td>
+<td><code>security.html</code> says the application "is not deployed behind that name". False since
+<code>b5c894b</code>. This steers a good-faith security researcher away from the live product and
+the safe-harbour paragraph inherits the wrong boundary.</td>
+<td class="lbl">Agent rewriting now.</td></tr>
+
+<tr><td>P1-4<br>Six admin screens have no way in</td>
+<td><code>/users</code>, <code>/permissions</code>, <code>/admin/shares</code>,
+<code>/admin/invites</code>, <code>/admin/sources</code>, <code>/admin/feedback</code> are mounted,
+answer 200 to an administrator who types them, and appear on no screen. The masthead has no
+administrative menu for them to live in.</td>
+<td class="lbl">Guard written and failing honestly; agent building the menu.</td></tr>
+</table>
+
+
+<h2 class="p2">P2 — real code gaps a panel question would expose</h2>
+<table>
+<tr><th>Gap</th><th>Why it matters</th></tr>
+
+<tr><td>P2-1<br>Tenant check missing in <code>ensure_obligation</code></td>
+<td><code>app/state/routing.py:359</code> does <code>session.get(Obligation, id)</code> and returns
+the row <strong>without comparing <code>company_id</code></strong>. <code>_require_scope</code> runs
+but only validates the string. Two sibling call sites — <code>rollback.py:246</code>,
+<code>workflow.py:752</code> — do the identical lookup and post-check correctly. Reachable today
+only from a seed script and covered by no test. This is the product's central control, and the panel
+will ask about it.</td></tr>
+
+<tr><td>P2-2<br><code>_require_scope</code> does not reject <code>"%"</code></td>
+<td>The isolation tests would pass without it, which means they are not testing what they claim.</td></tr>
+
+<tr><td>P2-3<br>Four things are built and called by nothing</td>
+<td><code>propose.py</code> (the model proposer) has no caller outside tests, so the interpretation
+gate is real and the thing it gates is disconnected. <code>start_run</code> has no caller, so no
+approval run ever starts. <code>can_approve</code> has zero callers anywhere.
+<code>revert_event</code> has none in <code>app/</code>. Each is defensible individually; together
+they are the pattern to have an answer for.</td></tr>
+
+<tr><td>P2-4<br><code>record_note</code> is gated on no permission</td>
+<td>A write tool the assistant can call, with no permission code in front of it, in a product whose
+argument is that every act is gated and recorded. <code>create_project</code> beside it is gated.</td></tr>
+
+<tr><td>P2-5<br>The two files that protect the deploy have no tests</td>
+<td><code>app/config.py</code> and <code>app/state/migrate.py</code> have no test file at all;
+<code>migrate.py</code> measures 0%. It is the file standing between a deploy and an unreadable live
+schema. With the 99% target cut, this is the one module worth covering on merit.</td></tr>
+
+<tr><td>P2-6<br>Coverage is not reproducible</td>
+<td>The coverage tool is installed in the virtualenv and <strong>not in
+<code>requirements.txt</code></strong>, so a reviewer cannot reproduce the 92%.</td></tr>
+
+<tr><td>P2-7<br>A source status question, deliberately deferred</td>
+<td>Setting <code>FETCHABLE_SOURCE_KINDS</code> to name the public docket moves a registration that
+names no document from <code>not_implemented</code> to <code>never_tried</code> — different
+sentences to a reader, and four tests assert the first. Neither fits a row whose registration is
+merely incomplete. Written down rather than answered in a hurry.</td></tr>
+</table>
+
+
+<h2 class="p2">P2 — the demonstration itself</h2>
+<table>
+<tr><th>Gap</th><th>Why it matters</th></tr>
+
+<tr><td>P2-8<br>The demo route lets the admin approve their own route</td>
+<td><code>scripts/seed_route.py</code> sends both "Legal review" and "Officer signs the filing" to
+<code>role:admin</code>, so the account that draws the route approves through it twice — the exact
+segregation-of-duties failure this product exists to surface, in the demonstration a panel opens.
+Now unblocked by the permissions work. <strong>There is a real choice here:</strong> fix it, or make
+it deliberate and let the conflict report catch the demo's own configuration, which is a stronger
+demonstration. Leaving it accidental is the only bad option.</td></tr>
+
+<tr><td>P2-9<br>The demo video predates most of today</td>
+<td>Recorded before the restyle, the markdown fix, source links, the tour and Integrations.</td></tr>
+
+<tr><td>P2-10<br>Nobody has keyboard-tabbed the product since the glass landed</td>
+<td>No test catches a lost focus ring. The worst measured contrast is 4.48:1 — knowingly kept,
+because that grey is the only signal a nav item is unreachable — but nothing re-sampled it.</td></tr>
+
+<tr><td>P2-11<br>Logo mismatch, with a real blocker under it</td>
+<td>The app renders mixed-case <code>Strata</code> with a painted three-bar glyph; the site renders
+letter-spaced <code>STRATA</code> with the final A in navy. A third variant is on the invite page.
+Adopting the site's mark needs a <code>--stamp</code> token the app does not have, and
+<code>strata.css</code> states that exactly two hues exist. Five files identified.</td></tr>
+
+<tr><td>P2-12<br>The blog is not linked from the landing page</td>
+<td>The link runs one way, posts back to home.</td></tr>
+</table>
+
+
+<h2 class="p3">P3 — only we would notice</h2>
+<table>
+<tr><th>Gap</th><th>Detail</th></tr>
+<tr><td>P3-1</td><td><code>app/chat/__init__.py</code> still calls the persona "Clerk".
+<code>persona.py</code> says "Clarke". You asked for Clarke.</td></tr>
+<tr><td>P3-2</td><td>Stale docstrings in files whose behaviour changed under them:
+<code>projects.py</code> ("this build makes no model call"), <code>integrations.py</code>
+(provenance, and the fetcher), <code>auth.py</code> ("no invitation flow"),
+<code>requirements.txt</code> ("no ORM migrations tool"), <code>seed_demo_gaps.py</code> (cites
+<code>tests/test_demo_ready.py</code>, which does not exist).</td></tr>
+<tr><td>P3-3</td><td><code>docs/.ai/state.json</code>: <code>tests.measured</code> is false, and
+<code>known_gaps</code> still lists the <code>_spans_of</code> window scan fixed in
+<code>ec1c4bf</code>.</td></tr>
+<tr><td>P3-4</td><td>ADR-17 is titled "Two digest schemes"; there are three. ADR-53 covers the
+addition but the title reads as current.</td></tr>
+<tr><td>P3-5</td><td><code>site.css</code> line 95 claims 5.3:1; the computed floor is 4.98:1.
+Likely a dropped digit from 5.03. Nobody has re-sampled.</td></tr>
+<tr><td>P3-6</td><td>Outreach counts disagree across three documents: ADR-63 says 8 first-wave
+messages, the MRD says 7, <code>resume.md</code> says about 40 against a total of 45. The send log
+is not in the repository. The undisputed number is zero replies.</td></tr>
+</table>
+
+
+<h2 class="done">Closed today, listed so the list is not read as the whole picture</h2>
+<table>
+<tr><th>Was</th><th>Now</th></tr>
+<tr><td>The tour had never rendered for anybody</td><td>Included in <code>base.html</code>. Its own
+strict xfail turned the suite red on success, exactly as written, and is deleted.</td></tr>
+<tr><td>The permissions router was mounted nowhere</td><td>Mounted, and nginx updated in the same
+change.</td></tr>
+<tr><td>The privacy page said nothing ran the purges</td><td>A scheduler reaches them. The page names
+the three settings between that and a deleted row, and the guard now checks the page describes
+whichever state is true rather than asserting one of them.</td></tr>
+<tr><td>Five action codes lived in two files</td><td>One file. The drift test that could no longer
+fail was replaced with one that can.</td></tr>
+<tr><td>The 99% coverage target</td><td>Cut. ADR-38 carries the whole history including the part
+where refusing a number while measuring nothing was the weaker position.</td></tr>
+<tr><td>Eleven documents describing yesterday's build</td><td>Audited claim by claim against the
+code. The corrections are in each document, and several were substantial — the architecture doc had
+the verification gate on the wrong side of the write, and the MRD said no model ran anywhere.</td></tr>
+</table>
+
+<div class="note"><strong>What this list does not contain.</strong> Anything I could not check. Where
+a document said something I could not verify from the repository — the outreach counts, the 92%
+figure, whether <code>make run</code> works from a clean clone — it is recorded above as unverified
+rather than resolved in either direction.</div>
+
+</body>
+</html>
