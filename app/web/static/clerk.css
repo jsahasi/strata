@@ -159,7 +159,7 @@
   padding: var(--s1) var(--s3);
   background: var(--paper);
   color: var(--ink-2);
-  font: 600 var(--t-micro) / 1.4 var(--face-ui);
+  font: 600 var(--t-micro) / var(--lh-micro) var(--face-ui);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   cursor: pointer;
@@ -250,7 +250,7 @@
   padding: var(--s1) var(--s3);
   background: var(--surface);
   color: var(--ink-2);
-  font: 600 var(--t-micro) / 1.4 var(--face-ui);
+  font: 600 var(--t-micro) / var(--lh-micro) var(--face-ui);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   cursor: pointer;

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — The obligation scorer, run</title>
+<style>
+  body { font: 15px/1.65 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 940px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.85rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.4rem; }
+  h3 { font-size:1.02rem; color:#1d4ed8; margin:1.3rem 0 .35rem; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  pre { background:#0f172a; color:#e2e8f0; padding:.9rem 1rem; border-radius:8px; overflow-x:auto; font-size:.82rem; line-height:1.5; }
+  pre code { background:none; padding:0; color:inherit; font-size:1em; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.92rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .5rem .6rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+  td.n { text-align:right; font-variant-numeric: tabular-nums; }
+  .bad { color:#b91c1c; font-weight:600; } .ok { color:#15803d; font-weight:600; }
+  .flat { color:#64748b; font-weight:600; } .warn { color:#b45309; font-weight:600; }
+  .lbl { font-weight:600; color:#334155; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .stop { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .src { background:#f8fafc; border-left:3px solid #1d4ed8; padding:.7rem 1rem; margin:.8rem 0; }
+</style>
+<link rel="stylesheet" href="../docs-nav.css">
+</head>
+<body>
+<nav class="dnav" aria-label="Documents">
+<div class="dnav__row"><span class="dnav__label">Docs</span><a href="../mrd.html">MRD</a><a href="../prd.html">PRD</a><a href="../tdd.html">TDD</a><a href="../security.html">Security</a><a href="../web-design.html">Design</a><a href="../future-enhancements.html">Roadmap</a><a href="../user-research.html">User research</a><a href="../synthetic-user.html">Persona</a><a href="../synthetic-interview.html">Interview</a><a href="../best-practices.html">Playbook</a><a href="../submission.html">Submission</a></div>
+<div class="dnav__row"><span class="dnav__label">Working notes</span><a href="../.ai/index.html">Index</a><a href="../.ai/decisions.html">Decisions</a><a href="../.ai/tasks.html">Tasks</a><a href="../.ai/briefing.html">Briefing</a><a href="../.ai/findings.html">Findings</a><a href="../.ai/gaps.html">Gaps</a><a href="../.ai/demo-notes.html">Demo notes</a><a href="../.ai/live-transport-probe.html">Live probe</a><span class="dnav__here">Eval result</span></div>
+</nav>
+
+<h1>The obligation scorer, run</h1>
+<p class="sub">Run 2026-08-05 at 17:15 UTC against the full gold set in <code>data/evals/</code>. Working tree at <code>7b13738</code>, with <code>app/evals/obligations.py</code> and <code>data/evals/</code> still uncommitted. Python 3.12.13.</p>
+
+<div class="stop"><strong>Wrong assertions: 0. The zero is empty and must not be quoted on its own.</strong> No extractor exists in this build. There is no predictions file anywhere in the repository, and no code path that reads a passage and says what duty it creates. The only run available was <code>--no-extractor</code>, which records a refusal for all 51 passages. A system that asserts nothing cannot assert wrongly, so the blocking metric passed by asserting nothing. The scorer says this itself, in capitals, at the top of its own output, and prints <em>"do not quote the exit code of this run"</em>. Correct assertions: also 0. Half the scorecard is blank because nothing has been built to fill it.</div>
+
+<h2>What ran</h2>
+
+<table>
+<tr><th>Question</th><th>Answer</th></tr>
+<tr><td>Command</td><td><code>.venv/bin/python -m app.evals.obligations --no-extractor</code></td></tr>
+<tr><td>Exit code</td><td>0. Meaningless here, and the run note says so.</td></tr>
+<tr><td>Without that flag</td><td><code>.venv/bin/python -m app.evals.obligations</code> exits 1 and prints <em>"Nothing to score: no --predictions file was given."</em> It refuses to default to anything. That refusal is the correct behaviour and it is what a reviewer meets first.</td></tr>
+<tr><td>Predictions file</td><td>None. Searched the whole tree for a JSON file holding an <code>extractions</code> list: none exists, tracked or untracked.</td></tr>
+<tr><td>Extractor</td><td>None. <code>app/interpretation/propose.py</code> judges whether one diffed change is material; it is not asked what duty a passage creates. Nothing else in <code>app/</code> does that job.</td></tr>
+<tr><td>Gold sets read</td><td><code>goldset_ga_ky.json</code> (25 passages, GA and KY) and <code>goldset_ut_mo.json</code> (26 passages, UT and MO). 51 passages over 16 source documents.</td></tr>
+<tr><td>Scorer's own tests</td><td><code>.venv/bin/python -m pytest tests/test_obligation_evals.py -q</code> — 62 passed in 0.41s.</td></tr>
+<tr><td>Wired into <code>make eval</code></td><td>No. That target still prints the five spine metrics. This is a second scorecard and runs on its own.</td></tr>
+</table>
+
+<h2>The five outcomes</h2>
+
+<table>
+<tr><th>Outcome</th><th class="n">Count</th><th>What it cost</th></tr>
+<tr><td><span class="bad">Wrong assertion</span></td><td class="n">0</td><td>Target zero, and blocking. Nothing was asserted, so nothing could be wrong. Read the note above before using this figure.</td></tr>
+<tr><td><span class="flat">Correct assertion</span></td><td class="n">0</td><td>No duty was extracted and adjudicated correct. Not one.</td></tr>
+<tr><td><span class="warn">Missed</span></td><td class="n">23</td><td>Every positive label in the set. A refusal where the gold set holds a duty. This is the only figure in the run that carries information: it is the whole of what an extractor would have to earn back.</td></tr>
+<tr><td><span class="ok">Correct refusal</span></td><td class="n">28</td><td>Every negative label. Full marks, earned by refusing everything, which is why the metric prints "read it against the extraction count, never alone".</td></tr>
+<tr><td><span class="flat">Unadjudicated assertion</span></td><td class="n">0</td><td>Asserted on a positive label with nobody having checked which duty. Nothing was asserted, so this bucket is empty too.</td></tr>
+</table>
+
+<p>The 23 misses fall this way by document: 4 in the Georgia 44280 tariff-compliance order, 5 in the Georgia 56002 IRP stipulation order, 1 in the Georgia compliance tariffs, 1 in Kentucky intervenor testimony, 2 in the Missouri ET-2025-0184 order, 1 in its nunc pro tunc order, 2 in the amended global stipulation, 1 in the Missouri compliance tariff revision, 3 in the Utah settlement order, 2 in the Utah settlement stipulation, 1 in the Utah large-load application. Six of the 23 carry the labeller's ambiguous flag.</p>
+
+<h2>By jurisdiction</h2>
+
+<p>Four states. The scorer treats the jurisdiction as the sample, four is under the floor of ten, and so no extraction metric on this page prints a rate. The split below is not decoration; it is the sample itemised.</p>
+
+<table>
+<tr><th>State</th><th class="n">Passages</th><th class="n">Source docs</th><th class="n">Duties</th><th class="n">Hard negatives</th><th class="n">Ambiguous</th><th class="n">Wrong</th><th class="n">Missed</th><th class="n">Correct</th><th class="n">Refused</th></tr>
+<tr><td>Georgia</td><td class="n">19</td><td class="n">4</td><td class="n">10</td><td class="n">9</td><td class="n">6</td><td class="n">0</td><td class="n">10</td><td class="n">0</td><td class="n">9</td></tr>
+<tr><td>Kentucky</td><td class="n">6</td><td class="n">4</td><td class="n">1</td><td class="n">5</td><td class="n">3</td><td class="n">0</td><td class="n">1</td><td class="n">0</td><td class="n">5</td></tr>
+<tr><td>Missouri</td><td class="n">13</td><td class="n">4</td><td class="n">6</td><td class="n">7</td><td class="n">4</td><td class="n">0</td><td class="n">6</td><td class="n">0</td><td class="n">7</td></tr>
+<tr><td>Utah</td><td class="n">13</td><td class="n">4</td><td class="n">6</td><td class="n">7</td><td class="n">4</td><td class="n">0</td><td class="n">6</td><td class="n">0</td><td class="n">7</td></tr>
+<tr><th>Total</th><th class="n">51</th><th class="n">16</th><th class="n">23</th><th class="n">28</th><th class="n">17</th><th class="n">0</th><th class="n">23</th><th class="n">0</th><th class="n">28</th></tr>
+</table>
+
+<p>Georgia is 19 of 51 passages, more than a third, and 10 of the 23 duties. Kentucky holds one duty in six passages, because the Kentucky corpus here is intervenor testimony, errata and cover letters rather than orders. Neither of those is a flaw in the labelling; both mean a result driven by Georgia drafting would look like a result about extraction, and only this table would show the difference.</p>
+
+<h2>The ambiguous share</h2>
+
+<table>
+<tr><th>Slice</th><th class="n">Ambiguous</th><th class="n">Of</th><th class="n">Share</th></tr>
+<tr><td>All labelled passages</td><td class="n">17</td><td class="n">51</td><td class="n">33%</td></tr>
+<tr><td>Positive labels (a duty)</td><td class="n">6</td><td class="n">23</td><td class="n">26%</td></tr>
+<tr><td>Negative labels (no duty)</td><td class="n">11</td><td class="n">28</td><td class="n">39%</td></tr>
+</table>
+
+<p>A third of the evidence is contestable by the labeller's own note, and the negatives are the more contestable half. The flag means one annotator thought another analyst could argue the other way. It is not a measured disagreement rate. There was one annotator per set, no second pass and no adjudication, so no inter-annotator agreement number exists and none can be computed from these files.</p>
+
+<h2>The four metrics, as printed</h2>
+
+<table>
+<tr><th>Metric</th><th>Result</th><th>Blocking</th><th>Verdict</th></tr>
+<tr><td>1. Wrong assertions</td><td>51 of 51 labelled passages carry no wrong assertion. No rate: n = 4 jurisdictions.</td><td>yes</td><td><span class="ok">PASS</span>, vacuously</td></tr>
+<tr><td>2. Obligations extracted, and the ones missed</td><td>0 of 23 labelled obligations extracted and adjudicated correct. No rate: n = 4 jurisdictions.</td><td>no</td><td><span class="bad">FAIL</span>, reported only</td></tr>
+<tr><td>3. Correct refusals</td><td>28 of 28 hard negatives correctly refused. No rate: n = 4 jurisdictions.</td><td>no</td><td><span class="ok">PASS</span>, vacuously</td></tr>
+<tr><td>4. Gold set offsets</td><td>51 of 51 labelled quotes re-read from their source. 100%, n = 16 source documents.</td><td>yes</td><td><span class="ok">PASS</span>, and this one means something</td></tr>
+</table>
+
+<p>Verdict line: 3 of 4 metrics pass, exit 0, no release blocker. The exit code is worthless on this run and the scorer says so. Metric 4 is the only one that survives the reading: every labelled quote still slices out of its source file byte for byte at the recorded offsets, across 16 documents. Each source file really is independent evidence that the text has not moved, so that percentage is the one rate on the page. It says nothing whatever about extraction.</p>
+
+<h2>What the zero proves, and what it does not</h2>
+
+<p><span class="lbl">It proves that the scorer runs, refuses correctly, and reports.</span> It refuses to score with no predictions file rather than defaulting to a green page. It refuses a run that is silent about any labelled passage. It refuses an empty gold set. Its own suite passes, 62 tests. And the gold set has not rotted: 51 of 51 quotes re-read.</p>
+
+<p><span class="lbl">It does not prove that the extractor does not make false claims, because there is no extractor.</span> That is the first and largest limit, and it is a different sentence from "the extractor made no false claims". Anyone reading "0 wrong assertions" off this page without the next paragraph has been misled by us.</p>
+
+<p><span class="lbl">The zero is against this gold set, of this size, labelled by an agent rather than a regulatory expert, over four jurisdictions.</span> 51 passages, 16 documents, 2 files, 4 states. <code>goldset_ga_ky.json</code> names its annotator: "Claude (Opus 5), single annotator, no adjudication". <code>goldset_ut_mo.json</code> names only "human-directed labelling pass, regulatory text only", and its labels were written by hand into a build script sitting in the same directory — so it does not say who made each call, and we should not claim a person did. No licensed regulatory-affairs professional has reviewed either set. Neither is a random sample: hard cases were picked on purpose, so nothing here estimates accuracy over a whole document. The topic range is narrow — large-load service in Utah and Missouri, two Georgia dockets, and a Kentucky corpus of testimony and errata that holds one duty in six passages. Nothing here tests rate design, safety or environmental filings.</p>
+
+<p><span class="lbl">And the zero has no partner.</span> Zero correct assertions is on the same page. A scorecard with both halves empty is not a good result and not a bad one; it is a measurement of a thing that has not been built.</p>
+
+<h2>Proof the scorer can report a non-zero</h2>
+
+<div class="note"><strong>Why this check exists.</strong> A blocking metric that has only ever printed zero is not known to be able to print anything else. So the scorer was driven once with a deliberately bad baseline: assert a duty wherever the quote contains <code>shall</code>, <code>must</code>, <code>is required</code>, <code>are required</code> or <code>ordered</code>. It was built in memory, never written to disk, and is not a product path.</div>
+
+<table>
+<tr><th>Outcome</th><th class="n">Keyword baseline</th><th class="n">This run</th></tr>
+<tr><td>Wrong assertion</td><td class="n bad">14</td><td class="n">0</td></tr>
+<tr><td>Missed</td><td class="n">8</td><td class="n">23</td></tr>
+<tr><td>Correct assertion</td><td class="n">0</td><td class="n">0</td></tr>
+<tr><td>Correct refusal</td><td class="n">14</td><td class="n">28</td></tr>
+<tr><td>Unadjudicated assertion</td><td class="n">15</td><td class="n">0</td></tr>
+<tr><td>Exit code</td><td class="n bad">1</td><td class="n">0</td></tr>
+</table>
+
+<p>The scorer counted 14 wrong assertions and blocked. So the zero above is a fact about the run, not a metric that cannot fire. It also puts a number on the hard negatives: half of them, 14 of 28, would fool a modal-verb reader. That is the work an extractor has to do, and it is the reason the negatives were chosen.</p>
+
+<h2>Two things found while reading, which are not mine to fix</h2>
+
+<p><span class="lbl">The scorecard prints a claim the data does not support.</span> Metric 3's method line reads: <em>"Most of them contain the word 'shall'."</em> Measured across the 28 negative labels, 10 contain "shall" — a minority, not most. Widening to any mandatory modal gives 14 of 28, which is exactly half. The sentence is printed on the scorecard where a reviewer meets it, so it should be corrected to the measured figure. <code>app/evals/obligations.py</code> belongs to another lane; this is reported, not changed.</p>
+
+<p><span class="lbl">One gold set does not name its labeller.</span> <code>goldset_ut_mo.json</code> carries <code>labelled_by: "human-directed labelling pass, regulatory text only"</code>. That phrase reads as though a person made the calls without saying so, and the sibling file is plain that Claude made its calls. The field should say which, in the same words the other file uses. Until it does, this page treats both sets as agent-labelled, because that is the conservative reading and the one we can defend.</p>
+
+<h2>What would move these numbers</h2>
+
+<p>Two different things, and they are worth separating. Building an extractor and producing a predictions file would fill the assertion columns and put the blocking metric under real load. Growing the gold set, adding jurisdictions past four, and having a regulatory-affairs professional relabel a sample would make any number computed over it worth more. The first is a build task. The second is the one that decides whether a future zero means anything, and it cannot be done by us alone.</p>
+
+<div class="src"><strong>Reproduce.</strong> <code>.venv/bin/python -m app.evals.obligations --no-extractor</code> prints every figure on this page. <code>.venv/bin/python -m app.evals.obligations</code> prints the refusal. <code>.venv/bin/python -m pytest tests/test_obligation_evals.py -q</code> runs the scorer's own 62 tests. None of the three touches the network.</div>
+
+</body>
+</html>

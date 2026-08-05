@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — The four constants, measured</title>
+<style>
+  body { font: 15px/1.65 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 940px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.85rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.4rem; }
+  h3 { font-size:1.02rem; color:#1d4ed8; margin:1.3rem 0 .35rem; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  pre { background:#0f172a; color:#e2e8f0; padding:.9rem 1rem; border-radius:8px; overflow-x:auto; font-size:.82rem; line-height:1.5; }
+  pre code { background:none; padding:0; color:inherit; font-size:1em; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.92rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .5rem .6rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+  td.n { text-align:right; font-variant-numeric: tabular-nums; }
+  tr.ship td { background:#eff6ff; font-weight:600; }
+  tr.best td { background:#f0fdf4; }
+  .in { color:#15803d; font-weight:600; } .part { color:#b45309; font-weight:600; } .out { color:#64748b; font-weight:600; }
+  .lbl { font-weight:600; color:#334155; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .src { background:#f8fafc; border-left:3px solid #1d4ed8; padding:.7rem 1rem; margin:.8rem 0; }
+  .verdict { border:1px solid #e2e8f0; border-left:3px solid #0369a1; border-radius:6px; padding:.7rem 1rem; margin:.9rem 0; background:#f8fafc; }
+</style>
+<link rel="stylesheet" href="../docs-nav.css">
+</head>
+<body>
+<nav class="dnav" aria-label="Documents">
+<div class="dnav__row"><span class="dnav__label">Docs</span><a href="../mrd.html">MRD</a><a href="../prd.html">PRD</a><a href="../tdd.html">TDD</a><a href="../security.html">Security</a><a href="../web-design.html">Design</a><a href="../future-enhancements.html">Roadmap</a><a href="../user-research.html">User research</a><a href="../synthetic-user.html">Persona</a><a href="../synthetic-interview.html">Interview</a><a href="../best-practices.html">Playbook</a><a href="../submission.html">Submission</a></div>
+<div class="dnav__row"><span class="dnav__label">Working notes</span><a href="../.ai/index.html">Index</a><a href="../.ai/decisions.html">Decisions</a><a href="../.ai/tasks.html">Tasks</a><a href="../.ai/briefing.html">Briefing</a><a href="../.ai/findings.html">Findings</a><a href="../.ai/gaps.html">Gaps</a><a href="../.ai/demo-notes.html">Demo notes</a><a href="../.ai/live-transport-probe.html">Live probe</a><span class="dnav__here">Eval sweep</span></div>
+</nav>
+
+<h1>The four constants, measured</h1>
+<p class="sub">ADR-85 records four rules in <code>app/state/mapping.py</code> as judgements: a four-character floor on a term, a prefix test rather than a substring test, discarding a word more than half the company's duties share, and a two-word minimum before a duty is offered. Each was tuned by eye against fixtures. Nobody had swept any of them. This is the sweep, run 2026-08-05.</p>
+
+<div class="src">
+<strong>One command reproduces every number on this page.</strong><br>
+<code>.venv/bin/python scripts/sweep_mapping_constants.py</code><br>
+It points <code>STRATA_DATABASE_URL</code> at a scratch file before importing <code>app.state.db</code>, exactly as <code>tests/conftest.py</code> does, so it cannot touch a working database. It changes no source file: it sets the four constants on the live module and calls the real <code>propose_obligations_for_change</code>.
+</div>
+
+<div class="note">
+<strong>The gold set in <code>data/evals/</code> could not be used, and that is the first honest thing on this page.</strong>
+Both files there label a different task. <code>goldset_ga_ky.json</code> and <code>goldset_ut_mo.json</code> ask, of a passage of a real filing, whether it creates an obligation; <code>app/evals/obligations.py</code> scores that, and its <code>Extraction</code> carries <code>asserted</code>, <code>obligation_text</code> and <code>who_is_bound</code>. Neither file holds a single change-to-obligation label, and <code>mapping.py</code> answers a different question: given a change the diff found, which of THIS COMPANY'S recorded duties does it bear on. There is no way to score the second with the first, so this page does not pretend to. What it borrows from that scorer is its vocabulary and its refusal to average two costs into one number.
+</div>
+
+<h2>What the labels are, and who wrote them</h2>
+
+<p>The synthetic corpus carries two independent statements about which change bears on which duty. Both were written by the corpus author before this module existed. Both are used, because they disagree in one place and the disagreement is exactly where the sweep's result turns.</p>
+
+<table>
+<tr><th>Label set</th><th>Where it comes from</th><th>Coverage</th></tr>
+<tr><td><span class="lbl">MANIFEST</span></td><td><code>data/manifest.json</code> names five changes and, for each, the obligation it bears on. CHG-5 names a second. Projected onto the diff rows whose offsets fall inside those five regions.</td><td>10 of the 27 diff rows. 14 true pairs, 66 false pairs.</td></tr>
+<tr><td><span class="lbl">SECTION</span></td><td><code>data/company_context.json</code> gives every obligation a <code>maps_to_docket_sections</code> list. Matched against each diff row's own section label for the row's to-version.</td><td>All 27 diff rows. 11 true pairs, 205 false pairs.</td></tr>
+</table>
+
+<p>They disagree about the restructure. The manifest labels the whole moved block — Sections 5.4, 5.4.1, 5.4.2 and 5.4.3 in v3 — as bearing on OBL-001 and OBL-008 together, because that is the granularity a change label has. The obligation register is finer: OBL-001 lists only 5.4.1, and 5.4.3 belongs to OBL-004 and OBL-008. So the pairs <code>CHG-v2-v3-006 / OBL-001</code> and <code>CHG-v2-v3-007 / OBL-001</code> are correct offers under MANIFEST and wrong offers under SECTION. Every result below where the two label sets differ traces to those two pairs. Neither reading is obviously wrong: 5.4.2 is the posting deadline for the collateral OBL-001 is about.</p>
+
+<h3>What the columns mean</h3>
+<table>
+<tr><th>Column</th><th>Meaning</th></tr>
+<tr><td><span class="lbl">wrong</span></td><td>Pairs where the proposer cleared its threshold and the labels say the change does not bear on that duty. The scorer in <code>app/evals/obligations.py</code> calls the analogous thing <code>WRONG_ASSERTION</code>. The word is borrowed and not earned: this module proposes and never asserts, and the screen renders a candidate differently from a confirmed mapping. It is still the count an analyst pays for, one row at a time.</td></tr>
+<tr><td><span class="lbl">missed</span></td><td>Pairs the labels hold and the proposer refused. A duty a person has to map by hand.</td></tr>
+<tr><td><span class="lbl">right</span></td><td>Offered, and the labels agree.</td></tr>
+<tr><td><span class="lbl">refusals</span></td><td>Every pair the proposer declined, right ones and wrong ones together — <code>missed</code> plus the correct refusals. It is the accounting the module already prints on every screen.</td></tr>
+<tr><td><span class="lbl">offers/change</span></td><td>The reading load: how many duties an analyst is asked about on the average change, and on the worst one.</td></tr>
+</table>
+
+<p>The measure is <code>reason == ""</code>, which is the proposer's own test for "these words cleared the threshold", rather than <code>ObligationMatch.offered</code>. <code>offered</code> also folds in whether somebody already mapped or rejected the pair, and that is a fact about the seed, not about the rule under test.</p>
+
+<h2>The word distribution the rules cut</h2>
+
+<p>Everything below is easier to read after this table. It is every term of the eight duties, grouped by how many of the eight hold it.</p>
+
+<table>
+<tr><th>Held by</th><th>Terms</th></tr>
+<tr><td>6 of 8</td><td><code>large</code></td></tr>
+<tr><td>5 of 8</td><td>none</td></tr>
+<tr><td>4 of 8</td><td>none</td></tr>
+<tr><td>3 of 8</td><td><code>customer</code>, <code>file</code>, <code>interconnection</code>, <code>load</code></td></tr>
+<tr><td>2 of 8</td><td><code>before</code>, <code>post</code>, <code>project</code>, <code>request</code></td></tr>
+<tr><td>1 of 8</td><td>68 terms</td></tr>
+</table>
+
+<p>There is a hole at four and five. The shipped rule cuts into that hole, which is why three of its settings score identically, and why the whole rule on this corpus removes exactly one word.</p>
+
+<h2>One. The four-character floor (PREFIX_MIN)</h2>
+
+<table>
+<tr><th>PREFIX_MIN</th><th colspan="4">MANIFEST labels</th><th colspan="4">SECTION labels</th><th>offers/change</th></tr>
+<tr><th></th><th>wrong</th><th>missed</th><th>right</th><th>refusals</th><th>wrong</th><th>missed</th><th>right</th><th>refusals</th><th>(SECTION)</th></tr>
+<tr><td>2</td><td class="n">39</td><td class="n">4</td><td class="n">10</td><td class="n">31</td><td class="n">96</td><td class="n">0</td><td class="n">11</td><td class="n">109</td><td class="n">4.0 (max 8)</td></tr>
+<tr><td>3</td><td class="n">33</td><td class="n">5</td><td class="n">9</td><td class="n">38</td><td class="n">69</td><td class="n">1</td><td class="n">10</td><td class="n">137</td><td class="n">2.9 (max 7)</td></tr>
+<tr class="ship"><td>4 (shipped)</td><td class="n">27</td><td class="n">7</td><td class="n">7</td><td class="n">46</td><td class="n">57</td><td class="n">3</td><td class="n">8</td><td class="n">151</td><td class="n">2.4 (max 6)</td></tr>
+<tr class="best"><td>5</td><td class="n">11</td><td class="n">9</td><td class="n">5</td><td class="n">64</td><td class="n">28</td><td class="n">3</td><td class="n">8</td><td class="n">180</td><td class="n">1.3 (max 4)</td></tr>
+<tr><td>6</td><td class="n">9</td><td class="n">9</td><td class="n">5</td><td class="n">66</td><td class="n">25</td><td class="n">5</td><td class="n">6</td><td class="n">185</td><td class="n">1.1 (max 4)</td></tr>
+<tr><td>7</td><td class="n">7</td><td class="n">11</td><td class="n">3</td><td class="n">70</td><td class="n">18</td><td class="n">7</td><td class="n">4</td><td class="n">194</td><td class="n">0.8 (max 3)</td></tr>
+</table>
+
+<div class="verdict">
+<strong>Not defensible as the best value, and the measurement says so cleanly.</strong> Under SECTION labels, five strictly dominates four: 29 fewer wrong offers, the same three misses, the same eight correct offers. Nothing is traded. Under MANIFEST labels five removes 16 wrong offers and costs two correct ones — and the two are <code>CHG-v2-v3-006 / OBL-001</code> and <code>CHG-v2-v3-007 / OBL-001</code>, the pairs the two label sets already disagree about. So the gain is not arguable and the cost is.
+</div>
+
+<p><strong>Why five is different.</strong> At four the surviving short words are <code>load</code>, <code>post</code>, <code>work</code>, <code>file</code>, <code>rate</code>, <code>that</code>, <code>with</code>, <code>each</code>. The list of wrong offers at the shipped setting is nearly all of them: OBL-007 is offered against fourteen of the twenty-seven changes, every one of them on <code>customer</code> and <code>load</code>; OBL-006 comes up on <code>interconnection, with, each</code> and OBL-005 on <code>customer, request, that, rate</code>. The module docstring already names this failure — "with, each, that and before are four characters long and appear in nearly every filing" — and treats it as unfixable without document-frequency weighting. It is partly fixable by moving the floor one character.</p>
+
+<div class="note">
+<strong>The constant is imported from <code>app/state/search.py</code>, and it is not doing the same job in the two places.</strong> In <code>search.py</code>, PREFIX_MIN is how many letters a term must END with before the query ALSO searches it as a prefix. It widens a search that already matched exactly, and search.py measured it that way: "curtailment" as an exact token found 9 of 15 passages, and widening recovered the six that said "Curtailments". In <code>mapping.py</code> the same number is a FLOOR: a word shorter than it is thrown away and never compared at all. Widening a match and discarding evidence are different acts, and the argument measured for the first does not carry to the second. The alignment <code>mapping.py</code> defends in its docstring — a ligature or a soft hyphen reading the same here as in the index — is carried by <code>index_body()</code>, which is imported separately. The module also states that nothing in it queries the index. So a separate floor here would not break the folding, and this file is where that should be argued.
+</div>
+
+<h2>Two. Prefix rather than substring</h2>
+
+<table>
+<tr><th>Rule</th><th colspan="3">MANIFEST</th><th colspan="3">SECTION</th></tr>
+<tr><th></th><th>wrong</th><th>missed</th><th>right</th><th>wrong</th><th>missed</th><th>right</th></tr>
+<tr class="ship"><td>prefix (shipped)</td><td class="n">27</td><td class="n">7</td><td class="n">7</td><td class="n">57</td><td class="n">3</td><td class="n">8</td></tr>
+<tr><td>substring</td><td class="n">28</td><td class="n">7</td><td class="n">7</td><td class="n">58</td><td class="n">3</td><td class="n">8</td></tr>
+</table>
+
+<p>One pair. At the shipped settings the substring rule adds exactly one wrong offer on each label set, and it is the pair the docstring names: <code>CHG-v1-v2-005 / OBL-001</code>, matched on <code>load, work</code>, where "work" reaches "network" only under a substring test. The mechanism the docstring describes is real and reproduces on demand. Its size at the shipped settings is one row.</p>
+
+<p>It is bigger behind the two-word minimum, which is where it was found:</p>
+
+<table>
+<tr><th>Rule / MIN_MATCHED_TERMS</th><th colspan="3">MANIFEST</th><th colspan="3">SECTION</th></tr>
+<tr><th></th><th>wrong</th><th>missed</th><th>right</th><th>wrong</th><th>missed</th><th>right</th></tr>
+<tr><td>prefix / 1</td><td class="n">43</td><td class="n">3</td><td class="n">11</td><td class="n">92</td><td class="n">0</td><td class="n">11</td></tr>
+<tr><td>substring / 1</td><td class="n">47</td><td class="n">2</td><td class="n">12</td><td class="n">101</td><td class="n">0</td><td class="n">11</td></tr>
+<tr class="ship"><td>prefix / 2 (shipped)</td><td class="n">27</td><td class="n">7</td><td class="n">7</td><td class="n">57</td><td class="n">3</td><td class="n">8</td></tr>
+<tr><td>substring / 2</td><td class="n">28</td><td class="n">7</td><td class="n">7</td><td class="n">58</td><td class="n">3</td><td class="n">8</td></tr>
+<tr><td>prefix / 3</td><td class="n">10</td><td class="n">9</td><td class="n">5</td><td class="n">23</td><td class="n">5</td><td class="n">6</td></tr>
+<tr><td>substring / 3</td><td class="n">11</td><td class="n">8</td><td class="n">6</td><td class="n">25</td><td class="n">3</td><td class="n">8</td></tr>
+</table>
+
+<p>At a one-word threshold, substring adds nine wrong offers on SECTION labels. Eight of the nine are OBL-008 pulled in by <code>connection</code> sitting inside <code>interconnection</code>, which reaches almost every change in the docket. That is the same shape as the "work" in "network" case and it is larger.</p>
+
+<div class="verdict">
+<strong>Defensible, and free at the shipped settings, but the docstring overstates it.</strong> The prefix rule costs nothing anywhere in this sweep — it never loses a correct offer at a two-word threshold — and it removes a wrong offer, so keep it. What it does not do is what the docstring implies: "every passage about network upgrades proposed the security-posting duty" describes the world before MIN_MATCHED_TERMS existed. Today the two-word minimum absorbs almost all of it. At a three-word threshold the substring rule finds MORE correct pairs than the prefix rule on SECTION labels (8 against 6) for two extra wrong offers, so "substring is wrong here" is true at the shipped point and not as a general statement.
+</div>
+
+<h2>Three. A word more than half the duties share is not evidence</h2>
+
+<p>Swept as "drop a word held by more than N of the eight duties". The shipped rule is "more than half", which on eight duties is N = 4. N = 8 turns the rule off.</p>
+
+<table>
+<tr><th>N</th><th colspan="4">MANIFEST</th><th colspan="4">SECTION</th><th>offers/change</th></tr>
+<tr><th></th><th>wrong</th><th>missed</th><th>right</th><th>refusals</th><th>wrong</th><th>missed</th><th>right</th><th>refusals</th><th>(SECTION)</th></tr>
+<tr><td>1</td><td class="n">8</td><td class="n">10</td><td class="n">4</td><td class="n">68</td><td class="n">15</td><td class="n">4</td><td class="n">7</td><td class="n">194</td><td class="n">0.8 (max 4)</td></tr>
+<tr class="best"><td>2</td><td class="n">8</td><td class="n">9</td><td class="n">5</td><td class="n">67</td><td class="n">17</td><td class="n">3</td><td class="n">8</td><td class="n">191</td><td class="n">0.9 (max 4)</td></tr>
+<tr><td>3</td><td class="n">27</td><td class="n">7</td><td class="n">7</td><td class="n">46</td><td class="n">57</td><td class="n">3</td><td class="n">8</td><td class="n">151</td><td class="n">2.4 (max 6)</td></tr>
+<tr class="ship"><td>4 (shipped)</td><td class="n">27</td><td class="n">7</td><td class="n">7</td><td class="n">46</td><td class="n">57</td><td class="n">3</td><td class="n">8</td><td class="n">151</td><td class="n">2.4 (max 6)</td></tr>
+<tr><td>5</td><td class="n">27</td><td class="n">7</td><td class="n">7</td><td class="n">46</td><td class="n">57</td><td class="n">3</td><td class="n">8</td><td class="n">151</td><td class="n">2.4 (max 6)</td></tr>
+<tr><td>6</td><td class="n">40</td><td class="n">5</td><td class="n">9</td><td class="n">31</td><td class="n">78</td><td class="n">2</td><td class="n">9</td><td class="n">129</td><td class="n">3.2 (max 7)</td></tr>
+<tr><td>7</td><td class="n">40</td><td class="n">5</td><td class="n">9</td><td class="n">31</td><td class="n">78</td><td class="n">2</td><td class="n">9</td><td class="n">129</td><td class="n">3.2 (max 7)</td></tr>
+<tr><td>8 (rule off)</td><td class="n">40</td><td class="n">5</td><td class="n">9</td><td class="n">31</td><td class="n">78</td><td class="n">2</td><td class="n">9</td><td class="n">129</td><td class="n">3.2 (max 7)</td></tr>
+</table>
+
+<div class="verdict">
+<strong>The rule earns its keep. The threshold is unmeasurable at its own boundary, and it sits on the wrong side of the only gap in the distribution.</strong>
+Three findings, in order of how uncomfortable they are.
+<ol>
+<li><strong>N = 3, 4 and 5 are identical.</strong> No word is held by exactly four or five of the eight duties, so "more than half" cannot be distinguished from "more than three eighths" or "more than five eighths" on this corpus. The chosen value is not tuned to noise. It is also not measured: the sweep cannot see it.</li>
+<li><strong>The whole rule removes one word.</strong> Turning it off (N = 8) restores <code>large</code> and nothing else, because <code>large</code> is the only term above the cut. Removing that one word is worth 21 fewer wrong offers on SECTION labels for one fewer correct one. The docstring's own account — six of eight duties carry "large", and before this rule every change about a Large Load Customer proposed six duties at once — is confirmed, and it is the entire effect.</li>
+<li><strong>The four words just under the cut do most of the remaining damage.</strong> <code>customer</code>, <code>interconnection</code>, <code>load</code> and <code>file</code> are each held by three of eight. Dropping them too (N = 2) removes another 40 wrong offers on SECTION labels with no change to the misses and no change to the correct offers. Under MANIFEST it costs the same two disputed OBL-001 pairs and nothing else.</li>
+</ol>
+</div>
+
+<p>The rule is stated as a fraction, so tightening it from "more than half" to "more than a quarter" is a claim about companies generally, not about these eight duties. Eight is too few to make that claim. A company with eighty duties would have a word held by three of them mean something quite different, and this sweep says nothing about it.</p>
+
+<h2>Four. Two words, not one (MIN_MATCHED_TERMS)</h2>
+
+<table>
+<tr><th>MIN_MATCHED_TERMS</th><th colspan="4">MANIFEST</th><th colspan="4">SECTION</th><th>offers/change</th></tr>
+<tr><th></th><th>wrong</th><th>missed</th><th>right</th><th>refusals</th><th>wrong</th><th>missed</th><th>right</th><th>refusals</th><th>(SECTION)</th></tr>
+<tr><td>1</td><td class="n">43</td><td class="n">3</td><td class="n">11</td><td class="n">26</td><td class="n">92</td><td class="n">0</td><td class="n">11</td><td class="n">113</td><td class="n">3.8 (max 7)</td></tr>
+<tr class="ship"><td>2 (shipped)</td><td class="n">27</td><td class="n">7</td><td class="n">7</td><td class="n">46</td><td class="n">57</td><td class="n">3</td><td class="n">8</td><td class="n">151</td><td class="n">2.4 (max 6)</td></tr>
+<tr><td>3</td><td class="n">10</td><td class="n">9</td><td class="n">5</td><td class="n">65</td><td class="n">23</td><td class="n">5</td><td class="n">6</td><td class="n">187</td><td class="n">1.1 (max 4)</td></tr>
+<tr><td>4</td><td class="n">1</td><td class="n">10</td><td class="n">4</td><td class="n">75</td><td class="n">5</td><td class="n">6</td><td class="n">5</td><td class="n">206</td><td class="n">0.4 (max 2)</td></tr>
+<tr><td>5</td><td class="n">0</td><td class="n">12</td><td class="n">2</td><td class="n">78</td><td class="n">0</td><td class="n">8</td><td class="n">3</td><td class="n">213</td><td class="n">0.1 (max 1)</td></tr>
+</table>
+
+<p>The share of offers that are right, derived from the same rows:</p>
+
+<table>
+<tr><th>MIN_MATCHED_TERMS</th><th>MANIFEST: right of all offers</th><th>SECTION: right of all offers</th></tr>
+<tr><td>1</td><td>11 of 54 (20%)</td><td>11 of 103 (11%)</td></tr>
+<tr class="ship"><td>2 (shipped)</td><td>7 of 34 (21%)</td><td>8 of 65 (12%)</td></tr>
+<tr><td>3</td><td>5 of 15 (33%)</td><td>6 of 29 (21%)</td></tr>
+<tr><td>4</td><td>4 of 5 (80%)</td><td>5 of 10 (50%)</td></tr>
+<tr><td>5</td><td>2 of 2</td><td>3 of 3</td></tr>
+</table>
+
+<div class="verdict">
+<strong>Defensible, and the reason given for it is not the reason the numbers support.</strong>
+The docstring says one shared word is a coincidence and the second is what makes a candidate worth a glance. The step from one to two is the one step in this whole sweep that buys almost no accuracy: 20 per cent of offers are right at one word and 21 per cent at two under MANIFEST labels, 11 per cent and 12 per cent under SECTION. What the step does buy is reading load. It cuts the average change from 3.8 duties to 2.4 and the worst change from seven to six, for three misses. That is a real and worthwhile purchase, and it is a claim about an analyst's afternoon rather than about coincidence. Every step above two does raise accuracy, and steadily: there is no knee in the curve and nothing distinguishes two as a value except that it is where the reading load starts to fall.
+</div>
+
+<h2>A defect the sweep found</h2>
+
+<div class="note">
+<strong><code>MATCH_ONE_WORD</code> is hard-wired to <code>MIN_MATCHED_TERMS == 2</code>, and nothing enforces it.</strong>
+The reason code is chosen by <code>MATCH_ONE_WORD if best_terms else MATCH_NO_OVERLAP</code>. Any near miss with at least one word gets the code whose note reads "One word in common, which is under the threshold". That is true only while the threshold is two. Raise the constant and the note starts lying on a screen, silently, to the person the note exists for:
+<table>
+<tr><th>MIN_MATCHED_TERMS</th><th>Rows printing "One word in common" while carrying more than one</th></tr>
+<tr><td>2 (shipped)</td><td class="n">0</td></tr>
+<tr><td>3</td><td class="n">36</td></tr>
+<tr><td>4</td><td class="n">55</td></tr>
+<tr><td>5</td><td class="n">62</td></tr>
+</table>
+Nothing is wrong today. What is wrong is that the correctness of a user-facing sentence rests on a constant fifty lines away with no test between them. This page cannot fix it: <code>app/state/mapping.py</code> is owned by another change. The fix is small — either name the code for what it means (under the threshold, with the count in the note) or add a guard that refuses a threshold the codes cannot describe.
+</div>
+
+<h2>Joint settings, for the record</h2>
+
+<table>
+<tr><th>PREFIX_MIN</th><th>match</th><th>share N</th><th>min terms</th><th>MANIFEST wrong / missed / right</th><th>SECTION wrong / missed / right</th></tr>
+<tr class="ship"><td>4</td><td>prefix</td><td>4</td><td>2</td><td>27 / 7 / 7</td><td>57 / 3 / 8</td></tr>
+<tr><td>5</td><td>prefix</td><td>4</td><td>2</td><td>11 / 9 / 5</td><td>28 / 3 / 8</td></tr>
+<tr class="best"><td>4</td><td>prefix</td><td>2</td><td>2</td><td>8 / 9 / 5</td><td>17 / 3 / 8</td></tr>
+<tr><td>5</td><td>prefix</td><td>2</td><td>2</td><td>2 / 10 / 4</td><td>7 / 4 / 7</td></tr>
+<tr><td>5</td><td>prefix</td><td>4</td><td>3</td><td>1 / 11 / 3</td><td>4 / 7 / 4</td></tr>
+<tr><td>6</td><td>prefix</td><td>4</td><td>2</td><td>9 / 9 / 5</td><td>25 / 5 / 6</td></tr>
+<tr><td>5</td><td>substring</td><td>4</td><td>2</td><td>11 / 9 / 5</td><td>28 / 3 / 8</td></tr>
+</table>
+
+<h2>What this does NOT show, said before anybody asks</h2>
+
+<ul>
+<li><strong>Nothing here is held out.</strong> Every setting was scored on the same 27 changes. Eleven true pairs under SECTION labels, fourteen under MANIFEST. A recommendation drawn from a sweep over eleven positives is a fit, not a validation, and moving a shipped constant on it would be tuning to a corpus of eight duties.</li>
+<li><strong>Both label sets came from the same hand as the corpus.</strong> They say whether the rule finds what the corpus author intended, not whether it finds what a regulatory analyst would call a match. The gold sets in <code>data/evals/</code> are the ones labelled without reading the code, and they are for the other task.</li>
+<li><strong>Eight duties is a small denominator for a rule stated as a fraction.</strong> The shared-word rule counts holders against a total of eight. Its behaviour at eighty is not measured and cannot be inferred from this.</li>
+<li><strong>The 27 changes come from one synthetic docket.</strong> The real corpus in <code>data/real/</code> has no obligation register attached to it, so this could not run there.</li>
+<li><strong>Nothing here measures the ranking or <code>MAX_CANDIDATES</code>.</strong> The sweep reads <code>reason == ""</code>, which is the threshold and not the shortlist.</li>
+</ul>
+
+<h2>The reading, in one paragraph each</h2>
+
+<table>
+<tr><th>Constant</th><th>Defensible?</th><th>What the measurement shows</th></tr>
+<tr><td><span class="lbl">PREFIX_MIN = 4</span></td><td><span class="out">No</span></td><td>Five is better on both label sets: 29 fewer wrong offers on SECTION labels at no cost at all, 16 fewer on MANIFEST at the cost of two pairs the label sets already dispute. The number was measured in <code>search.py</code> for a different act — widening a match that already hit — and imported here as a floor on evidence. The argument did not carry and nobody had checked.</td></tr>
+<tr><td><span class="lbl">prefix, not substring</span></td><td><span class="in">Yes</span></td><td>Free: it never loses a correct offer, and it removes one wrong one. The named case ("work" reaching "network") reproduces exactly. The docstring's account of its size belongs to a build without MIN_MATCHED_TERMS; today the two-word minimum absorbs the rest. At a three-word threshold substring is the better rule on SECTION labels, so the claim holds at the shipped point and not generally.</td></tr>
+<tr><td><span class="lbl">more than half the duties</span></td><td><span class="part">Partly</span></td><td>The rule is worth having: turning it off costs 21 more wrong offers for one more correct one. The threshold is not measurable — three, four and five score identically, because no word is held by four or five of eight. On this corpus the rule removes exactly one word, <code>large</code>. Moving the cut to "more than two of eight" removes another 40 wrong offers on SECTION labels at no measured cost, which says the number is on the wrong side of the only gap in the distribution.</td></tr>
+<tr><td><span class="lbl">MIN_MATCHED_TERMS = 2</span></td><td><span class="in">Yes</span>, for a different reason than the one written down</td><td>Going from one word to two barely changes how often an offer is right (20 to 21 per cent, or 11 to 12). It nearly halves how many rows a person reads. The rule is a workload rule, not a coincidence rule, and the docstring should say so. Above two, accuracy climbs steadily with no knee, so two is a defensible point on a smooth curve rather than a peak.</td></tr>
+</table>
+
+<h2>What to do</h2>
+
+<p><strong>Do not move the constants on this evidence.</strong> The sweep found that two of the four are not at their measured optimum, and it found it on eleven positive pairs from a corpus written alongside the product. Changing a shipped rule on that would be the mistake this repository keeps writing down: a number that looks measured and is fitted. The right output is this page.</p>
+
+<p>What would earn a change, in order of cost:</p>
+<ol>
+<li><strong>Label the change-to-obligation task the way <code>data/evals/</code> labels extraction.</strong> A file of change-and-duty pairs, labelled by somebody who has not read <code>mapping.py</code>, over more than one docket. Then <code>app/evals/obligations.py</code> gets a sibling and the shipped values are answerable.</li>
+<li><strong>Split PREFIX_MIN.</strong> The import is defended on an alignment that <code>index_body()</code> carries by itself, and the module states that nothing in it queries the index. A floor of its own, argued in this file, would let retrieval and mapping each hold the number their own measurement supports.</li>
+<li><strong>Put a guard between MIN_MATCHED_TERMS and MATCH_ONE_WORD</strong> so the note on the screen cannot go stale when the constant moves. That one is worth doing whatever happens to the rest.</li>
+</ol>
+
+<div class="src">
+<strong>Where the code is.</strong> <code>scripts/sweep_mapping_constants.py</code>. It carries the same account of the label sets and their limits in its module docstring, so a reader who runs it without finding this page still gets told what the numbers do not cover. It is not wired into the Makefile and it is not part of <code>make test</code>: it takes about a minute, it seeds a scratch database, and it measures rather than asserts.
+</div>
+
+</body>
+</html>

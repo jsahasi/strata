@@ -83,10 +83,18 @@ eval: install seed
 # it saw 171 and wrote more rows. A seed whose output depends on how many times
 # it has run is a seed nobody can reason about, and the fix is the same one
 # build_index already had: read after every writer has written.
+#
+# seed_real_findings sits fourth for both halves of that rule. It needs the four
+# projects app.seed creates, because its findings land on three of them; and it
+# ingests three more real filing pairs, so it is a WRITER of versions, passages
+# and changes and has to finish before the two readers below it. Put it after
+# seed_demo_gaps and the mapping pass would see 171 changes on one run and 765
+# on the next, which is the exact failure the paragraph above describes.
 seed: install
 	$(PY) -m app.seed
 	$(PY) scripts/seed_route.py
 	$(PY) scripts/ingest_real.py
+	$(PY) scripts/seed_real_findings.py
 	$(PY) scripts/seed_demo_gaps.py
 	$(PY) scripts/build_index.py
 
@@ -107,8 +115,17 @@ seed: install
 # exits non-zero if any of them moved. Run `reset-demo-dry` first if you want to
 # see what would go. build_index runs after, for the reason the seed target
 # gives above.
+#
+# seed_real_findings runs here too, and from this file rather than from inside
+# reset_demo.py, which re-runs a hard-coded list of three scripts. Without it
+# `make reset-demo` gives back a workspace whose three internal projects are
+# empty again -- the state this script exists to end. The list in
+# scripts/reset_demo.py::run_extra_seeds and the loop in deploy/entrypoint.sh
+# name the same three and still need it added; until then those two paths reset
+# to a hollower demo than this one.
 reset-demo: install
 	$(PY) scripts/reset_demo.py --yes
+	$(PY) scripts/seed_real_findings.py
 	$(PY) scripts/build_index.py
 
 reset-demo-dry: install

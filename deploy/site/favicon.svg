@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Strata">
+  <!-- The mark IS the wordmark rule: three strata of decreasing width, the
+       widths carried over from .wordmark__mark (100% / 62% / 38%). Layers of
+       one document, each narrower than the one beneath it. Filled square
+       rather than bare rules because at 16px a 2px rule on transparent
+       disappears into the browser chrome. -->
+  <rect width="32" height="32" rx="6" fill="#0d5c6b"/>
+  <rect x="6"  y="9"  width="20" height="3" rx="1.5" fill="#ffffff"/>
+  <rect x="6"  y="15" width="13" height="3" rx="1.5" fill="#ffffff" opacity=".82"/>
+  <rect x="6"  y="21" width="8"  height="3" rx="1.5" fill="#ffffff" opacity=".62"/>
+</svg>

@@ -1309,5 +1309,106 @@ rows that say those capabilities are missing are correct against HEAD, which is 
 clones. Every claim above is bound to <code>1343f57</code> and expires against anything later —
 best-practices §28, applied to this page rather than only quoted on it.</p>
 
+<h2>Submission video: the script to record</h2>
+
+<p>Written for five minutes, with a three-minute cut marked. If the brief names a different
+length, cut from the widening section and never from the cold open. Say it in your own words --
+this is scaffolding, not a teleprompter. Where a line sounds like writing rather than speech,
+it is wrong and you should change it.</p>
+
+<p><strong>Record the screen, not your face, for the first ninety seconds.</strong> The reviewer
+has watched many people introduce themselves. Almost none of them opened on the product doing
+something.</p>
+
+<h3>0:00-0:35 &mdash; Cold open on the refusal. No introduction.</h3>
+
+<p>Screen is already on a change with a claim whose citation does not verify. No title card, no
+"hi, I'm". First words over the product:</p>
+
+<blockquote>"This is a regulatory filing that changed between two versions. The system found a
+claim about it, and it is refusing to make that claim. The words it wants to quote are not at
+those offsets in the source any more, so it will not say the sentence. It says why, and it says
+who to ask.<br><br>
+Every AI product I have used would have said the sentence."</blockquote>
+
+<p>Then stop talking for two seconds and let them read the screen.</p>
+
+<p><em>Why this open: the prep guide says the hardest technical decision must be visible in the
+product rather than buried in the stack. This is that decision, on screen, in the first thirty
+seconds, before you have asked them for anything.</em></p>
+
+<h3>0:35-1:20 &mdash; One user, named, and their actual day</h3>
+
+<blockquote>"This is built for one person. A regulatory affairs analyst at a utility that
+operates in more than one state. Not a lawyer, not a compliance officer, not an executive
+&mdash; one person.<br><br>
+Their day: a commission posts a revised order. Somewhere in four hundred pages, something moved.
+They have to find what changed, work out which of their company's obligations it touches, and
+tell the right owner &mdash; before a deadline they did not set. Today that is done by reading
+both versions side by side.<br><br>
+The moment this helps is narrow and I can name it: they open the revision and the changes are
+already found, each one carrying the exact words that changed and where."</blockquote>
+
+<p>Say "one person" out loud. The guide is explicit that naming more than one type of user means
+the work is not finished.</p>
+
+<h3>1:20-2:30 &mdash; Show the machinery earning it</h3>
+
+<p>Move through, narrating what matters rather than what you are clicking:</p>
+
+<ul>
+<li><strong>A citation that does verify.</strong> "Same machinery. This one re-read the source
+bytes on this request and the words are still there, so it will make the claim. Nothing is
+cached. There is no verified column in the database, on purpose &mdash; a stored yes is a promise
+about bytes that may have changed since."</li>
+<li><strong>The diff.</strong> Two real filing versions, a real docket. Say the numbers: this is
+a genuine Kentucky proceeding, two versions a hundred and twenty-seven characters apart, and it
+found a hundred and forty-four changes.</li>
+<li><strong>The routing refusal.</strong> "It worked out who owns this &mdash; and it will not
+tell you, because nobody confirmed the mapping it rests on. A machine proposed it from a word
+overlap. It shows you the candidate and waits for a person."</li>
+</ul>
+
+<p><em>Three-minute cut: keep the citation that verifies, drop the diff and the routing, go
+straight to 2:30.</em></p>
+
+<h3>2:30-3:30 &mdash; The technical answer, at code level</h3>
+
+<blockquote>"The hard part is not calling a model. The hard part is that a language model will
+produce a fluent, plausible, wrong sentence and nothing downstream can tell.<br><br>
+So the deterministic half runs with no API key at all. The diff, the citation verifier, the
+tenant scoping, the audit chain &mdash; none of that asks a model anything. The model proposes;
+it never asserts. A person confirms, and the record says which.<br><br>
+Verification happens on the read path, not the write path. Every render re-reads the source at
+the cited offsets. That costs real milliseconds and it is the only way the answer stays true
+after the source moves."</blockquote>
+
+<p>Have one file open behind this if you can. Vague architecture talk is called out by name in
+the prep guide as a fail signal.</p>
+
+<h3>3:30-4:20 &mdash; What you got wrong, and what you do not know</h3>
+
+<p>Do not skip this and do not soften it. The guide says "I don't know" is a positive signal and
+bluffing is a red flag. Pick two or three from the gaps table above and say them plainly. Then:</p>
+
+<blockquote>"The thing I would change: [name it]. The thing I still do not know: [name it]."</blockquote>
+
+<h3>4:20-5:00 &mdash; Why this market, and why now</h3>
+
+<p>Energy here, not a summary. No recap of what they just watched. Say what makes this urgent,
+what you would build in the next month, and what you would need to find out first. End on the
+next thing you would do, not on thank you.</p>
+
+<h3>Before you hit record</h3>
+
+<ul>
+<li>Seed fresh and click the whole path once. A stumble in the first thirty seconds costs more
+than the rest of the video earns.</li>
+<li>Do not film the demonstration sign-in door or any password.</li>
+<li>One take with a stumble beats four cuts. They are watching for the person, not the edit.</li>
+<li>Watch it back with the sound off. If the screen alone does not carry the first thirty
+seconds, re-record the open.</li>
+</ul>
+
 </body>
 </html>

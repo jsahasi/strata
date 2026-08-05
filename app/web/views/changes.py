@@ -84,8 +84,10 @@ from app.state.claims import (
 from app.state.db import session_scope
 from app.state.mapping import (
     Proposal,
+    RejectionRefused,
     confirm_obligation_for_change,
     propose_obligations_for_change,
+    reject_obligation_for_change,
 )
 from app.state.models import AUTHOR_ANALYST, Change
 from app.state.queries import passages_for_company, versions_for_company
@@ -211,12 +213,30 @@ NOT_JUDGED = "Nothing has judged this change."
 # THE ONE RULE THIS SECTION IS BUILT AROUND. A lexical overlap between the
 # docket's words and the company's words is a CANDIDATE. It is not evidence that
 # a change bears on a duty, and the interface may not let it read as one. So the
-# two states are DIFFERENT DATACLASSES rather than one class and a flag, in
-# exactly the way VerifiedView and WithheldView are above: ConfirmedMapping has
-# no matched terms and CandidateMapping has no confirmer, both are slotted so
-# neither can be given the other's field at runtime, and the template branches
-# on which object it was handed. A mistake here cannot promote a guess to a
-# finding; it can only fail to render.
+# states are DIFFERENT DATACLASSES rather than one class and a flag, in exactly
+# the way VerifiedView and WithheldView are above: ConfirmedMapping has no
+# matched terms, CandidateMapping has no confirmer, RejectedMapping has neither,
+# all are slotted so none can be given another's field at runtime, and the
+# template branches on which object it was handed. A mistake here cannot promote
+# a guess to a finding; it can only fail to render.
+#
+# A CANDIDATE HAS TWO ANSWERS AND BOTH ARE RECORDED. Confirming was built first
+# and on its own it bent the screen: the proposal is recomputed on every render,
+# so a candidate somebody disagreed with came back on the next visit and the
+# only button that shortened the page was the one that agreed with the machine.
+# ADR-87 named the dead end and this is the rest of it. Rejecting posts to its
+# own path, appends its own decision to the chain, and takes the row out of the
+# proposal set -- and it is not final, because a rejection nobody can undo is
+# the same dead end one step further on.
+#
+# A CONFIRMATION IS FINAL, THOUGH, AND THE PAGE NOW SAYS SO WHEREVER IT ASKS FOR
+# ONE. Both doors out of this section end at the same place: mapping a duty is a
+# confirmation, work is routed off a confirmation, and app/state/mapping.py
+# refuses to take one back by name. The rejected block used to send a reader
+# through that door with the words "the later judgement governs", which reads as
+# one judgement among several. CONFIRMATION_IS_FINAL below is the correction and
+# it hangs on both notes rather than on the one that was caught, because the
+# candidate list asks for exactly the same act.
 # ---------------------------------------------------------------------------
 
 #: The permission that gates confirming a mapping.
@@ -248,6 +268,42 @@ PERMISSION_MAP = "action.propose"
 LABEL_CONFIRMED = "Confirmed by"
 LABEL_PROPOSED = "Proposed by the pipeline, not confirmed"
 LABEL_CANDIDATE = "Candidate"
+LABEL_REJECTED = "Rejected by"
+
+#: What opens the sentence that names the words a proposal rests on -- present
+#: tense under a candidate, past under a duty somebody turned down.
+#:
+#: THEY ARE HERE SO A TEST CAN ASSERT THE WHOLE SENTENCE. The matched words are
+#: lifted out of the change's own text, and the page quotes that text a few lines
+#: above every candidate, so `"network" in page` is true whatever the candidate
+#: block renders -- which is exactly how emptying the term list on every
+#: candidate left two screen tests green while the page printed "No word in this
+#: change reaches this duty's wording" under duties that had matched on three.
+#: "Matched on network, upgrade, costs." is a string only this block can produce.
+LABEL_MATCHED_ON = "Matched on"
+LABEL_HAD_MATCHED = "It had matched on"
+
+#: What pressing a confirm control costs, printed wherever one is drawn.
+#:
+#: IT IS ON THE PAGE BECAUSE THE PRODUCT ENFORCES IT AND THE PAGE DID NOT SAY SO.
+#: app/state/mapping.py refuses to reject a mapping somebody confirmed --
+#: REJECT_AFTER_CONFIRMATION, answered as a 409 -- because work is routed off a
+#: confirmation. That refusal is right. What was wrong was the screen: the
+#: rejected block said "map the duty anyway and the later judgement governs",
+#: which reads as one judgement among several, and a reviewer took the advice and
+#: found there was no third judgement to be had. The later judgement is the LAST
+#: one this product accepts on the pair.
+#:
+#: SAID FORWARDS RATHER THAN IMPORTED. REJECT_AFTER_CONFIRMATION is a refusal in
+#: the past tense -- "a person confirmed this mapping" -- and printing it in front
+#: of a control nobody has pressed yet would describe a thing that has not
+#: happened. The two sentences carry the same rule, and the test that pins this
+#: one drives the button and asserts the 409, so they cannot drift apart quietly.
+CONFIRMATION_IS_FINAL = (
+    "Mapping a duty is confirming it, and a confirmation is the last answer this "
+    "screen takes on a pair: work gets routed off one, so taking one back is a "
+    "different act with its own record and it is not built."
+)
 
 #: Printed over the candidate list. Says what a candidate is BEFORE the reader
 #: sees one, because the alternative is a list of duties that reads like a
@@ -257,7 +313,23 @@ CANDIDATE_NOTE = (
     "touches. A shared word is a reason to look, not a finding: the docket and "
     "the company do not use the same vocabulary, so this list will miss duties "
     "that are affected and offer duties that are not. Nothing below is recorded "
-    "until somebody confirms it."
+    "until somebody confirms it. " + CONFIRMATION_IS_FINAL
+)
+
+#: Printed over the duties somebody read and turned down. It says the rejection
+#: is recorded rather than tidied away, it says nothing was deleted, it says the
+#: door is still open, and it says what walking back through the door costs. A
+#: rejection nobody can undo would be the ADR-87 dead end again, one step further
+#: along -- a wrong answer converted into a permanent one.
+#:
+#: THE DOOR IS OPEN AND IT ONLY OPENS ONCE, which the last sentence used to leave
+#: out. "Map the duty anyway and the later judgement governs" invited a reader
+#: into a state the product then refused to let them out of.
+REJECTED_NOTE = (
+    "Somebody read these and said this change does not bear on them, so they "
+    "are not offered again. Nothing was deleted: the proposal and the rejection "
+    "are both in the record, in the order they happened. If a rejection was a "
+    "mistake, map the duty anyway. " + CONFIRMATION_IS_FINAL
 )
 
 #: Printed over the explicit zeroes. The sentence the whole section turns on.
@@ -425,6 +497,28 @@ class CandidateMapping:
 
 
 @dataclass(frozen=True, slots=True)
+class RejectedMapping:
+    """A duty somebody read and said this change does not bear on.
+
+    A THIRD TYPE, NOT A FLAG ON THE SECOND, which is the same construction the
+    two above use and for the same reason: a candidate and a rejection differ in
+    what the reader is being asked to do, and the template branches on the type
+    it was handed rather than on a boolean it could read the wrong way round. It
+    carries no confirmer, because nobody confirmed anything, and it does carry
+    the matched terms -- a duty turned down over seven shared words is a
+    different judgement from one turned down over two, and hiding the words
+    would make the rejection as unreviewable as the guess it replaced.
+    """
+
+    obligation_id: str
+    title: str
+    document_ref: str | None
+    terms: tuple[str, ...]
+    who: str
+    when: str
+
+
+@dataclass(frozen=True, slots=True)
 class MissedMapping:
     """A duty with no candidate, and the reason it has none.
 
@@ -514,6 +608,20 @@ def change_url(change_id: str) -> str:
 def confirm_url(change_id: str) -> str:
     """Where the confirm form posts. One spelling, shared by view and template."""
     return f"/changes/{change_id}/obligations"
+
+
+def reject_url(change_id: str) -> str:
+    """Where the reject form posts.
+
+    A SECOND PATH RATHER THAN A `decision` FIELD ON THE FIRST, and the reason is
+    what an absent field would have to mean. The confirm route already exists
+    and its contract is "post an obligation id and the mapping is confirmed", so
+    a decision field arriving empty would have to default to confirm -- a
+    fallback that does not announce itself, on the one control in this product
+    that turns a machine's guess into a person's judgement. Two paths cannot
+    default into each other.
+    """
+    return f"/changes/{change_id}/obligations/reject"
 
 
 def proceeding_url(proceeding_id: str) -> str:
@@ -639,20 +747,33 @@ def _mapping_views(
 ) -> tuple[
     tuple[ConfirmedMapping, ...],
     tuple[CandidateMapping, ...],
+    tuple[RejectedMapping, ...],
     tuple[MissedMapping, ...],
 ]:
-    """Sort one proposal into the three things a reader is shown.
+    """Sort one proposal into the four things a reader is shown.
 
     THE ORDER OF THE TESTS IS THE WHOLE OF THE SAFETY HERE. A row is confirmed
-    only when a person's kind is on it; everything else with words behind it is
-    a candidate whether or not the pipeline already stored it; and everything
-    left over is an explicit zero. Reading it the other way round -- treating
-    any stored row as settled -- is the one mistake that would turn the lexical
-    overlap into an assertion, and it is one line of code away, which is why the
-    two states are different types rather than a boolean on one.
+    only when a person's kind is on it; a row somebody rejected is a rejection
+    whatever the words did; everything else with words behind it is a candidate
+    whether or not the pipeline already stored it; and everything left over is
+    an explicit zero. Reading it the other way round -- treating any stored row
+    as settled -- is the one mistake that would turn the lexical overlap into an
+    assertion, and it is one line of code away, which is why the states are
+    different types rather than a boolean on one.
+
+    THE REJECTION TEST SITS SECOND AND NOT LAST, and that placement is the bug
+    it prevents. A rejected pair the pipeline had already stored still carries
+    mapped=True, so the candidate branch below would claim it and the page would
+    offer a person the duty they had just turned down -- which is exactly the
+    "the analyst rejects the same row for ever" failure this screen was built to
+    end. It sits after the confirmed test rather than before it because a
+    confirmation outranks a rejection: app/state/mapping.py refuses to reject a
+    confirmed pair, so the only way to hold both is to have confirmed it after,
+    and the later judgement is the one that governs.
     """
     confirmed: list[ConfirmedMapping] = []
     candidates: list[CandidateMapping] = []
+    rejected: list[RejectedMapping] = []
     missed: list[MissedMapping] = []
 
     # EVERY OFFERED ROW IS RENDERED, NOT app.state.mapping.MAX_CANDIDATES OF
@@ -680,6 +801,18 @@ def _mapping_views(
                     document_ref=row.document_ref,
                     who=who,
                     when=_stamp(when),
+                )
+            )
+            continue
+        if row.rejected:
+            rejected.append(
+                RejectedMapping(
+                    obligation_id=row.obligation_id,
+                    title=row.title,
+                    document_ref=row.document_ref,
+                    terms=row.matched_terms,
+                    who=row.rejected_by,
+                    when=_stamp(row.rejected_at),
                 )
             )
             continue
@@ -741,7 +874,7 @@ def _mapping_views(
             row = dataclasses.replace(row, quote="")
         quoted.add(row.coordinate)
         deduped.append(row)
-    return tuple(confirmed), tuple(deduped), tuple(missed)
+    return tuple(confirmed), tuple(deduped), tuple(rejected), tuple(missed)
 
 
 # ---------------------------------------------------------------------------
@@ -948,7 +1081,7 @@ def change_detail(
             row.obligation_id: (row.mapped_by, row.mapped_at)
             for row in mappings_for_change(session, company_id, change_id)
         }
-        confirmed, candidates, missed = _mapping_views(proposal, mapped_by)
+        confirmed, candidates, rejected, missed = _mapping_views(proposal, mapped_by)
 
         resolution = resolve_change_owner(session, company_id, change_id=change_id)
         routing = RoutingView(
@@ -1044,6 +1177,7 @@ def change_detail(
             "routing": routing,
             "confirmed_mappings": confirmed,
             "candidate_mappings": candidates,
+            "rejected_mappings": rejected,
             "missed_mappings": missed,
             # Each distinct code once, in the order it first appears. The rows
             # carry the code; this carries the sentence behind it.
@@ -1052,12 +1186,21 @@ def change_detail(
             ),
             "mapping_reason": proposal.reason,
             "mapping_in_scope": proposal.in_scope,
+            # One flag for both controls, because both are the same judgement:
+            # deciding what a change does NOT bear on is deciding what it bears
+            # on, said the other way round, and a person who may do one may do
+            # the other.
             "may_confirm": may_confirm,
             "confirm_url": confirm_url(change.id),
+            "reject_url": reject_url(change.id),
             "label_confirmed": LABEL_CONFIRMED,
             "label_proposed": LABEL_PROPOSED,
             "label_candidate": LABEL_CANDIDATE,
+            "label_rejected": LABEL_REJECTED,
+            "label_matched_on": LABEL_MATCHED_ON,
+            "label_had_matched": LABEL_HAD_MATCHED,
             "candidate_note": CANDIDATE_NOTE,
+            "rejected_note": REJECTED_NOTE,
             "missed_note": MISSED_NOTE,
             "no_obligations_note": NO_OBLIGATIONS_NOTE,
         }
@@ -1121,18 +1264,79 @@ def confirm_obligation(
     return RedirectResponse(url=change_url(change_id), status_code=303)
 
 
+@router.post("/changes/{change_id}/obligations/reject")
+def reject_obligation(
+    request: Request,
+    change_id: str,
+    obligation_id: str = Form(default=""),
+    company_id: str = Depends(current_company),
+):
+    """A person turns a candidate down: this change does not bear on this duty.
+
+    THE BUTTON THAT MAKES THE OTHER ONE HONEST. Without it the only control that
+    changed anything was "confirm", the proposer recomputed the same candidate
+    on the next render, and an analyst who disagreed with the machine had
+    nothing to press. A screen that only records agreement collects agreement.
+
+    Every check the confirmation makes, in the same order and for the same
+    reasons -- permission first so a refusal cannot be used to learn which ids
+    are real, then existence, and a cross-tenant id answering exactly as an
+    unknown one does. The write itself is app/state/mapping.py's, which appends
+    to the chain and deletes nothing.
+
+    THE ONE REFUSAL THAT IS NOT A 403 OR A 404. Rejecting a mapping a person
+    already confirmed is 409: the request was well formed, this company owns
+    both ids, the caller may map, and the product still declines -- work may
+    already be routed on that confirmation. RejectionRefused is caught by name
+    rather than as a bare ValueError, so a genuine fault in the state layer
+    stays the 500 it is instead of being reported to the analyst as a decision.
+    """
+    principal = current_user(request)
+    if principal is None:
+        raise HTTPException(status_code=403, detail="sign in to map a change")
+
+    with session_scope() as session:
+        try:
+            policy.require(session, company_id, principal.user_id, PERMISSION_MAP)
+        except policy.PermissionDenied as denied:
+            raise HTTPException(status_code=403, detail=denied.reason) from None
+
+        if change_for_company(session, company_id, change_id) is None:
+            raise HTTPException(status_code=404, detail=NOT_FOUND)
+        if obligation_for_company(session, company_id, obligation_id) is None:
+            raise HTTPException(status_code=404, detail=NO_SUCH_OBLIGATION)
+
+        try:
+            reject_obligation_for_change(
+                session,
+                company_id,
+                change_id=change_id,
+                obligation_id=obligation_id,
+                actor=f"person:{principal.email}",
+                actor_user_id=principal.user_id,
+            )
+        except RejectionRefused as refused:
+            raise HTTPException(status_code=409, detail=str(refused)) from None
+
+    return RedirectResponse(url=change_url(change_id), status_code=303)
+
+
 __all__ = [
     "ALIGNMENT_LABEL",
     "ALIGNMENT_NOTE",
     "BADGE_MATERIAL",
     "BADGE_ROUTINE",
     "CANDIDATE_NOTE",
+    "CONFIRMATION_IS_FINAL",
     "CONTEXT_CHARS",
     "JUDGED_BY",
     "JUDGEMENT_WITHHELD",
     "LABEL_CANDIDATE",
     "LABEL_CONFIRMED",
+    "LABEL_HAD_MATCHED",
+    "LABEL_MATCHED_ON",
     "LABEL_PROPOSED",
+    "LABEL_REJECTED",
     "LOW_ALIGNMENT",
     "MISSED_NOTE",
     "NOT_FOUND",
@@ -1140,12 +1344,14 @@ __all__ = [
     "NO_OBLIGATIONS_NOTE",
     "NO_SUCH_OBLIGATION",
     "PERMISSION_MAP",
+    "REJECTED_NOTE",
     "VERDICT_MATERIAL",
     "VERDICT_NOT_MATERIAL",
     "CandidateMapping",
     "ConfirmedMapping",
     "JudgementView",
     "MissedMapping",
+    "RejectedMapping",
     "RoutingView",
     "Side",
     "SourceWindow",
@@ -1160,6 +1366,8 @@ __all__ = [
     "coordinate",
     "panel_id",
     "proceeding_url",
+    "reject_obligation",
+    "reject_url",
     "router",
     "source_window",
     "transport_factory",

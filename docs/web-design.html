@@ -49,25 +49,6 @@
 <p class="sub">The design for what a reviewer sees at <code>strata.sudama.ai</code>, and how it gets there.
 Two surfaces: the application, and the marketing site in front of it.</p>
 
-<div class="note"><span class="lbl">What this document is, and when each part was written.</span>
-Part one was written 2026-08-03, before <code>app/</code> existed. Part two was written 2026-08-04 as a
-plan for the visual revision. Both have since shipped, so on 2026-08-04 the whole document was read
-back against the files and every claim that had gone false was corrected. It now says what the code
-does, in the present tense. Where a passage records a decision or a measurement from before the build,
-it says so and gives the date. <strong>Where nobody has checked, it says nobody has checked</strong> —
-those admissions are in <em>What is still not known</em> near the foot, and they are not padding.</div>
-
-<p>The pipeline behind the screens — ingestion, diff, interpretation, verification, state — is
-specified in Part A of <code>docs/tdd.html</code> and is unchanged by anything here. The reasoning for
-each choice below lives in <code>docs/.ai/decisions.html</code> as ADR-009 through ADR-014.</p>
-
-<div class="win"><span class="lbl">The sequencing risk, and how it turned out.</span> Written first
-on 2026-08-03 because it governed everything else: <code>app/</code> and <code>tests/</code> were empty,
-so the web layer would render state that nothing yet produced. The build order chosen was verifier and
-diff before screens, and the deployment before the design polish. That order held. The engine landed
-first, the screens second, the deployment third and the visual revision last, which is why part two
-below could be written against screenshots of a running product rather than against a sketch. Nothing
-in the cut order at the end of part one was cut.</div>
 
 <h2>Scope</h2>
 

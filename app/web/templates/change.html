@@ -450,8 +450,18 @@
         <p class="claim__route">
           {%- if item.recorded %}{{ label_proposed }}{% if item.recorded_at %},
           {{ item.recorded_at }}{% endif %}.{% endif %}
+          {#
+            THE LEAD WORDS COME FROM app/web/views/changes.py AND ARE NOT TYPED
+            HERE. Every word in `item.terms` was lifted out of the change's own
+            text, which this page quotes a few lines up, so a test asking whether
+            the words are on the page is answered by the quotation whatever this
+            block renders -- and two of them were, while a mutation printed the
+            sentence below under duties that had matched on three words. What
+            only this block can produce is the whole sentence, so the sentence is
+            what a test can hold on to, and half of it lives in the view.
+          #}
           {%- if item.terms %}
-          Matched on {{ item.terms | join(", ") }}.
+          {{ label_matched_on }} {{ item.terms | join(", ") }}.
           {%- else %}
           No word in this change reaches this duty's wording.
           {%- endif %}
@@ -473,10 +483,85 @@
           <span class="coord">{{ item.coordinate }}</span>
         </p>
         {%- endif %}
+        {#
+          Two answers, two forms, two paths. They are separate forms rather
+          than two buttons on one, so neither can inherit the other's action if
+          this markup is ever edited carelessly -- and app/web/views/changes.py
+          argues at reject_url why "confirm" is not the default meaning of a
+          missing field on this control.
+
+          THEY WEAR THE SAME CLASS ON PURPOSE. .btn--primary exists and giving
+          it to either of these would make one answer the easy one. The
+          agreeing answer clears the row from the page and the disagreeing one
+          is the answer that costs the reader nothing to withhold, so a screen
+          that also made agreement prettier would be collecting agreement. The
+          words tell them apart; the styling does not take a side.
+        #}
         {%- if may_confirm %}
         <form method="post" action="{{ confirm_url }}">
           <input type="hidden" name="obligation_id" value="{{ item.obligation_id }}">
           <button class="btn" type="submit">This change bears on {{ item.obligation_id }}</button>
+        </form>
+        <form method="post" action="{{ reject_url }}">
+          <input type="hidden" name="obligation_id" value="{{ item.obligation_id }}">
+          <button class="btn" type="submit">It does not bear on {{ item.obligation_id }}</button>
+        </form>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+  {%- endif %}
+
+  {#
+    The duties somebody read and turned down.
+
+    A THIRD LOOP OVER A THIRD TYPE. RejectedMapping carries no confirmer and is
+    not a CandidateMapping, so this block cannot draw a confirm control by
+    accident and the candidate block cannot draw a rejection. The one control
+    here is deliberate and is not the same button: a rejection nobody can undo
+    is the ADR-87 dead end again, so the door stays open and says so.
+
+    IT OPENS ONCE, AND rejected_note NOW SAYS THAT TOO. The note under this
+    heading used to end "map the duty anyway and the later judgement governs". A
+    reviewer took the advice, pressed the button below, changed their mind again
+    and got a 409 with no control left on the row: the later judgement does not
+    govern, it is the last one the product accepts. The cost lives in
+    app/web/views/changes.py as CONFIRMATION_IS_FINAL and is carried by both
+    notes, because the candidate block above invites the same act. Do not spell
+    it out here, and do not drop it: a test renders this page with every
+    candidate rejected -- so the candidate note is off the page -- and asserts
+    the sentence is still on it.
+
+    Never fold this into the missed list below. "The words did not reach it" and
+    "a person read it and said no" are opposite facts about how much attention a
+    duty has had, and printing them under one heading tells the reader nobody
+    looked.
+  #}
+  {%- if rejected_mappings %}
+  <div class="stack--tight">
+    <h3>Rejected</h3>
+    <p>{{ rejected_note }}</p>
+    <ul class="stack--tight">
+      {%- for item in rejected_mappings %}
+      <li class="stack--tight">
+        <p>
+          <span class="label">{{ item.obligation_id }}</span>
+          {{ item.title }}
+        </p>
+        <p class="claim__route">
+          {{ label_rejected }} {{ item.who }}{% if item.when %} on {{ item.when }}{% endif %}.
+          {%- if item.terms %}
+          {{ label_had_matched }} {{ item.terms | join(", ") }}.
+          {%- else %}
+          No word in this change reached this duty's wording.
+          {%- endif %}
+          {%- if item.document_ref %} Written down in {{ item.document_ref }}.{% endif %}
+        </p>
+        {%- if may_confirm %}
+        <form method="post" action="{{ confirm_url }}">
+          <input type="hidden" name="obligation_id" value="{{ item.obligation_id }}">
+          <button class="btn" type="submit">Map {{ item.obligation_id }} anyway</button>
         </form>
         {%- endif %}
       </li>

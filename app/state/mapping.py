@@ -161,6 +161,62 @@ under ROUTE_MAPPING_UNCONFIRMED until somebody confirms the mapping. That is the
 wanted answer -- a person invited into this product and handed work on the
 strength of a word overlap is the sharpest form of the bug, not an exception to
 it -- but it is a real step somebody now has to take.
+
+--------------------------------------------------------------------------
+THE SECOND ANSWER, AND WHY A SCREEN WITH ONLY THE FIRST ONE IS WORSE THAN NONE
+--------------------------------------------------------------------------
+
+ADR-87 wrote its own cost down: the product "refuses in the right place and
+offers no way to resolve the refusal", which converts a wrong answer into a dead
+end. Confirming was half the way out. The other half was missing entirely, and
+its absence bent the screen.
+
+Everything above recomputes on every render. So a candidate somebody read and
+disagreed with came back, unchanged, on the next visit -- and the only control
+that made the page any shorter was the one that agreed with the machine.
+Twenty-four of the twenty-six mappings in the demonstration corpus are the
+proposer's, so that is not an edge: it is what an analyst meets every day. A
+screen where disagreement costs a click and changes nothing, and agreement costs
+a click and clears the row, does not collect judgement. It collects assent.
+
+reject_obligation_for_change is the second answer and it is a DECISION rather
+than a dismissal. It appends to the chain, naming the person, the pair and the
+words the proposer had matched on, so the record can be asked how often the
+proposer was wrong -- a question nothing could answer while the only recorded
+outcome was agreement. propose_obligations_for_change reads those rows back and
+stops offering the pair; ObligationMatch.rejected carries it, beside the reason
+rather than inside it, because "the words did not reach this duty" and "a person
+read it and said no" are opposite facts about how much attention it has had.
+
+NOTHING IS DELETED, WHICH IS THE SAME RULE THE ROW ITSELF STATES.
+app/state/models.py::ChangeObligation says a mapping somebody later disagrees
+with is a fact about what was believed, and that withdrawing one is "a new row
+somewhere that says so, never a DELETE here". This is that row. A mapping the
+pipeline stored survives its own rejection, with its author and its timestamp
+intact, and the disagreement sits beside it in the order it happened.
+
+WHAT IT COSTS, MEASURED RATHER THAN ASSUMED. Every render of the change screen
+now reads the audit table as well. That read is ONE QUERY, SCOPED LIKE EVERY
+OTHER, AND INDEXED ON THE COMPANY AND ON NOTHING ELSE. This paragraph said "one
+indexed query" and a reviewer ran the plan: `SEARCH audit_events USING INDEX
+ix_audit_company_seq (company_id=?)`. audit_events carries no index on action, on
+subject_type or on subject_id, so SQLite seeks the tenant and then tests those
+three columns row by row over every audit row the company has ever written --
+logins, claims, escalations, the lot. Eighty-six rows in a freshly seeded
+workspace, and it grows for the life of the tenant, on the read path of the
+busiest screen in the product. THE FIX IS ONE LINE OUTSIDE THIS FILE:
+`Index("ix_audit_company_subject", AuditEvent.company_id, AuditEvent.subject_type,
+AuditEvent.subject_id)` in app/state/models.py, which app/state/migrate.py then
+builds on an existing database without being asked. It is not in this change
+because that file was not in it.
+
+And routing does not know about rejections: a rejected AUTHOR_SYSTEM mapping still answers
+ROUTE_MAPPING_UNCONFIRMED, whose sentence ends "confirm it and this routes to
+X", which is advice the analyst has already declined. The refusal is still
+correct and still names nobody, so no work lands on the wrong desk -- it is the
+wording that is stale, not the outcome. Fixing it properly means moving
+ACTION_MAPPING_REJECTED into app/state/audit.py so routing can read the rows
+without importing this module, which would be a cycle: mapping imports routing.
 """
 
 from __future__ import annotations
@@ -173,7 +229,13 @@ from sqlalchemy.orm import Session
 
 from app.state.audit import ACTOR_SYSTEM, ACTOR_USER, record_event
 from app.state.claims import change_for_company
-from app.state.models import AUTHOR_ANALYST, ChangeObligation, Obligation, Passage
+from app.state.models import (
+    AUTHOR_ANALYST,
+    AuditEvent,
+    ChangeObligation,
+    Obligation,
+    Passage,
+)
 from app.state.queries import _require_scope, passages_for_company
 from app.state.routing import (
     ACTION_OBLIGATION_MAPPED,
@@ -258,6 +320,156 @@ _NOTES = {
     ),
 }
 
+# ---------------------------------------------------------------------------
+# A person's no
+#
+# THE HALF ADR-87 LEFT OUT, AND THE COST IT WROTE DOWN. Routing refuses to name
+# an owner behind a mapping only the pipeline proposed, and twenty-four of the
+# twenty-six mappings in the demonstration corpus are the pipeline's -- so the
+# refusal is the ordinary case. Confirming cleared it. Nothing cleared a
+# candidate that was simply WRONG: the proposer recomputes on every render, so a
+# candidate a person threw away came back on the next one, and the only button
+# that changed anything was the one that agreed with the machine. A screen that
+# asks the same question for ever, where the honest answer costs the reader
+# their afternoon and the flattering answer clears the page, is a screen that
+# teaches people to confirm.
+#
+# A REJECTION IS AN AUDIT ROW AND NOT A COLUMN, and that is the whole design
+# decision here.
+#
+#   Nothing unmaps. app/state/models.py::ChangeObligation says a mapping
+#   somebody later disagrees with is a fact about what was believed, and that
+#   deleting it erases the reason an action was taken -- "withdrawing one is a
+#   new row somewhere that says so, never a DELETE here". This is that row.
+#
+#   mapped_by_kind cannot carry it. The column is one of TURN_AUTHOR_KINDS, it
+#   answers WHO WROTE the mapping, and a third value meaning "and then somebody
+#   said no" would be two facts in one column -- the shape ADR-87 refused when
+#   it declined to add a `trusted` boolean beside it.
+#
+#   The chain is where decisions already live, append-only and hashed, and a
+#   rejection is a decision in exactly the sense the log exists for.
+#
+# WHAT IT COSTS, said here rather than found later -- and said WRONG here first,
+# which is worth leaving on the record. The proposal now reads the audit table on
+# every render: one query, seeking the company on ix_audit_company_seq and then
+# reading every audit row the tenant has, because no index covers action or the
+# subject. The module docstring carries the plan a reviewer ran and the one line
+# in app/state/models.py that fixes it. And a rejection is only as good as the
+# subject id it is filed under, which is why that id is built in one place below
+# and refused if either half could make it ambiguous.
+# ---------------------------------------------------------------------------
+
+#: The action code for "a person said this change does not bear on this duty".
+#:
+#: IT BELONGS IN app/state/audit.py BESIDE THE REST OF THE VOCABULARY, AND MUST
+#: BE MOVED THERE RATHER THAN COPIED. It sits here for the same reason
+#: app/state/routing.py's two obligation codes sit there and say so: that file
+#: is outside the change that needed this constant. A second spelling of an
+#: action code writes a row that hashes perfectly and that no query for the
+#: right code ever returns, so when this moves, this block is deleted and the
+#: import changes -- nothing else does.
+#:
+#: NAMED FOR WHAT WAS REJECTED, WHICH IS THE MAPPING AND NOT THE DUTY.
+#: "obligation.rejected" would read as a company throwing out one of its own
+#: duties, which is a different act with different consequences and one this
+#: product does not have.
+ACTION_MAPPING_REJECTED = "obligation.mapping_rejected"
+
+#: The subject a rejection is filed under: the PAIR, not the change and not the
+#: duty. "Which mappings did we throw away" has to be answerable by filtering
+#: rows -- the argument app/state/routing.py makes for keeping escalation.routed
+#: and escalation.unrouted apart -- and a row filed against the change alone
+#: would push that question into the reason text.
+#:
+#: WHAT THIS DELIBERATELY DOES NOT DO. app/auth/policy.py reads audit rows
+#: against a claim's own subjects -- the claim, its change -- to decide who
+#: authored the interpretation an approval rests on, and a row filed under this
+#: subject type is not among them. That is the intended answer rather than an
+#: oversight: an approval rests on a mapping somebody CONFIRMED, and the person
+#: who declined a different candidate authored nothing it stands on. A confirm
+#: still files against the change and still counts as authorship.
+SUBJECT_CHANGE_OBLIGATION = "change_obligation"
+
+#: How the two ids are joined into one subject id. Two colons rather than one
+#: because a single one is common in identifiers generally; the guard below is
+#: what makes the choice safe rather than lucky.
+PAIR_SEPARATOR = "::"
+
+#: What the audit reason says. Two sentences for the two cases, exactly as the
+#: confirmation has two: rejecting a candidate the words produced is a person
+#: disagreeing with the proposer, and rejecting a mapping the words never
+#: offered is a person disagreeing with something else entirely. Folding them
+#: would make "how often is the proposer wrong" unanswerable from the record.
+REJECTED_A_CANDIDATE = "rejected a candidate proposed on {terms}"
+REJECTED_UNPROPOSED = "not proposed by these words; a person rejected it anyway"
+
+#: What is added when the pipeline had already stored the mapping. The row stays
+#: exactly as it was -- see the block above -- so the reason has to say that the
+#: stored mapping is the thing being disagreed with, or a reader finds a live
+#: AUTHOR_SYSTEM row and a rejection and cannot tell which came first.
+REJECTED_A_STORED_CANDIDATE = "the pipeline had already stored it (by {was})"
+
+#: The one refusal this act can hit, and it is a sentence rather than a silence.
+REJECT_AFTER_CONFIRMATION = (
+    "a person confirmed this mapping, and rejecting it here would take back a "
+    "judgement work has already been routed on. Withdrawing a confirmation is a "
+    "different act with its own record and it is not built"
+)
+
+
+class RejectionRefused(ValueError):
+    """A rejection this module will not record, with the reason in its message.
+
+    A subclass of ValueError so every caller already catching ValueError keeps
+    catching it, and a distinct name so a caller that has to answer differently
+    -- the screen turns this one into a 409 and lets anything else be the fault
+    it is -- can tell it from a bad argument.
+    """
+
+
+@dataclass(frozen=True, slots=True)
+class Rejection:
+    """One recorded no: who said it, when, and against which pair.
+
+    Read back from the chain rather than from a column, so it cannot disagree
+    with the log. There is no `reason` field: the sentence is on the audit row
+    and a copy of it here would be a second thing to keep true.
+    """
+
+    change_id: str
+    obligation_id: str
+    by: str
+    by_user_id: str | None
+    at: datetime
+
+
+def mapping_subject_id(change_id: str, obligation_id: str) -> str:
+    """The audit subject id for one change-to-obligation pair.
+
+    ONE BUILDER, AND IT REFUSES AN ID THAT WOULD MAKE THE PAIR AMBIGUOUS.
+    "A::B" + "C" and "A" + "B::C" are the same string, so with a separator
+    loose in an id, rejecting one mapping would silently reject another -- a
+    duty dropped off somebody's page with a correct-looking audit row behind it.
+    Nothing in the corpus carries the separator today; the guard is here so that
+    the day something does, it stops rather than crosses two mappings.
+    """
+    for half in (change_id, obligation_id):
+        if not half or not isinstance(half, str):
+            raise ValueError(
+                "a mapping subject names one change and one obligation; got "
+                f"{change_id!r} and {obligation_id!r}"
+            )
+        if PAIR_SEPARATOR in half:
+            raise ValueError(
+                f"{half!r} contains {PAIR_SEPARATOR!r}, which joins the two "
+                "halves of a mapping subject. Two different pairs would build "
+                "one subject id, so a rejection of either would read as a "
+                "rejection of both."
+            )
+    return f"{change_id}{PAIR_SEPARATOR}{obligation_id}"
+
+
 _PROPOSAL_NOTES = {
     PROPOSAL_NO_CHANGE: "No change with that id on this company's record.",
     PROPOSAL_NO_OBLIGATIONS: (
@@ -332,6 +544,14 @@ class ObligationMatch:
     entirely: a duty a person mapped by hand can still carry NOT_FOUND_BY_THESE
     _WORDS, and that combination is not a contradiction -- it is the honest
     record of somebody knowing something the words could not reach.
+
+    rejected IS A THIRD AXIS AND NOT A FOURTH REASON CODE. reason says what the
+    WORDS found; rejected says what a PERSON decided about what the words found.
+    Folding the second into the first would throw away the matched terms of
+    every rejected row -- and those terms are exactly what a reader needs to
+    judge the rejection, because a candidate rejected on seven shared words is a
+    different event from one rejected on two. app/state/models.py::Finding keeps
+    status and verification apart for the same reason and says so.
     """
 
     obligation_id: str
@@ -344,11 +564,23 @@ class ObligationMatch:
     mapped_by_kind: str
     reason: str
     note: str
+    # Defaulted, so a caller constructing one of these by hand -- the invariant
+    # test does -- keeps working and gets the honest value: nobody has rejected
+    # a row nobody said anything about.
+    rejected: bool = False
+    rejected_by: str = ""
+    rejected_at: datetime | None = None
 
     @property
     def offered(self) -> bool:
-        """Whether this row is a candidate somebody is being asked about."""
-        return self.reason == "" and not self.mapped
+        """Whether this row is a candidate somebody is being asked about.
+
+        A rejected row is never offered, and that is the sentence the whole
+        rejection exists for: without it the proposer recomputes the same
+        candidate on the next render and the analyst answers the same question
+        for ever.
+        """
+        return self.reason == "" and not self.mapped and not self.rejected
 
 
 @dataclass(frozen=True, slots=True)
@@ -382,10 +614,29 @@ class Proposal:
 
     @property
     def missed(self) -> tuple[ObligationMatch, ...]:
-        """Every duty with no candidate and no mapping. The explicit zeroes."""
+        """Every duty with no candidate and no mapping. The explicit zeroes.
+
+        A rejected duty is NOT one of these. "The words did not reach it" and "a
+        person read it and said no" are opposite facts about how much attention
+        the duty got, and a screen that printed them under one heading would be
+        telling a reader nobody had looked.
+        """
         return tuple(
-            row for row in self.obligations if not row.mapped and row.reason
+            row
+            for row in self.obligations
+            if not row.mapped and row.reason and not row.rejected
         )
+
+    @property
+    def rejected(self) -> tuple[ObligationMatch, ...]:
+        """The duties a person read and turned down, in id order.
+
+        Present on the proposal rather than filtered out of it, for the reason
+        refuse_a_short_proposal enforces one line down: the accounting covers
+        every duty in scope, and a rejection is a decision somebody made rather
+        than a row that stops existing.
+        """
+        return tuple(row for row in self.obligations if row.rejected)
 
 
 def refuse_a_short_proposal(
@@ -557,6 +808,66 @@ def _span_of(passage: Passage) -> MatchSpan:
     )
 
 
+def _rejections_for_change(
+    session: Session,
+    company_id: str,
+    change_id: str,
+    obligation_ids: tuple[str, ...] | list[str],
+) -> dict[str, Rejection]:
+    """Every recorded no against this change, by obligation. One query.
+
+    READ BACK FROM THE CHAIN, WHICH IS WHERE THE DECISION IS. Nothing stores a
+    rejection anywhere else, so there is no column that can drift from the log
+    and no second reader to keep in step -- the same argument
+    app/state/routing.py makes for re-deriving a routing verdict rather than
+    storing one.
+
+    Scoped on the company like every other read here, and the scope is the
+    check rather than decoration: audit rows carry the tenant that wrote them,
+    and a proposal that read another company's rejections would withhold
+    candidates for reasons this company never gave.
+
+    Matched by EXACT subject id over the duties in scope rather than by a LIKE
+    over a prefix. A pattern would drag app/state/queries.py's wildcard argument
+    into a second place; a fixed list cannot match a pair nobody named.
+
+    ONE QUERY, AND ONLY THE COMPANY SEEK IS INDEXED. SQLite takes
+    ix_audit_company_seq for company_id and then tests action, subject_type and
+    subject_id row by row across the tenant's whole audit history. Correct, and
+    it costs a scan that grows for ever on the busiest screen in the product.
+    The module docstring names the index that ends it.
+    """
+    if not obligation_ids:
+        return {}
+    subjects = {
+        mapping_subject_id(change_id, obligation_id): obligation_id
+        for obligation_id in obligation_ids
+    }
+    rows = (
+        session.query(AuditEvent)
+        .filter(AuditEvent.company_id == company_id)
+        .filter(AuditEvent.action == ACTION_MAPPING_REJECTED)
+        .filter(AuditEvent.subject_type == SUBJECT_CHANGE_OBLIGATION)
+        .filter(AuditEvent.subject_id.in_(sorted(subjects)))
+        .order_by(AuditEvent.seq)
+        .all()
+    )
+    # The latest row wins, which today is the only row: a second rejection of
+    # one pair is a double click and is never written. Ordering by seq rather
+    # than by timestamp because the chain's order is the one that cannot be
+    # rewritten.
+    return {
+        subjects[row.subject_id]: Rejection(
+            change_id=change_id,
+            obligation_id=subjects[row.subject_id],
+            by=row.actor,
+            by_user_id=row.actor_user_id,
+            at=row.occurred_at,
+        )
+        for row in rows
+    }
+
+
 def _zero(
     obligation: Obligation,
     reason: str,
@@ -565,6 +876,7 @@ def _zero(
     span: MatchSpan | None = None,
     mapped: bool = False,
     mapped_by_kind: str = "",
+    rejection: Rejection | None = None,
 ) -> ObligationMatch:
     return ObligationMatch(
         obligation_id=obligation.id,
@@ -577,6 +889,9 @@ def _zero(
         mapped_by_kind=mapped_by_kind,
         reason=reason,
         note=_NOTES[reason],
+        rejected=rejection is not None,
+        rejected_by=rejection.by if rejection is not None else "",
+        rejected_at=rejection.at if rejection is not None else None,
     )
 
 
@@ -637,6 +952,27 @@ def propose_obligations_for_change(
         row = stored.get(obligation.id)
         return (row is not None, row.mapped_by_kind if row is not None else "")
 
+    refused = _rejections_for_change(session, company_id, change_id, scope)
+
+    def _rejection(obligation: Obligation) -> Rejection | None:
+        """This duty's recorded no, unless a person has since confirmed it.
+
+        A CONFIRMATION OUTRANKS A REJECTION, AND IT CAN ONLY ARRIVE AFTERWARDS.
+        reject_obligation_for_change refuses to reject a pair a person has
+        confirmed, so the two decisions cannot be in the opposite order -- which
+        is what makes "the confirmation wins" a rule about the product rather
+        than a race between two audit rows. Both stay in the chain either way;
+        this is only about which one the page acts on.
+
+        The alternative, comparing timestamps, would decide a live question by
+        clock order and would answer differently for a reject that lost a race
+        it is not allowed to enter.
+        """
+        row = stored.get(obligation.id)
+        if row is not None and row.mapped_by_kind == AUTHOR_ANALYST:
+            return None
+        return refused.get(obligation.id)
+
     passages = _touched_passages(session, company_id, change)
     if not passages:
         # NOT a proposal that found nothing. The offsets reach no stored
@@ -649,6 +985,7 @@ def propose_obligations_for_change(
                 MATCH_NOT_SEARCHED,
                 mapped=_mapped(obligation)[0],
                 mapped_by_kind=_mapped(obligation)[1],
+                rejection=_rejection(obligation),
             )
             for obligation in obligations
         )
@@ -670,6 +1007,7 @@ def propose_obligations_for_change(
     rows: list[ObligationMatch] = []
     for obligation in obligations:
         mapped, kind = _mapped(obligation)
+        rejection = _rejection(obligation)
         own = terms[obligation.id]
         if not own:
             rows.append(
@@ -678,6 +1016,7 @@ def propose_obligations_for_change(
                     MATCH_NO_WORDS,
                     mapped=mapped,
                     mapped_by_kind=kind,
+                    rejection=rejection,
                 )
             )
             continue
@@ -709,6 +1048,9 @@ def propose_obligations_for_change(
                     mapped_by_kind=kind,
                     reason="",
                     note="",
+                    rejected=rejection is not None,
+                    rejected_by=rejection.by if rejection is not None else "",
+                    rejected_at=rejection.at if rejection is not None else None,
                 )
             )
         else:
@@ -720,6 +1062,7 @@ def propose_obligations_for_change(
                     span=best_span,
                     mapped=mapped,
                     mapped_by_kind=kind,
+                    rejection=rejection,
                 )
             )
 
@@ -773,6 +1116,14 @@ CONFIRMED_UNPROPOSED = "not proposed by these words; a person mapped it anyway"
 CONFIRMED_A_STORED_CANDIDATE = (
     "confirmed a mapping the pipeline had proposed and stored (was {was})"
 )
+
+
+def _row_for(proposal: Proposal, obligation_id: str) -> ObligationMatch | None:
+    """One duty's row in a proposal, or None if the proposal refused outright."""
+    return next(
+        (row for row in proposal.obligations if row.obligation_id == obligation_id),
+        None,
+    )
 
 
 def confirm_obligation_for_change(
@@ -836,11 +1187,18 @@ def confirm_obligation_for_change(
         # missing change gets: nothing about whose it is.
         raise ValueError(f"no change {change_id!r} for this company")
 
-    proposed = {row.obligation_id: row for row in proposal.candidates}
-    if obligation_id in proposed:
-        note = CONFIRMED_A_CANDIDATE.format(
-            terms=", ".join(proposed[obligation_id].matched_terms)
-        )
+    # WHETHER THE WORDS PROPOSED IT, WHICH IS NOT THE SAME QUESTION AS WHETHER
+    # IT MADE THE SHORTLIST. This read used to be against proposal.candidates,
+    # and that list is capped at MAX_CANDIDATES: a duty the words reached but
+    # that ranked fourth was recorded in the chain as "not proposed by these
+    # words", which is false, and false in the direction that flatters the
+    # person -- it reads as somebody knowing something the machine could not
+    # reach when in fact they agreed with it. reason == "" is the proposer's own
+    # test for "this duty cleared the threshold" and it knows nothing about a
+    # display cap.
+    matched = _row_for(proposal, obligation_id)
+    if matched is not None and matched.reason == "":
+        note = CONFIRMED_A_CANDIDATE.format(terms=", ".join(matched.matched_terms))
     else:
         note = CONFIRMED_UNPROPOSED
 
@@ -887,7 +1245,112 @@ def confirm_obligation_for_change(
     )
 
 
+def reject_obligation_for_change(
+    session: Session,
+    company_id: str,
+    *,
+    change_id: str,
+    obligation_id: str,
+    actor: str,
+    actor_user_id: str | None = None,
+    now: datetime | None = None,
+) -> Rejection:
+    """A person says this change does NOT bear on this duty. Recorded as theirs.
+
+    THE OTHER HALF OF THE SCREEN, AND THE ONE WITHOUT WHICH IT DOES NOT WORK.
+    Confirming clears a proposal by agreeing with it. Nothing cleared a proposal
+    that was simply wrong: propose_obligations_for_change recomputes on every
+    render, so a candidate a person threw away came back, and the analyst was
+    asked the same question every time they opened the page. A screen where the
+    only button that changes anything is the one that agrees with the machine is
+    a screen that manufactures agreement.
+
+    NOTHING IS DELETED AND NOTHING IS EDITED. A mapping the pipeline had already
+    stored keeps its row, its timestamp and its author -- see the block at the
+    head of this file -- and this appends a decision beside it. What changes is
+    what the proposer OFFERS: ObligationMatch.offered is false for a rejected
+    pair, so the candidate stops being a question and starts being a record.
+
+    IT DOES NOT ROUTE AND IT DOES NOT UN-ROUTE. A rejected pair whose stored row
+    is the pipeline's still answers ROUTE_MAPPING_UNCONFIRMED in
+    app/state/routing.py, because nobody confirmed it -- which is the same
+    refusal, for the same reason, and it names no owner. That is the wanted
+    outcome and it is worth stating: this function's job is to stop the product
+    asking, not to reach into the routing contract.
+
+    A MAPPING A PERSON CONFIRMED IS NOT REJECTED HERE, and the refusal says so
+    rather than doing nothing. Work is routed on a confirmation -- an escalation
+    may already be on somebody's desk because of it -- so taking one back is a
+    different act with different consequences, and it is not built. Absence is
+    denial: the caller gets RejectionRefused with the sentence in it, never a
+    quiet no-op that reads as success.
+
+    Rejecting a pair already rejected is a double click: the stored decision
+    comes back, nothing is written and nothing is appended, exactly as
+    confirming twice does.
+    """
+    _require_scope(company_id)
+    who = _require_actor(actor)
+    stamp = now or _utcnow()
+
+    # The same read the confirmation makes, and for the same reason: it resolves
+    # the change under this company's scope, and its answer describes the
+    # decision rather than gating it.
+    proposal = propose_obligations_for_change(session, company_id, change_id=change_id)
+    if proposal.reason == PROPOSAL_NO_CHANGE:
+        raise ValueError(f"no change {change_id!r} for this company")
+
+    # Scoped by construction: the proposal covers every obligation this company
+    # has and nothing else, so an id belonging to another tenant is absent here
+    # exactly as an id belonging to nobody is. The message says the same thing
+    # to both, which is all either asker is entitled to know.
+    matched = _row_for(proposal, obligation_id)
+    if matched is None:
+        raise ValueError(f"no obligation {obligation_id!r} for this company")
+
+    stored = {
+        row.obligation_id: row
+        for row in mappings_for_change(session, company_id, change_id)
+    }
+    held = stored.get(obligation_id)
+    if held is not None and held.mapped_by_kind == AUTHOR_ANALYST:
+        raise RejectionRefused(REJECT_AFTER_CONFIRMATION)
+
+    already = _rejections_for_change(session, company_id, change_id, [obligation_id])
+    if obligation_id in already:
+        return already[obligation_id]
+
+    if matched.reason == "":
+        note = REJECTED_A_CANDIDATE.format(terms=", ".join(matched.matched_terms))
+    else:
+        note = REJECTED_UNPROPOSED
+    if held is not None:
+        note = f"{note}; {REJECTED_A_STORED_CANDIDATE.format(was=held.mapped_by)}"
+
+    record_event(
+        session,
+        company_id=company_id,
+        actor=who,
+        action=ACTION_MAPPING_REJECTED,
+        subject_type=SUBJECT_CHANGE_OBLIGATION,
+        subject_id=mapping_subject_id(change_id, obligation_id),
+        reason=f"does not bear on {obligation_id}; {note}",
+        occurred_at=stamp,
+        actor_user_id=actor_user_id,
+        actor_kind=ACTOR_USER if actor_user_id else ACTOR_SYSTEM,
+    )
+    session.flush()
+    return Rejection(
+        change_id=change_id,
+        obligation_id=obligation_id,
+        by=who,
+        by_user_id=actor_user_id or None,
+        at=stamp,
+    )
+
+
 __all__ = [
+    "ACTION_MAPPING_REJECTED",
     "CONFIRMED_A_CANDIDATE",
     "CONFIRMED_UNPROPOSED",
     "MATCH_NOT_SEARCHED",
@@ -896,16 +1359,26 @@ __all__ = [
     "MATCH_ONE_WORD",
     "MAX_CANDIDATES",
     "MIN_MATCHED_TERMS",
+    "PAIR_SEPARATOR",
     "PROPOSAL_NO_CHANGE",
     "PROPOSAL_NO_OBLIGATIONS",
     "PROPOSAL_NO_PASSAGES",
+    "REJECTED_A_CANDIDATE",
+    "REJECTED_A_STORED_CANDIDATE",
+    "REJECTED_UNPROPOSED",
+    "REJECT_AFTER_CONFIRMATION",
+    "SUBJECT_CHANGE_OBLIGATION",
     "MatchSpan",
     "ObligationMatch",
     "Proposal",
+    "Rejection",
+    "RejectionRefused",
     "confirm_obligation_for_change",
     "discriminating_terms",
+    "mapping_subject_id",
     "propose_obligations_for_change",
     "refuse_a_short_proposal",
+    "reject_obligation_for_change",
     "terms_of",
     "words_of",
 ]

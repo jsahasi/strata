@@ -34,7 +34,14 @@
   --face-data: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
     "Liberation Mono", monospace;
 
-  --t-micro: 0.6875rem;   /* 11px — uppercase labels, codes, coordinates */
+  --t-micro: 0.75rem;     /* 12px — uppercase labels, codes, coordinates.
+                             Was 11px. It is the MOST-USED size in the app (38
+                             sites), it is nearly always uppercase and tracked
+                             0.09em, and 11px tracked uppercase is where a
+                             reader stops reading and starts guessing. The
+                             analyst this is built for is often 40-plus and
+                             often on a laptop in somebody else's meeting
+                             room. 12px is the floor, not a preference. */
   --t-small: 0.8125rem;   /* 13px — secondary interface text */
   --t-ui: 0.9375rem;      /* 15px — interface base */
   --t-ui-lg: 1.0625rem;   /* 17px — section headings */
@@ -44,6 +51,13 @@
   --t-count: 1.375rem;    /* 22px — a count read across a grid of cards */
 
   --lh-ui: 1.5;
+  --lh-micro: 1.55;       /* Tracked uppercase needs MORE leading, not less.
+                             Letter-spacing pushes glyphs apart across the
+                             line; tight leading then crowds the lines into
+                             each other and the label reads as a grey block
+                             rather than as words. 13 sites paired --t-micro
+                             with 1.4, which is the tightest combination in
+                             the stylesheet applied to its smallest text. */
   --lh-doc: 1.72;         /* generous leading: this text gets read closely */
   --track-label: 0.09em;
   --measure: 66ch;        /* the reading measure for document prose */
@@ -115,8 +129,58 @@
      DIRECTION was right and the digits were invented by measuring the wrong
      thing, which is a more comfortable error than it should be: it survives
      review precisely because a plausible number reads as a checked one. Nothing
-     asserts either figure in a test, so nothing would have caught it. */
-  --glass-solid: #f4f7f8;    /* that tint already composited over --bg   */
+     asserts either figure in a test, so nothing would have caught it.
+
+     AND THE SAME COMMENT WAS WRONG A SECOND TIME, in a worse way, which is why
+     both corrections stay. That edit raised --glass-tint and stopped there. It
+     did not touch --glass-solid or --glass-1/2/3 -- the literals four lines
+     below, which are the only values any rule in this product actually reads.
+     Nothing anywhere consumes var(--glass-tint). So the token moved, the
+     paragraph above was written in the past tense, and the rendered pane did
+     not change by one value: Chromium at dpr 2 still reported rgb(243,247,248)
+     on 2026-08-05, which is the OLD tint composited, and --ink on it is 16.35:1
+     rather than the 16.41 claimed. 16.41 is --ink against the flat
+     --glass-solid token, which is what you measure if you measure the token
+     instead of the pane. A note that describes an intention as an outcome is
+     the same failure as an invented figure wearing better clothes.
+
+     The literals below are now recomputed from the tint above, and the pane
+     did move: over open ground it composites to rgb(247,249,250), where --ink
+     is 16.73:1, --ink-2 8.26:1 and --ink-3 4.57:1.
+
+     AND THEN THE CORRECTION WAS WRONG A THIRD TIME, in exactly the way the two
+     paragraphs above it condemn, which is why this one stays too. Those three
+     figures were written here as "computed from the pixel Chromium drew, not
+     from the token", and the 4.57 was used to announce that --ink-3 had cleared
+     AA on the masthead for the first time. Every one of them is ratio() against
+     the flat --glass-solid TOKEN. #f7f9fa returns 16.73 / 8.26 / 4.57 to the
+     hundredth. The pane only reads rgb(247,249,250) on a page with nothing dark
+     behind it -- which is measuring an empty page, the same error as measuring
+     the token, wearing a fourth disguise.
+
+     THE PANE IS GLASS. It has no colour of its own; it has the colour of
+     whatever is behind it, and on this product something is always behind it,
+     because content scrolls under a sticky masthead. That is the entire point
+     of the surface. Measured properly -- /proceedings/MPUC-2026-0142 at
+     1440x900 dpr 2, light, masthead text set transparent so the backdrop can be
+     read, every pixel inside the .nav__link--off box sampled:
+
+         best pixel in the box    rgb(245,247,249)   --ink-3 4.49:1
+         worst pixel in the box   rgb(227,230,232)   --ink-3 3.85:1
+
+     Identical at 1440, 1280, 1216 and 1200. So --ink-3 on the masthead does NOT
+     clear AA. It does not clear it anywhere in that box, at its best pixel, on
+     a freshly loaded page. The claim was false and it was written into three
+     comments as checked fact.
+
+     WHAT IS TRUE, and what the figures below are: --glass-solid is the flat
+     substitute the @supports fallback and prefers-reduced-transparency use, and
+     16.73 / 8.26 / 4.57 are correct FOR THAT TOKEN, which is what they were all
+     along. They are labelled as token arithmetic here and asserted as token
+     arithmetic in tests/test_glass_contrast.py. Nothing in this file now claims
+     a rendered figure, because a rendered figure on a translucent surface is
+     not a number -- it is a range that depends on what is underneath. */
+  --glass-solid: #f7f9fa;    /* that tint already composited over --bg   */
   --glass-edge: #ffffff;     /* the 1px highlight that says "in front"   */
   --glass-cast: #04191f;     /* shadows are blue-black, never neutral    */
 
@@ -133,18 +197,176 @@
      words it carries, the MORE opaque it is. The masthead holds two words
      per item and you look past it a thousand times. A tip holds a
      paragraph you read once. See --blur-1/2/3, which pair with these. */
-  --glass-1: rgba(247, 250, 251, 0.62);   /* attached  */
-  --glass-2: rgba(247, 250, 251, 0.86);   /* floating  */
-  --glass-3: rgba(247, 250, 251, 0.92);   /* transient */
+  --glass-1: rgba(253, 254, 255, 0.62);   /* attached  */
+  --glass-2: rgba(253, 254, 255, 0.86);   /* floating  */
+  --glass-3: rgba(253, 254, 255, 0.92);   /* transient */
 
   --blur-1: blur(20px) saturate(180%);
   --blur-2: blur(30px) saturate(170%);
   --blur-3: blur(14px) saturate(160%);
 
+  /* ---- the ground the panes sit on -----------------------------------
+   * A frosted pane over one flat colour is a flat pane. Blur only reads as
+   * glass when there is something varied behind it to soften, and there was
+   * nothing to soften: on /proceedings, Chromium at dpr 2 returned exactly
+   * rgb(238,241,242) at every point probed across the frame -- both gutters,
+   * mid-column, and 1200px down. (Probed, not exhaustively sampled. The claim
+   * is that no probe found any variation, which is weaker than "there was
+   * none" and is what was actually done.) The filter ran correctly on a page
+   * that gave it no work, which is why the chrome read flat while every
+   * backdrop-filter rule was doing exactly what it said.
+   *
+   * WHAT IT BUYS, measured the same way afterwards, scanning x=0..320 on one
+   * frame at 1440x900 dpr 2 with all text hidden. The desk/sheet edge, read on
+   * open ground and then read through the masthead on the same frame:
+   *
+   *              open ground              through the masthead
+   *   light      225 -> 238 in 18px       242 -> 247 in 57px
+   *   dark         5 ->  12 in 16px        17 ->  19 in 30px
+   *
+   * Amplitude down by two thirds, spread out over three times the distance,
+   * and no step left in it. That difference -- a crisp edge in the world, soft
+   * where you see it through the pane -- is the whole of what "glass" means
+   * here, and it is the one thing on the page you can point at to show the
+   * filter working.
+   *
+   * (Written first as "twelve values over twelve pixels" and "five values over
+   * ninety". Thirteen over eighteen, and five over fifty-seven. The comparison
+   * was sound and every digit in it was approximate. Rounding a measurement you
+   * did not take is the same habit as inventing one, and this file has enough
+   * of that in it already.)
+   *
+   * So the ground gets structure, taken from the subject rather than from a
+   * hero gradient: a sheet of ruled filing paper lying on a desk. Three
+   * layers, topmost first.
+   *
+   *   the desk    everything outside the 76rem shell steps down. It buys the
+   *               best cue in the set: two crisp vertical edges that the
+   *               masthead's blur visibly softens as they pass under it and
+   *               that snap back the moment they clear it.
+   *
+   *               THE SAFETY ARGUMENT HERE WAS WRONG AS FIRST WRITTEN. It said
+   *               "content never renders there -- .masthead, .main and
+   *               .colophon each wrap their children in .shell". Those three
+   *               do. .skip does not: it is a sibling of all three, and
+   *               `.skip:focus { left: var(--s4) }` puts it 16px from the
+   *               window edge, deep inside the desk, as the FIRST thing a
+   *               keyboard user reaches. The invariant was stated about the
+   *               elements somebody happened to look at.
+   *
+   *               It is safe for a different reason, and the real one is worth
+   *               having written down: .skip carries `background: var(--accent)`
+   *               -- an opaque fill -- so the ground behind it never shows
+   *               through and the desk cannot touch its contrast. That is the
+   *               rule for anything that lands out here in future: opaque fill,
+   *               or stay inside .shell. tests/test_glass_contrast.py asserts
+   *               .skip keeps an opaque background, which is the only part of
+   *               this a test can hold.
+   *
+   *               The clearance is also tighter than "the gutter". The ramp
+   *               runs calc(50% - 38rem) to calc(50% - 37rem); .shell's left
+   *               edge is exactly calc(50% - 38rem) and its padding is 24px, so
+   *               the ramp reaches 16px into the shell box and clears the first
+   *               glyph by 8px. Measured at 1440: shell x=112, ramp ends x=128,
+   *               first nav glyph x=136.
+   *   the rule    a writing rule every 32px and a docket-column rule every
+   *               96px. High-frequency detail is what a blur destroys, so
+   *               this is the part that disappears under a pane and stays
+   *               sharp beside it. One pixel each, hard-stopped: no ramp, so
+   *               nothing to band and no fringe from interpolating to
+   *               transparent.
+   *
+   * DIRECTION IS A CONTRAST DECISION, NOT A TASTE ONE. In light the rules
+   * LIGHTEN and only lighten, so the darkest point of the light SHEET is still
+   * exactly --bg and no ink-on-ground pair can move. In dark they DARKEN and
+   * only darken, for the same reason read the other way. The desk darkens in
+   * both, and is the one place either scheme is allowed to, because the only
+   * thing that ever lands on it is opaque (see above).
+   *
+   * WHERE THE DESK ACTUALLY STOPS, since the first write-up of this got it
+   * wrong in the other direction and conceded too much. It said that below
+   * 76rem the ground is "a flat ruled sheet with no gutters". The two stops are
+   * calc(50% - 38rem) and calc(50% - 37rem): below 76rem the first clamps to
+   * zero but the SECOND stays positive until about 1184px, so a narrowing
+   * sliver of desk survives the breakpoint. Measured on the ground row at
+   * y=840, light: at 1216px the left edge runs 230, 226, 227, 229, 230, 232 out
+   * to x=8 and reaches --bg at x=16; at 1200px it is an 8px sliver; at 1190px
+   * 2px; at 1184px it is gone. Cosmetic -- no text sits there -- but a laptop
+   * at 1200px shows a thin dark stripe at each edge rather than a clean sheet,
+   * and that is a rendered fact rather than the tidy story.
+   *
+   * NOTHING HERE MOVES. Not on scroll, not on hover, not on load. A ground
+   * that animates would need a reduced-motion escape and would be the exact
+   * machine-made effect this is trying to get away from. Stated so nobody
+   * adds one. --ground is switched off whole in print, in prefers-contrast:
+   * more and in prefers-reduced-transparency: reduce -- see those blocks.
+   */
+  --desk: rgba(16, 26, 30, 0.055);
+  --sheet: rgba(16, 26, 30, 0);      /* the same ink at zero: premultiplied
+                                        or not, the ramp cannot fringe */
+  /* THE LIGHT SCHEME HAS ALMOST NO ROOM HERE and the numbers should say so
+     rather than the alphas being nudged until something shows. --bg is
+     rgb(238,241,242); white is 17, 14 and 13 values away per channel. So a
+     lightening rule can move the ground by four values at 0.30 and by nine at
+     0.55 -- and nine is the pane's own step above the page, which would put a
+     hairline in the ground at the value of the chrome.
+
+     RENDERED, counted across a full 1440x900 frame at dpr 2 rather than read
+     off one pixel, because reading one pixel is how three other figures in this
+     file went wrong. Against a sheet of rgb(238,241,242):
+
+       column rule    rgb(243,245,246) at 7 of the 12 columns in frame,
+                      rgb(243,245,245) at the other 5 -- the calc() lands
+                      between device pixels and the blue channel rounds down
+       writing rule   rgb(241,244,244), every occurrence
+
+     So five and three, not the five and four written here first. Dark has the
+     opposite problem in the opposite direction and gets rgb(9,14,16) at all 12
+     columns and rgb(10,16,19) on every writing rule, against rgb(12,19,22) --
+     those two were right. This is why the desk -- the one surface allowed to
+     darken -- carries most of the structure in light. It renders rgb(225,229,230)
+     and rgb(226,229,230) in equal measure, dithering between the two across the
+     gutter; rgb(5,9,10) in dark. */
+  --ruled-col: rgba(255, 255, 255, 0.30);
+  --ruled-line: rgba(255, 255, 255, 0.22);
+
+  /* Written once. Only the four colours above flip between schemes: var()
+     inside a custom property resolves against the element it lands on, so
+     :root's dark block re-tints this without restating the geometry. The
+     38rem/37rem pair is half of --shell (76rem) and a 1rem ramp inside it. */
+  --ground:
+    linear-gradient(
+      90deg,
+      var(--desk) 0,
+      var(--desk) calc(50% - 38rem),
+      var(--sheet) calc(50% - 37rem),
+      var(--sheet) calc(50% + 37rem),
+      var(--desk) calc(50% + 38rem),
+      var(--desk) 100%
+    ),
+    repeating-linear-gradient(
+      180deg,
+      var(--ruled-line) 0 1px,
+      transparent 1px 32px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--ruled-col) 0 1px,
+      transparent 1px 96px
+    );
+
   /* Depth comes from light, not from a heavy shadow: a one-pixel highlight
      along the top edge, and a cast that grows with how far the surface
      floats. --glass-cast is the colour all three are mixed from. */
-  --edge: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  /* 0.55 over the old pane put the highlight four values above it, which is
+     not a highlight. At 0.9 over the corrected pane it is rgb(254,254,254)
+     against rgb(247,249,250) -- seven, and seven is the whole budget a
+     near-white pane has. In light the top edge can only ever whisper; the
+     cast below is what carries "in front" here, and the bright edge is a
+     dark-scheme device. Both are stated rather than assumed because the
+     reflex is to keep raising the highlight until it works, and in light it
+     cannot. */
+  --edge: inset 0 1px 0 rgba(255, 255, 255, 0.9);
   --shadow-1: 0 1px 2px rgba(4, 25, 31, 0.07);
   /* THE STICKY PANES NEED THEIR OWN, and shadow-1 could not be widened to
      do it: four surfaces use it and most of them are flat cards that would
@@ -152,8 +374,83 @@
      is the one place an elevation shadow is telling the truth -- something
      really is in front of something else -- and at 2px and 7 per cent the
      old one said nothing at all. This is the whole reason the chrome read
-     flat while the blur was working correctly behind it. */
-  --glass-lift: 0 6px 16px rgba(4, 25, 31, 0.10), 0 1px 2px rgba(4, 25, 31, 0.06);
+     flat while the blur was working correctly behind it.
+
+     WHAT IT WAS ACTUALLY DOING, measured in Chromium at dpr 2 rather than
+     reasoned about: deepest pixel rgb(211,216,216) hard against the pane's
+     bottom edge, back to within five values of the ground eight pixels later,
+     gone at twenty. So the cast was never shallow -- it was SHORT. A gradient
+     that steep does not read as one surface floating above another; it reads
+     as a slightly soft border, which is what a reader was seeing and calling
+     flat.
+
+     (THE FIRST DRAFT OF THIS PARAGRAPH SAID "two values deep, gone within
+     eight", and it is corrected rather than quietly replaced because this is
+     the third wrong measurement in this one token block. It came from
+     sampling the column starting eight pixels BELOW the pane edge -- past the
+     peak -- and reporting what was found there as the maximum. The number was
+     real, the probe was in the wrong place, and it read as checked because it
+     had a digit in it. That is the same failure as the two above it wearing a
+     third disguise.)
+
+     THE FIX WAS FIRST WRITTEN AS "REACH, NOT DEPTH" -- blur 16px to 40px,
+     offset 6px to 18px, alpha down to pay for it -- and the paragraph here
+     claimed that made "every ink-on-ground pair under the masthead improve
+     slightly". THAT CLAIM WAS FALSE, and it was false for the fourth time in
+     this one token block for the fourth version of the same reason: it was
+     read off ONE pixel row, the peak at y=112, and asserted about all of them.
+
+     The column at x=760 on /proceedings at 1440x900 dpr 2, light, before and
+     after that version, --ink-3 against the ground:
+
+         y=112   3.35 -> 3.43   the one row that improved
+         y=120   3.94 -> 3.76
+         y=128   4.17 -> 3.92   the worst, a quarter of a point down
+         y=140   4.25 -> 4.10
+         y=148   4.25 -> 4.21
+
+     One row up, seventeen down. And the reasoning error underneath it is worth
+     naming, because it is not arithmetic: SPREADING THE SAME INK FURTHER MUST
+     DARKEN ROWS THAT WERE CLEAN. The old cast was over by 16px; the new one
+     ran to 29px; every row in between paid for the extra reach. "Same ink,
+     more distance, so nothing gets worse" is not a trade that exists.
+
+     IT IS WORSE THAN A COSMETIC COST HERE, because of a number in another
+     block: --stuck is 7rem, so the .tabs rail sticks at exactly the masthead's
+     bottom edge and sits inside the deepest part of that band PERMANENTLY, not
+     while something scrolls past. Measured at scrollY 900, the rail behind a
+     tab went rgb(236,239,241) -> rgb(232,234,236), --ink-2 7.55 -> 7.23, and
+     the current-tab chip -- opaque --paper white -- rendered rgb(249,249,249)
+     because the masthead is z-index 30 and its cast paints over the whole rail.
+     A shadow that greys out white is not a shadow, it is a film.
+
+     SO THE CAST IS SHORT AND SHALLOW, and the acceptance test is arithmetic
+     rather than taste: no row may be darker than it was BEFORE this lane
+     touched anything. Measured against that baseline, this value:
+
+         peak at the pane edge   rgb(211,216,216) -> rgb(223,226,228)
+         visible cast (>3 off)          16px      ->       13px
+         worst row, any y            no row darker than the old cast
+         rail behind a tab       --ink-2 7.55 -> 7.77, --ink-3 4.17 -> 4.30
+         current-tab chip        rgb(255,255,255), white again
+
+     Shallower and slightly shorter than what was there at the start, and every
+     figure better. That is the honest shape of this fix: the lift a page can
+     afford here is small, because a permanently stuck rail lives in the band,
+     and the thing that actually made the chrome read flat was never the cast's
+     depth. It was the ground behind the blur having no structure to soften.
+
+     DARK KEEPS THE LONG CAST and is measured separately below: darkening a
+     dark ground RAISES contrast for light ink, so the same reach that costs
+     light 0.25 of a point buys dark 0.06. The schemes get different shadows
+     because they are answering to different arithmetic.
+
+     THE NEGATIVE SPREAD IS THE PART THAT SURVIVED: shrink the box, push it
+     down, then blur it. What comes out pools UNDER the pane instead of haloing
+     around it, so .tabs -- a rounded box with two visible sides -- does not
+     grow a grey ring. */
+  --glass-lift: 0 10px 22px -10px rgba(4, 25, 31, 0.1),
+    0 2px 4px -2px rgba(4, 25, 31, 0.05);
   --shadow-2: 0 12px 32px rgba(4, 25, 31, 0.14), 0 2px 6px rgba(4, 25, 31, 0.08);
   --shadow-3: 0 4px 14px rgba(4, 25, 31, 0.1);
 
@@ -223,9 +520,43 @@
     --blur-2: blur(30px) saturate(150%) brightness(1.06);
     --blur-3: blur(14px) saturate(150%) brightness(1.05);
 
-    --edge: inset 0 1px 0 rgba(92, 117, 126, 0.35);
+    /* The ground, read the other way round. Light ink on a dark page gains
+       contrast when the page goes darker, so here the ruling is a groove
+       rather than a sheen and every layer subtracts. --bg is the LIGHTEST
+       point of the dark ground, which is the mirror of the light scheme's
+       rule and means no ink-on-ground pair can move there either.
+
+       The desk goes most of the way to black. It has twelve values of room
+       and it uses them, because a dark page cannot afford to be shy about a
+       step it can barely afford to make. */
+    --desk: rgba(0, 0, 0, 0.55);
+    --sheet: rgba(0, 0, 0, 0);
+    --ruled-col: rgba(0, 0, 0, 0.26);
+    --ruled-line: rgba(0, 0, 0, 0.14);
+
+    /* Dark is where a top edge can actually do the work. --glass-edge at 0.35
+       over the pane gave rgb(46,61,66) against rgb(21,31,35); at 0.5 it is
+       rgb(56,74,80), a hairline you can see without looking for it. The
+       highlight is the dark scheme's "in front", the cast is light's, and
+       neither scheme gets to pretend it has both. */
+    --edge: inset 0 1px 0 rgba(92, 117, 126, 0.5);
     --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5);
-    --glass-lift: 0 8px 22px rgba(0, 0, 0, 0.55), 0 1px 2px rgba(0, 0, 0, 0.4);
+    /* Measured before: ONE value deep and four pixels tall. Black on a page
+       already at rgb(12,19,22) has almost nothing left to give, so the alpha
+       goes most of the way up and the negative spread keeps it under the pane
+       rather than around it.
+
+       THIS ONE KEEPS THE LONG REACH the light scheme had to give back, and the
+       reason is arithmetic, not preference. Dark ink is LIGHT; darkening the
+       ground under it raises contrast rather than spending it. Measured at
+       scrollY 900 on the stuck .tabs rail, old cast against this one: the
+       lightest ground behind a tab goes rgb(20,32,37) -> rgb(19,31,36), so
+       --ink-2 8.05 -> 8.14 and --ink-3 4.78 -> 4.84. The current-tab chip
+       keeps 1.21:1 against the rail, against light's 1.06:1, so dark can also
+       afford the film that light could not. Both schemes were measured; only
+       one of them could pay. */
+    --glass-lift: 0 18px 40px -12px rgba(0, 0, 0, 0.72),
+      0 3px 8px -3px rgba(0, 0, 0, 0.5);
     --shadow-2: 0 12px 32px rgba(0, 0, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
     --shadow-3: 0 4px 14px rgba(0, 0, 0, 0.45);
 
@@ -245,9 +576,17 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* background-color and background-image, never the `background` shorthand.
+   The shorthand would reset background-image every time somebody touched the
+   colour, which is how a backdrop quietly disappears. Every layer in --ground
+   sizes itself -- repeating gradients tile, the desk gradient varies only on
+   90deg -- so there is no background-size or background-repeat to keep in step
+   with it, and switching the ground off anywhere is one declaration:
+   --ground: none. */
 body {
   margin: 0;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: var(--ground);
   color: var(--ink);
   font: var(--t-ui) / var(--lh-ui) var(--face-ui);
   font-synthesis-weight: none;
@@ -433,20 +772,44 @@ hr {
    600. Do not reach for -webkit-font-smoothing: antialiased to compensate:
    on a Mac it thins the strokes, which is the opposite of what is wanted.
 
-   MEASURED, and this is the one place the ladder bit. A G1 pane over the
-   flat page floor composites to #f4f7f8 in light, and --ink-3 on that is
-   4.48:1 -- two hundredths under AA for small text. Over a claim card it
-   is 4.64:1, which is why it was missed. So the two labels a person
-   actually reads up here, the "viewing" qualifier and the tenant id, take
-   --ink-2 instead: 8.4:1.
+   MEASURED, and this is the one place the ladder bit. The G1 pane over the
+   flat page floor is --ink-3 at 4.57:1 by token arithmetic and worse than that
+   in use -- see below. Over a claim card it is 4.64:1, which is why it was
+   missed. So the two labels a person actually reads up here, the "viewing"
+   qualifier and the tenant id, take --ink-2 instead: 8.26:1.
 
-   WHAT IS NOT FIXED, AND WHY. .nav__link--off keeps --ink-3 and keeps the
-   4.48:1. It is the only signal saying that item is not a link, and
-   raising it to --ink-2 would make an unreachable screen look exactly like
-   a reachable one. A nav item that leads nowhere while looking live is a
-   small lie, and this product's argument is that it does not tell those.
-   Two hundredths of a contrast point is the cheaper cost, and it is
-   written down here rather than discovered later. */
+   WHAT IS NOT FIXED, AND WHY. .nav__link--off keeps --ink-3 and keeps its
+   shortfall. That colour is the only signal saying the item is not a link --
+   it is a <span aria-disabled>, not an <a> -- and raising it to --ink-2 would
+   make an unreachable screen look exactly like a reachable one. A nav item
+   that leads nowhere while looking live is a small lie, and this product's
+   argument is that it does not tell those. The cost is written down here
+   rather than discovered later.
+
+   AND IT WAS BRIEFLY WRITTEN UP AS FIXED, WHICH IT IS NOT. This paragraph
+   spent a day claiming that recomputing --glass-1 had moved the pane to
+   rgb(247,249,250), put --ink-3 at 4.57:1, and cleared AA "with the greyed nav
+   item still plainly greyed" -- so that nobody had to choose between the honest
+   signal and the contrast floor. The recompute was real. The conclusion was
+   not. 4.57 is ratio(--ink-3, --glass-solid): the flat token, not the pane.
+
+   The pane is glass and this masthead is sticky, so something is always
+   scrolling underneath it. Sampled across the whole .nav__link--off box on a
+   loaded /proceedings at 1440x900 dpr 2 with the masthead's own text set
+   transparent, the backdrop runs rgb(227,230,232) to rgb(245,247,249) --
+   --ink-3 3.85:1 to 4.49:1. Its BEST pixel is still under AA. Identical at
+   1280, 1216 and 1200.
+
+   So the trade this block described as dissolved is still live, and it is
+   still resolved the same way: the honest signal is worth more than the
+   fifteen hundredths. What actually helps the reader who needs the contrast is
+   the prefers-contrast: more block at the foot of this file, which raises
+   --ink-3 to #5a676d -- a real step, and still a step away from --ink-2.
+
+   Two numbers admitting a shortfall have now been optimistic in this one
+   comment, and both were optimistic because somebody measured a token and
+   called it a pane. tests/test_glass_contrast.py pins the token figures so the
+   third one has to be argued for rather than typed. */
 .masthead .label,
 .masthead .coord {
   color: var(--ink-2);
@@ -548,7 +911,7 @@ a.nav__link:hover {
   border-radius: var(--r-sm);
   background: var(--alarm-wash);
   color: var(--alarm-strong);
-  font: 700 var(--t-micro) / 1.4 var(--face-data);
+  font: 700 var(--t-micro) / var(--lh-micro) var(--face-data);
 }
 
 .main {
@@ -913,7 +1276,7 @@ a.nav__link:hover {
   border-radius: var(--r-sm);
   background: transparent;
   color: var(--ink-2);
-  font: 600 var(--t-micro) / 1.4 var(--face-ui);
+  font: 600 var(--t-micro) / var(--lh-micro) var(--face-ui);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   cursor: pointer;
@@ -1123,7 +1486,7 @@ a.nav__link:hover {
 .claim--withheld .claim__statement::before {
   content: "Template error: a withheld claim must not carry a statement. ";
   display: block;
-  font: 700 var(--t-micro) / 1.4 var(--face-ui);
+  font: 700 var(--t-micro) / var(--lh-micro) var(--face-ui);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   text-decoration: none;
@@ -1164,7 +1527,7 @@ a.nav__link:hover {
 
 .citation-chip__ref {
   padding: 0.32em 0.6em;
-  font: 600 var(--t-micro) / 1.4 var(--face-ui);
+  font: 600 var(--t-micro) / var(--lh-micro) var(--face-ui);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
 }
@@ -1172,7 +1535,7 @@ a.nav__link:hover {
 .citation-chip__coord {
   padding: 0.32em 0.6em;
   border-left: 1px solid currentColor;
-  font: var(--t-micro) / 1.4 var(--face-data);
+  font: var(--t-micro) / var(--lh-micro) var(--face-data);
   white-space: nowrap;
 }
 
@@ -1224,7 +1587,7 @@ a.nav__link:hover {
   border: 1px solid var(--alarm);
   border-radius: var(--r-sm);
   color: var(--alarm-strong);
-  font: 700 var(--t-micro) / 1.4 var(--face-ui);
+  font: 700 var(--t-micro) / var(--lh-micro) var(--face-ui);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
 }
@@ -1755,13 +2118,21 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
   }
 }
 
-/* Where the work is, before anyone clicks. ink-2 rather than ink-3: this is
-   a number someone reads, not a shade. On the old sunk rail ink-3 fell to
-   3.9:1; on the pane it is 4.56:1, which clears AA and still reads as a
-   shade rather than a figure. ink-2 gives 7.76:1 and that is the right
-   weight for a count. */
+/* Where the work is, before anyone clicks. ink-2 rather than ink-3: this is a
+   number someone reads, not a shade. On --surface-sunk ink-3 is 3.90:1, under
+   AA; against --glass-solid it is 4.57:1, and ink-2 on the same 8.26:1. Those
+   two are token arithmetic -- the rail is a translucent pane and its rendered
+   backdrop moves with whatever scrolls beneath it, so the ink-3 figure is a
+   ceiling and not a reading. ink-2 is the right weight for a count anyway, and
+   it is the choice that does not depend on the ceiling holding.
+
+   (This comment previously read "on the pane it is 4.57:1, which clears AA",
+   restated "from the rendered pixel". It was not from a rendered pixel; it was
+   ratio(--ink-3, #f7f9fa). Same error as the token block near the top of the
+   file, third site. tests/test_glass_contrast.py now asserts these as token
+   figures so they cannot drift again without a test going red.) */
 .tab__count {
-  font: var(--t-micro) / 1.4 var(--face-data);
+  font: var(--t-micro) / var(--lh-micro) var(--face-data);
   font-variant-numeric: tabular-nums;
   color: var(--ink-2);
 }
@@ -1924,7 +2295,7 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
 
 .plan-step__n {
   counter-increment: step;
-  font: var(--t-micro) / 1.4 var(--face-data);
+  font: var(--t-micro) / var(--lh-micro) var(--face-data);
   color: var(--ink-3);
 }
 
@@ -2172,7 +2543,7 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
   border: 1px solid var(--alarm);
   border-radius: var(--r-sm);
   color: var(--alarm-strong);
-  font: 700 var(--t-micro) / 1.4 var(--face-ui);
+  font: 700 var(--t-micro) / var(--lh-micro) var(--face-ui);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
 }
@@ -2315,7 +2686,7 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
   padding: var(--s2) var(--s4);
   background: var(--alarm-wash);
   color: var(--alarm-strong);
-  font: 700 var(--t-micro) / 1.4 var(--face-ui);
+  font: 700 var(--t-micro) / var(--lh-micro) var(--face-ui);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
 }
@@ -2577,7 +2948,12 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
     --hatch: rgba(0, 0, 0, 0.34);
 
     /* No glass on the page that leaves the building. Every pane prints as
-       white paper, every cast and every filter is gone. */
+       white paper, every cast and every filter is gone -- and so is the
+       ground. A ruled sheet is a thing you draw on a screen to give a blur
+       something to soften; printed, it is toner spent on a texture, and the
+       desk would come out of a laser printer as two grey bars down the
+       margins of a document somebody has to read in a hearing. */
+    --ground: none;
     --paper: #fff;
     --glass-tint: #fff;
     --glass-solid: #fff;
@@ -2674,6 +3050,132 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* NOTHING IN THE GROUND OR THE GLASS MOVES, so the block above reaches none of
+   it and that is deliberate rather than an oversight. A backdrop that drifts,
+   breathes or parallaxes would need an escape here, would cost a repaint on
+   every scrolled frame, and would be the machine-made effect this design is
+   trying to get out of the way of. If one is ever added, it belongs in the
+   rule above before it belongs on the page. */
+
+/* ------------------------------------------- more contrast, less transparency --
+ *
+ * Two different requests, one remedy, so they are answered together.
+ *
+ * Somebody who asks for more contrast is telling you that a 1px rule five
+ * values off its ground is not a rule to them. So the ground flattens to a
+ * single colour, the filter comes off -- which also removes the softening that
+ * lowers APPARENT contrast on a pane even where the measured figure holds --
+ * and the panes go opaque.
+ *
+ * THE TWO QUERIES TAKE DIFFERENT FILLS, and the difference is the whole reason
+ * they are not one block. prefers-contrast takes --surface, which is a full
+ * step ABOVE the composited pane, because the request was for a bigger gap
+ * between the chrome and the page and honouring it means widening one.
+ * prefers-reduced-transparency takes --glass-solid, the value the filter would
+ * have composited to anyway, because that reader asked to stop seeing through
+ * things and did not ask for the page to be redrawn -- nothing should shift by
+ * one value when the pane goes solid.
+ *
+ * It is also the one place --ink-3 gets raised. On --bg it is 4.25:1 and on
+ * --surface-sunk 3.90:1 -- both under AA for small text, both true before this
+ * change and both left alone by it, because moving a token used at 36 sites is
+ * not a backdrop fix and it is not this file's turn to make that call. Under
+ * this query the caller has asked, so here it goes up.
+ *
+ * RAISED TO A NEW VALUE, NOT TO --ink-2, AND THAT IS THE WHOLE POINT. The first
+ * version of this block set --ink-3 to #414d52 in light and #a9b7ba in dark.
+ * Those are not "near --ink-2", they are byte-identical to it. --ink-3 is used
+ * at 36 sites in this file, 6 in clerk.css and 7 in workflow.css, and every one
+ * of them is a deliberate second level of ink: a label under a value, a
+ * coordinate under a claim, a count that is a shade rather than a figure. Set
+ * the two tokens equal and every one of those hierarchies flattens to one
+ * level -- for the single reader who asked to be able to SEE more, which is the
+ * exact opposite of what they asked for.
+ *
+ * The worst case is .nav__link--off. It is a <span>, not an <a>, and the only
+ * thing on screen saying so is that it is drawn in --ink-3 while its neighbours
+ * are --ink-2. With the tokens equal a high-contrast reader gets a dead nav
+ * item rendered pixel-identical to a live one -- and the block at .masthead
+ * below spends a paragraph arguing that this specific lie is the one thing that
+ * must never be traded away. The rule was written and the argument three
+ * hundred lines above it was not read.
+ *
+ * So each scheme gets a value that is genuinely darker (lighter, in dark) than
+ * base --ink-3 and still a plain step from --ink-2:
+ *
+ *   light  #5a676d   on --bg 4.25 -> 5.15, on --surface-sunk 3.90 -> 4.73
+ *                    (both now clear AA), --surface 5.68; gap to --ink-2 1.49:1
+ *   dark   #8e9ca0   on --bg 5.39 -> 6.62, on --surface 5.02 -> 6.17,
+ *                    on --surface-sunk 5.59 -> 6.86; gap to --ink-2 1.37:1
+ *
+ * The base gaps are 1.81:1 and 1.68:1, so about four fifths of the separation
+ * survives while the ground contrast rises by three quarters of a point or
+ * more. That is the trade this query is asking for. Ratios are computed from
+ * the declared tokens, and tests/test_glass_contrast.py asserts every one of
+ * them -- including that the two inks are never equal in any scheme.
+ *
+ * --rule HAD THE SAME BUG and it is fixed the same way. #a4afb3 and #3c4e55
+ * were byte-identical to --rule-strong, collapsing the border hierarchy for the
+ * same reader. They become #bcc5c8 (on --bg 1.26 -> 1.55) and #30414a
+ * (1.42 -> 1.77), each still a step below --rule-strong.
+ *
+ * Reduced transparency asks for less see-through and nothing else, so it gets
+ * the pane half and not the ink half.
+ *
+ * THE INK STEP IS SPLIT BY SCHEME AND HAS TO BE. prefers-contrast is answered
+ * in both schemes at once, and an earlier version of this block raised --ink-3
+ * in one flat :root -- which in dark is a near-black grey on a near-black page,
+ * so every label, coordinate and muted count on the product would have gone
+ * from readable to invisible. A high-contrast rule that only knows one scheme
+ * is worse than no high-contrast rule.
+ *
+ * No --edge: none here either. box-shadow: none is only valid on its own, so
+ * `box-shadow: var(--edge), var(--glass-lift)` with --edge nulled is invalid
+ * at computed-value time and takes the cast down with it. The print block
+ * above survives that only because it nulls both. A bright top edge costs a
+ * high-contrast reader nothing, so it stays.
+ */
+@media (prefers-contrast: more) {
+  :root {
+    --ground: none;
+  }
+
+  .masthead,
+  .tabs {
+    background: var(--surface);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) and (prefers-color-scheme: light) {
+  :root {
+    /* A step darker than --ink-3, a step lighter than --ink-2. Never either. */
+    --ink-3: #5a676d;
+    --rule: #bcc5c8;
+  }
+}
+
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root {
+    --ink-3: #8e9ca0;
+    --rule: #30414a;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --ground: none;
+  }
+
+  .masthead,
+  .tabs {
+    background: var(--glass-solid);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 }
 

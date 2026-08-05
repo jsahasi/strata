@@ -457,7 +457,7 @@
   padding: 0 0.3em;
   border: 1px solid var(--rule-strong);
   border-radius: var(--r-sm);
-  font: var(--t-micro) / 1.4 var(--face-data);
+  font: var(--t-micro) / var(--lh-micro) var(--face-data);
 }
 
 /* ----------------------------------------------------------- the panel -- */

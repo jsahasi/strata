@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — The live transport, exercised</title>
+<style>
+  body { font: 15px/1.65 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 940px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.85rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; color:#0369a1; margin-top:2.4rem; }
+  h3 { font-size:1.02rem; color:#1d4ed8; margin:1.3rem 0 .35rem; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.9em; }
+  pre { background:#0f172a; color:#e2e8f0; padding:.9rem 1rem; border-radius:8px; overflow-x:auto; font-size:.82rem; line-height:1.5; }
+  pre code { background:none; padding:0; color:inherit; font-size:1em; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.92rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .5rem .6rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+  .in { color:#15803d; font-weight:600; } .part { color:#b45309; font-weight:600; } .out { color:#64748b; font-weight:600; }
+  .lbl { font-weight:600; color:#334155; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .src { background:#f8fafc; border-left:3px solid #1d4ed8; padding:.7rem 1rem; margin:.8rem 0; }
+</style>
+<link rel="stylesheet" href="../docs-nav.css">
+</head>
+<body>
+<nav class="dnav" aria-label="Documents">
+<div class="dnav__row"><span class="dnav__label">Docs</span><a href="../mrd.html">MRD</a><a href="../prd.html">PRD</a><a href="../tdd.html">TDD</a><a href="../security.html">Security</a><a href="../web-design.html">Design</a><a href="../future-enhancements.html">Roadmap</a><a href="../user-research.html">User research</a><a href="../synthetic-user.html">Persona</a><a href="../synthetic-interview.html">Interview</a><a href="../best-practices.html">Playbook</a><a href="../submission.html">Submission</a></div>
+<div class="dnav__row"><span class="dnav__label">Working notes</span><a href="../.ai/index.html">Index</a><a href="../.ai/decisions.html">Decisions</a><a href="../.ai/tasks.html">Tasks</a><a href="../.ai/briefing.html">Briefing</a><a href="../.ai/findings.html">Findings</a><a href="../.ai/gaps.html">Gaps</a><a href="../.ai/demo-notes.html">Demo notes</a><span class="dnav__here">Live probe</span></div>
+</nav>
+
+<h1>The live transport, exercised</h1>
+<p class="sub">One request, sent 2026-08-05 at 15:43 UTC (08:43 PDT) through <code>app/interpretation/propose.py</code>'s <code>AnthropicTransport</code> against <code data-probe="model-id">claude-opus-5</code>. Command: <code>.venv/bin/python scripts/probe_live_transport.py --send</code>.</p>
+
+<div class="note"><strong>This page records one call. It is no longer a count of every call.</strong> On 2026-08-05, while correcting this file, an agent ran the script with <code>--send</code> believing the key was absent because it had cleared <code>ANTHROPIC_API_KEY</code> from the environment. <code>load_env()</code> puts any name from <code>.env</code> back that is not already set, which is exactly what clearing it creates, so the key was present and a second request almost certainly went out. Its output was piped to <code>head -2</code> and lost, so nothing about it can be reported: not the response, not the token counts, not whether it succeeded. Everything below describes the first, deliberate call. The second is named here rather than left out because a page that quietly says "once" while its author knows of a second call is the exact failure this file exists to correct. <code>scripts/probe_live_transport.py</code> now warns in its own header that clearing the variable does not disarm it.</div>
+
+<div class="note"><strong>Why this file exists.</strong> Every test in this repository drives a deterministic fake through an injected transport. That is the right default — <code>make test</code> passes with no key and no network — and it left the class that actually talks to the endpoint as documented design that had never run. Two module docstrings said so honestly, and honesty does not make a request legal: a parameter invented from memory, a response field read from the wrong place, or a combination the endpoint rejects outright all pass a fake and all fail once. This is that once, written down.</div>
+
+<h2>What ran</h2>
+
+<table>
+<tr><th>Question</th><th>Answer</th></tr>
+<tr><td>Date</td><td>2026-08-05, 15:43:37 UTC</td></tr>
+<tr><td>Script</td><td><code>scripts/probe_live_transport.py</code>, run with <code>--send</code>. Without that flag it prints the request the transport builds, needs no key, and sends nothing.</td></tr>
+<tr><td>Transport</td><td><code data-probe="exercised-module">app/interpretation/propose.py</code> — the citation-gate path: no tools, structured output constrained to the judgement schema, adaptive thinking.</td></tr>
+<tr><td>Transport NOT exercised</td><td><code data-probe="unexercised-module">app/chat/agent.py</code> — a second <code>AnthropicTransport</code> with a different parameter set (tools, and <code>effort</code> inside <code>output_config</code>). It has still never run, and its docstrings still say so.</td></tr>
+<tr><td>Model requested</td><td><code>MODEL_ID</code>, read from the module rather than typed into the script.</td></tr>
+<tr><td>Model the endpoint reported</td><td>The same id, echoed on <code>response.model</code>.</td></tr>
+<tr><td>Key</td><td>Loaded from <code>.env</code> by <code>app.config.load_env()</code>, exactly as the application loads it. The script prints its length and never its value.</td></tr>
+<tr><td>Retries</td><td>Bounded to one, set explicitly rather than left at the client default of two.</td></tr>
+</table>
+
+<h2>The request the transport built</h2>
+<p>Printed by the script, and regenerable on any machine with no key and no charge: <code>.venv/bin/python scripts/probe_live_transport.py</code> drives the shipped transport against a client that records the request and then refuses to send it, and prints exactly the block below. The schema is the module's <code>_SCHEMA</code>; the prompt is the script's and is deliberately tiny.</p>
+
+<div class="note"><strong>An earlier version of this page reformatted this block by hand</strong> &mdash; nested keys and array elements folded onto single lines to read better &mdash; while claiming above that it was printed rather than retyped. Nothing on a page distinguishes a block that was tidied from one that was altered, and this is the one artefact here a reader would quote back at the code. <code>tests/test_live_transport_probe.py</code> now rebuilds the request through <code>AnthropicTransport</code> and holds this block to the exact bytes, so it cannot be edited at all &mdash; and it fires on any later drift in the model id, the token ceiling, the schema or the prompt.</div>
+
+<pre><code>{
+  "model": "claude-opus-5",
+  "max_tokens": 16000,
+  "system": "You judge whether one change to a regulatory filing matters to the utility that has to live with it. Answer with one object: material, true or false; why, in one sentence; and a citation naming the version, the 0-based character offsets of the exact span, and the text at that span copied character for character.",
+  "thinking": {
+    "type": "adaptive"
+  },
+  "output_config": {
+    "format": {
+      "type": "json_schema",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "material": {
+            "type": "boolean"
+          },
+          "why": {
+            "type": "string"
+          },
+          "citation": {
+            "type": "object",
+            "properties": {
+              "version_id": {
+                "type": "string"
+              },
+              "char_start": {
+                "type": "integer"
+              },
+              "char_end": {
+                "type": "integer"
+              },
+              "quoted_text": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "version_id",
+              "char_start",
+              "char_end",
+              "quoted_text"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "material",
+          "why",
+          "citation"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "VERSION v-probe-1, whole text:\nUtilities shall file the annual reliability report by March 1.\n\nCHANGE: the deadline moved from April 1 to March 1."
+    }
+  ]
+}</code></pre>
+
+<h2>The response</h2>
+
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td><code>response.model</code></td><td><code>claude-opus-5</code></td></tr>
+<tr><td><code>response.id</code></td><td><code>msg_011CdjrjuHCmhR9TQR3TaBap</code></td></tr>
+<tr><td><code>response.stop_reason</code></td><td><code>end_turn</code></td></tr>
+<tr><td>Content block types</td><td><code>['thinking', 'text']</code></td></tr>
+<tr><td><code>usage.input_tokens</code></td><td>523</td></tr>
+<tr><td><code>usage.output_tokens</code></td><td>453</td></tr>
+<tr><td><code>usage.cache_creation_input_tokens</code></td><td>0</td></tr>
+<tr><td><code>usage.cache_read_input_tokens</code></td><td>0</td></tr>
+</table>
+
+<p>The string <code>complete()</code> returned, which is the text blocks joined and nothing else:</p>
+
+<pre><code>{"material": true, "why": "Advancing the annual reliability report deadline by a full month compresses the utility's data-collection, review, and approval timeline for a mandatory filing, so it changes an enforceable compliance obligation.", "citation": {"version_id": "v-probe-1", "char_start": 54, "char_end": 61, "quoted_text": "March 1"}}</code></pre>
+
+<h2>What the call settled</h2>
+
+<table>
+<tr><th>Claim</th><th>Status</th><th>Evidence in the transcript</th></tr>
+<tr><td>The key loads the way the application loads it</td><td class="in">Confirmed</td><td>A request authenticated with what <code>load_env()</code> put in the process. No key was exported by hand.</td></tr>
+<tr><td>The endpoint accepts this parameter combination</td><td class="in">Confirmed</td><td>A 200 with <code>stop_reason: end_turn</code>. <code>thinking: {"type": "adaptive"}</code> and <code>output_config.format</code> were both accepted, and no sampling parameter was sent.</td></tr>
+<tr><td>The model id is real and is the one that answered</td><td class="in">Confirmed</td><td><code>response.model</code> echoes what the module pins.</td></tr>
+<tr><td>Structured output returns the shape the schema asks for</td><td class="in">Confirmed once</td><td>The text parses as JSON and carries <code>material</code>, <code>why</code> and a four-field <code>citation</code>.</td></tr>
+<tr><td>The parser reads the right field</td><td class="in">Confirmed</td><td data-probe="thinking-block-has-no-text">A thinking block came back first, so joining only the <code>text</code> blocks is required rather than tidy. <strong>An earlier version of this row gave the wrong reason for that</strong> &mdash; it said indexing <code>content[0]</code> would have returned the reasoning. It would have raised <code>AttributeError</code>: the SDK's <code>ThinkingBlock</code> carries <code>signature</code>, <code>thinking</code> and <code>type</code>, and no <code>text</code> field at all. There was also no reasoning in it to return. This model never returns a raw chain of thought, and the request sends no <code>display</code>, whose default is <code>omitted</code>, so the block's <code>thinking</code> field is an empty string.</td></tr>
+<tr><td>The refusal check sits before the content read</td><td class="out">Not exercised</td><td>Nothing declined. The branch was not taken and remains fake-tested only.</td></tr>
+<tr><td>Offsets are trustworthy</td><td class="out">Not settled</td><td>The offsets returned — 54 to 61 — do land exactly on <code>March 1</code> in a 62-character single line. That is one span in one sentence, and the verifier re-reads every one of them anyway, which is the design and not an accident.</td></tr>
+</table>
+
+<h2>What one call does not prove, said plainly</h2>
+
+<p>It proves the wire format, the authentication and the parse work <em>once</em>, on a prompt of 523 input tokens, on a quiet Wednesday morning, from one machine. It proves nothing about behaviour under load: no rate limit was hit, so the client's retry and back-off have still never run. It proves nothing about retries, timeouts or a connection dropped mid-response, because none happened. It proves nothing about long inputs — a real change carries two passages from a filing and a company context, and both the token count and the model's accuracy at counting characters over thousands of them are untested here. It proves nothing about the citation gate, which is the part this product rests on: the verifier was never invoked, no judgement was stored, and a citation that fails to verify was never produced by a real model, only by a fake that was told to produce one. It proves nothing about <code>app/chat/agent.py</code>'s <code>AnthropicTransport</code>, which is a second class with a different parameter set — tools, and <code>effort</code> inside <code>output_config</code> — and which has still never run. One call is the difference between a design and a fact, and it is a small difference. It moves the model path from unexercised to exercised, and no further.</p>
+
+<div class="note"><strong>Cost.</strong> 523 input and 453 output tokens. At the published Opus-tier rate of $5 per million input and $25 per million output that is about 1.4 US cents. The figure is arithmetic on the token counts above, not a reading of a bill.</div>
+
+<h2>How this file is kept honest</h2>
+<p><code>tests/test_live_transport_probe.py</code> holds five separate claims on this page to something outside it. It reads <code>MODEL_ID</code> out of both model modules: the marked id above must equal what the application pins, and no other model id may appear anywhere on the page. Change the model and the suite fails, naming this file — because a transcript that describes a model nobody calls reads exactly like a transcript that describes the model everybody calls, and nothing on the page would otherwise tell a reader which it is.</p>
+<p>Three more were added after a reviewer found the first version of this page wrong in three places. <span class="lbl">The request block</span> is rebuilt by running the shipped transport and compared byte for byte, so it cannot be tidied, retyped or left behind by a change to the schema or the token ceiling. <span class="lbl">The two module names</span> in the table above are read off this page and their docstrings are checked against it — the one marked exercised may not still say it has never run, and the one marked unexercised must still say that it has. Both directions matter: the first is the sentence a correction leaves behind, the second is the caveat a tidy-up deletes. <span class="lbl">The thinking-block reason</span> is checked against the installed SDK's own field list rather than against memory.</p>
+<p>What no test on this page can check remains large, and is worth naming beside the guards: the token counts, the response body, the message id and the date are trusted prose. A test can keep one field of a transcript from rotting. It cannot verify that a call happened.</p>
+
+</body>
+</html>

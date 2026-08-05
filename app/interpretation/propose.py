@@ -20,9 +20,12 @@ neither version's full text reaches the model and that the prompt names the diff
 as the thing that found the change, so the same drift fails a test rather than
 waiting to be read.
 
-THE HONEST LIMIT, SECOND. This path has **never** run against the real Anthropic
-API in this repository. Nobody here has held an API key, so every test drives a
-deterministic fake through an injected transport.
+THE HONEST LIMIT, SECOND. This path has run against the real Anthropic API on
+2026-08-05, through scripts/probe_live_transport.py. Every test still drives a
+deterministic fake through an injected transport; no test has ever made a network
+call and none should. docs/.ai/live-transport-probe.html records one call in
+full, and names beside it a second that went out by accident the same day and was
+not captured -- so the count is small rather than exactly one.
 
 What is proven offline is the gate: the prompt is built by dispatching on the
 change's stored status, the judgement is bound to a citation, the citation is
@@ -32,13 +35,17 @@ prose allows -- tests/test_propose.py reads the installed SDK's own signature an
 typed parameters and asserts that every argument name and nested key below exists
 in them. That catches a keyword invented from memory.
 
-What is NOT proven is anything only the endpoint can answer: that
-`claude-opus-5` accepts this combination of parameters, that the model returns
-the shape asked for, that the response parses on the first try, or how any of it
-behaves under a rate limit. The first real call will find bugs in
-AnthropicTransport, and it will not find them in the verifier. Treat the client
-below as unexercised code and the gate above it as tested code, because that is
-what they are.
+WHAT THE ONE CALL SETTLED. claude-opus-5 accepts this combination of parameters,
+the id below is the id that answered, a thinking block comes back before the text
+block (so joining the text blocks is not an optimisation, it is required), and
+the structured output parsed on the first read. docs/.ai/live-transport-probe.html
+holds the request, the response and the token counts.
+
+WHAT IT DID NOT SETTLE, which is most of it. A 523-token prompt is not a filing.
+Nothing is known about a long input, a rate limit, a retry, a response that
+arrives malformed, or a real answer whose citation fails to verify -- the refusal
+branch below has been taken by a fake and never by the endpoint. Treat the client
+below as code exercised once and the gate above it as tested code.
 
 THE JUDGEMENT PASSES THE GATE EVERY CLAIM PASSES. A model is good at reading a
 paragraph and saying what it obliges, and bad at remembering exactly where it
@@ -408,16 +415,17 @@ def _client(api_key: str):
 
 
 class AnthropicTransport:
-    """One Messages call. UNEXERCISED: see the module docstring.
+    """One Messages call. EXERCISED on 2026-08-05: see the module docstring and
+    docs/.ai/live-transport-probe.html. Being exercised is not being covered.
 
     Three parameter choices, each of which a reader will otherwise reconstruct
     from memory and get wrong:
 
     THINKING IS ADAPTIVE, WITH NO BUDGET. `budget_tokens` is rejected with a 400
     on this model family; the model decides its own depth and `effort` tunes it.
-    Effort is left at its default of high rather than passed, because passing a
-    value equal to the default is one more untested parameter on a path that has
-    never run.
+    Effort is left at its default of high rather than passed. The one live call
+    did not pass it either, so sending it would add a parameter no request from
+    here has ever carried, to ask for the value the endpoint already uses.
 
     NO temperature, top_p OR top_k. They are rejected outright on this family.
     Determinism, if it is wanted, comes from the prompt and from the fact that
@@ -425,8 +433,9 @@ class AnthropicTransport:
 
     STRUCTURED OUTPUT, NOT A PLEA FOR JSON. output_config.format constrains the
     response to the schema below, which is what makes the parser's job small.
-    The parser is still defensive, because this parameter is part of the
-    untested half.
+    The endpoint accepted this parameter on 2026-08-05 and the answer parsed on
+    the first read. The parser stays defensive anyway: one answer is one shape,
+    and every test that exercises the parser drives a fake.
     """
 
     def __init__(self, client: Any, model: str = MODEL_ID):

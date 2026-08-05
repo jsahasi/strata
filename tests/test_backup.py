@@ -660,29 +660,44 @@ def test_the_backup_is_private_before_the_first_row_is_written_not_after(tmp_pat
     afterwards does not close a handle somebody already has. So the mode has to
     be on the file before SQLite is given it, and this test looks at the moment
     the copy begins rather than the moment it ends.
+
+    THE FILE IS ASKED FOR, NOT ASSUMED. This used to stat the finished backup's
+    name, which was the file being written only while the write went straight
+    into it. Since the pages land in a staged file that takes that name at the
+    end, the name says nothing about the mode of the file the hashes are
+    actually going into -- the question this test exists to ask. The destination
+    connection is asked which file it has open, so the answer holds whatever the
+    implementation calls it, and a copy that went back to writing into the final
+    name would still be covered.
     """
     db = tmp_path / "strata.db"
     _seed(db, rows=3)
-    seen: list[int] = []
+    seen: list[tuple[Path, int]] = []
 
     real_copy = backup._copy
 
     def watch_mode_at_the_start(src, dst, deadline_seconds):
         # _copy is called with both connections open and not one page copied.
-        seen.append(_mode_of(tmp_path / "backups" / planned_name[0]))
+        being_written = Path(dst.execute("PRAGMA database_list").fetchone()[2])
+        seen.append((being_written, _mode_of(being_written)))
         return real_copy(src, dst, deadline_seconds)
 
     when = datetime(2026, 8, 4, 9, 30, 15, tzinfo=timezone.utc)
-    planned_name = ["strata-20260804T093015Z.db"]
     backup._copy = watch_mode_at_the_start
     try:
         backup.run(db, tmp_path / "backups", keep=5, now=when)
     finally:
         backup._copy = real_copy
 
-    assert seen == [0o600], (
-        f"the copy was mode {[oct(m) for m in seen]} when writing started; the mode "
+    assert len(seen) == 1, seen
+    being_written, mode = seen[0]
+    assert mode == 0o600, (
+        f"{being_written.name} was mode {oct(mode)} when writing started; the mode "
         "has to be on the file before the data is, not after"
+    )
+    assert being_written.parent.resolve() == (tmp_path / "backups").resolve(), (
+        f"the copy was written in {being_written.parent}, not in the backup "
+        "directory; a rename across filesystems is not atomic"
     )
 
 
