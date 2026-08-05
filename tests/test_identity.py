@@ -258,6 +258,65 @@ def test_a_malformed_address_is_refused_at_the_write_and_ignored_at_the_read():
         normalise_email("two words@example.com")
 
 
+# The address that started this. Two at-signs: every domain comparison in the
+# product reads the part after the LAST one and sees mep.example, so this is
+# judged same-organisation and skips both the approval queue and the self-invite
+# check -- while the mailbox that actually receives the invitation is at
+# evil.example. The invitation carries a token that sets a password.
+IMPOSTOR = "victim@evil.example@mep.example"
+
+
+@pytest.mark.parametrize(
+    "address",
+    [
+        IMPOSTOR,
+        "a@b@c",
+        "a@b@c@d",
+        "a@",
+        "@b",
+        "a",
+        "",
+        "@",
+        "@@",
+        " a@b@c ",
+        "\ta@b@c\n",
+        "  ",
+    ],
+)
+def test_an_address_with_anything_but_one_at_sign_is_refused(address: str):
+    # REFUSED, NOT REPAIRED. Trimming the extra segment or taking the last one
+    # is a guess at who was meant, and this string decides which mailbox gets a
+    # credential link. The whitespace variants are here because normalise_email
+    # strips before it counts, so the count has to run on the stripped value.
+    with pytest.raises(ValueError):
+        normalise_email(address)
+
+
+@pytest.mark.parametrize(
+    "address",
+    [
+        "priya.nandakumar@mep.example",
+        "PRIYA.NANDAKUMAR@MEP.EXAMPLE",
+        "  ada.ng@mep.example  ",
+        # Plus-addressing is what _looks_like_the_inviter compares on, so it has
+        # to survive: a guard that refused it would break the self-invite check
+        # rather than the invitation.
+        "ada.ng+strata@mep.example",
+        "o'brien@mep.example",
+        "a@b",
+        # Every address app/seed.py builds, and the shape data/company_context.json
+        # implies. A guard that refuses everything passes the test above and
+        # takes the product with it, which is why this control is here.
+        "first.last@mep.example",
+    ],
+)
+def test_the_ordinary_addresses_this_product_uses_still_pass(address: str):
+    cleaned = normalise_email(address)
+
+    assert cleaned == address.strip().lower()
+    assert cleaned.count("@") == 1
+
+
 # ---------------------------------------------------------------------------
 # Roles, permissions and the union
 # ---------------------------------------------------------------------------

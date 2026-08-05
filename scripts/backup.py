@@ -9,6 +9,24 @@ that. Nothing schedules this script either: there is no cron entry, no timer and
 no hosted job in this repository, so no backup exists anywhere until a person
 runs it. deploy/site/security.html says the same in the same words.
 
+AND IT IS NOT ENCRYPTED. The copy is the database in the clear: password hashes,
+token digests, the audit chain, every filing a customer loaded. What stands
+between it and another account on the host is file permissions and nothing else.
+The directory is created 0700 and the copy is created 0600 -- created, not
+chmod'ed afterwards, because a chmod that follows the write leaves the finished
+hashes readable for as long as the copy takes and cannot take back a handle
+somebody opened in that time. The mode is then read back off the file rather
+than assumed, and a copy that did not come out 0600 is deleted rather than kept.
+
+That is enough on a machine with one operator. It is not enough to call the
+file protected, and permissions are not encryption: anyone who can become root,
+read the volume, or recover the disk gets everything. A production deployment
+needs an encrypted destination. Nothing in this repository provides one, and
+this paragraph is not a substitute for one -- it is here so that nobody decides
+where to put this file while believing it is protected. All of this was true and
+none of it was written down until 2026-08-04, when the permissions were also
+actually set.
+
 WHY IT DOES NOT COPY THE FILE. Copying a SQLite database while something is
 writing to it can hand you a file that looks perfectly ordinary and is torn --
 pages from before a transaction next to pages from during it -- and you find out
@@ -64,6 +82,7 @@ system has been practised by anyone.
 import argparse
 import os
 import sqlite3
+import stat
 import sys
 import time
 from dataclasses import dataclass
@@ -210,6 +229,49 @@ def _uri(path: Path, mode: str) -> str:
     return f"{path.resolve().as_uri()}?mode={mode}"
 
 
+COPY_MODE = 0o600
+
+
+def _create_private(path: Path) -> None:
+    """Create `path` empty and owner-only, BEFORE anything is written into it.
+
+    THE ORDER IS THE WHOLE POINT, and getting it wrong is the easy mistake. The
+    first version of this fix took the snapshot and then chmod'ed the result,
+    which reads as correct and is not: between the first page landing and the
+    chmod returning, a complete set of scrypt password hashes sits on a shared
+    host at whatever the umask gave -- 0644 under the usual 022. A backup of a
+    real database takes long enough for that window to be worth having. Worse,
+    closing the window does not close a file handle another process opened while
+    it was open, so a chmod afterwards cannot undo what it failed to prevent.
+    O_CREAT with a mode argument has no window at all: the file has never existed
+    with any other permissions.
+
+    The fchmod is not redundant. The mode passed to os.open is masked by the
+    process umask, which can only clear bits -- so a hostile-but-legal umask of
+    0077 leaves 0600 alone, but 0400 would leave the file at 0200 and a later
+    read of our own backup would fail for a reason nobody would guess. fchmod
+    sets the bits exactly, and it works on the descriptor rather than the path,
+    so nothing can be swapped underneath it between the two calls.
+
+    A file that already exists is left alone rather than re-permissioned. Modes
+    on a file this script did not create belong to whoever did create it: for the
+    backup copy the case cannot arise, because _refuse_a_collision has already
+    established the name is free, and for restore's target the file is a live
+    database whose mode and owner were set by whoever deployed it. Narrowing that
+    to 0600 under an operator running as root would hand them an outage in place
+    of a data loss -- deploy/Dockerfile runs the application as the `strata`
+    system user, not as the person most likely to be typing this command.
+    """
+    try:
+        fd = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, COPY_MODE)
+    except FileExistsError:
+        return
+    try:
+        os.fchmod(fd, COPY_MODE)
+    finally:
+        os.close(fd)
+
+
 def _copy(src: sqlite3.Connection, dst: sqlite3.Connection, deadline_seconds: float) -> None:
     """One consistent snapshot, or a refusal once the lock has held long enough.
 
@@ -255,6 +317,9 @@ def snapshot(
     check ever written. mode=ro is not used either: a WAL database refuses a
     read-only open when it cannot build its shared-memory index, and a backup
     that fails on WAL hosts is a backup nobody has.
+
+    The destination is created 0600 before it is opened, not tightened after it
+    is written. See _create_private for why the order is the whole of it.
     """
     if not source.exists():
         raise BackupError(f"no database at {source}; nothing was copied and nothing created")
@@ -263,6 +328,13 @@ def snapshot(
 
     src = sqlite3.connect(_uri(source, "rw"), uri=True, timeout=COPY_BUSY_TIMEOUT_SECONDS)
     try:
+        # Inside the try, so that a failure from here on takes the unlink path
+        # below with it. An empty 0600 file left behind by a refused copy would
+        # collide with the next run at the same second and be read as evidence of
+        # a backup that never happened. A zero-length file is a valid empty
+        # SQLite database, so connect() below adopts this one rather than
+        # replacing it, and the pages land inside a file that was never readable.
+        _create_private(destination)
         dst = sqlite3.connect(destination, timeout=COPY_BUSY_TIMEOUT_SECONDS)
         try:
             _copy(src, dst, deadline_seconds)
@@ -307,7 +379,39 @@ def _verify_chains(path: Path) -> tuple[int, list[str], list[str]]:
     except Exception as exc:  # pragma: no cover - needs a broken tree to reach
         return 0, [f"cannot verify the audit chain: {exc}"], notes
 
-    engine = create_engine(f"sqlite:///{path}", future=True)
+    # THE PATH IS ESCAPED, NOT GLUED, which is the entire reason _uri exists one
+    # screen above -- and this line ignored it until 2026-08-04. It read
+    # create_engine(f"sqlite:///{path}"). SQLAlchemy reads everything after a "?"
+    # as a query string, so a backup directory with one in the name was truncated
+    # and this opened a DIFFERENT file. Measured, not guessed: with a database at
+    # "we ird?x.db" the glued form opened "we ird", reported "no such table:
+    # audit_events", and a backup that was entirely sound got quarantined on the
+    # strength of a chain check that had never looked at it. Choosing the
+    # directory is the operator's job and "?" is a legal character in it.
+    #
+    # AND IT CREATED THE FILE IT INVENTED, which is the half worth naming
+    # separately, because the obvious fix does not cover it. Passing the path
+    # through sqlalchemy.engine.URL.create() escapes it correctly and stops the
+    # truncation -- that was tried here first -- but URL.create renders a plain
+    # sqlite:/// URL, and a plain sqlite:/// URL opens rwc. Point it at a path
+    # that is not there and it makes an empty database, finds no audit_events in
+    # it, and reports that as a problem with your backup. Same wrong answer,
+    # arrived at down the other road, plus a stray file nothing cleans up. Going
+    # through _uri with an explicit mode closes both: the escaping stops the
+    # truncation and mode=rw refuses to create.
+    #
+    # WHY rw AND NOT ro, given this only ever reads. Two reasons, and the second
+    # is the one that decides it. First, verify_backup opens the very same file
+    # rw twenty lines below for the integrity check, and two halves of one
+    # verification disagreeing about how to open a file is how a check comes to
+    # pass on one path and fail on the other. Second, a copy can be a WAL
+    # database, and a read-only open of one has to build a shared-memory index it
+    # is not always allowed to build -- the same trap snapshot() already records
+    # for the source, and a chain check that fails on WAL hosts is a chain check
+    # nobody keeps. mode=rw already buys the property this bug was about: it will
+    # not create. ro would only add protection against this function issuing a
+    # write, and it issues none.
+    engine = create_engine("sqlite:///" + _uri(path, "rw") + "&uri=true", future=True)
     verified = 0
     try:
         with Session(engine, future=True) as session:
@@ -447,6 +551,88 @@ def _refuse_a_collision(planned: Path) -> None:
             )
 
 
+def _whose_fault(source: Path, quarantined: Path, verification: Verification) -> str:
+    """Say which of the two files is the broken one, having actually looked.
+
+    THE BUG THIS EXISTS FOR. run() used to verify the copy and nothing else, and
+    report every failure as "the copy at ... did not verify". But the copy is a
+    faithful reproduction of the source, so the commonest way for it to fail the
+    chain check is that the SOURCE already failed it -- somebody edited a row in
+    the live database, and this script dutifully copied the edit across. The
+    operator was then handed a message blaming the one file in the story that had
+    behaved perfectly, and pointed at a backup directory while the tampered
+    database carried on serving traffic. That is not a small wording problem. It
+    is the difference between "your disk is flaky" and "your audit log has been
+    edited", and the script knew enough to tell them apart and did not look.
+
+    WHY THE SOURCE IS CHECKED HERE AND NOT BEFORE THE COPY. Verifying the source
+    up front would answer the same question, and it would cost a full extra pass
+    over the whole database on every run, including the overwhelming majority
+    that are fine. The chain check is the expensive one -- it rehashes every
+    audit row for every company. Doing it here costs nothing on a good day and a
+    second pass on a bad one, when a few seconds of extra work is the cheapest
+    thing on offer and the diagnosis is worth far more.
+
+    Nothing is missed by waiting. A tampered source cannot produce a clean copy:
+    the backup carries the committed rows across exactly, so a broken chain in
+    the source is a broken chain in the copy, and the copy always fails first.
+    The only rows the copy leaves behind are uncommitted ones, which are not yet
+    part of the record and may still roll back.
+
+    Taking the copy first also keeps the quarantined file. Refusing before the
+    copy exists would leave the operator with a message and no artefact; this way
+    the evidence is on disk under a name nothing will restore.
+
+    ABSENCE IS DENIAL applies to this function too. If the source cannot be
+    checked at all, that is not a source that passed, and the message says the
+    fault is unknown rather than picking the likelier of the two.
+    """
+    try:
+        source_verification = verify_backup(source)
+    except Exception as exc:
+        return (
+            f"the copy at {quarantined} did not verify, and the live database at "
+            f"{source} could not be checked either ({exc}), so which of the two "
+            "is at fault is not known. The copy has been renamed out of the "
+            "backup naming pattern and kept. Do not restore it, and do not treat "
+            "the live database as sound until it has been checked by hand."
+        )
+
+    if not source_verification.ok:
+        # The source's own problems are spelled out only when they differ from
+        # the copy's. In the ordinary case they are the same list -- the copy
+        # reproduced the source, so it failed the same way -- and printing it
+        # twice in one paragraph trains the reader to skim the paragraph. Where
+        # they do differ, that difference is the most informative thing on the
+        # screen and it gets said.
+        extra = ""
+        if source_verification.problems != verification.problems:
+            extra = (
+                " On the source specifically: "
+                + " | ".join(source_verification.problems)
+                + "."
+            )
+        return (
+            f"the live database at {source} does not verify, so the fault is "
+            f"there and not in the backup. The copy at {quarantined} reproduced "
+            "it faithfully, which is why it failed the same checks. Taking "
+            "another backup will not help and will produce another bad copy. The "
+            "record itself is what needs looking at, not the backup directory. "
+            "The copy has been renamed out of the backup naming pattern and kept "
+            f"as evidence.{extra}"
+        )
+
+    return (
+        f"the copy at {quarantined} did not verify, and the live database at "
+        f"{source} does verify, so the fault is in the copy and not in the "
+        "source. Something went wrong between reading the database and writing "
+        "the file -- a failing disk, a full volume, a filesystem that lied about "
+        "a write. The copy has been renamed out of the backup naming pattern and "
+        "kept. The live database is sound; retry the backup, and if it fails "
+        "again look at the destination volume rather than at the database."
+    )
+
+
 def run(
     source: Path,
     into: Path,
@@ -487,7 +673,18 @@ def run(
         )
 
     try:
-        into.mkdir(parents=True, exist_ok=True)
+        # 0o700, not the umask. This file IS the database: every scrypt password
+        # hash, every session row, every invitation and share token digest, and
+        # the whole audit chain. Until 2026-08-04 the directory and the copy took
+        # whatever the process umask gave them -- typically 0755 and 0644 -- and
+        # the docstring told the operator to put it in /var/backups while
+        # conceding only that the copy is local, never that it was readable by
+        # every account on the host. On the shared droplet this deploys to
+        # (decisions.html ADR-10) that is every neighbour. mkdir's mode applies
+        # only when it creates the directory, so an existing one is tightened
+        # below rather than left as found.
+        into.mkdir(parents=True, exist_ok=True, mode=0o700)
+        os.chmod(into, 0o700)
     except OSError as exc:
         # An operator pointing --into at an existing file, or at a directory
         # they cannot write. Either way it is a failed backup and must leave by
@@ -496,15 +693,37 @@ def run(
     _refuse_a_collision(planned)
 
     snapshot(source, planned, deadline_seconds=busy_seconds)
+
+    # THE MODE IS CHECKED, NOT ASSUMED. snapshot() created the file 0600 before a
+    # byte went into it, so this should never fire -- but "should never fire" is
+    # the description of every control nobody tested. os.chmod and os.open both
+    # return success on filesystems that do not carry Unix modes at all: a CIFS
+    # or exFAT mount, or a container bind-mount with a fixed fmask, takes the
+    # request, reports no error, and leaves the file readable by the world. An
+    # earlier draft of this fix simply called os.chmod here and trusted the
+    # return code, which would have reported a protected backup on exactly the
+    # hosts where it was not one. Reading the mode back is the only way to know.
+    actual = stat.S_IMODE(planned.stat().st_mode)
+    if actual != COPY_MODE:
+        # A copy nobody can restrict is not one to keep quietly. It is removed
+        # rather than left readable, for the reason snapshot() removes a
+        # half-written one: the dangerous file is the one that looks ordinary.
+        planned.unlink(missing_ok=True)
+        raise BackupError(
+            f"copied {source} but {planned} came out mode {oct(actual)} rather "
+            f"than {oct(COPY_MODE)}, so every account on this host can read its "
+            "password hashes and its audit chain. The copy was deleted rather "
+            "than left readable. This filesystem does not appear to carry Unix "
+            "permissions; back up to one that does, or encrypt the destination."
+        )
     verification = verify_backup(planned)
 
     if not verification.ok:
         quarantined = planned.with_name(planned.name + UNVERIFIED_SUFFIX)
         planned.rename(quarantined)
         raise BackupError(
-            f"the copy at {quarantined} did not verify, so it is not a backup. "
-            "It has been renamed out of the backup naming pattern and kept. "
-            "Nothing was pruned. Problems: " + " | ".join(verification.problems)
+            f"{_whose_fault(source, quarantined, verification)} Nothing was "
+            "pruned. Problems: " + " | ".join(verification.problems)
         )
 
     pruned = prune(into, keep)
@@ -547,6 +766,12 @@ def restore(
     src = sqlite3.connect(_uri(backup_path, "rw"), uri=True, timeout=COPY_BUSY_TIMEOUT_SECONDS)
     try:
         target.parent.mkdir(parents=True, exist_ok=True)
+        # The restore is the backward path of the same bug, and a fix that
+        # covered only the outward one would put the hashes back on disk at 0644
+        # the moment anybody used it. A target that already exists keeps the mode
+        # it has -- see _create_private -- so this bites on the case that matters,
+        # a restore onto a host where the database file is not there any more.
+        _create_private(target)
         dst = sqlite3.connect(target, timeout=COPY_BUSY_TIMEOUT_SECONDS)
         try:
             _copy(src, dst, deadline_seconds)
@@ -587,6 +812,26 @@ def _report(result: BackupResult, out) -> None:
         "  local disk only. This survives a bad deploy, not a lost host.",
         file=out,
     )
+    # THE REPORT IS WHERE THIS BELONGS, and it is the line that was missing. The
+    # module docstring and --help are read once, by whoever sets the command up.
+    # This is read by whoever runs it, on the day they run it, and it is the only
+    # one of the three that a person sees while deciding where to put the file
+    # and who may reach it. Saying "local disk only" and stopping there tells an
+    # operator the copy is at risk from a lost host and lets them infer that
+    # nothing else is wrong with it. What is on the line below is specific on
+    # purpose: not "unencrypted" on its own, which reads as a checkbox, but what
+    # the file actually is and what reading it would get you.
+    print(
+        "  not encrypted: a plain SQLite file holding password hashes and the "
+        "audit chain,",
+        file=out,
+    )
+    print(
+        "  readable by anyone who can read the file. File permissions are the "
+        "only thing",
+        file=out,
+    )
+    print("  protecting it.", file=out)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -594,7 +839,11 @@ def main(argv: list[str] | None = None) -> int:
         description="Take a verified snapshot of the Strata SQLite database.",
         epilog=(
             "Writes to local disk. No off-host destination is configured, and "
-            "nothing schedules this. It is not disaster recovery."
+            "nothing schedules this. It is not disaster recovery. The copy is "
+            "NOT ENCRYPTED: it is a plain SQLite file holding password hashes "
+            "and the audit chain, readable by anyone who can read the file. It "
+            "is written 0600 in a 0700 directory, and that is the whole of the "
+            "protection. Choose --into accordingly."
         ),
     )
     parser.add_argument("--db", default=None, help="database file (default: the one the app opens)")

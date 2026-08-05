@@ -331,14 +331,19 @@ def transport_from_environment(
 class SmtpTransport:
     """One SMTP conversation. UNEXERCISED: see the module docstring.
 
-    THE CONNECTION IS ENCRYPTED OR THERE IS NO CONNECTION. On 465 the socket is
-    wrapped before a word is said; on every other port the session starts in the
-    clear and STARTTLS is demanded immediately. A server that will not offer it
-    gets an exception, which deliver() turns into the announced failure -- it
-    does NOT get the mail in plaintext. That refusal is the point: the body
-    holds a link that sets a password on an account whose role is already
-    granted, and it is the single most valuable string this product ever puts on
-    a wire.
+    THE CONNECTION IS ENCRYPTED, AUTHENTICATED, OR THERE IS NO CONNECTION. On
+    465 the socket is wrapped before a word is said; on every other port the
+    session starts in the clear and STARTTLS is demanded immediately. A server
+    that will not offer it gets an exception, which deliver() turns into the
+    announced failure -- it does NOT get the mail in plaintext. Both calls are
+    given ssl.create_default_context(), so the certificate chain and the
+    hostname are checked and a relay that cannot prove who it is is refused the
+    same way. That second half was missing until 2026-08-04 and the sentence
+    said "encrypted" alone, which was true and was not the claim anybody read it
+    as: unauthenticated TLS hands the whole session to whoever is on the path.
+    The refusal is the point: the body holds a link that sets a password on an
+    account whose role is already granted, and it is the single most valuable
+    string this product ever puts on a wire.
 
     THE CLIENT IS BUILT PER SEND AND CLOSED AFTER. No pooling, no long-lived
     connection. This path sends one mail when an admin presses a button, so a
@@ -373,21 +378,51 @@ class SmtpTransport:
 
     def send(self, *, to: str, subject: str, text: str, html: str) -> None:
         import smtplib  # noqa: PLC0415 -- see the class docstring
+        import ssl  # noqa: PLC0415 -- imported here for the same reason
 
         built = email_message(
             Message(to=to, subject=subject, text=text, html=html),
             sender=self._sender,
         )
 
+        # ENCRYPTED IS NOT ENOUGH; IT HAS TO BE THE RIGHT SERVER. Passing no
+        # context made Python fall back to ssl._create_stdlib_context(), which
+        # is verify_mode=CERT_NONE and check_hostname=False -- so the session
+        # was encrypted to whoever answered, and anything on the path could
+        # present any certificate, terminate the TLS and read both the
+        # credential link and this account's relay password. The docstring above
+        # already called that body the most valuable string this product puts on
+        # a wire; until 2026-08-04 the code did not act like it. This context
+        # verifies the chain and the hostname, so a relay that cannot prove who
+        # it is gets an exception and deliver() announces the failure -- the
+        # same refusal the class already makes for a server that will not
+        # offer STARTTLS at all.
+        #
+        # THERE IS NO SETTING THAT TURNS THIS OFF, AND THE OPERATOR WHO WOULD
+        # WANT ONE DOES NOT NEED IT. The case is a private relay holding a
+        # certificate from a company's own authority, and the answer is already
+        # in the standard library: create_default_context loads the trust store
+        # and honours SSL_CERT_FILE and SSL_CERT_DIR, so pointing either at the
+        # company's CA trusts that relay and keeps the chain and the hostname
+        # checked. A STRATA_ variable that skipped verification instead would be
+        # this defect restored with a flag on it, and principle 26 says what a
+        # switch like that is: the deployment that set it once, in a hurry, has
+        # no way to notice it is still set. If one is ever added it announces
+        # itself in the log on every send, and that sentence is a poor second to
+        # not having it. tests/test_notify.py asserts the absence.
+        context = ssl.create_default_context()
+
         if self._port == IMPLICIT_TLS_PORT:
-            client = smtplib.SMTP_SSL(self._host, self._port, timeout=self._timeout)
+            client = smtplib.SMTP_SSL(
+                self._host, self._port, timeout=self._timeout, context=context
+            )
         else:
             client = smtplib.SMTP(self._host, self._port, timeout=self._timeout)
         try:
             if self._port != IMPLICIT_TLS_PORT:
                 # Raises SMTPNotSupportedError when the server does not offer
                 # it. Left to raise: see the class docstring.
-                client.starttls()
+                client.starttls(context=context)
                 client.ehlo()
             if self._username:
                 client.login(self._username, self._password)

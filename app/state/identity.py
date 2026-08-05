@@ -315,16 +315,28 @@ def normalise_email(email: str) -> str:
     text case-sensitively. Normalising only on the way in would leave the index
     guarding a different string from the one anybody searches for.
 
-    This is not address validation. It checks for an @ and for whitespace and
-    stops there; anything stricter rejects real addresses, and this system is
-    not the one that proves an address exists -- sending mail to it is.
+    This is not address validation. It checks for exactly one @ and for
+    whitespace and stops there; anything stricter rejects real addresses, and
+    this system is not the one that proves an address exists -- sending mail to
+    it is.
+
+    EXACTLY ONE @, AND THAT COUNT IS LOAD BEARING RATHER THAN TIDINESS. This
+    accepted a second one until 2026-08-04. app/state/invites.py decides whether
+    an address belongs to the same organisation by reading the label after the
+    LAST @, so victim@evil.example@mep.example was judged an mep.example address:
+    it took the fast path, skipped the administrator queue, and slipped the
+    self-invite comparison too, which reads the local part and got
+    "victim@evil.example". An access decision was being taken on a string this
+    code called a domain and which was not one. A local part may quote an @, and
+    refusing those is the cost -- taken knowingly, because nothing in this
+    product has ever held one and the alternative is a guess about which @ counts.
     """
     if not email or not isinstance(email, str):
         raise ValueError("email is required")
     cleaned = email.strip().lower()
     if not cleaned:
         raise ValueError("email is required")
-    if "@" not in cleaned or cleaned.startswith("@") or cleaned.endswith("@"):
+    if cleaned.count("@") != 1 or cleaned.startswith("@") or cleaned.endswith("@"):
         raise ValueError(f"{email!r} does not look like an email address")
     if any(character.isspace() for character in cleaned):
         raise ValueError("an email address cannot contain whitespace")

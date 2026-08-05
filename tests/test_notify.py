@@ -430,3 +430,188 @@ def test_the_transport_protocol_stays_narrow():
     """Everything the network touches is behind this one method."""
     signature = inspect.signature(SmtpTransport.send)
     assert list(signature.parameters) == ["self", "to", "subject", "text", "html"]
+
+
+def test_a_refused_link_never_repeats_what_it_was_given():
+    """The refusal must not carry the token out of the link and into a log.
+
+    THE BUG THIS GUARDS. The message interpolated `cleaned.split(':')[0]` to
+    name the scheme it was handed -- which is the WHOLE STRING when there is no
+    colon, and a relative acceptance path is exactly the mistake the guard
+    exists to catch. So `/invite/accept/<token>` put the live token in a
+    ValueError, and a ValueError reaches a traceback, a log line and an error
+    page. The package rule is that the token appears in the link and nowhere
+    else, and a secret written into a log cannot be taken out again.
+    """
+    relative = "/invite/accept/" + TOKEN
+    for bad in (relative, "invite/accept/" + TOKEN, "javascript:alert('" + TOKEN + "')"):
+        with pytest.raises(ValueError) as raised:
+            a_message(accept_url=bad)
+        said = str(raised.value)
+        assert TOKEN not in said, "the refusal carried the token"
+        assert bad not in said
+        # It still has to be actionable, or the redaction has cost the caller
+        # the one thing they needed: which argument was wrong and what it wants.
+        assert "accept_url" in said
+        for scheme in ("https://", "http://"):
+            assert scheme in said
+
+    # The same guard reached through the other door. accept_link builds the
+    # string and hands it here, so a caller with a base_url that is really a
+    # bare hostname must not have their token read back to them either.
+    with pytest.raises(ValueError) as raised:
+        accept_link("strata.mep.example", "/invite/accept", TOKEN)
+    assert TOKEN not in str(raised.value)
+
+
+# ------------------------------------------------------------------- the wire --
+#
+# The socket half of SmtpTransport, exercised as far as it can be without a mail
+# server: the client is built here, and what it is built WITH is the whole of
+# this section. See the module docstring in app/notify/transport.py -- the class
+# is unexercised code, and these tests do not change that. They pin the two
+# arguments that decide whether anybody on the path can read the invitation.
+
+
+class _FakeSmtpClient:
+    """Stands in for smtplib.SMTP and smtplib.SMTP_SSL. It reaches nothing.
+
+    It records the context it was opened with, and the one starttls() was given,
+    because those two are what the tests below are about. Every other method is
+    a no-op that keeps send() walking to the end.
+    """
+
+    opened: list[dict] = []
+
+    def __init__(self, host, port, timeout=None, context=None, **rest):
+        self.context = context
+        _FakeSmtpClient.opened.append(
+            {"host": host, "port": port, "kind": "implicit", "context": context}
+        )
+
+    def starttls(self, *, context=None, **rest):
+        self.context = context
+        _FakeSmtpClient.opened.append(
+            {"host": None, "port": None, "kind": "starttls", "context": context}
+        )
+
+    def ehlo(self, *args):
+        return None
+
+    def login(self, username, password):
+        return None
+
+    def send_message(self, built):
+        return None
+
+    def quit(self):
+        return None
+
+    def close(self):
+        return None
+
+
+@pytest.fixture
+def opened(monkeypatch):
+    """Every client SmtpTransport builds, and how. No socket is opened."""
+    import smtplib
+
+    _FakeSmtpClient.opened = []
+    monkeypatch.setattr(smtplib, "SMTP", _FakeSmtpClient)
+    monkeypatch.setattr(smtplib, "SMTP_SSL", _FakeSmtpClient)
+    return _FakeSmtpClient.opened
+
+
+@pytest.mark.parametrize("port,kind", [(465, "implicit"), (587, "starttls"), (25, "starttls")])
+def test_the_relay_has_to_prove_who_it_is_before_the_token_goes_out(opened, port, kind):
+    """Encrypted was never the claim. It has to be encrypted TO THE RIGHT SERVER.
+
+    THE BUG THIS GUARDS. SMTP_SSL and starttls were called with no ssl context,
+    so Python fell back to ssl._create_stdlib_context(): verify_mode=CERT_NONE
+    and check_hostname=False. Anybody between this host and the relay could
+    present any certificate, terminate the TLS, and read the invitation body --
+    which the module's own docstring calls the single most valuable string this
+    product ever puts on a wire -- along with the relay password. The session was
+    encrypted to whoever answered, which is not the same fact at all.
+
+    Nothing has leaked, because nothing has ever sent from this repository. That
+    is luck rather than a control, and it is why this test exists before the
+    first relay is configured rather than after.
+    """
+    import ssl
+
+    SmtpTransport(host="relay.mep.example", port=port, sender="s@mep.example").send(
+        to="priya.nandakumar@mep.example", subject="hello", text="t", html="<p>h</p>"
+    )
+
+    protected = [row for row in opened if row["kind"] == kind]
+    assert protected, f"nothing was opened with {kind}"
+    for row in protected:
+        context = row["context"]
+        assert context is not None, "no ssl context: Python falls back to CERT_NONE"
+        assert isinstance(context, ssl.SSLContext)
+        assert context.verify_mode == ssl.CERT_REQUIRED, "the certificate is not checked"
+        assert context.check_hostname is True, "any certificate would do"
+
+
+def test_no_connection_is_ever_opened_without_a_verifying_context(opened):
+    """The class, not the line: whichever door, the context comes with it.
+
+    Two calls take a context and both were missing one. A test that pinned only
+    the port it was written for would let the other regress, and the next port
+    somebody adds would arrive with no test at all -- so this asserts over every
+    client the transport built, whatever built it.
+    """
+    import ssl
+
+    for port in (25, 465, 587, 2525):
+        SmtpTransport(host="relay.mep.example", port=port, sender="s@mep.example").send(
+            to="priya.nandakumar@mep.example", subject="hello", text="t", html="<p>h</p>"
+        )
+
+    # The plain SMTP open on a STARTTLS port carries no context and cannot: the
+    # socket is in the clear until starttls() wraps it. That row is the one
+    # exception and it is named here rather than passed over, because a test
+    # that quietly skipped a row would be the hole it is meant to close.
+    unprotected = [
+        row
+        for row in opened
+        if row["context"] is None and row["kind"] == "implicit" and row["port"] != 465
+    ]
+    assert len(unprotected) == 3, "the clear-text opens are the three STARTTLS ports"
+
+    verifying = [row for row in opened if row["context"] is not None]
+    assert len(verifying) == 4, "one verified handshake per send, and no more"
+    for row in verifying:
+        assert row["context"].verify_mode == ssl.CERT_REQUIRED
+        assert row["context"].check_hostname is True
+
+
+def test_there_is_no_switch_that_turns_the_checking_off(opened):
+    """No environment variable may weaken the handshake, and none does.
+
+    An operator on a private relay does not need one: ssl.create_default_context
+    reads SSL_CERT_FILE and SSL_CERT_DIR, so a private certificate authority is
+    trusted by pointing the standard variables at it, and the chain is still
+    verified. A named STRATA_ variable that skipped verification would be the
+    fallback principle 26 refuses -- and it would be the defect this test was
+    written for, restored with a flag on it.
+    """
+    import ssl
+
+    import app.notify.transport as transport
+
+    switches = [
+        name
+        for name in dir(transport)
+        if name.startswith("MAIL_ENV_") or "TLS" in name or "VERIFY" in name
+    ]
+    assert "MAIL_ENV_TLS_VERIFY" not in switches
+    assert not [name for name in switches if "VERIFY" in name.upper()]
+
+    SmtpTransport(host="relay.mep.example", port=465, sender="s@mep.example").send(
+        to="priya.nandakumar@mep.example", subject="hello", text="t", html="<p>h</p>"
+    )
+    context = opened[0]["context"]
+    assert context.verify_mode == ssl.CERT_REQUIRED
+    assert context.check_hostname is True

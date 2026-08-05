@@ -775,7 +775,10 @@ def test_the_opening_sentence_counts_filings_that_match_not_filings_that_are_sho
         assert result["not_offered"] == 1
         # Three filings carry the word; two of them are shown.
         assert f"{len(MENTIONS)} carry a passage matching those words" in result["note"]
-        assert "Of those, 1 is not shown here at all" in result["note"]
+        # Names its noun rather than pointing at it: a pronoun here can attach to
+        # the clause counting the filings that carry nothing, which is the
+        # opposite of what these rows are.
+        assert f"1 of the {len(MENTIONS)} matching filings is not shown" in result["note"]
 
 
 def test_a_row_whose_matches_were_refused_does_not_state_how_many_matched(withheld):

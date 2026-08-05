@@ -102,7 +102,7 @@
    */
   --paper: #ffffff;          /* the record: diff, claims, source, tables */
   --glass-tint: #f7fafb;     /* the material the panes are made of       */
-  --glass-solid: #f6f9fa;    /* that tint already composited over --bg   */
+  --glass-solid: #f4f7f8;    /* that tint already composited over --bg   */
   --glass-edge: #ffffff;     /* the 1px highlight that says "in front"   */
   --glass-cast: #04191f;     /* shadows are blue-black, never neutral    */
 
@@ -119,7 +119,7 @@
      words it carries, the MORE opaque it is. The masthead holds two words
      per item and you look past it a thousand times. A tip holds a
      paragraph you read once. See --blur-1/2/3, which pair with these. */
-  --glass-1: rgba(247, 250, 251, 0.72);   /* attached  */
+  --glass-1: rgba(247, 250, 251, 0.62);   /* attached  */
   --glass-2: rgba(247, 250, 251, 0.86);   /* floating  */
   --glass-3: rgba(247, 250, 251, 0.92);   /* transient */
 
@@ -189,11 +189,11 @@
        lifted grey instead. */
     --paper: #151e22;
     --glass-tint: #1a262b;
-    --glass-solid: #182328;
+    --glass-solid: #151f23;
     --glass-edge: #5c757e;
     --glass-cast: #000000;
 
-    --glass-1: rgba(26, 38, 43, 0.72);
+    --glass-1: rgba(26, 38, 43, 0.62);
     --glass-2: rgba(26, 38, 43, 0.86);
     --glass-3: rgba(26, 38, 43, 0.92);
 

@@ -99,21 +99,33 @@ gone wrong:
     rather than being released halfway through by a rule that has just deleted
     the complaint holding it.
 
-WHAT WOULD CALL THIS IN PRODUCTION, AND WHAT CALLS IT TODAY
------------------------------------------------------------
-Today: nothing. There is no scheduler in this product. No cron entry, no
-background worker, no queue, no startup hook. app/main.py does not import this
-module and neither does anything else, and tests/test_retention.py asserts that
-by reading app/ -- so the day somebody wires it up, the test fails and forces
-the privacy page to change in the same commit.
+WHAT CALLS THIS
+---------------
+app/jobs/runner.py does, once a day per company, and nothing else in app/ does.
+It arrived after this module and this paragraph said "nothing" for six hours
+after it stopped being true -- which is the failure this file is written against,
+committed in the file that argues against it, so the correction stays here rather
+than being tidied into the git history.
 
-In production it would be a daily job, run once per company, in two steps that a
-person can tell apart: a dry run whose report goes to whoever is accountable,
-then the destructive run. The natural home is the same scheduler that would drive
-ScheduledRun (app/state/models.py), which is also not built. Whatever runs it
-needs a database session, a company id and nothing else -- these functions take
-no request, no user and no configuration, so they can run from a cron entry, a
-management command or a worker without any of them growing an opinion.
+Two settings stand between that scheduler and a deleted row, and they are
+deliberately not one. STRATA_JOBS_ENABLED starts the loop at all; it is not the
+default, so a deploy that says nothing schedules nothing. STRATA_JOBS_RETENTION_DELETE
+arms the destructive path; without it the daily run is a dry run that reports
+what it would have removed and removes nothing. The runner checks that flag for
+being a real bool and purge_all checks it again -- two guards, independently
+written, because dry_run=0 is falsey and by the time anybody noticed the rows
+would be gone.
+
+tests/test_retention.py reads app/ for callers and asserts the privacy page
+against what it finds: with a caller present the page must name the setting that
+disarms it and must say the run is dry by default; with no caller it must say
+nothing calls them. Either way the page cannot describe a scheduler that does not
+match the code.
+
+These functions take a database session, a company id and a clock, and nothing
+else -- no request, no user, no configuration -- so they can equally be driven
+from a cron entry or a management command without any of them growing an opinion
+about retention.
 
 A LIMIT OF THIS IMPLEMENTATION. Each purge loads the company's rows for its
 table and compares timestamps in Python, the way every other module in this

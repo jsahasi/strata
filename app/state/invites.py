@@ -22,14 +22,36 @@ person. Pushing expires_at forward on the standing row would keep whatever
 copies of the first link exist -- in an inbox, a helpdesk ticket, a mail archive
 -- working for another day, every time anybody pressed the button.
 
-AN INVITER MAY NEVER GRANT MORE THAN THEY HOLD. Provisioning takes a role, and
-without a ceiling it would be the shortest path in the product from user.manage
-to any authority at all: the admin role deliberately holds no approval
-permission, so an admin who could provision an obligation_owner and accept it
-could approve. _grant_ceiling refuses that and names the codes. THE COST IS REAL
-AND IS NOT HIDDEN: an ordinary admin can provision another admin and nothing
-else, because admin holds none of the analyst or approver codes. grantable_roles
-exists so a screen offers what will work instead of a list that refuses.
+AN INVITER MAY NEVER GRANT MORE THAN THEY HOLD -- ON THE PROVISIONING PATH,
+WHICH IS THE ONLY PATH THAT TAKES A ROLE. Provisioning names a role, and without
+a ceiling it would be the shortest path in the product from user.manage to any
+authority at all: the admin role deliberately holds no approval permission, so an
+admin who could provision an obligation_owner and accept it could approve.
+_grant_ceiling refuses that and names the codes. THE COST IS REAL AND IS NOT
+HIDDEN: an ordinary admin can provision another admin and nothing else, because
+admin holds none of the analyst or approver codes. grantable_roles exists so a
+screen offers what will work instead of a list that refuses.
+
+THE HANDOFF PATH GRANTS MORE THAN ITS INVITER HOLDS, AND SAYS SO EVERY TIME.
+Accepting a handoff grants ROLE_OBLIGATION_OWNER, and admin, the only stock role
+carrying user.invite, holds neither action.approve nor action.reject. So the one
+kind of account that can invite always grants strictly more than it holds here.
+That is the feature rather than a leak in it: this module exists to create the
+approver for a duty that has none, and a ceiling that refused it would mean no
+company could ever create one.
+
+NO GRANT ESCAPES THE CEILING UNSEEN, WHICH IS A DIFFERENT AND KEEPABLE CLAIM.
+_grant_within_ceiling is the only function in this module that calls
+identity.grant_role -- a test reads the module and fails if that stops being
+true. It measures every grant against whoever released the invitation, lets a
+path past only where CEILING_WAIVED_BY_KIND declares it in writing, and writes
+invite.ceiling_waived into the chain naming the codes and the person each time
+it does. The excess also comes back on AcceptOutcome, so the screen shows it
+rather than the audit chain holding it alone. THE SENTENCE ABOVE ONCE READ AS AN
+UNQUALIFIED RULE OVER BOTH PATHS WHILE _grant_ceiling HAD ONE CALLER, WHICH IS
+WHY THE RULE IS NOW A DOOR RATHER THAN A PARAGRAPH: two callers asked to
+remember one rule is how the claim and the code came apart, and a third path
+added next month would have missed it the same way.
 
 WHAT THIS CLOSES. app/state/routing.py walks an escalation to the claim, the
 claim to the change, the change to the obligation and the obligation to its
@@ -55,17 +77,27 @@ anything the caller asks for, because nothing here takes a role as an argument
 and Invitation has no column to put one in. That is one rule in one function
 (accept_invitation) with tests pointed straight at it.
 
-The narrow role is still MORE than an analyst holds: obligation_owner carries
-action.approve and analyst does not. The escalation that opens is an analyst
-inviting their own second address, accepting it, and approving their own
-proposals. Two things stand against it. Same-domain invites go direct only for
-an address that is not the inviter's own under a plus-tag comparison, and
-anything that looks like their own goes to a holder of user.manage instead
-(InviteOutcome.self_invite). And separation of duties is enforced where the
-approval happens,
-not here: this module hands somebody a role, it does not decide whether they may
-approve a particular action. Both halves are needed; neither is sufficient. Said
-plainly rather than implied, because the second half lives in another file.
+The narrow role is still MORE than any inviter holds: obligation_owner carries
+action.approve and no role that can invite carries it. THE ESCALATION THIS OPENS,
+WITH THE RIGHT ACTOR NAMED. It is an ADMINISTRATOR and not an analyst -- this
+paragraph said analyst until 2026-08-04, and an analyst cannot reach _invite at
+all, because the gate is user.invite or user.manage and user.invite sits on admin
+and nowhere else. An administrator invites an address they control at their own
+company's domain, accepts it, and holds action.approve. Two things stand against
+it and neither is strong. Same-domain invites go direct only for an address that
+is not the inviter's own under a plus-tag comparison, which catches a plus-tag on
+one mailbox and does not catch a second mailbox (InviteOutcome.self_invite) --
+and an administrator controls their own domain. And separation of duties is
+enforced where the approval happens, not here: this module hands somebody a role,
+it does not decide whether they may approve a particular action. Both halves are
+needed; neither is sufficient. Said plainly rather than implied, because the
+second half lives in another file.
+
+This is the same hole app/state/identity.py names on the grid beside user.invite,
+and the one ADR-64 concedes for grant_role, where an administrator can already
+grant themselves obligation_owner outright. Closing it needs a second approver on
+a privilege change, which does not exist in this build. This module is a second
+route to that hole and opens no authority the hole did not already offer.
 
 THE SWITCHES ARE ANSWERED IN ONE PLACE AND ANNOUNCE THEMSELVES. There is no
 companies table and no settings table (see the note at the foot of
@@ -203,6 +235,16 @@ ACTION_INVITE_REFUSED = "invite.refused"
 # "somebody withdrew this" in the log each time an admin helped a colleague who
 # lost the mail. It is also not invite.refused: something was written.
 ACTION_INVITE_SUPERSEDED = "invite.superseded"
+# An account was granted a role carrying authority the person who released the
+# invitation does not hold themselves. A code of its own rather than folding it
+# into user.role_granted, and the argument is audit.py's own for approval.waived:
+# "somebody was given a role" and "somebody handed on authority they do not have"
+# are different questions, and reading the second as the first would make a
+# manufactured approver look like routine account admin a year later. That is the
+# one reading a log must never allow. The row names the codes and the person, so
+# the question "who here approves through an account an administrator made" is
+# one query rather than a reconstruction.
+ACTION_INVITE_CEILING_WAIVED = "invite.ceiling_waived"
 
 INVITE_ACTIONS = (
     ACTION_INVITE_CREATED,
@@ -212,6 +254,7 @@ INVITE_ACTIONS = (
     ACTION_INVITE_REVOKED,
     ACTION_INVITE_REFUSED,
     ACTION_INVITE_SUPERSEDED,
+    ACTION_INVITE_CEILING_WAIVED,
 )
 
 
@@ -524,8 +567,36 @@ class CompanyDomain:
         )
 
 
+#: What _domain_of gives back for a string it cannot read as one address. Empty
+#: rather than None so every caller keeps comparing strings, and empty can never
+#: equal a real domain -- but same_organisation refuses it by name anyway rather
+#: than trusting that, because "no domain matched no domain" is the shape of
+#: answer this product has been bitten by before.
+NO_DOMAIN = ""
+
+
 def _domain_of(email: str) -> str:
-    """Everything after the last @. Lower-cased already by normalise_email."""
+    """The label after the one @, or NO_DOMAIN when there is not exactly one.
+
+    THE COUNT IS CHECKED HERE AS WELL AS IN normalise_email, AND THE REPETITION
+    IS THE POINT -- it is the backward half of the same fix. normalise_email
+    stopped victim@evil.example@mep.example being WRITTEN on 2026-08-04. It says
+    nothing about the rows already in the table, and this is the function that
+    reads them: company_domain derives a tenant's own domain from the addresses
+    of its active accounts, straight off User.email, and this used to return
+    everything after the LAST @ -- so a row like that voted for mep.example and
+    then answered "same organisation" about itself. The live strata.db in this
+    repository predates the guard. A forward path and a backward path, and only
+    the forward one was closed.
+
+    NO_DOMAIN rather than a guess. There is no way to tell which @ was meant,
+    and this decision skips the administrator's approval queue, so an unreadable
+    address makes the derivation ambiguous exactly as a second real domain does
+    and every invite goes to a holder of user.manage until somebody sorts the
+    row out. That is the cost, and it is loud.
+    """
+    if email.count("@") != 1:
+        return NO_DOMAIN
     return email.rpartition("@")[2]
 
 
@@ -566,10 +637,21 @@ def same_organisation(address: str, domain: CompanyDomain) -> bool:
     that is what subdomains are for -- so treating it as the same organisation
     would hand the fast path to whoever holds the delegation. An undecidable
     company domain is never a match: fail closed.
+
+    AN ADDRESS THIS CANNOT READ IS NEVER A MATCH EITHER, and that is checked by
+    name rather than left to the comparison. NO_DOMAIN is the empty string and
+    could not equal a real domain anyway -- but a tenant whose every stored
+    address was unreadable would derive NO_DOMAIN as its domain, and the
+    comparison would then answer True for exactly the addresses it must refuse.
+    Two failures cancelling to a pass is how a guard reports safety. Said out
+    loud because the arithmetic is not obvious to a reader in a hurry.
     """
     if not domain.decided:
         return False
-    return _domain_of(address) == domain.domain
+    reading = _domain_of(address)
+    if reading == NO_DOMAIN:
+        return False
+    return reading == domain.domain
 
 
 def _looks_like_the_inviter(inviter_email: str, address: str) -> bool:
@@ -738,6 +820,15 @@ class AcceptOutcome:
     subject_type: str | None = None
     subject_id: str | None = None
     granted_roles: tuple[str, ...] = ()
+    #: The codes the granted role carries that whoever released the invitation
+    #: does not hold themselves. Empty on a grant that stayed under the ceiling,
+    #: and empty on every provisioned login, which is refused before it gets
+    #: here. It is CARRIED RATHER THAN LEFT IN THE LOG because the hardest
+    #: decision in this module has to be visible in the product and not only to
+    #: somebody who thinks to read the audit chain afterwards. See
+    #: CEILING_WAIVED_BY_KIND for what the product does about it, which is
+    #: record it rather than refuse it, and why.
+    granted_beyond_ceiling: tuple[str, ...] = ()
 
     @property
     def accepted(self) -> bool:
@@ -1650,6 +1741,27 @@ def approve_invitation(
     who = _require_actor(actor)
     moment = _require_aware(now or _utcnow(), "now")
 
+    # THE SAME SWITCH _invite ASKS, ASKED HERE TOO, and it was missing until
+    # 2026-08-04. _invite refuses with "invites are switched off for this
+    # tenant, so nobody can be pulled in" -- and that sentence was false while
+    # this function could still release a queued invitation into a live account
+    # with a working token. A switch that stops the front door and not the
+    # release queue behind it is not the control its own refusal claims to be.
+    policy_switch = invite_policy(session, company_id=company_id)
+    if not policy_switch.enabled.value:
+        return _refused(
+            session,
+            company_id,
+            code=INV_DISABLED,
+            text=(
+                "invites are switched off for this tenant, so a queued "
+                f"invitation cannot be released. {policy_switch.enabled.announcement}"
+            ),
+            actor=who,
+            moment=moment,
+            subject_id=invitation_id,
+        )
+
     invitation = invitation_for_company(session, company_id, invitation_id)
     if invitation is None:
         # One message for "not here" and "not yours". Which of the two it is
@@ -2054,6 +2166,13 @@ def _grant_ceiling(
 
     AN INVITER MAY NEVER GRANT MORE THAN THEY HOLD, and empty means they may.
 
+    IT ANSWERS THE QUESTION AND IT DOES NOT ENFORCE THE ANSWER. _grant_within_ceiling
+    is what every grant in this module goes through, and it is the only caller
+    that matters; provision_login also asks here directly so it can refuse before
+    it makes an account, which is a better place for that refusal than after.
+    Reading this and acting on it yourself is how the rule ended up holding on
+    one of the two paths that grant authority.
+
     Without this, "provision a login" is the shortest path in the product from
     user.manage to any authority at all. The admin role deliberately holds no
     approval permission -- identity.py says so and docs/security.html rests the
@@ -2072,6 +2191,161 @@ def _grant_ceiling(
     wanted = permissions_for_role(session, company_id, role_name)
     held = permissions_for_user(session, company_id, actor_user_id)
     return tuple(sorted(wanted - held))
+
+
+class GrantExceedsCeiling(ValueError):
+    """A grant refused because the granter does not hold what they are handing on.
+
+    A ValueError, so a caller that only knows this module raises ValueErrors
+    still catches it, and a caller that wants to tell this refusal from a bad
+    argument can name it. The same shape queries.py::CrossTenantRow takes, for
+    the same reason.
+
+    It is raised rather than returned as a reason code, unlike almost everything
+    else here. Nothing a user typed can produce it: provision_login answers the
+    ceiling with INV_GRANT_EXCEEDS before any account exists, so reaching this is
+    a defect in a caller rather than a refusal to render.
+    """
+
+
+#: THE PATHS THIS PRODUCT KNOWINGLY LETS PAST THE CEILING, AND THE SENTENCE THE
+#: CHAIN CARRIES EVERY TIME ONE IS USED. Keyed by invitation kind, because the
+#: kind is the decision -- both callers already hold one, so neither has to
+#: remember to pass a flag, and a kind that is not in here is refused by default.
+#:
+#: A DECLARATION RATHER THAN A SILENCE. Principle 26 in docs/best-practices.html:
+#: a fallback that does not announce itself is worse than the failure it hides.
+#: This is that principle applied to a control rather than to a feature -- the
+#: ceiling is not quietly absent on the handoff path, it is declared absent, in
+#: one table, with the argument attached and an audit row written every time it
+#: is used.
+CEILING_WAIVED_BY_KIND: dict[str, str] = {
+    INVITE_KIND_HANDOFF: (
+        "a handoff exists to create the approver for a duty that has none, so a "
+        "ceiling here would mean no company could ever create one: admin is the "
+        "only stock role carrying user.invite and it holds neither approval "
+        "code, so every handoff grants more than its inviter holds. The grant is "
+        "made and recorded rather than refused. What it opens is an "
+        "administrator inviting an address they control at their own domain, "
+        "accepting it, and approving through it -- the same hole ADR-64 concedes "
+        "for identity.py::grant_role, reached by a second route. Closing it needs "
+        "a second approver on a privilege change, which this build does not have."
+    ),
+}
+
+
+def _grant_within_ceiling(
+    session: Session,
+    company_id: str,
+    *,
+    user_id: str,
+    role_name: str,
+    granted_by_user_id: str,
+    kind: str,
+    actor: str,
+    granted_at: datetime,
+) -> tuple[str, ...]:
+    """THE ONLY PLACE THIS MODULE GRANTS A ROLE. Returns the codes it let past.
+
+    THE CLASS, NOT THE LINE, AND HERE IS THE LINE IT REPLACED. _grant_ceiling had
+    exactly one caller, inside provision_login, and acceptance called grant_role
+    for ROLE_OBLIGATION_OWNER unconditionally a few hundred lines away. The rule
+    the module claimed in capitals held on one of the two paths that grant
+    authority, and a reader had no way to see which. Two callers asked to
+    remember one rule is how that happened, and a third path added next month
+    would have missed it the same way. So the rule is not written down for
+    callers to honour: it is the door they go through. Nothing in this module
+    calls identity.grant_role except this function, and a test reads the module
+    with ast and fails if that stops being true -- the shape queries.py's
+    row_for_company takes for tenant scope, for the same reason.
+
+    THREE OUTCOMES, AND EACH IS A DIFFERENT FACT.
+
+      the granter holds everything the role carries -- it is granted, quietly,
+      and the empty tuple comes back;
+
+      they do not, and this kind of invitation declares itself in
+      CEILING_WAIVED_BY_KIND -- it is granted, the codes they did not hold are
+      written into the chain under an action of their own, and those codes come
+      back so the caller can put them on the screen;
+
+      they do not, and nothing declares this path -- GrantExceedsCeiling, and
+      nothing is written at all.
+
+    THE CEILING IS COMPUTED AGAINST WHOEVER RELEASED THE INVITATION, not against
+    whoever is accepting it. The person accepting holds nothing yet -- that is
+    the point of them -- so measuring against them would make the ceiling zero
+    and every grant an excess. The releaser is the admin who approved a queued
+    invitation where there was one, and the inviter otherwise, and both are
+    accounts rather than display strings, which is what makes a ceiling
+    computable at all. ADR-64 records that identity.py::grant_role cannot have a
+    ceiling for exactly the opposite reason.
+
+    WHAT IT STILL DOES NOT DO. It does not stop an administrator manufacturing an
+    approver at an address they control. Refusing that would mean no duty could
+    ever get an owner, which is the product. It makes the act visible at the
+    moment it happens, in the record a regulator reads, naming the codes and the
+    person -- which is what this codebase does everywhere it cannot refuse:
+    policy.py announces DEMO_SELF_APPROVAL, permissions.py writes a conflict into
+    the chain as it is created, and neither pretends to be a refusal.
+    """
+    _require_scope(company_id)
+    if not granted_by_user_id:
+        # No account to measure against is not "no excess". It is a caller that
+        # cannot say who is handing this on, and a ceiling computed against
+        # nobody would come back empty and read as a clean grant.
+        raise GrantExceedsCeiling(
+            f"nothing can grant {role_name!r} without an account to answer for "
+            "it: a ceiling measured against nobody is not a ceiling. Pass the "
+            "id of whoever released this invitation."
+        )
+
+    excess = _grant_ceiling(
+        session, company_id, actor_user_id=granted_by_user_id, role_name=role_name
+    )
+    waiver = CEILING_WAIVED_BY_KIND.get(kind)
+    granter = user_for_company(session, company_id, granted_by_user_id)
+    named = granter.email if granter is not None else granted_by_user_id
+
+    if excess and waiver is None:
+        raise GrantExceedsCeiling(
+            f"{named} cannot grant {role_name}: it carries {', '.join(excess)}, "
+            "which they do not hold. An inviter may never grant more than they "
+            f"hold, and no {kind} invitation is declared as an exception to that "
+            "in CEILING_WAIVED_BY_KIND. Nothing was granted."
+        )
+
+    grant_role(
+        session,
+        company_id,
+        user_id=user_id,
+        role_name=role_name,
+        actor=actor,
+        granted_at=granted_at,
+    )
+
+    if excess:
+        record_event(
+            session,
+            company_id=company_id,
+            actor=f"person:{named}",
+            action=ACTION_INVITE_CEILING_WAIVED,
+            subject_type="user",
+            subject_id=user_id,
+            # The codes, the role, the person who released it and the argument
+            # for allowing it. NEVER the token: a tamper-evident log is read by
+            # more people than this table is, and a secret written into an
+            # append-only record cannot be taken out again.
+            reason=(
+                f"{named} released {role_name}, which carries "
+                f"{', '.join(excess)}, and holds none of those codes. {waiver}"
+            ),
+            occurred_at=granted_at,
+            actor_user_id=granter.id if granter is not None else None,
+            actor_kind=ACTOR_USER if granter is not None else ACTOR_SYSTEM,
+        )
+        session.flush()
+    return excess
 
 
 def grantable_roles(
@@ -2344,11 +2618,20 @@ def provision_login(
         status=STATUS_INVITED,
         created_at=moment,
     )
-    grant_role(
+    # Through the one door, not straight to identity.grant_role. The ceiling was
+    # already answered above, before any account existed, which is where a
+    # refusal belongs on this path -- so this call is a backstop and comes back
+    # empty. It is here anyway because the check above and the grant below are
+    # forty lines apart, and forty lines is how far the handoff path drifted
+    # from the same rule. A backstop that is currently redundant is cheaper than
+    # discovering it was not.
+    _grant_within_ceiling(
         session,
         company_id,
         user_id=person.id,
         role_name=role,
+        granted_by_user_id=admin.id,
+        kind=INVITE_KIND_PROVISION,
         actor=who,
         granted_at=moment,
     )
@@ -2497,6 +2780,27 @@ def resend(
     if refusal is not None:
         return refusal
     who = f"person:{admin.email}"
+
+    # THE SWITCH, ASKED HERE TOO, and it was missing until 2026-08-04. Minting a
+    # provision link asks it; reissuing one did not, so turning invites off
+    # stopped new credential links and left the resend button minting them. A
+    # resend is a new invitation with a new token (see above), which is exactly
+    # the thing the switch exists to stop.
+    policy_switches = invite_policy(session, company_id=company_id)
+    if not policy_switches.enabled.value:
+        return _provision_refused(
+            session,
+            company_id,
+            code=INV_DISABLED,
+            text=(
+                "invites are switched off for this tenant, so a replacement "
+                f"link cannot be minted. {policy_switches.enabled.announcement}"
+            ),
+            actor=who,
+            actor_user_id=admin.id,
+            moment=moment,
+            subject_id=invitation_id,
+        )
 
     # The permission is checked BEFORE the id is resolved, so somebody who may
     # not do this learns nothing about which invitation ids exist.
@@ -2867,12 +3171,30 @@ def accept(
     # A false word in an append-only log cannot be taken out again.
     session.flush()
 
+    beyond: tuple[str, ...] = ()
     if invitation.kind == INVITE_KIND_HANDOFF:
-        grant_role(
+        # THE CEILING IS ANSWERED AGAINST WHOEVER RELEASED THIS, not against the
+        # person clicking the link, who holds nothing yet. An approved
+        # invitation was released by the admin who approved it; a direct one by
+        # the inviter. Both are on the row, both are accounts rather than
+        # display strings, and that is the whole reason a ceiling is computable
+        # here and is not in identity.py::grant_role (ADR-64).
+        #
+        # This grant is expected to exceed the ceiling almost every time, and
+        # that is the declared position rather than an oversight -- see
+        # CEILING_WAIVED_BY_KIND. What the call adds is that the excess comes
+        # back, gets written into the chain, and reaches the screen, instead of
+        # a docstring three hundred lines up claiming a control that was never
+        # on this path.
+        beyond = _grant_within_ceiling(
             session,
             invitation.company_id,
             user_id=person.id,
             role_name=ROLE_OBLIGATION_OWNER,
+            granted_by_user_id=(
+                invitation.approved_by_user_id or invitation.invited_by_user_id
+            ),
+            kind=invitation.kind,
             actor=f"person:{person.email}",
             granted_at=moment,
         )
@@ -2882,6 +3204,12 @@ def accept(
             f"{person.display_name} is now an obligation owner in "
             f"{invitation.company_id}."
         )
+        if beyond:
+            settled += (
+                f" That role carries {', '.join(beyond)}, which whoever released "
+                "this invitation does not hold themselves. The grant is on the "
+                "record as invite.ceiling_waived."
+            )
     else:
         # NOTHING IS GRANTED HERE. The admin granted the role at provision time,
         # through grant_role, where the chain names them. Reading it back rather
@@ -2928,6 +3256,7 @@ def accept(
         subject_type=invitation.subject_type,
         subject_id=invitation.subject_id,
         granted_roles=granted,
+        granted_beyond_ceiling=beyond,
     )
 
 
@@ -2970,14 +3299,17 @@ __all__ = [
     "ACCEPT_UNAVAILABLE",
     "ACTION_INVITE_ACCEPTED",
     "ACTION_INVITE_APPROVED",
+    "ACTION_INVITE_CEILING_WAIVED",
     "ACTION_INVITE_CREATED",
     "ACTION_INVITE_QUEUED",
     "ACTION_INVITE_REFUSED",
     "ACTION_INVITE_REVOKED",
     "ACTION_INVITE_SUPERSEDED",
+    "CEILING_WAIVED_BY_KIND",
     "AcceptOutcome",
     "AccountRow",
     "CompanyDomain",
+    "GrantExceedsCeiling",
     "DOMAIN_FROM_ACCOUNTS",
     "DOMAIN_FROM_CALLER",
     "DOMAIN_UNDECIDED_NONE",
@@ -3008,6 +3340,7 @@ __all__ = [
     "INV_REVOKED_OK",
     "INV_UNKNOWN",
     "INV_WAS_REVOKED",
+    "NO_DOMAIN",
     "InviteOutcome",
     "InvitePolicy",
     "ProvisionOutcome",

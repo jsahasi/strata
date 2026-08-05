@@ -1021,6 +1021,44 @@ def test_resend_refuses_a_withdrawn_invitation():
         assert again.reason_code == INV_WAS_REVOKED
 
 
+def test_resend_is_refused_when_invites_are_switched_off(monkeypatch):
+    """The switch has to reach the button that mints the second link as well.
+
+    provision_login asks it and resend did not, so a tenant that turned invites
+    off stopped new credential links and left the resend button minting them --
+    on a row that already existed, which is exactly the case an operator turning
+    the switch off is trying to stop. A resend is a NEW invitation with a NEW
+    token, said at length in the function's own docstring, so a switch that lets
+    it through is not the control its refusal claims to be.
+
+    The invitation is provisioned BEFORE the switch goes off, because that is
+    the state this is about: the row is already there and the link is already in
+    somebody's inbox when the tenant decides nobody else gets in.
+    """
+    init_db()
+    with session_scope() as session:
+        admin, _analyst, _root = _world(session)
+        first = _provision(session, admin)
+        assert first.reason_code == INV_OK
+
+        monkeypatch.setenv(ENV_INVITES_ENABLED, "false")
+        again = resend(
+            session,
+            company_id=COMPANY,
+            actor=admin.id,
+            invitation_id=first.invitation.id,
+            now=T0 + timedelta(hours=1),
+        )
+
+        assert again.reason_code == INV_DISABLED
+        assert again.token is None, "a refused resend minted a token anyway"
+        # The first link is untouched: refusing to mint a second one must not
+        # kill the one already out, which would be a withdrawal nobody decided.
+        row = session.get(Invitation, first.invitation.id)
+        assert row.status == INVITE_PENDING
+        assert verify_chain(session, COMPANY)
+
+
 def test_resend_refuses_a_handoff_invitation_and_says_what_to_do_instead():
     """A handoff carries an item whose state has to be re-derived first.
 

@@ -1810,6 +1810,19 @@ def coverage_map(
         f"{_agree(silent, 'was', 'were')} searched and "
         f"{_agree(silent, 'carries', 'carry')} none."
     )
+    # NAMES ITS NOUN RATHER THAN POINTING AT IT. This read "Of those, 1 is not
+    # shown", which pointed three sentences back in one draft and at the nearer
+    # clause in the next -- and the nearer clause counts the filings that carry
+    # NOTHING, which is the opposite of what these rows are. A pronoun that can
+    # attach to the wrong noun is a wrong sentence, and this paragraph is handed
+    # to a model that will rewrite it into one.
+    if not_offered:
+        note += (
+            f" {not_offered} of the {matching} matching "
+            f"{_agree(matching, 'filing', 'filings')} "
+            f"{_agree(not_offered, 'is', 'are')} not shown here at all; the row "
+            "for each says which of the two reasons applies."
+        )
     if silent:
         note += (
             " A filing carrying none of the words is not a filing that does not "
@@ -1827,12 +1840,6 @@ def coverage_map(
             f" {not_searched} {_agree(not_searched, 'was', 'were')} not searched, "
             f"so nothing is known about {_agree(not_searched, 'it', 'them')} "
             "either way. Narrow the question to a docket to reach the rest."
-        )
-    if not_offered:
-        note += (
-            f" Of those, {not_offered} {_agree(not_offered, 'is', 'are')} not "
-            "shown here at all; the row for each says which of the two reasons "
-            "applies."
         )
     if covered:
         note += (

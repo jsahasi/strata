@@ -164,11 +164,21 @@ def _checked_link(url: str) -> str:
     """
     cleaned = _required(url, "accept_url")
     if not cleaned.lower().startswith(LINK_SCHEMES):
+        # THE REFUSAL SAYS NOTHING BACK ABOUT WHAT IT WAS GIVEN, and that is the
+        # fix rather than the style. This read `cleaned.split(':')[0]` to name
+        # the offending scheme -- which is the whole string when there is no
+        # colon, and a relative acceptance path is exactly the mistake this
+        # guard exists to catch. So `/invite/accept/<token>` put the live token
+        # into a ValueError, and from there into a traceback and a log. The
+        # package rule is that the token goes in the link and nowhere else: not
+        # in the subject, not in a header, not in a repr, not in a log line. A
+        # secret written into a log cannot be taken out again, so the caller is
+        # told what was required and never what they sent.
         raise ValueError(
-            f"accept_url must begin with one of {', '.join(LINK_SCHEMES)}; got "
-            f"{cleaned.split(':')[0]!r}. A relative path would be joined to a "
-            "guess at where this deployment lives, and a mail client renders "
-            "any scheme it is given."
+            f"accept_url must begin with one of {', '.join(LINK_SCHEMES)}. A "
+            "relative path would be joined to a guess at where this deployment "
+            "lives, and a mail client renders any scheme it is given. The value "
+            "is not repeated here because it may carry the invitation token."
         )
     if any(character.isspace() for character in cleaned):
         raise ValueError("accept_url cannot contain whitespace")

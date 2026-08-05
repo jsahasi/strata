@@ -49,6 +49,8 @@ from app.state.models import (
     INVITE_ACCEPTED,
     INVITE_APPROVED,
     INVITE_AWAITING_APPROVAL,
+    INVITE_KIND_HANDOFF,
+    INVITE_KIND_PROVISION,
     INVITE_PENDING,
     INVITE_REVOKED,
     INVITE_SUBJECT_ESCALATION,
@@ -66,12 +68,15 @@ from app.state.models import (
     Invitation,
     Role,
     RolePermission,
+    User,
 )
 from app.state.invites import (
     ACCEPT_OK,
     ACCEPT_PASSWORD,
     ACCEPT_REASON_CODES,
     ACCEPT_REFUSED,
+    ACTION_INVITE_CEILING_WAIVED,
+    CEILING_WAIVED_BY_KIND,
     DOMAIN_FROM_ACCOUNTS,
     DOMAIN_FROM_CALLER,
     DOMAIN_UNDECIDED_NONE,
@@ -100,6 +105,8 @@ from app.state.invites import (
     INV_WAS_REVOKED,
     SOURCE_DEFAULT,
     SOURCE_ENVIRONMENT,
+    GrantExceedsCeiling,
+    _grant_within_ceiling,
     accept_invitation,
     approve_invitation,
     company_domain,
@@ -110,6 +117,7 @@ from app.state.invites import (
     invite_policy,
     live_invitation_for_email,
     revoke_invitation,
+    same_organisation,
 )
 from app.state.routing import (
     ACTION_ESCALATION_ROUTED_PENDING,
@@ -1416,3 +1424,307 @@ def test_a_refusal_writes_no_invitation_and_leaves_the_chain_sound():
             _invite(session, email=email, actor_user=analyst)
         assert verify_chain(session, COMPANY)
         assert event_count(session, COMPANY) > before
+
+
+# ---------------------------------------------------------------------------
+# The ceiling, and the one path that is allowed past it
+#
+# The module's headline claim used to read as a rule over every path and was
+# kept on one. _grant_ceiling had a single caller, inside provision_login, while
+# acceptance granted obligation_owner unconditionally -- and admin, the only
+# stock role carrying user.invite, holds neither action.approve nor
+# action.reject. So the one kind of account that can invite always granted
+# strictly more than it held, through the door beside the one the ceiling
+# guarded.
+#
+# The handoff genuinely must grant approval: this module exists to create the
+# approver for a duty that has none, and a ceiling that refused it would mean
+# nobody could ever create one. So the rule is not "refuse"; it is that no grant
+# escapes the ceiling unseen. Every grant goes through one function, a path that
+# is allowed past declares itself in a table, and every use of that permission
+# is written into the chain as its own action. A third path added next month
+# reaches identity.grant_role through the same door or not at all.
+# ---------------------------------------------------------------------------
+
+
+def test_every_role_this_module_grants_goes_through_the_one_ceiling():
+    """The class fix, guarded structurally rather than by remembering.
+
+    A test that only proved the two paths known today behave correctly would say
+    nothing about the third, and the third is the whole reason this was a class
+    of defect rather than a line of one. So this reads the module and asserts
+    that identity.grant_role is reached from exactly one function in it. Somebody
+    adding a path next month either goes through that function or turns this red.
+    """
+    import ast
+    import inspect
+
+    from app.state import invites as module
+
+    tree = ast.parse(inspect.getsource(module))
+    chokepoints = [
+        node
+        for node in ast.walk(tree)
+        if isinstance(node, ast.FunctionDef) and node.name == "_grant_within_ceiling"
+    ]
+    assert len(chokepoints) == 1, "the one grant path is gone or has been doubled"
+    gate = chokepoints[0]
+
+    calls = [
+        node
+        for node in ast.walk(tree)
+        if isinstance(node, ast.Call)
+        and isinstance(node.func, ast.Name)
+        and node.func.id == "grant_role"
+    ]
+    assert calls, "this module no longer grants anything; the guard is measuring nothing"
+    for call in calls:
+        assert gate.lineno <= call.lineno <= gate.end_lineno, (
+            f"grant_role is called at line {call.lineno}, outside "
+            "_grant_within_ceiling. Every grant goes through the ceiling."
+        )
+
+
+def test_an_administrator_handing_on_approval_they_lack_says_so_in_the_chain():
+    """The disclosure. An admin cannot approve; the account they invite can.
+
+    THE MOVE THIS MAKES VISIBLE. An administrator holds user.invite and holds
+    neither action.approve nor action.reject. They invite an address at their own
+    company's domain -- which they control -- accept it, and now hold approval
+    through a second account. The two defences the module names are thin against
+    exactly this actor: the self-invite comparison catches a plus-tag on one
+    mailbox and not a second mailbox.
+
+    The product does not refuse it, because refusing it would mean no duty could
+    ever get an approver. It records it, under an action of its own, naming the
+    codes that were handed past the ceiling and the person who released them. A
+    reader scanning for manufactured approvers has one word to search for.
+    """
+    init_db()
+    with session_scope() as session:
+        _gap(session)
+        admin = _person(session, COMPANY, "sarah", ROLE_ADMIN)
+        held_by_admin = permissions_for_user(session, COMPANY, admin.id)
+        assert "action.approve" not in held_by_admin, "the premise of this test"
+
+        invited = _invite(session, actor_user=admin)
+        accepted = accept_invitation(
+            session, token=invited.token, password=CHOSEN, now=T0
+        )
+
+        assert accepted.reason_code == ACCEPT_OK
+        assert accepted.granted_roles == (ROLE_OBLIGATION_OWNER,)
+        # It happened, and the outcome the screen holds says which codes.
+        assert accepted.granted_beyond_ceiling == ("action.approve", "action.reject")
+        assert "action.approve" in accepted.reason_text
+
+        waived = (
+            session.query(AuditEvent)
+            .filter(AuditEvent.company_id == COMPANY)
+            .filter(AuditEvent.action == ACTION_INVITE_CEILING_WAIVED)
+            .all()
+        )
+        assert len(waived) == 1, "the ceiling was passed and the chain does not say so"
+        row = waived[0]
+        assert "action.approve" in row.reason
+        assert "action.reject" in row.reason
+        assert admin.email in row.reason
+        assert row.actor_user_id == admin.id
+        # A secret never reaches the chain, on this row as on every other.
+        assert invited.token not in row.reason
+        assert verify_chain(session, COMPANY)
+
+
+def test_a_handoff_from_somebody_who_already_holds_approval_announces_nothing():
+    """The control that stops the announcement becoming noise.
+
+    A disclosure written on every acceptance would be a word nobody reads by the
+    second week. This one is written only when something was really handed past
+    the ceiling, so an inviter who holds approval themselves -- an obligation
+    owner given user.invite, which is what a company that wants this does --
+    produces an ordinary acceptance and no waiver row at all.
+    """
+    init_db()
+    with session_scope() as session:
+        _gap(session)
+        owner = _person(session, COMPANY, "tom", ROLE_OBLIGATION_OWNER)
+        _may_invite(session, COMPANY, owner)
+        held = permissions_for_user(session, COMPANY, owner.id)
+        assert {"action.approve", "action.reject", "user.invite"} <= held
+
+        invited = _invite(session, actor_user=owner)
+        accepted = accept_invitation(
+            session, token=invited.token, password=CHOSEN, now=T0
+        )
+
+        assert accepted.reason_code == ACCEPT_OK
+        assert accepted.granted_roles == (ROLE_OBLIGATION_OWNER,)
+        assert accepted.granted_beyond_ceiling == ()
+        assert (
+            session.query(AuditEvent)
+            .filter(AuditEvent.company_id == COMPANY)
+            .filter(AuditEvent.action == ACTION_INVITE_CEILING_WAIVED)
+            .count()
+            == 0
+        )
+        assert verify_chain(session, COMPANY)
+
+
+def test_a_grant_past_the_ceiling_is_refused_where_no_path_declares_itself():
+    """The default is refusal. Being allowed past is a declaration, not a silence.
+
+    The waiver table is keyed by invitation kind, so a provisioned login -- which
+    names a role and is checked against the ceiling before any account is made --
+    gets no exception and raises here if it ever reached this function with an
+    excess. That raise is the backstop under provision_login's own check: two
+    guards on the path this product would be worst to lose, and the second one
+    catches the day somebody moves the first.
+    """
+    init_db()
+    with session_scope() as session:
+        _gap(session)
+        admin = _person(session, COMPANY, "sarah", ROLE_ADMIN)
+        stranger = create_user(
+            session,
+            COMPANY,
+            email="new.person@mep.example",
+            display_name="New Person",
+            password=PASSWORD,
+            actor=ACTOR,
+            created_at=T0,
+        )
+
+        with pytest.raises(GrantExceedsCeiling) as raised:
+            _grant_within_ceiling(
+                session,
+                COMPANY,
+                user_id=stranger.id,
+                role_name=ROLE_OBLIGATION_OWNER,
+                granted_by_user_id=admin.id,
+                kind=INVITE_KIND_PROVISION,
+                actor=f"person:{admin.email}",
+                granted_at=T0,
+            )
+        said = str(raised.value)
+        assert "action.approve" in said, "a refusal that does not name its codes"
+        assert ROLE_OBLIGATION_OWNER in said
+        # Refused means nothing was written. Not the role, and not a waiver row.
+        assert "action.approve" not in permissions_for_user(session, COMPANY, stranger.id)
+
+        # And the kind that does declare itself is let through, from the same call.
+        excess = _grant_within_ceiling(
+            session,
+            COMPANY,
+            user_id=stranger.id,
+            role_name=ROLE_OBLIGATION_OWNER,
+            granted_by_user_id=admin.id,
+            kind=INVITE_KIND_HANDOFF,
+            actor=f"person:{admin.email}",
+            granted_at=T0,
+        )
+        assert excess == ("action.approve", "action.reject")
+        assert INVITE_KIND_HANDOFF in CEILING_WAIVED_BY_KIND
+        assert INVITE_KIND_PROVISION not in CEILING_WAIVED_BY_KIND
+
+
+def test_an_address_already_in_the_table_is_not_read_as_a_domain_either():
+    """The backward path. The guard closed the door; the rows are already inside.
+
+    normalise_email now refuses a second at-sign, which stops another one being
+    written. It does nothing about the ones written before it, and this is the
+    module that reads them: company_domain derives the company's own domain from
+    the addresses of its active accounts, straight off the table, and
+    same_organisation compares the label after the LAST at-sign. So a row saying
+    victim@evil.example@mep.example still voted for mep.example and still
+    answered "same organisation" -- an authorisation decision taken on a string
+    this module calls a domain and which is not one. The live strata.db in this
+    repository predates the guard, which is what makes this a real path rather
+    than a hypothetical one.
+
+    THE ANSWER IS FAIL CLOSED, NOT REPAIR. An address nothing can read makes the
+    derivation ambiguous, exactly as a second real domain does, and every invite
+    then goes to a holder of user.manage until somebody sorts the row out. That
+    is the cost and it is the right direction: the alternative is guessing which
+    at-sign counts, on the decision that skips the administrator queue.
+    """
+    init_db()
+    with session_scope() as session:
+        analyst, _escalation_id = _gap(session)
+        # Written the way the code wrote it before the guard: onto the table
+        # directly, because create_user refuses this string now.
+        session.add(
+            User(
+                id="usr-mep-impostor",
+                company_id=COMPANY,
+                email="victim@evil.example@mep.example",
+                display_name="Impostor",
+                password_hash="0" * 64,
+                password_salt="0" * 32,
+                kdf_params="{}",
+                status=STATUS_ACTIVE,
+                created_at=T0,
+            )
+        )
+        session.flush()
+
+        # The derivation refuses to decide rather than counting the row as ours.
+        derived = company_domain(session, COMPANY)
+        assert derived.decided is False
+        assert same_organisation("victim@evil.example@mep.example", derived) is False
+
+        # And with the domain stated outright, which skips the derivation
+        # entirely, the comparison itself still refuses. This is the assertion
+        # that pins _domain_of rather than the query above it.
+        stated = company_domain(session, COMPANY, stated=DOMAIN)
+        assert stated.decided is True
+        assert same_organisation("victim@evil.example@mep.example", stated) is False
+        # The control: the ordinary address this product really uses still matches,
+        # or the guard has closed the fast path for everybody.
+        assert same_organisation(OWNER_EMAIL, stated) is True
+
+        # The forward path, pinned in the same test so the two cannot drift.
+        refused = _invite(
+            session, email="victim@evil.example@mep.example", actor_user=analyst
+        )
+        assert refused.reason_code == INV_EMAIL_MALFORMED
+        assert user_by_email(session, COMPANY, OWNER_EMAIL) is None
+
+
+def test_the_switch_that_stops_an_invitation_also_stops_the_release_queue(monkeypatch):
+    """Turning invites off must close the back door as well as the front one.
+
+    _invite refuses with "invites are switched off for this tenant, so nobody can
+    be pulled in", and that sentence was false while approve_invitation could
+    still release a queued row into a live account with a working token. The
+    queue is written when a tenant forces approval, so the two switches together
+    are the state where this mattered: every invitation queues, and then every
+    queued invitation could still be released after the tenant switched invites
+    off. A switch that stops one of two doors is not the control its own refusal
+    claims to be.
+    """
+    init_db()
+    monkeypatch.setenv(ENV_INVITES_NEED_APPROVAL, "true")
+    with session_scope() as session:
+        analyst, _escalation_id = _gap(session)
+        admin = _person(session, COMPANY, "sarah", ROLE_ADMIN)
+        queued = _invite(session, actor_user=analyst)
+        assert queued.reason_code == INV_QUEUED
+
+        monkeypatch.setenv(ENV_INVITES_ENABLED, "0")
+        outcome = approve_invitation(
+            session,
+            COMPANY,
+            invitation_id=queued.invitation_id,
+            approver_user_id=admin.id,
+            actor=f"person:{admin.email}",
+            now=T0 + timedelta(hours=1),
+        )
+
+        assert outcome.reason_code == INV_DISABLED
+        assert ENV_INVITES_ENABLED in outcome.reason_text or "switched off" in outcome.reason_text
+        # Nothing was released: no account, and the row is where it was.
+        assert user_by_email(session, COMPANY, OWNER_EMAIL) is None
+        assert session.get(Invitation, queued.invitation_id).status == (
+            INVITE_AWAITING_APPROVAL
+        )
+        assert verify_chain(session, COMPANY)

@@ -28,7 +28,9 @@ writer holds the file, it excludes what that writer has not committed, and when
 the lock is exclusive the script refuses out loud instead of hanging.
 """
 
+import os
 import sqlite3
+import stat
 import sys
 import time
 from contextlib import contextmanager
@@ -618,3 +620,222 @@ def test_the_deployment_page_does_not_claim_a_schedule():
     assert "Nothing schedules it" in words, "the page has to say no backup runs"
     assert "same disk as the database" in words
     assert "not disaster recovery" in words
+
+
+# ---------------------------------------------------------------------------
+# Who else on the host can read it
+# ---------------------------------------------------------------------------
+
+
+def _mode_of(path: Path) -> int:
+    return stat.S_IMODE(path.stat().st_mode)
+
+
+def test_the_backup_is_readable_only_by_the_user_who_took_it(tmp_path):
+    """The copy carries every password hash and the whole audit chain.
+
+    Found by looking at a backup on the deployment target, which is a droplet
+    shared with another project: the file was 0644, because nothing set a mode
+    and the umask decided. Every other user on that host could read the hashes
+    the login screen is built on. A backup is not a lower class of secret than
+    the database; it is the same bytes with an older timestamp.
+    """
+    db = tmp_path / "strata.db"
+    _seed(db, rows=3)
+
+    result = backup.run(db, tmp_path / "backups", keep=5)
+
+    assert _mode_of(result.written) == 0o600, (
+        f"the backup is mode {oct(_mode_of(result.written))}; another user on this "
+        "host can read every password hash in it"
+    )
+
+
+def test_the_backup_is_private_before_the_first_row_is_written_not_after(tmp_path):
+    """A chmod after the copy leaves a window, and the window is the whole file.
+
+    Tightening the mode once the data is on disk is not a fix: between the first
+    page landing and the chmod, the finished hashes sit there at 0644 and any
+    process on the host can open and keep a handle on them. Closing the file
+    afterwards does not close a handle somebody already has. So the mode has to
+    be on the file before SQLite is given it, and this test looks at the moment
+    the copy begins rather than the moment it ends.
+    """
+    db = tmp_path / "strata.db"
+    _seed(db, rows=3)
+    seen: list[int] = []
+
+    real_copy = backup._copy
+
+    def watch_mode_at_the_start(src, dst, deadline_seconds):
+        # _copy is called with both connections open and not one page copied.
+        seen.append(_mode_of(tmp_path / "backups" / planned_name[0]))
+        return real_copy(src, dst, deadline_seconds)
+
+    when = datetime(2026, 8, 4, 9, 30, 15, tzinfo=timezone.utc)
+    planned_name = ["strata-20260804T093015Z.db"]
+    backup._copy = watch_mode_at_the_start
+    try:
+        backup.run(db, tmp_path / "backups", keep=5, now=when)
+    finally:
+        backup._copy = real_copy
+
+    assert seen == [0o600], (
+        f"the copy was mode {[oct(m) for m in seen]} when writing started; the mode "
+        "has to be on the file before the data is, not after"
+    )
+
+
+def test_the_backup_directory_is_not_listable_by_other_users(tmp_path):
+    """Filenames are stamped to the second, so the listing alone tells another
+    user on a shared host when this database is touched and how often."""
+    db = tmp_path / "strata.db"
+    _seed(db)
+    dest = tmp_path / "backups"
+
+    backup.run(db, dest, keep=5)
+
+    assert _mode_of(dest) == 0o700, (
+        f"the backup directory is {oct(_mode_of(dest))}; anyone on the host can list it"
+    )
+
+
+# ---------------------------------------------------------------------------
+# Which file is at fault
+# ---------------------------------------------------------------------------
+
+
+def test_a_tampered_live_database_is_named_as_the_fault_rather_than_the_copy(tmp_path):
+    """The copy is faithful. Saying "the copy did not verify" blames the wrong file.
+
+    Found by reading the message from a real failure: the run copies an already
+    broken database perfectly, the copy fails the chain check because the source
+    was broken, and the operator is told to look at the copy. The copy is the one
+    thing that behaved. Absence is denial cuts both ways -- a refusal has to name
+    what is actually wrong, or it sends the person to the wrong file on the worst
+    morning of their year.
+    """
+    db = tmp_path / "strata.db"
+    _seed(db, rows=4)
+    _break_a_chain_row(db)  # the LIVE database is the tampered one
+
+    with pytest.raises(backup.BackupError) as raised:
+        backup.run(db, tmp_path / "backups", keep=5)
+
+    message = str(raised.value)
+    assert "live database" in message.lower(), message
+    assert str(db) in message, "the refusal has to name the file that is actually broken"
+    assert "seq 2" in message, "and still carry the problem it found"
+
+
+def test_a_copy_that_came_out_wrong_from_a_sound_source_blames_the_copy(tmp_path):
+    """The other half of the same fork, and the reason the message cannot be fixed
+    by simply renaming it. Here the source is sound and the copy is not, which is
+    a real backup fault -- a torn write, a bad disk -- and must read as one."""
+    db = tmp_path / "strata.db"
+    _seed(db, rows=4)
+    real_snapshot = backup.snapshot
+
+    def snapshot_then_damage_the_copy(source, destination, **kwargs):
+        real_snapshot(source, destination, **kwargs)
+        _break_a_chain_row(destination)  # source stays clean
+
+    backup.snapshot = snapshot_then_damage_the_copy
+    try:
+        with pytest.raises(backup.BackupError) as raised:
+            backup.run(db, tmp_path / "backups", keep=5)
+    finally:
+        backup.snapshot = real_snapshot
+
+    message = str(raised.value)
+    assert "copy" in message.lower()
+    assert "live database" not in message.lower() or "does verify" in message.lower(), (
+        "a sound source must not be reported as the broken one: " + message
+    )
+    # And the source really is still sound, which is what makes the message true.
+    assert backup.verify_backup(db).ok
+
+
+# ---------------------------------------------------------------------------
+# The chain check reads the file that was backed up, and no other
+# ---------------------------------------------------------------------------
+
+
+def test_a_question_mark_in_the_path_does_not_send_the_chain_check_elsewhere(tmp_path):
+    """Proved empirically before it was fixed: with the path glued into the URL,
+    SQLAlchemy read everything after the "?" as a query string, opened a DIFFERENT
+    file, CREATED it because the default sqlite URL will, and reported "no such
+    table: audit_events". A good backup was quarantined on the strength of a chain
+    check that had never looked at it, and a stray database was left behind that
+    nothing cleans up. A directory name is the operator's to choose."""
+    db = tmp_path / "strata.db"
+    _seed(db, rows=4)
+    dest = tmp_path / "back ups?x"
+
+    result = backup.run(db, dest, keep=5)
+
+    assert result.ok, result.verification
+    assert result.verification.chains_verified == 1, (
+        "the chain check did not read the file that was backed up"
+    )
+    assert result.verification.audit_rows == 4
+    # Nothing but the backup itself may appear. A file invented by the URL parser
+    # would show up here, and did.
+    assert [p.name for p in dest.iterdir()] == [result.written.name], sorted(
+        p.name for p in dest.iterdir()
+    )
+
+
+def test_the_chain_check_refuses_a_missing_file_rather_than_creating_one(tmp_path):
+    """The other path to the same wrong answer, and the reason the fix is mode=rw
+    and not merely a better-escaped URL. An engine pointed at a path that is not
+    there must fail, not quietly make an empty database and then report that it
+    has no audit table -- which reads as "your backup is broken" and means "I
+    invented a file"."""
+    ghost = tmp_path / "not-here.db"
+
+    verified, problems, _notes = backup._verify_chains(ghost)
+
+    assert verified == 0
+    assert problems, "a chain check that cannot open the file must say so"
+    assert not ghost.exists(), "the chain check created the database it was asked about"
+
+
+# ---------------------------------------------------------------------------
+# What the file is not
+# ---------------------------------------------------------------------------
+
+
+def test_the_operator_is_told_the_backup_is_not_encrypted(tmp_path, capsys):
+    """The command tells people to put this in /var/backups. It had better say
+    what it is putting there.
+
+    Nothing here encrypts anything, and this test does not ask it to. It asks the
+    script to be honest about it in the three places an operator actually reads:
+    the module docstring, --help, and the report printed after a run that worked.
+    The last one is the one that matters, because it is the only one a person
+    reads on the day they take a backup rather than the day they set it up.
+    """
+    text_of = backup.__doc__.lower()
+    assert "not encrypted" in text_of or "no encryption" in text_of, (
+        "the module docstring does not say the file is unencrypted"
+    )
+    assert "password hash" in text_of, (
+        "and does not say what is in it that makes that matter"
+    )
+
+    with pytest.raises(SystemExit):
+        backup.main(["--help"])
+    helped = capsys.readouterr().out.lower()
+    assert "not encrypted" in helped or "no encryption" in helped, helped
+
+    db = tmp_path / "strata.db"
+    _seed(db, rows=3)
+    code = backup.main(["--db", str(db), "--into", str(tmp_path / "backups")])
+    out = capsys.readouterr().out.lower()
+    assert code == 0
+    assert "not encrypted" in out or "no encryption" in out, (
+        "a successful run says where the backup does not reach, and has to say "
+        "this beside it: " + out
+    )
+    assert "password hash" in out, out
