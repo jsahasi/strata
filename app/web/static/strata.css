@@ -2781,3 +2781,34 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
 /* There is deliberately no :hover, :active or :focus-within rule for any of
    the three. Not a rule that changes nothing -- no rule at all, because an
    empty rule is an invitation and the next person will fill it. */
+
+/* The "Sign in as" row on the login page.
+ *
+ * One form per button, because each posts a different address and a single
+ * form with three submit buttons would depend on which one the browser
+ * decided to send -- which differs between browsers and is exactly the kind
+ * of thing that works on the machine it was written on.
+ *
+ * The row wraps rather than scrolls: three buttons at 390px stack, and a
+ * horizontal scroller holding the only way into the product is worse than a
+ * taller page. Each button keeps its caption beside it, so a person choosing
+ * between them reads the role and the name together rather than a role alone.
+ */
+.demo-signin {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s4);
+}
+
+.demo-signin__one {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  min-width: 13rem;
+  flex: 1 1 13rem;
+}
+
+.demo-signin__one .btn {
+  width: 100%;
+  justify-content: center;
+}

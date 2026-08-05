@@ -12,13 +12,15 @@ PY := .venv/bin/python
 PIP := .venv/bin/pip
 PORT ?= 8000
 
-.PHONY: help venv install run test eval seed clean fresh-check status
+.PHONY: help venv install run test eval seed reset-demo reset-demo-dry clean fresh-check status
 
 help:
 	@echo "make run    - start the workspace at http://localhost:$(PORT)"
 	@echo "make test   - run the test suite"
 	@echo "make eval   - run the extraction and citation evals, print the scores"
 	@echo "make seed   - load the synthetic proceeding and company context"
+	@echo "make reset-demo - put the demonstration tenant back the way it shipped"
+	@echo "make reset-demo-dry - show what reset-demo would remove, and change nothing"
 	@echo "make fresh-check - clone this repo to a temp dir and prove run+test work there"
 	@echo "make status - regenerate docs/.ai/state.json from the repo itself"
 
@@ -77,6 +79,30 @@ seed: install
 	$(PY) scripts/seed_route.py
 	$(PY) scripts/ingest_real.py
 	$(PY) scripts/build_index.py
+
+# Put the demonstration tenant back the way it shipped.
+#
+# WHY IT EXISTS. deploy/site/index.html publishes three accounts and their
+# password on purpose, and that argument -- a door held open, not a secret kept
+# badly -- only holds while the room behind it is disposable. Anybody who signs
+# in as the administrator can add users, redraw the approval route, move the
+# threshold and mint share links, and every one of those is permanent, because
+# the audit chain is append-only and nothing else in this product removes a row.
+# This is the way back, and without it the way back was deleting the database on
+# the host by hand.
+#
+# It refuses unless STRATA_DEMO_ACCOUNTS says this workspace is a demonstration,
+# it takes no --company argument so the only tenant it can touch is the one the
+# seed itself creates, and it verifies every OTHER tenant's chain afterwards and
+# exits non-zero if any of them moved. Run `reset-demo-dry` first if you want to
+# see what would go. build_index runs after, for the reason the seed target
+# gives above.
+reset-demo: install
+	$(PY) scripts/reset_demo.py --yes
+	$(PY) scripts/build_index.py
+
+reset-demo-dry: install
+	$(PY) scripts/reset_demo.py --dry-run
 
 # The one file in docs/.ai/ nobody writes by hand, so it cannot go stale.
 status: install

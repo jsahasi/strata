@@ -28,12 +28,13 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.testclient import TestClient
 
-from app.seed import load
+from app.seed import DEMO_PASSWORD, demo_account_list, ensure_accounts, load
 from app.state.audit import event_count, verify_chain
 from app.state.claims import verified_claims
 from app.state.db import get_engine, session_scope
 from app.state.models import Base, Claim, DocumentVersion, Escalation, Proceeding
 from app.web import STATIC_DIR, STATIC_URL_PATH
+from app.web.views import auth as auth_view
 from app.web.views import proceedings as proceedings_view
 from app.web.views import review as review_view
 
@@ -55,9 +56,14 @@ def unset_company(monkeypatch):
 def client() -> TestClient:
     app = FastAPI()
     app.mount(STATIC_URL_PATH, StaticFiles(directory=STATIC_DIR), name="static")
+    app.include_router(auth_view.router)
     app.include_router(proceedings_view.router)
     app.include_router(review_view.router)
-    return TestClient(app)
+    # https, because the session cookie is marked Secure anywhere that is not
+    # loopback plaintext, and httpx will not send a Secure cookie over http --
+    # so a signed-in test would silently behave like an anonymous one. The same
+    # base_url tests/test_login.py and tests/test_users_admin.py use.
+    return TestClient(app, base_url="https://testserver")
 
 
 @pytest.fixture
@@ -85,7 +91,12 @@ def no_schema():
 @pytest.fixture
 def seeded(empty_schema):
     with session_scope() as session:
-        return load(session)
+        report = load(session)
+        # Accounts too, because resolving an escalation is now gated on a
+        # permission and attributed to a signed-in person. A corpus with no
+        # people in it could not exercise either.
+        ensure_accounts(session)
+        return report
 
 
 def _text(response) -> str:
@@ -291,7 +302,31 @@ def _resolve(client, escalation_id: str, **form) -> object:
     )
 
 
+def _role(name: str) -> str:
+    """The seeded address holding one role, read from the seed rather than typed."""
+    return next(a.email for a in demo_account_list() if a.role == name)
+
+
+def _sign_in(client, role: str = "analyst"):
+    """Put a real session behind the client.
+
+    Resolving an escalation is gated on escalation.resolve and attributed to
+    whoever is signed in, so these tests need an identity rather than a name in
+    a form field. Signing in through the real /login is deliberate: it is the
+    same path a person takes, so a change that breaks sign-in breaks these too
+    rather than leaving them passing against a stub.
+    """
+    response = client.post(
+        "/login",
+        data={"email": _role(role), "password": DEMO_PASSWORD},
+        follow_redirects=False,
+    )
+    assert response.status_code == 303, f"sign-in failed: {response.status_code}"
+    return response
+
+
 def test_approving_writes_an_audit_event_and_the_chain_still_verifies(client, seeded):
+    _sign_in(client)
     with session_scope() as session:
         before = event_count(session, COMPANY)
 
@@ -306,21 +341,52 @@ def test_approving_writes_an_audit_event_and_the_chain_still_verifies(client, se
 
         row = session.get(Escalation, MISQUOTE)
         assert row.resolved_at is not None
-        assert row.resolved_by == "person:J. Okonkwo"
+        # The signed-in analyst, not "J. Okonkwo" from the form field. This
+        # asserted the typed name until 2026-08-04, which is what made the field
+        # forgeable in the first place.
+        assert row.resolved_by == f"person:{_role('analyst')}"
 
     body = _text(client.get("/escalations"))
     assert body.count('class="queue__row"') == 1
-    assert "person:J. Okonkwo" in body
+    assert f"person:{_role('analyst')}" in body
 
 
-def test_an_unsigned_resolution_says_so_rather_than_borrowing_a_name(client, seeded):
-    _resolve(client, MISQUOTE, decision="approve")
+def test_an_unsigned_resolution_is_refused_rather_than_recorded_as_a_stranger(
+    client, seeded
+):
+    """This asserted the opposite until 2026-08-04, and the old answer was wrong.
+
+    The route used to take the reviewer's name from a form field, so an unsigned
+    caller was recorded as `person:unauthenticated` and a signed-in one was
+    recorded as whatever they typed. Labelling the anonymous case honestly is not
+    the same as refusing it, and it left the signed-in case free to write any
+    name at all into an append-only chain. Nothing is written now unless somebody
+    is signed in and holds escalation.resolve.
+    """
+    with session_scope() as session:
+        before = event_count(session, COMPANY)
+
+    assert _resolve(client, MISQUOTE, decision="approve").status_code == 403
 
     with session_scope() as session:
-        assert session.get(Escalation, MISQUOTE).resolved_by == "person:unauthenticated"
+        assert session.get(Escalation, MISQUOTE).resolved_by is None
+        assert session.get(Escalation, MISQUOTE).resolved_at is None
+        assert event_count(session, COMPANY) == before
+
+
+def test_the_resolver_recorded_is_the_signed_in_person_not_the_form_field(
+    client, seeded
+):
+    """The typed field is still accepted and is no longer believed."""
+    _sign_in(client)
+    _resolve(client, MISQUOTE, decision="approve", reviewer="Someone Else Entirely")
+
+    with session_scope() as session:
+        assert session.get(Escalation, MISQUOTE).resolved_by == f"person:{_role('analyst')}"
 
 
 def test_rejecting_without_a_reason_writes_nothing(client, seeded):
+    _sign_in(client)
     with session_scope() as session:
         before = event_count(session, COMPANY)
 
@@ -336,6 +402,7 @@ def test_rejecting_without_a_reason_writes_nothing(client, seeded):
 
 
 def test_rejecting_records_the_dispute_and_the_claim_stays_withheld(client, seeded):
+    _sign_in(client)
     response = _resolve(
         client,
         MISQUOTE,
@@ -349,7 +416,7 @@ def test_rejecting_records_the_dispute_and_the_claim_stays_withheld(client, seed
         assert verify_chain(session, COMPANY) is True
 
         row = session.get(Escalation, MISQUOTE)
-        assert row.resolved_by == "person:A. Bell"
+        assert row.resolved_by == f"person:{_role('analyst')}"
 
         # The decisive assertion: a person disputing a refusal does not make the
         # citation verify. The claim is still withheld on the next read.
@@ -361,6 +428,7 @@ def test_rejecting_records_the_dispute_and_the_claim_stays_withheld(client, seed
 
 
 def test_resolving_the_same_item_twice_conflicts(client, seeded):
+    _sign_in(client)
     assert _resolve(client, MISQUOTE, decision="approve").status_code == 303
 
     with session_scope() as session:
@@ -417,7 +485,11 @@ def test_every_route_refuses_another_tenant(client, seeded, monkeypatch):
     with session_scope() as session:
         before = event_count(session, COMPANY)
 
-    assert _resolve(client, MISQUOTE, decision="approve").status_code == 404
+    # Refused. 403 rather than 404 because the permission is asked before the
+    # id is resolved, on purpose: checking the row first would let somebody
+    # without the permission learn which escalation ids exist. Either way it is
+    # a refusal that writes nothing, which is what this test is about.
+    assert _resolve(client, MISQUOTE, decision="approve").status_code in (403, 404)
 
     with session_scope() as session:
         # No write, and no entry in the other company's chain either.

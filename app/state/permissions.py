@@ -121,7 +121,10 @@ from app.state.models import (
 )
 
 # Imported, never copied. Same guard, same failure, one place to audit.
-from app.state.queries import _require_scope
+# row_for_company comes with it: a primary-key fetch that refuses to hand back a
+# row belonging to somebody else, so the check cannot be written a fifth subtly
+# different way. See _editable_role, which was the fifth site.
+from app.state.queries import CrossTenantRow, _require_scope, row_for_company
 
 # ---------------------------------------------------------------------------
 # ACTION CODES
@@ -855,6 +858,23 @@ def _editable_role(
 
     Another tenant's role is not found here at all, which is the intended
     behaviour of every scoped read in this codebase.
+
+    THE ID PATH USED TO BE A FIFTH FETCH-THEN-CHECK SITE, and it is on
+    row_for_company now (ADR-70). It read the row by primary key with a bare
+    `Role.id == role_id`, then compared company_id afterwards -- the exact shape
+    that let app/state/routing.py::ensure_obligation hand back another tenant's
+    obligation, written again in a module about who may do what.
+
+    THE ORDER OF THE TWO REFUSALS WAS ALSO WRONG, AND THAT ONE LEAKED. The
+    system-role refusal interpolates the role's name, and it ran BEFORE the
+    tenant comparison. Role names are not a fixed vocabulary -- a company composes
+    them and calls them what it likes -- so any row the primary key found could
+    reach that message. Posting another tenant's role id at a form returned a
+    sentence carrying their name for it, which is precisely the fact the scope
+    exists to withhold. The tenant question is settled first now, by the
+    chokepoint, and the only name this function can still print is a SYSTEM
+    role's: those carry company_id IS NULL, they ship with the product, and every
+    company sees the same three.
     """
     if name and role_id:
         raise ValueError(
@@ -865,16 +885,37 @@ def _editable_role(
     if role_id:
         if not isinstance(role_id, str):
             raise ValueError(f"a role id must be a string; got {role_id!r}")
-        found = session.query(Role).filter(Role.id == role_id).one_or_none()
-        if found is None:
-            raise ValueError(f"no role {role_id!r}")
-        if role_is_system(found):
-            raise ValueError(_SYSTEM_ROLE_REFUSAL.format(label=found.name))
-        if found.company_id != company_id:
-            # One sentence for "not here" and "not yours". Which of the two it
-            # is would itself tell a caller that another tenant holds that id.
-            raise ValueError(f"no role {role_id!r} composed by this company")
-        return found
+        # Whose row is it: asked first, and asked by the one call that cannot
+        # forget to ask. row_for_company raises CrossTenantRow -- a ValueError --
+        # when the id belongs to somebody else, and that refusal is reworded here
+        # only so the sentence matches the one the name path gives. Nothing about
+        # the holder crosses, from either wording.
+        try:
+            found = row_for_company(session, company_id, Role, role_id)
+        except CrossTenantRow:
+            found = None
+        if found is not None:
+            return found
+
+        # No row of this company's carries that id. Either a system role does --
+        # row_for_company reads their NULL scope as nobody's and refuses them
+        # along with everybody else's, which is right for a chokepoint about
+        # tenancy and not the answer this caller needs -- or nothing does. The
+        # lookup is restricted to the NULL scope, so the row it can find is a
+        # system role and no other kind, which is what makes printing its name
+        # safe.
+        shared = (
+            session.query(Role)
+            .filter(Role.id == role_id)
+            .filter(Role.company_id.is_(None))
+            .one_or_none()
+        )
+        if shared is not None and role_is_system(shared):
+            raise ValueError(_SYSTEM_ROLE_REFUSAL.format(label=shared.name))
+
+        # One sentence for "not here" and "not yours". Which of the two it is
+        # would itself tell a caller that another tenant holds that id.
+        raise ValueError(f"no role {role_id!r} composed by this company")
 
     if not name or not isinstance(name, str) or not name.strip():
         raise ValueError("a role needs a name or an id to be found by")

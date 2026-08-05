@@ -19,16 +19,30 @@ deleted -- and the test calls that a pass. A test that green-lights the absence
 of the thing it is named after is worse than no test, because it is counted.
 Every assertion here now demands the raise, so deleting a line of _require_scope
 turns this file red.
+
+WHAT THIS FILE STILL CANNOT DO, AND WHERE THAT IS DONE INSTEAD. It names four
+functions by hand. An audit deleted eighteen tenant filters from app/ one at a
+time and this file, with tests/test_passage_isolation.py beside it, caught
+exactly those four -- because a list a person maintains cannot catch the function
+that person forgot. tests/test_tenancy_derived.py is the answer to that: it
+derives the question from inspect.signature, from the AST and from app.routes
+rather than from a list. The last section below carries the three defects that
+got past this file, so the behaviour is written down where somebody reading about
+tenancy will find it, and the derived guards catch the class.
 """
 
 import pytest
 
 from app.ingestion.ingest import ingest_version
+from app.state import permissions as perms
+from app.state.audit import chain_head, event_count, record_event, verify_chain
 from app.state.db import init_db, session_scope
-from app.state.models import Base, DocumentVersion, Passage
+from app.state.identity import ensure_system_roles
+from app.state.models import Base, DocumentVersion, Passage, Role
 from app.state.queries import (
     CrossTenantRow,
     _require_scope,
+    passage_counts_by_version,
     row_for_company,
     versions_for_company,
 )
@@ -267,3 +281,121 @@ def test_the_parent_scoped_list_names_no_table_that_has_since_grown_a_company_id
         if name in tables and "company_id" in tables[name].c
     )
     assert stale == [], f"these no longer need the exemption: {stale}"
+
+
+# ---------------------------------------------------------------------------
+# THE THREE THAT GOT THROUGH
+#
+# The tests above describe the guard. These three describe defects that reached
+# the repository past it, and each one is here because the class guard in
+# tests/test_tenancy_derived.py would catch it structurally and a reader
+# deserves to see the behaviour named as well. A rule with no example beside it
+# is a rule people argue with.
+# ---------------------------------------------------------------------------
+
+
+#: The values a guard built out of `if not company_id:` lets straight through.
+#: Every one of them matches no stored row, so the read comes back empty and the
+#: caller is told the tenant is clean.
+SCOPES_A_TRUTHY_CHECK_ACCEPTS = ("   ", "\t\n", " MEP", "MEP ", "MEP%", "%", "_")
+
+
+@pytest.mark.parametrize("value", SCOPES_A_TRUTHY_CHECK_ACCEPTS)
+def test_the_audit_log_refuses_a_scope_it_cannot_parse_rather_than_verifying_it(value):
+    """The sharpest of the three, because of which module it was in.
+
+    app/state/audit.py had no reference to _require_scope at all -- the only
+    module under app/state with none -- and wrote `if not company_id:` at four
+    sites instead. So:
+
+        verify_chain(session, "   ")         -> True
+        versions_for_company(session, "   ") -> ValueError
+
+    Two answers to one question about scope, and THE AUDIT LOG GAVE THE
+    REASSURING ONE. True there means "every row in this company's chain
+    recomputes to the hash it carries". Over a scope that matched nothing it
+    meant "there were no rows", and the two sentences read the same to whoever
+    asked. "No events matched a scope I could not parse" is not "the chain
+    verifies", and the module whose whole job is to be trustworthy is the last
+    place to blur them.
+    """
+    init_db()
+    with session_scope() as session:
+        for read in (verify_chain, chain_head, event_count):
+            with pytest.raises(ValueError):
+                read(session, value)
+        with pytest.raises(ValueError):
+            record_event(
+                session,
+                company_id=value,
+                actor="system:test",
+                action="user.created",
+                subject_type="user",
+                subject_id="USR-1",
+                reason="an unparsable scope must not reach the chain",
+            )
+
+
+def test_a_passage_count_carries_no_other_tenants_versions():
+    """The one deletion the whole suite could not feel.
+
+    Delete the tenant filter from queries.passage_counts_by_version and 1,984
+    tests stayed byte for byte identical. Its only caller reads the dict with
+    .get(version_id, 0) against its own version list, so another tenant's keys
+    fall on the floor and nothing goes red -- until the day a second caller
+    iterates the dict, and then the filter is the only thing between one tenant
+    and another's page counts, with nothing having noticed it go.
+
+    tests/test_tenancy_derived.py holds the class guard, which reads the source
+    and fails whether or not any caller looks. This is the behaviour it protects,
+    written down where somebody reading about tenancy will find it.
+    """
+    init_db()
+    with session_scope() as session:
+        _seed_two_companies(session)
+        session.flush()
+
+        mep = passage_counts_by_version(session, "MEP")
+        assert mep, "the owning company must see its own counts"
+        assert set(mep) == {"mep-v1"}
+
+        rival = passage_counts_by_version(session, "RIVAL")
+        assert set(rival) == {"rival-v1"}
+        assert "mep-v1" not in rival
+
+
+def test_a_role_refusal_never_names_another_tenants_role():
+    """The refusal ran before the tenant check, so it could print their word.
+
+    permissions._editable_role fetched a role by primary key, refused a system
+    role by interpolating its name, and only then compared company_id. Role names
+    are not a fixed vocabulary -- a company composes them and calls them what it
+    likes -- so posting another tenant's role id at the form returned a sentence
+    carrying THEIR name for it. The tenant question is settled first now, by
+    row_for_company, and the only name the function can still print belongs to a
+    system role, which every company sees anyway.
+    """
+    init_db()
+    with session_scope() as session:
+        ensure_system_roles(session)
+        # Written as a row rather than through create_role, which is behind
+        # user.manage and would need a whole RIVAL admin to exist first. What is
+        # under test is the refusal, and the refusal only needs the role.
+        theirs = Role(
+            # An id that says nothing about who holds it, so the assertion below
+            # tests the message rather than the fixture.
+            id="ROL-9001",
+            company_id="RIVAL",
+            name="Rate Case Counsel",
+            description="a role only RIVAL knows about",
+        )
+        session.add(theirs)
+        session.flush()
+
+        with pytest.raises(ValueError) as refused:
+            perms._editable_role(session, "MEP", role_id=theirs.id)
+
+        message = str(refused.value)
+        assert "Rate Case Counsel" not in message
+        assert "RIVAL" not in message
+        assert "composed by this company" in message

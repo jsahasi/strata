@@ -30,6 +30,12 @@ from fastapi import APIRouter, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlalchemy.exc import SQLAlchemyError
 
+# The MODULE, not the names on it, for the reason app/state/sharing.py gives at
+# length: tests/test_policy.py reloads app.auth.policy, and a reload rebinds
+# every class in it -- so `from ... import PermissionDenied` would hold the class
+# from before the reload while the raise used the one from after, and the except
+# would stop catching a refusal.
+from app.auth import policy
 from app.state.audit import record_event
 from app.state.claims import (
     REASON_CODE_AMBIGUOUS_OCCURRENCE,
@@ -44,6 +50,7 @@ from app.state.db import session_scope
 from app.state.models import Escalation
 from app.state.queries import versions_for_company
 from app.verification.verifier import Citation, occurrence_count, occurrence_index
+from app.web.deps import current_user
 from app.web.templating import build_templates
 
 # Imported, not restated. The tenant and the page shell are decided in one
@@ -74,6 +81,11 @@ ANONYMOUS_ACTOR = "person:unauthenticated"
 
 REASON_REQUIRED = "a rejection needs a reason; an unexplained one is not auditable"
 ALREADY_RESOLVED = "this escalation was already resolved"
+
+#: The code that gates closing a refusal. Not a new permission: it already sits
+#: on ROLE_ANALYST in app/state/identity.py, because working the escalation queue
+#: is the analyst's job. What was new on 2026-08-04 is that anything asks for it.
+PERMISSION_RESOLVE = "escalation.resolve"
 
 # How much of the source to show on each side of the cited span. Enough to read
 # the sentence the offsets land in, short enough that the queue stays a queue.
@@ -357,10 +369,49 @@ def resolve_escalation(
         raise HTTPException(status_code=400, detail="decision must be approve or reject")
 
     note = " ".join((reason or "").split())
-    actor = _actor(reviewer)
+
+    # WHO IS RESOLVING THIS COMES FROM THE SESSION, NOT FROM THE FORM, and until
+    # 2026-08-04 it came from the form. `reviewer` is a text box: whatever was
+    # typed into it went onto Escalation.resolved_by and into the audit chain as
+    # the actor, so any signed-in person could close any refusal under any name.
+    # In a product whose entire argument is that a decision carries the name of
+    # whoever took it, an attributable-to-anybody write is the one defect that
+    # discredits the whole record -- and the chain is append-only, so a forged
+    # name cannot be taken back out. The field is still accepted so existing
+    # forms do not 422, and it is no longer trusted for anything.
+    principal = current_user(request)
+    if principal is None:
+        raise HTTPException(status_code=403, detail="sign in to resolve an escalation")
+    actor = f"person:{principal.email}"
 
     try:
         with session_scope() as session:
+            # The gate the analyst grid already defines. Resolving a refusal is
+            # the analyst's job (escalation.resolve sits on ROLE_ANALYST), so
+            # this is not a new permission -- it is the existing one finally
+            # being asked. policy.require writes its own ACCESS_DENIED row, so a
+            # refusal is recorded in the same chain as the resolutions it
+            # withholds rather than vanishing as a 403 nobody logged.
+            #
+            # THE REFUSAL IS CAUGHT AND ANSWERED, WHICH IT WAS NOT. require()
+            # raises PermissionDenied, which is not an HTTPException, so an
+            # uncaught one leaves here as an unhandled exception -- a 500 on a
+            # deployment, and a traceback in the log where a decision belongs.
+            # Every other screen in this package already catches it and answers
+            # 403 with the reason: feedback_review, permissions, users_admin,
+            # shares_admin, admin and integrations all do. This one did not, and
+            # the derived tenancy sweep in tests/test_tenancy_derived.py found it
+            # by posting to every route in the product as somebody holding no
+            # roles. A control that crashes instead of refusing still stops the
+            # write, but it tells the person nothing and it tells an operator
+            # that the product broke rather than that it worked.
+            try:
+                policy.require(
+                    session, company_id, principal.user_id, PERMISSION_RESOLVE
+                )
+            except policy.PermissionDenied as denied:
+                raise HTTPException(status_code=403, detail=denied.reason) from None
+
             target = _target(session, company_id, escalation_id)
             if target is None:
                 raise HTTPException(status_code=404, detail="no such escalation")

@@ -42,6 +42,24 @@ docs/security.html says the same thing rather than implying otherwise.
 Nor does attribution prove a person acted. actor_user_id records who the
 writing process believed was acting. A stolen session token produces a row that
 names its victim, correctly hashed, and nothing in this file can tell.
+
+THE SCOPE GUARD IS IMPORTED, NOT RESTATED, AND THIS FILE WAS THE ONE THAT
+RESTATED IT. Every other module under app/state routes its company_id through
+app/state/queries.py::_require_scope. This one wrote `if not company_id:` at four
+sites instead, and that substitution accepts every value the guard exists to
+refuse: "   ", " MEP", "MEP%", 7. Live, before the fix:
+
+    verify_chain(session, "   ")         -> True   ("chain verifies, 0 events")
+    versions_for_company(session, "   ") -> ValueError
+
+Two answers to one question about scope, and the audit log gave the reassuring
+one. A blank or padded scope matches no row, so the chain walked zero events,
+found nothing wrong with any of them, and returned True -- which a reader takes
+as "this company's record is intact" when what happened is "I could not work out
+whose record you meant". That is the worst place in the product for the guard to
+be missing, because this is the module whose whole job is to be trustworthy under
+dispute. Absence is denial: a scope this file cannot parse is refused and said
+so, never reported as a chain that verifies over nothing.
 """
 
 import hashlib
@@ -52,6 +70,7 @@ from sqlalchemy import event, func, inspect, select, text
 from sqlalchemy.orm import Session
 
 from app.state.models import AuditEvent
+from app.state.queries import _require_scope
 
 
 class AuditTamperError(RuntimeError):
@@ -535,8 +554,12 @@ def record_event(
     actor_kind defaults to system, so a caller that has not thought about
     attribution records a machine rather than quietly claiming a person.
     """
-    if not company_id:
-        raise ValueError("company_id is required; an unscoped audit entry is a defect")
+    # The one definition of a usable scope, not a second opinion about it. A row
+    # written under "   " lands in a chain nothing can later read back, because
+    # every read here refuses that value -- an event in the log and invisible,
+    # which is the failure the ACTION_ constants above were consolidated to stop,
+    # arrived at from the scope instead of the action.
+    _require_scope(company_id)
     if not actor:
         raise ValueError("actor is required; an unattributed decision is not auditable")
     if actor_kind not in ACTOR_KINDS:
@@ -653,9 +676,14 @@ def verify_chain(session: Session, company_id: str) -> bool:
 
     This walks the whole chain. It is the operation you run when someone
     disputes the record, not one to put in a request path.
+
+    A SCOPE THIS CANNOT PARSE IS REFUSED, NOT VERIFIED. True here means "every
+    row in this company's chain recomputes to the hash it carries". Over a scope
+    that matched no row it would mean "there were no rows", and the two sentences
+    read identically to the person who asked. Whitespace, padding and a LIKE
+    wildcard all used to reach this function and all used to answer True.
     """
-    if not company_id:
-        raise ValueError("company_id is required; refusing an unscoped verification")
+    _require_scope(company_id)
 
     events = (
         session.execute(
@@ -688,9 +716,14 @@ def verify_chain(session: Session, company_id: str) -> bool:
 
 
 def chain_head(session: Session, company_id: str) -> str:
-    """The latest hash. Publishing this externally is what would close the gap."""
-    if not company_id:
-        raise ValueError("company_id is required")
+    """The latest hash. Publishing this externally is what would close the gap.
+
+    The empty string means this company has recorded nothing yet, and it must
+    only ever mean that. A scope the guard cannot parse would return the same
+    empty string, and a head published under it would be a notarised statement
+    about a tenant nobody named.
+    """
+    _require_scope(company_id)
     tail = session.execute(
         select(AuditEvent)
         .where(AuditEvent.company_id == company_id)
@@ -701,8 +734,14 @@ def chain_head(session: Session, company_id: str) -> str:
 
 
 def event_count(session: Session, company_id: str) -> int:
-    if not company_id:
-        raise ValueError("company_id is required")
+    """How many events this company has recorded.
+
+    Zero is a fact about a tenant, so the scope has to be one the guard accepts.
+    Several tests read this before and after an act to prove nothing was written
+    into another company's chain; under an unparsable scope that comparison is
+    0 == 0 and proves nothing at all.
+    """
+    _require_scope(company_id)
     return session.execute(
         select(func.count())
         .select_from(AuditEvent)

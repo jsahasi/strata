@@ -261,20 +261,20 @@ footer a{color:var(--muted)}
     </div>
 
     <div class="creds">
-      <p class="creds__lead">Three accounts to sign in with, so the permission boundaries are visible rather than
-      described. The same password for all of them.</p>
+      <p class="creds__lead">Three roles to sign in as, so the permission boundaries are visible rather than
+      described. The sign-in page carries a button for each &mdash; there is no password to copy and
+      none printed anywhere.</p>
       <table>
         <thead><tr><th>Role</th><th>Sign in as</th><th>What it can reach</th></tr></thead>
         <tbody>
-          <tr><td>Analyst</td><td><code>denise.okoro@mep.example</code></td>
+          <tr><td>Analyst</td><td>Denise Okoro</td>
               <td>Reads, proposes, resolves escalations, steers. Cannot approve.</td></tr>
-          <tr><td>Obligation owner</td><td><code>priya.nandakumar@mep.example</code></td>
+          <tr><td>Obligation owner</td><td>Priya Nandakumar</td>
               <td>Approves and rejects the actions the analyst proposes. Cannot propose them.</td></tr>
-          <tr><td>Administrator</td><td><code>sarah.lindqvist@mep.example</code></td>
+          <tr><td>Administrator</td><td>Sarah Lindqvist</td>
               <td>Users, the approval route, the share registry. Cannot approve a claim.</td></tr>
         </tbody>
       </table>
-      <p class="creds__pw">Password for all three: <code>strata-demo-2026</code></p>
       <p class="muted"><b>Roles are a shortcut, not the model.</b> Underneath, an administrator
       grants any one of fifteen permissions to any person in the workspace and names whatever set
       they end up with. The workspace ships with ten templates drawn from real filings &mdash;
@@ -287,10 +287,14 @@ footer a{color:var(--muted)}
       <code>action.approve</code>. A four-person team will want that combination and may grant it;
       the product will not hand it over silently, and the conflict report names whoever holds
       both.</p>
-      <p class="muted">Printed on purpose. These accounts hold nothing but the demonstration corpora, and
-      an account whose password is on a public page is not a secret being kept badly &mdash; it is a
-      door held open. Sign in as the analyst, then as the owner, and watch the same screen refuse a
-      different thing.</p>
+      <p class="muted">These accounts hold nothing but the demonstration corpora, and the workspace behind them
+      is disposable: <code>make reset-demo</code> puts it back the way it shipped, so a visitor cannot
+      leave it broken for the next one. There was a password printed here until 2026-08-04 and the
+      argument for printing it &mdash; a door held open, not a secret kept badly &mdash; was only half
+      right. The door still stands open; what changed is that nobody has to be handed a working
+      credential to walk through it, and no string on this page can be pasted into a deployment that
+      forgot to turn the demonstration off. Sign in as the analyst, then as the owner, and watch the
+      same screen refuse a different thing.</p>
       <p><a class="signin" href="/login">Sign in</a></p>
     </div>
   </div></div>

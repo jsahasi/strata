@@ -16,7 +16,7 @@
     next_param     str            the query-parameter name for the above
     post_url       str            where the form posts
     demo_accounts  tuple          seeded accounts that exist in this database
-    demo_password  str            their shared password
+    demo_post_url  str            where a "Sign in as" button posts
     demo_env       str            the variable that turns the panel off
     cookie_secure  bool           whether this response marks the cookie Secure
     cookie_local   bool           whether this is plain http to the local machine
@@ -115,29 +115,24 @@
 
     {% if demo_accounts %}
     <section class="card stack" aria-labelledby="demo-title">
-      <h2 id="demo-title" class="label">Demo accounts</h2>
+      <h2 id="demo-title" class="label">Sign in as</h2>
       <p>
-        This build ships with the accounts below, all sharing the password
-        <code>{{ demo_password }}</code>. They exist because nothing in this
-        workspace is confidential and a reviewer has to get in. They are also a
-        real weakness:
-        set <code>{{ demo_env }}=0</code> and seed your own people before this
+        Three seeded people, one click each. Nothing in this workspace is
+        confidential and a reviewer has to get in, so these are real accounts
+        with real permissions -- and the permissions are the point: sign in as
+        two of them and watch the same screen refuse a different thing.
+        Set <code>{{ demo_env }}=0</code> and seed your own people before this
         is put anywhere that is not a demo.
       </p>
-      <table class="table">
-        <thead>
-          <tr><th>Email</th><th>Role</th><th>Who that is</th></tr>
-        </thead>
-        <tbody>
-          {%- for account in demo_accounts %}
-          <tr>
-            <td><code>{{ account.email }}</code></td>
-            <td>{{ account.role }}</td>
-            <td>{{ account.display_name }} <span class="coord">{{ account.title }}</span></td>
-          </tr>
-          {%- endfor %}
-        </tbody>
-      </table>
+      <div class="demo-signin">
+        {%- for account in demo_accounts %}
+        <form method="post" action="{{ demo_post_url }}" class="demo-signin__one">
+          <input type="hidden" name="email" value="{{ account.email }}">
+          <button type="submit" class="btn">Sign in as {{ account.role }}</button>
+          <span class="coord">{{ account.display_name }} &middot; {{ account.title }}</span>
+        </form>
+        {%- endfor %}
+      </div>
       <p class="coord">
         The analyst cannot approve an action. The obligation owner can, and
         cannot propose one. That separation is the control, not a convenience.

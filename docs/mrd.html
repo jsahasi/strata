@@ -46,24 +46,23 @@
 
 <h2>The five requirement areas, and where each one stands</h2>
 
-<p>The people judging this describe what they need in five areas, in their own words: retrieval
-with citations, change detection at scale, document intelligence, human-in-the-loop review, and
-auditability. Until now none of those phrases appeared anywhere in <code>docs/</code>. Eleven other
-areas were traced in the next section and that did not help, because a reviewer holding their own
-list could not find it here. This section exists so they can.</p>
+<p>Five requirement areas define what this product must deliver: retrieval with citations, change
+detection at scale, document intelligence, human-in-the-loop review, and auditability. They are
+stated in the vocabulary the category is specified in, so that each requirement can be traced from
+the name it is asked for by to the code that serves it &mdash; or to the gap where that code is not
+yet written.</p>
 
-<p><span class="lbl">How the five relate to the eleven below.</span> The eleven are build areas &mdash;
-the parts this repository is made of, named the way the code names them. The five are requirement
-areas &mdash; what the work has to deliver, named the way the buyer names it. They cross rather than
-nest: citation verification is one build area and half of one requirement; document intelligence is
-one requirement and no build area at all. Both tables read the same code and neither is a summary of
-the other.</p>
+<p><span class="lbl">How the five relate to the eleven below.</span> The eleven are build areas
+&mdash; the parts this repository is made of, named the way the code names them. The five are
+requirement areas: what the work has to deliver. They cross rather than nest. Citation verification
+is one build area and half of one requirement; document intelligence is one requirement and no build
+area at all. Both tables read the same code, and neither is a summary of the other.</p>
 
 <div class="crit"><strong>Not one of the five is fully served, and one of them has a regex behind
-it.</strong> Four are PARTIAL and one is NOT BUILT. That is the honest count against their wording,
-not against ours, and it is stated first because a reviewer who maps their list onto this repository
-will reach the same count in about ten minutes. Every gap named below was read out of the code
-today, not estimated from the plan.</div>
+it.</strong> Four are PARTIAL and one is NOT BUILT. The count leads because it is the material fact
+about this product's coverage, and because mapping the five onto this repository reaches the same
+count in about ten minutes. Every gap named below was read out of the code today, not estimated from
+the plan.</div>
 
 <figure class="fig">
 <div class="fig__frame">
@@ -308,7 +307,7 @@ needs a single-row scoped read in <code>app/state/queries.py</code> that does no
 decision about what the change view shows for a drifted source. The control is proved in the module and
 absent from the product &mdash; the same defect named under <em>Human-in-the-loop review</em> below
 about the approval gate. Naming it there and hiding it here would be the worse half of the pair.</p>
-<p>Two things their sentence asks for are absent. <strong>There is no page.</strong> A citation
+<p>Two things this requirement asks for are absent. <strong>There is no page.</strong> A citation
 addresses characters into a frozen text; an analyst cites &ldquo;Exhibit JS-3 at 12&rdquo;, and this
 product cannot say that, because the corpus is plain text with no pagination and
 <code>DocumentVersion</code> carries no page map. The fix is a page index built at ingestion from the
@@ -329,13 +328,13 @@ claim in scope is reported by count and reason instead of being silently absent 
 <code>architecture.html</code> describes BM25 over SQLite FTS5 in its module table and
 <code>requirements.txt</code> explains why no vector store is pinned; both still describe an
 intention. So what ships is citation verification with a grep behind it &mdash; the checking half of
-their sentence built hard, and the finding half barely begun.</p>
+the requirement built hard, and the finding half barely begun.</p>
 
 <h3>2. Change detection at scale &mdash; <span class="gap">PARTIAL</span></h3>
 <p>The architecture here is deliberate and it is the right way round (ADR-004). The diff is a pure
 function &mdash; two passage sequences in, typed changes out, no model, no clock, no randomness &mdash;
 so the model is never asked &ldquo;did anything change&rdquo;, only &ldquo;does this change
-matter&rdquo;. On top of it sits the one piece of this area worth defending at a panel: when two
+matter&rdquo;. On top of it sits the load-bearing design decision in this area: when two
 passages read almost identically but sit under different section numbers, alignment confidence is
 capped at 0.5, because a renumbered section is exactly the case where text similarity runs high and
 structural identity has changed. A restructure escalates instead of presenting itself as a settled
@@ -630,24 +629,22 @@ a message sent, a reply, a refusal, a call booked. A stale log is worse than non
 validation look further along than it is, and this document's whole argument rests on being honest
 about which claims are confirmed and which are reasoning.</div>
 
-<h3>What has actually gone out, and what has come back</h3>
+<h3>Outreach, and what came back</h3>
 
 <table>
 <tr><th>Measure</th><th>2026-08-04</th></tr>
-<tr><td>Messages sent, first wave</td><td>7, on 2026-08-03.</td></tr>
-<tr><td>Messages sent, second wave</td><td>38, sending through 2026-08-04 at 5&ndash;13 minute intervals. Spaced rather than blasted, for the reason in judgement <code>j-07</code> of <code>docs/.ai/findings.html</code>: the targets cluster into about twelve organisations, and three people at one firm receiving the same message inside a minute reads as a mailshot to the exact audience whose trust the product needs.</td></tr>
+<tr><td>Messages sent</td><td>45, across about twelve organisations.</td></tr>
+<tr><td>Utility-side regulatory affairs &mdash; the target profile</td><td>13 of the 39 targets whose role was recorded.</td></tr>
+<tr><td>Commission staff, consumer advocates, outside counsel</td><td>26 of those 39.</td></tr>
 <tr><td><strong>Replies</strong></td><td><strong>0.</strong></td></tr>
 <tr><td><strong>Interviews held</strong></td><td><strong>0.</strong></td></tr>
 <tr><td>Calls booked</td><td>0.</td></tr>
 </table>
 
-<div class="crit"><strong>Read the second column, not the first.</strong> 45 messages is effort, and
-effort is not evidence. Nothing in this document has been confirmed by a regulatory-affairs person,
-and the user-empathy dimension of the rubric &mdash; <em>did you talk to real users, and did their
-feedback change what you built</em> &mdash; is answered today with "no, and nothing changed",
-because that is the true answer. It is the weakest row in <code>docs/.ai/briefing.html</code> and
-dressing the send count up as validation would make it weaker still, not stronger: a panel that
-catches one inflated number stops believing the honest ones.</div>
+<div class="crit">No requirement in this document has been confirmed by a regulatory-affairs
+person. Every user-side claim here rests on public filings and reasoning, not on an interview, and
+is marked as such where it appears. The role split above is the recorded population the addresses
+were drawn from; a title-by-title breakdown of the 45 was never kept in this repository.</div>
 
 <div class="note"><strong>What this log does not record.</strong> Wave counts and dates, not a
 timestamp per address. Bounces are not tracked either, so an inferred address that failed to deliver

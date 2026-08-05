@@ -109,12 +109,26 @@ LOGIN_URL = "/login"
 LOGOUT_URL = "/logout"
 HEALTH_URL = "/healthz"
 
+#: Where the "Sign in as" buttons on the login page post. It authenticates
+#: through the same login() as the form beside it, with the seeded demo password
+#: supplied by the server rather than printed on the page for somebody to type
+#: -- see app/web/views/auth.py::demo_login_post. It is public for the same
+#: reason /login is: an anonymous caller is exactly who uses it.
+DEMO_LOGIN_URL = "/login/demo"
+
 # Reachable with no session. Everything else redirects.
 #
-# /login and /healthz only, plus the stylesheet -- an unstyled login page is a
-# broken login page. /logout is NOT here: signing out is something a signed-in
-# person does, and an anonymous POST to it has nothing to end.
-PUBLIC_PATHS = (LOGIN_URL, HEALTH_URL)
+# /login, /login/demo and /healthz only, plus the stylesheet -- an unstyled
+# login page is a broken login page. /logout is NOT here: signing out is
+# something a signed-in person does, and an anonymous POST to it has nothing to
+# end.
+#
+# These are matched WHOLE, never by prefix, which is why /login/demo has to be
+# listed rather than inherited from /login. A prefix rule here would have made
+# every path under /login public, and the next thing anybody mounts there gets
+# that for free without noticing -- the same defect PUBLIC_PREFIXES documents
+# below, arrived at from the other direction.
+PUBLIC_PATHS = (LOGIN_URL, DEMO_LOGIN_URL, HEALTH_URL)
 
 #: Prefixes an anonymous caller may reach, each stored WITH its trailing slash.
 #: The slash is the control, not decoration: startswith("/s") would make every

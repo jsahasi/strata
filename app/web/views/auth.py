@@ -43,6 +43,7 @@ from app.seed import DEMO_PASSWORD, demo_account_list
 from app.state.db import session_scope
 from app.state.identity import users_for_company
 from app.web.deps import (
+    DEMO_LOGIN_URL,
     LOGIN_URL,
     LOGOUT_URL,
     NEXT_PARAM,
@@ -145,6 +146,27 @@ def _demo_hints(company_id: str, present: set[str] | None) -> tuple[AccountHint,
     )
 
 
+def _one_per_role(hints: tuple[AccountHint, ...]) -> tuple[AccountHint, ...]:
+    """One sign-in button per role, in the order the seed lists them.
+
+    The corpus seeds five obligation owners, because five duties need owners.
+    It does not follow that a reviewer wants five identical buttons: the panel
+    is there to show that the same screen refuses a different thing depending on
+    who is holding it, and that argument needs one of each role, not one of each
+    person. So this narrows what is DRAWN and never what is ACCEPTED --
+    demo_login_post checks against the full list, so a button that is not drawn
+    is still a valid demo account rather than a refusal nobody can explain.
+    """
+    seen: set[str] = set()
+    kept: list[AccountHint] = []
+    for hint in hints:
+        if hint.role in seen:
+            continue
+        seen.add(hint.role)
+        kept.append(hint)
+    return tuple(kept)
+
+
 def _page(
     request: Request,
     company_id: str,
@@ -173,8 +195,12 @@ def _page(
         "next_url": next_url or "",
         "next_param": NEXT_PARAM,
         "post_url": LOGIN_URL,
-        "demo_password": DEMO_PASSWORD,
-        "demo_accounts": _demo_hints(company_id, present),
+        # No demo_password. It used to go to the template and be printed on the
+        # page; the buttons post to demo_post_url instead and the server supplies
+        # it. The key is gone rather than left unused, so nothing can quietly
+        # start rendering it again.
+        "demo_post_url": DEMO_LOGIN_URL,
+        "demo_accounts": _one_per_role(_demo_hints(company_id, present)),
         "demo_env": DEMO_ACCOUNTS_ENV,
         "cookie_secure": cookie_is_secure(request),
         "cookie_local": is_loopback_plaintext(request),
@@ -271,6 +297,76 @@ def login_post(
 
     # 303, so a reload of the destination does not repost the credentials.
     response = RedirectResponse(url=target, status_code=303)
+    response.set_cookie(value=token, **cookie_settings(request))
+    return response
+
+
+@router.post(DEMO_LOGIN_URL)
+def demo_login_post(request: Request, email: str = Form(default="")):
+    """Sign in as one of the seeded demo accounts, one click, no typing.
+
+    THIS IS NOT A PASSWORDLESS PATH AND THAT IS THE WHOLE DESIGN. It calls the
+    same login() as the form above, with the same DEMO_PASSWORD the page used to
+    print, supplied by the server instead of by somebody's fingers. There is no
+    second way to authenticate, no branch inside login() for demo accounts, and
+    nothing here that could be true of a real account. Change the seeded password
+    and this button breaks exactly the way typing it would; turn the demo off and
+    it refuses. A real bypass -- mint a session for a named user, skip the check
+    -- would have been fewer lines and would have put a second door in the one
+    part of the product where two doors is the whole risk.
+
+    WHY THE BUTTON REPLACED THE PRINTED PASSWORD. The password on the page was
+    never the control: the accounts are seeded, the corpus is invented, and the
+    tenant is disposable (scripts/reset_demo.py). What it did do was teach every
+    reviewer that this product prints working credentials on an unauthenticated
+    page, which is the last impression a regulated buyer should be left with --
+    and the string was also the one piece of the page somebody could copy into a
+    real deployment that had forgotten to set STRATA_DEMO_ACCOUNTS=0.
+
+    THE ADDRESS IS CHECKED AGAINST THE PANEL, NOT AGAINST THE REQUEST. Whatever
+    is posted has to match one of the accounts _demo_hints() just said exists --
+    the same function, so the buttons and the guard cannot disagree. An address
+    that is not on that list is refused with the same sentence a wrong password
+    gets, so this cannot be used to ask whether an account exists.
+    """
+    company_id = current_company()
+    allowed = {
+        account.email for account in _demo_hints(company_id, _addresses(company_id))
+    }
+    if not allowed or email not in allowed:
+        # Same sentence, same status as a bad password. A refusal that said
+        # "that is not a demo account" would answer a question nobody signed in
+        # is entitled to ask.
+        return _page(request, company_id, error=LOGIN_REFUSED, status_code=401)
+
+    client = request.client
+    ip = client.host if client else ""
+    agent = request.headers.get("user-agent", "")
+
+    token = ""
+    failed = False
+    try:
+        with session_scope() as session:
+            try:
+                _, token = login(
+                    session,
+                    company_id,
+                    email=email,
+                    password=DEMO_PASSWORD,
+                    ip=ip,
+                    user_agent=agent,
+                )
+            except AuthFailed:
+                # Reachable when somebody changed the seeded password without
+                # turning the panel off. The audit row login() wrote stays.
+                failed = True
+    except SQLAlchemyError:
+        return _page(request, company_id, error=NO_ACCOUNTS, status_code=503)
+
+    if failed:
+        return _page(request, company_id, error=LOGIN_REFUSED, status_code=401)
+
+    response = RedirectResponse(url=HOME_URL, status_code=303)
     response.set_cookie(value=token, **cookie_settings(request))
     return response
 
