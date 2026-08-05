@@ -2869,10 +2869,25 @@ SOURCE_STATUSES = (
     SOURCE_STATUS_UNREACHABLE,
 )
 
-# THE KINDS THE PRODUCT CAN ACTUALLY FETCH FROM. EMPTY, AND THAT IS ACCURATE.
-# No fetcher exists for any kind. A screen asks this tuple rather than assuming,
-# so the registry cannot render a row as if it were scanning. When the first
-# fetcher lands, add its kind here and nowhere else.
+# THE KINDS THIS TABLE'S OWN VOCABULARY CAN FETCH FROM. EMPTY -- AND THAT IS NO
+# LONGER THE WHOLE TRUTH, SO READ THE NEXT PARAGRAPH BEFORE USING IT.
+#
+# app/sources/fetch.py exists and retrieves a public docket. app/state/sources.py
+# is the module a screen asks, and it answers from
+# FETCHABLE_KINDS = FETCHABLE_SOURCE_KINDS + FETCHER_KINDS -- so the product does
+# fetch, and asking THIS tuple alone now under-reports it.
+#
+# Why it is still empty rather than corrected in place: setting it to
+# (SOURCE_REGISTRATION_KIND_PUBLIC_DOCKET,) was tried and is not the no-op it
+# looks like. It moves a registration that names no document from
+# not_implemented to never_tried, which are different sentences to a reader --
+# "this product cannot fetch that kind" against "it can, and has not tried" --
+# and four tests in tests/test_sources.py and tests/test_fetch.py assert the
+# first. Neither status fits a row whose registration is simply incomplete, and
+# inventing a third one an hour before a deadline is how a vocabulary grows a
+# spelling nobody meant. So the union stands, this comment stops claiming the
+# product cannot fetch, and the status question is written down rather than
+# answered in a hurry.
 FETCHABLE_SOURCE_KINDS: tuple[str, ...] = ()
 
 # One name to gate the registry on. Today it resolves to a permission that

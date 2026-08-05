@@ -49,6 +49,7 @@ from app.web.views import (
     users_admin,
     invite_accept,
     integrations,
+    permissions,
     workflow,
 )
 
@@ -76,6 +77,11 @@ app.include_router(users_admin.router)
 app.include_router(invite_accept.router)
 # Where the workspace says its filings come from. Admin only.
 app.include_router(integrations.router)
+# Who may do what, grant by grant. Separate from users_admin because provisioning
+# an account and granting it a permission are different acts with different
+# blast radius, and the second is the one that can hand somebody both sides of an
+# approval. Admin only.
+app.include_router(permissions.router)
 # The approval route. Two routers, not one, because they answer two questions:
 # workflow.py serves GET /workflow to anybody signed in, and admin.py serves the
 # five /admin/workflows paths behind workflow.manage. Merging them would put the

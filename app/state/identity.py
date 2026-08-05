@@ -48,6 +48,17 @@ holds `user.manage`, so an admin can grant themselves the obligation owner
 role and approve their own work. The audit chain records that grant, which
 makes it visible afterwards; nothing here prevents it. Preventing it needs a
 second approver on privilege changes, which is not built.
+
+That last hole is narrower than it was and is still open, so it is worth being
+exact about where. app/state/permissions.py applies a ceiling to every permission
+it hands out -- nobody may grant a code they do not themselves hold, whether
+directly, by composing a role or by editing one. grant_role BELOW HAS NO SUCH
+CEILING and cannot have one as it stands: its `actor` is a display string rather
+than an account, so there is nothing to compute a ceiling against. An admin can
+therefore still grant an existing role, obligation_owner included, to any account
+including their own. SEGREGATION_CONFLICTS in models.py names that pair and
+permissions.py::conflicts lists whoever holds it. Closing it needs grant_role to
+take a user id.
 """
 
 import hashlib
@@ -83,6 +94,7 @@ from app.state.models import (
     Role,
     RolePermission,
     User,
+    UserPermission,
     UserRole,
 )
 
@@ -130,6 +142,32 @@ SESSION_TOKEN_BYTES = 32
 # The role grid
 # ---------------------------------------------------------------------------
 
+# THIS GRID IS THE DEFAULT A COMPANY STARTS FROM. IT IS NOT A CEILING.
+#
+# Three roles could not say what data/real/ says -- Analyst II Regulatory
+# Affairs, Manager Regulatory Affairs, Deputy Director, VP Pricing and Planning,
+# Indiana Regulatory Counsel, Legal Assistant are different approval authorities,
+# not decoration. So a tenant composes roles of its own and grants permissions to
+# individuals, both through app/state/permissions.py, and permissions_for_user
+# below returns the union. What follows is what every tenant is seeded with and
+# what every document in this repository describes; it is not the limit of what
+# any tenant may hold.
+#
+# THE THREE ROWS BELOW ARE STILL FIXED. A company may compose whatever it needs
+# beside them and may never edit them: a role called "analyst" that has been
+# edited into something else is worse than no role at all, because
+# docs/security.html, the ADRs and every screen keep describing the old meaning.
+# models.py carries a CHECK constraint stopping a tenant from shadowing these
+# three names, and permissions.py refuses the same thing before the write, which
+# is where the rule holds on a database that predates the constraint.
+#
+# WHAT A COMPANY COMPOSES IS DISCLOSED, NEVER FORBIDDEN. A four-person team where
+# one person proposes and approves is a real customer; a large utility must not
+# work that way; the product cannot know which it is talking to. So
+# permissions.py::conflicts names everybody holding both halves of a declared
+# separation, with the reason and with how each half was obtained, and refuses
+# nothing. SEGREGATION_CONFLICTS in models.py is where the pairs are declared.
+#
 # Segregation of duties, as data. Read the analyst row for what is absent:
 # action.approve and action.reject are not there, so the person who interprets
 # a change cannot approve the action that follows from it. That is the control
@@ -566,12 +604,21 @@ def roles_for_company(session: Session, company_id: str) -> list[Role]:
 def role_for_company(session: Session, company_id: str, name: str) -> Role | None:
     """Resolve a role name for one company. The company's own row wins.
 
-    A tenant that defines its own `analyst` shadows the system one, and the
-    shadowing is deliberate rather than an accident of ordering: a company
-    narrowing a role for itself must not be silently overruled by the shared
-    definition. Nothing in this task creates tenant roles, so today this always
-    returns the system row -- the branch exists so the answer is decided here
-    once rather than differently at each call site later.
+    THE SHADOW IS NOW REFUSED RATHER THAN INTENDED, and this docstring used to
+    say the opposite. It argued that a tenant defining its own `analyst` should
+    shadow the system one, so that a company narrowing a role for itself was not
+    overruled by the shared definition. That argument does not survive custom
+    roles: with them, writing (company_id='MEP', name='analyst') IS a silent edit
+    of the system role -- every grant of "analyst" in that tenant would resolve
+    to a different permission set with nothing on any screen saying so, while
+    docs/security.html and the ADRs went on describing the old one. A company
+    that wants a narrower analyst composes a role and names it.
+
+    So models.py carries ck_roles_company_role_never_shadows_a_system_name, and
+    app/state/permissions.py refuses the same name before the write, which is
+    where the rule holds on a database built before that constraint existed. The
+    company's own row is still preferred here, because that is the right order
+    for every OTHER name -- a company-composed role is found before nothing.
     """
     _require_scope(company_id)
     if not name:
@@ -952,23 +999,37 @@ def revoke_role(
 def permissions_for_user(
     session: Session, company_id: str, user_id: str
 ) -> frozenset[str]:
-    """Every permission code this user currently holds. The union of live grants.
+    """Every permission code this user currently holds. Roles AND direct grants.
+
+    TWO HALVES, ONE ANSWER. A code reaches a person either through a role they
+    hold or through a direct grant written for them alone -- the deputy who signs
+    while the director is away, the counsel who approves in Indiana and nowhere
+    else. app/state/permissions.py writes the second kind and explains why it is
+    an escape hatch rather than a second grid. Both halves are unioned HERE, at
+    the one call every gate in the product goes through, so a direct grant cannot
+    be a permission that some checks see and others do not.
+
+    THE DIRECT HALF CARRIES EVERY FILTER THE ROLE HALF CARRIES, and that is not
+    symmetry for its own sake. A direct grant that outlived a suspension would
+    make suspension half a control: the roles would stop conferring and the
+    exceptions would carry on. So the user's company, the user being active, the
+    grant's company and the grant not being revoked are all asked of both.
 
     Four things return the empty set and are indistinguishable from each other
     here: an unknown user, a user belonging to another company, a user who is
-    suspended or still invited, and a user with no roles. That is the intended
-    behaviour of an authorisation read -- there is one safe direction to fail
-    in, and a caller that needs to tell those cases apart is asking a different
-    question and should call user_for_company.
+    suspended or still invited, and a user with nothing granted. That is the
+    intended behaviour of an authorisation read -- there is one safe direction to
+    fail in, and a caller that needs to tell those cases apart is asking a
+    different question and should call user_for_company.
 
-    Status is part of the filter rather than left to callers. Suspending an
-    account then takes effect at every call site at once, instead of at the
-    ones that remembered to look.
+    Both halves join Permission rather than trusting the stored string, so a code
+    with no permission row behind it confers nothing rather than appearing to.
 
-    The scope is checked in three places on one query -- the user's company,
+    The scope is checked in three places on the role query -- the user's company,
     the grant's company, and the role being either a system role or this
-    company's own. Each column was written by a different call, and a bug in
-    any one of them is what hands somebody another tenant's authority.
+    company's own -- and in two on the direct one. Each column was written by a
+    different call, and a bug in any one of them is what hands somebody another
+    tenant's authority.
     """
     _require_scope(company_id)
     if not user_id:
@@ -988,7 +1049,20 @@ def permissions_for_user(
         .filter(or_(Role.company_id.is_(None), Role.company_id == company_id))
         .all()
     )
-    return frozenset(code for (code,) in codes)
+    direct = (
+        session.query(Permission.code)
+        .join(UserPermission, UserPermission.code == Permission.id)
+        .join(User, User.id == UserPermission.user_id)
+        .filter(User.company_id == company_id)
+        .filter(User.id == user_id)
+        .filter(User.status == STATUS_ACTIVE)
+        .filter(UserPermission.company_id == company_id)
+        .filter(UserPermission.revoked_at.is_(None))
+        .all()
+    )
+    return frozenset(code for (code,) in codes) | frozenset(
+        code for (code,) in direct
+    )
 
 
 def user_has_permission(

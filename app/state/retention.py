@@ -570,6 +570,14 @@ SCHEDULE: tuple[Rule, ...] = (
         "that ages out grants can only answer what they can do now.",
     ),
     _customer_work(
+        "user_permissions",
+        "One permission held directly rather than through a role, kept after "
+        "revocation. It is the record of an exception somebody made to the role "
+        "grid, and an exception is the first thing an investigation looks for. "
+        "The question is what a person could do at the moment they did "
+        "something, not what they can do now.",
+    ),
+    _customer_work(
         "roles",
         "The named bundles of permissions. Configuration rather than data "
         "about anybody, so nothing here ages.",

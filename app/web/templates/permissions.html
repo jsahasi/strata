@@ -1,0 +1,670 @@
+{#
+  permissions.html — who may do what here, how they came to, and what conflicts.
+
+  ONE TEMPLATE, TWO ANSWERS, exactly as users_admin.html and shares_admin.html
+  do it. The view sets `reason` only when it refused.
+
+  THE THING THIS SCREEN IS BUILT AROUND IS THAT A CELL SAYS WHERE IT CAME FROM.
+  A permission held through a role and the same permission granted directly are
+  different facts with different futures: revoke the role and one disappears
+  while the other stays. So the two marks differ in FILL AND IN SHAPE, and both
+  carry the words -- "through a role", "granted directly" -- in the title and in
+  text a screen reader reads. Colour alone would fail a printed review pack and
+  a reader who cannot see the difference.
+
+  NOTHING HERE DECIDES ANYTHING. Every sentence with a judgement in it comes
+  from app/web/views/permissions.py as a constant, because the tests assert on
+  them and a meaning that lives only in a Jinja string can be edited away in a
+  diff nobody reads. This file chooses layout.
+
+  THE CONFLICT REGISTER IS NOT DRAWN AS AN ERROR, and that is the most
+  deliberate choice on the page. No alarm colour, no role="alert", no red. A
+  small team holds conflicts legitimately, and shouting at somebody for an
+  arrangement they chose is how a control gets switched off. It states the pair,
+  states what an auditor will make of it, and leaves the decision alone.
+
+  Context, from app/web/views/permissions.py:
+    reason              str | None   why this reader was refused
+    refused permission               what opens the screen
+    people              list[PersonRow]      the matrix
+    conflicts           list[ConflictRow]    the register
+    exceptions          list[ExceptionRow]   every direct grant, with its reason
+    roles               list[RoleRow]        every role, and what it holds
+    ungrantable         tuple[(code, why)]   the ceiling, in words
+    grantable           tuple[str]           what this reader may hand on
+    outcome_ok outcome_heading outcome_text  what the last click did
+    grant_user grant_code grant_person grant_preview   the prefilled grant
+    take_user take_code exception_people               the prefilled revocation
+    copy_role copy_from copying_from                   the prefilled copy
+    typed               dict  what was in the form when it was refused
+    codes code_words conflict_pairs conflict_stance conflict_meaning
+    conflict_active_only no_conflicts no_conflict_in_set
+    system_not_editable copy_offer role_needs_name name_is_taken
+    grant_needs_reason revoke_needs_reason role_cell_note narrow_note export_note
+    permissions_url grant_url revoke_url roles_url export_url
+    plus everything base.html reads.
+#}{% extends "base.html" %}
+
+{% block head %}
+{#
+  Scoped to this screen. Every value is an existing token and no width is set in
+  pixels anywhere, so nothing here can beat a breakpoint.
+
+  THE NARROW RULE IS THE INTERESTING ONE. Above 62rem this is a grid. Below it
+  the table stacks into one block per person and the cells nobody holds drop
+  out, which is what narrow_note tells the reader on the page. The rule sits
+  here rather than in strata.css because strata.css already makes every table
+  scroll sideways at that width, and sideways is exactly the answer this table
+  must not take.
+#}
+<style>
+.perm-note { max-width: 62ch; margin: var(--s4) 0; }
+.perm-said {
+  margin: var(--s5) 0;
+  padding: var(--s4);
+  background: var(--surface-sunk);
+  border-radius: var(--r);
+  max-width: 72ch;
+}
+.perm-said--ok { border-left: 3px solid var(--accent); }
+.perm-said--no { border-left: 3px solid var(--rule-strong); }
+
+/* The register. Deliberately the same weight as the rest of the page. */
+.reg { border-left: 3px solid var(--rule-strong); padding-left: var(--s4); }
+.reg__line { margin: var(--s4) 0; }
+.reg__who { font-weight: 600; }
+.reg__pair { font-family: var(--face-data); font-size: var(--t-small); }
+.reg__why { max-width: 66ch; color: var(--ink-2); }
+.reg__how { font-size: var(--t-small); color: var(--ink-2); }
+.reg__declared { font-size: var(--t-small); color: var(--ink-3); }
+
+.perm-wrap { overflow-x: auto; }
+.perm-matrix { font-size: var(--t-small); }
+.perm-matrix th, .perm-matrix td { padding: var(--s2); vertical-align: top; }
+.perm-matrix .perm-code { text-align: left; }
+.perm-code__verb { display: block; font-family: var(--face-data); }
+.perm-who { min-width: 14ch; }
+.perm-who__mail { display: block; font-size: var(--t-micro); color: var(--ink-3); }
+.perm-who__note { display: block; font-size: var(--t-micro); color: var(--ink-2); max-width: 30ch; }
+
+/* THE TWO WEIGHTS. Fill and shape, not hue: a role grant is a solid block, a
+   direct grant is an open one with a rule around it, and both carry the words. */
+.mark {
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: var(--r-sm);
+}
+.pcell--role .mark { background: var(--ink); }
+.pcell--direct .mark { background: transparent; border: 2px dashed var(--ink); }
+.pcell--both .mark { background: var(--ink); border: 2px dashed var(--accent); }
+.pcell--none .mark { background: transparent; border: 1px solid var(--rule); }
+.pcell__role, .pcell__how {
+  display: block;
+  font-size: var(--t-micro);
+  color: var(--ink-2);
+}
+.pcell__flag { display: block; font-size: var(--t-micro); color: var(--ink-2); }
+.pcell__act { display: block; font-size: var(--t-micro); }
+.pcell--locked { color: var(--ink-3); }
+
+.perm-form { max-width: 34rem; }
+.perm-form input, .perm-form select, .perm-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+.perm-picks { columns: 2; column-gap: var(--s5); }
+.perm-picks label { display: block; font-size: var(--t-small); break-inside: avoid; }
+.perm-chip { font-family: var(--face-data); font-size: var(--t-micro); }
+
+/* Read by a screen reader, not shown. The words a mark stands for. */
+.vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 62rem) {
+  .perm-matrix,
+  .perm-matrix tbody,
+  .perm-matrix tr,
+  .perm-matrix td {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    overflow-x: visible;
+  }
+  .perm-matrix thead { display: none; }
+  .perm-matrix tr {
+    border: 1px solid var(--rule);
+    border-radius: var(--r);
+    margin: var(--s4) 0;
+    padding: var(--s3);
+  }
+  /* Nobody scrolls fourteen empty cells looking for the two that are filled. */
+  .perm-matrix td.pcell--none { display: none; }
+  .perm-matrix td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    font-family: var(--face-data);
+    font-size: var(--t-micro);
+    color: var(--ink-3);
+  }
+  .perm-picks { columns: 1; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% if reason %}
+<div class="page-head">
+  <div class="page-head__title"><h1>Permissions</h1></div>
+</div>
+
+<div class="empty empty--none">
+  <p class="empty__title">You cannot open this screen.</p>
+  <div class="empty__body">
+    <p>{{ reason }}.</p>
+    <p>{{ refused }}</p>
+    <p>
+      This is a refusal, not a blank page. The screen exists, and
+      <code>{{ permission }}</code> is what opens it.
+    </p>
+  </div>
+</div>
+
+{% else %}
+
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>Permissions</h1>
+    <span class="coord">{{ people | length }} people &middot; {{ codes | length }} permissions</span>
+  </div>
+  <p class="page-head__note">
+    Every person in this workspace against every permission the product defines.
+    A filled mark is held through a role; an open one was granted directly to
+    that person. Those are different facts: revoke the role and the first goes
+    away, and the second does not.
+  </p>
+</div>
+
+{% if outcome_heading %}
+<div class="perm-said {% if outcome_ok %}perm-said--ok{% else %}perm-said--no{% endif %}">
+  <p><strong>{{ outcome_heading }}</strong></p>
+  {# The write layer's own sentence, unrewritten. Why a grant is a duplicate,
+     why a name is refused -- those are decisions this screen did not make. #}
+  {% if outcome_text %}<p>{{ outcome_text }}</p>{% endif %}
+</div>
+{% endif %}
+
+{# ------------------------------------------------------- the conflict register #}
+
+<section class="card stack" id="conflicts" aria-labelledby="conflicts-title">
+  <h2 id="conflicts-title" class="label">
+    Held conflicts
+    <span class="coord">{{ conflicts | length }}</span>
+  </h2>
+
+  <div class="reg">
+    {% if conflicts %}
+    {% for row in conflicts %}
+    <div class="reg__line">
+      <p>
+        <span class="reg__who">{{ row.display_name }}</span>
+        <span class="coord">{{ row.email }}</span>
+      </p>
+      <p class="reg__pair">{{ row.left_code }} + {{ row.right_code }}</p>
+      <p class="reg__how">
+        {{ row.left_code }}: {{ row.left_how }}.
+        {{ row.right_code }}: {{ row.right_how }}.
+      </p>
+      {# The argument from app/state/models.py, printed whole. A shorter one
+         written here would be this screen's opinion of somebody else's
+         reasoning. #}
+      <p class="reg__why">{{ row.why }}</p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p class="reg__line">{{ no_conflicts }}</p>
+    {% endif %}
+
+    <p class="reg__declared">
+      Pairs checked:
+      {%- for left, right, _why in conflict_pairs %}
+      <span class="reg__pair">{{ left }} + {{ right }}</span>{% if not loop.last %};{% endif %}
+      {%- endfor %}
+    </p>
+  </div>
+
+  <p class="perm-note">{{ conflict_stance }}</p>
+  <p class="perm-note">{{ conflict_meaning }}</p>
+  <p class="perm-note">{{ conflict_active_only }}</p>
+  <p class="perm-note">
+    {{ export_note }}
+    <a href="{{ export_url }}">Download the register</a>.
+  </p>
+</section>
+
+{# ------------------------------------------------------------------ the matrix #}
+
+<section class="stack" id="matrix" aria-labelledby="matrix-title">
+  <h2 id="matrix-title" class="label">Who holds what</h2>
+  <p class="perm-note">{{ narrow_note }}</p>
+
+  <div class="perm-wrap">
+    <table class="table perm-matrix">
+      <thead>
+        <tr>
+          <th scope="col">Person</th>
+          {%- for code in codes %}
+          <th scope="col" class="perm-code" title="{{ code_words.get(code, code) }}">
+            {{ code.split('.')[0] }}<span class="perm-code__verb">{{ code.split('.')[1] }}</span>
+          </th>
+          {%- endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for person in people %}
+        <tr>
+          <td class="perm-who">
+            {{ person.display_name }}
+            <span class="perm-who__mail">{{ person.email }}</span>
+            <span class="badge {{ person.status_badge }}">{{ person.status }}</span>
+            {%- if person.roles %}
+            {%- for name in person.roles %}
+            <span class="badge badge--routine">{{ name }}</span>
+            {%- endfor %}
+            {%- else %}
+            <span class="coord">no role granted</span>
+            {%- endif %}
+            {%- if person.note %}<span class="perm-who__note">{{ person.note }}</span>{% endif %}
+            {%- if person.conflict_count %}
+            <span class="perm-who__note">
+              <a href="#conflicts">{{ person.conflict_count }} held conflict(s)</a>
+            </span>
+            {%- endif %}
+          </td>
+
+          {#
+            THE CELL. data-label comes FIRST in the tag so a narrow screen has
+            the code to print in front of the mark, and so a test reading the
+            markup finds the cell's meaning where the cell begins.
+          #}
+          {%- for cell in person.cells %}
+          <td data-label="{{ cell.code }}" class="pcell {{ cell.css }}{% if not cell.held and not cell.grantable %} pcell--locked{% endif %}"
+              title="{{ cell.source }}{% if cell.roles %}: {{ cell.roles | join(', ') }}{% endif %}{% if cell.reason %} &mdash; {{ cell.reason }}{% endif %}{% if cell.note %} &mdash; {{ cell.note }}{% endif %}{% if not cell.held and not cell.grantable %} &mdash; {{ cell.refusal }}{% endif %}">
+            <span class="mark" aria-hidden="true"></span>
+            <span class="vh">{{ cell.code }}: {{ cell.source }}</span>
+            {%- if cell.roles %}<span class="pcell__role">{{ cell.roles | join(', ') }}</span>{% endif %}
+            {%- if cell.reason %}<span class="pcell__how">direct</span>{% endif %}
+            {%- if cell.note %}<span class="pcell__flag">{{ cell.note }}</span>{% endif %}
+
+            {#
+              The toggle, in both directions, and both of them ask for a reason
+              first -- so each is a link back to a form rather than a box the
+              size of a tick. A revocation nobody explained leaves the same hole
+              in the record as a grant nobody explained.
+            #}
+            {%- if cell.reason %}
+            <span class="pcell__act">
+              <a href="{{ permissions_url }}?take={{ person.user_id }}&amp;code={{ cell.code }}#take-back">Take back</a>
+            </span>
+            {%- elif cell.held %}
+            {# No toggle, and the reason is on the cell rather than left as a
+               silence. A missing control with no explanation reads as a broken
+               one. #}
+            <span class="pcell__act coord" title="{{ role_cell_note }}">role grant</span>
+            {%- elif cell.grantable %}
+            <span class="pcell__act">
+              <a href="{{ permissions_url }}?grant={{ person.user_id }}&amp;code={{ cell.code }}#grant">Give</a>
+            </span>
+            {%- else %}
+            {# Not a dead cell. The reason is in the title, and the whole list of
+               them is printed under this table. #}
+            <span class="pcell__act coord">locked</span>
+            {%- endif %}
+          </td>
+          {%- endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="perm-note">
+    A filled mark came from a role and an open one was granted to that person
+    directly. Only the second is taken back from this page: {{ role_cell_note }}
+  </p>
+
+  {% if ungrantable %}
+  <div class="perm-note">
+    <p><strong>You cannot hand on every permission on this grid.</strong></p>
+    {% for code, why in ungrantable %}
+    <p><span class="perm-chip">{{ code }}</span> &mdash; {{ why }}</p>
+    {% endfor %}
+  </div>
+  {% endif %}
+</section>
+
+{# --------------------------------------------------------- direct grants, listed #}
+
+<section class="card stack" id="exceptions" aria-labelledby="exceptions-title">
+  <h2 id="exceptions-title" class="label">
+    Granted directly
+    <span class="coord">{{ exceptions | length }}</span>
+  </h2>
+
+  {% if exceptions %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Person</th>
+        <th scope="col">Permission</th>
+        <th scope="col">Why</th>
+        <th scope="col">Given by</th>
+        <th scope="col">In force</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in exceptions %}
+      <tr>
+        <td>{{ row.display_name }}<span class="perm-who__mail">{{ row.email }}</span></td>
+        <td><span class="perm-chip">{{ row.code }}</span></td>
+        <td>{{ row.reason }}</td>
+        <td>{{ row.granted_by }}<span class="perm-who__mail">{{ row.granted_at }}</span></td>
+        <td>
+          {%- if row.honoured %}yes
+          {%- else %}no<span class="perm-who__note">{{ row.note }}</span>{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="perm-note">
+    Nobody here holds a permission outside their role. Every mark on the grid
+    above came from a role grant.
+  </p>
+  {% endif %}
+</section>
+
+{# ------------------------------------------------------ give one person one code #}
+
+<section class="card stack" id="grant" aria-labelledby="grant-title">
+  <h2 id="grant-title" class="label">Give one person one permission</h2>
+  <p class="perm-note">
+    For the case a role cannot express: the deputy who signs while the director
+    is away, the counsel who approves in one state and nowhere else. A standing
+    bundle belongs in a role instead &mdash; compose one below.
+  </p>
+
+  {% if grant_preview %}
+  <div class="perm-said perm-said--no">
+    <p><strong>This grant would put both sides of a separation on one desk.</strong></p>
+    {% for left, right, why in grant_preview %}
+    <p class="reg__pair">{{ left }} + {{ right }}</p>
+    <p class="reg__why">{{ why }}</p>
+    {% endfor %}
+    <p>
+      It is still permitted. Make it if that is the arrangement you want, and it
+      will be named in the register at the top of this page.
+    </p>
+  </div>
+  {% endif %}
+
+  <form method="post" action="{{ grant_url }}" class="stack--tight perm-form">
+    <p>
+      <label class="label" for="user_id">Who</label><br>
+      <select id="user_id" name="user_id" required>
+        <option value="">Choose one</option>
+        {%- for person in people %}
+        <option value="{{ person.user_id }}"{% if grant_user == person.user_id %} selected{% endif %}>{{ person.display_name }} &mdash; {{ person.email }}</option>
+        {%- endfor %}
+      </select>
+    </p>
+    <p>
+      <label class="label" for="code">What</label><br>
+      <select id="code" name="code" required>
+        <option value="">Choose one</option>
+        {%- for code in grantable %}
+        <option value="{{ code }}"{% if grant_code == code %} selected{% endif %}>{{ code }}</option>
+        {%- endfor %}
+      </select>
+      <span class="pcell__how">
+        Only the permissions you hold yourself are on this list. The ones that
+        are not, and why, are printed under the grid above.
+      </span>
+    </p>
+    <p>
+      <label class="label" for="reason">Why</label><br>
+      <input id="reason" name="reason" type="text" required
+             value="{{ typed.reason | default('', true) }}">
+      <span class="pcell__how">{{ grant_needs_reason }}</span>
+    </p>
+    <p><button class="btn btn--primary" type="submit">Give this permission</button></p>
+  </form>
+</section>
+
+{# ------------------------------------------------------------ take one back #}
+
+<section class="card stack" id="take-back" aria-labelledby="take-title">
+  <h2 id="take-title" class="label">Take a direct permission back</h2>
+  <p class="perm-note">
+    Only a direct grant can be taken back here. A permission somebody holds
+    through a role goes away when the role does, and the role is granted on the
+    logins screen &mdash; taking it off one person from this page would mean
+    editing what the role means for everybody who holds it.
+  </p>
+
+  <form method="post" action="{{ revoke_url }}" class="stack--tight perm-form">
+    <p>
+      <label class="label" for="take_user_id">Whose</label><br>
+      <select id="take_user_id" name="user_id" required>
+        <option value="">Choose one</option>
+        {%- for user_id, display_name, email in exception_people %}
+        <option value="{{ user_id }}"{% if take_user == user_id %} selected{% endif %}>{{ display_name }} &mdash; {{ email }}</option>
+        {%- endfor %}
+      </select>
+    </p>
+    {#
+      Two menus rather than one, so the pair can be chosen in either order. A
+      person and a code that do not go together is refused by
+      app/state/permissions.py by name -- "X holds no direct grant of Y", and it
+      says which role carries it if one does -- rather than being made
+      impossible here. The link in each cell fills both, which is the path
+      anybody actually takes.
+    #}
+    <p>
+      <label class="label" for="take_code">Which</label><br>
+      <select id="take_code" name="code" required>
+        <option value="">Choose one</option>
+        {%- for row in exceptions %}
+        <option value="{{ row.code }}"{% if take_code == row.code %} selected{% endif %}>{{ row.code }} &mdash; {{ row.display_name }}</option>
+        {%- endfor %}
+      </select>
+    </p>
+    <p>
+      <label class="label" for="take_reason">Why</label><br>
+      <input id="take_reason" name="reason" type="text" required
+             value="{{ typed.reason | default('', true) }}">
+      <span class="pcell__how">{{ revoke_needs_reason }}</span>
+    </p>
+    <p><button class="btn" type="submit">Take it back</button></p>
+  </form>
+</section>
+
+{# ------------------------------------------------------------------ the roles #}
+
+<section class="card stack" id="roles" aria-labelledby="roles-title">
+  <h2 id="roles-title" class="label">Roles</h2>
+  <p class="perm-note">
+    Three roles ship with the product. A company whose team does not fit them
+    composes its own and names it, and the name is the point: a role called
+    analyst holding a different set from every document and every other screen
+    is worse than no role at all.
+  </p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Role</th>
+        <th scope="col">Holds</th>
+        <th scope="col">People</th>
+        <th scope="col">Origin</th>
+        <th scope="col">Conflicts inside it</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for role in roles %}
+      <tr>
+        <td>
+          {{ role.name }}
+          <span class="perm-who__mail">
+            {%- if role.system %}ships with the product{% else %}composed here{% endif %}
+          </span>
+          {%- if role.description %}<span class="perm-who__note">{{ role.description }}</span>{% endif %}
+        </td>
+        <td>
+          {%- for code in role.codes %}
+          <span class="perm-chip">{{ code }}</span>
+          {%- else %}
+          <span class="coord">nothing</span>
+          {%- endfor %}
+        </td>
+        <td>{{ role.holders }}</td>
+        <td>
+          {%- if role.derived_from %}
+          started from {{ role.derived_from }}
+          {%- elif role.system %}
+          <span class="coord">system</span>
+          {%- else %}
+          <span class="coord">composed from scratch</span>
+          {%- endif %}
+          {%- if role.created_by %}
+          <span class="perm-who__mail">{{ role.created_by }}, {{ role.created_at }}</span>
+          {%- endif %}
+        </td>
+        <td>
+          {%- if role.conflicts %}
+          {%- for left, right, _why in role.conflicts %}
+          <span class="reg__pair">{{ left }} + {{ right }}</span>
+          {%- endfor %}
+          {%- else %}
+          <span class="coord">{{ no_conflict_in_set }}</span>
+          {%- endif %}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          {%- if role.system %}
+          {# Refused, and offered the honest version of the same act. An implicit
+             fork is a fallback that does not announce itself. #}
+          <p class="perm-who__note">{{ system_not_editable }}</p>
+          <p class="perm-who__note">{{ copy_offer }}</p>
+          <p><a class="btn" href="{{ permissions_url }}?copy={{ role.role_id }}#compose">Start a new role from {{ role.name }}</a></p>
+          {%- else %}
+          <details>
+            <summary>Change what {{ role.name }} holds</summary>
+            <form method="post" action="{{ roles_url }}/{{ role.role_id }}" class="stack--tight perm-form">
+              <p>
+                <label class="label" for="d-{{ role.role_id }}">What it is for</label><br>
+                <input id="d-{{ role.role_id }}" name="description" type="text" value="{{ role.description }}">
+              </p>
+              <p>
+                <label class="label" for="r-{{ role.role_id }}">Why the change</label><br>
+                <input id="r-{{ role.role_id }}" name="reason" type="text" required>
+              </p>
+              {# The ceiling applies to what is ADDED, not to what the role
+                 already holds: removing a permission is not escalation, and a
+                 rule that stopped an administrator tidying a role they may not
+                 hold would leave more authority in place, not less. So a code
+                 already on the role is not marked. #}
+              <div class="perm-picks">
+                {%- for code in codes %}
+                <label>
+                  <input type="checkbox" name="codes" value="{{ code }}"{% if code in role.codes %} checked{% endif %}>
+                  {{ code }}
+                  {%- if code not in grantable and code not in role.codes %}
+                  <span class="pcell--locked">not yours to add</span>
+                  {%- endif %}
+                </label>
+                {%- endfor %}
+              </div>
+              <p><button class="btn" type="submit">Save {{ role.name }}</button></p>
+            </form>
+          </details>
+          {%- endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+{# -------------------------------------------------------------- compose a role #}
+
+<section class="card stack" id="compose" aria-labelledby="compose-title">
+  <h2 id="compose-title" class="label">Compose a role</h2>
+
+  {% if copying_from %}
+  <p class="perm-note"><strong>{{ copying_from }}</strong></p>
+  {% endif %}
+
+  <form method="post" action="{{ roles_url }}" class="stack--tight perm-form">
+    <input type="hidden" name="derived_from_role_id" value="{{ copy_role }}">
+    <p>
+      <label class="label" for="role-name">Your name for it</label><br>
+      <input id="role-name" name="name" type="text" required
+             value="{{ typed.name | default('', true) }}">
+      <span class="pcell__how">
+        Not one of {{ system_role_names | join(', ') }}. {{ name_is_taken }}
+      </span>
+    </p>
+    <p>
+      <label class="label" for="role-desc">What it is for</label><br>
+      <input id="role-desc" name="description" type="text"
+             value="{{ typed.description | default('', true) }}">
+      <span class="pcell__how">
+        Goes on the role, and is what everybody reading the register later sees.
+      </span>
+    </p>
+    <p>
+      <label class="label" for="role-reason">Why now</label><br>
+      <input id="role-reason" name="reason" type="text" required
+             value="{{ typed.reason | default('', true) }}">
+      <span class="pcell__how">
+        Goes into the audit chain, and is a different sentence: what the role is
+        for does not answer why it was composed on the day it was.
+      </span>
+    </p>
+    <fieldset>
+      <legend class="label">What it holds</legend>
+      <div class="perm-picks">
+        {%- for code in codes %}
+        <label>
+          <input type="checkbox" name="codes" value="{{ code }}"{% if (copy_from and code in copy_from.codes) or (code in typed.codes | default([], true)) %} checked{% endif %}>
+          {{ code }}
+          {%- if code not in grantable %}
+          <span class="pcell--locked">not yours to give</span>
+          {%- endif %}
+        </label>
+        {%- endfor %}
+      </div>
+      <p class="pcell__how">
+        A composed role is authority written down, so the same rule applies:
+        nobody may put a permission into a role that they do not hold
+        themselves. Copying a role holding more than you do is refused for that
+        reason, and the sentence naming what you would need is under the grid
+        above.
+      </p>
+    </fieldset>
+    <p><button class="btn btn--primary" type="submit">Compose this role</button></p>
+  </form>
+</section>
+
+{% endif %}
+{% endblock %}

@@ -141,7 +141,25 @@ ACTION_USER_SUSPENDED = "user.suspended"
 ACTION_USER_REINSTATED = "user.reinstated"
 ACTION_ROLE_GRANTED = "user.role_granted"
 ACTION_ROLE_REVOKED = "user.role_revoked"
+# A permission held directly, outside any role. Separate codes from the two
+# above because the two acts answer different questions: a role grant says a
+# person was put in a seat, a direct grant says somebody made an exception to
+# the seat. An investigation looks for the exception first, and it cannot look
+# for it if both spellings land under one action.
+ACTION_PERMISSION_GRANTED = "user.permission_granted"
+ACTION_PERMISSION_REVOKED = "user.permission_revoked"
 ACTION_PASSWORD_CHANGED = "user.password_changed"
+
+# A company composing its own role. subject_type is "role" rather than "user":
+# nobody's access changed at the moment one was written, and recording it
+# against a person would put an act with no subject on that person's record.
+ACTION_ROLE_CREATED = "role.created"
+ACTION_ROLE_EDITED = "role.edited"
+# A fifth, which the handoff did not ask for. A deletion recorded as an edit is
+# a deletion no query for a deletion can find, and "the role that could approve
+# rate filings stopped existing" is exactly the event somebody comes looking
+# for months later.
+ACTION_ROLE_DELETED = "role.deleted"
 
 # The approval model. Segregation of duties is only checkable afterwards if the
 # approval names an actor distinct from the one that raised the work.
@@ -816,6 +834,11 @@ __all__ = [
     "ACTION_SESSION_EXPIRED",
     "ACTION_ROLE_GRANTED",
     "ACTION_ROLE_REVOKED",
+    "ACTION_PERMISSION_GRANTED",
+    "ACTION_PERMISSION_REVOKED",
+    "ACTION_ROLE_CREATED",
+    "ACTION_ROLE_EDITED",
+    "ACTION_ROLE_DELETED",
     "ACTION_USER_CREATED",
     "ACTION_USER_SUSPENDED",
     "ACTION_USER_REINSTATED",
