@@ -353,26 +353,25 @@ def test_every_included_partial_exists():
     assert not missing, f"templates include {missing}, which do not exist"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "SIX ADMIN SCREENS HAVE NO WAY IN. /users, /permissions, /admin/shares, "
-        "/admin/invites, /admin/sources and /admin/feedback are mounted, answer "
-        "200 to an administrator who types them, and appear on no screen. The "
-        "masthead carries six analyst screens and no administrative menu, so "
-        "there is nowhere for them to be linked from yet. strict=True on "
-        "purpose: the day somebody adds that menu this test XPASSes and fails "
-        "the suite, which is the prompt to delete this marker rather than to "
-        "discover months later that the guard was decorative."
-    ),
-)
 def test_every_screen_a_person_can_open_is_reachable_by_following_links(anonymous):
-    """Mounted is not reachable. Four screens were mounted and had no way in.
+    """Mounted is not reachable. Six screens were mounted and had no way in.
 
-    /users, /admin/shares, /admin/invites and /admin/sources all answered 200 to
-    anybody who typed them and appeared on no screen a signed-in person could
-    reach. A feature nobody can navigate to is a feature nobody has, and the
-    mounted-router guard above passes on every one of them.
+    /users, /permissions, /admin/shares, /admin/invites, /admin/sources and
+    /admin/feedback all answered 200 to anybody who typed them and appeared on
+    no screen a signed-in person could reach. A feature nobody can navigate to
+    is a feature nobody has, and the mounted-router guard above passes on every
+    one of them.
+
+    THIS CARRIED A strict=True xfail NAMING ALL SIX, and the marker is gone
+    because the screens are reachable: /admin indexes them and base.html draws a
+    link to it for whoever holds a permission behind at least one. The strict
+    marker did the job it was written for -- it failed the suite the moment the
+    menu landed, rather than sitting green and decorative for months. The guard
+    stays; only the concession does.
+
+    tests/test_admin_index.py is the other half. This one proves a way in
+    exists. That one proves the way in is honest: every link it draws opens for
+    the person it was drawn for, and it is drawn for nobody else.
 
     This CRAWLS rather than grepping the templates. The masthead builds its
     links in a loop over a context variable, so a template scan sees no href at

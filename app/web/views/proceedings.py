@@ -22,7 +22,6 @@ from dataclasses import dataclass
 
 from fastapi import APIRouter, HTTPException, Query, Request
 from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.exc import SQLAlchemyError
 
 from app.state.claims import (
@@ -34,16 +33,16 @@ from app.state.claims import (
 from app.state.db import session_scope
 from app.state.models import Change, DocumentVersion, Proceeding
 from app.state.queries import versions_for_company
-from app.web import TEMPLATES_DIR
 from app.web.deps import (
     COMPANY_ENV,
     COMPANY_NAME_ENV,
     DEMO_COMPANY_ID,
     current_company,
 )
+from app.web.templating import build_templates
 
 router = APIRouter()
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates = build_templates()
 
 # The tenant and the masthead name are decided in app/web/deps.py and re-exported
 # here under the names these screens already used. One answer, two spellings, no

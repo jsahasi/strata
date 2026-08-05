@@ -57,7 +57,6 @@ from dataclasses import dataclass
 
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
 
 from app.state.claims import VerifiedClaim, WithheldClaim
 from app.state.db import session_scope
@@ -68,11 +67,11 @@ from app.state.sharing import (
     OpenedShare,
     open_share,
 )
-from app.web import TEMPLATES_DIR
+from app.web.templating import build_templates
 from app.web.views.changes import SOURCE_UNREADABLE, coordinate, source_window
 
 router = APIRouter()
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates = build_templates()
 
 TEMPLATE = "shared_claim.html"
 

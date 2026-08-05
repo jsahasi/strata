@@ -28,7 +28,6 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.exc import SQLAlchemyError
 
 from app.state.audit import record_event
@@ -45,7 +44,7 @@ from app.state.db import session_scope
 from app.state.models import Escalation
 from app.state.queries import versions_for_company
 from app.verification.verifier import Citation, occurrence_count, occurrence_index
-from app.web import TEMPLATES_DIR
+from app.web.templating import build_templates
 
 # Imported, not restated. The tenant and the page shell are decided in one
 # place; a second copy here would drift from the screen it has to match.
@@ -59,7 +58,7 @@ from app.web.views.proceedings import (
 )
 
 router = APIRouter()
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates = build_templates()
 
 DECISION_APPROVE = "approve"
 DECISION_REJECT = "reject"

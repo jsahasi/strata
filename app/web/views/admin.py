@@ -72,7 +72,6 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, Body, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
-from fastapi.templating import Jinja2Templates
 from sqlalchemy import func
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
@@ -121,8 +120,8 @@ from app.state.models import (
 # copies of a tenant guard drift, and the copy nobody audited is the one that
 # leaks. app/auth/policy.py imports it from the same place for the same reason.
 from app.state.queries import _require_scope
-from app.web import TEMPLATES_DIR
 from app.web.deps import current_user
+from app.web.templating import build_templates
 
 # The page shell and the tenant, decided in one place for every screen.
 from app.web.views.proceedings import (
@@ -134,7 +133,7 @@ from app.web.views.proceedings import (
 )
 
 router = APIRouter()
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates = build_templates()
 
 # The five contract paths hang off this one.
 WORKFLOWS_URL = "/admin/workflows"

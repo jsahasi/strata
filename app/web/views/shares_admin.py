@@ -86,7 +86,6 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
@@ -135,12 +134,13 @@ from app.state.sharing import (
 )
 from app.web import TEMPLATES_DIR
 from app.web.deps import current_user
+from app.web.templating import build_templates
 
 # The page shell and the tenant, decided in one place for every screen.
 from app.web.views.proceedings import chrome, current_company_id, unresolved_escalations
 
 router = APIRouter()
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates = build_templates()
 
 # The two screens and the one write path the register itself owns. /admin is
 # already where app/web/views/admin.py puts the gated screens, and a second

@@ -31,7 +31,6 @@ from dataclasses import dataclass
 
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
 
 from app.diff.engine import RESTRUCTURE_CONFIDENCE_CEILING
 from app.state.claims import (
@@ -45,11 +44,11 @@ from app.state.claims import (
 from app.state.db import session_scope
 from app.state.models import Change
 from app.state.queries import passages_for_company, versions_for_company
-from app.web import TEMPLATES_DIR
 from app.web.deps import company_name, current_company
+from app.web.templating import build_templates
 
 router = APIRouter()
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates = build_templates()
 
 # How much of the document to put either side of a cited span. Wide enough that
 # the analyst reads the sentence in its section rather than on its own, small

@@ -12,11 +12,21 @@ cheapest way to keep them agreeing with each other.
 Contract for whoever mounts the app:
 
     from fastapi.staticfiles import StaticFiles
-    from fastapi.templating import Jinja2Templates
-    from app.web import STATIC_DIR, STATIC_URL_PATH, TEMPLATES_DIR
+    from app.web import STATIC_DIR, STATIC_URL_PATH
+    from app.web.templating import build_templates
 
     app.mount(STATIC_URL_PATH, StaticFiles(directory=STATIC_DIR), name="static")
-    templates = Jinja2Templates(directory=TEMPLATES_DIR)
+    templates = build_templates()
+
+NOT `Jinja2Templates(directory=TEMPLATES_DIR)`, which is what this file used to
+say. base.html reads two things from the environment rather than from a view's
+context, and a bare object carries neither -- so the screen renders with its
+administrative menu silently missing while every one of its own tests passes.
+Sixteen view modules each built their own object, which is how six screens ended
+up mounted and linked from nowhere. app/web/templating.py holds the factory and
+the reasoning; tests/test_admin_index.py fails if a view module builds one of its
+own again. TEMPLATES_DIR stays exported for the handful of callers that name the
+directory for some other purpose.
 
 templates/base.html links the stylesheet at a fixed absolute path,
 STATIC_URL_PATH + "/strata.css", so the template does not depend on a request

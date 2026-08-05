@@ -47,7 +47,6 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, Form, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.exc import SQLAlchemyError
 
 from app.auth import policy
@@ -64,8 +63,8 @@ from app.state.models import (
     PRIORITY_HIGH,
     PRIORITY_NORMAL,
 )
-from app.web import TEMPLATES_DIR
 from app.web.deps import current_user
+from app.web.templating import build_templates
 from app.web.views.proceedings import (
     STATE_NO_TABLES,
     STATE_OK,
@@ -75,7 +74,7 @@ from app.web.views.proceedings import (
 )
 
 router = APIRouter()
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates = build_templates()
 
 FEEDBACK_URL = "/admin/feedback"
 

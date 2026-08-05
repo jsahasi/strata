@@ -36,6 +36,7 @@ from app.web import STATIC_DIR, STATIC_URL_PATH
 from app.web.deps import install_auth
 from app.web.views import (
     admin,
+    admin_index,
     auth,
     changes,
     chat,
@@ -96,6 +97,14 @@ app.include_router(admin.router)
 # found.
 app.include_router(chat.router)
 app.include_router(feedback_review.router)
+# The way in to all of the above. Six of these screens were mounted, answered 200
+# to an administrator who typed the URL, and were linked from nowhere -- the
+# masthead carried six analyst screens and there was no place for an
+# administrative one. /admin is that place, and base.html draws a link to it only
+# for somebody who holds a permission behind at least one of the screens on it.
+# tests/test_app_wiring.py crawls from the front door and fails if any mounted
+# screen stops being reachable that way.
+app.include_router(admin_index.router)
 
 # The session guard, in front of all of them. Installed here rather than
 # decorated onto each route, so a screen added next month is protected by

@@ -93,7 +93,6 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, Form, Request
 from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
@@ -135,6 +134,7 @@ from app.state.models import (
 )
 from app.web import TEMPLATES_DIR, deps
 from app.web.deps import current_user
+from app.web.templating import build_templates
 
 # The acceptance route, for the link this screen hands over and for the guard
 # question it asks about that link. One spelling of the path, in the module that
@@ -145,7 +145,7 @@ from app.web.views.invite_accept import ACCEPT_PATH_PREFIX, accept_url
 from app.web.views.proceedings import chrome, current_company_id, unresolved_escalations
 
 router = APIRouter()
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates = build_templates()
 
 TEMPLATE = "users_admin.html"
 

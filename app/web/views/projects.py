@@ -41,7 +41,6 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.exc import SQLAlchemyError
 
 from app.state.claims import (
@@ -67,8 +66,8 @@ from app.state.projects import (
     work_plans_for_project,
 )
 from app.state.review import coverage_for_project
-from app.web import TEMPLATES_DIR
 from app.web.deps import company_name, current_company
+from app.web.templating import build_templates
 
 # Imported, not restated. The three states an empty screen can be in, the two
 # commands that fix the last one, and the claim-to-change map are decided in one
@@ -83,7 +82,7 @@ from app.web.views.proceedings import (
 )
 
 router = APIRouter()
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates = build_templates()
 
 LIST_URL = "/projects"
 NEW_URL = "/projects/new"

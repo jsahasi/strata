@@ -79,7 +79,6 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, Form, Request
 from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.exc import SQLAlchemyError
 
 from app.state.db import session_scope
@@ -96,6 +95,7 @@ from app.state.models import Invitation
 from app.state.routing import invitation_is_live
 from app.web import TEMPLATES_DIR
 from app.web.deps import LOGIN_URL, company_name
+from app.web.templating import build_templates
 
 # THE THREE HEADERS, FROM THE ROUTE THAT DEFINED THEM. Referrer-Policy because
 # the token is in the path and a browser following the sign-in link would
@@ -106,7 +106,7 @@ from app.web.deps import LOGIN_URL, company_name
 from app.web.views.share import SAFETY_HEADERS
 
 router = APIRouter()
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates = build_templates()
 
 TEMPLATE = "invite_accept.html"
 

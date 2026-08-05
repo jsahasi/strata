@@ -62,7 +62,6 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.exc import SQLAlchemyError
 
 from app.state.audit import record_event
@@ -93,7 +92,7 @@ from app.state.review import (
 # the coverage strip and the rows underneath it disagree about which findings
 # are substantiated, which is precisely the failure this page exists to expose.
 from app.state.review import _claims_by_id
-from app.web import TEMPLATES_DIR
+from app.web.templating import build_templates
 from app.web.views.proceedings import (
     STATE_NO_ROWS,
     STATE_NO_TABLES,
@@ -121,7 +120,7 @@ from app.web.views.review import (
 )
 
 router = APIRouter()
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates = build_templates()
 
 CENTRE_URL = "/review"
 

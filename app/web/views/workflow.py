@@ -49,7 +49,6 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, Query, Request
 from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
@@ -67,8 +66,8 @@ from app.state.models import (
     WorkflowStepRun,
 )
 from app.state.queries import _require_scope
-from app.web import TEMPLATES_DIR
 from app.web.deps import current_user
+from app.web.templating import build_templates
 
 # The editor's own module. Imported rather than rebuilt: a second reader of the
 # same tables would be a second answer to "what is the live route", and on the
@@ -92,7 +91,7 @@ from app.web.views.proceedings import (
 )
 
 router = APIRouter()
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates = build_templates()
 
 ROUTE_URL = "/workflow"
 

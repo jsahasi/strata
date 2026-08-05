@@ -36,14 +36,12 @@ from dataclasses import dataclass
 
 from fastapi import APIRouter, Form, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.exc import SQLAlchemyError
 
 from app.auth.sessions import LOGIN_REFUSED, AuthFailed, login, logout
 from app.seed import DEMO_PASSWORD, demo_account_list
 from app.state.db import session_scope
 from app.state.identity import users_for_company
-from app.web import TEMPLATES_DIR
 from app.web.deps import (
     LOGIN_URL,
     LOGOUT_URL,
@@ -57,9 +55,10 @@ from app.web.deps import (
     is_loopback_plaintext,
     safe_next,
 )
+from app.web.templating import build_templates
 
 router = APIRouter()
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates = build_templates()
 
 # Where a person lands with nothing else asked for.
 # Where a person lands after signing in. NOT "/": in the deployed setup the

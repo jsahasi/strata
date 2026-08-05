@@ -84,7 +84,6 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, Form, Query, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse, Response
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
@@ -129,12 +128,13 @@ from app.state.models import (
 from app.state import permissions as store
 from app.web import TEMPLATES_DIR
 from app.web.deps import current_user
+from app.web.templating import build_templates
 
 # The page shell and the tenant, decided in one place for every screen.
 from app.web.views.proceedings import chrome, current_company_id, unresolved_escalations
 
 router = APIRouter()
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+templates = build_templates()
 
 TEMPLATE = "permissions.html"
 

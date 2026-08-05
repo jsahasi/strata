@@ -1,0 +1,80 @@
+{#
+  admin_index.html — where the administrative screens are, and the refusal page
+  for somebody who may open none of them.
+
+  ONE TEMPLATE, TWO ANSWERS, as workflow_list.html and shares_admin.html do it.
+  A separate "forbidden" page would be a second file describing the same screen,
+  and the two would drift. The view sets `entries` to the screens this person may
+  open; empty is the refusal.
+
+  NOT `screens`. base.html sets a variable of that name for the masthead's own
+  six, and a context key colliding with it would be read differently depending on
+  which template Jinja resolved first -- a bug that shows up as a nav item
+  vanishing on one screen.
+
+  Context, from app/web/views/admin_index.py:
+    entries  tuple[AdminScreen]  what this viewer may open, in registry order
+    refused  str                 what to say when there are none
+    plus everything base.html reads.
+
+  Every row here was checked against the live grant rows for the person reading
+  it, so every link on this page opens. That is the point of the screen: a link
+  that answers 403 on click is worse than no link, because the reader cannot tell
+  "you may not" from "it is broken".
+#}{% extends "base.html" %}
+
+{% block content %}
+
+{% if not entries %}
+<div class="page-head">
+  <div class="page-head__title"><h1>Admin</h1></div>
+</div>
+
+<div class="empty empty--none">
+  <p class="empty__title">You cannot open any of these screens.</p>
+  <div class="empty__body">
+    <p>{{ refused }}</p>
+    {# Says nothing about which screens exist or what opens them. A refusal that
+       listed them would have refused nothing. #}
+    <p>
+      This is a refusal, not a blank page. The screens exist and they are not
+      yours.
+    </p>
+  </div>
+</div>
+
+{% else %}
+
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>Admin</h1>
+    <span class="coord">{{ entries | length }} screen{{ '' if entries | length == 1 else 's' }}</span>
+  </div>
+  <p class="page-head__note">
+    Only what you can open is listed. The permission beside each one is the code
+    that opens it, so an administrator granting a colleague access has the exact
+    word to grant rather than a description of it.
+  </p>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Screen</th>
+      <th scope="col">What it holds</th>
+      <th scope="col">Opened by</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for entry in entries %}
+    <tr>
+      <td><a href="{{ entry.url }}">{{ entry.label }}</a></td>
+      <td>{{ entry.blurb }}</td>
+      <td><code class="coord">{{ entry.permission }}</code></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endif %}
+{% endblock %}

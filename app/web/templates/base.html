@@ -7,13 +7,21 @@
     company_name      str   the company whose data is on screen
     company_id        str   the tenant id that scoped every read on this page
     nav_active        str   one of: projects | proceedings | proceeding |
-                            change | review | workflow
+                            change | review | workflow | admin
     nav_projects_url  str   the project list, default /projects
     nav_review_url    str   the review centre, default /review
     nav_workflow_url  str   the approval route, default /workflow
     nav_proceeding_url str  set when a proceeding is in hand, else omitted
     nav_change_url    str   set when a change is in hand, else omitted
     review_count      int   items the system refused to assert, shown on the nav
+
+  Read from the Jinja environment rather than from a view's context, because
+  every view builds its own context and one that forgot would drop the menu with
+  no error anywhere. app/web/templating.py registers both on the shared factory:
+
+    admin_url         str   where the administrative screens are indexed
+    admin_menu        fn    admin_menu(request) -> the screens THIS viewer may
+                            open, empty when there are none
 
   Blocks: title, head, content, foot.
 
@@ -27,6 +35,13 @@
   product claims to replace. It never renders as an admin link: the screen it
   points at is open to any signed-in person and says on itself who may change
   it.
+
+  THE ADMIN ITEM IS HIDDEN AND NOT GREYED OUT, which is the opposite of what the
+  two conditional screens above do, and the difference is what the reader can do
+  about it. "Open a proceeding to reach this screen" is an instruction. There is
+  no instruction to give somebody who does not hold user.manage, so a permanent
+  greyed-out row would only tell them what they cannot have, on every page, for
+  ever. Somebody who types /admin is answered there instead.
 
   Projects and the review centre carry their URLs as context with a default,
   so whoever owns routing sets the real path in one place rather than this
@@ -62,6 +77,19 @@
   ('workflow', 'Approval route', workflow_url, true, ''),
 ] %}
 
+{#
+  The administrative screens this reader may open. A tuple, so `if admin_open`
+  is "they may open at least one" -- the only question the masthead asks. What
+  is IN it is the index page's business.
+
+  Asked on every render rather than passed in at sign-in. app/web/deps.py::
+  Principal carries no permissions on purpose, because a copy taken when the
+  session started would still offer the link after the grant behind it was
+  revoked. The cost is one permission read per page and it is bounded in
+  app/web/templating.py.
+#}
+{% set admin_open = admin_menu(request) %}
+
 <header class="masthead">
   <div class="shell">
     <div class="masthead__bar">
@@ -96,6 +124,18 @@
           {%- endif %}
         </li>
         {%- endfor %}
+        {#- Outside the loop above, not a seventh row in it. The six are the
+            screens an analyst works in and they are the same six for everybody;
+            this one is drawn from a permission and appears for almost nobody.
+            Folding it into the list would have meant giving every analyst row a
+            permission field that is always None, and a field that is always
+            None is a field the next reader has to test to disbelieve. #}
+        {%- if admin_open %}
+        <li>
+          <a class="nav__link{% if nav_active == 'admin' %} nav__link--current{% endif %}"
+             href="{{ admin_url }}"{% if nav_active == 'admin' %} aria-current="page"{% endif %}>Admin</a>
+        </li>
+        {%- endif %}
       </ul>
     </nav>
   </div>
@@ -115,7 +155,11 @@
 
 <footer class="colophon">
   <div class="shell">
-    <p>The corpus is synthetic. Citation checks run with no model and no network.</p>
+    {# "The corpus is synthetic" was true when this line was written and stopped
+       being true the morning 102 real filings landed. It renders on every
+       screen, so a reviewer read it while looking at a real Kentucky docket.
+       Two corpora now, each named for what it is -- best-practices §30. #}
+    <p>Two corpora: one invented, carrying traps on purpose, and 102 real public filings. Citation checks run with no model and no network.</p>
     <p>A claim whose citation does not verify is not shown. The reason takes its place.</p>
   </div>
 </footer>
