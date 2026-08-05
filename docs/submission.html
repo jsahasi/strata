@@ -1054,14 +1054,16 @@ the server, so <code>make run</code> from a clone remains unproven. The applicat
 and serves every screen the nav prints; <code>strata.sudama.ai</code> serves the same object over the
 internet.</td></tr>
 <tr><td><code>make test</code> works from that same fresh clone, and the output is legible to a
-stranger</td><td><span class="no">NO. One test fails on a fresh clone of HEAD.</span> 1 failed,
-1,380 passed, 2 xfailed, 1 xpassed in 6m 53s;
-<code>tests/test_retention.py::test_every_table_in_the_schema_has_a_window_and_a_reason</code> says
-<code>user_permissions</code> has no retention window. The table is committed and the module that
-uses it is not. This is the first row of the break log and the one thing on this page that stops a
-reviewer, because AI Fund runs this command before booking the panel. In the working copy the same
-command gives 1,378 passed and 3 failed, the two extra failures coming from a scheduler a parallel
-workstream has written and not committed.</td></tr>
+stranger</td><td><span class="yes">YES.</span> <code>make fresh-check</code> clones the repository
+into a temporary directory and runs the suite there, so nothing uncommitted can make it pass:
+<strong>2,301 passed, 2 xfailed in 310 seconds</strong>, exit zero, and it prints
+<code>fresh clone: tests pass</code>. The working copy gives the same result.
+<br><br>It did not always. <code>tests/test_retention.py::test_every_table_in_the_schema_has_a_window_and_a_reason</code>
+failed here because <code>user_permissions</code> had been committed as a table while the module
+that gives it a retention window had not &mdash; a feature landed half. The window is now declared
+at <a href="https://github.com/jsahasi/strata/blob/main/app/state/retention.py"><code>app/state/retention.py</code></a>:585
+and that test passes on its own in 0.15 seconds. The break log keeps the original entry, because
+the failure was real and a fresh-clone check is exactly what catches a half-landed feature.</td></tr>
 <tr><td><code>make eval</code> produces numbers a reviewer can read</td><td><span class="yes">Yes.</span>
 Run again in this pass: 5 of 5 metrics pass, exit 0, no model and no network. It prints counts rather
 than rates below a sample of ten and states what the numbers cannot support. It now has tests of its
