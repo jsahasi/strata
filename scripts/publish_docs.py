@@ -43,6 +43,20 @@ NOTES_TARGET = TARGET / "ai"
 #: Copied as-is beside the documents that link to them.
 ASSETS = ("docs-nav.css", "diagrams.css")
 
+#: KEPT LOCAL. Everything else in docs/.ai/ is working memory a reader benefits
+#: from -- the decisions, the gaps, the findings, all of it describes the system.
+#: interview-bank.html does not. It is rehearsal apparatus: for every question it
+#: carries the tempting wrong answer and the follow-up that comes next, which
+#: reads as somebody coaching themselves rather than as documentation of a
+#: product. docs/tech-questions-faq.html carries the same 38 questions and the
+#: same answers, with the coaching removed, and that is the one to publish.
+#:
+#: It was public for several hours before anybody noticed, because docs/.ai/
+#: publishes as docs/ai/ and nothing here said otherwise. A file is published
+#: unless this tuple says it is not, and that default is the right way round --
+#: which is why the exclusion has to name itself out loud.
+NOT_PUBLISHED = ("interview-bank.html",)
+
 #: Not HTML, and linked from docs/.ai/index.html, so the link checker below
 #: found it missing on the first run. state.json is the one file in that
 #: directory nobody writes by hand -- ADR-42 makes it authoritative over the
@@ -90,6 +104,8 @@ def publish() -> int:
         written.append(f"docs/{path.name}")
 
     for path in sorted(NOTES.glob("*.html")):
+        if path.name in NOT_PUBLISHED:
+            continue
         html = _rewrite_notes(path.read_text(encoding="utf-8"))
         (NOTES_TARGET / path.name).write_text(html, encoding="utf-8")
         written.append(f"docs/ai/{path.name}")
