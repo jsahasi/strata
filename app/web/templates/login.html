@@ -118,8 +118,9 @@
       <h2 id="demo-title" class="label">Demo accounts</h2>
       <p>
         This build ships with the accounts below, all sharing the password
-        <code>{{ demo_password }}</code>. They exist because the corpus is
-        synthetic and a reviewer has to get in. They are also a real weakness:
+        <code>{{ demo_password }}</code>. They exist because nothing in this
+        workspace is confidential and a reviewer has to get in. They are also a
+        real weakness:
         set <code>{{ demo_env }}=0</code> and seed your own people before this
         is put anywhere that is not a demo.
       </p>
@@ -164,7 +165,12 @@
 
 <footer class="colophon">
   <div class="shell">
-    <p>The corpus is synthetic. Citation checks run with no model and no network.</p>
+    {# "The corpus is synthetic" was true when written and stopped being true the
+       morning 102 real filings landed. It renders on the page EVERY visitor sees
+       first, and the same sentence in base.html was corrected while this copy was
+       missed -- a repair that lands on one of two files is how a claim survives
+       its own correction. best-practices §30. #}
+    <p>Two corpora: one invented, carrying traps on purpose, and real public filings. Citation checks run with no model and no network.</p>
     <p>Failed sign-ins are recorded, with the address tried and never the password.</p>
   </div>
 </footer>

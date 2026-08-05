@@ -123,6 +123,7 @@ footer a{color:var(--muted)}
     <a class="navlink" href="/#how">How it works</a>
     <a class="navlink" href="/privacy.html">Privacy</a>
     <a class="navlink" href="/security.html">Security</a>
+    <a class="navlink" href="/docs/">Docs</a>
     <a class="signin" href="/login">Sign in</a>
   </div>
 </header>
@@ -148,10 +149,16 @@ footer a{color:var(--muted)}
   <div class="wrap"><div class="lined" data-line="2">
     <h2>What the service is</h2>
     <div class="narrow">
-      <p>Strata reads successive versions of a regulatory proceeding, works out what changed,
-      maps each change to the obligations it touches, and routes an action to a reviewer. Every
-      claim it makes carries a citation, and it withholds any claim whose citation does not match
-      the stored source.</p>
+      <p>Strata reads successive versions of a regulatory proceeding and works out what changed.
+      Every claim it makes carries a citation, and it withholds any claim whose citation does not
+      match the stored source.</p>
+      <p>Two things this build does not yet do, said here rather than left to be found. It does
+      not map a change to the obligations it touches: the code for that has no caller, and no
+      change in the demonstration is bound to an obligation. And there is no way to put a document
+      in through the product — no upload screen, no file field, and no button on any screen that
+      fetches one. Documents are loaded from files on the machine by whoever runs it. Where the
+      rest of this page says "upload", read it as putting a document into the service by any means,
+      including that one.</p>
       <p>That is the whole of it. Nothing else is promised.</p>
     </div>
   </div></div>
@@ -188,10 +195,16 @@ footer a{color:var(--muted)}
       <p><b>What the operator may do with your documents:</b> store them, cut them into passages,
       compare versions of them, re-read them to check a citation, and show them back to you and to
       the people in your company who hold an account.</p>
-      <p><b>What the operator may not do:</b> train a model on them. Sell them. Share them with
-      anyone outside your company. Use them for any purpose other than running the service for
-      you. No model call happens today at all — the <a href="/privacy.html">privacy page</a> says
-      exactly what leaves the machine, which is nothing.</p>
+      <p><b>What the operator may not do:</b> train a model on them. Sell them. Use them for any
+      purpose other than running the service for you. Share them with anyone outside your company,
+      apart from the one vendor named next.</p>
+      <p><b>Something does leave the machine.</b> The assistant panel sits on every screen, and
+      each turn goes to Anthropic's API: the question you typed, your name, your company's name,
+      the permission codes you hold, and whatever the assistant looked up — which can include
+      filing text either side of a change. With no <code>ANTHROPIC_API_KEY</code> set nothing is
+      sent and the panel says it is unavailable. The <a href="/privacy.html">privacy page</a> and
+      the <a href="/subprocessors.html">sub-processors page</a> list what goes and what is held
+      back. This page said no model call happened at all, and went on saying it after one did.</p>
       <p>You are responsible for what you upload. Do not put in documents you have no right to
       put in.</p>
     </div>

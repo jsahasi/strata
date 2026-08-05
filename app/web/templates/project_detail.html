@@ -159,9 +159,11 @@
       </tbody>
     </table>
     <p class="coord">
-      Materiality reads "{{ materiality_unassessed }}" on every row because this
-      build makes no model call. Nothing has judged how much these changes
-      matter, and the column says so rather than leaving a blank.
+      Materiality reads "{{ materiality_unassessed }}" on every row because
+      nothing on the pipeline that produced these changes calls a model. The
+      proposer that would judge it is written and is not wired into this path.
+      So nothing has judged how much these changes matter, and the column says
+      so rather than leaving a blank.
     </p>
 
     {% else %}

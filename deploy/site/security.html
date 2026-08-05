@@ -124,6 +124,7 @@ footer a{color:var(--muted)}
     <a class="navlink" href="/#how">How it works</a>
     <a class="navlink" href="/privacy.html">Privacy</a>
     <a class="navlink" href="/terms.html">Terms</a>
+    <a class="navlink" href="/docs/">Docs</a>
     <a class="signin" href="/login">Sign in</a>
   </div>
 </header>
@@ -179,7 +180,9 @@ footer a{color:var(--muted)}
 
     <div class="stage"><b>the guard</b><p>One middleware resolves the cookie for every request and
       sends every anonymous one to the login page. Four things go through, and the list is in
-      <code>app/web/deps.py</code>: the login page, the health check, the stylesheet, and any path
+      <code>app/web/deps.py</code>: the login page, the health check, everything under
+      <code>/static/</code> — four stylesheets and four scripts, since an unstyled login page is a
+      broken one — and any path
       under <code>/s/</code> — the share links, which have a section of their own below. The
       trailing slash on that prefix is the control, not decoration: <code>startswith("/s")</code>
       would make <code>/settings</code> public. A route added next week is protected because it
@@ -195,10 +198,14 @@ footer a{color:var(--muted)}
       means is detected. Who acted, from which address and under which session are inside the hash,
       not merely beside it.</p></div>
 
-    <div class="stage"><b>roles</b><p>Three roles and a closed set of permission codes, held in
-      code rather than in a table an administrator can edit. The control is the row that is
-      missing: the analyst role holds no approval permission, so the person who interprets a change
-      cannot approve the action that follows from it.</p></div>
+    <div class="stage"><b>roles</b><p>Fifteen permission codes, fixed in code. Three roles ship
+      with the product and nobody can edit them, because editing one would change what a word means
+      for people who never asked. What an administrator can do is grant a single permission to a
+      single person, with a reason on the record, and compose a new role and name it — and neither
+      may hand on a permission the grantor does not hold. The control is the row that is missing:
+      the analyst role holds no approval permission, so the person who interprets a change cannot
+      approve the action that follows from it. The permissions screen shows every person against
+      every code, and says of each mark whether it came from a role or from a direct grant.</p></div>
 
     <div class="stage"><b>what leaves</b><p>This site and the application load nothing from
       another host — no fonts, no scripts, no stylesheets, no content delivery network, no
@@ -230,10 +237,13 @@ footer a{color:var(--muted)}
     </div>
 
     <div class="stage"><b class="no">not built</b><p><b>Authorisation on the screens that matter.</b>
-      Permission checks run on the workflow administration screens and the feedback queue. The
-      review and approval screens do not call them: they take a reviewer's name typed into a form.
-      So one operator can still resolve work they raised, and a signed-in person with no roles
-      reaches every screen. The check exists and is tested; it is not yet on that path.</p></div>
+      Permission checks now run on all eight administrative screens — the admin index, logins,
+      permissions, approval routes, the share register, invitations, sources and the feedback
+      queue — and somebody holding none of those codes is answered 403 at every one of them. The
+      review and approval screens still do not call them: they take a reviewer's name typed into a
+      form. So a signed-in person with no roles still reaches the review queue and the review
+      centre, and one operator can still resolve work they raised. The check exists and is tested;
+      it is not yet on that path.</p></div>
 
     <div class="stage"><b class="no">not built</b><p><b>Encryption at rest.</b> The data sits in a
       single SQLite file with whatever protection the host's disk gives it, and nothing more. No
@@ -434,9 +444,11 @@ footer a{color:var(--muted)}
       <code>app/web/views/auth.py</code> builds, and the value comes from
       <code>app/seed.py</code>, which prints it again when it seeds. That is the right answer for a
       demonstration holding no confidential data and the wrong one everywhere else, it is named above as a
-      weakness, and <code>STRATA_DEMO_ACCOUNTS=0</code> turns the panel off. Neither corpus holds anything confidential: one is invented, the other is public record
-      too — a fictional commission, a fictional docket, fictional people. Finding either is not a
-      finding.</p></div>
+      weakness, and <code>STRATA_DEMO_ACCOUNTS=0</code> turns the panel off. Neither corpus holds
+      anything confidential, and they are not the same kind of thing. One is invented — a fictional
+      commission, a fictional docket, fictional people. The other is 102 filings that eight state
+      commissions publish themselves, by named companies and named witnesses, downloaded from their
+      own document systems. Finding either is not a finding.</p></div>
 
     <div class="stage"><b>safe harbour</b><p>Research in good faith, inside this policy, and I will
       not pursue you for it and will not ask anyone else to. That covers the live application at

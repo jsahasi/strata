@@ -169,7 +169,7 @@ from app.state.models import (
     SOURCE_STATUS_UNREACHABLE,
     DocumentVersion,
 )
-from app.state.queries import _require_scope
+from app.state.queries import _require_scope, row_for_company
 
 # ---------------------------------------------------------------------------
 # The limits. Named, because every one of them is a decision somebody will want
@@ -891,7 +891,18 @@ def fetch_source(
     # here rather than left NULL, because a version that cannot say where it
     # came from is the gap docs/mrd.html already concedes for the hand-loaded
     # corpus, and there is no reason to add to it.
-    fetched = session.get(DocumentVersion, version_id)
+    #
+    # THE FETCH IS SCOPED EVEN THOUGH THIS CALL JUST CREATED THE ROW. version_id
+    # is built from the source registration and the content hash, so in practice
+    # it is this company's row and the check never fires. In practice is not a
+    # guarantee: the id is derived, not owned, and a bare session.get here would
+    # stamp another tenant's version with this tenant's URL and retrieval time
+    # the first time two derivations met. This was the fourth site doing
+    # primary-key-then-use, and the only one that did not post-check at all,
+    # which is the argument for the chokepoint rather than for four careful
+    # authors. row_for_company raises on a crossing rather than returning None,
+    # so it cannot degrade to the silent skip the None branch below is for.
+    fetched = row_for_company(session, company_id, DocumentVersion, version_id)
     if fetched is not None:
         fetched.source_url = walk.url
         fetched.source_registration_id = source_id

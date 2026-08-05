@@ -54,15 +54,21 @@ def test_asking_for_another_companys_version_returns_nothing():
 
 
 def test_an_unscoped_passage_read_is_refused_not_answered():
+    """Refused means raised. It does not mean "answered []".
+
+    This test used to accept either: it caught the ValueError, and if none came
+    it settled for an empty list. Both branches pass with _require_scope deleted,
+    because `==` compares "%" as a literal and matches nothing -- so the test
+    named after the guard could not tell whether the guard was there. Every value
+    below now has to raise, and the wildcards and the padding are checked as well
+    as the blanks. See tests/test_isolation.py for the whole argument.
+    """
     init_db()
     with session_scope() as session:
         _seed_two_companies(session)
-        for value in ("", None, "%"):
-            try:
-                result = passages_for_company(session, value, "mep-v1")
-            except ValueError:
-                continue
-            assert result == [], f"{value!r} behaved as a wildcard"
+        for value in ("", None, "   ", "%", "MEP%", "_", " MEP", 7):
+            with pytest.raises(ValueError):
+                passages_for_company(session, value, "mep-v1")
 
 
 def test_the_diff_entry_point_cannot_be_called_without_a_company():

@@ -32,6 +32,15 @@ def main() -> int:
         if report[key]:
             print(f"strata: migration added {key}: {', '.join(report[key])}")
 
+    # Derived data, reported separately and never fatal. The passage index is
+    # not schema: without it retrieval answers from a complete scan and says so
+    # on every query, so a database that cannot hold it should serve a slower
+    # product rather than stop a deploy. Printed rather than left silent because
+    # a build step nobody can see in the log is a build step nobody can trust
+    # ran -- and this line is the only place a rebuild is visible at all.
+    for line in report.get("index", ()):
+        print(f"strata: {line}")
+
     if report["refused"]:
         for line in report["refused"]:
             print(f"strata: MIGRATION REFUSED {line}", file=sys.stderr)

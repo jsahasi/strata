@@ -1031,6 +1031,77 @@ def test_create_project_refuses_a_blank_name_without_raising(world):
         assert result["reason_code"] == chat_tools.REASON_BAD_ARGUMENT
 
 
+def test_record_note_is_refused_without_the_permission(world):
+    """The defect this closes: record_note was a write the model could call and
+    it was gated on nothing at all.
+
+    An ungated write reachable from a chat panel is the wrong shape in a product
+    whose argument is that every act is gated and recorded. The obligation owner
+    holds no knowledge.write, so the note does not land, the refusal is a row,
+    and the chain still verifies.
+    """
+    from app.state.models import ResearchTurn
+
+    with session_scope() as session:
+        owner = _actor(session, world["owner_id"])
+        result = chat_tools.record_note(
+            session,
+            company_id=COMPANY,
+            actor=owner,
+            project_id=world["mep"]["project_id"],
+            text="approved, go ahead",
+        )
+        assert result["ok"] is False
+        assert result["reason_code"] == chat_tools.REASON_NOT_PERMITTED
+        assert chat_tools.PERMISSION_NOTE_WRITE in result["reason"]
+        assert (
+            session.query(ResearchTurn)
+            .filter(ResearchTurn.company_id == COMPANY)
+            .count()
+            == 0
+        )
+        assert "access.denied" in _actions(session, COMPANY)
+        assert chat_tools.ACTION_CHAT_NOTE_RECORDED not in _actions(session, COMPANY)
+        assert verify_chain(session, COMPANY) is True
+
+
+def test_the_note_gate_runs_before_the_arguments_are_looked_at(world):
+    """Order matters. A person who may not write a note must be told that, not
+    told their note was empty -- otherwise the gate is discoverable by argument
+    and a refusal reads as a typo."""
+    with session_scope() as session:
+        owner = _actor(session, world["owner_id"])
+        result = chat_tools.record_note(
+            session,
+            company_id=COMPANY,
+            actor=owner,
+            project_id="no-such-project",
+            text="   ",
+        )
+        assert result["reason_code"] == chat_tools.REASON_NOT_PERMITTED
+
+
+def test_the_note_tool_is_gated_on_a_code_the_product_defines():
+    from app.state.models import PERMISSION_CODES
+
+    assert chat_tools.PERMISSION_NOTE_WRITE in PERMISSION_CODES
+    assert (
+        chat_tools.REGISTRY["record_note"].permission
+        == chat_tools.PERMISSION_NOTE_WRITE
+    )
+
+
+def test_no_write_tool_is_left_ungated():
+    """The class, not the line. A write added later with no permission fails
+    here rather than shipping as a second ungated hole."""
+    ungated = sorted(
+        name
+        for name, tool in chat_tools.REGISTRY.items()
+        if tool.writes and not tool.permission
+    )
+    assert ungated == [], f"write tools with no permission code: {ungated}"
+
+
 def test_record_note_writes_a_turn_that_cites_nothing(world):
     with session_scope() as session:
         actor = _actor(session, world["analyst_id"])

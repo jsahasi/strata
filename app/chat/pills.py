@@ -127,16 +127,19 @@ START_PROJECT = Pill(
     "Start a project for a new docket.",
     requires="project.create",
 )
-# UNGATED, and that follows the tool rather than leading it. app/chat/tools.py
-# gates record_note on nothing and says why: the product defines no permission
-# code for writing a note, the same act through the project screen has no gate,
-# and inventing one here would be a second authorisation vocabulary. A pill
-# gated tighter than its tool hides a button from people entitled to press it,
-# which is the same class of bug as offering one they cannot -- just quieter.
-# tests/test_chat_agent.py pins the two together.
+# GATED, and that follows the tool rather than leading it. This pill was ungated
+# because record_note was, and record_note was ungated because the product
+# defines no note.write code. An ungated write reachable from a chat panel was
+# the wrong shape; app/chat/tools.py now gates it on knowledge.write and says at
+# PERMISSION_NOTE_WRITE why that is an alias and what the alias costs. The pill
+# moves with it in the same change: a pill gated looser than its tool offers a
+# button that refuses, and one gated tighter hides a button from people entitled
+# to press it. tests/test_chat_agent.py pins the two together, so this constant
+# cannot drift from the gate without turning that test red.
 RECORD_NOTE = Pill(
     "Record a note",
     "Record a note on this project. A note, not an approval.",
+    requires="knowledge.write",
 )
 
 #: What a turn falls back to when there is nothing to derive from: the opening

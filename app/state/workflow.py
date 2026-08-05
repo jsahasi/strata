@@ -116,7 +116,9 @@ from app.state.models import (
 )
 
 # Imported, never copied. Same import routing.py makes, for the same reason.
-from app.state.queries import _require_scope
+# row_for_company is the second of the two: a primary-key fetch that will not
+# hand a row to anybody but its owner.
+from app.state.queries import CrossTenantRow, _require_scope, row_for_company
 
 # The two guards routing.py already spells, imported rather than restated. They
 # are private names and are taken knowingly: a second copy of "an unattributed
@@ -740,6 +742,12 @@ def create_workflow(
     is a double click, it returns the stored row and it appends nothing. An id
     another company holds raises rather than resolving, because silently
     handing back that row is a tenant leak with a friendly face.
+
+    That last check used to be written out here -- session.get, then compare
+    company_id -- and ensure_obligation, which does the identical lookup, had
+    been written without it. Three sites remembering the same rule separately is
+    a rule that fails on the fourth, so the fetch and the check are one call now
+    and this site reads the same as the other two.
     """
     _require_scope(company_id)
     who = _require_actor(actor)
@@ -749,10 +757,15 @@ def create_workflow(
     if not name or not name.strip():
         raise ValueError("a route needs a name somebody can search for")
 
-    stored = session.get(ApprovalWorkflow, workflow_id)
+    # Re-raised in this module's own words, for the reason ensure_obligation
+    # gives: the caller needs a sentence about a route, and the message must
+    # read exactly as a missing row does rather than confirm that some other
+    # tenant holds that id.
+    try:
+        stored = row_for_company(session, company_id, ApprovalWorkflow, workflow_id)
+    except CrossTenantRow as crossed:
+        raise ValueError(f"no workflow {workflow_id!r} for this company") from crossed
     if stored is not None:
-        if stored.company_id != company_id:
-            raise ValueError(f"no workflow {workflow_id!r} for this company")
         return stored
 
     workflow = ApprovalWorkflow(

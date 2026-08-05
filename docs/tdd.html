@@ -28,13 +28,20 @@
   .meta { color:#64748b; font-size:.85rem; }
   ol, ul { margin:.4rem 0 .4rem 1.2rem; }
   li { margin:.2rem 0; }
+  /* Inline "this is still open" marker. It carries the amber of docs/architecture.html,
+     where this material came from. It is a span, and .open above is a block: two
+     different jobs, so two different names rather than one class doing both badly. */
+  .gap { color:#b45309; font-weight:600; }
+  h2.part { font-size:1.05rem; text-transform:none; letter-spacing:0; color:#0f172a;
+            border-bottom:2px solid #0369a1; margin-top:3.2rem; padding-bottom:.4rem; }
+  .rubric td:last-child { color:#475569; }
 </style>
 <link rel="stylesheet" href="diagrams.css">
 <link rel="stylesheet" href="docs-nav.css">
 </head>
 <body>
 <nav class="dnav" aria-label="Documents">
-<div class="dnav__row"><span class="dnav__label">Docs</span><a href="mrd.html">MRD</a><a href="prd.html">PRD</a><span class="dnav__here">TDD</span><a href="architecture.html">Architecture</a><a href="security.html">Security</a><a href="web-design.html">Design</a><a href="future-enhancements.html">Roadmap</a><a href="user-research.html">User research</a><a href="synthetic-user.html">Persona</a><a href="synthetic-interview.html">Interview</a><a href="best-practices.html">Playbook</a><a href="submission.html">Submission</a></div>
+<div class="dnav__row"><span class="dnav__label">Docs</span><a href="mrd.html">MRD</a><a href="prd.html">PRD</a><span class="dnav__here">TDD</span><a href="#parta">Architecture</a><a href="security.html">Security</a><a href="web-design.html">Design</a><a href="future-enhancements.html">Roadmap</a><a href="user-research.html">User research</a><a href="synthetic-user.html">Persona</a><a href="synthetic-interview.html">Interview</a><a href="best-practices.html">Playbook</a><a href="submission.html">Submission</a></div>
 <div class="dnav__row"><span class="dnav__label">Working notes</span><a href=".ai/index.html">Index</a><a href=".ai/decisions.html">Decisions</a><a href=".ai/tasks.html">Tasks</a><a href=".ai/briefing.html">Briefing</a><a href=".ai/findings.html">Findings</a><a href=".ai/gaps.html">Gaps</a><a href=".ai/demo-notes.html">Demo notes</a></div>
 </nav>
 
@@ -47,13 +54,49 @@
 
 <h1>Technical Design Document</h1>
 <p class="sub">Strata — citation-grade regulatory change intelligence. How the hard bet is built, with the alternative considered and the trade-off accepted at every step.</p>
-<p class="meta">Written 2026-08-03, before implementation. Reconciled against the code twice since, section by section: once on 2026-08-04, and again after commit <code>97daf02</code>, when a model path, a schema migration, an approval engine, a routing module and a corpus of real filings all landed and left this document describing a build that had moved under it. Both times the places where the two disagreed were fixed here rather than in the code. A TDD that stops matching the build is worse than none, because it tells the reader a false story with confidence.</p>
+<p class="meta">Written 2026-08-03, before implementation. Reconciled against the code twice since, section by section: once on 2026-08-04, and again after commit <code>97daf02</code>, when a model path, a schema migration, an approval engine, a routing module and a corpus of real filings all landed and left this document describing a build that had moved under it. Both times the places where the two disagreed were fixed here rather than in the code. A TDD that stops matching the build is worse than none, because it tells the reader a false story with confidence. <span class="lbl">On 2026-08-04 this document absorbed <code>docs/architecture.html</code>, which is now a one-paragraph signpost.</span> The reason is the same rule pointed at the documents themselves: two descriptions of one system drift, and this pair had already drifted — the two disagreed about where normalization runs, about how segmentation splits, and about the restructure similarity score, and an earlier revision of the architecture drawing had the citation gate on the wrong side of the write. One description can be wrong. Two can disagree, and a reader has no way to tell which.</p>
 
 <div class="note"><strong>How to read this.</strong> Every section states what is built, the alternative rejected, and the trade-off accepted. Where a number is not yet known — because the eval has not measured it, or the threshold has not been tuned — this document says so rather than filling the gap with something plausible. A guess dressed as a result is exactly the failure this product exists to prevent in its own domain; it would be strange to allow it here.
-<p><strong>The same rule governs the drawings.</strong> A dashed, muted box means designed and not built. Nothing on these pages draws intended work in the same ink as shipped work, for the same reason a claim refuses to assert itself on a citation that did not verify: a reviewer who finds one box that overstates stops believing the other twenty.</p></div>
+<p><strong>The same rule governs the drawings.</strong> A dashed, muted box means designed and not built. Nothing on these pages draws intended work in the same ink as shipped work, for the same reason a claim refuses to assert itself on a citation that did not verify: a reviewer who finds one box that overstates stops believing the other twenty.</p>
+<p><strong>And where a decision is still open, this document says so.</strong> A question left open in
+<code>docs/.ai/decisions.html</code> is reported here as open, rather than answered with a pick nobody made
+and a seam nobody can see. Part D carries the list.</p></div>
+
+<h3>The eleven areas the brief names, and where each is answered</h3>
+<p><code>docs/mrd.html</code> tables eleven areas a technical design has to cover. Sections 1 to 11 below are
+those eleven, one to one, in the brief's own order. Sections 12 to 15 are this document's own additions, and
+the structural material — the module tree, the dependency direction, the database ceiling, the deploy — carries
+<strong>letters</strong> rather than numbers, in Part A, so nothing there can be mistaken for a twelfth area.
+The third column is here because an index that only links is an index that goes stale against the sections
+beneath it: a reader sees the eleven ticks and the concessions in one glance.</p>
+<table class="rubric">
+<tr><th>The area, as the brief words it</th><th>Answered in</th><th>Where it stands</th></tr>
+<tr><td>Ingestion &amp; passage segmentation</td><td><a href="#ingestion">§1</a>, drawn in <a href="#a2-dataflow">A2</a></td><td>Built and tested. Coarser than planned — blank lines only. PDF and HTML extraction not built.</td></tr>
+<tr><td>Version diffing</td><td><a href="#diffing">§2</a></td><td>Built and tested. The restructure cap fires on 8 of the 19 changes in the corpus pair, which is blunt and is stated as blunt.</td></tr>
+<tr><td>Evidence-linked extraction</td><td><a href="#extraction">§3</a></td><td>The model proposer is built and tested against an injected fake. Nothing in <code>app/</code> calls it, and it has never run against the real endpoint. The claims on screen are assembled deterministically.</td></tr>
+<tr><td>Company-context data model</td><td><a href="#context">§4</a></td><td>Obligations are rows and the change-to-obligation edge has a table and a writer. Nothing computes an edge; the five in the demonstration are written by hand. Documents have no table.</td></tr>
+<tr><td>Citation verification</td><td><a href="#citation">§5</a></td><td>Built, tested and adversarially probed. The depth area. The truncation case is caught by nothing and says so.</td></tr>
+<tr><td>Confidence &amp; escalation</td><td><a href="#confidence">§6</a></td><td>Built. The confidence bar ships at zero, so the third check refuses nothing today; the mechanism is configuration, not a measurement.</td></tr>
+<tr><td>Reviewer routing</td><td><a href="#routing">§7</a></td><td>The router is built and tested, with fifteen named refusals and no default assignee. No screen routes an item, and nothing starts an approval run.</td></tr>
+<tr><td>Audit history &amp; rollback</td><td><a href="#audit">§8</a></td><td>The hash chain is built and tested. One decision can be taken back. Reading and restoring the chain at a moment landed in <code>app/state/replay.py</code>; no screen reaches either.</td></tr>
+<tr><td>Evals</td><td><a href="#evals">§9</a></td><td>Five deterministic metrics against an independent oracle, all passing. One hand-built proceeding, six subjects. Nothing in the real corpus is scored and no model runs in the harness.</td></tr>
+<tr><td>Data isolation</td><td><a href="#isolation">§10</a></td><td>One chokepoint, imported by 30 modules and copied by none. Two real holes were found and closed since this section was written. Nothing in the database enforces any of it.</td></tr>
+<tr><td>Security</td><td><a href="#security">§11</a></td><td>Login, session handling, fifteen permission codes and an approval gate a permission alone cannot pass. No CSRF token, no second factor, no edge rate limit, no encryption at rest.</td></tr>
+</table>
 
 <div class="toc">
 <b>Contents</b><br>
+<b>Part A — the system as code</b><br>
+<a href="#a1-shape">A1. The shape in one sentence</a><br>
+<a href="#a2-dataflow">A2. Data flow — raw document to screen</a><br>
+<a href="#a3-properties">A3. Three properties that do the work</a><br>
+<a href="#a4-modules">A4. Module layout under app/</a><br>
+<a href="#a5-deps">A5. Dependency direction, and the edges that run the wrong way</a><br>
+<a href="#a6-corpora">A6. The two corpora</a><br>
+<a href="#a7-sqlite">A7. What changes when this outgrows SQLite</a><br>
+<a href="#a8-deploy">A8. Configuration, schema migration, and the deploy</a><br>
+<a href="#a9-surface">A9. The application surface</a><br>
+<b>Part B — the eleven areas the brief names</b><br>
 <a href="#overview">System overview</a><br>
 <a href="#ingestion">1. Ingestion &amp; passage segmentation</a><br>
 <a href="#diffing">2. Version diffing</a><br>
@@ -66,10 +109,366 @@
 <a href="#evals">9. Evals</a><br>
 <a href="#isolation">10. Data isolation</a><br>
 <a href="#security">11. Security</a><br>
+<b>Part C — beyond the eleven</b><br>
 <a href="#datamodel">12. Data model</a><br>
 <a href="#requestpath">13. Request path — main workflow</a><br>
 <a href="#failure">14. Failure modes</a><br>
+<a href="#retrieval">15. Retrieval over docket text</a><br>
+<b>Part D — what this document does not resolve</b><br>
+<a href="#openquestions">D1. Open questions</a><br>
+<a href="#counts">D2. Every count here is a count that moves</a><br>
 </div>
+
+<h2 class="part" id="parta">Part A — the system as code</h2>
+<p>Part A answers the questions no feature-ordered section can: which module may import which, where the
+database seam is, what the deploy does before it serves a request. It is organised around the code. Part B is
+organised around what the product does, and every section here that touches one of the eleven areas points at
+the section that answers it rather than answering it a second time. <span class="lbl">This material was
+<code>docs/architecture.html</code> until 2026-08-04.</span> It goes first because the eleven areas each assume
+a shape the reader has not been given — that ingestion writes and verification reads, that one function is the
+gate, that the core imports no database — and two screens here supply it.</p>
+
+<h2 id="a1-shape">A1. The shape in one sentence</h2>
+<div class="note"><strong>A pipeline of small, mostly deterministic stages, with exactly one module permitted
+to call a model <em>on the pipeline path</em> and exactly one function permitted to decide that a stored claim
+may be asserted.</strong> Everything else is either pure computation or a thin read and write against stored
+state. The seams between stages are the module boundaries under <code>app/</code>.
+<p>That is the architectural invariant, and it is narrower than the whole truth: a second module calls a model,
+<code>app/chat/agent.py</code>, and it sits beside the pipeline rather than in it (A9). The System overview
+below states the wider fact and names both callers. Neither sentence is a softening of the other — one is
+about the path a claim takes, one is about the codebase.</p></div>
+
+<h2 id="a2-dataflow">A2. Data flow — raw document to screen</h2>
+<figure class="fig">
+<div class="fig__frame">
+<svg viewBox="0 0 900 782" role="img" aria-labelledby="dfT dfD">
+  <title id="dfT">Data flow from a raw proceeding version to a screen, and where the gate sits</title>
+  <desc id="dfD">Raw text for one proceeding version enters ingestion, which segments
+  it into offset-addressed passages and writes them to an immutable passage store.
+  Retrieval over that store is an index built from those passages, serving the assistant
+  and no screen. A pure diff compares two versions. app/pipeline.py sequences ingestion,
+  diff and the writes, and calls no model. Claims are written into ordinary tables by rule, in
+  app/seed.py. Interpretation, the one module on this path permitted to call a model,
+  sits to the side and is drawn with a dashed arrow because no caller in app reaches
+  it. The assistant calls a model too, but it sits beside this pipeline rather than
+  in it. The gate is below state, not above it: verification runs on every read, inside
+  app/state/claims.py, which re-reads the source at the cited offsets, normalizes,
+  compares exactly and checks the occurrence. A claim that passes reaches the reader
+  as fact; one that fails is withheld with its reason code and never its statement.
+  The readers are the web screens, the public share page and the assistant's tools,
+  and all three go through the same function.</desc>
+
+  <!-- input -->
+  <text class="t-sub" x="14" y="112">raw proceeding</text>
+  <text class="t-sub" x="14" y="126">version N</text>
+  <path class="flow" d="M118 118 H244"/>
+
+  <g class="box"><rect x="250" y="88" width="280" height="58"/>
+    <text class="t-title" x="266" y="110">ingestion</text>
+    <text class="t-sub" x="266" y="128">passage segmentation, stable char offsets, SHA frozen</text></g>
+  <path class="flow" d="M390 146 V180"/>
+
+  <g class="box box--store"><rect x="250" y="186" width="280" height="58"/>
+    <text class="t-title" x="266" y="208">passage store</text>
+    <text class="t-sub" x="266" y="226">offset-addressed, immutable, one row per passage</text></g>
+  <path class="flow" d="M390 244 V278"/>
+
+  <g class="box"><rect x="610" y="186" width="272" height="58"/>
+    <text class="t-title" x="626" y="208">retrieval over docket text</text>
+    <text class="t-sub" x="626" y="226">FTS5 index, bm25 rank. Candidates, not answers (§15)</text></g>
+  <path class="flow" d="M534 215 H606"/>
+
+  <g class="box"><rect x="250" y="284" width="280" height="58"/>
+    <text class="t-title" x="266" y="306">diff</text>
+    <text class="t-sub" x="266" y="324">pure function. No model, no I/O. Confidence capped on restructure</text></g>
+  <path class="flow" d="M390 342 V376"/>
+
+  <g class="box"><rect x="250" y="382" width="280" height="64"/>
+    <text class="t-title" x="266" y="404">app/pipeline.py — the write path</text>
+    <text class="t-sub" x="266" y="421">ingests, diffs, records changes and audit rows</text>
+    <text class="t-sub" x="266" y="436">calls no model. A second run writes nothing</text></g>
+  <path class="flow" d="M390 446 V474"/>
+
+  <g class="box box--store"><rect x="610" y="382" width="272" height="58"/>
+    <text class="t-title" x="626" y="404">company context</text>
+    <text class="t-sub" x="626" y="422">obligations, owners, projects</text></g>
+  <path class="flow--weak" d="M746 440 V474"/>
+
+  <g class="box box--model"><rect x="610" y="480" width="272" height="72"/>
+    <text class="t-title" x="626" y="502">interpretation</text>
+    <text class="t-sub" x="626" y="519">the only model call on this path</text>
+    <text class="t-sub" x="626" y="534">propose.py pins claude-opus-5 (ADR-037)</text>
+    <text class="t-sub" x="626" y="549">nothing in app/ calls it</text></g>
+  <path class="flow--weak" d="M606 516 H538"/>
+
+  <g class="box box--store"><rect x="250" y="480" width="280" height="72"/>
+    <text class="t-title" x="266" y="502">state</text>
+    <text class="t-sub" x="266" y="519">ordinary tables, plus a hash-chained audit log</text>
+    <text class="t-sub" x="266" y="534">beside them. Claims are written by rule in</text>
+    <text class="t-sub" x="266" y="549">app/seed.py. No claim carries a stored verdict</text></g>
+  <path class="flow" d="M390 552 V586"/>
+  <text class="t-edge" x="398" y="574">every read, not every write</text>
+
+  <g class="box box--gate"><rect x="250" y="592" width="280" height="72"/>
+    <text class="t-title" x="266" y="614">verification — the gate (§5)</text>
+    <text class="t-sub" x="266" y="631">app/state/claims.py re-reads the source at the</text>
+    <text class="t-sub" x="266" y="646">cited offsets, normalizes, compares exactly and</text>
+    <text class="t-sub" x="266" y="661">checks the occurrence. No model. No similarity</text></g>
+
+  <path class="flow--refuse" d="M534 624 H606"/>
+  <text class="t-refuse" x="536" y="615">withholds</text>
+
+  <g class="box"><rect x="610" y="592" width="272" height="72"/>
+    <text class="t-title" x="626" y="614">withheld claim</text>
+    <text class="t-sub" x="626" y="631">the reason code, never the statement. The</text>
+    <text class="t-sub" x="626" y="646">escalations table holds what the seed raised;</text>
+    <text class="t-sub" x="626" y="661">resolving one appends an audit row</text></g>
+
+  <path class="flow" d="M390 664 V698"/>
+  <text class="t-edge" x="398" y="686">quote matches</text>
+  <path class="flow--refuse" d="M746 664 V698"/>
+
+  <g class="box"><rect x="250" y="704" width="632" height="58"/>
+    <text class="t-title" x="266" y="726">the readers</text>
+    <text class="t-sub" x="266" y="744">app/web/ screens, the public /s/ share page, and the assistant's tools — all three through the one gate</text></g>
+</svg>
+</div>
+<div class="fig__key">
+  <span><i></i>deterministic stage</span>
+  <span><i class="k-model"></i>may call a model</span>
+  <span><i class="k-gate"></i>can refuse</span>
+  <span><i class="k-refuse"></i>the refusal path</span>
+</div>
+<figcaption><strong>The gate sits below state, on the read path, and that is the whole design.</strong>
+It is told once, at length, in <a href="#citation">§5</a>, including what an earlier revision of this
+drawing got wrong; everywhere else — here, §6, §12, §13 — states the fact and points there. Five tellings
+of one correction is how a document teaches a reader to skim.
+<strong>The retrieval box has moved twice, in opposite directions.</strong> It was once drawn solid as
+"BM25 over SQLite FTS5" when no such thing existed — a design intention drawn as though it had shipped, which
+is what ADR-040 was written to stop. It was then drawn dashed, correctly, for as long as it was unbuilt. It is
+solid again because the index now exists and the assistant queries it, and §15 states exactly what "exists"
+means at this commit. <strong>The model box is still a seam.</strong>
+<code>app/interpretation/propose.py</code> builds its prompt by dispatching on the version's stored status and
+sends each proposal it can read to the verifier, but no caller in <code>app/</code> reaches it, so the claims
+on screen still come from deterministic assembly in <code>app/seed.py</code>. Check it with
+<code>grep -rn propose_changes app/ scripts/</code>: every hit is inside <code>propose.py</code> itself, bar
+two comments elsewhere that cite it as a shape to copy.</figcaption>
+</figure>
+
+<h2 id="a3-properties">A3. Three properties that do the work</h2>
+<p>The reasoning matters more than the boxes.</p>
+<ol>
+<li><strong>The model sees a diff, never a pair of documents.</strong> By the time <code>interpretation</code>
+runs, <code>diff</code> has already decided what changed. The model is never asked "did anything change" — a
+question it answers unreliably on long documents — only "does this specific change matter," a smaller and
+checkable question (ADR-004). See <a href="#diffing">§2</a> for what that costs when a filing is renumbered
+wholesale.</li>
+<li><strong>Nothing leaves <code>state</code> as fact without passing through <code>verification</code>.</strong>
+There is one function that turns a stored claim into something a screen may assert —
+<code>verified_claims()</code> in <code>app/state/claims.py</code> — and every reader goes through it: the
+change view, the public share page, and the assistant's <code>change_detail</code> and
+<code>search_claims</code> tools. A bug anywhere upstream produces a withheld claim with a reason code, not a
+wrong fact in front of the analyst. The mechanism is <a href="#citation">§5</a>.</li>
+<li><strong>Every arrow into <code>interpretation</code> and out of it crosses a typed boundary</strong> —
+<code>Change</code> objects in, candidate claims with citations out. Neither side needs to know how the other
+is implemented. That is what makes each stage swappable on its own, and it is why the gate does not have to
+know what produced a claim (<a href="#extraction">§3</a>).</li>
+</ol>
+
+<h2 id="a4-modules">A4. Module layout under app/</h2>
+<p>Thirteen packages and four top-level modules beside <code>__init__.py</code>: <code>auth</code>,
+<code>chat</code>, <code>diff</code>, <code>evals</code>, <code>ingestion</code>,
+<code>interpretation</code>, <code>jobs</code>, <code>notify</code>, <code>sources</code>,
+<code>state</code>, <code>text</code>, <code>verification</code>, <code>web</code>, plus
+<code>config.py</code>, <code>main.py</code>, <code>pipeline.py</code> and <code>seed.py</code>. Two names
+this table used to carry — <code>app/passages/</code> and <code>app/review/</code> — are not directories and
+never were; both capabilities ship elsewhere, and they are listed here at the path where the code actually
+sits. Repeat the layout with <code>find app -name '*.py' | sort</code>, and the counts with
+<code>find app -mindepth 1 -maxdepth 1 -type d ! -name __pycache__</code>.</p>
+<table>
+<tr><th>Module</th><th>Responsibility</th><th>Calls a model?</th><th>Swappable without touching the rest</th></tr>
+<tr><td><code>app/config.py</code></td><td>Reads <code>.env</code> into <code>os.environ</code> once, at startup, and returns the names it set — never the values. The real environment always wins over the file. Fifteen lines of standard library rather than a dependency (ADR-014). The bug that made it necessary is <a href="#failure">§14</a>; the two rules are <a href="#security">§11</a>.</td><td>no</td><td>Called at the top of <code>app/main.py</code> and of each <code>scripts/*.py</code>, before <code>app.state</code> or <code>app.web</code> is imported, because <code>app/auth/policy.py</code> resolves its approval mode at import time.</td></tr>
+<tr><td><code>app/ingestion/</code></td><td>Raw text (proceeding version, or company-context document) &rarr; <code>DocumentVersion</code> + <code>Passage</code> rows with stable char offsets. Hashes and freezes the source, so "this is the document the citation points at" is checkable independently of anything the database says. Design and limits: <a href="#ingestion">§1</a>.</td><td>no</td><td>Parser per input format (plain text now; PDF/HTML extraction is additive, not a rewrite) as long as it still emits offset-addressed passages. The module's own docstring makes the same point about its boundaries: where a passage ends is a retrieval convenience, not the unit of truth.</td></tr>
+<tr><td>the passage store — <code>state/models.py</code>, <code>state/queries.py</code><br><span class="gap">no <code>app/passages/</code> directory</span></td><td>Schema, offset addressing, and the scoped reads: <code>models.Passage</code> holds the rows and <code>queries.passages_for_company</code> is the way into them. Retrieval over those rows is <a href="#retrieval">§15</a>, and its index read lives in the same file for the same reason.</td><td>no</td><td>Making a directory of it is a move, not a redesign.</td></tr>
+<tr><td><code>app/diff/</code></td><td>Pure function: two passage sequences in, typed <code>Change[]</code> out (added / removed / modified), each carrying passage references on both sides. <a href="#diffing">§2</a>.</td><td>no</td><td>The alignment algorithm (currently sequence-based) is fully replaceable — a structural, section-aware aligner later — because callers only depend on the <code>Change</code> contract, never the algorithm.</td></tr>
+<tr><td><code>app/interpretation/</code></td><td>The only module on the pipeline path allowed to call a model. <code>action.py</code> is 35 lines and imports nothing: draft-versus-final is read from the version's status field and dispatches to two separate branches (ADR-005), never inferred. <code>propose.py</code> holds the model call and sends each proposal it can read to the verifier. <span class="gap">Nothing in <code>app/</code> calls <code>propose.py</code></span> — its only importer is <code>tests/test_propose.py</code>. <a href="#extraction">§3</a>.</td><td>yes</td><td>The provider sits behind one transport interface, imported inside the factory function so the module loads with no SDK present. The model id is pinned as a constant, <code>claude-opus-5</code>, and deliberately not read from the environment (ADR-037).</td></tr>
+<tr><td><code>app/verification/</code></td><td>The comparison. Given a citation and a source text, re-reads at <code>(char_start, char_end)</code>, normalizes both sides, compares for <em>equality</em> and checks the occurrence. It applies no threshold and never has. <a href="#citation">§5</a>.</td><td>no — string equality after normalization</td><td>Runs and is unit-tested with no model, no network and no database; it imports only <code>app/text/normalize.py</code>. It is the module a reviewer can audit without trusting anything about the AI.</td></tr>
+<tr><td><code>app/text/</code></td><td><code>normalize.py</code>: the one normalization, plus the projection that maps a normalized offset back to the source character that produced it. Imports nothing from <code>app/</code>.</td><td>no</td><td>Four modules call it — <code>diff</code>, <code>verification</code>, <code>interpretation</code> and the index in <code>state/search.py</code> — which is the point. Changing the folding here changes all four together, on purpose. Ingestion is deliberately <em>not</em> one of them (<a href="#ingestion">§1</a>).</td></tr>
+<tr><td><code>app/state/</code></td><td>Twenty tracked modules. <code>models.py</code> (43 tables), <code>db.py</code> (the engine seam), <code>queries.py</code> (the tenant chokepoint, <a href="#isolation">§10</a>), <code>claims.py</code> (the read-time gate and the confidence floor), <code>audit.py</code> (the hash chain, <a href="#audit">§8</a>), <code>migrate.py</code> (additive schema migration, <a href="#datamodel">§12</a>), <code>search.py</code> (the index, <a href="#retrieval">§15</a>), and the feature stores: <code>projects</code>, <code>review</code>, <code>workflow</code>, <code>routing</code>, <code>rollback</code>, <code>replay</code>, <code>sharing</code>, <code>invites</code>, <code>identity</code>, <code>permissions</code>, <code>feedback</code>, <code>retention</code>, <code>sources</code>.</td><td>no</td><td><code>db.py</code> is the seam where SQLite becomes Postgres (ADR-028) — see <a href="#a7-sqlite">A7</a>. State is ordinary tables, so the storage engine is load-bearing for correctness in a way an event fold would not be; the audit chain is what carries the evidence.</td></tr>
+<tr><td>the escalation queue — <code>state/claims.py</code>, <code>web/views/review.py</code><br><span class="gap">no <code>app/review/</code> directory</span></td><td><code>models.Escalation</code> is a real table. <code>escalations_for_company()</code> reads it; <code>/escalations</code> shows it; resolving one stamps <code>resolved_at</code> and <code>resolved_by</code> on the row and appends an audit event naming the actor. <code>app/state/review.py</code> is a different thing — the review centre's findings, questions and takes.</td><td>no</td><td>Resolution is reversible through <code>app/state/rollback.py</code>, which writes a new audit row naming the one it takes back rather than editing either.</td></tr>
+<tr><td><code>app/auth/</code></td><td><code>sessions.py</code>: login, logout, session resolution by token hash. <code>policy.py</code>: fifteen permission codes, role grants, and the segregation-of-duties check on approvals. <a href="#security">§11</a>.</td><td>no</td><td>The guard is installed once in <code>app/main.py</code> as middleware rather than decorated onto each route, so a screen added next month is protected by existing.</td></tr>
+<tr><td><code>app/chat/</code></td><td>Clarke, the records clerk (ADR-050). <code>persona.py</code> holds the prompt and a deterministic pre-screen; <code>agent.py</code> the turn loop, the pinned model and nine named degradations; <code>tools.py</code> ten tools behind an import-time-checked allowlist; <code>pills.py</code> the suggested actions; <code>engine.py</code> a thirty-line shim. <a href="#a9-surface">A9</a>.</td><td>yes — the second and last place</td><td>The model never supplies an identity: <code>company_id</code>, <code>actor</code>, <code>user_id</code> and <code>session</code> are refused as tool arguments rather than stripped, and the turn halts (ADR-051).</td></tr>
+<tr><td><code>app/notify/</code></td><td><code>messages.py</code> composes an invitation mail; <code>transport.py</code> sends it over SMTP. With no SMTP settings it declines, returns <code>MAIL_PATH_OFF_NOT_CONFIGURED</code> and tells the admin the link is real and nobody was emailed.</td><td>no</td><td>The token goes in the link and nowhere else — not the subject, not a header, not a log, not the audit chain.</td></tr>
+<tr><td><code>app/web/</code></td><td>FastAPI routes and server-rendered templates. Seventeen routers, each owning its own absolute paths — no prefixes, so a URL lives in one file. Reads <code>state</code>; for the citation viewer, passages through the scoped read; imports <code>app/diff/</code> and <code>app/verification/</code> for the constants and the occurrence helpers.</td><td>no</td><td>Deliberately thin, with one conceded exception: four private scoped reads sit in <code>web/views/admin.py</code> that belong in <code>state/queries.py</code>, and the file says so.</td></tr>
+<tr><td><code>app/evals/</code></td><td>The offline harness: <code>corpus.py</code>, <code>metrics.py</code>, <code>report.py</code>, <code>run.py</code>. Scores diff and verification against the synthetic corpus, whose expected answers come from <code>data/manifest.json</code> rather than from the code under test. <a href="#evals">§9</a>.</td><td>no</td><td>Imports <code>diff</code>, <code>ingestion</code>, <code>interpretation.action</code> and <code>verification</code>. It imports neither <code>state</code> nor <code>web</code>, so the harness cannot accidentally measure the database.</td></tr>
+<tr><td><code>app/jobs/</code></td><td>The only thing here that acts with nobody present. <code>runner.py</code> sweeps overdue approvals, purges past their retention window, and fetches. <code>deploy/entrypoint.sh</code> starts the loop as a separate process, and only when <code>STRATA_JOBS_ENABLED</code> is <code>true</code> — which is not the default (ADR-066).</td><td>no</td><td>A separate process rather than a thread, because a sweep and a request would otherwise compete for the same SQLite write lock. Retention runs dry unless a second setting arms it, and <code>purge_all</code> re-checks that flag itself rather than trusting this caller.</td></tr>
+<tr><td><code>app/sources/</code></td><td>The only code here that opens a socket, at an address an administrator supplies. <code>fetch.py</code> retrieves a public docket, hashes it, and stores it only if the hash moved; an unchanged fetch writes nothing and says so (ADR-067).</td><td>no</td><td>The SSRF guard is the module, not a check in front of it: scheme before any name is resolved, then every address the name resolves to and every redirect hop. Hands the changed bytes to <code>app/pipeline.py</code> rather than diffing them itself.</td></tr>
+<tr><td><code>app/pipeline.py</code></td><td>The write chokepoint. Sequences ingestion &rarr; diff &rarr; record for a new version, so one place owns the order of operations. Idempotent: the same version twice writes nothing the second time. Refuses a corpus whose bytes moved under it rather than rebuilding half of it. <a href="#requestpath">§13</a>.</td><td>no</td><td>It imports <code>diff</code>, <code>ingestion</code>, <code>state</code> and <code>audit</code>, and <span class="gap">not <code>verification</code></span> — because the gate is on the read path, not this one.</td></tr>
+<tr><td><code>app/seed.py</code></td><td>Loads the synthetic corpus and writes the demonstration rows: proceedings, versions, claims assembled by rule from <code>data/manifest.json</code>, escalations, accounts. One claim's quote is deliberately altered at real offsets so a citation fails on screen.</td><td>no</td><td>This is where the claims a reviewer sees come from. It is a loader, not a model, and the product's arithmetic is honest only because it says so.</td></tr>
+<tr><td><code>app/main.py</code></td><td>Assembles the application: loads <code>.env</code>, mounts the static files, includes the seventeen routers in the order an analyst meets them, installs the session guard, serves <code>/healthz</code>.</td><td>no</td><td><code>tests/test_app_wiring.py</code> derives the expected set from <code>app.routes</code> and fails the moment a router under <code>app/web/views/</code> is not on the list. That test is how two routers and roughly two thousand lines were found mounted nowhere.</td></tr>
+</table>
+
+<h2 id="a5-deps">A5. Dependency direction, and the edges that run the wrong way</h2>
+<p>Dependency direction runs one way for the core. <code>ingestion</code> knows nothing about <code>diff</code>;
+<code>diff</code> knows nothing about <code>interpretation</code>; <code>interpretation</code> knows nothing
+about the gate's pass or fail logic, only that it must emit a citation for anything it wants to survive.
+<code>verification</code> knows nothing about models, databases or the web. This is what makes "fix the class,
+not the line" tractable — a bug in one stage cannot silently depend on behaviour in another, because the only
+thing that crosses a boundary is a typed object. Above the core the direction is looser and the next diagram
+draws it honestly, including the edges that run back up.</p>
+
+<figure class="fig">
+<div class="fig__frame">
+<svg viewBox="0 0 900 584" role="img" aria-labelledby="modT modD">
+  <title id="modT">Which package under app/ may import which</title>
+  <desc id="modD">Solid arrows point from a package to a package it imports when the
+  module loads. Dashed arrows mark an import written inside a function body, which
+  binds at call time. Everything points downward except the dashed ones.
+  app/text/normalize.py imports nothing from app/ at all, and diff, verification,
+  interpretation and the index each import it, which is why the gate can be run in CI with no
+  database and no API key. Interpretation also imports the verifier, so the proposer
+  puts its own citations through the same module app/state/claims.py uses, rather
+  than through a second check of its own. Three dashed arrows point back up to
+  app/state/queries.py from outside app/state: diff.passage_refs(),
+  verification.verify_citation_for_version() and the proposer's scoped entry point each
+  reach it at call time. One edge runs the wrong way in the top band and is drawn
+  where it is rather than hidden: app/chat/tools.py imports two functions from
+  app/web/views/. On the right sit two capabilities the table above files under
+  directories that do not exist. The escalation queue ships, in state and web. The
+  passage store ships, in state, and retrieval over it now ships beside it in
+  state/search.py. app/evals/ imports the four core packages and imports neither state
+  nor web.</desc>
+
+  <g class="box"><rect x="70" y="36" width="470" height="80"/>
+    <text class="t-title" x="86" y="58">app/main.py    app/web/    app/chat/    app/seed.py</text>
+    <text class="t-sub" x="86" y="76">main.py calls app/config.py first, then mounts seventeen routers</text>
+    <text class="t-sub" x="86" y="90">web imports auth, state, diff and verification directly</text>
+    <text class="t-sub" x="86" y="104">chat imports state, auth, pipeline — and two names back out of web</text></g>
+
+  <g class="box"><rect x="70" y="150" width="470" height="62"/>
+    <text class="t-title" x="86" y="174">app/pipeline.py    app/auth/    app/notify/</text>
+    <text class="t-sub" x="86" y="192">pipeline imports ingestion, diff and state — never verification</text>
+    <text class="t-sub" x="86" y="206">auth and notify import state only</text></g>
+
+  <g class="box"><rect x="70" y="256" width="470" height="68"/>
+    <text class="t-title" x="86" y="280">app/state/    app/ingestion/</text>
+    <text class="t-sub" x="86" y="298">queries.py holds the scoped reads; claims.py calls the verifier</text>
+    <text class="t-sub" x="86" y="314">ingestion writes rows; the one edge into the core is drawn below</text></g>
+
+  <g class="box"><rect x="70" y="382" width="132" height="84"/>
+    <text class="t-title" x="82" y="406">app/diff/</text>
+    <text class="t-sub" x="82" y="424">imports app/text</text>
+    <text class="t-sub" x="82" y="440">pure — no I/O</text>
+    <text class="t-sub" x="82" y="456">see dashed arrow</text></g>
+
+  <g class="box box--gate"><rect x="214" y="382" width="150" height="84"/>
+    <text class="t-title" x="226" y="406">app/verification/</text>
+    <text class="t-sub" x="226" y="424">imports app/text</text>
+    <text class="t-sub" x="226" y="440">no model, no network</text>
+    <text class="t-sub" x="226" y="456">runs with no API key</text></g>
+
+  <g class="box box--model"><rect x="400" y="382" width="190" height="92"/>
+    <text class="t-title" x="412" y="404">app/interpretation/</text>
+    <text class="t-sub" x="412" y="422">action.py — 35 lines, no imports</text>
+    <text class="t-sub" x="412" y="438">propose.py — the one model call</text>
+    <text class="t-sub" x="412" y="454">it sends proposals to the gate</text>
+    <text class="t-sub" x="412" y="470">nothing in app/ calls it</text></g>
+
+  <g class="box"><rect x="200" y="510" width="200" height="54"/>
+    <text class="t-title" x="216" y="534">app/text/normalize.py</text>
+    <text class="t-sub" x="216" y="552">imports nothing from app/</text></g>
+
+  <!-- the spine: each arrow stands for at least one real import, named in the box above it -->
+  <path class="flow" d="M305 116 V146"/>
+  <path class="flow" d="M305 212 V252"/>
+  <path class="flow" d="M330 324 V378"/>
+  <text class="t-edge" x="338" y="344">claims.py imports the verifier</text>
+
+  <!-- skip-level: web reads state itself; pipeline calls the diff engine -->
+  <path class="flow" d="M70 75 H40 V290 H66"/>
+  <path class="flow" d="M70 181 H54 V424 H66"/>
+
+  <!-- the three upward edges from outside app/state, each written inside a function body -->
+  <path class="flow--weak" d="M136 378 V328"/>
+  <text class="t-edge" x="142" y="344">call-time</text>
+  <path class="flow--weak" d="M250 378 V328"/>
+  <text class="t-edge" x="256" y="344">call-time</text>
+  <path class="flow--weak" d="M500 378 V328"/>
+  <text class="t-edge" x="506" y="344">call-time</text>
+
+  <!-- the proposer imports the verifier at module load and runs each proposal through it -->
+  <path class="flow" d="M396 428 H368"/>
+
+  <path class="flow" d="M136 466 V488 H240 V506"/>
+  <path class="flow" d="M292 466 V506"/>
+  <path class="flow" d="M470 474 V498 H352 V506"/>
+
+  <g class="box"><rect x="630" y="132" width="250" height="92"/>
+    <text class="t-title" x="646" y="156">the escalation queue — it ships</text>
+    <text class="t-sub" x="646" y="174">no app/review/ directory; the table</text>
+    <text class="t-sub" x="646" y="188">above names one. The capability is in</text>
+    <text class="t-sub" x="646" y="202">models.Escalation, claims.py, and</text>
+    <text class="t-sub" x="646" y="216">web/views/review.py at /escalations</text></g>
+
+  <g class="box"><rect x="630" y="236" width="250" height="92"/>
+    <text class="t-title" x="646" y="260">the passage store — it ships</text>
+    <text class="t-sub" x="646" y="278">no app/passages/ directory either.</text>
+    <text class="t-sub" x="646" y="292">models.Passage holds the rows and</text>
+    <text class="t-sub" x="646" y="306">queries.passages_for_company is the</text>
+    <text class="t-sub" x="646" y="320">scoped read of them</text></g>
+
+  <g class="box"><rect x="630" y="336" width="250" height="64"/>
+    <text class="t-title" x="646" y="358">retrieval over the passages</text>
+    <text class="t-sub" x="646" y="376">state/search.py — FTS5 and bm25,</text>
+    <text class="t-sub" x="646" y="390">read through queries.py (§15)</text></g>
+
+  <g class="box"><rect x="630" y="408" width="250" height="84"/>
+    <text class="t-title" x="646" y="432">app/evals/</text>
+    <text class="t-sub" x="646" y="450">imports diff, verification,</text>
+    <text class="t-sub" x="646" y="466">interpretation and ingestion</text>
+    <text class="t-sub" x="646" y="482">never state, never web</text></g>
+  <path class="flow" d="M626 450 H594"/>
+</svg>
+</div>
+<div class="fig__key">
+  <span><i></i>code that ships</span>
+  <span><i class="k-model"></i>may call a model</span>
+  <span><i class="k-gate"></i>the gate</span>
+  <span>solid arrow: imports at module load</span>
+  <span>dashed arrow: imported inside a function, at call time</span>
+</div>
+<figcaption><strong>The core is testable without a database because it imports none.</strong>
+That is the return on the layering, and the dashed arrows are what it costs: to read
+passages, <code>diff.passage_refs()</code> imports <code>app/state/queries.py</code> inside
+the function body, so the module stays clean at import time and the dependency is real at
+call time. <code>verification.verify_citation_for_version()</code> does the same, and nothing
+in <code>app/</code> calls it. So does the proposer's scoped entry point. <strong>Three from
+outside <code>app/state/</code>, and the unqualified count is no longer three.</strong> This
+caption used to say "still exactly three" and check it with a grep that counted every indented
+<code>from app.state</code> line in <code>app/</code>. The index added two more inside
+<code>app/state/</code> itself, where the direction is sideways rather than upward, and the
+grep cannot tell those apart. Restated so it stays checkable:
+<code>grep -rn '^\s\+from app\.state' app/ | grep -v '^app/state/'</code>.
+<strong>Where this picture disagrees with the table above.</strong>
+<code>app/passages/</code> and <code>app/review/</code> are not directories, but both
+capabilities ship, so they are drawn where the code actually sits. The model call does exist, in
+<code>app/interpretation/propose.py</code>, but no caller in <code>app/</code> reaches it, so
+the pipeline runs end to end without one. The table's order implies dependency runs top
+to bottom of it; <code>ingestion</code> imports <code>state/models.py</code>, which runs the
+other way. <strong>And one edge points up out of the top band.</strong>
+<code>app/chat/tools.py</code> imports <code>active_workflow_for_company</code> and
+<code>steps_and_edges</code> from <code>app/web/views/admin.py</code>, plus two private
+helpers from <code>web/views/workflow.py</code>, so the assistant can answer "where is this
+in the route" without a second walker that could disagree with the screen. The file concedes
+the inversion in a comment rather than hiding it. The right fix is to move those functions
+down into <code>app/state/workflow.py</code>; it has not been done.
+<strong>One label on this figure is narrower than it looks.</strong> Only
+<code>app/interpretation/</code> is drawn as a model caller, because it is the only one on
+the pipeline path. <code>app/chat/agent.py</code> calls a model as well, from the top band,
+and is not drawn in the model colour because the band holds four things. Two places in the
+codebase can be fluent and wrong, and both pin the same id.
+<code>grep -rn 'MODEL_ID' app/</code> finds them.</figcaption>
+</figure>
 
 <h2 id="overview">System overview</h2>
 <p>A <strong>proceeding</strong> — an external regulatory docket — arrives as successive <strong>document versions</strong>, each tagged draft or final. A <strong>company context</strong> — obligations, projects, documents, written in the company's own words rather than the docket's — sits beside it. The pipeline turns a new version into: what changed (deterministic), and what the product is prepared to say about it (a claim, with a citation that must re-read cleanly before it can be shown as fact).</p>

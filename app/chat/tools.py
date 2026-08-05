@@ -64,8 +64,11 @@ WHAT THIS DOES NOT PROTECT AGAINST, said plainly.
   second row under a chat code would give one act two records, which this
   codebase refuses everywhere else. Closing it means a surface column on
   AuditEvent, which is another agent's file. It is in the handoff list.
-- record_note has no permission code in front of it, because the product does
-  not define one and the equivalent screen action has no gate either.
+- record_note is gated on knowledge.write, which is the closest code the product
+  defines and not the exact one. The missing code is note.write; see record_note
+  for what the alias costs and who it shuts out. Adding the exact code means
+  editing PERMISSION_CODES in models.py, which is another agent's file, and it
+  is in the handoff list.
 """
 
 from __future__ import annotations
@@ -125,6 +128,21 @@ from app.state.routing import (
     obligations_for_company,
     resolve_escalation_owner,
 )
+
+# Retrieval over the docket text itself, as an internal capability and not as a
+# feature. See the docstring of app/state/search.py: ADR-002 rejected search as
+# the product's wedge and nothing here reverses it. What this import buys is that
+# Clarke can reach the PASSAGE a question is about instead of scanning the words
+# the product happened to write about it, and every passage it reaches is a
+# candidate that still has to pass the citation gate.
+from app.state.search import (
+    REASON_NO_TERMS,
+    SOURCE_INDEX,
+    Retrieval,
+    match_terms,
+    search_passages,
+)
+from app.verification.verifier import Citation, occurrence_index, verify_citation
 
 # THE ROUTE HAS ONE READER AND THIS IS NOT IT. app/web/views/admin.py holds the
 # only reader of the workflow tables and app/web/views/workflow.py holds the only
@@ -200,9 +218,29 @@ REASON_NOT_FOUND = "NOT_FOUND"
 #: that only fires on a mismatch misses the reconnaissance.
 IDENTITY_ARGUMENTS = frozenset({"company_id", "actor", "user_id", "session"})
 
-# The permission in front of the one gated write. Named here so a rename in
-# models.py fails at import rather than leaving a gate nobody can pass.
+# The permissions in front of the writes. Named here so a rename in models.py
+# fails at import rather than leaving a gate nobody can pass.
 PERMISSION_PROJECT_CREATE = "project.create"
+
+# AN ALIAS, AND IT IS NAMED AS ONE. The exact code for this act would be
+# note.write and the product does not define it. knowledge.write -- "Write and
+# supersede knowledge items" -- is the nearest thing in PERMISSION_CODES: it is
+# the permission for putting the company's own words into the company's own
+# record, which is what a note is. It is not a perfect fit and the mismatch is
+# worth stating rather than papering over: the grid gives knowledge.write to the
+# analyst alone, so an obligation owner who could dictate a note yesterday
+# cannot today. That is the conservative side of the error -- an owner is an
+# approver, and a surface that lets an approver write into the record without a
+# code covering it is the shape this gate exists to refuse. Adding note.write
+# means editing PERMISSION_CODES in models.py, which is another agent's file,
+# and granting it to both roles; it is in the handoff list.
+#
+# The alternative was to leave it ungated, which is what it was. An ungated
+# write reachable from a chat panel is the wrong shape in a product whose whole
+# argument is that every act is gated and recorded -- and the old defence, that
+# the same act through the project screen has no gate either, argues that the
+# screen is missing a gate rather than that this one should not have one.
+PERMISSION_NOTE_WRITE = "knowledge.write"
 
 # ---------------------------------------------------------------------------
 # Caps. A tool that hands a model two hundred rows spends the turn on rows
@@ -215,6 +253,39 @@ DEFAULT_CHANGE_LIMIT = 10
 MAX_CHANGE_LIMIT = 50
 MAX_EXCERPT = 600
 MAX_NOTE_CHARS = 4000
+
+#: How many retrieved passages come back with their text. Far below MAX_ROWS on
+#: purpose, and the two numbers do different jobs.
+#:
+#: Retrieval is asked for MAX_ROWS passages because their OFFSETS decide which
+#: claims a question reaches, and an offset costs nothing. Only the top few come
+#: back carrying their words, because a passage is up to MAX_EXCERPT characters
+#: and sixteen of them is ten thousand characters of source text spent on a
+#: question the analyst asked in six words. That is the context budget in
+#: best-practices.html principle 21, and the real corpus reaches sixteen on an
+#: ordinary two-word question -- measured, not feared.
+#:
+#: What the cap leaves out is counted into ``omitted`` and said in the note,
+#: like every other cap in this file.
+MAX_CANDIDATE_PASSAGES = 5
+
+#: How many passages retrieval is asked for. Generous, because these are the
+#: offsets that decide which claims a question reaches and each one costs a row.
+#: "Utility shall" matches 43 passages of the seeded corpus and a one-word
+#: question can match more, so a cap at MAX_ROWS would have quietly stopped
+#: widening a third of the way through an ordinary question.
+#:
+#: It is a cap and not "everything", because a question must not be able to pull
+#: a whole corpus into one turn. When it bites, the note says a claim cited
+#: outside the passages that were used may be missing -- see _retrieval_note.
+MAX_RETRIEVED_PASSAGES = 100
+
+#: Retrieval did not run at all. Kept apart from the reasons app/state/search.py
+#: returns, because every one of those describes an index that could not be
+#: trusted and this describes a search that never happened -- a scope with
+#: nothing in it. Folding them would make "the index is broken" and "you asked
+#: about a project that does not exist" the same sentence.
+RETRIEVAL_NOT_RUN = "RETRIEVAL_NOT_RUN"
 
 # ---------------------------------------------------------------------------
 # Ordering, announced rather than assumed
@@ -425,15 +496,255 @@ def _escalation_by_claim(session: Session, company_id: str) -> dict[str, str]:
 def _matches(text: str, query: str) -> bool:
     """Every word of the query appears somewhere in the text. Empty matches all.
 
-    Deliberately dumb. A cleverer matcher would rank, and a ranked list of claims
-    is a judgement about which one answers the question -- which is the analyst's
-    call, not the clerk's.
+    Deliberately dumb, and still the right rule for the two things it is asked
+    about: a project's name and a claim's own statement. Both are short strings
+    somebody wrote; there is nothing in them to rank, and a ranked list of claims
+    would be a judgement about which one answers the question, which is the
+    analyst's call and not the clerk's.
+
+    WHAT IT IS NO LONGER ASKED TO DO. It used to be the only way search_claims
+    could reach anything, so a claim was findable only by the words the product
+    had written about it. Ask about a distribution system implementation plan and
+    a claim reading "the plan is now due within sixty days" was invisible, though
+    the passage it cites carries every word of the question. The docket text is
+    searched through app/state/search.py now, and this stays as the test on the
+    statement itself.
     """
     words = (query or "").lower().split()
     if not words:
         return True
     haystack = (text or "").lower()
     return all(word in haystack for word in words)
+
+
+# ---------------------------------------------------------------------------
+# Retrieval, folded into the claim gate rather than placed beside it
+# ---------------------------------------------------------------------------
+
+
+def _spans_by_version(retrieval: Retrieval) -> dict[str, list[tuple[int, int]]]:
+    """Where the retrieved passages sit, keyed by the version they sit in."""
+    spans: dict[str, list[tuple[int, int]]] = {}
+    for hit in retrieval.hits:
+        spans.setdefault(hit.version_id, []).append((hit.char_start, hit.char_end))
+    return spans
+
+
+def _overlaps(
+    version_id: str, start: int, end: int, spans: dict[str, list[tuple[int, int]]]
+) -> bool:
+    """Does this citation sit inside any retrieved passage of the same version?
+
+    Overlap rather than containment. A citation can straddle a passage boundary
+    -- the segmenter splits on blank lines and a quoted sentence can run past one
+    -- and demanding containment would drop exactly the claims whose evidence
+    spans two paragraphs, silently.
+
+    THE VERSION HAS TO AGREE, not just the offsets. Two versions of one
+    proceeding are mostly the same words at mostly the same places, so a span
+    check that ignored the version id would match a claim cited to the draft
+    against a passage retrieved from the final order. That is the confusion
+    ADR-005 exists to prevent, and it would arrive here through the back door.
+    """
+    for hit_start, hit_end in spans.get(version_id, ()):
+        if start < hit_end and hit_start < end:
+            return True
+    return False
+
+
+def _candidate_payload(hit, source_text: str) -> dict | None:
+    """A retrieved passage in wire form, or None if it will not verify.
+
+    THE GATE RUNS ON A CANDIDATE TOO, and that is the point of the whole design.
+    A hit arrives with a version id, two offsets and the text at them, which is
+    a citation in everything but name -- so it is built into one and put through
+    verify_citation, the same function every rendered claim goes through. A
+    passage that will not verify is not offered, because offering it would put a
+    span in front of the model that the product could not stand behind, and a
+    good bm25 score is not evidence of anything.
+
+    The occurrence is computed rather than left None. A claim that quotes
+    repeated boilerplate is ambiguous and must say which copy it means; a
+    retrieved passage has already said, by its offsets. Passing the occurrence
+    the offsets name keeps the check honest -- an offset that does not land on
+    an occurrence at all still fails -- without withholding every candidate that
+    happens to sit in a repeated paragraph.
+    """
+    citation = Citation(
+        version_id=hit.version_id,
+        char_start=hit.char_start,
+        char_end=hit.char_end,
+        quoted_text=hit.text,
+    )
+    result = verify_citation(
+        citation, source_text, occurrence_index(citation, source_text)
+    )
+    if not result.verified:
+        return None
+
+    excerpt, truncated = _excerpt(source_text, hit.char_start, hit.char_end)
+    return {
+        "version_id": hit.version_id,
+        "section": hit.section,
+        "start": hit.char_start,
+        "end": hit.char_end,
+        "text": excerpt,
+        "truncated": truncated,
+        # bm25, where lower is better. Carried so a reader can see the ordering
+        # was computed rather than chosen, and named `rank` rather than `score`
+        # so nobody reads it as a confidence.
+        "rank": hit.rank,
+        # THE KEY THAT STOPS A RANK BECOMING A VERDICT. It is False on every
+        # candidate, always, and it is written here rather than left out because
+        # a missing key reads as "not applicable" and a present False reads as
+        # "asked and answered no".
+        "is_evidence": False,
+    }
+
+
+def _candidates(
+    session: Session,
+    company_id: str,
+    retrieval: Retrieval | None,
+    held_spans: dict[str, list[tuple[int, int]]],
+) -> tuple[list[dict], int, int]:
+    """Retrieved passages worth handing over, and counts of the two kinds dropped.
+
+    Returns (candidates, dropped for carrying a withheld claim's span, dropped
+    for failing the verifier). Both counts are returned rather than folded into
+    one, because they are different facts: the first is the product declining to
+    repeat text beside a refusal, and the second is the stored passage
+    disagreeing with the stored source, which is a defect somebody has to look
+    at. A single number would let a bug read as a policy.
+
+    The two drops happen BEFORE the MAX_CANDIDATE_PASSAGES cap, not after, so a
+    passage the product refuses to show can never be the reason a passage it
+    would have shown falls off the end of the list.
+    """
+    if retrieval is None or not retrieval.hits:
+        return [], 0, 0
+
+    sources = _source_by_version(session, company_id)
+    candidates: list[dict] = []
+    for_withholding = 0
+    unverifiable = 0
+
+    for hit in retrieval.hits:
+        source_text = sources.get(hit.version_id)
+        if source_text is None:
+            # The version is not one this company can read. Reachable only
+            # through a scoping bug upstream, and the answer to a scoping bug is
+            # to drop the row, not to render it.
+            unverifiable += 1
+            continue
+        if _overlaps(hit.version_id, hit.char_start, hit.char_end, held_spans):
+            for_withholding += 1
+            continue
+        payload = _candidate_payload(hit, source_text)
+        if payload is None:
+            unverifiable += 1
+            continue
+        candidates.append(payload)
+
+    return candidates, for_withholding, unverifiable
+
+
+def _retrieval_payload(
+    retrieval: Retrieval | None,
+    withheld_spans: int = 0,
+    unverifiable: int = 0,
+    *,
+    not_run: str = RETRIEVAL_NOT_RUN,
+) -> dict:
+    """Which path answered, why, and what it searched for. Present on every result.
+
+    Always the same keys, never a missing one. A caller reading `source` to find
+    out whether an answer was ranked must not have to tell "the index answered"
+    apart from "somebody forgot the key", and a turn that ran no retrieval at
+    all is a fact worth carrying rather than an absence to interpret.
+
+    ``not_run`` is the reason for the second of those, and the caller names it
+    rather than this function guessing. There are two ways to reach it and they
+    are different facts: a question with no searchable words in it, and a scope
+    that holds nothing to search.
+    """
+    if retrieval is None:
+        return {
+            "source": "",
+            "reason": not_run,
+            "ranked": False,
+            "terms": [],
+            "found": 0,
+            "withheld_spans": 0,
+            "unverifiable": 0,
+        }
+    return {
+        "source": retrieval.source,
+        "reason": retrieval.reason,
+        "ranked": retrieval.source == SOURCE_INDEX,
+        "terms": list(retrieval.terms),
+        "found": len(retrieval.hits),
+        "withheld_spans": withheld_spans,
+        "unverifiable": unverifiable,
+    }
+
+
+def _retrieval_note(
+    retrieval: Retrieval | None,
+    candidates: list[dict],
+    withheld_spans: int,
+    unverifiable: int,
+) -> str:
+    """The sentences a person reads about how the passages were found.
+
+    Every degraded path says so here, in the note the model is handed and the
+    transcript keeps, and not only in a log nobody opens. A fallback that
+    announces itself to the operator and not to the reader has announced itself
+    to the wrong person -- best-practices.html section 26.
+    """
+    if retrieval is None:
+        return ""
+
+    parts: list[str] = []
+    if retrieval.reason:
+        parts.append(f" {retrieval.note}")
+    if retrieval.omitted:
+        # NOT a number, and not folded into ``omitted`` either. On the index
+        # path the true remainder is unknown -- one row beyond the limit was
+        # fetched, which says there are more and not how many -- and printing a
+        # 1 that means "at least one" would be a precise-looking invention. It
+        # is not an ``omitted`` row because nothing was cut from a list here:
+        # these are passages that never got as far as widening the search, so
+        # what they cost is a claim that may be absent rather than a row that
+        # is. Different loss, different sentence.
+        parts.append(
+            " More passages matched than were used to look for claims, so a "
+            "claim cited outside them will not appear above. Narrow the "
+            "question to be sure of the ones that matter."
+        )
+    if candidates:
+        word = "passage" if len(candidates) == 1 else "passages"
+        parts.append(
+            f" {len(candidates)} source {word} came back as a candidate, not as "
+            "evidence: a passage using the question's words is where to look, "
+            "and only a claim whose citation verifies may be asserted."
+        )
+    if withheld_spans:
+        word = "passage" if withheld_spans == 1 else "passages"
+        parts.append(
+            f" {withheld_spans} matching {word} are not shown because they carry "
+            "the span of a claim that was withheld. The reason is in the review "
+            "queue; the words are in the citation viewer, beside what the source "
+            "actually says."
+        )
+    if unverifiable:
+        word = "passage" if unverifiable == 1 else "passages"
+        parts.append(
+            f" {unverifiable} matching {word} did not verify against the stored "
+            "source and were dropped. That is a defect in the stored corpus "
+            "rather than an answer; it belongs in the review queue."
+        )
+    return "".join(parts)
 
 
 # ---------------------------------------------------------------------------
@@ -960,7 +1271,7 @@ def search_claims(
     query: str = "",
     project_id: str | None = None,
 ) -> dict:
-    """Claims whose citation VERIFIES, searched by their own words.
+    """Claims whose citation VERIFIES, reached by their own words or by the text they cite.
 
     A WITHHELD CLAIM CANNOT BE SEARCHED, AND THAT IS THE DESIGN. Matching one
     would mean holding its statement long enough to compare it against the query,
@@ -970,12 +1281,41 @@ def search_claims(
     anything about X": there may be, and here is what is stopping the product
     from saying so, and where to go and clear it.
 
+    TWO WAYS IN, AND THE SECOND IS WHY THE INDEX EXISTS. A claim matches if its
+    own statement carries the query's words, or if the passage it cites does.
+    Only the first was ever possible before, and it made the product findable
+    only through the sentences it had already written: ask about a distribution
+    system implementation plan and a claim reading "the plan is now due within
+    sixty days" was invisible, though the paragraph it cites carries every word
+    of the question. The docket text is searched through app/state/search.py.
+
+    A RANK IS NOT A VERDICT, and this function is where that has to be true
+    rather than merely said. Retrieval decides which claims are LOOKED AT. What
+    may be asserted is decided afterwards, by verified_claims(), exactly as
+    before -- so a passage that tops the ranking and carries a claim whose
+    citation does not verify still yields a withheld count and no statement. The
+    candidate passages returned beside the claims are put through the same
+    verifier and carry is_evidence: False, because a span the model can read is
+    one paraphrase away from a span the model will assert.
+
+    AND ONE NARROWING ON TOP. A retrieved passage that carries the cited span of
+    a WITHHELD claim is not handed over. _withheld_payload already refuses to
+    send that claim's source excerpt to a model, on the argument that a sentence
+    built around the words a failed citation quoted does the harm the refusal
+    exists to prevent. Retrieval must not be the second door into the same text
+    because the paragraph happened to rank well on its own. The count of what
+    was dropped that way is reported; a silent drop would be the failure this
+    file names in its own docstring.
+
     THE COST, PLAINLY. Verification re-runs against the stored source for every
     claim under every change in scope, and app/state/claims.py re-reads the
     company's sources once per change while doing it. On a corpus of dozens that
     is nothing. On thousands it is the first thing to fix, and the fix belongs in
     claims.py -- a verified_claims that takes a prepared source map -- not in a
     cache here, because a cached verdict is the stored verdict ADR-003 refuses.
+    Retrieval adds one indexed read, or one whole-corpus read when the index
+    cannot be trusted; which of the two happened is in the ``retrieval`` block
+    of every result.
     """
     _require_scope(company_id)
 
@@ -988,6 +1328,8 @@ def search_claims(
                 note=f"There is no project {project_id!r} on this company's record.",
                 claims=[],
                 withheld_claims=[],
+                candidate_passages=[],
+                retrieval=_retrieval_payload(None, not_run=RETRIEVAL_NOT_RUN),
             )
         changes = changes_for_project(session, company_id, project_id)
         scope_note = f"Searched the changes attached to {project_id}."
@@ -995,20 +1337,52 @@ def search_claims(
         changes = _changes_for_company(session, company_id)
         scope_note = "Searched every change on this company's record."
 
+    # THE QUESTION HAS TO HOLD A WORD BEFORE ANYTHING IS RANKED. An empty query
+    # means "everything in scope" to the statement test above, and everything is
+    # not a ranking -- retrieving the whole corpus as candidates would hand the
+    # model a document dump wearing the clothes of an answer. So retrieval is
+    # skipped, and the result says it was skipped rather than reporting nothing
+    # found.
+    retrieval = None
+    if match_terms(query):
+        retrieval = search_passages(
+            session,
+            company_id=company_id,
+            query=query,
+            limit=MAX_RETRIEVED_PASSAGES,
+        )
+    spans = _spans_by_version(retrieval) if retrieval else {}
+
     escalations = _escalation_by_claim(session, company_id)
     hits: list[dict] = []
     held: list[dict] = []
+    held_spans: dict[str, list[tuple[int, int]]] = {}
     for change in changes:
         verified, withheld = verified_claims(session, company_id, change.id)
         hits.extend(
             _verified_payload(claim, change.id)
             for claim in verified
             if _matches(claim.statement, query)
+            or _overlaps(
+                claim.citation_version_id,
+                claim.citation_start,
+                claim.citation_end,
+                spans,
+            )
         )
         held.extend(
             _withheld_payload(claim, change.id, escalations.get(claim.claim_id))
             for claim in withheld
         )
+        for claim in withheld:
+            held_spans.setdefault(claim.citation_version_id, []).append(
+                (claim.citation_start, claim.citation_end)
+            )
+
+    candidates, dropped_for_withholding, unverifiable = _candidates(
+        session, company_id, retrieval, held_spans
+    )
+    candidates, candidates_omitted = _cap(candidates, MAX_CANDIDATE_PASSAGES)
 
     shown, omitted = _cap(hits, MAX_ROWS)
     held_shown, held_omitted = _cap(held, MAX_ROWS)
@@ -1023,16 +1397,24 @@ def search_claims(
             "searched at all: a withheld claim's text is never read, so one of "
             "them may be the answer. The reasons are listed."
         )
-    note += _omission_note(omitted + held_omitted)
+    note += _retrieval_note(retrieval, candidates, dropped_for_withholding, unverifiable)
+    note += _omission_note(omitted + held_omitted + candidates_omitted)
 
     return _result(
         "search_claims",
         found=len(shown),
         withheld=len(held),
-        omitted=omitted + held_omitted,
+        omitted=omitted + held_omitted + candidates_omitted,
         note=note.strip(),
         claims=shown,
         withheld_claims=held_shown,
+        candidate_passages=candidates,
+        retrieval=_retrieval_payload(
+            retrieval,
+            dropped_for_withholding,
+            unverifiable,
+            not_run=REASON_NO_TERMS,
+        ),
     )
 
 
@@ -1139,19 +1521,55 @@ def record_note(
     person. The audit row names the person whose turn it ran on, so attribution
     is not lost; a third author kind is the handoff.
 
-    NO PERMISSION GATE, and this is a decision rather than an omission. The
-    product defines no code for writing a note, the same act through the project
-    screen has no gate, and inventing a code here would mean editing
-    PERMISSION_CODES in models.py -- a second authorisation vocabulary rather
-    than a use of the first. What that concedes: any signed-in person can fill a
-    project with notes. They are attributed, they are append-only, and a note
-    changes nothing on its own.
+    GATED ON knowledge.write, WHICH IS AN ALIAS AND IS LABELLED AS ONE. This
+    write ran on no permission code at all, and the argument for that was the
+    one directly above: the product defines no note.write, so rather than pick a
+    near-miss the gate was left out. That was the wrong way round. An ungated
+    write the assistant can call from a chat panel is the shape this product
+    exists to refuse -- create_project sits beside it and is gated, and the
+    difference between them was an accident of which code happened to exist.
+    Ungated meant any signed-in person, holding no role whatever, could fill any
+    project on their company's record with text a model composed.
+
+    knowledge.write -- "Write and supersede knowledge items" -- is the nearest
+    code the grid defines, and it is not the same thing. What the alias costs is
+    written at PERMISSION_NOTE_WRITE above rather than left for somebody to
+    discover: the analyst holds it, the obligation owner does not, so an owner
+    can no longer dictate a note here. That is the conservative side of the
+    error and it is the side to be on. note.write is the handoff.
+
+    THE GATE RUNS FIRST, before the text and the project id are looked at. A
+    person who may not write a note has to be told that, not told their note was
+    empty: a gate discoverable by argument turns a refusal into a puzzle, and it
+    lets somebody enumerate which project ids exist before being stopped.
+
+    THE GATE IS NOT RE-IMPLEMENTED AND NOT CONSULTED TWICE. policy.require
+    refuses, writes the access.denied row itself, and raises; this catches the
+    raise and turns it into a refusal the model can explain -- the same shape
+    create_project uses, for the same reason.
 
     THE NOTE TEXT IS NOT COPIED INTO THE AUDIT CHAIN. The chain is append-only
     and cannot be redacted, and a note is free text a person dictated. The row
     names the turn; the turn holds the words, once.
     """
     _require_scope(company_id)
+    try:
+        policy.require(
+            session, company_id, getattr(actor, "id", ""), PERMISSION_NOTE_WRITE
+        )
+    except policy.PermissionDenied as denied:
+        # require() already wrote the refusal. A second row would double-count
+        # one decision.
+        return _refusal(
+            "record_note",
+            reason_code=REASON_NOT_PERMITTED,
+            reason=(
+                f"You do not hold {PERMISSION_NOTE_WRITE}, so I cannot record a "
+                f"note on your company's record. {denied.reason}. An admin "
+                "grants it."
+            ),
+        )
+
     body = (text or "").strip()
     if not body:
         return _refuse(
@@ -1353,7 +1771,7 @@ REGISTRY: dict[str, Tool] = {
         _declare(approval_route),
         _declare(search_claims),
         _declare(create_project, writes=True, permission=PERMISSION_PROJECT_CREATE),
-        _declare(record_note, writes=True),
+        _declare(record_note, writes=True, permission=PERMISSION_NOTE_WRITE),
     )
 }
 
@@ -1540,6 +1958,7 @@ __all__ = [
     "ORDER_BY_CHAIN",
     "ORDER_BY_CHAIN_THEN_ID",
     "ORDER_BY_ID",
+    "PERMISSION_NOTE_WRITE",
     "PERMISSION_PROJECT_CREATE",
     "REASON_ACTOR_INACTIVE",
     "REASON_ACTOR_MISMATCH",

@@ -70,7 +70,9 @@ from app.state.audit import (
 from app.state.models import AuditEvent, Escalation
 
 # Imported, not copied. Same guard, same failure, one place to audit.
-from app.state.queries import _require_scope
+# row_for_company is the fetch-and-scope chokepoint; see reverted_event below
+# for why this module wraps its refusal in a louder one.
+from app.state.queries import CrossTenantRow, _require_scope, row_for_company
 
 SUBJECT_ESCALATION = "escalation"
 
@@ -238,18 +240,33 @@ def reverted_event(
     found one and followed it would hand back another tenant's record dressed as
     this tenant's history. Refusing to read it as a reversal is the only safe
     answer, and it is loud because the row is either forged or a defect.
+
+    THE FETCH IS THE SHARED CHOKEPOINT AND THE REFUSAL IS THIS MODULE'S OWN.
+    row_for_company decides whose row it is; both of its refusals -- no such row,
+    and somebody else's row -- become the same AuditTamperError here, because in
+    a chain that is meant to be append-only and complete a dangling pointer and a
+    cross-tenant pointer are the same finding: this row is asserting something
+    the record does not support. Everywhere else in the codebase a cross-tenant
+    fetch is a lookup that failed; here it is evidence, and it gets the loud
+    exception the verifier already knows how to raise.
     """
     event = _event_for_company(session, company_id, event_id)
     if event.reverts_event_id is None:
         return None
 
-    target = session.get(AuditEvent, event.reverts_event_id)
-    if target is None or target.company_id != company_id:
+    crossed: CrossTenantRow | None = None
+    try:
+        target = row_for_company(
+            session, company_id, AuditEvent, event.reverts_event_id
+        )
+    except CrossTenantRow as caught:
+        target, crossed = None, caught
+    if target is None:
         raise AuditTamperError(
             f"{company_id}: seq {event.seq} says it reverts event "
             f"{event.reverts_event_id}, which is not in this company's chain. "
             "Refusing to read it as a reversal."
-        )
+        ) from crossed
     return target
 
 

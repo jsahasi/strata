@@ -64,10 +64,19 @@ eval: install seed
 # Order matters: seed_route needs the accounts app.seed creates, and
 # seed_demo_gaps needs the proceeding. Each is idempotent, so running `make
 # seed` twice is safe.
+#
+# build_index LAST, and it must be. It reads the passages every step above
+# writes and rebuilds the retrieval index whole, so anything ingested after it
+# is not in it. Retrieval says so rather than answering short -- it reports the
+# index stale and falls back to reading every passage -- but a reviewer running
+# `make run` should see the built thing, not the announcement of the unbuilt
+# one.
 seed: install
 	$(PY) -m app.seed
 	$(PY) scripts/seed_demo_gaps.py
 	$(PY) scripts/seed_route.py
+	$(PY) scripts/ingest_real.py
+	$(PY) scripts/build_index.py
 
 # The one file in docs/.ai/ nobody writes by hand, so it cannot go stale.
 status: install

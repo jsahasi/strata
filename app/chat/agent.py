@@ -447,14 +447,14 @@ def default_toolset() -> dict[str, ToolSpec]:
             "name to Tool."
         )
 
-    # The one thing the registry does not carry. tools.py knows create_project
-    # is gated -- it calls policy.require itself -- but publishes only a
-    # `writes` flag, so the code is imported from there rather than spelled
-    # again here. A gate added to another tool and not added to this map costs
-    # one wasted round and an audited refusal, never a leak. The handoff is for
-    # tools.Tool to carry its own permission.
-    gates = {"create_project": getattr(tool_module, "PERMISSION_PROJECT_CREATE", "")}
-
+    # READ OFF THE TOOL, NOT OFF A MAP KEPT BESIDE IT. This used to be a literal
+    # {"create_project": ...} dictionary, with a note calling the move to
+    # tools.Tool a handoff -- but Tool has carried its own `permission` field all
+    # along, so the map was already a second spelling of an answer the registry
+    # gives. It went stale the moment a second tool was gated: record_note was
+    # gated in tools.py and this map still said it was not, which would have
+    # offered the tool to somebody who cannot run it and hidden its pill from
+    # somebody who can. One reader now, so there is nothing to keep in step.
     toolset: dict[str, ToolSpec] = {}
     for name, tool in registry.items():
         properties = {
@@ -469,7 +469,7 @@ def default_toolset() -> dict[str, ToolSpec]:
                 "properties": properties,
                 "required": [],
             },
-            permission=gates.get(name, ""),
+            permission=getattr(tool, "permission", ""),
         )
     return toolset
 

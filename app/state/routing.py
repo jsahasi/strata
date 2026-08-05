@@ -87,8 +87,11 @@ from app.state.models import (
 )
 
 # Imported, never copied. Two spellings of one tenant guard drift, and the point
-# of a chokepoint is that there is only one.
-from app.state.queries import _require_scope
+# of a chokepoint is that there is only one. row_for_company is the second guard
+# and the newer one: it fetches a row by primary key and refuses to hand it to
+# anybody but its owner, so the check cannot be left out of a call site the way
+# it was left out of ensure_obligation below.
+from app.state.queries import CrossTenantRow, _require_scope, row_for_company
 
 # ---------------------------------------------------------------------------
 # Audited actions
@@ -345,6 +348,27 @@ def ensure_obligation(
     Filling in a missing owner later is a different operation with its own
     function, because a NULL owner is an absence to close and a stored owner is
     a decision to respect.
+
+    THE ID IS CHECKED AGAINST THIS COMPANY BEFORE THE ROW IS HANDED BACK, and
+    that check was missing. This function fetched the stored row by primary key
+    and returned it, having run _require_scope -- which validates the STRING the
+    caller passed and says nothing whatever about the ROW about to be returned.
+    Obligation ids are unique across tenants and the corpus supplies them, so
+    another company loading OBL-001 first meant this company's loader got their
+    title, their owner and their project back, and every escalation that walked
+    change to obligation to owner routed this company's work to their desk.
+
+    It was latent rather than live. scripts/seed_demo_gaps.py is the only caller
+    outside the tests, it passes one company, and no test covered the crossing
+    -- which is why it survived: nothing was going to find it. Latent is the
+    reason it was still there, not a reason to leave it, and a product whose
+    argument is tenant isolation does not get to ship a hole on the grounds that
+    nothing has walked into it yet.
+
+    Two sibling call sites did the same primary-key fetch and remembered the
+    post-check independently. That is a rule three people have to hold in their
+    heads, and it had already failed once, so the fetch and the check are now one
+    call -- app/state/queries.py::row_for_company -- and all three sites use it.
     """
     _require_scope(company_id)
     _require_actor(actor)
@@ -356,7 +380,18 @@ def ensure_obligation(
             "read is not a duty anybody can own"
         )
 
-    stored = session.get(Obligation, obligation_id)
+    # Re-raised in this module's own words rather than let through, because the
+    # caller here is a loader reading a corpus and the sentence it needs is
+    # about an obligation, not about a row. CrossTenantRow is a ValueError, so a
+    # caller catching either catches this. What the message must not do is say
+    # who does hold the id: it reads exactly as a missing row does, which is all
+    # the asker is entitled to know.
+    try:
+        stored = row_for_company(session, company_id, Obligation, obligation_id)
+    except CrossTenantRow as crossed:
+        raise ValueError(
+            f"no obligation {obligation_id!r} for this company"
+        ) from crossed
     if stored is not None:
         return stored
 

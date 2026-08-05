@@ -272,6 +272,101 @@ def test_another_companys_obligations_are_not_in_this_companys_list():
         assert [o.id for o in obligations_for_company(session, RIVAL)] == ["OBL-999"]
 
 
+def test_ensure_obligation_refuses_an_id_another_company_already_holds():
+    """The hole this closes, stated exactly.
+
+    ensure_obligation fetched the stored row by primary key and returned it
+    without ever asking whose it was. _require_scope ran, but it only checks
+    that the string is well formed; it says nothing about the row about to be
+    handed back. Obligation ids are unique across tenants and the corpus
+    supplies them, so RIVAL loading OBL-001 first meant MEP's loader got back
+    RIVAL's title, RIVAL's owner and RIVAL's project -- and every escalation
+    that walked change to obligation to owner routed MEP's work to RIVAL's desk.
+
+    It was latent rather than live: scripts/seed_demo_gaps.py is the only caller
+    outside these tests, and it passes one company. Latent is the reason it was
+    still there, not a reason to leave it.
+    """
+    init_db()
+    with session_scope() as session:
+        ensure_system_roles(session)
+        theirs = ensure_obligation(
+            session,
+            RIVAL,
+            obligation_id="OBL-001",
+            title="RIVAL: post security in Springfield.",
+            actor=ACTOR,
+        )
+
+        with pytest.raises(ValueError):
+            ensure_obligation(
+                session,
+                COMPANY,
+                obligation_id="OBL-001",
+                title="MEP: post security in Monrovia.",
+                actor=ACTOR,
+            )
+
+        # The refusal changed nothing. Their row still says what it said, and
+        # this company still has no obligation under that id.
+        assert theirs.company_id == RIVAL
+        assert theirs.title == "RIVAL: post security in Springfield."
+        assert obligations_for_company(session, COMPANY) == []
+        assert [o.id for o in obligations_for_company(session, RIVAL)] == ["OBL-001"]
+
+
+def test_the_refusal_does_not_say_which_company_does_hold_the_id():
+    """Telling the two apart would confirm that some other tenant holds that row,
+    which is the fact the scope exists to withhold. It reads like a missing row,
+    because that is all the asker is entitled to know."""
+    init_db()
+    with session_scope() as session:
+        ensure_system_roles(session)
+        ensure_obligation(
+            session,
+            RIVAL,
+            obligation_id="OBL-001",
+            title="RIVAL: post security in Springfield.",
+            actor=ACTOR,
+        )
+        with pytest.raises(ValueError) as caught:
+            ensure_obligation(
+                session,
+                COMPANY,
+                obligation_id="OBL-001",
+                title="MEP: post security in Monrovia.",
+                actor=ACTOR,
+            )
+        said = str(caught.value)
+        assert RIVAL not in said
+        assert "Springfield" not in said
+
+
+def test_a_second_seed_of_our_own_obligation_is_still_a_no_op():
+    """The control for the two above. Scoping the fetch must not break the
+    idempotency the loader depends on -- a guard that refused every repeat call
+    would pass the leak tests and break `make run`."""
+    init_db()
+    with session_scope() as session:
+        ensure_system_roles(session)
+        first = ensure_obligation(
+            session,
+            COMPANY,
+            obligation_id="OBL-001",
+            title="Post security.",
+            actor=ACTOR,
+        )
+        again = ensure_obligation(
+            session,
+            COMPANY,
+            obligation_id="OBL-001",
+            title="Post security.",
+            actor=ACTOR,
+        )
+        assert again is first
+        assert [o.id for o in obligations_for_company(session, COMPANY)] == ["OBL-001"]
+
+
 def test_an_unscoped_read_is_refused_rather_than_answered():
     init_db()
     with session_scope() as session:

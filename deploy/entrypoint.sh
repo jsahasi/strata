@@ -26,7 +26,7 @@ DB="${STRATA_DB_FILE:-/data/strata.db}"
 python scripts/migrate.py
 
 if [ -f "$DB" ]; then
-  echo "strata: using the database already at $DB. Not seeding."
+  echo "strata: using the database already at $DB. Not seeding the corpus."
 else
   echo "strata: no database at $DB. Creating and seeding the demonstration corpus."
   python - <<'PY'
@@ -39,6 +39,51 @@ with session_scope() as session:
     ensure_accounts(session)
 print("strata: seeded.")
 PY
+fi
+
+# --------------------------------------------------------------------------
+# The rest of the demonstration, and it runs on EVERY start rather than only on
+# a fresh database. That is a deliberate departure from the rule above and the
+# reasoning is worth reading before anybody tightens it back.
+#
+# WHAT WENT WRONG WITHOUT THIS. The block above lays down the corpus, the claims
+# and the accounts. It lays down no obligations, no source registrations, no
+# approval route and no real filings -- those arrived later in four scripts, and
+# nothing here called any of them. So the hosted site served an owner-handoff
+# screen with nobody to hand to, a blank Integrations page, an empty approval
+# route, and a workspace that carried none of the 102 real filings the
+# documentation said were in it. Every one of those features worked. None could
+# demonstrate. `make seed` was fixed for the same reason; this is the container
+# half of the same defect, and it is worse, because a reviewer opening
+# strata.sudama.ai cannot run a Makefile.
+#
+# WHY RUNNING EVERY TIME IS SAFE HERE, AND WHY IT DOES NOT BREAK THE RULE ABOVE.
+# That rule exists to stop a redeploy dropping the audit chain. None of these
+# four drops anything. Each is additive and each is guarded -- they print
+# "already present" and change nothing on a second run, which was checked by
+# running them three times against one database and counting rows, not by
+# reading the code. Running them on every start is also the only thing that
+# repairs a database seeded before they existed, which is exactly the state the
+# live one is in.
+#
+# GATED ON STRATA_DEMO_ACCOUNTS, because this is demonstration content. A
+# deployment holding a customer's documents sets that to 0 to keep the published
+# passwords off the login page, and the same switch must keep invented
+# obligations and a fictional approval route out of their workspace. One setting,
+# one meaning: "this workspace is a demonstration".
+if [ "$(printf '%s' "${STRATA_DEMO_ACCOUNTS:-1}" | tr 'A-Z' 'a-z')" = "0" ]; then
+  echo "strata: STRATA_DEMO_ACCOUNTS is 0, so no demonstration content was laid down."
+else
+  for script in seed_demo_gaps seed_route ingest_real; do
+    if python "scripts/$script.py"; then
+      echo "strata: scripts/$script.py ok."
+    else
+      # Not fatal. A demonstration that is missing its approval route is worth
+      # serving; a site that will not start because a seed script failed is not.
+      # It says which one, so the gap on screen has a name in the log.
+      echo "strata: scripts/$script.py FAILED. The screens it fills will be empty."
+    fi
+  done
 fi
 
 # --------------------------------------------------------------------------

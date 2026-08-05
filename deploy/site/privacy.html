@@ -125,6 +125,7 @@ footer a{color:var(--muted)}
     <a class="navlink" href="/#how">How it works</a>
     <a class="navlink" href="/terms.html">Terms</a>
     <a class="navlink" href="/security.html">Security</a>
+    <a class="navlink" href="/docs/">Docs</a>
     <a class="signin" href="/login">Sign in</a>
   </div>
 </header>
@@ -140,8 +141,14 @@ footer a{color:var(--muted)}
       permanent trail of every decision taken over them. This page says which fields exist, who
       can read them, and where a deletion request runs into a wall.</p>
       <div class="note">
-        <p>Strata is a pre-production build by one person. It has no customers, and the data in
-        the demonstration carries two corpora, and both are labelled. One is invented -- a fictional commission, a fictional docket, a fictional company -- and the eval numbers are measured against it, because its traps were built on purpose. The other is 102 real public filings retrieved from eight state commissions, each with the URL it came from and a hash of the bytes; one pair of them is loaded into the demonstration workspace. Public record either way. Nobody's customer documents are here.</p>
+        <p>Strata is a pre-production build by one person. It has no customers. The repository
+        carries two corpora, both labelled. One is invented -- a fictional commission, a fictional
+        docket, a fictional company -- and the eval numbers are measured against it, because its
+        traps were built on purpose. That is the one the setup command loads. The other is 102 real
+        public filings retrieved from eight state commissions, each with the URL it came from and a
+        hash of the bytes; a script loads one pair of them, and nothing runs that script for you.
+        Neither corpus is confidential: one is fiction, the other is what the commissions publish.
+        Nobody's customer documents are here.</p>
         <p>Nothing on this page describes a control the code does not have. Where a buyer would
         expect one and it does not exist, the page says so instead of implying it.</p>
       </div>
@@ -352,9 +359,9 @@ footer a{color:var(--muted)}
         detail and this bullet is checked against the same files.</li>
         <li>No analytics, no trackers, no advertising, no tag manager, no session recorder.</li>
         <li>No content delivery network, no third-party fonts, no third-party stylesheets, no third-party
-        scripts. This site and the application load nothing from another host. The only web
-        address in the application's front-end code is the SVG namespace identifier, which is a
-        name rather than a request.</li>
+        scripts. This site and the application load nothing from another host. Two web addresses
+        appear in the front end and neither is fetched: the SVG namespace identifier, which is a
+        name rather than a request, and an example address printed in a form's placeholder.</li>
         <li>No payment processor, because nothing is for sale yet.</li>
       </ul>
       <p>If you write to the address at the foot of this page, the message sits in an ordinary
@@ -390,16 +397,18 @@ footer a{color:var(--muted)}
   <div class="wrap"><div class="lined" data-line="8">
     <h2>What the demonstration contains</h2>
     <div class="narrow">
-      <p>The product loads two corpora. One is invented: a fictional commission, a fictional docket, a
-      fictional utility, fictional people. No text in it is copied from a real filing, and nobody's
-      real documents are in it.</p>
-      <p>The repository also carries a set of real regulatory filings downloaded from state
-      commissions' own public document systems, each with a note recording where it came from and
-      when. Those are public record and no customer supplied them. One pair of them &mdash; a witness's
-      direct testimony in a Kentucky rate case, filed and then corrected &mdash; is loaded into
-      the demonstration workspace, so the product can be seen working against a document a
-      person really filed rather than only against an invented one. The rest sit in the
-      repository unloaded.</p>
+      <p>The repository carries two corpora and the setup command loads one. That one is invented:
+      a fictional commission, a fictional docket, a fictional utility, fictional people. No text in
+      it is copied from a real filing, and nobody's real documents are in it. It is one docket in
+      three versions, and it is what a workspace set up the documented way holds.</p>
+      <p>Beside it sit 102 real regulatory filings downloaded from eight state commissions' own
+      public document systems, each with a note recording where it came from and when. Those are
+      public record and no customer supplied them. A separate script,
+      <code>scripts/ingest_real.py</code>, loads one pair of them &mdash; a witness's direct
+      testimony in a Kentucky rate case, filed and then corrected &mdash; so the product can be
+      seen working against a document a person really filed. Nothing runs that script for you:
+      neither the setup command nor the deployment start-up calls it. So unless somebody runs it by
+      hand, all 102 sit on disk unread.</p>
     </div>
   </div></div>
 </section>

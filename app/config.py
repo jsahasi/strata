@@ -68,6 +68,25 @@ def load_env(path: Path | None = None, *, environ: dict[str, str] | None = None)
         value = value.strip()
         if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
             value = value[1:-1]
+        if not value:
+            # A NAME WITH NO VALUE IS NOT SET. It is not set to the empty
+            # string, and the difference is the whole of this branch.
+            #
+            # .env.example ships every name with a bare trailing "=" and tells
+            # the reader to "copy to .env and fill in what you need". Doing
+            # exactly that used to KILL THE APPLICATION ON IMPORT: the blank
+            # landed in os.environ as "", so os.environ.get(name, default)
+            # stopped returning the default, app/state/db.py called
+            # create_engine("") and raised, and app/state/claims.py called
+            # int("") and raised. Both at module scope, so nothing started. That
+            # is a reviewer's first five minutes, spent on a file that told them
+            # to do the thing that broke it.
+            #
+            # The real environment is untouched by this rule and must be: a
+            # variable EXPORTED as empty is how an operator switches one setting
+            # off for one container, and that is a deliberate act. A blank line
+            # in a template file is not.
+            continue
         target[name] = value
         added.append(name)
     return added

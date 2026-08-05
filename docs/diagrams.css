@@ -24,6 +24,15 @@
  *                   in its own label. A diagram that draws unbuilt work the
  *                   same as shipped work is the diagram equivalent of a claim
  *                   asserted on a citation that did not verify.
+ *   .box--part      built for some of what its label covers and not the rest,
+ *                   and the label must name WHICH. Added because the vocabulary
+ *                   was binary and the docket connector broke it: public
+ *                   dockets fetch, the other three source kinds do not. Drawn
+ *                   solid because something real is there, with a dashed lower
+ *                   edge because the box is not finished. Without this class
+ *                   the only honest options were to draw a working feature as
+ *                   absent or an unfinished one as shipped, and ADR-041 forbids
+ *                   the second.
  *
  *   .flow           the path taken when things work.
  *   .flow--refuse   the path taken when something cannot be proved: withheld,
@@ -131,6 +140,23 @@
   stroke-dasharray: 5 4;
 }
 .fig .box--absent text { fill: var(--fig-muted, #64748b); }
+
+/* Solid on three sides, dashed underneath: something is there and it is not
+   finished. The border-image trick does not exist in SVG, so the effect comes
+   from a normal stroke plus a dashed line drawn along the bottom edge by the
+   figure itself where it wants one. Kept deliberately close to .box so a reader
+   does not mistake a partly-built stage for an absent one at a glance -- the
+   difference that matters is built/not-built, and this sits on the built side. */
+.fig .box--part rect,
+.fig rect.box--part {
+  fill: none;
+  stroke: var(--fig-ink, #0f172a);
+  stroke-width: 1.25;
+  stroke-dasharray: 0;
+  opacity: .75;
+}
+.fig .box--part text { fill: var(--fig-ink, #0f172a); }
+.fig .box--part .t-sub { fill: var(--fig-muted, #64748b); }
 
 /* ----------------------------------------------------------------- text */
 
