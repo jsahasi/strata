@@ -252,7 +252,7 @@ footer a{color:var(--muted)}
     </div>
 
     <div class="creds">
-      <p class="creds__lead">Three roles, so the permission boundaries are visible rather than
+      <p class="creds__lead">Three accounts to sign in with, so the permission boundaries are visible rather than
       described. The same password for all of them.</p>
       <table>
         <thead><tr><th>Role</th><th>Sign in as</th><th>What it can reach</th></tr></thead>
@@ -266,7 +266,19 @@ footer a{color:var(--muted)}
         </tbody>
       </table>
       <p class="creds__pw">Password for all three: <code>strata-demo-2026</code></p>
-      <p class="muted">Printed on purpose. These accounts hold nothing but the synthetic corpus, and
+      <p class="muted"><b>Roles are a shortcut, not the model.</b> Underneath, an administrator
+      grants any one of fifteen permissions to any person in the workspace and names whatever set
+      they end up with. The workspace ships with ten templates drawn from real filings &mdash;
+      regulatory analyst, regulatory affairs manager, regulatory counsel, rates and pricing,
+      interconnection, load forecasting, system operations, certifying officer, workspace
+      administrator, auditor &mdash; because starting from nothing is worse than starting from
+      something. A template is copied, never edited: a role called &ldquo;analyst&rdquo; that one
+      company has quietly changed means something different on every screen that names it.</p>
+      <p class="muted">No template holds both <code>action.propose</code> and
+      <code>action.approve</code>. A four-person team will want that combination and may grant it;
+      the product will not hand it over silently, and the conflict report names whoever holds
+      both.</p>
+      <p class="muted">Printed on purpose. These accounts hold nothing but the demonstration corpora, and
       an account whose password is on a public page is not a secret being kept badly &mdash; it is a
       door held open. Sign in as the analyst, then as the owner, and watch the same screen refuse a
       different thing.</p>

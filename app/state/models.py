@@ -3585,4 +3585,21 @@ def role_is_system(role: Role) -> bool:
 #
 # 4. role_for_company's SHADOWING DOCSTRING is now wrong -- see the constraint
 #    above. A tenant cannot define its own analyst; it composes a named role.
+#
+# 5. THE LIVE DATABASE MAY ALREADY HOLD A SHADOW ROW, and the deploy will not
+#    find it. This was run rather than reasoned about: app/state/migrate.py was
+#    pointed at a database carrying (company_id='MEP', name='analyst'), and it
+#    added the three columns and the new table and left that row exactly where
+#    it was -- correctly, because it never rebuilds a table and never deletes.
+#    So before the write layer starts trusting the constraint, somebody has to
+#    look:
+#
+#        SELECT id, company_id, name FROM roles
+#         WHERE company_id IS NOT NULL
+#           AND name IN ('analyst', 'obligation_owner', 'admin');
+#
+#    A row there is a tenant whose analyst is not the analyst every document
+#    describes, and it has to be renamed in front of whoever owns it rather than
+#    quietly. Empty is the expected answer today: nothing in this product writes
+#    a company-scoped role yet.
 # ---------------------------------------------------------------------------
