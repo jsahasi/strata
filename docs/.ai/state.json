@@ -1,23 +1,24 @@
 {
   "_generated_by": "scripts/status.py via `make status`. Do not hand-edit.",
   "_why": "Every other file in docs/.ai/ is prose and can go stale. This one is read from the repository, so where it disagrees with prose, it is right.",
-  "generated_at": "2026-08-04T17:42:12.710158+00:00",
+  "generated_at": "2026-08-04T23:57:04.553335+00:00",
   "git": {
-    "head": "516ae98",
+    "head": "2b10bb6",
     "branch": "main",
-    "commits": 32,
+    "commits": 39,
     "dirty": true
   },
   "tests": {
     "passed": null,
     "failed": null,
-    "errors": 1,
+    "errors": 0,
     "measured": false,
-    "problem": "collection failed; could not import test_workflow.py",
+    "problem": "pytest produced no summary line: ",
     "files": [
       "test_app_wiring.py",
       "test_audit.py",
       "test_audit_v2.py",
+      "test_backup.py",
       "test_change_view.py",
       "test_chat_agent.py",
       "test_chat_schema.py",
@@ -30,9 +31,11 @@
       "test_feedback.py",
       "test_identity.py",
       "test_ingestion.py",
+      "test_invites.py",
       "test_isolation.py",
       "test_login.py",
       "test_normalize.py",
+      "test_notify.py",
       "test_occurrence.py",
       "test_passage_isolation.py",
       "test_pdf_text.py",
@@ -40,7 +43,9 @@
       "test_policy.py",
       "test_projects.py",
       "test_propose.py",
+      "test_provisioning.py",
       "test_responsive.py",
+      "test_retention.py",
       "test_review.py",
       "test_rollback.py",
       "test_routing.py",
@@ -48,8 +53,14 @@
       "test_screens.py",
       "test_seed.py",
       "test_seed_workspace.py",
+      "test_share_registry.py",
+      "test_sharing.py",
       "test_smoke.py",
+      "test_source_links.py",
+      "test_sources.py",
       "test_status_script.py",
+      "test_tour.py",
+      "test_users_admin.py",
       "test_verification.py",
       "test_workflow.py",
       "test_workflow_editor.py"
@@ -70,6 +81,10 @@
       "lines": 885,
       "calls_a_model": true
     },
+    "app/chat/engine.py": {
+      "lines": 80,
+      "calls_a_model": false
+    },
     "app/chat/persona.py": {
       "lines": 211,
       "calls_a_model": false
@@ -79,7 +94,11 @@
       "calls_a_model": false
     },
     "app/chat/tools.py": {
-      "lines": 1525,
+      "lines": 1567,
+      "calls_a_model": false
+    },
+    "app/config.py": {
+      "lines": 73,
       "calls_a_model": false
     },
     "app/diff/engine.py": {
@@ -115,7 +134,15 @@
       "calls_a_model": true
     },
     "app/main.py": {
-      "lines": 130,
+      "lines": 153,
+      "calls_a_model": false
+    },
+    "app/notify/messages.py": {
+      "lines": 426,
+      "calls_a_model": false
+    },
+    "app/notify/transport.py": {
+      "lines": 426,
       "calls_a_model": false
     },
     "app/pipeline.py": {
@@ -131,11 +158,11 @@
       "calls_a_model": false
     },
     "app/state/claims.py": {
-      "lines": 390,
+      "lines": 667,
       "calls_a_model": false
     },
     "app/state/db.py": {
-      "lines": 38,
+      "lines": 56,
       "calls_a_model": false
     },
     "app/state/feedback.py": {
@@ -143,11 +170,19 @@
       "calls_a_model": false
     },
     "app/state/identity.py": {
-      "lines": 1025,
+      "lines": 1036,
+      "calls_a_model": false
+    },
+    "app/state/invites.py": {
+      "lines": 3044,
+      "calls_a_model": false
+    },
+    "app/state/migrate.py": {
+      "lines": 116,
       "calls_a_model": false
     },
     "app/state/models.py": {
-      "lines": 2591,
+      "lines": 3588,
       "calls_a_model": false
     },
     "app/state/projects.py": {
@@ -156,6 +191,10 @@
     },
     "app/state/queries.py": {
       "lines": 50,
+      "calls_a_model": false
+    },
+    "app/state/retention.py": {
+      "lines": 1187,
       "calls_a_model": false
     },
     "app/state/review.py": {
@@ -167,7 +206,19 @@
       "calls_a_model": false
     },
     "app/state/routing.py": {
-      "lines": 938,
+      "lines": 1239,
+      "calls_a_model": false
+    },
+    "app/state/sharing.py": {
+      "lines": 899,
+      "calls_a_model": false
+    },
+    "app/state/sources.py": {
+      "lines": 1300,
+      "calls_a_model": false
+    },
+    "app/state/workflow.py": {
+      "lines": 2458,
       "calls_a_model": false
     },
     "app/text/normalize.py": {
@@ -179,7 +230,7 @@
       "calls_a_model": false
     },
     "app/web/deps.py": {
-      "lines": 458,
+      "lines": 477,
       "calls_a_model": false
     },
     "app/web/views/admin.py": {
@@ -187,7 +238,7 @@
       "calls_a_model": false
     },
     "app/web/views/auth.py": {
-      "lines": 311,
+      "lines": 316,
       "calls_a_model": false
     },
     "app/web/views/changes.py": {
@@ -195,11 +246,19 @@
       "calls_a_model": false
     },
     "app/web/views/chat.py": {
-      "lines": 794,
+      "lines": 798,
       "calls_a_model": false
     },
     "app/web/views/feedback_review.py": {
       "lines": 734,
+      "calls_a_model": false
+    },
+    "app/web/views/integrations.py": {
+      "lines": 730,
+      "calls_a_model": false
+    },
+    "app/web/views/invite_accept.py": {
+      "lines": 471,
       "calls_a_model": false
     },
     "app/web/views/proceedings.py": {
@@ -216,6 +275,18 @@
     },
     "app/web/views/review_centre.py": {
       "lines": 1149,
+      "calls_a_model": false
+    },
+    "app/web/views/share.py": {
+      "lines": 250,
+      "calls_a_model": false
+    },
+    "app/web/views/shares_admin.py": {
+      "lines": 1261,
+      "calls_a_model": false
+    },
+    "app/web/views/users_admin.py": {
+      "lines": 1113,
       "calls_a_model": false
     },
     "app/web/views/workflow.py": {

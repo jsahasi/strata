@@ -5,16 +5,21 @@
     tiles     list[ProjectTile]
     state     "ok" | "no-rows" | "no-tables"
     form      FormState | None   present on /projects/new and on a refused post
-    new_url   str                where the "New project" tile points
+    new_url   str                where the "Open a new project" tile points
     post_url  str                where the form posts
     plus everything base.html reads.
 
-  Two things worth knowing before editing.
+  Three things worth knowing before editing.
 
   Every number on a card is derived by project_card() on this request. None of
   them is stored, so a tile cannot disagree with the rows it counts. A count of
   zero is written as a word rather than a dash: a dash in a count row reads as
   "not applicable", and what it would actually mean here is "none".
+
+  The count that needs a person is the first cell in the row, so the amber rule
+  falls at the left edge of every card that has work waiting and nowhere else.
+  Reorder that row and the board stops answering "which of these needs me" at a
+  glance, which is the one question it exists to answer.
 
   The empty case names which of two facts it found. No tables is not the same as
   no projects, and only one of them is fixed by loading the corpus.
@@ -35,12 +40,12 @@
 
 {% if form %}
 <section class="card stack" id="new-project" aria-labelledby="new-project-title">
-  <h2 id="new-project-title">New project</h2>
+  <h2 id="new-project-title">Open a new project</h2>
 
   {% if form.error %}
   <div class="empty empty--unloaded" role="alert">
-    <p class="empty__title">The project was not created.</p>
-    <div class="empty__body"><p>{{ form.error }}</p></div>
+    <p class="empty__title">The project was not opened.</p>
+    <div class="empty__body stack--tight"><p>{{ form.error }}</p></div>
   </div>
   {% endif %}
 
@@ -63,13 +68,25 @@
     <p>
       <label class="label" for="docket_ref">Docket reference</label><br>
       <input id="docket_ref" name="docket_ref" type="text" size="32"
-             autocomplete="off" value="{{ form.docket_ref }}">
-      <span class="coord">optional. An internal programme tracks no docket.</span>
+             autocomplete="off" value="{{ form.docket_ref }}"
+             aria-describedby="docket_ref-hint">
+      {#
+        Field help, not a coordinate. It sat in .coord, which is monospace and
+        white-space: nowrap -- a whole sentence held on one line sets the page's
+        minimum width, which is the defect tests/test_responsive.py was written
+        for. .field-hint is prose that wraps.
+      #}
+      <span class="field-hint" id="docket_ref-hint">
+        Optional. An internal programme tracks no docket.
+      </span>
     </p>
     <p>
       <label class="label" for="summary">Summary</label><br>
       <input id="summary" name="summary" type="text" size="52" autocomplete="off"
-             value="{{ form.summary }}">
+             value="{{ form.summary }}" aria-describedby="summary-hint">
+      <span class="field-hint" id="summary-hint">
+        Optional. One line saying what this project is for.
+      </span>
     </p>
     <p>
       <button class="btn btn--primary" type="submit">Open the project</button>
@@ -77,10 +94,17 @@
     </p>
   </form>
 
-  <p class="coord">
-    There is no sign-in on this build. The owner named above is the name written
-    into the audit chain as the person who opened the project, and nothing has
-    checked it.
+  {#
+    This paragraph used to open "There is no sign-in on this build." That
+    stopped being true when /login landed, and a false sentence about
+    authentication is a bad one to leave in a compliance product. What is still
+    true is narrower and worth saying: the owner is typed, not taken from the
+    session, so the audit chain records a name nobody checked.
+  #}
+  <p class="field-hint">
+    The owner named above is typed here, not taken from whoever is signed in. It
+    is the name the audit chain records as the person who opened the project,
+    and nothing has checked it.
   </p>
 </section>
 {% endif %}
@@ -102,14 +126,23 @@
       {% endif %}
     </p>
     <p class="project-card__note">Last activity {{ tile.last_activity }}</p>
+    {#
+      THE COUNT THAT NEEDS A PERSON GOES FIRST. The stylesheet's own note says
+      this row exists to be read down a column across four cards rather than one
+      card at a time, and the column a person scans first is the one that tells
+      them where they are needed. Putting it first also puts the amber rule at
+      the left edge of every card that has work waiting, and nowhere else -- so
+      the board answers "which of these needs me" before a single number is
+      read.
+    #}
     <div class="project-card__counts">
-      <span class="tally{% if not tile.change_count %} tally--none{% endif %}">
-        <span class="tally__n">{% if tile.change_count %}{{ tile.change_count }}{% else %}none{% endif %}</span>
-        <span class="tally__label">Changes</span>
-      </span>
       <span class="tally{% if tile.unreviewed_count %} tally--waiting{% else %} tally--none{% endif %}">
         <span class="tally__n">{% if tile.unreviewed_count %}{{ tile.unreviewed_count }}{% else %}none{% endif %}</span>
         <span class="tally__label">Waiting on a person</span>
+      </span>
+      <span class="tally{% if not tile.change_count %} tally--none{% endif %}">
+        <span class="tally__n">{% if tile.change_count %}{{ tile.change_count }}{% else %}none{% endif %}</span>
+        <span class="tally__label">Changes</span>
       </span>
       <span class="tally{% if not tile.open_thread_count %} tally--none{% endif %}">
         <span class="tally__n">{% if tile.open_thread_count %}{{ tile.open_thread_count }}{% else %}none{% endif %}</span>
@@ -123,10 +156,16 @@
   </a>
   {% endfor %}
 
+  {#
+    One verb for one action, all the way through: this tile, the form's heading,
+    the button on the empty board, and the submit that finishes it all say
+    "open". The tile says "a new project" rather than "a project" because on a
+    board of projects the second reads as an instruction to pick one.
+  #}
   <a class="card card--new" href="{{ new_url }}">
-    <span class="card__verb">New project</span>
+    <span class="card__verb">Open a new project</span>
     <span class="card__note">
-      Open a line of work and attach changes to it as they arrive.
+      Start a line of work and attach changes to it as they arrive.
     </span>
   </a>
 </div>
@@ -134,15 +173,16 @@
 {% elif state == 'no-tables' %}
 <div class="empty empty--unloaded">
   <p class="empty__title">The database has no tables yet.</p>
-  <div class="empty__body">
+  <div class="empty__body stack--tight">
     <p>
       This screen is not telling you that {{ tenant }} has no work in hand. It
       has not been told anything: the corpus is not loaded, so there is nothing
       to read.
     </p>
     <p>
-      Load it with <code>{{ seed_command }}</code>, or
-      <code>{{ make_command }}</code>, then reload this page.
+      Run <code>{{ seed_command }}</code>, or <code>{{ make_command }}</code>,
+      then reload this page. Both load the synthetic proceeding and the company
+      context, and running either twice moves no number.
     </p>
   </div>
 </div>
@@ -150,14 +190,18 @@
 {% else %}
 <div class="empty empty--none">
   <p class="empty__title">No project is open for {{ tenant }}.</p>
-  <div class="empty__body">
+  <div class="empty__body stack--tight">
     <p>
       The tables are there and they hold no project. That is a real answer, not
       a failed read: nobody has opened one yet.
     </p>
+    <p>
+      Open the first one. A project needs a name, a jurisdiction and an owner;
+      the changes, questions and re-runs attach to it afterwards.
+    </p>
   </div>
   <div class="empty__actions">
-    <a class="btn btn--primary" href="{{ new_url }}">New project</a>
+    <a class="btn btn--primary" href="{{ new_url }}">Open a new project</a>
   </div>
 </div>
 {% endif %}

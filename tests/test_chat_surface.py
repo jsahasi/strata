@@ -35,6 +35,9 @@ sys.modules, which is also how the seam gets tested before anybody builds it.
 """
 
 import re
+
+#: Required verbatim by createElementNS. An identifier, never fetched.
+SVG_NAMESPACE = "http://www.w3.org/2000/svg"
 import sys
 import types
 from pathlib import Path
@@ -914,6 +917,11 @@ def test_the_dock_reaches_no_host_but_this_one(dock, script, styles):
         stripped = _strip_comments(
             body, ("jinja", "html", "block", "line")
         )
+        # The SVG namespace is an identifier, not an address: createElementNS
+        # will not build a node without it, and nothing is fetched. It is the
+        # same exemption deploy/site/privacy.html already names to the reader.
+        # Everything else that looks like a host is still refused.
+        stripped = stripped.replace(SVG_NAMESPACE, "")
         assert "http://" not in stripped, name
         assert "https://" not in stripped, name
         assert "@import" not in stripped, name

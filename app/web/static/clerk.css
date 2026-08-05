@@ -44,6 +44,11 @@
   gap: var(--s2);
 }
 
+/* G3 -- transient glass. It only appears when base.html offers no slot, so
+   it is the one thing here that floats over a page it does not belong to.
+   Solid first, glass only where the filter exists; every value comes from
+   strata.css, because a hex or an rgba() in this file is a second visual
+   language and a test says so. */
 .clerk-launch--floating {
   position: fixed;
   right: var(--s4);
@@ -51,12 +56,35 @@
   z-index: 40;
   padding: var(--s2);
   border-radius: var(--r);
-  background: var(--surface);
-  box-shadow: 0 1px 3px var(--hatch);
+  background: var(--glass-solid);
+  box-shadow: var(--edge), var(--shadow-3);
+}
+
+@supports (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .clerk-launch--floating {
+    background: var(--glass-3);
+    -webkit-backdrop-filter: var(--blur-3);
+    backdrop-filter: var(--blur-3);
+  }
 }
 
 /* --------------------------------------------------------------- the dock -- */
 
+/* G2 -- floating glass, and the only surface in the product that takes it.
+ * It sits over a whole screen the reader wants to keep their place in, so
+ * it is more opaque than the masthead rather than less: the ladder inverts
+ * the reflex, because the longer a surface lives and the more words it
+ * carries, the more opaque it has to be.
+ *
+ * SOLID FIRST, UNCONDITIONALLY. A browser with no backdrop-filter never
+ * sees the translucent value at all, so it cannot end up drawing grey text
+ * on a grey rectangle.
+ *
+ * overflow: hidden so the opaque transcript squares off no rounded corner
+ * once the rail insets from the viewport edge below.
+ */
 .clerk-dock {
   position: fixed;
   top: 0;
@@ -65,12 +93,44 @@
   z-index: 50;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   width: min(26rem, 100vw);
   max-width: 100vw;
   border-left: 1px solid var(--rule);
-  background: var(--surface);
+  background: var(--glass-solid);
+  box-shadow: var(--edge), var(--shadow-2);
   color: var(--ink);
   font: var(--t-ui) / var(--lh-ui) var(--face-ui);
+  animation: clerk-dock-in 340ms var(--ease-sheet) both;
+}
+
+@supports (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .clerk-dock {
+    background: var(--glass-2);
+    -webkit-backdrop-filter: var(--blur-2);
+    backdrop-filter: var(--blur-2);
+  }
+}
+
+/* M2 -- the dock arrives. No scrim: the dock sits beside the page rather
+   than over it, and a scrim would hide the screen it exists to answer
+   questions about. No overshoot either: a 26rem rail that overshoots shows
+   a strip of nothing at the edge of the viewport.
+
+   An animation rather than a transition, because the dock is toggled with
+   the hidden attribute and a transition cannot run out of display:none.
+   Arrivals animate; closing is instant. No JavaScript changes. */
+@keyframes clerk-dock-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .clerk-dock__head {
@@ -97,7 +157,7 @@
   border: 1px solid var(--rule-strong);
   border-radius: var(--r);
   padding: var(--s1) var(--s3);
-  background: var(--surface);
+  background: var(--paper);
   color: var(--ink-2);
   font: 600 var(--t-micro) / 1.4 var(--face-ui);
   letter-spacing: var(--track-label);
@@ -106,7 +166,14 @@
 }
 
 /* The transcript scrolls itself, never the page. A person reading an answer
-   must not lose the screen behind the dock. */
+   must not lose the screen behind the dock.
+
+   AND IT IS PAPER, EDGE TO EDGE. This is the longest prose in the product;
+   on glass it would be the least readable text on screen. A vibrant frame
+   around an opaque list is what Mail and Messages do, and it turns the
+   legibility problem into a non-problem instead of a trade-off. The head,
+   the pills row and the ask row keep the glass, which is where the head of
+   a translucent panel is supposed to be anyway. */
 .clerk-dock__transcript {
   flex: 1 1 auto;
   overflow-y: auto;
@@ -114,6 +181,10 @@
   display: flex;
   flex-direction: column;
   gap: var(--s4);
+  background: var(--paper);
+  /* The head already draws the rule above. This one is the paper's lower
+     edge against the pills row, which had nothing between them. */
+  border-bottom: 1px solid var(--rule);
 }
 
 /* ---------------------------------------------------------------- a turn -- */
@@ -210,20 +281,69 @@
   padding: 0 var(--s4) var(--s3);
 }
 
+/* A raised chip on the pane, not a second pane. A backdrop-filter nested
+   inside an already-blurred surface blurs the parent's own tint, which
+   buys nothing you can see and costs a second compositor pass. So the pill
+   takes the depth of the transient level -- the edge and the smallest cast
+   -- on paper. */
 .clerk-pill {
   border: 1px solid var(--rule-strong);
   border-radius: var(--r);
   padding: var(--s2) var(--s3);
-  background: var(--surface);
+  background: var(--paper);
+  box-shadow: var(--edge), var(--shadow-3);
   color: var(--ink);
-  font: 500 var(--t-small) / 1.4 var(--face-ui);
+  font: 600 var(--t-small) / 1.4 var(--face-ui);
   text-align: left;
   cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease;
+  animation: clerk-pill-in 240ms var(--ease-offer) both;
 }
 
 .clerk-pill:hover {
   border-color: var(--accent);
   color: var(--accent-strong);
+}
+
+/* The pill carries its own cast, and a box-shadow here beats the blanket
+   :focus-visible rule in strata.css because this file loads after it. So
+   the halo has to be restated alongside the cast, or a keyboard user gets
+   a ring with nothing separating it from the pane behind. The ring itself
+   is an outline and was never at risk; the halo was, silently. */
+.clerk-pill:focus-visible {
+  box-shadow: var(--edge), var(--shadow-3), 0 0 0 4px var(--focus-halo);
+}
+
+/* M3 -- the one spring in the whole product, and it is here because a
+   suggestion is the only thing on a Strata screen that is an offer rather
+   than a record. Nothing rests on it, so it may be light. --ease-offer
+   overshoots about four percent; nothing else in this product overshoots
+   at all.
+
+   The stagger is 40ms and capped at four: a fifth pill arrives with the
+   fourth. Past roughly 200ms a stagger stops reading as one gesture and
+   starts reading as a queue. */
+@keyframes clerk-pill-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.clerk-pill:nth-child(2) {
+  animation-delay: 40ms;
+}
+
+.clerk-pill:nth-child(3) {
+  animation-delay: 80ms;
+}
+
+.clerk-pill:nth-child(n + 4) {
+  animation-delay: 120ms;
 }
 
 /* ------------------------------------------------------------- the input -- */
@@ -236,6 +356,9 @@
   border-top: 1px solid var(--rule);
 }
 
+/* A field is where somebody writes, so it is paper even though the row it
+   sits in is glass. A translucent input is the single worst thing in every
+   glass interface ever shipped. */
 .clerk-ask__field {
   flex: 1 1 auto;
   min-width: 0;
@@ -243,7 +366,7 @@
   padding: var(--s2) var(--s3);
   border: 1px solid var(--rule-strong);
   border-radius: var(--r);
-  background: var(--surface);
+  background: var(--paper);
   color: var(--ink);
   font: var(--t-ui) / var(--lh-ui) var(--face-ui);
 }
@@ -277,7 +400,7 @@
   padding: var(--s2) var(--s3);
   border: 1px solid var(--rule-strong);
   border-radius: var(--r);
-  background: var(--surface);
+  background: var(--paper);
   color: var(--ink);
   font: var(--t-ui) / var(--lh-ui) var(--face-ui);
 }
@@ -304,9 +427,21 @@
   overflow-y: auto;
   padding: var(--s4);
   border-left: 1px solid var(--rule);
-  background: var(--surface);
+  background: var(--glass-solid);
+  box-shadow: var(--edge), var(--shadow-2);
   color: var(--ink);
   font: var(--t-ui) / var(--lh-ui) var(--face-ui);
+  animation: clerk-dock-in 340ms var(--ease-sheet) both;
+}
+
+@supports (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .clerk-bug {
+    background: var(--glass-2);
+    -webkit-backdrop-filter: var(--blur-2);
+    backdrop-filter: var(--blur-2);
+  }
 }
 
 .clerk-bug__head {
@@ -332,6 +467,26 @@
   color: var(--ink-3);
   font: var(--t-micro) / 1.5 var(--face-data);
   overflow-wrap: anywhere;
+}
+
+/* ------------------------------------------------------- a floating pane -- */
+
+/* Above the handset breakpoint the rail stops being welded to the edge of
+   the screen and becomes a window: inset by one space step on three sides,
+   with a radius. This is the ONE place --r-glass is used. G1 spans the
+   viewport and has no corners; every paper surface keeps the 3px of a
+   printed form field. macOS windows have a radius and macOS text fields do
+   not, and that boundary is the reason there are two radii rather than one
+   global number. */
+@media (min-width: 40.0625rem) {
+  .clerk-dock,
+  .clerk-bug {
+    top: var(--s4);
+    right: var(--s4);
+    bottom: var(--s4);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-glass);
+  }
 }
 
 /* --------------------------------------------------------- on a handset -- */
@@ -365,4 +520,24 @@
   .clerk-bug {
     display: none;
   }
+}
+
+/* ---- the rating control -----------------------------------------------
+   A thumb and its word. The word is not decoration: an icon alone makes a
+   person guess, and the whole point of asking is to find out what they meant.
+   It hides below 26rem, where the dock is a full-screen sheet and the row
+   would otherwise wrap.
+   ---------------------------------------------------------------------- */
+.clerk-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  line-height: 1;
+}
+.clerk-mark svg { flex: none; display: block; }
+.clerk-mark--down svg { transform: rotate(180deg); }
+.clerk-mark[aria-pressed="true"] { color: var(--accent); }
+@media (max-width: 26rem) {
+  .clerk-mark__word { position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 }

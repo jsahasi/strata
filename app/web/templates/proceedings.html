@@ -71,23 +71,42 @@
   </tbody>
 </table>
 
-{% else %}
+{% elif state == 'no-tables' %}
 <div class="empty empty--unloaded">
-  <p class="empty__title">
-    {% if state == 'no-tables' %}
-    The database has no tables yet.
-    {% else %}
-    No proceeding is loaded for {{ tenant }}.
-    {% endif %}
-  </p>
-  <div class="empty__body">
+  <p class="empty__title">The database has no tables yet.</p>
+  <div class="empty__body stack--tight">
     <p>
       This screen is not telling you that nothing has changed. It has not been
-      told anything: the corpus is not loaded, so there is nothing to compare.
+      told anything: there is no table to read, so there is nothing to compare.
+    </p>
+    <p>
+      Run <code>{{ seed_command }}</code>, or <code>{{ make_command }}</code>,
+      then reload this page. Either one loads the synthetic corpus, and running
+      it twice moves no number.
+    </p>
+  </div>
+</div>
+
+{#
+  Two different facts, two different empty states, and the modifier says which.
+  .empty--unloaded wears the broken alarm rule every refusal in this product
+  wears: we could not find out. .empty--none is dashed and quiet: we looked, and
+  there is nothing. A read that failed and a shelf that is empty must never
+  share a box, and this screen used to give them one.
+#}
+{% else %}
+<div class="empty empty--none">
+  <p class="empty__title">No proceeding is loaded for {{ tenant }}.</p>
+  <div class="empty__body stack--tight">
+    <p>
+      The tables are there and they hold no proceeding. Nothing has failed and
+      nothing is hidden: this company tracks no docket yet, so there is no
+      version to compare against another.
     </p>
     <p>
       Load the synthetic corpus with <code>{{ seed_command }}</code>, or
-      <code>{{ make_command }}</code>, then reload this page.
+      <code>{{ make_command }}</code>, then reload this page. It seeds one
+      docket, three versions of it, and the changes between them.
     </p>
   </div>
 </div>

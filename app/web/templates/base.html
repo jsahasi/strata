@@ -88,7 +88,7 @@
           <a class="nav__link{% if nav_active == key %} nav__link--current{% endif %}"
              href="{{ href }}"{% if nav_active == key %} aria-current="page"{% endif %}>{{ label }}
             {%- if key == 'review' and review_count %}
-            <span class="nav__count" aria-label="{{ review_count }} items held for review">{{ review_count }}</span>
+            <span class="nav__count" aria-label="{{ review_count }} waiting on a person">{{ review_count }}</span>
             {%- endif %}
           </a>
           {%- else %}
@@ -101,7 +101,13 @@
   </div>
 </header>
 
-<main class="main" id="main">
+{#
+  tabindex="-1" so the skip link really moves focus. Without it the browser
+  scrolls to #main and leaves focus on the link, and the next Tab goes back
+  into the masthead the reader just skipped. Focus is never drawn here, only
+  moved: nothing styles :focus on .main.
+#}
+<main class="main" id="main" tabindex="-1">
   <div class="shell">
     {% block content %}{% endblock %}
   </div>

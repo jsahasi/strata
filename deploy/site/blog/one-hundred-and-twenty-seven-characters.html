@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The correction was six characters — Kentucky 2025-00113 — Strata</title>
+<meta name="description" content="Lane Kollen's direct testimony was corrected 21 days after it was filed. The correction itself is six characters. The two files differ by 127, a diff reports 144 changes, and two of them are the correction. What moved, how it was found, and what to do when a corrected filing lands.">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --paper:#f7f8fa; --ink:#10141c; --muted:#5a6373; --rule:#dfe3ea;
+  --stamp:#1b3a8f; --withheld:#a8620e; --panel:#ffffff;
+  --measure:33rem;
+  --serif:ui-serif,"Iowan Old Style",Charter,Palatino,"Book Antiqua",Georgia,serif;
+  --sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#0d1017; --ink:#e6e8ec; --muted:#98a1b2; --rule:#242a35;
+         --stamp:#8fa9e8; --withheld:#d99a45; --panel:#131822; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.62 var(--serif)}
+
+a{color:var(--stamp)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--stamp);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;background:var(--panel);padding:.6rem .9rem;z-index:20;border:1px solid var(--rule)}
+
+/* ---- the signature: a testimony line-number margin ---- */
+.wrap{max-width:52rem;margin:0 auto;padding:0 1.25rem}
+.lined{position:relative;padding-left:3.25rem}
+.lined::before{
+  content:attr(data-line);
+  position:absolute;left:0;top:.34em;width:2.1rem;text-align:right;
+  font:500 12px/1 var(--mono);color:var(--muted);opacity:.62;
+  font-variant-numeric:tabular-nums;
+}
+.lined::after{
+  content:"";position:absolute;left:2.6rem;top:0;bottom:0;width:1px;background:var(--rule);
+}
+@media (max-width:640px){
+  .lined{padding-left:0}
+  .lined::before,.lined::after{display:none}
+  .bar{flex-wrap:nowrap}
+  .navlink{display:none}
+}
+
+/* ---- header ---- */
+header{border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:10}
+.bar{max-width:52rem;margin:0 auto;padding:.85rem 1.25rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.brand{font:600 15px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none;margin-right:auto}
+.brand span{color:var(--stamp)}
+.navlink{font:500 14px/1 var(--sans);color:var(--muted);text-decoration:none}
+.navlink:hover{color:var(--ink)}
+.signin{
+  font:600 14px/1 var(--sans);text-decoration:none;color:var(--panel);background:var(--stamp);
+  padding:.62rem 1.05rem;border-radius:3px;white-space:nowrap;
+}
+.signin:hover{filter:brightness(1.12)}
+@media (prefers-color-scheme:dark){.signin{color:#0d1017}}
+
+/* ---- type ---- */
+h1{font:400 clamp(1.75rem,4.6vw,2.6rem)/1.14 var(--serif);letter-spacing:-.018em;margin:0 0 1.1rem;text-wrap:balance}
+h2{font:600 12px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--stamp);margin:0 0 1.15rem}
+h3{font:500 1.16rem/1.35 var(--serif);margin:0 0 .5rem}
+p{margin:0 0 1.05rem}
+.lede{font-size:1.1rem}
+.muted{color:var(--muted)}
+section{padding:3.1rem 0;border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0;padding-top:3.6rem}
+.narrow{max-width:var(--measure)}
+.stamp{font:500 12px/1.5 var(--mono);color:var(--muted);letter-spacing:.04em;margin:0 0 1.7rem}
+.plain{font:400 15px/1.58 var(--sans)}
+code{font:400 .9em/1.4 var(--mono);background:color-mix(in srgb,var(--stamp) 9%,transparent);padding:0 .22em;border-radius:2px}
+ol,ul{margin:0 0 1.05rem;padding-left:1.25rem;font:400 15px/1.6 var(--sans)}
+li{margin:0 0 .7rem}
+mark{background:color-mix(in srgb,var(--stamp) 20%,transparent);color:inherit;padding:0 .12em;border-radius:2px}
+.note{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--withheld);
+      border-radius:2px;padding:1rem 1.1rem;margin:0 0 1.8rem;font:400 15px/1.58 var(--sans)}
+.note p{margin:0 0 .6rem}
+.note p:last-child{margin:0}
+.caption{font:400 14px/1.55 var(--sans);color:var(--muted);margin-top:.9rem}
+
+/* ---- quotations from the record ------------------------------------------
+   PAPER, not glass. These are the record: opaque, square, still. Every block
+   carries the file it came from and a link to the commission's own copy,
+   because a quote whose provenance is not on the page is an assertion.
+   white-space:pre-wrap keeps the leading spaces -- in these filings the left
+   margin holds the testimony's own line numbers, and trimming them would be
+   editing the quote. -------------------------------------------------------- */
+.q{border:1px solid var(--rule);border-left:3px solid var(--stamp);background:var(--panel);
+   border-radius:2px;padding:.85rem .95rem;margin:0 0 .8rem}
+.q--was{border-left-color:var(--muted)}
+.q--held{border-left-color:var(--withheld)}
+.q__t{margin:0;font:400 13px/1.62 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;
+      -webkit-hyphens:none;hyphens:none}
+.q__s{display:block;margin-top:.6rem;font:400 12px/1.5 var(--sans);color:var(--muted)}
+.q__s a{overflow-wrap:anywhere}
+.q__tag{font:600 11px/1.4 var(--sans);letter-spacing:.11em;text-transform:uppercase;
+        color:var(--muted);display:block;margin-bottom:.5rem}
+.q--after .q__tag{color:var(--stamp)}
+.q--held .q__tag{color:var(--withheld)}
+.qset{margin:0 0 1.6rem}
+
+/* ---- figures ---------------------------------------------------------------
+   The vocabulary is docs/diagrams.css, reproduced here because this page is
+   the only file in deploy/site that needs it and the site serves no second
+   stylesheet of its own. Class names and meanings are unchanged: .box is a
+   deterministic thing, .box--gate is a thing that can refuse, .flow is the
+   path when it works, .flow--refuse is the path when something cannot be
+   proved. The one deliberate change is the amber: --fig-refuse is wired to
+   the site's --withheld so there is a single amber across the product, the
+   diagrams and this page, and it always means the same thing -- the system
+   declined to assert this. It never means warning and never decoration.
+   ------------------------------------------------------------------------- */
+.fig{margin:1.6rem 0 0;padding:0;border:1px solid var(--rule);border-radius:8px;
+     background:var(--panel);overflow:hidden;
+     --fig-ink:var(--ink); --fig-muted:var(--muted); --fig-rule:var(--rule);
+     --fig-rule-strong:#94a3b8; --fig-panel:#f8fafc; --fig-refuse:var(--withheld);
+     --fig-gate:#0369a1; --fig-gate-fill:#ecfeff; --fig-model:#4338ca}
+@media (prefers-color-scheme:dark){
+  .fig{--fig-rule-strong:#64748b; --fig-panel:#1e293b;
+       --fig-gate:#7dd3fc; --fig-gate-fill:#082f49; --fig-model:#a5b4fc}
+}
+.fig__frame{overflow-x:auto;padding:1.1rem 1.2rem .6rem}
+.fig svg{display:block;width:100%;height:auto;min-width:31rem;
+  font:12px/1.35 var(--sans)}
+.fig figcaption{border-top:1px solid var(--fig-rule);background:var(--fig-panel);
+  color:var(--fig-muted);padding:.7rem 1.2rem;font:400 .85rem/1.55 var(--sans)}
+.fig figcaption strong{color:var(--fig-ink)}
+.fig__key{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;padding:.55rem 1.2rem;
+  border-top:1px solid var(--fig-rule);font:400 .78rem/1.5 var(--sans);color:var(--fig-muted)}
+.fig__key span{display:inline-flex;align-items:center;gap:.35rem}
+.fig__key i{width:.85rem;height:.85rem;border-radius:3px;flex:none;
+  border:1.25px solid var(--fig-rule-strong);background:var(--fig-panel)}
+.fig__key i.k-real{border-color:var(--fig-refuse);background:var(--fig-refuse)}
+.fig__key i.k-gate{border-color:var(--fig-gate);background:var(--fig-gate-fill)}
+.fig__key i.k-refuse{border:none;height:0;border-top:2px solid var(--fig-refuse);border-radius:0}
+
+.fig text{fill:var(--fig-ink)}
+.fig .t-title{font-weight:650}
+.fig .t-sub{fill:var(--fig-muted);font-size:10.5px}
+.fig .t-mono{font-family:var(--mono);font-size:10.5px}
+.fig .t-edge{fill:var(--fig-muted);font-size:10.5px}
+.fig .t-refuse{fill:var(--fig-refuse);font-size:10.5px;font-weight:600}
+.fig rect.box{fill:var(--fig-panel);stroke:var(--fig-rule-strong);stroke-width:1.25;rx:6}
+.fig rect.box--gate{fill:var(--fig-gate-fill);stroke:var(--fig-gate);stroke-width:2;rx:6}
+.fig .flow{fill:none;stroke:var(--fig-rule-strong);stroke-width:1.4;marker-end:url(#arrow)}
+.fig .flow--refuse{fill:none;stroke:var(--fig-refuse);stroke-width:1.6;marker-end:url(#arrow-refuse)}
+.fig .rule{stroke:var(--fig-rule);stroke-width:1}
+.fig .boundary{fill:none;stroke:var(--fig-model);stroke-width:1;stroke-dasharray:3 4;rx:8}
+.fig .t-boundary{fill:var(--fig-model);font-size:10px;letter-spacing:.06em;
+  text-transform:uppercase;font-weight:650}
+/* the distribution strip */
+.fig .grid{stroke:var(--fig-rule);stroke-width:1}
+.fig rect.d-bar{fill:var(--fig-rule-strong)}
+.fig rect.d-real{fill:var(--fig-refuse)}
+.fig rect.d-band{fill:var(--fig-rule);opacity:.4}
+.fig-defs{position:absolute;width:0;height:0;overflow:hidden}
+#arrow path{fill:#64748b}
+#arrow-refuse path{fill:#a8620e}
+@media (prefers-color-scheme:dark){
+  #arrow path{fill:#94a3b8}
+  #arrow-refuse path{fill:#d99a45}
+}
+
+/* ---- closing ---- */
+footer{border-top:1px solid var(--rule);padding:2.2rem 0 3.5rem;font:400 14px/1.6 var(--sans);color:var(--muted)}
+footer a{color:var(--muted)}
+.foot{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:baseline}
+.foot .sep{margin-left:auto}
+</style>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Arrowheads are defined once for the page, not once per figure: two markers
+     sharing one id leaves the winner to the browser. -->
+<svg class="fig-defs" aria-hidden="true" focusable="false"><defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+          markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="arrow-refuse" viewBox="0 0 10 10" refX="9" refY="5"
+          markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z"/></marker>
+</defs></svg>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="/">Strat<span>a</span></a>
+    <a class="navlink" href="/#how">How it works</a>
+    <a class="navlink" href="/#refuses">What it refuses</a>
+    <a class="navlink" href="/security.html">Security</a>
+    <a class="signin" href="/login">Sign in</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section>
+  <div class="wrap"><div class="lined" data-line="1">
+    <div class="narrow">
+      <h1>The Kollen correction was six characters. The file grew by 127, and the filing had already contradicted itself 223 pages later.</h1>
+      <p class="stamp">Kentucky PSC Case No. 2025-00113 · 4 August 2026</p>
+      <p class="lede">On 9 September 2025 the Kentucky Attorney General and the Kentucky Industrial
+      Utility Customers filed Lane Kollen's joint direct testimony in the KU rate case: 378 pages,
+      1,024,409 characters. On 30 September they filed a corrected version: 1,024,536 characters.
+      A difference of 127 in a million.</p>
+      <p>What moved, what it would cost to miss, and why a diff of the two reports 144 changes
+      rather than two. Every number below came out of those files; the recipe is at the foot.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="2">
+    <h2>What moved</h2>
+    <div class="narrow">
+      <p>Two substitutions, both on PDF page 98 — the page the testimony prints as 95.</p>
+    </div>
+
+    <div class="qset">
+      <div class="q q--was">
+        <span class="q__tag">Original, filed 9 September 2025</span>
+<p class="q__t"> 7            their request for CPCN for <mark>Brown</mark> BESS. The Companies agree to take necessary</p>
+        <span class="q__s">ky-2025-00113-kollen-direct-testimony-original.txt, PDF page 98 ·
+          <a href="https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09092025021845/25.09.09_KOLLEN_Direct_and_Exhibits.pdf">commission copy</a></span>
+      </div>
+      <div class="q q--after">
+        <span class="q__tag">Corrected, filed 30 September 2025</span>
+<p class="q__t"> 7            their request for CPCN for <mark>Cane Run</mark> BESS. The Companies agree to take</p>
+        <span class="q__s">ky-2025-00113-kollen-direct-testimony-corrected-clean.txt, PDF page 98 ·
+          <a href="https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09302025014043/25.09.30_KOLLEN_Direct_and_Exhibits_CORRECTED_Clean.pdf">commission copy</a></span>
+      </div>
+    </div>
+
+    <div class="narrow">
+      <p>The same swap happens four lines earlier, on line 3. That is the whole correction. The
+      Companies were withdrawing a certificate application for a battery plant and the testimony
+      named the wrong plant. That is not a typo. It is testimony about which asset they have stopped
+      building.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="3">
+    <h2>The 127 characters are not the correction</h2>
+    <div class="narrow">
+      <p>"Brown" to "Cane Run" adds three characters, twice. Six. The file grew by 127.</p>
+      <p>Count both files again with every space, tab and newline discarded and the corrected copy
+      is <em>shorter</em>: 514,194 non-space characters against 514,259. Its whitespace grew by 192.
+      The OCR jitter below says it was re-scanned rather than re-exported, and the extractor broke
+      the lines differently, so the delta measures the scanner. Watch file size and you would have
+      seen this document grow on the day its text shrank.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="4">
+    <h2>The diff reports 144 changes</h2>
+    <div class="narrow">
+      <p>I ran this product's own diff engine over the pair — <code>app/diff/engine.py</code>, 126
+      lines around <code>difflib.SequenceMatcher</code>, no model and no network. The splitting
+      happens before it, in <code>app/ingestion/ingest.py</code>, whose <code>_segment</code> cuts
+      each file on blank lines: 4,285 passages against 4,287. The engine takes those two lists and
+      returns 144 changes: 134 modified, 6 added, 4 removed.</p>
+      <p>It takes about 0.4 seconds on an Apple M5 Pro. Measure your own machine rather than quoting
+      mine, and treat the figure as a scale rather than a benchmark: it is one pair of files on one
+      laptop.</p>
+      <p>Two of the 144 are the correction.</p>
+    </div>
+
+    <figure class="fig">
+      <div class="fig__frame">
+        <svg viewBox="0 0 720 206" role="img"
+             aria-label="Bar chart of the 144 changes by PDF page across the 378-page filing. Nine changes fall in the first 243 pages, of which two, on page 98, are the correction. The remaining 135 fall between pages 244 and 378, peaking at eight changes on page 314.">
+          <text class="t-title" x="0" y="16">Where a diff of the two filings puts its 144 changes</text>
+          <text class="t-sub" x="0" y="30">changes reported, by PDF page · 61 of 378 pages touched</text>
+
+          <rect class="d-band" x="465.71" y="56" width="234.29" height="108"/>
+          <text class="t-sub" x="582.86" y="50" text-anchor="middle">pages 244–378 · 135 of the 144 changes</text>
+
+          <line class="grid" x1="44" y1="146" x2="700" y2="146"/><text class="t-sub" x="36" y="150" text-anchor="end">2</text>
+          <line class="grid" x1="44" y1="128" x2="700" y2="128"/><text class="t-sub" x="36" y="132" text-anchor="end">4</text>
+          <line class="grid" x1="44" y1="110" x2="700" y2="110"/><text class="t-sub" x="36" y="114" text-anchor="end">6</text>
+          <line class="grid" x1="44" y1="92" x2="700" y2="92"/><text class="t-sub" x="36" y="96" text-anchor="end">8</text>
+          <line class="grid" x1="44" y1="74" x2="700" y2="74"/><text class="t-sub" x="36" y="78" text-anchor="end">10</text>
+
+          <rect class="d-bar" x="212.34" y="110.00" width="1.49" height="54.00"/>
+          <rect class="d-bar" x="217.54" y="146.00" width="1.49" height="18.00"/>
+          <rect class="d-bar" x="318.20" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="465.71" y="146.00" width="1.49" height="18.00"/>
+          <rect class="d-bar" x="467.45" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="469.19" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="522.98" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="524.72" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="526.46" y="146.00" width="1.49" height="18.00"/>
+          <rect class="d-bar" x="529.93" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="531.66" y="146.00" width="1.49" height="18.00"/>
+          <rect class="d-bar" x="533.40" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="535.13" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="536.87" y="137.00" width="1.49" height="27.00"/>
+          <rect class="d-bar" x="538.60" y="146.00" width="1.49" height="18.00"/>
+          <rect class="d-bar" x="540.34" y="146.00" width="1.49" height="18.00"/>
+          <rect class="d-bar" x="542.07" y="137.00" width="1.49" height="27.00"/>
+          <rect class="d-bar" x="543.81" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="545.54" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="547.28" y="137.00" width="1.49" height="27.00"/>
+          <rect class="d-bar" x="549.02" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="550.75" y="119.00" width="1.49" height="45.00"/>
+          <rect class="d-bar" x="554.22" y="119.00" width="1.49" height="45.00"/>
+          <rect class="d-bar" x="555.96" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="557.69" y="137.00" width="1.49" height="27.00"/>
+          <rect class="d-bar" x="559.43" y="128.00" width="1.49" height="36.00"/>
+          <rect class="d-bar" x="561.16" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="564.63" y="128.00" width="1.49" height="36.00"/>
+          <rect class="d-bar" x="566.37" y="137.00" width="1.49" height="27.00"/>
+          <rect class="d-bar" x="568.11" y="146.00" width="1.49" height="18.00"/>
+          <rect class="d-bar" x="575.05" y="119.00" width="1.49" height="45.00"/>
+          <rect class="d-bar" x="576.78" y="146.00" width="1.49" height="18.00"/>
+          <rect class="d-bar" x="578.52" y="110.00" width="1.49" height="54.00"/>
+          <rect class="d-bar" x="580.25" y="119.00" width="1.49" height="45.00"/>
+          <rect class="d-bar" x="583.72" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="585.46" y="137.00" width="1.49" height="27.00"/>
+          <rect class="d-bar" x="587.20" y="92.00" width="1.49" height="72.00"/>
+          <rect class="d-bar" x="588.93" y="146.00" width="1.49" height="18.00"/>
+          <rect class="d-bar" x="590.67" y="101.00" width="1.49" height="63.00"/>
+          <rect class="d-bar" x="592.40" y="110.00" width="1.49" height="54.00"/>
+          <rect class="d-bar" x="597.61" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="599.34" y="137.00" width="1.49" height="27.00"/>
+          <rect class="d-bar" x="601.08" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="602.81" y="146.00" width="1.49" height="18.00"/>
+          <rect class="d-bar" x="604.55" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="609.76" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="611.49" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="613.23" y="137.00" width="1.49" height="27.00"/>
+          <rect class="d-bar" x="616.70" y="128.00" width="1.49" height="36.00"/>
+          <rect class="d-bar" x="618.43" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="620.17" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="621.90" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="623.64" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="625.38" y="146.00" width="1.49" height="18.00"/>
+          <rect class="d-bar" x="627.11" y="146.00" width="1.49" height="18.00"/>
+          <rect class="d-bar" x="628.85" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="630.58" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="634.05" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="635.79" y="146.00" width="1.49" height="18.00"/>
+          <rect class="d-bar" x="640.99" y="155.00" width="1.49" height="9.00"/>
+          <rect class="d-bar" x="642.73" y="146.00" width="1.49" height="18.00"/>
+
+          <!-- The correction. Amber, and only 2 units tall, because 2 of the 6
+               changes the diff finds on page 98 are the amendment. -->
+          <rect class="d-real" x="212.34" y="146.00" width="1.49" height="18.00"/>
+          <text class="t-refuse" x="150" y="42" text-anchor="middle">page 98</text>
+          <text class="t-refuse" x="150" y="54" text-anchor="middle">2 of its 6 are the correction</text>
+          <path class="flow--refuse" d="M150,60 L150,78 L213,78 L213,104"/>
+
+          <line class="rule" x1="44" y1="164" x2="700" y2="164"/>
+          <line class="grid" x1="44.00" y1="164" x2="44.00" y2="169"/><text class="t-sub" x="44.00" y="181" text-anchor="middle">1</text>
+          <line class="grid" x1="215.81" y1="164" x2="215.81" y2="169"/><text class="t-sub" x="215.81" y="181" text-anchor="middle">100</text>
+          <line class="grid" x1="389.35" y1="164" x2="389.35" y2="169"/><text class="t-sub" x="389.35" y="181" text-anchor="middle">200</text>
+          <line class="grid" x1="562.90" y1="164" x2="562.90" y2="169"/><text class="t-sub" x="562.90" y="181" text-anchor="middle">300</text>
+          <line class="grid" x1="698.26" y1="164" x2="698.26" y2="169"/><text class="t-sub" x="698.26" y="181" text-anchor="middle">378</text>
+          <text class="t-sub" x="372" y="198" text-anchor="middle">PDF page</text>
+        </svg>
+      </div>
+      <div class="fig__key">
+        <span><i></i>reported change</span>
+        <span><i class="k-real"></i>the correction, and the line pointing at it</span>
+      </div>
+      <figcaption><strong>The amendment is not the loudest thing in the diff.</strong> Page 98 carries
+      six reported changes and two of them are the correction. Page 314 carries eight and none of
+      them is. The testimony and its affidavit end at page 101 and the exhibits run from 102 to 378,
+      but the churn is not spread across them: 135 of the 144 fall after page 243 — data-request
+      attachments, depreciation schedules, the stipulation with its signature pages, and tariff
+      sheets. Counts produced by the run described at the foot of this page.</figcaption>
+    </figure>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="5">
+    <h2>The other 142</h2>
+    <div class="narrow">
+      <p>They are the scanner disagreeing with itself. Discard every space, tab and newline and 63
+      of the 144 disappear; 81 survive. Fifty-three of the 81 change at least one digit. Merely
+      collapsing runs of whitespace removes none of the 144: the engine already does that before it
+      compares.</p>
+    </div>
+
+    <div class="qset">
+      <div class="q q--was">
+        <span class="q__tag">Original, PDF page 345 — a tariff sheet</span>
+<p class="q__t">ISSUED BY:           <mark>/s/</mark> Robert M. Conroy, Vice President</p>
+        <span class="q__s">ky-2025-00113-kollen-direct-testimony-original.txt ·
+          <a href="https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09092025021845/25.09.09_KOLLEN_Direct_and_Exhibits.pdf">commission copy</a></span>
+      </div>
+      <div class="q q--held">
+        <span class="q__tag">Corrected, PDF page 345 — the same sheet</span>
+<p class="q__t">ISSUED BY:           <mark>Isl</mark> Robert M. Conroy, Vice President</p>
+        <span class="q__s">ky-2025-00113-kollen-direct-testimony-corrected-clean.txt ·
+          <a href="https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09302025014043/25.09.30_KOLLEN_Direct_and_Exhibits_CORRECTED_Clean.pdf">commission copy</a></span>
+      </div>
+    </div>
+
+    <div class="narrow">
+      <p>That one is harmless once seen. This one is not, and it runs the other way — the original
+      is corrupt and the correction repairs it, on a page nobody amended.</p>
+    </div>
+
+    <div class="qset">
+      <div class="q q--held">
+        <span class="q__tag">Original, PDF page 287 — a depreciation schedule</span>
+<p class="q__t">        8,000,000.00                                           <mark>B, 960,000</mark>              248,131</p>
+        <span class="q__s">ky-2025-00113-kollen-direct-testimony-original.txt ·
+          <a href="https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09092025021845/25.09.09_KOLLEN_Direct_and_Exhibits.pdf">commission copy</a></span>
+      </div>
+      <div class="q q--after">
+        <span class="q__tag">Corrected, PDF page 287</span>
+<p class="q__t">        8,000,000.00                                <mark>8,960,000</mark>              248,131</p>
+        <span class="q__s">ky-2025-00113-kollen-direct-testimony-corrected-clean.txt ·
+          <a href="https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09302025014043/25.09.30_KOLLEN_Direct_and_Exhibits_CORRECTED_Clean.pdf">commission copy</a></span>
+      </div>
+    </div>
+
+    <div class="narrow">
+      <p>So "the later filing is the better text" is not a rule you can use. In Exhibit LK-19 the
+      original misreads <em>Parties</em> as <em>Patties</em> six times against the corrected copy's
+      two — but the corrected copy invents <em>Pa11ies</em> twice and <em>repo11s</em> once where the
+      original had neither.</p>
+      <p>Ranking will not rescue you. Order all 144 by alignment confidence, least first, and the
+      real changes arrive 38th and 39th. Nothing about a genuine amendment makes it look more
+      changed than a re-scanned signature block.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="6">
+    <h2>The cover letter is not a manifest</h2>
+
+    <div class="q">
+      <span class="q__tag">The cover letter filed with the correction, 30 September 2025</span>
+<p class="q__t">The corrections are found on
+page 95 of Mr. Kollen’s testimony, and changes original references to “Brown BESS” to now
+read “Cane Run BESS.”</p>
+      <span class="q__s">ky-2025-00113-kollen-correction-cover-letter.txt ·
+        <a href="https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09302025014043/25.09.30_Read_1st_LGE-KU_Rate.pdf">commission copy</a></span>
+    </div>
+
+    <div class="narrow">
+      <p>References, plural. One page named — the page printed on the document, which is PDF page
+      98. No count. The original holds six occurrences of Brown followed by BESS; two were changed.
+      The four that survive, on PDF pages 277 and 279, are right as they stand. They sit inside a
+      data request the Attorney General and KIUC sent themselves, Joint Supplemental Question No.
+      33, quoted back word for word in KU's response on page 277 and LG&amp;E's on page 279.</p>
+    </div>
+
+    <div class="q q--was">
+      <span class="q__tag">Corrected copy, PDF page 277 — inside KU's response to Question No. 33, left alone</span>
+<p class="q__t">         depreciation  rates  for  <mark>Brown  BESS</mark>,  AMI,  Paddy's  Run CT  pipeline,</p>
+      <span class="q__s">ky-2025-00113-kollen-direct-testimony-corrected-clean.txt ·
+        <a href="https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09302025014043/25.09.30_KOLLEN_Direct_and_Exhibits_CORRECTED_Clean.pdf">commission copy</a></span>
+    </div>
+
+    <div class="narrow">
+      <p>Note the double spaces — and three lines up, the extraction breaks <em>Brown</em> and
+      <em>BESS</em> across a line. So a plain search for <code>Brown BESS</code> in the corrected
+      copy returns zero, telling you the term is gone while four remain. Replace what such a search
+      does find and you misquote the Attorney General's own data request back at the commission.</p>
+      <p>Widening the search is worse. <em>Brown</em> appears 41 times in the corrected copy and 37
+      have nothing to do with a battery: the E.W. Brown Generating Station, ten Brown Units in one
+      depreciation table — there is no Unit 4 — Brown Solar and Wind, Brown 12 twice on the corrected
+      page 95 and never wrong, and a man named Elijah Brown. The correction is scoped to a page, not
+      a term, and the letter does not say so.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="7">
+    <h2>The filing already knew</h2>
+    <div class="narrow">
+      <p>The sentence that was wrong carries a footnote.</p>
+    </div>
+
+    <div class="q q--was">
+      <span class="q__tag">Original, PDF page 98 — footnote 84</span>
+<p class="q__t">84 I have attached a copy of the Stipulation and Recommendation in Case 2025-00045 as Exhibit
+      LK-19.</p>
+      <span class="q__s">ky-2025-00113-kollen-direct-testimony-original.txt ·
+        <a href="https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09092025021845/25.09.09_KOLLEN_Direct_and_Exhibits.pdf">commission copy</a></span>
+    </div>
+
+    <div class="narrow">
+      <p>Exhibit LK-19 begins on PDF page 318 of the same file. Paragraph 1.2 of the stipulation, on
+      PDF page 321, reads:</p>
+    </div>
+
+    <div class="q q--after">
+      <span class="q__tag">Original, PDF page 321 — inside Exhibit LK-19</span>
+<p class="q__t">1.2.   Withdrawal of <mark>Cane Run</mark> Battery Energy Storage System ("BESS") CPCN
+
+Request. The Utilities will withdraw their request for the <mark>Cane Run BESS</mark> without prejudice in
+
+this case, but they may re-file a CPCN Application for Cane Run BESS, or a substitute for  it, at
+
+any time, which would be supported by a competitive procurement process.</p>
+      <span class="q__s">ky-2025-00113-kollen-direct-testimony-original.txt ·
+        <a href="https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09092025021845/25.09.09_KOLLEN_Direct_and_Exhibits.pdf">commission copy</a></span>
+    </div>
+
+    <figure class="fig">
+      <div class="fig__frame">
+        <svg viewBox="0 0 720 322" role="img"
+             aria-label="Diagram. Inside one filing dated 9 September 2025, the testimony on PDF page 98 says the request withdrawn was for Brown BESS, while Exhibit LK-19 on PDF page 321, which footnote 84 attaches, says it was for Cane Run BESS. The two statements meet at a gate reading: one filing, two names, one withdrawal. The correction arrived 21 days later.">
+          <rect class="boundary" x="16" y="34" width="688" height="152"/>
+          <text class="t-boundary" x="30" y="53">One filing · 9 September 2025 · 378 pages</text>
+
+          <rect class="box" x="32" y="66" width="252" height="104"/>
+          <text class="t-title" x="48" y="88">Testimony, PDF page 98</text>
+          <text class="t-sub"   x="48" y="104">the page it prints as 95, line 7</text>
+          <text class="t-mono"  x="48" y="128">…request for CPCN for</text>
+          <text class="t-mono"  x="48" y="144" style="font-weight:650">Brown BESS.</text>
+          <text class="t-sub"   x="48" y="160">superseded 30 September</text>
+
+          <rect class="box" x="436" y="66" width="252" height="104"/>
+          <text class="t-title" x="452" y="88">Exhibit LK-19, PDF page 321</text>
+          <text class="t-sub"   x="452" y="104">the stipulation itself, ¶ 1.2</text>
+          <text class="t-mono"  x="452" y="128">…their request for the</text>
+          <text class="t-mono"  x="452" y="144" style="font-weight:650">Cane Run BESS</text>
+          <text class="t-sub"   x="452" y="160">never amended</text>
+
+          <text class="t-edge" x="360" y="100" text-anchor="middle">footnote 84</text>
+          <text class="t-edge" x="360" y="114" text-anchor="middle">attaches it</text>
+          <path class="flow" d="M290,130 L428,130"/>
+
+          <path class="flow--refuse" d="M158,170 L158,206 L340,206 L340,226"/>
+          <path class="flow--refuse" d="M562,170 L562,206 L380,206 L380,226"/>
+
+          <rect class="box--gate" x="196" y="228" width="328" height="54"/>
+          <text class="t-title" x="360" y="250" text-anchor="middle">One filing, two names, one withdrawal</text>
+          <text class="t-sub"   x="360" y="268" text-anchor="middle">checkable on the day it landed, with no second version</text>
+
+          <text class="t-refuse" x="360" y="304" text-anchor="middle">The correction was filed 21 days later, on 30 September 2025</text>
+        </svg>
+      </div>
+      <div class="fig__key">
+        <span><i></i>a passage in the record</span>
+        <span><i class="k-gate"></i>a check that can refuse</span>
+        <span><i class="k-refuse"></i>the path taken when something cannot be proved</span>
+      </div>
+      <figcaption><strong>The document disagreed with the exhibit it cited.</strong> No comparison
+      across versions was needed and no outside knowledge either: the question is only whether the
+      name the testimony uses matches the name in the attachment that same sentence points at.
+      Twenty-one days passed.</figcaption>
+    </figure>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="8">
+    <h2>One more trap: the mark-up copy</h2>
+    <div class="narrow">
+      <p>The correction arrived as two documents: a clean copy and a mark-up copy. Extract the text
+      of the mark-up and PDF page 98 reads:</p>
+    </div>
+
+    <div class="q q--held">
+      <span class="q__tag">Corrected Mark-up, PDF page 98</span>
+<p class="q__t"> 7            their request for CPCN for <mark>Brown</mark> BESS. The Companies agree to take necessary</p>
+      <span class="q__s">ky-2025-00113-kollen-direct-testimony-corrected-markup.txt ·
+        <a href="https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09302025014043/25.09.30_KOLLEN_Direct_and_Exhibits_CORRECTED_Mark-up.pdf">commission copy</a></span>
+    </div>
+
+    <div class="narrow">
+      <p>Word for word the superseded original, at the one spot the correction was about. Everywhere
+      else it matches the clean copy: six changed lines out of 15,853, all six on page 98. Whatever
+      a person sees on that page, a machine gets the withdrawn name out of a file whose own name
+      says corrected. I have not established how the mark-up is rendered — the page carries no PDF
+      annotation objects — and would rather say so than guess.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="9">
+    <h2>What to do on Monday</h2>
+    <div class="narrow">
+      <p>None of this needs a purchase. It needs half a day and <code>difflib</code>.</p>
+      <ol>
+        <li><strong>Compare twice, and report both counts.</strong> Once as the text stands, once
+        with every space, tab and newline discarded. Here that is 144 against 81, and the 63 that
+        vanish are pure re-layout.</li>
+        <li><strong>Never replace on the strength of a correction notice.</strong> It names a page,
+        not a scope. Diff, and act on what moved.</li>
+        <li><strong>Check a filing against its own attachments.</strong> Take the proper nouns in
+        the testimony — plant names, docket and exhibit numbers — and check them against the
+        exhibits it cites. That one pass would have caught this on 9 September.</li>
+        <li><strong>Quote from the clean copy.</strong> This mark-up extracts to the superseded
+        text, so the helpful-looking copy is the one likeliest to poison your workflow. Whether
+        every mark-up does that, I do not know.</li>
+        <li><strong>Do not assume the later filing is the better text.</strong> Where a re-scan is
+        involved, corruption runs both ways. Say which way each difference runs, or do not report
+        it.</li>
+      </ol>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="10">
+    <h2>How these numbers were made</h2>
+    <div class="narrow">
+      <p class="plain">Two PDFs from the Kentucky PSC's public filing path, extracted with PyMuPDF
+      using <code>page.get_text("text", sort=True)</code> so the margin line numbers stay on the
+      lines they number, pages joined with a form feed, nothing cleaned. Character counts are
+      <code>len()</code> over the decoded text; the non-space counts are the same strings under
+      <code>re.sub(r"\s", "", …)</code>. Passages come from
+      <code>app/ingestion/ingest.py::_segment</code>, which cuts on blank lines; the 144 changes come
+      from <code>app/diff/engine.py::diff</code> over those two lists, timed with
+      <code>time.perf_counter()</code> around the diff call alone. The 81 are the changes whose two
+      sides still differ under <code>re.sub(r"\s", "", …)</code>, the 53 those whose two sides differ
+      under <code>re.sub(r"\D", "", …)</code>. A change is charged to the page its passage starts on,
+      counting form feeds — the corrected file where there is one, the original otherwise.
+      <em>Brown BESS</em> is counted with <code>re.findall(r"Brown\s+BESS", …)</code>. The files hash
+      to <code>51232537…c33b66</code> and <code>f39fcd14…90ac84</code>, both recomputing against the
+      corpus provenance records.</p>
+    </div>
+
+    <div class="note">
+      <p><strong>Disclosure, and a limit.</strong> Strata is my product and the diff engine above is
+      its code. It is not what found this: it reported 144 changes and ranked the two that mattered
+      38th and 39th. I read all 144.</p>
+      <p>The machine is fast and honest about what it saw. It cannot yet tell you that a testimony
+      contradicts the exhibit it cites, which is the check that would have mattered most here. That
+      is the next thing to build, and it is a rule you can check rather than a judgement.</p>
+    </div>
+  </div></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap"><div class="foot">
+    <span>Strata</span>
+    <a href="/">Home</a>
+    <a href="/login">Sign in</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/security.html">Security</a>
+    <a href="mailto:jsahasi@gmail.com">Contact</a>
+    <span class="sep muted">Built by Jayesh Sahasi</span>
+  </div></div>
+</footer>
+
+</body>
+</html>

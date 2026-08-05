@@ -83,6 +83,81 @@
   /* The hatch that fills a withheld claim's statement slot. */
   --hatch: rgba(16, 26, 30, 0.16);
   --focus: var(--accent);
+
+  /* ---- glass, paper, depth -------------------------------------------
+   * GLASS ON THE CHROME. PAPER FOR THE RECORD.
+   *
+   * A pane is translucent because you look past it. A filing is opaque
+   * because you read it. So the masthead, the tab rail and the assistant
+   * dock are panes, and the diff, the claims, the source extract and every
+   * table of record are paper. A translucent tariff clause is a worse
+   * tariff clause, and macOS has never applied vibrancy to a document
+   * canvas either.
+   *
+   * Every value here is achromatic or in the grey family, so --accent and
+   * --alarm are still the only two hues in this product.
+   *
+   * clerk.css may write no hex and no rgba() of its own -- a test enforces
+   * it -- so it consumes these and nothing else.
+   */
+  --paper: #ffffff;          /* the record: diff, claims, source, tables */
+  --glass-tint: #f7fafb;     /* the material the panes are made of       */
+  --glass-solid: #f6f9fa;    /* that tint already composited over --bg   */
+  --glass-edge: #ffffff;     /* the 1px highlight that says "in front"   */
+  --glass-cast: #04191f;     /* shadows are blue-black, never neutral    */
+
+  /* THE THREE ABOVE ARE THE SOURCES, NOT FILLS. --glass-1/2/3 are
+     --glass-tint at three alphas, --edge is --glass-edge at 0.55, and the
+     three shadows are --glass-cast at four. They are spelled out again as
+     literals below because CSS cannot say "this colour at that alpha"
+     without a colour function, and a token that becomes invalid on an
+     older engine takes the whole declaration with it -- which is the one
+     failure this design may not have. Change a source, recompute the
+     literals under it. */
+
+  /* The ladder inverts the reflex: the longer a surface lives and the more
+     words it carries, the MORE opaque it is. The masthead holds two words
+     per item and you look past it a thousand times. A tip holds a
+     paragraph you read once. See --blur-1/2/3, which pair with these. */
+  --glass-1: rgba(247, 250, 251, 0.72);   /* attached  */
+  --glass-2: rgba(247, 250, 251, 0.86);   /* floating  */
+  --glass-3: rgba(247, 250, 251, 0.92);   /* transient */
+
+  --blur-1: blur(20px) saturate(180%);
+  --blur-2: blur(30px) saturate(170%);
+  --blur-3: blur(14px) saturate(160%);
+
+  /* Depth comes from light, not from a heavy shadow: a one-pixel highlight
+     along the top edge, and a cast that grows with how far the surface
+     floats. --glass-cast is the colour all three are mixed from. */
+  --edge: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  --shadow-1: 0 1px 2px rgba(4, 25, 31, 0.07);
+  --shadow-2: 0 12px 32px rgba(4, 25, 31, 0.14), 0 2px 6px rgba(4, 25, 31, 0.08);
+  --shadow-3: 0 4px 14px rgba(4, 25, 31, 0.1);
+
+  /* The outer companion to the focus ring. It separates the ring from a
+     busy or translucent backdrop. It is an enhancement and may be lost;
+     the ring itself is an outline and never is. */
+  --focus-halo: rgba(255, 255, 255, 0.9);
+
+  --track-label-tight: 0.04em; /* the same label, in a narrow track */
+  --r-glass: 10px;             /* a window has a radius; a form field does not */
+
+  /* MEASURED, not guessed, and it deviates from the design plan on
+     purpose. The plan says 3.25rem. The masthead in this build is 124px
+     tall at every width from 768px up, and 112px once its padding
+     collapses in the sticky block below -- so 3.25rem would slide the
+     sticky source panel 60px under the masthead and land every anchor
+     behind it. 7rem is what the browser reports. --rail-h is the tab
+     rail, measured at 46px. Both are overridden with the layout that
+     makes them true; see "sticky chrome" below. */
+  --stuck: 0rem;
+  --rail-h: 2.875rem;
+  --anchor: calc(var(--stuck) + var(--rail-h) + var(--s4));
+
+  --ease-settle: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-offer: cubic-bezier(0.34, 1.42, 0.64, 1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -105,6 +180,33 @@
     --alarm-wash: #3a1a11;
 
     --hatch: rgba(231, 238, 239, 0.18);
+
+    /* Dark glass is not light glass with another alpha. --surface sits four
+       points off --bg here, so an alpha of it would be invisible: the tint
+       is its own value, above surface, and the filter adds a little
+       brightness because a blur of a dark page returns a dark page. White
+       would read as a scratch along the top edge, so the edge takes a
+       lifted grey instead. */
+    --paper: #151e22;
+    --glass-tint: #1a262b;
+    --glass-solid: #182328;
+    --glass-edge: #5c757e;
+    --glass-cast: #000000;
+
+    --glass-1: rgba(26, 38, 43, 0.72);
+    --glass-2: rgba(26, 38, 43, 0.86);
+    --glass-3: rgba(26, 38, 43, 0.92);
+
+    --blur-1: blur(20px) saturate(160%) brightness(1.08);
+    --blur-2: blur(30px) saturate(150%) brightness(1.06);
+    --blur-3: blur(14px) saturate(150%) brightness(1.05);
+
+    --edge: inset 0 1px 0 rgba(92, 117, 126, 0.35);
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5);
+    --shadow-2: 0 12px 32px rgba(0, 0, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
+    --shadow-3: 0 4px 14px rgba(0, 0, 0, 0.45);
+
+    --focus-halo: rgba(4, 9, 11, 0.9);
   }
 }
 
@@ -170,10 +272,21 @@ a:hover {
   color: var(--accent-strong);
 }
 
+/* The ring is an OUTLINE, in every scheme, on every surface, glass
+   included. Never write outline:none anywhere in this file -- a ring lost
+   to a redesign is an accessibility regression no test here catches.
+
+   The halo is the second layer, and it is where a focus ring usually dies:
+   a 2px accent ring against a translucent pane full of blurred page
+   underneath is hard to find. The halo is a box-shadow, so the withheld
+   surface drops it -- which is fine, because that surface is opaque
+   --surface-sunk and the ring reads 6.16:1 against it in light and
+   10.55:1 in dark. Measured, not assumed. */
 :focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
   border-radius: var(--r-sm);
+  box-shadow: 0 0 0 4px var(--focus-halo);
 }
 
 /* A filled control would swallow an accent ring. The ring sits outside the
@@ -220,9 +333,33 @@ hr {
   padding: 0 var(--s5);
 }
 
+/* G1 -- attached glass. It spans the viewport, so it has no corners and no
+   radius; depth is one hairline of light along the top and the smallest
+   cast in the ladder.
+
+   SOLID FIRST, UNCONDITIONALLY. Written the other way round -- declare the
+   alpha and hope -- a browser without backdrop-filter renders the raw
+   translucent value over whatever is behind it, which is how glass work
+   ends up as grey text on a grey rectangle. --glass-solid is the tint
+   already composited over --bg, computed rather than picked, so a browser
+   that drops the filter lands on the colour the filter would have made.
+   It loses translucency and keeps the whole hierarchy, because depth here
+   is carried by the shadow ladder and the edge, and neither needs the
+   filter to exist. */
 .masthead {
   border-bottom: 1px solid var(--rule);
-  background: var(--surface);
+  background: var(--glass-solid);
+  box-shadow: var(--edge), var(--shadow-1);
+}
+
+@supports (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .masthead {
+    background: var(--glass-1);
+    -webkit-backdrop-filter: var(--blur-1);
+    backdrop-filter: var(--blur-1);
+  }
 }
 
 .masthead__bar {
@@ -232,6 +369,68 @@ hr {
   gap: var(--s5);
   flex-wrap: wrap;
   padding: var(--s5) 0 var(--s4);
+}
+
+/* ------------------------------------------------------- sticky chrome --
+ *
+ * The glass only means anything once something scrolls under it, so the
+ * masthead has to stick. Above 48rem it does, and it collapses its own
+ * padding to earn the room: 124px at rest, 112px stuck, type untouched.
+ * Nothing resizes on scroll -- text that shrinks while a person is reading
+ * is the commonest tell of a templated site and it buys nothing a padding
+ * step does not.
+ *
+ * BELOW 48rem IT DOES NOT STICK, and that is measured rather than
+ * squeamish: the nav wraps to two rows at 640px and to three below 480px,
+ * so the masthead is 193px and then 253px tall. A quarter of a phone
+ * screen permanently occupied by chrome is worse than scrolling to the
+ * top. The tab rail still sticks there, at top 0, because it is 46px and
+ * it is the only thing telling a reader where they are on an 8,800px page.
+ */
+@media (min-width: 48rem) {
+  :root {
+    --stuck: 7rem;
+  }
+
+  .masthead {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+  }
+
+  .masthead__bar {
+    padding: var(--s4) 0 var(--s3);
+  }
+}
+
+/* The weight floor for text on glass. A blurred backdrop lowers apparent
+   contrast even where the measured figure holds, because the eye reads
+   edges and a blur softens them. Nothing on a pane goes below 500, which
+   is why the nav below is 600 and its current item 700 rather than 400 and
+   600. Do not reach for -webkit-font-smoothing: antialiased to compensate:
+   on a Mac it thins the strokes, which is the opposite of what is wanted.
+
+   MEASURED, and this is the one place the ladder bit. A G1 pane over the
+   flat page floor composites to #f4f7f8 in light, and --ink-3 on that is
+   4.48:1 -- two hundredths under AA for small text. Over a claim card it
+   is 4.64:1, which is why it was missed. So the two labels a person
+   actually reads up here, the "viewing" qualifier and the tenant id, take
+   --ink-2 instead: 8.4:1.
+
+   WHAT IS NOT FIXED, AND WHY. .nav__link--off keeps --ink-3 and keeps the
+   4.48:1. It is the only signal saying that item is not a link, and
+   raising it to --ink-2 would make an unreachable screen look exactly like
+   a reachable one. A nav item that leads nowhere while looking live is a
+   small lie, and this product's argument is that it does not tell those.
+   Two hundredths of a contrast point is the cheaper cost, and it is
+   written down here rather than discovered later. */
+.masthead .label,
+.masthead .coord {
+  color: var(--ink-2);
+}
+
+.masthead .coord {
+  font-weight: 500;
 }
 
 /* The wordmark sits on three bars of falling width: layers, newest on top.
@@ -295,6 +494,7 @@ hr {
   border-bottom: 2px solid transparent;
   color: var(--ink-2);
   font-size: var(--t-ui);
+  font-weight: 600;
   text-decoration: none;
 }
 
@@ -305,7 +505,7 @@ a.nav__link:hover {
 
 .nav__link--current {
   color: var(--ink);
-  font-weight: 600;
+  font-weight: 700;
   border-bottom-color: var(--accent);
 }
 
@@ -368,9 +568,30 @@ a.nav__link:hover {
   align-items: start;
 }
 
+/* Clear of the sticky masthead. Without this the panel slides under it and
+   the reader loses the top of the cited section, which is the one line of
+   a source extract they came for. */
 .split__aside {
   position: sticky;
-  top: var(--s4);
+  top: calc(var(--stuck) + var(--s4));
+}
+
+/* The dead column. Measured on the screen this whole product rests on: the
+   aside is 416px wide and 0px tall with every citation panel closed, so
+   41% of the change page is empty. Collapse the track when nothing is in
+   it.
+
+   The cost, stated rather than hidden: pressing a citation chip now
+   reflows the grid in one frame. Do NOT transition grid-template-columns
+   to smooth that -- it janks, and it drags the claim text sideways while
+   somebody is reading it. The panel's own 200ms fade covers the change.
+   Floating the panel over the claim instead was rejected outright: the
+   reader is comparing a quote against its source and both have to be on
+   screen at once, which is the whole reason the panel is beside the claim
+   rather than in a modal. A browser with no :has() keeps today's dead
+   column and loses nothing else. */
+.split:not(:has(.source-panel:not([hidden]))) {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 @media (max-width: 62rem) {
@@ -411,11 +632,16 @@ a.nav__link:hover {
   white-space: nowrap;
 }
 
+/* PAPER. Opaque, flat, still: no blur, no motion, no shadow past a
+   hairline. Everything that is a record of something wears it -- this
+   card, a verified claim, the source extract, a deliverable, a table.
+   If a change ever puts a tariff clause on something translucent, the
+   change is wrong. */
 .card {
   padding: var(--s5);
   border: 1px solid var(--rule);
   border-radius: var(--r);
-  background: var(--surface);
+  background: var(--paper);
 }
 
 .table {
@@ -589,7 +815,7 @@ a.nav__link:hover {
   flex-direction: column;
   border: 1px solid var(--rule);
   border-radius: var(--r);
-  background: var(--surface);
+  background: var(--paper);
   overflow: hidden;
 }
 
@@ -676,6 +902,10 @@ a.nav__link:hover {
  */
 .claim {
   padding: var(--s4) 0 var(--s4) var(--s5);
+  /* change.html gives every claim an id and links straight to it. --anchor
+     clears the sticky chrome; see .tabpanel, in the tabs section below,
+     for how the number is built. */
+  scroll-margin-top: var(--anchor);
 }
 
 .claim__head {
@@ -715,7 +945,7 @@ a.nav__link:hover {
 
 .claim--verified {
   border-left: 3px solid var(--ink-3);
-  background: var(--surface);
+  background: var(--paper);
   border-top: 1px solid var(--rule);
   border-right: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
@@ -905,6 +1135,7 @@ a.nav__link:hover {
   align-items: start;
   margin-bottom: var(--s3);
   padding: var(--s4) var(--s5);
+  scroll-margin-top: var(--anchor);
   border: 1px solid var(--rule);
   border-left: 0;
   border-radius: 0 var(--r) var(--r) 0;
@@ -919,9 +1150,13 @@ a.nav__link:hover {
   background-position: left top;
 }
 
-.queue__row:hover {
-  background-color: var(--bg);
-}
+/* THERE IS NO :hover RULE HERE, AND THERE MUST NOT BE ONE. A queue row is
+   a refusal, and the refusal surface answers nothing. One used to live on
+   this line -- background-color: var(--bg) -- and it was deleted rather
+   than cancelled further down the file, because a cancelled rule left in
+   place is an invitation: the next person finds a hover rule on the
+   refusal surface and assumes it belongs there. See the block at the foot
+   of this file. */
 
 .queue__code {
   display: inline-block;
@@ -1014,7 +1249,7 @@ a.nav__link:hover {
 
 .coverage__cell {
   padding: var(--s4);
-  background: var(--surface);
+  background: var(--paper);
 }
 
 .coverage__n {
@@ -1166,15 +1401,22 @@ a.nav__link:hover {
   padding: var(--s4) var(--s4) 0;
   border: 1px solid var(--rule);
   border-radius: var(--r);
-  background: var(--surface);
+  background: var(--paper);
   color: inherit;
   text-decoration: none;
-  transition: border-color 120ms ease;
+  transition: border-color 120ms ease, box-shadow 160ms var(--ease-settle),
+    transform 160ms var(--ease-settle);
 }
 
+/* One pixel, not four. The card is paper and stays paper: no blur here,
+   because what sits behind it is flat --bg, and a blur of a flat colour is
+   indistinguishable from a tint at roughly ten times the cost. The lift
+   and the cast are the part of the effect that was doing the work. */
 a.project-card:hover {
   border-color: var(--ink-3);
   color: inherit;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-3);
 }
 
 a.project-card:hover .project-card__name {
@@ -1221,7 +1463,9 @@ a.project-card:hover .project-card__name {
    work, and hairlines here would be decoration. */
 .project-card__counts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(4.25rem, 1fr));
+  /* 4.25rem gave a 74px track, and an 11px uppercase label tracked at
+     0.09em does not fit one. See .tally__label. */
+  grid-template-columns: repeat(auto-fit, minmax(5.5rem, 1fr));
   gap: var(--s3) var(--s4);
   margin-top: auto;
   padding: var(--s3) 0 var(--s4);
@@ -1243,13 +1487,20 @@ a.project-card:hover .project-card__name {
   color: var(--ink);
 }
 
+/* Tracking is what makes an 11px uppercase label readable across a row and
+   unreadable down a column. At 0.09em in a 74px track this rendered
+   "WAITING / ON A / PERSON" over three lines and hyphen-broke "NEXT
+   RE-RUN", which is not a word break. Same size, same weight, tighter
+   track, and hyphenation off. */
 .tally__label {
   display: block;
   margin-top: 3px;
   color: var(--ink-3);
   font-size: var(--t-micro);
   font-weight: 600;
-  letter-spacing: var(--track-label);
+  letter-spacing: var(--track-label-tight);
+  line-height: 1.35;
+  hyphens: none;
   text-transform: uppercase;
 }
 
@@ -1325,19 +1576,44 @@ a.card--new:focus-visible {
  * not because JavaScript was persuaded to make them so. The CSS also matches
  * aria-selected, so a real tablist is styled the same if one is ever used.
  *
- * A sunk rail with the current section lifted out of it, deliberately unlike
- * the masthead's underlined nav: those are screens, these are sections of one
- * screen, and two different jobs should not share one look.
+ * A rail with the current section lifted out of it, deliberately unlike the
+ * masthead's underlined nav: those are screens, these are sections of one
+ * screen, and two different jobs should not share one look. The rail was
+ * sunk when it was opaque and never moved; it is a pane now, and the lift
+ * comes from paper and a cast instead of from a step down.
+ */
+/* G1 -- attached glass, and the one place in this product where
+ * translucency pays for itself twice over. The review centre is 8,823px
+ * tall with nine sections and this rail left the screen 304px in; after
+ * that a reader had no orientation at all. Now it stays, and it lets the
+ * section it is describing show through it.
+ *
+ * z-index 20, under the masthead's 30: two attached panes, and the outer
+ * one wins.
  */
 .tabs {
+  position: sticky;
+  top: var(--stuck);
+  z-index: 20;
   display: flex;
   gap: 2px;
   padding: 3px;
   border: 1px solid var(--rule);
   border-radius: var(--r);
-  background: var(--surface-sunk);
+  background: var(--glass-solid);
+  box-shadow: var(--edge), var(--shadow-1);
   overflow-x: auto;
   scrollbar-width: thin;
+}
+
+@supports (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .tabs {
+    background: var(--glass-1);
+    -webkit-backdrop-filter: var(--blur-1);
+    backdrop-filter: var(--blur-1);
+  }
 }
 
 .tab {
@@ -1352,29 +1628,79 @@ a.card--new:focus-visible {
   font: 600 var(--t-small) / 1.4 var(--face-ui);
   text-decoration: none;
   white-space: nowrap;
+  /* Colour and edge only. No transform: a tab is a place, not a control
+     that answers back. */
+  transition: background-color 120ms ease, border-color 120ms ease,
+    color 120ms ease;
 }
 
-a.tab:hover {
+/* Hover is the first half of what the current section already has: the
+   edge appears, the fill does not. Against an opaque sunk rail this used
+   to be --bg, a step lighter; on a pane --bg is a step DARKER, so hover
+   would read as pressed while current reads as raised. One tint level up
+   plus the border keeps both moving the same way, and the tint needs no
+   @supports -- a translucent fill over the pane behind it composites
+   correctly whether or not that pane is blurred.
+
+   NOT ON THE CURRENT SECTION. a.tab:hover outweighs .tab--current, so
+   without these two :not()s, moving the cursor onto the section you are
+   already in takes its paper away and it stops looking current. That was
+   true before this change too, and less visible only because the two
+   fills were closer. */
+a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
   color: var(--ink);
-  background: var(--bg);
+  background: var(--glass-3);
+  border-color: var(--rule);
 }
 
 /* The ring must sit inside: the rail scrolls, and an outset ring would be
-   clipped at the first and last section. */
+   clipped at the first and last section.
+
+   And it takes no halo. The halo is a box-shadow drawn OUTSIDE the box, so
+   on a ring that sits inside it would be a stray glow separating nothing.
+   The ring has contrast without it -- accent on the current tab's paper is
+   7.61:1, measured. The current tab keeps its own cast while focused,
+   which the blanket rule above would otherwise take away. */
 .tab:focus-visible {
   outline-offset: -2px;
+  box-shadow: none;
 }
 
+.tab--current:focus-visible,
+.tab[aria-selected="true"]:focus-visible {
+  box-shadow: var(--shadow-1);
+}
+
+/* The rail used to be sunk and the current section lifted out of it. The
+   rail is a pane now, so the lift is carried by paper plus the smallest
+   cast rather than by a step down into the rail. */
 .tab--current,
 .tab[aria-selected="true"] {
   border-color: var(--rule);
-  background: var(--surface);
+  background: var(--paper);
+  box-shadow: var(--shadow-1);
   color: var(--ink);
   font-weight: 700;
 }
 
-/* Where the work is, before anyone clicks. ink-2 rather than ink-3: on the sunk
-   rail, ink-3 falls to 3.9:1 and this is a number someone reads, not a shade. */
+/* In dark, --paper sits BELOW the glass rail, so a paper chip would read as
+   pressed in rather than lifted out. --rule is the one step above the rail
+   that still carries --ink at full strength -- 11:1, measured. Same
+   relationship, opposite direction, because that is what the two schemes
+   ask for. */
+@media (prefers-color-scheme: dark) {
+  .tab--current,
+  .tab[aria-selected="true"] {
+    border-color: var(--rule-strong);
+    background: var(--rule);
+  }
+}
+
+/* Where the work is, before anyone clicks. ink-2 rather than ink-3: this is
+   a number someone reads, not a shade. On the old sunk rail ink-3 fell to
+   3.9:1; on the pane it is 4.56:1, which clears AA and still reads as a
+   shade rather than a figure. ink-2 gives 7.76:1 and that is the right
+   weight for a count. */
 .tab__count {
   font: var(--t-micro) / 1.4 var(--face-data);
   font-variant-numeric: tabular-nums;
@@ -1394,9 +1720,15 @@ a.tab:hover {
   font-weight: 700;
 }
 
+/* Anchor targets, and every one of them broke silently the moment the
+   chrome above them started sticking. --anchor is the masthead plus the
+   tab rail plus a space; without it an anchor lands behind the chrome and
+   the reader is shown the middle of the thing they asked for. On a screen
+   with no rail the clearance is 46px generous, which costs a gap and
+   nothing else. */
 .tabpanel {
   padding-top: var(--s5);
-  scroll-margin-top: var(--s4);
+  scroll-margin-top: var(--anchor);
 }
 
 .tabpanel:focus {
@@ -1617,7 +1949,7 @@ a.tab:hover {
 
 .run-schedule__cell {
   padding: var(--s3) var(--s4);
-  background: var(--surface);
+  background: var(--paper);
 }
 
 .run-schedule__value {
@@ -1735,7 +2067,7 @@ a.tab:hover {
   padding: var(--s4) var(--s5);
   border: 1px solid var(--rule);
   border-radius: var(--r);
-  background: var(--surface);
+  background: var(--paper);
 }
 
 .question__text {
@@ -1803,7 +2135,7 @@ a.tab:hover {
   border: 1px solid var(--rule);
   border-left: 3px solid var(--accent);
   border-radius: 0 var(--r) var(--r) 0;
-  background: var(--surface);
+  background: var(--paper);
 }
 
 .steer__directive {
@@ -1851,7 +2183,7 @@ a.tab:hover {
 .deliverable {
   border: 1px solid var(--rule);
   border-radius: var(--r);
-  background: var(--surface);
+  background: var(--paper);
   overflow: hidden;
 }
 
@@ -2049,6 +2381,119 @@ a.tab:hover {
   color: var(--alarm-strong);
 }
 
+/* --------------------------------------------------------------- motion --
+ *
+ * ONE ORCHESTRATED MOMENT AND TWO MICRO-INTERACTIONS. That is the whole
+ * budget. Nothing else in this product is choreographed, nothing is
+ * triggered by scroll, and no number ever animates.
+ *
+ * THE SETTLE, 420ms end to end, three bands, and it never repeats.
+ *
+ *   band 1   the masthead            0ms   260ms   up 6px, fading
+ *   band 2   the page head          60ms   260ms   up 8px, fading
+ *   band 3   the FRAME              120ms  300ms   opacity only
+ *
+ * THE RECORD IS IN BAND NOTHING. Claims, quotes, source extracts, tables
+ * and the diff are painted at full opacity in the first frame. The frame
+ * assembles around a document that was already there, which is what this
+ * product says about itself: the filing is not something this software
+ * produced and it should not appear to arrive.
+ *
+ * Two traps, both live.
+ *
+ * Band 3 selects the frame -- headings, rules, the tab rail -- and NOT the
+ * containers. Selecting .main .shell > * would fade a parent whose opacity
+ * composites onto every claim inside it, including a withheld one, and the
+ * signature at the foot of this file would be gone with no line in the
+ * diff mentioning it.
+ *
+ * animation-fill-mode: both ends at transform: none, so the masthead is
+ * left with no transform and its position: sticky survives. Do not move
+ * this animation up onto body: a transform on a sticky element's ancestor
+ * kills the sticky.
+ */
+
+@keyframes settle-chrome {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes settle-head {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes settle-frame {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.masthead {
+  animation: settle-chrome 260ms var(--ease-settle) 0ms both;
+}
+
+.page-head {
+  animation: settle-head 260ms var(--ease-settle) 60ms both;
+}
+
+.main h2,
+.main hr,
+.main .tabs {
+  animation: settle-frame 300ms var(--ease-settle) 120ms both;
+}
+
+/* M1 -- the citation chip opens the source. The central interaction of the
+   product, so it is the most restrained one. The chip's own fill is
+   unchanged at 120ms on colour. The panel arrives with a 6px slide and no
+   overshoot: a spring on a panel showing the text of an order would be a
+   small lie about how serious the thing is.
+
+   ARRIVALS ANIMATE, DEPARTURES DO NOT. The panel is toggled with the
+   hidden attribute, which this file forces to display:none. A transition
+   cannot run out of display:none but an animation restarts every time an
+   element is displayed again, so this needs no line of JavaScript changed.
+   Closing is instant, and that is a decision: a person closing a panel has
+   already decided, and making them watch it leave is the commonest small
+   rudeness in modern interface work.
+
+   Scoped to the change page's aside on purpose. The review centre renders
+   a source extract that is never hidden, and that one is record: it is
+   painted, not revealed. */
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.split__aside .source-panel {
+  animation: panel-in 200ms var(--ease-sheet) both;
+}
+
+/* The marked span inside it gets no motion at all. It is already correct
+   when it arrives, and a highlight that animates in asks to be watched
+   rather than read. Stated here so nobody adds one. */
+
 /* ------------------------------------------------------------- printing -- */
 
 /* The withheld state has to survive being screenshotted in black and white.
@@ -2071,6 +2516,31 @@ a.tab:hover {
     --alarm-strong: #000;
     --alarm-wash: #fff;
     --hatch: rgba(0, 0, 0, 0.34);
+
+    /* No glass on the page that leaves the building. Every pane prints as
+       white paper, every cast and every filter is gone. */
+    --paper: #fff;
+    --glass-tint: #fff;
+    --glass-solid: #fff;
+    --glass-edge: #fff;
+    --glass-cast: #fff;
+    --glass-1: #fff;
+    --glass-2: #fff;
+    --glass-3: #fff;
+    --edge: none;
+    --shadow-1: none;
+    --shadow-2: none;
+    --shadow-3: none;
+    --blur-1: none;
+    --blur-2: none;
+    --blur-3: none;
+  }
+
+  /* Chrome that sticks on screen must not stick on paper: a sticky box in
+     a paged medium either repeats or lands on top of the text. */
+  .masthead,
+  .tabs {
+    position: static;
   }
 
   .masthead,
@@ -2120,13 +2590,29 @@ a.tab:hover {
   }
 }
 
+/* REMOVED, NOT SHORTENED. The block that used to sit here set
+   animation-duration: 0.01ms, which shortens motion to the point of
+   invisibility and leaves every animation and transition running: the
+   events still fire, the compositor still works, and an element caught
+   mid-animation at a repaint can still flash. A reader who asked for
+   stillness gets the end state directly.
+
+   With animation: none the fill mode goes too, so the three settle bands
+   render at their natural state -- full opacity, no transform -- which is
+   exactly the intended end state. Nothing needs a second declaration to
+   undo them.
+
+   The honest cost, because it is more than the preference strictly asks
+   for: this also removes the 120ms colour fade on a button hover, which
+   would not have troubled anyone who set the preference for vestibular
+   reasons. It is the reading the brief requires and it is defensible, but
+   it is not free. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
     scroll-behavior: auto !important;
   }
 }
@@ -2174,3 +2660,93 @@ a.tab:hover {
 .digest, .hash, code, pre, .coord--long {
   overflow-wrap: anywhere;
 }
+
+/* ---------------------------------------------- the withheld surface --
+ *
+ * THE ONLY SURFACE IN THIS PRODUCT WITH NO EFFECTS AT ALL, and the one
+ * place this design spends its boldness.
+ *
+ * Every other rule in this file adds something: a pane, a lift, a fill on
+ * hover, a 200ms reveal. This block subtracts. It is placed LAST so that
+ * it wins against anything added above it later, including a future
+ * `* { transition: ... }` written by somebody who never read this comment.
+ *
+ * The argument, written down because a future editor will want to fix it.
+ * The usual hierarchy gives the most important thing the most treatment.
+ * This inverts it, and the inversion is the argument. A claim either
+ * survives its citation or it does not; decoration cannot change which, so
+ * decoration has no business on the surface that says so. Everything else
+ * on a Strata screen answers a person -- a card lifts, a chip fills, a
+ * panel slides, a pill springs, a masthead lets the page show through it.
+ * One surface does not. It is the only place the interface has nothing to
+ * offer, which is exactly what the system is saying: we could not verify
+ * this, so we will not say it, and there is nothing here to make that
+ * easier to accept.
+ *
+ * Three selectors, because the refusal has three forms and they are one
+ * thing: .claim--withheld on a change page and on a shared claim,
+ * .queue__row in the escalation queue, and .withheld -- the hatched slot
+ * -- wherever it appears, including inside an assistant reply and inside a
+ * blocked plan step. .withheld__label and .withheld__reason are named
+ * separately because shares_admin.html and integrations.html use the
+ * reason with no .withheld parent, and a refusal has to look the same on
+ * an admin screen as it does on a change page.
+ *
+ * WHAT THIS BLOCK MUST NOT TOUCH: outline. The focus ring is an outline
+ * and it survives here in full -- 6.16:1 against --surface-sunk in light,
+ * 10.55:1 in dark, measured. Only the halo goes, because the halo is a
+ * box-shadow. Losing the ring would be an accessibility regression no test
+ * in this repository catches.
+ *
+ * Everything structural stays exactly as it is: the broken amber rule, the
+ * 135-degree hatch, the inset from the assertion axis, the sunk ground,
+ * the quoted-against-source pair. Six differences, none of them colour,
+ * all of them already surviving a monochrome screenshot and the print
+ * block above.
+ *
+ * THE TEST THAT KEEPS THIS THE SIGNATURE: the withheld surface must be the
+ * stillest thing on any screen it appears on. If a second element ever
+ * competes -- equally still, equally prominent -- the second element gets
+ * motion, or it is cut. Nothing is ever added here to win the comparison.
+ */
+.claim--withheld,
+.claim--withheld *,
+.queue__row,
+.queue__row *,
+.withheld,
+.withheld *,
+.withheld__label,
+.withheld__reason {
+  /* Stated rather than left to inherit, so a glass rule written later with
+     a wider selector cannot reach in here. */
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  /* It casts nothing and it is lit by nothing. */
+  box-shadow: none;
+  text-shadow: none;
+  filter: none;
+  /* Not promoted to its own layer, because it has nothing to composite. */
+  transform: none;
+  will-change: auto;
+  /* On every property, including the Approve and Reject buttons in a queue
+     row. Their hover still appears -- instantly. */
+  transition: none;
+  /* It takes no part in the page-load sequence and no band may select it. */
+  animation: none !important;
+  /* Never faded and never dimmed. A greyed-out assertion is still an
+     assertion: the reader's eye completes it. */
+  opacity: 1;
+}
+
+/* Nothing happens here, so the cursor says so. The links and buttons
+   inside a queue row keep their own pointer, because those do something:
+   a declared rule on the control beats an inherited value from this one. */
+.claim--withheld,
+.queue__row,
+.withheld {
+  cursor: default;
+}
+
+/* There is deliberately no :hover, :active or :focus-within rule for any of
+   the three. Not a rule that changes nothing -- no rule at all, because an
+   empty rule is an invitation and the next person will fill it. */

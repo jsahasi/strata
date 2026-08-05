@@ -1,7 +1,19 @@
 {#
   review_centre.html — the whole review centre, for every project this company
-  has. review_project.html extends this file and overrides only the two scope
-  blocks, so the two pages cannot drift into showing different sections.
+  has.
+
+  IT IS ALSO MEANT TO BE THE PARENT OF review_project.html, which would override
+  only the three scope blocks so the two pages cannot drift into showing
+  different sections. THAT FILE DOES NOT EXIST. app/web/views/review_centre.py
+  names it in two places -- the GET at /review/{project_id} and the redraw after
+  a refused write -- and both raise TemplateNotFound, so every "Scope" link
+  below answers 500 today. Nothing in tests/ renders either route, which is why
+  the suite is green while the screen is not. Whoever creates the file wants:
+
+      {% extends "review_centre.html" %}
+      {% block scope_head %} … the project's own title … {% endblock %}
+      {% block scope_switch %}{{ super() }}{% endblock %}
+      {% block steer_project_field %} … a hidden project_id … {% endblock %}
 
   Context, from app/web/views/review_centre.py:
     coverage            CoverageView          leads the page
@@ -73,14 +85,14 @@
 {% if error %}
 <div class="empty empty--unloaded" role="alert">
   <p class="empty__title">{{ error.title }}</p>
-  <div class="empty__body"><p>{{ error.body }}</p></div>
+  <div class="empty__body stack--tight"><p>{{ error.body }}</p></div>
 </div>
 {% endif %}
 
 {% if state == 'no-tables' %}
 <div class="empty empty--unloaded">
   <p class="empty__title">The database has no tables yet.</p>
-  <div class="empty__body">
+  <div class="empty__body stack--tight">
     <p>
       Nothing is counted because nothing has been loaded. Run
       <code>{{ seed_command }}</code>, or <code>{{ make_command }}</code>, then
@@ -89,19 +101,63 @@
   </div>
 </div>
 
+{#
+  The way out of this one is on another screen, so it is named here rather than
+  left for the reader to find. The default mirrors base.html's own, so the path
+  is still declared in one place and guessed in none.
+#}
 {% elif state == 'no-rows' %}
 <div class="empty empty--none">
   <p class="empty__title">No project is open for {{ tenant }}.</p>
-  <div class="empty__body">
+  <div class="empty__body stack--tight">
     <p>
       This was checked: the tables are there and this company owns no project.
       A review centre with no project has nothing to review, which is different
       from a review centre that found nothing.
     </p>
+    <p>
+      Everything on this screen is counted per project. Open one and the
+      coverage, the sources and the queue below it start from the work attached
+      to it.
+    </p>
+  </div>
+  <div class="empty__actions">
+    <a class="btn btn--primary" href="{{ nav_projects_url | default('/projects', true) }}">Go to Projects</a>
   </div>
 </div>
 
 {% else %}
+
+{#
+  Scope first, then sections. It used to be the other way round, which put two
+  rails of links one under the other and left the reader to work out that the
+  first jumped inside this page and the second left it. What is on screen has to
+  be settled before how to move around it.
+
+  The rail below sticks under the masthead. This page is nine sections and about
+  nine thousand pixels tall, and the rail is the only thing that says where you
+  are in it.
+#}
+{% block scope_switch %}
+{% if projects | length > 1 %}
+<nav class="stack--tight" aria-label="Scope">
+  <p class="label">Scope</p>
+  <ul class="nav__list">
+    <li>
+      <a class="nav__link{% if not scope_project %} nav__link--current{% endif %}"
+         href="{{ centre_url }}"{% if not scope_project %} aria-current="page"{% endif %}>Every project</a>
+    </li>
+    {%- for project in projects %}
+    <li>
+      <a class="nav__link{% if scope_project and scope_project.project_id == project.project_id %} nav__link--current{% endif %}"
+         href="{{ project.url }}"
+         {%- if scope_project and scope_project.project_id == project.project_id %} aria-current="page"{% endif %}>{{ project.name }}</a>
+    </li>
+    {%- endfor %}
+  </ul>
+</nav>
+{% endif %}
+{% endblock %}
 
 <nav class="tabs" aria-label="Sections">
   <a class="tab" href="#coverage">Coverage</a>
@@ -116,19 +172,6 @@
   <a class="tab" href="#deliverables">Deliverables <span class="tab__count">{{ deliverables | length }}</span></a>
   <a class="tab" href="#steer">Steer <span class="tab__count">{{ steers | length }}</span></a>
 </nav>
-
-{% block scope_switch %}
-{% if projects | length > 1 %}
-<section class="stack" aria-label="Projects">
-  <p class="label">Scope</p>
-  <ul class="nav__list">
-    {%- for project in projects %}
-    <li><a class="nav__link" href="{{ project.url }}">{{ project.name }}</a></li>
-    {%- endfor %}
-  </ul>
-</section>
-{% endif %}
-{% endblock %}
 
 {# ------------------------------------------------------------- coverage -- #}
 <section class="stack" id="coverage" aria-labelledby="coverage-h">
@@ -152,6 +195,17 @@
     <span class="coverage__basis-item">{{ coverage.open_questions }} questions open, {{ coverage.blocking_questions }} blocking</span>
   </p>
 </section>
+
+{#
+  A rule between every section from here down.
+
+  Nine sections ran together with nothing between the last row of one and the
+  heading of the next, so at nine thousand pixels the page read as one scroll
+  rather than as nine answers. The rule is the frame the direction gives the
+  record: a hairline, no fill, no shadow, and it takes the same settle band as
+  the headings it separates.
+#}
+<hr>
 
 {# -------------------------------------------------------------- sources -- #}
 <section class="stack" id="sources" aria-labelledby="sources-h">
@@ -182,12 +236,23 @@
   {% else %}
   <div class="empty empty--none">
     <p class="empty__title">No source is recorded.</p>
-    <div class="empty__body">
-      <p>Nothing has been filed against this scope, internal or external.</p>
+    <div class="empty__body stack--tight">
+      <p>
+        Nothing has been filed against this scope, internal or external. This
+        was checked and it is a real answer, not a read that failed.
+      </p>
+      <p>
+        Nothing composed from this scope can cite anything while that is true.
+        Attach the filing, the order, or the memo the work is meant to rest on
+        before writing against it, and every claim that follows has an address a
+        reader can check.
+      </p>
     </div>
   </div>
   {% endif %}
 </section>
+
+<hr>
 
 {# ------------------------------------------------------------ analytics -- #}
 <section class="stack" id="analytics" aria-labelledby="analytics-h">
@@ -223,21 +288,30 @@
   </table>
 </section>
 
+<hr>
+
 {# -------------------------------------------------------- expert review -- #}
 <section class="stack" id="expert-review" aria-labelledby="expert-h">
   <h2 id="expert-h">Expert review</h2>
   <p>
     Everything the product refused to assert, with the reason in its own words,
     the citation address, and the bytes the source really holds at those offsets.
-    Resolving an item does not publish a claim. Approve records that the refusal
-    was right. Reject records that you dispute it, and needs a reason. Neither
-    makes an unverified citation verify, so the coverage above does not move.
+    Resolving an item does not publish a claim. Approving records that the
+    refusal was right. Rejecting records that you dispute it, and needs a
+    reason. Neither makes an unverified citation verify, so the coverage above
+    does not move.
   </p>
 
+  {#
+    The row carries its escalation id so anything that points at one item lands
+    on it. .queue__row is one of the three surfaces the direction keeps
+    completely still, so the class attribute stays exactly "queue__row" -- the
+    id goes beside it, never inside it.
+  #}
   {% if waiting %}
   <ul class="queue">
     {%- for item in waiting %}
-    <li class="queue__row">
+    <li class="queue__row" id="{{ item.escalation_id }}">
       <div>
         <span class="queue__code">{{ item.reason_code }}</span>
         <p class="queue__reason">{{ item.reason_text }}</p>
@@ -290,7 +364,16 @@
         {% endif %}
       </div>
 
-      <form class="queue__actions" method="post" action="{{ centre_url }}/escalations/{{ item.escalation_id }}/resolve">
+      {#
+        THE BUTTONS NAME WHAT THEY ACT ON. They said "Approve" and "Reject",
+        beside a claim the system had refused to make, and the obvious reading
+        of a bare "Approve" there is "publish the claim" -- the exact opposite of
+        what the button does. Both now name their object, so the control says
+        what happens when it is used and the paragraph above only explains what
+        that means for the record.
+      #}
+      <form class="queue__actions" method="post" action="{{ centre_url }}/escalations/{{ item.escalation_id }}/resolve"
+            aria-label="Resolve {{ item.escalation_id }}">
         <input type="hidden" name="back" value="{{ back }}">
         <p>
           <label class="label" for="who-{{ item.escalation_id }}">Your name</label><br>
@@ -300,8 +383,8 @@
           <label class="label" for="why-{{ item.escalation_id }}">Reason, required to reject</label><br>
           <input id="why-{{ item.escalation_id }}" name="reason" type="text" size="16" autocomplete="off">
         </p>
-        <button class="btn btn--primary" type="submit" name="decision" value="{{ decision_approve }}">Approve</button>
-        <button class="btn" type="submit" name="decision" value="{{ decision_reject }}">Reject</button>
+        <button class="btn btn--primary" type="submit" name="decision" value="{{ decision_approve }}">Approve the refusal</button>
+        <button class="btn" type="submit" name="decision" value="{{ decision_reject }}">Reject the refusal</button>
       </form>
     </li>
     {%- endfor %}
@@ -309,16 +392,23 @@
   {% else %}
   <div class="empty empty--none">
     <p class="empty__title">Nothing is waiting on a person.</p>
-    <div class="empty__body">
+    <div class="empty__body stack--tight">
       <p>
         This was checked on this request: every claim behind these findings had
         its citation re-read against the stored source.
+      </p>
+      <p>
+        There is nothing to do here, and nothing to watch. An item appears the
+        moment a citation stops matching the source it points at, whether that
+        happens because a filing was revised or because a claim was wrong from
+        the start.
       </p>
     </div>
   </div>
   {% endif %}
 
   {% if settled %}
+  <h3>Already resolved</h3>
   <table class="table">
     <thead>
       <tr>
@@ -344,6 +434,8 @@
   {% endif %}
 </section>
 
+<hr>
+
 {# ------------------------------------------------------------- findings -- #}
 <section class="stack" id="findings" aria-labelledby="findings-h">
   <h2 id="findings-h">Findings</h2>
@@ -355,8 +447,19 @@
     may reject a finding whose citation is perfect.
   </p>
 
+  {#
+    The paragraph above says there are two groups. Nothing on the page said
+    which was which: eight cards ran together and only their colour told the
+    reader where the boundary was, which is the one signal a monochrome print or
+    a colour-blind reader does not get. Each group now names itself.
+
+    .plain-list carries a list of cards, so the marker goes. These were bare
+    <ul class="stack"> and every finding, verified or withheld, arrived with a
+    bullet beside it.
+  #}
   {% if verified_findings %}
-  <ul class="stack stack--tight">
+  <h3 id="findings-verified">Backed by a claim whose citation held</h3>
+  <ul class="plain-list stack stack--tight">
     {%- for finding in verified_findings %}
     <li class="claim claim--verified">
       <div class="claim__head">
@@ -378,7 +481,8 @@
   {% endif %}
 
   {% if unsubstantiated %}
-  <ul class="stack stack--tight">
+  <h3 id="findings-unsubstantiated">Backed by nothing that verifies</h3>
+  <ul class="plain-list stack stack--tight">
     {%- for finding in unsubstantiated %}
     <li class="claim claim--withheld">
       <div class="claim__head">
@@ -404,10 +508,19 @@
   {% if not verified_findings and not unsubstantiated %}
   <div class="empty empty--none">
     <p class="empty__title">No finding has been raised.</p>
-    <div class="empty__body"><p>Nothing has been asserted, so nothing was withheld.</p></div>
+    <div class="empty__body stack--tight">
+      <p>Nothing has been asserted, so nothing was withheld.</p>
+      <p>
+        A finding is one person's reading of one passage, written down with the
+        claim it rests on. Raise the first from a change, and it arrives here
+        with its citation already re-checked.
+      </p>
+    </div>
   </div>
   {% endif %}
 </section>
+
+<hr>
 
 {# ------------------------------------------------------------ questions -- #}
 <section class="stack" id="questions" aria-labelledby="questions-h">
@@ -420,7 +533,7 @@
   </p>
 
   {% if questions_open %}
-  <ul class="stack stack--tight">
+  <ul class="plain-list stack stack--tight">
     {%- for question in questions_open %}
     <li class="question{% if question.blocking %} question--blocking{% endif %}">
       {%- if question.blocking %}<span class="question__flag">Blocking</span>{% endif %}
@@ -435,16 +548,22 @@
   </ul>
   {% else %}
   <div class="empty empty--none">
-    <p class="empty__title">Nothing is open.</p>
-    <div class="empty__body"><p>Every question raised on this scope has an answer against it.</p></div>
+    <p class="empty__title">No question is open.</p>
+    <div class="empty__body stack--tight">
+      <p>
+        Every question raised on this scope has an answer against it, so nothing
+        here is holding a deliverable back.
+      </p>
+    </div>
   </div>
   {% endif %}
 
   {% if questions_answered %}
+  <h3>Answered</h3>
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Answered</th>
+        <th scope="col">Question</th>
         <th scope="col">Answer</th>
         <th scope="col">By</th>
       </tr>
@@ -461,6 +580,8 @@
   </table>
   {% endif %}
 </section>
+
+<hr>
 
 {# ------------------------------------------------------- collective take -- #}
 <section class="stack" id="take" aria-labelledby="take-h">
@@ -498,15 +619,23 @@
   {% else %}
   <div class="empty empty--none">
     <p class="empty__title">Nothing has been composed.</p>
-    <div class="empty__body">
+    <div class="empty__body stack--tight">
       <p>
         No take exists for this scope. That is not the same as a take with
         nothing in it, so none is shown.
+      </p>
+      <p>
+        A take is written against the findings above, and it carries the two
+        counts they were composed from. Settle what is waiting on a person
+        first: a take composed over an open refusal is a take that has to be
+        rewritten.
       </p>
     </div>
   </div>
   {% endif %}
 </section>
+
+<hr>
 
 {# --------------------------------------------------------- deliverables -- #}
 <section class="stack" id="deliverables" aria-labelledby="deliverables-h">
@@ -547,10 +676,20 @@
   {% else %}
   <div class="empty empty--none">
     <p class="empty__title">Nothing has been drafted.</p>
-    <div class="empty__body"><p>No memo, filing, briefing or register exists for this scope.</p></div>
+    <div class="empty__body stack--tight">
+      <p>No memo, filing, briefing or register exists for this scope.</p>
+      <p>
+        Whatever is drafted here leaves the building, so it arrives carrying the
+        same two counts as a take. Write it from the findings above and the
+        omissions travel with it, named, instead of being discovered by whoever
+        reads it next.
+      </p>
+    </div>
   </div>
   {% endif %}
 </section>
+
+<hr>
 
 {# ---------------------------------------------------------------- steer -- #}
 <section class="stack" id="steer" aria-labelledby="steer-h">
@@ -581,11 +720,25 @@
   {% else %}
   <div class="empty empty--none">
     <p class="empty__title">Nothing is steering this research.</p>
-    <div class="empty__body"><p>The system is looking for whatever the corpus puts in front of it.</p></div>
+    <div class="empty__body stack--tight">
+      <p>
+        The system is looking for whatever the corpus puts in front of it, in
+        whatever order it arrives.
+      </p>
+      <p>
+        Point it at what this company actually cares about. A directive is a row
+        with your name and a time on it, not a setting, so a finding it produced
+        can be traced back to the instruction that asked for it.
+      </p>
+    </div>
+    <div class="empty__actions">
+      <a class="btn btn--primary" href="#steer-instruction">Issue the first directive</a>
+    </div>
   </div>
   {% endif %}
 
   {% if steers_revoked %}
+  <h3>Withdrawn</h3>
   <table class="table">
     <thead>
       <tr>
@@ -606,19 +759,34 @@
   </table>
   {% endif %}
 
-  <form class="card" method="post" action="{{ centre_url }}/steer">
+  {#
+    One name for one thing. The section is called Steer, the rows are
+    directives, and the button said "Issue steer" -- three words for two
+    concepts. Steer is what the section does; a directive is the row it writes.
+    Every control in the form now says directive, and the field that records who
+    is answerable is called "Issued by", which is the phrase every row above it
+    already prints.
+  #}
+  <form class="card stack--tight" method="post" action="{{ centre_url }}/steer"
+        aria-labelledby="steer-form-h">
+    <h3 id="steer-form-h">Issue a directive</h3>
     <input type="hidden" name="back" value="{{ back }}">
     <p>
-      <label class="label" for="steer-instruction">New directive</label><br>
-      <input id="steer-instruction" name="instruction" type="text" size="60" autocomplete="off">
+      <label class="label" for="steer-instruction">The directive</label><br>
+      <input id="steer-instruction" name="instruction" type="text" size="60"
+             autocomplete="off" aria-describedby="steer-instruction-hint">
+      <span class="field-hint" id="steer-instruction-hint">
+        What the research should look for, in one sentence a colleague could act
+        on.
+      </span>
     </p>
     <p>
-      <label class="label" for="steer-by">Your name</label><br>
+      <label class="label" for="steer-by">Issued by</label><br>
       <input id="steer-by" name="issued_by" type="text" size="24" autocomplete="off">
     </p>
     {% block steer_project_field %}
     <p>
-      <label class="label" for="steer-project">Project</label><br>
+      <label class="label" for="steer-project">Project it applies to</label><br>
       <select id="steer-project" name="project_id">
         {%- for project in projects %}
         <option value="{{ project.project_id }}">{{ project.name }}</option>
@@ -626,7 +794,7 @@
       </select>
     </p>
     {% endblock %}
-    <button class="btn btn--primary" type="submit">Issue steer</button>
+    <button class="btn btn--primary" type="submit">Issue the directive</button>
   </form>
 </section>
 

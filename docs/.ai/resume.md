@@ -1,97 +1,75 @@
-# Resume here — written 2026-08-04, ~00:15 Pacific, at the quota wall
+# Resume — written 2026-08-04, ~14:00 Pacific, at 97% context
 
-Read `docs/.ai/state.json` first. It is generated, so it is the only file here that
-cannot be stale. Everything below is prose and may already be wrong.
+Read `docs/.ai/state.json` first: it is generated, so it is the only file here
+that cannot be stale. Everything below is prose and may already be wrong.
 
-**Safe point:** commit `160bb5c`, 17 commits, pushed to `github.com/jsahasi/strata`
-(private). 284 tests pass. Working tree was coherent when this was written.
+## Live right now
 
----
+- **strata.sudama.ai serves the real product**, not a holding page. Marketing site
+  at `/`, application behind it on the same host, nginx proxying a NAMED LIST of
+  paths (not a catch-all — see the reasoning in `deploy/nginx.conf`).
+- Sign in: `denise.okoro@mep.example` (analyst), `priya.nandakumar@mep.example`
+  (obligation owner), `sarah.lindqvist@mep.example` (admin). Password
+  `strata-demo-2026`, printed on the site on purpose.
+- Host: citelocal-1, 143.198.140.28, key `~/.ssh/citelocal_deploy`.
+  `/data/strata/` holds `compose.yml`, `nginx.conf`, `site/`, `src/`, `db/`, `app.env`.
+- Deploy: `rsync` to `/data/strata/src/`, then `docker compose build strata-app &&
+  docker compose up -d`. Site only: `rsync deploy/site/ …:/data/strata/site/`.
+- **The entrypoint migrates on EVERY start** (`scripts/migrate.py`). It seeds only
+  when no database file exists, so a redeploy keeps the audit chain.
 
-## Do these first, in this order
+## Suite
 
-1. `make test` — confirm still green before touching anything.
-2. `rm -f strata.db` — the repo-root database holds stray rows from manual runs and
-   reports 4 versions where a fresh clone reports 3. Reseed after deleting.
-3. `grep -rn "index=True" app/state/models.py` and check no column with `index=True`
-   also has an explicit same-named `Index(...)`. That collision took the entire suite
-   down for several minutes during the workspace build and is easy to reintroduce
-   across the ~14 new models.
+1381 passing, 2 xfailed, 1 xpassed. Coverage **92%** (10,359 statements, 804 missed).
+Lowest: `review_centre.py` 74%, `migrate.py` 0% (new, untested), `notify/transport.py` 83%.
 
-## Four workflows died mid-run. Resumable from cache — but only in the same session.
+## Running when this was written
 
-> **`resumeFromRunId` is same-session only.** Returning to the existing Claude Code
-> session replays every completed agent instantly and re-runs only the failed ones.
-> Starting a fresh session loses all of it, and roughly 3.3M subagent tokens of
-> completed work would have to be redone from scratch. Resume the session; do not
-> start a new one.
-
-Completed agents replay instantly; only the failed ones re-run.
-
-| Run ID | What is missing |
+| Workflow | What |
 |---|---|
-| `wf_706342ba-87e` | **Nothing landed.** Correctness fixes (findings 5–8), the eval harness, submission.html. Highest value of the four. |
-| `wf_c5700011-f0b` | Identity: policy, sessions/login, all 7 attack lenses, the coverage critic, docs. |
-| `wf_90691fbd-f45` | Workspace: project views, review centre views, wiring, adversarial audit, docs reconciliation. |
-| `wf_21aab519-034` | Reciprocity line for batch 1 (10 drafts) only. The other 28 have it. |
+| `wf_2d62c09a-b13` | Granular permissions: any permission to any person, custom roles, conflict report |
+| `wf_1f066e45-b92` | Blog repair — all five articles were refuted on numbers, quotes were all clean |
 
-Resume with `Workflow({scriptPath: ..., resumeFromRunId: ...})`. Script paths are in
-the scratchpad: `close-findings.js`, `build-identity.js`, `build-workspace.js`,
-`add-reciprocity.js`.
+## Asked for and NOT yet done
 
-**Do not run all four at once.** They overlap on `app/state/models.py`, `app/seed.py`
-and `app/web/`. Run `close-findings.js` first — it is the only one that touches
-neither, owning `app/text/`, `app/verification/`, `app/evals/` and `docs/submission.html`.
+1. **Realistic roles.** Three fixed roles are too few. Real titles in `data/real/`:
+   Analyst II, Manager, Director, Deputy Director, VP Pricing & Planning,
+   Regulatory Counsel, Legal Assistant. The demo route in `scripts/seed_route.py`
+   puts "Legal review" AND "Officer signs" both on `role:admin` because no such
+   roles exist — so the person who draws the route approves through it. Fix after
+   the permissions workflow lands.
+2. **99% coverage on all modules.** User overrode ADR-38, which rejects a
+   line-coverage target. User then asked "can't we do both?" — yes: keep branch
+   and mutation testing AND reach 99%, with every new test required to fail when
+   the behaviour breaks. ADR-38 needs amending, not deleting.
+3. **Logo mismatch.** The application masthead wordmark differs from the marketing
+   site's. User wants the SITE one used in the app.
+4. **Re-record the demo video.** Current one predates the glass restyle, the
+   markdown fix, source links, the tour and Integrations.
+5. **Blog is not publishable** until `wf_1f066e45-b92` lands and re-checks clean.
+6. Tour and Integrations built; verify they are wired and visible.
 
-## Open seams the agents reported about their own work
+## Things that were true and surprising
 
-- **Identity writes carry no attribution.** `create_user`, `grant_role`, `revoke_role`
-  and `set_user_status` pass only the `actor` display string to `record_event`. They
-  need `actor_user_id` / `actor_kind` / `session_id` once a login path exists to supply
-  them. Until then, segregation of duties is unprovable in the log.
-- **`app/web/views/review.py` records approvals as `actor_kind="system"`.** Same cause.
-- **`ensure_system_roles` is never called** from `app/seed.py`, so no roles exist on the
-  app path. `make run` is unaffected; the tables are created.
-- **`LoginSession` is a table nothing writes.** `failed_attempts` and `locked_until` are
-  storage with no writer, so nothing throttles guessing yet.
-- **No ADR-015 exists.** Two agents deliberately avoided writing one to avoid racing on
-  the number. At least five decisions need recording: scrypt/RBAC, the versioned digest,
-  segregation from the audit chain, the demo self-approval downgrade, and the
-  coverage-on-every-synthesis rule.
-- **`docs/security.html` has a pre-existing unbalanced `<div>` near the end.**
-- **Known limit, disclosed not hidden:** an admin holds `user.manage`, so an admin can
-  grant themselves `obligation_owner` and approve their own work. The chain records the
-  grant, making it visible afterwards; nothing prevents it. Preventing it needs a second
-  approver on privilege changes.
+- **`db.py` reads `STRATA_DATABASE_URL`**, not `STRATA_DB_PATH`. Setting the latter
+  silently writes `./strata.db` in the working directory.
+- **`init_db()` drops every table** unless `drop_first=False`. 480 test call sites
+  depend on the drop; production must pass False.
+- The four bounced outreach addresses were all **filing-verified** — a service list
+  records who was reachable when filed, not now.
+- Zero replies to ~40 emails. Julia Lundin (AES) and Federico Heine (AES) both
+  emailed, both unanswered. Those are the only paths to a real ICP interview.
+- 102 real filings in `data/real/`, all hashes verified, 62 in version families.
+  Kentucky Kollen pair: 1,024,409 vs 1,024,536 chars, 144 changes in 0.78s.
+- Three of those families contain the **filer's own redline** — real ground truth
+  for an accuracy claim, which retires the "eval set is self-labelled" concession.
 
-## Then, in priority order
+## The failure that keeps recurring
 
-1. **3–5 SAMPLE projects with activity** across every page, tagged SAMPLE. Note the seed
-   agent already built four projects derived from `data/company_context.json` rather than
-   inventing names — extend that, do not replace it.
-2. **Create-project gated on permission** (the view exists; the gate does not).
-3. **Superuser permissions panel** — modify permissions for all users in the workspace.
-4. **Responsive app templates.** The corporate site is responsive; the app is not.
-5. **Basic auth at the edge** before the app replaces the holding page at
-   `strata.sudama.ai`.
-
-## Deployment state
-
-- `strata.sudama.ai` → `143.198.140.28` (citelocal-1, **not** the PII/PHI host).
-- Live: corporate site, `/login` holding page, custom 404. TLS valid to 2 November.
-- Container `strata-site`, nginx, `/data/strata/` on the box. SSH key
-  `~/.ssh/citelocal_deploy`.
-- ADR-010 needs amending: the remedy is "a host that is not the PII/PHI box", not "its
-  own droplet". No DigitalOcean token exists anywhere, so a genuinely separate droplet
-  still needs one.
-
-## Outreach
-
-7 sent. 38 drafted, corrected, carrying `strata.sudama.ai` in the signature. 28 carry the
-share-what-I-learn offer; 10 still need it (batch 1).
-
-**Send wave 1 only** — one per organisation, 20 recipients. Wave 2 has near-identical
-middle paragraphs between colleagues at the same employer; the audit findings are in the
-task output for `wtnngjexm`.
-
-Nourse and Schuler are both AEP. Send one.
+Built and not connected. Today: two routers unmounted while the nav linked to
+them; Clarke built and never included in `base.html`; its engine shipped under a
+different name than the view looked for; `.env` never loaded so every model path
+announced itself as off while holding a valid key; the approval route seeded by an
+agent that died, so the screen correctly said there was none. **No test caught any
+of them** — tests verify capability, not whether anything is wired or seeded.
+`tests/test_app_wiring.py` and the demo-readiness idea are the guards for this.

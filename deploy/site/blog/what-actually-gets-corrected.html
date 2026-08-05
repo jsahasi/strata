@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Twenty-one corrections. One fixed a spelling mistake — Strata</title>
+<meta name="description" content="A count of what filers actually correct, taken from public filings across seven state commissions. Twenty-one corrections; one of them fixed a spelling mistake. The rest read perfectly well in place.">
+<meta name="robots" content="noindex">
+<style>
+/* This page carries its own inline sheet, as every page on this site does, and
+   then links /site.css so the glass layer lands on the chrome. The figure
+   vocabulary below is copied from docs/diagrams.css rather than linked: that
+   file sits under docs/ in the repository and is not served from this site's
+   root, and nothing here may be fetched from another host. The class names and
+   their meanings are unchanged, so a reader who has seen the architecture
+   diagrams does not learn a second language here. */
+:root{
+  --paper:#f7f8fa; --ink:#10141c; --muted:#5a6373; --rule:#dfe3ea;
+  --stamp:#1b3a8f; --withheld:#a8620e; --panel:#ffffff;
+  --measure:33rem;
+  --serif:ui-serif,"Iowan Old Style",Charter,Palatino,"Book Antiqua",Georgia,serif;
+  --sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#0d1017; --ink:#e6e8ec; --muted:#98a1b2; --rule:#242a35;
+         --stamp:#8fa9e8; --withheld:#d99a45; --panel:#131822; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.62 var(--serif)}
+a{color:var(--stamp)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--stamp);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;background:var(--panel);padding:.6rem .9rem;z-index:20;border:1px solid var(--rule)}
+
+.wrap{max-width:52rem;margin:0 auto;padding:0 1.25rem}
+.lined{position:relative;padding-left:3.25rem}
+.lined::before{content:attr(data-line);position:absolute;left:0;top:.34em;width:2.1rem;text-align:right;
+  font:500 12px/1 var(--mono);color:var(--muted);opacity:.62;font-variant-numeric:tabular-nums}
+.lined::after{content:"";position:absolute;left:2.6rem;top:0;bottom:0;width:1px;background:var(--rule)}
+@media (max-width:640px){
+  .lined{padding-left:0}
+  .lined::before,.lined::after{display:none}
+  .bar{flex-wrap:nowrap}
+  .navlink{display:none}
+}
+
+header{border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:10}
+.bar{max-width:52rem;margin:0 auto;padding:.85rem 1.25rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.brand{font:600 15px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none;margin-right:auto}
+.brand span{color:var(--stamp)}
+.navlink{font:500 14px/1 var(--sans);color:var(--muted);text-decoration:none}
+.navlink:hover{color:var(--ink)}
+.signin{font:600 14px/1 var(--sans);text-decoration:none;color:var(--panel);background:var(--stamp);
+  padding:.62rem 1.05rem;border-radius:3px;white-space:nowrap}
+.signin:hover{filter:brightness(1.12)}
+@media (prefers-color-scheme:dark){.signin{color:#0d1017}}
+
+h1{font:400 clamp(1.7rem,4.4vw,2.5rem)/1.15 var(--serif);letter-spacing:-.018em;margin:0 0 1rem;text-wrap:balance}
+h2{font:600 12px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--stamp);margin:0 0 1.15rem}
+h3{font:600 14px/1.4 var(--sans);margin:1.6rem 0 .4rem}
+p{margin:0 0 1.05rem}
+.lede{font-size:1.08rem}
+.muted{color:var(--muted)}
+.dateline{font:500 12px/1.5 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 1.3rem}
+section{padding:2.5rem 0;border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0;padding-top:2.8rem}
+.narrow{max-width:var(--measure)}
+code{font:500 .87em/1.4 var(--mono);overflow-wrap:anywhere}
+b,strong{font-weight:650}
+
+/* ---- the record: an exact passage, its file and its source ------------
+   Same construction as the withheld claim on the home page. .rec and
+   .srctext are named in site.css's paper list, so they stay opaque,
+   square and still while the chrome around them blurs. Nothing inside a
+   .srctext block has been retyped: each one is a verbatim substring of
+   the file it names, checked by a script that reads both. */
+.rec{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--stamp);
+     padding:.95rem 1rem;margin:0 0 1.15rem;border-radius:2px}
+.srctext{margin:0;padding:.55rem .7rem;border:1px dashed var(--rule);border-radius:2px;
+  font:400 12.5px/1.55 var(--mono);color:var(--ink);overflow-x:auto;white-space:pre;
+  -webkit-overflow-scrolling:touch}
+.prov{margin:.6rem 0 0;font:400 12.5px/1.5 var(--sans);color:var(--muted);overflow-wrap:anywhere}
+.prov a{color:var(--muted)}
+.prov b{color:var(--ink);font-weight:600}
+mark{background:color-mix(in srgb,var(--stamp) 20%,transparent);color:inherit;padding:0 .1em}
+
+.refuse{border-left:2px solid var(--rule);padding-left:1.05rem;margin-bottom:1.25rem;max-width:var(--measure)}
+.refuse h3{margin:0 0 .3rem}
+.refuse p{font:400 15px/1.58 var(--sans);color:var(--muted);margin:0}
+.refuse p+p{margin-top:.5rem}
+
+.cta{background:var(--panel);border:1px solid var(--rule);border-radius:3px;padding:1.5rem 1.4rem}
+.cta h3{font:400 1.3rem/1.25 var(--serif);margin:0 0 .5rem}
+.cta p{font:400 15px/1.55 var(--sans);color:var(--muted);margin:0 0 .9rem;max-width:31rem}
+.cta p:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--rule);padding:2.2rem 0 3.5rem;font:400 14px/1.6 var(--sans);color:var(--muted)}
+footer a{color:var(--muted)}
+.foot{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:baseline}
+.foot .sep{margin-left:auto}
+
+/* ================= figures — vocabulary from docs/diagrams.css ==========
+   .box is a counted quantity, drawn as the deterministic stage is drawn.
+   The amber of .flow--refuse and .t-refuse means one thing everywhere in
+   this product: not asserted, sent to a person. That is exactly what the
+   second segment of each bar records, so the colour is reused rather than
+   reinvented. One class is added, rect.mark--flag: the same amber, filled. */
+.fig{margin:1.6rem 0;padding:0;border:1px solid var(--fig-rule,#e2e8f0);border-radius:8px;
+     background:var(--fig-paper,#ffffff);overflow:hidden}
+.fig__frame{overflow-x:auto;padding:1.1rem 1.2rem .6rem}
+.fig svg{display:block;width:100%;height:auto;min-width:30rem;
+  font:12px/1.35 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.fig figcaption{border-top:1px solid var(--fig-rule,#e2e8f0);background:var(--fig-panel,#f8fafc);
+  color:var(--fig-muted,#475569);padding:.6rem 1.2rem;font-size:.85rem;line-height:1.5}
+.fig figcaption strong{color:var(--fig-ink,#0f172a)}
+.fig .box rect,.fig rect.box{fill:var(--fig-panel,#f8fafc);stroke:var(--fig-rule-strong,#94a3b8);stroke-width:1.25;rx:3}
+.fig rect.mark--flag{fill:var(--fig-refuse,#b45309);stroke:var(--fig-refuse,#b45309);stroke-width:1;rx:3}
+.fig circle.dot{fill:var(--fig-panel,#f8fafc);stroke:var(--fig-rule-strong,#64748b);stroke-width:1.4}
+.fig circle.dot--late{fill:var(--fig-refuse,#b45309);stroke:var(--fig-refuse,#b45309)}
+.fig text{fill:var(--fig-ink,#0f172a)}
+.fig .t-title{font-weight:650}
+.fig .t-sub{fill:var(--fig-muted,#64748b);font-size:10.5px}
+.fig .t-num{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;
+  font-variant-numeric:tabular-nums}
+.fig .t-edge{fill:var(--fig-muted,#64748b);font-size:10.5px}
+.fig .t-refuse{fill:var(--fig-refuse,#b45309);font-size:10.5px;font-weight:600}
+.fig .rule{stroke:var(--fig-rule,#e2e8f0);stroke-width:1}
+.fig .axis{stroke:var(--fig-rule-strong,#94a3b8);stroke-width:1}
+.fig .flow--weak{fill:none;stroke:var(--fig-muted,#94a3b8);stroke-width:1.3;stroke-dasharray:5 4}
+.fig__key{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;padding:.55rem 1.2rem;
+  border-top:1px solid var(--fig-rule,#e2e8f0);font-size:.78rem;color:var(--fig-muted,#475569)}
+.fig__key span{display:inline-flex;align-items:center;gap:.35rem}
+.fig__key i{width:.85rem;height:.85rem;border-radius:3px;flex:none;
+  border:1.25px solid var(--fig-rule-strong,#94a3b8);background:var(--fig-panel,#f8fafc)}
+.fig__key i.k-flag{border-color:var(--fig-refuse,#b45309);background:var(--fig-refuse,#b45309)}
+@media (prefers-color-scheme:dark){
+  .fig{--fig-paper:#0f172a;--fig-panel:#1e293b;--fig-ink:#e2e8f0;--fig-muted:#94a3b8;
+       --fig-rule:#334155;--fig-rule-strong:#64748b;--fig-refuse:#fbbf24}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{.fig{break-inside:avoid}}
+</style>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="/">Strat<span>a</span></a>
+    <a class="navlink" href="/#how">How it works</a>
+    <a class="navlink" href="/#refuses">What it refuses</a>
+    <a class="navlink" href="/#who">Who it is for</a>
+    <a class="signin" href="/login">Sign in</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section>
+  <div class="wrap"><div class="lined" data-line="1">
+    <div class="narrow">
+      <p class="dateline">4 August 2026 &middot; Jayesh Sahasi</p>
+      <h1>Twenty-one corrections in this corpus. One of them fixed a spelling mistake.</h1>
+      <p class="lede">What filers actually correct, counted from the filings, across seven state
+      commissions.</p>
+    </div>
+
+    <p>On 9 September 2025 the Kentucky Attorney General and KIUC filed Lane Kollen's direct
+    testimony in case 2025-00113. Page 95 of that testimony, PDF page 98:</p>
+
+    <div class="rec">
+      <pre class="srctext"> 7            their request for CPCN for <mark>Brown BESS</mark>. The Companies agree to take necessary</pre>
+      <p class="prov"><b>ky-2025-00113-kollen-direct-testimony-original.txt</b>, line 4,608 &middot;
+      <a href="https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09092025021845/25.09.09_KOLLEN_Direct_and_Exhibits.pdf">source
+      PDF at psc.ky.gov</a></p>
+    </div>
+
+    <p>Two hundred and twenty-three PDF pages later, the same file reproduces the settlement that
+    sentence describes:</p>
+
+    <div class="rec">
+      <pre class="srctext">         1.2.   Withdrawal of <mark>Cane Run</mark> Battery Energy Storage System ("BESS") CPCN
+
+Request. The Utilities will withdraw their request for the <mark>Cane Run BESS</mark> without prejudice in</pre>
+      <p class="prov">Same file, lines 13,566 and 13,568, PDF page 321. The two passages sit 670,104
+      characters apart in one 378-page filing.</p>
+    </div>
+
+    <p>Brown and Cane Run are different generating stations. Three weeks later:</p>
+
+    <div class="rec">
+      <pre class="srctext">Written Direct Testimony of their Witness Mr. Lane Kollen. The corrections are found on
+page 95 of Mr. Kollen’s testimony, and changes original references to “Brown BESS” to now
+read “Cane Run BESS.”</pre>
+      <p class="prov"><b>ky-2025-00113-kollen-correction-cover-letter.txt</b>, lines 25&ndash;27 &middot;
+      <a href="https://psc.ky.gov/pscecf/2025-00113/rateintervention%40ky.gov/09302025014043/25.09.30_Read_1st_LGE-KU_Rate.pdf">source
+      PDF at psc.ky.gov</a></p>
+    </div>
+
+    <p>Nobody needed the corrected version to find that. Page 95 says Brown BESS; section 1.2 of the
+    settlement bound into the same PDF says Cane Run BESS; they describe one withdrawal. The document
+    contradicted itself on the day it was filed. That is the pattern, and it is worth counting.</p>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="2">
+    <h2>What I counted, and how</h2>
+    <div class="narrow">
+      <p>The corpus behind this site holds 102 public filings from eight jurisdictions, each with a
+      provenance record naming its source URL, docket, filer, filing date and hash. Twenty of those
+      filings correct an earlier one. One of the twenty, a Georgia Power refiling, corrects two
+      quarterly reports at once, so there are <b>twenty-one corrections</b>, across nine dockets and
+      seven state commissions.</p>
+
+      <p>That is the whole population, and the rule that makes it is one you can run: a filing that
+      corrects an earlier filing whose date is on the record. For seventeen of the twenty-one the
+      earlier version is in the corpus too. For the other four the date comes from the correction's own
+      covering letter. Three corrected filings in the corpus are out because neither holds &mdash; the
+      Indiana consumer counsellor's corrected exhibits for Alvarez, Gruca and Wright carry no notice
+      saying what moved and no date for what they replace. Two more are out because they are not
+      corrections: Duke refiling two reports into a new docket, and Ameren's amended stipulation, which
+      is a renegotiated agreement.</p>
+
+      <p>To read each pair I split the file on newline, collapsed runs of whitespace on every line and
+      stripped it, ran <code>difflib.SequenceMatcher</code> over the two line lists, and took every
+      opcode that is not <code>equal</code> as one region. Then I read the regions. Where the filer's
+      own notice says what changed, that governs and I quote it below.</p>
+
+      <div class="rec">
+        <pre class="srctext">import difflib, re
+
+def lines(path):
+    text = open(path, encoding="utf-8").read()
+    return [re.sub(r"\s+", " ", l).strip() for l in text.split("\n")]
+
+a = lines("data/real/mo-ET-2025-0184-michels-direct-testimony-original-public.txt")
+b = lines("data/real/mo-ET-2025-0184-michels-substitute-direct-testimony-public.txt")
+ops = difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes()
+print(len(a), sum(1 for op in ops if op[0] != "equal"))</pre>
+        <p class="prov">Prints <b>2177 3</b>. Every line number on this page is a one-based index into
+        <code>text.split("\n")</code>. Do not use <code>splitlines()</code>: these files keep the PDF's
+        form feeds, so <code>splitlines()</code> counts each page break as a line and shifts every
+        number. In the Kollen file that is a drift of 377.</p>
+      </div>
+
+      <p>Sorting twenty-one corrections into kinds is a reading job, not a script, so the chart below
+      is my judgement. Every filing behind every bar is named in this piece or in
+      <code>data/real/</code>, so you can disagree with a specific row.</p>
+    </div>
+
+    <figure class="fig">
+    <div class="fig__frame">
+    <svg viewBox="0 0 900 406" role="img" aria-labelledby="dT dD">
+      <title id="dT">Twenty-one corrections by what the filer was fixing</title>
+      <desc id="dD">Horizontal bars, one per kind, longest first. A number or a figure that was wrong,
+      six, none of which a check on the filing alone would have flagged. Something left out, four, none
+      flagged. The redaction step broke it, four, of which two flagged. A pointer that moved, two, of
+      which one flagged. The basis a figure was counted on, one, flagged. The wrong thing named, one,
+      flagged. The wrong direction meant, one, flagged. The filer never says what, one, not flagged. A
+      passage rewritten, one, not flagged. Six of the twenty-one flagged in total.</desc>
+
+      <text class="t-sub" x="300" y="20">corrections</text>
+      <line class="rule" x1="300" y1="26" x2="754" y2="26"/>
+
+      <!-- 6 units across 420px: 70px per unit, bars start at x=300 -->
+      <g class="box"><rect x="300" y="34" width="420" height="20"/></g>
+      <text class="t-title" x="292" y="49" text-anchor="end">a number or a figure that was wrong</text>
+      <text class="t-num" x="730" y="49">6</text>
+
+      <g class="box"><rect x="300" y="72" width="280" height="20"/></g>
+      <text class="t-title" x="292" y="87" text-anchor="end">something left out</text>
+      <text class="t-num" x="590" y="87">4</text>
+
+      <g class="box"><rect x="300" y="110" width="280" height="20"/></g>
+      <rect class="mark--flag" x="300" y="110" width="140" height="20"/>
+      <text class="t-title" x="292" y="125" text-anchor="end">the redaction step broke it</text>
+      <text class="t-num" x="590" y="125">4</text>
+
+      <g class="box"><rect x="300" y="148" width="140" height="20"/></g>
+      <rect class="mark--flag" x="300" y="148" width="70" height="20"/>
+      <text class="t-title" x="292" y="163" text-anchor="end">a pointer that moved</text>
+      <text class="t-num" x="450" y="163">2</text>
+
+      <g class="box"><rect x="300" y="186" width="70" height="20"/></g>
+      <rect class="mark--flag" x="300" y="186" width="70" height="20"/>
+      <text class="t-title" x="292" y="201" text-anchor="end">the basis a figure was counted on</text>
+      <text class="t-num" x="380" y="201">1</text>
+
+      <g class="box"><rect x="300" y="224" width="70" height="20"/></g>
+      <rect class="mark--flag" x="300" y="224" width="70" height="20"/>
+      <text class="t-title" x="292" y="239" text-anchor="end">the wrong thing named</text>
+      <text class="t-num" x="380" y="239">1</text>
+
+      <g class="box"><rect x="300" y="262" width="70" height="20"/></g>
+      <rect class="mark--flag" x="300" y="262" width="70" height="20"/>
+      <text class="t-title" x="292" y="277" text-anchor="end">the wrong direction meant</text>
+      <text class="t-num" x="380" y="277">1</text>
+
+      <g class="box"><rect x="300" y="300" width="70" height="20"/></g>
+      <text class="t-title" x="292" y="315" text-anchor="end">the filer never says what</text>
+      <text class="t-num" x="380" y="315">1</text>
+
+      <g class="box"><rect x="300" y="338" width="70" height="20"/></g>
+      <text class="t-title" x="292" y="353" text-anchor="end">a passage rewritten</text>
+      <text class="t-num" x="380" y="353">1</text>
+
+      <line class="rule" x1="300" y1="370" x2="754" y2="370"/>
+      <text class="t-sub" x="300" y="388">21 corrections · 6 of them flagged by a check that opens nothing but the filing itself</text>
+    </svg>
+    </div>
+    <div class="fig__key">
+      <span><i></i>corrections in the category</span>
+      <span><i class="k-flag"></i>a check on the filing alone would have flagged it</span>
+    </div>
+    <figcaption><strong>No bar for spelling.</strong> Not one of the twenty-one was filed to fix a
+    typo. The only spelling and grammar changes in the corpus ride along inside an errata filed to
+    renumber exhibits, and there are three of them. Amber means what it means everywhere else in this
+    product: not asserted, sent to a person. The four checks it stands for are listed below, and each
+    one reads a single document.</figcaption>
+    </figure>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="3">
+    <h2>What the categories hold</h2>
+
+    <h3>A pointer that moved &mdash; 2</h3>
+    <p class="narrow">Ameren Missouri's witness Michels filed direct testimony on 14 May 2025 and a
+    substitute five days later. The whole difference is three page footers citing the rule that keeps
+    each page confidential: the original cites one authority three ways,
+    <code>20 CSR 4240-2.135(2)(A)4,8</code> once and <code>20 CSR 4240-2.135(2)(A)</code> twice, and
+    the substitute makes all three <code>(2)(A)4</code>. Nothing else in 2,177 lines moved. In Mark
+    Ellis's Utah errata two exhibit renumberings cross over &mdash; 2.2D becomes 6.1D, 2.1D becomes
+    6.2D &mdash; so the obvious rule, swap the 2 for a 6, gets both wrong.</p>
+
+    <h3>A number or a figure that was wrong &mdash; 6</h3>
+    <p class="narrow">NIPSCO filed its 2021 performance metrics report on 1 July 2022 and a revision
+    46 days later:</p>
+    <div class="rec">
+      <pre class="srctext">After filing the 2021 Performance Metrics Report, NIPSCO discovered that 
+the “DART” reported for 2020 and 2021 in Figure 2 on page 5 were 
+incorrect.  Previously reported as 1.4 and 2.06, respectively, the numbers should 
+have been 1.59 and 1.69, respectively.</pre>
+      <p class="prov"><b>in-44688-nipsco-compliance-filing-pmc-update-v2-revision.txt</b> &middot;
+      <a href="https://iurc.portal.in.gov/_entity/sharepointdocumentlocation/00b0e4cd-8e1d-ed11-b83c-001dd803c12d/bb9c6bba-fd52-45ad-8e64-a444aef13c39?file=44688_NIPSCO_Revisions+to+Compliance+Filing+-+PMC+Update_08162022.pdf">source
+      PDF at iurc.portal.in.gov</a></p>
+    </div>
+    <p class="narrow">As reported, the injury rate rose 47&nbsp;per&nbsp;cent in a year. As corrected,
+    6. The sentence that explains the rise is not touched. It reads the same in both filings:
+    <em>&ldquo;NIPSCO&rsquo;s DART rate was impacted by the number of COVID-19 related cases requiring
+    employees to be off work while recovering.&rdquo;</em> The revision moved the figure and the data
+    appendix under it and left the prose to argue a 47&nbsp;per&nbsp;cent jump that the new numbers do
+    not show.</p>
+
+    <p class="narrow">The plainest of the six is Virginia. Dominion's application went in on 31 March
+    2025; 35 days later an errata said a digit had dropped out of Figure 1 on page 5 of Stan
+    Blackwell's testimony, and billed sales to data centres for 2024 should read
+    <code>24,248,543</code>, not <code>4,248,543</code>. The errata's own page prints a Gross Change of
+    660 per cent against a 2013 figure of 3,191,987, which is what 24,248,543 gives. The dropped-digit
+    version gives 33. I cannot tell you whether the original printed 660 per cent beside 4,248,543,
+    because the original application is not in this corpus and I have not opened it.</p>
+
+    <h3>The redaction step broke it &mdash; 4</h3>
+    <p class="narrow">Four corrections exist only because somebody made a public version of a
+    confidential document. Georgia Power's change flags, twice, are below. Virginia Staff pulled back
+    three pages of Daniel Long's testimony that had been <em>&ldquo;erroneously designated as
+    confidential&rdquo;</em>; Dominion's first Miller errata flipped three more the same way, on two
+    other witnesses' pages. None of these is a mistake in the work. They are mistakes in the copy the
+    public gets.</p>
+
+    <h3>The basis a figure was counted on &mdash; 1</h3>
+    <p class="narrow">Billie LaConte's Utah testimony sets its own convention on page 2, then drops
+    it:</p>
+    <div class="rec">
+      <pre class="srctext">39          x RMP is seeking to recover $185.7 million <mark>(total Company)</mark> or $82 million
+40               <mark>(Utah-allocated)</mark> for ELI in the test year.1 RMP seeks recovery of its test-year
+
+  […]
+
+175           of $112.1 million in ELI expense for RMP’s 2023-2024 policy period.9  I understand
+
+  […]
+
+192           deferred ELI premium by $30.9 million.</pre>
+      <p class="prov"><b>ut-24-035-04-laconte-phase3-direct-testimony-original.txt</b>, testimony
+      lines 39&ndash;40, 175 and 192. The bullet on line 39 extracts as <code>x</code>; that is the
+      PDF, not a typo &middot;
+      <a href="https://pscdocs.utah.gov/electric/24docs/2403504/338126PhsIIIDirTstmnyBillieSLaConteUTLCG2-7-2025.pdf">source
+      PDF at pscdocs.utah.gov</a></p>
+    </div>
+    <p class="narrow">Eighteen days later the amendment adds <code>(total Company)</code> at line 175,
+    inserts a sentence giving the Utah share &mdash; 44.258 per cent, or $49.6 million &mdash; and turns
+    <code>$30.9 million</code> into <code>$5.8 million</code>. Her covering letter gives the reason: the
+    recommendation <em>&ldquo;needed to be updated to reflect only the Utah-allocated amount.&rdquo;</em>
+    Table 1 and the 0.86 per cent midpoint the sentence rests on are unchanged in both versions; only
+    the answer moves. The inserted sentence also pushes every numbered line from 184 down by one and
+    renumbers footnotes 10 to 15 as 11 to 16, so every line cite written before 25 February now points
+    one off.</p>
+
+    <h3>Something left out &mdash; 4</h3>
+    <p class="narrow">Missouri's global stipulation came back two days later as CORRECTED, carrying
+    the EXHIBIT A rate table it had shipped without. Duke's spring 2026 large-load report came back 85
+    days later: <em>&ldquo;We regret that due to a technical issue
+    several ESAs were inadvertently omitted from the April 15, 2026 filing&rdquo;</em> &mdash; the
+    attachments would not fit. And the Missouri Commission corrected its own order nine days after
+    issuing it, because its summary of the revenue-sharing term left out a step. Ameren had to file a
+    motion to get that one moved.</p>
+
+    <h3>The three wording changes</h3>
+    <p class="narrow">They are not a category, because no filer filed for them. All three ride inside
+    Mark Ellis's errata, which was filed to renumber his exhibits: <code>whitepaper</code> became
+    <code>white paper</code>; <code>infrequent-but-extreme</code> lost its hyphens;
+    <code>recover insurable losses are recoverable in rates</code> lost the duplicated verb. Three in
+    102 filings, and the hyphens are not in the errata notice at all.</p>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="4">
+    <h2>Which errors survive a review</h2>
+    <div class="narrow">
+      <p>Proofreading is the check every filer already runs, and it works. That is why nobody in this
+      corpus filed an errata to fix a typo. Typing mistakes rarely survive proofreading, and the three
+      that did travelled as passengers on an errata filed for something else.</p>
+
+      <p>The twenty-one survive because they read correctly. Brown is a real plant, $30.9 million a
+      real figure, OCS 2.1D a well-formed exhibit number, 20 CSR 4240-2.135(2)(A) a real rule,
+      4,248,543 a real-looking megawatt-hour count. Each is the wrong one of a set of right-looking
+      things, so a spell-check passes it, and so does a language model asked whether the sentence reads
+      right &mdash; because it does. Then they sit in the record.</p>
+    </div>
+
+    <figure class="fig">
+    <div class="fig__frame">
+    <svg viewBox="0 0 900 210" role="img" aria-labelledby="lT lD">
+      <title id="lT">Days from filing to correction, twenty-one corrections</title>
+      <desc id="lD">A dot for each of the twenty-one corrections, placed on an axis of days from the
+      original filing to the correction. The values are 2, 2, 5, 7, 9, 11, 14, 18, 21, 21, 21, 21, 27,
+      28, 35, 42, 46, 68, 82, 85 and 103 days. The median is 21. The four longest are Walmart's inverted
+      prefix at 68 days, Georgia Power's third IRP errata at 82, Duke's omitted service agreements at
+      85, and Georgia Power's third-quarter change flags at 103.</desc>
+
+      <line class="axis" x1="70" y1="150" x2="838" y2="150"/>
+      <line class="rule" x1="70"  y1="150" x2="70"  y2="156"/><text class="t-sub" x="70"  y="170" text-anchor="middle">0</text>
+      <line class="rule" x1="208" y1="150" x2="208" y2="156"/><text class="t-sub" x="208" y="170" text-anchor="middle">20</text>
+      <line class="rule" x1="346" y1="150" x2="346" y2="156"/><text class="t-sub" x="346" y="170" text-anchor="middle">40</text>
+      <line class="rule" x1="485" y1="150" x2="485" y2="156"/><text class="t-sub" x="485" y="170" text-anchor="middle">60</text>
+      <line class="rule" x1="623" y1="150" x2="623" y2="156"/><text class="t-sub" x="623" y="170" text-anchor="middle">80</text>
+      <line class="rule" x1="761" y1="150" x2="761" y2="156"/><text class="t-sub" x="761" y="170" text-anchor="middle">100</text>
+      <text class="t-sub" x="70" y="192">days the error stood in the public record before the correction was filed</text>
+
+      <path class="flow--weak" d="M215 44 V80"/>
+      <text class="t-edge" x="221" y="40">median 21 days</text>
+
+      <circle class="dot" cx="84"  cy="134" r="6"/>
+      <circle class="dot" cx="84"  cy="120" r="6"/>
+      <circle class="dot" cx="104" cy="134" r="6"/>
+      <circle class="dot" cx="118" cy="134" r="6"/>
+      <circle class="dot" cx="132" cy="134" r="6"/>
+      <circle class="dot" cx="146" cy="134" r="6"/>
+      <circle class="dot" cx="167" cy="134" r="6"/>
+      <circle class="dot" cx="194" cy="134" r="6"/>
+      <circle class="dot" cx="215" cy="134" r="6"/>
+      <circle class="dot" cx="215" cy="120" r="6"/>
+      <circle class="dot" cx="215" cy="106" r="6"/>
+      <circle class="dot" cx="215" cy="92"  r="6"/>
+      <circle class="dot" cx="256" cy="134" r="6"/>
+      <circle class="dot" cx="263" cy="120" r="6"/>
+      <circle class="dot" cx="312" cy="134" r="6"/>
+      <circle class="dot" cx="360" cy="134" r="6"/>
+      <circle class="dot" cx="387" cy="134" r="6"/>
+      <circle class="dot dot--late" cx="539" cy="134" r="6"/>
+      <circle class="dot dot--late" cx="636" cy="134" r="6"/>
+      <circle class="dot dot--late" cx="656" cy="120" r="6"/>
+      <circle class="dot dot--late" cx="781" cy="134" r="6"/>
+
+      <text class="t-edge"   x="76"  y="98">2</text>
+      <text class="t-sub"    x="76"  y="86">Missouri stipulation ·</text>
+      <text class="t-sub"    x="76"  y="75">Virginia Miller</text>
+      <text class="t-refuse" x="539" y="98" text-anchor="middle">68</text>
+      <text class="t-sub"    x="539" y="86" text-anchor="middle">Walmart</text>
+      <text class="t-sub"    x="539" y="75" text-anchor="middle">interclass</text>
+      <text class="t-refuse" x="646" y="60" text-anchor="middle">82 · 85</text>
+      <text class="t-sub"    x="646" y="48" text-anchor="middle">Georgia IRP · Duke ESAs</text>
+      <text class="t-refuse" x="781" y="98" text-anchor="middle">103</text>
+      <text class="t-sub"    x="781" y="86" text-anchor="middle">Georgia Power</text>
+      <text class="t-sub"    x="781" y="75" text-anchor="middle">change flags</text>
+    </svg>
+    </div>
+    <figcaption><strong>Median 21 days, longest 103.</strong> Georgia Power's third-quarter large-load
+    report sat in the public docket with broken change flags for 103 days. Walmart's inverted prefix
+    took 68, and it was findable in the original with no second document.</figcaption>
+    </figure>
+
+    <div class="narrow">
+      <p>Five of Georgia Power's IRP errata paragraphs name the data request that surfaced the
+      problem. The utility did not find those; somebody asking a question did, months in.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="5">
+    <h2>Six of the twenty-one were visible on day one</h2>
+    <div class="narrow">
+      <p>Not in hindsight, and not by comparing versions: from the one document, on the day it was
+      filed, by four checks that open no second file.</p>
+    </div>
+
+    <div class="refuse">
+      <h3>1. One thing, named more than one way</h3>
+      <p>Collect every reference to the same rule, exhibit or event and compare the strings. Michels
+      cites one rule three ways in three page footers. Kollen calls one withdrawal Brown BESS on page
+      95 and Cane Run BESS in the settlement bound into the same PDF. Catches two.</p>
+    </div>
+    <div class="refuse">
+      <h3>2. A term whose prefix inverts its meaning, used both ways</h3>
+      <p><em>Interclass</em> is between rate classes, <em>intraclass</em> within one. Lisa Perry's
+      testimony says interclass twice and intraclass once about the same subsidies, the odd one out on
+      page 20, one page before a correct use in the same argument. It took Walmart 68 days. Run it on
+      inter/intra, gross/net, total/allocated. Catches one.</p>
+    </div>
+    <div class="refuse">
+      <h3>3. A money figure with no basis, where the document names a basis elsewhere</h3>
+      <p>LaConte sets the convention on page 2, marking $185.7 million <em>(total Company)</em> against
+      $82 million <em>(Utah-allocated)</em>, then gives $112.1 million and $30.9 million bare. A
+      document that sets its own convention and breaks it is a stronger signal than any style rule.
+      Catches one.</p>
+    </div>
+    <div class="refuse">
+      <h3>4. A change column where every cell says the same thing</h3>
+      <p>Georgia Power's third-quarter public attachment carries 535 standalone <code>Y</code> lines
+      in twenty unbroken runs of 42, 39, 21 and 5 rows, each length five times: 107 project rows across
+      five change columns, every cell flagged. The fourth quarter gives
+      5&nbsp;&times;&nbsp;106&nbsp;=&nbsp;530. The corrected refiling covering both quarters has 186
+      flags in 110 runs, 67 of them a single row; the first and second quarters of 2025 carry 88 and
+      44, in 67 and 35 runs. A column that never once says no is not a column. Catches two.</p>
+      <p>Georgia Power, 4 March 2026: <em>&ldquo;The error resulted from a formula being inadvertently
+      disturbed by the Company&rsquo;s redaction process used to create the public disclosure
+      version.&rdquo;</em></p>
+    </div>
+
+    <div class="narrow">
+      <p>The other fifteen need a second document, or knowing the plant is called Cane Run.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="6">
+    <h2>What to do on Monday</h2>
+    <div class="narrow">
+      <p>Take the last thing your team filed and run those four over it. Grep does the first two, a
+      spreadsheet the fourth, and the third is a list you read.</p>
+      <p>That installs nothing and buys nothing. On this corpus it finds six of the twenty-one
+      corrections on the day of filing. Those six actually waited 5, 18, 21, 21, 68 and 103 days.</p>
+    </div>
+
+    <div class="cta">
+      <h3>The honest note</h3>
+      <p>I build Strata, which reads successive versions of a proceeding and refuses to assert a claim
+      whose citation does not verify against the source. That is the bias here: I went looking for what
+      a version comparison misses.</p>
+      <p>Three limits. Twenty-one is a small number, and 102 filings I chose are not a sample of
+      anything. Three more corrected filings are left out because they never say what moved. And every
+      count comes from text extracted from PDFs: the Kollen correction was rescanned, so most of what a
+      raw diff reports between the two versions is the scanner disagreeing with itself &mdash;
+      <code>21 ,751,906</code> against <code>21,751,906</code>, hundreds of times. I read those out by
+      hand. Somebody else reading them would not land on exactly twenty-one.</p>
+      <p class="muted">Every passage in a boxed extract above is a verbatim substring of the file it
+      names, checked by a script that reads both, with the extraction damage left in. Quotations inside
+      a paragraph are the same words with the line breaks and column padding collapsed. Every number is
+      reproducible from <code>data/real/</code> with <code>difflib</code> and no network.</p>
+    </div>
+  </div></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap"><div class="foot">
+    <span>Strata</span>
+    <a href="/">Home</a>
+    <a href="/login">Sign in</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/security.html">Security</a>
+    <a href="mailto:jsahasi@gmail.com">Contact</a>
+    <span class="sep muted">Built by Jayesh Sahasi</span>
+  </div></div>
+</footer>
+
+</body>
+</html>

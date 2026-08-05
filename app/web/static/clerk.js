@@ -200,9 +200,82 @@
 
   /* ------------------------------------------------------------- the turns */
 
+  /* A model writes markdown whether or not you asked it to, and this panel was
+     printing the asterisks. The rule at the head of this file still holds and is
+     the reason the bug existed: every string from the server goes in as TEXT,
+     because a reply that passed through a model can be talked into carrying
+     markup. So this renders a small, fixed subset by BUILDING NODES -- textContent
+     for every character that came from the server, innerHTML nowhere. A model
+     that emits <script> gets a paragraph reading "<script>".
+
+     The subset is deliberately short: bold, inline code, unordered lists,
+     paragraphs. Not links -- a link whose href came from a model is a place to
+     send somebody, and this product does not let a model choose that. Not
+     headings, not tables, not images. Anything unrecognised stays as the plain
+     text it arrived as, which is the safe direction to fail. */
+
+  var STRONG = /\*\*([^*]+)\*\*/g;
+  var CODE = /`([^`]+)`/g;
+
+  /* One line of inline markup into text nodes and elements. */
+  function inline(parent, text) {
+    var rest = String(text);
+    // Code first: a backtick span may legitimately contain asterisks.
+    var parts = rest.split(CODE);
+    for (var i = 0; i < parts.length; i++) {
+      if (i % 2 === 1) {
+        parent.appendChild(el("code", null, parts[i]));
+        continue;
+      }
+      var bits = parts[i].split(STRONG);
+      for (var j = 0; j < bits.length; j++) {
+        if (!bits[j]) {
+          continue;
+        }
+        if (j % 2 === 1) {
+          parent.appendChild(el("strong", null, bits[j]));
+        } else {
+          parent.appendChild(document.createTextNode(bits[j]));
+        }
+      }
+    }
+  }
+
   function addTurn(kind, text) {
     var turn = el("div", "clerk-turn clerk-turn--" + kind);
-    turn.appendChild(el("p", "clerk-turn__body", text));
+    var body = el("div", "clerk-turn__body");
+    var lines = String(text === undefined || text === null ? "" : text).split("\n");
+    var list = null;
+
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].replace(/\s+$/, "");
+      var bullet = /^\s*[-*]\s+(.*)$/.exec(line);
+
+      if (bullet) {
+        if (!list) {
+          list = el("ul", "clerk-turn__list");
+          body.appendChild(list);
+        }
+        var item = el("li");
+        inline(item, bullet[1]);
+        list.appendChild(item);
+        continue;
+      }
+
+      list = null;
+      if (!line.replace(/^\s+/, "")) {
+        continue;
+      }
+      var para = el("p");
+      inline(para, line);
+      body.appendChild(para);
+    }
+
+    if (!body.childNodes.length) {
+      body.appendChild(el("p", null, text));
+    }
+
+    turn.appendChild(body);
     transcript.appendChild(turn);
     transcript.scrollTop = transcript.scrollHeight;
     return turn;
@@ -259,10 +332,48 @@
 
   /* -------------------------------------------------------------- thumbs */
 
+  /* A thumb, drawn rather than fetched. The word stays as the accessible name
+     and as the tooltip: an icon alone is a guess, and "was this useful" is not
+     a question worth making somebody guess at. Built with createElementNS
+     because an SVG element created with createElement is an unknown HTML tag
+     that renders as nothing -- a silent, invisible failure. */
+  function thumb(direction, words) {
+    var button = el("button", "clerk-mark clerk-mark--" + direction);
+    button.type = "button";
+    button.title = words;
+    button.setAttribute("aria-label", words);
+
+    var NS = "http://www.w3.org/2000/svg";
+    var svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 16 16");
+    svg.setAttribute("width", "15");
+    svg.setAttribute("height", "15");
+    svg.setAttribute("aria-hidden", "true");
+    svg.setAttribute("focusable", "false");
+
+    var path = document.createElementNS(NS, "path");
+    path.setAttribute(
+      "d",
+      "M6.1 14.5H4.2A1.2 1.2 0 0 1 3 13.3V8.2A1.2 1.2 0 0 1 4.2 7h1.9v7.5Z" +
+        "M7.4 7 10 1.9a1.1 1.1 0 0 1 2.1.5v3h2.1a1.2 1.2 0 0 1 1.2 1.4l-.9 5" +
+        "a1.2 1.2 0 0 1-1.2 1H7.4V7Z"
+    );
+    path.setAttribute("fill", "currentColor");
+    svg.appendChild(path);
+
+    // One glyph, rotated for the other. Two paths would drift apart.
+    if (direction === "down") {
+      svg.setAttribute("transform", "rotate(180)");
+    }
+    button.appendChild(svg);
+    button.appendChild(el("span", "clerk-mark__word", words));
+    return button;
+  }
+
   function addMarks(turn, messageId) {
     var marks = el("div", "clerk-turn__marks");
-    var up = el("button", "clerk-mark", "Useful");
-    var down = el("button", "clerk-mark", "Not useful");
+    var up = thumb("up", "Useful");
+    var down = thumb("down", "Not useful");
     var said = el("p", "clerk-said", "");
     said.setAttribute("role", "status");
     up.type = "button";

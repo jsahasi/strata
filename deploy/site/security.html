@@ -284,7 +284,7 @@ footer a{color:var(--muted)}
 
     <div class="stage"><b class="no">not built</b><p><b>A safe demonstration deployment.</b> The
       seeded demonstration accounts share one password that the setup script prints and the login
-      page displays. That is right for invented data and wrong for anything else. Any deployment
+      page displays. That is right for a workspace holding nothing but invented data and public record, and wrong for anything else. Any deployment
       holding real documents has to create its own accounts, and nothing automates that
       yet.</p></div>
   </div></div>
@@ -333,8 +333,8 @@ footer a{color:var(--muted)}
       <code>app/web/templates/login.html</code> renders it from the context
       <code>app/web/views/auth.py</code> builds, and the value comes from
       <code>app/seed.py</code>, which prints it again when it seeds. That is the right answer for a
-      demonstration of invented data and the wrong one everywhere else, it is named above as a
-      weakness, and <code>STRATA_DEMO_ACCOUNTS=0</code> turns the panel off. The corpus is invented
+      demonstration holding no confidential data and the wrong one everywhere else, it is named above as a
+      weakness, and <code>STRATA_DEMO_ACCOUNTS=0</code> turns the panel off. Neither corpus holds anything confidential: one is invented, the other is public record
       too — a fictional commission, a fictional docket, fictional people. Finding either is not a
       finding.</p></div>
 

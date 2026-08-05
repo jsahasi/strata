@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Five readings of the public record — Strata</title>
+<meta name="description" content="Five pieces read from public utility filings: Kentucky 2025-00113, Ohio 24-508-EL-ATA, Georgia 44280 and 55378, NCUC E-100 Sub 208A. Every quote names its file and links to the commission's own copy.">
+<meta name="robots" content="noindex">
+<style>
+/* The page furniture is the sheet every page on this site carries, copied
+   unchanged so this file renders correctly on its own; /site.css loads after it
+   and puts the glass on the chrome. Only the rules this page uses are kept.
+
+   NO FIGURE ON THIS PAGE. docs/diagrams.css defines the vocabulary -- box,
+   box--gate, box--absent, flow--refuse, amber for withheld -- and the five
+   articles use it where a diagram carries an argument. An index carries no
+   argument. A drawing here would be decoration, and the vocabulary is worth
+   less every time it is spent on something that does not need it. */
+:root{
+  --paper:#f7f8fa; --ink:#10141c; --muted:#5a6373; --rule:#dfe3ea;
+  --stamp:#1b3a8f; --withheld:#a8620e; --panel:#ffffff;
+  --measure:33rem;
+  --serif:ui-serif,"Iowan Old Style",Charter,Palatino,"Book Antiqua",Georgia,serif;
+  --sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#0d1017; --ink:#e6e8ec; --muted:#98a1b2; --rule:#242a35;
+         --stamp:#8fa9e8; --withheld:#d99a45; --panel:#131822; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.62 var(--serif)}
+
+a{color:var(--stamp)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--stamp);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;background:var(--panel);padding:.6rem .9rem;z-index:20;border:1px solid var(--rule)}
+
+/* ---- the signature: a testimony line-number margin ---- */
+.wrap{max-width:52rem;margin:0 auto;padding:0 1.25rem}
+.lined{position:relative;padding-left:3.25rem}
+.lined::before{
+  content:attr(data-line);
+  position:absolute;left:0;top:.34em;width:2.1rem;text-align:right;
+  font:500 12px/1 var(--mono);color:var(--muted);opacity:.62;
+  font-variant-numeric:tabular-nums;
+}
+.lined::after{content:"";position:absolute;left:2.6rem;top:0;bottom:0;width:1px;background:var(--rule)}
+@media (max-width:640px){
+  .lined{padding-left:0}
+  .lined::before,.lined::after{display:none}
+  .bar{flex-wrap:nowrap}
+  .navlink{display:none}
+}
+
+/* ---- header ---- */
+header{border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:10}
+.bar{max-width:52rem;margin:0 auto;padding:.85rem 1.25rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.brand{font:600 15px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none;margin-right:auto}
+.brand span{color:var(--stamp)}
+.navlink{font:500 14px/1 var(--sans);color:var(--muted);text-decoration:none}
+.navlink:hover{color:var(--ink)}
+.signin{
+  font:600 14px/1 var(--sans);text-decoration:none;color:var(--panel);background:var(--stamp);
+  padding:.62rem 1.05rem;border-radius:3px;white-space:nowrap;
+}
+.signin:hover{filter:brightness(1.12)}
+@media (prefers-color-scheme:dark){.signin{color:#0d1017}}
+
+/* ---- type ---- */
+h1{font:400 clamp(2rem,5.4vw,3.05rem)/1.1 var(--serif);letter-spacing:-.018em;margin:0 0 1.1rem;text-wrap:balance}
+h2{font:600 12px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--stamp);margin:0 0 1.15rem}
+h3{font:500 1.16rem/1.35 var(--serif);margin:0 0 .5rem}
+p{margin:0 0 1.05rem}
+.lede{font-size:1.1rem}
+.muted{color:var(--muted)}
+section{padding:4.2rem 0;border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0}
+.narrow{max-width:var(--measure)}
+.stamp{font:500 12px/1.5 var(--mono);color:var(--muted);letter-spacing:.04em;margin:0 0 1.7rem}
+
+/* ---- the list ----------------------------------------------------------
+   Paper, not glass. These are the record: flat, square, still, separated by a
+   hairline like the .stage rows on the legal pages. No card, no shadow, no
+   hover lift. A reader is choosing between five readings of a filing, and the
+   presentation should not rank them for him.
+   The measure is wider than --measure because each entry is three short lines
+   rather than a column of prose, and a 33rem column would break the docket
+   line onto a second row for no gain. ------------------------------------ */
+.entries{margin:0;padding:0;list-style:none;max-width:44rem}
+.entry{padding:1.5rem 0;border-bottom:1px solid var(--rule);min-width:0}
+.entry:first-child{padding-top:0}
+.entry:last-child{border-bottom:0}
+.entry h3{margin:0 0 .5rem;font:500 1.22rem/1.38 var(--serif);text-wrap:pretty}
+.entry h3 a{color:var(--stamp);text-decoration:none}
+.entry h3 a:hover,.entry h3 a:focus-visible{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.entry p{margin:0 0 .55rem;font:400 15px/1.58 var(--sans);color:var(--muted);max-width:var(--measure)}
+.entry .docket{
+  margin:0;font:500 12px/1.5 var(--mono);color:var(--muted);letter-spacing:.03em;
+  overflow-wrap:anywhere;
+}
+code{font:400 .9em/1.4 var(--mono);background:color-mix(in srgb,var(--stamp) 9%,transparent);padding:0 .22em;border-radius:2px}
+
+/* ---- closing ---- */
+.cta{background:var(--panel);border:1px solid var(--rule);border-radius:3px;padding:1.9rem 1.6rem;text-align:center}
+.cta h3{font:400 1.5rem/1.25 var(--serif);margin-bottom:.55rem}
+.cta p{font:400 15px/1.55 var(--sans);color:var(--muted);max-width:26rem;margin:0 auto 1.3rem}
+footer{border-top:1px solid var(--rule);padding:2.2rem 0 3.5rem;font:400 14px/1.6 var(--sans);color:var(--muted)}
+footer a{color:var(--muted)}
+.foot{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:baseline}
+.foot .sep{margin-left:auto}
+</style>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="/">Strat<span>a</span></a>
+    <a class="navlink" href="/#how">How it works</a>
+    <a class="navlink" href="/#refuses">What it refuses</a>
+    <a class="navlink" href="/#who">Who it is for</a>
+    <a class="signin" href="/login">Sign in</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section>
+  <div class="wrap"><div class="lined" data-line="1">
+    <div class="narrow">
+      <h1>Five readings of the public record.</h1>
+      <p class="stamp">All five written 4 August 2026 &middot; Jayesh Sahasi</p>
+      <p class="lede">Analysis drawn from filings I fetched and checked myself: 102 public documents
+      from eight commissions, each held with its source URL, its docket and its hash. Every quote
+      names the file it came from and links to the commission's own copy.</p>
+      <p class="muted">So a reading you doubt can be checked against the record rather than against
+      me. Where a count rests on a judgement I made, the piece says which judgement and where the
+      line was drawn.</p>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="2">
+    <h2>The pieces</h2>
+
+    <ol class="entries">
+
+      <li class="entry">
+        <h3><a href="/blog/one-hundred-and-twenty-seven-characters.html">The Kollen correction moved
+        127 characters. The filing had already contradicted itself, 223 pages later.</a></h3>
+        <p>The 127 characters are not the correction, and the mistake they fix was readable on the
+        day the testimony went in: the exhibit attached to it names a different plant.</p>
+        <p class="docket">Kentucky PSC 2025-00113 &middot; direct testimony of 9 September 2025 and
+        its correction of 30 September</p>
+      </li>
+
+      <li class="entry">
+        <h3><a href="/blog/what-actually-gets-corrected.html">Three of thirty-seven corrections were
+        wording. The rest read perfectly well in place.</a></h3>
+        <p>Eleven of the thirty-seven fix a number that was simply wrong, three fix spelling or
+        grammar, and nine could have been caught from the one document without opening a second.</p>
+        <p class="docket">Sixteen correction filings &middot; nine dockets &middot; seven
+        commissions</p>
+      </li>
+
+      <li class="entry">
+        <h3><a href="/blog/the-cost-of-as-modified.html">Approved as modified: the language you have
+        to file exists in no filing</a></h3>
+        <p>The term that governs the Ohio compliance tariff appears once in a 99-page order and never
+        in the stipulation that order modifies, so the text a company must file exists only as the
+        difference between two documents.</p>
+        <p class="docket">Ohio 24-508-EL-ATA &middot; Georgia 44280</p>
+      </li>
+
+      <li class="entry">
+        <h3><a href="/blog/the-quarterly-report-problem.html">The changes tie. The baselines
+        move.</a></h3>
+        <p>Across nine large-load reports every change the filer states reconciles with the period
+        before it, while the fixed point the growth is measured from moves between Q3 and Q4 and
+        nothing in the report says so.</p>
+        <p class="docket">Georgia 55378 &middot; NCUC E-100 Sub 208A</p>
+      </li>
+
+      <li class="entry">
+        <h3><a href="/blog/two-settlements-thirteen-days-apart.html">Two settlements, thirteen days
+        apart: the boilerplate matched 92%, the terms 26%</a></h3>
+        <p>Two stipulations filed thirteen days apart to settle the same case share 92 per cent of
+        their procedural language and 26 per cent of their operative terms, and eleven of the forty
+        distinct numbers appear in both.</p>
+        <p class="docket">PUCO 24-508-EL-ATA &middot; stipulations of 10 and 23 October 2024</p>
+      </li>
+
+    </ol>
+  </div></div>
+</section>
+
+<section>
+  <div class="wrap"><div class="lined" data-line="3">
+    <h2>Why these are here</h2>
+    <div class="narrow">
+      <p>Each was found with <code>difflib</code> and a text file, one pair of documents at a time.
+      That is cheap, and anybody carrying a docket can do it on Monday morning; each piece ends by
+      saying how.</p>
+      <p class="muted">Strata is what the same work becomes when forty dockets are open at once and
+      every answer has to carry the line it came from &mdash; or refuse to be an answer.</p>
+    </div>
+
+    <div class="cta">
+      <h3>See a proceeding move through it</h3>
+      <p>Three versions of one docket, the changes between them, and a claim that refuses to assert
+      itself when its citation does not check out.</p>
+      <a class="signin" href="/login">Sign in to Strata</a>
+    </div>
+  </div></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap"><div class="foot">
+    <span>Strata</span>
+    <a href="/">Home</a>
+    <a href="/login">Sign in</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/security.html">Security</a>
+    <a href="mailto:jsahasi@gmail.com">Contact</a>
+    <span class="sep muted">Built by Jayesh Sahasi</span>
+  </div></div>
+</footer>
+
+</body>
+</html>

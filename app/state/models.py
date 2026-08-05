@@ -3120,3 +3120,469 @@ Index(
 # provenance record is a defect for exactly the reason that type's docstring
 # gives. filing_date is text because a filing date is a day, not an instant.
 DocumentVersion.source_retrieved_at = mapped_column(UtcDateTime, nullable=True)
+
+
+# ---------------------------------------------------------------------------
+# ANY PERMISSION TO ANY PERSON, AND THE COMPANY NAMES WHAT IT COMPOSED
+#
+# THE DEFECT THIS ANSWERS IS IN THE REPOSITORY, not in a backlog. Three roles
+# exist -- analyst, obligation_owner, admin -- and data/real/ holds 102 filings
+# by people whose titles none of the three can say: Analyst II Regulatory
+# Affairs, Manager Regulatory Affairs, Deputy Director, VP Pricing and Planning,
+# Indiana Regulatory Counsel, Legal Assistant. Those are different approval
+# authorities, not different business cards.
+#
+# The shortage has already produced a lie. scripts/seed_route.py draws a route
+# with a step called "Legal review" and a step called "Officer signs the
+# filing", and BOTH are assigned to role:admin, because no Legal role and no
+# officer role exist to assign them to. So the person who DRAWS the route is
+# also the person who APPROVES through it -- the exact hole the note on
+# workflow.manage in PERMISSION_CODES warns about, arriving not through a bad
+# decision but through a vocabulary shortage. A route whose two independent
+# reviewers are the same account is not a control, and it currently renders as
+# one.
+#
+# AND COMPANIES DIFFER, WHICH IS WHY THE PRODUCT CANNOT SIMPLY ADD MORE FIXED
+# ROLES. In a four-person regulatory team the administrator may legitimately be
+# the person who approves; there is nobody else. In a large utility they must
+# not be. No table here can know which, and a product that refuses to let the
+# small team work is a product the small team does not buy.
+#
+# THE JUDGEMENT THAT MAKES THIS SAFE, AND IT IS THE POINT OF THE WHOLE BLOCK:
+# DO NOT FORBID A CONFLICT. SHOW IT. If one person holds both action.propose and
+# action.approve, that is the company's decision and the product records it
+# plainly -- named, listed, exportable, and readable by the next auditor who
+# asks. Prior restraint would make the product unusable for a small team;
+# silence would make it useless to a large one. The middle is what this codebase
+# already argues for everywhere else: absence is denial, a fallback announces
+# itself, and a control that cannot be enforced is disclosed rather than
+# implied. app/auth/policy.py takes the same shape with DEMO_SELF_APPROVAL --
+# the downgrade is permitted and it is never quiet.
+#
+# FOUR DECISIONS RUN THROUGH THE BLOCK.
+#
+# NO NEW PERMISSION CODE. Managing permissions IS user.manage. A permission.grant
+# code beside it would be a second answer to the question that column already
+# answers, and the day the two disagree the call site that asked the wrong one
+# wins. PERMISSION_CODES is unchanged by this block.
+#
+# NO CONFLICTS TABLE. A held conflict is derived from rows that already exist --
+# the role grid, the grants, the direct permissions below -- and Project explains
+# at length why this codebase stores no derived counts. A stored conflict row
+# would be a second copy of a fact nothing recomputes, and the day it disagrees
+# with the grants it summarises, the summary is what a screen shows.
+# SEGREGATION_CONFLICTS below is the vocabulary; conflicts_in() is the one
+# spelling of the check; the register is a read.
+#
+# NO is_custom COLUMN. Role.company_id already answers it: NULL is a system role
+# every tenant gets, and anything else is a company's own. A boolean beside it
+# would be free to disagree with the column it restates, and the disagreement
+# would be about whether a role may be edited. role_is_system() below is the
+# predicate, so there is one spelling rather than a company_id check written out
+# at each call site with its polarity to get wrong.
+#
+# REVOKED, NEVER DELETED, following UserRole. Who once held a permission is a
+# question an auditor asks, and a deleted row cannot answer it.
+# ---------------------------------------------------------------------------
+
+
+# PAIRS THIS PRODUCT HAS ALREADY ARGUED ARE A CONFLICT, and no others.
+#
+# Each entry is (code, code, why) and the why is the sentence a register prints
+# beside the person's name. Nothing here refuses anything: the tuple exists so
+# that a company holding both halves is told which two it holds and why anybody
+# minds, in words a regulator would accept.
+#
+# EVERY PAIR IS DRAWN FROM AN ARGUMENT ALREADY IN THIS REPOSITORY. None is
+# invented here, and that restraint is deliberate: a taxonomy of conflicts
+# assembled from taste would flag pairs nobody can defend at a panel, and a
+# register that cries wolf is a register people switch off. threshold.set with
+# action.approve is the nearest omission -- whoever sets the confidence
+# threshold decides what reaches review -- and it is left out because no
+# document in this repository argues it yet. Add it here when one does, with the
+# sentence that argues it, and not before.
+SEGREGATION_CONFLICTS: tuple[tuple[str, str, str], ...] = (
+    (
+        "action.propose",
+        "action.approve",
+        "The same person proposes the action and approves it. This is the "
+        "control docs/security.html rests on: the analyst who interprets a "
+        "change is not the person who approves what follows from it. "
+        "app/auth/policy.py still refuses approval by whoever touched the "
+        "claim, so this pair is a standing conflict rather than a live one -- "
+        "but it is the pair an auditor asks about first.",
+    ),
+    (
+        "workflow.manage",
+        "action.approve",
+        "The same person draws the approval route and answers it. Whoever "
+        "draws the route decides who is asked, so holding both is the power to "
+        "route an approval to yourself. This is the pair scripts/seed_route.py "
+        "already trips over, with legal review and the officer's signature both "
+        "landing on role:admin.",
+    ),
+    (
+        "user.manage",
+        "action.approve",
+        "The same person grants the roles and approves the work. They can grant "
+        "themselves whatever the approval needs. The audit chain records the "
+        "grant, so it is visible afterwards; nothing prevents it, which is why "
+        "app/state/identity.py concedes this in its own docstring.",
+    ),
+    (
+        "user.invite",
+        "action.approve",
+        "The same person invites an account and approves through it. An invited "
+        "person is granted obligation_owner, so holding both is a way to "
+        "manufacture a second approver at an address you control. This is why "
+        "user.invite sits on admin and nowhere else in SYSTEM_ROLE_PERMISSIONS.",
+    ),
+)
+
+
+def conflicts_in(codes) -> tuple[tuple[str, str, str], ...]:
+    """Every declared conflict both of whose codes are in this set.
+
+    Takes the codes a person effectively holds -- role grants and direct grants
+    together, which is the only set worth asking about -- and returns the pairs
+    to print beside their name, in declaration order so a register reads the
+    same way twice. Order of the input does not matter and cannot.
+
+    IT REFUSES A CODE THE PRODUCT DOES NOT DEFINE rather than reporting no
+    conflict for it. A clean bill of health computed over a vocabulary this
+    module does not recognise is the worst answer available: it looks like
+    safety. app/auth/policy.py::_known_code refuses for the same reason, and
+    ensure_system_roles refuses a grid naming a code with no permission behind
+    it. The caller that hits this is holding a code removed from PERMISSION_CODES
+    without the grants being migrated with it -- principle 27 in
+    docs/best-practices.html -- and it needs to know.
+
+    WHAT IT DOES NOT DO. It does not stop anything. There is no path from this
+    function to a refusal, by design; it feeds a register and a screen.
+    """
+    held = set(codes)
+    unknown = sorted(code for code in held if code not in PERMISSION_CODES)
+    if unknown:
+        raise ValueError(
+            f"these are not permissions this product defines: {unknown}. "
+            "Refusing to report 'no conflict' over a vocabulary that is not "
+            "this one, because that reads as a clean bill of health."
+        )
+    return tuple(
+        pair for pair in SEGREGATION_CONFLICTS if pair[0] in held and pair[1] in held
+    )
+
+
+class UserPermission(Base):
+    """One permission held by one person DIRECTLY, outside any role.
+
+    This is the escape hatch that makes three roles survivable, and it is
+    deliberately an escape hatch rather than a second grid. A company that needs
+    a standing bundle composes a Role and names it; a company that needs one
+    person to hold one extra code -- the deputy who signs while the director is
+    away, the counsel who approves in Indiana and nowhere else -- writes a row
+    here. Forcing the second case through a role would leave a tenant with a
+    role per person, which is a permission list with the labels rubbed off.
+
+    reason IS REQUIRED AND HAS NO DEFAULT, which is what separates this table
+    from a permission free-for-all. Every row here is an exception to the grid a
+    reviewer reads in SYSTEM_ROLE_PERMISSIONS, and an exception nobody explained
+    cannot be reviewed -- it can only be counted. The write layer must refuse an
+    empty one; the NOT NULL here refuses a missing one.
+
+    IT IS KEPT HERE AND ALSO WRITTEN INTO THE AUDIT EVENT, AND THAT IS NOT DRIFT.
+    The chain records the act, in order, hash-linked: somebody granted this at
+    this moment. This column records the justification as given, on the row a
+    register lists, so "who holds action.approve outside their role, and why"
+    is one scoped query rather than a scan of the chain hoping the subject was
+    spelt the same way. WorkflowStepRun.due_at keeps a derived value for the same
+    reason. If the two ever disagree, the chain is the evidence and this is the
+    convenience, exactly as ShareLink.open_count defers to share_opens.
+
+    REVOKED, NEVER DELETED, and the pair is written whole. revoked_at and
+    revoked_by_user_id are both NULL or both set, and the check constraint below
+    enforces it -- Escalation states the same rule about assigned_to_user_id and
+    assigned_at and leaves it to the writer, which is the weaker half of a good
+    argument. A revocation time with nobody behind it describes an event nobody
+    can name.
+
+    revoked_by_user_id IS AN ACCOUNT AND NOT A NAME, unlike UserRole.granted_by
+    beside it. The routing block at the head of this file sets the rule: a new
+    column that decides routing or authorisation holds an id, because the next
+    question asked of it is whether that account was entitled to act, and a
+    display string cannot answer it. ShareLink.revoked_by_user_id makes the same
+    call for the same reason. granted_by_user_id follows it rather than
+    UserRole's older spelling.
+
+    WHY code IS A FOREIGN KEY INTO permissions AND NOT A CHECK CONSTRAINT. A
+    CHECK over PERMISSION_CODES would be exact today and would make every future
+    permission code a rebuild of this table -- and PERMISSION_CODES is designed
+    to grow; ensure_system_roles says so in its error message. The permissions
+    table already grows with the vocabulary on every boot, so the key stays in
+    step for nothing. What it does NOT do is enforce anything on SQLite: nothing
+    in this codebase issues PRAGMA foreign_keys=ON, so on the demo database this
+    is documentation. The write layer must check membership of PERMISSION_CODES
+    itself, and a code that is not in it must be refused rather than stored.
+
+    WHAT IS NOT HERE. An expiry. A grant that ends on Friday is the honest shape
+    for holiday cover, and it is not built: every row here is live until somebody
+    revokes it, and a register that lists a grant from March is telling the truth
+    about a hole nobody closed. An expires_at column and a sweep are the fix, and
+    naming the gap is better than a column nothing enforces.
+
+    WHAT THIS TABLE DOES NOT DECIDE. Whether the holder is active. A suspended
+    account must lose its direct grants at the same instant it loses its role
+    grants, or suspension is half a control -- so whatever reads this table must
+    filter User.status the way permissions_for_user already does, and must not
+    reach the row through any path that skips it.
+    """
+
+    __tablename__ = "user_permissions"
+
+    # An autoincrement integer, following UserRole: these rows are read as one
+    # person's history in order, and no URL points at one.
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    company_id: Mapped[str] = mapped_column(String(64), index=True)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
+
+    # One of PERMISSION_CODES. Named for what it holds rather than for the table
+    # it points at, which is why it is `code` and not RolePermission's
+    # `permission_id`: the value that goes on a screen, into an export and into
+    # an audit reason is the code itself, and Permission.id is the code by
+    # construction in ensure_system_roles.
+    code: Mapped[str] = mapped_column(ForeignKey("permissions.id"))
+
+    granted_by_user_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
+    granted_at: Mapped[datetime] = mapped_column(UtcDateTime, default=_utcnow)
+    # Why this person holds this code outside their role. Required. See above.
+    reason: Mapped[str] = mapped_column(Text)
+
+    revoked_at: Mapped[datetime | None] = mapped_column(UtcDateTime, nullable=True)
+    revoked_by_user_id: Mapped[str | None] = mapped_column(
+        ForeignKey("users.id"), nullable=True
+    )
+
+    __table_args__ = (
+        CheckConstraint(
+            "(revoked_at IS NULL) = (revoked_by_user_id IS NULL)",
+            name="ck_user_permissions_revocation_is_whole",
+        ),
+    )
+
+
+# ONE LIVE GRANT PER PERSON PER CODE, AND THE DATABASE SAYS SO.
+#
+# Partial, so a revoke and a later regrant are two rows the database welcomes --
+# which they are: somebody took the permission away and somebody else gave it
+# back, and both are facts an investigation asks about. UserRole cannot do this,
+# and says so in its docstring: it has no unique index at all and leans on
+# grant_role returning the existing grant instead of writing a second. That
+# works until a direct write, a race between two admins, or a bug leaves two
+# live rows, at which point revoking one takes the permission away in the
+# interface and leaves it in place in the check -- a failure that reads as
+# fixed. uq_one_active_workflow_per_company is the precedent for putting the
+# rule where a race cannot get past it.
+#
+# WHAT THE INDEX CANNOT CATCH is the same thing it cannot catch there: a
+# revoked_at written as an empty string rather than NULL slips through, because
+# the index only knows what NULL is. UtcDateTime refuses a naive value, which
+# closes most of that, and the write layer closes the rest.
+Index(
+    "uq_one_live_user_permission",
+    UserPermission.company_id,
+    UserPermission.user_id,
+    UserPermission.code,
+    unique=True,
+    sqlite_where=UserPermission.revoked_at.is_(None),
+    postgresql_where=UserPermission.revoked_at.is_(None),
+)
+# "What does this person hold directly, including what they used to" -- the
+# history read, which the partial index above cannot serve because it does not
+# know the revoked rows exist.
+Index(
+    "ix_user_permissions_company_user",
+    UserPermission.company_id,
+    UserPermission.user_id,
+)
+# "Who here holds action.approve outside a role" -- the auditor's read, and the
+# one the exception register is built from.
+Index(
+    "ix_user_permissions_company_code",
+    UserPermission.company_id,
+    UserPermission.code,
+)
+
+
+# ---------------------------------------------------------------------------
+# WHAT A CUSTOM ROLE NEEDS, added to Role at the foot rather than in its body
+#
+# DocumentVersion.source_retrieved_at above sets the precedent and states the
+# cost, which is the same cost here: the Mapped[...] annotation is gone, so a
+# type checker sees nothing on these three where it sees a type on name and
+# description. Runtime behaviour is identical. Unlike that case the reason is
+# not a type ordering problem -- UtcDateTime is defined well above Role -- it is
+# that this file is being appended to by several hands today and moving lines in
+# the middle of it is how somebody's table quietly disappears. WHOEVER NEXT HAS
+# THIS FILE TO THEMSELVES should move these into the Role class body, spelt:
+#
+#     created_by_user_id: Mapped[str | None] = mapped_column(
+#         ForeignKey("users.id"), nullable=True
+#     )
+#     created_at: Mapped[datetime | None] = mapped_column(UtcDateTime, nullable=True)
+#     derived_from_role_id: Mapped[str | None] = mapped_column(
+#         ForeignKey("roles.id"), nullable=True
+#     )
+#
+# ALL THREE ARE NULLABLE, AND TWO SEPARATE ARGUMENTS SAY SO. A system role has no
+# author and no creation moment worth recording -- it is vocabulary that ships
+# with the product, like a permission code, and Permission carries no created_at
+# either. And app/state/migrate.py adds a new column to an existing table by
+# ALTER TABLE without a default, so a NOT NULL column here would either be
+# refused by that migration or arrive NULL in every row the live database
+# already holds. Nullable is the honest shape and it is also the only one that
+# deploys.
+#
+# NULL MEANS "no person composed this on a date", never "somebody did and we
+# lost it". A company-composed role must carry both, written together, the way
+# Escalation.assigned_to_user_id and assigned_at are written together. Nothing
+# here enforces that pairing: a CHECK on roles would bind only databases created
+# after today, for the reason set out under the constraint below, and a
+# constraint that binds the test suite and not production is worse than none
+# because everybody believes it. It is a write-layer rule and it is stated here
+# rather than implied.
+# ---------------------------------------------------------------------------
+
+
+# The admin who composed this role. NULL on the three system roles, where the
+# honest answer is that nobody did.
+Role.created_by_user_id = mapped_column(ForeignKey("users.id"), nullable=True)
+# When they composed it. NULL for the same reason, and on any row written before
+# this column existed. Never seeded from anything else.
+Role.created_at = mapped_column(UtcDateTime, nullable=True)
+# THE ROLE THIS ONE WAS STARTED FROM, WHICH IS THE FORK RECORDED AS DATA.
+#
+# "Our Legal Reviewer began as obligation_owner and dropped audit.read" is the
+# first question an auditor comparing a custom set against the defaults asks,
+# and without this column the answer is a diff somebody has to do by eye. It has
+# the shape of ApprovalWorkflow.supersedes_id -- a nullable self key, written
+# once, pointing backwards -- and it is NOT that: supersedes_id says this row
+# replaces that one, this says this row started as a copy of that one and both
+# stand.
+#
+# NULL MEANS COMPOSED FROM SCRATCH. It does not mean unknown. A writer that
+# forks and leaves this NULL is claiming the role was built from nothing, which
+# is a false statement about where a permission set came from.
+Role.derived_from_role_id = mapped_column(ForeignKey("roles.id"), nullable=True)
+
+
+# A COMPANY MAY NOT GIVE ITS OWN ROLE A SYSTEM ROLE'S NAME, AND THIS IS THE
+# LOAD-BEARING HALF OF "A SYSTEM ROLE IS NOT EDITABLE".
+#
+# EDITING A SYSTEM ROLE IS REFUSED OUTRIGHT. It does not silently fork. An
+# implicit copy-on-write is a fallback that does not announce itself -- the
+# admin presses save on analyst, the product writes "analyst (copy)", and now
+# two roles exist, some people hold one and some the other, and every screen,
+# every ADR and docs/security.html still say what analyst means while half the
+# company no longer holds it. Worse, the copy needs a name, and a name the
+# product invents is exactly the role-called-analyst-that-is-not-analyst this
+# whole feature refuses. So the write layer raises, and the screen offers a
+# separate act: start a new role FROM this one, which asks the company for a
+# name and records the origin in derived_from_role_id above. A fork the company
+# named and dated is a decision; a fork the product performed is an accident
+# with a plausible label.
+#
+# THE OTHER WAY TO EDIT A SYSTEM ROLE IS TO SHADOW IT, and that is what this
+# constraint stops. app/state/identity.py::role_for_company resolves a name to
+# the company's own row FIRST and the system row second, and its docstring calls
+# that shadowing deliberate. It was, before this: a tenant narrowing a role for
+# itself should not be overruled by the shared definition. It cannot survive
+# custom roles. With them, writing (company_id='MEP', name='analyst') IS the
+# quiet edit -- every grant of "analyst" in that tenant silently resolves to a
+# different permission set, and nothing on any screen says so. THIS RETIRES THAT
+# BRANCH: a company that wants a narrower analyst composes a role, names it, and
+# the register shows what it holds. The handoff names the docstring to correct.
+#
+# WHERE IT BINDS, STATED PLAINLY BECAUSE IT DOES NOT BIND EVERYWHERE. It is
+# rendered by create_all, so every database built from these models has it --
+# every test, every fresh deploy. SQLite cannot add a CHECK to an existing table
+# by ALTER TABLE, and app/state/migrate.py is right to refuse to rebuild one, so
+# THE LIVE DATABASE AT strata.sudama.ai DOES NOT HAVE THIS CONSTRAINT and will
+# not until its roles table is rebuilt. The write layer must therefore refuse
+# the same thing, which is where the rule actually holds; this is the half that
+# survives a script, a console and an agent who never read the docstring.
+# Invitation's ck_invitations_handoff_names_its_item takes the same trade.
+Role.__table__.append_constraint(
+    CheckConstraint(
+        "company_id IS NULL OR name NOT IN ("
+        + ", ".join(f"'{name}'" for name in SYSTEM_ROLE_NAMES)
+        + ")",
+        name="ck_roles_company_role_never_shadows_a_system_name",
+    )
+)
+
+
+def role_is_system(role: Role) -> bool:
+    """True where this role ships with the product and no tenant may edit it.
+
+    company_id IS NULL is the whole test, and this function exists so there is
+    one spelling of it. The alternative -- `role.company_id is None` written out
+    at each call site -- is a polarity to get backwards once, in a check that
+    decides whether a permission set may be rewritten.
+
+    There is no is_custom column and this is why: a boolean would be a second
+    answer to a question company_id already answers, free to disagree with it.
+    KnowledgeItem stores no copy of its own supersession, Project stores no
+    counts, and a run stores no copy of its graph, all for this reason. Every
+    company-scoped role is a role that company composed; that is what the table
+    now means.
+
+    WHAT IT DOES NOT ANSWER. Whether this particular company may edit that
+    particular role. A role belonging to another tenant is not a system role and
+    is not editable here either, and the test for that is the scope check every
+    read in this codebase already makes. This function is a fact about the row,
+    not an authorisation.
+    """
+    return role.company_id is None
+
+
+# ---------------------------------------------------------------------------
+# THE HANDOFF: FOUR THINGS THIS CHANGE NEEDS AND DOES NOT OWN
+#
+# 1. RETENTION. tests/test_retention.py refuses a table with no window, and
+#    rightly: a table nobody decided about is a hole in the privacy page. The
+#    new table needs one entry in SCHEDULE in app/state/retention.py, beside
+#    user_roles, whose argument is the same one:
+#
+#        _customer_work(
+#            "user_permissions",
+#            "One permission held directly, kept after revocation. It is the "
+#            "record of an exception somebody made to the role grid, and an "
+#            "investigation asks what a person could do at the moment they did "
+#            "something rather than what they can do now.",
+#        ),
+#
+#    Until that lands, test_every_table_in_the_schema_has_a_window_and_a_reason
+#    fails, and it is meant to.
+#
+# 2. AUDIT VOCABULARY. app/state/audit.py owns every action string and this file
+#    must not invent a second spelling of one. Four are needed, in the shape the
+#    file already uses -- subject first, verb second:
+#
+#        ACTION_PERMISSION_GRANTED = "user.permission_granted"
+#        ACTION_PERMISSION_REVOKED = "user.permission_revoked"
+#        ACTION_ROLE_CREATED = "role.created"
+#        ACTION_ROLE_EDITED = "role.edited"
+#
+#    The first two sit beside ACTION_ROLE_GRANTED and ACTION_ROLE_REVOKED and
+#    carry subject_type "user"; the last two carry subject_type "role".
+#
+# 3. THE READ. permissions_for_user in app/state/identity.py must become the
+#    union of live role grants and live direct grants, and the direct half needs
+#    every filter the role half has: User.company_id, User.status == STATUS_ACTIVE,
+#    UserPermission.company_id, UserPermission.revoked_at IS NULL. A direct grant
+#    that outlives a suspension would make suspension half a control. Both
+#    require user.manage; no new code is defined for either.
+#
+# 4. role_for_company's SHADOWING DOCSTRING is now wrong -- see the constraint
+#    above. A tenant cannot define its own analyst; it composes a named role.
+# ---------------------------------------------------------------------------

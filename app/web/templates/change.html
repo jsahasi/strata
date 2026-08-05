@@ -8,7 +8,13 @@
   those offsets. That is ADR-003 held up by the shape of the data rather than by
   the care of whoever edits this file next.
 
-  Two rules for anyone changing it.
+  THE READING ORDER THIS PAGE IS BUILT FOR, and the reason for every wrapper in
+  it: what changed, then the claim that rests on it, then the citation under
+  that claim, then -- last, and with the interface going flat and still -- the
+  claim the system refused to make. Three movements, one column each, no
+  instruction anywhere telling the reader that is the order.
+
+  Three rules for anyone changing it.
 
   1. Never add {{ claim.statement }} to the withheld loop. It will raise, and the
      stylesheet also paints .claim--withheld .claim__statement as broken on
@@ -16,6 +22,10 @@
   2. The source panels ship open, with aria-expanded="true" on their chips.
      citation.js closes them on load. Render them hidden instead and a reader
      with scripts blocked gets the claim and none of its evidence.
+  3. Do not lift the withheld claims out into a section of their own. They are
+     last in the same column as the verified ones so the two sit next to each
+     other in the same shape; that adjacency is the demonstration, and a heading
+     between them replaces it with a description of it.
 #}
 {% extends "base.html" %}
 
@@ -60,9 +70,21 @@
 </p>
 {% endmacro %}
 
-{% macro side_block(side, term, note) %}
-<div class="stack--tight">
-  <p>
+{#
+  One side of the record, before or after.
+
+  The two sides are a pair and are marked up as one: .diff holds them, .diff__side
+  is each half, and `which` names which half so the stylesheet can tell them apart
+  without counting children. Paper, both of them -- this is the filing itself, and
+  the direction gives the record no blur, no lift and no motion.
+
+  A side with nothing in it says which kind of nothing it is. "Nothing on this
+  side" was the same sentence for a passage that is new and a passage that is
+  gone, and those are opposite facts.
+#}
+{% macro side_block(side, which, term, absent, note) %}
+<div class="diff__side diff__side--{{ which }} stack--tight">
+  <p class="diff__head">
     <span class="label">{{ term }}</span>
     {{ side.version_label }}
     {%- if side.present %} <span class="coord">{{ side.version_id }} {{ side.start }}-{{ side.end }}</span>{% endif %}
@@ -71,8 +93,8 @@
   <blockquote class="quote">{{ side.text }}</blockquote>
   {%- else %}
   <div class="empty empty--none">
-    <p class="empty__title">Nothing on this side</p>
-    <p class="empty__body">{{ note }}</p>
+    <p class="empty__title">{{ absent }}</p>
+    <div class="empty__body stack--tight"><p>{{ note }}</p></div>
   </div>
   {%- endif %}
 </div>
@@ -80,11 +102,18 @@
 
 {% block content %}
 
+{#
+  The identifier moves up beside the title, where every other screen in the
+  product carries its coordinate. It used to sit under the materiality
+  paragraph, where it read as a third sentence rather than as the name of the
+  thing on screen.
+#}
 <div class="page-head">
-  <h1 class="page-head__title">
-    {{ heading }}
+  <div class="page-head__title">
+    <h1>{{ heading }}</h1>
     <span class="badge {{ status_badge }}">{{ status_word }}</span>
-  </h1>
+    <span class="coord">{{ change.id }}</span>
+  </div>
   <p class="page-head__note">
     <span class="label">{{ change.change_type }}</span>
     between the {{ before.version_label }} and the {{ after.version_label }},
@@ -97,19 +126,33 @@
     judged how much this change matters.
     {%- endif %}
   </p>
-  <p class="coord">{{ change.id }}</p>
 </div>
 
+{#
+  Movement one: the record. The two sides were stacked, which put a hundred
+  pixels between two sentences that differ by four words and asked the reader to
+  hold the first one in their head. They are a pair, so they are laid out as a
+  pair.
+
+  .diff also carries .stack so the sides keep a gap on a browser that has not
+  been given the .diff rule, and so this page never looked broken between the
+  markup landing and the stylesheet catching up. WHOEVER WRITES THAT RULE MUST
+  ZERO THE INHERITED MARGIN -- `.diff.stack > * + * { margin-top: 0 }`, two
+  classes so it beats `.stack > * + *` on specificity rather than on file order
+  -- and put it back inside the narrow breakpoint, where the sides stack again.
+#}
 <section class="stack" aria-labelledby="what-changed">
   <h2 id="what-changed">What changed</h2>
 
-  {{ side_block(before, "Before",
-     "The passage is new. Nothing in the " ~ before.version_label ~
-     " corresponds to it.") }}
+  <div class="diff stack">
+    {{ side_block(before, "before", "Before", "Nothing here before",
+       "The passage is new. Nothing in the " ~ before.version_label ~
+       " corresponds to it.") }}
 
-  {{ side_block(after, "After",
-     "The passage is gone. Nothing in the " ~ after.version_label ~
-     " corresponds to it.") }}
+    {{ side_block(after, "after", "After", "Nothing here after",
+       "The passage is gone. Nothing in the " ~ after.version_label ~
+       " corresponds to it.") }}
+  </div>
 
   {%- if show_alignment %}
   <div class="card stack--tight">
@@ -124,11 +167,26 @@
 
 <hr>
 
+{#
+  Movements two and three: what rests on that record, and what does not.
+
+  Both lists stay in one column, in one order, deliberately. Splitting them
+  under two headings would read better on a wireframe and would cost the
+  demonstration the product turns on -- one claim that verifies and one that
+  does not, adjacent, in the same shape, so a reader sees the difference rather
+  than being told about it. The refusal lands because it is last and because the
+  interface stops at it, not because a heading announced it.
+#}
 <section class="stack" aria-labelledby="claims">
   <h2 id="claims">Claims</h2>
-  <p>{{ verified | length }} asserted, {{ withheld | length }} withheld.</p>
 
   {%- if verified or withheld %}
+  <p>
+    {{ verified | length }} asserted, {{ withheld | length }} withheld.
+    {%- if withheld %} A withheld claim is printed as the reason it was refused.
+    Nothing it would have said appears on this page, in any field.{% endif %}
+  </p>
+
   <div class="{{ 'split' if verified else 'stack' }}">
     <div class="stack">
 
@@ -207,11 +265,22 @@
   {%- else %}
   <div class="empty empty--none">
     <p class="empty__title">No claim has been written about this change</p>
-    <p class="empty__body">
-      The diff found this change and stored it. Nothing has interpreted it yet,
-      so the product says nothing about what it means. Read that as an absence
-      of work, not as a finding that the change is unimportant.
-    </p>
+    <div class="empty__body stack--tight">
+      <p>
+        The diff found this change and stored it. Nothing has interpreted it
+        yet, so the product says nothing about what it means. Read that as an
+        absence of work, not as a finding that the change is unimportant.
+      </p>
+      <p>
+        The two sides above are the whole record. Read them, then look at the
+        rest of the docket for a passage that moved with this one.
+      </p>
+    </div>
+    {%- if nav_proceeding_url %}
+    <div class="empty__actions">
+      <a class="btn" href="{{ nav_proceeding_url }}">See every change in this docket</a>
+    </div>
+    {%- endif %}
   </div>
   {%- endif %}
 </section>

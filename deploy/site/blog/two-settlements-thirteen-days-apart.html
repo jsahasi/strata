@@ -4,19 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Two settlements, thirteen days apart: the boilerplate matched 92%, the terms 26% — Strata</title>
-<meta name="description" content="Ohio 24-508-EL-ATA settled twice in October 2024. Diffing the two competing stipulations with difflib: the procedural section is 92% identical, the operative terms 26%, and 11 of the 40 distinct numbers appear in both.">
+<meta name="description" content="Ohio 24-508-EL-ATA settled twice in October 2024. Diffing the two competing stipulations with difflib: the procedural section is 92% identical, the operative terms 26%, and 12 of the 41 distinct numbers appear in both.">
 <meta name="robots" content="noindex">
 <style>
 /* The page furniture is the same sheet every other page on this site carries,
    copied unchanged so this file renders correctly on its own; /site.css loads
    after it and adds the glass layer.
 
-   The figures use the diagram vocabulary from docs/diagrams.css -- box,
-   box--gate, box--absent, flow, flow--refuse, and amber for anything the
-   record declines to say. That file lives beside the documents in docs/ and is
-   not published here, so the subset this page needs is restated below against
-   this site's own tokens (--paper --ink --muted --rule --stamp --withheld).
-   Same class names, same meanings; nothing new to learn. */
+   The figures use the diagram vocabulary from docs/diagrams.css -- box for a
+   plain quantity, box--gate for the thing that decides, box--absent (dashed)
+   for something that does not exist. That file lives beside the documents in
+   docs/ and is not published here, so the subset this page needs is restated
+   below against this site's own tokens (--paper --ink --muted --rule --stamp).
+   Same class names, same meanings; nothing new to learn. Amber (--withheld) is
+   reserved for a record that declines to say something, and nothing on this
+   page qualifies, so no figure here uses it. */
 :root{
   --paper:#f7f8fa; --ink:#10141c; --muted:#5a6373; --rule:#dfe3ea;
   --stamp:#1b3a8f; --withheld:#a8620e; --panel:#ffffff;
@@ -107,8 +109,6 @@ li{margin:0 0 .6rem}
 .q figcaption b{font-weight:600;color:var(--ink)}
 
 /* ---- the diagram vocabulary (subset of docs/diagrams.css) ---- */
-.fig-defs{position:absolute;width:0;height:0;overflow:hidden}
-#arrow path{fill:var(--muted)}
 .fig{margin:1.6rem 0 1.9rem;padding:0;border:1px solid var(--rule);border-radius:8px;
   background:var(--panel);overflow:hidden}
 .fig__frame{overflow-x:auto;padding:1.1rem 1.2rem .6rem}
@@ -130,13 +130,13 @@ li{margin:0 0 .6rem}
 .fig .t-mono{font-family:var(--mono);font-size:10.5px}
 .fig .t-edge{fill:var(--muted);font-size:10.5px}
 .fig .t-gate{fill:var(--stamp);font-size:10.5px;font-weight:600}
-.fig .flow{fill:none;stroke:var(--muted);stroke-width:1.4;marker-end:url(#arrow)}
 .fig .line--now{fill:none;stroke:var(--stamp);stroke-width:2.1;
   stroke-linejoin:round;stroke-linecap:round}
 .fig .line--dead{fill:none;stroke:var(--muted);stroke-width:1.6;stroke-dasharray:6 4;
   stroke-linejoin:round;stroke-linecap:round}
 .fig .line--dead-2{fill:none;stroke:var(--muted);stroke-width:1.3;stroke-dasharray:2 3;
   stroke-linejoin:round;stroke-linecap:round}
+.fig .mark--now{fill:none;stroke:var(--stamp);stroke-width:1.8}
 .fig .rule{stroke:var(--rule);stroke-width:1}
 .fig .axis{stroke:var(--muted);stroke-width:1.1}
 .fig__key{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;padding:.6rem 1.2rem;
@@ -161,12 +161,6 @@ footer a{color:var(--muted)}
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<svg class="fig-defs" aria-hidden="true"><defs>
-  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
-          markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-    <path d="M0,0 L10,5 L0,10 z"/></marker>
-</defs></svg>
-
 <header>
   <div class="bar">
     <a class="brand" href="/">Strat<span>a</span></a>
@@ -185,39 +179,42 @@ footer a{color:var(--muted)}
       <p class="stamp">PUCO 24-508-EL-ATA &middot; 4 August 2026</p>
       <h1>Two settlements, thirteen days apart: the boilerplate matched 92%, the terms 26%</h1>
 
-      <p class="lede">Ohio case 24-508-EL-ATA settled twice. On 10 October 2024 thirteen parties
-      filed a Joint Stipulation and Recommendation to resolve AEP Ohio&rsquo;s data-centre tariff
-      case. On 23 October six parties filed a different one to resolve the same case. Both say they
-      settle every issue in the proceeding. The Commission adopted the second, as modified, on
+      <p class="lede">Ohio case 24-508-EL-ATA settled twice. On 10 October 2024 thirteen signatures
+      went on a Joint Stipulation and Recommendation to resolve AEP Ohio&rsquo;s data-centre tariff
+      case. On 23 October six went on a different one to resolve the same case. Both say they settle
+      all of the issues raised in the proceeding. The Commission adopted the second, as modified, on
       9 July 2025.</p>
 
       <p>The exhibit numbers run backwards. The 23 October filing is Joint Ex. 1, the 10 October
-      filing is Joint Ex. 2. A binder sorted by exhibit number puts the two settlements in the order
-      they were decided rather than the order they were filed. Commission Staff ran into the naming
-      problem as well, and gave up on it:</p>
+      filing is Joint Ex. 2, so a binder sorted by exhibit number holds them in the order they were
+      decided rather than the order they were filed. Staff hit the naming problem too, and settled
+      it by date:</p>
     </div>
 
     <figure class="q">
-<pre>Stipulation” vs. “Data Center Stipulation”; etc.). To avoid unnecessary disputes
-1
-about naming, Staff recommends using the neutral terms “10/10 Stipulation” and
-2
+<pre>Stipulation” vs. “Data Center Stipulation”; etc.). To avoid unnecessary disputes 
+1 
+about naming, Staff recommends using the neutral terms “10/10 Stipulation” and 
+2 
 “10/23 Stipulation.” </pre>
       <figcaption><b>oh-24-508-EL-ATA-healey-staff-testimony-comparing-stipulations.txt</b>,
-      lines 166&ndash;170. The stray <code>1</code> and <code>2</code> are the testimony&rsquo;s own
-      marginal line numbers, which the text extractor interleaves; they are in the file and so they
-      are in the quote. Staff Ex. 1, filed 26 November 2024 &mdash;
+      lines 166&ndash;170, copied with the trailing spaces the file has. The stray <code>1</code>
+      and <code>2</code> are the testimony&rsquo;s own marginal line numbers, which the text
+      extractor interleaves; they are in the file and so they are in the quote. Staff Ex. 1, filed
+      26 November 2024 &mdash;
       <a href="https://www.supremecourt.ohio.gov/pdf_viewer/pdf_viewer.aspx?pdf=1000456.pdf&amp;subdirectory=2025-1458%5CDocketItems&amp;source=DL_Clerk">source</a>.</figcaption>
     </figure>
 
     <div class="narrow">
-      <p>I diffed them. Both stipulations sit in this corpus as extracted text, both cut from one
-      appendix PDF on the Supreme Court of Ohio docket. I took the operative body of each &mdash;
-      from the <code>JOINT STIPULATION AND RECOMMENDATION</code> heading to just before
-      <code>IN WITNESS WHEREOF</code> &mdash; dropped the <code>Appx. Page N of 867</code> stamps,
-      dropped bare page numbers and blank lines, split the rest on whitespace, and ran
+      <p>I diffed them. Both are extracted text cut from one appendix PDF on the Supreme Court of
+      Ohio docket. I took the operative body of each &mdash; from the
+      <code>JOINT STIPULATION AND RECOMMENDATION</code> heading to just before
+      <code>IN WITNESS WHEREOF</code> &mdash; dropped the <code>Appx. Page &hellip; of 867</code>
+      stamps, bare page numbers and blank lines, split the rest on whitespace, and ran
       <code>difflib.SequenceMatcher</code> over the token lists. The percentages below are
-      difflib&rsquo;s own ratio, twice the matched token count over the two lengths.</p>
+      difflib&rsquo;s own ratio: twice the matched token count over the two lengths. The 23 October
+      document&rsquo;s Exhibit A and Exhibit B sit after <code>IN WITNESS WHEREOF</code>, so they are
+      outside every count on this page except where I say otherwise.</p>
     </div>
   </div></div>
 </section>
@@ -230,56 +227,64 @@ about naming, Staff recommends using the neutral terms “10/10 Stipulation” a
       <div class="fig__frame">
         <svg viewBox="0 0 640 268" role="img"
              aria-label="Bar chart. For each of three sections, two bars scaled to word count, with the part matching the other stipulation filled. Sections one and two, intro and recitals: 10/10 has 388 words of which 358 match, 10/23 has 551 words of which 358 match, similarity 76 per cent. Section three, the terms: 10/10 has 2213 words of which 694 match, 10/23 has 3183 words of which 694 match, similarity 26 per cent. Section four, procedural matters: 10/10 has 725 words of which 682 match, 10/23 has 758 words of which 682 match, similarity 92 per cent.">
+          <!-- Bars are scaled 330px to 3,183 words, the longest section, so a
+               row is comparable with every other row. -->
           <text class="t-sub" x="0" y="12">words in the operative body, matched region filled</text>
 
           <!-- Sections I-II -->
-          <text class="t-title" x="0" y="46">I &ndash; II</text>
-          <text class="t-sub"  x="0" y="60">intro, recitals</text>
+          <text class="t-title" x="0" y="44">I &ndash; II</text>
+          <text class="t-sub"  x="0" y="58">intro, recitals</text>
           <g class="box">
-            <rect x="118" y="34" width="48.8" height="15"/>
-            <rect x="118" y="53" width="69.2" height="15"/>
+            <rect x="140" y="34" width="40.2" height="15"/>
+            <rect x="140" y="53" width="57.1" height="15"/>
           </g>
           <g class="box box--gate">
-            <rect x="118" y="34" width="45.0" height="15"/>
-            <rect x="118" y="53" width="45.0" height="15"/>
+            <rect x="140" y="34" width="37.1" height="15"/>
+            <rect x="140" y="53" width="37.1" height="15"/>
           </g>
-          <text class="t-mono" x="196" y="45">10/10&nbsp;&nbsp; 388 words</text>
-          <text class="t-mono" x="196" y="64">10/23&nbsp;&nbsp; 551 words</text>
-          <text class="t-gate" x="560" y="55" text-anchor="end">76% alike</text>
+          <text class="t-mono" x="134" y="45" text-anchor="end">10/10</text>
+          <text class="t-mono" x="134" y="64" text-anchor="end">10/23</text>
+          <text class="t-mono" x="188" y="45">388 words</text>
+          <text class="t-mono" x="205" y="64">551 words</text>
+          <text class="t-gate" x="628" y="55" text-anchor="end">76% alike</text>
 
-          <line class="rule" x1="0" y1="82" x2="600" y2="82"/>
+          <line class="rule" x1="0" y1="84" x2="628" y2="84"/>
 
           <!-- Section III -->
-          <text class="t-title" x="0" y="114">III</text>
-          <text class="t-sub"  x="0" y="128">the terms</text>
+          <text class="t-title" x="0" y="112">III</text>
+          <text class="t-sub"  x="0" y="126">the terms</text>
           <g class="box">
-            <rect x="118" y="102" width="278.1" height="15"/>
-            <rect x="118" y="121" width="400.0" height="15"/>
+            <rect x="140" y="102" width="229.4" height="15"/>
+            <rect x="140" y="121" width="330.0" height="15"/>
           </g>
           <g class="box box--gate">
-            <rect x="118" y="102" width="87.2" height="15"/>
-            <rect x="118" y="121" width="87.2" height="15"/>
+            <rect x="140" y="102" width="71.9" height="15"/>
+            <rect x="140" y="121" width="71.9" height="15"/>
           </g>
-          <text class="t-mono" x="404" y="113">2,213 words</text>
-          <text class="t-mono" x="526" y="132">3,183 words</text>
-          <text class="t-gate" x="560" y="152" text-anchor="end">26% alike</text>
+          <text class="t-mono" x="134" y="113" text-anchor="end">10/10</text>
+          <text class="t-mono" x="134" y="132" text-anchor="end">10/23</text>
+          <text class="t-mono" x="377" y="113">2,213 words</text>
+          <text class="t-mono" x="478" y="132">3,183 words</text>
+          <text class="t-gate" x="628" y="123" text-anchor="end">26% alike</text>
 
-          <line class="rule" x1="0" y1="172" x2="600" y2="172"/>
+          <line class="rule" x1="0" y1="174" x2="628" y2="174"/>
 
           <!-- Section IV -->
-          <text class="t-title" x="0" y="204">IV</text>
-          <text class="t-sub"  x="0" y="218">procedural matters</text>
+          <text class="t-title" x="0" y="202">IV</text>
+          <text class="t-sub"  x="0" y="216">procedural matters</text>
           <g class="box">
-            <rect x="118" y="192" width="91.1" height="15"/>
-            <rect x="118" y="211" width="95.3" height="15"/>
+            <rect x="140" y="192" width="75.2" height="15"/>
+            <rect x="140" y="211" width="78.6" height="15"/>
           </g>
           <g class="box box--gate">
-            <rect x="118" y="192" width="85.7" height="15"/>
-            <rect x="118" y="211" width="85.7" height="15"/>
+            <rect x="140" y="192" width="70.7" height="15"/>
+            <rect x="140" y="211" width="70.7" height="15"/>
           </g>
-          <text class="t-mono" x="222" y="203">725 words</text>
-          <text class="t-mono" x="222" y="222">758 words</text>
-          <text class="t-gate" x="560" y="213" text-anchor="end">92% alike</text>
+          <text class="t-mono" x="134" y="203" text-anchor="end">10/10</text>
+          <text class="t-mono" x="134" y="222" text-anchor="end">10/23</text>
+          <text class="t-mono" x="223" y="203">725 words</text>
+          <text class="t-mono" x="227" y="222">758 words</text>
+          <text class="t-gate" x="628" y="213" text-anchor="end">92% alike</text>
 
           <text class="t-sub" x="0" y="252">One matched run inside section IV is 141 words long.</text>
         </svg>
@@ -297,8 +302,9 @@ about naming, Staff recommends using the neutral terms “10/10 Stipulation” a
     <div class="narrow">
       <p>Two settlements of one case agree almost word for word on procedure and hardly at all on
       terms. The longest identical run in section IV is 141 consecutive words, on material
-      modification and rehearing. Read both documents front to back and most of your attention goes
-      to a shared law-firm template.</p>
+      modification and rehearing. Outside the terms, 1,040 words of each document sit in runs the
+      other repeats exactly &mdash; 31% of the shorter file, 23% of the longer. Read both front to
+      back and you read those twice.</p>
     </div>
   </div></div>
 </section>
@@ -308,71 +314,90 @@ about naming, Staff recommends using the neutral terms “10/10 Stipulation” a
     <h2>The threshold is the case</h2>
 
     <figure class="q">
-<pre>2. The name of Schedule DCP (Data Center Power) will be changed to Schedule EIC
-(Electricity-Intensive Customer) and will apply to any electric service agreement
+<pre>2. The name of Schedule DCP (Data Center Power) will be changed to Schedule EIC 
+(Electricity-Intensive Customer) and will apply to any electric service agreement 
 …
-(ESA) signed after the tariff effective date for new load greater than 50 MW at a
-Single Location if AEP Ohio provides Proof of a Transmission Capacity
-Constraint.</pre>
-      <figcaption><b>oh-24-508-EL-ATA-stipulation-2024-10-10-joint-ex-2.txt</b>, lines 99&ndash;104.
-      The ellipsis stands for a page break: an <code>Appx. Page 441 of 867</code> stamp, a page
-      number and a blank line. Appendix pages 439&ndash;456 &mdash;
+(ESA) signed after the tariff effective date for new load greater than 50 MW at a 
+Single Location if AEP Ohio provides Proof of a Transmission Capacity 
+Constraint.  Schedule EIC will not apply to loads greater than 50 MW at a Single 
+Location that have already signed an LOA or ESA by the effective date of the new 
+tariff.  </pre>
+      <figcaption><b>oh-24-508-EL-ATA-stipulation-2024-10-10-joint-ex-2.txt</b>, lines
+      99&ndash;100 and 104&ndash;108. The ellipsis stands for the three lines between them: an
+      <code>Appx. Page 441 of 867</code> stamp, a page number and a blank line. Appendix pages
+      439&ndash;456 &mdash;
       <a href="https://www.supremecourt.ohio.gov/pdf_viewer/pdf_viewer.aspx?pdf=997942.pdf&amp;subdirectory=2025-1458%5CDocketItems&amp;source=DL_Clerk">source</a>.</figcaption>
     </figure>
 
     <figure class="q">
-<pre>The Mobile Data Center Tariff will be merged into the Data Center Tariff (“Schedule
-DCT”) and will apply to any electric service agreement signed after the tariff effective
-date for a new load (or expansion of an existing load) greater in the aggregate than 25
-MW as calculated in this Paragraph III.A.</pre>
+<pre>The Mobile Data Center Tariff will be merged into the Data Center Tariff (“Schedule 
+DCT”) and will apply to any electric service agreement signed after the tariff effective 
+date for a new load (or expansion of an existing load) greater in the aggregate than 25 
+MW as calculated in this Paragraph III.A.  The final version of Schedule DCT being 
+recommended by the Signatory Parties through this Stipulation is attached as Exhibit A; </pre>
       <figcaption><b>oh-24-508-EL-ATA-stipulation-2024-10-23-joint-ex-1.txt</b>, lines
-      139&ndash;142. Appendix pages 408&ndash;438 of the same PDF &mdash;
+      139&ndash;143. Appendix pages 408&ndash;438 of the same PDF &mdash;
       <a href="https://www.supremecourt.ohio.gov/pdf_viewer/pdf_viewer.aspx?pdf=997942.pdf&amp;subdirectory=2025-1458%5CDocketItems&amp;source=DL_Clerk">source</a>.</figcaption>
     </figure>
 
     <div class="narrow">
       <p>Fifty megawatts at one site, and only once the utility has proved a transmission
-      constraint, against twenty-five megawatts aggregated across affiliates with no proof
-      obligation at all. Staff put the gap in one sentence: under the earlier stipulation
-      &ldquo;some data centers could potentially modify their operations to run at a contract
-      capacity of 49.9 MW to avoid the tariff&rdquo; (same Healey testimony, lines 1076&ndash;1080).</p>
+      constraint, against twenty-five megawatts counted in the aggregate across the facilities at
+      one location, with no proof obligation at all. Staff&rsquo;s objection was that a
+      fifty-megawatt line invites a data centre
+      to sit at 49.9 MW and stay outside the tariff (same Healey testimony, lines 1076&ndash;1080;
+      the sentence runs across the file&rsquo;s marginal line numbers, so it is paraphrased here
+      rather than quoted).</p>
 
       <p>The tariff does not even have the same name in the two documents &mdash; Schedule EIC in
-      one, Schedule DCT in the other &mdash; and the earlier one says why:
-      &ldquo;the terms &ldquo;Data Center&rdquo; and &ldquo;Mobile Data Center&rdquo; proposed in
-      the Application will be eliminated&rdquo; (lines 146&ndash;147). A settlement that renames the
-      tariff has redefined who it covers. If you read one section of a rival stipulation, read the
-      definitions.</p>
+      one, Schedule DCT in the other &mdash; and the earlier one says why: for purposes of its
+      Schedule EIC it drops the application&rsquo;s Data Center and Mobile Data Center terms
+      altogether, at lines 146&ndash;147. A settlement that renames the tariff has redefined who it
+      covers. If you read
+      one section of a rival stipulation, read the definitions.</p>
     </div>
 
     <h2>One conjunction, in the collateral clause</h2>
 
     <figure class="q">
-<pre>requirements proposed in the Application if the customer does not have
-either (a) a credit rating of at least A- from S&amp;P Global Inc. and A3 from
-Moody’s Corporation or (b) cash and cash equivalents on an audited balance
-sheet prepared in accordance with Generally Accepted Accounting Principles
+<pre>b. Any customer served under Schedule EIC with a Contract Capacity of 75 
+MW or more for a Single Location will be subject to the security/collateral 
+requirements proposed in the Application if the customer does not have 
+either (a) a credit rating of at least A- from S&amp;P Global Inc. and A3 from 
+Moody’s Corporation or (b) cash and cash equivalents on an audited balance 
+sheet prepared in accordance with Generally Accepted Accounting Principles 
 greater than ten times the collateral requirement. </pre>
       <figcaption><b>oh-24-508-EL-ATA-stipulation-2024-10-10-joint-ex-2.txt</b>, lines
-      150&ndash;154 &mdash;
+      148&ndash;154 &mdash;
       <a href="https://www.supremecourt.ohio.gov/pdf_viewer/pdf_viewer.aspx?pdf=997942.pdf&amp;subdirectory=2025-1458%5CDocketItems&amp;source=DL_Clerk">source</a>.</figcaption>
     </figure>
 
     <figure class="q">
-<pre>The customer, if not having both (a) a credit rating of at least A- from S&amp;P Global Inc. (“S&amp;P”) and A3 from Moody’s
-Corporation (“Moody’s”) and (b) cash and cash equivalents on an audited balance sheet prepared in accordance with
-Generally Accepted Accounting Principles (“GAAP”) (“Liquidity”) greater than ten times the Collateral Requirement, must
-provide a guarantee or collateral at the time of signing the contract equal to 50% of the total minimum charges for the full </pre>
+<pre>The customer, if not having both (a) a credit rating of at least A- from S&amp;P Global Inc. (“S&amp;P”) and A3 from Moody’s 
+Corporation (“Moody’s”) and (b) cash and cash equivalents on an audited balance sheet prepared in accordance with 
+Generally Accepted Accounting Principles (“GAAP”) (“Liquidity”) greater than ten times the Collateral Requirement, must 
+provide a guarantee or collateral at the time of signing the contract equal to 50% of the total minimum charges for the full 
+…</pre>
       <figcaption><b>oh-24-508-EL-ATA-stipulation-2024-10-23-joint-ex-1.txt</b>, lines
-      1166&ndash;1169, inside Exhibit A, the tariff sheet the stipulation attaches &mdash;
+      1166&ndash;1169, inside Exhibit A, the tariff sheet the stipulation attaches. The sentence
+      runs on past a page break; the ellipsis marks where this quote stops, not where the sentence
+      does &mdash;
       <a href="https://www.supremecourt.ohio.gov/pdf_viewer/pdf_viewer.aspx?pdf=997942.pdf&amp;subdirectory=2025-1458%5CDocketItems&amp;source=DL_Clerk">source</a>.</figcaption>
     </figure>
 
     <div class="narrow">
-      <p><em>Either</em> against <em>both</em>. Under the first document an investment-grade
-      customer posts no collateral, and so does a cash-rich one. Under the second you need the
-      rating and the cash. The two sentences share most of their words, both name the same agencies
-      and the same ten-times test, and they mean opposite things at the point where it costs money.</p>
+      <p><em>Either</em> against <em>both</em>. Under the first document you owe collateral only if
+      you fail both tests, so an investment-grade customer posts none and so does a cash-rich one.
+      Under the second you escape only if you pass both. A customer holding the ratings but not the
+      cash is exempt in one document and posting a guarantee in the other. The two sentences name
+      the same two agencies and the same ten-times test.</p>
+
+      <p>They are not the same clause in the same place. The 10 October test bites at 75 MW and
+      above; below that the existing GS tariff governs (lines 143&ndash;145). The 23 October
+      sentence sits in Schedule DCT itself, which applies above 25 MW, and it is not new: paragraph
+      III.C keeps the collateral requirements of AEP Ohio&rsquo;s own application in place (lines
+      232&ndash;234), and the tariff sheet attached as Exhibit A is that application&rsquo;s
+      Exhibit MSM-1.</p>
     </div>
   </div></div>
 </section>
@@ -384,7 +409,7 @@ provide a guarantee or collateral at the time of signing the contract equal to 5
     <figure class="fig">
       <div class="fig__frame">
         <svg viewBox="0 0 640 306" role="img"
-             aria-label="Line chart of minimum billing demand as a percentage of contract capacity, against contract capacity from 25 to 150 megawatts. The adopted 23 October curve starts at 60 per cent at 25 megawatts, reaches 72.5 per cent at 50 megawatts, 76.67 per cent at 75 megawatts, and flattens at its 85 per cent cap from about 117 megawatts. The 10 October Term A curve does not exist below 50 megawatts, starts at 65 per cent just above 50 megawatts, reaches 71.67 per cent at 75 megawatts, and flattens at 85 per cent from about 142 megawatts. The 10 October Term C curve follows Term A until 85 megawatts and is then flat at its 75 per cent cap. The adopted curve is above both across the whole range.">
+             aria-label="Line chart of minimum billing demand as a percentage of contract capacity, against contract capacity from 25 to 150 megawatts. The adopted 23 October curve starts at 60 per cent at 25 megawatts, reaches 72.5 per cent at 50 megawatts, 76.67 per cent at 75 megawatts, and flattens at its 85 per cent cap from 116.7 megawatts. The 10 October Term A curve does not exist below 50 megawatts, starts at 65 per cent just above 50 megawatts, reaches 71.67 per cent at 75 megawatts, and flattens at 85 per cent from 141.7 megawatts. The 10 October Term C curve follows Term A until 85 megawatts and is then flat at its 75 per cent cap. The adopted curve is above both from 50 megawatts to 141.7 megawatts, where Term A reaches the same 85 per cent cap and the two meet. Term B, whose cap is 80 per cent, is not drawn.">
           <!-- plot frame: x 25-150 MW maps 56-620; y 55-90% maps 250-20 -->
           <g class="rule">
             <line x1="56" y1="217.1" x2="620" y2="217.1"/>
@@ -421,35 +446,40 @@ provide a guarantee or collateral at the time of signing the contract equal to 5
           <text class="t-sub" x="112" y="40" text-anchor="middle">10/10: no tariff</text>
           <text class="t-sub" x="112" y="54" text-anchor="middle">applies here</text>
 
-          <polyline class="line--now" points="56.0,217.1 78.6,189.8 101.1,170.2 123.7,155.5 146.2,144.1 168.8,135.0 191.4,127.5 213.9,121.3 236.5,116.0 259.0,111.5 281.6,107.6 304.2,98.0 326.7,89.6 349.3,82.1 371.8,75.3 394.4,69.3 417.0,63.8 439.5,58.8 469.6,52.9 484.6,52.9 529.8,52.9 574.9,52.9 620.0,52.9"/>
-          <polyline class="line--dead" points="168.8,184.3 191.4,172.3 213.9,162.4 236.5,154.0 259.0,146.7 281.6,140.5 304.2,128.8 326.7,118.6 349.3,109.4 371.8,101.3 394.4,93.9 417.0,87.3 439.5,81.2 462.1,75.7 484.6,70.7 529.8,61.7 582.4,52.9 597.4,52.9 620.0,52.9"/>
-          <polyline class="line--dead-2" points="168.8,184.3 191.4,172.3 213.9,162.4 236.5,154.0 259.0,146.7 281.6,140.5 304.2,128.8 326.7,118.6 349.3,118.6 394.4,118.6 484.6,118.6 620.0,118.6"/>
+          <polyline class="line--now" points="56.0,217.1 60.5,210.8 65.0,205.0 69.5,199.5 74.0,194.5 78.6,189.8 83.1,185.3 87.6,181.2 92.1,177.3 96.6,173.7 101.1,170.2 105.6,166.9 110.1,163.9 114.7,160.9 119.2,158.2 123.7,155.5 128.2,153.0 132.7,150.6 137.2,148.4 141.7,146.2 146.2,144.1 150.8,142.1 155.3,140.2 159.8,138.4 164.3,136.7 168.8,135.0 173.3,133.4 177.8,131.8 182.3,130.4 186.8,128.9 191.4,127.5 195.9,126.2 200.4,124.9 204.9,123.7 209.4,122.5 213.9,121.3 218.4,120.2 222.9,119.1 227.5,118.0 232.0,117.0 236.5,116.0 241.0,115.1 245.5,114.2 250.0,113.3 254.5,112.4 259.0,111.5 263.6,110.7 268.1,109.9 272.6,109.1 277.1,108.4 281.6,107.6 286.1,105.6 290.6,103.6 295.1,101.7 299.6,99.9 304.2,98.0 308.7,96.3 313.2,94.5 317.7,92.8 322.2,91.2 326.7,89.6 331.2,88.0 335.7,86.5 340.3,85.0 344.8,83.5 349.3,82.1 353.8,80.7 358.3,79.3 362.8,77.9 367.3,76.6 371.8,75.3 376.4,74.1 380.9,72.8 385.4,71.6 389.9,70.4 394.4,69.3 398.9,68.1 403.4,67.0 407.9,65.9 412.4,64.9 417.0,63.8 421.5,62.8 426.0,61.8 430.5,60.8 435.0,59.8 439.5,58.8 444.0,57.9 448.5,57.0 453.1,56.1 457.6,55.2 462.1,54.3 466.6,53.4 471.1,52.9 475.6,52.9 480.1,52.9 484.6,52.9 489.2,52.9 493.7,52.9 498.2,52.9 502.7,52.9 507.2,52.9 511.7,52.9 516.2,52.9 520.7,52.9 525.2,52.9 529.8,52.9 534.3,52.9 538.8,52.9 543.3,52.9 547.8,52.9 552.3,52.9 556.8,52.9 561.3,52.9 565.9,52.9 570.4,52.9 574.9,52.9 579.4,52.9 583.9,52.9 588.4,52.9 592.9,52.9 597.4,52.9 602.0,52.9 606.5,52.9 611.0,52.9 615.5,52.9 620.0,52.9"/>
+          <polyline class="line--dead" points="168.8,184.3 173.3,181.7 177.8,179.2 182.3,176.8 186.8,174.6 191.4,172.3 195.9,170.2 200.4,168.1 204.9,166.2 209.4,164.2 213.9,162.4 218.4,160.6 222.9,158.8 227.5,157.2 232.0,155.5 236.5,154.0 241.0,152.4 245.5,150.9 250.0,149.5 254.5,148.1 259.0,146.7 263.6,145.4 268.1,144.1 272.6,142.9 277.1,141.7 281.6,140.5 286.1,138.0 290.6,135.6 295.1,133.3 299.6,131.0 304.2,128.8 308.7,126.7 313.2,124.6 317.7,122.5 322.2,120.5 326.7,118.6 331.2,116.7 335.7,114.8 340.3,113.0 344.8,111.2 349.3,109.4 353.8,107.7 358.3,106.1 362.8,104.4 367.3,102.8 371.8,101.3 376.4,99.7 380.9,98.2 385.4,96.8 389.9,95.3 394.4,93.9 398.9,92.5 403.4,91.2 407.9,89.9 412.4,88.6 417.0,87.3 421.5,86.0 426.0,84.8 430.5,83.6 435.0,82.4 439.5,81.2 444.0,80.1 448.5,79.0 453.1,77.9 457.6,76.8 462.1,75.7 466.6,74.7 471.1,73.6 475.6,72.6 480.1,71.6 484.6,70.7 489.2,69.7 493.7,68.7 498.2,67.8 502.7,66.9 507.2,66.0 511.7,65.1 516.2,64.2 520.7,63.4 525.2,62.5 529.8,61.7 534.3,60.9 538.8,60.1 543.3,59.3 547.8,58.5 552.3,57.7 556.8,57.0 561.3,56.2 565.9,55.5 570.4,54.7 574.9,54.0 579.4,53.3 583.9,52.9 588.4,52.9 592.9,52.9 597.4,52.9 602.0,52.9 606.5,52.9 611.0,52.9 615.5,52.9 620.0,52.9"/>
+          <polyline class="line--dead-2" points="168.8,184.3 173.3,181.7 177.8,179.2 182.3,176.8 186.8,174.6 191.4,172.3 195.9,170.2 200.4,168.1 204.9,166.2 209.4,164.2 213.9,162.4 218.4,160.6 222.9,158.8 227.5,157.2 232.0,155.5 236.5,154.0 241.0,152.4 245.5,150.9 250.0,149.5 254.5,148.1 259.0,146.7 263.6,145.4 268.1,144.1 272.6,142.9 277.1,141.7 281.6,140.5 286.1,138.0 290.6,135.6 295.1,133.3 299.6,131.0 304.2,128.8 308.7,126.7 313.2,124.6 317.7,122.5 322.2,120.5 326.7,118.6 331.2,118.6 335.7,118.6 340.3,118.6 344.8,118.6 349.3,118.6 353.8,118.6 358.3,118.6 362.8,118.6 367.3,118.6 371.8,118.6 376.4,118.6 380.9,118.6 385.4,118.6 389.9,118.6 394.4,118.6 398.9,118.6 403.4,118.6 407.9,118.6 412.4,118.6 417.0,118.6 421.5,118.6 426.0,118.6 430.5,118.6 435.0,118.6 439.5,118.6 444.0,118.6 448.5,118.6 453.1,118.6 457.6,118.6 462.1,118.6 466.6,118.6 471.1,118.6 475.6,118.6 480.1,118.6 484.6,118.6 489.2,118.6 493.7,118.6 498.2,118.6 502.7,118.6 507.2,118.6 511.7,118.6 516.2,118.6 520.7,118.6 525.2,118.6 529.8,118.6 534.3,118.6 538.8,118.6 543.3,118.6 547.8,118.6 552.3,118.6 556.8,118.6 561.3,118.6 565.9,118.6 570.4,118.6 574.9,118.6 579.4,118.6 583.9,118.6 588.4,118.6 592.9,118.6 597.4,118.6 602.0,118.6 606.5,118.6 611.0,118.6 615.5,118.6 620.0,118.6"/>
 
-          <text class="t-gate"  x="452" y="46">10/23, adopted</text>
-          <text class="t-edge"  x="500" y="76">10/10, Term A</text>
-          <text class="t-edge"  x="500" y="132">10/10, Term C</text>
-          <circle cx="469.6" cy="52.9" r="3" fill="none" stroke="currentColor" class="t-gate"/>
-          <text class="t-mono" x="464" y="42" text-anchor="end">85% cap binds at 117 MW</text>
+          <text class="t-gate"  x="236" y="104">10/23, adopted</text>
+          <text class="t-edge"  x="440" y="96">10/10, Term A</text>
+          <text class="t-edge"  x="440" y="136">10/10, Term C</text>
+          <circle class="mark--now" cx="469.6" cy="52.9" r="3.2"/>
+          <text class="t-mono" x="462" y="42" text-anchor="end">85% cap binds at 116.7 MW</text>
         </svg>
       </div>
       <div class="fig__key">
         <span><i class="k-now"></i>in force &mdash; adopted 9 July 2025</span>
         <span><i class="k-dead"></i>not adopted</span>
       </div>
-      <figcaption><strong>The floor under the bill, at every size of plant.</strong> Both curves
+      <figcaption><strong>The floor under the bill, at every size of plant.</strong> The three lines
       are the bracket formulas written in the two stipulations, evaluated at 1 MW steps. Dashed
       means the document was not adopted, the same way a dashed box in these diagrams means a thing
-      that does not exist. At a 60 MW site the adopted floor is 74.58% of contract capacity against
-      68.33% under the rival &mdash; a permanent difference in the minimum bill.</figcaption>
+      that does not exist. The 10 October tariff had a third option, Term B: it tracks Term A to
+      106.25 MW and then flattens at its 80% cap. It is left off to keep the chart readable. At a
+      60 MW site the adopted floor is 74.58% of contract capacity against 68.33% under either
+      rival term &mdash; a permanent difference in the minimum bill.</figcaption>
     </figure>
 
     <div class="narrow">
-      <p>The 23 October filing brought its own arithmetic: Exhibit B, ninety-three rows of contract
-      capacity against minimum demand. I recomputed every row from the bracket formula in the body
-      of the stipulation. All ninety-three tie, in the megawatt column and in the percentage column.
-      The 85% cap first bites at 117 MW, and Exhibit B&rsquo;s own last row shows it &mdash; 99.45
-      where the formula alone gives 99.50. The 10 October filing carries no such exhibit, so nothing
-      in it can be checked against itself.</p>
+      <p>The 23 October filing brought its own arithmetic: Exhibit B, ninety-three rows running
+      25 MW to 117 MW, contract capacity against minimum demand, and then a <code>117+</code> row
+      that gives 85.00% and no megawatt figure. I recomputed every row from the bracket formula in
+      the body of the stipulation. All ninety-three tie, in the megawatt column and in the
+      percentage column &mdash; rounding half away from zero, which decides exactly one row: 80 MW
+      is 78.125% and the exhibit prints 78.13%. The 85% cap binds from 116.7 MW, so 117 MW is the
+      first whole megawatt where it shows, and Exhibit B&rsquo;s last row shows it: 99.45 where the
+      brackets alone give 99.50. The 10 October filing carries no such exhibit, so its own brackets
+      have no second copy to be checked against.</p>
     </div>
   </div></div>
 </section>
@@ -458,15 +488,15 @@ provide a guarantee or collateral at the time of signing the contract equal to 5
   <div class="wrap"><div class="lined" data-line="5">
     <h2>What the second one conceded</h2>
     <div class="narrow">
-      <p>Nothing to its rival, as far as I can find. It conceded to the application. Merging the
+      <p>Nothing to its rival, as far as I can find. Its concessions run to the application it
+      settled, not to the document it beat. Merging the
       Mobile Data Center tariff into Schedule DCT lifts the trigger for a cryptocurrency miner from
       the application&rsquo;s &ldquo;greater than 1 MW at a single location&rdquo; to 25,000 kW
       (recital at lines 106&ndash;111, definition at lines 162&ndash;169). It dismissed AEP
       Ohio&rsquo;s standard service offer proposal without prejudice, turned exit-fee revenue into a
       regulatory liability flowed back to retail customers, and gave General Service customers over
       25 MW one chance to cut their contract capacity. The two documents are not two points on one
-      axis. They settle different questions, with different parties, and the later one bargained
-      against the utility rather than against the earlier settlement.</p>
+      axis. They settle different questions with different parties.</p>
 
       <p>Against the 10 October terms it gave up nothing: the load-ramp floors rise from
       30/50/70/90% to 50/65/80/90%, the window to pay a load-study fee falls from 120 days to 45,
@@ -479,11 +509,15 @@ provide a guarantee or collateral at the time of signing the contract equal to 5
     <h2>The diff will lie to you about the boilerplate</h2>
     <div class="narrow">
       <p>Inside that 92%-identical procedural section difflib still reports fifteen differences. Six
-      are one word: the 23 October drafter wrote <code>Settlement</code> where its own defined term
-      is <code>Stipulation</code>, six times in the paragraph on material modification. Four are
-      real &mdash; who files supporting testimony, a motion for continuance, and two reservations of
-      rights. On rival documents the ordinary diff instinct runs backwards. The matched text is the
-      template. Read the mismatches, and expect a third of them to be a word-processor habit.</p>
+      are the same word swapped: the 23 October drafter wrote <code>Settlement</code> where its own
+      defined term is <code>Stipulation</code>, six times in the paragraph on material modification.
+      Four more make up one sentence about who files supporting testimony. Two are reservations of
+      rights the later document adds. The last three are a capital letter, the word
+      <code>other</code>, and a line reading <code>[space intentionally blank &ndash; signature page
+      follows]</code>. On rival documents the ordinary diff instinct runs backwards: the matched text
+      is the template and the mismatches are where to look. On this pair eight of the fifteen
+      &mdash; the six word swaps, the capital letter and the blank-page line &mdash; change no
+      obligation.</p>
     </div>
 
     <h2>What to do on Monday</h2>
@@ -491,32 +525,33 @@ provide a guarantee or collateral at the time of signing the contract equal to 5
       <ol>
         <li><b>Diff the two and throw the matches away before you read.</b> Twenty lines:
         <code>difflib.SequenceMatcher</code> over whitespace tokens, print the opcodes that are not
-        <code>equal</code>. On this pair it cuts 3,326 words down to what was argued about.</li>
+        <code>equal</code>. On this pair it takes 3,326 and 4,492 words down to the part that was
+        argued about.</li>
         <li><b>Read the two definition lists side by side, before the terms.</b> A rival that renames
         the tariff has changed who it covers, and no heading says so.</li>
-        <li><b>Pull every number carrying a unit out of each operative section and line them up.</b>
-        One regular expression here gives 27 distinct values in the first stipulation, 24 in the
-        second, and 11 in both. It misses numbers written as words &mdash; one document says
-        <code>8 years</code> and the other <code>eight years</code> &mdash; so it is a first pass,
-        not a census.</li>
+        <li><b>Pull every number carrying a unit out of each operative body and line them up.</b>
+        Drop the stamps, the bare page numbers and the blank lines as above, then run
+        <code>\$[\d,]+|\d[\d,]*(?:\.\d+)?\s*(?:%|MW|kW|kV|days?|months?|years?)</code> over what is
+        left and squeeze the whitespace inside each hit down to single spaces &mdash; the extractor
+        breaks <code>25,000 kW</code> over two lines and you want that counted once. Twenty-nine
+        distinct values in the 10 October document, 24 in the 23 October one, 12 in both. It misses
+        numbers written as words &mdash; one document says <code>8 years</code> and the other
+        <code>eight years</code> &mdash; so it is a first pass, not a census.</li>
         <li><b>Read the two signature blocks against each other.</b> The Ohio Energy Group signed
         the 23 October stipulation and, eight days later, filed testimony against the 10 October
         one. Thirteen signatures lost to six. Counting parties tells you nothing.</li>
       </ol>
 
       <p>When two documents claim to settle the same case, the difference between them is the
-      argument. Nobody drafts a competing settlement to restate the shared procedural language, and
-      nobody reads one for it &mdash; but that language is most of what is on the page, and reading
-      both in full is how your attention gets spent there. The disagreement lives in the
-      definitions, the thresholds and the conjunctions, and on the page it is small enough to walk
-      past twice.</p>
+      argument. The shared procedural language is not the argument, and 1,040 words of it sit in
+      both files. The disagreement lives in the definitions, the thresholds and the conjunctions,
+      where it is small enough to walk past twice.</p>
 
       <div class="note">
         <p><b>Disclosure.</b> Strata, the product on the rest of this site, is mine, and it exists
-        to do this kind of comparison. Nothing above needed it. The diffs are Python and an
-        afternoon, the two stipulations are page ranges of one public appendix PDF, and every quote
-        here names its file and links to the commission&rsquo;s own copy so you can check the
-        characters rather than take my word for them.</p>
+        to do this kind of comparison. Nothing above needed it. Every quote here names its file and
+        links to the commission&rsquo;s own copy, so check the characters rather than take my word
+        for them.</p>
       </div>
     </div>
   </div></div>
