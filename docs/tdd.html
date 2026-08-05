@@ -1733,6 +1733,37 @@ list that would read as "nothing has happened".</figcaption>
 <p><span class="lbl">The owner sits on the obligation record rather than the project</span>, because one project carries obligations different people answer for, and a final change routes to the analyst and to that named owner. The column exists — <code>obligations.owner_user_id</code>, nullable, because an owner who leaves takes their account's usefulness and not the duty — and <code>app/state/routing.py</code> now reads it. What remains missing is the surface: there is still no screen that renders obligations, so an obligation nobody owns is visible only as the reason an escalation refused to route.</p>
 </div>
 
+<p><span class="lbl">The action half is built, and segregation of duties finally has a caller.</span>
+<code>app/web/views/actions.py</code> serves <code>/actions</code>, where an analyst proposes
+monitor, comment or comply on a claim and somebody else decides it. The kind is checked against
+<code>action_vocabulary(change.status)</code> at write time, so a draft cannot be complied with.
+<code>policy.can_approve</code> gates the decision: four checks, and the fourth refuses anybody
+the audit chain shows already acting on that claim, the change beneath it, or an escalation
+against it. Approval by whoever wrote the thing is not review.</p>
+
+<p><span class="lbl">It gates a claim, not a change, and that shapes the row.</span>
+<code>ProposedAction</code> points at a claim because <code>can_approve</code> resolves a claim
+id into the claim, the change beneath it and every escalation against it. A change-only row
+would leave the gate a claim short of its evidence. The proposal is appended under
+<code>ACTION_ACTION_PROPOSED</code>, deliberately outside <code>_NOT_AUTHORSHIP</code> &mdash;
+that row is the evidence gate four reads back.</p>
+
+<p><span class="lbl">Every outcome is decided inside the transaction and acted on outside it.</span>
+<code>can_approve</code> writes its <code>access.denied</code> row through the caller's session,
+so raising an <code>HTTPException</code> inside <code>session_scope()</code> would roll it back:
+the person is stopped and the record of stopping them is gone.
+<code>app/web/views/review.py</code> still has the older shape.</p>
+
+<p><span class="lbl">What it costs.</span> Approving records a decision and performs nothing
+&mdash; nothing is filed, nobody is told, no project state moves, and the screen says so.
+Rejecting gates on <code>action.reject</code> rather than on <code>can_approve</code>, so
+somebody can knock out a colleague's proposal and leave their own standing. The kind is checked
+against the change's <em>stored</em> status and nothing checks that status against reality.
+No refusal is seeded: nobody in the seeded grid holds <code>action.approve</code> and has also
+touched a claim, so reaching gate four takes one role grant at <code>/users</code> first, and
+<code>tests/test_seeded_refusal.py</code> walks that route so the README cannot drift from it.
+ADR-91 carries the argument.</p>
+
 <h2 id="audit">8. Audit history &amp; rollback</h2>
 <div class="d">
 <h3>What the log is, and what it is not</h3>
