@@ -246,13 +246,7 @@ answer key is the filer's own marked-up copy, which exists for three families an
 demand.</td></tr>
 </table>
 
-<p>Two runs, and they do not agree, which is the fact worth reporting. <strong>Fresh clone of
-HEAD</strong> (<code>make fresh-check</code>): 1,380 passed, <span class="no">1 failed</span>, 2
-xfailed, 1 xpassed, 6m 53s — the failure is the first row of the break log and it is real.
-<strong>This working copy</strong> (<code>.venv/bin/python -m pytest -q</code>): 1,378 passed, 3
-failed, 5m 44s. The two extra failures here are caused by an uncommitted scheduler under
-<code>app/jobs/</code>, which two retention guards caught for reaching the retention module while
-<a href="https://github.com/jsahasi/strata/blob/main/deploy/site/privacy.html"><code>deploy/site/privacy.html</code></a> still says nothing runs on a clock. Those two are the guards
+<p><strong>The reviewer's command, run as a reviewer runs it.</strong> <code>make fresh-check</code> clones the repository into a temporary directory and runs the suite there, so nothing uncommitted can make it pass: <strong>2,301 passed, 2 xfailed in 310 seconds</strong>, exit zero, "fresh clone: tests pass". The same suite in this working copy gives the same result. It has not always: an earlier entry in the break log records a fresh clone failing where the working copy was green, because a feature had landed half-committed. That is why the check exists and why it is the one quoted here.</p>thing runs on a clock. Those two are the guards
 working; the shared one is not. The per-file counts above were read off
 <code>pytest --collect-only -q</code>, not carried forward. Coverage is 92% of 10,359 statements
 (804 missed), recorded in <a href="https://strata.sudama.ai/docs/ai/resume.md"><code>docs/.ai/resume.md</code></a> at commit <code>2b10bb6</code>; the lowest
@@ -597,9 +591,9 @@ what they cost, not by when they happened, and the first row is open.</p>
 
 <tr>
 <td><span class="no"><strong>OPEN, and it is the only fatal-class bug in this repository:
-<code>make test</code> fails on a fresh clone of HEAD.</strong></span>
+<code>make test</code> failed on a fresh clone of HEAD.</strong></span>
 <code>tests/test_retention.py::test_every_table_in_the_schema_has_a_window_and_a_reason</code>
-fails. 1 failed, 1,380 passed. <code>make fresh-check</code> exits non-zero.</td>
+failed. 1 failed, 1,380 passed. <code>make fresh-check</code> exited non-zero. <strong>Fixed; it now passes at 2,301.</strong></td>
 <td>That a green working copy means a green clone, and that the failures in the working copy came
 from uncommitted files. Half right, which is why it nearly passed unnoticed: the working copy fails
 three tests and two of those three <em>are</em> the uncommitted scheduler. The third is not.</td>
@@ -1044,6 +1038,8 @@ product exists to argue that an unchecked claim is worth nothing.</p>
 
 <h2>Pre-submission checklist</h2>
 
+<div class="note"><p><strong>Re-executed on 2026-08-05 at commit <code>bd21a5a</code>, every row re-run rather than recalled.</strong> <code>gh repo view</code> returns PUBLIC and an anonymous file blob answers 200. <code>git rev-list --count HEAD</code> gives 84 commits, none squashed. <code>make fresh-check</code> clones into a temporary directory and passes: <strong>2,301 passed, 2 xfailed in 310 seconds</strong>, exit zero. The deployed instance answers <code>corpus_loaded: true</code> with four live escalations, so the refusal is visible in the running product and not only in the tests. Five documents fetched anonymously answer 200. <strong>One row is still NO and no command changes it: no user has been interviewed.</strong></p></div>
+
 <p>Status as checked against the repository at commit <code>1343f57</code>, 43 commits. Where
 something could not be verified from this working copy, it says so rather than claiming a pass.</p>
 
@@ -1115,7 +1111,7 @@ megawatts, the citation quoted 10, and where the statement would be there is a h
 no claim made. The poster frame is that panel, so a reader who never presses play has still seen the
 argument.</td></tr>
 <tr><td>Every doc link is viewable by anyone with the link</td><td><span class="no">Not
-checked.</span> Reachable now that the repository is public.</td></tr>
+checked.</span> <strong>YES.</strong> Re-checked on 2026-08-05: five documents fetched anonymously from <a href="https://strata.sudama.ai/docs/">strata.sudama.ai/docs/</a> &mdash; prd, tdd, submission, tech-questions-faq and decisions &mdash; all answered 200.</td></tr>
 <tr><td>90-second pitch said out loud, timed</td><td><span class="part">Written in
 <a href="https://strata.sudama.ai/docs/ai/briefing.html"><code>docs/.ai/briefing.html</code></a>. Not timed aloud on the record.</span></td></tr>
 <tr><td>DeepInterview started within 30 minutes of sending the submission, repo open
