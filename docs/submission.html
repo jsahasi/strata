@@ -25,7 +25,7 @@
 <body>
 <nav class="dnav" aria-label="Documents">
 <div class="dnav__row"><span class="dnav__label">Docs</span><a href="mrd.html">MRD</a><a href="prd.html">PRD</a><a href="tdd.html">TDD</a><a href="security.html">Security</a><a href="web-design.html">Design</a><a href="future-enhancements.html">Roadmap</a><a href="user-research.html">User research</a><a href="synthetic-user.html">Persona</a><a href="synthetic-interview.html">Interview</a><a href="best-practices.html">Playbook</a><span class="dnav__here">Submission</span></div>
-<div class="dnav__row"><span class="dnav__label">Working notes</span><a href=".ai/index.html">Index</a><a href=".ai/decisions.html">Decisions</a><a href=".ai/tasks.html">Tasks</a><a href=".ai/briefing.html">Briefing</a><a href=".ai/findings.html">Findings</a><a href=".ai/gaps.html">Gaps</a><a href=".ai/demo-notes.html">Demo notes</a></div>
+<div class="dnav__row"><span class="dnav__label">Working notes</span><a href=".ai/index.html">Index</a><a href=".ai/decisions.html">Decisions</a><a href=".ai/tasks.html">Tasks</a><a href=".ai/briefing.html">Briefing</a><a href=".ai/findings.html">Findings</a><a href=".ai/gaps.html">Gaps</a></div>
 </nav>
 
 <h1>Submission Record</h1>
@@ -38,7 +38,7 @@ defects and judgements went into <code>docs/.ai/findings.html</code> as the work
 commit message carries its reasoning at the time of the commit. This page was assembled at commit
 <code>45c408c</code>, re-verified at <code>c7d6e00</code>, and re-verified again at
 <code>1343f57</code> — 43 commits — each time from primary sources: <code>git log</code>,
-<code>findings.html</code>, <code>decisions.html</code>, <code>demo-notes.html</code>,
+<code>findings.html</code>, <code>decisions.html</code>,
 <code>state.json</code>, <code>resume.md</code>, and the code itself.
 <br><br><span class="lbl">What the third pass checked, so the method is auditable.</span> The suite
 was run and its count read off the output rather than carried forward; <code>app/evals/run.py</code>
@@ -452,7 +452,7 @@ same rule the eval harness now enforces in code.</td>
 
 <tr>
 <td>Breadth versus depth, after seeing what AI Fund demoed</td>
-<td>Me (<code>demo-notes.html</code>, then <code>5fa9fc4</code>)</td>
+<td>Me (working notes, then <code>5fa9fc4</code>)</td>
 <td>Projects, threads, work plans, scheduled runs, knowledge, review centre — the demoed surface.</td>
 <td><span class="lbl">Accepted the breadth, added the rule that makes it safe.</span> Every surface
 that synthesises or counts must display its own coverage. <code>compose_take()</code> refuses to
