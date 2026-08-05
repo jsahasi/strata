@@ -835,18 +835,15 @@ def test_feedback_and_invitations_go_on_their_own_clocks():
 # ---------------------------------------------------------------------------
 
 
-def test_nothing_in_the_product_calls_any_of_this_yet():
-    """The claim on the privacy page, checked rather than remembered.
+def _retention_callers() -> list[str]:
+    """Every module under app/ that imports the retention module.
 
-    When somebody wires a scheduler, this test fails. That is the point: the
-    page says "the functions exist and nothing runs them", and the day that
-    stops being true the page has to change in the same commit.
+    An import of this module, not the word. app/seed.py writes a demo obligation
+    about a records retention period, which is corpus text and not a caller, and
+    a test that cannot tell the two apart would fail for a reason nobody could
+    act on.
     """
     root = Path(__file__).resolve().parent.parent
-    # An import of this module, not the word. app/seed.py writes a demo
-    # obligation about a records retention period, which is corpus text and not
-    # a caller, and a test that cannot tell the two apart would fail for a
-    # reason nobody could act on.
     imports = re.compile(r"^\s*(?:from|import)\s+[\w. ,]*\bretention\b", re.MULTILINE)
     callers = []
     for path in sorted((root / "app").rglob("*.py")):
@@ -854,19 +851,64 @@ def test_nothing_in_the_product_calls_any_of_this_yet():
             continue
         if imports.search(path.read_text(encoding="utf-8")):
             callers.append(str(path.relative_to(root)))
-    assert callers == [], (
-        f"{callers} now reach the retention module. If a scheduler was wired up, "
-        "deploy/site/privacy.html still says nothing runs these, and that "
-        "sentence is now false. Change the page in this commit."
-    )
+    return callers
 
 
-def test_the_privacy_page_states_the_schedule_and_that_nothing_runs_it():
+def test_the_privacy_page_describes_who_calls_retention_today():
+    """The claim on the privacy page, checked rather than remembered.
+
+    This test used to assert that nothing called retention, so that wiring a
+    scheduler would break it and force the page to change in the same commit.
+    That worked -- app/jobs/runner.py landed and this failed. But it only worked
+    once, and in one direction: the fix for it would have been to delete the
+    assertion, leaving the page unguarded from then on.
+
+    So it guards the harder property instead. Whichever way the product lands,
+    the page has to describe THAT state. Wire a caller and the "nothing calls
+    them" wording fails; remove every caller and the "a scheduler can call them"
+    wording fails. Neither direction can be satisfied by deleting a line.
+
+    Why this shape matters more than usual here: the sentence being guarded is
+    the one that tells a reader whether software might delete their data on a
+    timer. A privacy page that is wrong about that is not a stale document, it
+    is a false statement about what happens to a person's records.
+    """
     root = Path(__file__).resolve().parent.parent
+    # Case-folded, because the guard failed at its own job once already: it
+    # asserted the exact string "Nothing calls them" while a stale placeholder
+    # three sections down said "nothing calls them" in lower case, and sailed
+    # through. A test that reads prose it does not control must not depend on
+    # somebody's capitalisation.
     page = (root / "deploy" / "site" / "privacy.html").read_text(encoding="utf-8")
+    folded = page.lower()
+    callers = _retention_callers()
+
     assert "How long each thing is kept" in page
     assert "app/state/retention.py" in page
-    assert "nothing calls them" in page
+
+    if callers:
+        assert "nothing calls them" not in folded, (
+            f"{callers} reach the retention module, and the page still says "
+            "nothing calls them. That sentence is now false. Change the page "
+            "in this commit."
+        )
+        # A caller exists, so the page must say what stops it deleting by
+        # default. Naming the setting is the point: a reader who wants to check
+        # can grep for it, and a reader who operates the thing needs it.
+        assert "STRATA_JOBS_ENABLED" in page, (
+            f"{callers} reach the retention module. The page must name the "
+            "setting that stands between a scheduler and a deleted row."
+        )
+        assert "dry run" in page, (
+            "The page must say the purge is a dry run unless asked otherwise. "
+            "That default is the whole safety argument."
+        )
+    else:
+        assert "nothing calls them" in folded, (
+            "Nothing under app/ imports the retention module, so the page must "
+            "say so rather than implying a scheduler runs it."
+        )
+
     for rule in SCHEDULE:
         if rule.days is None:
             continue

@@ -231,7 +231,14 @@ footer a{color:var(--muted)}
       <p><b>What is true today.</b> Six purge functions exist, in
       <code>app/state/retention.py</code>, and they are tested. They cover the tables holding an
       address, an email or a person's own words: sessions, share opens, chat transcripts,
-      feedback and invitations. <b>Nothing calls them.</b> There is still no erasure path for a
+      feedback and invitations. <b>A scheduler can now call them, and by default it does not
+      delete anything.</b> <code>app/jobs/runner.py</code> reaches them, and three separate
+      settings stand between that and a deleted row: no job loop starts at all unless
+      <code>STRATA_JOBS_ENABLED</code> is <code>true</code>, the purge runs as a dry run unless a
+      second setting asks for the other thing, and <code>purge_all</code> checks that flag again
+      itself rather than trusting its caller — because <code>0</code> is falsey, and a
+      configuration typo that armed a delete would be the worst bug this page could hide. Whichever
+      way it lands, the container log says so on every start. There is still no erasure path for a
       user, a document, a claim or a proceeding: suspending an account keeps the row, revoking a
       role keeps the row, and signing out keeps the session row and marks it revoked with a
       reason. The next section sets out the whole schedule and where it stops.</p>
@@ -313,12 +320,12 @@ footer a{color:var(--muted)}
       own request log, and no code here reads or removes that. Nor does a purge reach a copy of
       the database taken before it ran.</p>
       <div class="ph"><b>Placeholder — required before production use</b>
-      Something to run it. The functions exist and are tested, and nothing calls them: there is no
-      scheduler in this product — no cron entry, no worker, no startup hook — so no row has ever
-      been deleted on a clock here. In production this would be a daily job for each company: a
-      dry run whose report goes to whoever is accountable, then the destructive run. That
-      difference, between a control and a promise, is why this is a box and not a sentence saying
-      the schedule is enforced.</div>
+      Somebody to read it. A scheduler exists and can run these purges, and nothing in the
+      repository arms either of the two settings that would let it delete anything. What is still
+      missing is the other half: a daily dry run for each company whose
+      report goes to whoever is accountable, before the destructive run is ever turned on. Nothing
+      sends that report to anyone. That difference, between a control and a promise, is why this is
+      a box and not a sentence saying the schedule is enforced.</div>
     </div>
   </div></div>
 </section>
@@ -327,24 +334,36 @@ footer a{color:var(--muted)}
   <div class="wrap"><div class="lined" data-line="6">
     <h2>Who else sees it</h2>
     <div class="narrow">
-      <p>Nobody, today.</p>
+      <p>One company is sent your text: Anthropic, through the assistant. A second holds the disk
+      it all sits on — the machine is rented, and the
+      <a href="/subprocessors.html">sub-processors page</a> names it and the two others behind the
+      domain and the certificate.</p>
       <ul>
+        <li><b>The assistant sends your text to a model vendor.</b> The chat panel sits on every
+        screen. Each turn goes from <code>app/web/views/chat.py</code> through
+        <code>app/chat/engine.py</code> to <code>app/chat/agent.py</code>, which calls Anthropic's
+        API. What travels: the question you typed, your display name, the company's name, the
+        permission codes you hold, and whatever the model looked up — obligations and who owns
+        them, open escalations, the approval route, claims whose citation verifies, and up to 600
+        characters of filing text on each side of a change. A claim whose citation does not verify
+        is never sent as a statement. With no <code>ANTHROPIC_API_KEY</code> set, nothing is sent
+        and the panel says it is unavailable. This page said no model call ran for most of a day
+        after one did; the <a href="/subprocessors.html">sub-processors page</a> now carries the
+        detail and this bullet is checked against the same files.</li>
         <li>No analytics, no trackers, no advertising, no tag manager, no session recorder.</li>
         <li>No content delivery network, no third-party fonts, no third-party stylesheets, no third-party
         scripts. This site and the application load nothing from another host. The only web
         address in the application's front-end code is the SVG namespace identifier, which is a
         name rather than a request.</li>
-        <li>No model call runs. Nothing on the request path sends your text anywhere. One module
-        exists that would send filing passages to a model vendor, and no code calls it; with no
-        API key set that path is off and reports itself as off. If it is ever wired up, this page
-        changes before it runs.</li>
         <li>No payment processor, because nothing is for sale yet.</li>
       </ul>
       <p>If you write to the address at the foot of this page, the message sits in an ordinary
       Gmail mailbox. That is Google's service, not mine, and their terms govern it.</p>
       <div class="ph"><b>Placeholder — required before production use</b>
-      A list of sub-processors, once there is one. Today there is none, so a list would be an
-      empty page dressed up as diligence.</div>
+      A data processing agreement with Anthropic, and a legal entity to sign one. Text is going
+      there today with nothing agreed — no commercial terms, no retention arrangement, no statement
+      about training on inputs. The <a href="/subprocessors.html">sub-processors page</a> is the
+      list; the contracts behind it do not exist.</div>
     </div>
   </div></div>
 </section>
@@ -389,8 +408,11 @@ footer a{color:var(--muted)}
   <div class="wrap"><div class="lined" data-line="9">
     <h2>Where it runs, and who to ask</h2>
     <div class="narrow">
-      <p>The data sits in a single SQLite file on whichever machine runs the product. There is no
-      encryption at rest beyond whatever the host's disk provides, and there are no backups. The
+      <p>The data sits in a single SQLite file on whichever machine runs the product. Since
+      2026-08-04 one of those machines is a virtual machine rented from DigitalOcean, which serves
+      <code>strata.sudama.ai</code>; the <a href="/subprocessors.html">sub-processors page</a> says
+      what that company holds and names the other two. There is no encryption at rest beyond
+      whatever the host's disk provides, and no backup has been taken of any deployment. The
       <a href="/security.html">security page</a> lists what is built and what is not, without
       softening either.</p>
       <p>Write to <a href="mailto:jsahasi@gmail.com?subject=Strata%20privacy">jsahasi@gmail.com</a>.
@@ -414,6 +436,7 @@ footer a{color:var(--muted)}
     <a href="/privacy.html">Privacy</a>
     <a href="/terms.html">Terms</a>
     <a href="/security.html">Security</a>
+    <a href="/subprocessors.html">Sub-processors</a>
     <a href="mailto:jsahasi@gmail.com">Contact</a>
     <span class="sep muted">Built by Jayesh Sahasi</span>
   </div></div>

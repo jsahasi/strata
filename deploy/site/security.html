@@ -178,9 +178,12 @@ footer a{color:var(--muted)}
       through the lock.</p></div>
 
     <div class="stage"><b>the guard</b><p>One middleware resolves the cookie for every request and
-      sends every anonymous one to the login page, except the login page itself, the health check
-      and the stylesheet. A route added next week is protected because it exists, not because
-      somebody remembered to decorate it.</p></div>
+      sends every anonymous one to the login page. Four things go through, and the list is in
+      <code>app/web/deps.py</code>: the login page, the health check, the stylesheet, and any path
+      under <code>/s/</code> — the share links, which have a section of their own below. The
+      trailing slash on that prefix is the control, not decoration: <code>startswith("/s")</code>
+      would make <code>/settings</code> public. A route added next week is protected because it
+      exists, not because somebody remembered to decorate it.</p></div>
 
     <div class="stage"><b>tenant scope</b><p>Every company-scoped read runs through one function
       that refuses a query with no company id rather than answering it. It is imported everywhere
@@ -197,9 +200,19 @@ footer a{color:var(--muted)}
       missing: the analyst role holds no approval permission, so the person who interprets a change
       cannot approve the action that follows from it.</p></div>
 
-    <div class="stage"><b>nothing leaves</b><p>This site and the application load nothing from
+    <div class="stage"><b>what leaves</b><p>This site and the application load nothing from
       another host — no fonts, no scripts, no stylesheets, no content delivery network, no
-      analytics. No model call runs on the request path, so no document text goes anywhere.</p></div>
+      analytics. <b>One thing does leave, on the request path.</b> The assistant panel sits on
+      every screen and posts to <code>/chat</code>; <code>app/web/views/chat.py</code> reaches
+      <code>app/chat/engine.py</code>, which calls <code>app/chat/agent.py</code>, which sends the
+      question, a short prompt naming the person and their permissions, and the results of any tool
+      it ran to Anthropic's API. <code>app/config.py</code> reads
+      <code>ANTHROPIC_API_KEY</code> from <code>.env</code> at start, and
+      <code>deploy/compose.yml</code> passes an environment file into the container. With no key
+      the assistant says it is unavailable and nothing is sent. This page used to say no model call
+      ran; that stopped being true and the sentence stayed, which is the failure this product
+      exists to catch. The <a href="/subprocessors.html">sub-processors page</a> lists what goes and
+      what is held back.</p></div>
 
     <div class="stage"><b>secrets</b><p>One file, ignored by version control before it was created,
       read once at start. No credential is put into a page, an API response or a prompt, and the
@@ -244,25 +257,41 @@ footer a{color:var(--muted)}
       Closing that means publishing the chain's head where that same person cannot reach it. It is
       not done.</p></div>
 
-    <div class="stage"><b class="no">not built</b><p><b>Attribution on every write.</b> Only the
-      sign-in, sign-out and role paths record the account id and session on their audit rows.
-      Other writes record a machine acting with nobody named, even where a person was signed in.
-      Those rows are honest about what was captured and useless for tying a decision to a
-      sitting.</p></div>
+    <div class="stage"><b class="no">not built</b><p><b>Attribution on every write.</b> Counted on
+      today's tree: 82 places under <code>app/</code> and <code>scripts/</code> append an audit row.
+      47 of them, across 14 modules, name the account id. The other 35 record a machine acting with
+      nobody named, even where a person was signed in — including writers on the decision path:
+      <code>app/state/review.py</code>, <code>app/web/views/review.py</code>,
+      <code>app/web/views/review_centre.py</code>, <code>app/state/projects.py</code>,
+      <code>app/pipeline.py</code>, and 10 of the 18 writes in <code>app/state/workflow.py</code>.
+      The session id is thinner still: 6 writes in three modules carry it —
+      <code>app/auth/sessions.py</code>, <code>app/state/rollback.py</code> and
+      <code>app/web/views/chat.py</code>. And the role paths, which a reader would expect to be the
+      best attributed rows in the product, are among the worst: all four writes in
+      <code>app/state/identity.py</code> — account created, account suspended or reinstated, role
+      granted, role revoked — pass a display string and nothing else, so they record neither the
+      account id nor the session, and the actor kind falls back to a machine. Those rows are honest
+      about what was captured and useless for tying a decision to a sitting.</p></div>
 
     <div class="stage"><b class="no">not built</b><p><b>Database-enforced tenant isolation.</b> The
       chokepoint is an application promise, not an engine guarantee. One function bypassing it is a
       full breach. Row-level security needs a database that has it, and this build does not use
       one.</p></div>
 
-    <div class="stage"><b class="no">not running</b><p><b>Deletion.</b> A retention schedule now
+    <div class="stage"><b class="no">off by default</b><p><b>Deletion.</b> A retention schedule
       exists in code, covering every table with a window and a reason, and the purges are tested.
-      Nothing calls them. There is no scheduler in this product, so no row has ever been deleted on
-      a clock, and there is still no erasure path for a user, a document or a claim. Two email
-      addresses cannot be reached by any purge at all: a failed sign-in records the address that
-      was tried, and an invitation records the address it was sent to, and both sit inside the hash
-      chain, which cannot be rewritten. The <a href="/privacy.html">privacy page</a> sets out the
-      schedule and what it means for an erasure request.</p></div>
+      A scheduler can now reach them: <code>app/jobs/runner.py</code> calls
+      <code>app/state/retention.py</code>. Two settings stand in front of it and both default to
+      off — no job loop starts unless <code>STRATA_JOBS_ENABLED</code> is <code>true</code>, and the
+      purge is a dry run unless <code>STRATA_JOBS_RETENTION_DELETE</code> arms it. Nothing in this
+      repository sets either — <code>deploy/compose.yml</code> does not, and the container prints on
+      every start which way it landed, so a reader of the log can tell "no job is scheduled" from
+      "a job is scheduled and has not fired". There is still no erasure path for a user, a document
+      or a claim. Two email addresses cannot be reached by any purge at
+      all: a failed sign-in records the address that was tried, and an invitation records the
+      address it was sent to, and both sit inside the hash chain, which cannot be rewritten. The
+      <a href="/privacy.html">privacy page</a> sets out the schedule and what it means for an
+      erasure request.</p></div>
 
     <div class="stage"><b class="no">not running</b><p><b>Backups.</b> A script exists and is
       tested. <code>scripts/backup.py</code> snapshots the database through SQLite's own backup
@@ -270,8 +299,11 @@ footer a{color:var(--muted)}
       still consistent; it then opens that copy, runs <code>PRAGMA integrity_check</code>, counts
       the audit table and re-verifies every hash chain in it. A copy that fails any of those is
       renamed so nobody can restore it by mistake, and the command exits non-zero. Nothing
-      schedules it — no cron entry, no timer, no hosted job — so no backup exists until a person
-      runs it, and none has been taken of any deployment. It writes to a local directory you
+      schedules it. There is a job runner now — <code>app/jobs/runner.py</code> — and the backup is
+      not one of its jobs: it knows three names, and they are the approval clock, the retention
+      purge and a source fetch that is not built. No cron entry, no timer, no hosted job either. So
+      no backup exists until a person runs it, and none has been taken of any deployment. It writes
+      to a local directory you
       name, and nothing configures an off-host destination anywhere, so the copy lands on the
       same disk as the database: that survives a bad deploy and not a lost host. Nothing encrypts
       the copy, and no restore into a running system has ever been practised. A working script,
@@ -290,8 +322,65 @@ footer a{color:var(--muted)}
   </div></div>
 </section>
 
-<section id="disclosure">
+<section>
   <div class="wrap"><div class="lined" data-line="4">
+    <h2>The share link, and what holding one gets you</h2>
+    <div class="narrow">
+      <p>One route in the product answers with no session: <code>/s/&lt;token&gt;</code>. It sends a
+      single claim, with its citation, to somebody in Legal or Rates who has no account here. It is
+      the only hole in the guard and it gets its own section because a buyer should not have to
+      find it.</p>
+    </div>
+
+    <div class="stage"><b>the token</b><p>32 random bytes in the path, and the path is the whole
+      credential — there is nothing else to present. Only a SHA-256 of it is stored, and the
+      presented token is compared against that digest in constant time. The link is minted once and
+      shown once; there is no way to read it back, so a lost link is revoked and re-minted.</p></div>
+
+    <div class="stage"><b>expiry</b><p>Seven days by default, thirty at most, and an expiry cannot
+      be absent. The person who sent it can revoke it before then. Expired, revoked, and never
+      existed all answer with the same sentence, so somebody holding a guess cannot learn which
+      tokens are real. The company can switch sharing off, which closes every live link at
+      once.</p></div>
+
+    <div class="stage"><b>what it shows</b><p>One artifact, never a list. No masthead, no
+      navigation, no company name, no sibling claims, no way to walk into the product. The page
+      re-reads the stored source at the cited offsets on every open, so a claim whose citation has
+      stopped verifying withdraws itself in front of the reader — and a withheld claim has no
+      statement to leak, because the object carrying it has no such field.</p></div>
+
+    <div class="stage"><b>three headers</b><p><code>Referrer-Policy: no-referrer</code>, so
+      following the sign-in link does not put a live token in a <code>Referer</code> header.
+      <code>Cache-Control: no-store</code>, so a dead link is not answered from a shared cache and a
+      verdict computed at open time is not replayed as though it were computed now.
+      <code>X-Robots-Tag: noindex</code>, with the meta tag, so a crawler that reached a token does
+      not put a claim and its source into a search index.</p></div>
+
+    <div class="stage"><b class="no">forwarding</b><p><b>Anyone holding the link can open it, and
+      the product cannot tell who.</b> There is no recipient, no address to check against, no
+      second factor and no limit on opens. Forward the mail, paste it into a group chat, and every
+      reader is the same anonymous caller to this server. What is recorded is the open: the time,
+      the address the connection came from, and whether the citation held at that moment. That is a
+      record of what happened, not a control that stops it.</p></div>
+
+    <div class="stage"><b class="no">no rate limit</b><p>Nothing slows a flood of opens against a
+      real token. Guessing one is not a realistic attack at 32 random bytes; hammering one you
+      already have is not slowed at all.</p></div>
+
+    <div class="stage"><b class="no">already fixed</b><p>Written down because a reader is owed the
+      failure as well as the control. <code>/s/&lt;token&gt;</code> was not in the guard's public
+      list, so an anonymous open answered 303 to
+      <code>/login?next=%2Fs%2F&lt;token&gt;</code> — copying a live bearer token into a query
+      string, where it lands in the access log, the <code>Referer</code> header and browser history.
+      A redirect that carries the credential it was protecting is worse than no guard, because it
+      looks like a guard working. <code>app/web/deps.py</code> treats the prefix as public now.
+      Any token issued before that fix should be treated as one that may sit in a
+      log.</p></div>
+  </div></div>
+</section>
+
+<section id="disclosure">
+  <div class="wrap"><div class="lined" data-line="5">
     <h2>Reporting a vulnerability</h2>
     <div class="narrow">
       <p>Write to
@@ -307,29 +396,40 @@ footer a{color:var(--muted)}
       afternoon and tells me nothing I have not written down myself.</p>
     </div>
 
-    <div class="stage"><b>in scope</b><p>Two things. The static site at
-      <code>strata.sudama.ai</code>, which is these pages and nothing else — the application is not
-      deployed behind that name. And the application code in this repository, run on your own
-      machine, which is where the product actually is. What is worth your time: a way
+    <div class="stage"><b>in scope</b><p>Three things, and the first one changed on
+      2026-08-04. <b>The live application at <code>strata.sudama.ai</code>.</b> The product is
+      deployed behind that name now — nginx serves these pages at the root and proxies a named list
+      of paths to the application container, so <code>/login</code>, <code>/projects</code>,
+      <code>/chat</code>, <code>/s</code>, <code>/healthz</code> and the rest of that list are a
+      live surface. <code>deploy/nginx.conf</code> is the list. An earlier version of this page said
+      the application was not deployed there, which sent researchers away from the only running
+      copy. <b>The static pages themselves.</b> <b>And the application code in this repository, run
+      on your own machine</b>, which is the easiest place to work. What is worth your time: a way
       past the sign-in guard, a way to read or write another company's rows, a way to alter an audit
-      row or a chain without the check catching it, anything that leaks a session token, and
-      anything that makes the citation check assert a claim its source does not support. That last
-      one is the product, so treat it as a security bug even though it does not look like one. Test
-      against your own run, not against mine and not against anyone else's.</p></div>
+      row or a chain without the check catching it, anything that leaks a session token or a share
+      token, and anything that makes the citation check assert a claim its source does not support.
+      That last one is the product, so treat it as a security bug even though it does not look like
+      one.</p></div>
 
-    <div class="stage"><b class="no">out of scope</b><p>Everything the section above names as not
-      built — the missing rate limiting, the missing cross-site request token, the missing
-      permission check on the review and approval screens, and the rest of that list. Those are not
-      findings; they are the page you have just read. The list is not copied down here on purpose:
-      a second copy would drift from the first, and the section above is the one of record. Two
-      more, which are true of this static site and not on that list: it sends no HSTS, no content
-      security policy and no frame-ancestors header, and it carries no script and sets no cookie
-      for one to protect. Also out: anything needing physical access or a machine you already
-      control, anything aimed at a third party's host, and any test that works by volume.</p></div>
+    <div class="stage"><b class="no">out of scope</b><p>Everything the section headed <em>what is
+      not implemented</em> names as not built — the missing rate limiting, the missing cross-site
+      request token, the missing permission check on the review and approval screens, and the rest
+      of that list — plus the four limits named in the share-link section. Those are not findings;
+      they are the page you have just read. The lists are not copied down here on purpose: a second
+      copy would drift from the first, and those two sections are the ones of record. Two more,
+      which are true of the static pages and not on either list: they send no HSTS, no content
+      security policy and no frame-ancestors header, and they carry no script and set no cookie for
+      one to protect. <b>The rest of the machine is out.</b> That host is shared, and it serves
+      another project with commercial data on it; that project is not in scope and nothing here
+      authorises you to touch it. Also out: anything needing physical access or a machine you
+      already control, anything aimed at a third party's host, and any test that works by
+      volume — one small virtual machine, one worker, and a flood is an outage rather than a
+      finding.</p></div>
 
-    <div class="stage"><b class="no">published on purpose</b><p>Where the application runs, the
-      demonstration accounts are real accounts sharing one password:
-      <code>strata-demo-2026</code>. The login page prints it —
+    <div class="stage"><b class="no">published on purpose</b><p>The application runs at
+      <code>strata.sudama.ai</code>, and its demonstration accounts are real accounts sharing one
+      password: <code>strata-demo-2026</code>. Anyone can sign in to the live copy with it, which is
+      the intent. The login page prints it —
       <code>app/web/templates/login.html</code> renders it from the context
       <code>app/web/views/auth.py</code> builds, and the value comes from
       <code>app/seed.py</code>, which prints it again when it seeds. That is the right answer for a
@@ -339,15 +439,18 @@ footer a{color:var(--muted)}
       finding.</p></div>
 
     <div class="stage"><b>safe harbour</b><p>Research in good faith, inside this policy, and I will
-      not pursue you for it and will not ask anyone else to. If a question of authorised access
-      comes up, this paragraph is the authorisation; ask and I will put it in writing over my own
-      name. The <a href="/terms.html">terms of use</a> say not to probe the service; this policy is
-      the exception to that sentence, and the scope rows above are its edge. Now the limits, stated
-      rather than buried. There is no company here, so this is one person's undertaking and it binds
-      one person. It cannot bind the host the site sits on, the
-      registrar, or anyone else whose terms you break on the way. And it stops covering you if you
-      take data that is not yours, degrade the service for somebody else, or hold a finding back for
-      payment.</p></div>
+      not pursue you for it and will not ask anyone else to. That covers the live application at
+      <code>strata.sudama.ai</code> as well as your own run — the boundary moved when the product
+      was deployed, and this paragraph moved with it rather than being left describing a static
+      site. If a question of authorised access comes up, this paragraph is the authorisation; ask
+      and I will put it in writing over my own name. The <a href="/terms.html">terms of use</a> say
+      not to probe the service; this policy is the exception to that sentence, and the scope rows
+      above are its edge. Now the limits, stated rather than buried. There is no company here, so
+      this is one person's undertaking and it binds one person. It cannot bind the host the site
+      sits on, the registrar, Anthropic, or anyone else whose terms you break on the way. It does
+      not reach the other project on that shared machine, which is out of scope above. And it stops
+      covering you if you take data that is not yours, degrade the service for somebody else, or
+      hold a finding back for payment.</p></div>
 
     <div class="stage"><b>timing, as a target</b><p>A target is what one person aims at. It is not a
       service level, nobody is on call, and no clock runs. I aim to acknowledge inside three working
@@ -380,13 +483,18 @@ footer a{color:var(--muted)}
 </section>
 
 <section>
-  <div class="wrap"><div class="lined" data-line="5">
+  <div class="wrap"><div class="lined" data-line="6">
     <h2>Why the page reads like this</h2>
     <div class="narrow">
       <p>Strata's argument is that a claim without a citation behind it should refuse to assert
       itself. A security page claiming controls the code does not have would be exactly the failure
       the product exists to prevent — and the one a reviewer can check in five minutes.</p>
       <p>So "not yet" appears here wherever "not yet" is the answer.</p>
+      <p class="muted">The harder failure is the other one, and this page has now had it twice: a
+      sentence that was true when it was written and quietly stopped being true. This page said no
+      model call ran and said the application was not deployed, and both were false for most of a
+      day. Nothing broke, no test went red, and only reading the code against the page found it.
+      That is why each row above names the file it can be checked against.</p>
     </div>
   </div></div>
 </section>
@@ -400,6 +508,7 @@ footer a{color:var(--muted)}
     <a href="/privacy.html">Privacy</a>
     <a href="/terms.html">Terms</a>
     <a href="/security.html">Security</a>
+    <a href="/subprocessors.html">Sub-processors</a>
     <a href="mailto:jsahasi@gmail.com">Contact</a>
     <span class="sep muted">Built by Jayesh Sahasi</span>
   </div></div>

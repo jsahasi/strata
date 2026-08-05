@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sub-processors — Strata</title>
-<meta name="description" content="Whose machines Strata runs on, what reaches each one, and why the list of companies handling customer data is empty today.">
+<meta name="description" content="Whose machines Strata runs on, what reaches each one, and what the assistant sends to Anthropic on every turn.">
 <meta name="robots" content="noindex">
 <style>
 :root{
@@ -137,9 +137,11 @@ footer a{color:var(--muted)}
       <h1>Whose machines this runs on, and what reaches them.</h1>
       <p class="stamp">Sub-processors · 2026-08-04</p>
       <p class="lede">A sub-processor is a company Strata hands your data to so that Strata can
-      run. There are none, because there is no customer data to hand anyone. This page names the
-      companies whose machines the site sits on anyway, says what each one gets, and says which of
-      them becomes a sub-processor on the day a customer loads a document.</p>
+      run. There is one: Anthropic, which receives the contents of the workspace every time
+      somebody uses the assistant. There are still no customers and no customer documents, so what
+      reaches it today is a demonstration workspace of invented and public-record filings — but the
+      mechanism is live, and this page names it rather than describing a plan. It also names the
+      companies whose machines the product sits on, and says what each one gets.</p>
       <div class="note">
         <p>Strata is a pre-production build by one person. It has no customers, and the data in
         the demonstration carries two corpora, and both are labelled. One is invented -- a fictional commission, a fictional docket, a fictional company -- and the eval numbers are measured against it, because its traps were built on purpose. The other is 102 real public filings retrieved from eight state commissions, each with the URL it came from and a hash of the bytes; one pair of them is loaded into the demonstration workspace. Public record either way. Nobody's customer documents are here.</p>
@@ -154,22 +156,26 @@ footer a{color:var(--muted)}
   <div class="wrap"><div class="lined" data-line="2">
     <h2>The short answer</h2>
     <div class="narrow">
-      <p><b>No company processes customer data for Strata today.</b> Two facts hold that up, and
-      both are checkable in about a minute.</p>
-      <p>First, the application is not deployed. What answers at
-      <code>strata.sudama.ai</code> is a handful of static pages served by nginx — the landing
-      page, the policy pages including this one, and a sign-in page that says access is by
-      invitation. Ask that host
-      for <code>/health</code>, <code>/projects</code> or <code>/chat</code> and it returns a 404,
-      because there is no application behind it to answer. The
-      <a href="/privacy.html">privacy page</a> describes tables that exist in the code and run on a
-      developer's own machine.</p>
-      <p>Second, nobody has an account with real documents in it. Every document in the
-      demonstration is either invented or public record. No customer documents exist here, because there are no customers.</p>
-      <p class="muted">Why write the page at all, then. Because a buyer's procurement team asks
-      for this list, and "we have not written one" is a worse answer than a short one. And because
-      the list is about to change: the section below says what each company gets today and what it
-      would get the day the application ships.</p>
+      <p><b>No company processes a customer's documents for Strata today, because there are no
+      customers.</b> That is a narrower statement than it looks, and this page used to lean on it
+      harder than it deserved. Two things are true at once and both matter.</p>
+      <p>First, the application is deployed. It has been since 2026-08-04.
+      <code>strata.sudama.ai</code> serves the landing page and the policy pages at the root, and
+      nginx proxies a named list of paths to the application container behind it. Ask that host for
+      <code>/healthz</code> and it answers 200 with the row counts of a loaded corpus; ask for
+      <code>/projects</code> and it answers 303 to the login page, which is the session guard doing
+      its job. The <a href="/privacy.html">privacy page</a> describes tables that now exist on a
+      rented machine as well as on a developer's own.</p>
+      <p>Second, the assistant sends text to Anthropic. Every turn of the chat panel goes to
+      Anthropic's API where a key is set, carrying the question, who is asking, and whatever the
+      model looked up. The section below says exactly what that is.</p>
+      <p>What is still true: nobody has an account with real documents in it. Every document in the
+      demonstration is either invented or public record.</p>
+      <p class="muted">This page earlier argued at length that Anthropic was not a sub-processor,
+      on four grounds — no deployed application, no engine module, nothing loading the environment
+      file, no key. All four have reversed. The page stated its own trigger: <em>Anthropic becomes a
+      real sub-processor the first time a key is set and a call is made.</em> That has happened, so
+      the argument is gone and the listing replaces it.</p>
     </div>
   </div></div>
 </section>
@@ -178,14 +184,18 @@ footer a{color:var(--muted)}
   <div class="wrap"><div class="lined" data-line="3">
     <h2>The companies that run the site</h2>
     <div class="narrow">
-      <p>Three. None of them receives customer data today, because there is none. Each would be a
-      sub-processor the moment the application is deployed, and each is listed now so that day
-      does not need a new page.</p>
+      <p>Three, plus Anthropic in the section after this one. None of the three receives a
+      customer's documents today, because there are none. What the first of them holds changed when
+      the application was deployed behind the site.</p>
     </div>
 
-    <div class="stage"><b>DigitalOcean</b><p><b>What they hold.</b> The whole machine. The static
-      pages, the video on the landing page, the certificate's private key, and the request log
-      nginx writes. <b>Why.</b> The site runs on a virtual machine rented from them. <b>Where.</b>
+    <div class="stage"><b>DigitalOcean</b><p><b>What they hold.</b> The whole machine, and since
+      2026-08-04 that means the product and not only the pages. The static
+      pages, the video on the landing page, the certificate's private key, the request log nginx
+      writes — and now the SQLite database on the host disk: every account and password hash, every
+      session row, every document loaded into the demonstration workspace, every claim, and the
+      whole audit chain. <b>Why.</b> The site and the application run on a virtual machine rented
+      from them. <b>Where.</b>
       DigitalOcean, LLC is a United States company; the address is <code>143.198.140.28</code>,
       which their own registration record shows as theirs. Which region the machine sits in is not
       stated here, because it was not checked.</p></div>
@@ -218,38 +228,68 @@ footer a{color:var(--muted)}
 
 <section>
   <div class="wrap"><div class="lined" data-line="4">
-    <h2>Anthropic, and why it is not on that list</h2>
+    <h2>Anthropic, which is a sub-processor now</h2>
     <div class="narrow">
-      <p>Strata is built to call a model, and the code for it exists. A buyer should expect to see
-      the model vendor named here. It is not named as a sub-processor because nothing is sent to
-      it — and the reason is worth reading, because "we plan to" and "it is off" are different
-      claims and only one of them is true.</p>
-      <p><b>Two modules can make the call.</b> <code>app/interpretation/propose.py</code> asks a
-      model what changed between two versions of a filing.
-      <code>app/chat/agent.py</code> runs one turn of the assistant. Both were written against
-      Anthropic's API.</p>
-      <p><b>Neither of them runs.</b> Not on the deployed site, which has no application at all.
-      Not on a local run either: nothing in the application calls the proposer, the assistant's
-      agent is imported only by its own test, and the chat screen looks for
-      <code>app/chat/engine.py</code>, which has not been written. The screen answers that the part
-      of it which reads the record is not wired in.</p>
-      <p><b>And there is no key.</b> Both modules need <code>ANTHROPIC_API_KEY</code> in the
-      running process, and nothing in the repository loads the environment file into it. Without
-      the key, both refuse and say so on the page — they do not fall back to canned text dressed up
-      as an answer. That refusal is tested.</p>
-      <p><b>What would be sent, when it is wired.</b> Passage text from regulatory filings, which
-      carries no new exposure where it bears no confidentiality marking, because the docket has
-      already published it. At the one step that matches a change to an internally worded obligation,
-      only the specific obligation lines being compared — never the whole obligation register as
-      background, never a raw uploaded file with its author and revision history inside it, and
-      never text carrying a confidentiality marking until a person clears it.
-      <code>docs/security.html</code> in the repository sets that scope out line by line, and this
-      page does not widen it.</p>
-      <p><b>What is missing before Anthropic can be listed for real.</b> Commercial terms, a data
-      processing agreement, and an answer on retention — whether the calls run with no training on
-      inputs and a stated retention window. None of that is agreed with anyone. Until it is, the
-      minimisation described above is a design and not a running system.</p>
+      <p>It receives real company context on every turn of the assistant. Here is the path, what
+      goes down it, what is held back, and what is not agreed.</p>
     </div>
+
+    <div class="stage"><b>the path</b><p>The assistant panel is on every screen and posts to
+      <code>/chat</code>. <code>app/web/views/chat.py</code> resolves
+      <code>app/chat/engine.py</code>, which calls <code>run_turn</code> in
+      <code>app/chat/agent.py</code>, which builds an <code>AnthropicTransport</code> and calls
+      <code>messages.create</code> against the model <code>claude-opus-5</code>. The key comes from
+      <code>ANTHROPIC_API_KEY</code>: <code>app/config.py</code> reads it out of <code>.env</code>
+      into the process at start, and <code>deploy/compose.yml</code> passes an environment file into
+      the container. With no key the transport is never built, the assistant says it is unavailable,
+      and nothing is sent — that refusal is tested, and it is not a canned answer dressed up as a
+      real one.</p></div>
+
+    <div class="stage"><b>what is sent</b><p>Three things, per turn. <b>The question</b>, as typed.
+      <b>A short prompt</b> naming the person's display name, the company's name, and the permission
+      codes they hold. <b>The results of any tool the model chose</b>, from
+      <code>app/chat/tools.py</code>. There are ten tools and they read the record: projects with
+      their jurisdiction, docket reference, status and owner; obligation titles with the owner's
+      display name and account id; open escalations with their ids, claim ids and the reason each
+      one is withheld; the approval route step by step, with the label of each step and who it falls
+      to; claim statements whose citation verifies, with the quoted source that earned them; and up
+      to 600 characters of the stored filing text on each side of a change. Two tools write rather
+      than read: one opens a project, one files a note against one. This is company context, not
+      only public filing text.</p></div>
+
+    <div class="stage"><b>what is held back</b><p>A claim whose citation does not verify never
+      reaches the model as a statement. One function turns a withheld claim into wire form —
+      <code>_withheld_payload</code> in <code>app/chat/tools.py</code> — and it emits the reason,
+      the reason code and the ids, never the statement, never the quote, never the source excerpt.
+      The object carrying a withheld claim has no statement field to read. Also not sent: the
+      session token, the cookie, any password hash, and the API key itself. The model is never
+      given the company id or the identity it is acting under — those are injected by the server,
+      and a model that supplies one halts the turn and leaves a row in the audit chain.</p></div>
+
+    <div class="stage"><b>how much</b><p>Bounded per call, not per conversation. One call carries at
+      most 25 rows from a tool, 600 characters of filing text on each side of a change, and at most
+      four rounds of tool calls in a turn. Prior turns are not resent — the shim drops the history
+      the screen offers it. But nothing caps how many turns a person takes, so the total that
+      reaches Anthropic over a conversation, or over a day, has no ceiling in this
+      build.</p></div>
+
+    <div class="stage"><b>the second module</b><p><code>app/interpretation/propose.py</code> asks a
+      model what changed between two versions of a filing, and it is also written against
+      Anthropic's API. Nothing in the application calls it: outside its own test it has no caller in
+      this repository. So it is a second door onto the same vendor, and today only the chat door is
+      open.</p></div>
+
+    <div class="stage"><b class="no">what is not agreed</b><p>Nothing. There is no data processing
+      agreement, no commercial terms, no zero-retention arrangement and no statement about training
+      on inputs — because there is no legal entity here to sign one and nobody has negotiated
+      anything. The calls run against an ordinary API key on whatever terms Anthropic publishes for
+      one, and this page has not read those terms into a promise on their behalf. The minimisation
+      described above is what the code does; it is not a contract, and nobody outside this
+      repository is bound by it. A buyer should treat this as the largest open item on the
+      page.</p></div>
+
+    <div class="stage"><b>where</b><p>Anthropic is a United States company. Which region a request
+      is served from is not stated here, because it was not checked.</p></div>
   </div></div>
 </section>
 
@@ -284,9 +324,9 @@ footer a{color:var(--muted)}
 
     <div class="stage"><b class="no">not one</b><p><b>The software libraries.</b> FastAPI,
       uvicorn, SQLAlchemy, Pydantic, Jinja, httpx and the Anthropic SDK run inside the process on
-      the same machine. A library is not a company receiving data. The only one of them that can
-      send anything anywhere is the Anthropic SDK, and the section above says what that would
-      be.</p></div>
+      the same machine. A library is not a company receiving data. The only one of them that sends
+      anything anywhere is the Anthropic SDK, and the section above says what it sends and to
+      whom.</p></div>
 
     <div class="stage"><b class="no">none</b><p><b>Things that are simply absent.</b> No
       analytics, no error tracking, no content delivery network, no external fonts or scripts, no
@@ -299,24 +339,28 @@ footer a{color:var(--muted)}
 
 <section>
   <div class="wrap"><div class="lined" data-line="6">
-    <h2>What changes on the day the application ships</h2>
+    <h2>What changed when the application shipped</h2>
     <div class="narrow">
-      <p>This page is short because the product is not running. The honest version of it after
-      launch is longer, and the changes are predictable enough to write down now.</p>
+      <p>An earlier version of this page predicted two changes for the day the product ran. Both
+      happened on 2026-08-04, and the page did not move with them for most of that day. Kept here
+      as a record rather than rewritten away, because a page that quietly forgets what it promised
+      is a page nobody can hold to anything.</p>
       <ul>
-        <li><b>DigitalOcean stops holding static pages and starts holding everything.</b> The SQLite
-        file with every uploaded document, every claim, every audit row. One company, one disk, no
-        encryption at rest beyond what the disk gives — the
+        <li><b>DigitalOcean stopped holding static pages and started holding everything.</b> Done.
+        The SQLite file with every document, every claim and every audit row is on that machine
+        now. One company, one disk, no encryption at rest beyond what the disk gives — the
         <a href="/security.html">security page</a> says so and does not soften it.</li>
-        <li><b>Anthropic becomes a real sub-processor</b> the first time a key is set and a call is
-        wired, and gets filing text under the scope above.</li>
-        <li><b>Anything else appears here before it runs, not after.</b> Mail sending, error
-        tracking, a backup target, a payment processor: added to this page first.</li>
+        <li><b>Anthropic became a real sub-processor</b> the first time a key was set and a call was
+        made. Done. The section above says what it gets.</li>
+        <li><b>Anything else appears here before it runs, not after.</b> That is the promise that
+        was not kept, and it is the one worth keeping. Mail sending, error tracking, a backup
+        target, a payment processor: this page first.</li>
       </ul>
       <div class="ph"><b>Placeholder — required before production use</b>
-      A signed data processing agreement with each company named above, a way to tell customers
-      before this list changes rather than after, and a legal entity to hold the contracts. None
-      of those exist.</div>
+      A signed data processing agreement with each company named above — starting with Anthropic,
+      which is receiving workspace content today with nothing agreed — a way to tell customers
+      before this list changes rather than after, and a legal entity to hold the contracts. None of
+      those exist.</div>
     </div>
   </div></div>
 </section>
@@ -334,14 +378,18 @@ footer a{color:var(--muted)}
         servers, and <code>whois sudama.ai</code> names GoDaddy as registrar.</li>
         <li><code>openssl s_client -connect strata.sudama.ai:443</code> shows the issuer as Let's
         Encrypt and the subject as this host name.</li>
-        <li><code>curl -I https://strata.sudama.ai/health</code> returns 404, which is what a host
-        with no application behind it returns.</li>
-        <li>The claim that no model call runs was checked by searching the code for callers of the
-        two modules that can make one, and by reading the chat screen's own note that its engine
-        does not exist yet.</li>
+        <li><code>curl https://strata.sudama.ai/healthz</code> returns 200 and a JSON body with the
+        row counts of a loaded corpus, and <code>/projects</code> returns 303 to the login page.
+        Both are the application answering, not nginx.</li>
+        <li>The path from the chat screen to Anthropic was read module by module —
+        <code>app/web/views/chat.py</code>, <code>app/chat/engine.py</code>,
+        <code>app/chat/agent.py</code>, <code>app/chat/tools.py</code> — and the key's route into
+        the process from <code>app/config.py</code> and <code>deploy/compose.yml</code>. What each
+        tool returns was read out of the tool functions themselves.</li>
       </ul>
       <p>Where a check was not run, this page says so instead of rounding up — the machine's
-      region and the request log's retention are both marked that way above.</p>
+      region, Anthropic's serving region and the request log's retention are all marked that way
+      above.</p>
       <p>Questions to
       <a href="mailto:jsahasi@gmail.com?subject=Strata%20sub-processors">jsahasi@gmail.com</a>.
       This page changes when the list does, and the date at the top moves with it.</p>
