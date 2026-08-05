@@ -96,6 +96,7 @@ beneath it: a reader sees the eleven ticks and the concessions in one glance.</p
 <a href="#a7-sqlite">A7. What changes when this outgrows SQLite</a><br>
 <a href="#a8-deploy">A8. Configuration, schema migration, and the deploy</a><br>
 <a href="#a9-surface">A9. The application surface</a><br>
+<a href="#a10-graph">A10. How this was built: a graph, not a loop</a><br>
 <b>Part B — the eleven areas the brief names</b><br>
 <a href="#overview">System overview</a><br>
 <a href="#ingestion">1. Ingestion &amp; passage segmentation</a><br>
@@ -844,6 +845,122 @@ drawn and nothing is remembered. <span class="lbl">This paragraph used to end by
 <code>base.html</code> did not include it, so it reached nobody. It includes it now</span>
 (<code>app/web/templates/base.html</code>), and the concession is kept here as history rather than deleted,
 because the test that carried the strict expected-failure marker is the thing that made the gap findable.</p>
+
+<h3 id="a10-graph">A10. How this was built: a graph, not a loop</h3>
+
+<p>Every other section here describes the product. This one describes the method, because the
+method is checkable in the commit history and because it explains defects the product would
+otherwise seem to have found by luck.</p>
+
+<p>Andrew Ng's four agentic patterns &mdash; reflection, tool use, planning, multi-agent
+collaboration &mdash; describe stages in externalising cognition: a loop externalises revision, a
+chain externalises task order, a graph externalises shared state. <strong>This repository was built
+as the graph and the product sits at two of the four patterns, which is worth stating in both
+directions rather than claiming all four.</strong></p>
+
+<figure class="fig">
+<div class="fig__frame">
+<svg viewBox="0 0 900 470" role="img" aria-labelledby="fanT fanD">
+  <title id="fanT">The build as a fan-out graph: one brief, parallel workers, an adversarial verifier on each, then synthesis</title>
+  <desc id="fanD">A brief fans out to several workers running at once, each owning a disjoint
+  set of files. Each worker's output goes to its own adversarial verifier, which is instructed to
+  refute rather than confirm and defaults to refusing when it cannot positively establish a claim.
+  Verified work reaches synthesis and a commit; refuted work returns to the worker with the
+  reproduction, which is the feedback edge that makes this a graph rather than a chain. A separate
+  derived-guard stage reads the assembled system rather than a list, and its findings re-enter at
+  the brief.</desc>
+
+  <g class="box"><rect x="20" y="200" width="120" height="62"/>
+    <text class="t-title" x="32" y="224">the brief</text>
+    <text class="t-sub" x="32" y="242">files owned, rules,</text>
+    <text class="t-sub" x="32" y="256">what to refuse</text></g>
+
+  <g class="box"><rect x="200" y="40" width="150" height="62"/>
+    <text class="t-title" x="212" y="64">worker</text>
+    <text class="t-sub" x="212" y="82">disjoint file set</text>
+    <text class="t-sub" x="212" y="96">TDD, failing test first</text></g>
+  <g class="box"><rect x="200" y="200" width="150" height="62"/>
+    <text class="t-title" x="212" y="224">worker</text>
+    <text class="t-sub" x="212" y="242">disjoint file set</text>
+    <text class="t-sub" x="212" y="256">TDD, failing test first</text></g>
+  <g class="box"><rect x="200" y="360" width="150" height="62"/>
+    <text class="t-title" x="212" y="384">worker</text>
+    <text class="t-sub" x="212" y="402">disjoint file set</text>
+    <text class="t-sub" x="212" y="416">TDD, failing test first</text></g>
+
+  <g class="box box--gate"><rect x="410" y="40" width="160" height="62"/>
+    <text class="t-title" x="422" y="64">verifier</text>
+    <text class="t-sub" x="422" y="82">told to REFUTE.</text>
+    <text class="t-sub" x="422" y="96">unsure = refuted</text></g>
+  <g class="box box--gate"><rect x="410" y="200" width="160" height="62"/>
+    <text class="t-title" x="422" y="224">verifier</text>
+    <text class="t-sub" x="422" y="242">told to REFUTE.</text>
+    <text class="t-sub" x="422" y="256">unsure = refuted</text></g>
+  <g class="box box--gate"><rect x="410" y="360" width="160" height="62"/>
+    <text class="t-title" x="422" y="384">verifier</text>
+    <text class="t-sub" x="422" y="402">told to REFUTE.</text>
+    <text class="t-sub" x="422" y="416">unsure = refuted</text></g>
+
+  <g class="box"><rect x="630" y="200" width="140" height="62"/>
+    <text class="t-title" x="642" y="224">synthesis</text>
+    <text class="t-sub" x="642" y="242">one commit, one</text>
+    <text class="t-sub" x="642" y="256">argument, one cost</text></g>
+
+  <g class="box box--gate"><rect x="630" y="40" width="150" height="62"/>
+    <text class="t-title" x="642" y="64">derived guards</text>
+    <text class="t-sub" x="642" y="82">read the SYSTEM,</text>
+    <text class="t-sub" x="642" y="96">never a list</text></g>
+
+  <path class="flow" d="M140 216 L200 78" marker-end="url(#arrow)"/>
+  <path class="flow" d="M140 231 L200 231" marker-end="url(#arrow)"/>
+  <path class="flow" d="M140 246 L200 384" marker-end="url(#arrow)"/>
+  <path class="flow" d="M350 71 L410 71" marker-end="url(#arrow)"/>
+  <path class="flow" d="M350 231 L410 231" marker-end="url(#arrow)"/>
+  <path class="flow" d="M350 391 L410 391" marker-end="url(#arrow)"/>
+  <path class="flow" d="M570 71 L630 210" marker-end="url(#arrow)"/>
+  <path class="flow" d="M570 231 L630 231" marker-end="url(#arrow)"/>
+  <path class="flow" d="M570 391 L630 252" marker-end="url(#arrow)"/>
+
+  <path class="flow flow--refuse" d="M490 102 L490 150 L275 150 L275 102" marker-end="url(#arrow-refuse)"/>
+  <text class="t-sub" x="300" y="144">refuted, with the reproduction</text>
+
+  <path class="flow" d="M700 102 L700 190" marker-end="url(#arrow)"/>
+  <path class="flow flow--refuse" d="M630 71 L80 71 L80 200" marker-end="url(#arrow-refuse)"/>
+  <text class="t-sub" x="95" y="64">what a guard finds re-enters as a brief</text>
+</svg>
+</div>
+<figcaption><strong>The edge that matters is the amber one.</strong> A chain would stop at the
+verifier. Sending a refutation back with its reproduction, and letting a derived guard's finding
+re-enter as a new brief, is what makes this a graph &mdash; and it is where most of the defects in
+<a href=".ai/findings.html">findings.html</a> were actually caught.
+<strong>Verifiers are told to refute, not to check.</strong> A reviewer asked "is this right"
+agrees; one asked "show me this is wrong", defaulting to refuted when it cannot establish a claim,
+disagrees usefully. Five blog articles were refused this way with every quotation correct
+byte-for-byte and the numbers wrong. The coverage map's own reviewer found the pill tray collapsing
+four distinct kinds of silence into one word &mdash; sixty lines of comment and three reason codes
+undone in the only layer a person reads.</figcaption>
+</figure>
+
+<p><span class="lbl">Where the product sits in the same four patterns, stated in both directions.</span>
+<strong>Tool use</strong> is real: <code>app/chat/tools.py</code> holds eleven tools, and the two
+that write are the two gated on a permission. <strong>Reflection</strong> is present and is
+deliberately not the usual shape &mdash; see below. <strong>Planning</strong> is minimal on purpose:
+<code>MAX_TOOL_STEPS = 4</code> and no plan step, because a planner that can spend an unbounded
+number of calls on a question about a docket is a cost with no ceiling.
+<strong>Multi-agent collaboration is absent from the product entirely.</strong> It is how the
+product was built, not something it does, and claiming otherwise in a submission whose argument is
+that a claim must carry its evidence would be the defect this whole document is written against.</p>
+
+<p><span class="lbl">Why the reflection here is a stronger claim than self-reflection, and this is
+the depth area restated in Ng's vocabulary.</span> Reflection usually means asking the model to
+inspect and revise its own work. That asks the weights that just erred to catch the error, and what
+comes back is a second opinion with the same blind spot and more confidence. Strata's reflection
+step calls no model: <code>verify_citation</code> re-reads the stored source at the offsets the
+claim named, normalises both sides, compares exactly and checks the occurrence. It now gates the
+model's own materiality judgement as well as stored claims (<a href="#extraction">&sect;3</a>,
+ADR-78), so a reviewer can watch the same gate refuse a model verdict and a seeded claim on one
+screen, centimetres apart. A deterministic reflector cannot share a blind spot with the thing it is
+checking, which is the whole reason to pay for one.</p>
 
 <h2 class="part" id="partb">Part B — the eleven areas the brief names</h2>
 <p>Sections 1 to 11 answer the eleven areas <code>docs/mrd.html</code> tables, in the brief's own order, one to
