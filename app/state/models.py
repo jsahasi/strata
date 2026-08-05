@@ -469,6 +469,110 @@ Index(
 
 
 # ---------------------------------------------------------------------------
+# The action half
+#
+# A claim says what a change means. An action says what this company is going to
+# DO about it, and it is the half a regulatory team is actually paid for.
+# app/interpretation/action.py has held the vocabulary -- monitor, comment,
+# comply -- since the first week, and until this table existed there was no row
+# to hang it on: no way to propose one, nothing to show, and therefore nothing
+# for app/auth/policy.py::can_approve to gate. A segregation-of-duties control
+# with no decision under it is a control that cannot be wrong.
+#
+# STATE IS STORED AND THE VERDICT IS NOT, which is the opposite of what this
+# codebase does with citations, so it is worth saying why. A citation's verdict
+# is recomputed because the source can change underneath it (ADR-003). A
+# decision cannot: somebody approved this on a Tuesday and that is a fact about
+# the past, not a property of any bytes. What is derived here is who may take
+# the decision -- can_approve is asked at the moment of the click and never
+# stored -- and what is stored is that they did.
+# ---------------------------------------------------------------------------
+
+# The three states of a proposal. Closed, named here, so the write layer has one
+# list to read rather than a literal at each call site.
+STATE_PROPOSED = "proposed"
+STATE_APPROVED = "approved"
+STATE_REJECTED = "rejected"
+PROPOSAL_STATES = (STATE_PROPOSED, STATE_APPROVED, STATE_REJECTED)
+
+
+class ProposedAction(Base):
+    """One action somebody proposes on a change, and the decision on it.
+
+    IT POINTS AT A CLAIM, not only at a change, and that is what makes the
+    approval gate askable. can_approve resolves a claim id to the claim, the
+    change beneath it and every escalation raised against it, and refuses
+    anybody the audit chain shows touching any of the three. Hanging an action
+    on a change alone would have left the gate a claim short of its evidence.
+
+    change_id is stored beside it rather than joined at read time, for the
+    reason Change.status is copied from the version: the change a proposal was
+    written against is the change it should still name a year later, and a join
+    that follows the claim would quietly re-answer the question after the fact.
+    Both columns are written together, in one place, by
+    app/state/actions.py::propose_action, which reads the change off the claim.
+
+    kind is checked against action_vocabulary(change.status) AT WRITE TIME. A
+    draft order binds nobody, so comply on a DRAFT is refused rather than
+    stored; the status the check ran under is the one already frozen on the
+    change row, so re-reading this proposal later cannot change what it was
+    allowed to be.
+
+    TWO NAMES FOR EACH PERSON, and the pair is deliberate. The *_user_id columns
+    are the identity, and they are what a second read joins on. The *_by columns
+    are the display string the audit chain also carries, kept so a row still
+    reads as a sentence after an account is renamed or deleted. models.py says
+    elsewhere that a display string is not an identity; neither column is
+    offered as the other.
+
+    NOTHING IS DELETED. A rejected proposal keeps its row and its reason,
+    because "we considered complying and decided not to" is the answer a
+    regulator asks for and an absent row cannot give it.
+    """
+
+    __tablename__ = "proposed_actions"
+
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    company_id: Mapped[str] = mapped_column(String(64), index=True)
+    claim_id: Mapped[str] = mapped_column(ForeignKey("claims.id"), index=True)
+    change_id: Mapped[str] = mapped_column(ForeignKey("changes.id"), index=True)
+
+    # monitor, comment or comply -- app/interpretation/action.py owns the words.
+    kind: Mapped[str] = mapped_column(String(16))
+    # Why this action and not another. Required: an unexplained proposal is a
+    # decision nobody can review, and review is the entire point of the table.
+    rationale: Mapped[str] = mapped_column(Text)
+
+    proposed_by: Mapped[str] = mapped_column(String(256))
+    proposed_by_user_id: Mapped[str | None] = mapped_column(
+        ForeignKey("users.id"), nullable=True, index=True
+    )
+    proposed_at: Mapped[datetime] = mapped_column(UtcDateTime)
+
+    # One of PROPOSAL_STATES.
+    state: Mapped[str] = mapped_column(String(16), default=STATE_PROPOSED)
+
+    # WRITTEN TOGETHER OR NOT AT ALL, like the materiality block on Change. A
+    # decided_at with no decider describes an event nobody can name.
+    decided_by: Mapped[str | None] = mapped_column(String(256), nullable=True)
+    decided_by_user_id: Mapped[str | None] = mapped_column(
+        ForeignKey("users.id"), nullable=True, index=True
+    )
+    decided_at: Mapped[datetime | None] = mapped_column(UtcDateTime, nullable=True)
+    # The approver's own words on a rejection; the policy's verdict sentence on
+    # an approval. Kept verbatim rather than paraphrased on screen, so the
+    # sentence a person reads is the sentence the gate produced.
+    decision_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
+
+
+Index(
+    "ix_proposed_actions_company_state",
+    ProposedAction.company_id,
+    ProposedAction.state,
+)
+
+
+# ---------------------------------------------------------------------------
 # The project workspace
 #
 # Everything above this line describes one change and the citation behind it.

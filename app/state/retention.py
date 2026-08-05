@@ -432,6 +432,14 @@ SCHEDULE: tuple[Rule, ...] = (
         "most useful thing in the record when somebody asks what was known.",
     ),
     _customer_work(
+        "proposed_actions",
+        "What the company decided to DO about a change, who proposed it and "
+        "who signed it off. This is the record a regulator asks for first, and "
+        "the row is the only place the approver's name sits beside the "
+        "proposer's -- the audit chain holds both decisions but not the pairing "
+        "of the two on one obligation.",
+    ),
+    _customer_work(
         "projects",
         "The line of work an analyst lives in, running over months. It is the "
         "unit the customer organises everything else around.",

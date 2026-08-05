@@ -182,6 +182,14 @@ ACTION_ROLE_DELETED = "role.deleted"
 
 # The approval model. Segregation of duties is only checkable afterwards if the
 # approval names an actor distinct from the one that raised the work.
+#
+# action.proposed is what makes that checkable at all, and it is deliberately
+# NOT in app/auth/policy.py::_NOT_AUTHORSHIP. Proposing an action is the act
+# that makes somebody the author of the work being reviewed, so the row this
+# code writes is the evidence gate 4 reads back when the same person later asks
+# to approve it. Adding it to the exempt list would switch the control off for
+# the one act it exists to catch.
+ACTION_ACTION_PROPOSED = "action.proposed"
 ACTION_ACTION_APPROVED = "action.approved"
 ACTION_ACTION_REJECTED = "action.rejected"
 ACTION_ESCALATION_RESOLVED = "escalation.resolved"
@@ -905,6 +913,7 @@ __all__ = [
     "ACTION_USER_SUSPENDED",
     "ACTION_USER_REINSTATED",
     "ACTION_PASSWORD_CHANGED",
+    "ACTION_ACTION_PROPOSED",
     "ACTION_ACTION_APPROVED",
     "ACTION_ACTION_REJECTED",
     "ACTION_ESCALATION_RESOLVED",

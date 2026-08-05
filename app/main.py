@@ -36,6 +36,7 @@ from app.web import STATIC_DIR, STATIC_URL_PATH
 from app.web.deps import install_auth
 from app.web.headers import install_security_headers
 from app.web.views import (
+    actions,
     admin,
     admin_index,
     auth,
@@ -69,6 +70,10 @@ app.include_router(proceedings.router)
 app.include_router(changes.router)
 app.include_router(review.router)
 app.include_router(review_centre.router)
+# What this company proposes to DO about a change, and who signed it off. The
+# only caller of app/auth/policy.py::can_approve: until this screen existed the
+# segregation-of-duties control was defined, tested and unreachable.
+app.include_router(actions.router)
 # The public share page and its admin registry. share.router carries the only
 # unauthenticated route in the product; see app/web/views/share.py.
 app.include_router(share.router)

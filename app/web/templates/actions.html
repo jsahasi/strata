@@ -1,0 +1,207 @@
+{#
+  actions.html — what this company proposes to do, and who signed it off.
+
+  Context, from app/web/views/actions.py:
+    waiting     tuple[ActionRow]        proposals nobody has decided
+    settled     tuple[ActionRow]        decided ones, kept because the record is the point
+    proposable  tuple[ProposableClaim]  claims an action could be proposed on
+    may_propose bool                    draw the propose form
+    may_approve bool                    draw the decision buttons
+    state       "ok" | "no-rows" | "no-tables"
+    error       dict(title, body, action_id) | None
+    demo_mode   bool                    the approval downgrade is on
+
+  NEITHER FLAG IS A GATE. Both come from app/auth/policy.py::has(), which is the
+  function written for deciding what to draw. The gate is in the POST, against
+  the live rows, at the moment of the click -- a check made when the page was
+  drawn is a statement about the past.
+
+  An ActionRow has no statement field. A claim's wording is gated behind
+  verified_claims() so nothing renders an assertion whose citation did not
+  verify, and this queue is about the decision rather than the wording. What it
+  shows is the claim id, the section and the change -- checkable, and none of
+  them an assertion.
+#}{% extends "base.html" %}
+
+{% block content %}
+<div class="page-head">
+  <div class="page-head__title">
+    <h1>Actions</h1>
+    <span class="coord">{{ waiting | length }} waiting</span>
+  </div>
+  <p class="page-head__note">
+    A claim says what a change means. An action says what this company is going
+    to do about it. A draft order can be monitored or commented on; only a final
+    order can be complied with.
+  </p>
+  <p class="page-head__note">{{ segregation_note }}</p>
+  <p class="page-head__note">{{ not_an_action_note }}</p>
+  {% if demo_mode %}
+  <p class="page-head__note" role="alert">
+    This deployment is running under {{ approval_mode }}. Separation of duties is
+    waived: one operator may approve their own work, and every waiver is written
+    into the audit chain saying so.
+  </p>
+  {% endif %}
+</div>
+
+{% if error %}
+<div class="empty empty--unloaded" role="alert">
+  <p class="empty__title">{{ error.title }}</p>
+  <div class="empty__body"><p>{{ error.body }}</p></div>
+</div>
+{% endif %}
+
+{% if state == 'no-tables' %}
+<div class="empty empty--unloaded">
+  <p class="empty__title">The database has no tables yet.</p>
+  <div class="empty__body">
+    <p>
+      Nothing is proposed because nothing has been loaded. Load the corpus with
+      <code>{{ seed_command }}</code>, or <code>{{ make_command }}</code>, then
+      reload this page.
+    </p>
+  </div>
+</div>
+
+{% elif state == 'no-rows' %}
+<div class="empty empty--none">
+  <p class="empty__title">No action is proposed.</p>
+  <div class="empty__body">
+    <p>
+      Nothing has been proposed for {{ tenant }}, and there is nothing here you
+      may propose one on. An action hangs off a claim whose citation verifies;
+      claims the product refused to assert are in the review queue instead.
+    </p>
+  </div>
+</div>
+
+{% else %}
+
+{% if waiting %}
+<ul class="queue">
+  {% for item in waiting %}
+  <li class="queue__row">
+    <div>
+      <span class="queue__code">{{ item.kind }}</span>
+      <p class="queue__reason">{{ item.rationale }}</p>
+      <p class="queue__meta">
+        {{ item.claim_id }} &middot; section {{ item.section }} &middot;
+        {{ item.status }} &middot;
+        <a href="{{ item.change_url }}">{{ item.change_id }}</a>
+      </p>
+      <p class="queue__meta">
+        Proposed by <span class="coord">{{ item.proposed_by }}</span>
+        on <span class="coord">{{ item.proposed_at }}</span>
+      </p>
+    </div>
+
+    {% if may_approve %}
+    <form class="queue__actions" method="post" action="{{ actions_url }}/{{ item.action_id }}/decide">
+      <p>
+        <label class="label" for="why-{{ item.action_id }}">Reason, required to reject</label><br>
+        <input id="why-{{ item.action_id }}" name="reason" type="text" size="16" autocomplete="off">
+      </p>
+      <button class="btn btn--primary" type="submit" name="decision" value="{{ decision_approve }}">Approve</button>
+      <button class="btn" type="submit" name="decision" value="{{ decision_reject }}">Reject</button>
+    </form>
+    {% else %}
+    <div class="queue__actions">
+      <p class="queue__meta">
+        This one is not yours to decide. Approving an action needs
+        <span class="coord">action.approve</span>, which sits on the obligation
+        owner and on no other role.
+      </p>
+    </div>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<div class="empty empty--none">
+  <p class="empty__title">Nothing is waiting for a decision.</p>
+  <div class="empty__body">
+    <p>Every action proposed for {{ tenant }} has been decided. They are listed below.</p>
+  </div>
+</div>
+{% endif %}
+
+{% if may_propose and proposable %}
+<section class="stack">
+  <h2>Propose an action</h2>
+  <p>
+    One claim, one action, and the reason it follows. Each claim below verifies
+    against its source right now; the words offered beside it are the only ones
+    its status allows.
+  </p>
+  {% for claim in proposable %}
+  <form class="queue__row" method="post" action="{{ actions_url }}/propose">
+    <input type="hidden" name="claim_id" value="{{ claim.claim_id }}">
+    <div>
+      <p class="queue__meta">
+        {{ claim.claim_id }} &middot; section {{ claim.section }} &middot;
+        {{ claim.status }} &middot;
+        <a href="{{ claim.change_url }}">{{ claim.change_id }}</a>
+      </p>
+      <fieldset>
+        <legend class="label">Action</legend>
+        {% for kind in claim.kinds %}
+        <label for="kind-{{ claim.claim_id }}-{{ kind }}">
+          <input id="kind-{{ claim.claim_id }}-{{ kind }}" type="radio" name="kind"
+                 value="{{ kind }}"{% if loop.first %} checked{% endif %}>
+          {{ kind }}
+        </label>
+        {% endfor %}
+      </fieldset>
+      <p>
+        <label class="label" for="why-propose-{{ claim.claim_id }}">Why this action</label><br>
+        <input id="why-propose-{{ claim.claim_id }}" name="rationale" type="text"
+               size="40" autocomplete="off">
+      </p>
+    </div>
+    <div class="queue__actions">
+      <button class="btn btn--primary" type="submit">Propose</button>
+    </div>
+  </form>
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if settled %}
+<section class="stack">
+  <h2>Decided</h2>
+  <p>
+    Decided actions stay here. Who proposed it, who decided it, and the sentence
+    the approval gate produced are the part an auditor asks for.
+  </p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Action</th>
+        <th scope="col">Claim</th>
+        <th scope="col">Proposed by</th>
+        <th scope="col">Decision</th>
+        <th scope="col">Decided by</th>
+        <th scope="col">When</th>
+        <th scope="col">Reason</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in settled %}
+      <tr>
+        <td>{{ item.kind }}</td>
+        <td><span class="coord">{{ item.claim_id }}</span></td>
+        <td><span class="coord">{{ item.proposed_by }}</span></td>
+        <td>{{ item.state }}</td>
+        <td><span class="coord">{{ item.decided_by }}</span></td>
+        <td><span class="coord">{{ item.decided_at }}</span></td>
+        <td>{{ item.decision_reason }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+
+{% endif %}
+{% endblock %}

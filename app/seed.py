@@ -79,13 +79,16 @@ from pathlib import Path
 
 from sqlalchemy.orm import Session
 
+from app.interpretation.action import action_vocabulary
 from app.pipeline import ingest_and_diff
+from app.state import actions as action_store
 from app.state.audit import record_event
 from app.state.claims import (
     WithheldClaim,
     changes_for_proceeding,
     claims_for_change,
     escalations_for_company,
+    proceedings_for_company,
     verified_claims,
 )
 from app.state.db import get_engine, session_scope
@@ -1698,6 +1701,150 @@ def ensure_accounts(
     return accounts
 
 
+# ---------------------------------------------------------------------------
+# The seeded demonstration of the approval control
+#
+# WHY THIS EXISTS. app/auth/policy.py::can_approve refuses an approval from
+# anybody the audit chain shows already working on the claim. Production runs
+# SEGREGATED -- STRATA_APPROVAL_MODE is unset and unset means the safe value --
+# so if every proposal in the seeded workspace were written by nobody, or by the
+# person who also holds action.approve, the screen would be a dead end on the
+# live demonstration: gate 4 would correctly refuse and a reviewer would see a
+# control that looks broken rather than one that works.
+#
+# So the seeded proposals are written by the ANALYST, who holds action.propose
+# and does not hold action.approve. Any of the five obligation owners can then
+# approve them, because no audit row names them against those claims. That is
+# the happy path a reviewer meets first, and it is the honest one: two people,
+# two roles, one decision each.
+#
+# THE REFUSAL IS NOT SEEDED, AND THAT IS DELIBERATE. Reaching gate 4 needs one
+# person holding action.approve who has also touched the claim, and the seeded
+# grid gives nobody both -- the analyst proposes and cannot approve, the
+# obligation owner approves and cannot propose. Manufacturing such a person here
+# would mean shipping the demo with its own load-bearing control switched off,
+# which is exactly what the "one role each" rule above refuses. The arrangement
+# is one grant away and a reviewer can make it in the product: sign in as the
+# admin, open /users, give the analyst the obligation owner role as well, then
+# sign in as the analyst and try to approve their own proposal. Strata refuses
+# and cites the audit row. tests/test_actions_screen.py drives exactly that.
+# ---------------------------------------------------------------------------
+
+
+def _demonstration_claims(session: Session, company_id: str) -> list[tuple[str, str]]:
+    """One verified claim per version status, as (claim id, action).
+
+    Derived from the corpus rather than named, so a change to the data file
+    moves the demonstration instead of leaving it pointing at a row that is no
+    longer there. Deterministic: proceedings, then changes, then claims, all in
+    id order, first match per status wins.
+
+    Only claims whose citation verifies are offered. Proposing that the company
+    comply with a statement the product refuses to assert would be the product
+    asserting it through the back door.
+    """
+    picked: dict[str, tuple[str, str]] = {}
+    for proceeding in proceedings_for_company(session, company_id):
+        for change in changes_for_proceeding(session, company_id, proceeding.id):
+            if change.status in picked:
+                continue
+            verified, _held = verified_claims(session, company_id, change.id)
+            if not verified:
+                continue
+            # The first word the status allows: monitor for a draft, comply for
+            # a final order. app/interpretation/action.py owns the vocabulary
+            # and this reads it rather than restating either word.
+            picked[change.status] = (
+                verified[0].claim_id,
+                action_vocabulary(change.status)[0],
+            )
+    return [picked[status] for status in sorted(picked)]
+
+
+#: What the seeded proposals say. Keyed by the action, because the sentence that
+#: argues monitoring a draft is not the sentence that argues complying with an
+#: order, and a single generic reason would make the screen's central column
+#: worthless.
+_RATIONALE = {
+    "monitor": (
+        "Draft language only. Watch this through to the final order before "
+        "anybody changes a procedure on the strength of it."
+    ),
+    "comment": (
+        "Draft language, and the threshold is the part that costs us. File a "
+        "comment on it inside the window."
+    ),
+    "comply": (
+        "Final order, so this binds. Work the obligation it lands on and get "
+        "the filing calendar moved to match."
+    ),
+}
+
+
+def ensure_demo_actions(
+    session: Session, *, data_dir: Path = DATA_DIR
+) -> tuple[str, ...]:
+    """Propose the demonstration actions, as the analyst. Idempotent.
+
+    Returns the proposal ids, existing or newly written, so a second run
+    returns the same tuple and writes nothing. Idempotency is per claim rather
+    than per id: a proposal already standing against a claim is the reason not
+    to write a second one.
+
+    Writes nothing at all when the accounts or the corpus are absent. Most test
+    fixtures load one without the other, and a loader that raised there would
+    turn a state the product handles into a failure in unrelated files.
+
+    NOT called from ensure_accounts(), and the reason is a test rather than
+    taste: the permissions register asserts that a freshly seeded workspace
+    holds no segregation conflict, and several fixtures build accounts with no
+    corpus behind them. main() calls both, which is what `make run` runs, so the
+    product a reviewer starts has its proposals.
+    """
+    context = _read_json(data_dir / "company_context.json")
+    company_id = context["company"]["short_name"]
+
+    analyst = next(
+        (
+            account
+            for account in demo_accounts(context, company_id)
+            if account.role == ROLE_ANALYST
+        ),
+        None,
+    )
+    if analyst is None:
+        return ()
+    author = user_by_email(session, company_id, analyst.email)
+    if author is None:
+        return ()
+
+    standing = {
+        row.claim_id: row.id
+        for row in action_store.proposed_actions_for_company(session, company_id)
+    }
+
+    written: list[str] = []
+    for claim_id, kind in _demonstration_claims(session, company_id):
+        if claim_id in standing:
+            written.append(standing[claim_id])
+            continue
+        row = action_store.propose_action(
+            session,
+            company_id,
+            claim_id=claim_id,
+            kind=kind,
+            rationale=_RATIONALE[kind],
+            # The same shape every screen writes: app/web/views/actions.py
+            # records "person:<email>", so a seeded proposal and one a person
+            # made read the same way in the chain.
+            actor=f"person:{analyst.email}",
+            actor_user_id=author.id,
+        )
+        written.append(row.id)
+    session.flush()
+    return tuple(written)
+
+
 def ensure_tables(engine=None) -> None:
     """Create any missing tables. Never drops.
 
@@ -1892,6 +2039,11 @@ def main() -> None:
         # The corpus, then the people who may read it. Both in one transaction,
         # so a half-seeded database is not a state anyone can start from.
         accounts = ensure_accounts(session)
+        # Then what the analyst proposes doing about it, which is the decision
+        # the approval gate exists to gate. Third and last, because it needs
+        # both of the above: the claims from the corpus, the author from the
+        # accounts.
+        proposals = ensure_demo_actions(session)
 
     print(f"seed: company {report.company_id} ({report.company_name})")
     print(
@@ -1916,6 +2068,10 @@ def main() -> None:
     print(
         f"seed: the collective take rests on {workspace.take_included} findings "
         f"and states {workspace.take_withheld} it could not verify"
+    )
+    print(
+        f"seed: {len(proposals)} actions proposed by the analyst, waiting on an "
+        "obligation owner at /actions"
     )
     print(f"seed: {len(accounts)} accounts, all with the password {DEMO_PASSWORD!r}")
     for account in accounts:

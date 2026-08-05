@@ -54,7 +54,13 @@ from fastapi.testclient import TestClient
 
 import app.state as state_package
 from app.main import app
-from app.seed import DEMO_PASSWORD, demo_account_list, ensure_accounts, load
+from app.seed import (
+    DEMO_PASSWORD,
+    demo_account_list,
+    ensure_accounts,
+    ensure_demo_actions,
+    load,
+)
 from app.state.db import init_db, session_scope
 from app.state.identity import create_user, ensure_system_roles
 from app.state.models import Base, ROLE_ADMIN, ROLE_ANALYST
@@ -456,6 +462,11 @@ def _argument_values(session) -> tuple[dict[str, object], set[str]]:
         "share_id": mep(m.ShareLink),
         "directive_id": mep(m.SteerDirective),
         "role_id": mep(m.Role),
+        # The seeded demonstration's proposal. app/state/actions.py::
+        # record_decision takes an id and re-reads the row precisely so the
+        # scope is enforced there rather than trusted from a caller, which is
+        # what makes it a probe worth making.
+        "action_id": mep(m.ProposedAction),
     }
 
     user = (
@@ -522,6 +533,11 @@ def _argument_values(session) -> tuple[dict[str, object], set[str]]:
             "instruction": "a sweep probe",
             "description": "a sweep probe",
             "resolution": "a sweep probe",
+            "rationale": "a sweep probe",
+            # A decision has to be one thing or the other, and the sweep only
+            # asks whether the call crosses a tenant boundary. Approving is the
+            # side with the gate in front of it, so it is the side probed.
+            "approved": True,
             "password": "a-sweep-probe-password-1",
             "query": "load forecast",
             "expression": '"load"',
@@ -673,6 +689,10 @@ def swept():
     with session_scope() as session:
         load(session)
         ensure_accounts(session)
+        # The proposed actions too, so app/state/actions.py has rows to probe.
+        # Without them the sweep cannot build a call for record_decision, and a
+        # probe it cannot build is a probe that silently stopped running.
+        ensure_demo_actions(session)
         ensure_system_roles(session)
         create_user(
             session,
@@ -1278,6 +1298,10 @@ def rival_client() -> TestClient:
     with session_scope() as session:
         load(session)
         ensure_accounts(session)
+        # The proposed actions too, so app/state/actions.py has rows to probe.
+        # Without them the sweep cannot build a call for record_decision, and a
+        # probe it cannot build is a probe that silently stopped running.
+        ensure_demo_actions(session)
         ensure_system_roles(session)
         create_user(
             session,

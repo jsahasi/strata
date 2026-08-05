@@ -1,8 +1,18 @@
 """can_approve must be ASKED, not merely defined.
 
-    WIRED 2026-08-05 into review.py::resolve_escalation. This file spent a few
-    hours as a strict xfail carrying the reason it was not, and wiring it failed
-    that marker and forced its own removal, which is what strict is for.
+    WIRED 2026-08-05 into app/web/views/actions.py::decide, which is the
+    approval path -- a person holding action.approve deciding one proposed
+    action on a change somebody else interpreted. The two earlier attempts put
+    it on review.py::resolve_escalation and were both reverted: gate 2 demands
+    action.approve, escalation.resolve sits on ROLE_ANALYST, and the analyst
+    does not hold action.approve, so the gate made the analyst's own screen
+    refuse the analyst. DEMO_SELF_APPROVAL does not rescue that -- it waives
+    gate 4 alone and policy.py says so in its own docstring.
+
+    This file spent a day as a strict xfail carrying that argument, and the
+    marker did its job twice: it failed the suite on both wrong wirings and
+    forced the argument to be had again, then failed on the right one and forced
+    its own removal. The guard below stays. Only the concession is gone.
 
 app/auth/policy.py::can_approve is the segregation-of-duties control: gate 4
 refuses a user who already acted on the claim, the change beneath it, or an
@@ -20,8 +30,6 @@ refactor that quietly drops the call fails here rather than shipping.
 """
 import ast
 import pathlib
-
-import pytest
 
 APP_WEB = pathlib.Path(__file__).resolve().parents[1] / "app" / "web"
 
@@ -43,22 +51,6 @@ def _modules():
         yield path, ast.parse(path.read_text())
 
 
-@pytest.mark.xfail(strict=True, reason=(
-    "NOT WIRED, AND THE SECOND ATTEMPT FOUND OUT WHY. It was wired into "
-    "review.py::resolve_escalation and reverted: GATE 2 OF can_approve DEMANDS "
-    "action.approve, and the analyst who resolves escalations does not hold it "
-    "-- escalation.resolve sits on ROLE_ANALYST, action.approve does not. Every "
-    "one of the five screen tests came back 403 from gate 2, not from the "
-    "segregation gate, and DEMO_SELF_APPROVAL does not help: it waives gate 4 "
-    "alone and policy.py says so in its own docstring. So the 403 was the wrong "
-    "permission demanded on a route whose role was never meant to hold it. "
-    "can_approve gates APPROVING AN ACTION that follows from a claim. Resolving "
-    "an escalation is a different decision by a different person, and putting "
-    "one gate on the other would have made the analyst's own screen refuse them. "
-    "The right home is the action-approval path, which has no screen yet. "
-    "STRICT, so wiring it anywhere fails this test and forces the argument to be "
-    "had again."
-))
 def test_some_view_actually_calls_can_approve():
     callers = [p.name for p, tree in _modules() if _calls_named(tree, "can_approve")]
     assert callers, (

@@ -7,7 +7,7 @@
     company_name      str   the company whose data is on screen
     company_id        str   the tenant id that scoped every read on this page
     nav_active        str   one of: projects | proceedings | proceeding |
-                            change | review | workflow | admin
+                            change | review | actions | workflow | admin
     nav_projects_url  str   the project list, default /projects
     nav_review_url    str   the review centre, default /review
     nav_workflow_url  str   the approval route, default /workflow
@@ -25,9 +25,15 @@
 
   Blocks: title, head, content, foot.
 
-  The nav lists six screens. Two of them need a proceeding or a change in
+  The nav lists seven screens. Two of them need a proceeding or a change in
   hand; without one they render as plain text, not as links that would 404.
   Absence is denial here too.
+
+  Actions is in the list rather than behind the admin menu, and it is drawn for
+  everybody. It is where an analyst proposes what to do about a change and where
+  the obligation owner approves or refuses it -- two roles, one screen, and the
+  screen itself says which half is yours. Hiding it from whoever cannot approve
+  would hide the proposing half from the person who does that job.
 
   The approval route is here rather than behind an admin menu on purpose. It is
   read by everybody and drawn by almost nobody, and an analyst who cannot find
@@ -67,6 +73,7 @@
 {% set projects_url = nav_projects_url | default('/projects', true) %}
 {% set review_url = nav_review_url | default('/review', true) %}
 {% set workflow_url = nav_workflow_url | default('/workflow', true) %}
+{% set actions_nav_url = nav_actions_url | default('/actions', true) %}
 {% set screens = [
   ('projects', 'Projects', projects_url, true, ''),
   ('proceedings', 'Proceedings', '/proceedings', true, ''),
@@ -75,6 +82,7 @@
   ('change', 'This change', change_url, change_url is not none,
    'Open a change to reach this screen'),
   ('review', 'Review', review_url, true, ''),
+  ('actions', 'Actions', actions_nav_url, true, ''),
   ('workflow', 'Approval route', workflow_url, true, ''),
 ] %}
 
@@ -155,8 +163,8 @@
           {%- endif %}
         </li>
         {%- endfor %}
-        {#- Outside the loop above, not a seventh row in it. The six are the
-            screens an analyst works in and they are the same six for everybody;
+        {#- Outside the loop above, not an eighth row in it. The seven are the
+            screens an analyst works in and they are the same seven for everybody;
             this one is drawn from a permission and appears for almost nobody.
             Folding it into the list would have meant giving every analyst row a
             permission field that is always None, and a field that is always

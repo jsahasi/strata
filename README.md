@@ -201,6 +201,18 @@ The reviewer path, in the running product:
 4. Compare that to the deterministic version diff behind it (ADR-004) and the draft-versus-final
    status on each version (ADR-005) — those two are what the citation is a claim about.
 
+Then the second control, which is the one a regulated buyer asks about (ADR-091):
+
+5. Sign in as an obligation owner — `priya.nandakumar@mep.example` — and open
+   `http://localhost:8000/actions`. The analyst has proposed two actions: monitor a draft, comply
+   with the final order. Approve one. The decision names you and the audit chain still verifies.
+6. Now watch it refuse. Sign in as the admin `sarah.lindqvist@mep.example`, open
+   `http://localhost:8000/users`, and give the analyst `denise.okoro@mep.example` the obligation
+   owner role as well. Sign in as her and press Approve on her own proposal. Strata answers 403
+   and cites the audit row where she proposed it: *the person who interprets a change does not
+   approve the action that follows from it.* Holding the permission is necessary and never
+   sufficient — that is the whole approval model, on a screen, in two minutes.
+
 After that: the decision log ([`docs/.ai/decisions.html`](docs/.ai/decisions.html)) answers
 "why this and not the alternative" for every choice above, and
 [`docs/.ai/findings.html`](docs/.ai/findings.html) records every defect found during the build,
