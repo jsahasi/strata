@@ -39,7 +39,7 @@ everything good behind it. P0 items stop a reviewer at the front door. P1 items 
 a reader could act on. P2 items are real code gaps that a panel question would expose. P3 items are
 things only we would notice.</div>
 
-<div class="note"><strong>One decision is yours and I have not taken it.</strong> Making the
+<div class="note"><strong>One decision is yours.</strong> Making the
 repository public is an outward-facing, hard-to-reverse act, and the history contains 40-odd commit
 messages plus every document in this list. It is item P0-1 and it needs your word, not mine.</div>
 
@@ -140,7 +140,7 @@ will ask about it.</td></tr>
 <tr><td>P2-3<br>Four things are built and called by nothing</td>
 <td><code>propose.py</code> (the model proposer) has no caller outside tests, so the interpretation
 gate is real and the thing it gates is disconnected. <code>start_run</code> has no caller, so no
-approval run ever starts. <code>can_approve</code> has zero callers anywhere.
+approval run ever starts. <code>can_approve</code> had zero callers anywhere and now has one, <code>app/web/views/actions.py::decide</code> (ADR-91), which is the screen the whole control was waiting on.
 <code>revert_event</code> has none in <code>app/</code>. Each is defensible individually; together
 they are the pattern to have an answer for.</td></tr>
 

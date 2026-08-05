@@ -34,10 +34,10 @@
 
 <div class="crit">
 <p><strong>No user has been interviewed, and no user feedback has changed this product.</strong> Outreach has gone to named regulatory-affairs people on live dockets and has produced no replies and no calls. The interview table below is empty, and it stays empty until somebody talks to us.</p>
-<p><strong>What was done instead is on this page, labelled as a substitute every time it appears.</strong> A synthetic user was built from 102 real public filings and interviewed by the person who built the product. That is a rehearsal, not evidence. It generates questions to ask; it cannot answer them. The section on what it cannot tell us is longer than the section on what it can, and that is the right proportion.</p>
+<p><strong>What was done instead is on this page, labelled as a substitute every time it appears.</strong> A synthetic user was built from 102 real public filings and interviewed by the person who built the product. That is a rehearsal, not evidence. It generates questions to ask; it cannot answer them.</p>
 </div>
 
-<div class="note"><p><strong>Where the numbers live.</strong> Attempts, addresses and their provenance are logged in <code>docs/mrd.html</code>; what a conversation actually said would live here. The split stops the two drifting into different versions of one story. Nothing has yet been said, so this page carries the account of the attempt and the substitute, and the MRD carries the tallies.</p></div>
+<div class="note"><p><strong>Where the numbers live.</strong> Attempts, addresses and their provenance are logged in <code>docs/mrd.html</code>; what a conversation actually said would live here. The split stops the two drifting into different versions of one story.</p></div>
 
 <h2>What actually happened</h2>
 
@@ -68,36 +68,33 @@ Carolina, Ohio, Utah and Virginia &mdash; naming <strong>48 distinct filing orga
 <tr><td>Other intervenor or advocacy group</td><td>1</td></tr>
 </table>
 
-<p><span class="lbl">What this table is, and what it is not.</span> It is the <em>population the
-addresses were drawn from</em>, derived by counting the provenance records in
-<code>data/real/</code>. It is <strong>not</strong> a breakdown of the 45 people who were written
-to, by title or by seniority. That list lived in a mail client and never in this repository, so
-reconstructing it here would be writing from memory in the one document that exists to say what is
-known and what is not. What can be said without inventing anything: the addresses came from
-organisations that file in rate and interconnection proceedings, which is the population this
+<p><span class="lbl">This is the population the addresses were drawn from</span>, derived by counting
+the provenance records in <code>data/real/</code>. It is <strong>not</strong> a breakdown of the 45
+people who were written to, by title or by seniority: that list lived in a mail client and never in
+this repository, so it cannot be reconstructed here without writing from memory. The addresses came
+from organisations that file in rate and interconnection proceedings, which is the population this
 product is built for, and no name, address or private detail of any recipient appears anywhere in
 this repository.</p>
 
-<p><span class="lbl">The uncomfortable read, and it is the honest one.</span> Targeting was not the
-problem. These were the right organisations, reached at addresses they had themselves put on a
-public filing. Forty-five well-aimed messages produced nothing, which says the channel was wrong
-rather than the aim &mdash; cold email to people who file for a living, from an address they have
-never seen, inside a two-day window. An introduction through somebody they already know is worth
-more than another forty-five.</p>
+<p><span class="lbl">Targeting was not the problem.</span> These were the right organisations,
+reached at addresses they had themselves put on a public filing. Forty-five well-aimed messages
+produced nothing, which says the channel was wrong rather than the aim &mdash; cold email to people
+who file for a living, from an address they have never seen, inside a two-day window. An
+introduction through somebody they already know is worth more than another forty-five.</p>
 
-<p><span class="lbl">Why nobody replied, as far as anyone here can tell — and this is a guess.</span> Cold outbound from a personal address to people who file for a living, on a two-day window, over a weekday. Regulatory affairs is not a function with spare afternoons. No warm introduction was available and none was tried, because there was nobody to ask. The honest position is that the sample is too small and too fast to conclude anything about the outreach itself: 45 messages with zero replies inside 36 hours is consistent with a bad pitch, a bad list, a bad channel or an ordinary response lag, and nothing here distinguishes them.</p>
+<p><span class="lbl">Why nobody replied, as a guess.</span> Cold outbound from a personal address to people who file for a living, on a two-day window, over a weekday. Regulatory affairs is not a function with spare afternoons. No warm introduction was available and none was tried, because there was nobody to ask. The sample is too small and too fast to conclude anything about the outreach itself: 45 messages with zero replies inside 36 hours is consistent with a bad pitch, a bad list, a bad channel or an ordinary response lag, and nothing here distinguishes them.</p>
 
 <h2>What the outreach taught, which is not the same as what a user taught</h2>
 
 <div class="d"><h3>Four addresses bounced, and all four carried the label "filing-verified"</h3>
 <p>Every address was read off a certificate of service — a document the parties file themselves, under oath, so that others can reach them about that docket. That is the best source available and better than any contact broker. Four of them bounced anyway.</p>
-<p><span class="lbl">The lesson, stated as a rule rather than as an anecdote.</span> A service list records who was reachable <em>when it was filed</em>, not who is reachable now. "Verified" is a timestamp against a version, not a permanent property of a fact. The clearest case is in the record twice over: a July 2021 certificate of service in IURC Cause No. 45591 gives AES Indiana's counsel as <code>tnyhart@btlaw.com</code>; the April 2026 filing in Cause No. 46394 gives <code>tnyhart@taftlaw.com</code>. Same person, same role, different firm. Both were honestly verified against a public filing and only one works. Nothing announced the change.</p>
+<p><span class="lbl">The lesson, as a rule.</span> A service list records who was reachable <em>when it was filed</em>, not who is reachable now. "Verified" is a timestamp against a version, not a permanent property of a fact. The clearest case is in the record twice over: a July 2021 certificate of service in IURC Cause No. 45591 gives AES Indiana's counsel as <code>tnyhart@btlaw.com</code>; the April 2026 filing in Cause No. 46394 gives <code>tnyhart@taftlaw.com</code>. Same person, same role, different firm. Both were honestly verified against a public filing and only one works. Nothing announced the change.</p>
 <p><span class="lbl">This changed the product, and it must not be reported as user feedback.</span> It is written up as principle 28 in <code>docs/best-practices.html</code> and as ADR-27 in <code>docs/.ai/decisions.html</code>, and it is the argument for scoping every citation to a proceeding <em>version</em> rather than to a proceeding. It also produced a real code change: <code>verify_citation_for_version</code> never consulted <code>DocumentVersion.source_sha256</code>, so its verdict was bound to a version id rather than to that version's bytes, and an out-of-band edit far from the cited offsets left a citation verifying clean. It refuses on mismatch now. <strong>That is a lesson from the method, not from a person.</strong> No regulatory-affairs person said it. Putting it in the "what users told us" column would be the same defect this product exists to catch — a confident claim with the wrong evidence behind it.</p></div>
 
 
 <p><span class="lbl">What it is legitimately for.</span> Three things and no more. Rehearsing questions, so a real twenty minutes is not spent discovering the obvious. Generating candidate pains to go and check against a real source. Answering a design question when no real user is available, with the guess marked as a guess in the ADR that relies on it.</p>
 
-<p><span class="lbl">What it cannot do, at greater length, because this is the part that keeps it honest.</span></p>
+<p><span class="lbl">What it cannot do.</span></p>
 
 <table>
 <tr><th>It cannot</th><th>Why not</th></tr>
@@ -109,7 +106,7 @@ more than another forty-five.</p>
 <tr><td>Disagree usefully</td><td>The failure that matters most. The persona was built by the same mind that built Strata, from a corpus that mind selected. It produces pains Strata already claims to solve, because that is what it was assembled from. Treat its agreement as worth nothing and its disagreement as mildly interesting.</td></tr>
 </table>
 
-<p><span class="lbl">The three standing rules on its output, repeated here because this is the page they protect.</span> Nothing it says moves into the interview table below. Where it informs a decision, the ADR says the input was synthetic — "the synthetic persona flagged X, which we then checked against [filing]" is legitimate; "users told us X" is not. Every claim it makes is a line on the interview script, not a line in the PRD.</p>
+<p><span class="lbl">The three standing rules on its output.</span> Nothing it says moves into the interview table below. Where it informs a decision, the ADR says the input was synthetic — "the synthetic persona flagged X, which we then checked against [filing]" is legitimate; "users told us X" is not. Every claim it makes is a line on the interview script, not a line in the PRD.</p>
 
 <p><span class="lbl">The one genuinely useful thing the rehearsal produced.</span> The synthetic interview undercut the product seven times, and one undercut is worth carrying into a real conversation: that a filer's own redline already gets most of the job done, so the wedge is not producing a redline but <em>ranking</em> one. A 378-page Kentucky reissue carried roughly 1,370 lines of re-layout churn around a single substantive change, and a Utah redline invented three changes that never happened while silently passing over one that did. Those are facts from filings, checkable in <code>data/real/</code>. Whether they are the pain a real analyst feels is precisely what nobody has been asked.</p>
 
@@ -121,7 +118,7 @@ more than another forty-five.</p>
 
 <h2>Interviews</h2>
 
-<p><em>One block per conversation, filled the same day, quotes verbatim. The table is empty. It stays empty and visibly empty, because a blank row is a true statement and a filled one would not be.</em></p>
+<p><em>One block per conversation, filled the same day, quotes verbatim. The table is empty.</em></p>
 
 <table>
 <tr><th>#</th><th>Who / role / sector</th><th>Date</th><th>Medium</th><th>Outcome</th></tr>
@@ -134,10 +131,10 @@ more than another forty-five.</p>
 
 <table>
 <tr><th>What we heard</th><th>Who said it</th><th>What we changed, or why we did not</th></tr>
-<tr><td colspan="3" class="no">Nothing. No user has said anything. This table has no rows and inventing one would cost more than the empty table does.</td></tr>
+<tr><td colspan="3" class="no">Nothing. No user has said anything, and inventing a row would cost more than the empty table does.</td></tr>
 </table>
 
-<p><span class="lbl">Kept separate on purpose: what the outreach <em>method</em> changed.</span> Two changes below are real and neither is user feedback. They are here so the distinction is visible rather than blurred into the table above.</p>
+<p><span class="lbl">What the outreach <em>method</em> changed, kept separate on purpose.</span> Two changes below are real and neither is user feedback.</p>
 
 <table>
 <tr><th>What happened</th><th>What changed in the build</th><th>Why this is not user feedback</th></tr>
@@ -157,13 +154,13 @@ more than another forty-five.</p>
 <tr><td>H4</td><td>The expensive part is interpretation and routing, not detection.</td><td>They say detection is the bottleneck and interpretation is quick once they know where to look.</td><td>One conversation about the last thing they missed, with a clock attached: how long between the filing landing and somebody knowing it mattered, and how much of that was finding versus deciding.</td><td>The wedge moves upstream toward faster, more reliable change-finding. Most of what is built stays; what it leads with does not.</td></tr>
 </table>
 
-<p><span class="lbl">H3 is the one to watch, and it is worth saying what happens if it falls.</span> If trust does not require the source span, the depth area is engineering for its own sake. The response prepared in advance, so it is not composed under pressure: say so in the PRD, keep the verifier as a correctness mechanism because a claim that cannot show its source is still a claim that may be wrong, and stop presenting it as the reason anybody would trust the product.</p>
+<p><span class="lbl">H3 is the one to watch.</span> If trust does not require the source span, the depth area is engineering for its own sake. The response, prepared in advance: say so in the PRD, keep the verifier as a correctness mechanism because a claim that cannot show its source is still a claim that may be wrong, and stop presenting it as the reason anybody would trust the product.</p>
 
 <h2>The method, kept because it has never been used</h2>
 
-<p>Everything below is a plan. It was written before the outreach and no part of it has been run against a person. It is kept rather than deleted so the first real conversation does not start from nothing, and so a reader can see that the questions were prepared and the answer was still silence.</p>
+<p>Everything below is a plan. It was written before the outreach and no part of it has been run against a person. It is kept so the first real conversation does not start from nothing.</p>
 
-<div class="note"><p><strong>This is the old plan, not the one to run.</strong> It asks for twenty minutes and seven questions. <a href="#ten-minute-kit">The ten-minute call kit</a> at the foot of this page replaces it and is what the next attempt uses. This section stays because it is the record of what was written before the silence, and deleting it would hide the fact that the questions were ready and nobody answered them. Where the two disagree, the kit wins.</p></div>
+<div class="note"><p><strong>This is the old plan, not the one to run.</strong> It asks for twenty minutes and seven questions. <a href="#ten-minute-kit">The ten-minute call kit</a> at the foot of this page replaces it and is what the next attempt uses. Where the two disagree, the kit wins.</p></div>
 
 <h3>Who to ask</h3>
 <p>A regulatory affairs analyst or manager at a utility, an independent power producer, or an energy retailer. Adjacent and still useful: compliance analysts in banking or pharma who track rule changes; a regulatory lawyer, discounting their answers, because their incentives differ from an in-house analyst's.</p>
@@ -197,17 +194,16 @@ more than another forty-five.</p>
 <li><strong>A send log in the repository</strong>, one row per address per attempt, with the outcome. It would have prevented the duplicate send and would settle the three disagreeing counts above. The absence of it is why the central number on this page cannot be checked.</li>
 <li><strong>A channel that is not cold email.</strong> 45 messages and zero replies is the measurement of that channel on this timescale. A warm introduction, a commission-staff reader, or a docket-adjacent forum all beat sending message 46.</li>
 </ul>
-<p>Until then this page says no, describes what was done instead, and states what the substitute cannot tell us. That is the whole of the honest answer, and it is a better one than a page that reads as though somebody had been asked.</p>
 
 <h2 id="ten-minute-kit">The ten-minute call kit</h2>
 
 <div class="crit">
 <p><strong>This section is the instrument. It is not a finding, and no part of it is evidence.</strong> It holds the script, six questions, the rules for listening, and an empty table to write a call into. Everything above this heading is an account of what has happened. Everything below it is what to do the next time somebody says yes.</p>
-<p>A reader looking for what users said should stop at the interview table above. It is empty. This kit does not change that and is not meant to look as though it does.</p>
+<p>A reader looking for what users said should stop at the interview table above. It is empty.</p>
 </div>
 
 <h3>Why ten minutes and not twenty</h3>
-<p>The old ask wanted twenty. It went out 45 times and came back nothing, which is one measurement of one channel and not proof that the number was the problem. Ten is still the better ask. It fits in the gap between two meetings, so nobody has to move anything to make room, and a person who has never heard of you is agreeing to a phone call rather than to a meeting. Ten also forces the cut that twenty lets you dodge: six questions, no preamble, no demo, no slides. If the call runs long because they are enjoying it, that is theirs to offer and not yours to ask for.</p>
+<p>Ten is the better ask. The old twenty went out 45 times and came back nothing &mdash; one measurement of one channel, not proof that the number was the problem. Ten fits in the gap between two meetings, so nobody has to move anything to make room, and a person who has never heard of you is agreeing to a phone call rather than to a meeting. Ten also forces the cut that twenty lets you dodge: six questions, no preamble, no demo, no slides. If the call runs long because they are enjoying it, that is theirs to offer and not yours to ask for.</p>
 <p><span class="lbl">Before you dial, three things and no more.</span> Read one filing they are personally named on, so question one can name a docket instead of asking in the abstract. Have the six questions on one sheet of paper, in order, so you are not scrolling. Decide in advance which two you will drop if the clock beats you, because deciding that live is how a call ends with four polite answers and no artefact.</p>
 
 <h3>The script, by the clock</h3>
@@ -317,7 +313,7 @@ more than another forty-five.</p>
 <h3>What the synthetic persona can and cannot stand in for</h3>
 <p>It stands in for the interviewer's preparation and for nothing else. Rehearsing against <code>docs/synthetic-user.html</code> cut four questions that would have spent a real person's time producing definitions and org charts, and it produced questions 2 and 3 above &mdash; the two that can hurt most. That is the pattern worth naming: a question a synthetic cannot answer is exactly the question worth a real person's ten minutes. It can also throw up a candidate pain to go and check against a filing, which is cheap and sometimes right.</p>
 <p>What it cannot do is answer. It was built by the same hand that built Strata, from a corpus that same hand chose, so its agreement is worth nothing and only its disagreement is even mildly interesting. It has no diary, so it cannot say what last Tuesday cost. It has no budget, so it cannot say what anything is worth or who signs for it. It never sees the work that produced no document, which may be most of the work. And it cannot be surprised, which is the entire reason for talking to somebody.</p>
-<div class="crit"><p><strong>Nothing in this kit is evidence.</strong> Not the script, not the six questions, not the listening rules, not the empty tables. An instrument measures nothing until it is used. Evidence on this page starts when a real name and a real date sit in the interview table above, and until that happens this product's account of its user is a model &mdash; labelled as one everywhere it appears, and worth exactly what a model is worth.</p></div>
+<div class="crit"><p><strong>Nothing in this kit is evidence.</strong> Not the script, not the six questions, not the listening rules, not the empty tables. An instrument measures nothing until it is used. Evidence on this page starts when a real name and a real date sit in the interview table above; until then this product's account of its user is a model, labelled as one everywhere it appears.</p></div>
 
 </body>
 </html>

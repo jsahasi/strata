@@ -52,11 +52,10 @@ Two surfaces: the application, and the marketing site in front of it.</p>
 
 <h2>Scope</h2>
 
-<p>Four things, not the three this section originally listed. The marketing site did not exist when it
-was written.</p>
+<p>Four things. This section originally listed three; the marketing site is the fourth.</p>
 <table>
 <tr><th>What</th><th>Where</th><th>Detail</th></tr>
-<tr><td>Web layer</td><td><code>app/web/</code></td><td>FastAPI routes under <code>app/web/views/</code>, Jinja templates under <code>app/web/templates/</code>, assets under <code>app/web/static/</code>. Sixteen routers are mounted in <code>app/main.py</code> lines 64&ndash;98. The module boundary is the one fixed in <a href="tdd.html#a4-modules">A4 of the TDD</a> — deliberately thin, no business logic.</td></tr>
+<tr><td>Web layer</td><td><code>app/web/</code></td><td>FastAPI routes under <code>app/web/views/</code>, Jinja templates under <code>app/web/templates/</code>, assets under <code>app/web/static/</code>. Eighteen routers are mounted in <code>app/main.py</code> lines 67&ndash;113. The module boundary is the one fixed in <a href="tdd.html#a4-modules">A4 of the TDD</a> — deliberately thin, no business logic.</td></tr>
 <tr><td>Design system</td><td><code>app/web/static/</code></td><td><strong>Four hand-written stylesheets, not one.</strong> <code>strata.css</code> (2,752 lines) holds every token, the type scale, both colour schemes and the shared components; <code>clerk.css</code> (543) the assistant dock; <code>tour.css</code> (113) the first-login tour; <code>workflow.css</code> (641) the approval-route editor. The three secondary sheets declare no colour of their own — see the no-hex rule below. No framework, no icon font, no build step.</td></tr>
 <tr><td>Marketing site</td><td><code>deploy/site/</code></td><td>Thirteen static pages and one shared stylesheet, <code>site.css</code> (438 lines). Served at the root; the application sits behind it. Covered in <em>Part three</em>.</td></tr>
 <tr><td>Deployment</td><td><code>deploy/Dockerfile</code>, <code>deploy/compose.yml</code>, <code>deploy/nginx.conf</code>, <code>deploy/entrypoint.sh</code></td><td>Two containers. nginx serves the site and proxies a named list of paths to the app; Traefik terminates TLS. There is no <code>Caddyfile</code> and never was — the original plan said Caddy, and the deployment that shipped uses nginx behind the Traefik already running on the host.</td></tr>
@@ -75,12 +74,11 @@ and stylesheet under <code>deploy/site/</code> and fails on any absolute <code>s
 
 <h2>Screens</h2>
 
-<div class="crit"><strong>This section said "Four" and it is wrong by a wide margin.</strong> It was
-written on 2026-08-03 and describes the demo path only. The application now mounts sixteen routers in
-<code>app/main.py</code> lines 64&ndash;98 and serves fifty-seven routes. Corrected below. The four
-screens the original list named are still the spine, and they are still the only path the demo walks —
-but a reviewer who opens the nav sees six items, and a reviewer who reads <code>app/main.py</code> sees
-far more than that. Better to name them than to be caught by them.</div>
+<div class="crit"><strong>The application mounts eighteen routers in <code>app/main.py</code> lines
+67&ndash;113 and serves sixty-five routes.</strong> This section said "Four". It was
+written on 2026-08-03 and describes the demo path only. The four screens it named are still the spine,
+and they are still the only path the demo walks — but a reviewer who opens the nav sees seven items &mdash; Actions joined them with ADR-091 &mdash; and a
+reviewer who reads <code>app/main.py</code> sees far more than that. All of it is named below.</div>
 
 <h3>The four the argument rests on</h3>
 
@@ -90,20 +88,21 @@ far more than that. Better to name them than to be caught by them.</div>
 <tr><td>Proceeding detail</td><td><code>/proceedings/{id}</code></td><td>"What changed between these two versions?" A version timeline, and the typed changes between any selected pair — added, removed, modified — each with its materiality and its draft-or-final status.</td></tr>
 <tr><td>Change detail</td><td><code>/changes/{id}</code></td><td>"What does this mean for us, and can I trust it?" The claim, its citation, the obligations and projects it touches, the recommended action, the named reviewer. This is the screen the citation viewer and the withheld claim live on.</td></tr>
 <tr><td>Review</td><td><code>/review</code>, <code>/escalations</code></td><td>"What did the system refuse to assert?" Everything that failed verification or fell below the confidence threshold, each with the reason stated in plain words.</td></tr>
+<tr><td>Actions</td><td><code>/actions</code></td><td>"What are we going to do about it, and who signed that off?" The analyst proposes monitor, comment or comply on a claim whose citation verifies; the obligation owner approves or rejects. This is the only screen that calls <code>app/auth/policy.py::can_approve</code>, so it is where segregation of duties is visible rather than described (ADR-091).</td></tr>
 </table>
 
-<h3>The nav shows six, and two of them are conditional</h3>
+<h3>The nav shows seven, and two of them are conditional</h3>
 
-<p><code>app/web/templates/base.html</code> lines 54&ndash;63 build the list: Projects, Proceedings,
-This proceeding, This change, Review, Approval route. The middle two need a proceeding or a change in
+<p><code>app/web/templates/base.html</code> builds the list: Projects, Proceedings,
+This proceeding, This change, Review, Actions, Approval route. The middle two need a proceeding or a change in
 hand, so when there is none they render as <code>.nav__link--off</code> — a span, not a link, with
 <code>aria-disabled</code> and a title saying how to reach the screen. That greying is the only signal
 the item leads nowhere, and it is why one contrast figure in part two is knowingly left under AA.</p>
 
 <h3>What else is mounted, named rather than hidden</h3>
 
-<p>Everything below is real and reachable. None of it is on the demo path, and the original claim that
-the product deliberately has no admin view has not been true since the identity work landed.</p>
+<p>Everything below is real and reachable, and none of it is on the demo path. The identity work gave
+the product admin views, so the original claim that it deliberately has none no longer holds.</p>
 
 <table>
 <tr><th>Area</th><th>Routes</th><th>Notes</th></tr>
@@ -116,7 +115,7 @@ the product deliberately has no admin view has not been true since the identity 
 <tr><td>Session and health</td><td><code>/login</code>, <code>/logout</code>, <code>/healthz</code>, <code>/static</code></td><td><code>/healthz</code> returns the corpus row counts across five tables, so it fails loudly on an empty database rather than serving empty screens.</td></tr>
 </table>
 
-<p><span class="lbl">What is still deliberately absent, and this part held.</span> There is no metrics
+<p><span class="lbl">What is deliberately absent, and this part held.</span> There is no metrics
 dashboard and no search box. The internal eval numbers live in the submission documents, not in the
 product — an eval dashboard built for a non-technical user is a feature the panel is explicitly primed
 to challenge. The admin screens that do exist are not analytics; each one is a place a person changes
@@ -187,11 +186,12 @@ rule, which is why long prose never sits on a translucent surface anywhere in th
 
 <h2>Deployment</h2>
 
-<div class="crit"><strong>The diagram in this section named Caddy and basic auth. Neither shipped.</strong>
-There is no <code>Caddyfile</code> in the repository. The host already runs Traefik, so adding a second
-TLS terminator would have meant two certificate stores and two places to look when the site is down.
-And basic auth was dropped once the product grew real logins: an edge password in front of a login
-screen asks a reviewer for two passwords to see one demo. The shipped shape is below.</div>
+<div class="crit"><strong>Traefik terminates TLS and there is no basic auth.</strong> The diagram in
+this section named Caddy and basic auth; neither shipped, and there is no <code>Caddyfile</code> in the
+repository. The host already runs Traefik, so adding a second TLS terminator would have meant two
+certificate stores and two places to look when the site is down. Basic auth was dropped once the product
+grew real logins: an edge password in front of a login screen asks a reviewer for two passwords to see
+one demo. The shipped shape is below.</div>
 
 <div class="diagram"><pre>
   strata.sudama.ai
@@ -247,13 +247,12 @@ a new column would otherwise have kept yesterday's table under today's code and 
 with <code>no such column</code>. Tests build their schema from the current models every time, so they
 never meet yesterday's database; this is a failure only production can have.</p>
 
-<p><span class="lbl">The local contract, restated accurately.</span> The original text claimed the
-Dockerfile calls the same entrypoint as <code>make run</code>. It does not, quite:
-<code>make run</code> is <code>seed</code> then uvicorn with <code>--reload</code>, while the container
-entrypoint adds the migration and the seed-only-if-absent guard. What is true, and is the part that
-matters, is that <strong>there is no deployment-only application code path</strong> — both run
-<code>app.main:app</code> unchanged. <code>make test</code> stays offline and does not know the host
-exists.</p>
+<p><span class="lbl">The local contract.</span> <strong>There is no deployment-only application code
+path</strong> — the container and <code>make run</code> both run <code>app.main:app</code> unchanged.
+They do not share an entrypoint, as the original text claimed: <code>make run</code> is
+<code>seed</code> then uvicorn with <code>--reload</code>, while the container entrypoint adds the
+migration and the seed-only-if-absent guard. <code>make test</code> stays offline and does not know the
+host exists.</p>
 
 <h2>Failure behaviour</h2>
 
@@ -275,8 +274,8 @@ runs with:</p>
 
 <div class="tok"><pre>.venv/bin/python -m pytest tests/ -q</pre></div>
 
-<p>This section originally promised "three checks and no more" for the deployment. That number is long
-past. The checks that guard <em>this</em> document's subject matter — the web surface — are:</p>
+<p>Four checks guard <em>this</em> document's subject matter, the web surface. This section originally
+promised "three checks and no more" for the deployment, and that number is long past.</p>
 
 <ol>
 <li><code>/healthz</code> returns 200 with the corpus row counts across five tables
@@ -291,22 +290,20 @@ change-detail response body at all. Asserted against the HTML, because "it looke
 guarantee and a CSS change could otherwise silently reveal it.</li>
 </ol>
 
-<div class="note"><span class="lbl">What no test in this repository catches, said here because it
-keeps being the thing that breaks.</span> Three gaps, all of them real:
+<div class="note"><span class="lbl">What no test in this repository catches.</span> Three gaps:
 <strong>(1)</strong> the focus ring. Nothing asserts that a control on glass still shows one.
 <strong>(2)</strong> Layout. These tests read stylesheets and markup; they cannot lay out a page, so
 they cannot prove either surface looks right on a handset — only a browser at a real width can, and the
 390px figures quoted in this document come from a headless Chromium at a fixed viewport, not a phone.
 <strong>(3)</strong> Prose. There is no guard on a document like this one. Every correction in the
-2026-08-04 pass was found by a person reading the file against the code, which is exactly how it went
-stale in the first place.</div>
+2026-08-04 pass was found by a person reading the file against the code.</div>
 
 <h2>Cut order — written 2026-08-03, and nothing was cut</h2>
 
-<p>Kept as written, because a plan that names what it would sacrifice and then sacrifices none of it is
-worth more as a record than as a deletion. The sequence was: dark scheme; the review queue's amend
-action, keeping approve and reject; the proceedings list, entering at a single seeded proceeding
-instead; the deployment itself, falling back to the local run.</p>
+<p>The sequence was: dark scheme; the review queue's amend action, keeping approve and reject; the
+proceedings list, entering at a single seeded proceeding instead; the deployment itself, falling back to
+the local run. Kept as written, because a plan that names what it would sacrifice and then sacrifices
+none of it is worth more as a record than as a deletion.</p>
 
 <p>All four survived. The dark scheme ships and carries its own glass tint rather than an alpha of the
 light one. The proceedings list ships. The deployment ships and serves the real product at
@@ -324,12 +321,12 @@ its own stylesheet.</p>
 at 390 in both colour schemes, and shipped the same day. This part replaces the four-line sketch in
 <em>Design system</em>, which said what the constraints were and not what to draw.</p>
 
-<div class="win"><span class="lbl">This part was written as a plan and is now a description.</span>
-It shipped in commit <code>2b10bb6</code>. Every listing below has been read back against
+<div class="win"><span class="lbl">Shipped in commit <code>2b10bb6</code>.</span> This part was written
+as a plan and is now a description. Every listing below has been read back against
 <code>app/web/static/strata.css</code> and the two sheets that consume it. <strong>Where the build
-deviated from the plan, the deviation is marked in place</strong> rather than quietly smoothed over —
-in a red box if it changes what somebody should do, in the surrounding prose if it does not. The eight
-that matter, in the order they appear:
+deviated from the plan, the deviation is marked in place</strong> — in a red box if it changes what
+somebody should do, in the surrounding prose if it does not. The eight that matter, in the order they
+appear:
 <ol style="margin:.4rem 0 0">
 <li>The glass ladder's occupant list named three surfaces that do not exist.</li>
 <li>The worst-case contrast figure was wrong in the safe-sounding direction, and the true worst case
@@ -430,7 +427,7 @@ why the page reads as one family.</td></tr>
 <td>The 135&deg; hatch in a withheld statement slot. Untouched.</td></tr>
 </table>
 
-<p><span class="lbl">One honest note on naming.</span> The repository calls <code>--accent</code> the
+<p><span class="lbl">One note on naming.</span> The repository calls <code>--accent</code> the
 filing-stamp blue and <code>--alarm</code> the withheld amber, and this document keeps both names
 because people say them out loud. Read off the screen, <code>#0d5c6b</code> is a deep petrol and
 <code>#8f3418</code> is a burnt sienna. The names are the team's; the hexes are the truth; neither
@@ -535,17 +532,14 @@ anywhere. The tip is opaque <code>--surface</code> with a single soft cast
 (<code>tour.css</code> lines 41&ndash;55). By the ladder's own rule this is right, and the plan
 contradicted itself: a tour tip is the longest prose the product ever floats over a page, read once and
 dismissed, and the rule says the more words a surface carries the more opaque it is. Following the rule
-takes you past 0.92 to solid. <strong>The tip should never have been in the G3 row.</strong> The row now
-lists what actually wears it.</div>
+takes you past 0.92 to solid. <strong>The tip should never have been in the G3 row.</strong></div>
 
 <div class="crit"><strong>The tour ships and reaches nobody.</strong> <code>base.html</code> does not
 include <code>_tour.html</code> — line 124 includes <code>_clerk.html</code> and there is no second
 include. So the five-stop first-login walkthrough is built, styled, tested and invisible.
 <code>tests/test_tour.py</code> line 500 carries a <code>strict=True</code> xfail naming the exact
 missing line, which means the test turns red on whoever fixes it and forgets to delete the marker. This
-is not a design defect and no rule in this document caused it; it is stated here because a document
-describing a surface a reader cannot reach, without saying so, is the failure this whole revision pass
-exists to correct.</div>
+is not a design defect and no rule in this document caused it.</div>
 
 <p><span class="lbl">The fallback collapses all three levels into one, and that is correct.</span>
 Composited over <code>--bg</code>, the three alphas land two points apart at most — in light
@@ -580,14 +574,12 @@ against WCAG relative luminance.</p>
 <tr><td><code>--alarm-strong</code> on <code>--surface-sunk</code></td><td>8.78:1</td><td>12.55:1</td></tr>
 </table>
 
-<div class="crit"><strong>The plan named the wrong worst case, and it named it in the flattering
-direction.</strong> It said the worst pairing was the palest ink on a pane over white paper — a masthead
-scrolling over a claim card — and that it cleared 4.5:1 with room to spare. That is the
-<em>second</em>-worst pairing. The masthead does not only scroll over cards; it scrolls over the flat
-page floor between them, and a G1 pane over <code>--bg</code> composites to <code>#f4f7f8</code>, where
-<code>--ink-3</code> reads <strong>4.48:1 — two hundredths under AA for small text</strong>. The 4.64:1
-figure over a card is exactly why it was missed. <code>strata.css</code> lines 406&ndash;426 record
-this.</div>
+<div class="crit"><strong>The real worst case is a G1 pane over the flat page floor: composited to
+<code>#f4f7f8</code>, <code>--ink-3</code> on it reads 4.48:1 — two hundredths under AA for small
+text.</strong> The plan named the <em>second</em>-worst pairing instead: the palest ink on a pane over
+white paper, a masthead scrolling over a claim card, which clears 4.5:1 with room to spare. The masthead
+does not only scroll over cards; it scrolls over the flat floor between them. That 4.64:1 figure over a
+card is why the worse one was missed. <code>strata.css</code> lines 406&ndash;426 record this.</div>
 
 <p><span class="lbl">What was fixed, and the one thing knowingly left under the line.</span> The two
 labels a person actually reads in the masthead — the "Viewing" qualifier and the tenant id — moved to
@@ -596,8 +588,8 @@ labels a person actually reads in the masthead — the "Viewing" qualifier and t
 (lines 512&ndash;515). That grey is the only signal saying a nav item is not reachable yet, and raising
 it to <code>--ink-2</code> would make an unreachable screen look exactly like a reachable one. A nav
 item that leads nowhere while looking live is a small lie, and this product's argument is that it does
-not tell those. Two hundredths of a contrast point is the cheaper cost. It is written down here and in
-the stylesheet rather than discovered by an auditor.</p>
+not tell those. Two hundredths of a contrast point is the cheaper cost, and it is written down here and
+in the stylesheet.</p>
 
 <p><span class="lbl">The shape every glass rule takes.</span> Solid first, unconditionally. Glass only
 inside <code>@supports</code>. Written the other way round — declare the alpha and hope — a browser
@@ -672,8 +664,7 @@ called out under it.</p>
 plan guessed at a condensed masthead height. Measured, this masthead is <strong>124px tall at every
 width from 768px up, and 112px</strong> once its padding collapses in the sticky block. At 3.25rem
 (52px) the sticky source panel would slide about 60px under the masthead and every anchor link would
-land behind it — the exact failure the token was invented to prevent, arrived at by writing the token
-down and not checking it. Three values ship:
+land behind it — the exact failure the token was invented to prevent. Three values ship:
 <ul>
 <li><code>--stuck: 0rem</code> at <code>:root</code>, because <strong>the masthead does not stick below
 48rem.</strong> The nav wraps to two rows at 640px and three below 480px, making the bar 193px and then
@@ -1192,7 +1183,7 @@ no panel is open.</p>
   grid-template-columns: minmax(0, 1fr);
 }</pre></div>
 
-<p><span class="lbl">The cost, stated rather than hidden.</span> Pressing the chip now reflows the grid
+<p><span class="lbl">The cost.</span> Pressing the chip now reflows the grid
 in one frame. Do not transition <code>grid-template-columns</code> to smooth it — that animation is
 expensive, it janks, and it would drag the claim text sideways while someone is reading it. The panel's
 own 200ms fade covers the change. The alternative — floating the source panel over the claim as a G2
@@ -1288,8 +1279,7 @@ good" has finished, and a person who says "no" usually knows why and will say so
 Both go to <code>POST /chat/feedback</code> (<code>app/web/views/chat.py</code> line 712) and land in
 <code>app/state/feedback.py</code> <code>record_thumb()</code>, lines 473&ndash;537.</p>
 
-<p>Two properties of the stored row are worth naming here because they are the sort of thing a panel
-asks about. First, <strong>the company and the user are injected from the signed-in session and never
+<p>Two properties of the stored row answer the question a panel asks about feedback. First, <strong>the company and the user are injected from the signed-in session and never
 read off the wire</strong>, so a rating cannot be attributed to somebody else by editing a request.
 Second, the row stores a <em>snapshot</em> of the conversation up to and including the rated turn — the
 ordinal, role, text, tools used and withheld count of each turn — because a rating that does not carry
@@ -1389,8 +1379,8 @@ reduced motion switched on, none of which ever see a page-load sequence.</p>
 
 <h2>What is still not known</h2>
 
-<p>Six things, said here rather than discovered at the panel. Two of them are new since the revision
-shipped, and one of the original four has been partly answered.</p>
+<p>Six things. Two are new since the revision shipped, and one of the original four is partly
+answered.</p>
 
 <ol>
 <li><strong>Dark glass may be too subtle to be worth the cost.</strong> <code>--glass-solid</code> at
@@ -1473,8 +1463,7 @@ casts a stamp-blue shadow.</td></tr>
 <h1 style="margin-top:2rem">Part three — the marketing site</h1>
 <p class="sub">Thirteen static pages under <code>deploy/site/</code>, restyled 2026-08-04 in commit
 <code>2b10bb6</code> so that the site and the application read as one product. This part did not exist
-in the document before that date, which is why the site could scroll sideways for a day with nobody
-noticing.</p>
+in the document before that date.</p>
 
 <h2>One stylesheet that adds, and does not restructure</h2>
 
@@ -1493,7 +1482,7 @@ oversight.</span> <code>site.css</code> declares its own <code>--glass-veil</cod
 <code>--glass-hair</code>, <code>--glass-shade</code>, <code>--glass-r</code>. The names rhyme with the
 app's and the values do not, because the two palettes are genuinely different: the site's accent is
 <code>--stamp: #1b3a8f</code>, a true navy, and the app's is <code>--accent: #0d5c6b</code>, a deep
-petrol. <strong>Two products' worth of tokens under one roof is a real cost and it is worth naming.</strong>
+petrol. <strong>Two products' worth of tokens under one roof is a real cost.</strong>
 The wordmark, in part four, is where that cost has already shown up.</div>
 
 <h2>What wears glass, and what does not</h2>
@@ -1558,8 +1547,8 @@ Computing the theoretical floors — the veil over the extreme backdrop it could
 light over pure black and <strong>4.98:1 dark over pure white</strong>. The real sampled values sit above
 those floors, which brackets 4.67 and 5.03 and makes both plausible. <strong>5.3:1 sits well clear of
 the floor and is the harder of the two to reach</strong>, so the commit's 5.03 is the likelier
-measurement and the comment is likely the typo — but nobody has re-sampled the live page, so this
-document is not going to assert which. Reproduce the floors with:</div>
+measurement and the comment is likely the typo — but nobody has re-sampled the live page, so it stays
+unsettled. Reproduce the floors with:</div>
 
 <div class="tok"><pre>.venv/bin/python - &lt;&lt;'PY'
 def lin(c):
@@ -1589,9 +1578,9 @@ It is a <em>descendant</em> selector, so it also caught the <code>&lt;b&gt;</cod
 sentence and held a whole paragraph on one line. A paragraph that cannot wrap sets the page's minimum
 width to the length of its longest sentence, and the whole document then scrolls.</p>
 
-<div class="crit"><strong>The guard had a hole and that is the real lesson.</strong>
+<div class="crit"><strong>The guard had a hole.</strong>
 <code>tests/test_responsive.py</code> only ever read <code>app/web/</code>. The marketing site was never
-guarded at all, which is precisely why it could scroll sideways for hours with everything green. A guard
+guarded at all, which is why it could scroll sideways for hours with everything green. A guard
 that covers the half of the product you were thinking about is how the other half goes wrong
 quietly.</div>
 
@@ -1604,8 +1593,8 @@ The one that matters carries the specific rule that caused this:</p>
 <code>nowrap</code> has a selector whose last part is a descendant and is one of
 <code>b strong em i span p li td</code>. A short label may be nowrap; a paragraph may not.</p>
 
-<p><span class="lbl">Two false positives in the test's own first drafts, kept in its docstring because
-they are the interesting part.</span> A comment explaining the past bug quotes the rule that caused it,
+<p><span class="lbl">Two false positives in the test's own first drafts, kept in its docstring.</span>
+A comment explaining the past bug quotes the rule that caused it,
 and <code>@media (max-width: 640px)</code> is a breakpoint — the opposite of a fixed element width. The
 first version flagged all seven pages for their own media query. So the helper strips comments and
 at-rule preludes before it reads anything (<code>_without_comments_and_at_rules</code>, line 192).
@@ -1729,8 +1718,8 @@ line 11 for one letter of one word.</li>
 <li><strong>Move the site to the app's petrol.</strong> Exact match the other way. It is a bigger change
 than it sounds: <code>--stamp</code> carries the site's links, buttons and the glass action fill.</li>
 </ol>
-Option 1 unless somebody with a claim on the brand says otherwise. It is written here rather than
-decided quietly, because a hue is not a CSS detail in a product whose palette is load-bearing.</div>
+Option 1 unless somebody with a claim on the brand says otherwise. A hue is not a CSS detail in a
+product whose palette is load-bearing, so the choice is written down rather than made in a stylesheet.</div>
 
 </body>
 </html>

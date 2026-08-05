@@ -42,7 +42,7 @@
 </defs></svg>
 
 <h1>Market Requirements Document</h1>
-<p class="sub">The market, not the user. The PRD argues that one analyst has a real problem; this document argues that the problem sits inside a market big enough, urgent enough, and defensible enough to build a company on — and says plainly where that argument is not yet proven.</p>
+<p class="sub">The market, not the user. The PRD argues that one analyst has a real problem; this document argues that the problem sits inside a market big enough, urgent enough, and defensible enough to build a company on — and says where that argument is not yet proven.</p>
 
 <h2>The five requirement areas, and where each one stands</h2>
 
@@ -58,11 +58,9 @@ requirement areas: what the work has to deliver. They cross rather than nest. Ci
 is one build area and half of one requirement; document intelligence is one requirement and no build
 area at all. Both tables read the same code, and neither is a summary of the other.</p>
 
-<div class="crit"><strong>Not one of the five is fully served, and one of them has a regex behind
-it.</strong> Four are PARTIAL and one is NOT BUILT. The count leads because it is the material fact
-about this product's coverage, and because mapping the five onto this repository reaches the same
-count in about ten minutes. Every gap named below was read out of the code today, not estimated from
-the plan.</div>
+<div class="crit"><strong>Four of the five are PARTIAL and one is NOT BUILT.</strong> None is fully
+served, and document intelligence has one regex behind it. Every gap named below was read out of the
+code, not estimated from the plan.</div>
 
 <figure class="fig">
 <div class="fig__frame">
@@ -171,10 +169,10 @@ the plan.</div>
     <text class="t-title" x="368" y="438">steer directives</text>
     <text class="t-sub" x="368" y="456">a standing instruction,</text>
     <text class="t-sub" x="368" y="472">with an issuer and a time.</text></g>
-  <g class="box box--absent"><rect x="546" y="416" width="172" height="76"/>
+  <g class="box"><rect x="546" y="416" width="172" height="76"/>
     <text class="t-title" x="558" y="438">the approval gate</text>
-    <text class="t-sub" x="558" y="456">can_approve is written and</text>
-    <text class="t-sub" x="558" y="472">tested. No view calls it.</text></g>
+    <text class="t-sub" x="558" y="456">can_approve runs on /actions,</text>
+    <text class="t-sub" x="558" y="472">at the click. ADR-091.</text></g>
   <g class="box box--absent"><rect x="726" y="416" width="172" height="76"/>
     <text class="t-title" x="738" y="438">annotation</text>
     <text class="t-sub" x="738" y="456">a note lands on a project,</text>
@@ -299,41 +297,36 @@ next render. An edit elsewhere in the same version does not.
 disagrees with the one ingestion recorded &mdash; and nothing under <code>app/</code> calls it;
 <code>tests/test_verification.py</code> does. The render path is <code>verified_claims()</code> in
 <code>app/state/claims.py</code>, which calls the plain <code>verify_citation()</code> and compares no
-hash. Both modules say so in their own docstrings. Measured, not argued: seed a claim, edit twenty
+hash. Both modules say so in their own docstrings. Measured: seed a claim, edit twenty
 characters of that version well away from the cited span, leave the stored SHA untouched, and
 <code>verified_claims()</code> still returns the claim as verified &mdash; which is what the change view
 renders &mdash; while the digest of the stored text disagrees with the stored one. Closing it
 needs a single-row scoped read in <code>app/state/queries.py</code> that does not exist yet, and a
 decision about what the change view shows for a drifted source. The control is proved in the module and
 absent from the product &mdash; the same defect named under <em>Human-in-the-loop review</em> below
-about the approval gate. Naming it there and hiding it here would be the worse half of the pair.</p>
+about the approval gate.</p>
 <p>Two things this requirement asks for are absent. <strong>There is no page.</strong> A citation
 addresses characters into a frozen text; an analyst cites &ldquo;Exhibit JS-3 at 12&rdquo;, and this
 product cannot say that, because the corpus is plain text with no pagination and
 <code>DocumentVersion</code> carries no page map. The fix is a page index built at ingestion from the
 PDF layer that does not exist yet &mdash; it is additive, not a redesign, and it is not done.
-<strong>Retrieval was one substring match until 2026-08-04 and is now an index.</strong>
+<strong>Retrieval is an index.</strong> <code>app/state/search.py</code> is FTS5 with bm25 ranking
+over the passage store, scoped through <code>queries.py</code> like every other tenant read: 1.3ms
+against 366ms on 8,707 passages. It replaced a substring match on 2026-08-04:
 <code>search_claims()</code> in <code>app/chat/tools.py</code> used to walk every change on the
-company's record and keep the claims whose own statement contained the words &mdash; so a claim was
-reachable only through the sentence it had already written, never through the filing it cites.
-<code>app/state/search.py</code> is now FTS5 with bm25 ranking over the passage store, scoped
-through <code>queries.py</code> like every other tenant read: 1.3ms against 366ms on 8,707
-passages. It is deliberately not a search feature and there is no search box &mdash; ADR-02 rejected
-search as the wedge and ADR-71 explains at length why retrieval inside the citation path is a
-different thing. A ranked hit is a candidate that still has to pass <code>verify_citation</code>,
-and a passage carrying the cited span of a withheld claim is not offered at all. It is reachable only through Clarke, so on a machine with no
-<code>ANTHROPIC_API_KEY</code> it never runs at all. What it does get right is the refusal: a
-withheld claim cannot be searched, because its statement is never handed back, so every withheld
-claim in scope is reported by count and reason instead of being silently absent from the results.
-The module table now in <a href="tdd.html#a4-modules">A4 of the TDD</a> described BM25 over SQLite
-FTS5 for weeks before any of it existed, and has since been corrected;
-<code>requirements.txt</code> explains why no vector store is pinned, and that half is still an
-intention. <span class="lbl">This sentence said &ldquo;citation verification with a grep behind it&rdquo;
-until 2026-08-05</span>, which contradicted the paragraph above it: the grep was replaced on
-2026-08-04 and the closing line was not rewritten. What ships is the checking half built hard and a
-finding half that is now real but narrow. Lexical retrieval exists and is indexed; it reaches the
-record only through the assistant, so a machine with no <code>ANTHROPIC_API_KEY</code> gets none of
-it; and the semantic half &mdash; the one ADR-08 reserved for matching a docket change to an
+company's record and keep the claims whose own statement contained the words, so a claim was
+reachable only through the sentence it had already written, never through the filing it cites. It is
+deliberately not a search feature and there is no search box &mdash; ADR-02 rejected search as the
+wedge and ADR-71 explains at length why retrieval inside the citation path is a different thing. A
+ranked hit is a candidate that still has to pass <code>verify_citation</code>, and a passage
+carrying the cited span of a withheld claim is not offered at all. The refusal is the part it gets
+right: a withheld claim cannot be searched, because its statement is never handed back, so every
+withheld claim in scope is reported by count and reason instead of being silently absent from the
+results. The module table in <a href="tdd.html#a4-modules">A4 of the TDD</a> describes it, and
+<code>requirements.txt</code> explains why no vector store is pinned. So the checking half is built
+hard and the finding half is real but narrow: lexical retrieval exists and is indexed; it reaches
+the record only through the assistant, so a machine with no <code>ANTHROPIC_API_KEY</code> gets none
+of it; and the semantic half &mdash; the one ADR-08 reserved for matching a docket change to an
 obligation written in the company's own words, which is the product's core join &mdash; is still an
 intention with no vector store behind it.</p>
 
@@ -346,8 +339,8 @@ passages read almost identically but sit under different section numbers, alignm
 capped at 0.5, because a renumbered section is exactly the case where text similarity runs high and
 structural identity has changed. A restructure escalates instead of presenting itself as a settled
 match.</p>
-<p><strong>&ldquo;At scale&rdquo; is the part that does not hold, though the corpus is no longer the
-weakest half of it.</strong> There are two corpora now and both are labelled. The synthetic one is
+<p><strong>There are two corpora, both labelled, and &ldquo;at scale&rdquo; is the part that does not
+hold.</strong> The synthetic one is
 three text files of one invented proceeding, and it stays because its traps are deliberate (ADR-40):
 one sentence repeated three times per version, and a restructure that scores 0.944 on raw
 similarity. The eval numbers are measured against those and a real filing will not reproduce them on
@@ -367,8 +360,8 @@ prints <code>FETCHES_NOTHING</code> at the top of the page, in words a buyer can
 for its kind. <code>ScheduledRun</code> stores a cadence, a next run and a last result, and no code
 reads <code>next_run_at</code> to fire anything. The 102 filings arrived because agents were sent to
 the commission portals by hand; nothing in the product can repeat that.</p>
-<p><strong>And &ldquo;semantically meaningful rather than text diffs&rdquo; is the weak point, so it
-should be said plainly.</strong> What ships on the diff path is <code>difflib.SequenceMatcher</code>
+<p><strong>&ldquo;Semantically meaningful rather than text diffs&rdquo; is the weak
+point.</strong> What ships on the diff path is <code>difflib.SequenceMatcher</code>
 over normalized text, plus a section-label check. The confidence cap detects when that text diff is
 <em>unreliable</em>, which is genuinely useful and usually skipped &mdash; but detecting an unreliable
 diff is not understanding meaning. Semantic materiality is the job the interpretation stage would do.
@@ -379,16 +372,16 @@ and still leaves <code>Change.materiality</code> NULL rather than defaulting it 
 reads like a judgement.</p>
 
 <h3>3. Document intelligence &mdash; <span class="gap">NOT BUILT</span></h3>
-<p>This is the weakest of the five and there is no way to dress it. The whole of the structural
-understanding is one regular expression in <code>app/ingestion/ingest.py</code> that recognises
-&ldquo;SECTION 4. STUDY PROCESS&rdquo; and &ldquo;4.4 Study Timelines&rdquo; and records the number
-&mdash; 4, or 5.4.1 &mdash; on each passage. That number is what the diff compares to cap confidence,
-so it earns its place. It is not document intelligence.</p>
+<p>The whole of the structural understanding is one regular expression in
+<code>app/ingestion/ingest.py</code> that recognises &ldquo;SECTION 4. STUDY PROCESS&rdquo; and
+&ldquo;4.4 Study Timelines&rdquo; and records the number &mdash; 4, or 5.4.1 &mdash; on each passage.
+That number is what the diff compares to cap confidence, so it earns its place. It is not document
+intelligence, and this is the weakest of the five.</p>
 <p>There is no exhibit model, no testimony structure, no cross-reference resolution and no precedent
 chain. The one grep hit for <em>precedent</em> is a knowledge-item kind, and the seeded row under it
 is a human-authored note about draft-versus-final handling &mdash; a person's lesson, deliberately
-written by a person, not a chain a parser found. <strong>The sharpest version of the gap:</strong>
-the synthetic corpus already contains the feature. <code>data/manifest.json</code> documents a
+written by a person, not a chain a parser found. <strong>The synthetic corpus already contains the
+feature.</strong> <code>data/manifest.json</code> documents a
 restructure where Section 6 becomes 5.4, its subsections renumber, and the internal cross-references
 follow &mdash; including a ripple in Section 4.5 that points at the moved text. The trap is built,
 labelled and shipped. Nothing in the code resolves a single one of those references. And 102 real
@@ -418,8 +411,7 @@ leaves the queue and sits on a desk that will not act on it. <code>Escalation</c
 string &ldquo;assign&rdquo; zero times; it still lists every unresolved refusal in id order, with a
 text box for a reviewer's name. Clarke can be asked who owns a duty and what is on the shared queue.
 A person looking at the review screen cannot see it, and cannot route anything from there.</p>
-<p><strong>Two holes, and the second is bigger than it looks.</strong> Annotation stops one level
-above where it is wanted: <code>record_note()</code> in <code>app/chat/tools.py</code> writes a
+<p><strong>Annotation stops one level above where it is wanted.</strong> <code>record_note()</code> in <code>app/chat/tools.py</code> writes a
 free-text note against a <em>project</em>, through Clarke, and there is still no route that writes
 one against a claim or a passage. The shape exists in the state layer &mdash;
 <code>ResearchTurn</code> carries a nullable <code>claim_id</code>, and <code>add_turn()</code>
@@ -429,14 +421,14 @@ docstring: it is recorded with author kind <code>system</code>, not <code>analys
 what reached the column is what Clarke decided the person meant; and it is gated by no permission at
 all, because the product defines no code for writing a note. The free text a reviewer can write
 through the running product is a project note, the reason on a disputed refusal, and a steer
-instruction. <strong>And the approval control reaches no screen.</strong> <code>app/auth/policy.py::can_approve</code> is real work: four gates, the fourth
+instruction. <strong>And the approval control reached no screen for a day.</strong> <code>app/auth/policy.py::can_approve</code> is real work: four gates, the fourth
 reading authorship out of the audit chain rather than a column, with a demo waiver that writes
-<code>approval.waived</code> under its own action code (ADR-018, ADR-019). No view calls it. Both
+<code>approval.waived</code> under its own action code (ADR-018, ADR-019). It now has one caller &mdash; <code>app/web/views/actions.py::decide</code>, ADR-091 &mdash; and the reason it took a whole screen rather than a line is the interesting part: there was nowhere in the product to propose an action, so the gate had no decision under it. Both
 resolve routes take a reviewer's name typed into a text box, check no permission, and let any
 signed-in person close any escalation. The control is proved in the module and absent from the
 product, which is the same defect a citation that verifies in tests and not on screen would be.</p>
-<p><strong>On the word &ldquo;override&rdquo;, head on, because it has two readings.</strong> A
-reviewer here may dispute a refusal, and the dispute is recorded with their reason. A reviewer may
+<p><strong>&ldquo;Override&rdquo; has two readings here.</strong> A
+reviewer may dispute a refusal, and the dispute is recorded with their reason. A reviewer may
 <em>not</em> make an unverified claim publish. Resolving an escalation moves nothing into state: the
 claim stays withheld whichever way the decision goes, and the coverage counts do not move. That is a
 deliberate position, not a missing feature. A verifier a person can talk past is a verifier the next
@@ -464,18 +456,17 @@ different and narrower fact. A regulated buyer who asks &ldquo;what did this too
 told you that&rdquo; gets an answer from a table that is not tamper-evident.
 <em>With what confidence</em> arrives as prose: the pipeline writes
 <code>alignment confidence 0.50</code> into the reason string, so a person can read it
-and a query cannot filter on it. And rollback reaches no screen: <code>app/state/rollback.py</code>
-landed while this document was being corrected &mdash; <code>revert_event()</code> writes a reversal
+and a query cannot filter on it. And rollback reaches no screen: in <code>app/state/rollback.py</code>,
+<code>revert_event()</code> writes a reversal
 row naming the event it takes back, reopens the escalation, and keeps both rows in the chain, guarded
-by 38 tests in <code>tests/test_rollback.py</code> &mdash; and no view calls it. Read that the way this
-document reads the approval gate and the ingest-hash check, because it is the same shape. <em>When</em> and
+by 38 tests in <code>tests/test_rollback.py</code> &mdash; and no view calls it, the same shape as the
+approval gate and the ingest-hash check. <em>When</em> and
 <em>from which source</em> are real: an aware UTC timestamp on every row, and the cited span as
 <code>version_id:start:end</code>. The chain is the mechanism their requirement asks for; it is not
 yet carrying everything the requirement names.</p>
 
-<p><strong>And erasure means something narrower here than a buyer will assume.</strong> It is the
-first thing a regulated buyer's procurement team asks, so the answer belongs in this document rather
-than only in the code. <code>SCHEDULE</code> in <code>app/state/retention.py</code> gives every table
+<p><strong>Every table in the schema has a retention window, and erasure means something narrower
+here than a buyer will assume.</strong> <code>SCHEDULE</code> in <code>app/state/retention.py</code> gives every table
 in the schema a window, the column its clock is measured from, a reason, and a dotted path to the
 code that carries it out; <code>tests/test_retention.py</code> refuses a table with no rule and
 resolves every mechanism by import rather than believing it. The window on <code>audit_events</code>
@@ -492,8 +483,9 @@ it at all.</span> <code>record_event</code> stores <code>subject_id</code>, <cod
 actor and, with no account matching, that address again as the subject, and it stays there for
 good. An invitation's audit row quotes the invited address in its reason, and purging the invitation
 leaves the line standing. Tests pin both, because a limit nobody writes down is a limit the buyer
-finds instead. <strong>The module refuses to call that erasure, and this document refuses too.</strong>
-The cost, stated plainly: a buyer who needs deletion to mean deletion &mdash; because their regulator
+finds instead. <strong>The module refuses to call that erasure, and so does this document.</strong>
+A regulated buyer's procurement team asks this first, which is why the answer sits here rather than only in the code.
+A buyer who needs deletion to mean deletion &mdash; because their regulator
 says so, or their own policy does &mdash; needs a different product. That is the same trade the
 section above makes about the verifier. A record a person can edit on request is a record the next
 auditor discounts, and the record is what this product is bought for. Two settings stand between the
@@ -510,17 +502,12 @@ the plan.</p>
 
 <div class="crit"><strong>Eight of the eleven are built and tested. Three are not what the name
 suggests, and they are listed here at the same weight as the eight.</strong> That is ADR-022 &mdash;
-the rule that every synthesis states what it withheld &mdash; applied to our own document. A reviewer
-who finds a gap we listed trusts the rest; one who finds a gap we hid does not, and stops trusting the
-eight as well. <strong>Five of the eleven rows name a control that is written, tested, and called by
+the rule that every synthesis states what it withheld &mdash; applied to our own document.
+<strong>Five of the eleven rows named a control that was written, tested, and called by
 nothing in <code>app/</code></strong> &mdash; the ingest-hash check, <code>can_approve</code>,
-<code>revert_event</code>, <code>propose_changes</code>, and ten of the fifteen permission codes. Each
+<code>revert_event</code>, <code>propose_changes</code>, and ten of the fifteen permission codes. <code>can_approve</code> is off that list as of ADR-091; the rest stand. Each
 is named in its own row, because a capability that lives in a module nothing calls is not visible in
-the product, and that distinction is what this table is for.
-<span class="lbl">Two counts moved on 2026-08-04 and they moved in opposite directions. The
-company-context row moved to built when the <code>Obligation</code> table landed and routing started
-reading it. The controls count went from four to five when the model proposer landed with no caller,
-which is the same defect this table already named three times.</span></div>
+the product, and that distinction is what this table is for.</div>
 
 <table>
 <tr><th style="width:14%">Term</th><th style="width:36%">What it actually means</th><th style="width:50%">Where it stands</th></tr>
@@ -544,7 +531,7 @@ which is the same defect this table already named three times.</span></div>
 <td>Pulling out statements ("the notice period went from 30 days to 60") and tying each one to the exact spot in the source it came from.</td>
 <td><span class="gap">The linking is real. The extraction is written and nothing calls it.</span> A model does run in this repository now, and it runs in exactly one place a user can reach: Clarke, the assistant, through <code>app/chat/agent.py</code> &mdash; and only where somebody set <code>ANTHROPIC_API_KEY</code>. Without one, <code>transport_from_environment()</code> returns None and the assistant says "this deployment has no ANTHROPIC_API_KEY" rather than answering from memory, which is the fallback announcing itself instead of pretending (best-practices &sect;26). The extractor is <code>app/interpretation/propose.py</code> &mdash; it asks Claude what changed between two versions, hands the model a closed list of permitted actions dispatched from the version's own draft-or-final status (ADR-005), binds every proposal to a <code>(version_id, start, end, quote)</code>, re-reads each one through the verifier, and <em>repairs nothing</em>: a proposal two characters off its quote is withheld, not nudged into place, because snapping offsets would make the gate a formality. <code>grep -rn propose_changes app/ scripts/</code> finds no caller. So the claim sentences on screen are still deterministic assembly from <code>data/manifest.json</code>, plus one hand-written statement in <code>scripts/ingest_real.py</code> about the Kentucky filing, and <code>app/pipeline.py</code> still calls no model and still leaves <code>Change.materiality</code> NULL rather than defaulting it to something that reads like a judgement.
 <br><br><em>The limit the proposer states about itself, in its own docstring:</em> this path has never run against the real API, because nobody here has held a key. Every test drives a fake through an injected transport. What is proven offline is the gate; what is unproven is anything only the endpoint can answer.
-<br><br>What <em>is</em> real is the half the product's thesis rests on: every claim carries version, start offset, end offset, quoted text and occurrence index, and a claim whose citation fails genuinely refuses to assert itself &mdash; it has no statement field to leak. So this is the evidence link enforced end to end, with a seeded corpus standing in for the extractor and the extractor sitting beside it, tested and unwired. Stated plainly because the alternative is a reviewer discovering it.</td>
+<br><br>What <em>is</em> real is the half the product's thesis rests on: every claim carries version, start offset, end offset, quoted text and occurrence index, and a claim whose citation fails genuinely refuses to assert itself &mdash; it has no statement field to leak. So this is the evidence link enforced end to end, with a seeded corpus standing in for the extractor and the extractor sitting beside it, tested and unwired.</td>
 </tr>
 
 <tr>
@@ -558,14 +545,14 @@ which is the same defect this table already named three times.</span></div>
 <td>Citation verification</td>
 <td>Before showing a statement, go back to the stored source and check the quote is really there, in that spot. If it is not, do not show it.</td>
 <td><span class="ok">Built, tested, and visible in the product</span>, with one check that stops at the module. This is the depth area (ADR-003). The path a rendered claim takes is <code>verified_claims()</code> in <code>app/state/claims.py</code>: it re-reads the stored source at the cited offsets on every request &mdash; never a stored verdict &mdash; and refuses an empty span, an inverted span, offsets past the end of the source, a quote that does not match, a quote that appears more than once without naming which occurrence it means, and a version this company cannot read. It pairs each claim with the text of the version the claim <em>names</em>, from a map keyed on version id and built through the tenant chokepoint, so a citation filed against the wrong version cannot pass on words that happen to sit at those offsets in another one.
-<br><br><span class="gap">The hash check is not on that path.</span> <code>verify_citation_for_version()</code> hashes a version's stored text and refuses when the digest disagrees with the one ingestion recorded. Nothing under <code>app/</code> calls it &mdash; <code>tests/test_verification.py</code> does, and the function's own docstring says the hash check "does not yet run in production". So an edit twenty characters away from a cited span leaves a citation into that version verifying on screen while the stored hash disagrees with the stored text. Measured under <em>Retrieval with citations</em> above rather than inferred. A capability that lives in a module no screen calls is not visible in the product, and this row said otherwise until the measurement was run.
+<br><br><span class="gap">The hash check is not on that path.</span> <code>verify_citation_for_version()</code> hashes a version's stored text and refuses when the digest disagrees with the one ingestion recorded. Nothing under <code>app/</code> calls it &mdash; <code>tests/test_verification.py</code> does, and the function's own docstring says the hash check "does not yet run in production". So an edit twenty characters away from a cited span leaves a citation into that version verifying on screen while the stored hash disagrees with the stored text. Measured under <em>Retrieval with citations</em> above rather than inferred. A capability that lives in a module no screen calls is not visible in the product.
 <br><br>Visible, not buried: <code>/changes/CHG-v1-v2-003</code> carries two claims. One renders with a chip that opens the source and marks the exact span. The other is a deliberate misquote at real offsets and renders as "No claim made", with what was quoted set against what the source really says. Guarded by <code>tests/test_verification.py</code>, <code>test_occurrence.py</code>, <code>test_pdf_text.py</code>, <code>test_normalize.py</code> and <code>test_claims.py</code>.</td>
 </tr>
 
 <tr>
 <td>Confidence and escalation</td>
 <td>Deciding how sure the system is, and what happens when it is not sure enough: hand it to a person instead of guessing.</td>
-<td><span class="ok">Built and tested</span>, with one number to be honest about. Every claim carries a confidence in integer basis points, and a claim below the threshold is withheld with its own reason code rather than shown. A citation failure beats low confidence to the reason, so the more specific problem is the one reported. Alignment confidence on the diff does bite today: a restructure is capped at 0.5 and escalates.
+<td><span class="ok">Built and tested.</span> Every claim carries a confidence in integer basis points, and a claim below the threshold is withheld with its own reason code rather than shown. A citation failure beats low confidence to the reason, so the more specific problem is the one reported. Alignment confidence on the diff does bite today: a restructure is capped at 0.5 and escalates.
 <br><br><strong>The claim threshold ships at 0</strong>, so no claim is currently withheld for confidence alone &mdash; every withholding in the demo is a citation failure. That is deliberate: there is no evidence yet for where the line sits, and a number chosen to look rigorous is worse than an honest zero. The mechanism is built and tested (<code>test_low_confidence_withholds_once_a_threshold_is_configured</code>) so setting it is configuration, not a code change: <code>MIN_CONFIDENCE_BP</code> in <code>app/state/claims.py</code> reads <code>STRATA_MIN_CONFIDENCE_BP</code> and defaults to <code>"0"</code>, and <code>.env.example</code> names the variable. Calibration is an open question in the decision log, not a solved one.</td>
 </tr>
 
@@ -574,7 +561,7 @@ which is the same defect this table already named three times.</span></div>
 <td>Sending the uncertain item to the right person, not just onto a pile.</td>
 <td><span class="gap">Built, and the queue screen has not heard about it.</span> <code>Escalation</code> now carries <code>assigned_to_user_id</code> and <code>assigned_at</code>, written together or not at all, with an index for "what is on my desk" and for the unassigned pile. <code>app/state/routing.py</code> resolves an owner by walking escalation &rarr; claim &rarr; change &rarr; obligation &rarr; owner, refuses with one of fifteen coded reasons when any step cannot answer, and re-derives the reason at read time so that suspending an owner this morning changes what the queue says this afternoon. It refuses to pick a default assignee, on the argument that a wrong assignment looks handled and a refusal stays visible.
 <br><br><strong>Where it actually runs.</strong> Clarke reads it &mdash; <code>obligation_owner</code> and <code>open_escalations</code> report who holds what, and name the duties nobody holds. Revoking an invitation un-routes the escalations that invitation was holding, and that path does reach a screen. <strong>Nothing else does.</strong> <code>invite_owner_for_escalation()</code> has no caller outside tests. <code>/escalations</code> still lists every unresolved refusal in id order with no owner column &mdash; <code>grep -c assign app/web/templates/review.html</code> returns 0 &mdash; anyone signed in can resolve any of them, and the resolve form still takes a reviewer's name typed into a text box rather than the signed-in person.
-<br><br>And the approval half is unchanged: <code>app/auth/policy.py::can_approve</code> enforces segregation of duties off the audit chain, proved by <code>tests/test_policy.py</code>, and no view calls it, which ADR-018 states in those words. The one hit for it under <code>app/web/</code> is a comment.</td>
+<br><br>The approval half has moved, and not on this screen: <code>app/auth/policy.py::can_approve</code> enforces segregation of duties off the audit chain, and ADR-091 gave it the screen it was missing &mdash; <code>/actions</code>, where a proposed action is approved or rejected. Escalation routing is still not surfaced in the queue, which is the gap this row is about.</td>
 </tr>
 
 <tr>
@@ -582,7 +569,7 @@ which is the same defect this table already named three times.</span></div>
 <td>A record of every action and who took it that cannot be quietly edited, plus the ability to undo a change and go back to an earlier state.</td>
 <td><span class="gap">The history half runs. The undo half runs only in tests.</span>
 <br><br><em>History:</em> <span class="ok">built and tested.</span> Every decision writes an <code>AuditEvent</code> through one function, hash-chained per company. A <code>before_flush</code> guard blocks any UPDATE or DELETE from application code, and the SHA-256 chain catches an out-of-band rewrite &mdash; an edited reason and a removed row are both detected as tampering by <code>tests/test_audit.py</code>. Attribution (who, which session, which address) is hashed <em>inside</em> the digest, and because that changed the hashed field set, every row states its scheme and verification dispatches per row (ADR-017); the old hashes are the evidence, so they are never re-hashed.
-<br><br><em>Rollback:</em> <span class="gap">written, tested, and reaching no screen.</span> <code>app/state/rollback.py</code> appeared while this row was being checked. <code>revert_event()</code> writes a reversal row that names the event it takes back, reopens the escalation that event closed, and leaves the original row untouched so the chain verifies over both; the pointer sits inside the digest, so re-aiming a reversal turns the chain red. 38 tests in <code>tests/test_rollback.py</code> pass. <strong>No view calls it</strong> &mdash; the only <code>rollback</code> hits under <code>app/web/</code> are four <code>session.rollback()</code> calls, three in <code>feedback_review.py</code> and one in <code>shares_admin.py</code>, none of which is this. So the undo exists in a module and not in the product, which is the third instance of the one defect this table is for. The module also draws the line the product needs: reverting a decision restores what that decision changed and cannot make an unverified citation verify.</td>
+<br><br><em>Rollback:</em> <span class="gap">written, tested, and reaching no screen.</span> In <code>app/state/rollback.py</code>, <code>revert_event()</code> writes a reversal row that names the event it takes back, reopens the escalation that event closed, and leaves the original row untouched so the chain verifies over both; the pointer sits inside the digest, so re-aiming a reversal turns the chain red. 38 tests in <code>tests/test_rollback.py</code> pass. <strong>No view calls it</strong> &mdash; the only <code>rollback</code> hits under <code>app/web/</code> are four <code>session.rollback()</code> calls, three in <code>feedback_review.py</code> and one in <code>shares_admin.py</code>, none of which is this. So the undo exists in a module and not in the product. The module also draws the line the product needs: reverting a decision restores what that decision changed and cannot make an unverified citation verify.</td>
 </tr>
 
 <tr>
@@ -596,16 +583,16 @@ which is the same defect this table already named three times.</span></div>
 <td>Data isolation</td>
 <td>One customer's data can never be read by another: not by accident, not by guessing an id.</td>
 <td><span class="ok">Built and tested.</span> One chokepoint, <code>app/state/queries.py</code>, and a read with no company id is refused rather than answered &mdash; a query that returns everything when the caller meant nothing is how isolation fails in practice, and it fails silently. <code>Passage</code> deliberately carries no company id; tenancy is joined from the version that owns it, so two columns cannot drift apart. That join was defect #1 in <code>docs/.ai/findings.html</code> and is now guarded by five tests. Another tenant's version and a version that does not exist return the <em>same</em> refusal, so an attacker cannot use the answer to enumerate ids. Cross-tenant tests run in isolation, passages, claims, review, identity, verification and the assembled application.
-<br><br><em>The limit, stated:</em> this is enforced in the application, not by the engine. SQLite has no row-level security, so the guarantee is a chokepoint plus tests rather than a database that refuses. Postgres with RLS is the named reversal, and SQLAlchemy makes it a configuration change.</td>
+<br><br><em>The limit:</em> this is enforced in the application, not by the engine. SQLite has no row-level security, so the guarantee is a chokepoint plus tests rather than a database that refuses. Postgres with RLS is the named reversal, and SQLAlchemy makes it a configuration change.</td>
 </tr>
 
 <tr>
 <td>Security</td>
 <td>Logins, roles, permissions, sessions, how passwords are stored.</td>
 <td><span class="ok">Built and tested.</span> Passwords through <code>hashlib.scrypt</code>, memory-hard, with the cost parameters written on each user row and read back at every verify, so raising the cost later locks nobody out (ADR-015). Three system roles and fifteen permission codes as one grid, where the control is the row that is missing &mdash; the analyst holds no <code>action.approve</code> (ADR-021). Sessions are server-side rows holding only a SHA-256 of a 256-bit random token, twelve-hour fixed lifetime, revocable the moment an account is suspended, cookie HttpOnly, SameSite=Lax and Secure (ADR-020). Five failed attempts lock an account. Every authentication and authorisation event joins the one audit chain rather than a second log (ADR-016). An administrator can provision an account by invitation, on a 24-hour token, and revoking one un-routes whatever it was holding.
-<br><br><em>Ten role templates, and none of them is in the database.</em> <code>scripts/seed_roles.py</code> names ten roles taken from titles this repository can point at &mdash; the interconnection, load-forecasting and system-operations owners in <code>data/company_context.json</code>, and the Analyst II, Regulatory Counsel, VP of Pricing and Planning and Deputy Director who signed filings in <code>data/real/</code>. Seniority is not a permission: a Director of Load Forecasting and a Director of System Operations approve different things. <strong>No template holds both <code>action.propose</code> and <code>action.approve</code></strong>, not because a small team may not, but because a default must not hand it over in silence. Two honest limits: the script validates and prints, it writes no <code>Role</code> row, so the three system roles are still all the database has; and the templates are meant to be copied and never edited, because a role called "analyst" that one company has quietly changed means something different on every screen and in every ADR that names it.
+<br><br><em>Ten role templates, and none of them is in the database.</em> <code>scripts/seed_roles.py</code> names ten roles taken from titles this repository can point at &mdash; the interconnection, load-forecasting and system-operations owners in <code>data/company_context.json</code>, and the Analyst II, Regulatory Counsel, VP of Pricing and Planning and Deputy Director who signed filings in <code>data/real/</code>. Seniority is not a permission: a Director of Load Forecasting and a Director of System Operations approve different things. <strong>No template holds both <code>action.propose</code> and <code>action.approve</code></strong>, not because a small team may not, but because a default must not hand it over in silence. Two limits: the script validates and prints, it writes no <code>Role</code> row, so the three system roles are still all the database has; and the templates are meant to be copied and never edited, because a role called "analyst" that one company has quietly changed means something different on every screen and in every ADR that names it.
 <br><br><em>Three downgrades, each of which announces itself rather than hiding:</em> the seven demo accounts share a password that is printed by the seed and shown on the login page; <code>STRATA_APPROVAL_MODE=DEMO_SELF_APPROVAL</code> waives segregation of duties and writes <code>approval.waived</code> into the chain under its own action code, so a waived separation can never be read later as a clean approval (ADR-019); and the Secure cookie flag comes off for plain http to this machine only, which the login page prints on the page. <em>Absent, not deferred:</em> no SSO, no second factor, no password reset, no rotation, no breach-corpus check.
-<br><br><span class="gap">And the grid enforces five of its fifteen codes.</span> Found by looking for the callers rather than the module. <code>policy.require()</code> now runs on <code>workflow.manage</code> in <code>admin.py</code>, on <code>user.manage</code> in <code>users_admin.py</code>, <code>shares_admin.py</code>, <code>feedback_review.py</code>, <code>app/state/invites.py</code> and the integrations registry (<code>SOURCE_REGISTRY_PERMISSION</code>, which is the string <code>user.manage</code> until a <code>source.manage</code> code lands), on <code>project.create</code> when Clarke opens a project, and on <code>claim.read</code> or <code>change.read</code> when somebody mints a share link. That leaves ten codes &mdash; including every one an analyst uses to do the actual job, <code>action.propose</code>, <code>action.reject</code>, <code>escalation.resolve</code>, <code>steer.issue</code>, <code>knowledge.write</code>, <code>threshold.set</code>, <code>audit.read</code> &mdash; as grants the product stores and audits and checks nowhere. The sign-in middleware in <code>app/web/deps.py</code> resolves a session and checks no permission, and says so in its own docstring, so a signed-in person holding no role still reaches every screen it lets through. <code>action.approve</code> cannot be passed to <code>require()</code> at all, by design; <code>can_approve()</code> answers it, and no view calls that either. Sessions, password hashing, lockout and invitations do run on the screens; two thirds of the grid does not.</td>
+<br><br><span class="gap">And the grid enforces five of its fifteen codes.</span> Found by looking for the callers rather than the module. <code>policy.require()</code> now runs on <code>workflow.manage</code> in <code>admin.py</code>, on <code>user.manage</code> in <code>users_admin.py</code>, <code>shares_admin.py</code>, <code>feedback_review.py</code>, <code>app/state/invites.py</code> and the integrations registry (<code>SOURCE_REGISTRY_PERMISSION</code>, which is the string <code>user.manage</code> until a <code>source.manage</code> code lands), on <code>project.create</code> when Clarke opens a project, and on <code>claim.read</code> or <code>change.read</code> when somebody mints a share link. That leaves ten codes &mdash; including every one an analyst uses to do the actual job, <code>action.propose</code>, <code>action.reject</code>, <code>escalation.resolve</code>, <code>steer.issue</code>, <code>knowledge.write</code>, <code>threshold.set</code>, <code>audit.read</code> &mdash; as grants the product stores and audits and checks nowhere. The sign-in middleware in <code>app/web/deps.py</code> resolves a session and checks no permission, and says so in its own docstring, so a signed-in person holding no role still reaches every screen it lets through. <code>action.approve</code> cannot be passed to <code>require()</code> at all, by design; <code>can_approve()</code> answers it, and ADR-091 gave it its one caller, which also put <code>action.propose</code> and <code>action.reject</code> on a screen for the first time. Sessions, password hashing, lockout and invitations do run on the screens; two thirds of the grid does not.</td>
 </tr>
 </table>
 
@@ -616,28 +603,27 @@ the caveat attached. Routing resolves an owner and no screen shows the answer, s
 this" half of the pitch is a running feature a buyer cannot see. And a control that sits in a module
 nothing calls buys a buyer nothing, whatever the tests say &mdash; which is where the approval gate,
 the ingest-hash check, the claim proposer and <code>revert_event</code> all sit today. Each changes
-what can honestly be claimed, and each is cheaper to concede here than to be caught on at a panel.</p>
-<p><span class="lbl">One shape keeps recurring and it is worth naming as a discipline problem rather
+what can be claimed.</p>
+<p><span class="lbl">One shape keeps recurring, and it is a discipline problem rather
 than a list of bugs.</span> Four times now a capability has been built, tested and left unwired, and
 each time the tests stayed green because a test proves a module works, never that a product uses it.
 The counter-measure the repository already has is <code>tests/test_app_wiring.py</code>, which derives
 what it checks from <code>app.routes</code> rather than from a list somebody maintains. There is no
-equivalent for a state module, and there is none at all for prose &mdash; every correction in this
-document was found by reading the code against the page, by hand, on the day.</p>
+equivalent for a state module, and none at all for prose.</p>
 
 <h2>The market, and who is in it</h2>
 
 <div class="d">
 <p><span class="lbl">The category.</span> Regulated enterprises — companies whose obligations change not because they choose to change them, but because a government body issues an order and the clock starts. That category is wide: utilities, banks, insurers, pharma manufacturers, telecoms, pipeline operators. Strata does not target the category. It targets one beachhead inside it, for the same reason ADR-001 names one user instead of a persona list: a product built for "regulated enterprises" is a product built for no one.</p>
 <p><span class="lbl">The beachhead.</span> Investor-owned utilities and independent power producers. Both live under a regulatory structure with a specific shape: a company's obligations are set proceeding by proceeding, docket by docket, at one or more state public utility commissions and, for anything that touches wholesale power or interstate transmission, at FERC. A multi-state holding company does not run one open docket — it runs one per jurisdiction it operates in, each on its own procedural clock, each amended independently. That structure, not a market-size figure, is the argument for why this is hard: the unit of regulatory obligation is fragmented by design, and no single filing tells a company everything it now owes.</p>
-<p><span class="lbl">Why not name a market size.</span> A defensible TAM number needs a source — utility count, average regulatory-affairs headcount, spend per docket — and none of that is sourced here. Rather than invent a figure to look rigorous, this document reasons about the shape of the market and marks the size itself as an open question the eventual go-to-market plan has to answer with real numbers, not this one with invented ones.</p>
+<p><span class="lbl">Why not name a market size.</span> A defensible TAM number needs a source — utility count, average regulatory-affairs headcount, spend per docket — and none of that is sourced here. This document reasons about the shape of the market instead, and leaves the size as an open question for the go-to-market plan to answer with real numbers.</p>
 </div>
 
 <h2>Why now</h2>
 
 <div class="d">
 <p><span class="lbl">Three forces are moving at once, and they compound rather than add.</span></p>
-<p><span class="lbl">Sourcing note, to match the standard set above.</span> The specific claims below — FERC Order No. 2023 and the interconnection backlog it addresses, and data-center-driven load growth — are asserted from industry knowledge, not sourced here. They are probably true and they matter to the argument. This document does not delete them for lack of a citation; it flags them, the same way the TAM section above flags the absence of a sourced market-size figure rather than inventing one.</p>
+<p><span class="lbl">Sourcing note.</span> The specific claims below — FERC Order No. 2023 and the interconnection backlog it addresses, and data-center-driven load growth — are asserted from industry knowledge, not sourced here. They are probably true and they matter to the argument, so this document flags them rather than deleting them, as it flags the missing market-size figure above.</p>
 <p><span class="lbl">AI-driven load growth.</span> Large new electricity demand from data centers is pushing utilities to file for generation, transmission, and rate changes on a schedule utilities have not run at in decades. Every one of those filings opens or amends a docket. More dockets per utility means more proceedings a regulatory-affairs analyst has to track in parallel, each with its own version history.</p>
 <p><span class="lbl">Interconnection reform.</span> FERC's interconnection rulemaking (Order No. 2023 and the state-level proceedings that followed it) rewrote how generation projects join the queue, specifically because the prior process built a backlog FERC's own rulemaking record describes as multi-year. Reform of that scale does not land as one final rule — it lands as a sequence of orders on rehearing, compliance filings, and state tariff amendments, each one a new version of a proceeding an IPP has to re-read against its existing project queue.</p>
 <p><span class="lbl">The pace of energy-transition rulemaking.</span> State clean-energy targets, integrated resource planning cycles, and the state-level implementation of federal incentive programs are producing more proceedings, not fewer, and each proceeding revises more often before it settles. The volume of change is rising faster than regulatory-affairs headcount is rising to track it — that gap is the market opening, and it is a structural one, not a one-year spike.</p>
@@ -662,8 +648,7 @@ into different versions of the same story.</p>
 
 <div class="crit"><strong>Standing rule.</strong> Update this table the same day anything moves —
 a message sent, a reply, a refusal, a call booked. A stale log is worse than none: it makes the
-validation look further along than it is, and this document's whole argument rests on being honest
-about which claims are confirmed and which are reasoning.</div>
+validation look further along than it is.</div>
 
 <h3>Outreach, and what came back</h3>
 
@@ -685,8 +670,8 @@ were drawn from; a title-by-title breakdown of the 45 was never kept in this rep
 <div class="note"><strong>What this log does not record.</strong> Wave counts and dates, not a
 timestamp per address. Bounces are not tracked either, so an inferred address that failed to deliver
 is indistinguishable here from one that arrived and was ignored &mdash; which matters, because one
-address below is an inference rather than a fact. Recording that gap rather than leaving the counts
-to imply 45 delivered messages.</div>
+address below is an inference rather than a fact. The counts do not prove 45 messages were
+delivered.</div>
 
 <h3>Contacted</h3>
 
@@ -707,9 +692,8 @@ person named on this page appears because they filed something in a public regul
 and every address was taken from a certificate of service — a document the parties themselves file,
 under oath, precisely so that others can reach them about that docket. None of it came from a
 contact-data broker, and none of it was inferred from a private source. This repository is published
-with its history intact, so the decision to keep this page was taken deliberately rather than by
-omission: the provenance is the point, and stripping it would leave the outreach claims in this
-document unverifiable — which is the failure this whole product exists to prevent. Anyone named here
+with its history intact, and keeping this page is a deliberate choice: the provenance is the point,
+and stripping it would leave the outreach claims unverifiable. Anyone named here
 who would rather not be can have their row removed on request.</div>
 
 <h3>Where each address came from</h3>
@@ -737,7 +721,7 @@ An address assembled from a naming pattern is a guess wearing a fact's clothes �
 distinction ADR-003 draws between a verified citation and a plausible one, marked here so nobody
 later mistakes the second for the first.</div>
 
-<div class="crit"><strong>And a fact from a filing still expires.</strong> The first version of this
+<div class="crit"><strong>A fact from a filing still expires.</strong> This
 table recorded <code>tnyhart@btlaw.com</code> as verified — which it was, in a certificate of service
 sworn in July 2021. By the April 2026 filing in Cause No. 46394 the same person at the same job is
 <code>tnyhart@taftlaw.com</code>: the firm changed and no document announced it. Both addresses were
@@ -766,10 +750,8 @@ Commission's Duke large load tariff filing of June 2026, and the Georgia PSC's 2
 hearings, which ran seventeen sworn witnesses.</p>
 
 <div class="crit"><strong>Where this leaves the document.</strong> 45 messages out, 0 replies, 0
-interviews. Nothing in this MRD has yet been confirmed by a regulatory-affairs person, and every
-claim about buyer behaviour, willingness to pay or felt cost still stands as reasoning from public
-structure. The status note at the head of this document says the same thing and stays true until a
-row above reads "call held".</div>
+interviews. Every claim about buyer behaviour, willingness to pay or felt cost stands as reasoning
+from public structure until a row above reads "call held".</div>
 
 <h2>Incumbents and adjacent tools</h2>
 
@@ -799,7 +781,7 @@ row above reads "call held".</div>
 </tr>
 </table>
 
-<div class="note"><strong>Honest framing, not a named-competitor claim.</strong> The rows above describe what each category of tool does in general, not a specific vendor's current feature set — this document does not have sourced, current facts about any named product to state as fact, and states none. If a specific incumbent has already closed part of this gap, that is exactly the kind of thing a user interview or a competitive trial would surface, and it belongs in <code>user-research.html</code> and the ADR log, not guessed at here.</div>
+<div class="note"><strong>Categories, not named competitors.</strong> The rows above describe what each category of tool does in general, not a specific vendor's current feature set; this document has no sourced, current facts about any named product and states none. If a specific incumbent has already closed part of this gap, that is exactly the kind of thing a user interview or a competitive trial would surface, and it belongs in <code>user-research.html</code> and the ADR log, not guessed at here.</div>
 
 <div class="d">
 <p><span class="lbl">Where the wedge sits.</span> Between the alert and the memo. The regulatory change management category tells you something moved; the law firm tells you, slowly and expensively, what it means. Strata's bet is the middle: an exactly-cited account of what changed, machine-mapped to this company's specific obligations and projects, fast enough to run on every proceeding amendment rather than only the ones that already look expensive — and honest enough, through confidence-gated escalation (ADR-006), to say when it does not know rather than guess.</p>
@@ -811,9 +793,9 @@ row above reads "call held".</div>
 <p><span class="lbl">Not defensible.</span> The model call itself. Any well-funded competitor can wire an LLM to a docket feed by next quarter. If the pitch for defensibility rests on having used AI first, it is not a pitch — every incumbent in the table above will add a model to their product this year regardless of what Strata does.</p>
 <p><span class="lbl">The floor, not the moat — the correctness engine.</span> Citation verification against exact source offsets (ADR-003) and deterministic diffing before model interpretation (ADR-004) are necessary, not sufficient. They are table stakes: the work a buyer has to see before trusting the tool with anything else. A competent team rebuilds both in a few weeks — <code>docs/future-enhancements.html</code> says so plainly, and this document agrees rather than argues around it. These earn the right to be trusted. They do not keep a competitor out.</p>
 <p><span class="lbl">The moat — the obligation graph and the multi-jurisdiction taxonomy.</span> The durable advantage is the mapping between how a regulator words a requirement and how a specific company words its own obligations, built proceeding by proceeding, jurisdiction by jurisdiction, for one specific company (ADR-002, T9). That mapping compounds per customer: a multi-state holding company's taxonomy gets more accurate and more entangled with its own operations the longer the tool runs, and it cannot be bought — a competitor starting today has to rebuild it customer by customer, not download it. The same logic makes <code>best-practices.html</code>'s principle that "a derived corpus migrates all at once" true here: once the taxonomy is load-bearing, removing it is not a vendor swap.</p>
-<p><span class="lbl">Stated plainly: this moat does not exist yet.</span> At launch there is no accumulated obligation graph and no multi-jurisdiction taxonomy. There is a working prototype, an <code>Obligation</code> table with eight rows a script can seed from one invented company's own file, and 102 real filings from eight commissions that nothing has mapped to any obligation at all. A table is not a graph and a corpus is not a taxonomy. The moat is a direction the product is pointed at, not an asset it holds today. It has to be earned proceeding by proceeding, customer by customer. Claiming it now, before a single customer's obligations have been mapped, would be the same overreach ADR-003 refuses to let the product itself make.</p>
+<p><span class="lbl">This moat does not exist yet.</span> At launch there is no accumulated obligation graph and no multi-jurisdiction taxonomy. There is a working prototype, an <code>Obligation</code> table with eight rows a script can seed from one invented company's own file, and 102 real filings from eight commissions that nothing has mapped to any obligation at all. A table is not a graph and a corpus is not a taxonomy. The moat is a direction the product is pointed at, not an asset it holds today. It has to be earned proceeding by proceeding, customer by customer. Claiming it now, before a single customer's obligations have been mapped, would be the same overreach ADR-003 refuses to let the product itself make.</p>
 <p><span class="lbl">A further candidate — the audit trail becomes the record of record.</span> If a compliance officer starts pointing to Strata's project state as the answer to "what did we know and when," removing the tool stops being a vendor swap and starts being a legal-risk decision. That lock is stronger than the floor, but slower to earn even than the taxonomy — it requires a customer to trust the tool with exactly the kind of record an auditor might ask for, and no 48-hour build can manufacture that trust.</p>
-<p><span class="lbl">Open, stated plainly.</span> Nothing past the floor is proven. The working prototype demonstrates the floor — that the correctness engine works and can be shown working. It demonstrates nothing about the obligation graph, the taxonomy, or the audit trail, which need real usage over quarters, across real proceedings, to become true rather than merely plausible.</p>
+<p><span class="lbl">Open.</span> Nothing past the floor is proven. The working prototype demonstrates the floor — that the correctness engine works and can be shown working. It demonstrates nothing about the obligation graph, the taxonomy, or the audit trail, which need real usage over quarters, across real proceedings, to become true rather than merely plausible.</p>
 </div>
 
 <h2>Expansion path, from one vertical outward</h2>
@@ -834,7 +816,7 @@ row above reads "call held".</div>
 <p><span class="lbl">Usage has to be continuous, not a one-time purchase.</span> State PUC dockets run on an ongoing procedural calendar — proceedings do not end when a company buys the tool. If that reasoning holds, the product should see recurring, not one-time, use, which is what a subscription business needs. This is inference from how dockets work, not evidence from a customer, and should be labeled as such until a real account confirms it.</p>
 <p><span class="lbl">The engine has to prove general by actually going to a second vertical.</span> Step 1 in the expansion path above is the test. If moving from utilities to IPPs takes a rebuild rather than a re-tag, the defensibility argument for candidate 1 above weakens considerably — the correctness engine would be general in theory but sector-specific in practice, and that gap only shows up by actually doing it.</p>
 <p><span class="lbl">The sale has to land inside an existing budget line, not compete with a hiring decision.</span> Regulatory-affairs teams are more likely to get a tool budget than a net-new headcount request approved in the same cycle. A pitch that reads as "hire fewer analysts" invites resistance from the exact user the product depends on for adoption; a pitch that reads as "the analyst you have covers more ground" does not. This is a positioning judgment made now, without a buyer conversation to test it, and it should be checked against the first sales conversations the company has, not assumed permanent.</p>
-<p><span class="lbl">What is not yet true, stated without softening.</span> No user interview has been conducted. No buyer has been spoken to at all — the interview plan targets analysts, not the budget holder above them. No pilot customer, named or anonymous, exists. The eval numbers do now exist and they measure the deterministic spine against an invented corpus, which is a smaller claim than the sentence "we have evals" makes: nothing scores the model, and nothing scores the 102 real filings. A large business needs all of that before it is a large business rather than a well-argued idea; this document is the argument, not the proof.</p>
+<p><span class="lbl">What is not yet true.</span> No user interview has been conducted. No buyer has been spoken to at all — the interview plan targets analysts, not the budget holder above them. No pilot customer, named or anonymous, exists. The eval numbers do now exist and they measure the deterministic spine against an invented corpus, which is a smaller claim than the sentence "we have evals" makes: nothing scores the model, and nothing scores the 102 real filings. A large business needs all of that before it is a large business rather than a well-argued idea; this document is the argument, not the proof.</p>
 </div>
 
 </body>

@@ -45,8 +45,7 @@ approval route an administrator shapes to their own organisation, segregation of
 append-only hash-chained audit log where a reversal is a new row rather than an edit, tenant
 isolation through a single chokepoint with tests derived from the code rather than a maintained
 list, security headers on every response, and an accessibility sweep against WCAG 2.2 with
-contrast measured from rendered pixels rather than from tokens. Where any of that is incomplete,
-this record says so rather than leaving it to be found.</p>
+contrast measured from rendered pixels rather than from tokens.</p>
 
 <div class="note"><p><strong>The running product is at
 <a href="https://strata.sudama.ai">strata.sudama.ai</a></strong>, and the home page carries a
@@ -93,7 +92,7 @@ by <a href="https://github.com/jsahasi/strata/blob/main/app/config.py"><code>app
 <code>.env.example</code> lists all nineteen names — fifteen the application reads, plus four Gmail
 values at the foot marked as belonging to the outreach script and not to the product.</td></tr>
 <tr><td>What I personally built</td><td>The decisions and the plan; the AI wrote most of the lines.
-See the two sections below, which split it honestly rather than claiming either extreme.</td></tr>
+See the two sections below.</td></tr>
 <tr><td>What I reused</td><td><a href="https://strata.sudama.ai/docs/best-practices.html"><code>docs/best-practices.html</code></a> (27 principles carried from a
 peer project; §28 was born here), the append-only-audit and escalate-rather-than-guess patterns
 from that same project, and ten runtime packages. No code was copied from it.</td></tr>
@@ -102,11 +101,10 @@ the rows worth reading: a similarity threshold in the verifier, raw similarity a
 a fixed-width window scan in the occurrence check, an analytics screen, a percentage computed over
 five items, a fifty-value secrets file, and a role vocabulary built on job seniority. One row runs
 the other way and is the more useful one: <strong>I asked for a 99% coverage target and the AI
-refused it.</strong> I overruled the refusal, then cut the target myself. Read that row rather than
-this summary of it.</td></tr>
+refused it.</strong> I overruled the refusal, then cut the target myself.</td></tr>
 <tr><td>What broke and how I debugged it</td><td>Table below, 22 rows. Thirteen are logged with their
 guards in <a href="https://strata.sudama.ai/docs/ai/findings.html"><code>docs/.ai/findings.html</code></a>; the other nine appear here first, including the three
-that cost the most and one that is still open. Five landed on the last day and are the sharpest: nothing loaded <code>.env</code>, the
+that cost the most. Five landed on the last day and are the sharpest: nothing loaded <code>.env</code>, the
 deploy ran no migration, <code>init_db()</code> dropped every table against its own docstring, a
 share link redirected its own bearer token into a query string, and the test written to catch an
 unmounted router could not catch the next one.</td></tr>
@@ -114,10 +112,10 @@ unmounted router could not catch the next one.</td></tr>
 
 <h2>What I personally built</h2>
 
-<p>The honest split: I chose the architecture and wrote the plan; an AI coding tool wrote most of
-the lines under it, in TDD waves against tests specified before the implementation. The defensible
-claim is not that I typed it — it is that every load-bearing decision has an ADR written before the
-code, with its rejected alternatives, and that I can name where the tool was wrong.</p>
+<p>I chose the architecture and wrote the plan; an AI coding tool wrote most of the lines under it,
+in TDD waves against tests specified before the implementation. The claim is not that I typed it:
+every load-bearing decision has an ADR written before the code, with its rejected alternatives, and
+I can name where the tool was wrong.</p>
 
 <table>
 <tr><th>Module</th><th>What it does</th><th>Guarded by</th></tr>
@@ -175,8 +173,7 @@ schema it cannot read. <a href="https://github.com/jsahasi/strata/blob/main/depl
 No test imports <code>app.state.migrate</code>; <a href="https://strata.sudama.ai/docs/ai/resume.md"><code>docs/.ai/resume.md</code></a> records it at 0%
 coverage.</span> It is the module that stands between a deploy and an unreadable live schema, and
 tests cannot easily reach it: a test builds its schema from today's models, so it never meets
-yesterday's database. That is the reason and not an excuse — the fixture it needs is an old schema
-built on purpose.</td></tr>
+yesterday's database. The fixture it needs is an old schema built on purpose.</td></tr>
 <tr><td><code>app/chat/</code> — <code>agent.py</code>, <code>tools.py</code>,
 <code>engine.py</code>, <code>persona.py</code>, <code>pills.py</code></td><td>Clarke, the
 assistant. The only place in the product where a model reads the record, and it reads it through
@@ -246,8 +243,9 @@ answer key is the filer's own marked-up copy, which exists for three families an
 demand.</td></tr>
 </table>
 
-<p><strong>The reviewer's command, run as a reviewer runs it.</strong> <code>make fresh-check</code> clones the repository into a temporary directory and runs the suite there, so nothing uncommitted can make it pass: <strong>2,301 passed, 2 xfailed in 310 seconds</strong>, exit zero, "fresh clone: tests pass". The same suite in this working copy gives the same result. It has not always: an earlier entry in the break log records a fresh clone failing where the working copy was green, because a feature had landed half-committed. That is why the check exists and why it is the one quoted here.</p>thing runs on a clock. Those two are the guards
-working; the shared one is not. The per-file counts above were read off
+<p><strong>The reviewer's command, run as a reviewer runs it.</strong> <code>make fresh-check</code> clones the repository into a temporary directory and runs the suite there, so nothing uncommitted can make it pass: <strong>2,301 passed, 2 xfailed in 310 seconds</strong>, exit zero, "fresh clone: tests pass". The same suite in this working copy gives the same result. It has not always: an earlier entry in the break log records a fresh clone failing where the working copy was green, because a feature had landed half-committed. That is why the check exists.</p>
+
+<p>The per-file counts above were read off
 <code>pytest --collect-only -q</code>, not carried forward. Coverage is 92% of 10,359 statements
 (804 missed), recorded in <a href="https://strata.sudama.ai/docs/ai/resume.md"><code>docs/.ai/resume.md</code></a> at commit <code>2b10bb6</code>; the lowest
 modules are <code>review_centre.py</code> at 74% and <code>migrate.py</code> at 0%. The coverage tool
@@ -261,11 +259,10 @@ who clones this repository can run the tests and cannot reproduce that number.</
 <tr><td><a href="https://strata.sudama.ai/docs/best-practices.html"><code>docs/best-practices.html</code></a> — 27 engineering principles, each with the failure
 that taught it</td><td>A peer project of the author's</td><td>Nothing was dropped, and §28 was added
 here from this build's own mistake — an outreach address verified against a 2021 filing and wrong by
-2026. Stated precisely, because a reader will open the file: at HEAD it carries 27 numbered
-principles and §28 appears in the changelog rather than as a numbered section of its own. Sections
-26 and 27 are load-bearing for Strata: a fallback must announce itself, and a derived corpus
-migrates all at once. §26 took a beating this week — three separate defects were fallbacks that
-announced themselves honestly and announced something untrue.</td></tr>
+2026. At HEAD the file carries 27 numbered principles and §28 appears in the changelog rather than
+as a numbered section of its own. Sections 26 and 27 are load-bearing for Strata: a fallback must
+announce itself, and a derived corpus migrates all at once. Three separate defects here were
+fallbacks that announced themselves and announced something untrue.</td></tr>
 <tr><td>Two design patterns: the append-only audit with a hash chain, and escalate-rather-than-guess
 (ADR-006)</td><td>Same project</td><td>Patterns, not code. ADR-006 exists because that project's
 embedding provider degraded silently and ranking ran on noise for months while every check passed.
@@ -342,7 +339,7 @@ ligature does not — so on PDF-shaped text it finds nothing, <code>occurrence_c
 zero, and the repeated-boilerplate guard switches itself off in silence. That is a fallback that
 does not announce itself, best-practices §26 exactly. Replaced with one normalized projection
 carrying an index map back to raw offsets.
-<br><br><span class="lbl">And the replacement was wrong too, which is the part worth reading.</span>
+<br><br><span class="lbl">The replacement was wrong too.</span>
 The new docstring claimed "O(n), not O(n·m)". The projection underneath is genuinely linear — flat
 at 171ns per character from 12.5K to 400K — but <code>_spans_of</code> was not, because the fix had
 added a re-normalization per hit, and hits scale with n. Measured: 1.29s on a 40,000-character
@@ -396,7 +393,7 @@ in-section edit keeps its true score rather than escalating everything.</td>
 <td>Me: 99% coverage on every module</td>
 <td>An argument against the number, and a substitute standard (ADR-38).</td>
 <td><span class="lbl">I asked for 99%. The AI refused it, I overruled the refusal, then I cut the
-target myself — and the middle step is the one worth reading.</span> The refusal was right about
+target myself.</span> The refusal was right about
 line coverage: it measures execution, not verification, and the line that rejects a fabricated
 quote can be green while nothing asserts that it rejects anything. Its substitute was branch
 coverage on the four deterministic load-bearing modules, mutation testing, property-based tests for
@@ -438,8 +435,8 @@ shows — twenty of twenty verifying is a real result, it is just not a rate ove
 <td>Me, against the demo</td>
 <td>Would have built one on request; it is the kind of screen a tool produces happily.</td>
 <td><span class="lbl">Cut, with the reason written down.</span> An analytics screen for a regulatory
-analyst is a feature engineers want, and the prep guide names that exact trap. The honest answer is
-that it serves no pain we identified. When the review centre later needed counts, the compromise was
+analyst is a feature engineers want, and the prep guide names that exact trap. It serves no pain we
+identified. When the review centre later needed counts, the compromise was
 recorded too: analytics reports raw counts and <em>refuses percentages under ten items</em>, the
 same rule the eval harness now enforces in code.</td>
 </tr>
@@ -456,7 +453,7 @@ cost of that breadth showed up as a class, not as a bug</span>: the two widest m
 were the two the product did not serve and no test covered. Both are mounted now
 (<code>94ef20f</code>) and neither has a test file of its own;
 <code>review_centre.py</code> is the lowest-covered module in the repository at 74%. The recurring
-failure this whole day named itself here — <em>built and not connected</em>. Clarke was built and
+failure is <em>built and not connected</em>. Clarke was built and
 never included in <code>base.html</code>. Its engine shipped under a different name than the view
 looked for. Nothing loaded <code>.env</code>. The approval route was seeded by an agent that died.
 No test caught any of them, because a test verifies capability and says nothing about whether a
@@ -525,7 +522,7 @@ fabricated one would end the project.</td>
 
 <tr>
 <td>Role templates</td>
-<td>Me — and half of my own evidence was the wrong half</td>
+<td>Me</td>
 <td>Ten templates in <a href="https://github.com/jsahasi/strata/blob/main/scripts/seed_roles.py"><code>scripts/seed_roles.py</code></a>, each named for a function and each drawn
 from a title already in the repository.</td>
 <td><span class="lbl">The list I handed over was titles; what shipped was functions, and functions
@@ -584,16 +581,16 @@ move the rubric punishes.</td>
 
 <p>The wrong hypothesis is the interesting column. Twenty-two rows. Thirteen of them are logged with
 their guards in <a href="https://strata.sudama.ai/docs/ai/findings.html"><code>docs/.ai/findings.html</code></a>; the rest appear here first. They are ordered by
-what they cost, not by when they happened, and the first row is open.</p>
+what they cost, not by when they happened.</p>
 
 <table>
 <tr><th>Symptom</th><th>First hypothesis (and why it was wrong)</th><th>What the evidence showed</th><th>Fix</th></tr>
 
 <tr>
-<td><span class="no"><strong>OPEN, and it is the only fatal-class bug in this repository:
-<code>make test</code> failed on a fresh clone of HEAD.</strong></span>
+<td><strong>Fixed; the suite now passes at 2,301.</strong> <code>make test</code> had failed on a
+fresh clone of HEAD, the only fatal-class bug in this repository:
 <code>tests/test_retention.py::test_every_table_in_the_schema_has_a_window_and_a_reason</code>
-failed. 1 failed, 1,380 passed. <code>make fresh-check</code> exited non-zero. <strong>Fixed; it now passes at 2,301.</strong></td>
+failed. 1 failed, 1,380 passed. <code>make fresh-check</code> exited non-zero.</td>
 <td>That a green working copy means a green clone, and that the failures in the working copy came
 from uncommitted files. Half right, which is why it nearly passed unnoticed: the working copy fails
 three tests and two of those three <em>are</em> the uncommitted scheduler. The third is not.</td>
@@ -605,13 +602,11 @@ table with no window is a table nobody decided about, and the privacy page would
 schedule with a hole in it." <span class="lbl">A feature went in half-committed</span>: the model
 landed and the module that uses it did not. The guard worked exactly as designed and the commit went
 in over it.</td>
-<td><span class="no">Open as this is written, and it is not a documentation fix.</span> Either give
-<code>user_permissions</code> a retention window and a reason, or take the table back out until the
-feature it belongs to lands whole. The Makefile's own comment says <code>make run</code> breaking is
-"the only bug in this repository that is fatal rather than embarrassing"; <code>make test</code>
-failing is the same sentence, because AI Fund runs both before booking a panel. This row exists
-because <code>make fresh-check</code> was finally run, having been listed as "not verified" on this
-page for two days.</td>
+<td><span class="no">Not a documentation fix.</span> Either give <code>user_permissions</code> a
+retention window and a reason, or take the table back out until the feature it belongs to lands
+whole. The Makefile's own comment says <code>make run</code> breaking is "the only bug in this
+repository that is fatal rather than embarrassing"; <code>make test</code> failing is the same
+sentence, because AI Fund runs both before booking a panel.</td>
 </tr>
 
 <tr>
@@ -733,8 +728,7 @@ them. A list a person maintains cannot catch a module that person forgot. This i
 CLAUDE.md names — fix the class, not the line — committed by the fix that quoted it.</td>
 <td>Three assertions that derive their answer from the application: every router in
 <code>app/web/views</code> is mounted, no two routers claim one path, every nav link resolves.
-(<code>94ef20f</code>.) <span class="lbl">There is still no equivalent for prose.</span> Every
-document correction on this page was found by a person reading, not by anything automatic.</td>
+(<code>94ef20f</code>.)</td>
 </tr>
 
 <tr>
@@ -795,9 +789,9 @@ A model wrote them, fluently and plausibly — <strong>inside outreach for a pro
 exactly that</strong>.</td>
 <td>Nothing went out until every factual claim in every message was checked against the filing it
 came from, the same rule the product enforces on itself. Seven messages have since been sent; 38 are
-drafted and corrected. The uncomfortable part is that the product's answer — verify, and withhold
-what does not verify — existed and was not applied here, because the outreach path had no verifier
-in front of it. It belongs in <code>findings.html</code> as a twelfth defect and is not there yet.</td>
+drafted and corrected. The product's answer — verify, and withhold what does not verify — existed
+and was not applied here, because the outreach path had no verifier in front of it. It belongs in
+<code>findings.html</code> as a twelfth defect and is not there yet.</td>
 </tr>
 
 <tr>
@@ -935,8 +929,8 @@ each commit.</td>
 <td>All three directories are full and both targets work. The claim was true at
 <code>634d559</code> and has been false since <code>dcb04af</code>. It is the first file a reviewer
 opens, and it currently understates the build by the entire build.</td>
-<td><span class="yes">Closed at <code>edad6d3</code> and again at <code>75fb92d</code>, and the
-second time is the one worth reading.</span> The first fix corrected the empty-directory sentence.
+<td><span class="yes">Closed at <code>edad6d3</code> and again at <code>75fb92d</code>.</span>
+The first fix corrected the empty-directory sentence.
 The second found three <em>more</em> claims that had gone false in the same safe direction: the
 README's own "what the names promise and the code does not" list still said no model runs anywhere,
 rollback does not exist, and reviewer routing is a shared queue. All three had since been built —
@@ -975,8 +969,8 @@ navigation linked to a 404. 1,256 tests did not catch that no model path could e
 disk. And no number of tests could have caught the deploy that ran no migration, because a test
 builds its schema from today's models and never meets yesterday's database. Every test passed each
 time and no test asked the question.</p>
-<p>The third instance is the one worth sitting with, because a fix for the second was already in
-place. <a href="https://github.com/jsahasi/strata/blob/main/tests/test_app_wiring.py"><code>tests/test_app_wiring.py</code></a> existed <em>because</em> of the unmounted router, and it
+<p>The third instance had a fix for the second already in place.
+<a href="https://github.com/jsahasi/strata/blob/main/tests/test_app_wiring.py"><code>tests/test_app_wiring.py</code></a> existed <em>because</em> of the unmounted router, and it
 missed the next unmounted router — it asserted a hand-written list of five paths rather than deriving
 the question from <code>app.routes</code>. CLAUDE.md says fix the class, not the line. That was a
 line fix wearing a class fix's name, and the difference stayed invisible for a day because the suite
@@ -1004,15 +998,15 @@ a person remembering is not a fix.</p>
 <p>The third instance of the pattern cost the most and is the newest.
 <code>make fresh-check</code> has sat in the Makefile since the first day, next to a comment calling
 a broken <code>make run</code> "the only bug in this repository that is fatal rather than
-embarrassing". This page has carried that check as "not verified" for two days. It was run for the
-first time in this pass and it fails.</p>
+embarrassing". It was carried as "not verified" for two days, run for the first time in this pass,
+and it failed.</p>
 
 <h3>3. The product's own rule was not applied to the product's own outreach</h3>
 <p>Four fabricated facts about real people, written by a model, inside messages selling a system
 whose entire thesis is that a claim must not assert itself without evidence. The batch was checked
 line by line against the filings before anything went out, which is the only thing that makes it a
-story rather than an incident. The general failure is worth stating plainly: a verification gate
-protects what passes through it and nothing else. Strata verifies claims about a docket. It had no
+story rather than an incident. A verification gate protects what passes through it and nothing
+else. Strata verifies claims about a docket. It had no
 opinion about claims in an email, and neither did anyone else until the messages were checked.</p>
 
 <h3>4. More of the logged defects were false claims in documents than were bugs in code</h3>
@@ -1038,10 +1032,9 @@ product exists to argue that an unchecked claim is worth nothing.</p>
 
 <h2>Pre-submission checklist</h2>
 
-<div class="note"><p><strong>Re-executed on 2026-08-05 at commit <code>bd21a5a</code>, every row re-run rather than recalled.</strong> <code>gh repo view</code> returns PUBLIC and an anonymous file blob answers 200. <code>git rev-list --count HEAD</code> gives 84 commits, none squashed. <code>make fresh-check</code> clones into a temporary directory and passes: <strong>2,301 passed, 2 xfailed in 310 seconds</strong>, exit zero. The deployed instance answers <code>corpus_loaded: true</code> with four live escalations, so the refusal is visible in the running product and not only in the tests. Five documents fetched anonymously answer 200. <strong>One row is still NO and no command changes it: no user has been interviewed.</strong></p></div>
+<div class="note"><p><strong>Re-executed on 2026-08-05 at commit <code>bd21a5a</code>.</strong> <code>gh repo view</code> returns PUBLIC and an anonymous file blob answers 200. <code>git rev-list --count HEAD</code> gives 84 commits, none squashed. <code>make fresh-check</code> clones into a temporary directory and passes: <strong>2,301 passed, 2 xfailed in 310 seconds</strong>, exit zero. The deployed instance answers <code>corpus_loaded: true</code> with four live escalations, so the refusal is visible in the running product and not only in the tests. Five documents fetched anonymously answer 200. <strong>One row is still NO and no command changes it: no user has been interviewed.</strong></p></div>
 
-<p>Status as checked against the repository at commit <code>1343f57</code>, 43 commits. Where
-something could not be verified from this working copy, it says so rather than claiming a pass.</p>
+<p>Status as checked against the repository at commit <code>1343f57</code>, 43 commits.</p>
 
 <table>
 <tr><th>Check</th><th>Status</th></tr>
@@ -1088,8 +1081,8 @@ result</td><td><span class="no">No — and this is the exposure.</span> Zero int
 sent on 2026-08-03 and 38 more through 2026-08-04, one per organisation, every factual claim checked
 against its filing first. <strong>Zero replies. Four bounces.</strong> This is a full quarter of the
 rubric and no further engineering recovers it.
-<br><br><span class="lbl">The aim was right and the channel was wrong, which is the part worth
-saying out loud.</span> Every address was read off a certificate of service in a real docket —
+<br><br><span class="lbl">The aim was right and the channel was wrong.</span> Every address was read
+off a certificate of service in a real docket —
 nothing bought, nothing scraped. The population is checkable in this repository rather than from
 memory: <code>data/real/</code> holds 102 filings across 19 dockets and eight state commissions,
 naming 48 distinct filing organisations — 26 utilities or their outside counsel, 14 commission
@@ -1112,8 +1105,8 @@ playwright against the seeded corpus, whose longest beat is the withheld claim �
 megawatts, the citation quoted 10, and where the statement would be there is a hatched panel reading
 no claim made. The poster frame is that panel, so a reader who never presses play has still seen the
 argument.</td></tr>
-<tr><td>Every doc link is viewable by anyone with the link</td><td><span class="no">Not
-checked.</span> <strong>YES.</strong> Re-checked on 2026-08-05: five documents fetched anonymously from <a href="https://strata.sudama.ai/docs/">strata.sudama.ai/docs/</a> &mdash; prd, tdd, submission, tech-questions-faq and decisions &mdash; all answered 200.</td></tr>
+<tr><td>Every doc link is viewable by anyone with the link</td><td><span class="yes">YES.</span>
+Checked on 2026-08-05: five documents fetched anonymously from <a href="https://strata.sudama.ai/docs/">strata.sudama.ai/docs/</a> &mdash; prd, tdd, submission, tech-questions-faq and decisions &mdash; all answered 200.</td></tr>
 <tr><td>90-second pitch said out loud, timed</td><td><span class="part">Written in
 <a href="https://strata.sudama.ai/docs/ai/briefing.html"><code>docs/.ai/briefing.html</code></a>. Not timed aloud on the record.</span></td></tr>
 <tr><td>DeepInterview started within 30 minutes of sending the submission, repo open
@@ -1131,14 +1124,14 @@ the two people who wrote in.</div>
 <h2>Known gaps to state plainly</h2>
 
 <p>Saying "I don't know" is described in the prep guide as a positive signal. These are ordered by
-how much they matter, not by how comfortable they are.</p>
+how much they matter.</p>
 
 <table>
 <tr><th>Gap</th><th>Why it is this way</th><th>What I would do with more time</th></tr>
 
-<tr><td><strong>The two commands a reviewer runs are not both green, and the repository is
-private.</strong> <code>make test</code> failed one test on a fresh clone of HEAD at the time of
-this entry. The repository has since been made public.</td><td>A feature landed half-committed — the
+<tr><td><strong>The repository is public and the fresh-clone suite passes.</strong> When this entry
+was written the repository was private and <code>make test</code> failed one test on a fresh clone
+of HEAD.</td><td>A feature landed half-committed — the
 <code>user_permissions</code> table is in <a href="https://github.com/jsahasi/strata/blob/main/app/state/models.py"><code>app/state/models.py</code></a> and the module that uses
 it is not — so a derived guard in <a href="https://github.com/jsahasi/strata/blob/main/tests/test_retention.py"><code>tests/test_retention.py</code></a> caught exactly what it was
 written for and the commit went in over it. The visibility was never changed from the default and
@@ -1248,15 +1241,19 @@ were exactly that shape.</td></tr>
 <tr><td><strong>Authentication is built, and the segregation-of-duties hole in it is real.</strong>
 A person signs in over the internet. An admin holds <code>user.manage</code>, so an admin can grant
 themselves <code>obligation_owner</code> and approve their own work. Separately,
-<code>can_approve</code> has no caller in <code>app/web/</code> — only
-<a href="https://github.com/jsahasi/strata/blob/main/tests/test_policy.py"><code>tests/test_policy.py</code></a> exercises it — so the approval paths are ungated and an operator
-can still resolve an escalation they raised.</td><td>The chain records the grant, which makes it
+<code>can_approve</code> had no caller in <code>app/web/</code> for a day — an independent review found that
+before I did. It has one now: <code>app/web/views/actions.py::decide</code>, the screen where a proposed
+action is approved (ADR-91). The fix was not a line. There was nowhere in the product to propose an
+action at all, so the gate had no decision under it, and two attempts to wire it into the escalation
+queue were reverted because that screen belongs to the analyst, who does not hold
+<code>action.approve</code>. Closing an escalation is still gated on <code>escalation.resolve</code>
+alone, so an operator can still resolve an escalation they raised.</td><td>The chain records the grant, which makes it
 visible afterwards and does not prevent it. Both limits are written in
 <a href="https://strata.sudama.ai/docs/security.html"><code>docs/security.html</code></a> in those words rather than implied away, because a compliance
 product that oversells its own controls has made the argument against
-itself.</td><td>A second approver on privilege changes, and a caller for
-<code>can_approve</code> on every approval path. The first is design work; the second is a line and
-a test, and it has been open longer than it should have been.</td></tr>
+itself.</td><td>A second approver on privilege changes, and an approval that
+performs the action rather than recording it. The first is design work. The second is the honest
+limit of what shipped: <code>/actions</code> records what the company decided and files nothing.</td></tr>
 
 <tr><td><strong>The hosted instance runs the product now, and one ADR still describes something
 else.</strong> <code>strata.sudama.ai</code> serves <code>deploy/site/</code> at the root with the
@@ -1305,7 +1302,7 @@ docket fetcher at <a href="https://github.com/jsahasi/strata/blob/main/app/sourc
 files. <span class="lbl">None of it is claimed as shipped anywhere on this page</span>, and the gap
 rows that say those capabilities are missing are correct against HEAD, which is what a reviewer
 clones. Every claim above is bound to <code>1343f57</code> and expires against anything later —
-best-practices §28, applied to this page rather than only quoted on it.</p>
+best-practices §28.</p>
 
 <h2>Submission video: the script to record</h2>
 
