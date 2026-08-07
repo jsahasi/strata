@@ -16,8 +16,10 @@
   code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.88em; }
   .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
   .crit { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .ok { background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
   .lbl { font-weight:600; color:#334155; }
   .who { font-size:.82rem; color:#64748b; }
+  .empty { color:#15803d; font-weight:600; }
 </style>
 <link rel="stylesheet" href="../docs-nav.css">
 </head>
@@ -28,9 +30,9 @@
 </nav>
 
 <h1>Remaining gaps, prioritised</h1>
-<p class="sub">Compiled 2026-08-04 from a full audit of every document in <code>docs/</code> and
-<code>deploy/site/</code>, each claim checked against the code rather than against the previous
-version of the document.</p>
+<p class="sub">Recompiled 2026-08-07. Every row below was re-checked against the code on that date,
+not carried forward from the previous version of this page. The first version was compiled
+2026-08-04; 64 commits have landed since, and most of what it listed is closed.</p>
 
 <div class="crit"><strong>How to read the ordering.</strong> Priority here is not size of effort. It
 is <em>what a reviewer hits first</em>. A submission is read in a fixed order — the repository link,
@@ -39,208 +41,231 @@ everything good behind it. P0 items stop a reviewer at the front door. P1 items 
 a reader could act on. P2 items are real code gaps that a panel question would expose. P3 items are
 things only we would notice.</div>
 
-<div class="note"><strong>One decision is yours.</strong> Making the
-repository public is an outward-facing, hard-to-reverse act, and the history contains 40-odd commit
-messages plus every document in this list. It is item P0-1 and it needs your word, not mine.</div>
+<div class="ok"><strong>What changed since 2026-08-04.</strong> All six P0 items and all four P1
+items from that version are closed. Of twelve P2 items, nine are closed and two were narrowed to
+something smaller than they were. Of six P3 items, three are closed. The closed rows are listed at
+the foot of this page with what closed them, because a gaps list read alone tells a reader the wrong
+story about the state of the work.</div>
+
+<div class="note"><strong>One item is new, and it was found by recompiling this page.</strong> The
+suite was re-run rather than remembered, as this project's own rule requires, and it printed a
+different number from the one four documents carry. That is P1-5 below. It is the only row here that
+did not exist on 2026-08-04, and it is a small instance of the failure this page exists to
+catch.</div>
 
 
 <h2 class="p0">P0 — stops a reviewer at the front door</h2>
-<table>
-<tr><th>Gap</th><th>What it costs</th><th>State</th></tr>
-
-<tr><td>P0-1<br>Repository is private</td>
-<td><code>gh repo view jsahasi/strata --json visibility</code> returns <code>PRIVATE</code>. The
-submission gives a GitHub link as its first field. Every argument this project makes about keeping
-the full history unsquashed, about ADRs written before the code, about commit messages carrying
-their reasoning, is worth nothing behind a 404. This is the single highest-value minute available.</td>
-<td class="lbl">Needs your decision. Not taken on your behalf.</td></tr>
-
-<tr><td>P0-2<br>Uncommitted work</td>
-<td>Around 13,500 lines across four subsystems sit in the working tree: the scheduler, the docket
-fetcher, point-in-time replay, and granular permissions. None of it is in the history a reviewer
-reads, and an untracked file is one <code>git clean</code> from gone.</td>
-<td class="lbl">Suite green at 1,711. Committing now.</td></tr>
-
-<tr><td>P0-3<br><code>make test</code> failed on a fresh clone</td>
-<td>HEAD declared a <code>user_permissions</code> table whose retention window was never added, so a
-derived guard refused it — on a clean checkout, which is exactly what a reviewer runs. The feature
-landed half-committed: the model went in, the module that uses it did not.</td>
-<td class="lbl">Fixed. Commit pending.</td></tr>
-
-<tr><td>P0-4<br>Every "Scope" link answered 500</td>
-<td><code>review_project.html</code> did not exist while <code>review_centre.py</code> rendered it
-from two routes. The parent template said so in its own opening comment and the suite stayed green
-for a day, because nothing rendered either route.</td>
-<td class="lbl">Fixed — template written.</td></tr>
-
-<tr><td>P0-5<br><code>permissions</code> missing from nginx</td>
-<td>The router is mounted in <code>app/main.py</code>; <code>deploy/nginx.conf</code> proxies a named
-list that did not include it. A screen that works locally and 404s in production is the worst shape
-a bug can take.</td>
-<td class="lbl">Fixed in the same change as the mount.</td></tr>
-
-<tr><td>P0-6<br><code>make run</code> seeds zero obligations</td>
-<td>The eight duties reach the database only through <code>scripts/seed_demo_gaps.py</code>, which
-neither <code>make run</code> nor <code>deploy/entrypoint.sh</code> calls. A reviewer following the
-README opens the owner-handoff feature and finds nobody in it. <strong>This is the one still open in
-P0 that I have not started.</strong></td>
-<td class="lbl">OPEN.</td></tr>
-</table>
+<p class="empty">Empty. All six closed. Listed at the foot of the page.</p>
+<p>Worth stating plainly rather than leaving as an absence: the repository is public
+(<code>gh repo view jsahasi/strata --json visibility</code> returns <code>PUBLIC</code>), the
+working tree is clean with nothing uncommitted, <code>make test</code> passes on a fresh clone, both
+routes that render <code>review_project.html</code> answer 200, <code>permissions</code> is in the
+nginx proxy list, and <code>make run</code> seeds the eight duties because
+<code>scripts/seed_demo_gaps.py</code> is now called by both the <code>seed</code> target and
+<code>deploy/entrypoint.sh</code>.</p>
+<p><span class="lbl">Run rather than recalled, on 2026-08-07 at commit <code>65c42d7</code>:</span>
+<code>make fresh-check</code> cloned HEAD into a temporary directory, ran the suite there and exited
+zero — <strong>2,340 passed, 1 xfailed in 327s</strong>, "fresh clone: tests pass".
+<code>make test</code> in the working copy gives the same result in 325s. That is the command a
+reviewer runs, run the way a reviewer runs it.</p>
 
 
 <h2 class="p1">P1 — false statements a reader could act on</h2>
-<p>All three of these are on the <em>public</em> site, which makes them representations to a reader
-who has no way to check.</p>
+<p>All four items from 2026-08-04 are closed. The three public-site pages that made claims the code
+had reversed — <code>security.html</code> on whether a model call runs on the request path,
+<code>subprocessors.html</code> and <code>privacy.html</code> on whether Anthropic is a
+sub-processor, <code>security.html</code> again on which surface the safe harbour covers — now say
+what is true, and <code>subprocessors.html</code> keeps a paragraph recording that it used to argue
+the other way. The six admin screens that were reachable only by typing the URL now sit behind a
+permission-gated <strong>Admin</strong> item in the masthead. One new item takes their place.</p>
 <table>
 <tr><th>Gap</th><th>What it says, and what is true</th><th>State</th></tr>
 
-<tr><td>P1-1<br>"No document text goes anywhere"</td>
-<td><code>deploy/site/security.html</code> tells a buyer that no model call runs on the request path.
-<code>app/web/views/chat.py</code> reaches <code>app/chat/agent.py</code>, <code>app/config.py</code>
-loads the key, and <code>compose.yml</code> passes it into the container. The assistant's tools
-return obligation titles, owner names, account ids, the approval route, escalations and claims.</td>
-<td class="lbl">Agent rewriting now.</td></tr>
-
-<tr><td>P1-2<br>Anthropic is a sub-processor and the page denies it</td>
-<td><code>subprocessors.html</code> argues the case on four grounds and <em>all four have
-reversed</em>. The page names its own trigger — "the first time a key is set and a call is made" —
-and that trigger has fired. <code>privacy.html</code> repeats it.</td>
-<td class="lbl">Agent rewriting now.</td></tr>
-
-<tr><td>P1-3<br>Safe harbour points at the wrong surface</td>
-<td><code>security.html</code> says the application "is not deployed behind that name". False since
-<code>b5c894b</code>. This steers a good-faith security researcher away from the live product and
-the safe-harbour paragraph inherits the wrong boundary.</td>
-<td class="lbl">Agent rewriting now.</td></tr>
-
-<tr><td>P1-4<br>Six admin screens have no way in</td>
-<td><code>/users</code>, <code>/permissions</code>, <code>/admin/shares</code>,
-<code>/admin/invites</code>, <code>/admin/sources</code>, <code>/admin/feedback</code> are mounted,
-answer 200 to an administrator who types them, and appear on no screen. The masthead has no
-administrative menu for them to live in.</td>
-<td class="lbl">Guard written and failing honestly; agent building the menu.</td></tr>
+<tr><td>P1-5<br>The test count is 39 behind in four documents</td>
+<td><code>make fresh-check</code> at HEAD (<code>65c42d7</code>) prints <strong>2,340 passed, 1
+xfailed</strong> and exits zero. Four documents carry <strong>2,301 passed, 2 xfailed</strong>:
+<code>submission.html</code> at lines 246, 1035 and 1052, <code>tech-questions-faq.html</code> line
+58, <code>interview-bank.html</code> line 60.
+<strong>These are not dishonest — every one is stamped with the commit it was measured at</strong>
+(<code>a5c20cb</code>, <code>3ab55b7</code>, <code>bd21a5a</code>), which is this project's own
+convention for a dated snapshot. The problem is narrower and worth fixing anyway:
+<code>submission.html</code> line 246 introduces the figure as "the reviewer's command, run as a
+reviewer runs it", and a reviewer who runs it gets a different number in the first minute of
+reading. No test file changed between <code>05b05e0</code> and HEAD, so the drift is older than the
+stamp suggests. The cost is a reviewer's first impression; the fix is one re-run and five
+edits.</td>
+<td class="lbl">OPEN. Found by recompiling this page.</td></tr>
 </table>
 
 
 <h2 class="p2">P2 — real code gaps a panel question would expose</h2>
 <table>
-<tr><th>Gap</th><th>Why it matters</th></tr>
+<tr><th>Gap</th><th>Why it matters</th><th>State</th></tr>
 
-<tr><td>P2-1<br>Tenant check missing in <code>ensure_obligation</code></td>
-<td><code>app/state/routing.py:359</code> does <code>session.get(Obligation, id)</code> and returns
-the row <strong>without comparing <code>company_id</code></strong>. <code>_require_scope</code> runs
-but only validates the string. Two sibling call sites — <code>rollback.py:246</code>,
-<code>workflow.py:752</code> — do the identical lookup and post-check correctly. Reachable today
-only from a seed script and covered by no test. This is the product's central control, and the panel
-will ask about it.</td></tr>
+<tr><td>P2-3<br><code>start_run</code> is called by nothing</td>
+<td>Narrowed from four items to one. <code>propose.py</code> now has real callers —
+<code>materiality_for_company</code> from <code>changes.py:1014</code> and
+<code>shown_materiality_for_company</code> from <code>projects.py:443</code> and
+<code>chat/tools.py:1103</code> — so the interpretation gate and the thing it gates are connected.
+<code>can_approve</code> has its caller in <code>app/web/views/actions.py:495</code> (ADR-91).
+<code>revert_event</code> has one in <code>app/state/replay.py:704</code>. That leaves
+<code>start_run</code> in <code>app/state/workflow.py:1744</code>, exported in
+<code>__all__</code> and reached from <code>tests/</code> only: no approval run starts from any
+screen. No ADR covers it, which is the part to fix first — a gap with reasoning written down is a
+different answer at a panel than a gap without.</td>
+<td class="lbl">OPEN. Smaller than it was.</td></tr>
 
-<tr><td>P2-2<br><code>_require_scope</code> does not reject <code>"%"</code></td>
-<td>The isolation tests would pass without it, which means they are not testing what they claim.</td></tr>
-
-<tr><td>P2-3<br>Four things are built and called by nothing</td>
-<td><code>propose.py</code> (the model proposer) has no caller outside tests, so the interpretation
-gate is real and the thing it gates is disconnected. <code>start_run</code> has no caller, so no
-approval run ever starts. <code>can_approve</code> had zero callers anywhere and now has one, <code>app/web/views/actions.py::decide</code> (ADR-91), which is the screen the whole control was waiting on. It has a caller and it still has no reachable refusal: no route in the product can put <code>action.approve</code> on somebody who already touched a claim, so the refusal is watched after <code>STRATA_DEMO_REFUSAL=1 python -m app.seed</code> or in the suite. ADR-91 cost two carries it.
-<code>revert_event</code> has none in <code>app/</code>. Each is defensible individually; together
-they are the pattern to have an answer for.</td></tr>
-
-<tr><td>P2-4<br><code>record_note</code> is gated on no permission</td>
-<td>A write tool the assistant can call, with no permission code in front of it, in a product whose
-argument is that every act is gated and recorded. <code>create_project</code> beside it is gated.</td></tr>
-
-<tr><td>P2-5<br>The two files that protect the deploy have no tests</td>
-<td><code>app/config.py</code> and <code>app/state/migrate.py</code> have no test file at all;
-<code>migrate.py</code> measures 0%. It is the file standing between a deploy and an unreadable live
-schema. With the 99% target cut, this is the one module worth covering on merit.</td></tr>
-
-<tr><td>P2-6<br>Coverage is not reproducible</td>
-<td>The coverage tool is installed in the virtualenv and <strong>not in
-<code>requirements.txt</code></strong>, so a reviewer cannot reproduce the 92%.</td></tr>
+<tr><td>P2-4<br><code>record_note</code> is gated on an approximate code</td>
+<td>Narrowed. It is no longer ungated: <code>PERMISSION_NOTE_WRITE = "knowledge.write"</code> in
+<code>app/chat/tools.py:249</code>, and the comment above it says in full why that is the closest
+code the product defines rather than the exact one. The exact code, <code>note.write</code>, is
+still not defined, so the grid gives a note-writer everything <code>knowledge.write</code> covers.
+The reasoning is written down, which is the difference between this and where it started.</td>
+<td class="lbl">OPEN, and documented at the call site.</td></tr>
 
 <tr><td>P2-7<br>A source status question, deliberately deferred</td>
-<td>Setting <code>FETCHABLE_SOURCE_KINDS</code> to name the public docket moves a registration that
-names no document from <code>not_implemented</code> to <code>never_tried</code> — different
-sentences to a reader, and four tests assert the first. Neither fits a row whose registration is
-merely incomplete. Written down rather than answered in a hurry.</td></tr>
+<td>Unchanged and still deliberate. <code>FETCHABLE_SOURCE_KINDS</code> is empty, so
+<code>app/web/views/integrations.py</code> answers no for every kind. Setting it to name the public
+docket moves a registration that names no document from <code>not_implemented</code> to
+<code>never_tried</code> — different sentences to a reader, and four tests assert the first. Neither
+fits a row whose registration is merely incomplete. Written down rather than answered in a hurry.</td>
+<td class="lbl">OPEN by choice.</td></tr>
 </table>
 
 
 <h2 class="p2">P2 — the demonstration itself</h2>
 <table>
-<tr><th>Gap</th><th>Why it matters</th></tr>
+<tr><th>Gap</th><th>Why it matters</th><th>State</th></tr>
 
 <tr><td>P2-8<br>The demo route lets the admin approve their own route</td>
-<td><code>scripts/seed_route.py</code> sends both "Legal review" and "Officer signs the filing" to
-<code>role:admin</code>, so the account that draws the route approves through it twice — the exact
-segregation-of-duties failure this product exists to surface, in the demonstration a panel opens.
-Now unblocked by the permissions work. <strong>There is a real choice here:</strong> fix it, or make
-it deliberate and let the conflict report catch the demo's own configuration, which is a stronger
-demonstration. Leaving it accidental is the only bad option.</td></tr>
-
-<tr><td>P2-9<br>The demo video predates most of today</td>
-<td>Recorded before the restyle, the markdown fix, source links, the tour and Integrations.</td></tr>
-
-<tr><td>P2-10<br>Nobody has keyboard-tabbed the product since the glass landed</td>
-<td>No test catches a lost focus ring. The worst measured contrast is 4.48:1 — knowingly kept,
-because that grey is the only signal a nav item is unreachable — but nothing re-sampled it.</td></tr>
-
-<tr><td>P2-11<br>Logo mismatch, with a real blocker under it</td>
-<td>The app renders mixed-case <code>Strata</code> with a painted three-bar glyph; the site renders
-letter-spaced <code>STRATA</code> with the final A in navy. A third variant is on the invite page.
-Adopting the site's mark needs a <code>--stamp</code> token the app does not have, and
-<code>strata.css</code> states that exactly two hues exist. Five files identified.</td></tr>
-
-<tr><td>P2-12<br>The blog is not linked from the landing page</td>
-<td>The link runs one way, posts back to home.</td></tr>
+<td><code>scripts/seed_route.py</code> still sends STP-2 "Legal review" and STP-4 "Officer signs the
+filing" to <code>role:admin</code>, so the account that draws the route approves through it twice —
+the exact segregation-of-duties failure this product exists to surface, in the demonstration a panel
+opens. <strong>The choice is still open:</strong> fix it, or make it deliberate and let the conflict
+report catch the demo's own configuration, which is a stronger demonstration. Leaving it accidental
+is the only bad option, and three days later it is still accidental — nothing in the script's
+docstring claims it.</td>
+<td class="lbl">OPEN. The oldest unmade decision on this page.</td></tr>
 </table>
 
 
 <h2 class="p3">P3 — only we would notice</h2>
 <table>
 <tr><th>Gap</th><th>Detail</th></tr>
-<tr><td>P3-1</td><td><code>app/chat/__init__.py</code> still calls the persona "Clerk".
-<code>persona.py</code> says "Clarke". You asked for Clarke.</td></tr>
-<tr><td>P3-2</td><td>Stale docstrings in files whose behaviour changed under them:
-<code>projects.py</code> ("this build makes no model call"), <code>integrations.py</code>
-(provenance, and the fetcher), <code>auth.py</code> ("no invitation flow"),
-<code>requirements.txt</code> ("no ORM migrations tool"), <code>seed_demo_gaps.py</code> (cites
-<code>tests/test_demo_ready.py</code>, which does not exist).</td></tr>
-<tr><td>P3-3</td><td><code>docs/.ai/state.json</code>: <code>tests.measured</code> is false, and
-<code>known_gaps</code> still lists the <code>_spans_of</code> window scan fixed in
-<code>ec1c4bf</code>.</td></tr>
-<tr><td>P3-4</td><td>ADR-17 is titled "Two digest schemes"; there are three. ADR-53 covers the
-addition but the title reads as current.</td></tr>
-<tr><td>P3-5</td><td><code>site.css</code> line 95 claims 5.3:1; the computed floor is 4.98:1.
-Likely a dropped digit from 5.03. Nobody has re-sampled.</td></tr>
-<tr><td>P3-6</td><td>Outreach counts disagree across three documents: ADR-63 says 8 first-wave
-messages, the MRD says 7, <code>resume.md</code> says about 40 against a total of 45. The send log
-is not in the repository. The undisputed number is zero replies.</td></tr>
+
+<tr><td>P3-2</td><td>Three stale docstrings survive, down from five.
+<code>app/web/views/auth.py:31</code> says "no invitation flow" and
+<code>app/web/views/invite_accept.py</code> is an invitation flow.
+<code>requirements.txt:47</code> says "no ORM migrations tool: the schema is created from the models
+at startup" and <code>app/state/migrate.py</code> exists.
+<code>scripts/seed_demo_gaps.py:19</code> cites <code>tests/test_demo_ready.py</code>, which still
+does not exist. The two that are fixed: <code>projects.py</code> no longer claims the build makes no
+model call, and <code>integrations.py</code> is current on provenance and the fetcher.</td></tr>
+
+<tr><td>P3-3</td><td><code>docs/.ai/state.json</code> is unchanged since 2026-08-05 10:16.
+<code>tests.measured</code> is still <code>false</code>, and <code>known_gaps</code> still lists the
+<code>_spans_of</code> window scan fixed in <code>ec1c4bf</code>. This is the file two other
+documents read their numbers from, so it is stale in a way that spreads.</td></tr>
+
+<tr><td>P3-4</td><td>ADR-17 is still titled "Two digest schemes, and the old rows are never
+re-hashed"; there are three. ADR-53 covers the addition, but a reader scanning titles takes the
+count from the title.</td></tr>
+
+<tr><td>P3-5</td><td><code>deploy/site/site.css</code> line 95 claims the <code>--glass-veil</code>
+mix reads 5.3:1. The earlier audit computed a floor of 4.98:1 and guessed a dropped digit from 5.03.
+<strong>Still not re-sampled by anybody</strong>, so this stays recorded as unverified rather than
+resolved in either direction. Both figures clear the 4.5:1 threshold, which is why it has stayed a
+P3.</td></tr>
 </table>
 
 
-<h2 class="done">Closed today, listed so the list is not read as the whole picture</h2>
+<h2 class="done">Closed since 2026-08-04, listed so this page is not read as the whole picture</h2>
 <table>
 <tr><th>Was</th><th>Now</th></tr>
-<tr><td>The tour had never rendered for anybody</td><td>Included in <code>base.html</code>. Its own
-strict xfail turned the suite red on success, exactly as written, and is deleted.</td></tr>
-<tr><td>The permissions router was mounted nowhere</td><td>Mounted, and nginx updated in the same
-change.</td></tr>
-<tr><td>The privacy page said nothing ran the purges</td><td>A scheduler reaches them. The page names
-the three settings between that and a deleted row, and the guard now checks the page describes
-whichever state is true rather than asserting one of them.</td></tr>
-<tr><td>Five action codes lived in two files</td><td>One file. The drift test that could no longer
-fail was replaced with one that can.</td></tr>
-<tr><td>The 99% coverage target</td><td>Cut. ADR-38 carries the whole history including the part
-where refusing a number while measuring nothing was the weaker position.</td></tr>
-<tr><td>Eleven documents describing yesterday's build</td><td>Audited claim by claim against the
-code. The corrections are in each document, and several were substantial — the architecture doc had
-the verification gate on the wrong side of the write, and the MRD said no model ran anywhere.</td></tr>
+
+<tr><td>P0-1 The repository was private</td><td>Public. The decision was the owner's and it was
+taken.</td></tr>
+
+<tr><td>P0-2 Around 13,500 lines uncommitted across four subsystems</td><td>Committed. The working
+tree is clean, and the scheduler, the docket fetcher, point-in-time replay and granular permissions
+are all in the history a reviewer reads.</td></tr>
+
+<tr><td>P0-3 <code>make test</code> failed on a fresh clone</td><td>The retention window the derived
+guard wanted is declared for <code>user_permissions</code> in
+<code>app/state/retention.py:593</code>. <code>make fresh-check</code> — which clones HEAD into a
+temporary directory so nothing uncommitted can make it pass — exits zero.</td></tr>
+
+<tr><td>P0-4 Every "Scope" link answered 500</td><td><code>app/web/templates/review_project.html</code>
+is written, and both routes in <code>review_centre.py</code> render it.</td></tr>
+
+<tr><td>P0-5 <code>permissions</code> missing from nginx</td><td>In the proxy list at
+<code>deploy/nginx.conf:106</code>, with a comment above it recording why a screen that works
+locally and 404s in production is the worst shape a bug can take.</td></tr>
+
+<tr><td>P0-6 <code>make run</code> seeded zero obligations</td><td><code>seed_demo_gaps.py</code> is
+called by the <code>seed</code> target and by <code>deploy/entrypoint.sh</code>, last in an order the
+entrypoint's comment says is load-bearing rather than tidy.</td></tr>
+
+<tr><td>P1-1 "No document text goes anywhere"</td><td><code>deploy/site/security.html</code> now
+describes the request path as it is, and says in the same paragraph that the page used to say
+otherwise.</td></tr>
+
+<tr><td>P1-2 Anthropic is a sub-processor and the page denied it</td><td><code>subprocessors.html</code>
+names Anthropic, says what every turn of the chat panel carries, and keeps a note that the page
+earlier argued the opposite at length.</td></tr>
+
+<tr><td>P1-3 Safe harbour pointed at the wrong surface</td><td>The "is not deployed behind that
+name" sentence is gone.</td></tr>
+
+<tr><td>P1-4 Six admin screens had no way in</td><td>An <strong>Admin</strong> item in the masthead,
+drawn from a permission and outside the seven-screen loop on purpose — the comment in
+<code>base.html</code> gives the reason, which is that a permission field that is always
+<code>None</code> on every analyst row is a field the next reader has to test to disbelieve.</td></tr>
+
+<tr><td>P2-1 Tenant check missing in <code>ensure_obligation</code></td><td>Fixed. The function
+fetches through <code>row_for_company</code>, and its docstring carries the whole failure in capitals
+so the next reader cannot remove the check by accident. This was the product's central control and
+the panel would have asked.</td></tr>
+
+<tr><td>P2-2 <code>_require_scope</code> did not reject <code>"%"</code></td><td><code>SCOPE_WILDCARDS
+= ("%", "_")</code> in <code>app/state/queries.py</code>, with each refused value and its reason
+written out. The isolation tests were fixed in the same change: they had accepted an empty list as
+proof, which is what a deleted guard also produces.</td></tr>
+
+<tr><td>P2-5 The two files that protect the deploy had no tests</td><td><code>tests/test_config.py</code>
+and <code>tests/test_migrate.py</code> both exist.</td></tr>
+
+<tr><td>P2-6 Coverage was not reproducible</td><td><code>coverage==7.15.*</code> and
+<code>pytest-cov==7.1.*</code> are pinned in <code>requirements.txt</code>, with a comment saying
+they are there so the published figure can be reproduced.</td></tr>
+
+<tr><td>P2-9 The demo video predated most of a day's work</td><td>Re-recorded in
+<code>a59be0c</code> — "The film on the landing page is the film the product now is".</td></tr>
+
+<tr><td>P2-10 Nobody had keyboard-tabbed the product since the glass landed</td><td><code>tests/test_a11y_guards.py</code>
+and <code>tests/test_glass_contrast.py</code> exist. The nav's unreachable items are now real
+elements with the reason in the accessible name rather than in a <code>title</code> attribute a
+screen reader may skip — WCAG 2.1.1 and 4.1.2, from one attribute.</td></tr>
+
+<tr><td>P2-11 Logo mismatch</td><td>One mark. The app and the site render byte-identical SVG: the
+three-bar glyph on <code>#0d5c6b</code> with mixed-case <code>Strata</code> beside it.</td></tr>
+
+<tr><td>P2-12 The blog was not linked from the landing page</td><td>Linked twice, from the body and
+from the footer.</td></tr>
+
+<tr><td>P3-1 The persona was called "Clerk" in one file</td><td>Clarke everywhere.</td></tr>
+
+<tr><td>P3-6 Outreach counts disagreed across three documents</td><td>45 messages, zero replies,
+consistently, in the MRD and in <code>user-research.html</code>. The "first wave of 7" is the first
+wave and not the total, which is what made the numbers look contradictory. The send log is still not
+in the repository.</td></tr>
 </table>
 
-<div class="note"><strong>What this list does not contain.</strong> Anything I could not check. Where
-a document said something I could not verify from the repository — the outreach counts, the 92%
-figure, whether <code>make run</code> works from a clean clone — it is recorded above as unverified
-rather than resolved in either direction.</div>
+<div class="note"><strong>What this list does not contain.</strong> Anything that could not be
+checked. Where a claim could not be verified from the repository — the <code>site.css</code> contrast
+figure is the one left — it is recorded above as unverified rather than resolved in either
+direction. Nothing on this page was carried forward from the 2026-08-04 version without being
+re-run against the code first.</div>
 
 </body>
 </html>
