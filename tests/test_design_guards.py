@@ -90,10 +90,31 @@ RECORD_SELECTORS = (
 # Both predate this guard. If either selector's rule ever grows past a
 # left-edge strip into an actual background wash, this allowlist should stop
 # covering it -- that is a real regression, not the documented pattern.
-KNOWN_GRADIENT_EXCEPTIONS = (
-    ".claim--withheld",
-    ".source--internal::before",
-)
+# THE EXEMPTION IS CONDITIONAL, AND THE CONDITION IS CHECKED. Naming a
+# selector and waving it through would mean a full-bleed wash could land on
+# .claim--withheld tomorrow and this guard would stay silent -- the comment
+# above says that is a regression, and a rule stated in a comment that nothing
+# enforces is the shape of drift this whole file exists to catch. So each
+# exception carries the proof that it is still a narrow strip, and the
+# exemption only applies while that proof is in the stylesheet.
+#
+# .claim--withheld clamps its own gradient with `background-size: 3px 100%`.
+# .source--internal::before takes its 3px from the shared `.source::before`
+# rule above it, so the proof lives outside its own block and is looked for
+# across the whole sheet rather than inside the matched one.
+# Each entry is (where the proof lives, the proof). "block" means the clamp is
+# in the exempted rule itself; ("rule", selector) means it is inherited from a
+# named sibling, and the proof is looked for in THAT rule and nowhere else.
+#
+# The scope matters and getting it wrong silently disarms this. A first version
+# fell back to "anywhere in the stylesheet", and `background-size: 3px 100%`
+# occurs five times, so deleting the clamp from .claim--withheld still found it
+# in four unrelated rules and the exemption held. The guard passed a mutation it
+# was written to catch.
+KNOWN_GRADIENT_EXCEPTIONS = {
+    ".claim--withheld": ("block", "background-size: 3px 100%"),
+    ".source--internal::before": (("rule", ".source::before"), "width: 3px"),
+}
 
 
 def _declaration_blocks(css):
@@ -128,12 +149,32 @@ def test_no_record_surface_carries_a_gradient():
         if "gradient" not in block:
             continue
         selector = block.split("{")[0]
-        if any(known in selector for known in KNOWN_GRADIENT_EXCEPTIONS):
+        exempt = False
+        for known, (scope, proof) in KNOWN_GRADIENT_EXCEPTIONS.items():
+            if known not in selector:
+                continue
+            # Still a strip? Then the documented exception holds. If the clamp
+            # has gone, the rule has grown into the wash the exception was
+            # never written to cover, and it falls through to the check below.
+            if scope == "block":
+                exempt = proof in block
+            else:
+                _, owner = scope
+                exempt = any(
+                    proof in other
+                    for other in _declaration_blocks(css)
+                    if other.split("{")[0].strip() == owner
+                )
+            break
+        if exempt:
             continue
         for name in RECORD_SELECTORS:
             if name in selector:
                 offenders.append(selector.strip()[:60])
     assert not offenders, (
         f"gradient on a record surface: {offenders}. Chrome is soft, the "
-        "record is flat -- see the visual redesign spec, section 5."
+        "record is flat -- see the visual redesign spec, section 5. If one of "
+        "these is a documented left-edge rail rather than a wash, it needs an "
+        "entry in KNOWN_GRADIENT_EXCEPTIONS carrying the clamp that proves it "
+        "is still a strip."
     )
