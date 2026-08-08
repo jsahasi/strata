@@ -172,39 +172,84 @@ footer a{color:var(--muted)}
 
 <main id="main">
 
-<section>
+<!-- THE FIRST SCREENFUL IS A REFUSAL, AND THAT IS THE WHOLE POINT OF IT.
+
+     What used to sit here was a headline, three paragraphs and a pair of small
+     cards, with the verified claim first and the withheld one under it as an
+     afterthought. It read as a product page that happened to mention a refusal.
+
+     The hardest technical decision in this product is that a claim will not
+     assert itself unless its citation survives a byte comparison against the
+     stored filing. A submission is judged on whether that decision is visible
+     in the product rather than buried in the stack, and the most public surface
+     the product has is this one. So the refusal leads, it is the larger of the
+     two records, and it carries the reason and both strings that failed to
+     match. The verified claim follows as the counterweight: same code, other
+     answer.
+
+     NOTHING IN THIS SECTION CARRIES data-reveal. Two reasons, and both matter.
+     The exhibit is evidence, and evidence on this site is given no effects at
+     all -- see the stillness block in site.css. And this is the first
+     screenful: a page whose opening act is an empty rectangle settling into
+     place has spent its one chance to be believed. -->
+<section class="hero">
   <div class="wrap">
     <div class="lined" data-line="1">
       <div class="narrow">
         <h1>Every claim traces to the words behind it, or it does not appear.</h1>
-        <p class="lede">Strata reads successive versions of a proceeding, establishes exactly what
-        changed, maps each change to the obligations and filings it touches, and routes an action to
-        a named reviewer.</p>
-        <p class="muted">The part that matters is what it will not do. A statement whose citation
-        fails verification is withheld — not greyed out, not shown with a confidence score and a
-        disclaimer. Withheld.</p>
+        <p class="lede">Strata reads successive versions of a regulatory proceeding and works out
+        what changed. Before it will state anything, it re-reads the stored filing at the offsets
+        its own citation gives and compares the two strings for equality, not for likeness. Below
+        is a claim that failed that comparison, and what the product does about it.</p>
       </div>
 
       <div class="pair">
-        <div class="rec">
-          <p>The compliance date for the updated load forecast moved from March&nbsp;1,&nbsp;2027 to
-          June&nbsp;1,&nbsp;2027.</p>
-          <span class="chip">§ 7.1 · v2 · verified</span>
-        </div>
-        <div class="rec rec--held">
-          <span class="held-label">Withheld — quoted text does not match the source</span>
-          <div class="srctext">v1 : 1970–2066 reads<br>“…equals or exceeds <mark>20 megawatts</mark> (MW).”</div>
-        </div>
-        <p class="caption">Two claims from the same proceeding. The second has no statement to show
-        you, because the system could not substantiate one. What sits in its place is the reason, and
-        what the source actually says at those offsets.</p>
+        <p class="pair__label">Exhibit &mdash; MPUC-2026-0142, two claims, one verifier</p>
+
+        <article class="rec rec--held">
+          <p class="rec__state">Withheld</p>
+          <!-- The statement slot is empty because there is no statement. The
+               product would raise rather than render one here, and this page
+               does not get to be more confident than the product. -->
+          <div class="withheld">
+            <p class="withheld__label">No claim made</p>
+            <p class="withheld__reason">quoted text does not match the source at the cited
+            offsets</p>
+          </div>
+          <dl class="mismatch">
+            <div>
+              <dt class="mismatch__term">What the source says</dt>
+              <dd class="mismatch__value">&hellip;Requested Load is equal to or greater than
+              <mark>20</mark> megawatts (MW).</dd>
+            </div>
+            <div>
+              <dt class="mismatch__term">What the citation quoted</dt>
+              <dd class="mismatch__value">&hellip;Requested Load is equal to or greater than
+              <mark>10</mark> megawatts (MW).</dd>
+            </div>
+          </dl>
+          <span class="coord">§ 2.1 &middot; v2 &middot; characters 2160&ndash;2266</span>
+        </article>
+
+        <article class="rec">
+          <p class="rec__state">Asserted</p>
+          <p class="rec__statement">The compliance date for the updated load forecast moved from
+          March&nbsp;1,&nbsp;2027 to June&nbsp;1,&nbsp;2027.</p>
+          <span class="coord">§ 7.1 &middot; v2 &middot; characters 7577&ndash;7750 &middot; verified</span>
+        </article>
+
+        <p class="caption">Both claims come out of the same proceeding, and the same code decided
+        each. The first has no sentence to show you: the slot where one would go is struck through,
+        and what stands in it is the reason and the two strings that differ. They differ by one
+        character. The second survived the same check, so it speaks. Nobody chose which &mdash;
+        equality is not an opinion, and there is no confidence score here to soften either answer.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section id="watch">
-  <div class="wrap"><div class="lined" data-line="2">
+  <div class="wrap"><div class="lined" data-reveal data-line="2">
     <h2>A minute inside the product</h2>
     <div class="narrow">
       <p>No slides and no mock-up. This is the application running against its corpus. It ends
@@ -268,7 +313,7 @@ footer a{color:var(--muted)}
 </section>
 
 <section id="try">
-  <div class="wrap"><div class="lined" data-line="3">
+  <div class="wrap"><div class="lined" data-reveal data-line="3">
     <h2>Sign in and try it</h2>
     <div class="narrow">
       <p>The demonstration workspace is open, and it carries two corpora. One is invented &mdash;
@@ -331,7 +376,7 @@ footer a{color:var(--muted)}
 </section>
 
 <section id="access">
-  <div class="wrap"><div class="lined" data-line="4">
+  <div class="wrap"><div class="lined" data-reveal data-line="4">
     <h2>Ask for access</h2>
     <div class="narrow">
       <p>If you carry regulatory obligations across more than one commission and want a workspace of
@@ -345,7 +390,7 @@ footer a{color:var(--muted)}
 </section>
 
 <section id="how">
-  <div class="wrap"><div class="lined" data-line="2">
+  <div class="wrap"><div class="lined" data-reveal data-line="2">
     <h2>How it works</h2>
     <div class="narrow">
       <p>One stage calls a language model. Every other stage is deterministic, and the one that
@@ -370,7 +415,7 @@ footer a{color:var(--muted)}
 </section>
 
 <section id="refuses">
-  <div class="wrap"><div class="lined" data-line="3">
+  <div class="wrap"><div class="lined" data-reveal data-line="3">
     <h2>What it refuses to do</h2>
     <div class="narrow">
       <p>Most of this category is built to always have an answer. A compliance tool that is
@@ -403,7 +448,7 @@ footer a{color:var(--muted)}
 </section>
 
 <section id="who">
-  <div class="wrap"><div class="lined" data-line="4">
+  <div class="wrap"><div class="lined" data-reveal data-line="4">
     <h2>Who it is for</h2>
     <div class="narrow">
       <p>A regulatory affairs analyst at a multi-state investor-owned utility. The person who reads
@@ -432,5 +477,13 @@ footer a{color:var(--muted)}
   </div></div>
 </footer>
 
+<!-- LAST THING IN THE BODY, AND NOT DEFERRED. The script hides what it is
+     about to reveal, so where it runs decides whether anybody sees a flash.
+     Here, every [data-reveal] element already exists and every one of them is
+     below the fold, so the class lands on nothing a reader is looking at. In
+     the head with `defer` the browser is free to paint first and the sections
+     would blink out. The hero is not a target at all, which is what makes this
+     placement safe rather than lucky. -->
+<script src="/reveal.js"></script>
 </body>
 </html>
