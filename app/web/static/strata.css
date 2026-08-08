@@ -72,6 +72,15 @@
   --t-h1: 1.5rem;         /* 24px — page title. The page does not shout. */
   --t-count: 1.375rem;    /* 22px — a count read across a grid of cards */
 
+  /* Display sizes. These are the only places --face-display is used, and they
+     are all headings. The interface scale above is untouched: --t-micro
+     through --t-h1 were measured against the system stack and the 12px floor
+     was set for a real reader on real hardware. */
+  --t-display: 3rem;      /* 48px — the hero line, marketing only */
+  --t-title: 2rem;        /* 32px — page and section titles */
+  --t-lead: 1.25rem;      /* 20px — the sentence under a title */
+  --track-display: -0.02em;  /* geometric faces need negative tracking large */
+
   --lh-ui: 1.5;
   --lh-micro: 1.55;       /* Tracked uppercase needs MORE leading, not less.
                              Letter-spacing pushes glyphs apart across the
@@ -96,6 +105,16 @@
 
   --r: 3px;               /* a printed form field, not a pill */
   --r-sm: 2px;
+
+  /* Shape. Larger radii than the record had, and deliberately not applied to
+     the record: see the gradient rule. Chrome is soft; evidence is square.
+     Nothing in this file consumes them yet. When something does, it has to be
+     chrome -- a button, a card of controls, a pane -- and never the diff, the
+     claims, the quoted source or the citation viewer. Those keep --r and
+     --r-sm, because a filing with rounded corners is a card about a filing. */
+  --r-card: 14px;
+  --r-control: 10px;
+  --r-pill: 999px;
   --shell: 76rem;
 
   /* Colour — light. */
@@ -549,6 +568,18 @@
   --shadow-2: 0 12px 32px rgba(6, 11, 26, 0.14), 0 2px 6px rgba(6, 11, 26, 0.08);
   --shadow-3: 0 4px 14px rgba(6, 11, 26, 0.1);
 
+  /* Two lifts for the new chrome, declared here rather than beside the radii
+     because this is where the depth family lives and a shadow token away from
+     its family is a shadow token that misses the next scheme sweep.
+     --lift-1 is a resting card, --lift-2 something a reader has picked up.
+     They are mixed from --ink so the light scheme's cast carries the page's
+     own blue-black rather than a second neutral. Same rule as every shadow
+     above them: they belong to the chrome, never to the record. */
+  --lift-1: 0 1px 2px color-mix(in srgb, var(--ink) 6%, transparent),
+            0 2px 8px -4px color-mix(in srgb, var(--ink) 18%, transparent);
+  --lift-2: 0 2px 4px color-mix(in srgb, var(--ink) 7%, transparent),
+            0 16px 32px -18px color-mix(in srgb, var(--ink) 32%, transparent);
+
   /* The outer companion to the focus ring. It separates the ring from a
      busy or translucent backdrop. It is an enhancement and may be lost;
      the ring itself is an outline and never is. */
@@ -691,6 +722,18 @@
     --shadow-2: 0 12px 32px rgba(0, 0, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
     --shadow-3: 0 4px 14px rgba(0, 0, 0, 0.45);
 
+    /* THE LIFTS HAVE TO BE RESTATED HERE OR DARK GROWS A HALO. In light they
+       are mixed from --ink, which is a blue-black; --ink in dark is #e9edf7,
+       so the same declaration would paint a near-white glow under every card
+       and call it a shadow. A shadow is the absence of light in both schemes,
+       so dark mixes from black instead, and it takes the deeper alphas the
+       rest of this block takes for the same reason: black on a page already
+       near black has little left to give. */
+    --lift-1: 0 1px 2px rgba(0, 0, 0, 0.4),
+              0 2px 8px -4px rgba(0, 0, 0, 0.55);
+    --lift-2: 0 2px 4px rgba(0, 0, 0, 0.45),
+              0 16px 32px -18px rgba(0, 0, 0, 0.72);
+
     --focus-halo: rgba(4, 9, 11, 0.9);
   }
 }
@@ -747,9 +790,52 @@ h2 {
   font-size: var(--t-ui-lg);
 }
 
+/* The display face, and the first rule in this file to use it. It sits below
+   the h1/h2/h3 block on purpose: for h1 the two rules have the same weight, so
+   source order decides, and this one deliberately takes the weight and the
+   tracking off the block above -- 600 becomes 750 and -0.008em becomes
+   -0.02em. Manrope is a variable face with a 400-800 axis, so 750 renders as
+   750 rather than snapping to bold, and a geometric face at heading size needs
+   the tighter track or the letters drift apart.
+
+   IT DOES NOT TOUCH THE SIZE. h1 stays at --t-h1, 24px, which the interface
+   scale set and argued for. .t-display and .t-title are the opt-in sizes, and
+   nothing in the templates asks for them yet. The page still does not shout;
+   it now says what it says in our own face. */
 h3 {
   font-size: var(--t-ui);
 }
+
+h1, .t-display, .t-title {
+  font-family: var(--face-display);
+  letter-spacing: var(--track-display);
+  font-weight: 750;
+}
+
+/* The display sizes themselves, so a class that names a scale step carries
+   one. Without these .t-title would change the face of a line and leave it at
+   body size, which is the sort of half-applied token that gets "fixed" later
+   by hard-coding a pixel value next to it. --t-lead is the sentence under a
+   title and stays in the interface face: it is prose, not display. */
+.t-display {
+  font-size: var(--t-display);
+  line-height: 1.1;
+}
+
+.t-title {
+  font-size: var(--t-title);
+  line-height: 1.2;
+}
+
+.t-lead {
+  font-size: var(--t-lead);
+  line-height: var(--lh-ui);
+  color: var(--ink-2);
+}
+
+/* Every figure a reader compares down a column. A number that changes width
+   between renders reads as a bug in the data, not in the type. */
+.count, .metric, td.num, .coord { font-variant-numeric: tabular-nums; }
 
 p {
   margin: 0;
@@ -1307,6 +1393,12 @@ a.nav__link:hover {
    machine-checkable, and looking checkable is the honest signal here. */
 .coord {
   font: var(--t-micro) / 1.5 var(--face-data);
+  /* Restated because the line above is the `font` shorthand, which resets
+     font-variant to normal and so throws away the tabular-nums the figures
+     rule sets earlier in this file. Monospace is already tabular, so nothing
+     moves on screen -- but a rule that silently does nothing is the kind that
+     gets copied to a proportional face and quietly fails there. */
+  font-variant-numeric: tabular-nums;
   color: var(--ink-3);
   letter-spacing: 0;
   white-space: nowrap;
@@ -3255,6 +3347,10 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
     --glass-lift: none;
     --shadow-2: none;
     --shadow-3: none;
+    /* The lifts go with them. A cast printed by a laser printer is a grey
+       smear under a box, and nothing on paper is in front of anything. */
+    --lift-1: none;
+    --lift-2: none;
     --blur-1: none;
     --blur-2: none;
     --blur-3: none;
