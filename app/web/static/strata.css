@@ -631,6 +631,14 @@
   --ease-settle: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-offer: cubic-bezier(0.34, 1.42, 0.64, 1);
+
+  /* The refusal gets a duration and a curve of its own, and the curve is the
+     point. --ease-offer overshoots on purpose, which is right for a thing
+     inviting you to take it and wrong for a claim that has just declined to
+     assert itself. A refusal that bounces tells the reader the wrong thing
+     about what happened. This one arrives and it stops. */
+  --dur-refuse: 200ms;
+  --ease-refuse: cubic-bezier(0.2, 0, 0.38, 1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -3329,9 +3337,9 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
 
 /* --------------------------------------------------------------- motion --
  *
- * ONE ORCHESTRATED MOMENT AND TWO MICRO-INTERACTIONS. That is the whole
- * budget. Nothing else in this product is choreographed, nothing is
- * triggered by scroll, and no number ever animates.
+ * ONE ORCHESTRATED MOMENT, TWO MICRO-INTERACTIONS AND ONE REFUSAL. That is
+ * the whole budget. Nothing else in this product is choreographed, nothing
+ * is triggered by scroll, and no number ever animates.
  *
  * THE SETTLE, 420ms end to end, three bands, and it never repeats.
  *
@@ -3344,6 +3352,8 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
  * assembles around a document that was already there, which is what this
  * product says about itself: the filing is not something this software
  * produced and it should not appear to arrive.
+ *
+ * The withheld claim is the single exception, and R below argues for it.
  *
  * Two traps, both live.
  *
@@ -3439,6 +3449,49 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
 /* The marked span inside it gets no motion at all. It is already correct
    when it arrives, and a highlight that animates in asks to be watched
    rather than read. Stated here so nobody adds one. */
+
+/* R -- the refusal. A claim declining to assert itself because its citation
+   did not verify is the one thing this product most wants a reader to
+   notice, so it is the one piece of the record that moves. It is a narrow
+   exception to "the record is in band nothing" above, and it is narrow on
+   purpose: .claim--verified still paints in the first frame, and if both
+   states animated the motion would say nothing, because a difference every
+   claim has is not a difference.
+
+   THE CLASS IS .claim--withheld, NOT .claim--refused. The plan for this
+   change named a class no template renders; the state that reaches the
+   screen on change.html, shared_claim.html and review_centre.html is
+   .claim--withheld, and a rule keyed to the other name would never have
+   fired.
+
+   Down 2px and up to full, and no more than that. The withheld claim
+   already carries its argument in six non-colour differences -- the broken
+   left rule, the inset, the sunk ground, the hatched slot, the missing chip
+   and the quoted-against-source pair. Motion is not being asked to make the
+   point, only to mark the moment the point lands. No overshoot: see
+   --ease-refuse for why. No lift, no gradient, no radius change; the record
+   surface stays flat whatever it is doing.
+
+   Reduced motion is answered by the global sweep at the foot of this file,
+   and answered correctly rather than by accident. The fill mode is `both`,
+   so with the animation off the element renders at its natural state, which
+   IS the end state: full opacity, no transform. The refusal still shows.
+   A refusal that rendered as nothing would be the worst failure in the
+   file. */
+@keyframes refuse {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.claim--withheld {
+  animation: refuse var(--dur-refuse) var(--ease-refuse) both;
+}
 
 /* ------------------------------------------------------------- printing -- */
 
