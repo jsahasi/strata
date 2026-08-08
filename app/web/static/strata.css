@@ -108,9 +108,17 @@
   --ink-2: #414d68;
   --ink-3: #65728f;
 
+  /* THE ACCENT FAMILY MOVES TOGETHER OR IT DOES NOT MOVE. The indigo pass set
+     --accent and left -strong and -wash on the teal they were derived from,
+     which is the same shape as the tint that moved without its literals: the
+     head of a family changes, the members do not, and nothing fails because
+     nothing pairs them. Parity with the teal set, which is the bar these were
+     chosen against: --accent on --paper was 7.61:1 and is 6.73:1; -strong on
+     -wash was 8.65:1 and is 8.14:1. White on --accent is 6.73:1, which is what
+     the skip link needs since it paints --accent behind white text. */
   --accent: #2f4bd8;   /* institutional indigo: anything you can act on */
-  --accent-strong: #084451;
-  --accent-wash: #d8eaee;
+  --accent-strong: #1f34a8;
+  --accent-wash: #e3e8fc;
 
   --alarm:  #a02c1d;   /* refusal keeps its oxblood weight */
   --alarm-strong: #6d2610;
@@ -592,9 +600,15 @@
     --ink-2: #adb7cd;
     --ink-3: #818da8;
 
-    --accent: #6ccddc;
-    --accent-strong: #a6e6f0;
-    --accent-wash: #0f333c;
+    /* Dark's accent was a cyan derived from the teal light accent, so it
+       survived the indigo pass untouched and would have rendered a cyan action
+       colour on an indigo page. Same parity test as light: on --bg the teal set
+       read 10.18:1 and this reads 9.96:1, -strong on -wash 9.75:1 against
+       10.62:1. Lighter than light's accent rather than darker, because on a
+       dark ground the action colour has to come forward. */
+    --accent: #a8b9ff;
+    --accent-strong: #c2ccff;
+    --accent-wash: #151c3a;
 
     --alarm: #ef9d80;
     --alarm-strong: #ffc2ac;
