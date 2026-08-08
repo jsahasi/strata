@@ -247,7 +247,7 @@ ROUTING_FALLBACK = "It will not name an owner it cannot stand behind."
 
 # THE TAKEAWAY COLOUR, AND WHY IT IS THIS ONE.
 #
-# The brand accent is #0d5c6b, and on the caption plate -- rgba(9,13,20,.94),
+# The brand accent is #2f4bd8, and on the caption plate -- rgba(9,13,20,.94),
 # very nearly #090d14 -- it measures 2.56:1. Unreadable, so the accent as
 # written is not an option. #6ccddc is not an invented brightening of it: it is
 # what strata.css:508 already sets --accent to in the dark scheme, which is the

@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 32" role="img" aria-label="Strata">
-  <rect width="32" height="32" rx="6" fill="#0d5c6b"/>
+  <rect width="32" height="32" rx="6" fill="#2f4bd8"/>
   <rect x="6" y="9"  width="20" height="3" rx="1.5" fill="#fff"/>
   <rect x="6" y="15" width="13" height="3" rx="1.5" fill="#fff" opacity=".82"/>
   <rect x="6" y="21" width="8"  height="3" rx="1.5" fill="#fff" opacity=".62"/>

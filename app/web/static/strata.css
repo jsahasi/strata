@@ -108,11 +108,11 @@
   --ink-2: #414d68;
   --ink-3: #65728f;
 
-  --accent: #0d5c6b;
+  --accent: #2f4bd8;   /* institutional indigo: anything you can act on */
   --accent-strong: #084451;
   --accent-wash: #d8eaee;
 
-  --alarm: #8f3418;
+  --alarm:  #a02c1d;   /* refusal keeps its oxblood weight */
   --alarm-strong: #6d2610;
   --alarm-wash: #f7e4dd;
 
