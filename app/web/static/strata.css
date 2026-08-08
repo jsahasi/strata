@@ -684,7 +684,14 @@
     --paper: #151c30;
     --glass-tint: #1d253b;
     --glass-solid: #161d31;
-    --glass-edge: #5c757e;
+    /* THE FIFTH AND LAST TEAL REMNANT, FOUND BY COUNTING HUES RATHER THAN BY
+       LOOKING. The indigo pass moved --glass-tint, --glass-solid and --paper
+       and left this one at hue 196, in a scheme where everything else sits
+       between 220 and 226. Nobody saw it because it is a 1px top edge at 16%
+       saturation -- which is the whole argument for auditing a palette with
+       arithmetic instead of eyes. Same lightness and saturation, moved onto
+       the family's hue, so the edge reads exactly as bright as before. */
+    --glass-edge: #5c667e;
     --glass-cast: #000000;
 
     --glass-1: rgba(29, 37, 59, 0.62);
