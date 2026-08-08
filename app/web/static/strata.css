@@ -72,9 +72,16 @@
   --t-h1: 1.5rem;         /* 24px — page title. The page does not shout. */
   --t-count: 1.375rem;    /* 22px — a count read across a grid of cards */
 
-  /* Display sizes. These are the only places --face-display is used, and they
-     are all headings. The interface scale above is untouched: --t-micro
-     through --t-h1 were measured against the system stack and the 12px floor
+  /* Display sizes. Every heading set in --face-display takes one of these, and
+     there is exactly one thing outside the scale that takes the face: the
+     wordmark in the masthead. It is a mark, not a heading -- its size is set in
+     the SVG and its box is fixed at 32px tall -- so it borrows the face and the
+     tracking and never a size from here. Said out loud because this comment
+     read "these are the only places --face-display is used" until the masthead
+     took it, and a comment that lists the sites is a comment that goes stale
+     the first time somebody adds one. The interface scale above is untouched:
+     --t-micro through --t-h1 were measured against the system stack and the
+     12px floor
      was set for a real reader on real hardware. */
   --t-display: 3rem;      /* 48px — the hero line, marketing only */
   --t-title: 2rem;        /* 32px — page and section titles */
@@ -981,6 +988,30 @@ hr {
    It loses translucency and keeps the whole hierarchy, because depth here
    is carried by the shadow ladder and the edge, and neither needs the
    filter to exist. */
+/* THE CAST STAYS --glass-lift AND DOES NOT BECOME --lift-1, which is a
+   deliberate refusal of the one instruction this restyle was given about depth.
+   --lift-1 is the new chrome depth and the masthead is chrome, so the swap
+   looks free. It is not. The token block above spends four corrected paragraphs
+   on this exact shadow: it was measured in a browser at dpr 2, it was got wrong
+   four times, and it ends with an acceptance test that is arithmetic rather
+   than taste -- NO ROW UNDER THIS BAR MAY BE DARKER THAN IT WAS. In light,
+   --lift-1 puts 18 per cent of --ink at 8px of blur hard against the pane's
+   bottom edge where --glass-lift puts 10 per cent at 22px, so it is darker in
+   the first few rows under the bar and lighter after them -- short and steep,
+   which is the shape this cast was widened to get away from. (Dark is the other
+   way round, which is worse rather than better: one swap would move the two
+   schemes in opposite directions and only one of them was ever measured.)
+   Those rows are not empty: --stuck is 7rem, the tab rail sticks
+   at exactly the bar's bottom edge, and the masthead is z-index 30, so its cast
+   paints over the rail permanently rather than while something scrolls past.
+   The last time somebody spread this ink differently, the current tab's opaque
+   white chip rendered grey.
+
+   Nothing here has been in front of a browser, so the arithmetic above is a
+   reason to leave it alone and not a measurement of what the swap would do.
+   Weight came from type and shape instead -- the display face in the mark, the
+   chip on the nav -- neither of which paints a single pixel below the bar. To
+   change this value, measure the rows under it first. */
 .masthead {
   border-bottom: 1px solid var(--rule);
   background: var(--glass-solid);
@@ -1021,6 +1052,15 @@ hr {
  * screen permanently occupied by chrome is worse than scrolling to the
  * top. The tab rail still sticks there, at top 0, because it is 46px and
  * it is the only thing telling a reader where they are on an 8,800px page.
+ *
+ * 124 AND 112 ARE STILL THE HEIGHTS. The masthead restyle changed the surface,
+ * the shape and the face and touched no box: the wordmark sits in the same
+ * 32px lockup, the nav keeps its vertical padding, and the chip's horizontal
+ * padding is cancelled by an equal negative margin so the row cannot wrap where
+ * it did not wrap before. So --stuck is unchanged at 7rem and --focus-anchor,
+ * which is derived from it, is unchanged too. Anything that makes this bar
+ * taller has to raise --stuck in the same edit, or every tab stop on every page
+ * scrolls to a position under the chrome and looks unfocused.
  */
 @media (min-width: 48rem) {
   :root {
@@ -1143,6 +1183,31 @@ hr {
   color: var(--ink);
 }
 
+/* THE NAME IN THE MARK IS SET HERE, NOT IN THE MARKUP. The <text> inside the
+   lockup carries font-family and letter-spacing as presentation attributes, and
+   a presentation attribute is beaten by any rule in a stylesheet -- which is
+   what lets the mark take the display face without editing the SVG. The SVG is
+   left alone on purpose: the same lockup is pasted into deploy/site/index.html
+   and the two are meant to stay byte-identical, so the fallback stack in the
+   attribute stays as the answer for a page that never loads this sheet.
+
+   THE TRACKING IS THE TOKEN, NOT THE 0.01em IN THE ATTRIBUTE. Manrope is a
+   geometric face and the display family's tracking is a function of size; the
+   name is set at 20px, so it takes --track-h1, the value chosen for the nearest
+   size in that family. Two thousandths of an em from what the attribute said,
+   and now it moves when the family moves.
+
+   The name is a <text> in a fixed 132x32 viewBox and an outer <svg> clips to
+   its viewport, so a wider face cuts the last letter and nothing says so.
+   MEASURED, in Chromium with the font loaded: the name's box runs from x=42 to
+   x=100.9, against 132. The system stack it replaced ran to 97.0, so Manrope
+   costs four units and leaves thirty-one. There is room, and there is not so
+   much room that a longer word could be dropped in without measuring again. */
+.wordmark .logo text {
+  font-family: var(--face-display);
+  letter-spacing: var(--track-h1);
+}
+
 .wordmark__mark {
   display: block;
   width: 4.6rem;
@@ -1183,24 +1248,63 @@ hr {
   list-style: none;
 }
 
+/* A TAB, NOT A WORD: soft at the top, square where it meets the page. The item
+   is a chip with --r-control on its top corners and no radius at all on the
+   bottom two, so the 2px rule underneath stays a straight bar. That rule is
+   load-bearing three times over -- accent for the screen you are on, a plain
+   grey on hover, dashed for an item that leads nowhere -- and a chip with four
+   rounded corners has nowhere to draw it.
+
+   THE PADDING COSTS THE LAYOUT NOTHING, AND IT HAS TO NOT COST IT ANYTHING. The
+   horizontal padding is cancelled by an equal negative margin, so each item
+   occupies exactly the width it occupied before this chip existed. That is not
+   a trick for its own sake: --stuck is 7rem because somebody measured this bar,
+   and every sticky offset and every focus anchor in this file is derived from
+   that number. Seven items each sixteen pixels wider would spend the slack the
+   nav row has left, wrap it a row earlier than it wraps now, and make the bar
+   taller than 7rem at a width nothing tests -- with no test failing and no way
+   to see it except by opening a browser at that one width. Measured both ways
+   in Chromium: masthead 110px at 1440 and at 900, 164px at 800, 233px at 768,
+   identical before and after this chip to the pixel. Grow the chip and you must
+   remeasure --stuck.
+
+   THE GAP IS WHY THE PADDING IS 8px AND NOT 12px. At 12px the chip is exactly
+   as wide as the gap between items, so two neighbouring chips touch -- and the
+   two items that are switched off sit next to each other, which drew their two
+   dashed rules as one continuous dashed line under both. Eight leaves eight,
+   which is enough to read them as two items. */
 .nav__link {
   display: inline-flex;
   align-items: center;
   gap: var(--s2);
-  padding: var(--s2) 0 var(--s3);
+  padding: var(--s2) var(--s2) var(--s3);
+  margin: 0 calc(var(--s2) * -1);
   border-bottom: 2px solid transparent;
+  border-radius: var(--r-control) var(--r-control) 0 0;
   color: var(--ink-2);
   font-size: var(--t-ui);
   font-weight: 600;
   text-decoration: none;
 }
 
+/* Mixed from --ink rather than named as a colour, so it is a lift in the dark
+   scheme and a shade in the light one without a second token. */
 a.nav__link:hover {
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
   color: var(--ink);
   border-bottom-color: var(--rule-strong);
 }
 
-.nav__link--current {
+/* BOTH SELECTORS, AND THE SECOND ONE IS THE POINT. `a.nav__link:hover` carries
+   more specificity than a single class, so with only the class here the wash
+   came off the current item the moment a pointer crossed it -- the one item on
+   the bar that must never stop saying where you are. The mark is still carried
+   by three things and only one of them is colour: the weight, the accent rule
+   underneath, and aria-current in the markup for anything not reading pixels.
+   --ink on --accent-wash is 14.65:1 in light and 14.23:1 in dark. */
+.nav__link--current,
+a.nav__link--current:hover {
+  background: var(--accent-wash);
   color: var(--ink);
   font-weight: 700;
   border-bottom-color: var(--accent);
@@ -1257,12 +1361,17 @@ a.nav__link:hover {
   max-width: min(20rem, 70vw);
   padding: var(--s2) var(--s3);
   border: 1px solid var(--rule-strong);
-  border-radius: var(--r-sm);
+  /* Chrome, and the softest kind of it: a panel that arrives over the page and
+     leaves again. --r-control matches the chip it hangs from and --lift-2 is
+     the depth of a thing a reader has picked up, which is what this is. Neither
+     goes near the record; the diff, the claims and the quoted source keep --r
+     and stay flat. */
+  border-radius: var(--r-control);
   background: var(--surface);
   color: var(--ink-2);
   font: var(--t-small) / var(--lh-ui) var(--face-ui);
   font-weight: 500;
-  box-shadow: var(--shadow-3);
+  box-shadow: var(--lift-2);
   clip-path: inset(50%);
   opacity: 0;
   pointer-events: none;
