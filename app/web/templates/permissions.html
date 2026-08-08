@@ -78,7 +78,19 @@
 .reg__how { font-size: var(--t-small); color: var(--ink-2); }
 .reg__declared { font-size: var(--t-small); color: var(--ink-3); }
 
-.perm-wrap { overflow-x: auto; }
+/* This is the .table-scroll treatment in strata.css under a local name, and it
+   keeps the local name because the grid below already answers to it.
+
+   position:relative is load-bearing and not decoration. Every cell in the grid
+   carries a .vh span, and .vh is position:absolute with no offsets. An absolute
+   box is placed against its nearest POSITIONED ancestor, so with none of these
+   positioned the whole column of hidden spans was measured against the page and
+   escaped the scroll box entirely: documentElement.scrollWidth read 1710
+   against a clientWidth of 1280, and a laptop scrolled 430px sideways over a
+   grid that was already scrolling inside its own frame. Positioning the wrapper
+   makes the wrapper the box those spans are placed against, so they scroll with
+   the grid instead of widening the page. */
+.perm-wrap { overflow-x: auto; position: relative; }
 .perm-matrix { font-size: var(--t-small); }
 .perm-matrix th, .perm-matrix td { padding: var(--s2); vertical-align: top; }
 .perm-matrix .perm-code { text-align: left; }
@@ -339,6 +351,24 @@
     A filled mark came from a role and an open one was granted to that person
     directly. Only the second is taken back from this page: {{ role_cell_note }}
   </p>
+
+  {#
+    WHAT EACH COLUMN MEANS, IN WORDS, ON THE PAGE.
+
+    These sentences were reachable only through the title attribute on the
+    column head, and a title is not a way of saying something. It needs a mouse,
+    so a touch screen never fires it; most screen readers skip it; and it cannot
+    be searched, copied or printed. Fourteen codes were left standing on their
+    own with nothing anywhere on the screen that says what steer.issue lets
+    somebody do. The title stays, because a hover is a convenience for whoever
+    has a pointer, but it is no longer the only copy.
+  #}
+  <div class="perm-note">
+    <p><strong>What each column means.</strong></p>
+    {% for code in codes %}
+    <p><span class="perm-chip">{{ code }}</span> &mdash; {{ code_words.get(code, code) }}</p>
+    {% endfor %}
+  </div>
 
   {% if ungrantable %}
   <div class="perm-note">

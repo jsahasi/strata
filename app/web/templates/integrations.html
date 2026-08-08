@@ -43,8 +43,14 @@
   clerk.css. They are here because adding a static file was outside this change,
   which is the same concession shares_admin.html makes. Every value is an
   existing token, so both colour schemes and the print block in strata.css still
-  apply, and NO WIDTH IS SET ANYWHERE: the narrow-screen rule in strata.css
-  scrolls the table on its own, and a fixed width here would undo it.
+  apply, and NO WIDTH IS SET ANYWHERE: a fixed width here would fight the two
+  rules that keep this page inside its screen.
+
+  Those two rules are worth naming, because this file used to rely on the wrong
+  one. The narrow-screen rule in strata.css scrolls a table on its own, but it
+  stops at 62rem, and this registry has fourteen columns and is wider than a
+  laptop -- it pushed a 1280px window to 1368px. The register below therefore
+  sits in a .table-scroll wrapper, which scrolls at every width.
 #}
 <style>
 .registry-warn {
@@ -85,6 +91,14 @@
   background: var(--alarm-wash);
   color: var(--alarm-strong);
 }
+/* The name of an environment variable nobody has set. The class was rendered
+   and styled by nothing, so a variable that is missing looked exactly like one
+   that is present, and the only thing separating them was the sentence below.
+   The sentence still carries the meaning and this only agrees with it: colour
+   is never the sole signal here. --alarm-strong is the token the same state
+   already uses on the logins screen. */
+.no { color: var(--alarm-strong); }
+
 .source-form { margin: var(--s3) 0 0; }
 .source-form label { display: block; margin-top: var(--s3); }
 .source-form input, .source-form select {
@@ -190,7 +204,10 @@
 
 {# ------------------------------------------------------- what is registered #}
 
+{# The registry carries fourteen columns and is wider than a laptop, so the
+   wrapper scrolls rather than the page. See .table-scroll in strata.css. #}
 {% if rows %}
+<div class="table-scroll">
 <table class="table">
   <thead>
     <tr>
@@ -372,6 +389,7 @@
     {% endfor %}
   </tbody>
 </table>
+</div>
 
 <p class="registry-note">{{ corpus_caveat }}</p>
 
@@ -477,8 +495,13 @@
       <tr>
         <td>{{ entry.jurisdiction }}</td>
         <td>{{ entry.documents }}</td>
-        <td><span class="coord">{{ entry.origins | join(', ') }}</span></td>
-        <td><span class="coord">{{ entry.dockets | join(', ') }}</span></td>
+        {# Both of these hold a joined list, and either can run past the width of
+           a laptop on one unbreakable line -- a commission's fetch address is
+           sixty characters before the docket numbers start. .coord--long is the
+           class that folds them; plain .coord refuses to wrap, which is right
+           for a citation range and wrong for a column of addresses. #}
+        <td><span class="coord coord--long">{{ entry.origins | join(', ') }}</span></td>
+        <td><span class="coord coord--long">{{ entry.dockets | join(', ') }}</span></td>
         <td><span class="coord">{{ entry.earliest_filing }} to {{ entry.latest_filing }}</span></td>
       </tr>
       {% endfor %}

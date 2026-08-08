@@ -1669,6 +1669,16 @@ a.nav__link--current:hover {
   background: var(--surface);
   color: var(--ink);
   font: 600 var(--t-small) / 1.4 var(--face-ui);
+  /* Ten links across nine templates wear this class, and every one of them
+     arrived with the underline a link gets by default sitting inside a filled
+     button -- "Sign in to Strata" on the shared view, "Open a new project" on
+     the project list, "Go to Projects" on the review centre. A control that
+     carries a border, a fill and a hover state has already said it is a
+     control, so the underline only says it twice and says it badly. Taking it
+     off a bare link would be wrong for exactly the reason it is right here.
+     Nothing about the focus ring changes: it comes from the shared :focus-visible
+     rule and is untouched. */
+  text-decoration: none;
   cursor: pointer;
   transition: background-color 120ms ease, border-color 120ms ease;
 }
@@ -1737,6 +1747,53 @@ textarea {
   background: var(--surface);
   color: var(--ink);
   font: var(--t-ui) / var(--lh-ui) var(--face-ui);
+}
+
+/* ------------------------------------------------------ a control that is off
+
+   Nothing in this file said what disabled looks like, so it looked like on.
+   Measured on the frozen approval route: the name field and three buttons all
+   carried the disabled attribute, all reported opacity 1 and cursor pointer,
+   and Activate kept the full accent fill. A person taps the blue button, the
+   page does nothing, and the product looks broken rather than careful -- the
+   same failure a dead grid cell with no reason makes, which the permissions
+   screen already goes out of its way to avoid.
+
+   The reason is still text, always: the route says "This route is frozen. Copy
+   it into a new draft to change it." right under those buttons. This only stops
+   the control contradicting the sentence beside it. Colour is never the only
+   signal -- the cursor changes too, and the disabled attribute is what a screen
+   reader was already reading.
+
+   :disabled and not a class, so a control switched off by script gets it too.
+   clerk.js turns Send off while a request is in flight and workflow.js turns
+   the step controls off when nothing is selected; both were invisible. The
+   hover rules are cancelled here as well, or a dead button still lights up
+   under the pointer, which is the same defect wearing a different hat.
+
+   IT SITS BELOW THE FIELD RULE ABOVE ON PURPOSE. input:disabled and
+   input[type="text"] carry the same specificity, so the one written later wins,
+   and written earlier this block lost every text field back to the live look.
+   Measured, not assumed. Anything added between the two has to stay above. */
+.btn:disabled,
+.btn[aria-disabled="true"],
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  border-color: var(--rule);
+  background: var(--surface-sunk);
+  color: var(--ink-3);
+  cursor: not-allowed;
+}
+
+.btn:disabled:hover,
+.btn--primary:disabled,
+.btn--primary:disabled:hover,
+button:disabled:hover {
+  border-color: var(--rule);
+  background: var(--surface-sunk);
+  color: var(--ink-3);
 }
 
 /* Badges. Shape and weight carry the meaning; colour only agrees with it.
@@ -4061,6 +4118,13 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
    lets the table keep its natural width and scroll; min-width stops a narrow
    table shrinking to its content and floating in a half-empty row.
 
+   THE 62rem BOUND IS A KNOWN HOLE, NOT A DECISION. A table is too wide when it
+   is wider than the space it has, and that is a fact about the table rather
+   than about the screen: two registers push a 1280px laptop sideways while
+   sitting perfectly inside a 390px handset. Lifting the bound was tried and
+   rejected -- see .table-scroll below for the measurements and the reason.
+   Until that is settled, a table known to be wide wears .table-scroll.
+
    This is a real fix for a real defect and it is not a substitute for opening
    the thing on a handset. Nothing here has been checked on a device.
    ---------------------------------------------------------------------------- */
@@ -4079,6 +4143,40 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
   /* A cell may wrap; the coordinate chip inside it still may not, because a
      character range broken across two lines is unreadable as a coordinate. */
   th, td { overflow-wrap: break-word; }
+}
+
+/* ------------------------------------------ a register too wide for a laptop --
+
+   The rule above stops at 62rem, so a table with more columns than a laptop can
+   hold pushes the whole document sideways above that width. Two do: the source
+   registry on /admin/sources ran documentElement.scrollWidth to 1368 and the
+   invite register on /admin/invites to 1377, both against a clientWidth of
+   1280. Measured in a browser at that width, not guessed from the markup.
+
+   WHY THE BOUND WAS NOT SIMPLY LIFTED. Making the table itself the scrolling
+   box at every width also makes it a block, and a block table shrinks to the
+   width of its columns instead of filling its row. Measured on a 1280px laptop,
+   that pulled seven tables in off the right edge -- the two on /proceedings/...
+   worst, from 1168px to 565px and 499px -- which is a visible change to screens
+   somebody has already tuned by hand. Fixing an overflow on two screens is not
+   worth restyling seven, so the treatment is named and applied where it is
+   needed rather than imposed everywhere.
+
+   Put this on the WRAPPER, never on the table. A table box ignores overflow, so
+   the scrolling has to happen on an ordinary block around it, and the table
+   keeps display:table and goes on filling that block when it fits.
+
+   position:relative is part of the fix rather than decoration. An absolutely
+   positioned descendant -- a visually hidden label, say -- is placed against its
+   nearest positioned ancestor, and with none of them positioned it is measured
+   against the page and escapes the scroll box, widening the document even
+   though the thing that holds it scrolls. Positioning the wrapper keeps those
+   boxes inside it. */
+.table-scroll {
+  position: relative;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
 }
 
 /* Long unbroken strings -- a 64-character chain digest, a version id, a quoted
