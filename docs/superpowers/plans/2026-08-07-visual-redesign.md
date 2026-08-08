@@ -533,9 +533,26 @@ PINNED = [
 
 - [ ] **Step 6: Update every ratio written in a comment in `strata.css`**
 
-Find them: `grep -nE "[0-9]+\.[0-9]+:1" app/web/static/strata.css`
+Find them: `grep -nE "[0-9]+\.[0-9]+:1" app/web/static/strata.css` — **24 of them**, which is more than the 15 in `PINNED`. Sort each into one of three kinds and treat it accordingly. Getting this wrong in either direction damages the file: recomputing a historical note erases a correction the file deliberately keeps, and leaving a live figure stale is the drift the harness exists to catch.
 
-Each one must be changed to the matching number from Step 5. **A comment that still says `15.57:1` next to a colour that now reads `16.53:1` fails the suite** — that is the mechanism working, not a bug to route around.
+**Kind A — a live ratio between two tokens.** Recompute it. Use the Task 1 machinery:
+
+```python
+import sys; sys.path.insert(0, "tests")
+from test_glass_contrast import contrast
+sys.path.insert(0, "scripts")
+from contrast_report import read_schemes
+schemes = read_schemes(open("app/web/static/strata.css").read())
+print(contrast(schemes["light"]["--ink-3"], schemes["light"]["--surface-sunk"]))
+```
+
+This covers pairs well beyond the pinned 15 — the focus ring against `--surface-sunk`, ink over a claim card, the tab rail. Identify the two tokens the sentence names and compute that pair.
+
+**Kind B — a historical note recording a past error.** Leave it exactly as written. `strata.css` deliberately keeps four superseded glass figures (15.84, 16.15, 16.35, 16.41) with the reasoning that produced each, because the corrections are the value. Lines that begin "THE FIRST VERSION OF THIS COMMENT SAID", "AND THE SAME COMMENT WAS WRONG A SECOND TIME", or "(This comment previously read …)" are history, not claims about the current palette. **Do not update these.** If a historical paragraph would now read as describing the new palette, add one sentence dating it to the old one rather than editing its figures.
+
+**Kind C — a browser-measured pixel value.** These quote what Chromium rendered — `rgb(245,247,249)`, "best pixel in the box", "worst pixel in the box" — and no arithmetic over tokens reproduces them, because they measure the translucent pane over real content. **You cannot recompute these and must not invent replacements.** Mark each one as measured against the pre-redesign palette and therefore expired, in the file's own voice. Say plainly that nothing has re-measured the new pane. That is the honest state and it matches how this stylesheet already treats figures it cannot stand behind.
+
+**A comment that still says `15.57:1` next to a colour that now reads `16.53:1` fails the suite** — that is the mechanism working, not a bug to route around.
 
 - [ ] **Step 7: Run the contrast suite**
 
