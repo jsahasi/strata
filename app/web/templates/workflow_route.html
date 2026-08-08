@@ -31,10 +31,10 @@
 {% block content %}
 <div class="page-head">
   <div class="page-head__title">
-    <h1>Approval route</h1>
+    <h1 class="t-title">Approval route</h1>
     {% if state == 'ok' %}<span class="coord">{{ steps | length }} step{{ '' if steps | length == 1 else 's' }}</span>{% endif %}
   </div>
-  <p class="page-head__note">
+  <p class="page-head__note t-lead">
     {% if state == 'ok' %}
     Where an item goes for approval, who is asked at each step, how long they
     have, and what happens if nobody answers.
@@ -72,7 +72,13 @@
 </div>
 {% endif %}
 
-<div class="card">
+{#
+  A rule and a name, not a .card. The paper treatment is for a filing, a claim,
+  a source extract or a table, and this is none of them: it is the name of the
+  route the steps below belong to. In a card it was the heaviest thing on the
+  page and carried four words.
+#}
+<div class="wf-route">
   <p class="label">The live route</p>
   <h2 class="wf-route__name">{{ route_name }}</h2>
   {% if not ordered %}

@@ -64,6 +64,19 @@
 
 /* ------------------------------------------------- the read-only route -- */
 
+/* WHICH ROUTE THESE STEPS BELONG TO, AND NOT A RECORD OF ONE.
+   This was a `.card`: the paper treatment strata.css reserves for a filing, a
+   claim, a source extract or a table. It held a four-word label and a five-word
+   name across the full shell, so the least informative thing on the page
+   carried more weight than any step below it, in the one treatment that is
+   supposed to mean "this is the record". A rule and a name says the same thing
+   and says it once. */
+.wf-route {
+  margin-bottom: var(--s5);
+  padding-bottom: var(--s3);
+  border-bottom: 1px solid var(--rule);
+}
+
 .wf-route__name {
   margin-top: var(--s1);
   font-size: var(--t-ui-lg);
@@ -73,11 +86,30 @@
   margin-top: var(--s5);
 }
 
+/* TWO COLUMNS THAT DO NOT MOVE BETWEEN STEPS.
+   This was a wrapping flex row, so each pair took the width of its own value
+   and "How long they have" began at a different x on every step -- 400, 344,
+   407, 344, 405 down a five-step route. The window is the fact a reader
+   compares across steps, which is the only reason it is a column and not a
+   sentence, and a column with a ragged left edge cannot be compared.
+
+   Declared tracks, so the second heading sits at the same place on every step
+   whatever the first value says. 3fr to 2fr because "Anyone holding the
+   Obligation owner role" is a phrase and "48 hours" is two words. */
 .wf-facts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s2) var(--s6);
-  margin: var(--s2) 0 0;
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: var(--s2) var(--s5);
+  margin: var(--s3) 0 0;
+  max-width: var(--measure);
+}
+
+/* Narrower than this the first column cannot hold its phrase on two lines
+   without the second one starving, so the pairs stack. */
+@media (max-width: 34rem) {
+  .wf-facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .wf-facts__pair dd {
