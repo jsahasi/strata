@@ -522,8 +522,9 @@
      more distance, so nothing gets worse" is not a trade that exists.
 
      IT IS WORSE THAN A COSMETIC COST HERE, because of a number in another
-     block: --stuck is 7rem, so the .tabs rail sticks at exactly the masthead's
-     bottom edge and sits inside the deepest part of that band PERMANENTLY, not
+     block: --stuck is the masthead's own height, so the .tabs rail sticks at
+     exactly its bottom edge and sits inside the deepest part of that band
+     PERMANENTLY, not
      while something scrolls past. Measured at scrollY 900, the rail behind a
      tab went rgb(236,239,241) -> rgb(232,234,236), --ink-2 7.55 -> 7.23, and
      the current-tab chip -- opaque --paper white -- rendered rgb(249,249,249)
@@ -571,8 +572,9 @@
      current.
 
      What carries over is the reasoning, which is not measurement: spreading the
-     same ink further darkens rows that were clean; --stuck at 7rem puts the tabs
-     rail inside the deepest part of the band permanently; and a cast that greys
+     same ink further darkens rows that were clean; --stuck, being the bar's own
+     height, puts the tabs rail inside the deepest part of the band permanently
+     at every width; and a cast that greys
      out an opaque white chip is a film, not a shadow. The acceptance test carries
      over too -- no row darker than the old cast -- but it now has no baseline to
      be tested against until somebody measures one. */
@@ -602,13 +604,14 @@
   --r-glass: 10px;             /* a window has a radius; a form field does not */
 
   /* MEASURED, not guessed, and it deviates from the design plan on
-     purpose. The plan says 3.25rem. The masthead in this build is 124px
-     tall at every width from 768px up, and 112px once its padding
-     collapses in the sticky block below -- so 3.25rem would slide the
-     sticky source panel 60px under the masthead and land every anchor
-     behind it. 7rem is what the browser reports. --rail-h is the tab
-     rail, measured at 46px. Both are overridden with the layout that
-     makes them true; see "sticky chrome" below. */
+     purpose. The plan says 3.25rem, which would slide the sticky source panel
+     under the masthead and land every anchor behind it. What the browser
+     reports is three heights, not one -- 233px, 164px and 110px, depending on
+     how many rows the nav has wrapped to -- and the sticky block below sets
+     --stuck to each of them at the width where it becomes true. Read the table
+     there before changing any of them. --rail-h is the tab rail, measured at
+     46px. Both are overridden with the layout that makes them true; see
+     "sticky chrome" below. */
   --stuck: 0rem;
   --rail-h: 2.875rem;
   --anchor: calc(var(--stuck) + var(--rail-h) + var(--s4));
@@ -967,11 +970,30 @@ hr {
 
 /* ---------------------------------------------------------------- layout -- */
 
+/* THE FIRST TAB STOP ON EVERY SCREEN, AND IT WAS PAINTED OVER.
+ *
+ * This read z-index 10 while .masthead reads 30, and both are children of
+ * <body>, so above 48rem -- where the masthead sticks -- the bar covered the
+ * skip link completely. Checked in Chromium by tabbing once and reading
+ * elementFromPoint at the link's own centre: document.activeElement was the
+ * link, and the topmost box at that point was the wordmark's svg. Focus was
+ * there and nothing showed it, on all six demo-path screens at 800, 1000 and
+ * 1280. That is WCAG 2.4.11 Focus Not Obscured on the one control whose entire
+ * job is to be the first thing a keyboard reader finds.
+ *
+ * 40 rather than 31, so the number does not have to be re-argued the next time
+ * something claims a layer between them. Nothing else in THIS file goes above
+ * 30. Two component sheets do, and both are right to: clerk.css puts the
+ * assistant dock at 50 and its backdrop at 60, tour.css puts the walkthrough at
+ * 80, and a panel a reader has opened on purpose should cover a link that jumps
+ * past it. clerk.css also has a floating launcher at 40, which ties this rule
+ * and never meets it -- that button is pinned bottom-right and this link sits
+ * top-left. Anything new above 30 has to say why it outranks the skip link. */
 .skip {
   position: absolute;
   left: -9999px;
   top: 0;
-  z-index: 10;
+  z-index: 40;
   padding: var(--s2) var(--s4);
   background: var(--accent);
   color: var(--surface);
@@ -1028,7 +1050,7 @@ hr {
    which is the shape this cast was widened to get away from. (Dark is the other
    way round, which is worse rather than better: one swap would move the two
    schemes in opposite directions and only one of them was ever measured.)
-   Those rows are not empty: --stuck is 7rem, the tab rail sticks
+   Those rows are not empty: --stuck is the bar's own height, the tab rail sticks
    at exactly the bar's bottom edge, and the masthead is z-index 30, so its cast
    paints over the rail permanently rather than while something scrolls past.
    The last time somebody spread this ink differently, the current tab's opaque
@@ -1067,11 +1089,12 @@ hr {
 /* ------------------------------------------------------- sticky chrome --
  *
  * The glass only means anything once something scrolls under it, so the
- * masthead has to stick. Above 48rem it does, and it collapses its own
- * padding to earn the room: 124px at rest, 112px stuck, type untouched.
- * Nothing resizes on scroll -- text that shrinks while a person is reading
- * is the commonest tell of a templated site and it buys nothing a padding
- * step does not.
+ * masthead has to stick. Above 48rem it does, and it tightens its own padding
+ * at that width to earn the room, type untouched. Nothing resizes on scroll --
+ * text that shrinks while a person is reading is the commonest tell of a
+ * templated site and it buys nothing a padding step does not. The heights the
+ * padding step leaves are in the table further down; read them there, because
+ * there are three of them and there used to be one.
  *
  * BELOW 48rem IT DOES NOT STICK, and that is measured rather than
  * squeamish: the nav wraps to two rows at 640px and to three below 480px,
@@ -1080,18 +1103,49 @@ hr {
  * top. The tab rail still sticks there, at top 0, because it is 46px and
  * it is the only thing telling a reader where they are on an 8,800px page.
  *
- * 124 AND 112 ARE STILL THE HEIGHTS. The masthead restyle changed the surface,
- * the shape and the face and touched no box: the wordmark sits in the same
- * 32px lockup, the nav keeps its vertical padding, and the chip's horizontal
- * padding is cancelled by an equal negative margin so the row cannot wrap where
- * it did not wrap before. So --stuck is unchanged at 7rem and --focus-anchor,
- * which is derived from it, is unchanged too. Anything that makes this bar
- * taller has to raise --stuck in the same edit, or every tab stop on every page
- * scrolls to a position under the chrome and looks unfocused.
+ * ONE NUMBER WAS WRONG FOR HALF THE WIDTHS IT COVERED, and this is the
+ * correction. --stuck read 7rem -- 112px -- from 48rem all the way up, and the
+ * comment above it claimed the bar was 124px at rest and 112px stuck at every
+ * one of those widths. It is not. The bar does not collapse on scroll at all,
+ * because nothing here runs on scroll; the padding step is the media query, and
+ * it applies whether the page has moved or not. What changes with width is how
+ * many rows the nav wraps to, and that is a content result, not a token.
+ *
+ * MEASURED IN CHROMIUM, stepping 4px from 760 to 1460, worst case across eight
+ * screens -- /projects, a project, /review, a change, /workflow, /actions,
+ * /proceedings, /escalations -- and across all three demonstration accounts,
+ * reading .masthead's own height at rest and after scrolling 3000px (the two
+ * agree everywhere, because nothing here runs on scroll):
+ *
+ *     768 to 855    233px   nav on three rows
+ *     856 to 1171   164px   nav on two rows
+ *     1172 and up   110px   nav on one row
+ *
+ * ALL THREE ACCOUNTS, not one, and that is where a first attempt at this went
+ * wrong. The administrator gets an eighth nav item and the analyst does not, so
+ * the nav wraps at a different width for each of them and a table measured on
+ * one account is 69px short for another. The bands above are the worst case, so
+ * the clearance is right for the reader who has the most chrome and merely
+ * generous for the reader who has less.
+ *
+ * So 7rem was 121px short at 768 and 52px short across the whole 856-1171 band.
+ * --stuck feeds --focus-anchor, so in that band a keyboard reader tabbing down
+ * a page landed the next control under the bar and read it as unfocused -- the
+ * exact failure --focus-anchor exists to prevent -- and .tabs, which sticks at
+ * top: var(--stuck), parked its rail behind the masthead instead of under it.
+ *
+ * The token now steps where the bar steps. The breakpoints sit on the measured
+ * step, not near it: 53.5rem is 856px and 73.25rem is 1172px, the first width
+ * in each band. The values are the measured heights, not rounded up -- 233px is
+ * 14.5625rem, 164px is 10.25rem, and 110px keeps 7rem because 2px of slack
+ * costs nothing and every earlier comment in this file quotes that number.
+ *
+ * Anything that makes this bar taller, or that moves where the nav wraps, has
+ * to remeasure all three bands in the same edit.
  */
 @media (min-width: 48rem) {
   :root {
-    --stuck: 7rem;
+    --stuck: 14.5625rem;
   }
 
   .masthead {
@@ -1102,6 +1156,18 @@ hr {
 
   .masthead__bar {
     padding: var(--s4) 0 var(--s3);
+  }
+}
+
+@media (min-width: 53.5rem) {
+  :root {
+    --stuck: 10.25rem;
+  }
+}
+
+@media (min-width: 73.25rem) {
+  :root {
+    --stuck: 7rem;
   }
 }
 
@@ -1285,15 +1351,19 @@ hr {
    THE PADDING COSTS THE LAYOUT NOTHING, AND IT HAS TO NOT COST IT ANYTHING. The
    horizontal padding is cancelled by an equal negative margin, so each item
    occupies exactly the width it occupied before this chip existed. That is not
-   a trick for its own sake: --stuck is 7rem because somebody measured this bar,
-   and every sticky offset and every focus anchor in this file is derived from
-   that number. Seven items each sixteen pixels wider would spend the slack the
-   nav row has left, wrap it a row earlier than it wraps now, and make the bar
-   taller than 7rem at a width nothing tests -- with no test failing and no way
-   to see it except by opening a browser at that one width. Measured both ways
-   in Chromium: masthead 110px at 1440 and at 900, 164px at 800, 233px at 768,
-   identical before and after this chip to the pixel. Grow the chip and you must
-   remeasure --stuck.
+   a trick for its own sake: --stuck is this bar's measured height, and every
+   sticky offset and every focus anchor in this file is derived from it. Seven
+   items each sixteen pixels wider would spend the slack the nav row has left,
+   wrap it a row earlier than it wraps now, and move the width at which the bar
+   steps -- with no test failing and no way to see it except by opening a
+   browser at that one width. Measured both ways in Chromium: masthead 110px at
+   1440 and at 900, 164px at 800, 233px at 768, identical before and after this
+   chip to the pixel.
+
+   THOSE THREE FIGURES WERE ALREADY WRITTEN HERE WHILE --stuck STAYED AT 7rem,
+   which is 112px, and nobody reconciled the two. Reading a measurement and not
+   spending it is the same defect as not measuring. The sticky block now carries
+   all three. Grow the chip and you must remeasure every one of them.
 
    THE GAP IS WHY THE PADDING IS 8px AND NOT 12px. At 12px the chip is exactly
    as wide as the gap between items, so two neighbouring chips touch -- and the
@@ -1402,6 +1472,50 @@ a.nav__link--current:hover {
   clip-path: inset(50%);
   opacity: 0;
   pointer-events: none;
+}
+
+/* AND ON A NARROW SCREEN IT HANGS OFF THE END OF THE PAGE, so below 40rem it
+   stops hanging from the item and spans the nav instead.
+ *
+ * An absolutely positioned box adds nothing to its parent's layout width, so
+ * nothing in the nav grew and no static check saw anything. It does extend the
+ * document's SCROLLABLE area. The two switched-off items sit third and fourth
+ * in the row, which on a phone puts one of them at the right-hand end of the
+ * first wrapped row, and a 269px panel anchored to its left edge ran clean off
+ * the screen: measured in Chromium, document 484px against a 390px client on
+ * /projects, a project, /review and /workflow, 484 at 414, 599 at 500, and
+ * clear from 600 up. Every one of those pages scrolled sideways because of this
+ * one box.
+ *
+ * THE FIX IS NOT TO HIDE IT. The hint is the whole reason the item is still in
+ * the tab order -- tests/test_a11y_guards.py requires it as rendered text in
+ * the accessible name, not a title attribute -- so shrinking it away, clipping
+ * it or dropping it below a breakpoint would trade a scrollbar for the defect
+ * this panel was written to fix.
+ *
+ * So it changes what it hangs from. `.nav__link--off` goes back to static, the
+ * list becomes the containing block, and the panel spans the list from edge to
+ * edge: it cannot be wider than the nav, and the nav cannot be wider than the
+ * page. The vertical tie loosens -- on a phone the nav has wrapped to three
+ * rows and the panel lands under the last of them rather than under its own --
+ * but it is still inside the nav block, still shown by the same hover and the
+ * same focus, and every word of it is on screen. Above 40rem nothing changes at
+ * all: the per-item panel fits from 600px up, and 640 leaves 40px of slack over
+ * the widest width that ever failed. */
+@media (max-width: 40rem) {
+  .nav__list {
+    position: relative;
+  }
+
+  .nav__link--off {
+    position: static;
+  }
+
+  .nav__why {
+    right: 0;
+    width: auto;
+    max-width: none;
+  }
 }
 
 .nav__link--off:hover .nav__why,
@@ -1600,7 +1714,20 @@ a.nav__link--current:hover {
   font-variant-numeric: tabular-nums;
   color: var(--ink-3);
   letter-spacing: 0;
-  white-space: nowrap;
+  /* THIS SAID `white-space: nowrap` AND IT SET THE WIDTH OF A WHOLE SCREEN.
+     Held on one line, the change id in the change screen's page head --
+     CHG-ga-55378-...-revised-pd-002, 70 characters -- made the document 833px
+     wide inside a 390px client, measured in Chromium at 390x844. Three more
+     .coord spans on the same page ran to 494 and 414. The class is rendered by
+     152 places in the templates, so tagging the long ones one at a time is the
+     line and not the class.
+
+     `overflow-wrap: anywhere` says the same thing the nowrap was protecting,
+     with a floor under it: a word breaks only when it has no break opportunity
+     and would otherwise overflow its line. A range like 316-332 is seven
+     characters and always fits, so it never breaks and never has to. A document
+     id does not fit, and now wraps rather than widening the page. */
+  overflow-wrap: anywhere;
 }
 
 /* Help under a field, and any short sentence a page adds beside a control.
@@ -2172,6 +2299,12 @@ button:disabled:hover {
   max-width: 100%;
   padding: 0.15em 0.45em;
   background: var(--surface);
+  /* max-width: 100% caps the BOX and does nothing to the line inside it, so a
+     reason code with no break opportunity simply ran out of its own label:
+     CITATION_AMBIGUOUS_OCCURRENCE laid out to 272px in a 165px box, measured in
+     Chromium at 320px, and pushed /review to 361px. The cap and the break are
+     two different permissions and this pair needed both. */
+  overflow-wrap: anywhere;
 }
 
 .withheld__label {
@@ -2292,6 +2425,12 @@ button:disabled:hover {
 .citation-chip {
   display: inline-flex;
   align-items: stretch;
+  /* The chip may never be wider than the column it sits in. Its coordinate cell
+     carries a document id, and on the change screen one of those pushed the
+     chip to 594px inside a 390px client, measured in Chromium -- the same
+     defect .coord had two hundred lines up, in an inline-flex box that will
+     not shrink below its content unless it is told it may. */
+  max-width: 100%;
   padding: 0;
   border: 1px solid var(--accent);
   border-radius: var(--r);
@@ -2326,10 +2465,15 @@ button:disabled:hover {
 }
 
 .citation-chip__coord {
+  /* A flex item's automatic minimum is its min-content, so this cell has to be
+     allowed to be narrow AND its id has to be allowed to break. Both halves, or
+     neither works -- the same pair the .stage rows on the marketing site need.
+     A range like 316-332 still never breaks, because it always fits. */
+  min-width: 0;
   padding: 0.32em 0.6em;
   border-left: 1px solid currentColor;
   font: var(--t-micro) / var(--lh-micro) var(--face-data);
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 /* ----------------------------------------------------- escalation queue -- */
@@ -2375,6 +2519,12 @@ button:disabled:hover {
 
 .queue__code {
   display: inline-block;
+  /* A reason code is one unbreakable token and some of them are long:
+     CITATION_AMBIGUOUS_OCCURRENCE ran /review and /escalations to 361px and
+     327px inside a 320px client, measured in Chromium. Both halves are needed
+     -- the box must be allowed to be narrow and the token to break -- and
+     neither costs anything at any width where the code already fits. */
+  max-width: 100%;
   margin-bottom: var(--s2);
   padding: 0.2em 0.45em;
   border: 1px solid var(--alarm);
@@ -2383,6 +2533,7 @@ button:disabled:hover {
   font: 700 var(--t-micro) / var(--lh-micro) var(--face-ui);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .queue__reason {
@@ -3370,6 +3521,12 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
    this file already ships. */
 .question__flag {
   display: inline-block;
+  /* A reason code is one unbreakable token and some of them are long:
+     CITATION_AMBIGUOUS_OCCURRENCE ran /review and /escalations to 361px and
+     327px inside a 320px client, measured in Chromium. Both halves are needed
+     -- the box must be allowed to be narrow and the token to break -- and
+     neither costs anything at any width where the code already fits. */
+  max-width: 100%;
   margin-bottom: var(--s2);
   padding: 0.2em 0.45em;
   border: 1px solid var(--alarm);
@@ -3378,6 +3535,7 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
   font: 700 var(--t-micro) / var(--lh-micro) var(--face-ui);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 /* ---------------------------------------------------------------- steer -- */
@@ -4202,8 +4360,12 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
    source addresses are the first thing to wear it -- thirteen URLs, nowrap,
    were setting that page to 778 pixels inside a 390-pixel viewport.
 
-   The wrap is opt-in and stays that way. A character range broken across two
-   lines is unreadable as a coordinate, so a bare .coord still may not break. */
+   THE OPT-IN IS NOW A NO-OP, AND IT STAYS ANYWAY. .coord dropped its nowrap
+   when the same defect turned up again on the change screen -- one id, 833px
+   inside a 390px client -- so the modifier no longer has anything to undo. It
+   is left in place because nine templates render it and because it still says
+   what the author meant: this coordinate is long enough to fold. Delete it in a
+   change that also deletes those nine, or not at all. */
 .coord--long {
   white-space: normal;
 }
