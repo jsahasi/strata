@@ -3484,9 +3484,22 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
     --shadow-2: none;
     --shadow-3: none;
     /* The lifts go with them. A cast printed by a laser printer is a grey
-       smear under a box, and nothing on paper is in front of anything. */
-    --lift-1: none;
-    --lift-2: none;
+       smear under a box, and nothing on paper is in front of anything.
+
+       A TRANSPARENT SHADOW RATHER THAN `none`, AND THE DIFFERENCE IS A FOCUS
+       RING. These two are written to COMPOSE: clerk.css draws a focused pill
+       as `box-shadow: var(--lift-1), 0 0 0 4px var(--focus-halo)`. Substitute
+       `none` into that list and the value reads `none, 0 0 0 4px ...`, which
+       is not valid box-shadow syntax, so the browser drops the WHOLE
+       declaration and takes the focus halo with it. `0 0 transparent` paints
+       exactly as much as `none` -- nothing -- and stays legal in a list.
+
+       The other tokens above may keep `none`; they are used alone. These two
+       may not, because the moment one is used alone somebody will write the
+       composing version next to it and nothing will say a ring went missing.
+       tests/test_design_guards.py holds them to it. */
+    --lift-1: 0 0 transparent;
+    --lift-2: 0 0 transparent;
     --blur-1: none;
     --blur-2: none;
     --blur-3: none;

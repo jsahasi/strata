@@ -87,30 +87,24 @@ RECORD_SELECTORS = (
 # section). Same shape, same reason: an accent rail, not a background behind
 # read evidence.
 #
-# Both predate this guard. If either selector's rule ever grows past a
-# left-edge strip into an actual background wash, this allowlist should stop
-# covering it -- that is a real regression, not the documented pattern.
-# THE EXEMPTION IS CONDITIONAL, AND THE CONDITION IS CHECKED. Naming a
-# selector and waving it through would mean a full-bleed wash could land on
-# .claim--withheld tomorrow and this guard would stay silent -- the comment
-# above says that is a regression, and a rule stated in a comment that nothing
-# enforces is the shape of drift this whole file exists to catch. So each
-# exception carries the proof that it is still a narrow strip, and the
-# exemption only applies while that proof is in the stylesheet.
+# Both predate this guard. THE EXEMPTION IS CONDITIONAL, AND THE CONDITION IS
+# CHECKED. Naming a selector and waving it through would mean a full-bleed wash
+# could land on .claim--withheld tomorrow and this guard would stay silent. A
+# rule stated in a comment that nothing enforces is the shape of drift this
+# whole file exists to catch, so each exception carries the proof that it is
+# still a narrow strip, and the exemption holds only while that proof is there.
 #
-# .claim--withheld clamps its own gradient with `background-size: 3px 100%`.
-# .source--internal::before takes its 3px from the shared `.source::before`
-# rule above it, so the proof lives outside its own block and is looked for
-# across the whole sheet rather than inside the matched one.
 # Each entry is (where the proof lives, the proof). "block" means the clamp is
 # in the exempted rule itself; ("rule", selector) means it is inherited from a
 # named sibling, and the proof is looked for in THAT rule and nowhere else.
+# .claim--withheld clamps its own gradient with `background-size: 3px 100%`;
+# .source--internal::before takes its 3px from the shared `.source::before`.
 #
 # The scope matters and getting it wrong silently disarms this. A first version
-# fell back to "anywhere in the stylesheet", and `background-size: 3px 100%`
-# occurs five times, so deleting the clamp from .claim--withheld still found it
-# in four unrelated rules and the exemption held. The guard passed a mutation it
-# was written to catch.
+# looked for the proof anywhere in the stylesheet, and `background-size: 3px
+# 100%` occurs five times, so deleting the clamp from .claim--withheld still
+# found it in four unrelated rules and the exemption held. The guard passed a
+# mutation it was written to catch.
 KNOWN_GRADIENT_EXCEPTIONS = {
     ".claim--withheld": ("block", "background-size: 3px 100%"),
     ".source--internal::before": (("rule", ".source::before"), "width: 3px"),
@@ -177,4 +171,39 @@ def test_no_record_surface_carries_a_gradient():
         "these is a documented left-edge rail rather than a wash, it needs an "
         "entry in KNOWN_GRADIENT_EXCEPTIONS carrying the clamp that proves it "
         "is still a strip."
+    )
+
+
+# ------------------------------------------------- a shadow that composes --
+
+COMPOSING_SHADOW_TOKENS = ("--lift-1", "--lift-2")
+
+
+def test_a_composing_shadow_token_is_never_the_word_none():
+    """`box-shadow: none, <ring>` is invalid, and the browser drops the ring.
+
+    --lift-1 and --lift-2 are written to sit in a comma-separated box-shadow
+    beside something else. clerk.css draws a focused pill as
+    `box-shadow: var(--lift-1), 0 0 0 4px var(--focus-halo)`. Set the token to
+    `none` in any scheme and that value becomes `none, 0 0 0 4px ...`, which is
+    not legal box-shadow syntax -- so the whole declaration is discarded and
+    the focus ring goes with it, on the one medium nobody re-checks.
+
+    It shipped that way in @media print. Nothing failed, because the dock is
+    hidden on paper today; the next rule to combine a lift with a ring on a
+    printable surface would have lost its ring silently.
+
+    `0 0 transparent` paints exactly what `none` paints and stays legal in a
+    list. Any scheme may switch the lift off; none may switch it off this way.
+    """
+    css = (ROOT / "app/web/static/strata.css").read_text()
+    offenders = []
+    for token in COMPOSING_SHADOW_TOKENS:
+        for match in re.finditer(rf"{re.escape(token)}\s*:\s*([^;]+);", css):
+            if match.group(1).strip() == "none":
+                offenders.append(f"{token}: none")
+    assert not offenders, (
+        f"{offenders} -- these tokens compose inside a box-shadow list, so "
+        "`none` invalidates the whole declaration and drops any ring beside "
+        "them. Use `0 0 transparent`, which paints the same nothing."
     )
