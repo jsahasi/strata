@@ -79,7 +79,13 @@
   --t-display: 3rem;      /* 48px — the hero line, marketing only */
   --t-title: 2rem;        /* 32px — page and section titles */
   --t-lead: 1.25rem;      /* 20px — the sentence under a title */
-  --track-display: -0.02em;  /* geometric faces need negative tracking large */
+  /* Tracking slackens as the type gets smaller. A geometric face wants real
+     negative tracking at hero size and almost none at heading size, so one
+     value across the three would either loosen the hero or close up the h1. */
+  --track-display: -0.02em;   /* 48px hero */
+  --track-title: -0.014em;    /* 32px section title */
+  --track-h1: -0.009em;       /* 24px page title, near the interface heading's
+                                 own -0.008em, which it sits beside */
 
   --lh-ui: 1.5;
   --lh-micro: 1.55;       /* Tracked uppercase needs MORE leading, not less.
@@ -806,10 +812,31 @@ h3 {
   font-size: var(--t-ui);
 }
 
+/* TRACKING IS A FUNCTION OF SIZE, AND ONE VALUE FOR THREE SIZES IS THE BUG.
+   --track-display was chosen for a 48px hero. Applied whole, it also reached
+   h1 at 24px, where -0.02em is too tight: negative tracking has to slacken as
+   type gets smaller or the small end closes up. This is the type equivalent of
+   the token-family errors above -- one value taken from the largest case and
+   handed to every case.
+
+   Three steps, tightest at the top. h1 keeps a value near the -0.008em the
+   interface headings already used, because it belongs to that scale and only
+   borrows the face. */
 h1, .t-display, .t-title {
   font-family: var(--face-display);
-  letter-spacing: var(--track-display);
   font-weight: 750;
+}
+
+.t-display {
+  letter-spacing: var(--track-display);
+}
+
+.t-title {
+  letter-spacing: var(--track-title);
+}
+
+h1 {
+  letter-spacing: var(--track-h1);
 }
 
 /* The display sizes themselves, so a class that names a scale step carries
