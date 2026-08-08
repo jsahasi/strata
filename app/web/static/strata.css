@@ -1839,6 +1839,67 @@ textarea {
   color: var(--ink-2);
 }
 
+/* ------------------------------------------------------------- the diff -- */
+
+/* THE TWO SIDES ARE A PAIR, SO THEY ARE LAID OUT AS A PAIR.
+ *
+ * change.html has carried the specification for this rule -- and a note saying
+ * the rule did not exist -- since the markup landed. Stacked, the before and
+ * the after sat about a hundred pixels apart, and on the change this product
+ * demonstrates they differ by four words. A reader had to hold the first
+ * sentence in their head to read the second, which is the one thing a diff
+ * exists to stop.
+ *
+ * PAPER, AND IT STAYS PAPER. This is the filing itself. No gradient, no
+ * --r-card, no lift, no motion: only geometry changes here, and
+ * tests/test_design_guards.py holds the gradient half of that.
+ *
+ * Grid rather than flex, so the two halves are the same width whatever the two
+ * passages weigh. A wider "before" would read as the more important side, and
+ * neither side is.
+ *
+ * THE INHERITED MARGIN HAS TO GO, and the template said so before this rule
+ * was written. .diff also carries .stack, so the sides keep a gap on a browser
+ * that never got this rule; with the rule, `.stack > * + *` puts a top margin
+ * on the second column and drops it half a line below the first. Two classes,
+ * so it beats `.stack > * + *` on specificity rather than on file order. */
+.diff {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s5);
+  align-items: start;
+}
+
+.diff.stack > * + * {
+  margin-top: 0;
+}
+
+/* Which side, which version, and where in it. One line above the passage, in
+   interface type, so nothing here competes with the document face below it. */
+.diff__head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+
+/* Below this the two columns are narrower than the passage wants and the pair
+   stops being readable, so it stacks again -- and the inherited gap comes back
+   with it, because once the grid is gone that margin is the only thing between
+   the two sides. Putting it back inside the breakpoint is the other half of
+   the instruction the template left. */
+@media (max-width: 52rem) {
+  .diff {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .diff.stack > * + * {
+    margin-top: var(--s5);
+  }
+}
+
 .source-panel {
   display: flex;
   flex-direction: column;
@@ -1972,6 +2033,22 @@ textarea {
   margin-top: var(--s4);
 }
 
+/* The way out to the filing itself, under a claim's citation. Moved here from
+   a <style> block inside change.html, which said in its own comment that these
+   two rules belonged beside .claim__foot and were only in the template because
+   strata.css was not that change's to edit. Both values were already tokens, so
+   nothing moves on screen; what changes is that both colour schemes, the print
+   block and every guard in tests/ now see them. */
+.claim__filing {
+  max-width: 62ch;
+  margin-top: var(--s4);
+}
+
+.claim__filing .claim__route {
+  display: block;
+  margin-top: var(--s1);
+}
+
 .claim--verified {
   border-left: 3px solid var(--ink-3);
   background: var(--paper);
@@ -2072,6 +2149,51 @@ textarea {
   font: var(--t-small) / 1.6 var(--face-data);
   color: var(--ink-2);
   overflow-wrap: break-word;
+}
+
+/* THE SAME ARGUMENT AS THE DIFF, ON THE SURFACE THE PRODUCT TURNS ON.
+ *
+ * What the source says and what the citation quoted were stacked, and on the
+ * refusal this product demonstrates they differ by one character: twenty
+ * megawatts against ten. A reader had to memorise a sentence to find the word
+ * that was wrong in the next one. Side by side, the difference is the thing
+ * you see first, which is the entire claim this screen makes.
+ *
+ * Column-major, so a term stays directly above its own value: with two rows
+ * declared and the flow set to column, the four children land dt, dd, dt, dd
+ * down then across. Any number of pairs works -- the escalation queue renders
+ * a third when a quote appears more than once in a version -- because the
+ * columns are implicit.
+ *
+ * ONLY GEOMETRY. This sits inside .claim--withheld, the stillest surface in
+ * the product, and that block already forbids every shadow, transform and
+ * transition here. Nothing is added to win the comparison.
+ *
+ * Paired only where there is room. Below the breakpoint two columns are
+ * narrower than the sentences they hold, and a pair nobody can read is worse
+ * than a stack. */
+@media (min-width: 62rem) {
+  .mismatch {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    column-gap: var(--s5);
+    max-width: calc(var(--measure) * 2);
+  }
+}
+
+/* The judgement block wears .page-head__note, which caps at 60ch. That is right
+   for the sentence under a title, and it is right for three of the four
+   materiality states. It is wrong for the fourth: a refused judgement carries
+   the two-column pair above, and 60ch gives each column thirty characters.
+
+   Scoped with :has so only that state widens. The other three are prose and
+   keep the reading measure -- widening all four to fix one would trade a
+   squeezed comparison for three sentences running the width of the page. The
+   cap the widened one keeps is .mismatch's own. */
+.materiality:has(.mismatch) {
+  max-width: none;
 }
 
 .claim__route {

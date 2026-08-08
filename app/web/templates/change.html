@@ -29,18 +29,11 @@
 #}
 {% extends "base.html" %}
 
-{% block head %}
 {#
-  These two rules belong in app/web/static/strata.css beside .claim__foot, and
-  they are here because that file was not mine to edit in the change that added
-  them. Both values are existing tokens, so both colour schemes and the print
-  block still apply. Whoever next opens strata.css should move them.
+  The <style> block that used to sit here held .claim__filing and its route
+  line, and said in its own comment that they belonged beside .claim__foot in
+  strata.css. They are there now.
 #}
-<style>
-.claim__filing { margin-top: var(--s4); max-width: 62ch; }
-.claim__filing .claim__route { display: block; margin-top: var(--s1); }
-</style>
-{% endblock %}
 
 {#
   The way out to the filing itself.
@@ -110,7 +103,7 @@
 #}
 <div class="page-head">
   <div class="page-head__title">
-    <h1>{{ heading }}</h1>
+    <h1 class="t-title">{{ heading }}</h1>
     <span class="badge {{ status_badge }}">{{ status_word }}</span>
     <span class="coord">{{ change.id }}</span>
   </div>
