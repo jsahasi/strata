@@ -99,14 +99,14 @@
   --shell: 76rem;
 
   /* Colour — light. */
-  --bg: #eef1f2;
-  --surface: #fbfcfc;
-  --surface-sunk: #e3e8ea;
-  --rule: #d2d9db;
-  --rule-strong: #a4afb3;
-  --ink: #101a1e;
-  --ink-2: #414d52;
-  --ink-3: #67747a;
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --surface-sunk: #e7ebf4;
+  --rule: #d9dfeb;
+  --rule-strong: #a8b2c6;
+  --ink: #0f1729;
+  --ink-2: #414d68;
+  --ink-3: #6b7791;
 
   --accent: #0d5c6b;
   --accent-strong: #084451;
@@ -137,8 +137,16 @@
    * it -- so it consumes these and nothing else.
    */
   --paper: #ffffff;          /* the record: diff, claims, source, tables */
-  --glass-tint: #fdfeff;     /* the material the panes are made of       */
-  /* Raised from #f7fafb on 2026-08-05. At the old value a pane composited
+  --glass-tint: #fafcfe;     /* the material the panes are made of       */
+  /* THE HISTORY BELOW BELONGS TO THE TEAL PALETTE, NOT TO THIS ONE. Every hex,
+     every ratio and every sampled pixel in the paragraphs that follow was written
+     against the two-hue teal tokens this file carried until 2026-08-07, when the
+     palette moved to indigo. They stay because the corrections are the value, not
+     because they describe the colours declared above. Read none of them as a
+     claim about the current palette. The closing paragraph, "WHAT IS TRUE", is
+     the one that is current, and it says so.
+
+     Raised from #f7fafb on 2026-08-05. At the old value a pane composited
      six values off the page behind it -- so the blur had signal but the
      PANE had none, and the white edge highlight had nothing to catch. Dark
      never had this problem: its tint sits about eighteen off its page.
@@ -195,14 +203,25 @@
      a freshly loaded page. The claim was false and it was written into three
      comments as checked fact.
 
+     THOSE TWO PIXELS EXPIRED WITH THE TEAL PALETTE. Nobody has put a browser in
+     front of the indigo pane, so this file has no measurement of it: not a best
+     pixel, not a worst one, not a range. No arithmetic over the tokens gives one
+     back, because the pane takes the colour of whatever scrolls under it. The
+     honest state is that the rendered figure is unknown, and an unknown figure
+     is written down as unknown here rather than replaced with a plausible one.
+     What survives the palette change is the SHAPE of the finding -- the pane is
+     a range, its worst pixel is well below its best, and --ink-3 on it should be
+     assumed to fail AA until somebody measures it.
+
      WHAT IS TRUE, and what the figures below are: --glass-solid is the flat
      substitute the @supports fallback and prefers-reduced-transparency use, and
-     16.73 / 8.26 / 4.57 are correct FOR THAT TOKEN, which is what they were all
-     along. They are labelled as token arithmetic here and asserted as token
-     arithmetic in tests/test_glass_contrast.py. Nothing in this file now claims
-     a rendered figure, because a rendered figure on a translucent surface is
-     not a number -- it is a range that depends on what is underneath. */
-  --glass-solid: #f7f9fa;    /* that tint already composited over --bg   */
+     for the current palette 17.09 / 8.08 / 4.30 are correct FOR THAT TOKEN --
+     --ink, --ink-2 and --ink-3 in turn. They are labelled as token arithmetic
+     here and asserted as token arithmetic in tests/test_glass_contrast.py.
+     Nothing in this file now claims a rendered figure, because a rendered figure
+     on a translucent surface is not a number -- it is a range that depends on
+     what is underneath. */
+  --glass-solid: #f8fafd;    /* that tint already composited over --bg   */
   --glass-edge: #ffffff;     /* the 1px highlight that says "in front"   */
   --glass-cast: #04191f;     /* shadows are blue-black, never neutral    */
 
@@ -219,9 +238,9 @@
      words it carries, the MORE opaque it is. The masthead holds two words
      per item and you look past it a thousand times. A tip holds a
      paragraph you read once. See --blur-1/2/3, which pair with these. */
-  --glass-1: rgba(253, 254, 255, 0.62);   /* attached  */
-  --glass-2: rgba(253, 254, 255, 0.86);   /* floating  */
-  --glass-3: rgba(253, 254, 255, 0.92);   /* transient */
+  --glass-1: rgba(250, 252, 254, 0.62);   /* attached  */
+  --glass-2: rgba(250, 252, 254, 0.86);   /* floating  */
+  --glass-3: rgba(250, 252, 254, 0.92);   /* transient */
 
   --blur-1: blur(20px) saturate(180%);
   --blur-2: blur(30px) saturate(170%);
@@ -257,6 +276,13 @@
    * was sound and every digit in it was approximate. Rounding a measurement you
    * did not take is the same habit as inventing one, and this file has enough
    * of that in it already.)
+   *
+   * EVERY PIXEL VALUE IN THIS BLOCK WAS READ OFF THE TEAL PALETTE, before
+   * 2026-08-07. The desk and sheet are alpha layers, so the indigo page moves
+   * all eight of those numbers and nothing has re-read them. The argument holds
+   * -- a crisp edge on open ground, softened under the pane -- and the digits
+   * are the old page's. They are left as they were rather than rewritten from
+   * arithmetic, because arithmetic is not what took them.
    *
    * So the ground gets structure, taken from the subject rather than from a
    * hero gradient: a sheet of ruled filing paper lying on a desk. Three
@@ -518,14 +544,14 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0c1316;
-    --surface: #121b1f;
-    --surface-sunk: #080e11;
-    --rule: #243238;
-    --rule-strong: #3c4e55;
-    --ink: #e7eeef;
-    --ink-2: #a9b7ba;
-    --ink-3: #7e8c90;
+    --bg: #0b1020;
+    --surface: #141b2e;
+    --surface-sunk: #070b16;
+    --rule: #252e45;
+    --rule-strong: #3d4863;
+    --ink: #e9edf7;
+    --ink-2: #adb7cd;
+    --ink-3: #818da8;
 
     --accent: #6ccddc;
     --accent-strong: #a6e6f0;
@@ -544,14 +570,14 @@
        would read as a scratch along the top edge, so the edge takes a
        lifted grey instead. */
     --paper: #151e22;
-    --glass-tint: #1a262b;
-    --glass-solid: #151f23;
+    --glass-tint: #1d253b;
+    --glass-solid: #161d31;
     --glass-edge: #5c757e;
     --glass-cast: #000000;
 
-    --glass-1: rgba(26, 38, 43, 0.62);
-    --glass-2: rgba(26, 38, 43, 0.86);
-    --glass-3: rgba(26, 38, 43, 0.92);
+    --glass-1: rgba(29, 37, 59, 0.62);
+    --glass-2: rgba(29, 37, 59, 0.86);
+    --glass-3: rgba(29, 37, 59, 0.92);
 
     --blur-1: blur(20px) saturate(160%) brightness(1.08);
     --blur-2: blur(30px) saturate(150%) brightness(1.06);
@@ -591,7 +617,15 @@
        --ink-2 8.05 -> 8.14 and --ink-3 4.78 -> 4.84. The current-tab chip
        keeps 1.21:1 against the rail, against light's 1.06:1, so dark can also
        afford the film that light could not. Both schemes were measured; only
-       one of them could pay. */
+       one of them could pay.
+
+       THOSE PIXELS AND THE FOUR RATIOS WITH THEM ARE THE TEAL PALETTE'S, read
+       before 2026-08-07, and so is rgb(46,61,66)/rgb(56,74,80) in the --edge
+       note above. Nobody has re-run the sample on indigo. The direction is the
+       part that carries over -- darkening the ground under light ink buys
+       contrast rather than spending it, which is true of any dark scheme -- and
+       the digits are stale. They are not recomputed here because no token
+       arithmetic produces them; they came out of a screenshot. */
     --glass-lift: 0 18px 40px -12px rgba(0, 0, 0, 0.72),
       0 3px 8px -3px rgba(0, 0, 0, 0.5);
     --shadow-2: 0 12px 32px rgba(0, 0, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
@@ -683,8 +717,8 @@ a:hover {
    a 2px accent ring against a translucent pane full of blurred page
    underneath is hard to find. The halo is a box-shadow, so the withheld
    surface drops it -- which is fine, because that surface is opaque
-   --surface-sunk and the ring reads 6.16:1 against it in light and
-   10.55:1 in dark. Measured, not assumed. */
+   --surface-sunk and the ring reads 6.37:1 against it in light and
+   10.67:1 in dark. Token arithmetic, not assumed. */
 :focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
@@ -839,10 +873,10 @@ hr {
    on a Mac it thins the strokes, which is the opposite of what is wanted.
 
    MEASURED, and this is the one place the ladder bit. The G1 pane over the
-   flat page floor is --ink-3 at 4.57:1 by token arithmetic and worse than that
-   in use -- see below. Over a claim card it is 4.64:1, which is why it was
+   flat page floor is --ink-3 at 4.30:1 by token arithmetic and worse than that
+   in use -- see below. Over a claim card it is 4.49:1, which is why it was
    missed. So the two labels a person actually reads up here, the "viewing"
-   qualifier and the tenant id, take --ink-2 instead: 8.26:1.
+   qualifier and the tenant id, take --ink-2 instead: 8.08:1.
 
    WHAT IS NOT FIXED, AND WHY. .nav__link--off keeps --ink-3 and keeps its
    shortfall. That colour is the only signal saying the item is not a link --
@@ -858,19 +892,32 @@ hr {
    item still plainly greyed" -- so that nobody had to choose between the honest
    signal and the contrast floor. The recompute was real. The conclusion was
    not. 4.57 is ratio(--ink-3, --glass-solid): the flat token, not the pane.
+   (That episode belongs to the teal palette, before 2026-08-07. 4.57 was the
+   teal token's figure; the indigo one is 4.30. The error is what is kept here,
+   not the digits.)
 
    The pane is glass and this masthead is sticky, so something is always
    scrolling underneath it. Sampled across the whole .nav__link--off box on a
    loaded /proceedings at 1440x900 dpr 2 with the masthead's own text set
-   transparent, the backdrop runs rgb(227,230,232) to rgb(245,247,249) --
-   --ink-3 3.85:1 to 4.49:1. Its BEST pixel is still under AA. Identical at
+   transparent, the backdrop ran rgb(227,230,232) to rgb(245,247,249) --
+   --ink-3 3.85:1 to 4.49:1. Its BEST pixel was still under AA. Identical at
    1280, 1216 and 1200.
 
-   So the trade this block described as dissolved is still live, and it is
-   still resolved the same way: the honest signal is worth more than the
-   fifteen hundredths. What actually helps the reader who needs the contrast is
-   the prefers-contrast: more block at the foot of this file, which raises
-   --ink-3 to #5a676d -- a real step, and still a step away from --ink-2.
+   THAT SAMPLE EXPIRED WITH THE TEAL PALETTE and nothing has replaced it. The
+   indigo pane has not been put in front of a browser, so this file does not
+   know its best pixel, its worst, or the range between them, and it will not
+   guess: the numbers above are the old page's and no arithmetic over the new
+   tokens reproduces them. What did not expire is the reasoning. The flat token
+   is a CEILING, the rendered pane sits below it, and the token itself is 4.30:1
+   -- under AA before the pane takes anything off it. So --ink-3 on this masthead
+   fails AA in the indigo palette too, and by a wider margin than before.
+
+   The trade this block described as dissolved is still live, and it is still
+   resolved the same way: the honest signal is worth more than the shortfall,
+   which is now larger and still unmeasured in the rendered case. What actually
+   helps the reader who needs the contrast is the prefers-contrast: more block at
+   the foot of this file, which raises --ink-3 to #4d5872 -- a real step, and
+   still a step away from --ink-2.
 
    Two numbers admitting a shortfall have now been optimistic in this one
    comment, and both were optimistic because somebody measured a token and
@@ -2249,7 +2296,7 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
 
 /* In dark, --paper sits BELOW the glass rail, so a paper chip would read as
    pressed in rather than lifted out. --rule is the one step above the rail
-   that still carries --ink at full strength -- 11:1, measured. Same
+   that still carries --ink at full strength -- 11.5:1, by token arithmetic. Same
    relationship, opposite direction, because that is what the two schemes
    ask for. */
 @media (prefers-color-scheme: dark) {
@@ -2261,8 +2308,8 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
 }
 
 /* Where the work is, before anyone clicks. ink-2 rather than ink-3: this is a
-   number someone reads, not a shade. On --surface-sunk ink-3 is 3.90:1, under
-   AA; against --glass-solid it is 4.57:1, and ink-2 on the same 8.26:1. Those
+   number someone reads, not a shade. On --surface-sunk ink-3 is 3.76:1, under
+   AA; against --glass-solid it is 4.30:1, and ink-2 on the same 8.08:1. Those
    two are token arithmetic -- the rail is a translucent pane and its rendered
    backdrop moves with whatever scrolls beneath it, so the ink-3 figure is a
    ceiling and not a reading. ink-2 is the right weight for a count anyway, and
@@ -2272,7 +2319,9 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
    restated "from the rendered pixel". It was not from a rendered pixel; it was
    ratio(--ink-3, #f7f9fa). Same error as the token block near the top of the
    file, third site. tests/test_glass_contrast.py now asserts these as token
-   figures so they cannot drift again without a test going red.) */
+   figures so they cannot drift again without a test going red. The 4.57 and the
+   #f7f9fa in this paragraph are the teal palette's, before 2026-08-07; they are
+   the record of the mistake, not a reading of the colours above.) */
 .tab__count {
   font: var(--t-micro) / var(--lh-micro) var(--face-data);
   font-variant-numeric: tabular-nums;
@@ -3233,15 +3282,18 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
  * things and did not ask for the page to be redrawn -- nothing should shift by
  * one value when the pane goes solid.
  *
- * It is also the one place --ink-3 gets raised. On --bg it is 4.25:1 and on
- * --surface-sunk 3.90:1 -- both under AA for small text, both true before this
+ * It is also the one place --ink-3 gets raised. On --bg it is 4.16:1 and on
+ * --surface-sunk 3.76:1 -- both under AA for small text, both true before this
  * change and both left alone by it, because moving a token used at 36 sites is
  * not a backdrop fix and it is not this file's turn to make that call. Under
  * this query the caller has asked, so here it goes up.
  *
  * RAISED TO A NEW VALUE, NOT TO --ink-2, AND THAT IS THE WHOLE POINT. The first
  * version of this block set --ink-3 to #414d52 in light and #a9b7ba in dark.
- * Those are not "near --ink-2", they are byte-identical to it. --ink-3 is used
+ * Those are not "near --ink-2", they were byte-identical to it -- to the TEAL
+ * --ink-2, which is what this file carried until 2026-08-07. Both hexes are the
+ * old palette's and are kept as the record of the collapse, not as colours
+ * anything here still names. --ink-3 is used
  * at 36 sites in this file, 6 in clerk.css and 7 in workflow.css, and every one
  * of them is a deliberate second level of ink: a label under a value, a
  * coordinate under a claim, a count that is a shade rather than a figure. Set
@@ -3260,21 +3312,29 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
  * So each scheme gets a value that is genuinely darker (lighter, in dark) than
  * base --ink-3 and still a plain step from --ink-2:
  *
- *   light  #5a676d   on --bg 4.25 -> 5.15, on --surface-sunk 3.90 -> 4.73
- *                    (both now clear AA), --surface 5.68; gap to --ink-2 1.49:1
- *   dark   #8e9ca0   on --bg 5.39 -> 6.62, on --surface 5.02 -> 6.17,
- *                    on --surface-sunk 5.59 -> 6.86; gap to --ink-2 1.37:1
+ *   light  #4d5872   on --bg 4.16 -> 6.57, on --surface-sunk 3.76 -> 5.95
+ *                    (both now clear AA), --surface 7.11; gap to --ink-2 1.73:1
+ *   dark   #9fabc4   on --bg 5.69 -> 8.20, on --surface 5.15 -> 7.42,
+ *                    on --surface-sunk 5.90 -> 8.51; gap to --ink-2 1.55:1
  *
- * The base gaps are 1.81:1 and 1.68:1, so about four fifths of the separation
- * survives while the ground contrast rises by three quarters of a point or
- * more. That is the trade this query is asking for. Ratios are computed from
- * the declared tokens, and tests/test_glass_contrast.py asserts every one of
- * them -- including that the two inks are never equal in any scheme.
+ * The base gaps are 1.88:1 and 1.65:1, so nine tenths of the separation
+ * survives while the ground contrast rises by two and a half points. That is
+ * the trade this query is asking for, and the indigo palette gets a better
+ * bargain on it than the teal one did. Ratios are computed from the declared
+ * tokens, and tests/test_glass_contrast.py asserts every one of them --
+ * including that the two inks are never equal in any scheme.
+ *
+ * --ink AND --ink-2 GO UP HERE TOO, which the first version of this block did
+ * not do. Raising only the third level answers the request at one site and
+ * leaves the body text and the labels exactly where the reader said they could
+ * not read them. All three levels step, and they step by different amounts so
+ * the hierarchy widens rather than bunching at the top.
  *
  * --rule HAD THE SAME BUG and it is fixed the same way. #a4afb3 and #3c4e55
- * were byte-identical to --rule-strong, collapsing the border hierarchy for the
- * same reader. They become #bcc5c8 (on --bg 1.26 -> 1.55) and #30414a
- * (1.42 -> 1.77), each still a step below --rule-strong.
+ * were byte-identical to --rule-strong -- the teal --rule-strong, before
+ * 2026-08-07 -- collapsing the border hierarchy for the same reader. In the
+ * indigo palette --rule becomes #b9c2d4 (on --bg 1.24 -> 1.66) and #39435c
+ * (1.40 -> 1.92), and --rule-strong steps with it, so the two levels stay two.
  *
  * Reduced transparency asks for less see-through and nothing else, so it gets
  * the pane half and not the ink half.
@@ -3307,16 +3367,22 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
 
 @media (prefers-contrast: more) and (prefers-color-scheme: light) {
   :root {
+    --ink: #05090f;
+    --ink-2: #2b3547;
     /* A step darker than --ink-3, a step lighter than --ink-2. Never either. */
-    --ink-3: #5a676d;
-    --rule: #bcc5c8;
+    --ink-3: #4d5872;
+    --rule: #b9c2d4;
+    --rule-strong: #7f8ba3;
   }
 }
 
 @media (prefers-contrast: more) and (prefers-color-scheme: dark) {
   :root {
-    --ink-3: #8e9ca0;
-    --rule: #30414a;
+    --ink: #ffffff;
+    --ink-2: #ccd4e6;
+    --ink-3: #9fabc4;
+    --rule: #39435c;
+    --rule-strong: #5a6683;
   }
 }
 
@@ -3409,8 +3475,8 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
  * an admin screen as it does on a change page.
  *
  * WHAT THIS BLOCK MUST NOT TOUCH: outline. The focus ring is an outline
- * and it survives here in full -- 6.16:1 against --surface-sunk in light,
- * 10.55:1 in dark, measured. Only the halo goes, because the halo is a
+ * and it survives here in full -- 6.37:1 against --surface-sunk in light,
+ * 10.67:1 in dark, by token arithmetic. Only the halo goes, because the halo is a
  * box-shadow. Losing the ring would be an accessibility regression no test
  * in this repository catches.
  *
