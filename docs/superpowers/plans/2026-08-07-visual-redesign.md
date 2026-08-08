@@ -1105,6 +1105,11 @@ Screenshot each one and look at it. Report every page whose `scrollWidth` exceed
 
 Do not add Playwright to `requirements.txt`. This is a one-off check at the end of a redesign, and a permanent browser dependency would break the offline promise Task 2 just paid for.
 
+**Two faults are already known and must be fixed here rather than rediscovered.** Task 6 found both by measuring in headless Chromium; neither was introduced by this redesign.
+
+1. **`.nav__why` overflows the document.** It is `position: absolute` with `width: max-content` and `max-width: min(20rem, 70vw)`. An absolutely positioned box adds nothing to its parent's layout width but **does** extend the document's scrollable area, so the tooltip hanging off a right-hand nav item runs past the viewport edge. Measured at a 500px viewport: document width 599–607px against a 500px client. Fix by keeping it inside the viewport — flip its anchor near the right edge, or clip at a wrapper — **without** hiding it from the accessible name, which `test_a11y_guards.py` requires to stay rendered text.
+2. **`--stuck: 7rem` is wrong between roughly 768px and 860px.** The masthead measures 233px at 768 and 164px at 800, not the 124px its own comment claims. `--stuck` feeds `--focus-anchor`, so in that band a keyboard user can tab to a control that scrolls under the bar and reads as unfocused — the exact failure `--focus-anchor` exists to prevent. Measure the real height across the band and set the token from the measurement, then correct the comment.
+
 - [ ] **Step 3: Confirm the offline promise**
 
 Disable the network, hard-reload the app and the site. The display face still renders. If it falls back to the system stack, the font is being fetched rather than served.
