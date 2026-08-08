@@ -32,6 +32,7 @@ These apply to **every** task. They are copied from the spec and from the test s
 - **The `.skip` link's background stays opaque.** No `rgba`, no `transparent` — it renders outside `.shell` on the darkened desk (`test_glass_contrast.py:316`).
 - **`--ground: none` stays true** in all three conditions that declare it, or the comment describing them is fiction (`test_glass_contrast.py:354`).
 - **Nothing in a ground or glass token animates.** No `transition`, no `animation` in a backdrop token — stated as a promise in a comment and checked (`test_glass_contrast.py:362`). Task 9's motion tokens must not land there.
+- **Change the head of a token family and you change the family.** This has now caused three defects in this plan: `--glass-tint` moved without `--glass-1/2/3`, `--accent` moved without `--accent-strong` and `--accent-wash`, and the light scheme moved without dark. Before committing any token change, `grep` for the token's own prefix (`--accent`, `--glass`, `--ink`, `--rule`) across **all four schemes** and confirm every member still belongs to the same family. Almost none of these pairings is covered by a test, so the grep is the guard.
 - **Meaning never rests on colour alone.** Label, weight and shape carry state first.
 - **Gradients and mesh are banned from record surfaces** — diff, claims, quoted source, citation viewer.
 - **Prose follows Orwell's rules. No emoji.** Comments explaining a decision that still holds are moved across unchanged, not deleted.
@@ -591,6 +592,29 @@ Expected: the seven files above, plus `app/web/static/strata.css` (done in Task 
   --accent: #2f4bd8;   /* institutional indigo: anything you can act on */
   --alarm:  #a02c1d;   /* refusal keeps its oxblood weight */
 ```
+
+- [ ] **Step 2b: The two teal remnants Task 3 found and deliberately left here**
+
+Neither is pinned and no test covers them, so nothing will fail if you skip this — they will simply read faintly green against an indigo page, which is the kind of defect that survives review because no one can name it.
+
+`--hatch` is the old ink at an alpha. Re-derive it from the new ink in each scheme:
+
+```css
+  --hatch: rgba(15, 23, 41, 0.16);      /* light: --ink #0f1729 at .16 */
+```
+```css
+    --hatch: rgba(233, 237, 247, 0.18); /* dark: --ink #e9edf7 at .18 */
+```
+
+The high-contrast `--hatch` values are achromatic (`rgba(0,0,0,0.34)`, `rgba(255,255,255,...)`) and need no change.
+
+`--glass-cast` is the shadow colour, and its own comment says shadows here are blue-black and never neutral. The light value `#04191f` is a teal-black. Replace with a blue-black in the new family:
+
+```css
+  --glass-cast: #060b1a;     /* shadows are blue-black, never neutral */
+```
+
+Dark stays `#000000` and the high-contrast value stays `#fff`; both are already hue-free.
 
 - [ ] **Step 3: Replace the hex in all seven files**
 
