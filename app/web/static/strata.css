@@ -608,7 +608,14 @@
        brightness because a blur of a dark page returns a dark page. White
        would read as a scratch along the top edge, so the edge takes a
        lifted grey instead. */
-    --paper: #161d31;
+    /* ONE BELOW THE GLASS RAIL, AND THAT STEP IS THE POINT. The indigo pass
+       first set this to #161d31, which is --glass-solid exactly. Teal kept the
+       two a value apart -- paper #151e22 under glass #151f23 -- and the rule
+       for the current tab reads "--paper sits below the glass rail", which a
+       byte-identical pair makes untrue while nothing fails. Nothing asserts
+       the two differ, so the guard here is this comment and the one value.
+       --ink-3 on it is 5.09:1, up from 5.03:1 when they were equal. */
+    --paper: #151c30;
     --glass-tint: #1d253b;
     --glass-solid: #161d31;
     --glass-edge: #5c757e;
