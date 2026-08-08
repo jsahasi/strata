@@ -4,11 +4,19 @@
  * this is the exception that proves it rather than a fork of it: the dock is
  * loaded on every screen but drawn on none of them until somebody opens it, and
  * it introduces no colour, no type face and no spacing step of its own. Every
- * value below is a custom property that file already defines -- the filing-stamp
- * blue, the withheld amber, the 4px space grid, the three type registers. There
- * is no hex literal in this file and there must not be one: a second palette is
- * a second product, and the withheld treatment in particular has to be the same
- * amber a person already learned on the review queue.
+ * value below is a custom property that file already defines -- the
+ * institutional indigo, the withheld amber, the 4px grid, the type registers.
+ * There is no colour literal in this file and there must not be one: a second
+ * palette is a second product, and the withheld treatment in particular has to
+ * be the same amber a person already learned on the review queue.
+ *
+ * THE SHAPE AND THE DEPTH COME FROM THE SAME PLACE THE COLOUR DOES. Chrome is
+ * soft in this product and the record is flat, so every box below takes
+ * --r-card, --r-control or --r-pill, and the one cast this file draws on paper
+ * is --lift-1. Nothing here is a record surface: the diff, the claims, the
+ * quoted source and the citation viewer live on the page, keep --r, and this
+ * file never touches them. The withheld block the dock does show is styled by
+ * strata.css, so it arrives flat and stays flat.
  *
  * WHAT THE LAYOUT HAS TO SURVIVE. A rail 26rem wide beside a 20rem phone is a
  * page the person cannot read behind a panel they cannot close. So the dock is
@@ -47,15 +55,20 @@
 /* G3 -- transient glass. It only appears when base.html offers no slot, so
    it is the one thing here that floats over a page it does not belong to.
    Solid first, glass only where the filter exists; every value comes from
-   strata.css, because a hex or an rgba() in this file is a second visual
-   language and a test says so. */
+   strata.css, because a colour written out in this file is a second visual
+   language and a test says so.
+
+   --r-control rather than --r: this is a control that floats over the page,
+   which is the softest thing chrome gets to be. It keeps the glass ladder's
+   own cast -- see the note on the dock below for why the ladder is not
+   restated in --lift. */
 .clerk-launch--floating {
   position: fixed;
   right: var(--s4);
   bottom: var(--s4);
   z-index: 40;
   padding: var(--s2);
-  border-radius: var(--r);
+  border-radius: var(--r-control);
   background: var(--glass-solid);
   box-shadow: var(--edge), var(--shadow-3);
 }
@@ -81,6 +94,20 @@
  * SOLID FIRST, UNCONDITIONALLY. A browser with no backdrop-filter never
  * sees the translucent value at all, so it cannot end up drawing grey text
  * on a grey rectangle.
+ *
+ * THE CAST STAYS --edge PLUS --shadow-2 AND DOES NOT BECOME --lift-2, which
+ * is a refusal rather than an oversight. --edge is an inset highlight along
+ * the top of a translucent pane and --shadow-2 is the outer cast that goes
+ * with it; the two are one step of the glass ladder, the ladder has three
+ * steps (G1 the masthead, G2 this dock, G3 the launcher above), and
+ * strata.css still draws the other two. --lift-1 and --lift-2 are the depth
+ * of opaque chrome and carry no inset edge at all. Swapping here would take
+ * the lit rim off the pane and leave clerk.css a step out of a ladder the
+ * rest of the product is still climbing -- half a migration, which section
+ * 27 of docs/best-practices.html says is the worst state to stop in. The
+ * ladder moves whole or not at all, and moving it whole is not this task.
+ * --lift-1 IS used below, on the one opaque thing this file casts a shadow
+ * from: the suggestion pill.
  *
  * overflow: hidden so the opaque transcript squares off no rounded corner
  * once the rail insets from the viewport edge below.
@@ -153,9 +180,15 @@
   font-size: var(--t-small);
 }
 
+/* A PILL, ON PURPOSE. This chip is 12px uppercase in 4px of vertical padding,
+   so it stands about 22px tall and --r-control at 10px would round it to one
+   pixel short of a pill -- which reads as a radius somebody got wrong rather
+   than as a shape somebody chose. --r-pill is the honest version of what
+   --r-control was going to draw here anyway. The same argument covers the two
+   rating marks below, which are the same chip at the same size. */
 .clerk-dock__close {
   border: 1px solid var(--rule-strong);
-  border-radius: var(--r);
+  border-radius: var(--r-pill);
   padding: var(--s1) var(--s3);
   background: var(--paper);
   color: var(--ink-2);
@@ -201,12 +234,15 @@
   white-space: pre-wrap;
 }
 
+/* What the reader typed, given back to them. A bubble, so --r-control: it is
+   the person's own words in the chrome of a conversation, not a record the
+   product is standing behind. The reply opposite it takes no box at all. */
 .clerk-turn--person {
   align-self: flex-end;
   max-width: 90%;
   padding: var(--s2) var(--s3);
   border: 1px solid var(--rule);
-  border-radius: var(--r);
+  border-radius: var(--r-control);
   background: var(--surface-sunk);
 }
 
@@ -252,7 +288,7 @@
 
 .clerk-mark {
   border: 1px solid var(--rule-strong);
-  border-radius: var(--r);
+  border-radius: var(--r-pill);
   padding: var(--s1) var(--s3);
   background: var(--surface);
   color: var(--ink-2);
@@ -290,14 +326,21 @@
 /* A raised chip on the pane, not a second pane. A backdrop-filter nested
    inside an already-blurred surface blurs the parent's own tint, which
    buys nothing you can see and costs a second compositor pass. So the pill
-   takes the depth of the transient level -- the edge and the smallest cast
-   -- on paper. */
+   is opaque paper -- and being opaque is exactly what makes --lift-1 the
+   right cast for it. --lift-1 is a resting card mixed from --ink, which is
+   what a chip sitting on paper is; the glass ladder's edge-and-cast pair
+   above belongs to the translucent panes and was drawn here only because
+   there was nothing else to reach for when this file was written.
+
+   Not --r-pill, which the two chips above take: a suggestion runs to two
+   or three lines and wraps left-aligned, and a pill radius on a paragraph
+   makes a lozenge. --r-control is the shape of a control you read. */
 .clerk-pill {
   border: 1px solid var(--rule-strong);
-  border-radius: var(--r);
+  border-radius: var(--r-control);
   padding: var(--s2) var(--s3);
   background: var(--paper);
-  box-shadow: var(--edge), var(--shadow-3);
+  box-shadow: var(--lift-1);
   color: var(--ink);
   font: 600 var(--t-small) / 1.4 var(--face-ui);
   text-align: left;
@@ -315,9 +358,15 @@
    :focus-visible rule in strata.css because this file loads after it. So
    the halo has to be restated alongside the cast, or a keyboard user gets
    a ring with nothing separating it from the pane behind. The ring itself
-   is an outline and was never at risk; the halo was, silently. */
+   is an outline and was never at risk; the halo was, silently.
+
+   THIS RULE MOVES WITH THE ONE ABOVE IT AND HAS TO. It repeats the resting
+   cast so it can add the halo, so a cast changed in one place and not the
+   other gives a focused pill a different depth from an unfocused one --
+   visible only while somebody is tabbing, which is when nobody is looking
+   at a screenshot. Both say --lift-1 now. */
 .clerk-pill:focus-visible {
-  box-shadow: var(--edge), var(--shadow-3), 0 0 0 4px var(--focus-halo);
+  box-shadow: var(--lift-1), 0 0 0 4px var(--focus-halo);
 }
 
 /* M3 -- the one spring in the whole product, and it is here because a
@@ -364,7 +413,18 @@
 
 /* A field is where somebody writes, so it is paper even though the row it
    sits in is glass. A translucent input is the single worst thing in every
-   glass interface ever shipped. */
+   glass interface ever shipped.
+
+   THE THREE FIELDS IN THIS FILE KEEP --r, AND THAT IS A DEFERRAL WITH A DATE
+   ON IT RATHER THAN A PREFERENCE. --r-control is plainly the right token for
+   a form control and this row is the reason it cannot go in yet: the field
+   and the Send button stand shoulder to shoulder in it, Send is `.btn`, and
+   `.btn` is defined in strata.css and still takes --r. Rounding one and not
+   the other draws two shapes for one row -- the same half-migration the
+   glass note above refuses, at a size a reader meets on every question they
+   ask. The head of this family is `.btn`, not this file. When it moves, the
+   three field rules here move in the same change; grep --r in clerk.css and
+   there they are. */
 .clerk-ask__field {
   flex: 1 1 auto;
   min-width: 0;
@@ -385,6 +445,12 @@
 
 /* ----------------------------------------------------------- the comment -- */
 
+/* The box a rating's comment is typed into: a field, a label and two `.btn`s
+   in a frame. It keeps --r for the reason the ask row does: it is a frame
+   drawn tight around square controls, it belongs to them rather than to the
+   panes, and it moves when they move. The floating launcher above is the
+   opposite case and takes --r-control -- it is a small pane over the page
+   with its own cast, and its two buttons sit a whole space step inside it. */
 .clerk-comment {
   margin-top: var(--s3);
   padding: var(--s3);
@@ -481,11 +547,19 @@
 
 /* Above the handset breakpoint the rail stops being welded to the edge of
    the screen and becomes a window: inset by one space step on three sides,
-   with a radius. This is the ONE place --r-glass is used. G1 spans the
-   viewport and has no corners; every paper surface keeps the 3px of a
-   printed form field. macOS windows have a radius and macOS text fields do
-   not, and that boundary is the reason there are two radii rather than one
-   global number. */
+   with a radius. G1 spans the viewport and has no corners, so this is the
+   only window in the product and the only place the widest radius is drawn.
+
+   --r-card, WHERE THIS SAID --r-glass. Both are chrome radii and they were
+   never two ideas: --r-glass was 10px and named for the one surface that
+   takes it, --r-card is 14px and named for what the surface IS. A product
+   with a radius token per component is a product with no radius scale, and
+   the scale now has three steps that mean something a reader can learn --
+   a card, a control, a pill. --r-glass has no consumer left after this
+   edit; docs/web-design.html names it in three places and Task 18 owns
+   those. The record is untouched by any of it: the diff, the claims and
+   the quoted source keep the 3px of a printed form field, because a filing
+   with rounded corners is a card about a filing. */
 @media (min-width: 40.0625rem) {
   .clerk-dock,
   .clerk-bug {
@@ -493,7 +567,7 @@
     right: var(--s4);
     bottom: var(--s4);
     border: 1px solid var(--rule);
-    border-radius: var(--r-glass);
+    border-radius: var(--r-card);
   }
 }
 

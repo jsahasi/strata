@@ -35,22 +35,29 @@
 {% block content %}
 <div class="page-head">
   <div class="page-head__title">
-    <h1>{{ project.name }}</h1>
+    <h1 class="t-title">{{ project.name }}</h1>
     <span class="badge {{ project.badge }}">{{ project.status_word }}</span>
   </div>
-  <p class="page-head__note">
-    <span class="label">Jurisdiction</span> {{ project.jurisdiction }}
-    <span class="label">Owner</span> {{ project.owner }}
+  {#
+    Three labelled facts, three units. They were one paragraph, so the labels
+    were doing the work of punctuation and the line read as a run-on.
+
+    The no-docket case is a whole sentence and was in .coord, which is monospace
+    and nowrap. A sentence that cannot wrap sets the page's minimum width.
+  #}
+  <p class="page-head__facts">
+    <span class="page-head__fact"><span class="label">Jurisdiction</span> {{ project.jurisdiction }}</span>
+    <span class="page-head__fact"><span class="label">Owner</span> {{ project.owner }}</span>
     {% if project.docket_ref %}
-    <span class="label">Docket</span> <span class="coord">{{ project.docket_ref }}</span>
+    <span class="page-head__fact"><span class="label">Docket</span> <span class="coord">{{ project.docket_ref }}</span></span>
     {% else %}
-    <span class="label">Docket</span> <span class="coord">none. This is internal work, not a proceeding.</span>
+    <span class="page-head__fact"><span class="label">Docket</span> none. This is internal work, not a proceeding.</span>
     {% endif %}
   </p>
   {% if project.summary %}
-  <p class="page-head__note">{{ project.summary }}</p>
+  <p class="page-head__note t-lead">{{ project.summary }}</p>
   {% endif %}
-  <p class="coord">{{ project.id }} opened {{ project.created }}, last change {{ project.updated }}</p>
+  <p class="field-hint"><span class="coord">{{ project.id }}</span> opened {{ project.created }}, last change {{ project.updated }}</p>
 </div>
 
 <div class="stack">
@@ -158,9 +165,21 @@
             {% if row.materiality == materiality_unassessed %}
             <span class="coord">{{ row.materiality }}</span>
             {% elif row.materiality == materiality_withheld %}
-            <span class="coord" title="{{ row.materiality_reason }}"
-              >{{ row.materiality }}</span
-            >
+            {#
+              THE REASON COMES OUT OF THE TITLE ATTRIBUTE. It was reachable only
+              by putting a mouse on the word and holding it still for a second:
+              it never fires on touch, most screen readers do not speak it, and
+              nobody scanning the table saw it at all. base.html argues this at
+              length for a greyed nav item and tests/test_a11y_guards.py holds
+              that one; the same attribute was carrying a refusal's reason here,
+              which is the more serious of the two -- a reader who cannot see
+              why a verdict was withheld reads the blank as "nothing found".
+
+              It wears .withheld__reason, the vocabulary every other refusal in
+              the product uses, so a reader meets the same thing twice.
+            #}
+            <span class="coord">{{ row.materiality }}</span>
+            <span class="withheld__reason">{{ row.materiality_reason }}</span>
             {% else %}
             <span class="badge {{ row.materiality_badge }}"
               >{{ row.materiality }}</span
@@ -190,13 +209,19 @@
       So it describes the mechanism now instead of asserting a state, and every
       claim in it is true whatever the rows happen to say.
     #}
-    <p class="coord">
+    {#
+      TWO PARAGRAPHS OF PROSE IN .coord, WHICH IS nowrap. Between them they held
+      about four hundred characters on two unbreakable lines, and this page
+      measured 2,813 pixels wide inside a 390-pixel viewport because of them.
+      They explain a mechanism, so they wrap.
+    #}
+    <p class="field-hint">
       Materiality is judged one change at a time, by a model, on the change
       screen -- opening a change is what asks the question. This list never asks
       it: thirty rows would be thirty model calls on a page load. So a row reads
       "{{ materiality_unassessed }}" until somebody opens that change.
     </p>
-    <p class="coord">
+    <p class="field-hint">
       A verdict shown here was re-checked against the filing during this render,
       not read out of a column. The judgement is stored; the proof that it still
       holds is not, and cannot be -- it is a statement about bytes, and bytes
@@ -391,8 +416,8 @@
           </p>
         </div>
       </div>
-      <p class="coord">
-        {{ run.run_id }}.
+      <p class="field-hint">
+        <span class="coord">{{ run.run_id }}</span>.
         {%- if not run.enabled %}
         Switched off, so nothing on this project is being re-checked. It keeps
         its last run and its result.
@@ -442,7 +467,7 @@
     {% endfor %}
 
     {% if superseded_count %}
-    <p class="coord">
+    <p class="field-hint">
       {{ superseded_count }} earlier version{{ '' if superseded_count == 1 else 's' }}
       sit{{ 's' if superseded_count == 1 else '' }} behind these and
       {{ 'is' if superseded_count == 1 else 'are' }} not shown here. The wording

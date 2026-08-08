@@ -243,7 +243,7 @@ answer key is the filer's own marked-up copy, which exists for three families an
 demand.</td></tr>
 </table>
 
-<p><strong>The reviewer's command, run as a reviewer runs it.</strong> <code>make fresh-check</code> clones the repository into a temporary directory and runs the suite there, so nothing uncommitted can make it pass: <strong>2,301 passed, 2 xfailed in 310 seconds</strong>, exit zero, "fresh clone: tests pass". The same suite in this working copy gives the same result. It has not always: an earlier entry in the break log records a fresh clone failing where the working copy was green, because a feature had landed half-committed. That is why the check exists.</p>
+<p><strong>The reviewer's command, run as a reviewer runs it.</strong> <code>make fresh-check</code> clones the repository into a temporary directory and runs the suite there, so nothing uncommitted can make it pass: <strong>2,353 passed, 1 xfailed in 307 seconds</strong>, exit zero, "fresh clone: tests pass" &mdash; re-run on 2026-08-08 at commit <code>ba5965b</code>. The same suite in this working copy gives the same result. It has not always: an earlier entry in the break log records a fresh clone failing where the working copy was green, because a feature had landed half-committed. That is why the check exists.</p>
 
 <p>The per-file counts above were read off
 <code>pytest --collect-only -q</code>, not carried forward. Coverage is 92% of 10,359 statements
@@ -587,7 +587,7 @@ what they cost, not by when they happened.</p>
 <tr><th>Symptom</th><th>First hypothesis (and why it was wrong)</th><th>What the evidence showed</th><th>Fix</th></tr>
 
 <tr>
-<td><strong>Fixed; the suite now passes at 2,301.</strong> <code>make test</code> had failed on a
+<td><strong>Fixed; the suite passes on a fresh clone, 2,353 as of 2026-08-08.</strong> <code>make test</code> had failed on a
 fresh clone of HEAD, the only fatal-class bug in this repository:
 <code>tests/test_retention.py::test_every_table_in_the_schema_has_a_window_and_a_reason</code>
 failed. 1 failed, 1,380 passed. <code>make fresh-check</code> exited non-zero.</td>
@@ -1032,7 +1032,8 @@ product exists to argue that an unchecked claim is worth nothing.</p>
 
 <h2>Pre-submission checklist</h2>
 
-<div class="note"><p><strong>Re-executed on 2026-08-05 at commit <code>bd21a5a</code>.</strong> <code>gh repo view</code> returns PUBLIC and an anonymous file blob answers 200. <code>git rev-list --count HEAD</code> gives 84 commits, none squashed. <code>make fresh-check</code> clones into a temporary directory and passes: <strong>2,301 passed, 2 xfailed in 310 seconds</strong>, exit zero. The deployed instance answers <code>corpus_loaded: true</code> with four live escalations, so the refusal is visible in the running product and not only in the tests. Five documents fetched anonymously answer 200. <strong>One row is still NO and no command changes it: no user has been interviewed.</strong></p></div>
+<div class="note"><p><strong>Re-executed on 2026-08-05 at commit <code>bd21a5a</code>.</strong> <code>gh repo view</code> returns PUBLIC and an anonymous file blob answers 200. The deployed instance answers <code>corpus_loaded: true</code> with four live escalations, so the refusal is visible in the running product and not only in the tests. Five documents fetched anonymously answer 200. <strong>One row is still NO and no command changes it: no user has been interviewed.</strong></p>
+<p><strong>Two rows re-run on 2026-08-08 at commit <code>ba5965b</code>, and only those two.</strong> <code>git rev-list --count HEAD</code> gives 135 commits, none squashed. <code>make fresh-check</code> clones into a temporary directory and passes: <strong>2,353 passed, 1 xfailed in 307 seconds</strong>, exit zero. Everything in the paragraph above still carries the 2026-08-05 date, because it was not checked again; a stamp covering claims nobody re-ran is the defect this split exists to avoid.</p></div>
 
 <p>Status as checked against the repository at commit <code>1343f57</code>, 97 commits.</p>
 
@@ -1049,8 +1050,9 @@ internet.</td></tr>
 <tr><td><code>make test</code> works from that same fresh clone, and the output is legible to a
 stranger</td><td><span class="yes">YES.</span> <code>make fresh-check</code> clones the repository
 into a temporary directory and runs the suite there, so nothing uncommitted can make it pass:
-<strong>2,301 passed, 2 xfailed in 310 seconds</strong>, exit zero, and it prints
-<code>fresh clone: tests pass</code>. The working copy gives the same result.
+<strong>2,353 passed, 1 xfailed in 307 seconds</strong>, exit zero, and it prints
+<code>fresh clone: tests pass</code> &mdash; re-run on 2026-08-08 at commit <code>ba5965b</code>.
+The working copy gives the same result.
 <br><br>It did not always. <code>tests/test_retention.py::test_every_table_in_the_schema_has_a_window_and_a_reason</code>
 failed here because <code>user_permissions</code> had been committed as a table while the module
 that gives it a retention window had not &mdash; a feature landed half. The window is now declared

@@ -212,21 +212,21 @@ def test_the_two_rule_levels_are_never_the_same_colour(schemes, scheme):
 
 PINNED = [
     # scheme,     ink,       ground,           ratio, where strata.css says it
-    ("light", "--ink", "--bg", 15.57, "token block"),
-    ("light", "--ink-2", "--bg", 7.68, "prefers-contrast block"),
-    ("light", "--ink-3", "--bg", 4.25, "prefers-contrast block, conceded under AA"),
-    ("light", "--ink-2", "--surface-sunk", 7.06, "prefers-contrast block"),
-    ("light", "--ink-3", "--surface-sunk", 3.90, "conceded under AA"),
-    ("light", "--ink", "--glass-solid", 16.73, "token block, CEILING"),
-    ("light", "--ink-2", "--glass-solid", 8.26, "masthead block, CEILING"),
+    ("light", "--ink", "--bg", 15.82, "token block"),
+    ("light", "--ink-2", "--bg", 7.48, "prefers-contrast block"),
+    ("light", "--ink-3", "--bg", 4.27, "prefers-contrast block, conceded under AA"),
+    ("light", "--ink-2", "--surface-sunk", 6.82, "prefers-contrast block"),
+    ("light", "--ink-3", "--surface-sunk", 3.89, "conceded under AA"),
+    ("light", "--ink", "--glass-solid", 16.96, "token block, CEILING"),
+    ("light", "--ink-2", "--glass-solid", 8.01, "masthead block, CEILING"),
     ("light", "--ink-3", "--glass-solid", 4.57, "masthead block, CEILING"),
-    ("dark", "--ink-3", "--bg", 5.39, "prefers-contrast block"),
-    ("dark", "--ink-3", "--surface", 5.02, "prefers-contrast block"),
-    ("dark", "--ink-3", "--surface-sunk", 5.59, "prefers-contrast block"),
-    ("hc-light", "--ink-3", "--bg", 5.15, "prefers-contrast block"),
-    ("hc-light", "--ink-3", "--surface-sunk", 4.73, "prefers-contrast block"),
-    ("hc-dark", "--ink-3", "--bg", 6.62, "prefers-contrast block"),
-    ("hc-dark", "--ink-3", "--surface", 6.17, "prefers-contrast block"),
+    ("dark", "--ink-3", "--bg", 5.69, "prefers-contrast block"),
+    ("dark", "--ink-3", "--surface", 5.15, "prefers-contrast block"),
+    ("dark", "--ink-3", "--surface-sunk", 5.90, "prefers-contrast block"),
+    ("hc-light", "--ink-3", "--bg", 6.80, "prefers-contrast block"),
+    ("hc-light", "--ink-3", "--surface-sunk", 6.20, "prefers-contrast block"),
+    ("hc-dark", "--ink-3", "--bg", 8.20, "prefers-contrast block"),
+    ("hc-dark", "--ink-3", "--surface", 7.42, "prefers-contrast block"),
 ]
 
 

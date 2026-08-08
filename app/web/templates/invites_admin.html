@@ -139,7 +139,10 @@
 </p>
 {% endif %}
 
+{# Twelve columns, wider than a laptop, so the wrapper scrolls rather than the
+   page. See .table-scroll in strata.css. #}
 {% if rows %}
+<div class="table-scroll">
 <table class="table">
   <thead>
     <tr>
@@ -220,6 +223,7 @@
     {% endfor %}
   </tbody>
 </table>
+</div>
 
 {% elif not blocked %}
 {# Only when the list was READ and came back empty. With the invite module

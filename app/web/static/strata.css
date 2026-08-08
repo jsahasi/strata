@@ -1,3 +1,24 @@
+/* THE ONE WEB FONT, AND WHY IT IS ONLY ON HEADLINES.
+ *
+ * ADR-012 said no web font, as part of no build step and no CDN. Two of those
+ * three still hold and this changes only the third: the file is in this
+ * repository, served by this application, fetched by nothing at runtime. A
+ * reviewer with no network gets the whole design.
+ *
+ * Display only. Interface text keeps the system stack, because the dense
+ * screens were measured against those metrics and because swapping body text
+ * is what makes a page lurch on load. One file, 24KB, the whole 400-800 range.
+ */
+@font-face {
+  font-family: "Manrope";
+  src: url("/static/fonts/manrope-latin.woff2") format("woff2-variations");
+  font-weight: 400 800;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* Strata — one stylesheet. Tokens first, then components.
  *
  * Three type registers, each standing for a different kind of truth:
@@ -33,6 +54,7 @@
     "Book Antiqua", Georgia, "Times New Roman", serif;
   --face-data: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
     "Liberation Mono", monospace;
+  --face-display: "Manrope", var(--face-ui);
 
   --t-micro: 0.75rem;     /* 12px — uppercase labels, codes, coordinates.
                              Was 11px. It is the MOST-USED size in the app (38
@@ -49,6 +71,28 @@
   --t-claim: 1.1875rem;   /* 19px — a claim's statement */
   --t-h1: 1.5rem;         /* 24px — page title. The page does not shout. */
   --t-count: 1.375rem;    /* 22px — a count read across a grid of cards */
+
+  /* Display sizes. Every heading set in --face-display takes one of these, and
+     there is exactly one thing outside the scale that takes the face: the
+     wordmark in the masthead. It is a mark, not a heading -- its size is set in
+     the SVG and its box is fixed at 32px tall -- so it borrows the face and the
+     tracking and never a size from here. Said out loud because this comment
+     read "these are the only places --face-display is used" until the masthead
+     took it, and a comment that lists the sites is a comment that goes stale
+     the first time somebody adds one. The interface scale above is untouched:
+     --t-micro through --t-h1 were measured against the system stack and the
+     12px floor
+     was set for a real reader on real hardware. */
+  --t-display: 3rem;      /* 48px — the hero line, marketing only */
+  --t-title: 2rem;        /* 32px — page and section titles */
+  --t-lead: 1.25rem;      /* 20px — the sentence under a title */
+  /* Tracking slackens as the type gets smaller. A geometric face wants real
+     negative tracking at hero size and almost none at heading size, so one
+     value across the three would either loosen the hero or close up the h1. */
+  --track-display: -0.02em;   /* 48px hero */
+  --track-title: -0.014em;    /* 32px section title */
+  --track-h1: -0.009em;       /* 24px page title, near the interface heading's
+                                 own -0.008em, which it sits beside */
 
   --lh-ui: 1.5;
   --lh-micro: 1.55;       /* Tracked uppercase needs MORE leading, not less.
@@ -74,28 +118,46 @@
 
   --r: 3px;               /* a printed form field, not a pill */
   --r-sm: 2px;
+
+  /* Shape. Larger radii than the record had, and deliberately not applied to
+     the record: see the gradient rule. Chrome is soft; evidence is square.
+     Nothing in this file consumes them yet. When something does, it has to be
+     chrome -- a button, a card of controls, a pane -- and never the diff, the
+     claims, the quoted source or the citation viewer. Those keep --r and
+     --r-sm, because a filing with rounded corners is a card about a filing. */
+  --r-card: 14px;
+  --r-control: 10px;
+  --r-pill: 999px;
   --shell: 76rem;
 
   /* Colour — light. */
-  --bg: #eef1f2;
-  --surface: #fbfcfc;
-  --surface-sunk: #e3e8ea;
-  --rule: #d2d9db;
-  --rule-strong: #a4afb3;
-  --ink: #101a1e;
-  --ink-2: #414d52;
-  --ink-3: #67747a;
+  --bg: #eef1f9;
+  --surface: #fbfcfe;
+  --surface-sunk: #e2e7f2;
+  --rule: #d5dbea;
+  --rule-strong: #a5aec6;
+  --ink: #0f1729;
+  --ink-2: #414d68;
+  --ink-3: #65728f;
 
-  --accent: #0d5c6b;
-  --accent-strong: #084451;
-  --accent-wash: #d8eaee;
+  /* THE ACCENT FAMILY MOVES TOGETHER OR IT DOES NOT MOVE. The indigo pass set
+     --accent and left -strong and -wash on the teal they were derived from,
+     which is the same shape as the tint that moved without its literals: the
+     head of a family changes, the members do not, and nothing fails because
+     nothing pairs them. Parity with the teal set, which is the bar these were
+     chosen against: --accent on --paper was 7.61:1 and is 6.73:1; -strong on
+     -wash was 8.65:1 and is 8.14:1. White on --accent is 6.73:1, which is what
+     the skip link needs since it paints --accent behind white text. */
+  --accent: #2f4bd8;   /* institutional indigo: anything you can act on */
+  --accent-strong: #1f34a8;
+  --accent-wash: #e3e8fc;
 
-  --alarm: #8f3418;
+  --alarm:  #a02c1d;   /* refusal keeps its oxblood weight */
   --alarm-strong: #6d2610;
   --alarm-wash: #f7e4dd;
 
   /* The hatch that fills a withheld claim's statement slot. */
-  --hatch: rgba(16, 26, 30, 0.16);
+  --hatch: rgba(15, 23, 41, 0.16);
   --focus: var(--accent);
 
   /* ---- glass, paper, depth -------------------------------------------
@@ -116,7 +178,15 @@
    */
   --paper: #ffffff;          /* the record: diff, claims, source, tables */
   --glass-tint: #fdfeff;     /* the material the panes are made of       */
-  /* Raised from #f7fafb on 2026-08-05. At the old value a pane composited
+  /* THE HISTORY BELOW BELONGS TO THE TEAL PALETTE, NOT TO THIS ONE. Every hex,
+     every ratio and every sampled pixel in the paragraphs that follow was written
+     against the two-hue teal tokens this file carried until 2026-08-07, when the
+     palette moved to indigo. They stay because the corrections are the value, not
+     because they describe the colours declared above. Read none of them as a
+     claim about the current palette. The closing paragraph, "WHAT IS TRUE", is
+     the one that is current, and it says so.
+
+     Raised from #f7fafb on 2026-08-05. At the old value a pane composited
      six values off the page behind it -- so the blur had signal but the
      PANE had none, and the white edge highlight had nothing to catch. Dark
      never had this problem: its tint sits about eighteen off its page.
@@ -173,16 +243,27 @@
      a freshly loaded page. The claim was false and it was written into three
      comments as checked fact.
 
+     THOSE TWO PIXELS EXPIRED WITH THE TEAL PALETTE. Nobody has put a browser in
+     front of the indigo pane, so this file has no measurement of it: not a best
+     pixel, not a worst one, not a range. No arithmetic over the tokens gives one
+     back, because the pane takes the colour of whatever scrolls under it. The
+     honest state is that the rendered figure is unknown, and an unknown figure
+     is written down as unknown here rather than replaced with a plausible one.
+     What survives the palette change is the SHAPE of the finding -- the pane is
+     a range, its worst pixel is well below its best, and --ink-3 on it should be
+     assumed to fail AA until somebody measures it.
+
      WHAT IS TRUE, and what the figures below are: --glass-solid is the flat
      substitute the @supports fallback and prefers-reduced-transparency use, and
-     16.73 / 8.26 / 4.57 are correct FOR THAT TOKEN, which is what they were all
-     along. They are labelled as token arithmetic here and asserted as token
-     arithmetic in tests/test_glass_contrast.py. Nothing in this file now claims
-     a rendered figure, because a rendered figure on a translucent surface is
-     not a number -- it is a range that depends on what is underneath. */
-  --glass-solid: #f7f9fa;    /* that tint already composited over --bg   */
+     for the current palette 16.96 / 8.01 / 4.57 are correct FOR THAT TOKEN --
+     --ink, --ink-2 and --ink-3 in turn. They are labelled as token arithmetic
+     here and asserted as token arithmetic in tests/test_glass_contrast.py.
+     Nothing in this file now claims a rendered figure, because a rendered figure
+     on a translucent surface is not a number -- it is a range that depends on
+     what is underneath. */
+  --glass-solid: #f7f9fd;    /* that tint already composited over --bg   */
   --glass-edge: #ffffff;     /* the 1px highlight that says "in front"   */
-  --glass-cast: #04191f;     /* shadows are blue-black, never neutral    */
+  --glass-cast: #060b1a;     /* shadows are blue-black, never neutral    */
 
   /* THE THREE ABOVE ARE THE SOURCES, NOT FILLS. --glass-1/2/3 are
      --glass-tint at three alphas, --edge is --glass-edge at 0.55, and the
@@ -235,6 +316,13 @@
    * was sound and every digit in it was approximate. Rounding a measurement you
    * did not take is the same habit as inventing one, and this file has enough
    * of that in it already.)
+   *
+   * EVERY PIXEL VALUE IN THIS BLOCK WAS READ OFF THE TEAL PALETTE, before
+   * 2026-08-07. The desk and sheet are alpha layers, so the indigo page moves
+   * all eight of those numbers and nothing has re-read them. The argument holds
+   * -- a crisp edge on open ground, softened under the pane -- and the digits
+   * are the old page's. They are left as they were rather than rewritten from
+   * arithmetic, because arithmetic is not what took them.
    *
    * So the ground gets structure, taken from the subject rather than from a
    * hero gradient: a sheet of ruled filing paper lying on a desk. Three
@@ -306,14 +394,22 @@
                                         or not, the ramp cannot fringe */
   /* THE LIGHT SCHEME HAS ALMOST NO ROOM HERE and the numbers should say so
      rather than the alphas being nudged until something shows. --bg is
-     rgb(238,241,242); white is 17, 14 and 13 values away per channel. So a
-     lightening rule can move the ground by four values at 0.30 and by nine at
-     0.55 -- and nine is the pane's own step above the page, which would put a
-     hairline in the ground at the value of the chrome.
+     rgb(238,241,249); white is 17, 14 and 6 values away per channel -- the
+     indigo page is bluer than the teal one it replaced on 2026-08-07, so the
+     blue channel has almost no room at all. A lightening rule can move the
+     ground by 5, 4 and 2 at 0.30, and by 9, 8 and 3 at 0.55 -- and the pane's
+     own step above the page is 9, 8 and 4, so a 0.55 rule would put a hairline
+     in the ground at the value of the chrome. The invariant survived the
+     palette change; the digits behind it did not, and these are the new ones.
 
-     RENDERED, counted across a full 1440x900 frame at dpr 2 rather than read
-     off one pixel, because reading one pixel is how three other figures in this
-     file went wrong. Against a sheet of rgb(238,241,242):
+     RENDERED, AND THAT MEASUREMENT EXPIRED WITH THE TEAL PALETTE. The counts
+     below were taken on 2026-08-05 against a sheet of rgb(238,241,242), which
+     is the OLD --bg. Nothing has put a browser in front of the indigo ground,
+     the arithmetic above does not reproduce a rendered figure, and these are
+     kept for their method, not their values: counted across a full 1440x900
+     frame at dpr 2 rather than read off one pixel, because reading one pixel is
+     how three other figures in this file went wrong. Against a sheet of
+     rgb(238,241,242):
 
        column rule    rgb(243,245,246) at 7 of the 12 columns in frame,
                       rgb(243,245,245) at the other 5 -- the calc() lands
@@ -326,7 +422,13 @@
      those two were right. This is why the desk -- the one surface allowed to
      darken -- carries most of the structure in light. It renders rgb(225,229,230)
      and rgb(226,229,230) in equal measure, dithering between the two across the
-     gutter; rgb(5,9,10) in dark. */
+     gutter; rgb(5,9,10) in dark.
+
+     The dark sheet moved too: rgb(12,19,22) was the teal --bg and the indigo one
+     is rgb(11,16,32), so every dark figure in the paragraph above is as expired
+     as the light ones. What survives both is the shape -- light has no room and
+     the desk carries the structure, dark has room and the rules carry it -- and
+     that is why the alphas below are split by scheme. */
   --ruled-col: rgba(255, 255, 255, 0.30);
   --ruled-line: rgba(255, 255, 255, 0.22);
 
@@ -359,15 +461,19 @@
      along the top edge, and a cast that grows with how far the surface
      floats. --glass-cast is the colour all three are mixed from. */
   /* 0.55 over the old pane put the highlight four values above it, which is
-     not a highlight. At 0.9 over the corrected pane it is rgb(254,254,254)
-     against rgb(247,249,250) -- seven, and seven is the whole budget a
-     near-white pane has. In light the top edge can only ever whisper; the
+     not a highlight. At 0.9 over --glass-solid it is rgb(254,254,255) against
+     rgb(247,249,253) -- seven, five and two, and that is the whole budget a
+     near-white pane has: white itself is only eight, six and two away. In the
+     indigo palette the blue channel has less room still than the teal one had.
+     (Recomputed 2026-08-07 from the tokens. The figure this replaced,
+     rgb(254,254,254) on rgb(247,249,250), was the teal pane's.)
+     In light the top edge can only ever whisper; the
      cast below is what carries "in front" here, and the bright edge is a
      dark-scheme device. Both are stated rather than assumed because the
      reflex is to keep raising the highlight until it works, and in light it
      cannot. */
   --edge: inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  --shadow-1: 0 1px 2px rgba(4, 25, 31, 0.07);
+  --shadow-1: 0 1px 2px rgba(6, 11, 26, 0.07);
   /* THE STICKY PANES NEED THEIR OWN, and shadow-1 could not be widened to
      do it: four surfaces use it and most of them are flat cards that would
      start floating for no reason. A masthead that content passes underneath
@@ -416,8 +522,9 @@
      more distance, so nothing gets worse" is not a trade that exists.
 
      IT IS WORSE THAN A COSMETIC COST HERE, because of a number in another
-     block: --stuck is 7rem, so the .tabs rail sticks at exactly the masthead's
-     bottom edge and sits inside the deepest part of that band PERMANENTLY, not
+     block: --stuck is the masthead's own height, so the .tabs rail sticks at
+     exactly its bottom edge and sits inside the deepest part of that band
+     PERMANENTLY, not
      while something scrolls past. Measured at scrollY 900, the rail behind a
      tab went rgb(236,239,241) -> rgb(232,234,236), --ink-2 7.55 -> 7.23, and
      the current-tab chip -- opaque --paper white -- rendered rgb(249,249,249)
@@ -448,11 +555,45 @@
      THE NEGATIVE SPREAD IS THE PART THAT SURVIVED: shrink the box, push it
      down, then blur it. What comes out pools UNDER the pane instead of haloing
      around it, so .tabs -- a rounded box with two visible sides -- does not
-     grow a grey ring. */
-  --glass-lift: 0 10px 22px -10px rgba(4, 25, 31, 0.1),
-    0 2px 4px -2px rgba(4, 25, 31, 0.05);
-  --shadow-2: 0 12px 32px rgba(4, 25, 31, 0.14), 0 2px 6px rgba(4, 25, 31, 0.08);
-  --shadow-3: 0 4px 14px rgba(4, 25, 31, 0.1);
+     grow a grey ring.
+
+     EVERY RENDERED PIXEL AND EVERY RATIO IN THIS PARAGRAPH IS THE TEAL
+     PALETTE'S, read in Chromium before 2026-08-07. That covers the whole ladder
+     above: rgb(211,216,216) and the eight-pixel recovery, the five --ink-3 rows
+     from y=112 to y=148, rgb(236,239,241) -> rgb(232,234,236) with --ink-2 at
+     7.55 and 7.23, the rgb(249,249,249) chip, and the acceptance table's
+     rgb(223,226,228), 7.77 and 4.30. The page under all of them was
+     rgb(238,241,242) and it is now rgb(238,241,249); the cast's own colour moved
+     from a teal-black to rgba(6, 11, 26, ...) with --glass-cast. Nobody has put
+     a browser in front of the indigo cast, so none of these has been re-read,
+     and none is recomputed here because no token arithmetic produces a screenshot.
+     The dark block below carries the same note for the same reason, and this one
+     exists so that an undated pixel figure anywhere in this file can be taken as
+     current.
+
+     What carries over is the reasoning, which is not measurement: spreading the
+     same ink further darkens rows that were clean; --stuck, being the bar's own
+     height, puts the tabs rail inside the deepest part of the band permanently
+     at every width; and a cast that greys
+     out an opaque white chip is a film, not a shadow. The acceptance test carries
+     over too -- no row darker than the old cast -- but it now has no baseline to
+     be tested against until somebody measures one. */
+  --glass-lift: 0 10px 22px -10px rgba(6, 11, 26, 0.1),
+    0 2px 4px -2px rgba(6, 11, 26, 0.05);
+  --shadow-2: 0 12px 32px rgba(6, 11, 26, 0.14), 0 2px 6px rgba(6, 11, 26, 0.08);
+  --shadow-3: 0 4px 14px rgba(6, 11, 26, 0.1);
+
+  /* Two lifts for the new chrome, declared here rather than beside the radii
+     because this is where the depth family lives and a shadow token away from
+     its family is a shadow token that misses the next scheme sweep.
+     --lift-1 is a resting card, --lift-2 something a reader has picked up.
+     They are mixed from --ink so the light scheme's cast carries the page's
+     own blue-black rather than a second neutral. Same rule as every shadow
+     above them: they belong to the chrome, never to the record. */
+  --lift-1: 0 1px 2px color-mix(in srgb, var(--ink) 6%, transparent),
+            0 2px 8px -4px color-mix(in srgb, var(--ink) 18%, transparent);
+  --lift-2: 0 2px 4px color-mix(in srgb, var(--ink) 7%, transparent),
+            0 16px 32px -18px color-mix(in srgb, var(--ink) 32%, transparent);
 
   /* The outer companion to the focus ring. It separates the ring from a
      busy or translucent backdrop. It is an enhancement and may be lost;
@@ -463,13 +604,14 @@
   --r-glass: 10px;             /* a window has a radius; a form field does not */
 
   /* MEASURED, not guessed, and it deviates from the design plan on
-     purpose. The plan says 3.25rem. The masthead in this build is 124px
-     tall at every width from 768px up, and 112px once its padding
-     collapses in the sticky block below -- so 3.25rem would slide the
-     sticky source panel 60px under the masthead and land every anchor
-     behind it. 7rem is what the browser reports. --rail-h is the tab
-     rail, measured at 46px. Both are overridden with the layout that
-     makes them true; see "sticky chrome" below. */
+     purpose. The plan says 3.25rem, which would slide the sticky source panel
+     under the masthead and land every anchor behind it. What the browser
+     reports is three heights, not one -- 233px, 164px and 110px, depending on
+     how many rows the nav has wrapped to -- and the sticky block below sets
+     --stuck to each of them at the width where it becomes true. Read the table
+     there before changing any of them. --rail-h is the tab rail, measured at
+     46px. Both are overridden with the layout that makes them true; see
+     "sticky chrome" below. */
   --stuck: 0rem;
   --rail-h: 2.875rem;
   --anchor: calc(var(--stuck) + var(--rail-h) + var(--s4));
@@ -492,28 +634,42 @@
   --ease-settle: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-offer: cubic-bezier(0.34, 1.42, 0.64, 1);
+
+  /* The refusal gets a duration and a curve of its own, and the curve is the
+     point. --ease-offer overshoots on purpose, which is right for a thing
+     inviting you to take it and wrong for a claim that has just declined to
+     assert itself. A refusal that bounces tells the reader the wrong thing
+     about what happened. This one arrives and it stops. */
+  --dur-refuse: 200ms;
+  --ease-refuse: cubic-bezier(0.2, 0, 0.38, 1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0c1316;
-    --surface: #121b1f;
-    --surface-sunk: #080e11;
-    --rule: #243238;
-    --rule-strong: #3c4e55;
-    --ink: #e7eeef;
-    --ink-2: #a9b7ba;
-    --ink-3: #7e8c90;
+    --bg: #0b1020;
+    --surface: #141b2e;
+    --surface-sunk: #070b16;
+    --rule: #252e45;
+    --rule-strong: #3d4863;
+    --ink: #e9edf7;
+    --ink-2: #adb7cd;
+    --ink-3: #818da8;
 
-    --accent: #6ccddc;
-    --accent-strong: #a6e6f0;
-    --accent-wash: #0f333c;
+    /* Dark's accent was a cyan derived from the teal light accent, so it
+       survived the indigo pass untouched and would have rendered a cyan action
+       colour on an indigo page. Same parity test as light: on --bg the teal set
+       read 10.18:1 and this reads 9.96:1, -strong on -wash 9.75:1 against
+       10.62:1. Lighter than light's accent rather than darker, because on a
+       dark ground the action colour has to come forward. */
+    --accent: #a8b9ff;
+    --accent-strong: #c2ccff;
+    --accent-wash: #151c3a;
 
     --alarm: #ef9d80;
     --alarm-strong: #ffc2ac;
     --alarm-wash: #3a1a11;
 
-    --hatch: rgba(231, 238, 239, 0.18);
+    --hatch: rgba(233, 237, 247, 0.18);
 
     /* Dark glass is not light glass with another alpha. --surface sits four
        points off --bg here, so an alpha of it would be invisible: the tint
@@ -521,15 +677,29 @@
        brightness because a blur of a dark page returns a dark page. White
        would read as a scratch along the top edge, so the edge takes a
        lifted grey instead. */
-    --paper: #151e22;
-    --glass-tint: #1a262b;
-    --glass-solid: #151f23;
-    --glass-edge: #5c757e;
+    /* ONE BELOW THE GLASS RAIL, AND THAT STEP IS THE POINT. The indigo pass
+       first set this to #161d31, which is --glass-solid exactly. Teal kept the
+       two a value apart -- paper #151e22 under glass #151f23 -- and the rule
+       for the current tab reads "--paper sits below the glass rail", which a
+       byte-identical pair makes untrue while nothing fails. Nothing asserts
+       the two differ, so the guard here is this comment and the one value.
+       --ink-3 on it is 5.09:1, up from 5.03:1 when they were equal. */
+    --paper: #151c30;
+    --glass-tint: #1d253b;
+    --glass-solid: #161d31;
+    /* THE FIFTH AND LAST TEAL REMNANT, FOUND BY COUNTING HUES RATHER THAN BY
+       LOOKING. The indigo pass moved --glass-tint, --glass-solid and --paper
+       and left this one at hue 196, in a scheme where everything else sits
+       between 220 and 226. Nobody saw it because it is a 1px top edge at 16%
+       saturation -- which is the whole argument for auditing a palette with
+       arithmetic instead of eyes. Same lightness and saturation, moved onto
+       the family's hue, so the edge reads exactly as bright as before. */
+    --glass-edge: #5c667e;
     --glass-cast: #000000;
 
-    --glass-1: rgba(26, 38, 43, 0.62);
-    --glass-2: rgba(26, 38, 43, 0.86);
-    --glass-3: rgba(26, 38, 43, 0.92);
+    --glass-1: rgba(29, 37, 59, 0.62);
+    --glass-2: rgba(29, 37, 59, 0.86);
+    --glass-3: rgba(29, 37, 59, 0.92);
 
     --blur-1: blur(20px) saturate(160%) brightness(1.08);
     --blur-2: blur(30px) saturate(150%) brightness(1.06);
@@ -569,11 +739,31 @@
        --ink-2 8.05 -> 8.14 and --ink-3 4.78 -> 4.84. The current-tab chip
        keeps 1.21:1 against the rail, against light's 1.06:1, so dark can also
        afford the film that light could not. Both schemes were measured; only
-       one of them could pay. */
+       one of them could pay.
+
+       THOSE PIXELS AND THE FOUR RATIOS WITH THEM ARE THE TEAL PALETTE'S, read
+       before 2026-08-07, and so is rgb(46,61,66)/rgb(56,74,80) in the --edge
+       note above. Nobody has re-run the sample on indigo. The direction is the
+       part that carries over -- darkening the ground under light ink buys
+       contrast rather than spending it, which is true of any dark scheme -- and
+       the digits are stale. They are not recomputed here because no token
+       arithmetic produces them; they came out of a screenshot. */
     --glass-lift: 0 18px 40px -12px rgba(0, 0, 0, 0.72),
       0 3px 8px -3px rgba(0, 0, 0, 0.5);
     --shadow-2: 0 12px 32px rgba(0, 0, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
     --shadow-3: 0 4px 14px rgba(0, 0, 0, 0.45);
+
+    /* THE LIFTS HAVE TO BE RESTATED HERE OR DARK GROWS A HALO. In light they
+       are mixed from --ink, which is a blue-black; --ink in dark is #e9edf7,
+       so the same declaration would paint a near-white glow under every card
+       and call it a shadow. A shadow is the absence of light in both schemes,
+       so dark mixes from black instead, and it takes the deeper alphas the
+       rest of this block takes for the same reason: black on a page already
+       near black has little left to give. */
+    --lift-1: 0 1px 2px rgba(0, 0, 0, 0.4),
+              0 2px 8px -4px rgba(0, 0, 0, 0.55);
+    --lift-2: 0 2px 4px rgba(0, 0, 0, 0.45),
+              0 16px 32px -18px rgba(0, 0, 0, 0.72);
 
     --focus-halo: rgba(4, 9, 11, 0.9);
   }
@@ -631,9 +821,73 @@ h2 {
   font-size: var(--t-ui-lg);
 }
 
+/* The display face, and the first rule in this file to use it. It sits below
+   the h1/h2/h3 block on purpose: for h1 the two rules have the same weight, so
+   source order decides, and this one deliberately takes the weight and the
+   tracking off the block above -- 600 becomes 750 and -0.008em becomes
+   -0.02em. Manrope is a variable face with a 400-800 axis, so 750 renders as
+   750 rather than snapping to bold, and a geometric face at heading size needs
+   the tighter track or the letters drift apart.
+
+   IT DOES NOT TOUCH THE SIZE. h1 stays at --t-h1, 24px, which the interface
+   scale set and argued for. .t-display and .t-title are the opt-in sizes, and
+   nothing in the templates asks for them yet. The page still does not shout;
+   it now says what it says in our own face. */
 h3 {
   font-size: var(--t-ui);
 }
+
+/* TRACKING IS A FUNCTION OF SIZE, AND ONE VALUE FOR THREE SIZES IS THE BUG.
+   --track-display was chosen for a 48px hero. Applied whole, it also reached
+   h1 at 24px, where -0.02em is too tight: negative tracking has to slacken as
+   type gets smaller or the small end closes up. This is the type equivalent of
+   the token-family errors above -- one value taken from the largest case and
+   handed to every case.
+
+   Three steps, tightest at the top. h1 keeps a value near the -0.008em the
+   interface headings already used, because it belongs to that scale and only
+   borrows the face. */
+h1, .t-display, .t-title {
+  font-family: var(--face-display);
+  font-weight: 750;
+}
+
+.t-display {
+  letter-spacing: var(--track-display);
+}
+
+.t-title {
+  letter-spacing: var(--track-title);
+}
+
+h1 {
+  letter-spacing: var(--track-h1);
+}
+
+/* The display sizes themselves, so a class that names a scale step carries
+   one. Without these .t-title would change the face of a line and leave it at
+   body size, which is the sort of half-applied token that gets "fixed" later
+   by hard-coding a pixel value next to it. --t-lead is the sentence under a
+   title and stays in the interface face: it is prose, not display. */
+.t-display {
+  font-size: var(--t-display);
+  line-height: 1.1;
+}
+
+.t-title {
+  font-size: var(--t-title);
+  line-height: 1.2;
+}
+
+.t-lead {
+  font-size: var(--t-lead);
+  line-height: var(--lh-ui);
+  color: var(--ink-2);
+}
+
+/* Every figure a reader compares down a column. A number that changes width
+   between renders reads as a bug in the data, not in the type. */
+.count, .metric, td.num, .coord { font-variant-numeric: tabular-nums; }
 
 p {
   margin: 0;
@@ -661,8 +915,8 @@ a:hover {
    a 2px accent ring against a translucent pane full of blurred page
    underneath is hard to find. The halo is a box-shadow, so the withheld
    surface drops it -- which is fine, because that surface is opaque
-   --surface-sunk and the ring reads 6.16:1 against it in light and
-   10.55:1 in dark. Measured, not assumed. */
+   --surface-sunk and the ring reads 6.14:1 against it in light and
+   10.67:1 in dark. Token arithmetic, not assumed. */
 :focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
@@ -716,11 +970,30 @@ hr {
 
 /* ---------------------------------------------------------------- layout -- */
 
+/* THE FIRST TAB STOP ON EVERY SCREEN, AND IT WAS PAINTED OVER.
+ *
+ * This read z-index 10 while .masthead reads 30, and both are children of
+ * <body>, so above 48rem -- where the masthead sticks -- the bar covered the
+ * skip link completely. Checked in Chromium by tabbing once and reading
+ * elementFromPoint at the link's own centre: document.activeElement was the
+ * link, and the topmost box at that point was the wordmark's svg. Focus was
+ * there and nothing showed it, on all six demo-path screens at 800, 1000 and
+ * 1280. That is WCAG 2.4.11 Focus Not Obscured on the one control whose entire
+ * job is to be the first thing a keyboard reader finds.
+ *
+ * 40 rather than 31, so the number does not have to be re-argued the next time
+ * something claims a layer between them. Nothing else in THIS file goes above
+ * 30. Two component sheets do, and both are right to: clerk.css puts the
+ * assistant dock at 50 and its backdrop at 60, tour.css puts the walkthrough at
+ * 80, and a panel a reader has opened on purpose should cover a link that jumps
+ * past it. clerk.css also has a floating launcher at 40, which ties this rule
+ * and never meets it -- that button is pinned bottom-right and this link sits
+ * top-left. Anything new above 30 has to say why it outranks the skip link. */
 .skip {
   position: absolute;
   left: -9999px;
   top: 0;
-  z-index: 10;
+  z-index: 40;
   padding: var(--s2) var(--s4);
   background: var(--accent);
   color: var(--surface);
@@ -739,6 +1012,18 @@ hr {
   padding: 0 var(--s5);
 }
 
+/* The signed-out page, and the only screen in this product that is a form
+   rather than a record. It took the same 76rem shell every other screen takes,
+   which put a forty-character field alone in a twelve-hundred-pixel box: the
+   first thing a reviewer ever sees read as an empty room with a lock in the
+   middle of it. Narrowed here rather than by moving --shell, because every
+   other screen wants the wide one and a token changed for one page is how a
+   token family goes wrong. Declared after .shell so it wins on file order at
+   the same specificity, which is what lets one element carry both. */
+.signin {
+  max-width: 44rem;
+}
+
 /* G1 -- attached glass. It spans the viewport, so it has no corners and no
    radius; depth is one hairline of light along the top and the smallest
    cast in the ladder.
@@ -752,6 +1037,30 @@ hr {
    It loses translucency and keeps the whole hierarchy, because depth here
    is carried by the shadow ladder and the edge, and neither needs the
    filter to exist. */
+/* THE CAST STAYS --glass-lift AND DOES NOT BECOME --lift-1, which is a
+   deliberate refusal of the one instruction this restyle was given about depth.
+   --lift-1 is the new chrome depth and the masthead is chrome, so the swap
+   looks free. It is not. The token block above spends four corrected paragraphs
+   on this exact shadow: it was measured in a browser at dpr 2, it was got wrong
+   four times, and it ends with an acceptance test that is arithmetic rather
+   than taste -- NO ROW UNDER THIS BAR MAY BE DARKER THAN IT WAS. In light,
+   --lift-1 puts 18 per cent of --ink at 8px of blur hard against the pane's
+   bottom edge where --glass-lift puts 10 per cent at 22px, so it is darker in
+   the first few rows under the bar and lighter after them -- short and steep,
+   which is the shape this cast was widened to get away from. (Dark is the other
+   way round, which is worse rather than better: one swap would move the two
+   schemes in opposite directions and only one of them was ever measured.)
+   Those rows are not empty: --stuck is the bar's own height, the tab rail sticks
+   at exactly the bar's bottom edge, and the masthead is z-index 30, so its cast
+   paints over the rail permanently rather than while something scrolls past.
+   The last time somebody spread this ink differently, the current tab's opaque
+   white chip rendered grey.
+
+   Nothing here has been in front of a browser, so the arithmetic above is a
+   reason to leave it alone and not a measurement of what the swap would do.
+   Weight came from type and shape instead -- the display face in the mark, the
+   chip on the nav -- neither of which paints a single pixel below the bar. To
+   change this value, measure the rows under it first. */
 .masthead {
   border-bottom: 1px solid var(--rule);
   background: var(--glass-solid);
@@ -780,11 +1089,12 @@ hr {
 /* ------------------------------------------------------- sticky chrome --
  *
  * The glass only means anything once something scrolls under it, so the
- * masthead has to stick. Above 48rem it does, and it collapses its own
- * padding to earn the room: 124px at rest, 112px stuck, type untouched.
- * Nothing resizes on scroll -- text that shrinks while a person is reading
- * is the commonest tell of a templated site and it buys nothing a padding
- * step does not.
+ * masthead has to stick. Above 48rem it does, and it tightens its own padding
+ * at that width to earn the room, type untouched. Nothing resizes on scroll --
+ * text that shrinks while a person is reading is the commonest tell of a
+ * templated site and it buys nothing a padding step does not. The heights the
+ * padding step leaves are in the table further down; read them there, because
+ * there are three of them and there used to be one.
  *
  * BELOW 48rem IT DOES NOT STICK, and that is measured rather than
  * squeamish: the nav wraps to two rows at 640px and to three below 480px,
@@ -792,10 +1102,50 @@ hr {
  * screen permanently occupied by chrome is worse than scrolling to the
  * top. The tab rail still sticks there, at top 0, because it is 46px and
  * it is the only thing telling a reader where they are on an 8,800px page.
+ *
+ * ONE NUMBER WAS WRONG FOR HALF THE WIDTHS IT COVERED, and this is the
+ * correction. --stuck read 7rem -- 112px -- from 48rem all the way up, and the
+ * comment above it claimed the bar was 124px at rest and 112px stuck at every
+ * one of those widths. It is not. The bar does not collapse on scroll at all,
+ * because nothing here runs on scroll; the padding step is the media query, and
+ * it applies whether the page has moved or not. What changes with width is how
+ * many rows the nav wraps to, and that is a content result, not a token.
+ *
+ * MEASURED IN CHROMIUM, stepping 4px from 760 to 1460, worst case across eight
+ * screens -- /projects, a project, /review, a change, /workflow, /actions,
+ * /proceedings, /escalations -- and across all three demonstration accounts,
+ * reading .masthead's own height at rest and after scrolling 3000px (the two
+ * agree everywhere, because nothing here runs on scroll):
+ *
+ *     768 to 855    233px   nav on three rows
+ *     856 to 1171   164px   nav on two rows
+ *     1172 and up   110px   nav on one row
+ *
+ * ALL THREE ACCOUNTS, not one, and that is where a first attempt at this went
+ * wrong. The administrator gets an eighth nav item and the analyst does not, so
+ * the nav wraps at a different width for each of them and a table measured on
+ * one account is 69px short for another. The bands above are the worst case, so
+ * the clearance is right for the reader who has the most chrome and merely
+ * generous for the reader who has less.
+ *
+ * So 7rem was 121px short at 768 and 52px short across the whole 856-1171 band.
+ * --stuck feeds --focus-anchor, so in that band a keyboard reader tabbing down
+ * a page landed the next control under the bar and read it as unfocused -- the
+ * exact failure --focus-anchor exists to prevent -- and .tabs, which sticks at
+ * top: var(--stuck), parked its rail behind the masthead instead of under it.
+ *
+ * The token now steps where the bar steps. The breakpoints sit on the measured
+ * step, not near it: 53.5rem is 856px and 73.25rem is 1172px, the first width
+ * in each band. The values are the measured heights, not rounded up -- 233px is
+ * 14.5625rem, 164px is 10.25rem, and 110px keeps 7rem because 2px of slack
+ * costs nothing and every earlier comment in this file quotes that number.
+ *
+ * Anything that makes this bar taller, or that moves where the nav wraps, has
+ * to remeasure all three bands in the same edit.
  */
 @media (min-width: 48rem) {
   :root {
-    --stuck: 7rem;
+    --stuck: 14.5625rem;
   }
 
   .masthead {
@@ -809,6 +1159,18 @@ hr {
   }
 }
 
+@media (min-width: 53.5rem) {
+  :root {
+    --stuck: 10.25rem;
+  }
+}
+
+@media (min-width: 73.25rem) {
+  :root {
+    --stuck: 7rem;
+  }
+}
+
 /* The weight floor for text on glass. A blurred backdrop lowers apparent
    contrast even where the measured figure holds, because the eye reads
    edges and a blur softens them. Nothing on a pane goes below 500, which
@@ -818,9 +1180,9 @@ hr {
 
    MEASURED, and this is the one place the ladder bit. The G1 pane over the
    flat page floor is --ink-3 at 4.57:1 by token arithmetic and worse than that
-   in use -- see below. Over a claim card it is 4.64:1, which is why it was
+   in use -- see below. Over a claim card it is 4.82:1, which is why it was
    missed. So the two labels a person actually reads up here, the "viewing"
-   qualifier and the tenant id, take --ink-2 instead: 8.26:1.
+   qualifier and the tenant id, take --ink-2 instead: 8.01:1.
 
    WHAT IS NOT FIXED, AND WHY. .nav__link--off keeps --ink-3 and keeps its
    shortfall. That colour is the only signal saying the item is not a link --
@@ -836,19 +1198,41 @@ hr {
    item still plainly greyed" -- so that nobody had to choose between the honest
    signal and the contrast floor. The recompute was real. The conclusion was
    not. 4.57 is ratio(--ink-3, --glass-solid): the flat token, not the pane.
+   (That episode belongs to the teal palette, before 2026-08-07. 4.57 was the
+   teal token's figure, and the indigo token returns 4.57 to the hundredth as
+   well -- a coincidence of two palettes, not a figure carried over. The error
+   is what is kept here, not the digits, and the error is unchanged by the
+   coincidence: it is still the flat token, not the pane.)
 
    The pane is glass and this masthead is sticky, so something is always
    scrolling underneath it. Sampled across the whole .nav__link--off box on a
    loaded /proceedings at 1440x900 dpr 2 with the masthead's own text set
-   transparent, the backdrop runs rgb(227,230,232) to rgb(245,247,249) --
-   --ink-3 3.85:1 to 4.49:1. Its BEST pixel is still under AA. Identical at
+   transparent, the backdrop ran rgb(227,230,232) to rgb(245,247,249) --
+   --ink-3 3.85:1 to 4.49:1. Its BEST pixel was still under AA. Identical at
    1280, 1216 and 1200.
 
-   So the trade this block described as dissolved is still live, and it is
-   still resolved the same way: the honest signal is worth more than the
-   fifteen hundredths. What actually helps the reader who needs the contrast is
+   THAT SAMPLE EXPIRED WITH THE TEAL PALETTE and nothing has replaced it. The
+   indigo pane has not been put in front of a browser, so this file does not
+   know its best pixel, its worst, or the range between them, and it will not
+   guess: the numbers above are the old page's and no arithmetic over the new
+   tokens reproduces them. What did not expire is the reasoning. The flat token
+   is a CEILING and the rendered pane sits below it.
+
+   AND THE CEILING NOW CLEARS AA, WHICH IS THE MOST DANGEROUS STATE THIS COMMENT
+   HAS BEEN IN. The indigo token is 4.57:1 -- seven hundredths over the floor.
+   That is the exact figure, to the hundredth, that this same comment records
+   being written up as a fix and being wrong, because a ceiling is not a pane.
+   The only time anybody put a browser in front of a pane here, the rendered
+   backdrop came in between 0.08 and 0.72 below its token. Nothing has measured
+   the indigo pane, so the honest reading is: the token passes, the pane is
+   unknown, and a seven-hundredth margin on the ceiling is not a pass for the
+   rendered case. Do not write this one up as fixed a second time.
+
+   The trade this block described as dissolved is still live, and it is still
+   resolved the same way: the honest signal is worth more than a shortfall that
+   nothing has measured. What actually helps the reader who needs the contrast is
    the prefers-contrast: more block at the foot of this file, which raises
-   --ink-3 to #5a676d -- a real step, and still a step away from --ink-2.
+   --ink-3 to #49536b -- a real step, and still a step away from --ink-2.
 
    Two numbers admitting a shortfall have now been optimistic in this one
    comment, and both were optimistic because somebody measured a token and
@@ -892,6 +1276,31 @@ hr {
   color: var(--ink);
 }
 
+/* THE NAME IN THE MARK IS SET HERE, NOT IN THE MARKUP. The <text> inside the
+   lockup carries font-family and letter-spacing as presentation attributes, and
+   a presentation attribute is beaten by any rule in a stylesheet -- which is
+   what lets the mark take the display face without editing the SVG. The SVG is
+   left alone on purpose: the same lockup is pasted into deploy/site/index.html
+   and the two are meant to stay byte-identical, so the fallback stack in the
+   attribute stays as the answer for a page that never loads this sheet.
+
+   THE TRACKING IS THE TOKEN, NOT THE 0.01em IN THE ATTRIBUTE. Manrope is a
+   geometric face and the display family's tracking is a function of size; the
+   name is set at 20px, so it takes --track-h1, the value chosen for the nearest
+   size in that family. Two thousandths of an em from what the attribute said,
+   and now it moves when the family moves.
+
+   The name is a <text> in a fixed 132x32 viewBox and an outer <svg> clips to
+   its viewport, so a wider face cuts the last letter and nothing says so.
+   MEASURED, in Chromium with the font loaded: the name's box runs from x=42 to
+   x=100.9, against 132. The system stack it replaced ran to 97.0, so Manrope
+   costs four units and leaves thirty-one. There is room, and there is not so
+   much room that a longer word could be dropped in without measuring again. */
+.wordmark .logo text {
+  font-family: var(--face-display);
+  letter-spacing: var(--track-h1);
+}
+
 .wordmark__mark {
   display: block;
   width: 4.6rem;
@@ -932,24 +1341,67 @@ hr {
   list-style: none;
 }
 
+/* A TAB, NOT A WORD: soft at the top, square where it meets the page. The item
+   is a chip with --r-control on its top corners and no radius at all on the
+   bottom two, so the 2px rule underneath stays a straight bar. That rule is
+   load-bearing three times over -- accent for the screen you are on, a plain
+   grey on hover, dashed for an item that leads nowhere -- and a chip with four
+   rounded corners has nowhere to draw it.
+
+   THE PADDING COSTS THE LAYOUT NOTHING, AND IT HAS TO NOT COST IT ANYTHING. The
+   horizontal padding is cancelled by an equal negative margin, so each item
+   occupies exactly the width it occupied before this chip existed. That is not
+   a trick for its own sake: --stuck is this bar's measured height, and every
+   sticky offset and every focus anchor in this file is derived from it. Seven
+   items each sixteen pixels wider would spend the slack the nav row has left,
+   wrap it a row earlier than it wraps now, and move the width at which the bar
+   steps -- with no test failing and no way to see it except by opening a
+   browser at that one width. Measured both ways in Chromium: masthead 110px at
+   1440 and at 900, 164px at 800, 233px at 768, identical before and after this
+   chip to the pixel.
+
+   THOSE THREE FIGURES WERE ALREADY WRITTEN HERE WHILE --stuck STAYED AT 7rem,
+   which is 112px, and nobody reconciled the two. Reading a measurement and not
+   spending it is the same defect as not measuring. The sticky block now carries
+   all three. Grow the chip and you must remeasure every one of them.
+
+   THE GAP IS WHY THE PADDING IS 8px AND NOT 12px. At 12px the chip is exactly
+   as wide as the gap between items, so two neighbouring chips touch -- and the
+   two items that are switched off sit next to each other, which drew their two
+   dashed rules as one continuous dashed line under both. Eight leaves eight,
+   which is enough to read them as two items. */
 .nav__link {
   display: inline-flex;
   align-items: center;
   gap: var(--s2);
-  padding: var(--s2) 0 var(--s3);
+  padding: var(--s2) var(--s2) var(--s3);
+  margin: 0 calc(var(--s2) * -1);
   border-bottom: 2px solid transparent;
+  border-radius: var(--r-control) var(--r-control) 0 0;
   color: var(--ink-2);
   font-size: var(--t-ui);
   font-weight: 600;
   text-decoration: none;
 }
 
+/* Mixed from --ink rather than named as a colour, so it is a lift in the dark
+   scheme and a shade in the light one without a second token. */
 a.nav__link:hover {
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
   color: var(--ink);
   border-bottom-color: var(--rule-strong);
 }
 
-.nav__link--current {
+/* BOTH SELECTORS, AND THE SECOND ONE IS THE POINT. `a.nav__link:hover` carries
+   more specificity than a single class, so with only the class here the wash
+   came off the current item the moment a pointer crossed it -- the one item on
+   the bar that must never stop saying where you are. The mark is still carried
+   by three things and only one of them is colour: the weight, the accent rule
+   underneath, and aria-current in the markup for anything not reading pixels.
+   --ink on --accent-wash is 14.65:1 in light and 14.23:1 in dark. */
+.nav__link--current,
+a.nav__link--current:hover {
+  background: var(--accent-wash);
   color: var(--ink);
   font-weight: 700;
   border-bottom-color: var(--accent);
@@ -1006,15 +1458,64 @@ a.nav__link:hover {
   max-width: min(20rem, 70vw);
   padding: var(--s2) var(--s3);
   border: 1px solid var(--rule-strong);
-  border-radius: var(--r-sm);
+  /* Chrome, and the softest kind of it: a panel that arrives over the page and
+     leaves again. --r-control matches the chip it hangs from and --lift-2 is
+     the depth of a thing a reader has picked up, which is what this is. Neither
+     goes near the record; the diff, the claims and the quoted source keep --r
+     and stay flat. */
+  border-radius: var(--r-control);
   background: var(--surface);
   color: var(--ink-2);
   font: var(--t-small) / var(--lh-ui) var(--face-ui);
   font-weight: 500;
-  box-shadow: var(--shadow-3);
+  box-shadow: var(--lift-2);
   clip-path: inset(50%);
   opacity: 0;
   pointer-events: none;
+}
+
+/* AND ON A NARROW SCREEN IT HANGS OFF THE END OF THE PAGE, so below 40rem it
+   stops hanging from the item and spans the nav instead.
+ *
+ * An absolutely positioned box adds nothing to its parent's layout width, so
+ * nothing in the nav grew and no static check saw anything. It does extend the
+ * document's SCROLLABLE area. The two switched-off items sit third and fourth
+ * in the row, which on a phone puts one of them at the right-hand end of the
+ * first wrapped row, and a 269px panel anchored to its left edge ran clean off
+ * the screen: measured in Chromium, document 484px against a 390px client on
+ * /projects, a project, /review and /workflow, 484 at 414, 599 at 500, and
+ * clear from 600 up. Every one of those pages scrolled sideways because of this
+ * one box.
+ *
+ * THE FIX IS NOT TO HIDE IT. The hint is the whole reason the item is still in
+ * the tab order -- tests/test_a11y_guards.py requires it as rendered text in
+ * the accessible name, not a title attribute -- so shrinking it away, clipping
+ * it or dropping it below a breakpoint would trade a scrollbar for the defect
+ * this panel was written to fix.
+ *
+ * So it changes what it hangs from. `.nav__link--off` goes back to static, the
+ * list becomes the containing block, and the panel spans the list from edge to
+ * edge: it cannot be wider than the nav, and the nav cannot be wider than the
+ * page. The vertical tie loosens -- on a phone the nav has wrapped to three
+ * rows and the panel lands under the last of them rather than under its own --
+ * but it is still inside the nav block, still shown by the same hover and the
+ * same focus, and every word of it is on screen. Above 40rem nothing changes at
+ * all: the per-item panel fits from 600px up, and 640 leaves 40px of slack over
+ * the widest width that ever failed. */
+@media (max-width: 40rem) {
+  .nav__list {
+    position: relative;
+  }
+
+  .nav__link--off {
+    position: static;
+  }
+
+  .nav__why {
+    right: 0;
+    width: auto;
+    max-width: none;
+  }
 }
 
 .nav__link--off:hover .nav__why,
@@ -1056,6 +1557,26 @@ a.nav__link:hover {
   margin-top: var(--s2);
   color: var(--ink-2);
   max-width: 60ch;
+}
+
+/* The labelled facts about the thing on screen: its jurisdiction, its owner,
+   its docket. They were three label-and-value pairs run together inside one
+   paragraph, so the page read "JURISDICTION State of Meridian OWNER Sarah
+   Lindqvist DOCKET MPUC-2026-0142" as a single line of text and a reader had
+   to use the uppercase labels as punctuation. Each pair is a unit now, and the
+   row wraps rather than holding all three on one line. */
+.page-head__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s5);
+  margin-top: var(--s3);
+  color: var(--ink-2);
+}
+
+.page-head__fact {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--s2);
 }
 
 /* The model's judgement, on the change screen and nowhere else yet.
@@ -1146,6 +1667,22 @@ a.nav__link:hover {
   }
 }
 
+/* A list whose items are cards. The marker goes: a bullet beside a bordered
+   box is a bullet beside a box, and it lands to the LEFT of the box, outside
+   the column everything else on the page lines up to.
+
+   review_centre.html has carried a note saying this since the three lists were
+   given the class -- and the class had no rule, in this file or in any other,
+   so every finding and every open question arrived with a bullet anyway. A
+   template that names a class the stylesheet never heard of fails the same way
+   a stylesheet that styles a class no template renders does, and it fails
+   quietly in the same way: the page looks deliberate, it is just wrong. */
+.plain-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .stack > * + * {
   margin-top: var(--s5);
 }
@@ -1169,9 +1706,51 @@ a.nav__link:hover {
    machine-checkable, and looking checkable is the honest signal here. */
 .coord {
   font: var(--t-micro) / 1.5 var(--face-data);
+  /* Restated because the line above is the `font` shorthand, which resets
+     font-variant to normal and so throws away the tabular-nums the figures
+     rule sets earlier in this file. Monospace is already tabular, so nothing
+     moves on screen -- but a rule that silently does nothing is the kind that
+     gets copied to a proportional face and quietly fails there. */
+  font-variant-numeric: tabular-nums;
   color: var(--ink-3);
   letter-spacing: 0;
-  white-space: nowrap;
+  /* THIS SAID `white-space: nowrap` AND IT SET THE WIDTH OF A WHOLE SCREEN.
+     Held on one line, the change id in the change screen's page head --
+     CHG-ga-55378-...-revised-pd-002, 70 characters -- made the document 833px
+     wide inside a 390px client, measured in Chromium at 390x844. Three more
+     .coord spans on the same page ran to 494 and 414. The class is rendered by
+     152 places in the templates, so tagging the long ones one at a time is the
+     line and not the class.
+
+     `overflow-wrap: anywhere` says the same thing the nowrap was protecting,
+     with a floor under it: a word breaks only when it has no break opportunity
+     and would otherwise overflow its line. A range like 316-332 is seven
+     characters and always fits, so it never breaks and never has to. A document
+     id does not fit, and now wraps rather than widening the page. */
+  overflow-wrap: anywhere;
+}
+
+/* Help under a field, and any short sentence a page adds beside a control.
+ *
+ * IT IS PROSE AND IT WRAPS, which is the whole reason it is not .coord. A
+ * coordinate is `white-space: nowrap` on purpose, and a whole sentence held on
+ * one line sets the page's minimum width -- the defect tests/test_responsive.py
+ * was written for, and one project_list.html has carried a note about since it
+ * was found there.
+ *
+ * THE CLASS WAS RENDERED BY TWO TEMPLATES AND STYLED BY NOTHING. Whoever moved
+ * those hints out of .coord named a class and never wrote its rule, so the hint
+ * came out at body size in body ink and read louder than the label above it.
+ * That is the same defect as a rule keyed to a class nothing renders, in the
+ * other direction, and it is just as quiet: the page looks fine, it simply says
+ * the wrong thing loudest. */
+.field-hint {
+  display: block;
+  max-width: var(--measure);
+  margin-top: var(--s1);
+  color: var(--ink-3);
+  font-size: var(--t-small);
+  line-height: var(--lh-ui);
 }
 
 /* PAPER. Opaque, flat, still: no blur, no motion, no shadow past a
@@ -1224,6 +1803,16 @@ a.nav__link:hover {
   background: var(--surface);
   color: var(--ink);
   font: 600 var(--t-small) / 1.4 var(--face-ui);
+  /* Ten links across nine templates wear this class, and every one of them
+     arrived with the underline a link gets by default sitting inside a filled
+     button -- "Sign in to Strata" on the shared view, "Open a new project" on
+     the project list, "Go to Projects" on the review centre. A control that
+     carries a border, a fill and a hover state has already said it is a
+     control, so the underline only says it twice and says it badly. Taking it
+     off a bare link would be wrong for exactly the reason it is right here.
+     Nothing about the focus ring changes: it comes from the shared :focus-visible
+     rule and is untouched. */
+  text-decoration: none;
   cursor: pointer;
   transition: background-color 120ms ease, border-color 120ms ease;
 }
@@ -1250,6 +1839,95 @@ a.nav__link:hover {
   .btn--primary:hover {
     color: var(--surface-sunk);
   }
+}
+
+/* Text controls.
+ *
+ * THERE WAS NO RULE FOR ONE ANYWHERE IN THIS STYLESHEET. Every field on the
+ * sign-in page, the new-project form and the steer form rendered as the
+ * browser's own control -- a different shape, a different face and a different
+ * ink from the `.btn` standing beside it in the same row. Both component sheets
+ * had already written this rule for their own fields, and both carry the same
+ * note saying why: the head of this family is `.btn`, which is in this file.
+ * Two sheets agreeing about a rule the file they defer to never wrote is how a
+ * product ends up with three kinds of field.
+ *
+ * So these take `.btn`'s border, radius, face and padding and nothing else,
+ * and `--r` moves here with `.btn` when it moves. Grep `--r` across
+ * strata.css, clerk.css and workflow.css and the whole family is in front of
+ * you.
+ *
+ * max-width CAPS AN INTRINSIC WIDTH. `size="52"` on an input is a width in
+ * characters, and an intrinsic width wider than the screen is one of the two
+ * ways a page grows past its viewport. The attribute still does useful work on
+ * a wide screen, so it stays and the cap goes here.
+ *
+ * Scoped by type, so a checkbox, a radio, a range and a hidden field keep the
+ * control the platform draws. */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  max-width: 100%;
+  padding: var(--s2) var(--s3);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--ink);
+  font: var(--t-ui) / var(--lh-ui) var(--face-ui);
+}
+
+/* ------------------------------------------------------ a control that is off
+
+   Nothing in this file said what disabled looks like, so it looked like on.
+   Measured on the frozen approval route: the name field and three buttons all
+   carried the disabled attribute, all reported opacity 1 and cursor pointer,
+   and Activate kept the full accent fill. A person taps the blue button, the
+   page does nothing, and the product looks broken rather than careful -- the
+   same failure a dead grid cell with no reason makes, which the permissions
+   screen already goes out of its way to avoid.
+
+   The reason is still text, always: the route says "This route is frozen. Copy
+   it into a new draft to change it." right under those buttons. This only stops
+   the control contradicting the sentence beside it. Colour is never the only
+   signal -- the cursor changes too, and the disabled attribute is what a screen
+   reader was already reading.
+
+   :disabled and not a class, so a control switched off by script gets it too.
+   clerk.js turns Send off while a request is in flight and workflow.js turns
+   the step controls off when nothing is selected; both were invisible. The
+   hover rules are cancelled here as well, or a dead button still lights up
+   under the pointer, which is the same defect wearing a different hat.
+
+   IT SITS BELOW THE FIELD RULE ABOVE ON PURPOSE. input:disabled and
+   input[type="text"] carry the same specificity, so the one written later wins,
+   and written earlier this block lost every text field back to the live look.
+   Measured, not assumed. Anything added between the two has to stay above. */
+.btn:disabled,
+.btn[aria-disabled="true"],
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  border-color: var(--rule);
+  background: var(--surface-sunk);
+  color: var(--ink-3);
+  cursor: not-allowed;
+}
+
+.btn:disabled:hover,
+.btn--primary:disabled,
+.btn--primary:disabled:hover,
+button:disabled:hover {
+  border-color: var(--rule);
+  background: var(--surface-sunk);
+  color: var(--ink-3);
 }
 
 /* Badges. Shape and weight carry the meaning; colour only agrees with it.
@@ -1350,6 +2028,67 @@ a.nav__link:hover {
   border-left: 2px solid var(--rule-strong);
   font: var(--t-doc) / var(--lh-doc) var(--face-doc);
   color: var(--ink-2);
+}
+
+/* ------------------------------------------------------------- the diff -- */
+
+/* THE TWO SIDES ARE A PAIR, SO THEY ARE LAID OUT AS A PAIR.
+ *
+ * change.html has carried the specification for this rule -- and a note saying
+ * the rule did not exist -- since the markup landed. Stacked, the before and
+ * the after sat about a hundred pixels apart, and on the change this product
+ * demonstrates they differ by four words. A reader had to hold the first
+ * sentence in their head to read the second, which is the one thing a diff
+ * exists to stop.
+ *
+ * PAPER, AND IT STAYS PAPER. This is the filing itself. No gradient, no
+ * --r-card, no lift, no motion: only geometry changes here, and
+ * tests/test_design_guards.py holds the gradient half of that.
+ *
+ * Grid rather than flex, so the two halves are the same width whatever the two
+ * passages weigh. A wider "before" would read as the more important side, and
+ * neither side is.
+ *
+ * THE INHERITED MARGIN HAS TO GO, and the template said so before this rule
+ * was written. .diff also carries .stack, so the sides keep a gap on a browser
+ * that never got this rule; with the rule, `.stack > * + *` puts a top margin
+ * on the second column and drops it half a line below the first. Two classes,
+ * so it beats `.stack > * + *` on specificity rather than on file order. */
+.diff {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s5);
+  align-items: start;
+}
+
+.diff.stack > * + * {
+  margin-top: 0;
+}
+
+/* Which side, which version, and where in it. One line above the passage, in
+   interface type, so nothing here competes with the document face below it. */
+.diff__head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+
+/* Below this the two columns are narrower than the passage wants and the pair
+   stops being readable, so it stacks again -- and the inherited gap comes back
+   with it, because once the grid is gone that margin is the only thing between
+   the two sides. Putting it back inside the breakpoint is the other half of
+   the instruction the template left. */
+@media (max-width: 52rem) {
+  .diff {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .diff.stack > * + * {
+    margin-top: var(--s5);
+  }
 }
 
 .source-panel {
@@ -1485,6 +2224,22 @@ a.nav__link:hover {
   margin-top: var(--s4);
 }
 
+/* The way out to the filing itself, under a claim's citation. Moved here from
+   a <style> block inside change.html, which said in its own comment that these
+   two rules belonged beside .claim__foot and were only in the template because
+   strata.css was not that change's to edit. Both values were already tokens, so
+   nothing moves on screen; what changes is that both colour schemes, the print
+   block and every guard in tests/ now see them. */
+.claim__filing {
+  max-width: 62ch;
+  margin-top: var(--s4);
+}
+
+.claim__filing .claim__route {
+  display: block;
+  margin-top: var(--s1);
+}
+
 .claim--verified {
   border-left: 3px solid var(--ink-3);
   background: var(--paper);
@@ -1544,6 +2299,12 @@ a.nav__link:hover {
   max-width: 100%;
   padding: 0.15em 0.45em;
   background: var(--surface);
+  /* max-width: 100% caps the BOX and does nothing to the line inside it, so a
+     reason code with no break opportunity simply ran out of its own label:
+     CITATION_AMBIGUOUS_OCCURRENCE laid out to 272px in a 165px box, measured in
+     Chromium at 320px, and pushed /review to 361px. The cap and the break are
+     two different permissions and this pair needed both. */
+  overflow-wrap: anywhere;
 }
 
 .withheld__label {
@@ -1587,6 +2348,51 @@ a.nav__link:hover {
   overflow-wrap: break-word;
 }
 
+/* THE SAME ARGUMENT AS THE DIFF, ON THE SURFACE THE PRODUCT TURNS ON.
+ *
+ * What the source says and what the citation quoted were stacked, and on the
+ * refusal this product demonstrates they differ by one character: twenty
+ * megawatts against ten. A reader had to memorise a sentence to find the word
+ * that was wrong in the next one. Side by side, the difference is the thing
+ * you see first, which is the entire claim this screen makes.
+ *
+ * Column-major, so a term stays directly above its own value: with two rows
+ * declared and the flow set to column, the four children land dt, dd, dt, dd
+ * down then across. Any number of pairs works -- the escalation queue renders
+ * a third when a quote appears more than once in a version -- because the
+ * columns are implicit.
+ *
+ * ONLY GEOMETRY. This sits inside .claim--withheld, the stillest surface in
+ * the product, and that block already forbids every shadow, transform and
+ * transition here. Nothing is added to win the comparison.
+ *
+ * Paired only where there is room. Below the breakpoint two columns are
+ * narrower than the sentences they hold, and a pair nobody can read is worse
+ * than a stack. */
+@media (min-width: 62rem) {
+  .mismatch {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    column-gap: var(--s5);
+    max-width: calc(var(--measure) * 2);
+  }
+}
+
+/* The judgement block wears .page-head__note, which caps at 60ch. That is right
+   for the sentence under a title, and it is right for three of the four
+   materiality states. It is wrong for the fourth: a refused judgement carries
+   the two-column pair above, and 60ch gives each column thirty characters.
+
+   Scoped with :has so only that state widens. The other three are prose and
+   keep the reading measure -- widening all four to fix one would trade a
+   squeezed comparison for three sentences running the width of the page. The
+   cap the widened one keeps is .mismatch's own. */
+.materiality:has(.mismatch) {
+  max-width: none;
+}
+
 .claim__route {
   color: var(--ink-2);
   font-size: var(--t-small);
@@ -1619,6 +2425,12 @@ a.nav__link:hover {
 .citation-chip {
   display: inline-flex;
   align-items: stretch;
+  /* The chip may never be wider than the column it sits in. Its coordinate cell
+     carries a document id, and on the change screen one of those pushed the
+     chip to 594px inside a 390px client, measured in Chromium -- the same
+     defect .coord had two hundred lines up, in an inline-flex box that will
+     not shrink below its content unless it is told it may. */
+  max-width: 100%;
   padding: 0;
   border: 1px solid var(--accent);
   border-radius: var(--r);
@@ -1653,10 +2465,15 @@ a.nav__link:hover {
 }
 
 .citation-chip__coord {
+  /* A flex item's automatic minimum is its min-content, so this cell has to be
+     allowed to be narrow AND its id has to be allowed to break. Both halves, or
+     neither works -- the same pair the .stage rows on the marketing site need.
+     A range like 316-332 still never breaks, because it always fits. */
+  min-width: 0;
   padding: 0.32em 0.6em;
   border-left: 1px solid currentColor;
   font: var(--t-micro) / var(--lh-micro) var(--face-data);
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 /* ----------------------------------------------------- escalation queue -- */
@@ -1702,6 +2519,12 @@ a.nav__link:hover {
 
 .queue__code {
   display: inline-block;
+  /* A reason code is one unbreakable token and some of them are long:
+     CITATION_AMBIGUOUS_OCCURRENCE ran /review and /escalations to 361px and
+     327px inside a 320px client, measured in Chromium. Both halves are needed
+     -- the box must be allowed to be narrow and the token to break -- and
+     neither costs anything at any width where the code already fits. */
+  max-width: 100%;
   margin-bottom: var(--s2);
   padding: 0.2em 0.45em;
   border: 1px solid var(--alarm);
@@ -1710,6 +2533,7 @@ a.nav__link:hover {
   font: 700 var(--t-micro) / var(--lh-micro) var(--face-ui);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .queue__reason {
@@ -2005,9 +2829,18 @@ a.project-card:hover .project-card__name {
    work, and hairlines here would be decoration. */
 .project-card__counts {
   display: grid;
-  /* 4.25rem gave a 74px track, and an 11px uppercase label tracked at
-     0.09em does not fit one. See .tally__label. */
-  grid-template-columns: repeat(auto-fit, minmax(5.5rem, 1fr));
+  /* TWO COLUMNS, DECLARED, NOT FOUR NEGOTIATED.
+     4.25rem gave a 74px track, and an 11px uppercase label tracked at 0.09em
+     does not fit one. See .tally__label. 5.5rem fixed that and left a second
+     problem behind: four cells at a 5.5rem minimum need about 400px and a card
+     in this grid has roughly 250px to give, so auto-fit laid three across and
+     dropped the fourth onto a row of its own. The date then read as a stranded
+     fifth fact rather than as one of four, and the row a reader is meant to
+     scan down a column across cards had a ragged bottom edge.
+     Two by two fits at every card width this grid produces, so the four cells
+     hold the same four positions on every card on the board -- which is the
+     only reason the row is a grid rather than a sentence. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--s3) var(--s4);
   margin-top: auto;
   padding: var(--s3) 0 var(--s4);
@@ -2225,11 +3058,19 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
   font-weight: 700;
 }
 
-/* In dark, --paper sits BELOW the glass rail, so a paper chip would read as
-   pressed in rather than lifted out. --rule is the one step above the rail
-   that still carries --ink at full strength -- 11:1, measured. Same
-   relationship, opposite direction, because that is what the two schemes
-   ask for. */
+/* In dark, --paper does not sit above the glass rail, so a paper chip cannot
+   read as lifted out of it. In the teal palette it sat BELOW and read as pressed
+   in; in the indigo palette it is #161d31, byte-identical to --glass-solid, so a
+   paper chip on a solid rail would be invisible and on a translucent one would
+   be a chip you can only find by its border. Either way the chip has to come
+   from somewhere else. --rule is the one step above the rail that still carries
+   --ink at full strength -- 11.5:1, by token arithmetic. Same relationship,
+   opposite direction, because that is what the two schemes ask for.
+
+   THE IDENTITY IS WORTH FLAGGING RATHER THAN LEANING ON. Nothing asserts
+   --paper != --glass-solid in dark, and this rule is the only place the
+   difference was ever load-bearing. If a later change wants a lifted dark chip
+   without an explicit background, that is the token to move first. */
 @media (prefers-color-scheme: dark) {
   .tab--current,
   .tab[aria-selected="true"] {
@@ -2239,8 +3080,8 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
 }
 
 /* Where the work is, before anyone clicks. ink-2 rather than ink-3: this is a
-   number someone reads, not a shade. On --surface-sunk ink-3 is 3.90:1, under
-   AA; against --glass-solid it is 4.57:1, and ink-2 on the same 8.26:1. Those
+   number someone reads, not a shade. On --surface-sunk ink-3 is 3.89:1, under
+   AA; against --glass-solid it is 4.57:1, and ink-2 on the same 8.01:1. Those
    two are token arithmetic -- the rail is a translucent pane and its rendered
    backdrop moves with whatever scrolls beneath it, so the ink-3 figure is a
    ceiling and not a reading. ink-2 is the right weight for a count anyway, and
@@ -2250,7 +3091,17 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
    restated "from the rendered pixel". It was not from a rendered pixel; it was
    ratio(--ink-3, #f7f9fa). Same error as the token block near the top of the
    file, third site. tests/test_glass_contrast.py now asserts these as token
-   figures so they cannot drift again without a test going red.) */
+   figures so they cannot drift again without a test going red. #f7f9fa in this
+   paragraph is the teal --glass-solid, before 2026-08-07, and it is the record
+   of the mistake rather than a colour anything here still names.
+
+   AND 4.57 IS NOW BOTH NUMBERS AT ONCE, which is worth saying out loud. The
+   indigo --glass-solid returns 4.57:1 for ink-3 to the hundredth, the same as
+   the teal one did. So the figure this paragraph condemns as a false rendered
+   reading is also the current true TOKEN reading -- and it clears AA by seven
+   hundredths. That does not rehabilitate the old claim by one digit. A ceiling
+   is not a pane, the rail's rendered backdrop is still unmeasured on indigo, and
+   ink-2 is still the choice that does not depend on the ceiling holding.) */
 .tab__count {
   font: var(--t-micro) / var(--lh-micro) var(--face-data);
   font-variant-numeric: tabular-nums;
@@ -2670,6 +3521,12 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
    this file already ships. */
 .question__flag {
   display: inline-block;
+  /* A reason code is one unbreakable token and some of them are long:
+     CITATION_AMBIGUOUS_OCCURRENCE ran /review and /escalations to 361px and
+     327px inside a 320px client, measured in Chromium. Both halves are needed
+     -- the box must be allowed to be narrow and the token to break -- and
+     neither costs anything at any width where the code already fits. */
+  max-width: 100%;
   margin-bottom: var(--s2);
   padding: 0.2em 0.45em;
   border: 1px solid var(--alarm);
@@ -2678,6 +3535,7 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
   font: 700 var(--t-micro) / var(--lh-micro) var(--face-ui);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 /* ---------------------------------------------------------------- steer -- */
@@ -2878,11 +3736,19 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
 
 .source__meta {
   display: flex;
-  gap: var(--s4);
+  gap: var(--s1) var(--s4);
   flex-wrap: wrap;
   margin-top: var(--s2);
   font: var(--t-micro) / 1.6 var(--face-data);
   color: var(--ink-3);
+}
+
+/* A flex item's default min-width is auto, which is its content, so a
+   sixty-character address refuses to shrink and pushes the row -- and the
+   page -- wider than the screen. Nothing else in this row is long enough for
+   it to matter, and one rule for the row is one fewer class in the template. */
+.source__meta > * {
+  min-width: 0;
 }
 
 /* An empty screen states what it means. "Nothing here" and "nothing loaded"
@@ -2945,9 +3811,9 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
 
 /* --------------------------------------------------------------- motion --
  *
- * ONE ORCHESTRATED MOMENT AND TWO MICRO-INTERACTIONS. That is the whole
- * budget. Nothing else in this product is choreographed, nothing is
- * triggered by scroll, and no number ever animates.
+ * ONE ORCHESTRATED MOMENT, TWO MICRO-INTERACTIONS AND ONE REFUSAL. That is
+ * the whole budget. Nothing else in this product is choreographed, nothing
+ * is triggered by scroll, and no number ever animates.
  *
  * THE SETTLE, 420ms end to end, three bands, and it never repeats.
  *
@@ -2960,6 +3826,8 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
  * assembles around a document that was already there, which is what this
  * product says about itself: the filing is not something this software
  * produced and it should not appear to arrive.
+ *
+ * The withheld claim is the single exception, and R below argues for it.
  *
  * Two traps, both live.
  *
@@ -3056,6 +3924,49 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
    when it arrives, and a highlight that animates in asks to be watched
    rather than read. Stated here so nobody adds one. */
 
+/* R -- the refusal. A claim declining to assert itself because its citation
+   did not verify is the one thing this product most wants a reader to
+   notice, so it is the one piece of the record that moves. It is a narrow
+   exception to "the record is in band nothing" above, and it is narrow on
+   purpose: .claim--verified still paints in the first frame, and if both
+   states animated the motion would say nothing, because a difference every
+   claim has is not a difference.
+
+   THE CLASS IS .claim--withheld, NOT .claim--refused. The plan for this
+   change named a class no template renders; the state that reaches the
+   screen on change.html, shared_claim.html and review_centre.html is
+   .claim--withheld, and a rule keyed to the other name would never have
+   fired.
+
+   Down 2px and up to full, and no more than that. The withheld claim
+   already carries its argument in six non-colour differences -- the broken
+   left rule, the inset, the sunk ground, the hatched slot, the missing chip
+   and the quoted-against-source pair. Motion is not being asked to make the
+   point, only to mark the moment the point lands. No overshoot: see
+   --ease-refuse for why. No lift, no gradient, no radius change; the record
+   surface stays flat whatever it is doing.
+
+   Reduced motion is answered by the global sweep at the foot of this file,
+   and answered correctly rather than by accident. The fill mode is `both`,
+   so with the animation off the element renders at its natural state, which
+   IS the end state: full opacity, no transform. The refusal still shows.
+   A refusal that rendered as nothing would be the worst failure in the
+   file. */
+@keyframes refuse {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.claim--withheld {
+  animation: refuse var(--dur-refuse) var(--ease-refuse) both;
+}
+
 /* ------------------------------------------------------------- printing -- */
 
 /* The withheld state has to survive being screenshotted in black and white.
@@ -3099,6 +4010,23 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
     --glass-lift: none;
     --shadow-2: none;
     --shadow-3: none;
+    /* The lifts go with them. A cast printed by a laser printer is a grey
+       smear under a box, and nothing on paper is in front of anything.
+
+       A TRANSPARENT SHADOW RATHER THAN `none`, AND THE DIFFERENCE IS A FOCUS
+       RING. These two are written to COMPOSE: clerk.css draws a focused pill
+       as `box-shadow: var(--lift-1), 0 0 0 4px var(--focus-halo)`. Substitute
+       `none` into that list and the value reads `none, 0 0 0 4px ...`, which
+       is not valid box-shadow syntax, so the browser drops the WHOLE
+       declaration and takes the focus halo with it. `0 0 transparent` paints
+       exactly as much as `none` -- nothing -- and stays legal in a list.
+
+       The other tokens above may keep `none`; they are used alone. These two
+       may not, because the moment one is used alone somebody will write the
+       composing version next to it and nothing will say a ring went missing.
+       tests/test_design_guards.py holds them to it. */
+    --lift-1: 0 0 transparent;
+    --lift-2: 0 0 transparent;
     --blur-1: none;
     --blur-2: none;
     --blur-3: none;
@@ -3211,15 +4139,18 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
  * things and did not ask for the page to be redrawn -- nothing should shift by
  * one value when the pane goes solid.
  *
- * It is also the one place --ink-3 gets raised. On --bg it is 4.25:1 and on
- * --surface-sunk 3.90:1 -- both under AA for small text, both true before this
+ * It is also the one place --ink-3 gets raised. On --bg it is 4.27:1 and on
+ * --surface-sunk 3.89:1 -- both under AA for small text, both true before this
  * change and both left alone by it, because moving a token used at 36 sites is
  * not a backdrop fix and it is not this file's turn to make that call. Under
  * this query the caller has asked, so here it goes up.
  *
  * RAISED TO A NEW VALUE, NOT TO --ink-2, AND THAT IS THE WHOLE POINT. The first
  * version of this block set --ink-3 to #414d52 in light and #a9b7ba in dark.
- * Those are not "near --ink-2", they are byte-identical to it. --ink-3 is used
+ * Those are not "near --ink-2", they were byte-identical to it -- to the TEAL
+ * --ink-2, which is what this file carried until 2026-08-07. Both hexes are the
+ * old palette's and are kept as the record of the collapse, not as colours
+ * anything here still names. --ink-3 is used
  * at 36 sites in this file, 6 in clerk.css and 7 in workflow.css, and every one
  * of them is a deliberate second level of ink: a label under a value, a
  * coordinate under a claim, a count that is a shade rather than a figure. Set
@@ -3238,21 +4169,39 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
  * So each scheme gets a value that is genuinely darker (lighter, in dark) than
  * base --ink-3 and still a plain step from --ink-2:
  *
- *   light  #5a676d   on --bg 4.25 -> 5.15, on --surface-sunk 3.90 -> 4.73
- *                    (both now clear AA), --surface 5.68; gap to --ink-2 1.49:1
- *   dark   #8e9ca0   on --bg 5.39 -> 6.62, on --surface 5.02 -> 6.17,
- *                    on --surface-sunk 5.59 -> 6.86; gap to --ink-2 1.37:1
+ *   light  #49536b   on --bg 4.27 -> 6.80, on --surface-sunk 3.89 -> 6.20
+ *                    (both now clear AA), --surface 7.49; gap to --ink-2 1.60:1
+ *   dark   #9fabc4   on --bg 5.69 -> 8.20, on --surface 5.15 -> 7.42,
+ *                    on --surface-sunk 5.90 -> 8.51; gap to --ink-2 1.55:1
  *
- * The base gaps are 1.81:1 and 1.68:1, so about four fifths of the separation
- * survives while the ground contrast rises by three quarters of a point or
- * more. That is the trade this query is asking for. Ratios are computed from
- * the declared tokens, and tests/test_glass_contrast.py asserts every one of
- * them -- including that the two inks are never equal in any scheme.
+ * The base gaps are 1.75:1 and 1.65:1, so nine tenths of the separation
+ * survives while the ground contrast rises by two and a half points. That is
+ * the trade this query is asking for, and the indigo palette gets a better
+ * bargain on it than the teal one did. Ratios are computed from the declared
+ * tokens, and tests/test_glass_contrast.py asserts every one of them --
+ * including that the two inks are never equal in any scheme.
+ *
+ * --ink AND --ink-2 GO UP HERE TOO, which the first version of this block did
+ * not do. Raising only the third level answers the request at one site and
+ * leaves the body text and the labels exactly where the reader said they could
+ * not read them. All three levels step, and all three stay distinct.
+ *
+ * THEY DO NOT STAY AS FAR APART, and the first version of this paragraph said
+ * they did. It claimed the hierarchy widens. It does not: --ink is already
+ * against the ceiling in both schemes -- #05090f is 5, 9 and 15 off black,
+ * #ffffff is white -- so the top has nowhere to go while --ink-3 climbs two and
+ * a half points, and the gaps close. Light goes from 2.12:1 and 1.75:1 to
+ * 1.62:1 and 1.60:1; dark from 1.72:1 and 1.65:1 to 1.49:1 and 1.55:1. Three
+ * levels survive, none collapses, and the ladder is more even than it was --
+ * but it is compressed, not widened. That is the price of answering the request
+ * at the top as well as the bottom, and it is the right price: a reader who
+ * cannot make out the body text is not helped by a wide gap underneath it.
  *
  * --rule HAD THE SAME BUG and it is fixed the same way. #a4afb3 and #3c4e55
- * were byte-identical to --rule-strong, collapsing the border hierarchy for the
- * same reader. They become #bcc5c8 (on --bg 1.26 -> 1.55) and #30414a
- * (1.42 -> 1.77), each still a step below --rule-strong.
+ * were byte-identical to --rule-strong -- the teal --rule-strong, before
+ * 2026-08-07 -- collapsing the border hierarchy for the same reader. In the
+ * indigo palette --rule becomes #b5bed2 (on --bg 1.23 -> 1.65) and #39435c
+ * (1.40 -> 1.92), and --rule-strong steps with it, so the two levels stay two.
  *
  * Reduced transparency asks for less see-through and nothing else, so it gets
  * the pane half and not the ink half.
@@ -3285,16 +4234,22 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
 
 @media (prefers-contrast: more) and (prefers-color-scheme: light) {
   :root {
+    --ink: #05090f;
+    --ink-2: #2b3547;
     /* A step darker than --ink-3, a step lighter than --ink-2. Never either. */
-    --ink-3: #5a676d;
-    --rule: #bcc5c8;
+    --ink-3: #49536b;
+    --rule: #b5bed2;
+    --rule-strong: #7c87a1;
   }
 }
 
 @media (prefers-contrast: more) and (prefers-color-scheme: dark) {
   :root {
-    --ink-3: #8e9ca0;
-    --rule: #30414a;
+    --ink: #ffffff;
+    --ink-2: #ccd4e6;
+    --ink-3: #9fabc4;
+    --rule: #39435c;
+    --rule-strong: #5a6683;
   }
 }
 
@@ -3328,6 +4283,13 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
    lets the table keep its natural width and scroll; min-width stops a narrow
    table shrinking to its content and floating in a half-empty row.
 
+   THE 62rem BOUND IS A KNOWN HOLE, NOT A DECISION. A table is too wide when it
+   is wider than the space it has, and that is a fact about the table rather
+   than about the screen: two registers push a 1280px laptop sideways while
+   sitting perfectly inside a 390px handset. Lifting the bound was tried and
+   rejected -- see .table-scroll below for the measurements and the reason.
+   Until that is settled, a table known to be wide wears .table-scroll.
+
    This is a real fix for a real defect and it is not a substitute for opening
    the thing on a handset. Nothing here has been checked on a device.
    ---------------------------------------------------------------------------- */
@@ -3348,11 +4310,64 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
   th, td { overflow-wrap: break-word; }
 }
 
+/* ------------------------------------------ a register too wide for a laptop --
+
+   The rule above stops at 62rem, so a table with more columns than a laptop can
+   hold pushes the whole document sideways above that width. Two do: the source
+   registry on /admin/sources ran documentElement.scrollWidth to 1368 and the
+   invite register on /admin/invites to 1377, both against a clientWidth of
+   1280. Measured in a browser at that width, not guessed from the markup.
+
+   WHY THE BOUND WAS NOT SIMPLY LIFTED. Making the table itself the scrolling
+   box at every width also makes it a block, and a block table shrinks to the
+   width of its columns instead of filling its row. Measured on a 1280px laptop,
+   that pulled seven tables in off the right edge -- the two on /proceedings/...
+   worst, from 1168px to 565px and 499px -- which is a visible change to screens
+   somebody has already tuned by hand. Fixing an overflow on two screens is not
+   worth restyling seven, so the treatment is named and applied where it is
+   needed rather than imposed everywhere.
+
+   Put this on the WRAPPER, never on the table. A table box ignores overflow, so
+   the scrolling has to happen on an ordinary block around it, and the table
+   keeps display:table and goes on filling that block when it fits.
+
+   position:relative is part of the fix rather than decoration. An absolutely
+   positioned descendant -- a visually hidden label, say -- is placed against its
+   nearest positioned ancestor, and with none of them positioned it is measured
+   against the page and escapes the scroll box, widening the document even
+   though the thing that holds it scrolls. Positioning the wrapper keeps those
+   boxes inside it. */
+.table-scroll {
+  position: relative;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
 /* Long unbroken strings -- a 64-character chain digest, a version id, a quoted
    fragment with no spaces -- are the other way a page grows wider than its
    screen. Break them anywhere rather than let one token set the page width. */
 .digest, .hash, code, pre, .coord--long {
   overflow-wrap: anywhere;
+}
+
+/* AND .coord--long HAS TO UNDO .coord's nowrap, or it does nothing at all.
+   `overflow-wrap: anywhere` cannot break a line that `white-space: nowrap` has
+   already said may not break, so the modifier above was inert on the one class
+   it is named for. It was also rendered by no template, so nobody found out:
+   a rule keyed to a class nothing uses, whose declaration would not have
+   worked if something had. Both halves are fixed here, and the review centre's
+   source addresses are the first thing to wear it -- thirteen URLs, nowrap,
+   were setting that page to 778 pixels inside a 390-pixel viewport.
+
+   THE OPT-IN IS NOW A NO-OP, AND IT STAYS ANYWAY. .coord dropped its nowrap
+   when the same defect turned up again on the change screen -- one id, 833px
+   inside a 390px client -- so the modifier no longer has anything to undo. It
+   is left in place because nine templates render it and because it still says
+   what the author meant: this coordinate is long enough to fold. Delete it in a
+   change that also deletes those nine, or not at all. */
+.coord--long {
+  white-space: normal;
 }
 
 /* ---------------------------------------------- the withheld surface --
@@ -3387,8 +4402,8 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
  * an admin screen as it does on a change page.
  *
  * WHAT THIS BLOCK MUST NOT TOUCH: outline. The focus ring is an outline
- * and it survives here in full -- 6.16:1 against --surface-sunk in light,
- * 10.55:1 in dark, measured. Only the halo goes, because the halo is a
+ * and it survives here in full -- 6.14:1 against --surface-sunk in light,
+ * 10.67:1 in dark, by token arithmetic. Only the halo goes, because the halo is a
  * box-shadow. Losing the ring would be an accessibility regression no test
  * in this repository catches.
  *

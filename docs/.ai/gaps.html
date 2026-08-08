@@ -53,6 +53,14 @@ different number from the one four documents carry. That is P1-5 below. It is th
 did not exist on 2026-08-04, and it is a small instance of the failure this page exists to
 catch.</div>
 
+<div class="note"><strong>Four more rows added later on 2026-08-07, with the visual redesign.</strong>
+P2-13 to P2-16. Three of the four are things the redesign left open on purpose and one, P2-14, is a
+warning rather than a gap: the obvious test for it would report a failure that is not there. They are
+written here in the same change as the work, not after it. The three decisions the redesign took are in
+<a href="../.ai/decisions.html#adr-092">ADR-92</a>, <a href="../.ai/decisions.html#adr-093">ADR-93</a>
+and <a href="../.ai/decisions.html#adr-094">ADR-94</a>, and <code>docs/web-design.html</code> gained a
+part five saying which of its earlier parts now describe a surface that no longer exists.</div>
+
 
 <h2 class="p0">P0 — stops a reviewer at the front door</h2>
 <p class="empty">Empty. All six closed. Listed at the foot of the page.</p>
@@ -94,8 +102,9 @@ reviewer runs it", and a reviewer who runs it gets a different number in the fir
 reading. No test file changed between <code>05b05e0</code> and HEAD, so the drift is older than the
 stamp suggests. The cost is a reviewer's first impression; the fix is one re-run and five
 edits.</td>
-<br><em>Update 2026-08-07:</em> <code>docs/.ai/briefing.html</code> was a fourth and staler case &mdash; it carried 2,006 passed at commit <code>68cbfa2</code> &mdash; and has been re-verified against the tree and corrected, along with 21 other claims. The three documents above are untouched and this row stays open for them.</td>
-<td class="lbl">OPEN for three documents. Found by recompiling this page.</td></tr>
+<br><em>Update 2026-08-07:</em> <code>docs/.ai/briefing.html</code> was a fourth and staler case &mdash; it carried 2,006 passed at commit <code>68cbfa2</code> &mdash; and has been re-verified against the tree and corrected, along with 21 other claims. The three documents above are untouched and this row stays open for them.
+<br><em>Closed 2026-08-08:</em> <code>make fresh-check</code> was re-run at commit <code>ba5965b</code> and printed <strong>2,353 passed, 1 xfailed in 307 seconds</strong>, exit zero. All five places now carry that figure, each stamped with this date and that commit: <code>submission.html</code> in three places, <code>tech-questions-faq.html</code>, <code>interview-bank.html</code>. <code>resume.md</code> was a sixth place this row had not counted, and it is corrected too. The line in <code>submission.html</code> that introduces the figure as "the reviewer's command, run as a reviewer runs it" now matches what a reviewer running it gets.</td>
+<td class="lbl">CLOSED 2026-08-08 at <code>ba5965b</code>.</td></tr>
 </table>
 
 
@@ -131,12 +140,71 @@ docket moves a registration that names no document from <code>not_implemented</c
 <code>never_tried</code> — different sentences to a reader, and four tests assert the first. Neither
 fits a row whose registration is merely incomplete. Written down rather than answered in a hurry.</td>
 <td class="lbl">OPEN by choice.</td></tr>
+
+<tr><td>P2-14<br>Nothing tests that the site's palette and the application's agree, and the obvious test
+would lie</td>
+<td><code>deploy/site/site.css</code> mirrors <code>strata.css</code> by hand, token by token, each
+naming the line it copies. It does not import it, and it must not: the site is allowed a mesh on its
+chrome and the application is not allowed one anywhere
+(<a href="../.ai/decisions.html#adr-094">ADR-94</a>). Hand-mirroring with no test is exactly the
+condition four token-family defects arrived under during the redesign.
+<strong>The warning matters more than the gap.</strong> The obvious parity test &mdash; read
+<code>--accent</code> from one file, <code>--stamp</code> from the other, compare &mdash; would be
+<em>wrong</em>, because the two files do not share a scheme structure. <code>strata.css</code> answers
+<code>prefers-color-scheme: dark</code> and then <code>prefers-contrast: more</code> three times, once
+plain and once for each scheme; <code>site.css</code> answers dark once and
+<code>prefers-contrast: more</code> once, undivided. A last-occurrence lookup therefore compares the
+application's <strong>high-contrast-dark</strong> value against the site's <strong>dark</strong> value
+and reports a mismatch that does not exist &mdash; a red suite for a correct pair, which is worse than
+no test, because it gets deleted rather than fixed. Any test here has to parse the scheme each
+declaration sits in and compare like with like.</td>
+<td class="lbl">OPEN. New with the redesign.</td></tr>
+
+<tr><td>P2-15<br>The gradient guard reads one of the two stylesheets</td>
+<td><code>tests/test_design_guards.py::test_no_record_surface_carries_a_gradient</code> reads
+<code>app/web/static/strata.css</code> and nothing else. The sibling CDN test sweeps both sheets and
+every page; this one does not. So the site's own version of the rule &mdash; that a mesh may only ever
+sit on chrome, and never on <code>.rec</code>, <code>.withheld</code>, <code>.mismatch</code>,
+<code>.stage</code>, <code>.note</code> or <code>.srctext</code> &mdash; is held by a comment at
+<code>deploy/site/site.css:356</code>. <strong>That is the state ADR-94 was written against</strong>, in
+the file where the redesign put the hero refusal: the site is the surface with actual gradients on it,
+so it is the one where a wash could land behind evidence. The fix is the same check pointed at
+<code>site.css</code> with that file's own selector list and its own exemption for the hatch in the
+empty statement slot, which is argued for in place.</td>
+<td class="lbl">OPEN. Named in the ADR that created the guard.</td></tr>
+
+<tr><td>P2-16<br>The 62rem bound on the table scroll rule</td>
+<td>Above 62rem a table stops being its own scroll box, so a register with more columns than a laptop
+can hold pushes the whole document sideways. Two do: <code>/admin/sources</code> ran
+<code>documentElement.scrollWidth</code> to 1368 and <code>/admin/invites</code> to 1377, both against a
+<code>clientWidth</code> of 1280, measured in a browser rather than read off the markup. Lifting the
+bound fixes both and shrinks seven other tables off the right edge &mdash; the two on a proceeding go
+from 1168px to 565px and 499px &mdash; because a block table shrinks to its columns instead of filling
+its row. So the treatment is named <code>.table-scroll</code> and worn where it is needed, and
+<code>strata.css:4121</code> says in capitals that <strong>the bound is a hole and not a decision</strong>:
+a table is too wide when it is wider than the space it has, which is a fact about the table and not
+about the screen. Recorded here so it is not read as settled.</td>
+<td class="lbl">OPEN, and written down in the stylesheet as open.</td></tr>
 </table>
 
 
 <h2 class="p2">P2 — the demonstration itself</h2>
 <table>
 <tr><th>Gap</th><th>Why it matters</th><th>State</th></tr>
+
+<tr><td>P2-13<br>The film shows the product before the redesign, and its poster still carries the teal mark</td>
+<td><code>deploy/site/strata-demo.mp4</code>, <code>strata-demo.webm</code> and
+<code>strata-poster.jpg</code> were recorded on 2026-08-05 in <code>a59be0c</code> &mdash; the commit
+whose message is "The film on the landing page is the film the product now is". That sentence went
+false on 2026-08-07, when the palette moved to indigo, the masthead was rebuilt and the display face
+landed. <strong>The poster frame is the worst of it</strong>: it is the still a reviewer looks at before
+pressing play, on a page whose every other pixel is indigo, and it shows the old teal mark.
+<code>scripts/film.py</code> was recoloured with the rest of the six painted places and now names
+<code>#2f4bd8</code>, so re-rendering is the fix and nothing else is in the way. <strong>This was scoped
+out of the redesign deliberately</strong> &mdash; re-recording needs the whole seeded walkthrough driven
+again and it is not a stylesheet change &mdash; and it is recorded here rather than left unsaid, because
+a film that contradicts the page around it reads as a product screenshotted at two different times.</td>
+<td class="lbl">OPEN. Known, deliberate, and first in the reviewer's order.</td></tr>
 
 <tr><td>P2-8<br>The demo route lets the admin approve their own route</td>
 <td><code>scripts/seed_route.py</code> still sends STP-2 "Legal review" and STP-4 "Officer signs the
@@ -249,7 +317,10 @@ elements with the reason in the accessible name rather than in a <code>title</co
 screen reader may skip — WCAG 2.1.1 and 4.1.2, from one attribute.</td></tr>
 
 <tr><td>P2-11 Logo mismatch</td><td>One mark. The app and the site render byte-identical SVG: the
-three-bar glyph on <code>#0d5c6b</code> with mixed-case <code>Strata</code> beside it.</td></tr>
+three-bar glyph on <code>#0d5c6b</code> with mixed-case <code>Strata</code> beside it. <em>That hex is
+the reading taken when this row was closed on 2026-08-04 and is left as the record of it; the mark moved
+to <code>#2f4bd8</code> with the palette on 2026-08-07, in all six places it is painted, and the two
+files are still byte-identical.</em></td></tr>
 
 <tr><td>P2-12 The blog was not linked from the landing page</td><td>Linked twice, from the body and
 from the footer.</td></tr>

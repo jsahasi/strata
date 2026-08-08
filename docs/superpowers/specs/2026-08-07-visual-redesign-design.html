@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strata — Visual redesign, design spec</title>
+<style>
+  body { font: 15px/1.65 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#0f172a; max-width: 1000px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.8rem; margin-bottom:.2rem; } .sub { color:#475569; }
+  h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; margin-top:2.6rem; padding-bottom:.3rem; border-bottom:2px solid #0f172a; }
+  h3 { font-size:1rem; margin-top:1.6rem; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size:.9rem; }
+  th, td { border: 1px solid #e2e8f0; padding: .5rem .6rem; text-align: left; vertical-align: top; }
+  th { background:#f8fafc; }
+  code { background:#f1f5f9; padding:.05rem .3rem; border-radius:4px; font-size:.88em; }
+  .note { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .crit { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .ok { background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:.8rem 1rem; margin:1rem 0; }
+  .lbl { font-weight:600; color:#334155; }
+  ul { padding-left:1.1rem; } li { margin:.3rem 0; }
+</style>
+</head>
+<body>
+
+<h1>Visual redesign — design spec</h1>
+<p class="sub">Written 2026-08-07, after a brainstorm on the same date. Covers the corporate site
+(<code>deploy/site/</code>) and the application web pages (<code>app/web/</code>). Supersedes the
+visual direction recorded in <code>docs/web-design.html</code> Parts two and three.</p>
+
+<div class="crit"><strong>This is a spec, not a plan.</strong> It says what is being built and why.
+The step-by-step implementation plan is a separate document, written after this one is
+approved.</div>
+
+
+<h2>1. Why this work is happening</h2>
+
+<p>The current surface was built inside a 48-hour window and defended in writing at the time. It is
+restrained on purpose: two hues, system fonts, no build step, no web font, a 12px type floor for an
+analyst who is often 40-plus and often on a laptop in somebody else's meeting room. That restraint
+was correct for the build it was made in.</p>
+
+<p>The judgement now is that it undersells a finished product. The direction chosen is
+<strong>institutional fintech confidence</strong> — the register of Stripe, Ramp, Mercury. Light and
+open, large confident type, a real colour system, generous space, considered motion.</p>
+
+<div class="note"><strong>The named risk, and the brief that follows from it.</strong> This direction
+is the most templated of the ones considered. A panel may read it as a slide deck. That risk was
+accepted with open eyes, which makes it the design brief: <em>institutional confidence without
+looking templated</em>. Every decision below is measured against that, and the three moves that do
+the most work are the display-only web font, the gradient ban on record surfaces, and the refusal as
+the hero image.</div>
+
+
+<h2>2. Decisions taken at the brainstorm</h2>
+<table>
+<tr><th>Question</th><th>Decision</th></tr>
+<tr><td>How far against the record?</td><td>New visual direction. Decisions rewritten. ADRs revisited
+where they no longer hold.</td></tr>
+<tr><td>What should it feel like?</td><td>Institutional fintech confidence.</td></tr>
+<tr><td>Where does the type come from?</td><td>Self-hosted woff2. No CDN. ADR-012 revisited
+narrowly.</td></tr>
+<tr><td>How much per-screen app work?</td><td>System rewrite propagating to all 24 templates, plus
+six demo-path screens hand-tuned.</td></tr>
+<tr><td>Motion?</td><td>Raised mid-brainstorm. Promoted to a first-class section — see §6.</td></tr>
+</table>
+
+
+<h2>3. The constraints the test suite imposes</h2>
+
+<p>These were found by reading the suite, not assumed. They are the reason this is a palette system
+rather than a coat of paint, and none of them blocks the direction.</p>
+
+<table>
+<tr><th>Constraint</th><th>Enforced by</th><th>What it forces</th></tr>
+
+<tr><td>Four colour schemes must exist and stay distinct: light, dark, high-contrast light,
+high-contrast dark</td>
+<td><code>test_glass_contrast.py</code></td>
+<td>The palette is four coordinated palettes. Dark mode is not optional and cannot be dropped in
+favour of a light-only fintech look. Five <code>@media</code> blocks in
+<code>strata.css</code> carry it today.</td></tr>
+
+<tr><td>Every contrast ratio written in a comment must equal the ratio the code computes, to
+0.01</td>
+<td><code>test_glass_contrast.py:234</code></td>
+<td><strong>No estimated numbers.</strong> A script computes each ratio and writes the comment. This
+is the single largest source of avoidable failure in this work.</td></tr>
+
+<tr><td><code>--ink-2</code> and <code>--ink-3</code> separated by at least 1.3; <code>--rule</code>
+and <code>--rule-strong</code> never equal</td>
+<td>same</td><td>The neutral ramp needs real steps, not tints of one grey.</td></tr>
+
+<tr><td><code>hc-light --ink-3</code> clears 4.5:1 on every opaque ground</td>
+<td>same</td><td>High-contrast mode constrains how light the neutrals may go.</td></tr>
+
+<tr><td>The flat pane token tracks the translucent one within a drift of 1</td>
+<td>same</td><td>Every glass surface keeps its no-backdrop-filter fallback.</td></tr>
+
+<tr><td><code>clerk.css</code> may write no hex and no <code>rgba()</code> of its own</td>
+<td><code>test_chat_surface.py:933</code></td>
+<td>All new colour lands in tokens. A hex literal there is a second visual language.</td></tr>
+
+<tr><td>Every component sheet declares <code>:focus-visible</code></td>
+<td><code>test_a11y_guards.py:347</code></td>
+<td>Applies to <code>clerk.css</code>, <code>tour.css</code>, <code>workflow.css</code>, and to any
+sheet added by this work.</td></tr>
+
+<tr><td>Any sheet that moves answers <code>prefers-reduced-motion</code></td>
+<td><code>test_a11y_guards.py:357</code></td>
+<td>Every animation in §6 ships a reduced-motion path in the same file.</td></tr>
+
+<tr><td>No stylesheet removes the focus ring; <code>--focus-anchor</code> clears sticky chrome</td>
+<td><code>test_a11y_guards.py:275,310</code></td>
+<td>The new sticky header must re-anchor focus or keyboard users lose the ring behind it.</td></tr>
+
+<tr><td>A disabled nav item states its reason in text, not in a <code>title</code></td>
+<td><code>test_a11y_guards.py:173</code></td>
+<td><code>nav__link--off</code> and the rendered <code>hint</code> survive the masthead
+rewrite.</td></tr>
+</table>
+
+<div class="ok"><strong>Not enforced, and therefore free to change:</strong> the "exactly two hues"
+rule. It is a comment in <code>strata.css</code> and a claim in <code>docs/web-design.html</code>.
+No test asserts it. Changing it is a documentation act, not a code fight.</div>
+
+
+<h2>4. Type</h2>
+
+<h3>The decision</h3>
+<p><strong>Self-host one variable font and use it for display only. Keep the system stack for
+interface text and data.</strong></p>
+
+<p>Everything in this category ships Inter for everything, which is exactly the templated look the
+brief exists to avoid. Splitting display from interface is cheaper, faster and more distinctive than
+the usual answer.</p>
+
+<table>
+<tr><th>Token</th><th>Face</th><th>Used for</th></tr>
+<tr><td><code>--face-display</code></td><td><strong>Manrope</strong> variable, weights 400-800, Latin
+subset</td><td>Headlines, hero, section titles, large counts</td></tr>
+<tr><td><code>--face-ui</code></td><td>unchanged system stack</td><td>All interface text, tables,
+forms, dense screens</td></tr>
+<tr><td><code>--face-doc</code></td><td>unchanged serif stack</td><td>Quoted source text, the
+record</td></tr>
+<tr><td><code>--face-data</code></td><td>unchanged monospace</td><td>Codes, coordinates,
+identifiers</td></tr>
+</table>
+
+<h3>Verified, not assumed</h3>
+<ul>
+<li>Licence: SIL Open Font License 1.1. Copyright 2018 The Manrope Project Authors. Self-hosting is
+permitted; <code>OFL.txt</code> ships beside the font.</li>
+<li>Payload: <strong>24,576 bytes</strong> for the Latin subset covering the whole 400-800 range in
+one file. Verified <code>wOF2</code> magic bytes.</li>
+<li>Fetched at build time from Google's CDN and committed to the repository. <strong>No runtime CDN
+dependency.</strong> The reviewer's machine needs no network.</li>
+</ul>
+
+<h3>Rules</h3>
+<ul>
+<li>Two copies, one per surface: <code>app/web/static/</code> and <code>deploy/site/</code>. The
+publish step does not cross the boundary, so the duplication is deliberate.</li>
+<li><code>font-display: swap</code> with a metric-compatible system fallback so the swap does not
+reflow the page.</li>
+<li><code>&lt;link rel="preload"&gt;</code> on the hero pages only, not on every page.</li>
+<li>All figures get <code>font-variant-numeric: tabular-nums</code>. A data product whose numbers
+jitter between renders looks broken.</li>
+<li>The 12px floor survives. It was set for a real user on real hardware, and nothing about this
+direction argues against it.</li>
+</ul>
+
+
+<h2>5. Colour</h2>
+
+<h3>The system</h3>
+<ul>
+<li><strong>Primary:</strong> a deep institutional indigo-blue, carrying anything actionable.</li>
+<li><strong>Accent:</strong> a warmer companion, used only in gradients, and so confined to the
+surfaces the second rule below allows.</li>
+<li><strong>Semantic set:</strong> positive, caution, refusal, info. Refusal keeps the oxblood weight
+it has now, because it is the product's signature state.</li>
+<li><strong>Neutrals:</strong> warmed slightly off pure grey so the page reads as one family.</li>
+<li>Each of the four schemes gets its own coordinated values. Nothing is derived by blanket
+inversion.</li>
+</ul>
+
+<div class="note"><strong>No hex values are fixed in this spec, and that is deliberate.</strong>
+Naming a colour here and computing its contrast later is the wrong order: the test in §3 requires
+every published ratio to be true, so the values are chosen <em>against</em> the ratio script, not
+before it. The spec fixes the roles and the rules; the plan fixes the numbers. Picking hexes here
+would only guarantee rework.</div>
+
+<h3>Two rules that keep it honest</h3>
+
+<p><span class="lbl">Meaning never rests on colour alone.</span> Label, weight and shape carry state
+first. This survives the rewrite unchanged. It is an accessibility requirement and a product
+argument at the same time, and the existing screens already obey it.</p>
+
+<p><span class="lbl">Gradients and mesh live on the marketing site and the application chrome only.
+The record stays flat paper.</span> The diff, the claims, the quoted source and the citation viewer
+get no gradient, no mesh, no tint. A gradient behind a piece of evidence undermines the thing this
+product sells. This is the rule that stops the chosen direction turning into decoration, and it is
+enforced by a new test rather than left to discipline.</p>
+
+
+<h2>6. Motion</h2>
+
+<p>Raised mid-brainstorm and promoted to its own section. The implementation draws its curves and
+durations from the <code>animate</code> and <code>transitions-dev</code> skills rather than from
+invented numbers.</p>
+
+<div class="note"><strong>Every item below ships a <code>prefers-reduced-motion</code> path in the
+same stylesheet.</strong> That is not politeness; <code>test_a11y_guards.py:357</code> fails the
+build without it. Reduced motion shows the end state immediately — it never shows nothing.</div>
+
+<h3>Marketing site</h3>
+<table>
+<tr><th>Where</th><th>What moves</th><th>Intent</th></tr>
+<tr><td>Hero</td><td>The refusal sequence: a claim settles, its citation is checked, the claim
+declines to assert itself. Plays once on load, roughly 1.2s.</td><td>The hardest technical decision,
+shown rather than described. This is the most important animation on the site.</td></tr>
+<tr><td>Sections</td><td>Rise 16px and fade in on scroll. <code>IntersectionObserver</code>,
+threshold 0.15, ~400ms, 60ms stagger, fires once.</td><td>Pace the page. No library, no build
+step.</td></tr>
+<tr><td>Sticky header</td><td>Veil opacity and shadow appear after 24px of scroll.</td><td>The bar
+earns its weight only once there is something behind it.</td></tr>
+<tr><td>Mechanism diagram</td><td>Inline SVG draws its own strokes via
+<code>stroke-dashoffset</code> when it enters view.</td><td>Show the flow as a flow.</td></tr>
+<tr><td>Buttons and cards</td><td>120ms tap, 240ms lift, reusing the existing
+<code>--dur-tap</code>, <code>--dur-lift</code> and <code>--spring</code>.</td><td>Continuity with
+what already exists.</td></tr>
+</table>
+
+<h3>Application</h3>
+<table>
+<tr><th>Where</th><th>What moves</th><th>Intent</th></tr>
+<tr><td>Refusal state</td><td>Short and firm, about 200ms, no bounce. A refusal that springs
+playfully is telling the wrong story.</td><td>The product's signature moment deserves designed
+motion.</td></tr>
+<tr><td>Dialogs, dropdowns, panels</td><td>Standard open and close transitions from
+<code>transitions-dev</code>.</td><td>Consistency across 24 templates.</td></tr>
+<tr><td>Review count, escalation badges</td><td>Small pop on change.</td><td>A number that changed
+should say so.</td></tr>
+<tr><td>Existing Clerk dock and tour</td><td>Unchanged behaviour, retuned to the new
+tokens.</td><td>They already work; do not reopen them.</td></tr>
+</table>
+
+<h3>Explicitly rejected</h3>
+<ul>
+<li><strong>Count-up number animations.</strong> A gimmick, and it fights the tabular-figure honesty
+in §4. A figure that animates from zero is briefly wrong on screen.</li>
+<li><strong>Parallax inside the application.</strong> Marketing only, and even there kept
+slight.</li>
+<li><strong>Scroll-jacking anywhere.</strong> It breaks keyboard and screen-reader navigation.</li>
+<li><strong>Animated gradient meshes on record surfaces.</strong> Already banned by §5; restated here
+because it is the most tempting rule to break.</li>
+</ul>
+
+
+<h2>7. The marketing site</h2>
+
+<p>The existing section order is sound. The hero is the weak point.</p>
+
+<ol>
+<li><strong>Hero — the refusal.</strong> Not a product screenshot. A claim declining to assert itself
+because its citation did not verify. The submission brief requires the hardest technical decision to
+be visible in the product; this puts it in the first screenful of the public site.</li>
+<li><strong>How it works.</strong> A real inline-SVG mechanism diagram showing source, extraction,
+verification and the gate. No stock illustration.</li>
+<li><strong>What it refuses to do.</strong> The differentiator, given room.</li>
+<li><strong>Who it is for.</strong> One user, per the project's own rule.</li>
+<li><strong>The film</strong> and the closing call to action.</li>
+</ol>
+
+<p>Inheriting the system without individual redesign: <code>security.html</code>,
+<code>privacy.html</code>, <code>terms.html</code>, <code>subprocessors.html</code>,
+<code>login.html</code>, <code>404.html</code> and the blog.</p>
+
+
+<h2>8. The application</h2>
+
+<p>All 24 templates extend <code>base.html</code> and consume <code>strata.css</code>, so the system
+rewrite reaches every screen without touching it.</p>
+
+<table>
+<tr><th>Work</th><th>Files</th></tr>
+<tr><td>Token and component rewrite, four schemes</td><td><code>app/web/static/strata.css</code>
+(3,477 lines)</td></tr>
+<tr><td>Masthead and chrome</td><td><code>app/web/templates/base.html</code></td></tr>
+<tr><td>Retuned to new tokens, no behaviour change</td><td><code>clerk.css</code>,
+<code>tour.css</code>, <code>workflow.css</code></td></tr>
+<tr><td>Hand-tuned</td><td><code>login.html</code>, <code>project_list.html</code>,
+<code>project_detail.html</code>, <code>review_centre.html</code>, <code>change.html</code>,
+<code>workflow_route.html</code></td></tr>
+<tr><td>Inherit, then check for breakage</td><td>The other 18 templates</td></tr>
+</table>
+
+
+<h2>9. Documentation</h2>
+<ul>
+<li><code>docs/web-design.html</code> — a new part, superseding Parts two and three, written as the
+work happens rather than reconstructed afterwards.</li>
+<li><strong>ADR revisiting ADR-012</strong> — the web font, narrowly. No build step and no CDN both
+survive; only "no web font" falls.</li>
+<li><strong>New ADR</strong> — palette beyond two hues. Must say why the old rule was right for a
+48-hour build and wrong for a finished product. An ADR that only says "we wanted more colours" is
+worth nothing at a panel.</li>
+<li><strong>New ADR</strong> — gradients confined to chrome, record stays flat.</li>
+<li><code>docs/.ai/decisions.html</code> carries all three, per the project's own rule that the ADR
+ships in the same change as the decision.</li>
+</ul>
+
+
+<h2>10. Acceptance</h2>
+<ul>
+<li><strong>All 2,340 tests stay green.</strong> That is the bar, not a hope. <code>make
+fresh-check</code> exits zero.</li>
+<li>Every contrast ratio in a comment is computed by script, never estimated.</li>
+<li>New guard: no stylesheet or template references a font CDN; the font is served from the
+repository.</li>
+<li>New guard: record surfaces carry no gradient.</li>
+<li>Keyboard walk of the six hand-tuned screens: focus ring visible on every stop and never trapped
+behind the sticky header.</li>
+<li>All four schemes checked by eye, not only by test.</li>
+</ul>
+
+
+<h2>11. Risks</h2>
+<table>
+<tr><th>Risk</th><th>Handling</th></tr>
+<tr><td>The chosen direction reads as templated — the risk accepted at the brainstorm</td><td>The
+three counter-moves in §1. If the hero still looks generic when built, that is a signal to revisit,
+not to ship.</td></tr>
+<tr><td>The contrast-comment test fails repeatedly and burns time</td><td>Write the ratio-computing
+script first, before any palette work. It is the highest-leverage half hour in the plan.</td></tr>
+<tr><td>Four schemes multiply the palette work by four</td><td>Derive high-contrast schemes from the
+base pair by rule, then verify rather than hand-pick.</td></tr>
+<tr><td>Rewriting 3,477 lines of heavily-commented CSS loses reasoning</td><td>The comments are the
+asset. Where a comment explains a decision that still holds, it moves across unchanged.</td></tr>
+<tr><td>Eighteen inherited templates break quietly</td><td>They are checked, and the check is a
+listed step in the plan rather than an intention.</td></tr>
+</table>
+
+
+<h2>12. Out of scope</h2>
+<ul>
+<li>Application behaviour, routes, permissions and data. This is a visual change.</li>
+<li>The nine open items on <code>docs/.ai/gaps.html</code>. Unrelated, and mixing them in would
+make both harder to review.</li>
+<li>Re-recording the demo film. It becomes stale the moment the restyle lands, and that is worth
+recording as a new gap rather than doing inside this work.</li>
+<li>The blog's individual posts. The blog inherits the system; the writing is untouched.</li>
+</ul>
+
+</body>
+</html>

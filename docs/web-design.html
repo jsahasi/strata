@@ -56,7 +56,7 @@ Two surfaces: the application, and the marketing site in front of it.</p>
 <table>
 <tr><th>What</th><th>Where</th><th>Detail</th></tr>
 <tr><td>Web layer</td><td><code>app/web/</code></td><td>FastAPI routes under <code>app/web/views/</code>, Jinja templates under <code>app/web/templates/</code>, assets under <code>app/web/static/</code>. Eighteen routers are mounted in <code>app/main.py</code> lines 67&ndash;113. The module boundary is the one fixed in <a href="tdd.html#a4-modules">A4 of the TDD</a> — deliberately thin, no business logic.</td></tr>
-<tr><td>Design system</td><td><code>app/web/static/</code></td><td><strong>Four hand-written stylesheets, not one.</strong> <code>strata.css</code> (2,752 lines) holds every token, the type scale, both colour schemes and the shared components; <code>clerk.css</code> (543) the assistant dock; <code>tour.css</code> (113) the first-login tour; <code>workflow.css</code> (641) the approval-route editor. The three secondary sheets declare no colour of their own — see the no-hex rule below. No framework, no icon font, no build step.</td></tr>
+<tr><td>Design system</td><td><code>app/web/static/</code></td><td><strong>Four hand-written stylesheets, not one.</strong> <code>strata.css</code> (2,752 lines) holds every token, the type scale, both colour schemes and the shared components; <code>clerk.css</code> (543) the assistant dock; <code>tour.css</code> (113) the first-login tour; <code>workflow.css</code> (641) the approval-route editor. <strong>All four counts, and "both colour schemes", expired on 2026-08-07: 4,323, 666, 183, 705, and four schemes. See <em>Part five</em>.</strong> The three secondary sheets declare no colour of their own — see the no-hex rule below. No framework, no icon font, no build step.</td></tr>
 <tr><td>Marketing site</td><td><code>deploy/site/</code></td><td>Thirteen static pages and one shared stylesheet, <code>site.css</code> (438 lines). Served at the root; the application sits behind it. Covered in <em>Part three</em>.</td></tr>
 <tr><td>Deployment</td><td><code>deploy/Dockerfile</code>, <code>deploy/compose.yml</code>, <code>deploy/nginx.conf</code>, <code>deploy/entrypoint.sh</code></td><td>Two containers. nginx serves the site and proxies a named list of paths to the app; Traefik terminates TLS. There is no <code>Caddyfile</code> and never was — the original plan said Caddy, and the deployment that shipped uses nginx behind the Traefik already running on the host.</td></tr>
 </table>
@@ -412,6 +412,14 @@ is declared once in <code>strata.css</code> as a custom property, and the other 
 <p>The palette carries meaning and the meaning is older than this revision. Nothing below renames or
 re-hues any of it.</p>
 
+<div class="crit"><strong>False since 2026-08-07, and the sentence above is the one that went false.</strong>
+The redesign re-hued all of it. Both hexes in the first two rows are the teal palette's and the
+swatches beside them paint a colour the product no longer uses; the third row's claim that the greys
+are <code>--accent</code> desaturated is still the rule, but the accent it desaturates is a different
+one. The table is kept, because the corrections in this part are the value and a table that quietly
+rewrites itself is not a record. <strong>The current values are in the added row at the foot of it.</strong>
+See <em>Part five</em> and <a href=".ai/decisions.html#adr-093">ADR-93</a>.</div>
+
 <table>
 <tr><th>Token</th><th>Light</th><th>Dark</th><th>What it means</th></tr>
 <tr><td><code>--accent</code></td><td><span class="sw" style="background:#0d5c6b"></span><code>#0d5c6b</code></td>
@@ -425,6 +433,15 @@ re-hues any of it.</p>
 why the page reads as one family.</td></tr>
 <tr><td><code>--hatch</code></td><td colspan="2"><code>rgba(16,26,30,.16)</code> / <code>rgba(231,238,239,.18)</code></td>
 <td>The 135&deg; hatch in a withheld statement slot. Untouched.</td></tr>
+<tr><td colspan="4"><strong>Added 2026-08-07. What the four rows above are today.</strong>
+<code>--accent</code> is <span class="sw" style="background:#2f4bd8"></span><code>#2f4bd8</code> light and
+<span class="sw" style="background:#a8b9ff"></span><code>#a8b9ff</code> dark.
+<code>--alarm</code> is <span class="sw" style="background:#a02c1d"></span><code>#a02c1d</code> light and
+<span class="sw" style="background:#ef9d80"></span><code>#ef9d80</code> dark &mdash; dark alone is unchanged.
+The eight greys are re-derived on the blue axis and read hue 221&ndash;224 rather than the teal 190s.
+<code>--hatch</code> is <code>rgba(15,23,41,.16)</code> / <code>rgba(233,237,247,.18)</code>: the same
+alphas over the new ink, because the old pair was the old ink and stayed behind when the ink moved.
+All four rows hold in four colour schemes now, not two.</td></tr>
 </table>
 
 <p><span class="lbl">One note on naming.</span> The repository calls <code>--accent</code> the
@@ -432,6 +449,13 @@ filing-stamp blue and <code>--alarm</code> the withheld amber, and this document
 because people say them out loud. Read off the screen, <code>#0d5c6b</code> is a deep petrol and
 <code>#8f3418</code> is a burnt sienna. The names are the team's; the hexes are the truth; neither
 moves.</p>
+
+<p><span class="lbl">And they both moved, on 2026-08-07.</span> The two hexes in the paragraph above are
+the teal palette's and are left in it, because the paragraph is about how a team names a colour and that
+argument survives the colour. What went false is the last four words. <code>--accent</code> is now
+<code>#2f4bd8</code>, an institutional indigo rather than a petrol, and <code>--alarm</code> is
+<code>#a02c1d</code>, an oxblood rather than a burnt sienna. The names did not move; only the hexes did,
+which is the reverse of what this paragraph predicted.</p>
 
 <h3>Five new values, and what each is for</h3>
 
@@ -1483,7 +1507,17 @@ oversight.</span> <code>site.css</code> declares its own <code>--glass-veil</cod
 app's and the values do not, because the two palettes are genuinely different: the site's accent is
 <code>--stamp: #1b3a8f</code>, a true navy, and the app's is <code>--accent: #0d5c6b</code>, a deep
 petrol. <strong>Two products' worth of tokens under one roof is a real cost.</strong>
-The wordmark, in part four, is where that cost has already shown up.</div>
+The wordmark, in part four, is where that cost has already shown up.
+<p style="margin:.6rem 0 0"><strong>Both hexes are the old palettes' and the sentence they support is
+gone, 2026-08-07.</strong> They are left standing because the cost this note names is the point and it
+was real. What is true now: <code>site.css</code> holds <code>--stamp: #2f4bd8</code> and
+<code>strata.css</code> holds <code>--accent: #2f4bd8</code> &mdash; the same hex, and each token block in
+<code>site.css</code> names the <code>strata.css</code> line it copies. The site still does not import the
+app's sheet, and the reason is no longer that the palettes differ: it is that the site is allowed a mesh
+on its chrome and the application is not allowed one anywhere
+(<a href=".ai/decisions.html#adr-094">ADR-94</a>). The cost has changed shape rather than gone &mdash;
+two hand-mirrored copies of one palette, with nothing testing that they agree. That is written up in
+<code>docs/.ai/gaps.html</code>.</p></div>
 
 <h2>What wears glass, and what does not</h2>
 
@@ -1720,6 +1754,133 @@ than it sounds: <code>--stamp</code> carries the site's links, buttons and the g
 </ol>
 Option 1 unless somebody with a claim on the brand says otherwise. A hue is not a CSS detail in a
 product whose palette is load-bearing, so the choice is written down rather than made in a stylesheet.</div>
+
+<div class="win"><strong>Settled 2026-08-07, and not by any of the three options.</strong> The blocker
+above is gone, and the hex in it &mdash; the last <code>#0d5c6b</code> left in this document &mdash; is
+kept because the argument it carries is the reason the mark was specified here rather than in a
+stylesheet, and that reasoning held. What happened: both palettes moved to the same indigo, so
+<code>--stamp</code> and <code>--accent</code> are both <code>#2f4bd8</code> and there was nothing left to
+choose between. Option 3 is what shipped, in the sense that the site moved &mdash; but it moved because
+the whole palette moved, not for one letter of one word. The application still has no
+<code>--stamp</code> token and does not need one.
+<p style="margin:.6rem 0 0"><strong>The mark itself is not the one this part specified either, and that
+is a correction rather than a footnote.</strong> Part four specified <code>STRATA</code>, uppercase,
+tracked, final letter in the accent, no glyph. What ships in all six places it is painted is a single SVG
+lockup: the three-bar glyph reversed out of an indigo rounded square, with mixed-case
+<code>Strata</code> beside it, set in the display face by a stylesheet rule rather than by the SVG's own
+presentation attribute. <code>app/web/static/logo.svg</code> and <code>deploy/site/logo.svg</code> are
+byte-identical, and the same lockup is pasted inline into the site's pages. So the glyph survived and the
+casing did; the specification above lost on both. It is left standing because the thing it got right is
+the part that mattered &mdash; one mark, specified in a document, before either surface was allowed to
+drift again.</p></div>
+
+<hr class="rule2">
+
+<h1 style="margin-top:2rem">Part five &mdash; the indigo system, and what parts two and three now describe</h1>
+<p class="sub">The visual redesign of 2026-08-07, on branch <code>visual-redesign</code>. Seventeen
+changes to the surface and this one to the record of it. Written after the work rather than before it,
+which is the wrong order and is said here rather than hidden by the tense.</p>
+
+<div class="crit"><strong>Parts two and three describe a surface that no longer exists.</strong> Read
+them as history, not as specification. Part two specifies a teal palette, two colour schemes, one type
+register and a radius scale with one step; the product has an indigo palette, four colour schemes, a
+display face and a three-step radius scale. Part three specifies a marketing site whose accent is a navy
+unrelated to the application's; that site now mirrors the application's tokens by hand, and its hero is
+no longer a headline over a verified claim but the refusal itself. <strong>Nothing in either part has
+been deleted.</strong> The corrections in them are the value of this document &mdash; a plan, then what
+the build did to it &mdash; and a document that rewrites itself to match the outcome is not a record.
+Every claim in those parts that this one contradicts is marked in place with the date.</div>
+
+<h2>What changed, and where the reasoning lives</h2>
+
+<p>Three of the seventeen changes were decisions rather than execution, and each has an ADR written in
+the same change as this part:</p>
+
+<table>
+<tr><th>Decision</th><th>Entry</th><th>In one line</th></tr>
+<tr><td>A web font, after ADR-012 said no</td><td><a href=".ai/decisions.html#adr-092">ADR-92</a></td>
+<td>Manrope, 24,576 bytes, OFL 1.1, in the repository and on headlines only. No build step and no CDN
+both survive; only the third clause of that sentence falls.</td></tr>
+<tr><td>The palette moves off teal</td><td><a href=".ai/decisions.html#adr-093">ADR-93</a></td>
+<td>Indigo and oxblood across four schemes, with the three AA regressions it shipped and the four
+token families whose head moved without their members, written down as the cost.</td></tr>
+<tr><td>Where a gradient may go</td><td><a href=".ai/decisions.html#adr-094">ADR-94</a></td>
+<td>Chrome may be soft, the record is flat, and <code>tests/test_design_guards.py</code> enforces it
+with two conditional exemptions that were mutation-checked.</td></tr>
+</table>
+
+<p>The other fourteen were execution, and they are in the commit history rather than restated here. The
+shape of them: a rebuilt masthead whose nav items are tabs and whose wordmark is set in the display
+face; three component sheets moved onto the new shape and depth tokens without gaining a colour of their
+own; motion for the one thing in the record that is allowed to move; six screens tuned by hand; eighteen
+more opened in a browser at five widths and checked rather than assumed; and a landing page whose first
+screenful is the refusal.</p>
+
+<h2>The token facts a reader of parts two and three needs</h2>
+
+<table>
+<tr><th>What part two says</th><th>What is true on 2026-08-07</th></tr>
+<tr><td>Two hues, teal and amber, in two colour schemes.</td>
+<td>Two hues, indigo <code>#2f4bd8</code> and oxblood <code>#a02c1d</code>, in four colour schemes:
+light, dark, and each again under <code>prefers-contrast: more</code>. A hue census of both stylesheets
+returns two clusters, 7&ndash;16 and 220&ndash;231, and no third. One stray: dark
+<code>--glass-edge</code> is <code>#5c757e</code>, hue 196, a teal remnant nobody has caught in a
+browser.</td></tr>
+<tr><td>Three faces, all from the operating system.</td>
+<td>Four. <code>--face-display</code> is Manrope, served from <code>/static/fonts/</code>. The other
+three are unchanged and interface text still takes <code>--face-ui</code>.</td></tr>
+<tr><td>One radius that matters, <code>--r</code> at 3px, plus <code>--r-glass</code> at 10px for the
+one surface that is genuinely a window.</td>
+<td>Four. <code>--r</code> 3px and <code>--r-sm</code> 2px still hold the record, because a filing with
+rounded corners is a card about a filing. Chrome takes a three-step scale named for what a thing is
+rather than for what it is made of: <code>--r-card</code> 14px, <code>--r-control</code> 10px,
+<code>--r-pill</code> 999px.</td></tr>
+<tr><td>Depth is <code>--edge</code> plus <code>--shadow-1/2/3</code>.</td>
+<td>Those still dress the glass ladder. Flat chrome takes <code>--lift-1</code> and
+<code>--lift-2</code> &mdash; a resting card and something a reader has picked up &mdash; mixed from
+<code>--ink</code> in light and restated in dark, where mixing from a near-white ink would draw a halo
+and call it a shadow. Neither may ever be the word <code>none</code>: they compose inside a
+<code>box-shadow</code> list beside a focus ring, and a guard holds them to
+<code>0 0 transparent</code>.</td></tr>
+</table>
+
+<div class="note"><strong><code>--r-glass</code> is named three times in part two &mdash; in the glass
+ladder's radius row, in the verbatim token listing, and in the critique &mdash; and it has no consumer
+left.</strong> The one surface that took it, the assistant dock above the handset breakpoint, now takes
+<code>--r-card</code>: both were chrome radii and they were never two ideas, and a product with a radius
+token per component has no radius scale. The token is still declared in <code>strata.css</code>, at line
+602 as this is written, and is read by nothing. It is left in the three places above as part two's own
+text. <em>Removing the declaration is a one-line change this document does not own.</em></div>
+
+<div class="note"><strong>Every <code>strata.css</code> line number in parts one to four is expired.</strong>
+Part one records the file at 2,752 lines; it is <strong>4,323</strong>. <code>clerk.css</code> is 666, not
+543; <code>tour.css</code> is 183, not 113; <code>workflow.css</code> is 705, not 641. Every
+"<code>strata.css</code> <em>nnn</em>&ndash;<em>nnn</em>" citation in this document was true when it was
+written and points at the wrong rule now. Rather than re-derive forty of them, three that get quoted:
+<code>.masthead</code> is at 1035, not 349; <code>.tabs</code> at 2811, not 1596; the wordmark block at
+1179, not 436. <strong>Grep the selector.</strong> A line number in a document is a fact with a half-life
+and this file has been shown its own, twice.</div>
+
+<h2>What is still not known, and what this redesign left open</h2>
+
+<p>Four things, each of them in <code>docs/.ai/gaps.html</code> with the detail:</p>
+<ol>
+<li><strong>The demo film on the landing page shows the pre-redesign product</strong>, and its poster
+frame carries the teal mark. It is the first moving thing a reviewer sees.</li>
+<li><strong>Nothing tests that <code>deploy/site/site.css</code> and
+<code>app/web/static/strata.css</code> agree</strong>, and a naive parity test would be worse than
+none &mdash; the two files have different scheme structures, so a last-occurrence diff compares the
+application's high-contrast-dark block against the site's dark block and reports a disagreement that is
+not there.</li>
+<li><strong>The gradient guard reads <code>strata.css</code> only.</strong> The site's own version of the
+rule is held by a comment.</li>
+<li><strong>The 62rem bound on the table scroll rule is a known hole</strong>, and it is named as one in
+the stylesheet rather than left looking like a decision.</li>
+</ol>
+
+<p>And the honest limit above all four: <strong>no user has seen either palette.</strong> The argument
+for indigo over teal in ADR-93 is reasoned from the category, not from evidence, and
+<code>docs/user-research.html</code> still reports zero interviews.</p>
 
 </body>
 </html>

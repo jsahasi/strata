@@ -1,17 +1,62 @@
+/* THE ONE WEB FONT, AND WHY IT IS ONLY ON HEADLINES.
+ *
+ * ADR-012 said no web font, as part of no build step and no CDN. Two of those
+ * three still hold and this changes only the third: the file is in this
+ * repository, served by this application, fetched by nothing at runtime. A
+ * reviewer with no network gets the whole design.
+ *
+ * Display only. Interface text keeps the system stack, because the dense
+ * screens were measured against those metrics and because swapping body text
+ * is what makes a page lurch on load. One file, 24KB, the whole 400-800 range.
+ */
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/manrope-latin.woff2") format("woff2-variations");
+  font-weight: 400 800;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* Strata — the layer that sits on top of each page's own styles.
  *
- * WHY A FILE AND NOT SEVEN STYLE BLOCKS. Every page here carries its own inline
- * <style>, written for that page and correct as it stands. Copying a glass
- * layer into all seven would drift inside a week: one page would gain a token
- * the others never got, and nobody would notice until a screenshot looked
- * wrong. This file loads after the inline block on every page, so it wins where
- * it needs to and leaves everything else exactly as it was. It adds; it does
- * not restructure. docs/diagrams.css is the precedent.
+ * WHY A FILE AND NOT NINE STYLE BLOCKS. Every page here carries its own inline
+ * <style>, written for that page and correct as it stands. Copying a palette
+ * into all nine would drift inside a week: one page would gain a token the
+ * others never got, and nobody would notice until a screenshot looked wrong.
+ * This file loads after the inline block on every page, so it wins where it
+ * needs to and leaves everything else exactly as it was. It adds; it does not
+ * restructure. docs/diagrams.css is the precedent.
  *
  * NOTHING IS FETCHED FROM ANOTHER HOST. No font service, no CDN, no library.
- * The type stacks are the ones the operating system already has. privacy.html
- * tells the reader this site loads nothing from anywhere else, and that
- * sentence has to stay true.
+ * The font is in this repository and the other three type stacks are the ones
+ * the operating system already has. privacy.html tells the reader this site
+ * loads nothing from anywhere else, and that sentence has to stay true.
+ * tests/test_responsive.py holds it.
+ *
+ * ------------------------------------------------------------------------
+ * THIS FILE MIRRORS app/web/static/strata.css BY HAND. IT DOES NOT IMPORT IT.
+ *
+ * The two stylesheets are deliberately separate, and the separation is not
+ * laziness. Pulling strata.css in from here would reach for a file the
+ * marketing host does not serve, and — worse — it would hand the site every
+ * rule the application needs and none of the freedom the site needs. The site
+ * is allowed gradients and a mesh on its chrome. The application is not
+ * allowed either, anywhere. Sharing a file would make that difference
+ * impossible to state.
+ *
+ * (This paragraph named the at-rule directly until the suite caught it. The
+ * host guard in tests/test_responsive.py greps the raw file, comments and all,
+ * so it read a sentence explaining why the site does not do the thing as the
+ * site doing it. The guard is right to be that blunt — a rule that has to
+ * parse CSS before it will complain is a rule that can be talked round — so
+ * the prose moved instead.)
+ *
+ * The cost of mirroring is that a palette change has to be made twice. That
+ * cost is paid openly here: every value below names the application token it
+ * copies, so a reader can diff the two files by eye and a future editor knows
+ * exactly which line in strata.css to look at.
  *
  * ------------------------------------------------------------------------
  * GLASS ON THE CHROME. PAPER FOR THE RECORD.
@@ -27,12 +72,17 @@
  *     action, the credentials panel, the frame around the film.
  *
  *   PAPER — opaque, flat, still, no blur, no shadow past a hairline:
- *     the hero's claim pair, body text on every legal page, the sub-processor
+ *     the hero's exhibit, body text on every legal page, the sub-processor
  *     rows, the security stage rows.
  *
- * The identity underneath is unchanged: filing-stamp blue, the testimony line
- * numbers down the left of each section, amber for withheld, a serif for body
- * text. The glass sits on top of that. It does not replace it.
+ * GRADIENTS OBEY THE SAME LINE, AND IT IS THE LINE THAT MAKES THIS DESIGN
+ * DEFENSIBLE. A wash, a mesh or a tint may sit behind a headline, a call to
+ * action or a pane, because those are the product talking about itself. None
+ * of them may sit behind evidence. The hero shows a real claim, a real
+ * refusal and the two strings that did not match, and every one of those sits
+ * on flat, opaque paper with nothing painted under the words. The one
+ * exception is the hatch in the withheld statement slot, and that exception is
+ * argued where it is written, not here.
  *
  * One more rule, which is how the two registers stay legible as registers:
  * GLASS IS ROUNDED (10px and up), PAPER IS SQUARE (2px and 3px, as it was).
@@ -40,9 +90,113 @@
  * ------------------------------------------------------------------------ */
 
 
-/* ------------------------------------------------------------------ tokens */
+/* ------------------------------------------------------- tokens: the palette */
 
+/* WHY THE PALETTE IS RESTATED HERE RATHER THAN IN THE NINE INLINE BLOCKS.
+ * Every page declares the same seven names in its own <style>: --paper, --ink,
+ * --muted, --rule, --stamp, --withheld, --panel. This block declares the same
+ * seven again, later in the cascade and at the same specificity, so it wins on
+ * all nine pages from one edit. Nothing in any page's markup changes and no
+ * page stops rendering correctly on its own — open one with this file removed
+ * and it falls back to the old teal-era values, which are still a coherent
+ * page. That is the property that made a single-file override worth doing.
+ *
+ * Each value names the token in app/web/static/strata.css it copies. */
 :root {
+  --paper:  #eef1f9;   /* strata.css --bg       the page itself            */
+  --panel:  #ffffff;   /* strata.css --paper    the record: claims, tables */
+  --ink:    #0f1729;   /* strata.css --ink                                 */
+  --rule:   #d5dbea;   /* strata.css --rule                                */
+  --stamp:  #2f4bd8;   /* strata.css --accent   anything you can act on    */
+
+  /* --muted MOVES TO --ink-2, NOT TO --ink-3, AND THE REASON IS MEASURED.
+     --ink-3 (#65728f) is the application's third ink and the obvious mirror
+     for a token called "muted". It reads 4.27:1 on this page's --paper, which
+     is under AA for body text — and on this site --muted is not a label
+     colour. It carries whole paragraphs: every .muted p, every .caption, the
+     film transcript and the entire footer. So it takes --ink-2 instead, at
+     7.48:1, which is also a gain on the #5a6373 it replaces. Where a small
+     tracked label wants the lighter grey it asks for --ink-3 by name. */
+  --muted:  #414d68;   /* strata.css --ink-2                               */
+  --ink-3:  #65728f;   /* strata.css --ink-3    labels and coordinates only */
+
+  /* WITHHELD LEAVES AMBER FOR OXBLOOD, WHICH IS A CHANGE OF MEANING AND NOT
+     OF TASTE. Amber is the colour of a warning: proceed, carefully. A withheld
+     claim is not a warning. Nothing is proceeding. The application settled on
+     oxblood for exactly that reason and this page has to agree with it, or a
+     reader who sees the refusal on the site and then again in the product sees
+     two different events. */
+  --withheld:        #a02c1d;   /* strata.css --alarm         */
+  --withheld-strong: #6d2610;   /* strata.css --alarm-strong  */
+
+  --rule-strong: #a5aec6;                 /* strata.css --rule-strong */
+  --hatch:       rgba(15, 23, 41, 0.16);  /* strata.css --hatch */
+
+  /* The ink that sits ON --stamp. It was written as var(--panel) in light and
+     the literal #0d1017 in dark, in nine inline blocks. Both are now one
+     token, so a palette move cannot leave a button's label behind. */
+  --stamp-on: #ffffff;   /* 6.73:1 on --stamp */
+
+  /* THE DISPLAY FACE GETS A TOKEN. THE OTHER THREE DO NOT, AND THAT ASYMMETRY
+   * IS DELIBERATE.
+   *
+   * strata.css names four faces: --face-ui, --face-doc, --face-data and
+   * --face-display. This file has never had a --face-* family; every page's
+   * inline block declares --serif, --sans and --mono and sets font-family from
+   * those. The tidy move would be to rename all four here and match the
+   * application's vocabulary.
+   *
+   * It is the wrong move, and best-practices §27 says why: a derived corpus
+   * migrates all at once or not at all. --serif, --sans and --mono are read by
+   * roughly two hundred declarations across nine inline <style> blocks that
+   * this file cannot rewrite. Introducing --face-ui here would leave the site
+   * with two names for one face, the new one used by whatever was edited last
+   * and the old one by everything else — which is exactly the failure the
+   * token-family rule was written after (commit ceb9056: "a token family rule,
+   * after it caused three defects rather than one").
+   *
+   * --face-display is different because it is NEW. Nothing on this site names
+   * the display face today; there is no old vocabulary to be half out of. So
+   * one token is added, it is the only member of its family, and the three
+   * existing names are left alone until something can move all of them
+   * together. If the inline blocks are ever folded into this file, that is the
+   * change that renames the other three, in one commit. */
+  --face-display: "Manrope", var(--sans);
+
+  /* Display sizes and tracking, from strata.css. Tracking slackens as the type
+     gets smaller: a geometric face wants real negative tracking at hero size
+     and almost none at heading size. The hero itself is fluid rather than
+     fixed at --t-display, because 48px on a 390px screen is not a headline,
+     it is four words and a hyphen. */
+  --t-display: clamp(2.15rem, 6.4vw, 3.25rem);
+  --t-title: 2rem;
+  --t-lead: 1.25rem;
+  --track-display: -0.02em;
+  --track-title: -0.014em;
+  --track-h1: -0.009em;
+
+  /* Shape. These already matched strata.css --r-control (10px) and --r-card
+     (14px) before the redesign, which is why neither moves here. Record
+     surfaces keep 2px and 3px and are not given a token, so nobody can reach
+     for a soft corner on a filing by accident. */
+  --glass-r: 10px;
+  --glass-r-lg: 14px;
+
+  /* Motion, from strata.css. --ease is --ease-settle and --spring is
+     --ease-offer, kept under their old names because forty declarations in
+     this file already read them and renaming those is the same half-migration
+     the face comment refuses. The application's --ease-refuse and --dur-refuse
+     are NOT mirrored: on this site the refusal has no motion at all, so a
+     token for how it should move would describe nothing. */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --spring: cubic-bezier(0.34, 1.42, 0.64, 1);
+  --dur-tap: 120ms;
+  --dur-lift: 240ms;
+  --dur-reveal: 400ms;
+
+
+  /* ------------------------------------------------------------- the glass */
+
   /* The blur and the saturation lift. Saturation is what stops translucent
      white reading as dirty grey; macOS does the same thing. */
   --glass-blur: 20px;
@@ -56,14 +210,19 @@
      at 3.50:1 against a 4.5 requirement. 88% brings them back to 4.7:1 and is
      also the honest reference: a macOS header view is far more opaque than a
      screenshot of one suggests. Content still shows through, blurred and
-     desaturated, which is the whole of what the effect is for. */
+     desaturated, which is the whole of what the effect is for.
+     Those two figures were read off the teal palette. The veil is glass, so
+     its rendered contrast is a range that depends on the frame behind it and
+     nobody has re-measured it on indigo. What carries over is the shape of the
+     finding — 72% was not enough, 88% was — and --muted has since moved from
+     #5a6373 to #414d68, which can only help. The digits are the old page's. */
   --glass-veil: color-mix(in srgb, var(--paper) 88%, transparent);
 
   /* Panels: the credentials block, the closing call to action, the film. */
   --glass-panel: rgba(255, 255, 255, 0.60);
-  --glass-solid: #ffffff;             /* used when backdrop-filter is absent */
+  --glass-solid: #f7f9fd;             /* strata.css --glass-solid           */
 
-  /* Actions. Still filing-stamp blue, thinned enough to layer. */
+  /* Actions. Still stamp indigo, thinned enough to layer. */
   --glass-action: color-mix(in srgb, var(--stamp) 88%, transparent);
   --glass-chip: color-mix(in srgb, var(--ink) 8%, transparent);
 
@@ -71,39 +230,192 @@
      reads as the pane's boundary. Both are needed or it looks like a tint. */
   --glass-edge: rgba(255, 255, 255, 0.75);
   --glass-hair: color-mix(in srgb, var(--ink) 13%, transparent);
+
+  /* THE ONE DEPTH VALUE ON THIS SITE, AND IT IS NOW strata.css --glass-lift.
+     It was a pair of --ink mixes that reached 40% at the far stop, and under
+     the sticky header that painted a dark band rather than a separator: at
+     scroll the bar looked like it was casting onto the page instead of sitting
+     on it. The application's pane shadow is a third of the depth and twice as
+     wide, which is what a pane above a page actually looks like. Mirrored
+     rather than retuned by eye, because the two surfaces are the same surface.
+     --lift-1 and --lift-2 were mirrored here too and then deleted: nothing on
+     this site consumed either, and this file has already learned once what a
+     token nobody reads costs (see the --glass-tint history in strata.css). */
   --glass-shade:
-    0 1px 2px color-mix(in srgb, var(--ink) 7%, transparent),
-    0 14px 30px -20px color-mix(in srgb, var(--ink) 40%, transparent);
-
-  --glass-r: 10px;
-  --glass-r-lg: 14px;
-
-  /* Motion. The spring overshoots slightly on the way in and settles; the
-     ease is for anything that changes colour, which should not bounce. */
-  --spring: cubic-bezier(0.34, 1.28, 0.5, 1);
-  --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
-  --dur-tap: 120ms;
-  --dur-lift: 240ms;
+    0 10px 22px -10px rgba(6, 11, 26, 0.1),
+    0 2px 4px -2px rgba(6, 11, 26, 0.05);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --paper:  #0b1020;   /* strata.css --bg       */
+    --panel:  #151c30;   /* strata.css --paper    */
+    --ink:    #e9edf7;   /* strata.css --ink      */
+    --rule:   #252e45;   /* strata.css --rule     */
+    --stamp:  #a8b9ff;   /* strata.css --accent   */
+    --muted:  #adb7cd;   /* strata.css --ink-2, 9.40:1 on --paper */
+    --ink-3:  #818da8;   /* strata.css --ink-3    */
+
+    --withheld:        #ef9d80;   /* strata.css --alarm        */
+    --withheld-strong: #ffc2ac;   /* strata.css --alarm-strong */
+
+    --rule-strong: #3d4863;
+    --hatch:       rgba(233, 237, 247, 0.18);
+
+    /* Dark's accent is LIGHTER than the page, so the ink on a filled button
+       inverts with it. #0b1020 on #a8b9ff is 9.96:1. */
+    --stamp-on: #0b1020;
+
     --glass-blur: 24px;
     --glass-sat: 145%;
     /* Same measurement, other direction: here the risk is a bright frame of
        the film washing the bar out under light --muted text. At 68% that read
-       2.63:1; 86% brings it to 5.3:1. */
+       2.63:1; 86% brings it to 5.3:1. Teal-era figures, as above. */
     --glass-veil: color-mix(in srgb, var(--paper) 86%, transparent);
     /* A cool white veil rather than a lighter grey: over near-black it is the
        only mix that still reads as a pane of something rather than a box. */
     --glass-panel: rgba(150, 168, 202, 0.13);
-    --glass-solid: #1a2029;
+    --glass-solid: #161d31;             /* strata.css --glass-solid dark */
     --glass-edge: rgba(255, 255, 255, 0.10);
     --glass-hair: color-mix(in srgb, #ffffff 14%, transparent);
     --glass-chip: color-mix(in srgb, #ffffff 10%, transparent);
+    /* strata.css --glass-lift, dark. Deeper and longer than light, because
+       black on a page already near black has little left to give. */
     --glass-shade:
-      0 1px 2px rgba(0, 0, 0, 0.5),
-      0 14px 30px -20px rgba(0, 0, 0, 0.8);
+      0 18px 40px -12px rgba(0, 0, 0, 0.72),
+      0 3px 8px -3px rgba(0, 0, 0, 0.5);
+  }
+}
+
+
+/* ---------------------------------------------------------- the display face */
+
+/* WHERE MANROPE IS ALLOWED, AND WHERE IT IS NOT.
+ *
+ * Headings and the wordmark. Nothing else. Body prose on this site is the
+ * serif, and it stays the serif: the pages read as documents because they are
+ * set like documents, and a geometric sans running a privacy policy would give
+ * that up for nothing. The rule is the application's rule, applied here: the
+ * display face marks the product speaking at volume, and it never touches the
+ * text a reader actually settles into. */
+h1,
+.cta h3,
+.pair__label {
+  font-family: var(--face-display);
+}
+
+/* TWO SIZES, AND THE BIG ONE IS THE HERO'S ALONE.
+ *
+ * strata.css keeps --t-display (48px) and --t-title (32px) apart and says the
+ * first is "marketing only". Setting every h1 on this site to the display size
+ * would put a 52px line at the top of the privacy policy and the sub-processor
+ * list, which is a landing page shouting at somebody who came to read a term.
+ * So the display size is scoped to .hero, and the other twelve pages take the
+ * title size — still Manrope, still the same family, one step quieter. */
+h1 {
+  font-size: var(--t-title);
+  font-weight: 700;
+  line-height: 1.14;
+  letter-spacing: var(--track-title);
+}
+
+.hero h1 {
+  font-size: var(--t-display);
+  line-height: 1.06;
+  letter-spacing: var(--track-display);
+}
+
+.cta h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: var(--track-title);
+}
+
+/* THE NAME IN THE MARK IS SET HERE, NOT IN THE MARKUP, and the same rule with
+   the same reasoning is in strata.css. The <text> inside the lockup carries
+   font-family and letter-spacing as presentation attributes, and a presentation
+   attribute is beaten by any rule in a stylesheet — which is what lets the mark
+   take the display face without editing the SVG. The SVG is left alone on
+   purpose: the lockup is byte-identical to the application's, and the fallback
+   stack in the attribute stays as the answer for a page that never loads a
+   stylesheet at all. The name is set at 20px, so it takes --track-h1, the
+   display family's tracking for the nearest size. */
+.brand .logo text {
+  font-family: var(--face-display);
+  letter-spacing: var(--track-h1);
+}
+
+.brand .logo {
+  display: block;
+  height: 30px;
+  width: auto;
+  color: currentColor;
+}
+
+
+/* -------------------------------------------------- gradients, and their limit */
+
+/* THE ONE PLACE THIS SITE IS ALLOWED SOMETHING THE APPLICATION IS NOT.
+ *
+ * A landing page has to establish an atmosphere in one screenful; a workspace
+ * has to disappear. So the hero and the closing call to action get a mesh, and
+ * the rule that keeps this honest is that a mesh may only ever sit on chrome.
+ * Every gradient in this file is attached to a section background or a pane. No
+ * gradient is attached to .rec, .withheld, .mismatch, .stage, .note or .srctext,
+ * and the paper block further down states that in the other direction.
+ *
+ * The mesh is two radial stops at very low alpha, mixed from the two hues the
+ * product already has. It introduces no third colour. It is also switched off
+ * whole under prefers-contrast: more, because a wash behind text is the first
+ * thing to go when somebody has asked for edges. */
+.hero {
+  position: relative;
+  isolation: isolate;
+  background-image:
+    radial-gradient(
+      68rem 40rem at 8% -12%,
+      color-mix(in srgb, var(--stamp) 15%, transparent) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      48rem 34rem at 96% 8%,
+      color-mix(in srgb, var(--withheld) 9%, transparent) 0%,
+      transparent 58%
+    );
+  background-repeat: no-repeat;
+}
+
+/* The mesh has to stop at the fold rather than bleed into the sections below,
+   and a hard edge across a wash looks like a rendering fault. This is the
+   fade-out: a strip of the page's own colour laid over the bottom of the hero,
+   under everything in it. z-index -1 on a pseudo-element inside an isolated
+   stacking context reaches the section's background and nothing else. */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 12rem;
+  z-index: -1;
+  background-image: linear-gradient(to bottom, transparent, var(--paper));
+  pointer-events: none;
+}
+
+.cta {
+  background-image:
+    radial-gradient(
+      34rem 20rem at 50% -30%,
+      color-mix(in srgb, var(--stamp) 13%, transparent) 0%,
+      transparent 70%
+    );
+}
+
+@media (prefers-contrast: more) {
+  .hero,
+  .hero::after,
+  .cta {
+    background-image: none;
   }
 }
 
@@ -119,9 +431,8 @@ header {
 }
 
 /* A macOS toolbar gains its separator once the document has moved under it.
-   This is the same behaviour, driven by scroll position rather than by script
-   -- there is no JavaScript on this site and this does not add any. If the
-   browser cannot do scroll-linked animation, the header simply keeps the
+   This is the same behaviour, driven by scroll position rather than by script.
+   If the browser cannot do scroll-linked animation, the header simply keeps the
    1px rule it already had; nothing is hidden and nothing is waiting. */
 @supports (animation-timeline: scroll()) {
   @media (prefers-reduced-motion: no-preference) {
@@ -166,8 +477,9 @@ header {
 /* ------------------------------------------------------ glass: the actions */
 
 /* .signin is the Sign in button, Request access, and the closing call to
-   action. Translucent stamp blue over blur, lifting on a spring. */
+   action. Translucent stamp indigo over blur, lifting on a spring. */
 .signin {
+  color: var(--stamp-on);
   background: var(--glass-action);
   -webkit-backdrop-filter: blur(12px) saturate(var(--glass-sat));
   backdrop-filter: blur(12px) saturate(var(--glass-sat));
@@ -216,7 +528,7 @@ header {
 .creds,
 .cta,
 .film__frame {
-  background: var(--glass-panel);
+  background-color: var(--glass-panel);
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
   border: 1px solid var(--glass-hair);
@@ -243,7 +555,7 @@ header {
 }
 
 .cta {
-  border-radius: var(--glass-r);
+  border-radius: var(--glass-r-lg);
 }
 
 /* The film's frame. The video keeps every attribute it had -- poster, both
@@ -270,18 +582,23 @@ header {
 
 /* ------------------------------------------------------------------- paper */
 
-/* Stated rather than assumed. These are the record: the claim pair, the
-   policy notes, the stage rows on security and sub-processors, every table on
-   a legal page. They stay opaque, square-cornered and still. If a glass rule
-   above ever widens its selector, this is the rule that catches it. */
+/* Stated rather than assumed. These are the record: the exhibit in the hero,
+   the policy notes, the stage rows on security and sub-processors, every table
+   on a legal page. They stay opaque, square-cornered and still, and no gradient
+   reaches them. If a glass or mesh rule above ever widens its selector, this is
+   the rule that catches it. */
 .rec,
 .note,
 .stage,
 .ph,
 .refuse,
-.srctext {
+.srctext,
+.mismatch,
+.mismatch__value,
+.rec .rec__statement {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
+  background-image: none;
 }
 .note,
 .ph,
@@ -292,6 +609,171 @@ header {
    is no <table> on any legal page -- both of those pages are built from .stage
    rows -- so the only table on the site is the one inside the credentials
    panel, and naming tables here would mean exempting it again a line later. */
+
+
+/* ===================================================================== *
+ *  THE EXHIBIT — the first screenful, and the whole argument in it.
+ *
+ *  The hero of this site used to be a headline over a pair of small cards.
+ *  It is now a single exhibit, and the thing it exhibits is a REFUSAL: a
+ *  claim that declines to assert itself because its citation did not
+ *  verify. The withheld record comes first and is the larger of the two. The
+ *  verified record sits under it as the counterweight, so a reader can see
+ *  that the same check produced both answers and that nobody chose which.
+ *
+ *  Everything in here is paper. Opaque fill, square corners, hairline
+ *  border, no blur, no shadow, no gradient behind any word. The mesh in
+ *  .hero above passes behind this block and is stopped by it.
+ * ===================================================================== */
+
+.pair {
+  margin: 2.4rem 0 0;
+  max-width: 46rem;
+}
+
+.pair__label {
+  margin: 0 0 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.pair .rec {
+  padding: 1.2rem 1.25rem;
+  margin-bottom: 0.9rem;
+}
+
+/* The record's own verdict, in the position a reader's eye reaches first. */
+.rec .rec__state {
+  margin: 0 0 0.75rem;
+  font: 700 0.75rem/1.55 var(--sans);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--stamp);
+}
+.rec--held .rec__state {
+  color: var(--withheld-strong);
+}
+
+/* The statement a verified claim makes. Interface face, not the serif: this
+   is the product's own sentence about a change, not the filing's words. A
+   reader must never mistake the two, which is why they never share a face. */
+.rec__statement {
+  margin: 0;
+  font: 400 1.0625rem/1.6 var(--sans);
+  color: var(--ink);
+}
+
+/* The coordinates that make the claim checkable. Monospace, because these are
+   figures to be compared character by character rather than read. */
+.coord {
+  display: block;
+  margin: 0.75rem 0 0;
+  font: 500 0.75rem/1.55 var(--mono);
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+  overflow-wrap: anywhere;
+}
+
+/* THE SLOT WHERE THE STATEMENT IS NOT.
+ *
+ * Whatever a reader's eye reaches for in the statement position, it finds
+ * this: a hatched block that plainly is not a sentence, and the reason.
+ * Mirrored from strata.css .withheld, down to the 135-degree hatch and the
+ * 1px-in-7 pitch, because the site and the product have to be showing the
+ * same event.
+ *
+ * THIS IS THE ONE GRADIENT ON AN EVIDENCE SURFACE, AND HERE IS THE ARGUMENT
+ * FOR IT. The rule this design turns on is that nothing is painted behind
+ * evidence. The hatch is painted where evidence is ABSENT — it fills the empty
+ * statement slot and nothing else — and every word inside it sits on an
+ * opaque plate, so the hatch never crosses a glyph. The plate is also the
+ * reading: a note laid on struck ground, not text written over it. If a later
+ * edit removes those plates, this stops being an exception and becomes the
+ * thing the rule forbids. */
+.withheld {
+  padding: 1rem;
+  border: 1px dashed var(--rule-strong);
+  border-radius: 2px;
+  background-color: transparent;
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--hatch) 0 1px,
+    transparent 1px 7px
+  );
+}
+
+.rec .withheld__label,
+.rec .withheld__reason {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.15em 0.45em;
+  background: var(--panel);
+}
+
+.rec .withheld__label {
+  font: 700 0.75rem/1.55 var(--sans);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* The reason is the product speaking, so it stays in the interface face. Set
+   it in the document face and it would start to look like the claim it
+   replaces. */
+.rec .withheld__reason {
+  margin-top: 0.5rem;
+  font: 400 0.9375rem/1.55 var(--sans);
+  color: var(--muted);
+}
+
+/* WHAT WAS QUOTED, AGAINST WHAT THE SOURCE ACTUALLY SAYS AT THOSE OFFSETS.
+ *
+ * Side by side where there is room, and the reason is the same one strata.css
+ * gives. The two strings differ by one character — twenty megawatts against
+ * ten — and stacked, a reader has to memorise one sentence to find the wrong
+ * word in the next. Paired, the difference is the thing you see first, which
+ * is the entire claim this page makes.
+ *
+ * Stacked below 48rem, because two columns narrower than the sentences in them
+ * is worse than a stack. */
+.mismatch {
+  margin: 1.1rem 0 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  gap: 0.9rem 1.6rem;
+}
+@media (min-width: 48rem) {
+  .mismatch {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.mismatch__term {
+  margin: 0 0 0.25rem;
+  font: 600 0.75rem/1.55 var(--sans);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.mismatch__value {
+  margin: 0;
+  font: 400 0.8125rem/1.6 var(--mono);
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+/* The word that did not match. The mark is a flat tint of the alarm hue and
+   not a wash: it is one span of one line, sized to the characters under it. */
+.mismatch__value mark {
+  background: color-mix(in srgb, var(--withheld) 22%, transparent);
+  color: inherit;
+  padding: 0 0.12em;
+}
 
 
 /* --------------------------------------------------- the verified claim */
@@ -313,9 +795,9 @@ header {
 /* ===================================================================== *
  *  THE WITHHELD CLAIM — the only surface on this site with no effects.
  *
- *  Everything around it can lift, blur, glow and settle on a spring. This
- *  one does not. No blur, no motion, no transform, no hover, no shadow, no
- *  transition. It sits flat and still while the page moves.
+ *  Everything around it can lift, blur, glow, wash and settle on a spring.
+ *  This one does not. No blur, no motion, no transform, no hover, no shadow,
+ *  no transition, no gradient except the hatch argued for above.
  *
  *  That inverts the usual hierarchy, where the most important thing gets the
  *  most treatment. It gets none on purpose. The argument of the whole product
@@ -323,12 +805,22 @@ header {
  *  or it does not, and no part of the presentation should be able to soften
  *  that. A withheld claim that shimmered would be arguing against itself.
  *
+ *  IT IS ALSO NOT REVEALED ON SCROLL. reveal.js takes only elements carrying
+ *  data-reveal and nothing in this subtree carries one — see the reveal block
+ *  at the bottom of this file, and the comment in index.html that says why the
+ *  hero is excluded whole.
+ *
  *  WHY !important, WHICH IS OTHERWISE NOT USED HERE. This has to survive a
  *  later author adding a global `* { transition: ... }` or an animation
  *  sweep across the page. Those are written without !important, so this
  *  subtree keeps its stillness whatever lands after it. The declarations
  *  cover the pseudo-elements and the descendants too, because a spinning
  *  ::after inside a still box is still motion.
+ *
+ *  background-image IS EXEMPTED ON THE SLOT ITSELF AND NOWHERE ELSE. The
+ *  blanket rule below switches background-image off across the subtree, which
+ *  would take the hatch with it; .withheld is named again afterwards to put it
+ *  back. Every other descendant stays flat.
  * ===================================================================== */
 .pair .rec--held,
 .pair .rec--held:hover,
@@ -355,6 +847,44 @@ header {
   opacity: 1 !important;
   will-change: auto !important;
 }
+.pair .rec--held .withheld {
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--hatch) 0 1px,
+    transparent 1px 7px
+  ) !important;
+}
+
+
+/* ---------------------------------------------------------- scroll reveals */
+
+/* THE END STATE IS WHAT THE STYLESHEET SHIPS. reveal.js adds .is-hidden and
+   then takes it away; it never adds the finished state. So a reader whose
+   browser runs no script, or who has asked for reduced motion and gets a
+   script that returns immediately, sees the completed page. The opposite
+   order — hide in CSS, reveal in script — leaves that reader looking at
+   nothing, and it is the more natural way to write it, which is why it is
+   worth saying out loud. */
+[data-reveal] {
+  transition:
+    opacity var(--dur-reveal) var(--ease),
+    transform var(--dur-reveal) var(--ease);
+}
+[data-reveal].is-hidden {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The script never runs, so .is-hidden is never applied. This is belt and
+     braces for a reader who changes the setting with the page already open. */
+  [data-reveal],
+  [data-reveal].is-hidden {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 
 
 /* ------------------------------------- fallback where there is no vibrancy */
@@ -372,7 +902,7 @@ header {
   .creds,
   .cta,
   .film__frame {
-    background: var(--glass-solid);
+    background-color: var(--glass-solid);
   }
   .creds th {
     background: color-mix(in srgb, var(--ink) 6%, var(--glass-solid));
@@ -383,9 +913,9 @@ header {
 /* -------------------------------------------------------- reduced  motion */
 
 /* Reduce removes motion. It does not shorten it. Nothing on this site is
-   revealed by an animation, so nothing is left invisible when the animation
-   never runs -- every element is in its final state in the markup, and the
-   only animated properties are hover lifts and a scroll-linked shadow.
+   revealed by an animation that cannot also be reached without one: every
+   element is in its final state in the markup and in the stylesheet, and the
+   scroll reveal only ever removes a class the script itself added.
    The inline sheet on each page already carries a rule like this one; it is
    repeated here so the file is correct on its own. */
 @media (prefers-reduced-motion: reduce) {
@@ -442,9 +972,19 @@ header {
  * .signin is styled as an anchor; these are real <button>s inside a <form>,
  * because signing somebody in is a POST and a link that changes state is a
  * link a browser may prefetch. So they inherit the look and reset the three
- * things a button brings with it and an anchor does not. */
+ * things a button brings with it and an anchor does not.
+ *
+ * THE FONT IS NAMED RATHER THAN INHERITED, AND THAT IS A FIX, NOT A TIDY-UP.
+ * This rule said `font: inherit`, which was written to mean "look like the
+ * other Sign in buttons". It does not mean that. It means "take the parent's
+ * font", and the parent is a table cell inheriting the page's 17px serif — so
+ * this rule was quietly overriding the `font: 600 14px/1 var(--sans)` the
+ * .signin class had already set, and all three buttons in the credentials
+ * table had been rendering in the body serif at 17px. It looked deliberate
+ * enough that nobody caught it. Naming the value cannot go wrong the same way.
+ */
 .signin--row {
-  font: inherit;
+  font: 600 14px/1 var(--sans);
   border: 0;
   cursor: pointer;
   width: 100%;
@@ -456,5 +996,3 @@ header {
 .creds td > form {
   margin: 0;
 }
-
-.brand .logo { display:block; height:30px; width:auto; color:currentColor; }
