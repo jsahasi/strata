@@ -1546,6 +1546,22 @@ a.nav__link--current:hover {
   }
 }
 
+/* A list whose items are cards. The marker goes: a bullet beside a bordered
+   box is a bullet beside a box, and it lands to the LEFT of the box, outside
+   the column everything else on the page lines up to.
+
+   review_centre.html has carried a note saying this since the three lists were
+   given the class -- and the class had no rule, in this file or in any other,
+   so every finding and every open question arrived with a bullet anyway. A
+   template that names a class the stylesheet never heard of fails the same way
+   a stylesheet that styles a class no template renders does, and it fails
+   quietly in the same way: the page looks deliberate, it is just wrong. */
+.plain-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .stack > * + * {
   margin-top: var(--s5);
 }
@@ -3376,11 +3392,19 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
 
 .source__meta {
   display: flex;
-  gap: var(--s4);
+  gap: var(--s1) var(--s4);
   flex-wrap: wrap;
   margin-top: var(--s2);
   font: var(--t-micro) / 1.6 var(--face-data);
   color: var(--ink-3);
+}
+
+/* A flex item's default min-width is auto, which is its content, so a
+   sixty-character address refuses to shrink and pushes the row -- and the
+   page -- wider than the screen. Nothing else in this row is long enough for
+   it to matter, and one rule for the row is one fewer class in the template. */
+.source__meta > * {
+  min-width: 0;
 }
 
 /* An empty screen states what it means. "Nothing here" and "nothing loaded"
@@ -3940,6 +3964,21 @@ a.tab:hover:not(.tab--current):not([aria-selected="true"]) {
    screen. Break them anywhere rather than let one token set the page width. */
 .digest, .hash, code, pre, .coord--long {
   overflow-wrap: anywhere;
+}
+
+/* AND .coord--long HAS TO UNDO .coord's nowrap, or it does nothing at all.
+   `overflow-wrap: anywhere` cannot break a line that `white-space: nowrap` has
+   already said may not break, so the modifier above was inert on the one class
+   it is named for. It was also rendered by no template, so nobody found out:
+   a rule keyed to a class nothing uses, whose declaration would not have
+   worked if something had. Both halves are fixed here, and the review centre's
+   source addresses are the first thing to wear it -- thirteen URLs, nowrap,
+   were setting that page to 778 pixels inside a 390-pixel viewport.
+
+   The wrap is opt-in and stays that way. A character range broken across two
+   lines is unreadable as a coordinate, so a bare .coord still may not break. */
+.coord--long {
+  white-space: normal;
 }
 
 /* ---------------------------------------------- the withheld surface --

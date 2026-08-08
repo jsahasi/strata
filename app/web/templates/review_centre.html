@@ -71,10 +71,10 @@
 {% block scope_head %}
 <div class="page-head">
   <div class="page-head__title">
-    <h1>Review</h1>
+    <h1 class="t-title">Review</h1>
     <span class="coord">{{ projects | length }} projects</span>
   </div>
-  <p class="page-head__note">
+  <p class="page-head__note t-lead">
     What this company's research rests on, and what it does not. Every count on
     this page was taken from the rows on this request. Nothing is stored and
     read back.
@@ -224,7 +224,13 @@
       <p class="source__kind">{{ source.kind }}</p>
       <p class="source__name">{{ source.label }}</p>
       <p class="source__meta">
-        <span class="coord">{{ source.locator }}</span>
+        {#
+          An address, not a coordinate range: a URL sixty characters long, and
+          .coord is nowrap. Thirteen of these set this page to 778 pixels inside
+          a 390-pixel viewport. .coord--long lets it fold; a citation's
+          character range still may not.
+        #}
+        <span class="coord coord--long">{{ source.locator }}</span>
         <span>{% if source.version_id %}ingested as {{ source.version_id }}, citable at an offset{% else %}pointed at, not ingested — no claim can cite it{% endif %}</span>
         <span>{% if source.retrieved_at %}read {{ source.retrieved_at }}{% else %}retrieval time not recorded{% endif %}</span>
         <span>{% if source.trusted %}vouched for by a person{% else %}not vouched for{% endif %}</span>
@@ -357,7 +363,7 @@
         <section class="source-panel">
           <header class="source-panel__head">
             <p class="source-panel__title">{{ item.version_label or item.version_id }}</p>
-            <span class="coord">{{ item.citation }}</span>
+            <span class="coord coord--long">{{ item.citation }}</span>
           </header>
           <div class="source-panel__body">{% if item.lead_clipped %}[...] {% endif %}{{ item.source_lead }}<mark class="source-mark">{{ item.source_marked }}</mark>{{ item.source_tail }}{% if item.tail_clipped %} [...]{% endif %}</div>
         </section>
@@ -470,7 +476,7 @@
       {%- if finding.detail %}<p class="claim__foot">{{ finding.detail }}</p>{% endif %}
       <p class="claim__foot">
         <span class="coord">{{ finding.claim_id }}</span>
-        <span class="coord">{{ finding.citation }}</span>
+        <span class="coord coord--long">{{ finding.citation }}</span>
         {%- if finding.change_url %} <a href="{{ finding.change_url }}">{{ finding.change_id }}</a>{% endif %}
         &middot; raised by {{ finding.raised_by }}{% if finding.raised_at %}, {{ finding.raised_at }}{% endif %}
         {%- if show_project %} &middot; {{ finding.project_name }}{% endif %}
@@ -495,7 +501,7 @@
       </div>
       <p class="claim__foot">
         <span class="coord">{{ finding.claim_id or 'no claim' }}</span>
-        <span class="coord">{{ finding.citation }}</span>
+        <span class="coord coord--long">{{ finding.citation }}</span>
         {%- if finding.change_url %} <a href="{{ finding.change_url }}">{{ finding.change_id }}</a>{% endif %}
         &middot; raised by {{ finding.raised_by }}{% if finding.raised_at %}, {{ finding.raised_at }}{% endif %}
         {%- if show_project %} &middot; {{ finding.project_name }}{% endif %}
