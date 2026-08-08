@@ -1438,6 +1438,26 @@ a.nav__link--current:hover {
   max-width: 60ch;
 }
 
+/* The labelled facts about the thing on screen: its jurisdiction, its owner,
+   its docket. They were three label-and-value pairs run together inside one
+   paragraph, so the page read "JURISDICTION State of Meridian OWNER Sarah
+   Lindqvist DOCKET MPUC-2026-0142" as a single line of text and a reader had
+   to use the uppercase labels as punctuation. Each pair is a unit now, and the
+   row wraps rather than holding all three on one line. */
+.page-head__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s5);
+  margin-top: var(--s3);
+  color: var(--ink-2);
+}
+
+.page-head__fact {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--s2);
+}
+
 /* The model's judgement, on the change screen and nowhere else yet.
  *
  * It sits in the page head, where "not assessed" used to be printed, and it
