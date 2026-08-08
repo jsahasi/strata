@@ -1661,6 +1661,48 @@ a.nav__link--current:hover {
   }
 }
 
+/* Text controls.
+ *
+ * THERE WAS NO RULE FOR ONE ANYWHERE IN THIS STYLESHEET. Every field on the
+ * sign-in page, the new-project form and the steer form rendered as the
+ * browser's own control -- a different shape, a different face and a different
+ * ink from the `.btn` standing beside it in the same row. Both component sheets
+ * had already written this rule for their own fields, and both carry the same
+ * note saying why: the head of this family is `.btn`, which is in this file.
+ * Two sheets agreeing about a rule the file they defer to never wrote is how a
+ * product ends up with three kinds of field.
+ *
+ * So these take `.btn`'s border, radius, face and padding and nothing else,
+ * and `--r` moves here with `.btn` when it moves. Grep `--r` across
+ * strata.css, clerk.css and workflow.css and the whole family is in front of
+ * you.
+ *
+ * max-width CAPS AN INTRINSIC WIDTH. `size="52"` on an input is a width in
+ * characters, and an intrinsic width wider than the screen is one of the two
+ * ways a page grows past its viewport. The attribute still does useful work on
+ * a wide screen, so it stays and the cap goes here.
+ *
+ * Scoped by type, so a checkbox, a radio, a range and a hidden field keep the
+ * control the platform draws. */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  max-width: 100%;
+  padding: var(--s2) var(--s3);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--ink);
+  font: var(--t-ui) / var(--lh-ui) var(--face-ui);
+}
+
 /* Badges. Shape and weight carry the meaning; colour only agrees with it.
    Dashed outline = provisional. Solid fill = binding. Barred = material. */
 .badge {
@@ -2414,9 +2456,18 @@ a.project-card:hover .project-card__name {
    work, and hairlines here would be decoration. */
 .project-card__counts {
   display: grid;
-  /* 4.25rem gave a 74px track, and an 11px uppercase label tracked at
-     0.09em does not fit one. See .tally__label. */
-  grid-template-columns: repeat(auto-fit, minmax(5.5rem, 1fr));
+  /* TWO COLUMNS, DECLARED, NOT FOUR NEGOTIATED.
+     4.25rem gave a 74px track, and an 11px uppercase label tracked at 0.09em
+     does not fit one. See .tally__label. 5.5rem fixed that and left a second
+     problem behind: four cells at a 5.5rem minimum need about 400px and a card
+     in this grid has roughly 250px to give, so auto-fit laid three across and
+     dropped the fourth onto a row of its own. The date then read as a stranded
+     fifth fact rather than as one of four, and the row a reader is meant to
+     scan down a column across cards had a ragged bottom edge.
+     Two by two fits at every card width this grid produces, so the four cells
+     hold the same four positions on every card on the board -- which is the
+     only reason the row is a grid rather than a sentence. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--s3) var(--s4);
   margin-top: auto;
   padding: var(--s3) 0 var(--s4);
