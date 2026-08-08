@@ -1,9 +1,15 @@
 /* The first-visit walkthrough: a ring over a target, and a tip beside it.
  *
- * IT INVENTS NO SECOND VISUAL LANGUAGE. Every colour, face, size and step of
- * space here is a custom property strata.css already defines. There is not one
- * hex literal in this file, which is the only way a component added later stays
- * in the same family when the palette moves.
+ * IT INVENTS NO SECOND VISUAL LANGUAGE. Every colour, face, size, step of
+ * space, radius and cast here is a custom property strata.css already defines.
+ * There is not one hex literal in this file, which is the only way a component
+ * added later stays in the same family when the palette moves.
+ *
+ * THE TIP IS CHROME AND THE RING IS NOT, WHICH IS WHY THEY TAKE DIFFERENT
+ * SHAPES. The tip is a panel a reader has picked up: --r-card and --lift-2,
+ * the depth this product gives a thing that arrives over the page and leaves
+ * again. The ring is drawn ON somebody else's box and keeps --r; the argument
+ * is at the rule itself.
  *
  * THE TIP CARRIES NO POSITION OF ITS OWN. No top, no left, no right, no bottom
  * anywhere below. tour.js sets them from a target it has already found, so a
@@ -37,7 +43,17 @@
    A ring and a halo say "this one" without hiding the screen the tour is
    describing -- and the reader can still read the rest of it, which is the
    point of pointing at something. pointer-events:none so the ring never eats a
-   click meant for the thing underneath. */
+   click meant for the thing underneath.
+
+   IT KEEPS --r WHILE EVERYTHING AROUND IT SOFTENS, and the stop table is the
+   reason. This ring is drawn around whatever the stop points at, and two of
+   the five stops point at the record: the withheld claim and the citation
+   chip, which stay square because evidence stays square. A 14px ring around
+   a 3px card shows four gaps at the corners and looks like a miss. 3px around
+   a soft control is the cheaper error -- the ring already stands off its
+   target by a few pixels, so it is not meant to trace the outline exactly,
+   and nobody reads a corner they cannot see. One radius has to serve every
+   target; this is the one that never lies about the target that matters. */
 .tour-ring {
   position: fixed;
   z-index: 80;
@@ -56,11 +72,17 @@
   overflow-y: auto;
   padding: var(--s4);
   border: 1px solid var(--rule-strong);
-  border-radius: var(--r);
+  /* A panel a reader has picked up, so --r-card and --lift-2. The cast was a
+     hand-written offset in --hatch, which is a colour token doing a shadow's
+     job: it takes no part in the depth scale, so it did not darken with the
+     dark scheme and did not go away in print the way every other cast does.
+     --lift-2 is that same shadow written in the scale, and it is the depth
+     the nav's own hover panel already uses for the same kind of thing. */
+  border-radius: var(--r-card);
   background: var(--surface);
   color: var(--ink);
   font: var(--t-ui) / var(--lh-ui) var(--face-ui);
-  box-shadow: 0 2px 10px var(--hatch);
+  box-shadow: var(--lift-2);
   /* The tip scrolls when the viewport is short, and the three buttons are at
      the bottom of it. strata.css gives every tab stop a scroll-margin-top of
      --focus-anchor so focus clears the sticky masthead; inside a box this
@@ -81,11 +103,17 @@
 
    :focus-visible and not :focus, so the ring appears for the reader who tabbed
    in and not for the one who clicked Next with a mouse -- who knows perfectly
-   well where the box is, because they are pointing at it. */
+   well where the box is, because they are pointing at it.
+
+   THE CAST IS RESTATED, SO IT MOVES WITH THE RULE ABOVE. This rule only needs
+   to add the outline, but a box-shadow declared here at all replaces the
+   resting one, and a tip that changes depth the moment focus lands on it is a
+   flicker a keyboard reader gets and a mouse reader never sees. Both say
+   --lift-2; change one and change the other. */
 .tour-tip:focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: -4px;
-  box-shadow: 0 2px 10px var(--hatch);
+  box-shadow: var(--lift-2);
 }
 
 /* THE THREE BUTTONS KEEP THE PAGE'S RING and this file adds no rule for them,

@@ -17,6 +17,23 @@
  * thing this file adds is a geometry -- node size and canvas height -- which
  * strata.css has no reason to hold.
  *
+ * THE CANVAS IS CHROME, SO IT IS SOFT. A route is a thing being drawn, not a
+ * filing being read: nothing on these three screens is a record surface, so
+ * the boxes take --r-card, the nodes take --r-control and the one node cast
+ * is --lift-1, which lifts a step off the ruled grid it stands on. The record
+ * rule still holds everywhere it applies -- the diff, the claims, the quoted
+ * source and the citation viewer are on other screens, keep --r and stay
+ * flat -- and this file draws none of them.
+ *
+ * THE INPUTS KEEP --r, AND ON PURPOSE. Every text field and select here
+ * stands in a row with a `.btn`: the new-route field beside "Open a draft",
+ * the name field beside three buttons in the bar, the panel's fields above
+ * "Delete this step". `.btn` is defined in strata.css and still takes --r.
+ * Rounding the field and not the button next to it draws two shapes for one
+ * row, which is worse than the old shape drawn consistently. The head of that
+ * family is `.btn`; when it moves, every --r left in this file moves with it,
+ * and clerk.css carries the same note for the same reason.
+ *
  * THE THREE TIMEOUT ACTIONS DO NOT LOOK ALIKE, and bypass does not look safe.
  * Remind is the quiet one: a plain border. Escalate is drawn with the accent,
  * because something happens and it is orderly. Bypass takes the alarm treatment
@@ -127,7 +144,7 @@
   margin-bottom: var(--s5);
   padding: var(--s4);
   border: 1px solid var(--accent);
-  border-radius: var(--r);
+  border-radius: var(--r-card);
   background: var(--accent-wash);
 }
 
@@ -153,7 +170,7 @@
   margin-bottom: var(--s6);
   padding: var(--s4);
   border: 1px dashed var(--rule-strong);
-  border-radius: var(--r);
+  border-radius: var(--r-card);
 }
 
 .wf-new__row {
@@ -217,7 +234,7 @@
   padding: var(--s3) var(--s4);
   border: 1px solid var(--alarm);
   border-left-width: 3px;
-  border-radius: var(--r);
+  border-radius: var(--r-card);
   background: var(--alarm-wash);
   color: var(--alarm-strong);
   font-size: var(--t-small);
@@ -237,7 +254,7 @@
   height: 32rem;
   overflow: auto;
   border: 1px solid var(--rule);
-  border-radius: var(--r);
+  border-radius: var(--r-card);
   background-color: var(--surface);
   /* A grid, drawn rather than pictured: two gradients, no image file, nothing
      to fetch. It exists so a dragged node has something to line up against. */
@@ -282,7 +299,14 @@
 
 /* A real button. Focusable by Tab, focus-ringed by the browser, announced as a
    control -- none of which an SVG <g> gives reliably. The SVG behind it draws
-   the wires and nothing else. */
+   the wires and nothing else.
+
+   IT STANDS ON THE GRID RATHER THAN BEING PRINTED ON IT. --lift-1 is the
+   resting-card cast, and a node is the one thing in this product a person
+   picks up and puts somewhere. The canvas is ruled with two gradients at 40px,
+   and a flat box on a ruled ground reads as part of the ruling; the cast is
+   what says this box is on top and can be moved. It is chrome twice over --
+   a control, on a canvas -- so the record rule does not reach it. */
 .wf-node {
   position: absolute;
   width: 13rem;
@@ -290,8 +314,9 @@
   padding: var(--s3);
   border: 1px solid var(--rule-strong);
   border-left-width: 3px;
-  border-radius: var(--r);
+  border-radius: var(--r-control);
   background: var(--surface);
+  box-shadow: var(--lift-1);
   color: var(--ink);
   font: var(--t-small) / var(--lh-ui) var(--face-ui);
   text-align: left;
@@ -304,9 +329,16 @@
   outline-offset: 2px;
 }
 
+/* TWO RULES BELOW RESTATE THE CAST, AND THEY HAVE TO. A box-shadow here
+   replaces the node's resting shadow rather than adding to it, so a selected
+   node or a refused one would sit flat on the grid while every node around it
+   stood off it -- the two states that most need to look present would be the
+   two that look printed. Ring first, cast second: the ring is the state and
+   belongs against the border. Change --lift-1 on the node and change it in
+   both of these. */
 .wf-node--selected {
   border-color: var(--accent);
-  box-shadow: 0 0 0 2px var(--accent-wash);
+  box-shadow: 0 0 0 2px var(--accent-wash), var(--lift-1);
 }
 
 .wf-node__label {
@@ -380,7 +412,7 @@
    already is, rather than in a list at the bottom of the canvas. */
 .wf-node--bad {
   border-color: var(--alarm);
-  box-shadow: 0 0 0 2px var(--alarm-wash);
+  box-shadow: 0 0 0 2px var(--alarm-wash), var(--lift-1);
 }
 
 .wf-node__errors {
@@ -569,7 +601,7 @@
   padding: var(--s3);
   border: 1px solid var(--rule-strong);
   border-left-width: 3px;
-  border-radius: var(--r);
+  border-radius: var(--r-control);
   /* background-color, not the background shorthand: the shorthand resets
      background-image, and .wf-node--bypass is a hatch drawn with one. The
      bypass step would have lost its treatment here and looked like the safe
