@@ -1092,6 +1092,19 @@ Expected: exit zero, `fresh clone: tests pass`.
 
 macOS: System Settings > Appearance for light and dark; Accessibility > Display > Increase contrast for the high-contrast pair. Check the six demo-path screens in each. **Test coverage is not the same as looking at it.**
 
+- [ ] **Step 2b: Render at phone width and MEASURE it**
+
+`tests/test_responsive.py` is eleven static analyses. It parses CSS and templates for hardcoded widths, missing viewports and `nowrap` reaching prose through a descendant selector. **It never launches a browser and never measures anything.** That is exactly how two site pages scrolled sideways at 390px for a whole day with the suite green: the overflow was an emergent layout result, not a literal wide value, and the replacement guard catches that one cause rather than the class. This redesign rewrites every screen, so it can reintroduce the class freely.
+
+Use the `webapp-testing` skill. Drive a real browser at **390 x 844** and, for each page, assert `document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1`:
+
+- App, signed in: `/login`, `/projects`, a project detail, `/review`, a change detail, a workflow route.
+- Site: `index`, `security`, `privacy`, `terms`, `subprocessors`, `login`, `404`.
+
+Screenshot each one and look at it. Report every page whose `scrollWidth` exceeds its `clientWidth`, with the number, and fix before the branch merges. **A page that overflows by 24px is a fail, not a rounding error** — that is what 414-against-390 was.
+
+Do not add Playwright to `requirements.txt`. This is a one-off check at the end of a redesign, and a permanent browser dependency would break the offline promise Task 2 just paid for.
+
 - [ ] **Step 3: Confirm the offline promise**
 
 Disable the network, hard-reload the app and the site. The display face still renders. If it falls back to the system stack, the font is being fetched rather than served.
