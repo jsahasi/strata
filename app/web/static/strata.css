@@ -983,6 +983,18 @@ hr {
   padding: 0 var(--s5);
 }
 
+/* The signed-out page, and the only screen in this product that is a form
+   rather than a record. It took the same 76rem shell every other screen takes,
+   which put a forty-character field alone in a twelve-hundred-pixel box: the
+   first thing a reviewer ever sees read as an empty room with a lock in the
+   middle of it. Narrowed here rather than by moving --shell, because every
+   other screen wants the wide one and a token changed for one page is how a
+   token family goes wrong. Declared after .shell so it wins on file order at
+   the same specificity, which is what lets one element carry both. */
+.signin {
+  max-width: 44rem;
+}
+
 /* G1 -- attached glass. It spans the viewport, so it has no corners and no
    radius; depth is one hairline of light along the top and the smallest
    cast in the ladder.
@@ -1546,6 +1558,29 @@ a.nav__link--current:hover {
   color: var(--ink-3);
   letter-spacing: 0;
   white-space: nowrap;
+}
+
+/* Help under a field, and any short sentence a page adds beside a control.
+ *
+ * IT IS PROSE AND IT WRAPS, which is the whole reason it is not .coord. A
+ * coordinate is `white-space: nowrap` on purpose, and a whole sentence held on
+ * one line sets the page's minimum width -- the defect tests/test_responsive.py
+ * was written for, and one project_list.html has carried a note about since it
+ * was found there.
+ *
+ * THE CLASS WAS RENDERED BY TWO TEMPLATES AND STYLED BY NOTHING. Whoever moved
+ * those hints out of .coord named a class and never wrote its rule, so the hint
+ * came out at body size in body ink and read louder than the label above it.
+ * That is the same defect as a rule keyed to a class nothing renders, in the
+ * other direction, and it is just as quiet: the page looks fine, it simply says
+ * the wrong thing loudest. */
+.field-hint {
+  display: block;
+  max-width: var(--measure);
+  margin-top: var(--s1);
+  color: var(--ink-3);
+  font-size: var(--t-small);
+  line-height: var(--lh-ui);
 }
 
 /* PAPER. Opaque, flat, still: no blur, no motion, no shadow past a

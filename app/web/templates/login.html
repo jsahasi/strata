@@ -53,12 +53,22 @@
   </div>
 </header>
 
+{#
+  .signin narrows the column. This page is a form and nothing else, and it was
+  laid out in the same 76rem shell the record screens use.
+#}
 <main class="main" id="main">
-  <div class="shell">
+  <div class="shell signin">
 
+    {#
+      The display face and the display size, on the one screen where the
+      product introduces itself. Everywhere else the page deliberately does not
+      shout; here the title is the only thing above the fold and 24px left it
+      reading as a section heading on a page with no section above it.
+    #}
     <div class="page-head">
-      <div class="page-head__title"><h1>Sign in</h1></div>
-      <p class="page-head__note">
+      <div class="page-head__title"><h1 class="t-title">Sign in</h1></div>
+      <p class="page-head__note t-lead">
         Every decision this workspace records carries the name of the person who
         took it. That is what the sign-in is for: an approval nobody can be
         named for is not an approval.
@@ -66,7 +76,7 @@
     </div>
 
     {% if notice %}
-    <p class="coord" role="status">{{ notice }}</p>
+    <p class="field-hint" role="status">{{ notice }}</p>
     {% endif %}
 
     <section class="card stack" aria-labelledby="sign-in-title">
@@ -129,19 +139,29 @@
         <form method="post" action="{{ demo_post_url }}" class="demo-signin__one">
           <input type="hidden" name="email" value="{{ account.email }}">
           <button type="submit" class="btn">Sign in as {{ account.role }}</button>
-          <span class="coord">{{ account.display_name }} &middot; {{ account.title }}</span>
+          {#
+            A name and a job title, not a coordinate. In .coord they were
+            monospace and nowrap, so at 13rem of column each caption ran past
+            its own button and printed over the next one.
+          #}
+          <span class="field-hint">{{ account.display_name }} &middot; {{ account.title }}</span>
         </form>
         {%- endfor %}
       </div>
-      <p class="coord">
+      <p class="field-hint">
         The analyst cannot approve an action. The obligation owner can, and
         cannot propose one. That separation is the control, not a convenience.
       </p>
     </section>
     {% endif %}
 
+    {#
+      Three sentences about a cookie, and they were in .coord -- monospace and
+      nowrap -- so the paragraph ran off the right edge of the page and took the
+      document's width with it. It is prose about a setting, so it wraps.
+    #}
     {% if not cookie_secure %}
-    <p class="coord" role="alert">
+    <p class="field-hint" role="alert">
       {%- if cookie_local %}
       This is plain http to your own machine, so the session cookie is not
       marked Secure -- some browsers drop a Secure cookie here and you would
